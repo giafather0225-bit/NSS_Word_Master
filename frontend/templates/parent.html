@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSS Word Master — Parent Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/parent-dashboard.css?v=3">
+
+<style>
+.ocr-table { width:100%; border-collapse:collapse; font-size:13px; }
+.ocr-table th { text-align:left; padding:6px 4px; border-bottom:2px solid var(--border); font-size:12px; color:var(--text-secondary); }
+.ocr-table td { padding:4px; border-bottom:1px solid var(--border); }
+.ocr-edit { width:100%; border:1px solid transparent; padding:4px 6px; border-radius:6px; font-size:13px; background:var(--bg-secondary, #f5f5f7); transition:border .2s; }
+.ocr-edit:focus { border-color:var(--primary); outline:none; background:#fff; }
+.ocr-pos { width:60px; text-align:center; }
+.btn-del-word { background:none; border:none; color:#ccc; cursor:pointer; font-size:16px; padding:2px 6px; border-radius:4px; }
+.btn-del-word:hover { color:#ff3b30; background:#fff0f0; }
+.btn-sm { font-size:12px; padding:4px 12px; border-radius:6px; border:1px solid var(--border); background:var(--bg-secondary, #f5f5f7); cursor:pointer; }
+.btn-sm:hover { background:var(--primary); color:#fff; }
+</style>
+
+</head>
+<body>
+
+<!-- PIN Gate -->
+<div id="pin-overlay" class="pin-gate">
+    <div class="pin-card">
+        <div class="pin-icon">🔒</div>
+        <h2>Parent Access</h2>
+        <p>Enter PIN to unlock the dashboard.</p>
+        <div class="pin-row">
+            <input id="pin-input" type="password" placeholder="PIN" maxlength="8" autocomplete="off">
+            <button id="btn-pin" type="button">Unlock</button>
+        </div>
+        <p id="pin-error" class="pin-error hidden">Incorrect PIN</p>
+    </div>
+</div>
+
+<!-- Dashboard -->
+<div id="parent-content" class="dashboard" style="display:none;">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <h1 class="topbar-title">NSS Word Master</h1>
+            <span class="topbar-sub">Parent Dashboard</span>
+        </div>
+        <div class="topbar-right">
+            <a href="/ingest" class="topbar-btn">Folder Browser</a>
+            <a id="btn-child" href="/child" class="topbar-btn btn-primary">Open GIA Mode</a>
+        </div>
+    </header>
+
+    <!-- Stats Row -->
+    <section class="stats-row">
+        <div class="stat-card">
+            <div class="stat-label">Total Words</div>
+            <div class="stat-number" id="stat-total-words">—</div>
+            <div class="stat-detail" id="stat-words-detail"></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Textbooks</div>
+            <div class="stat-number" id="stat-textbooks">—</div>
+            <div class="stat-detail" id="stat-textbooks-detail"></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Lessons</div>
+            <div class="stat-number" id="stat-lessons">—</div>
+            <div class="stat-detail" id="stat-lessons-detail"></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Study Time</div>
+            <div class="stat-number" id="stat-study-time">—</div>
+            <div class="stat-detail" id="stat-study-time-detail"></div>
+        </div>
+        <div class="stat-card accent">
+            <div class="stat-label">Best Streak</div>
+            <div class="stat-number" id="stat-streak">—</div>
+            <div class="stat-detail" id="stat-streak-detail"></div>
+        </div>
+    </section>
+
+    <!-- Main Grid -->
+    <section class="main-grid">
+
+        <!-- Left: Textbook Overview -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Textbook Overview</h2>
+            </div>
+            <div class="panel-body" id="textbook-overview">
+                <p class="empty">Loading…</p>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-stack">
+            <div class="panel">
+                <div class="panel-header"><h2>Settings</h2></div>
+                <div class="panel-body" style="display:flex;flex-direction:column;gap:12px;padding:16px;">
+                    <div style="display:flex;align-items:center;gap:12px;cursor:pointer;" id="tool-pin-row" onclick="document.getElementById('btn-open-pin').click()">
+                        <span style="font-size:24px;">🔑</span>
+                        <div>
+                            <div style="font-weight:500;font-size:14px;">Change PIN</div>
+                            <div style="font-size:12px;color:var(--text-secondary);">Update your parent access PIN</div>
+                        </div>
+                        <button id="btn-open-pin" class="tool-btn" style="margin-left:auto;">Change</button>
+                    </div>
+                    <hr style="border:none;border-top:1px solid var(--border);margin:0;">
+                    <div style="display:flex;align-items:center;gap:12px;cursor:pointer;" id="tool-backup-row" onclick="document.getElementById('btn-open-backup').click()">
+                        <span style="font-size:24px;">💾</span>
+                        <div>
+                            <div style="font-weight:500;font-size:14px;">Data Info</div>
+                            <div style="font-size:12px;color:var(--text-secondary);">Database location and backup info</div>
+                        </div>
+                        <button id="btn-open-backup" class="tool-btn" style="margin-left:auto;">View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+</div>
+
+
+<!-- PIN Change Modal -->
+<div id="pin-modal" class="modal-overlay hidden">
+    <div class="modal-card modal-small">
+        <div class="modal-top">
+            <h2>Change PIN</h2>
+            <button class="modal-close" data-close="pin-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <input id="pin-current" type="password" placeholder="Current PIN" class="form-input">
+            <input id="pin-new" type="password" placeholder="New PIN (4-8 digits)" class="form-input mt-8">
+            <button id="btn-save-pin" class="btn-full primary mt-16">Save New PIN</button>
+            <p id="pin-change-status" class="status-msg mt-8"></p>
+        </div>
+    </div>
+</div>
+
+<!-- Backup / Data Info Modal -->
+<div id="backup-modal" class="modal-overlay hidden">
+    <div class="modal-card modal-small">
+        <div class="modal-top">
+            <h2>Data Info</h2>
+            <button class="modal-close" data-close="backup-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="info-row"><span class="info-label">Database</span><code>~/NSS_Learning/database/voca.db</code></div>
+            <div class="info-row"><span class="info-label">Lessons</span><code>~/NSS_Learning/English/</code></div>
+            <div class="info-row"><span class="info-label">Server</span><code>uvicorn backend.main:app :8000</code></div>
+            <p class="mt-16" style="color:#86868b;font-size:13px;">Back up the <code>~/NSS_Learning</code> folder to preserve all data.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Schedule Add Modal -->
+
+
+
+
+<!-- Reward Burst -->
+<div id="reward-burst-modal" class="modal-overlay hidden">
+    <div class="modal-card modal-small burst-card">
+        <div class="burst-emoji">🎆 ✨ 🏆 ✨ 🎆</div>
+        <h2>Perfect No-Miss!</h2>
+        <p>Reward cards are ready.</p>
+        <button id="btn-burst-ok" class="btn-full primary mt-16">Continue</button>
+    </div>
+</div>
+
+<script src="/static/js/parent-dashboard.js?v=7"></script>
+</body>
+</html>

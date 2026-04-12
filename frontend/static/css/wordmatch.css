@@ -1,0 +1,132 @@
+/* ───── Word Match Layout ───── */
+.wm-grid {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  padding: 8px 0 !important;
+  gap: 0 !important;
+}
+
+.wm-col-words {
+  flex: 1 !important;
+}
+
+.wm-col-meanings {
+  flex: 1.6 !important;
+}
+
+.wm-col {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ───── Cards — base style ───── */
+.wm-word-btn,
+.wm-meaning-btn {
+  all: revert !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 52px !important;
+  width: 100% !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+  background: #FFFFFF !important;
+  border: 1.5px solid #E0E0E5 !important;
+  border-radius: 12px !important;
+  font-family: -apple-system, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #1D1D1F !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.wm-word-btn:hover,
+.wm-meaning-btn:hover {
+  background: #F5F5F7 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07) !important;
+}
+
+/* ───── Selected ───── */
+.wm-word-btn.wm-selected,
+.wm-meaning-btn.wm-selected {
+  background: var(--color-primary-glow) !important;
+  border-color: var(--zia-primary) !important;
+  border-width: 2px !important;
+  color: var(--zia-primary) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
+}
+
+/* ───── Matched (correct) ───── */
+.wm-word-btn.wm-matched,
+.wm-meaning-btn.wm-matched {
+  background: #F0FBF4 !important;
+  border-color: var(--color-success) !important;
+  border-width: 1.5px !important;
+  color: var(--color-success) !important;
+  opacity: 0.75 !important;
+  pointer-events: none !important;
+  box-shadow: none !important;
+  border-radius: 12px !important;
+  animation: wm-flash 0.4s ease !important;
+}
+
+/* ───── Wrong (incorrect) ───── */
+.wm-word-btn.wm-wrong,
+.wm-meaning-btn.wm-wrong {
+  background: #FFF2F1 !important;
+  border-color: var(--color-error) !important;
+  color: var(--color-error) !important;
+  animation: wm-shake 0.35s ease !important;
+}
+
+/* ───── SVG connector lines (body > svg, drawn by child.js) ───── */
+body > svg[style*="fixed"] {
+  z-index: 999 !important;
+}
+
+body > svg[style*="fixed"] path {
+  stroke: var(--zia-primary) !important;
+  stroke-width: 1.5px !important;
+  opacity: 0.4 !important;
+  stroke-dasharray: 4 3 !important;
+}
+
+/* ───── Connector column — keep div, hide lines inside ───── */
+.wm-col-connector {
+  position: relative !important;
+  pointer-events: none !important;
+  width: 40px !important;
+  flex-shrink: 0 !important;
+}
+
+.wm-col-connector * {
+  display: none !important;
+}
+
+/* ───── Animations ───── */
+@keyframes wm-flash {
+  0%   { transform: scale(1);    box-shadow: none; }
+  50%  { transform: scale(1.04); box-shadow: 0 4px 16px var(--color-primary-glow); }
+  100% { transform: scale(1);    box-shadow: none; }
+}
+
+@keyframes wm-shake {
+  0%,100% { transform: translateX(0); }
+  25%     { transform: translateX(-5px); }
+  75%     { transform: translateX(5px); }
+}

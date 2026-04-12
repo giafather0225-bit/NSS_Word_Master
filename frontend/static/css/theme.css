@@ -1,0 +1,98 @@
+/* ============================================
+   GIA Design Tokens — 이 파일만 수정하면 전체 앱 디자인이 바뀝니다
+   ============================================ */
+
+:root {
+    /* ── 메인 색상 ───────────────────────── */
+    --color-primary:        #D4619E;
+    --color-primary-hover:  #C05090;
+    --color-primary-light:  #FDF2F8;
+    --color-primary-glow:   rgba(212, 97, 158, 0.18);
+
+    /* ── 보조 색상 ───────────────────────── */
+    --color-secondary:       #4A8E8E;
+    --color-secondary-hover: #3A7B7D;
+    --color-secondary-light: #EAF4F2;
+    --color-secondary-glow:  rgba(74, 142, 142, 0.18);
+
+    /* ── 강조 색상 ───────────────────────── */
+    --color-accent:       #B44D8C;
+    --color-accent-light: #FAF0F6;
+
+    /* ── 상태 색상 ───────────────────────── */
+    --color-success:       #34C759;
+    --color-success-light: rgba(52, 199, 89, 0.12);
+    --color-error:         #FF3B30;
+    --color-error-light:   rgba(255, 59, 48, 0.12);
+    --color-warning:       #F59E0B;
+
+    /* ── 그라데이션 ──────────────────────── */
+    --gradient-main:   linear-gradient(135deg, #4A8E8E 0%, #D4619E 50%, #C45B9A 100%);
+    --gradient-subtle: linear-gradient(135deg, #FDF2F8 0%, #FAF0F6 100%);
+
+    /* ── 배경 ────────────────────────────── */
+    --bg-page:     #FDF2F8;
+    --bg-card:     #FFFFFF;
+    --bg-sidebar:  #FEFAFA;
+    --bg-input:    #FFFFFF;
+    --bg-chip:     var(--color-primary-light);
+    --bg-chip-used: #F5F5F5;
+
+    /* ── 텍스트 ──────────────────────────── */
+    --text-primary:    #2D2D3F;
+    --text-secondary:  #8B8BA0;
+    --text-hint:       #AAAABC;
+    --text-on-primary: #FFFFFF;
+    --text-on-chip:    var(--color-primary);
+
+    /* ── 테두리 ──────────────────────────── */
+    --border-default:    #E5E5EA;
+    --border-input:      #DDD;
+    --border-input-focus: var(--color-primary);
+    --border-chip:       var(--color-primary);
+    --border-chip-used:  #DDD;
+    --border-card:       rgba(0, 0, 0, 0.06);
+
+    /* ── 그림자 ──────────────────────────── */
+    --shadow-card:        0 2px 12px rgba(0, 0, 0, 0.06);
+    --shadow-button:      0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-input-focus: 0 0 0 4px var(--color-primary-glow);
+
+    /* ── 크기 ────────────────────────────── */
+    --radius-sm:   8px;
+    --radius-md:   12px;
+    --radius-lg:   20px;
+    --radius-full: 9999px;
+
+    /* ── 폰트 ────────────────────────────── */
+    --font-family:       -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-size-xs:      11px;
+    --font-size-sm:      13px;
+    --font-size-md:      15px;
+    --font-size-lg:      18px;
+    --font-size-xl:      24px;
+    --font-weight-normal: 500;
+    --font-weight-bold:   600;
+    --font-weight-extra:  800;
+
+    /* ── 애니메이션 ──────────────────────── */
+    --transition-fast:   0.15s ease;
+    --transition-normal: 0.25s ease;
+    --transition-slow:   0.4s ease;
+}
+
+/* ── 다크모드 (나중에 활성화) ──────────────
+:root[data-theme="dark"] {
+    --color-primary:       #E87AB8;
+    --color-primary-hover: #D469A7;
+    --color-primary-light: #2A1A24;
+    --color-primary-glow:  rgba(232, 122, 184, 0.25);
+    --bg-page:    #1A1A2E;
+    --bg-card:    #252540;
+    --bg-sidebar: #1E1E36;
+    --text-primary:   #F0F0F5;
+    --text-secondary: #9999B0;
+    --border-default: #3A3A50;
+    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+──────────────────────────────────────────── */

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSS Word Master - Folder Browser</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary:#6C5CE7;--primary-light:#A29BFE;--bg:#F8F9FC;--bg-card:#FFF;
+            --bg-secondary:#F1F2F6;--text:#2D3436;--text-secondary:#636E72;
+            --border:#E0E3E8;--success:#00B894;--danger:#FF3B30;--radius:12px;
+            --shadow:0 2px 8px rgba(0,0,0,0.06);
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+        .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:var(--bg-card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+        .topbar h1{font-size:18px;font-weight:600;}
+        .topbar-sub{font-size:13px;color:var(--text-secondary);margin-left:8px;}
+        .topbar-right{display:flex;gap:8px;}
+        .topbar-btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;border:1px solid var(--border);color:var(--text);background:var(--bg-card);cursor:pointer;transition:all .2s;}
+        .topbar-btn:hover{background:var(--bg-secondary);}
+        .btn-primary{background:var(--primary);color:#fff;border-color:var(--primary);}
+        .btn-primary:hover{background:#5A4BD1;}
+        .layout{display:flex;height:calc(100vh - 61px);}
+        .sidebar{width:280px;background:var(--bg-card);border-right:1px solid var(--border);overflow-y:auto;flex-shrink:0;}
+        .sidebar-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+        .sidebar-header h2{font-size:12px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;}
+        .btn-new-lesson{background:var(--primary);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;font-family:inherit;}
+        .btn-new-lesson:hover{background:#5A4BD1;}
+        .folder-list{list-style:none;}
+        .folder-item{padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;display:flex;justify-content:space-between;align-items:center;}
+        .folder-item:hover{background:var(--bg-secondary);}
+        .folder-item.active{background:#EDE9FE;border-left:3px solid var(--primary);box-shadow:inset 0 0 0 1px rgba(108,92,231,0.1);}
+        .folder-name{font-size:13px;font-weight:500;}
+        .folder-meta{font-size:11px;color:var(--text-secondary);margin-top:2px;}
+        .folder-badges{display:flex;gap:4px;}
+        .badge{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:500;}
+        .badge-img{background:#E8F5E9;color:#2E7D32;}
+        .badge-word{background:#E3F2FD;color:#1565C0;}
+        .badge-empty{background:#FFF3E0;color:#E65100;}
+        .main-content{flex:1;overflow-y:auto;padding:24px;}
+        .welcome-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);}
+        .welcome-state .icon{font-size:48px;margin-bottom:16px;}
+        .welcome-state h2{font-size:18px;margin-bottom:8px;color:var(--text);}
+        .welcome-state p{font-size:14px;}
+        .lesson-detail{display:none;}
+        .lesson-detail.visible{display:block;}
+        .detail-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+        .detail-header h2{font-size:20px;font-weight:600;}
+        .detail-path{font-size:12px;color:var(--text-secondary);font-family:monospace;margin-top:4px;}
+        .btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;font-family:inherit;transition:all .2s;}
+        .btn:hover{background:var(--bg-secondary);}
+        .btn-ocr{background:var(--primary);color:#fff;border-color:var(--primary);}
+        .btn-ocr:hover{background:#5A4BD1;}
+        .btn:disabled{opacity:.5;cursor:not-allowed;}
+        .section{background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:20px;overflow:hidden;}
+        .section-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+        .section-title{font-size:14px;font-weight:600;}
+        .section-count{font-size:12px;color:var(--text-secondary);}
+        .drop-zone{padding:32px;text-align:center;border:2px dashed var(--border);border-radius:8px;margin:16px;cursor:pointer;transition:all .2s;}
+        .drop-zone:hover,.drop-zone.dragover{border-color:var(--primary);background:#F5F3FF;}
+        .drop-zone input{display:none;}
+        .drop-zone .dz-icon{font-size:32px;display:block;margin-bottom:8px;}
+        .drop-zone .hint{font-size:13px;color:var(--text-secondary);}
+        .image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;padding:16px;}
+        .image-card{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg-secondary);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+        .image-card img{width:100%;height:100%;object-fit:cover;}
+        .image-card .heic-placeholder{font-size:32px;color:var(--text-secondary);}
+        .image-card .img-name{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);color:#fff;font-size:10px;padding:4px 6px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+        .image-card .btn-del-img{position:absolute;top:4px;right:4px;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;display:none;color:var(--danger);line-height:22px;text-align:center;}
+        .image-card:hover .btn-del-img{display:block;}
+        .word-table{width:100%;border-collapse:collapse;font-size:13px;}
+        .word-table th{text-align:left;padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-secondary);border-bottom:2px solid var(--border);}
+        .word-table td{padding:8px 14px;border-bottom:1px solid var(--border);}
+        .word-table tr:hover{background:var(--bg-secondary);}
+        .pos-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500;background:var(--bg-secondary);}
+        .empty-state{padding:32px;text-align:center;color:var(--text-secondary);font-size:14px;}
+        .status-bar{position:fixed;bottom:0;left:280px;right:0;background:var(--bg-card);border-top:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:12px;z-index:50;transform:translateY(100%);transition:transform .3s;}
+        .status-bar.visible{transform:translateY(0);}
+        .status-text{font-size:13px;flex:1;}
+        .status-spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite;}
+        @keyframes spin{to{transform:rotate(360deg);}}
+        .btn-save{background:var(--success);color:#fff;border:none;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;}
+        .btn-save:hover{filter:brightness(.9);}
+        .progress-bar{height:3px;background:var(--bg-secondary);border-radius:2px;overflow:hidden;}
+        .progress-fill{height:100%;background:var(--primary);transition:width .3s;border-radius:2px;}
+        @media(max-width:768px){.layout{flex-direction:column;}.sidebar{width:100%;height:auto;max-height:200px;border-right:none;border-bottom:1px solid var(--border);}.status-bar{left:0;}}
+    
+        .word-edit{width:100%;border:1px solid transparent;padding:4px 6px;border-radius:6px;font-size:13px;background:transparent;font-family:inherit;transition:all .2s;}
+        .word-edit:focus{border-color:var(--primary);outline:none;background:#fff;box-shadow:0 0 0 3px rgba(108,92,231,0.1);}
+        .btn-del-word{background:none;border:none;color:#ccc;cursor:pointer;font-size:18px;padding:2px 6px;border-radius:4px;transition:all .15s;}
+        .btn-del-word:hover{color:var(--danger);background:#fff0f0;}
+
+    </style>
+</head>
+<body>
+<header class="topbar">
+    <div style="display:flex;align-items:baseline;">
+        <h1>Folder Browser</h1>
+        <span class="topbar-sub">NSS Word Master</span>
+    </div>
+    <div class="topbar-right">
+        <a href="/parent" class="topbar-btn">&#8592; Dashboard</a>
+        <a href="/child" class="topbar-btn btn-primary">Open GIA</a>
+    </div>
+</header>
+<div class="layout">
+    <nav class="sidebar">
+        <div class="sidebar-header" style="flex-direction:column;align-items:stretch;gap:0;padding:0;">
+            <div style="padding:12px 16px 8px;">
+                <h2 style="margin:0 0 6px 0;">Textbook</h2>
+                <select id="textbook-select" style="width:100%;padding:7px 10px;border-radius:8px;border:1px solid var(--border);font-size:13px;font-family:inherit;background:#fff;cursor:pointer;"></select>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-top:1px solid var(--border);margin-top:8px;">
+                <h2 style="margin:0;">Lessons</h2>
+                <div style="display:flex;gap:4px;">
+                    <button class="btn-new-lesson" id="btn-new-lesson">+ New</button>
+                    <button class="btn-new-lesson" id="btn-delete-folder" style="background:var(--danger);display:none;">Delete</button>
+                </div>
+            </div>
+        </div>
+        <ul class="folder-list" id="folder-list"></ul>
+    </nav>
+    <main class="main-content">
+        <div class="welcome-state" id="welcome-state">
+            <span class="icon">&#128194;</span>
+            <h2>Select a Lesson Folder</h2>
+            <p>Choose a lesson from the sidebar, or create a new one.</p>
+        </div>
+        <div class="lesson-detail" id="lesson-detail">
+            <div class="detail-header">
+                <div>
+                    <h2 id="detail-title">Lesson_01</h2>
+                    <div class="detail-path" id="detail-path"></div>
+                </div>
+                <div>
+                    <button class="btn btn-ocr" id="btn-run-folder-ocr" disabled>Run OCR on All Images</button>
+                </div>
+            </div>
+            <div class="progress-bar" id="ocr-progress" style="display:none;">
+                <div class="progress-fill" id="ocr-progress-fill" style="width:0%"></div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-title">Images</span>
+                    <span class="section-count" id="img-count">0 images</span>
+                </div>
+                <div class="drop-zone" id="image-drop-zone">
+                    <input type="file" id="image-file-input" accept="image/*,.heic" multiple>
+                    <span class="dz-icon">&#128193;</span>
+                    <div>Click or drag images here</div>
+                    <div class="hint">HEIC, JPG, PNG - multiple files OK</div>
+                </div>
+                <div class="image-grid" id="image-grid"></div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-title">Words (data.json)</span>
+                    <span class="section-count" id="word-count">0 words</span>
+                </div>
+                <div id="word-toolbar" style="display:none;padding:12px 18px;display:flex;justify-content:flex-end;">
+                    <button class="btn" id="btn-add-word" style="font-size:12px;padding:4px 14px;">+ Add Word</button>
+                    <button class="btn" id="btn-delete-all-words" style="font-size:12px;padding:4px 14px;color:var(--danger);border-color:var(--danger);margin-left:6px;">Delete All Words</button>
+                </div>
+                <div id="words-container">
+                    <div class="empty-state" id="words-empty">No words yet. Upload images and run OCR.</div>
+                    <table class="word-table" id="word-table" style="display:none;">
+                        <thead><tr>
+                            <th style="width:4%">#</th>
+                            <th style="width:18%">Word</th>
+                            <th style="width:8%">POS</th>
+                            <th style="width:35%">Definition</th>
+                            <th style="width:30%">Example</th>
+                            <th style="width:5%"></th>
+                        </tr></thead>
+                        <tbody id="word-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="status-bar" id="status-bar">
+    <div class="status-spinner" id="status-spinner"></div>
+    <span class="status-text" id="status-text">Processing...</span>
+    <button class="btn-save" id="btn-save-words" style="display:none;">Save to DB</button>
+    <button class="btn" id="btn-discard" style="display:none;margin-left:8px;">Discard</button>
+</div>
+<script src="/static/js/parent-ingest.js?v=9"></script>
+</body>
+</html>

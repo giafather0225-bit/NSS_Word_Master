@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSS Word Master — Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=9">
+</head>
+<body>
+    <div class="aurora-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="app-container glass-panel">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">✨</span>
+                <h1>Word <span>Wizard</span></h1>
+            </div>
+            <div class="nav-links">
+                <label class="lesson-inline-label" title="학습·통계·시작 링크에 사용">
+                    <span>레슨</span>
+                    <input type="text" id="active-lesson" class="lesson-input" value="Lesson_09" placeholder="Lesson_09">
+                </label>
+                <a href="/study?lesson=Lesson_09" class="nav-btn primary-link link-study">📚 레슨 시작</a>
+                <button type="button" id="btn-dad-settings" class="nav-btn admin-btn" title="Magic Vault — 보상 카드·시험 일정">⚙️ Magic Vault</button>
+            </div>
+        </header>
+
+        <main>
+            <section id="view-dashboard" class="view active">
+                <div class="dashboard-grid">
+                    <div class="left-col">
+                        <div class="glass-card stat-card glow">
+                            <h3>베스트 스트릭 🔥</h3>
+                            <div class="stat-value" id="dash-streak">0</div>
+                            <p><code>database/voca.db</code> · 선택한 레슨 기준</p>
+                        </div>
+
+                        <div class="glass-card dad-ingest-card mt-2">
+                            <h3>📂 Voca_8000 — 사진 넣기</h3>
+                            <p class="ingest-help">폴더 자동 생성: <code>Voca_8000/<span class="mono-lesson">Lesson_09</span>/data.json</code><br>
+                            로컬 Ollama <strong>llava</strong>로 OCR · 맥 TTS는 <code>say</code>(기본 Samantha, <code>TTS_VOICE</code>로 변경 가능)</p>
+                            <input type="file" id="ingest-file" accept="image/*" class="premium-input mb-2 w-100">
+                            <button type="button" id="btn-ingest" class="pill-btn primary w-100">이미지 OCR → 저장 → DB 반영</button>
+                            <p id="ingest-status" class="ingest-status empty-txt mt-2"></p>
+                            <p class="fine-print mt-2" style="color:#888;font-size:0.88rem;">이미지 자동 생성(Gemini/DALL·E)은 외부 API라 별도 연동 시에만 사용하는 것을 권장합니다. 로컬만 쓰려면 교재/스냅 사진·이모지 연상으로 대체할 수 있어요.</p>
+                        </div>
+
+                        <div class="glass-card stat-card glow daily-mission mt-2" style="padding: 20px;">
+                            <h3>오늘의 미션 🌟</h3>
+                            <p class="mt-1" style="color: #555;">워밍업 → 사다리 7단계 → 파이널 3 → 스파르타</p>
+                            <div class="checkbox-wrapper mt-2">
+                                <span class="custom-checkbox"></span> <span id="mission-label">⏳ 아직이에요!</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card action-card mt-2 text-center">
+                            <h2>The Master Cycle</h2>
+                            <p class="mt-2 mb-4">영·영 Meaning Match · 문맥 TTS · 철자 diff · 골드 스탬프</p>
+                            <a href="/study?lesson=Lesson_09" class="pill-btn primary w-100 link-study big-cta">🚀 레슨 시작하기</a>
+                        </div>
+                    </div>
+
+                    <div class="right-col">
+                        <div class="glass-card list-card">
+                            <div class="card-header">
+                                <h3>🗓️ 시험 일정</h3>
+                            </div>
+                            <div id="schedule-list" class="item-list"></div>
+                        </div>
+
+                        <div class="glass-card list-card mt-2">
+                            <div class="card-header">
+                                <h3>🎁 보상 카드</h3>
+                            </div>
+                            <div id="reward-list" class="item-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="reward-burst-modal" class="modal hidden">
+        <div class="modal-content glass-card reward-burst text-center reward-burst--animated">
+            <div class="burst-emoji">🎆✨🏆✨🎆</div>
+            <h2 class="reward-burst-title">노 미스 클리어!</h2>
+            <p class="reward-burst-desc">보상 카드(쿠폰)를 확인해요 🎁</p>
+            <button type="button" id="btn-reward-burst-ok" class="pill-btn primary w-100 mt-3">와! 알겠어요! 💖</button>
+        </div>
+    </div>
+
+    <div id="admin-modal" class="modal hidden">
+        <div class="modal-content glass-card">
+            <span id="admin-close" class="close-btn">&times;</span>
+            <h2 class="mb-2 text-center">⚙️ Magic Vault</h2>
+            <p class="text-center mb-4 muted">보상 쿠폰 · 시험 일정 (톱니바퀴와 동일)</p>
+
+            <div class="admin-section">
+                <h3>보상 카드 🎁</h3>
+                <input type="text" id="admin-reward-title" placeholder="제목" class="premium-input mt-2 mb-2 w-100">
+                <input type="text" id="admin-reward-desc" placeholder="조건 / 쿠폰 설명" class="premium-input mb-2 w-100">
+                <button type="button" id="btn-add-reward" class="pill-btn primary w-100">추가</button>
+            </div>
+
+            <div class="admin-section mt-4">
+                <h3>시험 일정 🗓️</h3>
+                <input type="date" id="admin-sch-date" class="premium-input mt-2 mb-2 w-100">
+                <input type="text" id="admin-sch-memo" placeholder="메모" class="premium-input mb-2 w-100">
+                <button type="button" id="btn-add-sch" class="pill-btn primary w-100">추가</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js?v=9"></script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSS Learning</title>
+    <link rel="stylesheet" href="/static/css/theme.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/preview.css">
+    <link rel="stylesheet" href="/static/css/wordmatch.css">
+    <link rel="stylesheet" href="/static/css/fillblank.css">
+    <link rel="stylesheet" href="/static/css/spelling.css">
+    <link rel="stylesheet" href="/static/css/sentence.css">
+    <link rel="stylesheet" href="/static/css/finaltest.css">
+    <link rel="stylesheet" href="/static/css/unittest.css?v=4">
+    <link rel="stylesheet" href="/static/css/word-manager.css?v=12">
+</head>
+<body>
+
+<!-- Ambient background -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- Particle layer -->
+<div id="particle-layer" aria-hidden="true"></div>
+
+<!-- Perfect banner -->
+<div id="perfect-banner" aria-hidden="true">Perfect! ✨</div>
+
+<!-- Preview Card Modal -->
+<div id="preview-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="pm-word">
+    <div class="pm-box">
+        <button class="pm-close" id="pm-close-btn" type="button" aria-label="Close">✕</button>
+        <div id="pm-content"></div>
+    </div>
+</div>
+
+<div class="app-shell">
+
+    <!-- ═══ Sidebar ══════════════════════════════════════════ -->
+    <aside class="sidebar" id="sidebar" aria-label="Navigation">
+        <div class="sidebar-inner">
+
+            <!-- 1. Top Section: avatar + name -->
+            <div class="sb-profile">
+                <img src="/static/img/GIA_Logo.png" alt="GIA" class="avatar-img">
+                <span class="logo-brand-text">GIA</span>
+            </div>
+
+            <!-- Subject segmented control -->
+            <div class="sb-subject-tabs">
+                <button class="sb-subject-tab active" id="tab-eng"
+                        onclick="setSubject('eng')">English</button>
+                <button class="sb-subject-tab" id="tab-math"
+                        onclick="setSubject('math')">Math</button>
+            </div>
+
+            <!-- Stars (hidden — shown in top bar; kept for JS compat) -->
+            <div class="sb-stars">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2l3 7 7 .6-5.3 4.6 1.7 7-6.4-3.9-6.4 3.9 1.7-7L2 9.6 9 9z"/>
+                </svg>
+                <span id="star-count">0</span>&nbsp;stars
+            </div>
+
+            <div class="sb-div"></div>
+
+            <!-- 2. Middle Section: Folder Tree (shown before session) -->
+            <div id="sb-selection-area">
+                <!-- Textbook — dropdown display, hidden select kept for JS -->
+                <div class="sb-label">Textbook</div>
+                <div id="textbook-section" style="position:relative;">
+                    <div class="sb-textbook-display" id="sb-textbook-name">
+                        <span class="sb-tb-name-text">—</span>
+                        <span class="sb-tb-chevron">▼</span>
+                    </div>
+                    <div class="sb-tb-dropdown" id="sb-tb-dropdown"></div>
+                    <select id="textbook-select" aria-label="Textbook selection">
+                        <option value="">Select textbook</option>
+                    </select>
+                </div>
+
+                <!-- Lesson dropdown -->
+                <div class="sb-label" style="margin-top: 12px;">Lesson</div>
+                <div id="lesson-section-display" style="position:relative;">
+                    <div class="sb-textbook-display" id="sb-lesson-name">
+                        <span class="sb-tb-name-text">—</span>
+                        <span class="sb-tb-chevron">▼</span>
+                    </div>
+                    <div id="sb-lesson-dropdown"></div>
+                </div>
+
+                <!-- Hidden lesson select — JS compat -->
+                <div id="lesson-section" style="display:none">
+                    <select id="lesson-select" aria-label="Lesson selection">
+                        <option value="">Select lesson</option>
+                    </select>
+                </div>
+
+                <!-- OCR register button (hidden) -->
+                <button class="ocr-btn" id="btn-ocr" type="button" style="display:none">
+                    Register (image → words)
+                </button>
+            </div>
+
+            <!-- ─── Section 2: Manage Words ─── -->
+            <div class="sb-div"></div>
+            <div class="sb-section">
+                <button type="button" id="btn-word-manager" class="wm-sidebar-trigger">
+                    Manage Words
+                </button>
+            </div>
+
+            <!-- ─── Section 3: Monthly Calendar ─── -->
+            <div class="sb-div"></div>
+            <div class="sb-section" id="sb-calendar-section">
+                <div class="sb-cal-header">
+                    <button type="button" class="sb-cal-nav" id="sb-cal-prev">&lsaquo;</button>
+                    <span class="sb-cal-title" id="sb-cal-title">April 2026</span>
+                    <button type="button" class="sb-cal-nav" id="sb-cal-next">&rsaquo;</button>
+                </div>
+                <div class="sb-cal-grid" id="sb-cal-grid"></div>
+            </div>
+            <div class="sb-div"></div>
+
+            <!-- Session info (shown during active session — kept for JS compat) -->
+            <div id="sb-session-info" class="hidden">
+                <div class="sb-session-row sb-session-lesson">
+                    <span class="sb-session-key">Lesson</span>
+                    <span class="sb-session-val" id="sb-info-lesson">—</span>
+                </div>
+                <!-- Hidden rows kept for JS compat -->
+                <div class="sb-session-row" style="display:none">
+                    <span class="sb-session-key">Stage</span>
+                    <span class="sb-session-val" id="sb-info-stage">—</span>
+                </div>
+                <div class="sb-session-row" style="display:none">
+                    <span class="sb-session-key">Progress</span>
+                    <span class="sb-session-val" id="sb-info-progress">—</span>
+                </div>
+                <div class="sb-session-row" style="display:none">
+                    <span class="sb-session-key">Mistakes</span>
+                    <span class="sb-session-val" id="sb-info-wrong">0</span>
+                </div>
+                <!-- Listen/Skip buttons — hidden, kept for JS compat -->
+                <div class="sb-session-btns">
+                    <button type="button" class="dock-btn sec" id="sb-btn-listen">🔊 Listen</button>
+                    <button type="button" class="dock-btn sec" id="sb-btn-skip">⏭ Skip</button>
+                </div>
+            </div>
+
+            <!-- 3. Bottom Section: Test buttons -->
+            <!-- Keyboard hints (hidden — kept for JS compat) -->
+            <div class="sb-hints" id="sb-hints-container">
+                <span class="kb" data-hint="submit">↵ Submit</span>
+                <span class="kb" data-hint="listen">Space Listen</span>
+                <span class="kb" data-hint="next">⌘L Next</span>
+                <span class="kb" data-hint="jump">1-5 Jump</span>
+                <span class="kb" data-hint="close">Esc Close</span>
+            </div>
+
+            <!-- Bottom section: tests + gear -->
+            <div class="sb-bottom-section">
+                <div class="sb-div"></div>
+                <div class="sb-bottom-btns">
+                    <button type="button" class="sb-bottom-btn" id="btn-exam">Final Test <span class="btn-lock-icon" id="lock-exam">🔒</span></button>
+                    <button type="button" class="sb-bottom-btn" id="btn-kigoosa">Unit Test</button>
+                </div>
+                <div class="sb-bottom">
+                <button type="button" id="btn-parent" title="Parent mode (⌘,)" aria-label="Parent mode">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06
+                                 a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09
+                                 A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83
+                                 l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09
+                                 A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83
+                                 l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09
+                                 a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83
+                                 l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09
+                                 a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ═══ Main Content ══════════════════════════════════════ -->
+    <div class="main-content">
+
+        <!-- Top bar: hamburger | roadmap | stars + progress -->
+        <div class="top-bar">
+
+            <!-- LEFT: sidebar toggle -->
+            <button class="sidebar-toggle" id="sidebar-toggle"
+                    aria-label="Toggle sidebar (⌘\)" title="Toggle sidebar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.2" stroke-linecap="round">
+                    <line x1="3" y1="6"  x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+
+            <!-- CENTER: roadmap circle flow -->
+            <div id="roadmap" aria-label="Roadmap"></div>
+
+            <!-- RIGHT: diary + stars + progress bar + % + word count -->
+            <div class="top-right">
+                <button type="button" class="top-diary-btn" title="GIA's Diary" aria-label="GIA's Diary">📖</button>
+                <span class="top-star-icon" aria-hidden="true">★</span>
+                <span id="stars-count">0</span>
+                <div class="top-progress-bar-wrap" title="Progress">
+                    <div class="top-progress-fill" id="top-progress-fill"></div>
+                </div>
+                <div class="pct-big" id="progress-pct">0%</div>
+                <div class="challenge-meta" id="challenge-meta"></div>
+            </div>
+
+        </div>
+
+        <!-- Hidden SVG ring — kept for child.js compat -->
+        <svg id="progress-ring" style="position:absolute;visibility:hidden;pointer-events:none;width:0;height:0"
+             viewBox="0 0 36 36" aria-hidden="true">
+            <circle class="ring-fill" id="progress-ring-fill"
+                    cx="18" cy="18" r="16"
+                    fill="none" stroke-width="3"
+                    transform="rotate(-90 18 18)"/>
+        </svg>
+
+        <!-- Stage workspace -->
+        <div class="stage-area">
+
+            <!-- Idle card (shown before session starts) -->
+            <div id="idle-wrapper">
+                <div id="idle-card">
+                    <div class="idle-lesson-name" id="idle-lesson-name">Select a lesson to begin</div>
+                    <div class="idle-lesson-meta" id="idle-lesson-meta"></div>
+                    <button type="button" id="btn-start">▶ Start</button>
+                </div>
+            </div>
+
+            <!-- Active session card (hidden until session starts) -->
+            <div id="stage-card" class="hidden">
+                <div id="stage"></div>
+            </div>
+
+        </div>
+
+        <!-- Word vault (hidden, kept for JS compat) -->
+        <div class="vault-area" style="display:none">
+            <div id="word-vault"></div>
+        </div>
+
+        <!-- child-status kept for JS compat, hidden -->
+        <div id="child-status" style="display:none"></div>
+        <div id="ut-overlay" class="hidden"></div>
+    </div><!-- /main-content -->
+</div><!-- /app-shell -->
+
+<!-- ═══ Word Manager Panel ══════════════════════════════════════ -->
+<div id="wm-backdrop" class="wm-backdrop"></div>
+
+
+<!-- ─── Final Test Overlay ────────────────────────────────────── -->
+<div id="exam-overlay" class="hidden" role="dialog" aria-label="Final Test">
+    <div class="eo-header">
+        <span class="eo-crumb" id="eo-crumb">Final Test</span>
+        <div class="eo-title">
+            <span>📝</span>
+            <span id="eo-part-label">Final Test</span>
+        </div>
+        <div class="eo-header-right">
+            <div class="eo-timer" id="eo-timer">30:00</div>
+            <button type="button" class="eo-close" id="eo-close" title="Close">✕</button>
+        </div>
+    </div>
+    <div class="eo-progress-track">
+        <div class="eo-progress-fill" id="eo-progress-fill"></div>
+    </div>
+    <div class="eo-body" id="eo-body"></div>
+</div>
+
+<!-- ─── Modals ──────────────────────────────────────────────── -->
+<div id="magic-overlay" class="hidden" role="alert">
+    <div class="magic-box">
+        <h2>Challenge reset</h2>
+        <p class="meta">Back to word 1. Resets today:&nbsp;<strong id="magic-count">0</strong></p>
+    </div>
+</div>
+
+<div id="tutor-modal" class="hidden">
+    <div class="tutor-box">
+        <h2>AI Tutor</h2>
+        <div id="tutor-feedback-text" class="tutor-body">…</div>
+        <button type="button" class="dock-btn" id="btn-tutor-next"
+                style="width:100%;">Continue</button>
+    </div>
+</div>
+
+<!-- ─── App logic ────────────────────────────────────────────── -->
+<script src="/static/js/child.js?v=28"></script>
+<script src="/static/js/sentence_ai.js?v=1"></script>
+<script src="/static/js/finaltest.js?v=10"></script>
+<script src="/static/js/unittest.js?v=5"></script>
+<script src="/static/js/word-manager.js?v=14"></script>
+<!-- Word Manager Full-screen Overlay -->
+<div id="wm-overlay" class="hidden" role="dialog" aria-label="Word Manager">
+  <div class="wm-header">
+    <div class="wm-header-title">Word Manager</div>
+    <button class="wm-close-btn" id="wm-close">✕</button>
+  </div>
+  <div class="wm-body" id="wm-body"></div>
+</div>
+</body>
+</html>
