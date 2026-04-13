@@ -9,7 +9,7 @@ const CONF = {
     FB_RETRY_MAX_STRIKES: 3,    // Fill Blank retry에서도 최대 오답 (무한루프 방지)
     PARTICLE_MAX: 48,           // 파티클 최대 개수
     PARTICLE_LIFETIME: 1300,    // 파티클 수명 (ms)
-    STAGE_CLEAR_DELAY: 5000,    // 스테이지 클리어 화면 표시 시간 (ms)
+    STAGE_CLEAR_DELAY: 8000,    // 스테이지 클리어 화면 표시 시간 (ms)
     WRONG_ANSWER_DISPLAY: 2000, // 오답 표시 시간 (ms)
 };
 
@@ -540,6 +540,7 @@ async function loadLessons(subject, textbook) {
 }
 
 async function loadStudyItems(lesson) {
+    if (!currentTextbook) { console.warn("[loadStudyItems] no textbook selected"); return; }
     const res = await fetch(`/api/study/${encodeURIComponent(currentSubject)}/${encodeURIComponent(currentTextbook)}/${encodeURIComponent(lesson)}`);
     if (!res.ok) {
         let txt = "";
@@ -722,10 +723,12 @@ const _particleTimers = [];
 function showPerfectBanner(text) {
     const el = $("perfect-banner");
     if (!el) return;
+    el.style.display = "";
     el.textContent = text;
     el.classList.remove("fire");
-    void el.offsetWidth; // reflow
+    void el.offsetWidth;
     el.classList.add("fire");
+    setTimeout(() => { el.style.display = "none"; }, 1200);
 }
 
 function particleBurst(count) {
@@ -805,6 +808,9 @@ function showMagicOverlayBrief(resetCount) {
 
 function intraPhaseProgress() {
     const n = Math.max(1, wordCountAll());
+    if (stage === STAGE.PREVIEW) {
+        return (previewDoneMap ? previewDoneMap.size : 0) / n;
+    }
     if (stage === STAGE.C) {
         const pass = spState.pass || 1;
         return (stageIndex + (pass - 1) / 3) / n;
@@ -830,7 +836,7 @@ function updateProgressPct() {
 
     if (stage === STAGE.EXAM) {
         const den = Math.max(1, examQueue.length);
-        // exam progress handled separately
+        const pct = Math.round((examIndex / den) * 100);
         el.textContent = `${pct}%`;
         setMeta(`${examIndex}/${examQueue.length} words`);
         setRingColor(pct);
@@ -856,7 +862,8 @@ function updateProgressPct() {
     const n = Math.max(1, items.length);
     let metaText = "";
     if (stage === STAGE.PREVIEW) {
-        metaText = `${Math.min(stageIndex + 1, n)}/${n} words`;
+        const prevDone = previewDoneMap ? previewDoneMap.size : 0;
+        metaText = `${prevDone}/${n} words`;
     } else if (stage === STAGE.A) {
         metaText = `Round ${wmState.round + 1}/3`;
     } else if (stage === STAGE.B) {
@@ -1223,12 +1230,30 @@ function updateRoadmapUI() {
     }
 }
 
+function _playTone(freq, dur, type) {
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type || "sine";
+        osc.frequency.value = freq;
+        gain.gain.value = 0.18;
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+        osc.stop(ctx.currentTime + dur);
+    } catch(e) {}
+}
+
 function stageFxCorrect() {
     const s = $("stage");
     if (!s) return;
     s.classList.remove("fx-wrong");
     s.classList.add("fx-correct");
     setTimeout(() => s.classList.remove("fx-correct"), 650);
+    _playTone(523, 0.12, "sine");
+    setTimeout(() => _playTone(784, 0.18, "sine"), 120);
 }
 
 function stageFxWrong() {
@@ -1239,6 +1264,8 @@ function stageFxWrong() {
     void s.offsetWidth;
     s.classList.add("fx-wrong");
     setTimeout(() => s.classList.remove("fx-wrong"), 350);
+    _playTone(200, 0.25, "square");
+    if (navigator.vibrate) navigator.vibrate(150);
 }
 
 function showIdleCard() {
@@ -1558,13 +1585,7 @@ function renderPreview(el) {
         el.appendChild(grid);
 
         // ── All-done footer ─────────────────────────────────
-        if (doneCount() === totalCount) {
-            const footer = document.createElement("p");
-            footer.className = "st-sub";
-            footer.style.cssText = "margin-top:20px; text-align:center; font-size:14px;";
-            footer.innerHTML = "All words done! 👆 Tap <strong>2. Word Match</strong> above to continue.";
-            el.appendChild(footer);
-        }
+        // (handled in modal close callback instead)
 
         updateRoadmapUI();
         updateProgressPct();
@@ -1896,58 +1917,18 @@ function openPreviewModal(item, onClose) {
             badge.textContent = status === 'ok' ? '✓' : '~';
             card.appendChild(badge);
         }
-        setTimeout(onClose, 400);
-
         if (previewDoneMap.size >= items.length) {
-            _trackStageComplete(STAGE.PREVIEW);
-            markStageComplete(STAGE.PREVIEW);
-            updateRoadmapUI();
-            refreshStartLabel();
+            // Preview done — close modal then advance
+            const modal = $('preview-modal');
+            if (modal) { modal.classList.add('hidden'); modal.hidden = true; }
+            stageFxCorrect();
+            setStatus("Preview complete!");
             setTimeout(() => {
-                particleBurst(48);
-                showPerfectBanner("Step 1 Complete! 🎉");
-                // 완료 화면을 stage-card에 표시
-                const card = $('stage-card');
-                if (card) {
-                    card.innerHTML = `
-                        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px;text-align:center;">
-                            <div style="font-size:4rem;line-height:1;">🎉</div>
-                            <div style="font-size:2rem;font-weight:900;margin:16px 0 8px;color:var(--color-text,#1D1D1F);">Preview Complete!</div>
-                            <div style="font-size:1.1rem;color:var(--color-text-secondary,#6E6E73);">⭐ ${starCount} star${starCount !== 1 ? 's' : ''} earned · ${items.length} words reviewed</div>
-                            <div style="font-size:1rem;color:var(--color-text-secondary,#6E6E73);margin-top:4px;">
-                                ${Object.keys(wrongMap).filter(k => wrongMap[k] > 0).length > 0
-                                    ? '💪 ' + Object.keys(wrongMap).filter(k => wrongMap[k] > 0).length + ' word(s) to practice more'
-                                    : '✨ No mistakes — perfect!'}
-                            </div>
-                            <button type="button" id="preview-next-btn"
-                                style="margin-top:28px;padding:14px 36px;font-size:1.1rem;font-weight:700;
-                                       border:none;border-radius:12px;cursor:pointer;
-                                       background:var(--color-primary,#D4619E);color:#fff;
-                                       box-shadow:0 4px 12px rgba(212,97,158,0.3);
-                                       transition:transform 0.15s,box-shadow 0.15s;">
-                                Next → Word Match
-                            </button>
-                        </div>
-                    `;
-                    const nextBtn = $('preview-next-btn');
-                    if (nextBtn) {
-                        nextBtn.addEventListener('mouseenter', () => {
-                            nextBtn.style.transform = 'scale(1.03)';
-                            nextBtn.style.boxShadow = '0 6px 16px rgba(212,97,158,0.4)';
-                        });
-                        nextBtn.addEventListener('mouseleave', () => {
-                            nextBtn.style.transform = '';
-                            nextBtn.style.boxShadow = '0 4px 12px rgba(212,97,158,0.3)';
-                        });
-                        nextBtn.addEventListener('click', () => {
-                            if (typeof jumpToStage === 'function') {
-                                jumpToStage(STAGE.A);
-                            }
-                        });
-                    }
+                if (stage === STAGE.PREVIEW || stage === null) {
+                    advanceToNextStage();
                 }
-                setStatus("Preview complete! Click 'Next' to start Word Match.");
-            }, 300);
+            }, 800);
+            return; // skip buildGrid rebuild
         } else {
             const okCount = [...previewDoneMap.values()].filter(v => v === "ok").length;
             setStatus(`${okCount} / ${items.length} done`);
@@ -2364,11 +2345,6 @@ function renderFillItem(el, item, isRetry) {
             starCount++;
             updateStars();
             addWordVault(item.answer);
-            fetch("/api/tts/word_meaning", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ word: item.answer, meaning: item.question }),
-            }).catch(() => {});
 
             if (isRetry) {
                 fbState.retryIndex++;
@@ -2904,150 +2880,87 @@ function renderExam(el) {
 }
 
 function advanceToNextStage() {
-    // ── Analytics: log stage completion ──
     if (stage) _trackStageComplete(stage);
-    // 현재 단계 완료 기록
     if (stage) markStageComplete(stage);
 
-    // 축하 화면 2초 표시
-    const completedStageLabel = ROADMAP_LABELS[ROADMAP_STAGES.indexOf(stage)] || "Step";
+    const _stageAtComplete = stage;
+    const completedStageLabel = ROADMAP_LABELS[ROADMAP_STAGES.indexOf(_stageAtComplete)] || "Step";
     const reviewCount = Object.keys(wrongMap).filter(k => wrongMap[k] > 0).length;
     const starsEarned = starCount;
     const allDone = allStagesDone();
 
     const stageEl = $("stage");
     if (stageEl) {
-        // Multiple celebration patterns — pick one randomly
-        const patterns = [
-            { // Pattern 1: Trophy
-                bg: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                icon: "🏆",
-                accent: "#ffd700",
-                confetti: true,
-            },
-            { // Pattern 2: Rocket
-                bg: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-                icon: "🚀",
-                accent: "#ff6b6b",
-                confetti: false,
-            },
-            { // Pattern 3: Star burst
-                bg: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-                icon: "🌟",
-                accent: "#feca57",
-                confetti: true,
-            },
-            { // Pattern 4: Fire
-                bg: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-                icon: "🔥",
-                accent: "#ff9f43",
-                confetti: false,
-            },
-            { // Pattern 5: Diamond
-                bg: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)",
-                icon: "💎",
-                accent: "#c56cf0",
-                confetti: true,
-            },
-        ];
-        const allDonePattern = {
-            bg: "linear-gradient(135deg, #f5af19 0%, #f12711 100%)",
-            icon: "🎉",
-            accent: "#ffd700",
-            confetti: true,
-        };
-        const p = allDone ? allDonePattern : patterns[Math.floor(Math.random() * patterns.length)];
-
         const reviewLine = reviewCount > 0
-            ? `<div style="margin:12px 0 0;font-size:0.95rem;color:rgba(255,255,255,0.85);background:rgba(0,0,0,0.15);border-radius:12px;padding:8px 16px;display:inline-block;">📝 ${reviewCount} word${reviewCount > 1 ? "s" : ""} to review</div>`
-            : `<div style="margin:12px 0 0;font-size:0.95rem;color:rgba(255,255,255,0.9);">✨ Perfect — no mistakes!</div>`;
+            ? `<p style="margin:8px 0 0;font-size:0.95rem;color:#6E6E73;">` +
+              reviewCount + ` word` + (reviewCount > 1 ? `s` : ``) + ` to review</p>`
+            : `<p style="margin:8px 0 0;font-size:0.95rem;color:#34C759;">Perfect — no mistakes!</p>`;
 
         const next = allDone ? null : nextStageToStart();
         const nextLabel = next ? (ROADMAP_LABELS[ROADMAP_STAGES.indexOf(next)] || "Next") : null;
         const nextBtnHtml = allDone
-            ? `<button type="button" id="stage-complete-btn" style="margin-top:24px;padding:14px 40px;border:none;border-radius:16px;background:rgba(255,255,255,0.95);color:#333;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:transform 0.2s;">📝 Take Final Test</button>`
-            : `<button type="button" id="stage-complete-btn" style="margin-top:24px;padding:14px 40px;border:none;border-radius:16px;background:rgba(255,255,255,0.95);color:#333;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:transform 0.2s;">${nextLabel} →</button>`;
+            ? `<button type="button" id="stage-complete-btn" class="sc-btn">Take Final Test</button>`
+            : `<button type="button" id="stage-complete-btn" class="sc-btn">${nextLabel} \u2192</button>`;
+
+        const scIcon = allDone ? "\u2728" : "\u2713";
 
         stageEl.innerHTML = `
-            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;
-                        height:100%;padding:40px;text-align:center;
-                        background:${p.bg};border-radius:20px;position:relative;overflow:hidden;">
-                ${p.confetti ? `
-                <div style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden;">
-                    ${Array.from({length:20}, (_, i) => {
-                        const x = Math.random() * 100;
-                        const delay = Math.random() * 2;
-                        const size = 6 + Math.random() * 8;
-                        const colors = ['#ffd700','#ff6b6b','#48dbfb','#ff9ff3','#54a0ff','#5f27cd','#01a3a4','#f368e0'];
-                        const color = colors[Math.floor(Math.random() * colors.length)];
-                        return `<div style="position:absolute;left:${x}%;top:-10px;width:${size}px;height:${size}px;
-                                    background:${color};border-radius:${Math.random()>0.5?'50%':'2px'};
-                                    animation:confetti-fall ${2+Math.random()*2}s ${delay}s ease-in forwards;
-                                    transform:rotate(${Math.random()*360}deg);"></div>`;
-                    }).join('')}
-                </div>` : ''}
-                <div style="font-size:5rem;line-height:1;animation:bounce-in 0.6s ease;
-                            filter:drop-shadow(0 4px 8px rgba(0,0,0,0.2));">${p.icon}</div>
-                <div style="font-size:2.2rem;font-weight:900;margin:16px 0 6px;color:#fff;
-                            text-shadow:0 2px 8px rgba(0,0,0,0.2);
-                            animation:slide-up 0.5s 0.2s ease both;">${completedStageLabel} Complete!</div>
-                <div style="font-size:1.15rem;color:rgba(255,255,255,0.9);animation:slide-up 0.5s 0.4s ease both;">
-                    ⭐ ${starsEarned} star${starsEarned !== 1 ? "s" : ""} earned
-                </div>
-                <div style="animation:slide-up 0.5s 0.6s ease both;">${reviewLine}</div>
-                <div style="animation:slide-up 0.5s 0.8s ease both;">${nextBtnHtml}</div>
+            <div class="sc-card">
+                <svg class="sc-svg" viewBox="0 0 52 52">
+                    <circle class="sc-circle" cx="26" cy="26" r="24"/>
+                    <path class="sc-tick" d="M15 27l7 7 15-15"/>
+                </svg>
+                <p class="sc-title">${completedStageLabel}</p>
+                <div class="sc-btn-wrap">${nextBtnHtml}</div>
             </div>
         `;
 
-        // Add CSS animations if not already present
-        if (!document.getElementById('stage-complete-styles')) {
-            const style = document.createElement('style');
-            style.id = 'stage-complete-styles';
-            style.textContent = `
-                @keyframes confetti-fall {
-                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-                    100% { transform: translateY(calc(100vh)) rotate(720deg); opacity: 0; }
-                }
-                @keyframes bounce-in {
-                    0% { transform: scale(0); opacity: 0; }
-                    50% { transform: scale(1.2); }
-                    100% { transform: scale(1); opacity: 1; }
-                }
-                @keyframes slide-up {
-                    0% { transform: translateY(20px); opacity: 0; }
-                    100% { transform: translateY(0); opacity: 1; }
-                }
-                #stage-complete-btn:hover { transform: scale(1.05); }
-                #stage-complete-btn:active { transform: scale(0.98); }
+        if (!document.getElementById('sc-btn-style')) {
+            const sty = document.createElement('style');
+            sty.id = 'sc-btn-style';
+            sty.textContent = `
+                @keyframes sc-draw{from{stroke-dashoffset:151}to{stroke-dashoffset:0}}
+                @keyframes sc-tick{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+                @keyframes sc-fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+                .sc-card{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:20px}
+                .sc-svg{width:72px;height:72px}
+                .sc-circle{fill:none;stroke:#34C759;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:151;stroke-dashoffset:151;animation:sc-draw 0.7s ease forwards}
+                .sc-tick{fill:none;stroke:#34C759;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:sc-tick 0.35s 0.55s ease forwards}
+                .sc-title{font-size:1.15rem;font-weight:600;color:#1D1D1F;letter-spacing:-0.01em;opacity:0;animation:sc-fade 0.4s 0.7s ease forwards}
+                .sc-btn-wrap{opacity:0;animation:sc-fade 0.4s 1.1s ease forwards}
+                .sc-btn{padding:12px 36px;border:none;border-radius:12px;background:#007AFF;color:#fff;font-size:0.95rem;font-weight:600;cursor:pointer;transition:transform 0.12s,opacity 0.12s}
+                .sc-btn:hover{transform:scale(1.03)}
+                .sc-btn:active{transform:scale(0.97);opacity:0.85}
             `;
-            document.head.appendChild(style);
+            document.head.appendChild(sty);
         }
 
-        // Next stage button handler
-        const completeBtn = stageEl.querySelector('#stage-complete-btn');
-        if (completeBtn) {
-            completeBtn.addEventListener('click', () => {
-                if (allDone) {
-                    // Start Final Test
-                    const examBtn = $('btn-exam');
-                    if (examBtn) examBtn.click();
-                } else {
-                    const nextKey = nextStageToStart();
-                    if (nextKey) jumpToStage(nextKey);
-                }
-            });
-        }
-
-        particleBurst(48);
-        showPerfectBanner(`${completedStageLabel} Complete! ${p.icon}`);
+        const _nextKey = allDone ? null : nextStageToStart();
     }
 
-    // 세션 상태 초기화 (자동 진행 없음 — 유저가 다음 단계 선택)
+    const _savedNextKey = allDone ? null : nextStageToStart();
     sessionActive = false;
     stageIndex = 0;
     stage = null;
     spState.pass = 1;
     exitSessionSidebar();
+
+    // Button handler — uses saved next key (before state was cleared)
+    const completeBtn = stageEl ? stageEl.querySelector('#stage-complete-btn') : null;
+    if (completeBtn) {
+        completeBtn.addEventListener('click', async () => {
+            if (allDone) {
+                const examBtn = $('btn-exam');
+                if (examBtn) examBtn.click();
+            } else if (_savedNextKey) {
+                if (!items.length) {
+                    const lesson = lessonSelected();
+                    if (lesson) await loadStudyItems(lesson);
+                }
+                jumpToStage(_savedNextKey);
+            }
+        });
+    }
 
     updateRoadmapUI();
     refreshLessonCompletion();
@@ -3058,14 +2971,12 @@ function advanceToNextStage() {
             const ex = $("btn-exam");
             if (ex) ex.disabled = false;
             refreshStartLabel();
-            // Don't auto-navigate — user clicks the button
-            setStatus("🎉 All steps complete! Click the button to take the Final Test.");
+            setStatus("All steps complete! Press the button for Final Test.");
         } else {
             refreshStartLabel();
-            // Don't auto-navigate — user clicks the "Next →" button
             const next = nextStageToStart();
             const nextLabel = ROADMAP_LABELS[ROADMAP_STAGES.indexOf(next)] || next;
-            setStatus(`Step done! Click the button or tap "${nextLabel}" above.`);
+            setStatus("Step done! Click the button or tap \"" + nextLabel + "\" above.");
         }
     }, CONF.STAGE_CLEAR_DELAY);
 }
@@ -3369,8 +3280,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     const btnParent = $("btn-parent");
     if (btnParent) {
         btnParent.addEventListener("click", () => {
-            const lesson = encodeURIComponent(lessonSelected());
-            window.location.href = `/parent?lesson=${lesson}`;
+            const pin = prompt("Enter PIN:");
+            if (!pin) return;
+            const stored = localStorage.getItem("parent_pin") || "1234";
+            if (pin.trim() === stored) {
+                const lesson = encodeURIComponent(lessonSelected());
+                window.location.href = `/parent?lesson=${lesson}`;
+            } else {
+                alert("Incorrect PIN");
+            }
         });
     }
 

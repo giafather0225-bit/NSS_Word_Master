@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NSS Word Master — Parent Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/parent-dashboard.css?v=3">
+    <link rel="stylesheet" href="/static/css/parent-dashboard.css?v=8">
 
 <style>
 .ocr-table { width:100%; border-collapse:collapse; font-size:13px; }
@@ -121,9 +121,53 @@
         </div>
     </section>
 
+    <!-- Analytics Section -->
+    <section class="analytics-grid">
+        <!-- Recent Activity -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Recent Activity</h2>
+            </div>
+            <div class="panel-body" id="recent-activity">
+                <p class="empty">No activity yet. Start studying!</p>
+            </div>
+        </div>
 
+        <!-- Weak Words -->
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Weak Words</h2>
+            </div>
+            <div class="panel-body" id="weak-words">
+                <p class="empty">No weak words detected yet</p>
+            </div>
+        </div>
 
+        <!-- Lesson Progress -->
+        <div class="panel full-width">
+            <div class="panel-header">
+                <h2>Lesson Progress</h2>
+            </div>
+            <div class="panel-body" id="lesson-progress">
+                <p class="empty">No progress data yet</p>
+            </div>
+        </div>
 
+        <!-- Study Calendar -->
+        <div class="panel full-width">
+            <div class="panel-header">
+                <h2>Study Calendar</h2>
+                <div class="cal-nav">
+                    <button type="button" class="cal-nav-btn" id="dash-cal-prev">&lsaquo;</button>
+                    <span id="dash-cal-title">April 2026</span>
+                    <button type="button" class="cal-nav-btn" id="dash-cal-next">&rsaquo;</button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="dash-cal-grid" id="dash-cal-grid"></div>
+            </div>
+        </div>
+    </section>
 
 </div>
 
@@ -175,6 +219,6 @@
     </div>
 </div>
 
-<script src="/static/js/parent-dashboard.js?v=7"></script>
+<script src="/static/js/parent-dashboard.js?v=9"></script>
 </body>
 </html>

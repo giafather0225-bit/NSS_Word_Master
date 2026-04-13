@@ -363,6 +363,17 @@ def _has_def_ex(e: dict) -> bool:
 # 새 계층형 API: 과목 → 교재 → 레슨
 # ───────────────────────────────────────────────
 
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    from fastapi.responses import FileResponse
+    import os
+    path = os.path.join(os.path.dirname(__file__), "..", "frontend", "static", "favicon.svg")
+    if os.path.exists(path):
+        return FileResponse(path, media_type="image/svg+xml")
+    from fastapi.responses import Response
+    return Response(status_code=204)
+
 @app.get("/api/lesson-lookup")
 def lesson_lookup(
     subject: str,

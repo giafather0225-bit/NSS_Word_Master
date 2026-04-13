@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NSS Learning</title>
     <link rel="stylesheet" href="/static/css/theme.css">
@@ -26,7 +27,7 @@
 <div id="particle-layer" aria-hidden="true"></div>
 
 <!-- Perfect banner -->
-<div id="perfect-banner" aria-hidden="true">Perfect! ✨</div>
+<div id="perfect-banner" aria-hidden="true" style="display:none">Perfect! ✨</div>
 
 <!-- Preview Card Modal -->
 <div id="preview-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="pm-word">
@@ -107,8 +108,9 @@
             <!-- ─── Section 2: Manage Words ─── -->
             <div class="sb-div"></div>
             <div class="sb-section">
-                <button type="button" id="btn-word-manager" class="wm-sidebar-trigger">
-                    Manage Words
+                <button type="button" id="btn-word-manager" class="sb-sidebar-card">
+                    <span class="sb-card-label">Manage Words</span>
+                    <span class="sb-card-chevron">›</span>
                 </button>
             </div>
 
@@ -120,7 +122,7 @@
                     <span class="sb-cal-title" id="sb-cal-title">April 2026</span>
                     <button type="button" class="sb-cal-nav" id="sb-cal-next">&rsaquo;</button>
                 </div>
-                <div class="sb-cal-grid" id="sb-cal-grid"></div>
+                <div class="sb-cal-grid" id="sb-cal-grid" style="margin-top:6px"></div>
             </div>
             <div class="sb-div"></div>
 
@@ -160,14 +162,22 @@
                 <span class="kb" data-hint="close">Esc Close</span>
             </div>
 
-            <!-- Bottom section: tests + gear -->
-            <div class="sb-bottom-section">
-                <div class="sb-div"></div>
-                <div class="sb-bottom-btns">
-                    <button type="button" class="sb-bottom-btn" id="btn-exam">Final Test <span class="btn-lock-icon" id="lock-exam">🔒</span></button>
-                    <button type="button" class="sb-bottom-btn" id="btn-kigoosa">Unit Test</button>
-                </div>
-                <div class="sb-bottom">
+            <!-- Section 4: Tests -->
+            <div class="sb-div"></div>
+            <div class="sb-section">
+                <div class="sb-section-label">TEST</div>
+                <button type="button" class="sb-sidebar-card" id="btn-exam">
+                    <span class="sb-card-label">Final Test</span>
+                    <span class="btn-lock-icon" id="lock-exam">🔒</span>
+                </button>
+                <button type="button" class="sb-sidebar-card" id="btn-kigoosa">
+                    <span class="sb-card-label">Unit Test</span>
+                    <span class="sb-card-chevron">›</span>
+                </button>
+            </div>
+            <!-- Section 5: Settings -->
+            <div class="sb-div"></div>
+            <div class="sb-bottom">
                 <button type="button" id="btn-parent" title="Parent mode (⌘,)" aria-label="Parent mode">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -603,3 +603,89 @@
     /* ── Init ── */
     document.addEventListener("DOMContentLoaded", initPin);
 })();
+
+    /* ── Dashboard Calendar ──────────────── */
+    var _dCalYear, _dCalMonth;
+    function _$(id) { return document.getElementById(id); }
+
+    function initDashCalendar() {
+        var now = new Date();
+        _dCalYear = now.getFullYear();
+        _dCalMonth = now.getMonth();
+        renderDashCalendar();
+        var prev = _$("dash-cal-prev");
+        var next = _$("dash-cal-next");
+        if (prev) prev.onclick = function() { _dCalMonth--; if (_dCalMonth < 0) { _dCalMonth = 11; _dCalYear--; } renderDashCalendar(); };
+        if (next) next.onclick = function() { _dCalMonth++; if (_dCalMonth > 11) { _dCalMonth = 0; _dCalYear++; } renderDashCalendar(); };
+    }
+
+    function renderDashCalendar() {
+        var grid = _$("dash-cal-grid");
+        var title = _$("dash-cal-title");
+        if (!grid) return;
+        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        if (title) title.textContent = months[_dCalMonth] + " " + _dCalYear;
+        grid.innerHTML = "";
+        ["Mo","Tu","We","Th","Fr","Sa","Su"].forEach(function(h) {
+            var el = document.createElement("div");
+            el.className = "dash-cal-header";
+            el.textContent = h;
+            grid.appendChild(el);
+        });
+        var firstDay = new Date(_dCalYear, _dCalMonth, 1).getDay();
+        var startOffset = firstDay === 0 ? 6 : firstDay - 1;
+        var daysInMonth = new Date(_dCalYear, _dCalMonth + 1, 0).getDate();
+        var now = new Date();
+        for (var i = 0; i < startOffset; i++) {
+            var empty = document.createElement("div");
+            empty.className = "dash-cal-day empty";
+            grid.appendChild(empty);
+        }
+        for (var d = 1; d <= daysInMonth; d++) {
+            var cell = document.createElement("div");
+            cell.className = "dash-cal-day";
+            cell.textContent = d;
+            cell.dataset.date = _dCalYear + "-" + String(_dCalMonth+1).padStart(2,"0") + "-" + String(d).padStart(2,"0");
+            if (d === now.getDate() && _dCalMonth === now.getMonth() && _dCalYear === now.getFullYear()) {
+                cell.classList.add("today");
+            }
+            grid.appendChild(cell);
+        }
+        loadDashCalendarData();
+    }
+
+    function loadDashCalendarData() {
+        fetch("/api/dashboard/analytics")
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                var sessions = data.recent_activity || [];
+                var studiedDates = new Set();
+                sessions.forEach(function(s) {
+                    var dateStr = s.completed_at ? s.completed_at.substring(0,10) : "";
+                    if (dateStr) studiedDates.add(dateStr);
+                });
+                var grid = _$("dash-cal-grid");
+                if (!grid) return;
+                grid.querySelectorAll(".dash-cal-day[data-date]").forEach(function(cell) {
+                    if (studiedDates.has(cell.dataset.date)) cell.classList.add("studied");
+                });
+            })
+            .catch(function() {});
+    }
+
+    function renderLessonProgress(list) {
+        var el = _$("lesson-progress");
+        if (!el) return;
+        if (!list.length) { el.innerHTML = '<p class="empty">No progress data yet</p>'; return; }
+        el.innerHTML = list.map(function(lp) {
+            var pct = lp.completion_pct || 0;
+            var cls = pct >= 100 ? "done" : pct >= 60 ? "high" : pct >= 30 ? "mid" : "low";
+            return '<div class="progress-row">' +
+                '<span class="progress-lesson-name">' + esc(lp.lesson || "") + '</span>' +
+                '<div class="progress-bar-wrap"><div class="progress-bar-fill ' + cls + '" style="width:' + pct + '%"></div></div>' +
+                '<span class="progress-pct">' + pct + '%</span>' +
+            '</div>';
+        }).join("");
+    }
+
+    initDashCalendar();
