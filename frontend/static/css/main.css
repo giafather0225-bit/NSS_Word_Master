@@ -84,7 +84,6 @@ body {
 
 .avatar-img {
     width: 52px;
-    height: 52px;
     border-radius: 50%;
     object-fit: cover;
     border: 2.5px solid var(--color-accent, #B44D8C);
@@ -483,7 +482,7 @@ body {
 
 #sb-session-info {
     display: flex; flex-direction: column; gap: 4px;
-    padding: 0 16px;
+    padding: 10px 16px;
 }
 
 .sb-session-row {
@@ -555,7 +554,6 @@ body {
 
 /* ─── Top Bar (Apple minimal) ───────────────────────────── */
 .top-bar {
-    height: 52px; flex-shrink: 0;
     display: flex; align-items: center;
     padding: 0 20px;
     gap: 12px;
@@ -1426,4 +1424,44 @@ body.math-mode {
 }
 .sb-sidebar-card:hover .btn-lock-icon {
     color: var(--color-primary, #D4619E);
+}
+
+/* ── Compact sidebar to fit without scroll ── */
+.sb-header {
+    gap: 10px;
+    padding: 16px 16px 12px;
+}
+.sb-div {
+    margin: 4px 0;
+}
+.sb-label {
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+.sb-textbook-display {
+    padding: 8px 14px;
+    margin: 0 10px 2px;
+}
+.sb-sidebar-card {
+    padding: 8px 14px;
+    margin: 0 10px 4px;
+    min-height: 38px;
+    max-height: 38px;
+}
+.sb-cal-header {
+    padding: 6px 12px 4px;
+}
+.sb-cal-grid {
+    gap: 1px;
+    padding: 0 8px;
+}
+.sb-cal-grid span {
+    font-size: 11px;
+    padding: 2px;
+}
+.sb-section-label {
+    font-size: 11px;
+}
+.sb-bottom {
+    padding: 8px 10px 4px;
 }

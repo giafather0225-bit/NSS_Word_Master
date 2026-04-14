@@ -10,7 +10,7 @@
     function esc(s) {
         var d = document.createElement("div");
         d.textContent = s;
-        return d.innerHTML;
+        return d.innerHTML.replace(/'/g, "&#39;").replace(/"/g, "&quot;");
     }
 
     // --- Sidebar ---

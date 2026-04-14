@@ -9,7 +9,7 @@ log = logging.getLogger(__name__)
 
 OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
 OLLAMA_TUTOR_MODEL = os.environ.get("OLLAMA_TUTOR_MODEL", "gemma2:2b")
-OLLAMA_VISION_MODEL = os.environ.get("OLLAMA_VISION_MODEL", "llava")
+OLLAMA_VISION_MODEL = os.environ.get("OLLAMA_VISION_MODEL", "qwen2.5vl:3b")
 OLLAMA_ENRICH_MODEL = os.environ.get("OLLAMA_ENRICH_MODEL", OLLAMA_TUTOR_MODEL)
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -45,7 +45,7 @@ Keep total under 14 short lines. Never lecture. Always celebrate creativity."""
 
 async def _get_tutor_feedback_gemini(word: str, sentence: str) -> str:
     url = (
-        "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash"
+        "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash"
         f":generateContent?key={GEMINI_API_KEY}"
     )
     prompt = _TUTOR_PROMPT.format(word=word, sentence=sentence)
@@ -128,9 +128,12 @@ async def claude_vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
 
 
 async def vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
-    """Claude API 우선, 없으면 Ollama llava 사용."""
-    if ANTHROPIC_API_KEY:
-        return await claude_vision_extract_vocab(image_bytes, prompt)
+    """Gemini 우선, 없으면 Ollama qwen2.5vl:3b 사용."""
+    if GEMINI_API_KEY:
+        try:
+            return await gemini_vision_extract_vocab(image_bytes, prompt)
+        except Exception as e:
+            logger.warning("Gemini vision failed, falling back to Ollama: %s", e)
     return await ollama_vision_extract_vocab(image_bytes, prompt)
 
 
@@ -159,7 +162,7 @@ async def ollama_vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
 
 async def ollama_enrich_vocab(entries: list[dict]) -> list[dict]:
     """
-    If llava only extracts {word,pos}, enrich each entry with {definition,example}.
+    If qwen2.5vl:3b only extracts {word,pos}, enrich each entry with {definition,example}.
     Output must be a single JSON array with keys: word, pos, definition, example.
     """
     if not entries:
@@ -264,3 +267,28 @@ Input JSON: {payload_json}
     if not isinstance(enriched, list):
         raise ValueError("enriched is not a list")
     return enriched
+
+
+async def gemini_vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
+    """Gemini Vision API로 이미지에서 어휘 추출."""
+    if not GEMINI_API_KEY:
+        raise ValueError("GEMINI_API_KEY not set")
+    b64 = base64.b64encode(image_bytes).decode("ascii")
+    url = (
+        "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash"
+        f":generateContent?key={GEMINI_API_KEY}"
+    )
+    payload = {
+        "contents": [{
+            "parts": [
+                {"inline_data": {"mime_type": "image/jpeg", "data": b64}},
+                {"text": prompt},
+            ]
+        }],
+        "generationConfig": {"temperature": 0.1, "maxOutputTokens": 8192},
+    }
+    async with httpx.AsyncClient(timeout=120.0) as client:
+        resp = await client.post(url, json=payload)
+        resp.raise_for_status()
+        data = resp.json()
+        return data["candidates"][0]["content"]["parts"][0]["text"].strip()
