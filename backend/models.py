@@ -101,3 +101,29 @@ class Word(Base):
     source_type    = Column(String, default="ocr")   # "ocr" | "manual"
     ocr_engine     = Column(String, default="")      # "tesseract" | "vision" | ""
     created_at     = Column(String)                  # ISO 8601
+
+
+class WordReview(Base):
+    """SM-2 spaced repetition tracking per word."""
+    __tablename__ = "word_reviews"
+
+    id             = Column(Integer, primary_key=True, index=True)
+    study_item_id  = Column(Integer, ForeignKey("study_items.id"), nullable=False, index=True)
+    word           = Column(String, index=True)
+    subject        = Column(String, default="English")
+    textbook       = Column(String, default="")
+    lesson         = Column(String, default="")
+
+    easiness       = Column(String, default="2.5")
+    interval       = Column(Integer, default=0)
+    repetitions    = Column(Integer, default=0)
+    next_review    = Column(String)
+    last_review    = Column(String, default="")
+
+    total_reviews  = Column(Integer, default=0)
+    total_correct  = Column(Integer, default=0)
+
+    __table_args__ = (
+        Index("ix_word_reviews_next_review", "next_review"),
+        Index("ix_word_reviews_subject_textbook", "subject", "textbook"),
+    )
