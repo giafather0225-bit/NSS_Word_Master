@@ -1761,10 +1761,6 @@ def read_child(request: Request):
     return templates.TemplateResponse(name="child.html", request=request)
 
 
-@app.get("/study")
-def read_study(request: Request):
-    # Backward compatible route
-    return templates.TemplateResponse(name="child.html", request=request)
 
 
 # ═══════════════════════════════════════════════════════════
