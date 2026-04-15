@@ -176,18 +176,9 @@ window.DEV = {
         console.log('Word index: ' + stageIndex);
     },
     last() {
-        stageIndex = Math.max(0, items.length - 2);
+        stageIndex = Math.max(0, items.length - 1);
         renderStage();
-        console.log('Near last word: ' + stageIndex);
-    },
-    info() {
-        console.table({
-            stage, stageIndex,
-            totalWords: items.length,
-            sessionActive,
-            completed: [...getCompletedStages()].join(', '),
-            wrongCount: Object.keys(wrongMap).filter(k => wrongMap[k] > 0).length
-        });
+        console.log("Jump to last word");
     }
 };
 
@@ -245,7 +236,12 @@ function markStageComplete(stageKey) {
     const done = getCompletedStages();
     done.add(stageKey);
     localStorage.setItem(stageStorageKey(), JSON.stringify([...done]));
+    if (window.ReviewModule && typeof window.ReviewModule.registerLesson === "function") {
+        try { window.ReviewModule.registerLesson(currentSubject, currentTextbook, selectedLesson); } catch(e) { console.warn("[SM2] registerLesson error:", e); }
+    }
+
 }
+
 function allStagesDone() {
     const done = getCompletedStages();
     return ROADMAP_STAGES.every((s) => done.has(s));
@@ -1596,6 +1592,7 @@ function renderPreview(el) {
 
 // ─── PREVIEW: card modal with Shadow + Spell ────────────────
 function openPreviewModal(item, onClose) {
+window.openPreviewModal = openPreviewModal;
     const modal   = $('preview-modal');
     const content = $('pm-content');
     if (!modal || !content) return;
@@ -1905,6 +1902,7 @@ function openPreviewModal(item, onClose) {
         previewDoneMap.set(item.id, status);
         addWordVault(word);
         modal.classList.add('hidden');
+        if (typeof onClose === "function") onClose(status);
 
         const card = document.querySelector(`.preview-card[data-id="${item.id}"]`);
         if (card) {
@@ -1977,6 +1975,7 @@ function openPreviewModal(item, onClose) {
     buildShadowRows();
     buildSpellRows();
 }
+window.openPreviewModal = openPreviewModal;
 
 function buildMeaningChoices(item) {
     const correct = item.answer;

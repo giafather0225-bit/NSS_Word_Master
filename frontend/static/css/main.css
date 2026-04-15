@@ -17,7 +17,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-    height: 100%;
+    
     overflow: hidden;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
                  'Segoe UI', Roboto, sans-serif;
@@ -50,6 +50,7 @@ body {
     border-right: 1px solid rgba(212, 97, 158, 0.15);
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     position: relative;
     z-index: 100;
     transition: width 0.3s ease, min-width 0.3s ease, opacity 0.3s ease;
@@ -67,12 +68,10 @@ body {
 .sidebar-inner {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    padding: 0 0 8px;
+    padding: 0;
     overflow-y: auto;
     overflow-x: hidden;
 }
-
 /* ── Profile ─────────────────────────── */
 
 .sb-profile {
@@ -421,7 +420,7 @@ body {
 
 .sb-bottom-btns {
     display: flex; flex-direction: column; gap: 8px;
-    margin-top: auto; padding: 16px 12px 8px;
+    padding: 16px 12px 8px;
 }
 
 .sb-bottom-btn,
@@ -547,7 +546,7 @@ body {
 
 /* ─── Main Content ──────────────────────────────────── */
 .main-content {
-    flex: 1; min-width: 0; height: 100%;
+    flex: 1; min-width: 0; 
     display: flex; flex-direction: column;
     position: relative;
 }
@@ -668,7 +667,7 @@ body {
     flex-shrink: 0;
 }
 .top-progress-fill {
-    height: 100%;
+    
     width: 0%;
     background: #4A9B8E;
     border-radius: 999px;
@@ -1207,7 +1206,7 @@ body.math-mode {
 /* ── Bottom Section (tests + gear grouped) ── */
 
 .sb-bottom-section {
-    margin-top: auto;
+    margin-top: 0;
     display: flex;
     flex-direction: column;
 }
@@ -1427,41 +1426,61 @@ body.math-mode {
 }
 
 /* ── Compact sidebar to fit without scroll ── */
-.sb-header {
-    gap: 10px;
-    padding: 16px 16px 12px;
+/* ── Sidebar Layout Overrides (unified spacing) ─── */
+.sb-profile {
+    padding: 20px 16px 16px;
+    gap: 12px;
+}
+.sb-profile .avatar-img {
+    width: 48px;
+}
+.sb-subject-tabs {
+    margin: 0 12px 8px;
 }
 .sb-div {
-    margin: 4px 0;
+    height: 1px;
+    background: var(--border-default, #E5E5EA);
+    margin: 6px 16px;
 }
 .sb-label {
     margin-bottom: 4px;
-    font-size: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary, #8B8BA0);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 0 16px;
 }
 .sb-textbook-display {
-    padding: 8px 14px;
-    margin: 0 10px 2px;
+    padding: 9px 14px;
+    margin: 0 12px 4px;
 }
-.sb-sidebar-card {
-    padding: 8px 14px;
-    margin: 0 10px 4px;
-    min-height: 38px;
-    max-height: 38px;
-}
-.sb-cal-header {
-    padding: 6px 12px 4px;
-}
-.sb-cal-grid {
-    gap: 1px;
-    padding: 0 8px;
-}
-.sb-cal-grid span {
-    font-size: 11px;
-    padding: 2px;
+.sb-section {
+    padding: 0;
+    margin-bottom: 2px;
 }
 .sb-section-label {
-    font-size: 11px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    padding: 2px 16px 4px;
+}
+.sb-sidebar-card {
+    padding: 10px 14px;
+    margin: 0 12px 4px;
+    min-height: 40px;
+    border-radius: 10px;
+    font-size: 14px;
 }
 .sb-bottom {
-    padding: 8px 10px 4px;
+    padding: 6px 16px 8px;
+    border-top: 1px solid var(--border-default, #E5E5EA);
+}
+.sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 0 0 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 }

@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="/static/css/finaltest.css">
     <link rel="stylesheet" href="/static/css/unittest.css?v=4">
     <link rel="stylesheet" href="/static/css/word-manager.css?v=12">
+    <link rel="stylesheet" href="/static/css/review.css?v=4">
+
 </head>
 <body>
 
@@ -105,27 +107,16 @@
                 </button>
             </div>
 
-            <!-- ─── Section 2: Manage Words ─── -->
+            <!-- ─── Section: Review ─── -->
             <div class="sb-div"></div>
             <div class="sb-section">
-                <button type="button" id="btn-word-manager" class="sb-sidebar-card">
-                    <span class="sb-card-label">Manage Words</span>
+                <div class="sb-section-label">REVIEW</div>
+                <button type="button" class="sb-sidebar-card" id="btn-review">
+                    <span class="sb-card-label">Today's Review</span>
                     <span class="sb-card-chevron">›</span>
+                    <span class="sb-review-badge" id="review-badge" style="display:none;">0</span>
                 </button>
             </div>
-
-            <!-- ─── Section 3: Monthly Calendar ─── -->
-            <div class="sb-div"></div>
-            <div class="sb-section" id="sb-calendar-section">
-                <div class="sb-cal-header">
-                    <button type="button" class="sb-cal-nav" id="sb-cal-prev">&lsaquo;</button>
-                    <span class="sb-cal-title" id="sb-cal-title">April 2026</span>
-                    <button type="button" class="sb-cal-nav" id="sb-cal-next">&rsaquo;</button>
-                </div>
-                <div class="sb-cal-grid" id="sb-cal-grid" style="margin-top:6px"></div>
-            </div>
-            <div class="sb-div"></div>
-
             <!-- Session info (shown during active session — kept for JS compat) -->
             <div id="sb-session-info" class="hidden">
                 <div class="sb-session-row sb-session-lesson">
@@ -172,6 +163,14 @@
                 </button>
                 <button type="button" class="sb-sidebar-card" id="btn-kigoosa">
                     <span class="sb-card-label">Unit Test</span>
+                    <span class="sb-card-chevron">›</span>
+                </button>
+            </div>
+            <!-- ─── Section: Manage Words ─── -->
+            <div class="sb-div"></div>
+            <div class="sb-section">
+                <button type="button" id="btn-word-manager" class="sb-sidebar-card">
+                    <span class="sb-card-label">Manage Words</span>
                     <span class="sb-card-chevron">›</span>
                 </button>
             </div>
@@ -315,6 +314,8 @@
 <script src="/static/js/sentence_ai.js?v=1"></script>
 <script src="/static/js/finaltest.js?v=10"></script>
 <script src="/static/js/unittest.js?v=5"></script>
+<script src="/static/js/review.js?v=3"></script>
+
 <script src="/static/js/word-manager.js?v=14"></script>
 <!-- Word Manager Full-screen Overlay -->
 <div id="wm-overlay" class="hidden" role="dialog" aria-label="Word Manager">
