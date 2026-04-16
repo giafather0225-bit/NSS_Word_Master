@@ -41,7 +41,7 @@ function _ppShowPinModal() {
     el.innerHTML = `
         <div class="pp-pin-bg" id="pp-pin-bg">
             <div class="pp-pin-box">
-                <div class="pp-pin-title">🔒 Parent Mode</div>
+                <div class="pp-pin-title">Parent Mode</div>
                 <div class="pp-pin-sub">Enter your 4-digit PIN</div>
                 <div class="pin-dots" id="pp-dots">
                     ${[0,1,2,3].map(() => `<div class="pin-dot"></div>`).join("")}
@@ -131,7 +131,6 @@ const PP_TABS = [
     ["wordstats",  "Word Stats"],
     ["textbooks",  "Textbooks"],
     ["pin",        "Change PIN"],
-    ["textbook",   "Add Textbook"],
 ];
 
 /** Render the dashboard shell (header + nav + body). @tag PARENT */
@@ -144,7 +143,7 @@ function _ppRenderShell() {
     el.innerHTML = `
         <div class="pp-header">
             <button class="pp-close" onclick="closeParentPanel()">←</button>
-            <span class="pp-title">⚙️ Parent Dashboard</span>
+            <span class="pp-title">Parent Dashboard</span>
         </div>
         <div class="pp-nav">${tabs}</div>
         <div id="pp-body"><p style="text-align:center;padding:40px;color:var(--text-secondary);">Loading…</p></div>`;
@@ -165,7 +164,6 @@ async function _ppLoadTab(tab) {
         case "tasks":      if (typeof ppRenderTasks    === "function") await ppRenderTasks(body);     break;
         case "schedule":   if (typeof ppRenderSchedule === "function") await ppRenderSchedule(body);  break;
         case "pin":        if (typeof ppRenderPin      === "function") ppRenderPin(body);             break;
-        case "textbook":   window.open("/ingest", "_blank"); body.innerHTML = `<p style="text-align:center;padding:40px;color:var(--text-secondary)">Opened in a new tab.</p>`; break;
         default: body.innerHTML = "<p>Coming soon.</p>";
     }
 }
@@ -187,8 +185,8 @@ async function _ppOverview(body) {
         // Summary cards (2×2)
         const cards = `
             <div class="pp-stats">
-                <div class="pp-stat"><div class="pp-stat-num">⭐ ${sum.total_xp||0}</div><div class="pp-stat-label">Total XP · Lv.${sum.current_level||1}</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">🔥 ${sum.current_streak||0}d</div><div class="pp-stat-label">Streak (best ${sum.longest_streak||0}d)</div></div>
+                <div class="pp-stat"><div class="pp-stat-num">${sum.total_xp||0} XP</div><div class="pp-stat-label">Total · Lv.${sum.current_level||1}</div></div>
+                <div class="pp-stat"><div class="pp-stat-num">${sum.current_streak||0}d</div><div class="pp-stat-label">Streak (best ${sum.longest_streak||0}d)</div></div>
                 <div class="pp-stat"><div class="pp-stat-num">${sum.total_words_learned||0}</div><div class="pp-stat-label">Words Learned</div></div>
                 <div class="pp-stat"><div class="pp-stat-num">${sum.total_study_minutes||0}m</div><div class="pp-stat-label">${sum.total_study_sessions||0} sessions</div></div>
             </div>`;
@@ -305,7 +303,13 @@ async function _ppTextbooks(body) {
                 <div id="ppTb${i}" style="display:none;padding:0 0 8px 52px"></div>
             </div>`).join("");
 
-        body.innerHTML = summary + `<div class="pp-section-title">Textbook Overview</div><div>${rows}</div>`;
+        const addBtn = `
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+                <div class="pp-section-title" style="margin:0">Textbook Overview</div>
+                <button class="pp-btn primary" style="font-size:12px;padding:6px 14px"
+                        onclick="window.open('/ingest','_blank')">+ Add Textbook</button>
+            </div>`;
+        body.innerHTML = summary + addBtn + `<div>${rows}</div>`;
     } catch (_) {
         body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`;
     }
