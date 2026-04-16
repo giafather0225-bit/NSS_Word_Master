@@ -226,5 +226,12 @@ const GIASplash = (() => {
   return { init };
 })();
 
-// Run on DOM ready
-document.addEventListener('DOMContentLoaded', GIASplash.init);
+// Run on DOM ready — skip splash when returning from Folder Browser
+document.addEventListener('DOMContentLoaded', () => {
+  if (new URLSearchParams(window.location.search).get('parent') === '1') {
+    const splash = document.getElementById('splash-screen');
+    if (splash) splash.remove();
+    return;
+  }
+  GIASplash.init();
+});

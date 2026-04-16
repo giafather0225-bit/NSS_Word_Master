@@ -1060,6 +1060,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Auto-open parent panel when redirected from Folder Browser (?parent=1)
     if (new URLSearchParams(window.location.search).get("parent") === "1") {
         history.replaceState({}, "", window.location.pathname);
-        setTimeout(() => { if (typeof openParentPanel === "function") openParentPanel(); }, 600);
+        if (typeof openParentPanel === "function") openParentPanel();
     }
 });
