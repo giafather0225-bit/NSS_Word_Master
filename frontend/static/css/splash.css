@@ -1,0 +1,128 @@
+/* ================================================================
+   splash.css — GIA Splash Screen
+   Section: System
+   Dependencies: none (standalone, no theme.css vars — uses own palette)
+   API endpoints: none
+   ================================================================ */
+
+/* ===== Splash Screen ===== */
+
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+#splash-screen.splash-exit {
+  opacity: 0;
+  transform: translateY(-30px);
+  pointer-events: none;
+}
+
+/* Day-of-week gradient backgrounds — controlled via data-day attribute in JS */
+#splash-screen[data-day="0"] { background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%); } /* Sunday — Cozy coral */
+#splash-screen[data-day="1"] { background: linear-gradient(135deg, #A18CD1 0%, #5FC3E4 100%); } /* Monday — Fresh purple-blue */
+#splash-screen[data-day="2"] { background: linear-gradient(135deg, #43E97B 0%, #38F9D7 100%); } /* Tuesday — Growth green-mint */
+#splash-screen[data-day="3"] { background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%); } /* Wednesday — Energy pink-yellow */
+#splash-screen[data-day="4"] { background: linear-gradient(135deg, #A18CD1 0%, #FBC2EB 100%); } /* Thursday — Creative purple-pink */
+#splash-screen[data-day="5"] { background: linear-gradient(135deg, #F6D365 0%, #FDA085 100%); } /* Friday — Gold-orange */
+#splash-screen[data-day="6"] { background: linear-gradient(135deg, #89F7FE 0%, #66A6FF 100%); } /* Saturday — Chill sky-blue */
+
+/* Logo */
+.splash-logo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  animation: splash-logo-enter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.15));
+}
+
+@keyframes splash-logo-enter {
+  0% { transform: scale(0) translateY(-40px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Logo fly animation — from splash center to coach card avatar */
+.splash-logo.logo-fly {
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  /* JS sets top, left, width, height dynamically */
+  position: fixed;
+  border-radius: 50%;
+  z-index: 100000;
+}
+
+/* Greeting text */
+.splash-greeting {
+  margin-top: 24px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  opacity: 0;
+  animation: splash-fade-up 0.6s ease 0.5s forwards;
+}
+
+/* Daily motivational message */
+.splash-message {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  opacity: 0;
+  animation: splash-fade-up 0.6s ease 0.8s forwards;
+  text-align: center;
+  max-width: 320px;
+  line-height: 1.5;
+}
+
+/* Day-of-week sub text */
+.splash-day-text {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  opacity: 0;
+  animation: splash-fade-up 0.6s ease 1.0s forwards;
+}
+
+/* Loading indicator — 3 bouncing dots */
+.splash-loader {
+  margin-top: 32px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  animation: splash-fade-up 0.4s ease 1.2s forwards;
+}
+
+.splash-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.8);
+  animation: splash-bounce 1.4s infinite ease-in-out both;
+}
+.splash-dot:nth-child(2) { animation-delay: 0.16s; }
+.splash-dot:nth-child(3) { animation-delay: 0.32s; }
+
+@keyframes splash-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes splash-fade-up {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .splash-logo { width: 120px; height: 120px; }
+  .splash-greeting { font-size: 1.4rem; }
+  .splash-message { font-size: 1rem; max-width: 260px; }
+}

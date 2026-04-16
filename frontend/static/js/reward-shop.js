@@ -179,6 +179,7 @@ async function _doBuy(itemId) {
         if (res.ok) {
             const d = await res.json();
             _updateXPDisplay(d.remaining_xp || 0);
+            _shopConfetti();
             _showShopToast("🎉 Added to My Rewards!");
             _loadShopTab("shop"); // refresh affordability
         } else {
@@ -335,6 +336,23 @@ async function _shopToggleEquip(purchaseId, equip) {
 function _closePopup() {
     const bg = document.getElementById("shop-popup-bg");
     if (bg) bg.remove();
+}
+
+/** Spawn confetti particles on purchase success. @tag SHOP */
+function _shopConfetti() {
+    const colors = ['#D4619E', '#4A8E8E', '#34C759', '#F59E0B', '#FF3B30', '#a29bfe', '#fd79a8'];
+    for (let i = 0; i < 50; i++) {
+        const el = document.createElement('div');
+        el.className = 'shop-confetti';
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.background = colors[Math.floor(Math.random() * colors.length)];
+        el.style.width = (5 + Math.random() * 6) + 'px';
+        el.style.height = (5 + Math.random() * 6) + 'px';
+        el.style.animationDuration = (2 + Math.random() * 2) + 's';
+        el.style.animationDelay = (Math.random() * 0.5) + 's';
+        document.body.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+    }
 }
 
 /** Show a brief toast in the shop overlay. @tag SHOP */
