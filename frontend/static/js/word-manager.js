@@ -166,7 +166,7 @@
 
         '<div class="wm-mode-toggle">' +
           '<button class="wm-mode-btn active" data-mode="manual">✏️ Direct Input</button>' +
-          '<button class="wm-mode-btn" data-mode="ai">🤖 AI Assist</button>' +
+          '<button class="wm-mode-btn" data-mode="ai">AI Assist</button>' +
         '</div>' +
 
         '<div class="wm-form" id="wm-form">' +
@@ -179,7 +179,7 @@
             '<div class="wm-form-row"><input type="text" id="wm-example" class="wm-input" placeholder="Example sentence" maxlength="300" /></div>' +
           '</div>' +
           '<div class="wm-ai-section hidden" id="wm-ai-fields">' +
-            '<button id="wm-btn-ai" class="wm-btn-ai">🤖 Generate with AI</button>' +
+            '<button id="wm-btn-ai" class="wm-btn-ai">Generate with AI</button>' +
             '<div id="wm-ai-result" class="wm-ai-result hidden"></div>' +
           '</div>' +
           '<button id="wm-btn-add" class="wm-btn-primary wm-btn-add">+ Add Word</button>' +
@@ -263,7 +263,7 @@
       result.innerHTML = '<div class="wm-ai-fail">Error: ' + esc(err.message) + '</div>';
     } finally {
       btn.disabled = false;
-      btn.textContent = "🤖 Generate with AI";
+      btn.textContent = "Generate with AI";
     }
   }
 

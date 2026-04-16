@@ -694,6 +694,19 @@ function initKeyboardShortcuts() {
     });
 }
 
+/**
+ * Open Parent Dashboard from home dashboard gear button.
+ * Delegates to the sidebar #btn-parent click handler.
+ * @tag PARENT HOME_DASHBOARD
+ */
+function openParentDashboard() {
+    if (typeof openParentPanel === 'function') {
+        openParentPanel();
+    } else {
+        document.getElementById('btn-parent')?.click();
+    }
+}
+
 // ─── Text-replacement pass ────────────────────────────────────
 /**
  * Friendly-text replacements for stage sub-titles and placeholders.
@@ -701,19 +714,19 @@ function initKeyboardShortcuts() {
  */
 const TEXT_REPLACEMENTS = {
     'Click a word, then click its meaning.':
-        'Tap a word on the left, then find its meaning on the right! 👉',
+        'Tap a word on the left, then find its meaning on the right.',
     'Type the missing word…':
-        'Type the missing word ✏️',
+        'Type the missing word.',
     'Some letters hidden':
-        'Some letters are hidden 👀',
+        'Some letters are hidden.',
     'More letters hidden':
-        'More letters are hidden now! 🫣',
+        'More letters are hidden now!',
     'All hidden — type from memory!':
-        'All hidden — type from memory! 🧠',
+        'All hidden — type from memory!',
     'Listen, then type the word.':
-        'Listen and type the word 🎧',
+        'Listen and type the word.',
     'Use this word in a sentence':
-        'Write a sentence using this word ✍️',
+        'Write a sentence using this word.',
 };
 
 /** @tag ENGLISH SYSTEM */

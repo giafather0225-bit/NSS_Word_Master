@@ -213,8 +213,8 @@ function openPreviewModal(item, onClose) {
     function showVerdict() {
         const hadAutoPass = shadowState.some(s => s === -1);
         const msgs = hadAutoPass
-            ? ["Nice effort! Keep it up! 👍", "Good job finishing! 💪"]
-            : ['Perfect! You nailed it! 🎉','Amazing! All three! ⭐',"That's the way! 🌟"];
+            ? ["Nice effort! Keep it up!", "Good job finishing!"]
+            : ['Perfect! You nailed it!', 'Amazing! All three! ⭐', "That's the way!"];
         const verdict=$('pm-verdict');
         verdict.className='pm-verdict pass';
         verdict.innerHTML=msgs[Math.floor(Math.random()*msgs.length)]+'<br><button type="button" class="pm-next-btn" id="pm-next">Next word →</button>';

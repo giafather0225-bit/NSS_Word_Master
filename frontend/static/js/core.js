@@ -475,7 +475,7 @@ function updateProgressPct() {
     }
     if (roadmapComplete) {
         el.textContent = "100%";
-        setMeta("All done! 🎉");
+        setMeta("All done!");
         setRingColor(100);
         return;
     }
@@ -672,6 +672,7 @@ function showStageCard() {
     if (iw) iw.classList.add("hidden");
     if (sc) {
         sc.classList.remove("hidden");
+        sc.style.display = "";
         sc.classList.remove("fx-swoosh");
         if (!sc.querySelector("#stage")) {
             sc.innerHTML = '<div id="stage"></div>';

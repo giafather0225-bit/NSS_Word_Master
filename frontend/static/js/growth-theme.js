@@ -9,11 +9,11 @@
 // ─── Constants ────────────────────────────────────────────────
 const GT_THEMES = ["space", "tree", "city", "animal", "ocean"];
 const GT_LABELS = {
-    space:  "🚀 Space Explorer",
-    tree:   "🌳 Growing Tree",
-    city:   "🏙️ My City",
-    animal: "🦁 Animal Kingdom",
-    ocean:  "🌊 Ocean World",
+    space:  "Space Explorer",
+    tree:   "Growing Tree",
+    city:   "My City",
+    animal: "Animal Kingdom",
+    ocean:  "Ocean World",
 };
 const GT_XP = [0, 100, 300, 600, 1000, 1500]; // XP to reach each step
 
@@ -81,7 +81,7 @@ function _gtUpdateSidebarInfo(t, pct, nextXp, totalXp) {
     if (barEl)   barEl.style.width   = `${pct}%`;
     if (hintEl) {
         if (t.is_completed) {
-            hintEl.textContent = "🎉 Theme complete! Choose next in My Worlds.";
+            hintEl.textContent = "✓ Theme complete! Choose next in My Worlds.";
         } else if (nextXp) {
             hintEl.textContent = `${nextXp - totalXp} XP until Step ${t.current_step + 1}`;
         }
@@ -101,7 +101,7 @@ async function gtAdvance() {
             const data = await res.json();
             if (data.advanced && data.advanced.length > 0) {
                 data.advanced.forEach(step => {
-                    const msg = step === 5 ? "🎉 Theme Complete!" : `🌟 Step ${step} Unlocked!`;
+                    const msg = step === 5 ? "✓ Theme Complete!" : `✦ Step ${step} Unlocked!`;
                     if (typeof _showXPToast === "function") _showXPToast(msg);
                 });
             }
@@ -136,7 +136,7 @@ async function gtOpenSelector() {
                  style="width:80px;height:80px;border-radius:var(--radius-md);object-fit:cover"
                  onerror="this.style.opacity='0.3'">
             <div style="font-size:12px;font-weight:600;color:var(--text-primary);margin-top:6px;text-align:center">
-                ${GT_LABELS[key].split(" ").slice(1).join(" ")} ${done}
+                ${GT_LABELS[key]} ${done}
             </div>
             <div style="font-size:11px;color:var(--text-secondary)">Step ${step}/5</div>
         </div>`;

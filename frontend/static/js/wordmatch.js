@@ -217,7 +217,7 @@ function renderMeaningMatch(el) {
                         renderMeaningMatch(el);
                     } else {
                         items.forEach(it => { if (!wrongMap[it.id]) _trackWordAttempt(it, true, it.answer); });
-                        setStatus("🎉 Word Match complete!");
+                        setStatus("Word Match complete!");
                         await new Promise(function(r) { setTimeout(r, 600); });
                         clearWmScrollHandler();
                         advanceToNextStage();

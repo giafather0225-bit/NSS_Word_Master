@@ -103,10 +103,7 @@ body {
 .logo-brand-text {
     font-size: 22px;
     font-weight: 800;
-    background: var(--gradient-main);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-primary);
     letter-spacing: -0.5px;
 }
 
@@ -376,32 +373,33 @@ body {
 #idle-wrapper.hidden { display: none !important; }
 
 #idle-card {
-    background: #FFFFFF;
-    border: 1px solid #E0E0E5;
-    border-radius: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
     padding: 48px 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
     min-width: 280px;
+    box-shadow: var(--shadow-card);
 }
 
 .idle-lesson-name {
     font-size: 22px;
     font-weight: 600;
-    color: #1D1D1F;
+    color: var(--text-primary);
 }
 .idle-lesson-meta {
     font-size: 13px;
-    color: #6E6E73;
+    color: var(--text-secondary);
     margin-top: 8px;
 }
 
-/* Start button — dark pill inside idle card */
+/* Start button — solid brand color pill inside idle card */
 #btn-start {
     margin-top: 32px;
-    background: var(--gradient-main);
+    background: var(--color-primary);
     color: var(--text-on-primary, #FFFFFF);
     border: none;
     border-radius: 9999px;
@@ -410,10 +408,10 @@ body {
     font-weight: 600;
     cursor: pointer;
     width: 100%;
-    transition: transform 0.15s, box-shadow 0.15s;
-    box-shadow: 0 4px 14px rgba(212, 97, 158, 0.3);
+    transition: background var(--transition-fast), transform 0.15s;
+    box-shadow: var(--shadow-button);
 }
-#btn-start:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212, 97, 158, 0.4); }
+#btn-start:hover:not(:disabled) { background: var(--color-primary-hover); transform: translateY(-1px); }
 #btn-start:disabled { opacity: 0.38; cursor: not-allowed; }
 
 /* ── Action Buttons (Final Test, etc) ────── */
@@ -538,10 +536,10 @@ body {
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
     background: transparent;
-    color: #6E6E73;
+    color: var(--text-secondary);
     transition: background 0.2s, color 0.2s;
 }
-.sidebar-toggle:hover { background: rgba(0,0,0,0.06); color: #1D1D1F; }
+.sidebar-toggle:hover { background: rgba(0,0,0,0.06); color: var(--text-primary); }
 .sidebar-toggle svg { width: 15px; height: 15px; }
 
 /* ─── Main Content ──────────────────────────────────── */
@@ -581,7 +579,7 @@ body {
     left: 10%;
     right: 10%;
     height: 1px;
-    background: #E0E0E5;
+    background: var(--border-default);
     z-index: 0;
     transform: translateY(-50%);
 }
@@ -655,7 +653,7 @@ body {
 #stars-count {
     font-size: 13px;
     font-weight: 600;
-    color: #1D1D1F;
+    color: var(--text-primary);
     min-width: 14px;
 }
 .top-progress-bar-wrap {
@@ -674,11 +672,11 @@ body {
     transition: width 0.65s cubic-bezier(0.4,0,0.2,1);
 }
 .pct-big {
-    font-size: 13px; font-weight: 600; color: #1D1D1F;
+    font-size: 13px; font-weight: 600; color: var(--text-primary);
     letter-spacing: -0.02em; min-width: 36px;
 }
 .challenge-meta {
-    font-size: 13px; font-weight: 500; color: #6E6E73;
+    font-size: 13px; font-weight: 500; color: var(--text-secondary);
     white-space: nowrap;
 }
 
@@ -697,7 +695,7 @@ body {
     display: flex; flex-direction: column;
     overflow: hidden;
     align-items: stretch;
-    background: var(--gradient-subtle, linear-gradient(135deg, #FDF2F8 0%, #FAF0F6 100%));
+    background: var(--bg-page);
 }
 
 #stage-card {
@@ -705,12 +703,10 @@ body {
     margin: 12px auto 8px;
     max-width: 1100px;
     width: calc(100% - 36px);
-    background: var(--bg-card, #FFFFFF);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border-card, rgba(0,0,0,0.06));
-    border-radius: var(--radius-lg, 20px);
-    box-shadow: 0 4px 24px rgba(180, 77, 140, 0.08), 0 1px 4px rgba(0,0,0,0.04);
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
     padding: 26px 32px;
     overflow-y: auto;
     transition: transform 0.46s cubic-bezier(0.22,1,0.36,1), opacity 0.36s ease;
@@ -778,12 +774,12 @@ body {
     border: none; border-radius: 11px;
     padding: 8px 16px;
     font-weight: 900; font-size: 13px; cursor: pointer;
-    background: var(--primary); color: #fff;
-    box-shadow: 0 4px 14px var(--primary-glow);
-    transition: transform 0.14s, box-shadow 0.14s;
+    background: var(--color-primary); color: #fff;
+    box-shadow: var(--shadow-button);
+    transition: background var(--transition-fast), transform 0.14s;
     white-space: nowrap;
 }
-.dock-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px var(--primary-glow); }
+.dock-btn:hover { background: var(--color-primary-hover); transform: translateY(-1px); }
 .dock-btn:active { transform: scale(0.97); }
 .dock-btn.sec {
     background: var(--color-primary-light, #FDF2F8); color: var(--text-primary, #2D2D3F);

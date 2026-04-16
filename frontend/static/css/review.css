@@ -2,7 +2,7 @@
 #btn-review { position: relative; }
 .sb-review-badge {
     position: absolute; top: -4px; right: -4px;
-    background: #ff4757; color: #fff;
+    background: var(--color-error); color: #fff;
     font-size: 0.65rem; font-weight: 700;
     min-width: 18px; height: 18px; line-height: 18px;
     text-align: center; border-radius: 9px; padding: 0 5px;
@@ -11,7 +11,7 @@
 /* ═══ Rating Overlay (fullscreen white) ═══ */
 .review-rating-overlay {
     position: fixed; inset: 0; z-index: 10000;
-    background: #fff;
+    background: var(--bg-card);
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none;
     transition: opacity 0.3s;
@@ -23,61 +23,58 @@
 }
 .review-rating-word {
     font-size: 36px; font-weight: 700;
-    background: var(--zia-gradient, linear-gradient(135deg, #D4619E, #B44D8C));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-primary);
     margin-bottom: 12px;
 }
 .review-rating-title {
-    font-size: 18px; font-weight: 600; color: #6E6E73;
+    font-size: 18px; font-weight: 600; color: var(--text-secondary);
     margin: 0 0 28px;
 }
 .review-rating-desc {
-    font-size: 13px; color: #8B8BA0; line-height: 1.6;
+    font-size: 13px; color: var(--text-secondary); line-height: 1.6;
     margin: -16px 0 24px;
 }
 .review-rating-desc strong {
-    font-size: 15px; color: #6E6E73;
+    font-size: 15px; color: var(--text-secondary);
 }
 
 .review-rating-row {
     display: flex; gap: 12px; justify-content: center;
 }
 .review-rating-progress {
-    margin-top: 24px; font-size: 13px; color: #8B8BA0;
+    margin-top: 24px; font-size: 13px; color: var(--text-secondary);
 }
 .review-rating-close {
     position: absolute; top: 20px; right: 24px;
-    background: none; border: none; color: #6E6E73;
+    background: none; border: none; color: var(--text-secondary);
     font-size: 1.5rem; cursor: pointer; padding: 4px 8px; border-radius: 8px;
 }
-.review-rating-close:hover { background: rgba(0,0,0,0.05); color: #1D1D1F; }
+.review-rating-close:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
 
 /* Rating buttons */
 .review-rate-btn {
     flex: 1; padding: 14px 10px;
-    border: 1.5px solid #E0E0E5; border-radius: 16px;
-    background: #fff; font-size: 14px; font-weight: 600;
+    border: 1.5px solid var(--border-default); border-radius: 16px;
+    background: var(--bg-card); font-size: 14px; font-weight: 600;
     cursor: pointer; transition: all 0.2s;
     display: flex; flex-direction: column; align-items: center; gap: 3px;
 }
 .review-rate-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
 .review-rate-btn .rate-label { font-size: 14px; font-weight: 600; }
-.review-rate-btn .rate-days { font-size: 11px; color: #6E6E73; }
-.review-rate-btn.wrong { border-color: #ff4757; color: #ff4757; }
-.review-rate-btn.wrong:hover { background: rgba(255,71,87,0.06); }
-.review-rate-btn.hard { border-color: #ffa502; color: #ffa502; }
-.review-rate-btn.hard:hover { background: rgba(255,165,2,0.06); }
-.review-rate-btn.good { border-color: #7bed9f; color: #2ed573; }
-.review-rate-btn.good:hover { background: rgba(123,237,159,0.06); }
-.review-rate-btn.easy { border-color: #70a1ff; color: #70a1ff; }
-.review-rate-btn.easy:hover { background: rgba(112,161,255,0.06); }
+.review-rate-btn .rate-days { font-size: 11px; color: var(--text-secondary); }
+.review-rate-btn.wrong { border-color: var(--color-error); color: var(--color-error); }
+.review-rate-btn.wrong:hover { background: var(--color-error-light); }
+.review-rate-btn.hard  { border-color: var(--color-warning); color: var(--color-warning); }
+.review-rate-btn.hard:hover  { background: rgba(245,158,11,0.06); }
+.review-rate-btn.good  { border-color: var(--color-success); color: var(--color-success); }
+.review-rate-btn.good:hover  { background: var(--color-success-light); }
+.review-rate-btn.easy  { border-color: var(--color-secondary); color: var(--color-secondary); }
+.review-rate-btn.easy:hover  { background: var(--color-secondary-light); }
 
 /* ═══ Done Overlay ═══ */
 .review-done-overlay {
     position: fixed; inset: 0; z-index: 10000;
-    background: #fff;
+    background: var(--bg-card);
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none;
     transition: opacity 0.3s;
@@ -87,15 +84,16 @@
 .review-done-content { text-align: center; }
 .review-done-icon { font-size: 64px; margin-bottom: 16px; }
 .review-done-content h2 {
-    font-size: 2.5rem; font-weight: 700; color: #1D1D1F; margin-bottom: 12px;
+    font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;
 }
 .review-done-content p {
-    color: #6E6E73; font-size: 1.1rem; margin-bottom: 28px;
+    color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 28px;
 }
 .review-done-btn {
-    padding: 16px 40px; border-radius: 16px; border: none;
-    background: var(--zia-primary, #D4619E);
+    padding: 16px 40px; border-radius: var(--radius-full); border: none;
+    background: var(--color-primary);
     color: #fff; font-weight: 700; font-size: 1.05rem; cursor: pointer;
-    transition: background 0.2s;
+    transition: background var(--transition-fast);
+    box-shadow: var(--shadow-button);
 }
-.review-done-btn:hover { background: var(--zia-primary-hover, #B44D8C); }
+.review-done-btn:hover { background: var(--color-primary-hover); }

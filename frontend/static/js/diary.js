@@ -163,7 +163,7 @@ async function _renderTimeline() {
             body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px;">No events yet. Keep learning! 🌱</p>`;
             return;
         }
-        const ICONS = { lesson_pass:"🏆", streak_7:"🔥", milestone_100:"💯", theme_complete:"🌟", lesson_reset:"🔄", review_complete:"📖" };
+        const ICONS = { lesson_pass:"✦", streak_7:"🔥", milestone_100:"✓", theme_complete:"✦", lesson_reset:"↺", review_complete:"📖" };
         body.innerHTML = `<div class="timeline-list">${data.events.map(e =>
             `<div class="timeline-item">
                 <span class="timeline-icon">${ICONS[e.event_type] || "📌"}</span>

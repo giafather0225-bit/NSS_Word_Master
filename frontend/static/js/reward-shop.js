@@ -43,7 +43,7 @@ function _renderShopFrame() {
     el.innerHTML = `
         <div class="shop-header">
             <button class="shop-close-btn" onclick="closeRewardShop()">←</button>
-            <span class="shop-title">🎁 Reward Shop</span>
+            <span class="shop-title">💎 Reward Shop</span>
             <span class="shop-xp-badge" id="shop-xp-display">⭐ …</span>
         </div>
         <div class="shop-tabs">
@@ -180,7 +180,7 @@ async function _doBuy(itemId) {
             const d = await res.json();
             _updateXPDisplay(d.remaining_xp || 0);
             _shopConfetti();
-            _showShopToast("🎉 Added to My Rewards!");
+            _showShopToast("✓ Added to My Rewards");
             _loadShopTab("shop"); // refresh affordability
         } else {
             const err = await res.json().catch(() => ({}));

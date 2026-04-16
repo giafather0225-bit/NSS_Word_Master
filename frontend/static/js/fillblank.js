@@ -132,7 +132,7 @@ function renderFillItem(el, item, isRetry) {
             if (isRetry) {
                 fbState.retryIndex++;
                 const moreRetries = fbState.retryIndex < fbState.retryQueue.length;
-                setStatus(moreRetries ? "Correct! Next retry..." : "All done! 🎉");
+                setStatus(moreRetries ? "Correct! Next retry..." : "All done!");
                 await new Promise(r => setTimeout(r, 400));
                 renderContextFill(el);
             } else {
@@ -148,7 +148,7 @@ function renderFillItem(el, item, isRetry) {
                     } else {
                         fbState.initialized = false;
                         items.forEach(it => { if (!wrongMap[it.id]) _trackWordAttempt(it, true, it.answer); });
-                        setStatus("🎉 Fill the Blank complete!");
+                        setStatus("Fill the Blank complete!");
                         await new Promise(r => setTimeout(r, 400));
                         advanceToNextStage();
                     }

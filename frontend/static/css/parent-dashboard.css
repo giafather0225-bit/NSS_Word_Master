@@ -4,22 +4,22 @@
    ═══════════════════════════════════════════ */
 
 :root {
-    --bg: #f5f5f7;
-    --surface: #ffffff;
-    --text: #1d1d1f;
-    --text-secondary: #86868b;
+    --bg: var(--bg-page, #FDF2F8);
+    --surface: var(--bg-card, #ffffff);
+    --text: var(--text-primary, #2D2D3F);
+    --text-secondary: var(--text-secondary, #8B8BA0);
     --text-tertiary: #aeaeb2;
-    --primary: #0071e3;
-    --primary-hover: #0077ED;
-    --accent: #34c759;
-    --danger: #ff3b30;
+    --primary: var(--color-primary, #D4619E);
+    --primary-hover: var(--color-primary-hover, #C0508D);
+    --accent: var(--color-success, #34C759);
+    --danger: var(--color-error, #FF3B30);
     --border: rgba(0,0,0,0.06);
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
-    --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
-    --radius: 16px;
-    --radius-sm: 10px;
-    --font: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+    --shadow-md: 0 2px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 2px 12px rgba(0,0,0,0.06);
+    --radius: var(--radius-md, 12px);
+    --radius-sm: var(--radius-sm, 8px);
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -116,7 +116,7 @@ body {
     transition: box-shadow 0.2s;
 }
 .stat-card:hover { box-shadow: var(--shadow-md); }
-.stat-card.accent { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); }
+.stat-card.accent { background: var(--color-primary-light, #FAE8F3); }
 .stat-label {
     font-size: 12px; font-weight: 600; text-transform: uppercase;
     letter-spacing: 0.5px; color: var(--text-secondary); margin-bottom: 8px;
@@ -125,7 +125,7 @@ body {
     font-size: 36px; font-weight: 700; color: var(--text);
     line-height: 1; margin-bottom: 6px;
 }
-.stat-card.accent .stat-number { color: #2e7d32; }
+.stat-card.accent .stat-number { color: var(--color-primary); }
 .stat-detail {
     font-size: 12px; color: var(--text-tertiary);
 }
@@ -172,8 +172,8 @@ body {
     display: flex; align-items: center; justify-content: center;
     font-size: 20px; flex-shrink: 0;
 }
-.tb-icon.voca { background: #e3f2fd; }
-.tb-icon.mywords { background: #fce4ec; }
+.tb-icon.voca { background: var(--color-primary-light); }
+.tb-icon.mywords { background: var(--color-primary-light); }
 .tb-info { flex: 1; min-width: 0; }
 .tb-name { font-size: 15px; font-weight: 600; }
 .tb-meta { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
@@ -195,9 +195,9 @@ body {
     font-size: 11px; font-weight: 700; padding: 2px 8px;
     border-radius: 6px; white-space: nowrap;
 }
-.sch-badge.future { background: #e3f2fd; color: #1565c0; }
-.sch-badge.today { background: #fff3e0; color: #e65100; }
-.sch-badge.past { background: #fce4ec; color: #c62828; }
+.sch-badge.future { background: var(--color-primary-light); color: var(--color-primary); }
+.sch-badge.today { background: #FFF8E1; color: var(--color-warning, #FF9500); }
+.sch-badge.past { background: #FFF0EF; color: var(--color-error, #FF3B30); }
 .del-btn {
     background: none; border: none; cursor: pointer;
     color: var(--text-tertiary); font-size: 16px;
@@ -494,18 +494,18 @@ body {
 
 .dash-cal-day.today {
     font-weight: 800;
-    color: #D4619E;
-    border: 2px solid #D4619E;
+    color: var(--color-primary, #D4619E);
+    border: 2px solid var(--color-primary, #D4619E);
 }
 
 .dash-cal-day.studied {
-    background: #D4619E;
+    background: var(--color-primary, #D4619E);
     color: #fff;
     font-weight: 700;
 }
 
 .dash-cal-day.studied.today {
-    background: #D4619E;
+    background: var(--color-primary, #D4619E);
     color: #fff;
-    border-color: #D4619E;
+    border-color: var(--color-primary, #D4619E);
 }

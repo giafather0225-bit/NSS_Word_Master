@@ -989,7 +989,7 @@ a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px so
 }
 
 .main-content {
-    background: var(--zia-primary-light);
+    background: var(--bg-page);
 }
 
 .idle-card {
@@ -1024,16 +1024,16 @@ a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px so
     position: relative; z-index: 1;
 }
 .road-pill.current {
-    background: var(--zia-primary);
-    box-shadow: 0 1px 4px var(--color-primary-glow);
+    background: var(--color-primary);
+    box-shadow: var(--shadow-button);
     color: #FFFFFF; font-weight: 600;
 }
 .road-pill.current .step-count,
 .road-pill.current .step-suffix,
 .road-pill.current .step-num { display: inline; }
-.road-pill.done  { background: var(--zia-secondary); color: #FFFFFF; }
-.road-pill.next  { color: #1D1D1F; border: 1px solid var(--zia-primary); }
-.road-pill.locked { color: #C7C7CC; opacity: 1; background: #F0F0F0; }
+.road-pill.done  { color: var(--text-secondary, #8B8BA0); background: transparent; }
+.road-pill.next  { color: var(--text-primary, #2D2D3F); }
+.road-pill.locked { color: var(--border-default, #E5E5EA); opacity: 1; background: transparent; }
 
 /* Top-bar diary button */
 .top-diary-btn {

@@ -22,7 +22,7 @@ load_dotenv()
 
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response
+from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
@@ -126,6 +126,17 @@ BASE_DIR      = Path(__file__).parent.parent
 FRONTEND_DIR  = BASE_DIR / "frontend"
 STATIC_DIR    = FRONTEND_DIR / "static"
 TEMPLATES_DIR = FRONTEND_DIR / "templates"
+
+# ── PWA: serve SW and manifest from root scope ───────────
+@app.get("/service-worker.js")
+async def service_worker():
+    """Serve service worker from root so it controls the full scope."""
+    return FileResponse(STATIC_DIR / "service-worker.js", media_type="application/javascript")
+
+@app.get("/manifest.json")
+async def manifest():
+    """Serve PWA manifest from root."""
+    return FileResponse(STATIC_DIR / "manifest.json", media_type="application/json")
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 templates = Jinja2Templates(directory=TEMPLATES_DIR)

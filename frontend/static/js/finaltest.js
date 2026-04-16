@@ -367,7 +367,7 @@
         var icon, headline, msg, btnLabel, btnClass;
 
         if (passed) {
-            icon     = '🎉';
+            icon     = '✓';
             headline = 'Congratulations! You passed!';
             msg      = 'You scored <strong>' + pct + '%</strong> on ' + esc(ctx.lesson) + '.<br>' +
                        'This lesson is permanently marked as passed. Well done!';

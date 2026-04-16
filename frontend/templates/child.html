@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIA Learning</title>
     <!-- PWA -->
-    <link rel="manifest" href="/static/manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="GIA">
     <link rel="apple-touch-icon" href="/static/img/GIA_Logo.png">
-    <meta name="theme-color" content="#6C5CE7">
+    <meta name="theme-color" content="#D4619E">
     <link rel="stylesheet" href="/static/css/theme.css">
-    <link rel="stylesheet" href="/static/css/main.css?v=3">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/main.css?v=4">
+    <link rel="stylesheet" href="/static/css/style.css?v=2">
     <link rel="stylesheet" href="/static/css/preview.css">
     <link rel="stylesheet" href="/static/css/wordmatch.css">
     <link rel="stylesheet" href="/static/css/fillblank.css">
@@ -23,15 +23,15 @@
     <link rel="stylesheet" href="/static/css/finaltest.css">
     <link rel="stylesheet" href="/static/css/unittest.css?v=4">
     <link rel="stylesheet" href="/static/css/word-manager.css?v=12">
-    <link rel="stylesheet" href="/static/css/review.css?v=4">
-    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/review.css?v=5">
+    <link rel="stylesheet" href="/static/css/home.css?v=3">
     <link rel="stylesheet" href="/static/css/daily-words.css">
-    <link rel="stylesheet" href="/static/css/reward-shop.css">
-    <link rel="stylesheet" href="/static/css/parent.css">
+    <link rel="stylesheet" href="/static/css/reward-shop.css?v=2">
+    <link rel="stylesheet" href="/static/css/parent.css?v=2">
     <link rel="stylesheet" href="/static/css/diary.css">
     <link rel="stylesheet" href="/static/css/calendar.css">
     <link rel="stylesheet" href="/static/css/xp.css">
-    <link rel="stylesheet" href="/static/css/splash.css?v=1">
+    <link rel="stylesheet" href="/static/css/splash.css?v=2">
 
 </head>
 <body>
@@ -382,64 +382,73 @@
 
             <!-- Home Dashboard (shown on app start) -->
             <div id="home-dashboard" style="display:flex; flex-direction:column;">
-                <!-- AI Coach card -->
-                <div class="coach-card" id="coach-card">
-                    <div class="coach-avatar-wrap">
-                        <div class="coach-glow-ring"></div>
-                        <img src="/static/img/GIA_Logo.png" alt="GIA" class="coach-avatar">
-                    </div>
-                    <div class="coach-text">
-                        <span id="coach-message">Loading...</span>
-                        <span id="coach-sub-message" class="coach-sub"></span>
-                    </div>
-                </div>
-                <!-- Reminder banners -->
-                <div id="reminder-banners"></div>
-                <!-- Today section -->
-                <div class="today-section">
-                    <div class="today-header">
-                        <span class="today-label">Today</span>
-                        <div class="today-badges">
-                            <span class="streak-badge">🔥 <span id="summary-streak-top">0</span> days</span>
-                            <span class="xp-badge">⭐ <span id="summary-xp-top">0</span> XP</span>
+                <div class="dash-row">
+                <!-- LEFT COLUMN: Coach + Tasks -->
+                <div class="dash-left">
+                    <!-- AI Coach card -->
+                    <div class="coach-card" id="coach-card">
+                        <div class="coach-avatar-wrap">
+                            <div class="coach-glow-ring"></div>
+                            <img src="/static/img/GIA_Logo.png" alt="GIA" class="coach-avatar">
+                        </div>
+                        <div class="coach-text">
+                            <span id="coach-message">Loading...</span>
+                            <span id="coach-sub-message" class="coach-sub"></span>
                         </div>
                     </div>
-                    <div class="task-list" id="today-task-list">
-                        <!-- Populated by home.js -->
+                    <!-- Reminder banners -->
+                    <div id="reminder-banners"></div>
+                    <!-- Today section -->
+                    <div class="today-section">
+                        <div class="today-header">
+                            <span class="today-label">Today</span>
+                            <div class="today-badges">
+                                <span class="streak-badge">🔥 <span id="summary-streak-top">0</span> days</span>
+                                <span class="xp-badge">⭐ <span id="summary-xp-top">0</span> XP</span>
+                            </div>
+                        </div>
+                        <div class="task-list" id="today-task-list">
+                            <!-- Populated by home.js -->
+                        </div>
                     </div>
                 </div>
-                <!-- Section cards -->
-                <div class="section-cards">
-                    <div class="section-card" id="section-card-english">
-                        <span class="section-card-icon">📗</span>
-                        <div class="section-card-title">English</div>
-                        <div class="section-card-sub">Vocabulary &amp; reading</div>
+
+                <!-- RIGHT COLUMN: Section cards + Growth theme -->
+                <div class="dash-right" style="flex:1; min-width:0;">
+                    <!-- Section cards -->
+                    <div class="section-cards">
+                        <div class="section-card" id="section-card-english">
+                            <span class="section-card-icon">📖</span>
+                            <div class="section-card-title">English</div>
+                            <div class="section-card-sub">Vocabulary &amp; reading</div>
+                        </div>
+                        <div class="section-card" id="section-card-diary">
+                            <span class="section-card-icon">✏️</span>
+                            <div class="section-card-title">GIA's Diary</div>
+                            <div class="section-card-sub">Write about your day</div>
+                        </div>
+                        <div class="section-card section-card-disabled">
+                            <span class="section-card-icon">🔢</span>
+                            <div class="section-card-title">Math</div>
+                            <div class="section-card-sub">Coming Soon</div>
+                            <div class="section-card-overlay">Coming Soon</div>
+                        </div>
                     </div>
-                    <div class="section-card" id="section-card-diary">
-                        <span class="section-card-icon">📖</span>
-                        <div class="section-card-title">GIA's Diary</div>
-                        <div class="section-card-sub">Write about your day</div>
+                    <!-- Growth theme -->
+                    <div class="growth-theme-area">
+                        <div class="growth-theme-visual">
+                            <div id="growth-theme-display" class="theme-img-box"></div>
+                        </div>
+                        <div class="growth-theme-info">
+                            <div class="growth-theme-title">My Growth Theme</div>
+                            <div class="growth-theme-step">Step 0 / 6</div>
+                            <div class="growth-theme-bar-wrap"><div class="growth-theme-bar" style="width:0%"></div></div>
+                            <div class="growth-theme-hint">Complete lessons to grow your theme!</div>
+                        </div>
                     </div>
-                    <div class="section-card section-card-disabled">
-                        <span class="section-card-icon">🔢</span>
-                        <div class="section-card-title">Math</div>
-                        <div class="section-card-sub">Coming Soon</div>
-                        <div class="section-card-overlay">Coming Soon</div>
-                    </div>
-                </div>
-                <!-- Growth theme -->
-                <div class="growth-theme-area">
-                    <div class="growth-theme-visual">
-                        <div id="growth-theme-display" class="theme-img-box"></div>
-                    </div>
-                    <div class="growth-theme-info">
-                        <div class="growth-theme-title">My Growth Theme</div>
-                        <div class="growth-theme-step">Step 0 / 6</div>
-                        <div class="growth-theme-bar-wrap"><div class="growth-theme-bar" style="width:0%"></div></div>
-                        <div class="growth-theme-hint">Complete lessons to grow your theme!</div>
-                    </div>
-                </div>
-                <!-- Summary bar -->
+                </div><!-- end dash-right -->
+                </div><!-- end dash-row -->
+                <!-- BOTTOM BAR: spans full width -->
                 <div class="summary-bar">
                     <div class="summary-stat">
                         <span class="summary-label">Words I Know</span>
@@ -453,7 +462,12 @@
                         <span class="summary-label">Streak</span>
                         <span class="summary-val">🔥 <span id="summary-streak">0 days</span></span>
                     </div>
-                    <button class="shop-btn" onclick="openRewardShop()">🎁 Reward Shop</button>
+                    <button class="shop-btn" onclick="openRewardShop()">💎 Reward Shop</button>
+                    <button class="home-gear-btn" onclick="openParentDashboard()" title="Parent Dashboard">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
 
@@ -547,7 +561,7 @@
 
 <!-- ─── App logic ────────────────────────────────────────────── -->
 <script src="/static/js/splash.js?v=1"></script>
-<script src="/static/js/core.js?v=1"></script>
+<script src="/static/js/core.js?v=2"></script>
 <script src="/static/js/tts-client.js?v=1"></script>
 <script src="/static/js/analytics.js?v=1"></script>
 <script src="/static/js/navigation.js?v=1"></script>
@@ -558,15 +572,15 @@
 <script src="/static/js/spelling.js?v=1"></script>
 <script src="/static/js/sentence.js?v=1"></script>
 <script src="/static/js/home.js?v=2"></script>
-<script src="/static/js/growth-theme.js?v=1"></script>
+<script src="/static/js/growth-theme.js?v=2"></script>
 <script src="/static/js/parent-panel.js?v=2"></script>
 <script src="/static/js/parent-settings.js?v=2"></script>
-<script src="/static/js/reward-shop.js?v=1"></script>
+<script src="/static/js/reward-shop.js?v=2"></script>
 <script src="/static/js/diary.js?v=1"></script>
 <script src="/static/js/calendar.js?v=1"></script>
 <script src="/static/js/daily-words.js?v=1"></script>
 <script src="/static/js/daily-words-weekly.js?v=1"></script>
-<script src="/static/js/child.js?v=30"></script>
+<script src="/static/js/child.js?v=31"></script>
 <script src="/static/js/sentence_ai.js?v=1"></script>
 <script src="/static/js/finaltest.js?v=10"></script>
 <script src="/static/js/unittest.js?v=5"></script>
@@ -585,7 +599,7 @@
 <!-- PWA Service Worker -->
 <script>
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/static/service-worker.js')
+    navigator.serviceWorker.register('/service-worker.js')
       .then(reg => console.log('SW registered:', reg.scope))
       .catch(err => console.log('SW registration failed:', err));
   }

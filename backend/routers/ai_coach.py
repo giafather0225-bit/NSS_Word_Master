@@ -23,10 +23,10 @@ OLLAMA_HOST = "http://127.0.0.1:11434"
 OLLAMA_MODEL = "gemma2:2b"
 
 CANNED: list[str] = [
-    "Ready to learn today? Let's go! 🚀",
-    "Every word you learn is a superpower! 💪",
-    "You're doing amazing! Keep it up! 🌟",
-    "Great things happen one word at a time! ✨",
+    "Ready to learn today? Let's go!",
+    "Every word you learn is a superpower!",
+    "You're doing amazing! Keep it up!",
+    "Great things happen one word at a time!",
 ]
 
 
@@ -52,7 +52,7 @@ def _build_prompt(total_xp: int, today_xp: int, streak: int) -> str:
     return (
         "You are GIA, a friendly English learning coach for a child.\n"
         "Write ONE short motivational sentence (max 15 words) in English based on these stats.\n"
-        "Add one relevant emoji at the end. Be warm and encouraging.\n\n"
+        "No emojis. Be warm and encouraging.\n\n"
         f"{stats_block}"
     )
 

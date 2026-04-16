@@ -328,7 +328,7 @@
 
         var html = '<div class="ut-result-wrap">' +
             '<div class="ut-result ' + (passed ? 'ut-result-pass' : 'ut-result-fail') + '">' +
-                '<div class="ut-result-icon">' + (passed ? '🎉' : '📝') + '</div>' +
+                '<div class="ut-result-icon">' + (passed ? '✓' : '✕') + '</div>' +
                 '<div class="ut-result-score">' + pct + '%</div>' +
                 '<div class="ut-result-detail">' + correct + ' / ' + total + ' correct</div>' +
                 '<div class="ut-result-lessons">Lessons: ' + esc(lessonsStr) + '</div>' +
