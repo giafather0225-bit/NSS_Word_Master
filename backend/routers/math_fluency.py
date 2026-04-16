@@ -2,14 +2,16 @@
 routers/math_fluency.py — Fact Fluency API
 Section: Math
 Dependencies: models.py (MathFactFluency), services/xp_engine.py
-API: GET /api/math/fluency/status, POST /api/math/fluency/submit-round,
+API: GET /api/math/fluency/status, GET /api/math/fluency/catalog,
+     GET /api/math/fluency/start-round, POST /api/math/fluency/submit-round,
      GET /api/math/fluency/summary
 """
 
 import logging
+import random
 from datetime import datetime
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
@@ -34,7 +36,98 @@ class RoundResultIn(BaseModel):
     time_sec: int
 
 
+# ── Fact set catalog ─────────────────────────────────────────
+# Each entry: label, operation, operand ranges. Generators below build 10 qs.
+
+_FACT_SETS = {
+    "add_within_10":   {"label": "Addition within 10",     "op": "+", "a": (0, 10),  "b": (0, 10),  "grade": "G2"},
+    "sub_within_10":   {"label": "Subtraction within 10",  "op": "-", "a": (0, 10),  "b": (0, 10),  "grade": "G2"},
+    "add_within_20":   {"label": "Addition within 20",     "op": "+", "a": (0, 20),  "b": (0, 20),  "grade": "G2"},
+    "sub_within_20":   {"label": "Subtraction within 20",  "op": "-", "a": (0, 20),  "b": (0, 20),  "grade": "G3"},
+    "mul_0_5":         {"label": "Multiplication 0–5",      "op": "×", "a": (0, 5),   "b": (0, 10),  "grade": "G3"},
+    "mul_6_10":        {"label": "Multiplication 6–10",     "op": "×", "a": (6, 10),  "b": (0, 10),  "grade": "G3"},
+    "mul_0_12":        {"label": "Multiplication 0–12",     "op": "×", "a": (0, 12),  "b": (0, 12),  "grade": "G4"},
+    "div_0_10":        {"label": "Division 0–10",           "op": "÷", "a": (0, 10),  "b": (1, 10),  "grade": "G4"},
+}
+
+
+def _generate_question(fact_set: str):
+    """Return (question, answer) for one problem."""
+    spec = _FACT_SETS.get(fact_set)
+    if not spec:
+        return None
+    op = spec["op"]
+    a_lo, a_hi = spec["a"]
+    b_lo, b_hi = spec["b"]
+    a = random.randint(a_lo, a_hi)
+    b = random.randint(b_lo, b_hi)
+    if op == "+":
+        return f"{a} + {b}", a + b
+    if op == "-":
+        # Ensure non-negative
+        if b > a: a, b = b, a
+        return f"{a} - {b}", a - b
+    if op == "×":
+        return f"{a} × {b}", a * b
+    if op == "÷":
+        # Build divisible pair: pick divisor then quotient
+        divisor = max(1, b)
+        quotient = a
+        dividend = divisor * quotient
+        return f"{dividend} ÷ {divisor}", quotient
+    return None
+
+
 # ── Endpoints ────────────────────────────────────────────────
+
+# @tag MATH @tag FLUENCY
+@router.get("/api/math/fluency/catalog")
+def fluency_catalog(db: Session = Depends(get_db)):
+    """List all fact sets with current progress."""
+    rows = {r.fact_set: r for r in db.query(MathFactFluency).all()}
+    out = []
+    for key, spec in _FACT_SETS.items():
+        r = rows.get(key)
+        out.append({
+            "fact_set": key,
+            "label": spec["label"],
+            "op": spec["op"],
+            "grade": spec["grade"],
+            "current_phase": r.current_phase if r else "A",
+            "best_score": r.best_score if r else 0,
+            "best_time_sec": r.best_time_sec if r else 0,
+            "accuracy_pct": r.accuracy_pct if r else 0.0,
+            "total_rounds": r.total_rounds if r else 0,
+        })
+    return {"fact_sets": out}
+
+
+# @tag MATH @tag FLUENCY
+@router.get("/api/math/fluency/start-round")
+def start_round(fact_set: str, count: int = 10):
+    """Generate a new fluency round (not persisted until submit)."""
+    if fact_set not in _FACT_SETS:
+        raise HTTPException(status_code=404, detail=f"Unknown fact_set: {fact_set}")
+    count = max(5, min(int(count or 10), 20))
+    spec = _FACT_SETS[fact_set]
+    questions = []
+    seen = set()
+    tries = 0
+    while len(questions) < count and tries < count * 6:
+        tries += 1
+        q, a = _generate_question(fact_set)
+        if q in seen:
+            continue
+        seen.add(q)
+        questions.append({"question": q, "answer": a})
+    return {
+        "fact_set": fact_set,
+        "label": spec["label"],
+        "op": spec["op"],
+        "time_limit_sec": 60,
+        "questions": questions,
+    }
+
 
 # @tag MATH @tag FLUENCY
 @router.get("/api/math/fluency/status")
