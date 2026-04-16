@@ -82,6 +82,50 @@
     --transition-fast:   0.15s ease;
     --transition-normal: 0.25s ease;
     --transition-slow:   0.4s ease;
+
+    /* ================================================================
+       MATH SECTION TOKENS — GIA logo teal branch
+       Change these in one place to retheme the entire Math section.
+       ================================================================ */
+
+    /* ── Math 메인(청록) ─────────────────── */
+    --math-primary:         #4A8E8E;   /* logo left — teal */
+    --math-primary-hover:   #3A7B7D;
+    --math-primary-light:   #EAF4F2;
+    --math-primary-glow:    rgba(74, 142, 142, 0.18);
+    --math-primary-on:      #FFFFFF;   /* text on primary buttons */
+
+    /* ── Math 액센트(로고 그라데이션 컬러) ── */
+    --math-accent-violet:       #8B6FA5;   /* logo center — muted violet */
+    --math-accent-violet-light: #EFE7F1;
+    --math-accent-pink:         #D4619E;   /* logo right — CTA pop */
+    --math-accent-pink-light:   #FAE8F3;
+
+    /* ── Math 배경 ───────────────────────── */
+    --math-bg-page:   #F1F8F7;
+    --math-bg-card:   var(--bg-card);
+
+    /* ── CPA phase colors (Concrete/Pictorial/Abstract) ── */
+    --math-cpa-concrete-bg: #FFF3E0;
+    --math-cpa-concrete-fg: #C2570A;
+    --math-cpa-pictorial-bg: var(--math-primary-light);
+    --math-cpa-pictorial-fg: var(--math-primary);
+    --math-cpa-abstract-bg: var(--math-accent-violet-light);
+    --math-cpa-abstract-fg: var(--math-accent-violet);
+
+    /* ── Hint / Focus-areas boxes ────────── */
+    --math-hint-bg:   #FFFDE7;
+    --math-hint-fg:   #B8860B;
+    --math-focus-bg:  #FFF8E1;
+    --math-focus-fg:  #B8860B;
+
+    /* ── Math 상태 (기존 상태 컬러 재사용) ── */
+    --math-pass:      var(--color-success);
+    --math-fail:      var(--color-warning);
+
+    /* ── Math 전용 그림자/테두리 ─────────── */
+    --math-shadow-card:   var(--shadow-card);
+    --math-border-card:   var(--border-card);
 }
 
 /* ── 다크모드 (나중에 활성화) ──────────────

@@ -58,6 +58,9 @@ function renderMathProblem() {
         case 'tf':
             _renderTF(body, p);
             break;
+        case 'drag_sort':
+            _renderDragSort(body, p);
+            break;
         case 'input':
             _renderInput(body, p);
             break;
@@ -70,7 +73,7 @@ function renderMathProblem() {
     const hintBtn = document.getElementById('math-hint-btn');
     if (hintBtn && p.hints) {
         let hintIdx = 0;
-        hintBtn.addEventListener('click', () => {
+        const showNextHint = () => {
             const box = document.getElementById('math-hint-box');
             if (!box) return;
             if (hintIdx < p.hints.length) {
@@ -79,8 +82,86 @@ function renderMathProblem() {
                 hintIdx++;
             }
             if (hintIdx >= p.hints.length) hintBtn.disabled = true;
-        });
+        };
+        hintBtn.addEventListener('click', showNextHint);
+
+        // Adaptive: auto-expand first hint after 3 consecutive wrong
+        if (typeof mathState !== 'undefined' && mathState.forceHints) {
+            showNextHint();
+        }
     }
+}
+
+// ── Drag-sort (M4) ─────────────────────────────────────────
+
+/**
+ * Render a drag-and-drop sort problem. Expects:
+ *   problem.items: [{id, label}, ...] (shuffled for display)
+ *   problem.answer: ordered array of item ids (or labels) representing correct sequence
+ * @tag MATH @tag PROBLEM @tag DRAG_SORT
+ */
+function _renderDragSort(body, problem) {
+    const items = (problem.items || []).slice();
+    // Ensure shuffled display order
+    items.sort(() => Math.random() - 0.5);
+
+    body.innerHTML = `
+        <p class="math-drag-hint">Drag items into the correct order (top = first).</p>
+        <ul class="math-drag-list" id="math-drag-list">
+            ${items.map(it => {
+                const id = typeof it === 'string' ? it : it.id;
+                const label = typeof it === 'string' ? it : (it.label || it.id);
+                return `<li class="math-drag-item" draggable="true" data-id="${_escAttr(id)}">
+                          <span class="math-drag-handle">\u2630</span>
+                          <span class="math-drag-label">${_escP(label)}</span>
+                        </li>`;
+            }).join('')}
+        </ul>
+        <button class="math-btn-primary math-submit-btn" id="math-drag-submit">Submit Order</button>
+    `;
+
+    const listEl = document.getElementById('math-drag-list');
+    let draggingEl = null;
+
+    listEl.querySelectorAll('.math-drag-item').forEach(el => {
+        el.addEventListener('dragstart', (e) => {
+            draggingEl = el;
+            el.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        });
+        el.addEventListener('dragend', () => {
+            el.classList.remove('dragging');
+            draggingEl = null;
+        });
+    });
+
+    listEl.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        if (!draggingEl) return;
+        const afterEl = _getDragAfterElement(listEl, e.clientY);
+        if (afterEl == null) {
+            listEl.appendChild(draggingEl);
+        } else {
+            listEl.insertBefore(draggingEl, afterEl);
+        }
+    });
+
+    document.getElementById('math-drag-submit').addEventListener('click', () => {
+        const order = Array.from(listEl.querySelectorAll('.math-drag-item')).map(el => el.dataset.id);
+        _submitProblemAnswer(problem, order.join('|'));
+    });
+}
+
+function _getDragAfterElement(container, y) {
+    const els = Array.from(container.querySelectorAll('.math-drag-item:not(.dragging)'));
+    return els.reduce((closest, el) => {
+        const box = el.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+            return { offset, element: el };
+        }
+        return closest;
+    }, { offset: Number.NEGATIVE_INFINITY }).element || null;
 }
 
 // ── Multiple Choice ────────────────────────────────────────
