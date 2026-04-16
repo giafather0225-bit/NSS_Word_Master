@@ -43,8 +43,8 @@ function _renderShopFrame() {
     el.innerHTML = `
         <div class="shop-header">
             <button class="shop-close-btn" onclick="closeRewardShop()">←</button>
-            <span class="shop-title">💎 Reward Shop</span>
-            <span class="shop-xp-badge" id="shop-xp-display">⭐ …</span>
+            <span class="shop-title">Reward Shop</span>
+            <span class="shop-xp-badge" id="shop-xp-display">… XP</span>
         </div>
         <div class="shop-tabs">
             <button class="shop-tab active" id="tab-shop"       onclick="_shopSwitchTab('shop')">Shop</button>
@@ -109,7 +109,7 @@ async function _loadShopTab(tab) {
  */
 function _updateXPDisplay(xp) {
     const el = document.getElementById("shop-xp-display");
-    if (el) el.textContent = `⭐ ${xp} XP`;
+    if (el) el.textContent = `${xp} XP`;
 }
 
 /** Render the shop item grid. @tag SHOP */
@@ -123,18 +123,18 @@ function _renderShopGrid(items, totalXp) {
         const affordable = totalXp >= item.final_price;
         const discBadge  = item.discount_pct > 0 ? `<span class="shop-discount-badge">-${item.discount_pct}%</span>` : "";
         const priceHTML  = item.discount_pct > 0
-            ? `<span class="shop-item-original">⭐${item.price}</span><span class="shop-item-price">⭐${item.final_price}</span>`
-            : `<span class="shop-item-price">⭐${item.final_price}</span>`;
+            ? `<span class="shop-item-original">${item.price} XP</span><span class="shop-item-price">${item.final_price} XP</span>`
+            : `<span class="shop-item-price">${item.final_price} XP</span>`;
         const desc = item.description ? `<div class="shop-item-desc">${escapeHtml(item.description)}</div>` : "";
         const catBadge = `<span class="shop-item-cat">${item.category || "badge"}</span>`;
         return `<div class="shop-item-card${affordable ? "" : " unaffordable"}"
                      onclick="${affordable ? `_shopConfirmBuy(${item.id},'${escapeHtml(item.name)}','${escapeHtml(item.icon)}',${item.final_price})` : ""}">
             ${discBadge}
-            ${catBadge}
             <span class="shop-item-icon">${item.icon}</span>
             <div class="shop-item-name">${escapeHtml(item.name)}</div>
             ${desc}
-            <div>${priceHTML}</div>
+            <div class="shop-item-price-row">${priceHTML}</div>
+            ${catBadge}
         </div>`;
     }).join("");
     body.innerHTML = `<div class="shop-grid">${cards}</div>`;
@@ -155,7 +155,7 @@ function _shopConfirmBuy(itemId, name, icon, price) {
         <div class="shop-popup">
             <div class="shop-popup-icon">${icon}</div>
             <div class="shop-popup-title">${escapeHtml(name)}</div>
-            <div class="shop-popup-sub">⭐ ${price} XP will be deducted.</div>
+            <div class="shop-popup-sub">${price} XP will be deducted.</div>
             <div class="shop-popup-btns">
                 <button class="shop-popup-btn secondary" onclick="_closePopup()">Cancel</button>
                 <button class="shop-popup-btn primary"   onclick="_doBuy(${itemId})">Buy!</button>
@@ -180,7 +180,7 @@ async function _doBuy(itemId) {
             const d = await res.json();
             _updateXPDisplay(d.remaining_xp || 0);
             _shopConfetti();
-            _showShopToast("✓ Added to My Rewards");
+            _showShopToast("Added to My Rewards");
             _loadShopTab("shop"); // refresh affordability
         } else {
             const err = await res.json().catch(() => ({}));
@@ -217,7 +217,7 @@ function _renderMyRewards(rewards) {
             <div class="my-reward-info">
                 <div class="my-reward-name">${escapeHtml(r.name)}</div>
                 ${desc}
-                <div class="my-reward-meta">⭐${r.xp_spent} · ${usedLabel}</div>
+                <div class="my-reward-meta">${r.xp_spent} XP · ${usedLabel}</div>
             </div>
             <div class="my-reward-actions">
                 ${equipBtn}
@@ -254,9 +254,9 @@ function _shopOpenPin(purchaseId) {
             <div class="pin-error" id="pin-error"></div>
             <div class="pin-pad">
                 ${[1,2,3,4,5,6,7,8,9].map(n => `<button class="pin-key" onclick="_pinPress('${n}')">${n}</button>`).join("")}
-                <button class="pin-key" onclick="_pinPress('clear')">✕</button>
+                <button class="pin-key pin-key--clear" onclick="_pinPress('clear')">C</button>
                 <button class="pin-key" onclick="_pinPress('0')">0</button>
-                <button class="pin-key pin-key delete" onclick="_pinPress('del')">⌫</button>
+                <button class="pin-key pin-key--del" onclick="_pinPress('del')">Del</button>
             </div>
         </div>`;
     document.body.appendChild(bg);
@@ -296,7 +296,7 @@ async function _submitPin() {
         });
         if (res.ok) {
             _closePopup();
-            _showShopToast("✅ Enjoy your reward!");
+            _showShopToast("Reward unlocked!");
             _loadShopTab("my-rewards");
         } else {
             _pinDigits = "";

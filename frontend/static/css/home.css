@@ -154,7 +154,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #FFF8E1;
+  background: var(--color-warning-light, #FFF8E1);
   border-left: 4px solid var(--color-warning);
   padding: 12px 16px;
   border-radius: var(--radius-sm);
@@ -164,7 +164,7 @@
 }
 
 .reminder-banner.danger {
-  background: #FFF0EF;
+  background: var(--color-error-light, #FFF0EF);
   border-left-color: var(--color-error);
 }
 
@@ -317,66 +317,102 @@
 .section-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 10px;
   margin-top: 0;
 }
 
 .section-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: var(--radius-lg);
-  padding: 36px 20px;
-  text-align: center;
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
   cursor: pointer;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
   position: relative;
   box-shadow: var(--shadow-card);
 }
 
-.section-card:hover {
-  transform: translateY(-3px);
+.section-card:not(.section-card-disabled):hover {
+  transform: translateY(-2px);
   border-color: var(--color-primary);
-  box-shadow: 0 6px 20px rgba(212,97,158,0.12);
+  box-shadow: 0 4px 16px rgba(212,97,158,0.12);
 }
 
-.section-card:active {
+.section-card:not(.section-card-disabled):active {
   transform: scale(0.97);
 }
 
-.section-card-icon {
-  font-size: 40px;
-  display: block;
-  margin-bottom: 12px;
-}
-
-.section-card-title {
-  font-size: 17px;
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  margin-bottom: 6px;
-}
-
-.section-card-sub {
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
-.section-card-disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.section-card-overlay {
-  position: absolute;
-  inset: 0;
+/* Icon container with background tint */
+.section-card-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-light);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+}
+
+.section-card-icon-wrap--muted {
+  background: var(--border-default);
+}
+
+.section-card-icon {
+  font-size: 22px;
+  display: block;
+  margin: 0;
+  line-height: 1;
+}
+
+.section-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.section-card-title {
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section-card-sub {
   font-size: 11px;
   color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section-card-arrow {
+  display: none;
+}
+
+/* Coming Soon badge (Math) */
+.section-card-coming-soon {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: var(--border-default);
+  border-radius: var(--radius-full);
+  padding: 2px 7px;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.section-card-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* ── Growth theme area ───────────────────────────────────── */
@@ -397,10 +433,11 @@
 }
 
 .theme-img-box {
-  width: 140px;
-  height: 140px;
-  border: 1px dashed var(--border-default);
+  width: 130px;
+  height: 130px;
   border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-primary-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -432,8 +469,8 @@
 }
 
 .growth-theme-bar-wrap {
-  height: 4px;
-  background: var(--border-default);
+  height: 6px;
+  background: var(--color-primary-light);
   border-radius: var(--radius-full);
   overflow: hidden;
 }

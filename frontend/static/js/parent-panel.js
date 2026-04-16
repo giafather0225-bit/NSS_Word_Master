@@ -273,7 +273,7 @@ async function _ppTextbooks(body) {
     try {
         const res  = await fetch("/api/dashboard/stats");
         const data = await res.json();
-        const tbs  = data.textbooks || [];
+        const tbs  = (data.textbooks || []).filter(tb => tb.name.toLowerCase() !== 'my_words');
 
         if (!tbs.length) {
             body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px">No textbooks found.</p>`;
