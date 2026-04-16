@@ -14,11 +14,11 @@
   height: 100%;
 }
 
-/* ── AI Coach card ───────────────────────────────────────── */
+/* ── AI Coach card — GIA Avatar ──────────────────────────── */
 .coach-card {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-left: 4px solid var(--color-primary);
@@ -27,16 +27,78 @@
   margin-bottom: 16px;
 }
 
-.coach-icon {
-  font-size: 32px;
+/* Avatar wrapper */
+.coach-avatar-wrap {
+  position: relative;
   flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+}
+
+/* GIA avatar image */
+.coach-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+
+/* Siri-style glow ring */
+.coach-glow-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  z-index: 1;
+  background: conic-gradient(
+    from 0deg,
+    #6C5CE7, #a29bfe, #74b9ff, #55efc4, #fdcb6e, #e17055, #6C5CE7
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: none;
+}
+
+/* Glow active (after splash transition or direct load) */
+.coach-glow-ring.active {
+  opacity: 0.7;
+  animation: coach-glow-spin 3s linear infinite, coach-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes coach-glow-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes coach-glow-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.08); }
+}
+
+/* Text area */
+.coach-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
 #coach-message {
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
   color: var(--text-primary);
   line-height: 1.5;
 }
+
+.coach-sub {
+  font-size: 0.8rem;
+  opacity: 0.65;
+  color: var(--text-secondary);
+}
+
+/* Hide legacy emoji icon if present */
+.coach-icon { display: none !important; }
 
 /* ── Reminder banners ────────────────────────────────────── */
 .reminder-banner {

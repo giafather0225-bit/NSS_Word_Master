@@ -100,9 +100,28 @@ async function renderAICoach() {
   try {
     const res = await fetch('/api/ai-coach/today');
     const data = await res.json();
-    el.textContent = data.message || 'Keep up the great work! 🌟';
+    el.textContent = data.message || 'Keep up the great work!';
   } catch {
-    el.textContent = 'Ready to learn today? Let\'s go! 🚀';
+    el.textContent = 'Ready to learn today? Let\'s go!';
+  }
+
+  // Coach sub-message
+  const COACH_SUB_MSGS = [
+    "Tap me anytime for help!",
+    "I'm here whenever you need me!",
+    "Let's learn something awesome!",
+    "Ready when you are!",
+    "What shall we discover today?"
+  ];
+  const subEl = document.getElementById('coach-sub-message');
+  if (subEl) {
+    subEl.textContent = COACH_SUB_MSGS[Math.floor(Math.random() * COACH_SUB_MSGS.length)];
+  }
+
+  // Activate glow ring (for direct load without splash)
+  const glowRing = document.querySelector('.coach-glow-ring');
+  if (glowRing) {
+    setTimeout(() => glowRing.classList.add('active'), 500);
   }
 }
 
