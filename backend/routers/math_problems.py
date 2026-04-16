@@ -6,8 +6,10 @@ API: GET /api/math/my-problems/summary, GET /api/math/my-problems/review,
      POST /api/math/my-problems/submit-answer
 """
 
+import json
 import logging
 from datetime import datetime, timedelta
+from pathlib import Path
 
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
@@ -23,8 +25,32 @@ except ImportError:
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
-# Spaced repetition intervals
+# Spaced repetition intervals (Phase 1: 1 correct = mastered;
+# wrong advances interval, scheduling next review farther out)
 _INTERVALS = [1, 3, 7, 21]
+
+_DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "math"
+
+
+# ── Helpers ──────────────────────────────────────────────────
+
+def _load_problem(attempt: MathAttempt):
+    """Look up the full problem JSON from the originating lesson file."""
+    if not attempt:
+        return None
+    lesson_file = _DATA_DIR / attempt.grade / attempt.unit / f"{attempt.lesson}.json"
+    if not lesson_file.exists():
+        return None
+    try:
+        data = json.loads(lesson_file.read_text("utf-8"))
+    except Exception as e:
+        logger.warning("Failed to load lesson %s: %s", lesson_file, e)
+        return None
+    for stage_key in ("pretest", "try", "practice_r1", "practice_r2", "practice_r3"):
+        for p in data.get(stage_key, []):
+            if p.get("id") == attempt.problem_id:
+                return p
+    return None
 
 
 # ── Endpoints ────────────────────────────────────────────────
@@ -51,41 +77,81 @@ def problems_summary(db: Session = Depends(get_db)):
 # @tag MATH @tag MY_PROBLEMS
 @router.get("/api/math/my-problems/review")
 def problems_review(db: Session = Depends(get_db)):
-    """Return problems due for review today."""
+    """Return problems due for review today with full problem payload."""
     today = datetime.now().strftime("%Y-%m-%d")
     rows = (
         db.query(MathWrongReview)
         .filter(MathWrongReview.is_mastered == False, MathWrongReview.next_review_date <= today)
+        .order_by(MathWrongReview.next_review_date.asc())
         .limit(20)
         .all()
     )
-    return {
-        "items": [
-            {
-                "id": r.id,
-                "problem_id": r.problem_id,
-                "times_reviewed": r.times_reviewed,
-                "interval_days": r.interval_days,
-            }
-            for r in rows
-        ]
-    }
+
+    items = []
+    for r in rows:
+        attempt = None
+        if r.original_attempt_id:
+            attempt = db.query(MathAttempt).filter_by(id=r.original_attempt_id).first()
+        if attempt is None:
+            # Fallback: most recent attempt for that problem_id
+            attempt = (
+                db.query(MathAttempt)
+                .filter_by(problem_id=r.problem_id)
+                .order_by(MathAttempt.id.desc())
+                .first()
+            )
+        problem = _load_problem(attempt) if attempt else None
+        if not problem:
+            continue  # skip unresolvable
+        items.append({
+            "review_id": r.id,
+            "problem_id": r.problem_id,
+            "times_reviewed": r.times_reviewed,
+            "interval_days": r.interval_days,
+            "grade": attempt.grade,
+            "unit": attempt.unit,
+            "lesson": attempt.lesson,
+            "original_stage": attempt.stage,
+            "problem": problem,
+        })
+
+    return {"items": items, "count": len(items)}
+
+
+class ReviewSubmitIn(BaseModel):
+    review_id: int
+    user_answer: str = ""
 
 
 # @tag MATH @tag MY_PROBLEMS
 @router.post("/api/math/my-problems/submit-answer")
-def submit_review_answer(review_id: int, is_correct: bool, db: Session = Depends(get_db)):
+def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
     """Submit answer for a review problem. Phase 1: 1 correct = mastered."""
-    row = db.query(MathWrongReview).filter_by(id=review_id).first()
+    row = db.query(MathWrongReview).filter_by(id=req.review_id).first()
     if not row:
         return {"error": "Review item not found"}
+
+    # Resolve correct answer
+    attempt = db.query(MathAttempt).filter_by(id=row.original_attempt_id).first() if row.original_attempt_id else None
+    if attempt is None:
+        attempt = (
+            db.query(MathAttempt)
+            .filter_by(problem_id=row.problem_id)
+            .order_by(MathAttempt.id.desc())
+            .first()
+        )
+    problem = _load_problem(attempt) if attempt else None
+    if not problem:
+        return {"error": "Original problem not found"}
+
+    correct_answer = str(problem.get("answer", "")).strip()
+    is_correct = req.user_answer.strip().lower() == correct_answer.lower()
 
     row.times_reviewed += 1
 
     if is_correct:
         row.is_mastered = True
     else:
-        # Advance to next interval
         idx = _INTERVALS.index(row.interval_days) if row.interval_days in _INTERVALS else 0
         next_idx = min(idx + 1, len(_INTERVALS) - 1)
         row.interval_days = _INTERVALS[next_idx]
@@ -95,6 +161,9 @@ def submit_review_answer(review_id: int, is_correct: bool, db: Session = Depends
 
     db.commit()
     return {
+        "is_correct": is_correct,
+        "correct_answer": correct_answer,
         "is_mastered": row.is_mastered,
         "next_review_date": row.next_review_date if not row.is_mastered else None,
+        "feedback": problem.get("feedback_correct" if is_correct else "feedback_wrong", ""),
     }

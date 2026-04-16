@@ -20,11 +20,11 @@ from sqlalchemy.orm import Session
 
 try:
     from ..database import get_db
-    from ..models import MathProblem, MathProgress, MathAttempt
+    from ..models import MathProblem, MathProgress, MathAttempt, MathWrongReview
     from ..services import xp_engine
 except ImportError:
     from database import get_db
-    from models import MathProblem, MathProgress, MathAttempt
+    from models import MathProblem, MathProgress, MathAttempt, MathWrongReview
     from services import xp_engine
 
 router = APIRouter()
@@ -229,6 +229,28 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
             xp_engine.award_xp(db, "math_problem_correct", 1, f"Math {req.problem_id}")
         except Exception as e:
             logger.warning("XP award failed: %s", e)
+    else:
+        # Register wrong answer for spaced-repetition review (skip pretest — diagnostic only)
+        if req.stage != "pretest":
+            existing = (
+                db.query(MathWrongReview)
+                .filter_by(problem_id=req.problem_id, is_mastered=False)
+                .first()
+            )
+            if not existing:
+                from datetime import timedelta
+                next_date = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+                wrong = MathWrongReview(
+                    problem_id=req.problem_id,
+                    original_attempt_id=None,  # set after flush below
+                    next_review_date=next_date,
+                    interval_days=1,
+                    times_reviewed=0,
+                    is_mastered=False,
+                )
+                db.add(wrong)
+                db.flush()
+                wrong.original_attempt_id = attempt.id
 
     db.commit()
 
