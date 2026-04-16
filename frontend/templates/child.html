@@ -129,12 +129,12 @@
                     <div class="sb-section-label">VOCABULARY</div>
 
                     <!-- Academy accordion -->
-                    <button type="button" class="sb-accordion-btn open" data-key="academy" onclick="toggleAccordion('academy')">
+                    <button type="button" class="sb-accordion-btn" data-key="academy" onclick="toggleAccordion('academy')">
                         <span class="sb-card-icon">📕</span>
                         <span class="sb-accordion-label">Academy</span>
                         <span class="sb-accordion-arrow">▾</span>
                     </button>
-                    <div class="sb-accordion-panel open" data-key="academy">
+                    <div class="sb-accordion-panel" data-key="academy">
                         <!-- Textbook selection (existing IDs preserved) -->
                         <div id="sb-selection-area">
                             <div class="sb-label">Textbook</div>
@@ -403,10 +403,6 @@
                     <div class="today-section">
                         <div class="today-header">
                             <span class="today-label">Today</span>
-                            <div class="today-badges">
-                                <span class="streak-badge">🔥 <span id="summary-streak-top">0</span> days</span>
-                                <span class="xp-badge">⭐ <span id="summary-xp-top">0</span> XP</span>
-                            </div>
                         </div>
                         <div class="task-list" id="today-task-list">
                             <!-- Populated by home.js -->

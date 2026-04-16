@@ -50,6 +50,10 @@ function switchView(view) {
     show(topBar);                  // roadmap tabs visible during lesson flow
     sidebar.dataset.mode = 'english';
     updateSidebarMode('english');
+    // Auto-open Academy accordion when entering English view
+    // (only if no accordion is currently open)
+    const anyOpen = document.querySelector('.sb-accordion-panel.open');
+    if (!anyOpen) toggleAccordion('academy');
   } else if (view === 'diary') {
     hide(homeDash);
     hide(idleWrap);
@@ -170,17 +174,48 @@ async function renderTodayTasks() {
   } catch { /* use stubs */ }
 
   list.innerHTML = tasks.map(t => `
-    <div class="task-item${t.is_done ? ' done' : ''}" data-key="${t.key}">
+    <div class="task-item${t.is_done ? ' done' : ''}${t.is_done ? '' : ' task-clickable'}" data-key="${t.key}">
       <span class="${t.is_required ? 'task-required' : 'task-optional'}">${t.is_required ? '★' : '○'}</span>
       <span class="task-label">${t.label}${t.detail ? ` <span class="task-detail">(${t.detail})</span>` : ''}</span>
       <span class="task-xp">+${t.xp} XP</span>
-      ${t.is_done ? '<span class="task-check">✅</span>' : ''}
+      ${t.is_done ? '<span class="task-check">✅</span>' : '<span class="task-go">›</span>'}
     </div>
   `).join('') + `
     <div class="task-divider"></div>
     <div class="bonus-row"><span class="task-optional">○</span><span class="task-label">Must Do bonus</span><span class="task-xp">+5 XP</span></div>
     <div class="bonus-row"><span class="task-optional">○</span><span class="task-label">All complete bonus</span><span class="task-xp">+15 XP</span></div>
   `;
+
+  // Wire click handlers: each task navigates to its relevant screen
+  list.querySelectorAll('.task-clickable').forEach(el => {
+    el.addEventListener('click', () => _navigateTask(el.dataset.key));
+  });
+}
+
+/**
+ * Navigate to the appropriate screen when a task item is clicked.
+ * @tag HOME_DASHBOARD @tag TODAY_TASKS @tag NAVIGATION
+ * @param {string} key - task key from API (review|daily_words|academy|journal)
+ */
+function _navigateTask(key) {
+  switch (key) {
+    case 'review':
+      switchView('english');
+      setTimeout(() => { const btn = document.getElementById('btn-review'); if (btn) btn.click(); }, 300);
+      break;
+    case 'daily_words':
+      switchView('english');
+      setTimeout(() => { toggleAccordion('daily-words'); if (typeof showDailyWordsView === 'function') showDailyWordsView(); }, 300);
+      break;
+    case 'academy':
+      switchView('english');
+      break;
+    case 'journal':
+      switchView('diary');
+      break;
+    default:
+      break;
+  }
 }
 
 /**
@@ -240,10 +275,7 @@ function _updateTopBarXP(data) {
     const level = data.level ?? (Math.floor(totalXP / 100) + 1);
     const streak = data.streak_days ?? 0;
     starsEl.textContent = `${totalXP} XP`;
-    // Update the star icon to include level and streak
-    const starIcon = document.querySelector('.top-star-icon');
-    if (starIcon) starIcon.textContent = '⭐';
-    // Add level + streak after the stars-count element
+    // Add level + streak meta after stars-count
     let metaEl = document.getElementById('top-xp-meta');
     if (!metaEl) {
         metaEl = document.createElement('span');
@@ -252,7 +284,7 @@ function _updateTopBarXP(data) {
         starsEl.parentNode.insertBefore(metaEl, starsEl.nextSibling);
     }
     metaEl.textContent = `Lv.${level} · 🔥 ${streak}d`;
-    // Also sync sidebar star-count
+    // Sync sidebar star-count
     const sidebarStar = document.getElementById('star-count');
     if (sidebarStar) sidebarStar.textContent = String(totalXP);
 }
@@ -284,15 +316,10 @@ function toggleAccordion(key) {
  */
 async function refreshHomeStats() {
     await renderSummaryBar();
-    // Also update the top badges in the Today section
     try {
         const res = await fetch('/api/xp/summary');
         if (res.ok) {
             const d = await res.json();
-            const topXp = document.getElementById('summary-xp-top');
-            const topStreak = document.getElementById('summary-streak-top');
-            if (topXp) topXp.textContent = d.total_xp ?? 0;
-            if (topStreak) topStreak.textContent = d.streak_days ?? 0;
             _updateTopBarXP(d);
         }
     } catch (_) {}
