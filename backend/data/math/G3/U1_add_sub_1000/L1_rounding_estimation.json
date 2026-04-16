@@ -1,0 +1,226 @@
+{
+  "lesson_title": "Rounding & Estimation",
+  "grade": "G3",
+  "unit": "U1_add_sub_1000",
+  "lesson": "L1_rounding_estimation",
+
+  "pretest": [
+    {
+      "id": "u1L1_pre_01",
+      "type": "mc",
+      "difficulty": 2,
+      "concept": "rounding to nearest 10",
+      "question": "Round 47 to the nearest ten.",
+      "options": ["40", "50", "45", "47"],
+      "answer": "50",
+      "feedback_correct": "Correct! 47 is closer to 50 than to 40.",
+      "feedback_wrong": "Look at the ones digit: 7 >= 5, so we round up to 50."
+    },
+    {
+      "id": "u1L1_pre_02",
+      "type": "mc",
+      "difficulty": 2,
+      "concept": "rounding to nearest 100",
+      "question": "Round 382 to the nearest hundred.",
+      "options": ["300", "400", "380", "390"],
+      "answer": "400",
+      "feedback_correct": "Great! 382 rounds up to 400 because 82 >= 50.",
+      "feedback_wrong": "Check the tens digit: 8 >= 5, so 382 rounds up to 400."
+    },
+    {
+      "id": "u1L1_pre_03",
+      "type": "input",
+      "difficulty": 2,
+      "concept": "estimation with addition",
+      "question": "Estimate 198 + 305 by rounding each to the nearest hundred.",
+      "answer": "500",
+      "feedback_correct": "Right! 200 + 300 = 500.",
+      "feedback_wrong": "198 rounds to 200, and 305 rounds to 300. So 200 + 300 = 500."
+    },
+    {
+      "id": "u1L1_pre_04",
+      "type": "mc",
+      "difficulty": 3,
+      "concept": "rounding to nearest 10",
+      "question": "Round 865 to the nearest ten.",
+      "options": ["860", "870", "900", "800"],
+      "answer": "870",
+      "feedback_correct": "Correct! The ones digit is 5, so we round up to 870.",
+      "feedback_wrong": "The ones digit is 5. When it's exactly 5, we round up: 870."
+    },
+    {
+      "id": "u1L1_pre_05",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "estimation with subtraction",
+      "question": "Estimate 712 - 289 by rounding each to the nearest hundred.",
+      "answer": "400",
+      "feedback_correct": "Right! 700 - 300 = 400.",
+      "feedback_wrong": "712 rounds to 700, and 289 rounds to 300. So 700 - 300 = 400."
+    }
+  ],
+
+  "learn": [
+    {
+      "id": "u1L1_learn_01",
+      "title": "What is Rounding?",
+      "type": "concept",
+      "cpa_phase": "concrete",
+      "content": "Rounding means finding the closest 'friendly' number. Friendly numbers end in 0 (like 10, 20, 30...).",
+      "visual": "Number line from 40 to 50 with 47 marked. Arrow pointing to 50.",
+      "tts": "Rounding means finding the closest friendly number. Friendly numbers end in zero, like ten, twenty, or thirty.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L1_learn_02",
+      "title": "The Rounding Rule",
+      "type": "concept",
+      "cpa_phase": "pictorial",
+      "content": "Look at the digit to the RIGHT of the place you're rounding to. If it's 5 or more, round UP. If it's less than 5, round DOWN.",
+      "visual": "Diagram: digit < 5 → arrow down, digit >= 5 → arrow up",
+      "tts": "Look at the digit to the right of the place you're rounding to. If it's five or more, round up. If it's less than five, round down.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L1_learn_03",
+      "title": "Rounding to the Nearest 10",
+      "type": "example",
+      "cpa_phase": "pictorial",
+      "content": "Round 63 to the nearest ten. Look at the ones digit: 3. Since 3 < 5, round DOWN to 60.",
+      "visual": "Number line 60-70 with 63 marked, arrow pointing down to 60",
+      "tts": "Round sixty-three to the nearest ten. The ones digit is three. Since three is less than five, we round down to sixty.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L1_learn_04",
+      "title": "Rounding to the Nearest 100",
+      "type": "example",
+      "cpa_phase": "pictorial",
+      "content": "Round 749 to the nearest hundred. Look at the tens digit: 4. Since 4 < 5, round DOWN to 700.",
+      "visual": "Number line 700-800 with 749 marked, arrow pointing down to 700",
+      "tts": "Round seven hundred forty-nine to the nearest hundred. The tens digit is four. Since four is less than five, we round down to seven hundred.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L1_learn_05",
+      "title": "Why Do We Estimate?",
+      "type": "concept",
+      "cpa_phase": "abstract",
+      "content": "Estimation helps us check if our answer makes sense. Round each number, then add or subtract.",
+      "visual": "Example: 198 + 305 ≈ 200 + 300 = 500",
+      "tts": "Estimation helps us check if our answer makes sense. We round each number first, then add or subtract the rounded numbers.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L1_learn_06",
+      "title": "Estimation Example",
+      "type": "interactive",
+      "cpa_phase": "abstract",
+      "content": "Estimate 487 + 215. Step 1: Round 487 → 500. Step 2: Round 215 → 200. Step 3: 500 + 200 = 700.",
+      "visual": "Step-by-step animation showing rounding then adding",
+      "tts": "Let's estimate four hundred eighty-seven plus two hundred fifteen. Round four eighty-seven to five hundred. Round two fifteen to two hundred. Five hundred plus two hundred equals seven hundred.",
+      "interaction": "quiz_mini"
+    },
+    {
+      "id": "u1L1_learn_07",
+      "title": "Practice Together",
+      "type": "interactive",
+      "cpa_phase": "abstract",
+      "content": "Your turn! Estimate 623 - 178.",
+      "visual": "Guided prompt with number line",
+      "tts": "Your turn! Estimate six hundred twenty-three minus one hundred seventy-eight.",
+      "interaction": "quiz_mini"
+    }
+  ],
+
+  "try": [
+    {
+      "id": "u1L1_try_01",
+      "type": "mc",
+      "difficulty": 1,
+      "concept": "rounding to nearest 10",
+      "question": "Round 34 to the nearest ten.",
+      "options": ["30", "40", "35", "34"],
+      "answer": "30",
+      "hints": ["Look at the ones digit: 4", "Is 4 less than 5 or 5 or more?"],
+      "feedback_correct": "Yes! 4 < 5, so we round down to 30.",
+      "feedback_wrong": "The ones digit is 4. Since 4 < 5, round down to 30.",
+      "solution_steps": ["Ones digit = 4", "4 < 5, so round DOWN", "34 → 30"]
+    },
+    {
+      "id": "u1L1_try_02",
+      "type": "mc",
+      "difficulty": 1,
+      "concept": "rounding to nearest 10",
+      "question": "Round 78 to the nearest ten.",
+      "options": ["70", "80", "75", "90"],
+      "answer": "80",
+      "hints": ["Look at the ones digit: 8", "8 is 5 or more, so what do we do?"],
+      "feedback_correct": "Correct! 8 >= 5, so we round up to 80.",
+      "feedback_wrong": "The ones digit is 8. Since 8 >= 5, round up to 80.",
+      "solution_steps": ["Ones digit = 8", "8 >= 5, so round UP", "78 → 80"]
+    },
+    {
+      "id": "u1L1_try_03",
+      "type": "input",
+      "difficulty": 2,
+      "concept": "rounding to nearest 100",
+      "question": "Round 450 to the nearest hundred.",
+      "answer": "500",
+      "hints": ["Look at the tens digit: 5", "When the digit is exactly 5, we round up."],
+      "feedback_correct": "Right! 5 means round up, so 450 → 500.",
+      "feedback_wrong": "The tens digit is 5. When it's 5 or more, we round up: 450 → 500.",
+      "solution_steps": ["Tens digit = 5", "5 >= 5, so round UP", "450 → 500"]
+    },
+    {
+      "id": "u1L1_try_04",
+      "type": "input",
+      "difficulty": 2,
+      "concept": "estimation with addition",
+      "question": "Estimate 293 + 412 by rounding to the nearest hundred.",
+      "answer": "700",
+      "hints": ["Round 293 to the nearest hundred first", "293 → 300, and 412 → 400"],
+      "feedback_correct": "Great! 300 + 400 = 700.",
+      "feedback_wrong": "293 rounds to 300, 412 rounds to 400. So 300 + 400 = 700.",
+      "solution_steps": ["293 → 300", "412 → 400", "300 + 400 = 700"]
+    },
+    {
+      "id": "u1L1_try_05",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "estimation with subtraction",
+      "question": "Estimate 815 - 392 by rounding to the nearest hundred.",
+      "answer": "400",
+      "hints": ["Round each number to the nearest hundred", "800 - 400 = ?"],
+      "feedback_correct": "Correct! 800 - 400 = 400.",
+      "feedback_wrong": "815 rounds to 800, 392 rounds to 400. So 800 - 400 = 400.",
+      "solution_steps": ["815 → 800", "392 → 400", "800 - 400 = 400"]
+    }
+  ],
+
+  "practice_r1": [
+    {"id": "u1L1_r1_01", "type": "mc", "difficulty": 1, "concept": "rounding to nearest 10", "question": "Round 23 to the nearest ten.", "options": ["20", "30", "25", "23"], "answer": "20", "feedback_correct": "Correct!", "feedback_wrong": "3 < 5, so round down to 20."},
+    {"id": "u1L1_r1_02", "type": "mc", "difficulty": 1, "concept": "rounding to nearest 10", "question": "Round 56 to the nearest ten.", "options": ["50", "60", "55", "56"], "answer": "60", "feedback_correct": "Right!", "feedback_wrong": "6 >= 5, so round up to 60."},
+    {"id": "u1L1_r1_03", "type": "input", "difficulty": 1, "concept": "rounding to nearest 10", "question": "Round 85 to the nearest ten.", "answer": "90", "feedback_correct": "Yes!", "feedback_wrong": "5 >= 5, round up to 90."},
+    {"id": "u1L1_r1_04", "type": "input", "difficulty": 2, "concept": "rounding to nearest 100", "question": "Round 321 to the nearest hundred.", "answer": "300", "feedback_correct": "Correct!", "feedback_wrong": "2 < 5, round down to 300."},
+    {"id": "u1L1_r1_05", "type": "input", "difficulty": 2, "concept": "rounding to nearest 100", "question": "Round 678 to the nearest hundred.", "answer": "700", "feedback_correct": "Right!", "feedback_wrong": "7 >= 5, round up to 700."},
+    {"id": "u1L1_r1_06", "type": "mc", "difficulty": 2, "concept": "rounding to nearest 100", "question": "Round 550 to the nearest hundred.", "options": ["500", "600", "550", "560"], "answer": "600", "feedback_correct": "5 >= 5, round up!", "feedback_wrong": "5 >= 5, so 550 rounds up to 600."},
+    {"id": "u1L1_r1_07", "type": "input", "difficulty": 2, "concept": "estimation", "question": "Estimate 389 + 215 by rounding to the nearest hundred.", "answer": "600", "feedback_correct": "400 + 200 = 600!", "feedback_wrong": "389 → 400, 215 → 200. 400 + 200 = 600."},
+    {"id": "u1L1_r1_08", "type": "input", "difficulty": 2, "concept": "estimation", "question": "Estimate 724 - 298 by rounding to the nearest hundred.", "answer": "400", "feedback_correct": "700 - 300 = 400!", "feedback_wrong": "724 → 700, 298 → 300. 700 - 300 = 400."},
+    {"id": "u1L1_r1_09", "type": "mc", "difficulty": 2, "concept": "rounding to nearest 10", "question": "Round 145 to the nearest ten.", "options": ["140", "150", "145", "100"], "answer": "150", "feedback_correct": "5 >= 5, round up to 150!", "feedback_wrong": "The ones digit is 5. Round up to 150."},
+    {"id": "u1L1_r1_10", "type": "input", "difficulty": 3, "concept": "estimation", "question": "Estimate 507 + 493 by rounding to the nearest hundred.", "answer": "1000", "feedback_correct": "500 + 500 = 1000!", "feedback_wrong": "507 → 500, 493 → 500. 500 + 500 = 1000."}
+  ],
+
+  "practice_r2": [
+    {"id": "u1L1_r2_01", "type": "tf", "difficulty": 2, "concept": "rounding", "question": "True or False: 347 rounded to the nearest hundred is 400.", "answer": "false", "feedback_correct": "Right! 4 < 5, so 347 rounds DOWN to 300.", "feedback_wrong": "The tens digit is 4. Since 4 < 5, 347 rounds to 300, not 400."},
+    {"id": "u1L1_r2_02", "type": "tf", "difficulty": 2, "concept": "rounding", "question": "True or False: 75 rounded to the nearest ten is 80.", "answer": "true", "feedback_correct": "Correct! 5 >= 5, so 75 rounds up to 80.", "feedback_wrong": "5 >= 5, so 75 rounds up to 80. The answer is True."},
+    {"id": "u1L1_r2_03", "type": "mc", "difficulty": 2, "concept": "estimation word problem", "question": "Emma has 287 stickers. She gives 112 away. About how many does she have left? (Round to nearest hundred.)", "options": ["100", "200", "300", "175"], "answer": "200", "feedback_correct": "300 - 100 = 200!", "feedback_wrong": "287 → 300, 112 → 100. 300 - 100 = 200.", "three_read": {"read1": "Emma has stickers and gives some away.", "read2": "How many does she have left?", "read3": "287 stickers, gives 112 away."}},
+    {"id": "u1L1_r2_04", "type": "input", "difficulty": 2, "concept": "reverse rounding", "question": "I rounded a number to the nearest ten and got 60. The original number has a ones digit of 3. What was the original number?", "answer": "63", "feedback_correct": "63 rounds to 60 because 3 < 5!", "feedback_wrong": "The number rounds DOWN to 60 and ends in 3, so it must be 63."},
+    {"id": "u1L1_r2_05", "type": "mc", "difficulty": 3, "concept": "estimation word problem", "question": "A school has 423 boys and 389 girls. About how many students in total? (Round to nearest hundred.)", "options": ["700", "800", "900", "812"], "answer": "800", "feedback_correct": "400 + 400 = 800!", "feedback_wrong": "423 → 400, 389 → 400. 400 + 400 = 800.", "three_read": {"read1": "A school has boys and girls.", "read2": "How many students total?", "read3": "423 boys, 389 girls."}},
+    {"id": "u1L1_r2_06", "type": "mc", "difficulty": 2, "concept": "rounding comparison", "question": "Which number rounds to 500 when rounded to the nearest hundred?", "options": ["449", "460", "540", "551"], "answer": "460", "feedback_correct": "460 rounds to 500 because 6 >= 5!", "feedback_wrong": "449 → 400, 460 → 500, 540 → 500 (also valid), 551 → 600. The best answer is 460."},
+    {"id": "u1L1_r2_07", "type": "input", "difficulty": 3, "concept": "estimation", "question": "Estimate 891 - 503 + 212 by rounding each to the nearest hundred.", "answer": "600", "feedback_correct": "900 - 500 + 200 = 600!", "feedback_wrong": "891 → 900, 503 → 500, 212 → 200. 900 - 500 + 200 = 600."},
+    {"id": "u1L1_r2_08", "type": "tf", "difficulty": 2, "concept": "estimation reasonableness", "question": "True or False: 312 + 289 is about 500.", "answer": "false", "feedback_correct": "Right! 300 + 300 = 600, not 500.", "feedback_wrong": "312 → 300, 289 → 300. 300 + 300 = 600. So the estimate is 600, not 500."},
+    {"id": "u1L1_r2_09", "type": "mc", "difficulty": 3, "concept": "rounding multi-digit", "question": "Round 4,567 to the nearest thousand.", "options": ["4000", "5000", "4500", "4600"], "answer": "5000", "feedback_correct": "5 >= 5, round up to 5000!", "feedback_wrong": "The hundreds digit is 5. Since 5 >= 5, round up: 4567 → 5000."},
+    {"id": "u1L1_r2_10", "type": "input", "difficulty": 3, "concept": "estimation word problem", "question": "Jake saved $487. He earned $316 more. About how much does he have now? (Round to nearest hundred.)", "answer": "800", "feedback_correct": "500 + 300 = 800!", "feedback_wrong": "487 → 500, 316 → 300. 500 + 300 = 800.", "three_read": {"read1": "Jake saved money and earned more.", "read2": "How much does he have now?", "read3": "$487 saved, $316 earned."}}
+  ]
+}

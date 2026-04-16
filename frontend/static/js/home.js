@@ -75,10 +75,12 @@ function updateSidebarMode(mode) {
   const engSection = document.getElementById('sb-english-section');
   const homeSection = document.getElementById('sb-home-section');
   const diarySection = document.getElementById('sb-diary-section');
+  const mathSection = document.getElementById('sb-math-section');
 
   if (homeSection) homeSection.style.display = mode === 'home' ? '' : 'none';
   if (engSection) engSection.style.display = mode === 'english' ? '' : 'none';
   if (diarySection) diarySection.style.display = mode === 'diary' ? '' : 'none';
+  if (mathSection) mathSection.style.display = mode === 'math' ? '' : 'none';
 }
 
 /**

@@ -46,6 +46,12 @@ from backend.routers import growth_theme as growth_theme_router
 from backend.routers import system as system_router
 from backend.routers import reminder as reminder_router
 from backend.routers import collocation as collocation_router
+from backend.routers import math_academy as math_academy_router
+from backend.routers import math_placement as math_placement_router
+from backend.routers import math_fluency as math_fluency_router
+from backend.routers import math_daily as math_daily_router
+from backend.routers import math_kangaroo as math_kangaroo_router
+from backend.routers import math_problems as math_problems_router
 from backend.services import ollama_manager, backup_engine
 
 # ── DB init ────────────────────────────────────────────────
@@ -161,6 +167,12 @@ app.include_router(growth_theme_router.router)
 app.include_router(system_router.router)
 app.include_router(reminder_router.router)
 app.include_router(collocation_router.router)
+app.include_router(math_academy_router.router)
+app.include_router(math_placement_router.router)
+app.include_router(math_fluency_router.router)
+app.include_router(math_daily_router.router)
+app.include_router(math_kangaroo_router.router)
+app.include_router(math_problems_router.router)
 
 
 # ── Pydantic schemas (kept here for dashboard/rewards/schedules/AI routes) ──

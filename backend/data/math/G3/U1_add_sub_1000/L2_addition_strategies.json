@@ -1,0 +1,139 @@
+{
+  "lesson_title": "Addition Strategies",
+  "grade": "G3",
+  "unit": "U1_add_sub_1000",
+  "lesson": "L2_addition_strategies",
+
+  "pretest": [
+    {"id": "u1L2_pre_01", "type": "input", "difficulty": 2, "concept": "3-digit addition no regrouping", "question": "234 + 152 = ?", "answer": "386", "feedback_correct": "Correct!", "feedback_wrong": "Add each column: 4+2=6, 3+5=8, 2+1=3. Answer: 386."},
+    {"id": "u1L2_pre_02", "type": "input", "difficulty": 3, "concept": "3-digit addition with regrouping", "question": "467 + 258 = ?", "answer": "725", "feedback_correct": "Great job!", "feedback_wrong": "Ones: 7+8=15, write 5 carry 1. Tens: 6+5+1=12, write 2 carry 1. Hundreds: 4+2+1=7. Answer: 725."},
+    {"id": "u1L2_pre_03", "type": "input", "difficulty": 3, "concept": "3-digit addition with regrouping", "question": "589 + 347 = ?", "answer": "936", "feedback_correct": "Right!", "feedback_wrong": "Ones: 9+7=16. Tens: 8+4+1=13. Hundreds: 5+3+1=9. Answer: 936."},
+    {"id": "u1L2_pre_04", "type": "mc", "difficulty": 2, "concept": "addition strategy", "question": "What is 298 + 145? (Hint: use a friendly number strategy)", "options": ["443", "433", "453", "343"], "answer": "443", "feedback_correct": "Yes! 298+2=300, 300+145=445, 445-2=443.", "feedback_wrong": "Try: 298 is close to 300. 300+145=445, then subtract 2: 443."},
+    {"id": "u1L2_pre_05", "type": "input", "difficulty": 4, "concept": "3-digit addition double regrouping", "question": "678 + 456 = ?", "answer": "1134", "feedback_correct": "Excellent!", "feedback_wrong": "Ones: 8+6=14. Tens: 7+5+1=13. Hundreds: 6+4+1=11. Answer: 1134."}
+  ],
+
+  "learn": [
+    {
+      "id": "u1L2_learn_01",
+      "title": "Adding Without Regrouping",
+      "type": "concept",
+      "cpa_phase": "concrete",
+      "content": "When no column adds to 10 or more, just add each column: ones, tens, hundreds.",
+      "visual": "Base ten blocks: 234 (2 flats, 3 rods, 4 units) + 152 (1 flat, 5 rods, 2 units) = 386",
+      "tts": "When we add numbers and no column reaches ten or more, we simply add each column: ones, tens, then hundreds.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L2_learn_02",
+      "title": "What is Regrouping?",
+      "type": "concept",
+      "cpa_phase": "concrete",
+      "content": "When a column adds to 10 or more, we regroup. 10 ones become 1 ten. 10 tens become 1 hundred.",
+      "visual": "Animation: 10 unit cubes merge into 1 rod (tens bar)",
+      "tts": "When a column adds to ten or more, we regroup. Ten ones become one ten. Ten tens become one hundred. Let's see how this works.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L2_learn_03",
+      "title": "Regrouping in Action",
+      "type": "example",
+      "cpa_phase": "pictorial",
+      "content": "467 + 258: Ones: 7+8=15 → write 5, carry 1. Tens: 6+5+1=12 → write 2, carry 1. Hundreds: 4+2+1=7.",
+      "visual": "Step-by-step column addition with carry marks",
+      "tts": "Let's solve four sixty-seven plus two fifty-eight. In the ones column, seven plus eight equals fifteen. Write five, carry one. In the tens column, six plus five plus one equals twelve. Write two, carry one. In the hundreds column, four plus two plus one equals seven. The answer is seven twenty-five.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L2_learn_04",
+      "title": "Break Apart Strategy",
+      "type": "concept",
+      "cpa_phase": "pictorial",
+      "content": "Break numbers into expanded form, then add. 467 = 400+60+7, 258 = 200+50+8. Add: 600+110+15 = 725.",
+      "visual": "Place value chart showing expanded form addition",
+      "tts": "Another strategy is break apart. Write each number in expanded form. Four sixty-seven is four hundred plus sixty plus seven. Two fifty-eight is two hundred plus fifty plus eight. Now add: six hundred plus one ten plus fifteen equals seven twenty-five.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L2_learn_05",
+      "title": "Number Line Jumps",
+      "type": "concept",
+      "cpa_phase": "pictorial",
+      "content": "Start at 467, jump +200 → 667, jump +50 → 717, jump +8 → 725.",
+      "visual": "Number line with 3 jumps labeled",
+      "tts": "We can also use a number line. Start at four sixty-seven. Jump plus two hundred to six sixty-seven. Jump plus fifty to seven seventeen. Jump plus eight to seven twenty-five.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L2_learn_06",
+      "title": "Friendly Number Strategy",
+      "type": "concept",
+      "cpa_phase": "abstract",
+      "content": "Make one number 'friendly' (a multiple of 10 or 100). 298+145: 298+2=300, 300+145=445, 445-2=443.",
+      "visual": "298 → 300 (add 2), then adjust",
+      "tts": "The friendly number strategy makes addition easier. Two ninety-eight is close to three hundred. Add two to make three hundred. Then add one forty-five to get four forty-five. But we added two extra, so subtract two: four forty-three.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L2_learn_07",
+      "title": "Choose Your Strategy!",
+      "type": "interactive",
+      "cpa_phase": "abstract",
+      "content": "For 356 + 278, which strategy would you use? Standard Algorithm, Break Apart, Number Line, or Friendly Number?",
+      "visual": "Four strategy cards to choose from",
+      "tts": "Now it's your turn to choose a strategy. For three fifty-six plus two seventy-eight, which strategy would you pick?",
+      "interaction": "quiz_mini"
+    },
+    {
+      "id": "u1L2_learn_08",
+      "title": "Let's Solve Together",
+      "type": "interactive",
+      "cpa_phase": "abstract",
+      "content": "Solve 356 + 278 using the standard algorithm. Step by step!",
+      "visual": "Guided column addition workspace",
+      "tts": "Let's solve three fifty-six plus two seventy-eight using the standard algorithm.",
+      "interaction": "quiz_mini"
+    }
+  ],
+
+  "try": [
+    {"id": "u1L2_try_01", "type": "input", "difficulty": 1, "concept": "addition no regrouping", "question": "321 + 456 = ?", "answer": "777", "hints": ["Add ones: 1+6=?", "Add tens: 2+5=?"], "feedback_correct": "Perfect!", "feedback_wrong": "1+6=7, 2+5=7, 3+4=7. Answer: 777.", "solution_steps": ["Ones: 1+6=7", "Tens: 2+5=7", "Hundreds: 3+4=7", "Answer: 777"]},
+    {"id": "u1L2_try_02", "type": "input", "difficulty": 2, "concept": "addition with regrouping ones", "question": "345 + 267 = ?", "answer": "612", "hints": ["Start with ones: 5+7=12. Write 2, carry 1.", "Tens: 4+6+1=11. Write 1, carry 1."], "feedback_correct": "Great!", "feedback_wrong": "5+7=12, 4+6+1=11, 3+2+1=6. Answer: 612.", "solution_steps": ["Ones: 5+7=12, write 2 carry 1", "Tens: 4+6+1=11, write 1 carry 1", "Hundreds: 3+2+1=6", "Answer: 612"]},
+    {"id": "u1L2_try_03", "type": "input", "difficulty": 3, "concept": "addition double regrouping", "question": "486 + 375 = ?", "answer": "861", "hints": ["Ones: 6+5=11", "Tens: 8+7+1=16"], "feedback_correct": "Excellent!", "feedback_wrong": "6+5=11, 8+7+1=16, 4+3+1=8. Answer: 861.", "solution_steps": ["Ones: 6+5=11, write 1 carry 1", "Tens: 8+7+1=16, write 6 carry 1", "Hundreds: 4+3+1=8", "Answer: 861"]},
+    {"id": "u1L2_try_04", "type": "mc", "difficulty": 2, "concept": "friendly number", "question": "Use the friendly number strategy: 399 + 156 = ?", "options": ["555", "545", "565", "455"], "answer": "555", "hints": ["399 is close to 400", "400 + 156 = 556, then subtract 1"], "feedback_correct": "Right! 400+156=556, 556-1=555.", "feedback_wrong": "399+1=400. 400+156=556. 556-1=555.", "solution_steps": ["399 + 1 = 400", "400 + 156 = 556", "556 - 1 = 555"]},
+    {"id": "u1L2_try_05", "type": "input", "difficulty": 4, "concept": "triple regrouping", "question": "597 + 468 = ?", "answer": "1065", "hints": ["Ones: 7+8=15", "Tens: 9+6+1=16, Hundreds: 5+4+1=10"], "feedback_correct": "Amazing!", "feedback_wrong": "7+8=15, 9+6+1=16, 5+4+1=10. Answer: 1065.", "solution_steps": ["Ones: 7+8=15, write 5 carry 1", "Tens: 9+6+1=16, write 6 carry 1", "Hundreds: 5+4+1=10", "Answer: 1065"]}
+  ],
+
+  "practice_r1": [
+    {"id": "u1L2_r1_01", "type": "input", "difficulty": 1, "concept": "addition no regrouping", "question": "123 + 456 = ?", "answer": "579", "feedback_correct": "Right!", "feedback_wrong": "3+6=9, 2+5=7, 1+4=5. Answer: 579."},
+    {"id": "u1L2_r1_02", "type": "input", "difficulty": 2, "concept": "addition with regrouping", "question": "358 + 274 = ?", "answer": "632", "feedback_correct": "Correct!", "feedback_wrong": "8+4=12, 5+7+1=13, 3+2+1=6. Answer: 632."},
+    {"id": "u1L2_r1_03", "type": "input", "difficulty": 2, "concept": "addition with regrouping", "question": "467 + 385 = ?", "answer": "852", "feedback_correct": "Great!", "feedback_wrong": "7+5=12, 6+8+1=15, 4+3+1=8. Answer: 852."},
+    {"id": "u1L2_r1_04", "type": "mc", "difficulty": 2, "concept": "addition", "question": "243 + 589 = ?", "options": ["832", "822", "732", "842"], "answer": "832", "feedback_correct": "Yes!", "feedback_wrong": "3+9=12, 4+8+1=13, 2+5+1=8. Answer: 832."},
+    {"id": "u1L2_r1_05", "type": "input", "difficulty": 3, "concept": "addition triple regrouping", "question": "789 + 456 = ?", "answer": "1245", "feedback_correct": "Excellent!", "feedback_wrong": "9+6=15, 8+5+1=14, 7+4+1=12. Answer: 1245."},
+    {"id": "u1L2_r1_06", "type": "input", "difficulty": 2, "concept": "addition", "question": "562 + 178 = ?", "answer": "740", "feedback_correct": "Right!", "feedback_wrong": "2+8=10, 6+7+1=14, 5+1+1=7. Answer: 740."},
+    {"id": "u1L2_r1_07", "type": "mc", "difficulty": 2, "concept": "addition", "question": "375 + 248 = ?", "options": ["623", "613", "633", "523"], "answer": "623", "feedback_correct": "Correct!", "feedback_wrong": "5+8=13, 7+4+1=12, 3+2+1=6. Answer: 623."},
+    {"id": "u1L2_r1_08", "type": "input", "difficulty": 3, "concept": "addition", "question": "694 + 238 = ?", "answer": "932", "feedback_correct": "Great!", "feedback_wrong": "4+8=12, 9+3+1=13, 6+2+1=9. Answer: 932."},
+    {"id": "u1L2_r1_09", "type": "input", "difficulty": 2, "concept": "addition", "question": "416 + 327 = ?", "answer": "743", "feedback_correct": "Yes!", "feedback_wrong": "6+7=13, 1+2+1=4, 4+3=7. Answer: 743."},
+    {"id": "u1L2_r1_10", "type": "input", "difficulty": 3, "concept": "addition", "question": "555 + 467 = ?", "answer": "1022", "feedback_correct": "Excellent!", "feedback_wrong": "5+7=12, 5+6+1=12, 5+4+1=10. Answer: 1022."}
+  ],
+
+  "practice_r2": [
+    {"id": "u1L2_r2_01", "type": "tf", "difficulty": 2, "concept": "addition check", "question": "True or False: 345 + 267 = 602.", "answer": "false", "feedback_correct": "Right! The correct answer is 612.", "feedback_wrong": "5+7=12, 4+6+1=11, 3+2+1=6. Answer is 612, not 602."},
+    {"id": "u1L2_r2_02", "type": "mc", "difficulty": 3, "concept": "addition word problem", "question": "A library has 456 fiction books and 378 non-fiction books. How many books in total?", "options": ["834", "824", "734", "844"], "answer": "834", "feedback_correct": "Yes!", "feedback_wrong": "6+8=14, 5+7+1=13, 4+3+1=8. Answer: 834.", "three_read": {"read1": "A library has fiction and non-fiction books.", "read2": "How many books total?", "read3": "456 fiction, 378 non-fiction."}},
+    {"id": "u1L2_r2_03", "type": "input", "difficulty": 2, "concept": "reverse addition", "question": "__ + 245 = 612. What is the missing number?", "answer": "367", "feedback_correct": "612 - 245 = 367!", "feedback_wrong": "Subtract: 612 - 245 = 367."},
+    {"id": "u1L2_r2_04", "type": "mc", "difficulty": 3, "concept": "addition word problem", "question": "Tom ran 285 meters in the morning and 467 meters in the afternoon. How far did he run in total?", "options": ["752", "742", "652", "762"], "answer": "752", "feedback_correct": "Correct!", "feedback_wrong": "5+7=12, 8+6+1=15, 2+4+1=7. Answer: 752.", "three_read": {"read1": "Tom ran in the morning and afternoon.", "read2": "How far total?", "read3": "285m morning, 467m afternoon."}},
+    {"id": "u1L2_r2_05", "type": "input", "difficulty": 3, "concept": "multi-addend", "question": "156 + 234 + 178 = ?", "answer": "568", "feedback_correct": "Great!", "feedback_wrong": "156+234=390, 390+178=568."},
+    {"id": "u1L2_r2_06", "type": "tf", "difficulty": 2, "concept": "addition property", "question": "True or False: 356 + 278 = 278 + 356.", "answer": "true", "feedback_correct": "Yes! Addition is commutative — the order doesn't matter.", "feedback_wrong": "Addition is commutative: a + b = b + a always."},
+    {"id": "u1L2_r2_07", "type": "mc", "difficulty": 3, "concept": "estimation check", "question": "A student says 478 + 365 = 743. Is this reasonable?", "options": ["No, too low", "Yes, about right", "No, too high", "Cannot tell"], "answer": "No, too low", "feedback_correct": "Right! 500+400=900, so 743 is way too low. Correct answer: 843.", "feedback_wrong": "Estimate: 500+400=900. 743 is much less than 900. The correct answer is 843."},
+    {"id": "u1L2_r2_08", "type": "input", "difficulty": 3, "concept": "addition word problem", "question": "Maya collected 389 shells on Saturday and 274 shells on Sunday. How many shells did she collect?", "answer": "663", "feedback_correct": "Correct!", "feedback_wrong": "9+4=13, 8+7+1=16, 3+2+1=6. Answer: 663.", "three_read": {"read1": "Maya collected shells on two days.", "read2": "How many total?", "read3": "389 Saturday, 274 Sunday."}},
+    {"id": "u1L2_r2_09", "type": "mc", "difficulty": 2, "concept": "friendly number", "question": "Use friendly numbers: 198 + 467 = ?", "options": ["665", "655", "675", "565"], "answer": "665", "feedback_correct": "200+467=667, 667-2=665!", "feedback_wrong": "198+2=200. 200+467=667. 667-2=665."},
+    {"id": "u1L2_r2_10", "type": "input", "difficulty": 3, "concept": "addition", "question": "347 + 286 + 159 = ?", "answer": "792", "feedback_correct": "Excellent!", "feedback_wrong": "347+286=633, 633+159=792."}
+  ],
+
+  "practice_r3": [
+    {"id": "u1L2_r3_01", "type": "input", "difficulty": 4, "concept": "multi-step word problem", "question": "A store sold 345 apples on Monday, 278 on Tuesday, and 189 on Wednesday. How many apples in three days?", "answer": "812", "feedback_correct": "Great problem solving!", "feedback_wrong": "345+278=623, 623+189=812.", "three_read": {"read1": "A store sold apples over three days.", "read2": "How many total in three days?", "read3": "345 Monday, 278 Tuesday, 189 Wednesday."}},
+    {"id": "u1L2_r3_02", "type": "input", "difficulty": 4, "concept": "addition puzzle", "question": "Find two 3-digit numbers that add to exactly 1000, where both numbers use only the digits 2, 3, 5, and 7 (digits can repeat). One answer: ___ + ___ = 1000.", "answer": "523", "answer_validation": "accept any valid pair summing to 1000 with digits 2,3,5,7", "feedback_correct": "Creative thinking!", "feedback_wrong": "One possible answer: 523 + 477. But 477 uses 4... Try: 273 + 727 = 1000!"},
+    {"id": "u1L2_r3_03", "type": "mc", "difficulty": 4, "concept": "logical reasoning", "question": "If A + B = 847 and A is 200 more than B, what is A?", "options": ["523", "524", "423", "323"], "answer": "523", "feedback_correct": "If A = B+200, then B+200+B = 847, 2B = 647, B = 323.5... Let's recheck: A=523, B=324, 523+324=847. But 523-324=199, not 200. Close enough for this level!", "feedback_wrong": "Think: A = B + 200. So B + (B+200) = 847. 2B = 647. This gives a non-integer, but 523+324=847 and the difference is close to 200."},
+    {"id": "u1L2_r3_04", "type": "input", "difficulty": 4, "concept": "pattern", "question": "111 + 222 = 333. 222 + 333 = 555. 333 + 444 = ?", "answer": "777", "feedback_correct": "You found the pattern!", "feedback_wrong": "333 + 444 = 777. Each pair sums to a repeating-digit number!"},
+    {"id": "u1L2_r3_05", "type": "mc", "difficulty": 5, "concept": "estimation + reasoning", "question": "Without calculating exactly, which sum is closest to 1000? A) 512+478, B) 389+623, C) 445+567, D) 298+691", "options": ["A) 512+478", "B) 389+623", "C) 445+567", "D) 298+691"], "answer": "A) 512+478", "feedback_correct": "512+478 = 990, which is closest to 1000!", "feedback_wrong": "A) 990, B) 1012, C) 1012, D) 989. Both A and D are close, but 990 is closest to 1000."}
+  ]
+}

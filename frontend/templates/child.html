@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="/static/css/xp.css">
     <link rel="stylesheet" href="/static/css/collocation.css">
     <link rel="stylesheet" href="/static/css/splash.css?v=2">
+    <link rel="stylesheet" href="/static/css/math-academy.css?v=1">
 
 </head>
 <body>
@@ -95,10 +96,10 @@
                         <span class="sb-card-label">GIA's Diary</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
-                    <button type="button" class="sb-sidebar-card sb-card-disabled">
-                        <span class="sb-card-icon">🔢</span>
+                    <button type="button" class="sb-sidebar-card" onclick="switchView('math')">
+                        <span class="sb-card-icon">📐</span>
                         <span class="sb-card-label">Math</span>
-                        <span class="sb-card-badge">Soon</span>
+                        <span class="sb-card-chevron">›</span>
                     </button>
                 </div>
             </div>
@@ -310,6 +311,114 @@
                         <span class="sb-card-label">Day Off</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
+                </div>
+            </div>
+
+            <!-- ── MATH MODE ──────────────────────────────────── -->
+            <div id="sb-math-section" style="display:none">
+                <button type="button" class="sb-back-btn" onclick="switchView('home')">
+                    ← Home
+                </button>
+                <div class="sb-div"></div>
+
+                <!-- Academy -->
+                <div class="sb-section">
+                    <div class="sb-section-label">MATH</div>
+                    <div class="sb-accordion" data-group="math">
+                        <button type="button" class="sb-accordion-header math-acc-open" data-target="math-academy-body">
+                            <span class="sb-card-icon">📐</span>
+                            <span class="sb-card-label">Academy</span>
+                            <span class="sb-accordion-arrow">▼</span>
+                        </button>
+                        <div class="sb-accordion-body" id="math-academy-body">
+                            <div class="sb-field">
+                                <label>Grade</label>
+                                <select id="math-grade-select">
+                                    <option value="">Select grade</option>
+                                </select>
+                            </div>
+                            <div class="sb-field">
+                                <label>Unit</label>
+                                <select id="math-unit-select">
+                                    <option value="">Select unit</option>
+                                </select>
+                            </div>
+                            <div class="sb-field">
+                                <label>Lesson</label>
+                                <select id="math-lesson-select">
+                                    <option value="">Select lesson</option>
+                                </select>
+                            </div>
+                            <button type="button" class="sb-action-btn" id="math-btn-start" disabled>
+                                Start Lesson
+                            </button>
+                            <div class="sb-div"></div>
+                            <button type="button" class="sb-sidebar-card sb-card-sm" id="math-btn-unit-test" disabled>
+                                <span class="sb-card-icon">📝</span>
+                                <span class="sb-card-label">Unit Test</span>
+                                <span class="sb-card-badge">🔒</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sb-accordion" data-group="math">
+                        <button type="button" class="sb-accordion-header" data-target="math-fluency-body">
+                            <span class="sb-card-icon">🔢</span>
+                            <span class="sb-card-label">Fact Fluency</span>
+                            <span class="sb-accordion-arrow">▼</span>
+                        </button>
+                        <div class="sb-accordion-body" id="math-fluency-body" style="display:none">
+                            <div class="sb-info-row">
+                                <span>Today</span>
+                                <span id="math-fluency-today">0/3 rounds</span>
+                            </div>
+                            <div class="sb-info-row">
+                                <span>Best Streak</span>
+                                <span id="math-fluency-best">—</span>
+                            </div>
+                            <button type="button" class="sb-action-btn" id="math-btn-fluency">
+                                Start
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sb-accordion" data-group="math">
+                        <button type="button" class="sb-accordion-header" data-target="math-kangaroo-body">
+                            <span class="sb-card-icon">🧩</span>
+                            <span class="sb-card-label">Kangaroo Practice</span>
+                            <span class="sb-accordion-arrow">▼</span>
+                        </button>
+                        <div class="sb-accordion-body" id="math-kangaroo-body" style="display:none">
+                            <div class="sb-info-row">
+                                <span>This Week</span>
+                                <span id="math-kangaroo-week">0/5 sets</span>
+                            </div>
+                            <button type="button" class="sb-action-btn" id="math-btn-kangaroo">
+                                Start
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sb-accordion" data-group="math">
+                        <button type="button" class="sb-accordion-header" data-target="math-problems-body">
+                            <span class="sb-card-icon">📊</span>
+                            <span class="sb-card-label">My Problems</span>
+                            <span class="sb-accordion-arrow">▼</span>
+                        </button>
+                        <div class="sb-accordion-body" id="math-problems-body" style="display:none">
+                            <div class="sb-info-row">
+                                <span>To Review</span>
+                                <span id="math-problems-count">0 items</span>
+                            </div>
+                            <div class="sb-info-row">
+                                <span>Weak Area</span>
+                                <span id="math-problems-weak">—</span>
+                            </div>
+                            <button type="button" class="sb-action-btn" id="math-btn-review">
+                                Review Now
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -613,6 +722,10 @@
 <script src="/static/js/unittest.js?v=5"></script>
 <script src="/static/js/review.js?v=3"></script>
 
+<script src="/static/js/math-navigation.js?v=2"></script>
+<script src="/static/js/math-academy.js?v=2"></script>
+<script src="/static/js/math-learn-cards.js?v=2"></script>
+<script src="/static/js/math-problem-ui.js?v=2"></script>
 <script src="/static/js/word-manager.js?v=14"></script>
 <!-- Word Manager Full-screen Overlay -->
 <div id="wm-overlay" class="hidden" role="dialog" aria-label="Word Manager">

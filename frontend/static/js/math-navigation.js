@@ -1,0 +1,242 @@
+/* ================================================================
+   math-navigation.js — Math sidebar navigation, grade/unit/lesson
+                        dropdowns, and accordion logic.
+   Section: Math / Navigation
+   Dependencies: core.js, navigation.js
+   API endpoints: /api/math/academy/grades, /api/math/academy/{grade}/units,
+                  /api/math/academy/{grade}/{unit}/lessons,
+                  /api/math/fluency/summary, /api/math/my-problems/summary
+   ================================================================ */
+
+/* global $, currentSubject */
+
+// ── Math state ──────────────────────────────────────────────
+let mathGrade = '';
+let mathUnit = '';
+let mathLesson = '';
+
+// ── Accordion logic (one open at a time) ────────────────────
+
+/** @tag MATH @tag NAVIGATION */
+(function initMathAccordions() {
+    document.addEventListener('click', (e) => {
+        const header = e.target.closest('#sb-math-section .sb-accordion-header');
+        if (!header) return;
+        const target = header.dataset.target;
+        const body = document.getElementById(target);
+        if (!body) return;
+
+        const isOpen = header.classList.contains('math-acc-open');
+
+        // Close all in same group
+        const group = header.closest('.sb-section');
+        if (group) {
+            group.querySelectorAll('.sb-accordion-header').forEach(h => {
+                h.classList.remove('math-acc-open');
+                const b = document.getElementById(h.dataset.target);
+                if (b) b.style.display = 'none';
+            });
+        }
+
+        // Toggle clicked
+        if (!isOpen) {
+            header.classList.add('math-acc-open');
+            body.style.display = '';
+        }
+    });
+})();
+
+// ── switchView integration ──────────────────────────────────
+
+/** @tag MATH @tag NAVIGATION */
+const _origSwitchView = window.switchView;
+window.switchView = function (view) {
+    if (view === 'math') {
+        currentView = 'math';
+        document.body.dataset.view = 'math';
+
+        // Hide main content areas (same pattern as home.js)
+        const homeDash  = document.getElementById('home-dashboard');
+        const idleWrap  = document.getElementById('idle-wrapper');
+        const stageCard = document.getElementById('stage-card');
+        const dailyView = document.getElementById('daily-words-view');
+        const diaryView = document.getElementById('diary-view');
+        const topBar    = document.querySelector('.top-bar');
+        const sidebar   = document.getElementById('sidebar');
+
+        if (homeDash)  homeDash.style.display = 'none';
+        if (idleWrap)  idleWrap.style.display = 'none';
+        if (stageCard) stageCard.style.display = 'none';
+        if (dailyView) dailyView.style.display = 'none';
+        if (diaryView) diaryView.style.display = 'none';
+        if (topBar)    topBar.style.display = 'none';
+        if (sidebar)   sidebar.dataset.mode = 'math';
+
+        updateSidebarMode('math');
+        loadMathGrades();
+        loadMathSidebarStatus();
+        return;
+    }
+
+    // For non-math views, delegate to original
+    if (typeof _origSwitchView === 'function') {
+        _origSwitchView(view);
+    }
+};
+
+// ── Load grades ─────────────────────────────────────────────
+
+/** @tag MATH @tag ACADEMY */
+async function loadMathGrades() {
+    const sel = document.getElementById('math-grade-select');
+    if (!sel) return;
+    sel.innerHTML = '<option value="">Select grade</option>';
+    try {
+        const res = await fetch('/api/math/academy/grades');
+        if (!res.ok) return;
+        const data = await res.json();
+        (data.grades || []).forEach(g => {
+            const opt = document.createElement('option');
+            opt.value = g;
+            opt.textContent = g;
+            sel.appendChild(opt);
+        });
+        // Auto-select if only one
+        if (data.grades && data.grades.length === 1) {
+            sel.value = data.grades[0];
+            await loadMathUnits(data.grades[0]);
+        }
+    } catch (err) {
+        console.warn('[math] Failed to load grades:', err);
+    }
+}
+
+/** @tag MATH @tag ACADEMY */
+async function loadMathUnits(grade) {
+    mathGrade = grade;
+    const sel = document.getElementById('math-unit-select');
+    if (!sel) return;
+    sel.innerHTML = '<option value="">Select unit</option>';
+    document.getElementById('math-lesson-select').innerHTML = '<option value="">Select lesson</option>';
+    updateMathStartBtn();
+    if (!grade) return;
+
+    try {
+        const res = await fetch(`/api/math/academy/${encodeURIComponent(grade)}/units`);
+        if (!res.ok) return;
+        const data = await res.json();
+        (data.units || []).forEach(u => {
+            const opt = document.createElement('option');
+            opt.value = u;
+            opt.textContent = u.replace(/_/g, ' ');
+            sel.appendChild(opt);
+        });
+    } catch (err) {
+        console.warn('[math] Failed to load units:', err);
+    }
+}
+
+/** @tag MATH @tag ACADEMY */
+async function loadMathLessons(grade, unit) {
+    mathUnit = unit;
+    const sel = document.getElementById('math-lesson-select');
+    if (!sel) return;
+    sel.innerHTML = '<option value="">Select lesson</option>';
+    updateMathStartBtn();
+    if (!unit) return;
+
+    try {
+        const res = await fetch(`/api/math/academy/${encodeURIComponent(grade)}/${encodeURIComponent(unit)}/lessons`);
+        if (!res.ok) return;
+        const data = await res.json();
+        (data.lessons || []).forEach(l => {
+            const opt = document.createElement('option');
+            opt.value = l.name;
+            const prefix = l.is_completed ? '✓ ' : '';
+            opt.textContent = prefix + l.name.replace(/_/g, ' ');
+            sel.appendChild(opt);
+        });
+
+        // Unit test button
+        const utBtn = document.getElementById('math-btn-unit-test');
+        if (utBtn) {
+            const badge = utBtn.querySelector('.sb-card-badge');
+            if (data.unit_test_unlocked) {
+                utBtn.disabled = false;
+                if (badge) badge.textContent = '→';
+            } else {
+                utBtn.disabled = true;
+                if (badge) badge.textContent = '🔒';
+            }
+        }
+    } catch (err) {
+        console.warn('[math] Failed to load lessons:', err);
+    }
+}
+
+// ── Start button ────────────────────────────────────────────
+
+/** @tag MATH @tag NAVIGATION */
+function updateMathStartBtn() {
+    const btn = document.getElementById('math-btn-start');
+    if (!btn) return;
+    const lessonSel = document.getElementById('math-lesson-select');
+    btn.disabled = !(lessonSel && lessonSel.value);
+}
+
+// ── Sidebar status ──────────────────────────────────────────
+
+/** @tag MATH @tag NAVIGATION */
+async function loadMathSidebarStatus() {
+    // Fluency summary
+    try {
+        const res = await fetch('/api/math/fluency/summary');
+        if (res.ok) {
+            const data = await res.json();
+            const el = document.getElementById('math-fluency-today');
+            if (el) el.textContent = `${data.today_rounds}/${data.daily_target} rounds`;
+        }
+    } catch (e) { /* silent */ }
+
+    // My Problems summary
+    try {
+        const res = await fetch('/api/math/my-problems/summary');
+        if (res.ok) {
+            const data = await res.json();
+            const el = document.getElementById('math-problems-count');
+            if (el) el.textContent = `${data.due_today} items`;
+        }
+    } catch (e) { /* silent */ }
+}
+
+// ── Wire select handlers ────────────────────────────────────
+
+/** @tag MATH @tag NAVIGATION */
+(function wireMathSelects() {
+    document.addEventListener('DOMContentLoaded', () => {
+        const gradeSel = document.getElementById('math-grade-select');
+        const unitSel = document.getElementById('math-unit-select');
+        const lessonSel = document.getElementById('math-lesson-select');
+        const startBtn = document.getElementById('math-btn-start');
+
+        if (gradeSel) {
+            gradeSel.addEventListener('change', () => loadMathUnits(gradeSel.value));
+        }
+        if (unitSel) {
+            unitSel.addEventListener('change', () => loadMathLessons(mathGrade, unitSel.value));
+        }
+        if (lessonSel) {
+            lessonSel.addEventListener('change', () => {
+                mathLesson = lessonSel.value;
+                updateMathStartBtn();
+            });
+        }
+        if (startBtn) {
+            startBtn.addEventListener('click', () => {
+                if (!mathGrade || !mathUnit || !mathLesson) return;
+                console.log(`[math] Starting lesson: ${mathGrade}/${mathUnit}/${mathLesson}`);
+                startMathLesson(mathGrade, mathUnit, mathLesson);
+            });
+        }
+    });
+})();
