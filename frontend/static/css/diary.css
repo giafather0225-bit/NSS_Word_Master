@@ -1,0 +1,192 @@
+/* ================================================================
+   diary.css — GIA's Diary section styles
+   Section: Diary
+   Dependencies: theme.css
+   ================================================================ */
+
+/* ── View Container ── */
+#diary-view {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  min-height: 100%;
+  background: var(--bg-page);
+}
+
+/* ── Header ── */
+.diary-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+
+.diary-header .back-btn {
+  background: none; border: none; font-size: 20px; cursor: pointer;
+  padding: 4px 8px; border-radius: var(--radius-sm); color: var(--text-secondary); line-height: 1;
+}
+.diary-header .back-btn:hover { background: var(--color-primary-light); color: var(--color-primary); }
+
+.diary-header-text  { display: flex; flex-direction: column; gap: 2px; }
+.diary-header-title { font-size: 18px; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
+.diary-header-sub   { font-size: 12px; color: var(--text-secondary); }
+
+.diary-section-title {
+  font-size: 22px; font-weight: 700; color: var(--text-primary);
+  margin-bottom: 20px; text-align: center;
+}
+
+/* ── Journal ── */
+.journal-area {
+  max-width: 640px; margin: 0 auto; width: 100%;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.journal-date-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.02em; }
+
+.journal-textarea {
+  width: 100%; min-height: 200px; padding: 16px;
+  border: 2px solid var(--color-primary-light); border-radius: var(--radius-md);
+  font-size: 16px; line-height: 1.7; resize: vertical;
+  background: var(--bg-page); color: var(--text-primary);
+  font-family: var(--font-family); outline: none; box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+.journal-textarea:focus         { border-color: var(--color-primary); }
+.journal-textarea::placeholder  { color: var(--text-secondary); }
+
+.journal-char-count { font-size: 12px; color: var(--text-secondary); text-align: right; }
+
+.journal-submit-btn {
+  width: 100%; padding: 14px 24px; border: none; border-radius: var(--radius-full);
+  background: var(--color-primary); color: #fff; font-size: 16px; font-weight: 700;
+  cursor: pointer; margin-top: 4px; transition: background 0.15s;
+}
+.journal-submit-btn:hover    { background: var(--color-primary-hover); }
+.journal-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── AI Feedback ── */
+.ai-feedback-box {
+  background: var(--bg-card); border-left: 3px solid var(--color-primary);
+  border-radius: var(--radius-md); padding: 14px 16px; margin-top: 16px;
+  box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 6px;
+}
+.ai-feedback-label { font-size: 12px; font-weight: 600; color: var(--color-primary); }
+.ai-feedback-text  { font-size: 14px; color: var(--text-primary); line-height: 1.6; }
+
+/* ── Timeline ── */
+.timeline-list {
+  display: flex; flex-direction: column; gap: 12px;
+  max-width: 560px; margin: 0 auto; width: 100%;
+}
+.timeline-item {
+  background: var(--bg-card); border-radius: var(--radius-md); padding: 14px 16px;
+  box-shadow: var(--shadow-card); display: flex; align-items: flex-start; gap: 12px;
+}
+.timeline-icon  { font-size: 24px; flex-shrink: 0; line-height: 1.2; }
+.timeline-info  { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.timeline-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+.timeline-date  { font-size: 12px; color: var(--text-secondary); }
+
+/* ── Day Off Form ── */
+.dayoff-form {
+  max-width: 480px; margin: 0 auto; width: 100%;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.dayoff-field  { display: flex; flex-direction: column; gap: 6px; }
+.dayoff-label  { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+
+.dayoff-input, .dayoff-textarea {
+  padding: 10px 14px; border: 2px solid var(--color-primary-light);
+  border-radius: var(--radius-md); background: var(--bg-page); color: var(--text-primary);
+  font-size: 15px; font-family: var(--font-family); outline: none;
+  box-sizing: border-box; width: 100%; transition: border-color 0.15s;
+}
+.dayoff-input:focus, .dayoff-textarea:focus { border-color: var(--color-primary); }
+.dayoff-textarea { min-height: 100px; resize: vertical; }
+
+/* ── Day Off Status ── */
+.dayoff-status-list { display: flex; flex-direction: column; gap: 10px; max-width: 480px; margin: 0 auto; width: 100%; }
+.dayoff-status-row {
+  background: var(--bg-card); border-radius: var(--radius-md); padding: 12px 16px;
+  box-shadow: var(--shadow-card); display: flex; align-items: center;
+  justify-content: space-between; gap: 12px;
+}
+.status-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-full); flex-shrink: 0; }
+.status-badge.pending  { background: #FFF3CD; color: #856404; }
+.status-badge.approved { background: #D4EDDA; color: #155724; }
+.status-badge.denied   { background: #F8D7DA; color: #721c24; }
+
+/* ── My Sentences ── */
+.sentences-list { display: flex; flex-direction: column; gap: 10px; max-width: 560px; margin: 0 auto; width: 100%; }
+.sentence-card  { background: var(--bg-card); border-radius: var(--radius-md); padding: 14px 16px; box-shadow: var(--shadow-card); }
+.sentence-word  { font-size: 13px; font-weight: 700; color: var(--color-primary); margin-bottom: 4px; }
+.sentence-text  { font-size: 15px; color: var(--text-primary); line-height: 1.5; }
+
+/* ── Diary Overlay (top-bar 📖 button) ── */
+#diary-overlay {
+    position: fixed; inset: 0; z-index: 9000;
+    background: var(--bg-page);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+}
+#diary-overlay.hidden { display: none; }
+
+.diary-overlay-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; border-bottom: 1px solid var(--border-default);
+    background: var(--bg-card);
+}
+.diary-overlay-title {
+    font-size: 18px; font-weight: 700; color: var(--text-primary);
+}
+.diary-overlay-close {
+    background: none; border: none; font-size: 20px; cursor: pointer;
+    color: var(--text-secondary); padding: 4px 8px;
+    border-radius: var(--radius-sm); line-height: 1;
+}
+.diary-overlay-close:hover { background: var(--color-primary-light); color: var(--color-primary); }
+
+.diary-overlay-body {
+    flex: 1; overflow-y: auto; padding: 20px;
+}
+
+/* Summary bar inside overlay */
+.diary-summary {
+    text-align: center; padding: 16px; margin-bottom: 20px;
+    font-size: 15px; font-weight: 600; color: var(--text-primary);
+    background: var(--bg-card); border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+}
+
+/* Lesson group */
+.diary-lesson-group { margin-bottom: 20px; max-width: 640px; margin-left: auto; margin-right: auto; width: 100%; }
+.diary-lesson-title {
+    font-size: 14px; font-weight: 700; color: var(--color-secondary);
+    margin-bottom: 8px; padding-left: 4px; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+}
+.diary-lesson-title .chevron { transition: transform var(--transition-fast); font-size: 12px; }
+.diary-lesson-title.collapsed .chevron { transform: rotate(-90deg); }
+.diary-lesson-cards { display: flex; flex-direction: column; gap: 8px; }
+.diary-lesson-cards.collapsed { display: none; }
+
+/* Individual sentence in overlay */
+.diary-sentence-card {
+    background: var(--bg-card); border-radius: var(--radius-md);
+    padding: 12px 16px; box-shadow: var(--shadow-card);
+    display: flex; align-items: flex-start; gap: 10px;
+}
+.diary-sentence-word {
+    font-size: 13px; font-weight: 700; color: var(--color-primary);
+    min-width: 80px; flex-shrink: 0;
+}
+.diary-sentence-text {
+    font-size: 14px; color: var(--text-primary); line-height: 1.5; flex: 1;
+}
+.diary-tts-btn {
+    background: none; border: none; cursor: pointer; font-size: 16px;
+    padding: 2px 4px; border-radius: var(--radius-sm); flex-shrink: 0;
+}
+.diary-tts-btn:hover { background: var(--color-primary-light); }
+
+/* Empty state */
+.diary-empty {
+    text-align: center; padding: 60px 20px;
+    color: var(--text-secondary); font-size: 15px;
+}

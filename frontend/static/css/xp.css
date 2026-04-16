@@ -1,0 +1,56 @@
+/* ================================================================
+   xp.css — XP popup animation and top-bar XP display styles
+   Section: System
+   Dependencies: theme.css
+   API endpoints: none
+   ================================================================ */
+
+/* ── XP Toast Notification ── */
+.xp-toast {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background: var(--bg-card);
+    color: var(--color-primary);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-card);
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.xp-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ── XP Float-Up Particle (appended to #particle-layer) ── */
+.xp-float {
+    position: absolute;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--color-primary);
+    pointer-events: none;
+    animation: xp-float-up 1.2s ease-out forwards;
+    z-index: 9999;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes xp-float-up {
+    0%   { opacity: 1; transform: translateY(0) scale(1); }
+    60%  { opacity: 1; transform: translateY(-40px) scale(1.1); }
+    100% { opacity: 0; transform: translateY(-70px) scale(0.9); }
+}
+
+/* ── Top Bar XP Meta ── */
+.top-xp-meta {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-left: 4px;
+    white-space: nowrap;
+}

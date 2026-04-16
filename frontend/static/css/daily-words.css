@@ -1,0 +1,362 @@
+/* ================================================================
+   daily-words.css — Daily Words study flow styles
+   Section: English / Daily Words
+   Dependencies: theme.css
+   ================================================================ */
+
+/* ─── View wrapper ────────────────────────────────────────── */
+#daily-words-view {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  min-height: 100%;
+  background: var(--bg-page);
+}
+
+#daily-words-view.active {
+  display: flex;
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.dw-header {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dw-header-back {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
+}
+
+.dw-header-back:hover { background: var(--color-primary-light); }
+
+.dw-header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.dw-header-sub {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-left: auto;
+}
+
+/* ─── Progress bar ───────────────────────────────────────── */
+.dw-progress-bar {
+  width: 100%;
+  max-width: 640px;
+  height: 6px;
+  background: var(--color-primary-light);
+  border-radius: var(--radius-full);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.dw-progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+/* ─── Placement test card ────────────────────────────────── */
+.dw-placement-intro {
+  width: 100%;
+  max-width: 640px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.dw-placement-intro h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.dw-placement-intro p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* ─── Flashcard (study) ──────────────────────────────────── */
+.dw-card {
+  width: 100%;
+  max-width: 640px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.dw-card-word {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.dw-card-pos {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  border-radius: var(--radius-full);
+  padding: 2px 10px;
+  margin-bottom: 14px;
+}
+
+.dw-card-definition {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.dw-card-example {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-secondary);
+  border-left: 3px solid var(--color-primary-light);
+  padding-left: 12px;
+  text-align: left;
+}
+
+/* ─── Placement test question (MC) ───────────────────────── */
+.dw-question-word {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.dw-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.dw-choice-btn {
+  background: var(--bg-page);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-size: 15px;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dw-choice-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.dw-choice-btn.correct {
+  border-color: var(--color-success);
+  background: #F0FFF4;
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+.dw-choice-btn.wrong {
+  border-color: var(--color-error);
+  background: #FFF5F5;
+  color: var(--color-error);
+}
+
+/* ─── Weekly test (typing) ───────────────────────────────── */
+.dw-test-card {
+  width: 100%;
+  max-width: 640px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.dw-test-definition {
+  font-size: 18px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.dw-test-example {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.dw-test-input {
+  width: 100%;
+  max-width: 320px;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px 16px;
+  border: 2px solid var(--color-primary-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.dw-test-input:focus { border-color: var(--color-primary); }
+.dw-test-input.correct { border-color: var(--color-success); }
+.dw-test-input.wrong   { border-color: var(--color-error); animation: dw-shake 0.3s; }
+
+@keyframes dw-shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-6px); }
+  75%       { transform: translateX(6px); }
+}
+
+/* ─── Action buttons ──────────────────────────────────────── */
+.dw-btn-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.dw-btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.dw-btn:active { transform: scale(0.97); }
+
+.dw-btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.dw-btn-primary:hover { background: var(--color-primary-hover); }
+
+.dw-btn-secondary {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.dw-btn-secondary:hover { background: #f0d4e8; }
+
+/* ─── Result / Summary screen ────────────────────────────── */
+.dw-result {
+  width: 100%;
+  max-width: 640px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.dw-result-emoji {
+  font-size: 52px;
+  margin-bottom: 12px;
+}
+
+.dw-result-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.dw-result-sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.dw-result-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.dw-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.dw-stat-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.dw-stat-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ─── Week overview pills ────────────────────────────────── */
+.dw-week-pills {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.dw-week-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.dw-week-pill.done {
+  background: var(--color-success);
+  color: #fff;
+}
+
+.dw-week-pill.today {
+  background: var(--color-primary);
+  color: #fff;
+}

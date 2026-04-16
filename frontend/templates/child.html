@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NSS Learning</title>
     <link rel="stylesheet" href="/static/css/theme.css">
-    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/main.css?v=3">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/preview.css">
     <link rel="stylesheet" href="/static/css/wordmatch.css">
@@ -17,6 +17,13 @@
     <link rel="stylesheet" href="/static/css/unittest.css?v=4">
     <link rel="stylesheet" href="/static/css/word-manager.css?v=12">
     <link rel="stylesheet" href="/static/css/review.css?v=4">
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/daily-words.css">
+    <link rel="stylesheet" href="/static/css/reward-shop.css">
+    <link rel="stylesheet" href="/static/css/parent.css">
+    <link rel="stylesheet" href="/static/css/diary.css">
+    <link rel="stylesheet" href="/static/css/calendar.css">
+    <link rel="stylesheet" href="/static/css/xp.css">
 
 </head>
 <body>
@@ -42,139 +49,249 @@
 <div class="app-shell">
 
     <!-- ═══ Sidebar ══════════════════════════════════════════ -->
-    <aside class="sidebar" id="sidebar" aria-label="Navigation">
+    <aside class="sidebar" id="sidebar" data-mode="home" aria-label="Navigation">
         <div class="sidebar-inner">
 
-            <!-- 1. Top Section: avatar + name -->
+            <!-- Profile (always visible) -->
             <div class="sb-profile">
                 <img src="/static/img/GIA_Logo.png" alt="GIA" class="avatar-img">
                 <span class="logo-brand-text">GIA</span>
             </div>
 
-            <!-- Subject segmented control -->
-            <div class="sb-subject-tabs">
-                <button class="sb-subject-tab active" id="tab-eng"
-                        onclick="setSubject('eng')">English</button>
-                <button class="sb-subject-tab" id="tab-math"
-                        onclick="setSubject('math')">Math</button>
+            <!-- ── HOME MODE ─────────────────────────────────── -->
+            <div id="sb-home-section">
+                <div class="sb-div"></div>
+                <div class="sb-section">
+                    <div class="sb-section-label">SECTIONS</div>
+                    <button type="button" class="sb-sidebar-card" onclick="switchView('english')">
+                        <span class="sb-card-icon">📗</span>
+                        <span class="sb-card-label">English</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                    <button type="button" class="sb-sidebar-card" onclick="switchView('diary')">
+                        <span class="sb-card-icon">📖</span>
+                        <span class="sb-card-label">GIA's Diary</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                    <button type="button" class="sb-sidebar-card sb-card-disabled">
+                        <span class="sb-card-icon">🔢</span>
+                        <span class="sb-card-label">Math</span>
+                        <span class="sb-card-badge">Soon</span>
+                    </button>
+                </div>
             </div>
 
-            <!-- Stars (hidden — shown in top bar; kept for JS compat) -->
-            <div class="sb-stars">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 2l3 7 7 .6-5.3 4.6 1.7 7-6.4-3.9-6.4 3.9 1.7-7L2 9.6 9 9z"/>
-                </svg>
-                <span id="star-count">0</span>&nbsp;stars
-            </div>
+            <!-- ── ENGLISH MODE ──────────────────────────────── -->
+            <div id="sb-english-section" style="display:none">
+                <!-- Back to Home -->
+                <button type="button" class="sb-back-btn" onclick="switchView('home')">
+                    ← Home
+                </button>
+                <div class="sb-div"></div>
 
-            <div class="sb-div"></div>
+                <!-- Stars (hidden — shown in top bar; kept for JS compat) -->
+                <div class="sb-stars" style="display:none">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2l3 7 7 .6-5.3 4.6 1.7 7-6.4-3.9-6.4 3.9 1.7-7L2 9.6 9 9z"/>
+                    </svg>
+                    <span id="star-count">0</span>&nbsp;stars
+                </div>
 
-            <!-- 2. Middle Section: Folder Tree (shown before session) -->
-            <div id="sb-selection-area">
-                <!-- Textbook — dropdown display, hidden select kept for JS -->
-                <div class="sb-label">Textbook</div>
-                <div id="textbook-section" style="position:relative;">
-                    <div class="sb-textbook-display" id="sb-textbook-name">
-                        <span class="sb-tb-name-text">—</span>
-                        <span class="sb-tb-chevron">▼</span>
+                <!-- Subject tabs (hidden but kept for JS compat) -->
+                <div class="sb-subject-tabs" style="display:none">
+                    <button class="sb-subject-tab active" id="tab-eng" onclick="setSubject('eng')">English</button>
+                    <button class="sb-subject-tab" id="tab-math" onclick="setSubject('math')">Math</button>
+                </div>
+
+                <div class="sb-section">
+                    <div class="sb-section-label">VOCABULARY</div>
+
+                    <!-- Academy accordion -->
+                    <button type="button" class="sb-accordion-btn open" data-key="academy" onclick="toggleAccordion('academy')">
+                        <span class="sb-card-icon">📕</span>
+                        <span class="sb-accordion-label">Academy</span>
+                        <span class="sb-accordion-arrow">▾</span>
+                    </button>
+                    <div class="sb-accordion-panel open" data-key="academy">
+                        <!-- Textbook selection (existing IDs preserved) -->
+                        <div id="sb-selection-area">
+                            <div class="sb-label">Textbook</div>
+                            <div id="textbook-section" style="position:relative;">
+                                <div class="sb-textbook-display" id="sb-textbook-name">
+                                    <span class="sb-tb-name-text">—</span>
+                                    <span class="sb-tb-chevron">▼</span>
+                                </div>
+                                <div class="sb-tb-dropdown" id="sb-tb-dropdown"></div>
+                                <select id="textbook-select" aria-label="Textbook selection">
+                                    <option value="">Select textbook</option>
+                                </select>
+                            </div>
+                            <div class="sb-label" style="margin-top:12px;">Lesson</div>
+                            <div id="lesson-section-display" style="position:relative;">
+                                <div class="sb-textbook-display" id="sb-lesson-name">
+                                    <span class="sb-tb-name-text">—</span>
+                                    <span class="sb-tb-chevron">▼</span>
+                                </div>
+                                <div id="sb-lesson-dropdown"></div>
+                            </div>
+                            <div id="lesson-section" style="display:none">
+                                <select id="lesson-select" aria-label="Lesson selection">
+                                    <option value="">Select lesson</option>
+                                </select>
+                            </div>
+                            <button class="ocr-btn" id="btn-ocr" type="button" style="display:none">
+                                Register (image → words)
+                            </button>
+                        </div>
+                        <div class="sb-div"></div>
+                        <!-- Review (existing ID preserved) -->
+                        <button type="button" class="sb-sidebar-card" id="btn-review">
+                            <span class="sb-card-label">Today's Review</span>
+                            <span class="sb-card-chevron">›</span>
+                            <span class="sb-review-badge" id="review-badge" style="display:none;">0</span>
+                        </button>
+                        <!-- Test buttons (existing IDs preserved) -->
+                        <button type="button" class="sb-sidebar-card" id="btn-exam">
+                            <span class="sb-card-label">Final Test</span>
+                            <span class="btn-lock-icon" id="lock-exam">🔒</span>
+                        </button>
+                        <button type="button" class="sb-sidebar-card" id="btn-kigoosa">
+                            <span class="sb-card-label">Unit Test</span>
+                            <span class="sb-card-chevron">›</span>
+                        </button>
                     </div>
-                    <div class="sb-tb-dropdown" id="sb-tb-dropdown"></div>
-                    <select id="textbook-select" aria-label="Textbook selection">
-                        <option value="">Select textbook</option>
-                    </select>
-                </div>
 
-                <!-- Lesson dropdown -->
-                <div class="sb-label" style="margin-top: 12px;">Lesson</div>
-                <div id="lesson-section-display" style="position:relative;">
-                    <div class="sb-textbook-display" id="sb-lesson-name">
-                        <span class="sb-tb-name-text">—</span>
-                        <span class="sb-tb-chevron">▼</span>
+                    <!-- Daily Words accordion -->
+                    <button type="button" class="sb-accordion-btn" data-key="daily-words" onclick="toggleAccordion('daily-words')">
+                        <span class="sb-card-icon">📗</span>
+                        <span class="sb-accordion-label">Daily Words</span>
+                        <span class="sb-accordion-arrow">▾</span>
+                    </button>
+                    <div class="sb-accordion-panel" data-key="daily-words">
+                        <div class="sb-accordion-info" id="dw-grade-label">Grade 3</div>
+                        <div class="sb-accordion-info" id="dw-week-progress">This Week: 0/5 days</div>
+                        <div class="sb-accordion-info" id="dw-today-progress">Today: 0/10 words</div>
+                        <button type="button" id="dw-start-btn" class="sb-sidebar-card" onclick="showDailyWordsView()">
+                            <span class="sb-card-label">Start →</span>
+                            <span class="sb-card-chevron">›</span>
+                        </button>
                     </div>
-                    <div id="sb-lesson-dropdown"></div>
+
+                    <!-- My Words accordion -->
+                    <button type="button" class="sb-accordion-btn" data-key="my-words" onclick="toggleAccordion('my-words')">
+                        <span class="sb-card-icon">📘</span>
+                        <span class="sb-accordion-label">My Words</span>
+                        <span class="sb-accordion-arrow">▾</span>
+                    </button>
+                    <div class="sb-accordion-panel" data-key="my-words">
+                        <button type="button" id="btn-word-manager" class="sb-sidebar-card">
+                            <span class="sb-card-label">Manage Words</span>
+                            <span class="sb-card-chevron">›</span>
+                        </button>
+                        <button type="button" class="sb-sidebar-card sb-card-disabled">
+                            <span class="sb-card-label">Weekly Test</span>
+                            <span class="sb-card-badge">50+ words needed</span>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Hidden lesson select — JS compat -->
-                <div id="lesson-section" style="display:none">
-                    <select id="lesson-select" aria-label="Lesson selection">
-                        <option value="">Select lesson</option>
-                    </select>
+                <div class="sb-div"></div>
+                <div class="sb-section">
+                    <div class="sb-section-label">READING</div>
+                    <button type="button" class="sb-sidebar-card sb-card-disabled">
+                        <span class="sb-card-icon">📖</span>
+                        <span class="sb-card-label">Articles</span>
+                        <span class="sb-card-badge">Soon</span>
+                    </button>
                 </div>
 
-                <!-- OCR register button (hidden) -->
-                <button class="ocr-btn" id="btn-ocr" type="button" style="display:none">
-                    Register (image → words)
-                </button>
-            </div>
-
-            <!-- ─── Section: Review ─── -->
-            <div class="sb-div"></div>
-            <div class="sb-section">
-                <div class="sb-section-label">REVIEW</div>
-                <button type="button" class="sb-sidebar-card" id="btn-review">
-                    <span class="sb-card-label">Today's Review</span>
-                    <span class="sb-card-chevron">›</span>
-                    <span class="sb-review-badge" id="review-badge" style="display:none;">0</span>
-                </button>
-            </div>
-            <!-- Session info (shown during active session — kept for JS compat) -->
-            <div id="sb-session-info" class="hidden">
-                <div class="sb-session-row sb-session-lesson">
-                    <span class="sb-session-key">Lesson</span>
-                    <span class="sb-session-val" id="sb-info-lesson">—</span>
+                <!-- Session info (kept for JS compat) -->
+                <div id="sb-session-info" class="hidden">
+                    <div class="sb-session-row sb-session-lesson">
+                        <span class="sb-session-key">Lesson</span>
+                        <span class="sb-session-val" id="sb-info-lesson">—</span>
+                    </div>
+                    <div class="sb-session-row" style="display:none">
+                        <span class="sb-session-key">Stage</span>
+                        <span class="sb-session-val" id="sb-info-stage">—</span>
+                    </div>
+                    <div class="sb-session-row" style="display:none">
+                        <span class="sb-session-key">Progress</span>
+                        <span class="sb-session-val" id="sb-info-progress">—</span>
+                    </div>
+                    <div class="sb-session-row" style="display:none">
+                        <span class="sb-session-key">Mistakes</span>
+                        <span class="sb-session-val" id="sb-info-wrong">0</span>
+                    </div>
+                    <div class="sb-session-btns">
+                        <button type="button" class="dock-btn sec" id="sb-btn-listen">🔊 Listen</button>
+                        <button type="button" class="dock-btn sec" id="sb-btn-skip">⏭ Skip</button>
+                    </div>
                 </div>
-                <!-- Hidden rows kept for JS compat -->
-                <div class="sb-session-row" style="display:none">
-                    <span class="sb-session-key">Stage</span>
-                    <span class="sb-session-val" id="sb-info-stage">—</span>
-                </div>
-                <div class="sb-session-row" style="display:none">
-                    <span class="sb-session-key">Progress</span>
-                    <span class="sb-session-val" id="sb-info-progress">—</span>
-                </div>
-                <div class="sb-session-row" style="display:none">
-                    <span class="sb-session-key">Mistakes</span>
-                    <span class="sb-session-val" id="sb-info-wrong">0</span>
-                </div>
-                <!-- Listen/Skip buttons — hidden, kept for JS compat -->
-                <div class="sb-session-btns">
-                    <button type="button" class="dock-btn sec" id="sb-btn-listen">🔊 Listen</button>
-                    <button type="button" class="dock-btn sec" id="sb-btn-skip">⏭ Skip</button>
+                <div class="sb-hints" id="sb-hints-container">
+                    <span class="kb" data-hint="submit">↵ Submit</span>
+                    <span class="kb" data-hint="listen">Space Listen</span>
+                    <span class="kb" data-hint="next">⌘L Next</span>
+                    <span class="kb" data-hint="jump">1-5 Jump</span>
+                    <span class="kb" data-hint="close">Esc Close</span>
                 </div>
             </div>
 
-            <!-- 3. Bottom Section: Test buttons -->
-            <!-- Keyboard hints (hidden — kept for JS compat) -->
-            <div class="sb-hints" id="sb-hints-container">
-                <span class="kb" data-hint="submit">↵ Submit</span>
-                <span class="kb" data-hint="listen">Space Listen</span>
-                <span class="kb" data-hint="next">⌘L Next</span>
-                <span class="kb" data-hint="jump">1-5 Jump</span>
-                <span class="kb" data-hint="close">Esc Close</span>
+            <!-- ── DIARY MODE ─────────────────────────────────── -->
+            <div id="sb-diary-section" style="display:none">
+                <button type="button" class="sb-back-btn" onclick="switchView('home')">
+                    ← Home
+                </button>
+                <div class="sb-div"></div>
+                <div class="sb-section">
+                    <div class="sb-section-label">WRITING</div>
+                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('journal')">
+                        <span class="sb-card-icon">✏️</span>
+                        <span class="sb-card-label">Daily Journal</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                    <button type="button" class="sb-sidebar-card sb-card-disabled">
+                        <span class="sb-card-icon">✍️</span>
+                        <span class="sb-card-label">Free Writing</span>
+                        <span class="sb-card-badge">Soon</span>
+                    </button>
+                </div>
+                <div class="sb-div"></div>
+                <div class="sb-section">
+                    <div class="sb-section-label">MY GROWTH</div>
+                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('sentences')">
+                        <span class="sb-card-icon">💬</span>
+                        <span class="sb-card-label">My Sentences</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('worlds')">
+                        <span class="sb-card-icon">🌍</span>
+                        <span class="sb-card-label">My Worlds</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('timeline')">
+                        <span class="sb-card-icon">📈</span>
+                        <span class="sb-card-label">Growth Timeline</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                </div>
+                <div class="sb-div"></div>
+                <div class="sb-section">
+                    <div class="sb-section-label">MY PLAN</div>
+                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('calendar')">
+                        <span class="sb-card-icon">📅</span>
+                        <span class="sb-card-label">Calendar</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('dayoff')">
+                        <span class="sb-card-icon">🏖️</span>
+                        <span class="sb-card-label">Day Off</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                </div>
             </div>
 
-            <!-- Section 4: Tests -->
-            <div class="sb-div"></div>
-            <div class="sb-section">
-                <div class="sb-section-label">TEST</div>
-                <button type="button" class="sb-sidebar-card" id="btn-exam">
-                    <span class="sb-card-label">Final Test</span>
-                    <span class="btn-lock-icon" id="lock-exam">🔒</span>
-                </button>
-                <button type="button" class="sb-sidebar-card" id="btn-kigoosa">
-                    <span class="sb-card-label">Unit Test</span>
-                    <span class="sb-card-chevron">›</span>
-                </button>
-            </div>
-            <!-- ─── Section: Manage Words ─── -->
-            <div class="sb-div"></div>
-            <div class="sb-section">
-                <button type="button" id="btn-word-manager" class="sb-sidebar-card">
-                    <span class="sb-card-label">Manage Words</span>
-                    <span class="sb-card-chevron">›</span>
-                </button>
-            </div>
-            <!-- Section 5: Settings -->
+            <!-- Settings (always visible) -->
             <div class="sb-div"></div>
             <div class="sb-bottom">
                 <button type="button" id="btn-parent" title="Parent mode (⌘,)" aria-label="Parent mode">
@@ -242,6 +359,77 @@
         <!-- Stage workspace -->
         <div class="stage-area">
 
+            <!-- Home Dashboard (shown on app start) -->
+            <div id="home-dashboard" style="display:flex; flex-direction:column;">
+                <!-- AI Coach card -->
+                <div class="coach-card">
+                    <span class="coach-icon">🤖</span>
+                    <span id="coach-message">Loading...</span>
+                </div>
+                <!-- Reminder banners -->
+                <div id="reminder-banners"></div>
+                <!-- Today section -->
+                <div class="today-section">
+                    <div class="today-header">
+                        <span class="today-label">Today</span>
+                        <div class="today-badges">
+                            <span class="streak-badge">🔥 <span id="summary-streak-top">0</span> days</span>
+                            <span class="xp-badge">⭐ <span id="summary-xp-top">0</span> XP</span>
+                        </div>
+                    </div>
+                    <div class="task-list" id="today-task-list">
+                        <!-- Populated by home.js -->
+                    </div>
+                </div>
+                <!-- Section cards -->
+                <div class="section-cards">
+                    <div class="section-card" id="section-card-english">
+                        <span class="section-card-icon">📗</span>
+                        <div class="section-card-title">English</div>
+                        <div class="section-card-sub">Vocabulary &amp; reading</div>
+                    </div>
+                    <div class="section-card" id="section-card-diary">
+                        <span class="section-card-icon">📖</span>
+                        <div class="section-card-title">GIA's Diary</div>
+                        <div class="section-card-sub">Write about your day</div>
+                    </div>
+                    <div class="section-card section-card-disabled">
+                        <span class="section-card-icon">🔢</span>
+                        <div class="section-card-title">Math</div>
+                        <div class="section-card-sub">Coming Soon</div>
+                        <div class="section-card-overlay">Coming Soon</div>
+                    </div>
+                </div>
+                <!-- Growth theme -->
+                <div class="growth-theme-area">
+                    <div class="growth-theme-visual">
+                        <div id="growth-theme-display" class="theme-img-box"></div>
+                    </div>
+                    <div class="growth-theme-info">
+                        <div class="growth-theme-title">My Growth Theme</div>
+                        <div class="growth-theme-step">Step 0 / 6</div>
+                        <div class="growth-theme-bar-wrap"><div class="growth-theme-bar" style="width:0%"></div></div>
+                        <div class="growth-theme-hint">Complete lessons to grow your theme!</div>
+                    </div>
+                </div>
+                <!-- Summary bar -->
+                <div class="summary-bar">
+                    <div class="summary-stat">
+                        <span class="summary-label">Words I Know</span>
+                        <span class="summary-val" id="summary-words">0</span>
+                    </div>
+                    <div class="summary-stat">
+                        <span class="summary-label">Total XP</span>
+                        <span class="summary-val">⭐ <span id="summary-xp">0</span></span>
+                    </div>
+                    <div class="summary-stat">
+                        <span class="summary-label">Streak</span>
+                        <span class="summary-val">🔥 <span id="summary-streak">0 days</span></span>
+                    </div>
+                    <button class="shop-btn" onclick="openRewardShop()">🎁 Reward Shop</button>
+                </div>
+            </div>
+
             <!-- Idle card (shown before session starts) -->
             <div id="idle-wrapper">
                 <div id="idle-card">
@@ -256,6 +444,12 @@
                 <div id="stage"></div>
             </div>
 
+            <!-- Daily Words view (shown when Daily Words session starts) -->
+            <div id="daily-words-view"></div>
+
+            <!-- Diary view (shown when switchView('diary') is active) -->
+            <div id="diary-view" style="display:none"></div>
+
         </div>
 
         <!-- Word vault (hidden, kept for JS compat) -->
@@ -267,6 +461,21 @@
         <div id="child-status" style="display:none"></div>
         <div id="ut-overlay" class="hidden"></div>
     </div><!-- /main-content -->
+
+<!-- Reward Shop full-screen overlay -->
+<div id="shop-overlay" class="hidden"></div>
+
+<!-- Parent Dashboard full-screen overlay -->
+<div id="parent-overlay" class="hidden"></div>
+
+<!-- GIA's Diary full-screen overlay -->
+<div id="diary-overlay" class="hidden" role="dialog" aria-label="GIA's Diary">
+    <div class="diary-overlay-header">
+        <div class="diary-overlay-title">📖 GIA's Diary</div>
+        <button class="diary-overlay-close" id="diary-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="diary-overlay-body" id="diary-overlay-body"></div>
+</div>
 </div><!-- /app-shell -->
 
 <!-- ═══ Word Manager Panel ══════════════════════════════════════ -->
@@ -310,7 +519,26 @@
 </div>
 
 <!-- ─── App logic ────────────────────────────────────────────── -->
-<script src="/static/js/child.js?v=28"></script>
+<script src="/static/js/core.js?v=1"></script>
+<script src="/static/js/tts-client.js?v=1"></script>
+<script src="/static/js/analytics.js?v=1"></script>
+<script src="/static/js/navigation.js?v=1"></script>
+<script src="/static/js/preview.js?v=2"></script>
+<script src="/static/js/preview-sr.js?v=1"></script>
+<script src="/static/js/wordmatch.js?v=1"></script>
+<script src="/static/js/fillblank.js?v=1"></script>
+<script src="/static/js/spelling.js?v=1"></script>
+<script src="/static/js/sentence.js?v=1"></script>
+<script src="/static/js/home.js?v=2"></script>
+<script src="/static/js/growth-theme.js?v=1"></script>
+<script src="/static/js/parent-panel.js?v=2"></script>
+<script src="/static/js/parent-settings.js?v=2"></script>
+<script src="/static/js/reward-shop.js?v=1"></script>
+<script src="/static/js/diary.js?v=1"></script>
+<script src="/static/js/calendar.js?v=1"></script>
+<script src="/static/js/daily-words.js?v=1"></script>
+<script src="/static/js/daily-words-weekly.js?v=1"></script>
+<script src="/static/js/child.js?v=30"></script>
 <script src="/static/js/sentence_ai.js?v=1"></script>
 <script src="/static/js/finaltest.js?v=10"></script>
 <script src="/static/js/unittest.js?v=5"></script>

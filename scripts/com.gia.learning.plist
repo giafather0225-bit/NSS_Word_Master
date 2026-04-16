@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.gia.learning.plist — macOS LaunchAgent for GIA Learning App
+
+  Install:
+    1. Edit the absolute paths below to match your machine.
+    2. cp scripts/com.gia.learning.plist ~/Library/LaunchAgents/
+    3. launchctl load -w ~/Library/LaunchAgents/com.gia.learning.plist
+    4. Open http://localhost:8000 in your browser.
+
+  Uninstall:
+    launchctl unload -w ~/Library/LaunchAgents/com.gia.learning.plist
+    rm ~/Library/LaunchAgents/com.gia.learning.plist
+
+  Logs are written to ~/NSS_Learning/logs/ — tail them with:
+    tail -F ~/NSS_Learning/logs/gia-stdout.log ~/NSS_Learning/logs/gia-stderr.log
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.gia.learning</string>
+
+  <!--
+    ProgramArguments: launches uvicorn from the project's virtualenv.
+    REPLACE every absolute path below with the real one for your install.
+  -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/markjhlee/Documents/Antigravity/NSS_Word_Master/.venv/bin/python</string>
+    <string>-m</string>
+    <string>uvicorn</string>
+    <string>main:app</string>
+    <string>--host</string>
+    <string>127.0.0.1</string>
+    <string>--port</string>
+    <string>8000</string>
+  </array>
+
+  <!-- Run from inside backend/ so legacy `from database import …` imports resolve. -->
+  <key>WorkingDirectory</key>
+  <string>/Users/markjhlee/Documents/Antigravity/NSS_Word_Master/backend</string>
+
+  <!--
+    Environment: PATH must include the directory containing the `ollama` CLI
+    so ollama_manager.py can spawn it on startup. Add any other env you need.
+  -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    <key>OLLAMA_HOST</key>
+    <string>http://localhost:11434</string>
+    <key>OLLAMA_EVAL_MODEL</key>
+    <string>gemma2:2b</string>
+  </dict>
+
+  <!-- Start at login and re-launch if the process exits. -->
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+
+  <!-- Throttle restart attempts so a crash loop doesn't burn the CPU. -->
+  <key>ThrottleInterval</key>
+  <integer>10</integer>
+
+  <!-- Capture stdout/stderr to log files (create the directory beforehand). -->
+  <key>StandardOutPath</key>
+  <string>/Users/markjhlee/NSS_Learning/logs/gia-stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/markjhlee/NSS_Learning/logs/gia-stderr.log</string>
+
+  <!-- Lower process priority slightly so the dev machine stays responsive. -->
+  <key>Nice</key>
+  <integer>5</integer>
+
+  <!-- Soft file-descriptor limit — handy when serving lots of static assets. -->
+  <key>SoftResourceLimits</key>
+  <dict>
+    <key>NumberOfFiles</key>
+    <integer>4096</integer>
+  </dict>
+</dict>
+</plist>

@@ -1484,3 +1484,103 @@ body.math-mode {
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+/* ── Phase 2: Sidebar accordion & back button ─────────────── */
+.sb-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  padding: 8px 4px;
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--transition-fast);
+}
+.sb-back-btn:hover { color: var(--text-primary); }
+
+.sb-card-icon {
+  font-size: 16px;
+  margin-right: 2px;
+}
+.sb-card-badge {
+  font-size: 10px;
+  background: var(--bg-chip);
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  padding: 2px 6px;
+  margin-left: auto;
+}
+.sb-card-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sb-accordion-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 8px;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: background var(--transition-fast);
+}
+.sb-accordion-btn:hover { background: var(--bg-chip); }
+.sb-accordion-btn .sb-accordion-arrow {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: transform var(--transition-fast);
+}
+.sb-accordion-btn.open .sb-accordion-arrow { transform: rotate(180deg); }
+
+.sb-accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  opacity: 0;
+  padding-left: 8px;
+}
+.sb-accordion-panel.open {
+  max-height: 600px;
+  opacity: 1;
+}
+
+.sb-accordion-info {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  padding: 4px 8px;
+}
+
+/* ── View visibility (Phase 2 home dashboard refactor) ───────
+ * `.stage-area` is the SHARED container for home-dashboard, idle-wrapper,
+ * stage-card, daily-words-view, and diary-view. We keep it visible at all
+ * times and hide individual children based on body[data-view].
+ * The previous rules hid the parent on home/diary which also hid the
+ * home-dashboard child even when JS tried to show it.
+ */
+body[data-view="english"] #home-dashboard { display: none !important; }
+body[data-view="diary"]   #home-dashboard { display: none !important; }
+body[data-view="home"]    #idle-wrapper,
+body[data-view="diary"]   #idle-wrapper   { display: none !important; }
+body[data-view="home"]    #stage-card,
+body[data-view="diary"]   #stage-card     { display: none !important; }
+body[data-view="home"]    #diary-view,
+body[data-view="english"] #diary-view     { display: none !important; }
+body[data-view="home"]    .top-bar,
+body[data-view="diary"]   .top-bar        { display: none !important; }
+
+/* Hide sidebar entirely on home — section cards live in the main dashboard.
+   Also drop the toggle button since there's nothing to toggle. */
+body[data-view="home"] .sidebar       { display: none !important; }
+body[data-view="home"] .sidebar-toggle { display: none !important; }
