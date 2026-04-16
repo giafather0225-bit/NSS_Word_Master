@@ -26,11 +26,12 @@
     <link rel="stylesheet" href="/static/css/review.css?v=5">
     <link rel="stylesheet" href="/static/css/home.css?v=3">
     <link rel="stylesheet" href="/static/css/daily-words.css">
-    <link rel="stylesheet" href="/static/css/reward-shop.css?v=2">
+    <link rel="stylesheet" href="/static/css/reward-shop.css?v=3">
     <link rel="stylesheet" href="/static/css/parent.css?v=3">
     <link rel="stylesheet" href="/static/css/diary.css">
     <link rel="stylesheet" href="/static/css/calendar.css">
     <link rel="stylesheet" href="/static/css/xp.css">
+    <link rel="stylesheet" href="/static/css/collocation.css">
     <link rel="stylesheet" href="/static/css/splash.css?v=2">
 
 </head>
@@ -418,20 +419,34 @@
                     <!-- Section cards -->
                     <div class="section-cards">
                         <div class="section-card" id="section-card-english">
-                            <span class="section-card-icon">📖</span>
-                            <div class="section-card-title">English</div>
-                            <div class="section-card-sub">Vocabulary &amp; reading</div>
+                            <div class="section-card-icon-wrap">
+                                <span class="section-card-icon">📖</span>
+                            </div>
+                            <div class="section-card-body">
+                                <div class="section-card-title">English</div>
+                                <div class="section-card-sub">Vocabulary &amp; reading</div>
+                            </div>
+                            <span class="section-card-arrow">›</span>
                         </div>
                         <div class="section-card" id="section-card-diary">
-                            <span class="section-card-icon">✏️</span>
-                            <div class="section-card-title">GIA's Diary</div>
-                            <div class="section-card-sub">Write about your day</div>
+                            <div class="section-card-icon-wrap">
+                                <span class="section-card-icon">✏️</span>
+                            </div>
+                            <div class="section-card-body">
+                                <div class="section-card-title">GIA's Diary</div>
+                                <div class="section-card-sub">Write about your day</div>
+                            </div>
+                            <span class="section-card-arrow">›</span>
                         </div>
                         <div class="section-card section-card-disabled">
-                            <span class="section-card-icon">🔢</span>
-                            <div class="section-card-title">Math</div>
-                            <div class="section-card-sub">Coming Soon</div>
-                            <div class="section-card-overlay">Coming Soon</div>
+                            <div class="section-card-icon-wrap section-card-icon-wrap--muted">
+                                <span class="section-card-icon">🔢</span>
+                            </div>
+                            <div class="section-card-body">
+                                <div class="section-card-title">Math</div>
+                                <div class="section-card-sub">Coming soon</div>
+                            </div>
+                            <span class="section-card-coming-soon">Soon</span>
                         </div>
                     </div>
                     <!-- Growth theme -->
@@ -509,6 +524,21 @@
 <!-- Parent Dashboard full-screen overlay -->
 <div id="parent-overlay" class="hidden"></div>
 
+<!-- Collocation / Chunk Challenge overlay -->
+<div id="collocation-overlay" class="hidden" role="dialog" aria-label="Chunk Challenge">
+    <div class="coll-container">
+        <div class="coll-header">
+            <div class="coll-header-title">✦ Chunk Challenge</div>
+            <button class="coll-close-btn" id="coll-close-btn" type="button" aria-label="Close">✕</button>
+        </div>
+        <div class="coll-phase-label" id="coll-phase-label"></div>
+        <div class="coll-progress-track">
+            <div class="coll-progress-fill" id="coll-progress-fill" style="width:0%"></div>
+        </div>
+        <div class="coll-body" id="coll-body"></div>
+    </div>
+</div>
+
 <!-- GIA's Diary full-screen overlay -->
 <div id="diary-overlay" class="hidden" role="dialog" aria-label="GIA's Diary">
     <div class="diary-overlay-header">
@@ -573,16 +603,17 @@
 <script src="/static/js/sentence.js?v=1"></script>
 <script src="/static/js/home.js?v=2"></script>
 <script src="/static/js/growth-theme.js?v=2"></script>
-<script src="/static/js/parent-panel.js?v=3"></script>
+<script src="/static/js/parent-panel.js?v=4"></script>
 <script src="/static/js/parent-settings.js?v=2"></script>
-<script src="/static/js/reward-shop.js?v=2"></script>
+<script src="/static/js/reward-shop.js?v=3"></script>
 <script src="/static/js/diary.js?v=1"></script>
 <script src="/static/js/calendar.js?v=1"></script>
 <script src="/static/js/daily-words.js?v=1"></script>
 <script src="/static/js/daily-words-weekly.js?v=1"></script>
 <script src="/static/js/child.js?v=32"></script>
 <script src="/static/js/sentence_ai.js?v=1"></script>
-<script src="/static/js/finaltest.js?v=10"></script>
+<script src="/static/js/collocation.js?v=1"></script>
+<script src="/static/js/finaltest.js?v=11"></script>
 <script src="/static/js/unittest.js?v=5"></script>
 <script src="/static/js/review.js?v=3"></script>
 

@@ -352,15 +352,28 @@
 
         $id('eo-action-btn').addEventListener('click', function() {
             if (passed) {
-                // Just close — pass is already saved, exam button stays open
                 closeExam();
             } else {
-                // Reset learning stages + reload
                 clearStages(ctx);
                 closeExam();
                 setTimeout(function() { location.reload(); }, 300);
             }
         });
+
+        // Chunk Challenge button: show only when collocation data exists
+        var chunkBtn = $id('eo-chunk-btn');
+        if (chunkBtn && window.Collocation) {
+            window.Collocation.checkData().then(function(hasData) {
+                if (hasData) {
+                    chunkBtn.style.display = 'block';
+                    chunkBtn.addEventListener('click', function() {
+                        closeExam();
+                        setTimeout(function() { window.Collocation.open(); }, 260);
+                    });
+                }
+                // else: remains hidden (display:none from HTML)
+            });
+        }
     }
 
     function buildResultsHTML(mcC, fillC, total, maxPts, pct, passed) {
@@ -402,6 +415,7 @@
                 '</div>' +
             '</div>' +
             '<button class="' + btnClass + '" id="eo-action-btn">' + btnLabel + '</button>' +
+            '<button class="eo-chunk-btn" id="eo-chunk-btn" style="display:none">✦ Chunk Challenge</button>' +
         '</div>';
     }
 

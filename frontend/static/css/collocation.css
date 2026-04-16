@@ -1,0 +1,530 @@
+/* ================================================================
+   collocation.css — Collocation/Chunk Learning bonus stage styles
+   Section: English / Daily Words
+   Dependencies: theme.css
+   API endpoints: none
+   ================================================================ */
+
+/* ── Overlay ──────────────────────────────────────────────────── */
+#collocation-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    background: var(--bg-page);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    transition: opacity 0.2s;
+}
+
+#collocation-overlay.hidden {
+    display: none;
+}
+
+#collocation-overlay.closing {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── Container ────────────────────────────────────────────────── */
+.coll-container {
+    width: 100%;
+    max-width: 540px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 48px;
+}
+
+/* ── Header ───────────────────────────────────────────────────── */
+.coll-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: var(--bg-card);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.coll-header-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.coll-close-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coll-close-btn:hover {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+/* ── Phase label ──────────────────────────────────────────────── */
+.coll-phase-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 16px 20px 0;
+}
+
+/* ── Progress bar ─────────────────────────────────────────────── */
+.coll-progress-track {
+    height: 3px;
+    background: rgba(0,0,0,0.06);
+    margin: 12px 20px 0;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.coll-progress-fill {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+}
+
+/* ── Body ─────────────────────────────────────────────────────── */
+.coll-body {
+    flex: 1;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  LEARN PHASE — Card slider                                      */
+/* ─────────────────────────────────────────────────────────────── */
+
+.coll-card-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.coll-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: coll-fade-in 0.2s ease;
+}
+
+@keyframes coll-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.coll-card-word {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+.coll-card-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.06);
+}
+
+.coll-card-collocation {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Highlight the target word inside collocation */
+.coll-highlight {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.coll-card-example {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Underline the collocation phrase in the example */
+.coll-example-mark {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: var(--text-primary);
+    font-style: italic;
+}
+
+/* Dot indicators */
+.coll-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 4px 0;
+}
+
+.coll-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: rgba(0,0,0,0.15);
+    transition: background 0.2s, width 0.2s;
+}
+
+.coll-dot.active {
+    width: 18px;
+    background: var(--color-primary);
+}
+
+/* Card nav buttons */
+.coll-card-nav {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.coll-btn-nav {
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--color-primary);
+    background: var(--bg-card);
+    color: var(--color-primary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.coll-btn-nav:hover {
+    background: var(--color-primary-light);
+}
+
+.coll-btn-nav:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.coll-btn-start-quiz {
+    padding: 14px 24px;
+    border-radius: var(--radius-md);
+    border: none;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.15s;
+}
+
+.coll-btn-start-quiz:hover {
+    background: var(--color-primary-hover);
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  QUIZ PHASE — Fill-in-the-blank                                 */
+/* ─────────────────────────────────────────────────────────────── */
+
+.coll-quiz-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.coll-quiz-counter {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.coll-quiz-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: coll-fade-in 0.2s ease;
+}
+
+.coll-quiz-prompt {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    letter-spacing: -0.3px;
+    line-height: 1.4;
+}
+
+.coll-blank {
+    display: inline-block;
+    min-width: 80px;
+    height: 2px;
+    background: var(--color-primary);
+    vertical-align: middle;
+    margin: 0 4px;
+    border-radius: 2px;
+}
+
+.coll-quiz-def {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.coll-quiz-input-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.coll-quiz-inp {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(0,0,0,0.12);
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    background: var(--bg-page);
+    outline: none;
+    transition: border-color 0.15s;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.coll-quiz-inp:focus {
+    border-color: var(--color-primary);
+}
+
+.coll-quiz-inp.correct {
+    border-color: var(--color-success);
+    background: rgba(52, 199, 89, 0.06);
+}
+
+.coll-quiz-inp.wrong {
+    border-color: var(--color-error);
+    background: rgba(255, 59, 48, 0.06);
+}
+
+.coll-quiz-feedback {
+    min-height: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.coll-quiz-feedback.correct { color: var(--color-success); }
+.coll-quiz-feedback.wrong   { color: var(--color-error); }
+
+.coll-btn-submit {
+    padding: 13px 24px;
+    border-radius: var(--radius-md);
+    border: none;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.15s;
+}
+
+.coll-btn-submit:hover   { background: var(--color-primary-hover); }
+.coll-btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ─────────────────────────────────────────────────────────────── */
+/*  RESULT PHASE                                                   */
+/* ─────────────────────────────────────────────────────────────── */
+
+.coll-result-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-top: 8px;
+}
+
+.coll-result-score-wrap {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.coll-result-icon {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.coll-result-score {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--color-primary);
+    letter-spacing: -2px;
+}
+
+.coll-result-score-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.coll-result-xp {
+    background: var(--color-primary-light);
+    border-radius: var(--radius-md);
+    padding: 12px 28px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.coll-result-perfect-msg {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-align: center;
+    padding: 8px 20px;
+    background: var(--color-primary-light);
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 0 2px var(--color-primary-light);
+    animation: coll-glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes coll-glow {
+    from { box-shadow: 0 0 0 2px var(--color-primary-light); }
+    to   { box-shadow: 0 0 0 6px rgba(212, 97, 158, 0.2); }
+}
+
+.coll-btn-home {
+    padding: 14px 32px;
+    border-radius: var(--radius-md);
+    border: none;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    max-width: 320px;
+    transition: background 0.15s;
+}
+
+.coll-btn-home:hover { background: var(--color-primary-hover); }
+
+/* ── Loading state ────────────────────────────────────────────── */
+.coll-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.coll-spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid rgba(0,0,0,0.08);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: coll-spin 0.8s linear infinite;
+}
+
+@keyframes coll-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── Chunk Challenge button (in finaltest results) ────────────── */
+.eo-chunk-btn {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 13px 24px;
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--color-primary);
+    background: var(--bg-card);
+    color: var(--color-primary);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-family);
+    transition: background 0.15s, color 0.15s;
+}
+
+.eo-chunk-btn:hover {
+    background: var(--color-primary-light);
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .coll-container {
+        padding-bottom: 32px;
+    }
+
+    .coll-card {
+        padding: 22px 18px;
+    }
+
+    .coll-card-word {
+        font-size: 24px;
+    }
+
+    .coll-card-collocation {
+        font-size: 17px;
+    }
+
+    .coll-quiz-card {
+        padding: 22px 16px;
+    }
+
+    .coll-quiz-prompt {
+        font-size: 19px;
+    }
+
+    .coll-result-score {
+        font-size: 48px;
+    }
+}
