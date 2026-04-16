@@ -173,6 +173,8 @@ class RewardItem(Base):
     __tablename__ = "reward_items"
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    description = Column(String, default="")
+    category = Column(String, default="badge")  # "badge", "theme", "power", "real"
     icon = Column(String)
     price = Column(Integer)
     discount_pct = Column(Integer, default=0)
@@ -186,6 +188,7 @@ class PurchasedReward(Base):
     reward_item_id = Column(Integer, ForeignKey("reward_items.id"))
     xp_spent = Column(Integer)
     is_used = Column(Boolean, default=False)
+    is_equipped = Column(Boolean, default=False)
     purchased_at = Column(String)
     used_at = Column(String, nullable=True)
 

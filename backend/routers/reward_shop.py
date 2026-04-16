@@ -5,13 +5,14 @@ Dependencies: models.py (RewardItem, PurchasedReward, AppConfig),
               services/xp_engine.py
 API: GET /api/shop/items, POST /api/shop/buy,
      GET /api/shop/my-rewards, POST /api/shop/use-reward/{id},
+     POST /api/shop/equip/{id},
      GET /api/shop/pin-status, POST /api/shop/set-pin
 """
 
 import logging
 from datetime import datetime
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
@@ -26,6 +27,45 @@ except ImportError:
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
+
+# ─── Seed Data ───────────────────────────────────────────────
+
+SEED_REWARDS = [
+    {"name": "Word Explorer Badge",  "category": "badge", "price": 50,   "icon": "🔍", "description": "You explored 50 new words!"},
+    {"name": "Streak Master Badge",  "category": "badge", "price": 100,  "icon": "🔥", "description": "7-day streak achieved!"},
+    {"name": "Perfect Scorer Badge", "category": "badge", "price": 150,  "icon": "💯", "description": "100% on a Final Test!"},
+    {"name": "Ocean Theme",          "category": "theme", "price": 200,  "icon": "🌊", "description": "Cool ocean colors for your app"},
+    {"name": "Space Theme",          "category": "theme", "price": 200,  "icon": "🚀", "description": "Dark space theme with stars"},
+    {"name": "Forest Theme",         "category": "theme", "price": 200,  "icon": "🌲", "description": "Calm forest green theme"},
+    {"name": "Hint Power",           "category": "power", "price": 30,   "icon": "💡", "description": "Get one free hint in any stage"},
+    {"name": "Skip Power",           "category": "power", "price": 50,   "icon": "⏭️", "description": "Skip one difficult word"},
+    {"name": "Double XP (1 day)",    "category": "power", "price": 100,  "icon": "⚡", "description": "Earn 2x XP for 24 hours"},
+    {"name": "Sticker Pack",         "category": "real",  "price": 500,  "icon": "⭐", "description": "Real sticker pack from Dad!"},
+    {"name": "Ice Cream Coupon",     "category": "real",  "price": 800,  "icon": "🍦", "description": "One ice cream from Dad!"},
+    {"name": "Movie Night",          "category": "real",  "price": 1000, "icon": "🎬", "description": "Pick a movie for family night!"},
+]
+
+
+def _seed_rewards_if_empty(db: Session) -> None:
+    """Insert seed rewards if the reward_items table is empty. @tag SHOP"""
+    count = db.query(RewardItem).count()
+    if count > 0:
+        return
+    from datetime import datetime
+    now = datetime.now().isoformat()
+    for item in SEED_REWARDS:
+        db.add(RewardItem(
+            name=item["name"],
+            description=item.get("description", ""),
+            category=item.get("category", "badge"),
+            icon=item["icon"],
+            price=item["price"],
+            discount_pct=0,
+            is_active=True,
+            created_at=now,
+        ))
+    db.commit()
+    logger.info("[shop] Seeded %d reward items", len(SEED_REWARDS))
 
 DEFAULT_PIN = "0000"
 
@@ -42,6 +82,10 @@ class UseRewardIn(BaseModel):
 
 class SetPinIn(BaseModel):
     pin: str
+
+
+class EquipIn(BaseModel):
+    equip: bool = True
 
 
 # ─── Helpers ──────────────────────────────────────────────────
@@ -63,6 +107,8 @@ def _item_dict(item: RewardItem) -> dict:
     return {
         "id": item.id,
         "name": item.name,
+        "description": getattr(item, "description", "") or "",
+        "category": getattr(item, "category", "badge") or "badge",
         "icon": item.icon,
         "price": item.price,
         "discount_pct": item.discount_pct or 0,
@@ -77,9 +123,12 @@ def _purchase_dict(pr: PurchasedReward, item: RewardItem | None) -> dict:
         "id": pr.id,
         "item_id": pr.reward_item_id,
         "name": item.name if item else "Unknown",
+        "description": getattr(item, "description", "") if item else "",
+        "category": getattr(item, "category", "badge") if item else "badge",
         "icon": item.icon if item else "🎁",
         "xp_spent": pr.xp_spent,
         "is_used": pr.is_used,
+        "is_equipped": getattr(pr, "is_equipped", False) or False,
         "purchased_at": pr.purchased_at,
         "used_at": pr.used_at,
     }
@@ -88,12 +137,20 @@ def _purchase_dict(pr: PurchasedReward, item: RewardItem | None) -> dict:
 # ─── Endpoints ────────────────────────────────────────────────
 
 @router.get("/api/shop/items")
-def shop_items(db: Session = Depends(get_db)):
+def shop_items(
+    category: str | None = Query(default=None),
+    db: Session = Depends(get_db),
+):
     """
     Return all active reward shop items with final prices.
+    Optional ?category=badge|theme|power|real filter.
     @tag SHOP
     """
-    items = db.query(RewardItem).filter(RewardItem.is_active == True).all()
+    _seed_rewards_if_empty(db)
+    q = db.query(RewardItem).filter(RewardItem.is_active == True)
+    if category:
+        q = q.filter(RewardItem.category == category)
+    items = q.all()
     total_xp = xp_engine.get_total_xp(db)
     return {
         "items": [_item_dict(i) for i in items],
@@ -176,6 +233,35 @@ def shop_use_reward(purchase_id: int, body: UseRewardIn, db: Session = Depends(g
     pr.used_at = datetime.now().isoformat()
     db.commit()
     return {"ok": True}
+
+
+@router.post("/api/shop/equip/{purchase_id}")
+def shop_equip(purchase_id: int, body: EquipIn, db: Session = Depends(get_db)):
+    """
+    Equip or unequip a purchased reward (badges/themes).
+    @tag SHOP
+    """
+    pr = db.query(PurchasedReward).filter(PurchasedReward.id == purchase_id).first()
+    if not pr:
+        raise HTTPException(status_code=404, detail="Purchase not found")
+    if pr.is_used:
+        raise HTTPException(status_code=400, detail="Already used/consumed")
+
+    item = db.query(RewardItem).filter(RewardItem.id == pr.reward_item_id).first()
+    cat = getattr(item, "category", "badge") if item else "badge"
+
+    # For themes: unequip any other equipped theme first
+    if body.equip and cat == "theme":
+        theme_ids = [i.id for i in db.query(RewardItem).filter(RewardItem.category == "theme").all()]
+        if theme_ids:
+            db.query(PurchasedReward).filter(
+                PurchasedReward.reward_item_id.in_(theme_ids),
+                PurchasedReward.is_equipped == True,
+            ).update({"is_equipped": False}, synchronize_session="fetch")
+
+    pr.is_equipped = body.equip
+    db.commit()
+    return {"ok": True, "is_equipped": pr.is_equipped}
 
 
 @router.get("/api/shop/pin-status")

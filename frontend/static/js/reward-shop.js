@@ -11,6 +11,7 @@
  * @tag SHOP
  */
 let _shopTab = "shop"; // "shop" | "my-rewards"
+let _shopCategory = "all"; // "all" | "badge" | "theme" | "power" | "real"
 let _pinTarget = null; // purchase_id pending use
 let _pinDigits = "";   // current PIN entry (up to 4 digits)
 
@@ -49,7 +50,21 @@ function _renderShopFrame() {
             <button class="shop-tab active" id="tab-shop"       onclick="_shopSwitchTab('shop')">Shop</button>
             <button class="shop-tab"        id="tab-my-rewards" onclick="_shopSwitchTab('my-rewards')">My Rewards</button>
         </div>
+        <div class="shop-cat-bar" id="shop-cat-bar">
+            <button class="shop-cat active" data-cat="all" onclick="_shopFilterCat('all')">All</button>
+            <button class="shop-cat" data-cat="badge" onclick="_shopFilterCat('badge')">Badges</button>
+            <button class="shop-cat" data-cat="theme" onclick="_shopFilterCat('theme')">Themes</button>
+            <button class="shop-cat" data-cat="power" onclick="_shopFilterCat('power')">Powers</button>
+            <button class="shop-cat" data-cat="real" onclick="_shopFilterCat('real')">Real</button>
+        </div>
         <div id="shop-body"><p style="text-align:center;padding:40px;color:var(--text-secondary);">Loading…</p></div>`;
+}
+
+/** Filter shop items by category. @tag SHOP */
+function _shopFilterCat(cat) {
+    _shopCategory = cat;
+    document.querySelectorAll(".shop-cat").forEach(b => b.classList.toggle("active", b.dataset.cat === cat));
+    _loadShopTab("shop");
 }
 
 /** Switch between Shop and My Rewards tabs. @tag SHOP */
@@ -58,6 +73,8 @@ function _shopSwitchTab(tab) {
     document.querySelectorAll(".shop-tab").forEach(b => b.classList.remove("active"));
     const active = document.getElementById(tab === "shop" ? "tab-shop" : "tab-my-rewards");
     if (active) active.classList.add("active");
+    const catBar = document.getElementById("shop-cat-bar");
+    if (catBar) catBar.style.display = tab === "shop" ? "flex" : "none";
     _loadShopTab(tab);
 }
 
@@ -70,7 +87,8 @@ async function _loadShopTab(tab) {
     body.innerHTML = `<p style="text-align:center;padding:40px;color:var(--text-secondary);">Loading…</p>`;
     try {
         if (tab === "shop") {
-            const res = await fetch("/api/shop/items");
+            const catParam = _shopCategory && _shopCategory !== "all" ? `?category=${_shopCategory}` : "";
+            const res = await fetch(`/api/shop/items${catParam}`);
             const data = await res.json();
             _updateXPDisplay(data.total_xp || 0);
             _renderShopGrid(data.items || [], data.total_xp || 0);
@@ -107,11 +125,15 @@ function _renderShopGrid(items, totalXp) {
         const priceHTML  = item.discount_pct > 0
             ? `<span class="shop-item-original">⭐${item.price}</span><span class="shop-item-price">⭐${item.final_price}</span>`
             : `<span class="shop-item-price">⭐${item.final_price}</span>`;
+        const desc = item.description ? `<div class="shop-item-desc">${escapeHtml(item.description)}</div>` : "";
+        const catBadge = `<span class="shop-item-cat">${item.category || "badge"}</span>`;
         return `<div class="shop-item-card${affordable ? "" : " unaffordable"}"
                      onclick="${affordable ? `_shopConfirmBuy(${item.id},'${escapeHtml(item.name)}','${escapeHtml(item.icon)}',${item.final_price})` : ""}">
             ${discBadge}
+            ${catBadge}
             <span class="shop-item-icon">${item.icon}</span>
             <div class="shop-item-name">${escapeHtml(item.name)}</div>
+            ${desc}
             <div>${priceHTML}</div>
         </div>`;
     }).join("");
@@ -183,14 +205,24 @@ function _renderMyRewards(rewards) {
     const row = r => {
         const date = r.purchased_at ? r.purchased_at.slice(0,10) : "";
         const usedLabel = r.is_used ? `Used ${r.used_at ? r.used_at.slice(0,10) : ""}` : `Bought ${date}`;
-        return `<div class="my-reward-row${r.is_used ? " used" : ""}">
+        const desc = r.description ? `<div class="my-reward-desc">${escapeHtml(r.description)}</div>` : "";
+        const canEquip = !r.is_used && (r.category === "badge" || r.category === "theme");
+        const equipBtn = canEquip
+            ? `<button class="my-reward-equip-btn${r.is_equipped ? " equipped" : ""}"
+                       onclick="_shopToggleEquip(${r.id}, ${!r.is_equipped})">${r.is_equipped ? "Equipped" : "Equip"}</button>`
+            : "";
+        return `<div class="my-reward-row${r.is_used ? " used" : ""}${r.is_equipped ? " equipped" : ""}">
             <span class="my-reward-icon">${r.icon}</span>
             <div class="my-reward-info">
                 <div class="my-reward-name">${escapeHtml(r.name)}</div>
+                ${desc}
                 <div class="my-reward-meta">⭐${r.xp_spent} · ${usedLabel}</div>
             </div>
-            <button class="my-reward-use-btn" onclick="_shopOpenPin(${r.id})"
-                    ${r.is_used ? "disabled" : ""}>${r.is_used ? "Used ✓" : "Use"}</button>
+            <div class="my-reward-actions">
+                ${equipBtn}
+                <button class="my-reward-use-btn" onclick="_shopOpenPin(${r.id})"
+                        ${r.is_used ? "disabled" : ""}>${r.is_used ? "Used ✓" : "Use"}</button>
+            </div>
         </div>`;
     };
     body.innerHTML = `<div class="my-rewards-list">
@@ -272,6 +304,29 @@ async function _submitPin() {
             if (errEl) errEl.textContent = "Wrong PIN. Try again.";
         }
     } catch (_) { _pinDigits = ""; _updatePinDots(); }
+}
+
+// ─── Equip / Unequip ──────────────────────────────────────────
+
+/**
+ * Toggle equip status for a purchased reward (badges/themes).
+ * @tag SHOP
+ */
+async function _shopToggleEquip(purchaseId, equip) {
+    try {
+        const res = await fetch(`/api/shop/equip/${purchaseId}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ equip }),
+        });
+        if (res.ok) {
+            _showShopToast(equip ? "Equipped!" : "Unequipped");
+            _loadShopTab("my-rewards");
+        } else {
+            const err = await res.json().catch(() => ({}));
+            _showShopToast(err.detail || "Failed.", true);
+        }
+    } catch (_) { _showShopToast("Network error.", true); }
 }
 
 // ─── Utilities ────────────────────────────────────────────────

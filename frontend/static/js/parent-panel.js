@@ -170,23 +170,57 @@ async function _ppLoadTab(tab) {
 
 // ─── Overview ─────────────────────────────────────────────────
 
-/** Render the overview stats + recent activity. @tag PARENT */
+/** Render the enhanced overview: summary cards + activity chart + stage stats. @tag PARENT */
 async function _ppOverview(body) {
     try {
-        const res  = await fetch("/api/parent/overview");
-        const data = await res.json();
-        const logs = (data.recent_logs || []).map(l =>
-            `<tr><td>${l.completed_at}</td><td>${escapeHtml(l.lesson)}</td><td>${l.stage}</td><td>${l.correct_count}/${l.word_count}</td><td>${Math.round((l.duration_sec||0)/60)}m</td></tr>`
-        ).join("") || `<tr><td colspan="5" style="text-align:center;color:var(--text-secondary)">No activity yet.</td></tr>`;
-        body.innerHTML = `
+        const [sumRes, actRes, stgRes] = await Promise.all([
+            fetch("/api/parent/summary"),
+            fetch("/api/parent/activity?days=7"),
+            fetch("/api/parent/stage-stats"),
+        ]);
+        const sum = await sumRes.json();
+        const act = await actRes.json();
+        const stg = await stgRes.json();
+
+        // Summary cards (2×2)
+        const cards = `
             <div class="pp-stats">
-                <div class="pp-stat"><div class="pp-stat-num">⭐${data.total_xp||0}</div><div class="pp-stat-label">Total XP</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">🔥${data.streak||0}</div><div class="pp-stat-label">Streak</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">${data.words_known||0}</div><div class="pp-stat-label">Words Mastered</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">⭐${data.today_xp||0}</div><div class="pp-stat-label">Today's XP</div></div>
-            </div>
-            <div class="pp-section-title">Recent Activity (7 days)</div>
-            <table class="pp-log-table"><thead><tr><th>Date</th><th>Lesson</th><th>Stage</th><th>Score</th><th>Time</th></tr></thead><tbody>${logs}</tbody></table>`;
+                <div class="pp-stat"><div class="pp-stat-num">⭐ ${sum.total_xp||0}</div><div class="pp-stat-label">Total XP · Lv.${sum.current_level||1}</div></div>
+                <div class="pp-stat"><div class="pp-stat-num">🔥 ${sum.current_streak||0}d</div><div class="pp-stat-label">Streak (best ${sum.longest_streak||0}d)</div></div>
+                <div class="pp-stat"><div class="pp-stat-num">${sum.total_words_learned||0}</div><div class="pp-stat-label">Words Learned</div></div>
+                <div class="pp-stat"><div class="pp-stat-num">${sum.total_study_minutes||0}m</div><div class="pp-stat-label">${sum.total_study_sessions||0} sessions</div></div>
+            </div>`;
+
+        // 7-day activity bar chart (CSS-only)
+        const daily = act.daily || [];
+        const maxXP = Math.max(1, ...daily.map(d => d.xp));
+        const bars = daily.map(d => {
+            const pct = Math.round((d.xp / maxXP) * 100);
+            const dayLabel = d.date.slice(5); // MM-DD
+            return `<div class="pp-bar-col">
+                <div class="pp-bar-value">${d.xp}</div>
+                <div class="pp-bar-track"><div class="pp-bar-fill" style="height:${pct}%"></div></div>
+                <div class="pp-bar-label">${dayLabel}</div>
+            </div>`;
+        }).join("");
+        const chart = `
+            <div class="pp-section-title">7-Day XP Activity</div>
+            <div class="pp-bar-chart">${bars}</div>`;
+
+        // Stage performance
+        const STAGE_NAMES = {preview:"Preview", word_match:"Word Match", fill_blank:"Fill Blank", spelling:"Spelling", sentence:"Sentence", final_test:"Final Test"};
+        const stageCards = Object.entries(stg.stages || {}).map(([key, s]) => {
+            const name = STAGE_NAMES[key] || key;
+            return `<div class="pp-stage-card">
+                <div class="pp-stage-name">${name}</div>
+                <div class="pp-stage-row"><span>Avg Accuracy</span><strong>${s.avg_accuracy}%</strong></div>
+                <div class="pp-stage-row"><span>Avg Time</span><strong>${Math.round(s.avg_time_sec/60)}m</strong></div>
+                <div class="pp-stage-row"><span>Completed</span><strong>${s.completions}x</strong></div>
+            </div>`;
+        }).join("");
+        const stageSection = stageCards ? `<div class="pp-section-title">Stage Performance</div><div class="pp-stage-grid">${stageCards}</div>` : "";
+
+        body.innerHTML = cards + chart + stageSection;
     } catch (_) { body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`; }
 }
 
