@@ -304,13 +304,6 @@ def read_root(request: Request):
 
 
 # @tag PAGES
-@app.get("/parent")
-def read_parent(request: Request):
-    """Serve the parent dashboard UI."""
-    return templates.TemplateResponse(name="parent.html", request=request)
-
-
-# @tag PAGES
 @app.get("/child")
 def read_child(request: Request):
     """Serve the child (GIA) UI."""

@@ -124,13 +124,14 @@ function _ppRemovePin() {
 // ─── Shell ────────────────────────────────────────────────────
 
 const PP_TABS = [
-    ["overview",  "Overview"],
-    ["dayoff",    "Day Off"],
-    ["tasks",     "Tasks"],
-    ["schedule",  "Schedule"],
-    ["wordstats", "Word Stats"],
-    ["pin",       "Change PIN"],
-    ["textbook",  "Add Textbook"],
+    ["overview",   "Overview"],
+    ["dayoff",     "Day Off"],
+    ["tasks",      "Tasks"],
+    ["schedule",   "Schedule"],
+    ["wordstats",  "Word Stats"],
+    ["textbooks",  "Textbooks"],
+    ["pin",        "Change PIN"],
+    ["textbook",   "Add Textbook"],
 ];
 
 /** Render the dashboard shell (header + nav + body). @tag PARENT */
@@ -159,11 +160,12 @@ async function _ppLoadTab(tab) {
     switch (tab) {
         case "overview":  await _ppOverview(body);  break;
         case "dayoff":    await _ppDayOff(body);    break;
-        case "wordstats": await _ppWordStats(body); break;
-        case "tasks":     if (typeof ppRenderTasks === "function") await ppRenderTasks(body);     break;
-        case "schedule":  if (typeof ppRenderSchedule === "function") await ppRenderSchedule(body); break;
-        case "pin":       if (typeof ppRenderPin === "function") ppRenderPin(body);               break;
-        case "textbook":  window.open("/ingest", "_blank"); body.innerHTML = `<p style="text-align:center;padding:40px;color:var(--text-secondary)">Opened in a new tab.</p>`; break;
+        case "wordstats":  await _ppWordStats(body);  break;
+        case "textbooks":  await _ppTextbooks(body); break;
+        case "tasks":      if (typeof ppRenderTasks    === "function") await ppRenderTasks(body);     break;
+        case "schedule":   if (typeof ppRenderSchedule === "function") await ppRenderSchedule(body);  break;
+        case "pin":        if (typeof ppRenderPin      === "function") ppRenderPin(body);             break;
+        case "textbook":   window.open("/ingest", "_blank"); body.innerHTML = `<p style="text-align:center;padding:40px;color:var(--text-secondary)">Opened in a new tab.</p>`; break;
         default: body.innerHTML = "<p>Coming soon.</p>";
     }
 }
@@ -258,6 +260,88 @@ async function _ppDecideDayOff(id, status) {
         });
         if (res.ok) _ppLoadTab("dayoff");
     } catch (_) {}
+}
+
+// ─── Word Stats ───────────────────────────────────────────────
+
+// ─── Textbooks Overview ───────────────────────────────────────
+
+/**
+ * Render textbook accordion with lesson breakdown.
+ * Uses /api/dashboard/stats for the list and /api/dashboard/textbook/{tb} for details.
+ * @tag PARENT WORD_STATS
+ */
+async function _ppTextbooks(body) {
+    try {
+        const res  = await fetch("/api/dashboard/stats");
+        const data = await res.json();
+        const tbs  = data.textbooks || [];
+
+        if (!tbs.length) {
+            body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px">No textbooks found.</p>`;
+            return;
+        }
+
+        // Summary row
+        const summary = `
+            <div class="pp-stats" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px">
+                <div class="pp-stat"><div class="pp-stat-num">${data.total_words || 0}</div><div class="pp-stat-label">Total Words</div></div>
+                <div class="pp-stat"><div class="pp-stat-num">${data.textbook_count || 0}</div><div class="pp-stat-label">Textbooks</div></div>
+                <div class="pp-stat"><div class="pp-stat-num">${data.lesson_count || 0}</div><div class="pp-stat-label">Lessons</div></div>
+            </div>`;
+
+        // Accordion rows
+        const rows = tbs.map((tb, i) => `
+            <div style="border-bottom:1px solid var(--color-primary-light)">
+                <div style="display:flex;align-items:center;gap:12px;padding:14px 4px;cursor:pointer"
+                     onclick="_ppTbToggle('ppTb${i}', '${escapeHtml(tb.name)}')">
+                    <span style="font-size:20px">📚</span>
+                    <div style="flex:1;min-width:0">
+                        <div style="font-size:15px;font-weight:600;color:var(--text-primary)">${escapeHtml(tb.name)}</div>
+                        <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">${tb.lessons||0} lessons · ${tb.words||0} words</div>
+                    </div>
+                    <span id="ppTbArrow${i}" style="font-size:18px;color:var(--text-secondary);transition:transform 0.2s">›</span>
+                </div>
+                <div id="ppTb${i}" style="display:none;padding:0 0 8px 52px"></div>
+            </div>`).join("");
+
+        body.innerHTML = summary + `<div class="pp-section-title">Textbook Overview</div><div>${rows}</div>`;
+    } catch (_) {
+        body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`;
+    }
+}
+
+/**
+ * Toggle textbook accordion and lazy-load lessons.
+ * @tag PARENT WORD_STATS
+ */
+async function _ppTbToggle(panelId, tbName) {
+    const panel = document.getElementById(panelId);
+    const idx   = panelId.replace("ppTb", "");
+    const arrow = document.getElementById(`ppTbArrow${idx}`);
+    if (!panel) return;
+
+    const isOpen = panel.style.display !== "none";
+    panel.style.display = isOpen ? "none" : "block";
+    if (arrow) arrow.style.transform = isOpen ? "" : "rotate(90deg)";
+    if (isOpen || panel.dataset.loaded) return;
+
+    panel.dataset.loaded = "1";
+    panel.innerHTML = `<p style="font-size:13px;color:var(--text-secondary);padding:4px 0">Loading…</p>`;
+    try {
+        const res  = await fetch("/api/dashboard/textbook/" + encodeURIComponent(tbName));
+        const data = await res.json();
+        const lessons = data.lessons || [];
+        if (!lessons.length) { panel.innerHTML = `<p style="font-size:13px;color:var(--text-secondary);padding:4px 0">No lessons.</p>`; return; }
+        panel.innerHTML = lessons.map(l => `
+            <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--radius-sm);transition:background 0.15s"
+                 onmouseover="this.style.background='var(--color-primary-light)'" onmouseout="this.style.background=''">
+                <span style="font-size:13px;font-weight:500;color:var(--text-primary);flex:1">${escapeHtml(l.lesson)}</span>
+                <span style="font-size:12px;color:var(--text-secondary)">${l.words||0} words</span>
+            </div>`).join("");
+    } catch (_) {
+        panel.innerHTML = `<p style="font-size:13px;color:var(--color-error);padding:4px 0">Failed to load.</p>`;
+    }
 }
 
 // ─── Word Stats ───────────────────────────────────────────────
