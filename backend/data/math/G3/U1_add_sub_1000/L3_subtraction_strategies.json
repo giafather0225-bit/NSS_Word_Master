@@ -1,0 +1,436 @@
+{
+  "lesson_title": "Subtraction Strategies",
+  "grade": "G3",
+  "unit": "U1_add_sub_1000",
+  "lesson": "L3_subtraction_strategies",
+  "pretest": [
+    {
+      "id": "u1L3_pre_01",
+      "type": "input",
+      "difficulty": 2,
+      "concept": "3-digit subtraction no regrouping",
+      "question": "586 − 243 = ?",
+      "answer": "343",
+      "feedback_correct": "Correct!",
+      "feedback_wrong": "Ones: 6−3=3, Tens: 8−4=4, Hundreds: 5−2=3. Answer: 343."
+    },
+    {
+      "id": "u1L3_pre_02",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "3-digit subtraction with regrouping",
+      "question": "624 − 287 = ?",
+      "answer": "337",
+      "feedback_correct": "Great job!",
+      "feedback_wrong": "Borrow from tens: 14−7=7. Borrow from hundreds: 11−8=3. Hundreds: 5−2=3. Answer: 337."
+    },
+    {
+      "id": "u1L3_pre_03",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "3-digit subtraction with regrouping",
+      "question": "500 − 146 = ?",
+      "answer": "354",
+      "feedback_correct": "Right!",
+      "feedback_wrong": "Regroup across zeros: 500 → 4 hundreds, 9 tens, 10 ones. 10−6=4, 9−4=5, 4−1=3. Answer: 354."
+    },
+    {
+      "id": "u1L3_pre_04",
+      "type": "mc",
+      "difficulty": 2,
+      "concept": "subtraction friendly number strategy",
+      "question": "What is 603 − 298? (Hint: 298 is close to 300)",
+      "options": ["305", "295", "315", "405"],
+      "answer": "305",
+      "feedback_correct": "Yes! 603−300=303, then add 2 back: 305.",
+      "feedback_wrong": "Since 298=300−2: 603−300=303, then +2 → 305."
+    },
+    {
+      "id": "u1L3_pre_05",
+      "type": "input",
+      "difficulty": 4,
+      "concept": "3-digit subtraction double regrouping",
+      "question": "712 − 356 = ?",
+      "answer": "356",
+      "feedback_correct": "Excellent!",
+      "feedback_wrong": "Ones: borrow → 12−6=6. Tens: borrow → 10−5=5. Hundreds: 6−3=3. Answer: 356."
+    }
+  ],
+  "learn": [
+    {
+      "id": "u1L3_learn_01",
+      "title": "Subtracting Without Regrouping",
+      "type": "concept",
+      "cpa_phase": "concrete",
+      "content": "When the top digit in each column is bigger than the bottom, just subtract each column: ones, tens, hundreds.",
+      "visual": {
+        "tool": "base10_blocks",
+        "config": {"start": 586, "max": 999}
+      },
+      "tts": "When we subtract and the top digit in each column is larger than the bottom, we simply subtract each column: ones, tens, then hundreds.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L3_learn_02",
+      "title": "What is Regrouping in Subtraction?",
+      "type": "concept",
+      "cpa_phase": "concrete",
+      "content": "When the top digit is smaller than the bottom, we borrow from the next column. 1 ten becomes 10 ones. 1 hundred becomes 10 tens.",
+      "visual": "Animation: 1 rod breaks into 10 unit cubes",
+      "tts": "When the top digit is smaller than the bottom, we borrow. One ten becomes ten ones. One hundred becomes ten tens.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L3_learn_03",
+      "title": "Regrouping in Action",
+      "type": "example",
+      "cpa_phase": "pictorial",
+      "content": "624 − 287: Ones: 4<7, borrow → 14−7=7. Tens: now 1, still <8, borrow → 11−8=3. Hundreds: 5−2=3.",
+      "visual": "Step-by-step column subtraction with borrow marks",
+      "tts": "Let's solve six twenty-four minus two eighty-seven. In the ones column, four is less than seven, so borrow from the tens. Fourteen minus seven is seven. The tens digit is now one, still less than eight, so borrow from the hundreds. Eleven minus eight is three. In the hundreds, five minus two is three. Answer: three thirty-seven.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L3_learn_04",
+      "title": "Subtracting Across Zeros",
+      "type": "example",
+      "cpa_phase": "pictorial",
+      "content": "500 − 146: There are no tens or ones to borrow from. Regroup 1 hundred into 9 tens and 10 ones. Now: 10−6=4, 9−4=5, 4−1=3.",
+      "visual": "Place-value chart with regroup arrows across zeros",
+      "tts": "When subtracting across zeros, we can't borrow from a zero. Instead, regroup one hundred as nine tens and ten ones. Then subtract each column.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L3_learn_05",
+      "title": "Number Line: Count Up",
+      "type": "concept",
+      "cpa_phase": "pictorial",
+      "content": "Subtraction = distance. 800 − 275: start at 275, jump +25 → 300, +500 → 800. Total jumped: 525.",
+      "visual": {
+        "tool": "number_line",
+        "config": {"min": 0, "max": 30, "start": 10}
+      },
+      "tts": "We can think of subtraction as distance on a number line. Start at the smaller number and count up to the bigger one. The total jump is the answer.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L3_learn_06",
+      "title": "Friendly Number Strategy",
+      "type": "concept",
+      "cpa_phase": "abstract",
+      "content": "Make the number you subtract 'friendly'. 603 − 298: change 298 to 300. 603 − 300 = 303. You took 2 too many, add 2 back: 305.",
+      "visual": "298 → 300, then compensate",
+      "tts": "Another strategy is the friendly number. If you subtract a little more than needed, add that amount back at the end.",
+      "interaction": "none"
+    },
+    {
+      "id": "u1L3_learn_07",
+      "title": "Choose Your Strategy!",
+      "type": "interactive",
+      "cpa_phase": "abstract",
+      "content": "For 742 − 398, which strategy fits best? Standard Algorithm, Count Up, or Friendly Number?",
+      "visual": "Three strategy cards",
+      "tts": "Now it's your turn. For seven forty-two minus three ninety-eight, which strategy would you choose?",
+      "interaction": "quiz_mini"
+    }
+  ],
+  "try": [
+    {
+      "id": "u1L3_try_01",
+      "type": "input",
+      "difficulty": 1,
+      "concept": "subtraction no regrouping",
+      "question": "789 − 345 = ?",
+      "answer": "444",
+      "hints": ["Ones: 9−5=?", "Tens: 8−4=?"],
+      "feedback_correct": "Perfect!",
+      "feedback_wrong": "9−5=4, 8−4=4, 7−3=4. Answer: 444.",
+      "solution_steps": [
+        "Ones: 9−5=4",
+        "Tens: 8−4=4",
+        "Hundreds: 7−3=4",
+        "Answer: 444"
+      ]
+    },
+    {
+      "id": "u1L3_try_02",
+      "type": "input",
+      "difficulty": 2,
+      "concept": "subtraction with regrouping ones",
+      "question": "632 − 248 = ?",
+      "answer": "384",
+      "hints": ["Ones: 2<8, borrow → 12−8=?", "Tens: now 2, still <4, borrow."],
+      "feedback_correct": "Great!",
+      "feedback_wrong": "Borrow twice: 12−8=4, 12−4=8, 5−2=3. Answer: 384.",
+      "solution_steps": [
+        "Ones: 2<8, borrow from tens → 12−8=4",
+        "Tens: now 2, borrow from hundreds → 12−4=8",
+        "Hundreds: now 5, 5−2=3",
+        "Answer: 384"
+      ]
+    },
+    {
+      "id": "u1L3_try_03",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "subtraction across zero",
+      "question": "705 − 268 = ?",
+      "answer": "437",
+      "hints": ["Can't borrow from 0 directly — regroup from hundreds.", "Tens become 9, ones become 15."],
+      "feedback_correct": "Excellent!",
+      "feedback_wrong": "Regroup: 705 → 6 hundreds + 9 tens + 15 ones. 15−8=7, 9−6=3, 6−2=4. Answer: 437.",
+      "solution_steps": [
+        "Can't borrow from zero directly",
+        "Regroup 705 = 6 hundreds + 9 tens + 15 ones",
+        "Ones: 15−8=7",
+        "Tens: 9−6=3",
+        "Hundreds: 6−2=4",
+        "Answer: 437"
+      ]
+    },
+    {
+      "id": "u1L3_try_04",
+      "type": "mc",
+      "difficulty": 2,
+      "concept": "friendly number subtraction",
+      "question": "Use a friendly number: 812 − 497 = ?",
+      "options": ["315", "325", "305", "415"],
+      "answer": "315",
+      "hints": ["497 is close to 500.", "812 − 500 = 312. You subtracted 3 too many, add 3 back."],
+      "feedback_correct": "Yes! 812−500=312, then +3 → 315.",
+      "feedback_wrong": "497 = 500−3. 812−500=312, +3 → 315.",
+      "solution_steps": [
+        "Make 497 friendly: 497 ≈ 500",
+        "812 − 500 = 312",
+        "You took 3 extra, add back 3",
+        "Answer: 315"
+      ]
+    },
+    {
+      "id": "u1L3_try_05",
+      "type": "input",
+      "difficulty": 4,
+      "concept": "word problem subtraction",
+      "question": "A school had 625 books. Students borrowed 258. How many books are left in the school?",
+      "answer": "367",
+      "hints": ["Subtract what was borrowed from the total.", "625 − 258 = ?"],
+      "feedback_correct": "Correct!",
+      "feedback_wrong": "625 − 258 = 367. Students borrowed 258, so 367 are left.",
+      "solution_steps": [
+        "Start with 625 books",
+        "Borrowed = subtract: 625 − 258",
+        "Ones: 15−8=7 (borrow). Tens: 11−5=6 (borrow). Hundreds: 5−2=3.",
+        "367 books are left"
+      ]
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "u1L3_r1_01",
+      "type": "input",
+      "difficulty": 1,
+      "concept": "subtraction no regrouping",
+      "question": "468 − 125 = ?",
+      "answer": "343",
+      "feedback_correct": "Correct!",
+      "feedback_wrong": "8−5=3, 6−2=4, 4−1=3. Answer: 343."
+    },
+    {
+      "id": "u1L3_r1_02",
+      "type": "input",
+      "difficulty": 1,
+      "concept": "subtraction no regrouping",
+      "question": "897 − 234 = ?",
+      "answer": "663",
+      "feedback_correct": "Nice!",
+      "feedback_wrong": "7−4=3, 9−3=6, 8−2=6. Answer: 663."
+    },
+    {
+      "id": "u1L3_r1_03",
+      "type": "input",
+      "difficulty": 2,
+      "concept": "regrouping ones",
+      "question": "754 − 128 = ?",
+      "answer": "626",
+      "feedback_correct": "Right!",
+      "feedback_wrong": "Ones: 14−8=6. Tens: 4−2=2. Hundreds: 7−1=6. Answer: 626."
+    },
+    {
+      "id": "u1L3_r1_04",
+      "type": "input",
+      "difficulty": 2,
+      "concept": "regrouping tens",
+      "question": "832 − 261 = ?",
+      "answer": "571",
+      "feedback_correct": "Good!",
+      "feedback_wrong": "Tens: 3<6, borrow → 13−6=7. Hundreds: 7−2=5. Answer: 571."
+    },
+    {
+      "id": "u1L3_r1_05",
+      "type": "mc",
+      "difficulty": 2,
+      "concept": "double regrouping",
+      "question": "543 − 267 = ?",
+      "options": ["276", "286", "376", "266"],
+      "answer": "276",
+      "feedback_correct": "Yes!",
+      "feedback_wrong": "Ones: 13−7=6. Tens: 3<6, borrow → 13−6=7. Hundreds: 4−2=2. Answer: 276."
+    },
+    {
+      "id": "u1L3_r1_06",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "across zero",
+      "question": "600 − 235 = ?",
+      "answer": "365",
+      "feedback_correct": "Great!",
+      "feedback_wrong": "Regroup 600 = 5 hundreds + 9 tens + 10 ones. 10−5=5, 9−3=6, 5−2=3. Answer: 365."
+    },
+    {
+      "id": "u1L3_r1_07",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "across zero",
+      "question": "904 − 328 = ?",
+      "answer": "576",
+      "feedback_correct": "Right!",
+      "feedback_wrong": "Regroup across 0: 904 = 8 hundreds + 9 tens + 14 ones. 14−8=6, 9−2=7, 8−3=5. Answer: 576."
+    },
+    {
+      "id": "u1L3_r1_08",
+      "type": "mc",
+      "difficulty": 2,
+      "concept": "friendly number",
+      "question": "Use a friendly number: 702 − 398 = ?",
+      "options": ["304", "314", "294", "404"],
+      "answer": "304",
+      "feedback_correct": "Yes! 702−400=302, +2 → 304.",
+      "feedback_wrong": "398=400−2. 702−400=302, +2 → 304."
+    },
+    {
+      "id": "u1L3_r1_09",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "word problem subtraction",
+      "question": "Maya had 412 marbles. She gave 185 to her sister. How many does she have left?",
+      "answer": "227",
+      "feedback_correct": "Perfect!",
+      "feedback_wrong": "412 − 185 = 227. She has 227 marbles left."
+    },
+    {
+      "id": "u1L3_r1_10",
+      "type": "mc",
+      "difficulty": 3,
+      "concept": "word problem subtraction",
+      "question": "A library has 850 books. 378 are checked out. How many are on the shelves?",
+      "options": ["472", "462", "572", "382"],
+      "answer": "472",
+      "feedback_correct": "Correct!",
+      "feedback_wrong": "850 − 378 = 472 books on the shelves."
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "u1L3_r2_01",
+      "type": "input",
+      "difficulty": 2,
+      "concept": "regrouping",
+      "question": "615 − 347 = ?",
+      "answer": "268",
+      "feedback_correct": "Correct!",
+      "feedback_wrong": "Ones: 15−7=8. Tens: borrow → 10−4=6. Hundreds: 5−3=2. Answer: 268."
+    },
+    {
+      "id": "u1L3_r2_02",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "regrouping twice",
+      "question": "821 − 456 = ?",
+      "answer": "365",
+      "feedback_correct": "Great!",
+      "feedback_wrong": "Borrow twice: 11−6=5, 11−5=6, 7−4=3. Answer: 365."
+    },
+    {
+      "id": "u1L3_r2_03",
+      "type": "input",
+      "difficulty": 4,
+      "concept": "across double zeros",
+      "question": "700 − 384 = ?",
+      "answer": "316",
+      "feedback_correct": "Excellent!",
+      "feedback_wrong": "Regroup across 0s: 700 = 6 hundreds + 9 tens + 10 ones. 10−4=6, 9−8=1, 6−3=3. Answer: 316."
+    },
+    {
+      "id": "u1L3_r2_04",
+      "type": "mc",
+      "difficulty": 2,
+      "concept": "estimate then subtract",
+      "question": "Estimate: 589 − 304 is about…",
+      "options": ["200", "300", "400", "100"],
+      "answer": "300",
+      "feedback_correct": "Yes! 600−300=300.",
+      "feedback_wrong": "Round to nearest hundred: 589→600, 304→300. 600−300=300."
+    },
+    {
+      "id": "u1L3_r2_05",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "find the missing addend",
+      "question": "Find the missing number: 325 + __ = 700",
+      "answer": "375",
+      "feedback_correct": "Perfect!",
+      "feedback_wrong": "700 − 325 = 375."
+    },
+    {
+      "id": "u1L3_r2_06",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "word problem",
+      "question": "Jordan ran 468 meters and Sam ran 295 meters. How much farther did Jordan run?",
+      "answer": "173",
+      "feedback_correct": "Correct!",
+      "feedback_wrong": "468 − 295 = 173 meters. Jordan ran 173 m farther."
+    },
+    {
+      "id": "u1L3_r2_07",
+      "type": "input",
+      "difficulty": 3,
+      "concept": "word problem two-step",
+      "question": "A farmer had 925 eggs. He sold 288 and then 156 more. How many eggs are left?",
+      "answer": "481",
+      "feedback_correct": "Excellent!",
+      "feedback_wrong": "925 − 288 = 637. Then 637 − 156 = 481 eggs left."
+    },
+    {
+      "id": "u1L3_r2_08",
+      "type": "mc",
+      "difficulty": 3,
+      "concept": "friendly number",
+      "question": "Use a friendly number: 906 − 497 = ?",
+      "options": ["409", "399", "419", "509"],
+      "answer": "409",
+      "feedback_correct": "Yes! 906−500=406, +3 → 409.",
+      "feedback_wrong": "497=500−3. 906−500=406, +3 → 409."
+    },
+    {
+      "id": "u1L3_r2_09",
+      "type": "input",
+      "difficulty": 4,
+      "concept": "check with addition",
+      "question": "If 517 − 249 = 268, what should 249 + 268 equal? (to check)",
+      "answer": "517",
+      "feedback_correct": "Great check! The answer returns to 517.",
+      "feedback_wrong": "To check subtraction, add the result back: 249 + 268 = 517."
+    },
+    {
+      "id": "u1L3_r2_10",
+      "type": "input",
+      "difficulty": 4,
+      "concept": "word problem",
+      "question": "A bakery made 1000 cookies. They sold 356 in the morning and 278 in the afternoon. How many cookies are left?",
+      "answer": "366",
+      "feedback_correct": "Perfect!",
+      "feedback_wrong": "1000 − 356 − 278 = 366 cookies left."
+    }
+  ]
+}
