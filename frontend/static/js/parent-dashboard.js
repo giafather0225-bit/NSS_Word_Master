@@ -39,12 +39,14 @@
     function boot() {
         loadStats();
         loadAnalytics();
+        loadMathSummary();
         initModals();
         initPinChange();
 
         _refreshTimer = setInterval(() => {
             loadStats();
             loadAnalytics();
+            loadMathSummary();
         }, 30000);
 
         document.addEventListener("visibilitychange", () => {
@@ -598,6 +600,79 @@
     }
     function esc(s) {
         return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    }
+
+    /* ── Math Summary ── */
+    async function loadMathSummary() {
+        const el = $("parent-math-body");
+        if (!el) return;
+        try {
+            const res = await fetch("/api/parent/math-summary");
+            if (!res.ok) throw new Error("bad");
+            const d = await res.json();
+            renderMathSummary(el, d);
+        } catch (e) {
+            el.innerHTML = '<p class="empty">Math stats unavailable.</p>';
+        }
+    }
+
+    function renderMathSummary(el, d) {
+        const a = d.academy || {};
+        const r = d.recent_7d || {};
+        const wr = d.wrong_review || {};
+        const weak = d.weak_areas || [];
+        const flu = d.fluency || [];
+        const daily = d.daily_recent || [];
+        const kang = d.kangaroo || [];
+
+        const weakHtml = weak.length
+            ? weak.map(w => '<li>' + esc(w.lesson || '—') + ' <span class="pm-count">' + w.wrong_count + ' wrong</span></li>').join('')
+            : '<li class="empty">No weak areas detected</li>';
+
+        const fluHtml = flu.length
+            ? flu.map(f => '<tr><td>' + esc(f.fact_set) + '</td><td>' + esc(f.phase) + '</td><td>' + f.best_score + '</td><td>' + f.accuracy_pct + '%</td><td>' + f.total_rounds + '</td></tr>').join('')
+            : '<tr><td colspan="5" class="empty">No fluency rounds yet</td></tr>';
+
+        const dailyHtml = daily.length
+            ? daily.slice(0, 7).map(x => '<div class="pm-daily-cell ' + (x.completed ? 'done' : 'pending') + '" title="' + esc(x.date) + '">' + (x.completed ? (x.score + '/' + x.total) : '—') + '</div>').join('')
+            : '<p class="empty">No daily challenges yet</p>';
+
+        const kangHtml = kang.length
+            ? kang.map(k => '<li>' + esc(k.set_id) + ' — ' + k.score + '/' + k.total + ' <span class="pm-date">' + esc(k.completed_at) + '</span></li>').join('')
+            : '<li class="empty">No sets completed</li>';
+
+        el.innerHTML =
+            '<div class="pm-grid">' +
+                '<div class="pm-card"><div class="pm-label">Academy</div>' +
+                    '<div class="pm-stat">' + (a.completed || 0) + ' / ' + (a.total_lessons || 0) + '</div>' +
+                    '<div class="pm-sub">lessons completed</div>' +
+                    '<div class="pm-sub">' + (a.pretest_passed || 0) + ' pretests · ' + (a.unit_tests_passed || 0) + ' unit tests</div>' +
+                '</div>' +
+                '<div class="pm-card"><div class="pm-label">Last 7 days</div>' +
+                    '<div class="pm-stat">' + (r.accuracy_pct || 0) + '%</div>' +
+                    '<div class="pm-sub">' + (r.correct_attempts || 0) + ' / ' + (r.total_attempts || 0) + ' correct</div>' +
+                '</div>' +
+                '<div class="pm-card"><div class="pm-label">Wrong Review</div>' +
+                    '<div class="pm-stat">' + (wr.pending || 0) + '</div>' +
+                    '<div class="pm-sub">due today · ' + (wr.mastered || 0) + ' mastered</div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="pm-section">' +
+                '<h3>Weak Areas</h3>' +
+                '<ul class="pm-list">' + weakHtml + '</ul>' +
+            '</div>' +
+            '<div class="pm-section">' +
+                '<h3>Fact Fluency</h3>' +
+                '<table class="pm-table"><thead><tr><th>Set</th><th>Phase</th><th>Best</th><th>Accuracy</th><th>Rounds</th></tr></thead><tbody>' + fluHtml + '</tbody></table>' +
+            '</div>' +
+            '<div class="pm-section">' +
+                '<h3>Daily Challenge (last 7)</h3>' +
+                '<div class="pm-daily-row">' + dailyHtml + '</div>' +
+            '</div>' +
+            '<div class="pm-section">' +
+                '<h3>Kangaroo</h3>' +
+                '<ul class="pm-list">' + kangHtml + '</ul>' +
+            '</div>';
     }
 
     /* ── Init ── */

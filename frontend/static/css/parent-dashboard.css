@@ -509,3 +509,115 @@ body {
     color: #fff;
     border-color: var(--color-primary, #D4619E);
 }
+
+/* ─── Math Summary Panel (M9) ────────────────────────────── */
+.pm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.pm-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: var(--shadow-card);
+  border-left: 3px solid var(--math-primary, var(--color-primary));
+}
+.pm-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+.pm-stat {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+.pm-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+.pm-section { margin-top: 18px; }
+.pm-section h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 10px 0;
+}
+.pm-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pm-list li {
+  padding: 8px 12px;
+  background: var(--bg-page);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text-primary);
+}
+.pm-list li.empty {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.pm-count {
+  float: right;
+  color: var(--color-error);
+  font-weight: 600;
+  font-size: 12px;
+}
+.pm-date {
+  float: right;
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+.pm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.pm-table th, .pm-table td {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--bg-page);
+}
+.pm-table th {
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+}
+.pm-table td.empty {
+  color: var(--text-secondary);
+  font-style: italic;
+  text-align: center;
+}
+.pm-daily-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pm-daily-cell {
+  min-width: 60px;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  background: var(--bg-page);
+  color: var(--text-secondary);
+}
+.pm-daily-cell.done {
+  background: var(--math-pass, var(--color-success));
+  color: #fff;
+}
