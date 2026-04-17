@@ -207,6 +207,20 @@ async function loadMathSidebarStatus() {
             if (el) el.textContent = `${data.due_today} items`;
         }
     } catch (e) { /* silent */ }
+
+    // Daily Challenge status
+    try {
+        const res = await fetch('/api/math/daily/today');
+        if (res.ok) {
+            const data = await res.json();
+            const el = document.getElementById('math-daily-status');
+            if (el) {
+                if (!data.exists) el.textContent = 'Not available';
+                else if (data.completed) el.textContent = `✓ ${data.score}/${data.total}`;
+                else el.textContent = `${data.total} problems`;
+            }
+        }
+    } catch (e) { /* silent */ }
 }
 
 // ── Wire select handlers ────────────────────────────────────
@@ -236,6 +250,13 @@ async function loadMathSidebarStatus() {
                 if (!mathGrade || !mathUnit || !mathLesson) return;
                 console.log(`[math] Starting lesson: ${mathGrade}/${mathUnit}/${mathLesson}`);
                 startMathLesson(mathGrade, mathUnit, mathLesson);
+            });
+        }
+
+        const dailyBtn = document.getElementById('math-btn-daily');
+        if (dailyBtn) {
+            dailyBtn.addEventListener('click', () => {
+                if (typeof startMathDaily === 'function') startMathDaily();
             });
         }
     });

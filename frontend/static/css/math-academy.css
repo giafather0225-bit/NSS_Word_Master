@@ -1289,6 +1289,173 @@
     cursor: default;
 }
 
+/* ── Daily Challenge ───────────────────────────────────────── */
+
+.math-daily {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    text-align: center;
+}
+
+.math-daily-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--math-primary);
+    margin: 0 0 8px 0;
+}
+
+.math-daily-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 16px 0;
+}
+
+.math-daily-desc {
+    font-size: 15px;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.math-daily-problem .math-daily-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.math-daily-counter {
+    font-weight: 700;
+    color: var(--math-primary);
+}
+
+.math-daily-concept {
+    font-style: italic;
+}
+
+.math-daily-q {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.math-daily-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.math-daily-opt {
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--bg-card);
+    border: 2px solid var(--math-primary-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.math-daily-opt:hover:not(:disabled) {
+    background: var(--math-hint-bg);
+    border-color: var(--math-primary);
+}
+
+.math-daily-opt:disabled {
+    cursor: default;
+}
+
+.math-daily-opt-correct {
+    background: var(--math-pass) !important;
+    color: #fff !important;
+    border-color: var(--math-pass) !important;
+}
+
+.math-daily-opt-wrong {
+    background: var(--math-fail) !important;
+    color: #fff !important;
+    border-color: var(--math-fail) !important;
+}
+
+.math-daily-input-wrap {
+    display: flex;
+    gap: 10px;
+}
+
+.math-daily-input {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid var(--math-primary-light);
+    border-radius: var(--radius-md);
+}
+
+.math-daily-input:focus {
+    outline: none;
+    border-color: var(--math-primary);
+}
+
+.math-daily-feedback {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    text-align: left;
+}
+
+.math-fb-ok {
+    background: var(--math-pass);
+    color: #fff;
+}
+
+.math-fb-no {
+    background: var(--math-fail);
+    color: #fff;
+}
+
+.math-fb-line {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.math-fb-hint {
+    font-size: 13px;
+    margin-top: 6px;
+    opacity: 0.92;
+}
+
+.math-daily-next {
+    margin-top: 12px;
+}
+
+.math-daily-score {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--math-primary);
+    margin: 12px 0 4px 0;
+}
+
+.math-daily-pct {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+}
+
+.math-daily-chips {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
 /* ── Animation ─────────────────────────────────────────────── */
 
 @keyframes math-fade-in {
