@@ -994,6 +994,44 @@
     margin-top: 8px;
 }
 
+/* ── Placement results ─────────────────────────────────────── */
+
+.math-placement-results {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 16px 0 20px;
+    text-align: left;
+}
+
+.math-placement-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--bg-card);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-md);
+}
+
+.math-placement-row-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.math-placement-row-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.math-placement-row-score {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+}
+
 /* ── Review origin label ───────────────────────────────────── */
 
 .math-review-origin {
