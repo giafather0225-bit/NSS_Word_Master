@@ -563,7 +563,12 @@ function showMathFeedback(result, problem, onNext) {
     const overlay = document.createElement('div');
     overlay.className = 'math-feedback-overlay ' + (result.is_correct ? 'math-feedback-correct' : 'math-feedback-wrong');
 
-    const stepsHtml = (result.solution_steps || []).map(s => `<li>${s}</li>`).join('');
+    // Step-by-Step Solution is enabled ONLY in the Try stage (per spec).
+    // For Pretest/Practice we keep the compact feedback (no steps list).
+    const isTry = mathState && mathState.stage === 'try';
+    const steps = Array.isArray(result.solution_steps) ? result.solution_steps : [];
+    const hasSteps = isTry && steps.length > 0;
+    const autoOpen = hasSteps && !result.is_correct; // auto-open on wrong Try
 
     // CPA Fallback: for Practice wrong answers, show the relevant Pictorial card
     let cpaHtml = '';
@@ -573,17 +578,30 @@ function showMathFeedback(result, problem, onNext) {
             <div class="math-cpa-fallback">
                 <div class="math-cpa-fallback-label">\u{1F4A1} Remember the picture:</div>
                 <div class="math-cpa-fallback-title">${_escS(c.title || '')}</div>
-                ${c.visual ? `<div class="math-cpa-fallback-visual">${_escS(c.visual)}</div>` : ''}
+                ${c.visual && typeof c.visual === 'string' ? `<div class="math-cpa-fallback-visual">${_escS(c.visual)}</div>` : ''}
             </div>
         `;
     }
+
+    const stepsHtml = hasSteps ? `
+        <div class="math-steps" id="math-steps" data-open="${autoOpen ? '1' : '0'}">
+            <button type="button" class="math-btn-ghost math-steps-toggle" id="math-steps-toggle">
+                ${autoOpen ? '\u{1F4D6} Step-by-step' : '\u{1F4D6} Show steps'}
+            </button>
+            <div class="math-steps-body" id="math-steps-body" style="${autoOpen ? '' : 'display:none;'}">
+                <ol class="math-steps-list" id="math-steps-list"></ol>
+                <button type="button" class="math-btn-secondary math-steps-next" id="math-steps-next">
+                    Show next step
+                </button>
+            </div>
+        </div>` : '';
 
     overlay.innerHTML = `
         <div class="math-feedback-card">
             <div class="math-feedback-result">${result.is_correct ? '\u2713 Correct!' : '\u2717 Not quite'}</div>
             ${!result.is_correct ? `<div class="math-feedback-answer">Answer: ${result.correct_answer}</div>` : ''}
-            <div class="math-feedback-text">${result.feedback || ''}</div>
-            ${stepsHtml ? `<ol class="math-feedback-steps">${stepsHtml}</ol>` : ''}
+            ${result.feedback ? `<div class="math-feedback-text">${_escS(result.feedback)}</div>` : ''}
+            ${stepsHtml}
             ${cpaHtml}
             <button class="math-btn-primary" id="math-feedback-next">Next</button>
         </div>
@@ -591,14 +609,56 @@ function showMathFeedback(result, problem, onNext) {
 
     stage.appendChild(overlay);
 
+    // Wire step-by-step reveal
+    if (hasSteps) {
+        let idx = 0;
+        const listEl = document.getElementById('math-steps-list');
+        const nextBtn = document.getElementById('math-steps-next');
+        const toggleBtn = document.getElementById('math-steps-toggle');
+        const bodyEl = document.getElementById('math-steps-body');
+        const revealNext = () => {
+            if (idx >= steps.length) return;
+            const li = document.createElement('li');
+            li.className = 'math-step';
+            li.textContent = steps[idx];
+            // Fade-in
+            li.style.opacity = '0';
+            listEl.appendChild(li);
+            requestAnimationFrame(() => {
+                li.style.transition = 'opacity 0.25s ease';
+                li.style.opacity = '1';
+            });
+            idx += 1;
+            if (idx >= steps.length) {
+                nextBtn.disabled = true;
+                nextBtn.textContent = 'All steps shown';
+            } else {
+                nextBtn.textContent = `Show next step (${idx}/${steps.length})`;
+            }
+        };
+        if (autoOpen) revealNext(); // show first step immediately on wrong
+        nextBtn.addEventListener('click', revealNext);
+        toggleBtn.addEventListener('click', () => {
+            const open = bodyEl.style.display !== 'none';
+            if (open) {
+                bodyEl.style.display = 'none';
+                toggleBtn.textContent = '\u{1F4D6} Show steps';
+            } else {
+                bodyEl.style.display = '';
+                toggleBtn.textContent = '\u{1F4D6} Step-by-step';
+                if (idx === 0) revealNext();
+            }
+        });
+    }
+
     document.getElementById('math-feedback-next').addEventListener('click', () => {
         overlay.remove();
         onNext();
     });
 
-    // Also allow Enter key
+    // Also allow Enter key — but only when step-by-step is not the focus
     const handler = (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && document.activeElement?.id !== 'math-steps-next') {
             document.removeEventListener('keydown', handler);
             overlay.remove();
             onNext();
