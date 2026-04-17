@@ -208,6 +208,18 @@ async function loadMathSidebarStatus() {
         }
     } catch (e) { /* silent */ }
 
+    // Kangaroo sets status
+    try {
+        const res = await fetch('/api/math/kangaroo/sets');
+        if (res.ok) {
+            const data = await res.json();
+            const total = (data.sets || []).length;
+            const done = (data.sets || []).filter(s => s.completed).length;
+            const el = document.getElementById('math-kangaroo-week');
+            if (el) el.textContent = `${done}/${total} sets`;
+        }
+    } catch (e) { /* silent */ }
+
     // Daily Challenge status
     try {
         const res = await fetch('/api/math/daily/today');
@@ -257,6 +269,13 @@ async function loadMathSidebarStatus() {
         if (dailyBtn) {
             dailyBtn.addEventListener('click', () => {
                 if (typeof startMathDaily === 'function') startMathDaily();
+            });
+        }
+
+        const kangBtn = document.getElementById('math-btn-kangaroo');
+        if (kangBtn) {
+            kangBtn.addEventListener('click', () => {
+                if (typeof startMathKangaroo === 'function') startMathKangaroo();
             });
         }
     });

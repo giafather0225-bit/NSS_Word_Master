@@ -1456,6 +1456,188 @@
     margin-bottom: 12px;
 }
 
+/* ── Kangaroo Practice ─────────────────────────────────────── */
+
+.math-kang {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px 24px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.math-kang-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--math-primary);
+    margin: 0 0 8px 0;
+    text-align: center;
+}
+
+.math-kang-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.math-kang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.math-kang-card {
+    padding: 16px;
+    background: var(--math-hint-bg);
+    border: 2px solid var(--math-primary-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+}
+
+.math-kang-card:hover {
+    border-color: var(--math-primary);
+    transform: translateY(-2px);
+}
+
+.math-kang-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.math-kang-card-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.math-kang-card-badge {
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--math-pass);
+}
+
+.math-kang-problem .math-kang-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.math-kang-set-title {
+    font-weight: 700;
+    color: var(--math-primary);
+}
+
+.math-kang-counter {
+    font-weight: 700;
+    color: var(--math-primary);
+}
+
+.math-kang-q {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.math-kang-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.math-kang-opt {
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--bg-card);
+    border: 2px solid var(--math-primary-light);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.math-kang-opt:hover:not(:disabled) {
+    background: var(--math-hint-bg);
+    border-color: var(--math-primary);
+}
+
+.math-kang-opt:disabled {
+    cursor: default;
+}
+
+.math-kang-opt-correct {
+    background: var(--math-pass) !important;
+    color: #fff !important;
+    border-color: var(--math-pass) !important;
+}
+
+.math-kang-opt-wrong {
+    background: var(--math-fail) !important;
+    color: #fff !important;
+    border-color: var(--math-fail) !important;
+}
+
+.math-kang-input-wrap {
+    display: flex;
+    gap: 10px;
+}
+
+.math-kang-input {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid var(--math-primary-light);
+    border-radius: var(--radius-md);
+}
+
+.math-kang-input:focus {
+    outline: none;
+    border-color: var(--math-primary);
+}
+
+.math-kang-feedback {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: var(--radius-md);
+}
+
+.math-kang-summary {
+    text-align: center;
+}
+
+.math-kang-score {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--math-primary);
+    margin: 12px 0 4px 0;
+}
+
+.math-kang-pct {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+}
+
+.math-kang-chips {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
 /* ── Animation ─────────────────────────────────────────────── */
 
 @keyframes math-fade-in {
