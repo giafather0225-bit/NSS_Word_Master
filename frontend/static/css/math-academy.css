@@ -1975,3 +1975,104 @@
     from { opacity: 0; transform: scale(0.95); }
     to   { opacity: 1; transform: scale(1); }
 }
+
+/* M13: CPA card enter — gentle slide + fade on every re-render */
+@keyframes math-card-enter {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.math-learn-card {
+    animation: math-card-enter 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* M13: CPA badge pulse on phase show */
+@keyframes math-cpa-pulse {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+.math-learn-cpa {
+    animation: math-cpa-pulse 0.6s ease-out both;
+}
+
+/* M13: dot progress — smooth fill transition */
+.math-dot {
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.math-dot.active { transform: scale(1.25); }
+
+/* M13: correct celebration — scale+pop on result headline */
+@keyframes math-pop {
+    0%   { transform: scale(0.6); opacity: 0; }
+    60%  { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.math-feedback-correct .math-feedback-result,
+.math-feedback-correct .math-feedback-icon {
+    animation: math-pop 0.45s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+
+/* M13: wrong — stronger shake */
+@keyframes math-shake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-8px); }
+    40%      { transform: translateX(8px); }
+    60%      { transform: translateX(-6px); }
+    80%      { transform: translateX(4px); }
+}
+.math-feedback-wrong .math-feedback-card {
+    animation: math-fade-in 0.2s ease, math-shake 0.45s ease 0.2s;
+}
+
+/* M13: confetti burst — 8 dots radiating outward */
+.math-confetti {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.math-confetti span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: math-confetti-burst 0.9s ease-out both;
+}
+.math-confetti span:nth-child(1) { background: var(--math-primary); --tx: -80px; --ty: -70px; animation-delay: 0.02s; }
+.math-confetti span:nth-child(2) { background: var(--math-pass, #34C759); --tx: 80px; --ty: -70px; animation-delay: 0.04s; }
+.math-confetti span:nth-child(3) { background: var(--color-warning, #FF9500); --tx: -100px; --ty: 20px; animation-delay: 0.06s; }
+.math-confetti span:nth-child(4) { background: var(--math-cpa-pictorial-fg, #8B6FA5); --tx: 100px; --ty: 20px; animation-delay: 0.08s; }
+.math-confetti span:nth-child(5) { background: var(--math-primary); --tx: -60px; --ty: 80px; animation-delay: 0.05s; }
+.math-confetti span:nth-child(6) { background: var(--math-pass, #34C759); --tx: 60px; --ty: 80px; animation-delay: 0.07s; }
+.math-confetti span:nth-child(7) { background: var(--color-warning, #FF9500); --tx: -30px; --ty: -100px; animation-delay: 0.09s; }
+.math-confetti span:nth-child(8) { background: var(--math-cpa-pictorial-fg, #8B6FA5); --tx: 30px; --ty: -100px; animation-delay: 0.11s; }
+
+@keyframes math-confetti-burst {
+    0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 0; }
+    20%  { opacity: 1; }
+    100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1); opacity: 0; }
+}
+
+/* M13: MC/TF button press micro-interaction */
+.math-mc-btn, .math-tf-btn {
+    transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.math-mc-btn:active, .math-tf-btn:active {
+    transform: scale(0.97);
+}
+
+/* M13: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .math-learn-card,
+    .math-learn-cpa,
+    .math-feedback-correct .math-feedback-result,
+    .math-feedback-correct .math-feedback-icon,
+    .math-feedback-wrong .math-feedback-card,
+    .math-confetti span {
+        animation: none !important;
+    }
+    .math-dot { transition: none; }
+}

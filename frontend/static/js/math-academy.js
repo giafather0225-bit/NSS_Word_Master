@@ -596,7 +596,13 @@ function showMathFeedback(result, problem, onNext) {
             </div>
         </div>` : '';
 
+    // M13: confetti burst on correct
+    const confettiHtml = result.is_correct
+        ? `<div class="math-confetti" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>`
+        : '';
+
     overlay.innerHTML = `
+        ${confettiHtml}
         <div class="math-feedback-card">
             <div class="math-feedback-result">${result.is_correct ? '\u2713 Correct!' : '\u2717 Not quite'}</div>
             ${!result.is_correct ? `<div class="math-feedback-answer">Answer: ${result.correct_answer}</div>` : ''}
