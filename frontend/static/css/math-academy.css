@@ -994,6 +994,198 @@
     margin-top: 8px;
 }
 
+/* ── Virtual Manipulatives ─────────────────────────────────── */
+
+.math-manip,
+.math-learn-manip {
+    margin-top: 12px;
+    padding: 16px;
+    background: var(--math-primary-light);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+.math-manip-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.math-manip-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--math-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.math-manip-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.math-manip-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    touch-action: none;
+}
+
+.math-manip-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Base-10 blocks */
+
+.math-b10-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.math-b10-col {
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    text-align: center;
+}
+
+.math-b10-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--math-primary);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.math-b10-tray {
+    min-height: 64px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 6px;
+}
+
+.math-b10-block {
+    background: var(--math-accent-violet);
+    border-radius: 2px;
+}
+.math-b10-hundred { width: 32px; height: 32px; background: var(--math-accent-pink); }
+.math-b10-ten     { width: 6px;  height: 32px; background: var(--math-accent-violet); }
+.math-b10-one     { width: 10px; height: 10px; background: var(--math-primary); border-radius: 50%; }
+
+.math-b10-controls {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+}
+
+/* Fraction bar */
+
+.math-frac-bar {
+    display: flex;
+    gap: 2px;
+    height: 56px;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    padding: 4px;
+}
+
+.math-frac-seg {
+    flex: 1;
+    background: var(--bg-chip-used);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+
+.math-frac-seg.shaded {
+    background: var(--math-accent-pink);
+}
+
+.math-frac-seg:hover:not(.shaded) {
+    background: var(--math-primary-light);
+    outline: 2px solid var(--math-primary);
+    outline-offset: -2px;
+}
+
+/* Array grid */
+
+.math-arr-grid {
+    display: grid;
+    gap: 4px;
+    padding: 12px;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    justify-content: center;
+}
+
+.math-arr-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--math-primary);
+}
+
+.math-arr-controls {
+    justify-content: space-around;
+}
+
+.math-arr-controls > div {
+    display: flex;
+    gap: 6px;
+}
+
+/* Ten frame */
+
+.math-tf-wrap {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.math-tf-frame {
+    display: grid;
+    grid-template-columns: repeat(5, 32px);
+    grid-template-rows: repeat(2, 32px);
+    gap: 2px;
+    background: var(--bg-card);
+    padding: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.math-tf-cell {
+    background: var(--bg-card);
+    border: 1px solid rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+
+.math-tf-cell:hover { background: var(--math-primary-light); }
+
+.math-tf-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--math-accent-pink);
+}
+
 /* ── Placement results ─────────────────────────────────────── */
 
 .math-placement-results {

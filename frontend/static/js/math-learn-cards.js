@@ -62,7 +62,7 @@ function _renderCurrentLearnCard() {
             <div class="math-learn-card ${cpa.cls}">
                 <h2 class="math-learn-title">${_esc(card.title || '')}</h2>
                 <div class="math-learn-content">${_esc(card.content || '')}</div>
-                ${card.visual ? `<div class="math-learn-visual">${_esc(card.visual)}</div>` : ''}
+                ${_renderLearnVisual(card.visual)}
                 ${card.interaction === 'quiz_mini' ? _renderMiniQuiz(card) : ''}
             </div>
 
@@ -114,8 +114,30 @@ function _renderCurrentLearnCard() {
     };
     document.addEventListener('keydown', handler);
 
+    // Hydrate manipulative widget if needed
+    if (card.visual && typeof card.visual === 'object' && card.visual.tool) {
+        const slot = document.getElementById('math-learn-manip');
+        if (slot && typeof renderManipulative === 'function') {
+            renderManipulative(slot, card.visual);
+        }
+    }
+
     // Auto-play TTS on card load
     setTimeout(() => _playLearnTTS(card), 400);
+}
+
+// ── Visual block renderer (string or manipulative) ────────
+/** @tag MATH @tag LEARN @tag MANIPULATIVE */
+function _renderLearnVisual(visual) {
+    if (!visual) return '';
+    if (typeof visual === 'string') {
+        return `<div class="math-learn-visual">${_esc(visual)}</div>`;
+    }
+    if (typeof visual === 'object' && visual.tool) {
+        // Slot to be hydrated post-render
+        return `<div class="math-learn-manip" id="math-learn-manip"></div>`;
+    }
+    return '';
 }
 
 // ── TTS helper ─────────────────────────────────────────────
