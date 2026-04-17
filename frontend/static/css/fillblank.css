@@ -31,7 +31,7 @@ span.fb-word:not(.fb-used):hover,
 .fb-word:not(.fb-used):hover {
   background: var(--bg) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07) !important;
+  box-shadow: none !important;
 }
 
 span.fb-word:not(.fb-used):active,
@@ -103,7 +103,7 @@ input.st-input.st-input {
 input.st-input.st-input:focus {
   outline: none !important;
   border-color: var(--zia-primary) !important;
-  box-shadow: var(--shadow-input-focus) !important;
+  box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
 }
 
 input.st-input.st-input::placeholder {
@@ -133,7 +133,7 @@ button.st-btn.st-btn {
 button.st-btn.st-btn:hover {
   background: var(--primary-hover) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px var(--color-primary-glow) !important;
+  box-shadow: none !important;
 }
 
 button.st-btn.st-btn:active {

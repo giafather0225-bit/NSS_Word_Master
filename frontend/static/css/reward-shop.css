@@ -24,7 +24,8 @@
   gap: 12px;
   padding: 16px 20px;
   background: var(--bg-card);
-  box-shadow: var(--shadow-card);
+  box-shadow: none;
+  border: 1px solid var(--border-card);
   flex-shrink: 0;
 }
 
@@ -137,7 +138,7 @@
   border-radius: var(--radius-md);
   padding: 20px 14px 14px;
   text-align: center;
-  box-shadow: var(--shadow-card);
+  box-shadow: none;
   cursor: pointer;
   transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
   border: 1.5px solid var(--border-card);
@@ -149,12 +150,12 @@
 
 .shop-item-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(212,97,158,0.10);
+  box-shadow: none;
   border-color: var(--color-primary-light);
 }
 
 .shop-item-card.unaffordable { opacity: 0.45; cursor: not-allowed; }
-.shop-item-card.unaffordable:hover { transform: none; box-shadow: var(--shadow-card); border-color: var(--border-card); }
+.shop-item-card.unaffordable:hover { transform: none; box-shadow: none; border-color: var(--border-card); }
 
 .shop-item-icon  { font-size: 34px; margin-bottom: 10px; display: block; line-height: 1; }
 .shop-item-name  { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
@@ -216,7 +217,8 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: var(--shadow-card);
+  box-shadow: none;
+  border: 1px solid var(--border-card);
 }
 
 .my-reward-row.used { opacity: 0.45; }
@@ -274,7 +276,8 @@
   padding: 28px 24px;
   width: 300px;
   text-align: center;
-  box-shadow: var(--shadow-card);
+  box-shadow: none;
+  border: 1px solid var(--border-card);
 }
 
 .shop-popup-icon  { font-size: 44px; margin-bottom: 10px; }

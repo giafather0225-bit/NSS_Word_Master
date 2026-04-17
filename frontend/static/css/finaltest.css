@@ -205,7 +205,7 @@
   color: var(--text-primary, #1D1D1F);
   text-align: center;
   line-height: 1.65;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: none;
   margin-bottom: 28px;
 }
 
@@ -321,7 +321,7 @@
 }
 .eo-fill-row:focus-within {
   border-color: var(--primary, #4A9B8E);
-  box-shadow: 0 0 0 3px var(--primary-light, #EAF4F2);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 .eo-fill-idx {
@@ -376,7 +376,7 @@
 .eo-fill-footer {
   position: sticky;
   bottom: 0;
-  background: linear-gradient(to bottom, transparent 0%, var(--bg, #F5F5F7) 40%);
+  background: var(--bg-page);
   padding: 20px 0 24px;
   display: flex;
   justify-content: center;

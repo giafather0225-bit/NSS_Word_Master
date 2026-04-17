@@ -228,8 +228,10 @@ function renderSectionCards() {
   // Cards are static HTML; just wire click handlers
   const engCard = document.getElementById('section-card-english');
   const diaryCard = document.getElementById('section-card-diary');
+  const mathCard = document.getElementById('section-card-math');
   if (engCard) engCard.onclick = () => switchView('english');
   if (diaryCard) diaryCard.onclick = () => switchView('diary');
+  if (mathCard) mathCard.onclick = () => switchView('math');
 }
 
 /**

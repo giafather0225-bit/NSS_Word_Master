@@ -27,10 +27,7 @@
 
 /* ── Zia color overrides for Preview modal ── */
 .pm-word {
-    background: var(--zia-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-primary);
 }
 
 .pm-pos span[data-pos] {
@@ -54,7 +51,7 @@
 
 .pm-typing-input:focus {
     border-color: var(--zia-primary) !important;
-    box-shadow: var(--shadow-input-focus) !important;
+    box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
 }
 
 .pm-typing-input.correct {

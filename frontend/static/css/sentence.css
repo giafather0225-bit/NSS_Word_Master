@@ -39,7 +39,7 @@ textarea.sentence-input {
 textarea.sentence-input:focus {
   outline: none !important;
   border-color: var(--primary) !important;
-  box-shadow: 0 0 0 3px var(--primary-light) !important;
+  box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
 }
 
 textarea.sentence-input::placeholder {
@@ -64,7 +64,7 @@ button.sentence-submit {
 button.sentence-submit:hover {
   background: var(--primary-hover) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px var(--color-primary-glow) !important;
+  box-shadow: none !important;
 }
 
 button.sentence-submit:active {
@@ -167,7 +167,7 @@ button.next-word-btn:hover,
 button[class*="next"]:hover {
   background: var(--primary-hover) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px var(--color-primary-glow) !important;
+  box-shadow: none !important;
 }
 
 /* ── Zia gradient word chip ── */
@@ -195,7 +195,7 @@ p:has(em):not(.feedback-content) {
   overflow: hidden;
   border: 1.5px solid var(--border);
   background: var(--surface);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: none;
 }
 
 /* ── Individual row ── */

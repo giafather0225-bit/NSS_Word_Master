@@ -57,7 +57,7 @@
 .wm-meaning-btn:hover {
   background: #F5F5F7 !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07) !important;
+  box-shadow: none !important;
 }
 
 /* ───── Selected ───── */
@@ -121,7 +121,7 @@ body > svg[style*="fixed"] path {
 /* ───── Animations ───── */
 @keyframes wm-flash {
   0%   { transform: scale(1);    box-shadow: none; }
-  50%  { transform: scale(1.04); box-shadow: 0 4px 16px var(--color-primary-glow); }
+  50%  { transform: scale(1.04); box-shadow: none; }
   100% { transform: scale(1);    box-shadow: none; }
 }
 

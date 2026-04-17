@@ -59,7 +59,7 @@
     cursor: pointer; transition: all 0.2s;
     display: flex; flex-direction: column; align-items: center; gap: 3px;
 }
-.review-rate-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.review-rate-btn:hover { transform: translateY(-2px); box-shadow: none; }
 .review-rate-btn .rate-label { font-size: 14px; font-weight: 600; }
 .review-rate-btn .rate-days { font-size: 11px; color: var(--text-secondary); }
 .review-rate-btn.wrong { border-color: var(--color-error); color: var(--color-error); }
@@ -94,6 +94,6 @@
     background: var(--color-primary);
     color: #fff; font-weight: 700; font-size: 1.05rem; cursor: pointer;
     transition: background var(--transition-fast);
-    box-shadow: var(--shadow-button);
+    box-shadow: none;
 }
 .review-done-btn:hover { background: var(--color-primary-hover); }

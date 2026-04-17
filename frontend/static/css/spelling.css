@@ -23,7 +23,7 @@ span[style*="inline-block"][style*="border-radius:20px"] {
   padding: 8px 18px !important;
   border-radius: 16px !important;
   letter-spacing: 0.3px !important;
-  box-shadow: 0 2px 8px var(--color-accent-light) !important;
+  box-shadow: none !important;
   margin-bottom: 32px !important;
   display: inline-block !important;
 }
@@ -72,7 +72,7 @@ span[style*="inline-block"][style*="border-radius:20px"] {
 #stage input.st-input:focus {
   outline: none !important;
   border-color: var(--zia-primary) !important;
-  box-shadow: var(--shadow-input-focus) !important;
+  box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
 }
 
 #stage input.st-input::placeholder {
@@ -114,7 +114,7 @@ button.st-btn.ghost {
 button.st-btn.ghost:hover {
   background: var(--color-secondary-glow) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px var(--color-secondary-glow) !important;
+  box-shadow: none !important;
 }
 
 #btn-listen-word.st-btn.ghost:active,
@@ -146,7 +146,7 @@ button.st-btn.ghost:active {
 #stage button.st-btn:not(.ghost):hover {
   background: var(--zia-primary-hover) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px var(--color-primary-glow) !important;
+  box-shadow: none !important;
 }
 
 #spell-submit.st-btn:active,

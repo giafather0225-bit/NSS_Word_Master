@@ -92,7 +92,7 @@
   transition: box-shadow 0.15s, border-color 0.15s;
 }
 .wm-lesson-card:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: none;
   border-color: var(--primary, #3B82F6);
 }
 .wm-lesson-info {
@@ -208,7 +208,7 @@
 .wm-mode-btn.active {
   background: var(--surface, #fff);
   color: var(--text-primary, #1D1D1F);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: none;
 }
 
 /* ── Form ──────────────────────────────────────────────── */
@@ -228,7 +228,7 @@
 .wm-ai-row { flex-direction: column; }
 .wm-btn-ai {
   padding: 12px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--color-primary);
   color: #fff;
   border: none;
   border-radius: 10px;

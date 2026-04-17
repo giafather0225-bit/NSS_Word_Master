@@ -3,24 +3,40 @@
    Section: System
    Dependencies: none
    API endpoints: none
+
+   Palette (2026-04 redesign):
+     Primary   #4A8E8E  teal
+     Secondary #F96E69  coral
+     Accent    #AE397D  violet
+     Text      #1A1A1A / #6B7280
+     Bg        #FFFFFF
+
+   Rules:
+     - No gradients
+     - No shadows (1px border only)
+     - One button style (.btn)
+     - One card style (.card)
+     - Sidebar 240px fixed
+     - Typography: heading 24 / body 16 / small 14
    ================================================================ */
 
 :root {
     /* ── 메인 색상 ───────────────────────── */
-    --color-primary:        #D4619E;
-    --color-primary-hover:  #C05090;
-    --color-primary-light:  #FDF2F8;
-    --color-primary-glow:   rgba(212, 97, 158, 0.18);
+    --color-primary:        #4A8E8E;
+    --color-primary-hover:  #3A7B7D;
+    --color-primary-light:  #EAF4F2;
+    --color-primary-glow:   rgba(74, 142, 142, 0.18);
 
     /* ── 보조 색상 ───────────────────────── */
-    --color-secondary:       #4A8E8E;
-    --color-secondary-hover: #3A7B7D;
-    --color-secondary-light: #EAF4F2;
-    --color-secondary-glow:  rgba(74, 142, 142, 0.18);
+    --color-secondary:       #F96E69;
+    --color-secondary-hover: #E55D58;
+    --color-secondary-light: #FDECEB;
+    --color-secondary-glow:  rgba(249, 110, 105, 0.18);
 
     /* ── 강조 색상 ───────────────────────── */
-    --color-accent:       #B44D8C;
-    --color-accent-light: #FAF0F6;
+    --color-accent:        #AE397D;
+    --color-accent-hover:  #952E6A;
+    --color-accent-light:  #F7E7EF;
 
     /* ── 상태 색상 ───────────────────────── */
     --color-success:       #34C759;
@@ -29,54 +45,60 @@
     --color-error-light:   rgba(255, 59, 48, 0.12);
     --color-warning:       #F59E0B;
 
-    /* ── 그라데이션 ──────────────────────── */
-    --gradient-main:   linear-gradient(135deg, #4A8E8E 0%, #D4619E 50%, #C45B9A 100%);
-    --gradient-subtle: linear-gradient(135deg, #FDF2F8 0%, #FAF0F6 100%);
+    /* ── 그라데이션 (비활성 — 호환성을 위해 solid로 폴백) ── */
+    --gradient-main:   var(--color-primary);
+    --gradient-subtle: var(--bg-card);
 
     /* ── 배경 ────────────────────────────── */
-    --bg-page:     #FDF2F8;
+    --bg-page:     #FFFFFF;
     --bg-card:     #FFFFFF;
-    --bg-sidebar:  #FEFAFA;
+    --bg-sidebar:  #FFFFFF;
     --bg-input:    #FFFFFF;
+    --bg-surface:  #FAFAFA;   /* 아주 옅은 회색 — 영역 구분용 */
     --bg-chip:     var(--color-primary-light);
     --bg-chip-used: #F5F5F5;
 
     /* ── 텍스트 ──────────────────────────── */
-    --text-primary:    #2D2D3F;
-    --text-secondary:  #8B8BA0;
-    --text-hint:       #AAAABC;
+    --text-primary:    #1A1A1A;
+    --text-secondary:  #6B7280;
+    --text-hint:       #9CA3AF;
     --text-on-primary: #FFFFFF;
     --text-on-chip:    var(--color-primary);
 
-    /* ── 테두리 ──────────────────────────── */
-    --border-default:    #E5E5EA;
-    --border-input:      #DDD;
+    /* ── 테두리 (그림자 대체) ─────────────── */
+    --border-default:     #E5E7EB;
+    --border-strong:      #D1D5DB;
+    --border-input:       #D1D5DB;
     --border-input-focus: var(--color-primary);
-    --border-chip:       var(--color-primary);
-    --border-chip-used:  #DDD;
-    --border-card:       rgba(0, 0, 0, 0.06);
+    --border-chip:        var(--color-primary);
+    --border-chip-used:   #E5E7EB;
+    --border-card:        #E5E7EB;
 
-    /* ── 그림자 ──────────────────────────── */
-    --shadow-card:        0 2px 12px rgba(0, 0, 0, 0.06);
-    --shadow-button:      0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-input-focus: 0 0 0 4px var(--color-primary-glow);
+    /* ── 그림자 (사용 금지 — border로 대체; 호환 폴백만 남김) ── */
+    --shadow-card:        0 0 0 1px var(--border-card);
+    --shadow-button:      0 0 0 1px var(--border-default);
+    --shadow-input-focus: 0 0 0 3px var(--color-primary-glow);
 
-    /* ── 크기 ────────────────────────────── */
-    --radius-sm:   8px;
-    --radius-md:   12px;
-    --radius-lg:   20px;
+    /* ── 사이즈 / 반경 ────────────────────── */
+    --radius-sm:   6px;
+    --radius-md:   10px;
+    --radius-lg:   14px;
     --radius-full: 9999px;
+
+    --sidebar-width: 240px;
 
     /* ── 폰트 ────────────────────────────── */
     --font-family:       -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-size-xs:      11px;
-    --font-size-sm:      13px;
-    --font-size-md:      15px;
+    --font-size-xs:      12px;
+    --font-size-sm:      14px;   /* 작은 텍스트 */
+    --font-size-md:      16px;   /* 본문 */
     --font-size-lg:      18px;
-    --font-size-xl:      24px;
-    --font-weight-normal: 500;
+    --font-size-xl:      24px;   /* 헤더 */
+    --font-size-2xl:     32px;   /* 대형 헤더 */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
     --font-weight-bold:   600;
-    --font-weight-extra:  800;
+    --font-weight-extra:  700;
 
     /* ── 애니메이션 ──────────────────────── */
     --transition-fast:   0.15s ease;
@@ -84,62 +106,130 @@
     --transition-slow:   0.4s ease;
 
     /* ================================================================
-       MATH SECTION TOKENS — GIA logo teal branch
-       Change these in one place to retheme the entire Math section.
+       MATH SECTION TOKENS — uses shared palette (no separate identity).
        ================================================================ */
 
-    /* ── Math 메인(청록) ─────────────────── */
-    --math-primary:         #4A8E8E;   /* logo left — teal */
-    --math-primary-hover:   #3A7B7D;
-    --math-primary-light:   #EAF4F2;
-    --math-primary-glow:    rgba(74, 142, 142, 0.18);
-    --math-primary-on:      #FFFFFF;   /* text on primary buttons */
+    --math-primary:         var(--color-primary);
+    --math-primary-hover:   var(--color-primary-hover);
+    --math-primary-light:   var(--color-primary-light);
+    --math-primary-glow:    var(--color-primary-glow);
+    --math-primary-on:      var(--text-on-primary);
 
-    /* ── Math 액센트(로고 그라데이션 컬러) ── */
-    --math-accent-violet:       #8B6FA5;   /* logo center — muted violet */
-    --math-accent-violet-light: #EFE7F1;
-    --math-accent-pink:         #D4619E;   /* logo right — CTA pop */
-    --math-accent-pink-light:   #FAE8F3;
+    --math-accent-violet:       var(--color-accent);
+    --math-accent-violet-light: var(--color-accent-light);
+    --math-accent-pink:         var(--color-secondary);
+    --math-accent-pink-light:   var(--color-secondary-light);
 
-    /* ── Math 배경 ───────────────────────── */
-    --math-bg-page:   #F1F8F7;
+    --math-bg-page:   var(--bg-page);
     --math-bg-card:   var(--bg-card);
 
-    /* ── CPA phase colors (Concrete/Pictorial/Abstract) ── */
-    --math-cpa-concrete-bg: #FFF3E0;
-    --math-cpa-concrete-fg: #C2570A;
-    --math-cpa-pictorial-bg: var(--math-primary-light);
-    --math-cpa-pictorial-fg: var(--math-primary);
-    --math-cpa-abstract-bg: var(--math-accent-violet-light);
-    --math-cpa-abstract-fg: var(--math-accent-violet);
+    /* CPA phases — use shared tokens instead of unique hues */
+    --math-cpa-concrete-bg: var(--color-secondary-light);
+    --math-cpa-concrete-fg: var(--color-secondary);
+    --math-cpa-pictorial-bg: var(--color-primary-light);
+    --math-cpa-pictorial-fg: var(--color-primary);
+    --math-cpa-abstract-bg: var(--color-accent-light);
+    --math-cpa-abstract-fg: var(--color-accent);
 
-    /* ── Hint / Focus-areas boxes ────────── */
-    --math-hint-bg:   #FFFDE7;
-    --math-hint-fg:   #B8860B;
-    --math-focus-bg:  #FFF8E1;
-    --math-focus-fg:  #B8860B;
+    --math-hint-bg:   var(--bg-surface);
+    --math-hint-fg:   var(--text-primary);
+    --math-focus-bg:  var(--bg-surface);
+    --math-focus-fg:  var(--text-primary);
 
-    /* ── Math 상태 (기존 상태 컬러 재사용) ── */
     --math-pass:      var(--color-success);
     --math-fail:      var(--color-warning);
 
-    /* ── Math 전용 그림자/테두리 ─────────── */
     --math-shadow-card:   var(--shadow-card);
     --math-border-card:   var(--border-card);
 }
 
-/* ── 다크모드 (나중에 활성화) ──────────────
-:root[data-theme="dark"] {
-    --color-primary:       #E87AB8;
-    --color-primary-hover: #D469A7;
-    --color-primary-light: #2A1A24;
-    --color-primary-glow:  rgba(232, 122, 184, 0.25);
-    --bg-page:    #1A1A2E;
-    --bg-card:    #252540;
-    --bg-sidebar: #1E1E36;
-    --text-primary:   #F0F0F5;
-    --text-secondary: #9999B0;
-    --border-default: #3A3A50;
-    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.3);
+/* ================================================================
+   BASE TYPOGRAPHY — enforce the 24 / 16 / 14 hierarchy globally.
+   ================================================================ */
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-md);
+    color: var(--text-primary);
+    background: var(--bg-page);
+    -webkit-font-smoothing: antialiased;
 }
-──────────────────────────────────────────── */
+h1, .h1 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-extra); line-height: 1.2; margin: 0 0 12px; }
+h2, .h2 { font-size: var(--font-size-xl);  font-weight: var(--font-weight-extra); line-height: 1.25; margin: 0 0 10px; }
+h3, .h3 { font-size: var(--font-size-lg);  font-weight: var(--font-weight-bold);  line-height: 1.3;  margin: 0 0 8px; }
+small, .text-small { font-size: var(--font-size-sm); color: var(--text-secondary); }
+
+/* ================================================================
+   UNIFIED BUTTON — use .btn + modifier. Replaces every ad-hoc button.
+   Existing page CSS keeps working via legacy classes, but new code
+   should use .btn / .btn-primary / .btn-secondary / .btn-ghost.
+   ================================================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 18px;
+    min-height: 40px;
+    font-family: var(--font-family);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    box-shadow: none;
+    text-decoration: none;
+}
+.btn:hover { background: var(--bg-surface); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--text-on-primary);
+}
+.btn-primary:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+    background: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: #FFFFFF;
+}
+.btn-secondary:hover {
+    background: var(--color-secondary-hover);
+    border-color: var(--color-secondary-hover);
+}
+
+.btn-ghost {
+    background: transparent;
+    border-color: transparent;
+    color: var(--color-primary);
+}
+.btn-ghost:hover {
+    background: var(--color-primary-light);
+}
+
+/* ================================================================
+   UNIFIED CARD — use .card. 1px border, no shadow.
+   ================================================================ */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: none;
+}
+
+/* ================================================================
+   GLOBAL RESET for shadows & gradients so legacy CSS can't sneak
+   them back in. Any explicit shadow/gradient in component CSS will
+   be overridden by these rules unless they use !important or a
+   higher-specificity selector.
+   ================================================================ */
+/* (left intentionally unset — enforce via linting / manual pass) */

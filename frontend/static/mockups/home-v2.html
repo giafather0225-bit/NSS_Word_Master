@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GIA — Home v2 Mockup</title>
+<link rel="stylesheet" href="/static/css/theme.css">
+<style>
+/* ================================================================
+   home-v2 mockup — demonstrates redesigned dashboard.
+   Uses theme.css tokens only. No gradients. No heavy shadows.
+   ================================================================ */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+    background: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-family, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif);
+    min-height: 100vh;
+    padding: 32px 40px 60px;
+}
+.page-label {
+    max-width: 1160px; margin: 0 auto 24px;
+    font-size: 12px; color: var(--text-hint); letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.dash {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+/* ── HERO (spans full width) ─────────────────────────── */
+.hero {
+    grid-column: 1 / -1;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg, 20px);
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: var(--shadow-card, 0 2px 12px rgba(0,0,0,0.06));
+}
+.hero-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--color-primary-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    flex-shrink: 0;
+}
+.hero-text { flex: 1; min-width: 0; }
+.hero-greet {
+    font-size: 26px; font-weight: 700; color: var(--text-primary); line-height: 1.15;
+    margin: 0 0 4px;
+}
+.hero-sub {
+    font-size: 14px; color: var(--text-secondary); margin: 0;
+}
+.hero-sub .chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--color-warning, #F59E0B);
+    padding: 2px 10px; border-radius: 9999px; font-weight: 600;
+    font-size: 13px; margin-left: 6px;
+}
+.hero-stats {
+    display: flex; gap: 28px; align-items: center;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+    font-size: 28px; font-weight: 700; line-height: 1;
+    color: var(--text-primary);
+}
+.hero-stat-label {
+    font-size: 11px; color: var(--text-secondary);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+.hero-stat.streak .hero-stat-num { color: var(--color-warning, #F59E0B); }
+.hero-stat.xp .hero-stat-num     { color: var(--color-primary); }
+.hero-stat.words .hero-stat-num  { color: var(--color-secondary); }
+
+/* ── PROGRESS RING CARD (today's tasks) ──────────────── */
+.panel {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg, 20px);
+    padding: 24px;
+    box-shadow: var(--shadow-card, 0 2px 12px rgba(0,0,0,0.06));
+}
+.panel-title {
+    font-size: 15px; font-weight: 700; color: var(--text-primary);
+    margin: 0 0 16px; display: flex; align-items: center; gap: 8px;
+}
+.panel-title .pt-sub {
+    font-size: 12px; color: var(--text-secondary); font-weight: 500;
+    margin-left: auto;
+}
+
+.tasks-layout {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px; align-items: center;
+}
+.progress-ring {
+    width: 120px; height: 120px; position: relative;
+}
+.progress-ring svg { transform: rotate(-90deg); }
+.progress-ring .ring-bg   { stroke: var(--color-primary-light); }
+.progress-ring .ring-fill { stroke: var(--color-primary); transition: stroke-dashoffset 0.6s ease; }
+.progress-ring-center {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    pointer-events: none;
+}
+.progress-ring-num {
+    font-size: 26px; font-weight: 700; color: var(--text-primary); line-height: 1;
+}
+.progress-ring-label {
+    font-size: 11px; color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.task-list { display: flex; flex-direction: column; gap: 8px; }
+.task-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px; border-radius: 12px;
+    background: var(--bg-page);
+    font-size: 14px;
+}
+.task-row.done {
+    background: rgba(52, 199, 89, 0.08);
+    color: var(--text-secondary);
+}
+.task-row.done .task-label { text-decoration: line-through; }
+.task-check {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 2px solid var(--text-hint);
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: #fff;
+}
+.task-row.done .task-check {
+    background: var(--color-success); border-color: var(--color-success);
+}
+.task-label { flex: 1; }
+.task-xp {
+    font-size: 11px; font-weight: 600;
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+    padding: 2px 8px; border-radius: 9999px;
+}
+.task-row.required .task-xp {
+    background: var(--color-secondary-light);
+    color: var(--color-secondary);
+}
+
+/* ── SUBJECT CARDS (right col) ───────────────────────── */
+.subjects {
+    display: flex; flex-direction: column; gap: 12px;
+}
+.subj-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg, 20px);
+    padding: 18px 20px 18px 16px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: var(--shadow-card, 0 2px 12px rgba(0,0,0,0.06));
+    border-left: 4px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.subj-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.subj-card.english { border-left-color: var(--color-primary); }
+.subj-card.math    { border-left-color: var(--color-secondary); }
+.subj-card.diary   { border-left-color: var(--color-accent, #8B6FA5); }
+
+.subj-ico {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+}
+.subj-card.english .subj-ico { background: var(--color-primary-light);   color: var(--color-primary); }
+.subj-card.math    .subj-ico { background: var(--color-secondary-light); color: var(--color-secondary); }
+.subj-card.diary   .subj-ico { background: var(--color-accent-light);    color: var(--color-accent, #8B6FA5); }
+
+.subj-body { flex: 1; min-width: 0; }
+.subj-title {
+    font-size: 16px; font-weight: 700; color: var(--text-primary);
+    margin: 0 0 2px;
+}
+.subj-live {
+    font-size: 12px; color: var(--text-secondary);
+}
+.subj-live strong {
+    color: var(--text-primary); font-weight: 600;
+}
+.subj-arrow { font-size: 22px; color: var(--text-hint); }
+
+/* ── AI Coach strip ───────────────────────────────────── */
+.coach {
+    grid-column: 1 / -1;
+    background: var(--color-primary-light);
+    border-radius: var(--radius-lg, 20px);
+    padding: 16px 22px;
+    display: flex; align-items: center; gap: 14px;
+    color: var(--color-primary-hover);
+}
+.coach-ico { font-size: 22px; }
+.coach-msg { flex: 1; font-size: 14px; font-weight: 500; }
+.coach-sub { font-size: 12px; opacity: 0.75; }
+
+/* ── Growth theme card (small illustration) ──────────── */
+.growth {
+    grid-column: 1 / -1;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg, 20px);
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 20px;
+    box-shadow: var(--shadow-card, 0 2px 12px rgba(0,0,0,0.06));
+}
+.growth-art {
+    width: 96px; height: 96px; border-radius: 20px;
+    background: linear-gradient(0deg, var(--color-secondary-light), transparent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px; flex-shrink: 0;
+}
+.growth-body { flex: 1; }
+.growth-title {
+    font-size: 14px; color: var(--text-secondary); margin: 0 0 4px;
+    text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;
+}
+.growth-name {
+    font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 0 0 10px;
+}
+.growth-bar {
+    height: 8px; background: var(--color-primary-light);
+    border-radius: 9999px; overflow: hidden;
+}
+.growth-bar-fill {
+    height: 100%; width: 62%;
+    background: var(--color-secondary);
+    border-radius: 9999px;
+}
+.growth-sub {
+    font-size: 12px; color: var(--text-secondary); margin-top: 6px;
+}
+
+/* ── responsive ───────────────────────────────────────── */
+@media (max-width: 880px) {
+    body { padding: 16px; }
+    .dash { grid-template-columns: 1fr; gap: 16px; }
+    .hero { flex-wrap: wrap; }
+    .hero-stats { width: 100%; justify-content: space-around; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-label">🎨 Mockup preview — frontend/static/mockups/home-v2.html</div>
+
+<div class="dash">
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-avatar">👧</div>
+        <div class="hero-text">
+            <h1 class="hero-greet">Good afternoon, GIA</h1>
+            <p class="hero-sub">
+                Friday, April 17
+                <span class="chip">🔥 3 day streak</span>
+            </p>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat words">
+                <div class="hero-stat-num">247</div>
+                <div class="hero-stat-label">Words</div>
+            </div>
+            <div class="hero-stat xp">
+                <div class="hero-stat-num">1,420</div>
+                <div class="hero-stat-label">XP</div>
+            </div>
+            <div class="hero-stat streak">
+                <div class="hero-stat-num">3</div>
+                <div class="hero-stat-label">Streak</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI COACH -->
+    <div class="coach">
+        <span class="coach-ico">💬</span>
+        <div>
+            <div class="coach-msg">You're on a roll! Two more days for a 5-day streak bonus.</div>
+        </div>
+    </div>
+
+    <!-- LEFT: Today's Tasks with progress ring -->
+    <div class="panel">
+        <div class="panel-title">
+            Today's Tasks
+            <span class="pt-sub">Keep going ✨</span>
+        </div>
+        <div class="tasks-layout">
+            <div class="progress-ring">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="ring-bg"   cx="60" cy="60" r="50" fill="none" stroke-width="10"/>
+                    <circle class="ring-fill" cx="60" cy="60" r="50" fill="none" stroke-width="10"
+                            stroke-linecap="round"
+                            stroke-dasharray="314.16"
+                            stroke-dashoffset="125.66"/>
+                </svg>
+                <div class="progress-ring-center">
+                    <div class="progress-ring-num">3/5</div>
+                    <div class="progress-ring-label">complete</div>
+                </div>
+            </div>
+            <div class="task-list">
+                <div class="task-row done">
+                    <div class="task-check">✓</div>
+                    <div class="task-label">Review 12 words</div>
+                    <div class="task-xp">+2 XP</div>
+                </div>
+                <div class="task-row done">
+                    <div class="task-check">✓</div>
+                    <div class="task-label">Daily Words (10/10)</div>
+                    <div class="task-xp">+5 XP</div>
+                </div>
+                <div class="task-row done">
+                    <div class="task-check">✓</div>
+                    <div class="task-label">Math Daily Challenge</div>
+                    <div class="task-xp">+5 XP</div>
+                </div>
+                <div class="task-row required">
+                    <div class="task-check"></div>
+                    <div class="task-label">Academy Lesson 3</div>
+                    <div class="task-xp">+10 XP</div>
+                </div>
+                <div class="task-row">
+                    <div class="task-check"></div>
+                    <div class="task-label">Daily Journal</div>
+                    <div class="task-xp">+10 XP</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT: Subject cards -->
+    <div class="subjects">
+        <div class="subj-card english">
+            <div class="subj-ico">📖</div>
+            <div class="subj-body">
+                <div class="subj-title">English</div>
+                <div class="subj-live"><strong>12 words</strong> to review • Lesson 3 waiting</div>
+            </div>
+            <span class="subj-arrow">›</span>
+        </div>
+        <div class="subj-card math">
+            <div class="subj-ico">🔢</div>
+            <div class="subj-body">
+                <div class="subj-title">Math</div>
+                <div class="subj-live"><strong>Daily Challenge</strong> done • 3 lessons in U1</div>
+            </div>
+            <span class="subj-arrow">›</span>
+        </div>
+        <div class="subj-card diary">
+            <div class="subj-ico">✏️</div>
+            <div class="subj-body">
+                <div class="subj-title">GIA's Diary</div>
+                <div class="subj-live">Journal not written yet today</div>
+            </div>
+            <span class="subj-arrow">›</span>
+        </div>
+    </div>
+
+    <!-- GROWTH THEME -->
+    <div class="growth">
+        <div class="growth-art">🌱</div>
+        <div class="growth-body">
+            <div class="growth-title">Growing · Spring Garden</div>
+            <div class="growth-name">Step 3 of 6 — Little Sprout</div>
+            <div class="growth-bar"><div class="growth-bar-fill"></div></div>
+            <div class="growth-sub">420 / 600 XP to next stage</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

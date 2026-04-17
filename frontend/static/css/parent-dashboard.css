@@ -4,12 +4,12 @@
    ═══════════════════════════════════════════ */
 
 :root {
-    --bg: var(--bg-page, #FDF2F8);
+    --bg: var(--bg-page, #FFFFFF);
     --surface: var(--bg-card, #ffffff);
-    --text: var(--text-primary, #2D2D3F);
-    --text-secondary: var(--text-secondary, #8B8BA0);
+    --text: var(--text-primary, #1A1A1A);
+    --text-secondary: var(--text-secondary, #6B7280);
     --text-tertiary: #aeaeb2;
-    --primary: var(--color-primary, #D4619E);
+    --primary: var(--color-primary, #4A8E8E);
     --primary-hover: var(--color-primary-hover, #C0508D);
     --accent: var(--color-success, #34C759);
     --danger: var(--color-error, #FF3B30);
@@ -42,7 +42,8 @@ body {
 .pin-card {
     background: var(--surface);
     border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     padding: 48px 40px;
     text-align: center;
     max-width: 380px; width: 90%;
@@ -112,11 +113,12 @@ body {
     background: var(--surface);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     transition: box-shadow 0.2s;
 }
-.stat-card:hover { box-shadow: var(--shadow-md); }
-.stat-card.accent { background: var(--color-primary-light, #FAE8F3); }
+.stat-card:hover { box-shadow: none; }
+.stat-card.accent { background: var(--color-primary-light, #FFFFFF); }
 .stat-label {
     font-size: 12px; font-weight: 600; text-transform: uppercase;
     letter-spacing: 0.5px; color: var(--text-secondary); margin-bottom: 8px;
@@ -142,7 +144,8 @@ body {
 .panel {
     background: var(--surface);
     border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     overflow: hidden;
 }
 .panel-header {
@@ -237,11 +240,12 @@ body {
     background: var(--surface);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     text-align: center;
     transition: box-shadow 0.2s;
 }
-.tool-card:hover { box-shadow: var(--shadow-md); }
+.tool-card:hover { box-shadow: none; }
 .tool-icon { font-size: 28px; margin-bottom: 10px; }
 .tool-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
 .tool-card p { font-size: 12px; color: var(--text-secondary); margin-bottom: 14px; }
@@ -263,7 +267,8 @@ body {
 .modal-card {
     background: var(--surface);
     border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     width: 90%; animation: modalIn 0.25s ease;
 }
 .modal-small { max-width: 420px; }
@@ -494,20 +499,20 @@ body {
 
 .dash-cal-day.today {
     font-weight: 800;
-    color: var(--color-primary, #D4619E);
-    border: 2px solid var(--color-primary, #D4619E);
+    color: var(--color-primary, #4A8E8E);
+    border: 2px solid var(--color-primary, #4A8E8E);
 }
 
 .dash-cal-day.studied {
-    background: var(--color-primary, #D4619E);
+    background: var(--color-primary, #4A8E8E);
     color: #fff;
     font-weight: 700;
 }
 
 .dash-cal-day.studied.today {
-    background: var(--color-primary, #D4619E);
+    background: var(--color-primary, #4A8E8E);
     color: #fff;
-    border-color: var(--color-primary, #D4619E);
+    border-color: var(--color-primary, #4A8E8E);
 }
 
 /* ─── Math Summary Panel (M9) ────────────────────────────── */
@@ -521,7 +526,7 @@ body {
   background: var(--bg-card);
   border-radius: var(--radius-md);
   padding: 14px;
-  box-shadow: var(--shadow-card);
+  box-shadow: none;
   border-left: 3px solid var(--math-primary, var(--color-primary));
 }
 .pm-label {

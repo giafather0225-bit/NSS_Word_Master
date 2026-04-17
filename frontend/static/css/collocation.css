@@ -128,7 +128,8 @@
 .coll-card {
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     padding: 28px 24px;
     display: flex;
     flex-direction: column;
@@ -272,7 +273,8 @@
 .coll-quiz-card {
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     padding: 28px 24px;
     display: flex;
     flex-direction: column;
@@ -427,13 +429,13 @@
     padding: 8px 20px;
     background: var(--color-primary-light);
     border-radius: var(--radius-md);
-    box-shadow: 0 0 0 2px var(--color-primary-light);
+    box-shadow: none;
     animation: coll-glow 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes coll-glow {
-    from { box-shadow: 0 0 0 2px var(--color-primary-light); }
-    to   { box-shadow: 0 0 0 6px rgba(212, 97, 158, 0.2); }
+    from { box-shadow: none; }
+    to   { box-shadow: none; }
 }
 
 .coll-btn-home {

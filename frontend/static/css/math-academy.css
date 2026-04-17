@@ -76,7 +76,7 @@
 #sb-math-section .sb-field select:focus {
     outline: none;
     border-color: var(--math-primary);
-    box-shadow: 0 0 0 2px var(--math-primary-light);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 /* ── Math sidebar info rows ─────────────────────────────── */
@@ -223,7 +223,7 @@
     background: var(--bg-card);
     border-radius: var(--radius-lg);
     padding: 32px 24px;
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
     border-left: 4px solid var(--math-primary);
     min-height: 200px;
 }
@@ -339,7 +339,8 @@
     background: var(--bg-card);
     border-radius: var(--radius-lg);
     padding: 28px 24px;
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
 }
 
 .math-problem-question {
@@ -453,7 +454,7 @@
 .math-input-field:focus {
     outline: none;
     border-color: var(--math-primary);
-    box-shadow: 0 0 0 3px var(--math-primary-glow);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 .math-submit-btn {
@@ -512,7 +513,8 @@
     padding: 32px 28px;
     max-width: 480px;
     width: 90%;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     text-align: center;
 }
 
@@ -557,7 +559,8 @@
     padding: 40px 24px;
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
 }
 
 .math-feedback-icon {
@@ -587,7 +590,8 @@
     padding: 40px 24px;
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
 }
 
 .math-complete-icon { font-size: 56px; margin-bottom: 16px; }
@@ -620,7 +624,8 @@
     padding: 32px 24px;
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
 }
 
 .math-wrong-review h2 {
@@ -677,7 +682,7 @@
     opacity: 0.5;
     cursor: grabbing;
     border-color: var(--math-primary);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    box-shadow: none;
 }
 
 .math-drag-handle {
@@ -734,7 +739,8 @@
     padding: 40px 32px;
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     text-align: center;
 }
 
@@ -943,7 +949,8 @@
     background: var(--bg-card);
     border-radius: var(--radius-lg);
     padding: 48px 24px;
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     margin-bottom: 20px;
     transition: background 0.15s;
 }
@@ -976,7 +983,7 @@
 .math-fluency-input:focus {
     outline: none;
     border-color: var(--math-primary);
-    box-shadow: 0 0 0 3px var(--math-primary-glow);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 .math-fluency-score {
@@ -1297,7 +1304,8 @@
     padding: 32px 24px;
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
     text-align: center;
 }
 
@@ -1464,7 +1472,8 @@
     padding: 28px 24px;
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
 }
 
 .math-kang-title {
@@ -1646,7 +1655,8 @@
     padding: 24px;
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
 }
 
 .math-gloss-header {
@@ -1767,7 +1777,8 @@
     background: var(--bg-card);
     border-radius: var(--radius-lg);
     padding: 28px 28px 24px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
 }
 
 .math-gloss-close {
@@ -1868,7 +1879,8 @@
     background: var(--bg-card);
     border-radius: var(--radius-lg);
     padding: 28px 28px 24px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
 }
 
 .math-3read-close {
