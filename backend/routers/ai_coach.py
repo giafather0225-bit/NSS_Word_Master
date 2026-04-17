@@ -14,8 +14,8 @@ import httpx
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from backend.database import get_db
-from services.xp_engine import get_total_xp, get_today_xp
-from services.streak_engine import get_current_streak
+from backend.services.xp_engine import get_total_xp, get_today_xp
+from backend.services.streak_engine import get_current_streak
 
 router = APIRouter()
 

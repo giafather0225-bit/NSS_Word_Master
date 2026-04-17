@@ -19,7 +19,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel
 
 try:
-    from tts_edge import (
+    from backend.tts_edge import (
         say_preview_sequence,
         say_preview_word_meaning,
         say_word_then_meaning,
@@ -34,7 +34,7 @@ try:
         preview_sequence_bytes,
     )
 except ImportError:
-    from tts_say import (  # type: ignore[assignment]
+    from backend.tts_say import (  # type: ignore[assignment]
         say_preview_sequence,
         say_preview_word_meaning,
         say_word_then_meaning,

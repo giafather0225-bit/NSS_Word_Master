@@ -20,7 +20,7 @@ from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import StudyItem, Progress
-from voca_sync import load_lesson_json, sync_lesson_to_db
+from backend.voca_sync import load_lesson_json, sync_lesson_to_db
 
 router = APIRouter()
 

@@ -32,11 +32,11 @@ from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import Lesson, StudyItem
-from file_storage import save_lesson_file, list_lesson_files, delete_lesson_file
-from ocr_pipeline import run_ocr_pipeline
-from ocr_vision import extract_vocab_from_bytes, extract_vocab_from_image
-from ai_tutor import ollama_enrich_vocab
-from voca_sync import sync_lesson_to_db
+from backend.file_storage import save_lesson_file, list_lesson_files, delete_lesson_file
+from backend.ocr_pipeline import run_ocr_pipeline
+from backend.ocr_vision import extract_vocab_from_bytes, extract_vocab_from_image
+from backend.ai_tutor import ollama_enrich_vocab
+from backend.voca_sync import sync_lesson_to_db
 
 router = APIRouter()
 logger = logging.getLogger(__name__)

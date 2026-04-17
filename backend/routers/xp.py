@@ -23,14 +23,14 @@ from backend.models import (
     XPLog,
     WordReview,
 )
-from services.xp_engine import (
+from backend.services.xp_engine import (
     award_xp,
     get_total_xp,
     get_today_xp,
     get_words_known,
     XP_RULES,
 )
-from services.streak_engine import (
+from backend.services.streak_engine import (
     get_or_create_streak_log,
     get_current_streak,
     mark_review_done,
