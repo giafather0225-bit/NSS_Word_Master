@@ -33,6 +33,12 @@ function renderMathProblem() {
            <div class="math-hint-box hidden" id="math-hint-box"></div>`
         : '';
 
+    // 3-Read (word problem heuristic — Try & Practice stages)
+    const isWord = (typeof isWordProblem === 'function') && isWordProblem(p.question || '');
+    const threeReadHtml = (isWord && mathState.stage !== 'pretest')
+        ? `<button class="math-btn-ghost math-3read-btn" id="math-3read-btn" type="button">📖 3-Read</button>`
+        : '';
+
     stage.innerHTML = `
         <div class="math-problem-wrap">
             <div class="math-problem-header">
@@ -41,7 +47,10 @@ function renderMathProblem() {
             </div>
 
             <div class="math-problem-card">
-                <div class="math-problem-question">${_escP(p.question)}</div>
+                <div class="math-problem-question">
+                    ${_escP(p.question)}
+                    ${threeReadHtml}
+                </div>
                 <div class="math-problem-body" id="math-problem-body"></div>
                 ${hintsHtml}
             </div>
@@ -89,6 +98,14 @@ function renderMathProblem() {
         if (typeof mathState !== 'undefined' && mathState.forceHints) {
             showNextHint();
         }
+    }
+
+    // Wire 3-Read button
+    const threeBtn = document.getElementById('math-3read-btn');
+    if (threeBtn && typeof show3ReadModal === 'function') {
+        threeBtn.addEventListener('click', () => {
+            show3ReadModal(p.question || '');
+        });
     }
 }
 
