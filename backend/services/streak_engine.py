@@ -7,7 +7,7 @@ API: called by routers/xp.py
 
 from datetime import date, timedelta, datetime
 from sqlalchemy.orm import Session
-from models import StreakLog, DayOffRequest, WordReview
+from backend.models import StreakLog, DayOffRequest, WordReview
 
 
 # @tag STREAK

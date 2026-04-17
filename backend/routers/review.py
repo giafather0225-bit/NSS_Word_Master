@@ -16,7 +16,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
-from models import StudyItem, WordReview
+from backend.models import StudyItem, WordReview
 from sm2 import sm2_calculate, quality_from_result
 
 router = APIRouter()

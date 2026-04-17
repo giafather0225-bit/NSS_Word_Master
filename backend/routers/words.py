@@ -30,7 +30,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
-from models import Lesson, StudyItem, Word
+from backend.models import Lesson, StudyItem, Word
 
 router = APIRouter()
 logger = logging.getLogger(__name__)

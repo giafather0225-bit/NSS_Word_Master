@@ -15,7 +15,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from backend.database import get_db
-from models import (
+from backend.models import (
     TaskSetting,
     DiaryEntry,
     DailyWordsProgress,

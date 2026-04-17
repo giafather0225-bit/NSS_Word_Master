@@ -7,7 +7,7 @@ API: called by routers/xp.py
 
 from datetime import datetime, date
 from sqlalchemy.orm import Session
-from models import XPLog, WordReview
+from backend.models import XPLog, WordReview
 
 # XP awarded per action (immutable)
 XP_RULES: dict[str, int] = {

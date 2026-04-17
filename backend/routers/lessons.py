@@ -24,7 +24,7 @@ from sqlalchemy import text as _text
 from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
-from models import Lesson, StudyItem
+from backend.models import Lesson, StudyItem
 
 router = APIRouter()
 

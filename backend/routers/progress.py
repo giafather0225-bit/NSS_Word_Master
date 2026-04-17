@@ -15,7 +15,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
-from models import StudyItem, Progress
+from backend.models import StudyItem, Progress
 
 router = APIRouter()
 

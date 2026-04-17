@@ -31,7 +31,7 @@ from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
-from models import Lesson, StudyItem
+from backend.models import Lesson, StudyItem
 from file_storage import save_lesson_file, list_lesson_files, delete_lesson_file
 from ocr_pipeline import run_ocr_pipeline
 from ocr_vision import extract_vocab_from_bytes, extract_vocab_from_image
