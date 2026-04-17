@@ -50,13 +50,36 @@
     --gradient-subtle: var(--bg-card);
 
     /* ── 배경 ────────────────────────────── */
-    --bg-page:     #FFFFFF;
-    --bg-card:     #FFFFFF;
-    --bg-sidebar:  #FFFFFF;
-    --bg-input:    #FFFFFF;
-    --bg-surface:  #FAFAFA;   /* 아주 옅은 회색 — 영역 구분용 */
-    --bg-chip:     var(--color-primary-light);
-    --bg-chip-used: #F5F5F5;
+    --bg-page:       #F7F6F3;    /* 전체 앱 크림 배경 */
+    --bg-page-white: #FFFFFF;    /* 개별 화면 white 전환용 */
+    --bg-card:       #FFFFFF;
+    --bg-sidebar:    #FFFFFF;
+    --bg-input:      #FFFFFF;
+    --bg-surface:    #F2F1EE;    /* 영역 구분용 warm gray */
+    --bg-chip:       var(--color-primary-light);
+    --bg-chip-used:  #F5F5F5;
+
+    /* ── GIA Soft 섹션 tint ───────────────── */
+    --bg-section-english: #E8F4F4;
+    --bg-section-diary:   #FEF0EE;
+    --bg-section-math:    #F5EFF8;
+
+    /* ── Gamification tokens (L3) ─────────── */
+    --xp-color:     var(--color-secondary);
+    --xp-bg:        var(--color-secondary-light);
+    --streak-color: var(--color-warning);
+    --streak-bg:    #FFF8ED;
+
+    /* ── Calm easing ──────────────────────── */
+    --ease-calm:     cubic-bezier(0.25, 0.1, 0.25, 1.0);
+    --ease-calm-out: cubic-bezier(0.0, 0.0, 0.2, 1.0);
+
+    /* ── Growth / stat alias ──────────────── */
+    --radius-card:     14px;
+    --bg-growth-card:  var(--bg-section-english);
+    --bg-stat-inner:   rgba(255, 255, 255, 0.7);
+    --overlay-scrim:   rgba(0, 0, 0, 0.4);
+    --progress-height: 8px;
 
     /* ── 텍스트 ──────────────────────────── */
     --text-primary:    #1A1A1A;
@@ -72,7 +95,7 @@
     --border-input-focus: var(--color-primary);
     --border-chip:        var(--color-primary);
     --border-chip-used:   #E5E7EB;
-    --border-card:        #E5E7EB;
+    --border-card:        rgba(0, 0, 0, 0.06);
 
     /* ── 그림자 (사용 금지 — border로 대체; 호환 폴백만 남김) ── */
     --shadow-card:        0 0 0 1px var(--border-card);
@@ -233,3 +256,39 @@ small, .text-small { font-size: var(--font-size-sm); color: var(--text-secondary
    higher-specificity selector.
    ================================================================ */
 /* (left intentionally unset — enforce via linting / manual pass) */
+
+/* ================================================================
+   ICON UTILITIES — replacements for emoji (checkmarks, dots).
+   Keep tokens-only; no hard-coded colors.
+   ================================================================ */
+.check-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-success);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    vertical-align: middle;
+}
+.check-dot::before { content: "\2713"; }
+
+.check-dot--lg { width: 56px; height: 56px; font-size: 32px; }
+
+.sb-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 2px;
+    flex-shrink: 0;
+    background: var(--color-primary);
+}
+.sb-dot--english  { background: var(--color-primary); }
+.sb-dot--academy  { background: var(--color-primary); }
+.sb-dot--daily    { background: var(--color-secondary); }
+.sb-dot--mywords  { background: var(--color-accent); }

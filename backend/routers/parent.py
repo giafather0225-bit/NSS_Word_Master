@@ -13,6 +13,7 @@ API: GET /api/parent/overview, GET /api/parent/word-stats,
 """
 
 import logging
+import secrets
 from datetime import datetime, date, timedelta
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Query
@@ -99,7 +100,7 @@ def require_parent_pin(
     parent PIN via the browser console.
     """
     correct = _get_stored_pin(db)
-    if not x_parent_pin or x_parent_pin != correct:
+    if not x_parent_pin or not secrets.compare_digest(x_parent_pin, correct):
         raise HTTPException(status_code=403, detail="Parent PIN required")
     return True
 
@@ -110,7 +111,7 @@ def parent_verify_pin(body: PinVerifyIn, db: Session = Depends(get_db)):
     Verify the parent PIN. Returns ok:true on success.
     @tag PARENT PIN
     """
-    if body.pin != _get_stored_pin(db):
+    if not secrets.compare_digest(body.pin or "", _get_stored_pin(db)):
         raise HTTPException(status_code=403, detail="Wrong PIN")
     return {"ok": True}
 

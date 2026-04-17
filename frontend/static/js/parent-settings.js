@@ -28,9 +28,9 @@ async function ppRenderTasks(body) {
                     <span class="pp-toggle-track"></span>
                 </label>
                 ${t.is_required
-                    ? `<span style="font-size:11px;font-weight:700;color:var(--color-primary)">★ Required</span>`
+                    ? `<span style="font-size:11px;font-weight:700;color:var(--color-primary)">Required</span>`
                     : `<button class="pp-btn secondary" style="padding:5px 10px;font-size:12px"
-                               onclick="_ppToggleRequired('${t.task_key}', ${!t.is_required})">${t.is_required ? "★" : "☆"}</button>`}
+                               onclick="_ppToggleRequired('${t.task_key}', ${!t.is_required})">Make Required</button>`}
             </div>`;
         }).join("");
         body.innerHTML = `

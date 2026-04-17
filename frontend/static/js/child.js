@@ -477,7 +477,7 @@ async function finishPerfectChallenge() {
             ? `<div style="font-size:4rem;line-height:1;">🏆</div>
                <div style="font-size:2.2rem;font-weight:900;margin:14px 0 8px;color:#7d4600;">PERFECT!</div>
                <div style="font-size:1.2rem;font-weight:700;color:#7d4600;">No mistakes — incredible!</div>`
-            : `<div style="font-size:3.5rem;line-height:1;">✅</div>
+            : `<div style="line-height:1;"><span class="check-dot check-dot--lg"></span></div>
                <div style="font-size:1.8rem;font-weight:800;margin:14px 0 8px;color:#2c3e50;">Final Test Done!</div>
                <div style="font-size:1.1rem;color:#555;">Finished with ${magicFailCount} reset(s).</div>
                <div style="font-size:1rem;color:#7f8c8d;margin-top:4px;">Keep practicing!</div>`;
@@ -507,7 +507,7 @@ async function finishPerfectChallenge() {
         });
     }
     particleBurst(perfect ? 48 : 32);
-    showPerfectBanner(perfect ? "Perfect! 🏆" : "Final Test Done! ✅");
+    showPerfectBanner(perfect ? "Perfect! 🏆" : "Final Test Done!");
     setStatus(perfect
         ? "🏆 Perfect score! Click \"Test\" to retake."
         : `Done! ${magicFailCount} reset(s). Click the Test button to retry.`

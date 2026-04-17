@@ -41,10 +41,16 @@ def main() -> int:
             )
             changed.append("learning_logs.subject added")
         if "wrong_words" in cols and "wrong_words_json" not in cols:
-            cur.execute(
-                "ALTER TABLE learning_logs RENAME COLUMN wrong_words TO wrong_words_json"
-            )
-            changed.append("learning_logs.wrong_words → wrong_words_json")
+            try:
+                cur.execute(
+                    "ALTER TABLE learning_logs RENAME COLUMN wrong_words TO wrong_words_json"
+                )
+                changed.append("learning_logs.wrong_words → wrong_words_json")
+            except sqlite3.OperationalError as e:
+                conn.rollback()
+                print(f"❌ RENAME COLUMN failed (requires SQLite ≥ 3.25): {e}")
+                conn.close()
+                return 2
 
     # ── word_attempts ──────────────────────────────────────────
     if "word_attempts" in {r[0] for r in cur.execute(

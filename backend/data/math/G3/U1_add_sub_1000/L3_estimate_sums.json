@@ -1,0 +1,744 @@
+{
+  "lesson_id": "L3_estimate_sums",
+  "title": "Estimate Sums",
+  "ccss": ["3.NBT.A.1"],
+  "grade": "G3",
+  "unit": "U1_add_sub_1000",
+  "go_math_ref": "Chapter 1, Lesson 1.3, pp.13-16",
+  "essential_question": "How can you use compatible numbers and rounding to estimate sums?",
+  "key_vocabulary": ["estimate", "compatible numbers", "rounding", "sum", "nearest ten", "nearest hundred"],
+
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding",
+      "difficulty": 2,
+      "question": "Estimate. 38 + 21 = ?",
+      "choices": {"A": "about 50", "B": "about 60", "C": "about 70", "D": "about 40"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded 38→30 but then added incorrectly"},
+        "C": {"error_type": "careless", "note": "Rounded 21→30 instead of 20"},
+        "D": {"error_type": "concept_gap", "note": "Rounded both down: 30+10=40"}
+      },
+      "solution_steps": ["Round 38 to the nearest ten → 40", "Round 21 to the nearest ten → 20", "40 + 20 = 60"],
+      "hint": "Round each number to the nearest ten first, then add.",
+      "verification": "Go Math p.14 Share and Show style"
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding_hundreds",
+      "difficulty": 2,
+      "question": "Estimate. 327 + 581 = ?",
+      "choices": {"A": "about 800", "B": "about 900", "C": "about 1,000", "D": "about 700"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "Rounded 581→500: 300+500=800"},
+        "C": {"error_type": "concept_gap", "note": "Rounded both up: 400+600=1,000"},
+        "D": {"error_type": "concept_gap", "note": "Rounded both down: 300+400=700"}
+      },
+      "solution_steps": ["Round 327 → 300", "Round 581 → 600", "300 + 600 = 900"],
+      "hint": "Round each number to the nearest hundred, then add.",
+      "verification": "Go Math p.14 Q7"
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_compatible",
+      "difficulty": 3,
+      "question": "Use compatible numbers to estimate. 48 + 23 = ?",
+      "choices": {"A": "about 70", "B": "about 75", "C": "about 60", "D": "about 80"},
+      "answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "Used 50+25=75"},
+        "C": {"error_type": "concept_gap", "note": "Used 40+20=60"},
+        "D": {"error_type": "concept_gap", "note": "Used 50+30=80"}
+      },
+      "solution_steps": ["Find compatible numbers close to 48 and 23", "50 + 20 = 70 is a good estimate", "The actual sum is 71, so 70 is close"],
+      "hint": "Compatible numbers are numbers that are easy to add mentally.",
+      "verification": "Go Math p.13 compatible numbers concept"
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding_hundreds",
+      "difficulty": 3,
+      "question": "Tracy ordered 325 pet toys and 165 bags of dog food. Which is the best estimate of the total number of items?",
+      "choices": {"A": "400", "B": "500", "C": "600", "D": "700"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded both down: 300+100=400"},
+        "C": {"error_type": "careless", "note": "Rounded 165→200, 325→400: 600"},
+        "D": {"error_type": "concept_gap", "note": "Rounded both up: 400+300=700"}
+      },
+      "solution_steps": ["Round 325 → 300", "Round 165 → 200", "300 + 200 = 500"],
+      "hint": "Round each number to the nearest hundred.",
+      "verification": "Go Math p.16 Q19 Test Prep — exact problem"
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_choose_method",
+      "difficulty": 3,
+      "question": "Which is the best estimate for 465 + 478?",
+      "choices": {"A": "about 800", "B": "about 900", "C": "about 1,000", "D": "about 950"},
+      "answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded both down: 400+400=800"},
+        "B": {"error_type": "careless", "note": "Rounded 465→450, 478→450: 900"},
+        "D": {"error_type": "careless", "note": "Tried 475+475=950"}
+      },
+      "solution_steps": ["Round 465 → 500", "Round 478 → 500", "500 + 500 = 1,000"],
+      "hint": "Both numbers are close to 500.",
+      "verification": "Go Math p.15 Q10"
+    }
+  ],
+
+  "learn": [
+    {
+      "id": "LEARN_01",
+      "title": "What Is Estimating?",
+      "content": "Sometimes you don't need an exact answer. An estimate is a number close to the exact answer. When you estimate a sum, you find about how much two numbers add up to.",
+      "cpa_stage": "concrete",
+      "visual_type": "illustration",
+      "visual_data": {"description": "A child at a store with items priced $3.85 and $5.12. Thought bubble: About $4 + $5 = about $9. I have $10, so I have enough!"},
+      "verification": "Go Math p.13 introduction"
+    },
+    {
+      "id": "LEARN_02",
+      "title": "Method 1: Rounding",
+      "content": "To estimate a sum by rounding: 1) Round each number to the same place (nearest ten or nearest hundred). 2) Add the rounded numbers. Example: 367 + 512. Round to hundreds: 400 + 500 = 900. So 367 + 512 is about 900.",
+      "cpa_stage": "pictorial",
+      "visual_type": "number_line",
+      "visual_data": {"numbers": [367, 512], "rounded": [400, 500], "place": "hundreds", "sum": 900},
+      "verification": "Go Math p.13 Model — Rounding method"
+    },
+    {
+      "id": "LEARN_03",
+      "title": "Method 2: Compatible Numbers",
+      "content": "Compatible numbers are numbers that are easy to compute mentally. They are close to the actual numbers but simpler. Example: 367 + 512. Use compatible numbers: 375 + 525 = 900. So 367 + 512 is about 900.",
+      "cpa_stage": "pictorial",
+      "visual_type": "diagram",
+      "visual_data": {"original": [367, 512], "compatible": [375, 525], "sum": 900},
+      "verification": "Go Math p.13 Model — Compatible numbers method"
+    },
+    {
+      "id": "LEARN_04",
+      "title": "Rounding Two-Digit Numbers to Estimate",
+      "content": "For two-digit numbers, round to the nearest ten. Example: 27 + 78. Round: 30 + 80 = 110. So 27 + 78 is about 110. The exact answer is 105. The estimate 110 is close!",
+      "cpa_stage": "pictorial",
+      "visual_type": "number_line",
+      "visual_data": {"numbers": [27, 78], "rounded": [30, 80], "place": "tens", "sum": 110},
+      "verification": "Go Math p.14 Q8"
+    },
+    {
+      "id": "LEARN_05",
+      "title": "Rounding Three-Digit Numbers to Estimate",
+      "content": "For three-digit numbers, round to the nearest hundred. Example: 186 + 460. Round: 200 + 500 = 700. So 186 + 460 is about 700. The exact answer is 646. The estimate 700 is a good approximation.",
+      "cpa_stage": "abstract",
+      "visual_type": "text",
+      "visual_data": {},
+      "verification": "Go Math p.15 Q11"
+    },
+    {
+      "id": "LEARN_06",
+      "title": "Choosing the Best Method",
+      "content": "Both rounding and compatible numbers give good estimates. Sometimes one method gives a closer estimate than the other. Example: 278 + 369. Rounding: 300 + 400 = 700. Compatible: 275 + 325 = 600. Exact: 647. Here, compatible numbers (600) are closer to the exact answer (647).",
+      "cpa_stage": "abstract",
+      "visual_type": "comparison_table",
+      "visual_data": {"methods": ["Rounding", "Compatible"], "estimates": [700, 600], "exact": 647},
+      "verification": "Go Math p.15 Q14"
+    },
+    {
+      "id": "LEARN_07",
+      "title": "Using Estimation in Word Problems",
+      "content": "Estimation helps when you need a quick answer. Example: A store sold 238 pet bowls in June and 345 in July. About how many were sold in both months? Round: 200 + 300 = 500. About 500 pet bowls were sold.",
+      "cpa_stage": "abstract",
+      "visual_type": "word_problem",
+      "visual_data": {"context": "Pet store sales table"},
+      "verification": "Go Math p.16 Q16-18"
+    },
+    {
+      "id": "LEARN_08",
+      "title": "Key Idea Summary",
+      "content": "To estimate sums: Rounding — round each number to the nearest ten or hundred, then add. Compatible numbers — replace each number with a close number that is easy to add. Both methods give a number close to the exact answer. Use the word 'about' when you estimate.",
+      "cpa_stage": "abstract",
+      "visual_type": "summary_card",
+      "visual_data": {},
+      "verification": "Go Math pp.13-16 lesson summary"
+    }
+  ],
+
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "mc",
+      "cpa_stage": "pictorial",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding",
+      "difficulty": 2,
+      "question": "Use rounding to estimate. 39 + 42 = ?",
+      "choices": {"A": "about 70", "B": "about 80", "C": "about 90", "D": "about 60"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "Rounded 42→30"},
+        "C": {"error_type": "concept_gap", "note": "Rounded both up: 40+50=90"},
+        "D": {"error_type": "concept_gap", "note": "Rounded both down: 30+30=60"}
+      },
+      "solution_steps": ["Round 39 → 40", "Round 42 → 40", "40 + 40 = 80"],
+      "hint": "Round each number to the nearest ten.",
+      "verification": "Go Math p.14 Q6"
+    },
+    {
+      "id": "TRY_02",
+      "type": "mc",
+      "cpa_stage": "pictorial",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding_hundreds",
+      "difficulty": 2,
+      "question": "Use rounding to estimate. 267 + 517 = ?",
+      "choices": {"A": "about 700", "B": "about 800", "C": "about 900", "D": "about 600"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "267→200, 517→500: 700"},
+        "C": {"error_type": "concept_gap", "note": "300+600=900"},
+        "D": {"error_type": "concept_gap", "note": "200+400=600"}
+      },
+      "solution_steps": ["Round 267 → 300", "Round 517 → 500", "300 + 500 = 800"],
+      "hint": "Round each number to the nearest hundred.",
+      "verification": "Go Math p.15 Q9"
+    },
+    {
+      "id": "TRY_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_compatible",
+      "difficulty": 3,
+      "question": "Use compatible numbers to estimate. 19 + 54 = ?",
+      "choices": {"A": "about 75", "B": "about 70", "C": "about 65", "D": "about 80"},
+      "answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "Used 20+50=70"},
+        "C": {"error_type": "concept_gap", "note": "Used 15+50=65"},
+        "D": {"error_type": "concept_gap", "note": "Used 25+55=80"}
+      },
+      "solution_steps": ["Compatible: 25 + 50 = 75", "Or: 20 + 55 = 75"],
+      "hint": "Pick numbers close to 19 and 54 that are easy to add.",
+      "verification": "Go Math p.14 Q5"
+    },
+    {
+      "id": "TRY_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding_hundreds",
+      "difficulty": 3,
+      "question": "Use rounding to estimate. 817 + 118 = ?",
+      "choices": {"A": "about 900", "B": "about 1,000", "C": "about 800", "D": "about 1,100"},
+      "answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "118→200: 800+200=1,000"},
+        "C": {"error_type": "concept_gap", "note": "Just rounded 817→800"},
+        "D": {"error_type": "concept_gap", "note": "900+200=1,100"}
+      },
+      "solution_steps": ["Round 817 → 800", "Round 118 → 100", "800 + 100 = 900"],
+      "hint": "Round each to the nearest hundred.",
+      "verification": "Go Math p.15 Q12"
+    },
+    {
+      "id": "TRY_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_word_problem",
+      "difficulty": 3,
+      "question": "A school collected 278 cans in Week 1 and 369 cans in Week 2. About how many cans were collected in all?",
+      "choices": {"A": "about 500", "B": "about 600", "C": "about 700", "D": "about 800"},
+      "answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "200+300=500"},
+        "B": {"error_type": "careless", "note": "Compatible 275+325=600"},
+        "D": {"error_type": "concept_gap", "note": "300+500=800"}
+      },
+      "solution_steps": ["Round 278 → 300", "Round 369 → 400", "300 + 400 = 700"],
+      "hint": "Round each number to the nearest hundred, then add.",
+      "verification": "Go Math p.15 Q14 adapted"
+    }
+  ],
+
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding",
+      "difficulty": 2,
+      "question": "Use rounding to estimate. 54 + 37 = ?",
+      "choices": {"A": "about 80", "B": "about 90", "C": "about 100", "D": "about 70"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "50+30=80"},
+        "C": {"error_type": "concept_gap", "note": "60+40=100"},
+        "D": {"error_type": "concept_gap", "note": "Rounded wrong"}
+      },
+      "solution_steps": ["Round 54 → 50", "Round 37 → 40", "50 + 40 = 90"],
+      "hint": "Round to the nearest ten."
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding",
+      "difficulty": 2,
+      "question": "Use rounding to estimate. 63 + 28 = ?",
+      "choices": {"A": "about 80", "B": "about 90", "C": "about 100", "D": "about 70"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "60+20=80"},
+        "C": {"error_type": "concept_gap", "note": "70+30=100"},
+        "D": {"error_type": "concept_gap", "note": "60+10=70"}
+      },
+      "solution_steps": ["Round 63 → 60", "Round 28 → 30", "60 + 30 = 90"],
+      "hint": "Round each number to the nearest ten."
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding_hundreds",
+      "difficulty": 2,
+      "question": "Use rounding to estimate. 432 + 251 = ?",
+      "choices": {"A": "about 600", "B": "about 700", "C": "about 800", "D": "about 500"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "400+200=600"},
+        "C": {"error_type": "concept_gap", "note": "500+300=800"},
+        "D": {"error_type": "concept_gap", "note": "Rounded both down"}
+      },
+      "solution_steps": ["Round 432 → 400", "Round 251 → 300", "400 + 300 = 700"],
+      "hint": "Round each number to the nearest hundred."
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding_hundreds",
+      "difficulty": 2,
+      "question": "Use rounding to estimate. 525 + 195 = ?",
+      "choices": {"A": "about 600", "B": "about 700", "C": "about 800", "D": "about 500"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "500+100=600"},
+        "C": {"error_type": "concept_gap", "note": "600+200=800"},
+        "D": {"error_type": "concept_gap", "note": "500+0=500"}
+      },
+      "solution_steps": ["Round 525 → 500", "Round 195 → 200", "500 + 200 = 700"],
+      "hint": "Round each number to the nearest hundred.",
+      "verification": "Go Math p.15 Q15"
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_compatible",
+      "difficulty": 3,
+      "question": "Use compatible numbers to estimate. 34 + 47 = ?",
+      "choices": {"A": "about 80", "B": "about 75", "C": "about 70", "D": "about 90"},
+      "answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "Used 25+50=75"},
+        "C": {"error_type": "concept_gap", "note": "Used 30+40=70"},
+        "D": {"error_type": "concept_gap", "note": "Used 40+50=90"}
+      },
+      "solution_steps": ["Compatible: 35 + 45 = 80", "Or: 30 + 50 = 80", "Actual sum is 81, so 80 is great"],
+      "hint": "Find numbers close to 34 and 47 that are easy to add."
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_compatible",
+      "difficulty": 3,
+      "question": "Use compatible numbers to estimate. 76 + 23 = ?",
+      "choices": {"A": "about 90", "B": "about 100", "C": "about 110", "D": "about 80"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "Used 70+20=90"},
+        "C": {"error_type": "concept_gap", "note": "Used 80+30=110"},
+        "D": {"error_type": "concept_gap", "note": "Used 75+5=80"}
+      },
+      "solution_steps": ["Compatible: 75 + 25 = 100", "Actual sum is 99, so 100 is very close"],
+      "hint": "75 and 25 are compatible — they make 100!"
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding_hundreds",
+      "difficulty": 3,
+      "question": "Use rounding to estimate. 632 + 244 = ?",
+      "choices": {"A": "about 800", "B": "about 900", "C": "about 700", "D": "about 1,000"},
+      "answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "700+200=900"},
+        "C": {"error_type": "concept_gap", "note": "600+100=700"},
+        "D": {"error_type": "concept_gap", "note": "700+300=1,000"}
+      },
+      "solution_steps": ["Round 632 → 600", "Round 244 → 200", "600 + 200 = 800"],
+      "hint": "Round each number to the nearest hundred.",
+      "verification": "Go Math p.15 Q13"
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_word_problem",
+      "difficulty": 3,
+      "question": "Mia read 187 pages last week and 214 pages this week. About how many pages did she read in all?",
+      "choices": {"A": "about 300", "B": "about 400", "C": "about 500", "D": "about 350"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "100+200=300"},
+        "C": {"error_type": "concept_gap", "note": "200+300=500"},
+        "D": {"error_type": "careless", "note": "200+150=350"}
+      },
+      "solution_steps": ["Round 187 → 200", "Round 214 → 200", "200 + 200 = 400"],
+      "hint": "Round each number to the nearest hundred."
+    },
+    {
+      "id": "R1_09",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_word_problem",
+      "difficulty": 3,
+      "question": "A toy store sold 156 dolls and 238 cars. About how many toys were sold?",
+      "choices": {"A": "about 300", "B": "about 400", "C": "about 500", "D": "about 350"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "100+200=300"},
+        "C": {"error_type": "concept_gap", "note": "200+300=500"},
+        "D": {"error_type": "careless", "note": "150+200=350"}
+      },
+      "solution_steps": ["Round 156 → 200", "Round 238 → 200", "200 + 200 = 400"],
+      "hint": "Round each number to the nearest hundred, then add."
+    },
+    {
+      "id": "R1_10",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_choose_method",
+      "difficulty": 3,
+      "question": "Which is the best estimate for 186 + 460?",
+      "choices": {"A": "about 600", "B": "about 700", "C": "about 500", "D": "about 800"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "100+500=600"},
+        "C": {"error_type": "concept_gap", "note": "200+300=500"},
+        "D": {"error_type": "concept_gap", "note": "200+600=800"}
+      },
+      "solution_steps": ["Round 186 → 200", "Round 460 → 500", "200 + 500 = 700"],
+      "hint": "Round each number to the nearest hundred.",
+      "verification": "Go Math p.15 Q11"
+    }
+  ],
+
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding",
+      "difficulty": 3,
+      "question": "Use rounding to estimate. 45 + 67 = ?",
+      "choices": {"A": "about 110", "B": "about 120", "C": "about 100", "D": "about 130"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "40+70=110"},
+        "C": {"error_type": "concept_gap", "note": "40+60=100"},
+        "D": {"error_type": "concept_gap", "note": "50+80=130"}
+      },
+      "solution_steps": ["Round 45 → 50", "Round 67 → 70", "50 + 70 = 120"],
+      "hint": "Round each to the nearest ten."
+    },
+    {
+      "id": "R2_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding_hundreds",
+      "difficulty": 3,
+      "question": "Use rounding to estimate. 348 + 429 = ?",
+      "choices": {"A": "about 700", "B": "about 800", "C": "about 600", "D": "about 900"},
+      "answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "400+400=800"},
+        "C": {"error_type": "concept_gap", "note": "300+300=600"},
+        "D": {"error_type": "concept_gap", "note": "400+500=900"}
+      },
+      "solution_steps": ["Round 348 → 300", "Round 429 → 400", "300 + 400 = 700"],
+      "hint": "Round each number to the nearest hundred."
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_compatible",
+      "difficulty": 3,
+      "question": "Use compatible numbers to estimate. 52 + 49 = ?",
+      "choices": {"A": "about 100", "B": "about 90", "C": "about 110", "D": "about 95"},
+      "answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "50+40=90"},
+        "C": {"error_type": "concept_gap", "note": "55+55=110"},
+        "D": {"error_type": "careless", "note": "50+45=95"}
+      },
+      "solution_steps": ["Compatible: 50 + 50 = 100", "Actual sum is 101, so 100 is excellent"],
+      "hint": "Both numbers are very close to 50."
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding_hundreds",
+      "difficulty": 3,
+      "question": "Use rounding to estimate. 571 + 362 = ?",
+      "choices": {"A": "about 900", "B": "about 1,000", "C": "about 800", "D": "about 700"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "500+400=900"},
+        "C": {"error_type": "concept_gap", "note": "500+300=800"},
+        "D": {"error_type": "concept_gap", "note": "600+100=700"}
+      },
+      "solution_steps": ["Round 571 → 600", "Round 362 → 400", "600 + 400 = 1,000"],
+      "hint": "Round each number to the nearest hundred."
+    },
+    {
+      "id": "R2_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_word_problem",
+      "difficulty": 4,
+      "question": "A farm has 463 apple trees and 285 pear trees. About how many fruit trees are on the farm?",
+      "choices": {"A": "about 700", "B": "about 800", "C": "about 600", "D": "about 750"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "400+300=700"},
+        "C": {"error_type": "concept_gap", "note": "400+200=600"},
+        "D": {"error_type": "careless", "note": "475+275=750"}
+      },
+      "solution_steps": ["Round 463 → 500", "Round 285 → 300", "500 + 300 = 800"],
+      "hint": "Round each number to the nearest hundred, then add."
+    },
+    {
+      "id": "R2_06",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_word_problem",
+      "difficulty": 4,
+      "question": "Ms. Kim's class collected 317 bottles on Monday and 278 bottles on Tuesday. Which is the best estimate of the total?",
+      "choices": {"A": "about 500", "B": "about 600", "C": "about 700", "D": "about 400"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "300+200=500"},
+        "C": {"error_type": "concept_gap", "note": "400+300=700"},
+        "D": {"error_type": "concept_gap", "note": "Subtracted instead of added"}
+      },
+      "solution_steps": ["Round 317 → 300", "Round 278 → 300", "300 + 300 = 600"],
+      "hint": "Round each number to the nearest hundred."
+    },
+    {
+      "id": "R2_07",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_choose_method",
+      "difficulty": 4,
+      "question": "Estimate 145 + 358. Which method gives an estimate closest to the exact answer (503)?",
+      "choices": {"A": "Rounding to hundreds: 100 + 400 = 500", "B": "Rounding to hundreds: 200 + 400 = 600", "C": "Compatible: 150 + 350 = 500", "D": "Compatible: 100 + 400 = 500"},
+      "answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "Rounded 145 down to 100 — gets 500 by luck"},
+        "B": {"error_type": "concept_gap", "note": "145→200 is wrong rounding. 200+400=600"},
+        "D": {"error_type": "careless", "note": "100 is not a good compatible number for 145"}
+      },
+      "solution_steps": ["Compatible: 150 + 350 = 500", "Exact: 145 + 358 = 503", "500 is very close to 503"],
+      "hint": "Which replacement numbers are closest to the originals?"
+    },
+    {
+      "id": "R2_08",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding",
+      "difficulty": 3,
+      "question": "Use rounding to estimate. 85 + 46 = ?",
+      "choices": {"A": "about 120", "B": "about 130", "C": "about 140", "D": "about 110"},
+      "answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "80+40=120"},
+        "B": {"error_type": "careless", "note": "90+40=130"},
+        "D": {"error_type": "concept_gap", "note": "80+30=110"}
+      },
+      "solution_steps": ["Round 85 → 90", "Round 46 → 50", "90 + 50 = 140"],
+      "hint": "Round each to the nearest ten."
+    },
+    {
+      "id": "R2_09",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_compatible",
+      "difficulty": 4,
+      "question": "Use compatible numbers to estimate. 237 + 164 = ?",
+      "choices": {"A": "about 400", "B": "about 450", "C": "about 350", "D": "about 500"},
+      "answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "250+200=450"},
+        "C": {"error_type": "concept_gap", "note": "200+150=350"},
+        "D": {"error_type": "concept_gap", "note": "250+250=500"}
+      },
+      "solution_steps": ["Compatible: 225 + 175 = 400", "Or: 240 + 160 = 400", "Actual is 401, so 400 is excellent"],
+      "hint": "Find numbers close to 237 and 164 that add easily."
+    },
+    {
+      "id": "R2_10",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_word_problem",
+      "difficulty": 4,
+      "question": "A bakery made 389 muffins on Saturday and 412 muffins on Sunday. About how many muffins were made in all?",
+      "choices": {"A": "about 700", "B": "about 800", "C": "about 900", "D": "about 600"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "300+400=700"},
+        "C": {"error_type": "concept_gap", "note": "400+500=900"},
+        "D": {"error_type": "concept_gap", "note": "400+200=600"}
+      },
+      "solution_steps": ["Round 389 → 400", "Round 412 → 400", "400 + 400 = 800"],
+      "hint": "Round each number to the nearest hundred."
+    }
+  ],
+
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_multi_step",
+      "difficulty": 4,
+      "question": "A pet store sold 238 pet bowls in June, 345 in July, and 413 in August. About how many pet bowls were sold in all three months?",
+      "choices": {"A": "about 900", "B": "about 1,000", "C": "about 1,100", "D": "about 800"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "200+300+400=900"},
+        "C": {"error_type": "concept_gap", "note": "300+400+400=1,100"},
+        "D": {"error_type": "concept_gap", "note": "Only added two months"}
+      },
+      "solution_steps": ["Round 238 → 200, 345 → 300, 413 → 400", "200 + 300 + 400 = 900", "Compatible: 250 + 350 + 400 = 1,000", "Actual: 238+345+413 = 996, so 1,000 is closer"],
+      "hint": "Round each number, then add all three.",
+      "verification": "Go Math p.16 Q18 style"
+    },
+    {
+      "id": "R3_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_reasonableness",
+      "difficulty": 4,
+      "question": "Sam added 483 + 326 and got 709. He estimates to check: 500 + 300 = 800. Is Sam's answer reasonable?",
+      "choices": {"A": "No, his answer seems too low — the estimate is 800 but he got 709", "B": "Yes, because 709 is close to 800", "C": "No, because he should get exactly 800", "D": "Yes, because both numbers round up"},
+      "answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "709 vs 800 is a big gap (91). Actual answer is 809, so Sam made an error"},
+        "C": {"error_type": "concept_gap", "note": "Estimates are not exact"},
+        "D": {"error_type": "careless", "note": "326 rounds down to 300, not up"}
+      },
+      "solution_steps": ["Sam's answer: 709", "Estimate: 500 + 300 = 800", "The gap between 709 and 800 is 91 — that's large", "Actual: 483 + 326 = 809", "Sam likely made a subtraction error (forgot to regroup). His answer is NOT reasonable."],
+      "hint": "If the estimate and the answer are very far apart, something may be wrong."
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_choose_method",
+      "difficulty": 5,
+      "question": "Julia says 'compatible numbers always give a closer estimate than rounding.' Is she correct?",
+      "choices": {"A": "Yes, compatible numbers are always better", "B": "No, sometimes rounding gives a closer estimate", "C": "Yes, because compatible numbers are exact", "D": "No, both methods always give the same estimate"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Depends on the numbers"},
+        "C": {"error_type": "concept_gap", "note": "Compatible numbers are still estimates"},
+        "D": {"error_type": "concept_gap", "note": "Different methods often give different estimates"}
+      },
+      "solution_steps": ["Example 1: 247 + 356 (exact 603)", "Rounding: 200+400=600 — off by 3", "Compatible: 250+350=600 — off by 3 (same!)", "Example 2: 465+278 (exact 743)", "Rounding: 500+300=800 — off by 57", "Compatible: 475+275=750 — off by 7 (closer!)", "But it depends on the numbers. Julia is not always correct."],
+      "hint": "Try both methods with the same numbers and compare."
+    },
+    {
+      "id": "R3_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_word_problem",
+      "difficulty": 5,
+      "question": "A school needs 500 chairs for an event. They have 267 chairs in the gym and 189 in the cafeteria. Without finding the exact total, do they have enough chairs?",
+      "choices": {"A": "Yes, because 300 + 200 = 500", "B": "No, because 200 + 100 = 300", "C": "Yes, because 267 + 189 is more than 500", "D": "It's too close to tell by estimating alone"},
+      "answer": "D",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "Rounding up gives 500, but actual is 456 — not enough"},
+        "B": {"error_type": "concept_gap", "note": "Rounded too aggressively down"},
+        "C": {"error_type": "concept_gap", "note": "Incorrect — 267+189=456 < 500"}
+      },
+      "solution_steps": ["Rounding up: 300 + 200 = 500 (maybe enough)", "Rounding down: 200 + 100 = 300 (not enough)", "Estimates disagree — can't be sure without exact math", "Exact: 267 + 189 = 456 (not enough!)"],
+      "hint": "Try rounding up AND down. Do both give the same conclusion?"
+    },
+    {
+      "id": "R3_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_error_analysis",
+      "difficulty": 5,
+      "question": "Alex estimated 678 + 215 by rounding: '700 + 200 = 800.' His friend Amy used compatible numbers: '675 + 225 = 900.' Who has a better estimate?",
+      "choices": {"A": "Alex, because 800 is closer to the exact answer", "B": "Amy, because 900 is closer to the exact answer", "C": "Both are equally good", "D": "Neither — both made errors"},
+      "answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "678+215=893, so |893-800|=93 vs |893-900|=7"},
+        "C": {"error_type": "careless", "note": "93 ≠ 7, not equally close"},
+        "D": {"error_type": "concept_gap", "note": "Both are valid estimation methods — Alex just got a less accurate result. Also note Alex's arithmetic: 700+200=900, not 800 — Alex made a calculation error too!"}
+      },
+      "solution_steps": ["Exact: 678 + 215 = 893", "Alex said 700+200=800 (but 700+200 actually = 900, so Alex also made an arithmetic error)", "Amy said 675+225=900", "893 is much closer to 900 (off by 7) than to 800 (off by 93)", "Amy has the better estimate"],
+      "hint": "Calculate the exact sum, then see which estimate is closest."
+    }
+  ]
+}

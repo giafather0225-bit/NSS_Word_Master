@@ -176,17 +176,32 @@ async function renderTodayTasks() {
   } catch { /* use stubs */ }
 
   list.innerHTML = tasks.map(t => `
-    <div class="task-item${t.is_done ? ' done' : ''}${t.is_done ? '' : ' task-clickable'}" data-key="${t.key}">
-      <span class="${t.is_required ? 'task-required' : 'task-optional'}">${t.is_required ? '★' : '○'}</span>
+    <div class="task-item${t.is_done ? ' done' : ''}${t.is_done ? '' : ' task-clickable'}"
+         data-key="${t.key}" data-required="${t.is_required ? 'true' : 'false'}">
+      <div class="task-check-circle"></div>
       <span class="task-label">${t.label}${t.detail ? ` <span class="task-detail">(${t.detail})</span>` : ''}</span>
-      <span class="task-xp">+${t.xp} XP</span>
-      ${t.is_done ? '<span class="task-check">✅</span>' : '<span class="task-go">›</span>'}
+      <span class="task-xp-pill">+${t.xp} XP</span>
     </div>
   `).join('') + `
-    <div class="task-divider"></div>
-    <div class="bonus-row"><span class="task-optional">○</span><span class="task-label">Must Do bonus</span><span class="task-xp">+5 XP</span></div>
-    <div class="bonus-row"><span class="task-optional">○</span><span class="task-label">All complete bonus</span><span class="task-xp">+15 XP</span></div>
+    <div class="bonus-row" data-required="false">
+      <div class="task-check-circle"></div>
+      <span class="task-label">Must Do bonus</span>
+      <span class="task-xp-pill">+5 XP</span>
+    </div>
+    <div class="bonus-row" data-required="false">
+      <div class="task-check-circle"></div>
+      <span class="task-label">All complete bonus</span>
+      <span class="task-xp-pill">+15 XP</span>
+    </div>
   `;
+
+  // Track today's totals for Done stat
+  window._todayTaskCounts = {
+    total: tasks.length,
+    done: tasks.filter(t => t.is_done).length,
+  };
+  const doneEl = document.getElementById('summary-done');
+  if (doneEl) doneEl.textContent = `${window._todayTaskCounts.done}/${window._todayTaskCounts.total}`;
 
   // Wire click handlers: each task navigates to its relevant screen
   list.querySelectorAll('.task-clickable').forEach(el => {
@@ -232,6 +247,20 @@ function renderSectionCards() {
   if (engCard) engCard.onclick = () => switchView('english');
   if (diaryCard) diaryCard.onclick = () => switchView('diary');
   if (mathCard) mathCard.onclick = () => switchView('math');
+
+  // Reward Shop shortcut card
+  const rewardCard = document.getElementById('home-reward-card');
+  if (rewardCard) rewardCard.onclick = () => {
+    if (typeof openRewardShop === 'function') openRewardShop();
+  };
+
+  // Ocean World card → open growth theme detail modal (growth-theme.js)
+  const oceanCard = document.getElementById('ocean-world-card');
+  if (oceanCard) {
+    oceanCard.onclick = () => {
+      if (typeof gtOpenThemeDetail === 'function') gtOpenThemeDetail();
+    };
+  }
 }
 
 /**
@@ -241,9 +270,26 @@ function renderSectionCards() {
 function renderGrowthTheme() {
   if (typeof gtRenderTheme === 'function') {
     gtRenderTheme();
-  } else {
-    const el = document.getElementById('growth-theme-display');
-    if (el) el.innerHTML = `<div class="theme-placeholder" style="padding:12px;text-align:center">🌱</div>`;
+  }
+  _loadOceanImage();
+}
+
+/**
+ * Load the current Ocean World (growth theme) image into the dashboard card.
+ * @tag HOME_DASHBOARD @tag GROWTH_THEME
+ */
+async function _loadOceanImage() {
+  const card = document.getElementById('ocean-world-img');
+  const FALLBACK = '/static/img/themes/ocean/step_0_v1.svg';
+  // Show fallback immediately so the card never renders as a blank white box.
+  if (card && !card.getAttribute('src')) card.src = FALLBACK;
+  try {
+    const res = await fetch('/api/growth/theme');
+    const data = await res.json();
+    const url = data?.active?.img_url || FALLBACK;
+    if (card) card.src = url;
+  } catch {
+    if (card) card.src = FALLBACK;
   }
 }
 
@@ -260,8 +306,28 @@ async function renderSummaryBar() {
       const streakEl = document.getElementById('summary-streak');
       const wordsEl = document.getElementById('summary-words');
       if (xpEl) xpEl.textContent = d.total_xp ?? 0;
-      if (streakEl) streakEl.textContent = (d.streak_days ?? 0) + ' days';
+      if (streakEl) streakEl.textContent = (d.streak_days ?? 0) + 'd';
       if (wordsEl) wordsEl.textContent = d.words_known ?? 0;
+
+      // Level + Progress (XP per level = 100)
+      const totalXP = d.total_xp ?? 0;
+      const level = d.level ?? (Math.floor(totalXP / 100) + 1);
+      const xpInLevel = totalXP - ((level - 1) * 100);
+      const pct = Math.min(100, Math.round((xpInLevel / 100) * 100));
+      const lblEl  = document.getElementById('growth-level-label');
+      const pillEl = document.getElementById('growth-level-xp');
+      const fillEl = document.getElementById('growth-progress-fill');
+      const hintEl = document.getElementById('growth-level-hint');
+      if (lblEl)  lblEl.textContent  = `Level ${level}`;
+      if (pillEl) pillEl.textContent = `${xpInLevel}/100 XP`;
+      if (fillEl) fillEl.style.width = `${pct}%`;
+      if (hintEl) hintEl.textContent = `${100 - xpInLevel} XP to Level ${level + 1}`;
+
+      // Done count — reuse latest task counts if available
+      const counts = window._todayTaskCounts;
+      const doneEl = document.getElementById('summary-done');
+      if (doneEl && counts) doneEl.textContent = `${counts.done}/${counts.total}`;
+
       // Update top bar XP display
       _updateTopBarXP(d);
     }
@@ -287,7 +353,7 @@ function _updateTopBarXP(data) {
         metaEl.className = 'top-xp-meta';
         starsEl.parentNode.insertBefore(metaEl, starsEl.nextSibling);
     }
-    metaEl.textContent = `Lv.${level} · 🔥 ${streak}d`;
+    metaEl.textContent = `Lv.${level} · ${streak}d`;
     // Sync sidebar star-count
     const sidebarStar = document.getElementById('star-count');
     if (sidebarStar) sidebarStar.textContent = String(totalXP);

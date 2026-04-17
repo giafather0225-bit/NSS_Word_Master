@@ -306,6 +306,7 @@ def voca_save_reviewed(
     except Exception:
         raise HTTPException(422, "Invalid JSON")
     lesson_key = _validate_lesson(lesson)
+    textbook   = _validate_name(textbook, "textbook")
     dir_path = LEARNING_ROOT / "English" / textbook / lesson_key
     dir_path.mkdir(parents=True, exist_ok=True)
     out = dir_path / "data.json"
@@ -384,21 +385,25 @@ async def voca_folder_upload(
 ):
     """Upload multiple image files into a lesson folder."""
     lesson_key = _validate_lesson(lesson)
+    textbook   = _validate_name(textbook, "textbook")
     lesson_dir = LEARNING_ROOT / "English" / textbook / lesson_key
     lesson_dir.mkdir(parents=True, exist_ok=True)
     saved = []
     allowed = (".heic", ".heif", ".jpg", ".jpeg", ".png", ".webp", ".bmp", ".gif")
     for f in files:
-        ext = Path(f.filename).suffix.lower() if f.filename else ".png"
+        raw_name = Path(f.filename or "").name  # strip any directory components
+        ext = Path(raw_name).suffix.lower() if raw_name else ".png"
         if ext not in allowed:
+            continue
+        if not raw_name or not _SAFE_FILENAME_RE.match(raw_name):
             continue
         data = await f.read()
         if len(data) > 20_000_000:
             continue
-        dest = lesson_dir / f.filename
+        dest = lesson_dir / raw_name
         counter = 1
         while dest.exists():
-            stem = Path(f.filename).stem
+            stem = Path(raw_name).stem
             dest = lesson_dir / f"{stem}_{counter}{ext}"
             counter += 1
         dest.write_bytes(data)
@@ -421,6 +426,7 @@ async def voca_folder_ocr(
     import re as _re2
 
     lesson_key = _validate_lesson(lesson)
+    textbook   = _validate_name(textbook, "textbook")
     lesson_dir = LEARNING_ROOT / "English" / textbook / lesson_key
     if not lesson_dir.is_dir():
         raise HTTPException(status_code=404, detail=f"Folder not found: {lesson_key}")

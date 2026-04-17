@@ -1,0 +1,1227 @@
+{
+  "lesson_id": "L1_number_patterns",
+  "title": "Number Patterns",
+  "ccss": [
+    "3.OA.D.9"
+  ],
+  "grade": "G3",
+  "unit": "U1_add_sub_1000",
+  "go_math_ref": "Chapter 1, Lesson 1.1, pp.5-8",
+  "essential_question": "How can you use properties to explain patterns on the addition table?",
+  "key_vocabulary": [
+    "pattern",
+    "Commutative Property of Addition",
+    "Identity Property of Addition",
+    "even",
+    "odd",
+    "addition table",
+    "sum"
+  ],
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "commutative_property_addition",
+      "difficulty": 2,
+      "question": "Which number sentence shows the Commutative Property of Addition?",
+      "choices": [
+        "A) 7 + 0 = 7",
+        "B) 4 + 5 = 5 + 4",
+        "C) 3 + 2 = 5",
+        "D) 6 + 1 = 7"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Confused Commutative with Identity Property"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "True fact but not a property demonstration"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "True fact but not a property demonstration"
+        }
+      },
+      "verification": "Commutative: a+b=b+a. 4+5=9=5+4."
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "identity_property_addition",
+      "difficulty": 1,
+      "question": "What is 8 + 0?",
+      "choices": [
+        "A) 0",
+        "B) 80",
+        "C) 8",
+        "D) 9"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Thinks adding 0 yields 0"
+        },
+        "B": {
+          "error_type": "careless",
+          "note": "Concatenated digits"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Added 1 instead of 0"
+        }
+      },
+      "verification": "Identity: a+0=a. 8+0=8."
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "even_odd_sum_pattern",
+      "difficulty": 2,
+      "question": "Which addition has an EVEN sum?",
+      "choices": [
+        "A) 3 + 4",
+        "B) 5 + 5",
+        "C) 7 + 2",
+        "D) 9 + 6"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "3+4=7 (odd)"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "7+2=9 (odd)"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "9+6=15 (odd)"
+        }
+      },
+      "verification": "5+5=10(even). Others: 7,9,15 all odd."
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "arithmetic_pattern_rule",
+      "difficulty": 3,
+      "question": "Look at this pattern: 2, 4, 6, 8, ___. What comes next?",
+      "choices": [
+        "A) 9",
+        "B) 10",
+        "C) 11",
+        "D) 12"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "careless",
+          "note": "Added 1 instead of 2"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added 3 instead of 2"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Added 4 instead of 2"
+        }
+      },
+      "verification": "Rule: +2. 8+2=10."
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "addition_table_row_pattern",
+      "difficulty": 3,
+      "question": "In the addition table, the row for 3 shows: 3, 4, 5, 6, 7, 8, 9, 10, 11, 12. What is the pattern?",
+      "choices": [
+        "A) Each number increases by 2",
+        "B) Each number increases by 1",
+        "C) Each number increases by 3",
+        "D) The numbers repeat"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Confused row pattern with skip counting by 2"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Chose the row label as the increment"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Does not understand increasing patterns"
+        }
+      },
+      "verification": "3+0=3, 3+1=4, 3+2=5... increment=1 per column."
+    }
+  ],
+  "learn": [
+    {
+      "id": "LEARN_01",
+      "type": "instruction",
+      "cpa_stage": "concrete",
+      "title": "What Is a Pattern?",
+      "content": "A pattern is an ordered set of numbers or objects. The order helps you predict what comes next. For example: 1, 2, 3, 4, 5... The rule is 'add 1.'",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math p.5 introduces pattern as ordered set."
+    },
+    {
+      "id": "LEARN_02",
+      "type": "instruction",
+      "cpa_stage": "concrete",
+      "title": "Explore the Addition Table",
+      "content": "An addition table shows the sums of two numbers. The numbers across the top row and down the first column are addends. Where a row and column meet, you find the sum. Look at the row for 2: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11. Each number is 1 more than the one before it.",
+      "visual_type": "addition_table",
+      "visual_data": {
+        "description": "10x10 addition table (0-9 by 0-9) with row 2 highlighted",
+        "highlight_row": 2
+      },
+      "verification": "Go Math p.5-6: Hands-On activity uses addition table with shaded rows."
+    },
+    {
+      "id": "LEARN_03",
+      "type": "instruction",
+      "cpa_stage": "pictorial",
+      "title": "Row Patterns in the Addition Table",
+      "content": "Look at the row for 4: 4, 5, 6, 7, 8, 9, 10, 11, 12, 13. The pattern rule is 'add 1' each sum is 1 more than the previous sum because the second addend goes up by 1. Now look at the COLUMN for 4: 4, 5, 6, 7, 8, 9, 10, 11, 12, 13. It is the same! Rows and columns in an addition table show the same pattern.",
+      "visual_type": "addition_table",
+      "visual_data": {
+        "description": "Addition table with row 4 and column 4 both highlighted",
+        "highlight_row": 4,
+        "highlight_col": 4
+      },
+      "verification": "Go Math p.5-6 Activity: shade rows and compare columns."
+    },
+    {
+      "id": "LEARN_04",
+      "type": "instruction",
+      "cpa_stage": "pictorial",
+      "title": "The Commutative Property of Addition",
+      "content": "The Commutative Property of Addition says you can add two numbers in any order and get the same sum. For example: 3 + 5 = 8 and 5 + 3 = 8. This is why the addition table looks the same along the diagonal the row for 3 column 5 gives the same answer as row 5 column 3.",
+      "visual_type": "addition_table",
+      "visual_data": {
+        "description": "Addition table with cells (3,5) and (5,3) circled both showing 8",
+        "highlight_cells": [
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            3
+          ]
+        ]
+      },
+      "verification": "Go Math p.5-6 Activity 2: Commutative Property."
+    },
+    {
+      "id": "LEARN_05",
+      "type": "instruction",
+      "cpa_stage": "pictorial",
+      "title": "The Identity Property of Addition",
+      "content": "The Identity Property of Addition says that any number plus 0 equals that number. For example: 6 + 0 = 6 and 0 + 6 = 6. Look at the first column (adding 0) in the addition table: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9. Each sum is the same as the number in that row!",
+      "visual_type": "addition_table",
+      "visual_data": {
+        "description": "Addition table with column 0 highlighted",
+        "highlight_col": 0
+      },
+      "verification": "Go Math p.6 Activity 3: Identity Property."
+    },
+    {
+      "id": "LEARN_06",
+      "type": "instruction",
+      "cpa_stage": "abstract",
+      "title": "Even and Odd Patterns",
+      "content": "Even numbers end in 0, 2, 4, 6, or 8. Odd numbers end in 1, 3, 5, 7, or 9. When you add: even + even = even (4 + 6 = 10), odd + odd = even (3 + 5 = 8), even + odd = odd (2 + 3 = 5). Look at the addition table the sums make a checkerboard pattern of even and odd!",
+      "visual_type": "addition_table",
+      "visual_data": {
+        "description": "Addition table with even sums shaded blue and odd sums shaded yellow",
+        "color_even": "blue",
+        "color_odd": "yellow"
+      },
+      "verification": "Go Math p.7: even/odd sum pattern."
+    },
+    {
+      "id": "LEARN_07",
+      "type": "instruction",
+      "cpa_stage": "abstract",
+      "title": "Describe a Pattern",
+      "content": "When you describe a pattern, tell: (1) What numbers are in the pattern? (2) What is the rule? (3) What comes next? Example: 5, 10, 15, 20, ___. The rule is 'add 5.' The next number is 25.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math p.7-8: Describe a pattern in the table."
+    },
+    {
+      "id": "LEARN_08",
+      "type": "summary",
+      "cpa_stage": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today you learned: (1) Patterns are ordered sets with a rule. (2) The addition table has patterns in every row, column, and diagonal. (3) The Commutative Property: a + b = b + a. (4) The Identity Property: a + 0 = a. (5) Even + Even = Even, Odd + Odd = Even, Even + Odd = Odd.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Summarizes all Go Math 1.1 concepts."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "mc",
+      "cpa_stage": "pictorial",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "commutative_property_addition",
+      "difficulty": 2,
+      "question": "Find the sum: 6 + 3 = ___. Now use the Commutative Property to write a related addition sentence.",
+      "choices": [
+        "A) 3 + 6 = 9",
+        "B) 9 + 3 = 12",
+        "C) 6 - 3 = 3",
+        "D) 3 + 3 = 6"
+      ],
+      "correct_answer": "A",
+      "hint": "The Commutative Property says you can switch the order of the addends. If 6 + 3 = 9, what is 3 + 6?",
+      "solution_steps": [
+        "Step 1: Find the sum. 6 + 3 = 9.",
+        "Step 2: Use the Commutative Property switch the addends: 3 + 6.",
+        "Step 3: 3 + 6 = 9. The related sentence is 3 + 6 = 9."
+      ],
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Added the sum to one addend"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Confused with subtraction"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Doubled one addend"
+        }
+      },
+      "feedback": {
+        "correct": "You got it! 6 + 3 = 3 + 6 = 9.",
+        "incorrect": "The Commutative Property means you switch the order. 6 + 3 becomes 3 + 6, and the sum stays the same."
+      },
+      "verification": "Go Math p.8: Find the sum then write related Commutative sentence."
+    },
+    {
+      "id": "TRY_02",
+      "type": "mc",
+      "cpa_stage": "pictorial",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "identity_property_addition",
+      "difficulty": 1,
+      "question": "Which property does this number sentence show? 5 + 0 = 5",
+      "choices": [
+        "A) Commutative Property",
+        "B) Identity Property",
+        "C) Neither"
+      ],
+      "correct_answer": "B",
+      "hint": "One property is about switching the order. The other is about adding 0.",
+      "solution_steps": [
+        "Step 1: Look at 5 + 0 = 5.",
+        "Step 2: Adding 0 does not change the number.",
+        "Step 3: This is the Identity Property of Addition."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Confused the two properties"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Does not recognize it as a property"
+        }
+      },
+      "feedback": {
+        "correct": "The Identity Property says any number plus 0 equals that same number.",
+        "incorrect": "When you add 0, the number stays the same. That is the Identity Property."
+      },
+      "verification": "Go Math p.6: Identity Property. 5+0=5."
+    },
+    {
+      "id": "TRY_03",
+      "type": "mc",
+      "cpa_stage": "pictorial",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "even_odd_sum_pattern",
+      "difficulty": 2,
+      "question": "Is the sum of 7 + 3 even or odd?",
+      "choices": [
+        "A) Even",
+        "B) Odd"
+      ],
+      "correct_answer": "A",
+      "hint": "First find the sum: 7 + 3 = ? Then check if it ends in 0, 2, 4, 6, or 8.",
+      "solution_steps": [
+        "Step 1: 7 + 3 = 10.",
+        "Step 2: 10 ends in 0.",
+        "Step 3: 10 is even. Rule: odd + odd = even."
+      ],
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Both addends are odd so assumed the sum is odd"
+        }
+      },
+      "feedback": {
+        "correct": "7 + 3 = 10, which is even! Odd + Odd always equals Even.",
+        "incorrect": "7 + 3 = 10. Even though both numbers are odd, odd + odd = even."
+      },
+      "verification": "7+3=10 (even). Odd+odd=even rule."
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "arithmetic_pattern_rule",
+      "difficulty": 2,
+      "question": "What is the next number in this pattern? 3, 6, 9, 12, ___",
+      "correct_answer": "15",
+      "hint": "Look at the difference between each pair. 6-3=3, 9-6=3, 12-9=3.",
+      "solution_steps": [
+        "Step 1: Find the difference: 6-3=3, 9-6=3, 12-9=3.",
+        "Step 2: The rule is add 3.",
+        "Step 3: 12 + 3 = 15."
+      ],
+      "expected_errors": {
+        "13": {
+          "error_type": "careless",
+          "note": "Added 1 instead of 3"
+        },
+        "14": {
+          "error_type": "careless",
+          "note": "Added 2 instead of 3"
+        },
+        "16": {
+          "error_type": "careless",
+          "note": "Added 4 instead of 3"
+        }
+      },
+      "feedback": {
+        "correct": "The pattern adds 3 each time. 12 + 3 = 15!",
+        "incorrect": "Look at the jumps: 3 to 6 to 9 to 12. Each time you add 3. So 12 + 3 = 15."
+      },
+      "verification": "Skip count by 3. 12+3=15."
+    },
+    {
+      "id": "TRY_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "addition_table_pattern",
+      "difficulty": 3,
+      "question": "In the addition table, the diagonal from top-left to bottom-right shows: 0, 2, 4, 6, 8, 10, 12, 14, 16, 18. What pattern do you see?",
+      "choices": [
+        "A) Add 1 each time",
+        "B) Add 2 each time",
+        "C) Add 3 each time",
+        "D) Multiply by 2 each time"
+      ],
+      "correct_answer": "B",
+      "hint": "Look at the difference: 2-0=2, 4-2=2, 6-4=2...",
+      "solution_steps": [
+        "Step 1: Differences: 2-0=2, 4-2=2, 6-4=2, 8-6=2.",
+        "Step 2: Each number increases by 2.",
+        "Step 3: The diagonal shows doubles (0+0, 1+1, 2+2...) which are all even."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "careless",
+          "note": "Confused with row pattern"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Incorrect difference"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Confuses additive with multiplicative pattern"
+        }
+      },
+      "feedback": {
+        "correct": "The main diagonal shows doubles: 0+0, 1+1, 2+2... The pattern is add 2!",
+        "incorrect": "Check: 0, 2, 4, 6, 8... each jump is +2."
+      },
+      "verification": "Main diagonal = doubles = +2 pattern."
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "commutative_property_addition",
+      "difficulty": 2,
+      "question": "Which shows the Commutative Property of Addition?",
+      "choices": [
+        "A) 2 + 8 = 8 + 2",
+        "B) 2 + 8 = 10",
+        "C) 10 - 8 = 2",
+        "D) 2 + 0 = 2"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "careless",
+          "note": "Correct sum but not the property"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Subtraction not addition property"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "This is Identity Property"
+        }
+      },
+      "verification": "2+8=10=8+2. Commutative."
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "identity_property_addition",
+      "difficulty": 1,
+      "question": "What is 0 + 7?",
+      "choices": [
+        "A) 0",
+        "B) 7",
+        "C) 70",
+        "D) 1"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Thinks 0 makes everything 0"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Concatenated digits"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Confused with multiplication"
+        }
+      },
+      "verification": "Identity: 0+7=7."
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "commutative_property_addition",
+      "difficulty": 2,
+      "question": "If 9 + 4 = 13, what is 4 + 9?",
+      "choices": [
+        "A) 12",
+        "B) 13",
+        "C) 14",
+        "D) 94"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "careless",
+          "note": "Subtracted 1"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added 1"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Concatenated digits"
+        }
+      },
+      "verification": "Commutative: 9+4=4+9=13."
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "even_odd_sum_pattern",
+      "difficulty": 2,
+      "question": "Is the sum of 4 + 6 even or odd?",
+      "choices": [
+        "A) Even",
+        "B) Odd"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Miscounted or confused parity"
+        }
+      },
+      "verification": "4+6=10 (even). Even+even=even."
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "even_odd_sum_pattern",
+      "difficulty": 2,
+      "question": "Is the sum of 5 + 8 even or odd?",
+      "choices": [
+        "A) Even",
+        "B) Odd"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Confused parity rule for odd+even"
+        }
+      },
+      "verification": "5+8=13 (odd). Odd+even=odd."
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "arithmetic_pattern_rule",
+      "difficulty": 2,
+      "question": "What comes next? 4, 8, 12, 16, ___",
+      "correct_answer": "20",
+      "expected_errors": {
+        "17": {
+          "error_type": "careless",
+          "note": "Added 1 instead of 4"
+        },
+        "18": {
+          "error_type": "careless",
+          "note": "Added 2 instead of 4"
+        },
+        "24": {
+          "error_type": "careless",
+          "note": "Added 8 instead of 4"
+        }
+      },
+      "verification": "Rule: +4. 16+4=20."
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "arithmetic_pattern_rule",
+      "difficulty": 2,
+      "question": "What comes next? 5, 10, 15, 20, ___",
+      "correct_answer": "25",
+      "expected_errors": {
+        "21": {
+          "error_type": "careless",
+          "note": "Added 1 instead of 5"
+        },
+        "30": {
+          "error_type": "careless",
+          "note": "Added 10 instead of 5"
+        }
+      },
+      "verification": "Rule: +5. 20+5=25."
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "addition_table_row_pattern",
+      "difficulty": 2,
+      "question": "In the addition table, the row for 5 starts: 5, 6, 7, 8, 9... What is the rule?",
+      "choices": [
+        "A) Add 5",
+        "B) Add 1",
+        "C) Add 2",
+        "D) Subtract 1"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Chose the row label as the rule"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Incorrect difference"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Numbers are increasing"
+        }
+      },
+      "verification": "5+0=5, 5+1=6, 5+2=7... columns go up by 1."
+    },
+    {
+      "id": "R1_09",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "identity_property_addition",
+      "difficulty": 1,
+      "question": "Which property does this show? 0 + 12 = 12",
+      "choices": [
+        "A) Commutative Property",
+        "B) Identity Property",
+        "C) Both"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Confused the two properties"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Key feature is the 0 so Identity"
+        }
+      },
+      "verification": "0+12=12. Identity Property."
+    },
+    {
+      "id": "R1_10",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "even_odd_sum_pattern",
+      "difficulty": 2,
+      "question": "Which rule is correct about adding even and odd numbers?",
+      "choices": [
+        "A) Even + Even = Odd",
+        "B) Odd + Odd = Odd",
+        "C) Even + Odd = Odd",
+        "D) Even + Odd = Even"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Even+even=even e.g. 2+4=6"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Odd+odd=even e.g. 3+5=8"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Even+odd=odd e.g. 2+3=5"
+        }
+      },
+      "verification": "Even+Odd=Odd (e.g. 4+3=7)."
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "commutative_property_addition",
+      "difficulty": 2,
+      "question": "Sam says 7 + 5 = 12 and 5 + 7 = 12. Which property explains why both sums are the same?",
+      "choices": [
+        "A) Identity Property",
+        "B) Commutative Property",
+        "C) Subtraction Property",
+        "D) Counting Property"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Identity involves 0"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Not a real property name here"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Not a standard property name"
+        }
+      },
+      "feedback": {
+        "correct": "Switching the addends and getting the same sum is the Commutative Property!",
+        "incorrect": "When you switch addend order and the sum stays the same, that is the Commutative Property."
+      },
+      "verification": "7+5=5+7=12."
+    },
+    {
+      "id": "R2_02",
+      "type": "true_false",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "even_odd_sum_pattern",
+      "difficulty": 2,
+      "question": "True or False: The sum of two odd numbers is always odd.",
+      "correct_answer": "False",
+      "expected_errors": {
+        "True": {
+          "error_type": "concept_gap",
+          "note": "Counter: 3+5=8 (even)"
+        }
+      },
+      "feedback": {
+        "correct": "Correct! Odd + Odd = Even. For example, 3 + 5 = 8.",
+        "incorrect": "Try: 3 + 5 = 8. Is 8 odd or even? Even! So odd + odd = even."
+      },
+      "verification": "Odd+odd=even. False."
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "arithmetic_pattern_rule",
+      "difficulty": 3,
+      "question": "Find the pattern and fill in the blank: 10, 20, 30, ___, 50.",
+      "correct_answer": "40",
+      "expected_errors": {
+        "35": {
+          "error_type": "careless",
+          "note": "Added 5 instead of 10"
+        },
+        "31": {
+          "error_type": "careless",
+          "note": "Added 1 instead of 10"
+        }
+      },
+      "feedback": {
+        "correct": "The rule is add 10. 30 + 10 = 40!",
+        "incorrect": "10 to 20 is +10, 20 to 30 is +10. So 30 + 10 = 40."
+      },
+      "verification": "Rule: +10. 30+10=40."
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "addition_table_pattern",
+      "difficulty": 3,
+      "question": "In the addition table, the column for 6 starts: 6, 7, 8, 9, 10, 11, 12, 13, 14, 15. The column for 3 starts: 3, 4, 5, 6, 7, 8, 9, 10, 11, 12. How much more is each number in column 6 than the matching number in column 3?",
+      "choices": [
+        "A) Always 1 more",
+        "B) Always 2 more",
+        "C) Always 3 more",
+        "D) It changes"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "careless",
+          "note": "Guessed"
+        },
+        "B": {
+          "error_type": "careless",
+          "note": "Guessed"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Does not see constant difference"
+        }
+      },
+      "feedback": {
+        "correct": "6-3=3, 7-4=3, 8-5=3... always 3 more!",
+        "incorrect": "Compare: 6-3=3, 7-4=3, 8-5=3. Always 3."
+      },
+      "verification": "Col 6 minus Col 3: always 3."
+    },
+    {
+      "id": "R2_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "identify_property",
+      "difficulty": 2,
+      "question": "Which number sentence shows the Identity Property of Addition?",
+      "choices": [
+        "A) 3 + 4 = 4 + 3",
+        "B) 9 + 0 = 9",
+        "C) 5 + 5 = 10",
+        "D) 8 - 0 = 8"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Commutative not Identity"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "True but not Identity"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Subtraction not addition"
+        }
+      },
+      "feedback": {
+        "correct": "9 + 0 = 9 shows Identity Property!",
+        "incorrect": "Identity Property: a + 0 = a. Look for the one with 0."
+      },
+      "verification": "9+0=9. Identity."
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "commutative_property_addition",
+      "difficulty": 2,
+      "question": "Use the Commutative Property. If 8 + 3 = 11, then 3 + 8 = ___",
+      "correct_answer": "11",
+      "expected_errors": {
+        "10": {
+          "error_type": "careless",
+          "note": "Subtracted"
+        },
+        "12": {
+          "error_type": "careless",
+          "note": "Added 1 extra"
+        }
+      },
+      "feedback": {
+        "correct": "3 + 8 = 11, same as 8 + 3!",
+        "incorrect": "Switching addends does not change the sum. 8+3=11, so 3+8=11."
+      },
+      "verification": "8+3=3+8=11."
+    },
+    {
+      "id": "R2_07",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "arithmetic_pattern_rule",
+      "difficulty": 3,
+      "question": "What is the rule for this pattern? 1, 3, 5, 7, 9, 11...",
+      "choices": [
+        "A) Add 1",
+        "B) Add 2",
+        "C) Add 3",
+        "D) Multiply by 2"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "careless",
+          "note": "Incorrect difference"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Incorrect difference"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "1x2=2 not 3"
+        }
+      },
+      "feedback": {
+        "correct": "3-1=2, 5-3=2. The rule is add 2!",
+        "incorrect": "Check: 3-1=2, 5-3=2. The rule is add 2."
+      },
+      "verification": "Differences all 2. Rule: +2."
+    },
+    {
+      "id": "R2_08",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "even_odd_sum_pattern",
+      "difficulty": 3,
+      "question": "Maya added two numbers and got 14. Which pair could she have added?",
+      "choices": [
+        "A) 7 + 8",
+        "B) 6 + 8",
+        "C) 9 + 4",
+        "D) 5 + 8"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "careless",
+          "note": "7+8=15 not 14"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "9+4=13 not 14"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "5+8=13 not 14"
+        }
+      },
+      "feedback": {
+        "correct": "6 + 8 = 14!",
+        "incorrect": "Check each: 7+8=15, 6+8=14, 9+4=13, 5+8=13. Only 6+8=14."
+      },
+      "three_read_prompt": "Read 1: What is this about? Read 2: What is the question? Read 3: What info do you need?",
+      "verification": "6+8=14. Others do not equal 14."
+    },
+    {
+      "id": "R2_09",
+      "type": "true_false",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "commutative_property_addition",
+      "difficulty": 2,
+      "question": "True or False: 15 + 23 = 23 + 15",
+      "correct_answer": "True",
+      "expected_errors": {
+        "False": {
+          "error_type": "concept_gap",
+          "note": "Does not apply Commutative to larger numbers"
+        }
+      },
+      "feedback": {
+        "correct": "Commutative Property works for ALL numbers. 15+23=38=23+15.",
+        "incorrect": "a+b=b+a works for any numbers. 15+23=23+15=38."
+      },
+      "verification": "15+23=38=23+15."
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "arithmetic_pattern_rule",
+      "difficulty": 3,
+      "question": "Find the missing number: 8, 16, 24, ___, 40",
+      "correct_answer": "32",
+      "expected_errors": {
+        "28": {
+          "error_type": "careless",
+          "note": "Added 4 instead of 8"
+        },
+        "30": {
+          "error_type": "careless",
+          "note": "Guessed midpoint"
+        }
+      },
+      "feedback": {
+        "correct": "Rule: add 8. 24 + 8 = 32!",
+        "incorrect": "16-8=8, 24-16=8. Rule is +8. So 24+8=32."
+      },
+      "verification": "Rule: +8. 24+8=32. 32+8=40."
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "pattern_application",
+      "difficulty": 4,
+      "question": "Ella notices that in the addition table, every number on the main diagonal (0, 2, 4, 6, 8...) is even. Why is this?",
+      "choices": [
+        "A) Because the table only has even numbers",
+        "B) Because each diagonal number is a double (like 3+3=6), and any number plus itself is always even",
+        "C) Because the numbers are in order",
+        "D) Because even numbers are bigger"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "The table has both even and odd"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Order does not explain even"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Irrelevant"
+        }
+      },
+      "feedback": {
+        "correct": "The diagonal shows doubles: 0+0, 1+1, 2+2... A number plus itself is always even!",
+        "incorrect": "The diagonal is 0+0=0, 1+1=2, 2+2=4, 3+3=6. Doubles are always even."
+      },
+      "three_read_prompt": "Read 1: What does Ella notice? Read 2: What must you explain? Read 3: Think about doubles.",
+      "verification": "Diagonal = n+n = 2n, always even."
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "pattern_extension",
+      "difficulty": 4,
+      "question": "A pattern starts: 7, 14, 21, 28, 35. What would the 8th number be?",
+      "correct_answer": "56",
+      "hint": "Find the rule then continue: 6th, 7th, 8th.",
+      "solution_steps": [
+        "Step 1: Rule is +7. 14-7=7, 21-14=7.",
+        "Step 2: 6th: 35+7=42.",
+        "Step 3: 7th: 42+7=49.",
+        "Step 4: 8th: 49+7=56."
+      ],
+      "expected_errors": {
+        "42": {
+          "error_type": "careless",
+          "note": "Only found 6th"
+        },
+        "49": {
+          "error_type": "careless",
+          "note": "Only found 7th"
+        },
+        "63": {
+          "error_type": "careless",
+          "note": "Found 9th"
+        }
+      },
+      "feedback": {
+        "correct": "Rule +7. Sequence: 7,14,21,28,35,42,49,56.",
+        "incorrect": "Rule is +7. Count: 35(5th), 42(6th), 49(7th), 56(8th)."
+      },
+      "three_read_prompt": "Read 1: What is the pattern? Read 2: Which position? Read 3: Count carefully.",
+      "verification": "7x8=56."
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "even_odd_reasoning",
+      "difficulty": 4,
+      "question": "Jake adds three odd numbers together. Will the sum be even or odd?",
+      "choices": [
+        "A) Always even",
+        "B) Always odd",
+        "C) Sometimes even, sometimes odd",
+        "D) Cannot tell"
+      ],
+      "correct_answer": "B",
+      "hint": "Try: 1+3+5=? and 3+5+7=?",
+      "solution_steps": [
+        "Step 1: Odd + Odd = Even (1+3=4).",
+        "Step 2: Even + Odd = Odd (4+5=9).",
+        "Step 3: So Odd+Odd+Odd = Odd always."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Forgot the third odd"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Rule is consistent"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "It can be determined"
+        }
+      },
+      "feedback": {
+        "correct": "Odd+Odd=Even, Even+Odd=Odd. Three odds always sum to odd!",
+        "incorrect": "1+3+5=9 (odd). 3+7+9=19 (odd). Always odd."
+      },
+      "three_read_prompt": "Read 1: How many numbers? Read 2: What type? Read 3: Use even/odd rules.",
+      "verification": "Odd+Odd=Even; Even+Odd=Odd. 3 odds gives Odd."
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "pattern_reverse",
+      "difficulty": 4,
+      "question": "A pattern follows the rule 'add 6.' The 4th number is 29. What is the 1st number?",
+      "hint": "Work backwards: subtract 6 going back.",
+      "correct_answer": "11",
+      "solution_steps": [
+        "Step 1: 4th = 29.",
+        "Step 2: 3rd = 29-6 = 23.",
+        "Step 3: 2nd = 23-6 = 17.",
+        "Step 4: 1st = 17-6 = 11."
+      ],
+      "expected_errors": {
+        "5": {
+          "error_type": "careless",
+          "note": "Subtracted 6 four times"
+        },
+        "17": {
+          "error_type": "careless",
+          "note": "Only went back 2 steps"
+        },
+        "23": {
+          "error_type": "careless",
+          "note": "Only went back 1 step"
+        }
+      },
+      "feedback": {
+        "correct": "Backwards: 29, 23, 17, 11. First number is 11!",
+        "incorrect": "29-6=23(3rd), 23-6=17(2nd), 17-6=11(1st)."
+      },
+      "three_read_prompt": "Read 1: What is the rule? Read 2: Which number do you know? Read 3: How to work backwards?",
+      "verification": "11, 17, 23, 29. Check: 11+6=17, 17+6=23, 23+6=29."
+    },
+    {
+      "id": "R3_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.OA.D.9",
+      "skill_tag": "combined_properties",
+      "difficulty": 5,
+      "question": "Look at these four number sentences: (1) 6 + 0 = 6, (2) 3 + 8 = 8 + 3, (3) 4 + 4 = 8, (4) 0 + 15 = 15. Which ones show the Identity Property?",
+      "choices": [
+        "A) 1 only",
+        "B) 4 only",
+        "C) 1 and 4",
+        "D) 1 and 2"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "careless",
+          "note": "Missed that 4 also shows Identity"
+        },
+        "B": {
+          "error_type": "careless",
+          "note": "Missed that 1 also shows Identity"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "2 is Commutative not Identity"
+        }
+      },
+      "feedback": {
+        "correct": "(1) 6+0=6 and (4) 0+15=15 both show Identity Property!",
+        "incorrect": "Identity: a+0=a or 0+a=a. (1) yes. (2) Commutative. (3) Just a fact. (4) yes."
+      },
+      "three_read_prompt": "Read 1: What are the four sentences? Read 2: Which property? Read 3: Check each for adding 0.",
+      "verification": "1 and 4 show Identity. 2 shows Commutative. 3 is just a fact."
+    }
+  ]
+}

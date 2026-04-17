@@ -10,6 +10,7 @@ API: GET /api/shop/items, POST /api/shop/buy,
 """
 
 import logging
+import secrets
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -82,6 +83,7 @@ class UseRewardIn(BaseModel):
 
 class SetPinIn(BaseModel):
     pin: str
+    current_pin: str | None = None
 
 
 class EquipIn(BaseModel):
@@ -226,7 +228,7 @@ def shop_use_reward(purchase_id: int, body: UseRewardIn, db: Session = Depends(g
         raise HTTPException(status_code=400, detail="Already used")
 
     correct_pin = _get_pin(db)
-    if body.pin != correct_pin:
+    if not secrets.compare_digest(body.pin or "", correct_pin):
         raise HTTPException(status_code=403, detail="Wrong PIN")
 
     pr.is_used = True
@@ -285,8 +287,12 @@ def shop_set_pin(body: SetPinIn, db: Session = Depends(get_db)):
     """
     if not body.pin.isdigit() or len(body.pin) != 4:
         raise HTTPException(status_code=400, detail="PIN must be exactly 4 digits")
-    # Block if a non-default PIN already exists — prevent child from resetting it
+    # Require knowledge of the current PIN (DEFAULT_PIN on fresh install) —
+    # prevents an unauthenticated caller from hijacking the initial PIN setup.
     existing = db.query(AppConfig).filter(AppConfig.key == "pin").first()
+    current = existing.value if (existing and existing.value) else DEFAULT_PIN
+    if not secrets.compare_digest(body.current_pin or "", current):
+        raise HTTPException(status_code=403, detail="Current PIN required")
     if existing and existing.value and existing.value != DEFAULT_PIN:
         raise HTTPException(status_code=403, detail="PIN already set. Change it in Parent Dashboard.")
     now = datetime.now().isoformat()

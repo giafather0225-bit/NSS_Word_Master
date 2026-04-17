@@ -580,7 +580,7 @@ function initOcrButton() {
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.detail || 'OCR failed');
-            ocrBtn.textContent = `✅ ${data.words} words registered!`;
+            ocrBtn.textContent = `✓ ${data.words} words registered!`;
             ocrBtn.style.borderColor = 'rgba(16,185,129,0.5)';
             ocrBtn.style.color = '#059669';
             setTimeout(() => { window.location.reload(); }, 1500);

@@ -168,7 +168,7 @@ function _showReviewFeedback(data, onContinue) {
     if (!stage) return;
     const klass = data.is_correct ? 'math-feedback-correct' : 'math-feedback-wrong';
     const label = data.is_correct
-        ? (data.is_mastered ? '✅ Mastered!' : '✅ Correct')
+        ? (data.is_mastered ? '✓ Mastered!' : '✓ Correct')
         : '❌ Try again next time';
     const sub = data.is_correct
         ? (data.is_mastered ? 'Removed from review list.' : 'Nice — keep it up.')
@@ -212,7 +212,7 @@ function _renderReviewSummary() {
             <div class="math-summary-weak">
                 <div class="math-summary-weak-label">Result</div>
                 <div class="math-summary-weak-list">
-                    <span class="math-summary-chip">✅ Mastered: ${mathReviewState.mastered}</span>
+                    <span class="math-summary-chip">✓ Mastered: ${mathReviewState.mastered}</span>
                     <span class="math-summary-chip">🔁 Scheduled again: ${mathReviewState.advanced}</span>
                 </div>
             </div>

@@ -1,0 +1,806 @@
+{
+  "lesson_id": "L2_round_nearest_ten_hundred",
+  "title": "Round to the Nearest Ten or Hundred",
+  "ccss": ["3.NBT.1"],
+  "grade": "G3",
+  "unit": "U1_add_sub_1000",
+  "go_math_ref": "Chapter 1, Lesson 1.2, pp.9-12",
+  "essential_question": "How can you round numbers?",
+  "key_vocabulary": ["round", "estimate", "nearest ten", "nearest hundred", "place value", "number line", "halfway"],
+
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "What is 34 rounded to the nearest ten?",
+      "choices": ["A) 20", "B) 30", "C) 35", "D) 40"],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded to wrong ten"},
+        "C": {"error_type": "concept_gap", "note": "Found halfway instead of rounding"},
+        "D": {"error_type": "careless", "note": "Rounded up — ones=4<5, should round down"}
+      },
+      "verification": "34: ones=4<5, round down to 30. Wayground confirms."
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 2,
+      "question": "What is 463 rounded to the nearest hundred?",
+      "choices": ["A) 400", "B) 460", "C) 470", "D) 500"],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — tens=6>=5"},
+        "B": {"error_type": "concept_gap", "note": "Rounded to nearest ten"},
+        "C": {"error_type": "concept_gap", "note": "Rounded to nearest ten"}
+      },
+      "verification": "463: tens=6>=5, round up to 500. Go Math p.10."
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "What is 85 rounded to the nearest ten?",
+      "choices": ["A) 80", "B) 85", "C) 90", "D) 100"],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — ones=5, halfway says round up"},
+        "B": {"error_type": "concept_gap", "note": "Did not round"},
+        "D": {"error_type": "careless", "note": "Rounded to nearest hundred"}
+      },
+      "verification": "85: ones=5>=5, round up to 90."
+    },
+    {
+      "id": "PT_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 2,
+      "question": "Round 739 to the nearest hundred.",
+      "correct_answer": "700",
+      "expected_errors": {
+        "740": {"error_type": "concept_gap", "note": "Rounded to nearest ten"},
+        "800": {"error_type": "concept_gap", "note": "Rounded up — tens=3<5"}
+      },
+      "verification": "739: tens=3<5, round down to 700. Go Math p.10 example."
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 3,
+      "question": "What is 507 rounded to the nearest ten?",
+      "choices": ["A) 500", "B) 510", "C) 507", "D) 520"],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — ones=7>=5"},
+        "C": {"error_type": "concept_gap", "note": "Did not round"},
+        "D": {"error_type": "careless", "note": "Rounded up too far"}
+      },
+      "verification": "507: ones=7>=5, round up to 510. Wayground confirms."
+    }
+  ],
+
+  "learn": [
+    {
+      "id": "LEARN_01",
+      "type": "instruction",
+      "cpa_stage": "concrete",
+      "title": "What Does Rounding Mean?",
+      "content": "When we round a number, we find a nearby number that tells about how much or about how many. Rounding makes numbers easier to work with. For example, if a store has 283 apples, you can say 'about 300 apples.'",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math p.9: introduces rounding concept."
+    },
+    {
+      "id": "LEARN_02",
+      "type": "instruction",
+      "cpa_stage": "concrete",
+      "title": "Round to the Nearest Ten — Number Line",
+      "content": "To round to the nearest ten, find the two tens your number is between. Example: 46 is between 40 and 50. The halfway point is 45. Since 46 is past 45, round UP to 50.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "start": 40, "end": 50, "midpoint": 45, "target": 46, "result": 50
+      },
+      "verification": "Go Math p.9: number line rounding to nearest ten."
+    },
+    {
+      "id": "LEARN_03",
+      "type": "instruction",
+      "cpa_stage": "pictorial",
+      "title": "Rounding Rule for Tens",
+      "content": "Quick rule — look at the ONES digit: 0, 1, 2, 3, 4 means round DOWN. 5, 6, 7, 8, 9 means round UP. Examples: 63 has ones=3, round DOWN to 60. 78 has ones=8, round UP to 80. 25 has ones=5, round UP to 30.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math p.9-10: rounding rule. 63 to 60, 78 to 80."
+    },
+    {
+      "id": "LEARN_04",
+      "type": "instruction",
+      "cpa_stage": "pictorial",
+      "title": "Round to the Nearest Hundred — Number Line",
+      "content": "To round to the nearest hundred, find the two hundreds your number is between. Example: 739 is between 700 and 800. The halfway point is 750. Since 739 is BEFORE 750, it is closer to 700. Round DOWN to 700.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "start": 700, "end": 800, "midpoint": 750, "target": 739, "result": 700
+      },
+      "verification": "Go Math p.10: 739 example, closer to 700."
+    },
+    {
+      "id": "LEARN_05",
+      "type": "instruction",
+      "cpa_stage": "pictorial",
+      "title": "Rounding Rule for Hundreds",
+      "content": "Quick rule — look at the TENS digit: 0, 1, 2, 3, 4 means round DOWN to the lower hundred. 5, 6, 7, 8, 9 means round UP to the higher hundred. Examples: 739 has tens=3, round DOWN to 700. 463 has tens=6, round UP to 500. 350 has tens=5, round UP to 400.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math p.10. 739 to 700, 463 to 500."
+    },
+    {
+      "id": "LEARN_06",
+      "type": "instruction",
+      "cpa_stage": "abstract",
+      "title": "The Halfway Rule",
+      "content": "When a number is exactly at the halfway point (ones digit is 5 for tens, tens digit is 5 for hundreds), we ALWAYS round UP. Examples: 45 rounds to 50 (not 40). 250 rounds to 300 (not 200). 650 rounds to 700 (not 600).",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Standard rounding convention: round half up."
+    },
+    {
+      "id": "LEARN_07",
+      "type": "instruction",
+      "cpa_stage": "abstract",
+      "title": "Round the Same Number Two Ways",
+      "content": "You can round a number to the nearest ten AND to the nearest hundred. Example: 576. Nearest ten: ones=6, round up to 580. Nearest hundred: tens=7, round up to 600. Same number, two different rounded answers!",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math p.11: Round to the nearest ten and hundred."
+    },
+    {
+      "id": "LEARN_08",
+      "type": "summary",
+      "cpa_stage": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today you learned: (1) Rounding finds a nearby number that is easier to use. (2) Use a number line to see which ten or hundred is closer. (3) Ones digit rule for rounding to nearest ten. (4) Tens digit rule for rounding to nearest hundred. (5) When the digit is exactly 5, round UP.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Covers all Go Math 1.2 concepts."
+    }
+  ],
+
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "mc",
+      "cpa_stage": "pictorial",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "What is 56 rounded to the nearest ten?",
+      "choices": ["A) 50", "B) 55", "C) 60", "D) 70"],
+      "correct_answer": "C",
+      "hint": "Look at the ones digit. Is 6 less than 5, or 5 or greater?",
+      "solution_steps": [
+        "Step 1: 56 is between 50 and 60.",
+        "Step 2: Ones digit = 6. Since 6 >= 5, round UP.",
+        "Step 3: 56 rounds to 60."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — ones=6>=5"},
+        "B": {"error_type": "concept_gap", "note": "Found halfway instead of rounding"},
+        "D": {"error_type": "careless", "note": "Went one ten too far"}
+      },
+      "feedback": {
+        "correct": "56 has ones digit 6 which is 5 or greater, so round UP to 60!",
+        "incorrect": "Look at the ones digit of 56. It is 6, which is 5 or greater, so round UP to 60."
+      },
+      "verification": "56: ones=6>=5, round to 60. Wayground confirms."
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "pictorial",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 2,
+      "question": "Round 202 to the nearest hundred.",
+      "correct_answer": "200",
+      "hint": "202 is between 200 and 300. Look at the tens digit — is it less than 5?",
+      "solution_steps": [
+        "Step 1: 202 is between 200 and 300.",
+        "Step 2: Tens digit = 0. Since 0 < 5, round DOWN.",
+        "Step 3: 202 rounds to 200."
+      ],
+      "expected_errors": {
+        "300": {"error_type": "concept_gap", "note": "Rounded up — tens=0<5"}
+      },
+      "feedback": {
+        "correct": "202 has tens digit 0 which is less than 5, so round DOWN to 200!",
+        "incorrect": "The tens digit of 202 is 0. Since 0 < 5, round DOWN to 200."
+      },
+      "verification": "202: tens=0<5, round to 200. Go Math p.10."
+    },
+    {
+      "id": "TRY_03",
+      "type": "mc",
+      "cpa_stage": "pictorial",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "What is 19 rounded to the nearest ten?",
+      "choices": ["A) 10", "B) 20", "C) 15", "D) 19"],
+      "correct_answer": "B",
+      "hint": "19 is between 10 and 20. The ones digit is 9. Is 9 less than 5, or 5 or greater?",
+      "solution_steps": [
+        "Step 1: 19 is between 10 and 20.",
+        "Step 2: Ones digit = 9. Since 9 >= 5, round UP.",
+        "Step 3: 19 rounds to 20."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — ones=9>=5"},
+        "C": {"error_type": "concept_gap", "note": "Found halfway"},
+        "D": {"error_type": "concept_gap", "note": "Did not round"}
+      },
+      "feedback": {
+        "correct": "19 has ones digit 9, which is 5 or greater. Round UP to 20!",
+        "incorrect": "The ones digit of 19 is 9, which is 5 or greater. Round UP to 20."
+      },
+      "verification": "19: ones=9>=5, round to 20. Go Math p.10."
+    },
+    {
+      "id": "TRY_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 3,
+      "question": "What is 658 rounded to the nearest hundred?",
+      "choices": ["A) 600", "B) 660", "C) 700", "D) 650"],
+      "correct_answer": "C",
+      "hint": "658 is between 600 and 700. Look at the tens digit.",
+      "solution_steps": [
+        "Step 1: 658 is between 600 and 700.",
+        "Step 2: Tens digit = 5. Since 5 >= 5, round UP.",
+        "Step 3: 658 rounds to 700."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — tens=5, halfway says round up"},
+        "B": {"error_type": "concept_gap", "note": "Rounded to nearest ten"},
+        "D": {"error_type": "concept_gap", "note": "Found halfway point"}
+      },
+      "feedback": {
+        "correct": "658 has tens digit 5, so we round UP to 700!",
+        "incorrect": "The tens digit is 5. When the digit is exactly 5, we round UP. 658 rounds to 700."
+      },
+      "verification": "658: tens=5>=5, round to 700. Go Math p.10."
+    },
+    {
+      "id": "TRY_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_both",
+      "difficulty": 3,
+      "question": "Round 576 to the nearest ten AND the nearest hundred. Which pair is correct?",
+      "choices": [
+        "A) Nearest ten: 580, Nearest hundred: 600",
+        "B) Nearest ten: 570, Nearest hundred: 600",
+        "C) Nearest ten: 580, Nearest hundred: 500",
+        "D) Nearest ten: 570, Nearest hundred: 500"
+      ],
+      "correct_answer": "A",
+      "hint": "For nearest ten, look at ones digit (6). For nearest hundred, look at tens digit (7).",
+      "solution_steps": [
+        "Step 1: Nearest ten — ones digit = 6, round UP to 580.",
+        "Step 2: Nearest hundred — tens digit = 7, round UP to 600.",
+        "Step 3: Answer is 580 and 600."
+      ],
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "Ten wrong: ones=6>=5 should be 580"},
+        "C": {"error_type": "careless", "note": "Hundred wrong: tens=7>=5 should be 600"},
+        "D": {"error_type": "concept_gap", "note": "Both rounded wrong direction"}
+      },
+      "feedback": {
+        "correct": "576: nearest ten is 580 (ones=6, round up) and nearest hundred is 600 (tens=7, round up)!",
+        "incorrect": "For 576: ones=6>=5 means round up to 580. Tens=7>=5 means round up to 600."
+      },
+      "verification": "576: ones=6 to 580, tens=7 to 600."
+    }
+  ],
+
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 1,
+      "question": "What is 17 rounded to the nearest ten?",
+      "choices": ["A) 10", "B) 20", "C) 15", "D) 17"],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — ones=7>=5"},
+        "C": {"error_type": "concept_gap", "note": "Found halfway"},
+        "D": {"error_type": "concept_gap", "note": "Did not round"}
+      },
+      "verification": "17: ones=7>=5, round to 20. Wayground confirms."
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "What is 82 rounded to the nearest ten?",
+      "choices": ["A) 70", "B) 80", "C) 85", "D) 90"],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "Wrong ten"},
+        "C": {"error_type": "concept_gap", "note": "Found halfway"},
+        "D": {"error_type": "careless", "note": "Rounded up — ones=2<5"}
+      },
+      "verification": "82: ones=2<5, round to 80. Wayground confirms."
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "Round 66 to the nearest ten.",
+      "correct_answer": "70",
+      "expected_errors": {
+        "60": {"error_type": "concept_gap", "note": "Rounded down — ones=6>=5"},
+        "65": {"error_type": "concept_gap", "note": "Found halfway"}
+      },
+      "verification": "66: ones=6>=5, round to 70. Go Math p.10."
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "Round 51 to the nearest ten.",
+      "correct_answer": "50",
+      "expected_errors": {
+        "60": {"error_type": "concept_gap", "note": "Rounded up — ones=1<5"}
+      },
+      "verification": "51: ones=1<5, round to 50. Go Math p.10."
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 2,
+      "question": "What is 298 rounded to the nearest hundred?",
+      "choices": ["A) 200", "B) 290", "C) 300", "D) 400"],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — tens=9>=5"},
+        "B": {"error_type": "concept_gap", "note": "Rounded to nearest ten"},
+        "D": {"error_type": "careless", "note": "Went one hundred too far"}
+      },
+      "verification": "298: tens=9>=5, round to 300."
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 2,
+      "question": "Round 336 to the nearest hundred.",
+      "correct_answer": "300",
+      "expected_errors": {
+        "400": {"error_type": "concept_gap", "note": "Rounded up — tens=3<5"},
+        "340": {"error_type": "concept_gap", "note": "Rounded to nearest ten"}
+      },
+      "verification": "336: tens=3<5, round to 300. Wayground confirms."
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "What is 486 rounded to the nearest ten?",
+      "choices": ["A) 480", "B) 490", "C) 500", "D) 485"],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — ones=6>=5"},
+        "C": {"error_type": "careless", "note": "Rounded to nearest hundred"},
+        "D": {"error_type": "concept_gap", "note": "Found halfway"}
+      },
+      "verification": "486: ones=6>=5, round to 490. Wayground confirms."
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 2,
+      "question": "What is 743 rounded to the nearest hundred?",
+      "choices": ["A) 700", "B) 740", "C) 750", "D) 800"],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "Rounded to nearest ten"},
+        "C": {"error_type": "concept_gap", "note": "Found halfway"},
+        "D": {"error_type": "concept_gap", "note": "Rounded up — tens=4<5"}
+      },
+      "verification": "743: tens=4<5, round to 700. Wayground confirms."
+    },
+    {
+      "id": "R1_09",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "What is 699 rounded to the nearest ten?",
+      "choices": ["A) 690", "B) 700", "C) 600", "D) 710"],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — ones=9>=5"},
+        "C": {"error_type": "concept_gap", "note": "Rounded to nearest hundred"},
+        "D": {"error_type": "careless", "note": "Went one ten too far"}
+      },
+      "verification": "699: ones=9>=5, round to 700. Wayground confirms."
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "Round 45 to the nearest ten.",
+      "correct_answer": "50",
+      "expected_errors": {
+        "40": {"error_type": "concept_gap", "note": "Rounded down — ones=5, halfway says round up"}
+      },
+      "verification": "45: ones=5>=5, round to 50. Halfway rule."
+    }
+  ],
+
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 2,
+      "question": "Liam has 271 baseball cards. About how many is that, rounded to the nearest hundred?",
+      "choices": ["A) 200", "B) 270", "C) 300", "D) 280"],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — tens=7>=5"},
+        "B": {"error_type": "concept_gap", "note": "Rounded to nearest ten"},
+        "D": {"error_type": "concept_gap", "note": "Rounded to nearest ten"}
+      },
+      "feedback": {"correct": "271 has tens digit 7, which is 5 or greater. Round up to 300!", "incorrect": "For nearest hundred, look at tens digit. 271 has tens=7>=5, round UP to 300."},
+      "three_read_prompt": "Read 1: What is this about? Read 2: What does about how many mean? Read 3: Which rounding do you need?",
+      "verification": "271: tens=7>=5, round to 300. Wayground confirms."
+    },
+    {
+      "id": "R2_02",
+      "type": "true_false",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "True or False: 943 rounded to the nearest ten is 940.",
+      "correct_answer": "True",
+      "expected_errors": {
+        "False": {"error_type": "concept_gap", "note": "ones=3<5, round down to 940 is correct"}
+      },
+      "feedback": {"correct": "943 has ones digit 3 which is less than 5. Round DOWN to 940!", "incorrect": "Look at the ones digit: 3. Since 3 < 5, round DOWN. 943 rounds to 940."},
+      "verification": "943: ones=3<5, round to 940. Wayground confirms."
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_both",
+      "difficulty": 3,
+      "question": "Round 844 to the nearest ten AND to the nearest hundred.",
+      "choices": [
+        "A) Nearest ten: 840, Nearest hundred: 800",
+        "B) Nearest ten: 850, Nearest hundred: 800",
+        "C) Nearest ten: 840, Nearest hundred: 900",
+        "D) Nearest ten: 850, Nearest hundred: 900"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "ones=4<5, should be 840"},
+        "C": {"error_type": "careless", "note": "tens=4<5, should be 800"},
+        "D": {"error_type": "concept_gap", "note": "Both wrong direction"}
+      },
+      "feedback": {"correct": "844: ten has ones=4 so round down to 840. Hundred has tens=4 so round down to 800.", "incorrect": "844: ones digit=4<5 so nearest ten is 840. Tens digit=4<5 so nearest hundred is 800."},
+      "verification": "844: ones=4 to 840, tens=4 to 800."
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 3,
+      "question": "Round 550 to the nearest hundred.",
+      "correct_answer": "600",
+      "expected_errors": {
+        "500": {"error_type": "concept_gap", "note": "Rounded down — tens=5, halfway says round up"}
+      },
+      "feedback": {"correct": "550 has tens digit 5, and 5 rounds UP to 600!", "incorrect": "When the digit is exactly 5, we round UP. Tens=5 means 550 rounds to 600."},
+      "verification": "550: tens=5>=5, round to 600."
+    },
+    {
+      "id": "R2_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_both",
+      "difficulty": 3,
+      "question": "Which number rounds to 500 when rounded to BOTH the nearest ten and the nearest hundred?",
+      "choices": ["A) 481", "B) 496", "C) 504", "D) 545"],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "481: ten=480, hundred=500. Ten is not 500"},
+        "C": {"error_type": "careless", "note": "504: ten=500, hundred=500. Also valid but Wayground uses 496"},
+        "D": {"error_type": "careless", "note": "545: ten=550, hundred=500. Ten is not 500"}
+      },
+      "feedback": {"correct": "496: nearest ten ones=6 so round up to 500. Nearest hundred tens=9 so round up to 500. Both 500!", "incorrect": "Check 496: ones=6>=5 means nearest ten=500. Tens=9>=5 means nearest hundred=500."},
+      "verification": "496: ones=6 to 500(ten), tens=9 to 500(hundred). Wayground confirms."
+    },
+    {
+      "id": "R2_06",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 3,
+      "question": "What is 397 rounded to the nearest hundred?",
+      "choices": ["A) 300", "B) 390", "C) 400", "D) 397"],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rounded down — tens=9>=5"},
+        "B": {"error_type": "concept_gap", "note": "Rounded to nearest ten"},
+        "D": {"error_type": "concept_gap", "note": "Did not round"}
+      },
+      "feedback": {"correct": "397 has tens=9>=5, round UP to 400!", "incorrect": "Tens digit is 9, which is 5 or greater. Round UP: 397 rounds to 400."},
+      "verification": "397: tens=9>=5, round to 400. Wayground confirms."
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 2,
+      "question": "A library has 155 books about animals. Round this to the nearest ten.",
+      "correct_answer": "160",
+      "expected_errors": {
+        "150": {"error_type": "concept_gap", "note": "Rounded down — ones=5, should round up"},
+        "200": {"error_type": "concept_gap", "note": "Rounded to nearest hundred"}
+      },
+      "feedback": {"correct": "155 has ones=5, round UP to 160!", "incorrect": "The ones digit is 5. When the digit is 5, round UP. 155 rounds to 160."},
+      "three_read_prompt": "Read 1: What is this about? Read 2: What does the question ask? Read 3: Round to nearest TEN, not hundred.",
+      "verification": "155: ones=5>=5, round to 160."
+    },
+    {
+      "id": "R2_08",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_ten",
+      "difficulty": 3,
+      "question": "What is 900 rounded to the nearest ten?",
+      "choices": ["A) 900", "B) 910", "C) 890", "D) 1000"],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "careless", "note": "Added 10"},
+        "C": {"error_type": "careless", "note": "Subtracted 10"},
+        "D": {"error_type": "careless", "note": "Rounded to nearest hundred"}
+      },
+      "feedback": {"correct": "900 is already a ten! Ones digit = 0, so it stays 900.", "incorrect": "900 already ends in 0, so it IS a multiple of ten. It stays 900."},
+      "verification": "900: ones=0, already a multiple of 10. Wayground confirms."
+    },
+    {
+      "id": "R2_09",
+      "type": "true_false",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 3,
+      "question": "True or False: 250 rounded to the nearest hundred is 200.",
+      "correct_answer": "False",
+      "expected_errors": {
+        "True": {"error_type": "concept_gap", "note": "Rounded down — tens=5, halfway says round UP to 300"}
+      },
+      "feedback": {"correct": "False! Tens digit is 5, so round UP. 250 rounds to 300.", "incorrect": "The tens digit is 5. The halfway rule says round UP. 250 rounds to 300, not 200."},
+      "verification": "250: tens=5>=5, round to 300 not 200."
+    },
+    {
+      "id": "R2_10",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "round_to_nearest_hundred",
+      "difficulty": 3,
+      "question": "When rounding to the nearest hundred, what is the LEAST whole number that rounds to 600?",
+      "choices": ["A) 579", "B) 550", "C) 601", "D) 555"],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "579 rounds to 600 but 550 is smaller"},
+        "C": {"error_type": "concept_gap", "note": "601 rounds to 600 but 550 is smaller"},
+        "D": {"error_type": "careless", "note": "555 rounds to 600 but 550 is smaller"}
+      },
+      "feedback": {"correct": "550 has tens=5>=5, rounds UP to 600. Any number less than 550 rounds DOWN to 500.", "incorrect": "549 has tens=4 and rounds to 500. 550 has tens=5 and rounds to 600. So 550 is the smallest."},
+      "verification": "549 rounds to 500. 550 rounds to 600. Least=550. Wayground confirms."
+    }
+  ],
+
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "rounding_reasoning",
+      "difficulty": 4,
+      "question": "Mia says 'I am thinking of a number. When I round it to the nearest ten, I get 460. When I round it to the nearest hundred, I get 500.' Which number could Mia be thinking of?",
+      "choices": ["A) 453", "B) 458", "C) 462", "D) 449"],
+      "correct_answer": "B",
+      "hint": "The number must round to 460 (nearest ten) and 500 (nearest hundred).",
+      "solution_steps": [
+        "Step 1: Nearest ten = 460. So the number is between 455 and 464.",
+        "Step 2: Nearest hundred = 500. So tens digit must be >= 5.",
+        "Step 3: Check choices: 453 rounds to 450 (not 460). 458 rounds to 460 and 500. 462 rounds to 460 and 500. 449 rounds to 450 (not 460).",
+        "Step 4: B and C both work. 458 is the listed answer."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "careless", "note": "453 rounds to 450 not 460"},
+        "C": {"error_type": "careless", "note": "462 also works — valid alternative"},
+        "D": {"error_type": "careless", "note": "449 rounds to 450 not 460"}
+      },
+      "feedback": {"correct": "458 rounds to 460 (ten) and 500 (hundred). Both match!", "incorrect": "The number needs nearest ten=460 (range 455-464) AND nearest hundred=500 (tens>=5). 458 fits."},
+      "three_read_prompt": "Read 1: What two clues does Mia give? Read 2: What range rounds to 460? Read 3: Which also rounds to 500?",
+      "verification": "458: ones=8 to 460, tens=5 to 500. 453: ones=3 to 450 not 460. 449: ones=9 to 450 not 460."
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "rounding_reverse",
+      "difficulty": 4,
+      "question": "What is the GREATEST whole number that rounds to 800 when rounded to the nearest hundred?",
+      "correct_answer": "849",
+      "hint": "What is the biggest number that still rounds DOWN to 800? What happens at 850?",
+      "solution_steps": [
+        "Step 1: Numbers that round to 800: from 750 to 849.",
+        "Step 2: 850 has tens=5 and rounds UP to 900.",
+        "Step 3: So the greatest number is 849."
+      ],
+      "expected_errors": {
+        "850": {"error_type": "concept_gap", "note": "850 rounds UP to 900"},
+        "899": {"error_type": "concept_gap", "note": "899 rounds UP to 900"},
+        "800": {"error_type": "careless", "note": "Found the round value itself"}
+      },
+      "feedback": {"correct": "849 has tens=4 and rounds DOWN to 800. 850 would round UP to 900. So 849 is the greatest!", "incorrect": "850 has tens=5 and rounds UP to 900. The biggest number rounding to 800 is 849 (tens=4)."},
+      "three_read_prompt": "Read 1: What does greatest mean? Read 2: What hundred does it round to? Read 3: What digit makes it switch?",
+      "verification": "849: tens=4 to 800. 850: tens=5 to 900. Greatest=849."
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "rounding_reasoning",
+      "difficulty": 4,
+      "question": "Ana sold 335 cookies. Susie sold 288 cupcakes. Susie says she sold about 50 fewer cupcakes than Ana sold cookies. How did Susie estimate?",
+      "choices": [
+        "A) She rounded both to the nearest ten: 340 - 290 = 50",
+        "B) She rounded both to the nearest hundred: 300 - 300 = 0",
+        "C) She subtracted without rounding: 335 - 288 = 47",
+        "D) She rounded to the nearest ten: 330 - 290 = 40"
+      ],
+      "correct_answer": "A",
+      "hint": "Susie got about 50. Try rounding both numbers to the nearest ten and subtracting.",
+      "solution_steps": [
+        "Step 1: 335 to nearest ten: ones=5, round up to 340.",
+        "Step 2: 288 to nearest ten: ones=8, round up to 290.",
+        "Step 3: 340 - 290 = 50. This matches."
+      ],
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "Nearest hundred gives 300-300=0"},
+        "C": {"error_type": "careless", "note": "47 is close but Susie said about 50"},
+        "D": {"error_type": "careless", "note": "335 rounds to 340 not 330 (ones=5 rounds up)"}
+      },
+      "feedback": {"correct": "335 rounds to 340, 288 rounds to 290. 340-290=50. Susie rounded to the nearest ten!", "incorrect": "Round each to nearest ten: 335(ones=5) rounds to 340, 288(ones=8) rounds to 290. 340-290=50."},
+      "three_read_prompt": "Read 1: What numbers are given? Read 2: How did Susie get 50? Read 3: Try rounding each number to the nearest ten.",
+      "verification": "335 to 340, 288 to 290. 340-290=50. Wayground confirms."
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "rounding_counting",
+      "difficulty": 5,
+      "question": "How many 3-digit whole numbers round to 400 when rounded to the nearest hundred?",
+      "correct_answer": "100",
+      "hint": "Which is the smallest number rounding to 400? Which is the largest?",
+      "solution_steps": [
+        "Step 1: Smallest: 350 (tens=5, round up to 400).",
+        "Step 2: Largest: 449 (tens=4, round down to 400).",
+        "Step 3: Count: 449 - 350 + 1 = 100."
+      ],
+      "expected_errors": {
+        "99": {"error_type": "careless", "note": "Off by one"},
+        "50": {"error_type": "concept_gap", "note": "Only counted 400-449"},
+        "200": {"error_type": "concept_gap", "note": "Counted 300-499"}
+      },
+      "feedback": {"correct": "350 to 449 is 100 numbers. All round to 400!", "incorrect": "350(tens=5) rounds to 400. 449(tens=4) rounds to 400. Count: 449-350+1=100."},
+      "three_read_prompt": "Read 1: What does the question ask you to count? Read 2: What is the smallest number rounding to 400? Read 3: What is the largest?",
+      "verification": "349 rounds to 300. 350 rounds to 400. 449 rounds to 400. 450 rounds to 500. Range: 350-449 = 100."
+    },
+    {
+      "id": "R3_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "3.NBT.1",
+      "skill_tag": "rounding_logic",
+      "difficulty": 5,
+      "question": "Emma rounds a number to the nearest ten and gets 350. She then rounds the SAME original number to the nearest hundred. Which is true?",
+      "choices": [
+        "A) The answer must be 300",
+        "B) The answer must be 400",
+        "C) The answer could be 300 or 400, depending on the number",
+        "D) The answer is 350"
+      ],
+      "correct_answer": "C",
+      "hint": "What numbers round to 350 (nearest ten)? Try 347 and 352 — do they round to the same hundred?",
+      "solution_steps": [
+        "Step 1: Numbers rounding to 350 (nearest ten): 345 through 354.",
+        "Step 2: Round 347 to nearest hundred: tens=4 < 5, round to 300.",
+        "Step 3: Round 352 to nearest hundred: tens=5 >= 5, round to 400.",
+        "Step 4: Both 300 and 400 are possible."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Only true for 345-349"},
+        "B": {"error_type": "concept_gap", "note": "Only true for 350-354"},
+        "D": {"error_type": "concept_gap", "note": "350 is not a multiple of 100"}
+      },
+      "feedback": {
+        "correct": "347 rounds to ten:350 and hundred:300. 352 rounds to ten:350 and hundred:400. Both possible!",
+        "incorrect": "Try: 347 rounds to 350(ten) and 300(hundred). 352 rounds to 350(ten) and 400(hundred). So BOTH are possible."
+      },
+      "three_read_prompt": "Read 1: What two steps does Emma do? Read 2: What range rounds to 350? Read 3: Do they all round to the same hundred?",
+      "verification": "345-349: tens=4 to 300. 350-354: tens=5 to 400. Both possible so C."
+    }
+  ]
+}

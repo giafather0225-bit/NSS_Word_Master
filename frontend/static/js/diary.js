@@ -163,7 +163,7 @@ async function _renderTimeline() {
             body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px;">No events yet. Keep learning! 🌱</p>`;
             return;
         }
-        const ICONS = { lesson_pass:"✦", streak_7:"🔥", milestone_100:"✓", theme_complete:"✦", lesson_reset:"↺", review_complete:"📖" };
+        const ICONS = { lesson_pass:"✦", streak_7:"✦", milestone_100:"✓", theme_complete:"✦", lesson_reset:"↺", review_complete:"📖" };
         body.innerHTML = `<div class="timeline-list">${data.events.map(e =>
             `<div class="timeline-item">
                 <span class="timeline-icon">${ICONS[e.event_type] || "📌"}</span>
@@ -384,7 +384,7 @@ async function _renderWorlds() {
             <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:16px;text-align:center;box-shadow:var(--shadow-card)">
                 <img src="${t.img_url}" style="width:100px;height:100px;border-radius:var(--radius-md)" onerror="this.style.opacity='0.3'">
                 <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-top:8px">${escapeHtml(t.label||t.theme)}</div>
-                <div style="font-size:11px;color:var(--color-success)">✅ Completed</div>
+                <div style="font-size:11px;color:var(--color-success);display:inline-flex;align-items:center;gap:4px"><span class="check-dot"></span> Completed</div>
             </div>`).join("");
         body.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;max-width:480px;margin:0 auto">${cards}</div>`;
     } catch (_) {

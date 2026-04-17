@@ -154,10 +154,10 @@
 
 ## Parent Dashboard
 
-- **JS:** `js/parent-dashboard.js`, `js/parent.js`, `js/parent-ingest.js`
-- **CSS:** `css/parent-dashboard.css`
-- **HTML:** `templates/parent.html`, `templates/parent_ingest.html`
-- **API:** GET /api/dashboard/stats, GET /api/dashboard/analytics, /api/parent/* (Phase 7)
+- **JS:** `js/parent-panel.js`, `js/parent-settings.js`, `js/parent-ingest.js`
+- **CSS:** `css/parent.css`
+- **HTML:** In-app overlay in `templates/child.html`; separate page `templates/parent_ingest.html`
+- **API:** /api/parent/* (Phase 7), /api/parent/verify-pin
 - **Tags:** PARENT, SETTINGS, WORD_STATS
 
 ---

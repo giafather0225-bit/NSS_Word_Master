@@ -94,7 +94,7 @@ async function _drawCalendar() {
             ${dayCells}
         </div>
         <div class="cal-legend">
-            <span class="cal-legend-item">🔥 Streak</span>
+            <span class="cal-legend-item">Streak</span>
             <span class="cal-legend-item">📝 Journal</span>
             <span class="cal-legend-item">🏖️ Day off</span>
             <span class="cal-legend-item">⬜ Missed</span>

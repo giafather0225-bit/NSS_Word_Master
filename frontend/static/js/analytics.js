@@ -134,7 +134,7 @@ async function _awardStageXP(completedStage) {
             }
             // Show XP toast if we earned XP
             if (data.xp_awarded > 0) _showXPToast(`+${data.xp_awarded} XP`);
-            if (data.bonus_xp > 0) _showXPToast(`🔥 Streak bonus +${data.bonus_xp} XP!`);
+            if (data.bonus_xp > 0) _showXPToast(`Streak bonus +${data.bonus_xp} XP!`);
         }
     } catch (_) {}
 }

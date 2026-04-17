@@ -111,7 +111,7 @@ function _dwRenderAlreadyDone() {
     view.innerHTML = `
         ${_dwHeader("Daily Words", _dwGradeLabel(dwState.grade))}
         <div class="dw-result">
-            <div class="dw-result-emoji">✅</div>
+            <div class="dw-result-emoji"><span class="check-dot check-dot--lg"></span></div>
             <div class="dw-result-title">Done for today!</div>
             <div class="dw-result-sub">Day ${dwState.cycleDay} complete. Come back tomorrow.</div>
             <div class="dw-btn-row">
@@ -288,7 +288,7 @@ async function loadDailyWordsSection() {
         if (btn) {
             const span = btn.querySelector(".sb-card-label");
             const done = d.already_done_today && d.cycle_day !== 7;
-            if (span) span.textContent = done ? "✅ Done"
+            if (span) span.textContent = done ? "Done"
                 : d.cycle_day === 1 ? "Placement Test →"
                 : d.cycle_day === 7 ? "Weekly Test →"
                 : `Day ${d.cycle_day} →`;

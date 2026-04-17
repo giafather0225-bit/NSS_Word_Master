@@ -1,22 +1,28 @@
 /* ================================================================
-   splash.css — GIA Splash Screen
+   splash.css — GIA Splash Screen (logo + 3-arc Siri-style ring)
    Section: System
-   Dependencies: none (standalone, no theme.css vars — uses own palette)
+   Dependencies: none
    API endpoints: none
    ================================================================ */
-
-/* ===== Splash Screen ===== */
 
 #splash-screen {
   position: fixed;
   inset: 0;
   z-index: 99999;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: #FFFFFF;
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+#splash-screen[data-day="0"] { background: #FFFFFF; }
+#splash-screen[data-day="1"] { background: #EAF4F4; }
+#splash-screen[data-day="2"] { background: #E8F8EF; }
+#splash-screen[data-day="3"] { background: #FFFFFF; }
+#splash-screen[data-day="4"] { background: #F3EEFF; }
+#splash-screen[data-day="5"] { background: #FFF4E5; }
+#splash-screen[data-day="6"] { background: #E8F3FA; }
 
 #splash-screen.splash-exit {
   opacity: 0;
@@ -24,105 +30,70 @@
   pointer-events: none;
 }
 
-/* Day-of-week solid backgrounds — Apple-minimal, uses brand palette */
-#splash-screen[data-day="0"] { background: #FFFFFF; } /* Sunday  — brand light pink */
-#splash-screen[data-day="1"] { background: #EAF4F4; } /* Monday  — calm teal tint */
-#splash-screen[data-day="2"] { background: #E8F8EF; } /* Tuesday — soft green tint */
-#splash-screen[data-day="3"] { background: #FFFFFF; } /* Wednesday — brand light pink */
-#splash-screen[data-day="4"] { background: #F3EEFF; } /* Thursday — soft lavender */
-#splash-screen[data-day="5"] { background: #FFF4E5; } /* Friday  — warm amber tint */
-#splash-screen[data-day="6"] { background: #E8F3FA; } /* Saturday — sky tint */
+/* Logo + ring wrapper (square container) */
+.splash-logo-wrap {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  animation: splash-logo-enter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
 
-/* Logo */
+/* Logo — centered, above the ring */
 .splash-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 160px;
   height: 160px;
+  margin: -80px 0 0 -80px;
   border-radius: 50%;
   object-fit: cover;
-  animation: splash-logo-enter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  box-shadow: none;
-  border: 1px solid var(--border-card);
+  display: block;
+}
+
+/* 3-arc SVG ring — outer, sits just outside the logo */
+.splash-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform: rotate(-90deg);
+}
+
+.splash-arc {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 75 151;
+  transform-origin: 40px 40px;
+  animation: splash-arc-spin 2.8s linear infinite;
+}
+
+.splash-arc-1 { stroke: #4A8E8E; animation-delay: 0s; }
+.splash-arc-2 { stroke: #F96E69; animation-delay: -0.93s; }
+.splash-arc-3 { stroke: #AE397D; animation-delay: -1.86s; }
+
+@keyframes splash-arc-spin {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -226; }
 }
 
 @keyframes splash-logo-enter {
-  0% { transform: scale(0) translateY(-40px); opacity: 0; }
-  100% { transform: scale(1) translateY(0); opacity: 1; }
+  0%   { transform: scale(0) translateY(-40px); opacity: 0; }
+  100% { transform: scale(1) translateY(0);     opacity: 1; }
 }
 
-/* Logo fly animation — from splash center to coach card avatar */
+/* Logo fly animation — splash center → coach avatar */
 .splash-logo.logo-fly {
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  /* JS sets top, left, width, height dynamically */
   position: fixed;
   border-radius: 50%;
   z-index: 100000;
 }
 
-/* Greeting text */
-.splash-greeting {
-  margin-top: 24px;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--text-primary, #1A1A1A);
-  opacity: 0;
-  animation: splash-fade-up 0.6s ease 0.5s forwards;
-}
-
-/* Daily motivational message */
-.splash-message {
-  margin-top: 12px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--text-secondary, #6B7280);
-  opacity: 0;
-  animation: splash-fade-up 0.6s ease 0.8s forwards;
-  text-align: center;
-  max-width: 320px;
-  line-height: 1.5;
-}
-
-/* Day-of-week sub text */
-.splash-day-text {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: var(--text-secondary, #6B7280);
-  opacity: 0;
-  animation: splash-fade-up 0.6s ease 1.0s forwards;
-}
-
-/* Loading indicator — 3 bouncing dots */
-.splash-loader {
-  margin-top: 32px;
-  display: flex;
-  gap: 8px;
-  opacity: 0;
-  animation: splash-fade-up 0.4s ease 1.2s forwards;
-}
-
-.splash-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--color-primary, #4A8E8E);
-  opacity: 0.5;
-  animation: splash-bounce 1.4s infinite ease-in-out both;
-}
-.splash-dot:nth-child(2) { animation-delay: 0.16s; }
-.splash-dot:nth-child(3) { animation-delay: 0.32s; }
-
-@keyframes splash-bounce {
-  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-  40% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes splash-fade-up {
-  0% { opacity: 0; transform: translateY(12px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
 /* Responsive */
 @media (max-width: 480px) {
-  .splash-logo { width: 120px; height: 120px; }
-  .splash-greeting { font-size: 1.4rem; }
-  .splash-message { font-size: 1rem; max-width: 260px; }
+  .splash-logo-wrap { width: 160px; height: 160px; }
+  .splash-logo { width: 120px; height: 120px; margin: -60px 0 0 -60px; }
 }
