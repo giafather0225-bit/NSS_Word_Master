@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="/static/css/xp.css">
     <link rel="stylesheet" href="/static/css/collocation.css">
     <link rel="stylesheet" href="/static/css/splash.css?v=2">
-    <link rel="stylesheet" href="/static/css/math-academy.css?v=10">
+    <link rel="stylesheet" href="/static/css/math-academy.css?v=11">
 
 </head>
 <body>
@@ -405,6 +405,23 @@
                     </div>
 
                     <div class="sb-accordion" data-group="math">
+                        <button type="button" class="sb-accordion-header" data-target="math-glossary-body">
+                            <span class="sb-card-icon">📖</span>
+                            <span class="sb-card-label">Glossary</span>
+                            <span class="sb-accordion-arrow">▼</span>
+                        </button>
+                        <div class="sb-accordion-body" id="math-glossary-body" style="display:none">
+                            <div class="sb-info-row">
+                                <span>Grade</span>
+                                <span id="math-glossary-grade">G3</span>
+                            </div>
+                            <button type="button" class="sb-action-btn" id="math-btn-glossary">
+                                Open
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sb-accordion" data-group="math">
                         <button type="button" class="sb-accordion-header" data-target="math-daily-body">
                             <span class="sb-card-icon">🌞</span>
                             <span class="sb-card-label">Daily Challenge</span>
@@ -761,7 +778,7 @@
 <script src="/static/js/unittest.js?v=5"></script>
 <script src="/static/js/review.js?v=3"></script>
 
-<script src="/static/js/math-navigation.js?v=4"></script>
+<script src="/static/js/math-navigation.js?v=5"></script>
 <script src="/static/js/math-academy.js?v=4"></script>
 <script src="/static/js/math-manipulatives.js?v=1"></script>
 <script src="/static/js/math-learn-cards.js?v=3"></script>
@@ -771,6 +788,7 @@
 <script src="/static/js/math-placement.js?v=1"></script>
 <script src="/static/js/math-daily.js?v=1"></script>
 <script src="/static/js/math-kangaroo.js?v=1"></script>
+<script src="/static/js/math-glossary.js?v=1"></script>
 <script src="/static/js/word-manager.js?v=14"></script>
 <!-- Word Manager Full-screen Overlay -->
 <div id="wm-overlay" class="hidden" role="dialog" aria-label="Word Manager">

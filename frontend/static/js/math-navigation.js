@@ -272,6 +272,16 @@ async function loadMathSidebarStatus() {
             });
         }
 
+        const glossBtn = document.getElementById('math-btn-glossary');
+        if (glossBtn) {
+            glossBtn.addEventListener('click', () => {
+                if (typeof startMathGlossary === 'function') {
+                    const g = document.getElementById('math-glossary-grade');
+                    startMathGlossary((g && g.textContent.trim()) || 'G3');
+                }
+            });
+        }
+
         const kangBtn = document.getElementById('math-btn-kangaroo');
         if (kangBtn) {
             kangBtn.addEventListener('click', () => {

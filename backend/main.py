@@ -51,6 +51,7 @@ from backend.routers import math_placement as math_placement_router
 from backend.routers import math_fluency as math_fluency_router
 from backend.routers import math_daily as math_daily_router
 from backend.routers import math_kangaroo as math_kangaroo_router
+from backend.routers import math_glossary as math_glossary_router
 from backend.routers import math_problems as math_problems_router
 from backend.services import ollama_manager, backup_engine
 
@@ -172,6 +173,7 @@ app.include_router(math_placement_router.router)
 app.include_router(math_fluency_router.router)
 app.include_router(math_daily_router.router)
 app.include_router(math_kangaroo_router.router)
+app.include_router(math_glossary_router.router)
 app.include_router(math_problems_router.router)
 
 
