@@ -30,7 +30,7 @@ from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
-from database import get_db, LEARNING_ROOT
+from backend.database import get_db, LEARNING_ROOT
 from models import Lesson, StudyItem
 from file_storage import save_lesson_file, list_lesson_files, delete_lesson_file
 from ocr_pipeline import run_ocr_pipeline

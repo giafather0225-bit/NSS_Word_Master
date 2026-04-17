@@ -23,7 +23,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import text as _text
 from sqlalchemy.orm import Session
 
-from database import get_db, LEARNING_ROOT
+from backend.database import get_db, LEARNING_ROOT
 from models import Lesson, StudyItem
 
 router = APIRouter()

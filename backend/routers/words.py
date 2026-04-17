@@ -29,7 +29,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from database import get_db, LEARNING_ROOT
+from backend.database import get_db, LEARNING_ROOT
 from models import Lesson, StudyItem, Word
 
 router = APIRouter()
