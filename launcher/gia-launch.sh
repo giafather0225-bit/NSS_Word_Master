@@ -10,7 +10,7 @@ VENV_DIR="$APP_DIR/.venv"
 PORT=8000
 LOG_FILE="$APP_DIR/logs/server.log"
 PID_FILE="$APP_DIR/logs/server.pid"
-AUTO_UPDATE=false   # Set true to auto git pull on launch
+AUTO_UPDATE=true    # Auto git pull on launch
 
 # ─── Colors ───
 GREEN='\033[0;32m'
