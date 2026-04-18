@@ -108,7 +108,7 @@ function _launchArcadeGame(id) {
   else if (id === 'crossword' && typeof cwStart === 'function') cwStart();
   else if (id === 'math_invaders' && typeof miShowLevelPicker === 'function') miShowLevelPicker();
   else if (id === 'sudoku' && typeof suShowLevelPicker === 'function') suShowLevelPicker();
-  else if (id === 'make24' && typeof mkStart === 'function') mkStart();
+  else if (id === 'make24' && typeof mkShowLevelPicker === 'function') mkShowLevelPicker();
 }
 
 /** Return to arcade lobby from a game. @tag ARCADE */

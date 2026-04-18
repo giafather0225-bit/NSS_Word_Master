@@ -19,9 +19,10 @@ API:
 import json
 import logging
 import os
+import random
 import re as _re
 import shutil
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import httpx
@@ -30,7 +31,8 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
-from backend.models import Lesson, StudyItem, Word
+from backend.models import Lesson, StudyItem, Word, GrowthEvent
+from backend.services import xp_engine
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -479,4 +481,107 @@ Reply in this exact JSON format only:
         "example": "",
         "pos": pos,
         "provider": "manual",
+    }
+
+
+# ── My Words Weekly Test ───────────────────────────────────
+
+MYWORDS_TEST_MIN_WORDS = 50
+MYWORDS_TEST_SIZE = 20
+MYWORDS_TEST_PASS_PCT = 0.9
+
+
+class MyWordsTestResult(BaseModel):
+    correct_count: int
+    total_count: int
+
+
+# @tag WORDS @tag MYWORDS @tag WEEKLY_TEST
+@router.get("/api/mywords/weekly-test")
+def mywords_weekly_test(db: Session = Depends(get_db)):
+    """Return a sampled weekly test set drawn from all My_Words lessons.
+
+    Gate: caller must have at least MYWORDS_TEST_MIN_WORDS words stored across
+    all My_Words lessons combined. If the gate isn't met, returns
+    ``{available: False, total_word_count, min_required}`` instead of a 400 so
+    the UI can show a friendly "add more words" state.
+    """
+    pool = (
+        db.query(StudyItem)
+        .filter(
+            StudyItem.subject == "English",
+            StudyItem.textbook == "My_Words",
+        )
+        .all()
+    )
+    total = len(pool)
+    if total < MYWORDS_TEST_MIN_WORDS:
+        return {
+            "available": False,
+            "total_word_count": total,
+            "min_required": MYWORDS_TEST_MIN_WORDS,
+            "test_size": MYWORDS_TEST_SIZE,
+            "words": [],
+        }
+
+    sample = random.sample(pool, min(MYWORDS_TEST_SIZE, total))
+    words = []
+    for it in sample:
+        try:
+            extra = json.loads(it.extra_data or "{}")
+        except Exception:
+            extra = {}
+        words.append({
+            "id":         it.id,
+            "word":       it.answer or "",
+            "definition": it.question or "",
+            "example":    it.hint or "",
+            "pos":        extra.get("pos", ""),
+            "lesson":     it.lesson,
+        })
+
+    return {
+        "available": True,
+        "total_word_count": total,
+        "min_required": MYWORDS_TEST_MIN_WORDS,
+        "test_size": len(words),
+        "pass_pct": MYWORDS_TEST_PASS_PCT,
+        "words": words,
+    }
+
+
+# @tag WORDS @tag MYWORDS @tag WEEKLY_TEST @tag XP
+@router.post("/api/mywords/weekly-test/result")
+def mywords_weekly_test_result(
+    body: MyWordsTestResult, db: Session = Depends(get_db)
+):
+    """Record a My Words weekly test result. Award XP +10 on pass (≥90%)."""
+    if body.total_count <= 0:
+        raise HTTPException(400, "total_count must be > 0")
+    if body.correct_count < 0 or body.correct_count > body.total_count:
+        raise HTTPException(400, "correct_count out of range")
+
+    accuracy = body.correct_count / body.total_count
+    passed = accuracy >= MYWORDS_TEST_PASS_PCT
+    xp_awarded = 0
+
+    if passed:
+        xp_awarded = xp_engine.award_xp(db, "mywords_weekly_test_pass", "my_words")
+        if xp_awarded > 0:
+            now_iso = datetime.now().isoformat(timespec="seconds")
+            today_iso = date.today().isoformat()
+            db.add(GrowthEvent(
+                event_type="weekly_test_pass",
+                title="My Words weekly test passed",
+                detail=f"{body.correct_count}/{body.total_count} ({int(accuracy*100)}%)",
+                event_date=today_iso,
+                created_at=now_iso,
+            ))
+            db.commit()
+
+    return {
+        "ok": True,
+        "passed": passed,
+        "accuracy": round(accuracy, 3),
+        "xp_awarded": xp_awarded,
     }

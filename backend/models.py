@@ -166,6 +166,8 @@ class StreakLog(Base):
     date = Column(String, unique=True, index=True)
     review_done = Column(Boolean, default=False)
     daily_words_done = Column(Boolean, default=False)
+    math_done = Column(Boolean, default=False)
+    game_done = Column(Boolean, default=False)
     streak_maintained = Column(Boolean, default=False)
 
 class TaskSetting(Base):
@@ -222,6 +224,15 @@ class DiaryEntry(Base):
     ai_feedback = Column(String, nullable=True)
     created_at = Column(String)
 
+class FreeWriting(Base):
+    """GIA's Diary — Free Writing entries (open-ended creative writing, no date constraint)."""
+    __tablename__ = "free_writings"
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    content = Column(String)
+    ai_feedback = Column(String, nullable=True)
+    created_at = Column(String, index=True)
+
 class GrowthEvent(Base):
     """My Growth — Growth Timeline 이벤트"""
     __tablename__ = "growth_events"
@@ -250,6 +261,7 @@ class AcademySession(Base):
     textbook = Column(String)
     lesson = Column(String)
     started_date = Column(String)
+    last_active_date = Column(String, index=True)
     current_stage = Column(String, default="PREVIEW")
     is_completed = Column(Boolean, default=False)
     is_reset = Column(Boolean, default=False)

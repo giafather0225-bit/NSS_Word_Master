@@ -87,7 +87,7 @@ async def get_tutor_feedback(word: str, sentence: str) -> str:
         try:
             return await _get_tutor_feedback_gemini(word, sentence)
         except Exception as e:
-            log.warning("Gemini tutor error: %s", e)
+            log.warning("Gemini tutor error: %s", type(e).__name__)
 
     return (
         f"🪄 {word} — what a fantastic sentence! 💖\n"
@@ -133,7 +133,7 @@ async def vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
         try:
             return await gemini_vision_extract_vocab(image_bytes, prompt)
         except Exception as e:
-            logger.warning("Gemini vision failed, falling back to Ollama: %s", e)
+            log.warning("Gemini vision failed, falling back to Ollama: %s", e)
     return await ollama_vision_extract_vocab(image_bytes, prompt)
 
 

@@ -21,8 +21,8 @@ const CONF = {
     FB_MAX_STRIKES: 3,
     FB_RETRY_MAX_STRIKES: 3,
     PARTICLE_MAX: 48,
-    PARTICLE_LIFETIME: 1300,
-    STAGE_CLEAR_DELAY: 8000,
+    PARTICLE_LIFETIME: 3000,
+    STAGE_CLEAR_DELAY: 2000,
     WRONG_ANSWER_DISPLAY: 2000,
 };
 
@@ -582,7 +582,7 @@ function showPerfectBanner(text) {
     el.classList.remove("fire");
     void el.offsetWidth;
     el.classList.add("fire");
-    setTimeout(() => { el.style.display = "none"; }, 1200);
+    setTimeout(() => { el.style.display = "none"; }, 3000);
 }
 
 /**

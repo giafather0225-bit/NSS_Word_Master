@@ -15,7 +15,6 @@ async function _ppMathSummary(body) {
         body.innerHTML =
             _ppMathHeader(data) +
             _ppMathCards(data) +
-            _ppMathStreakCond(data.streak_condition || "both") +
             _ppMathWeakAreas(data.weak_areas || []) +
             _ppMathFluency(data.fluency || []) +
             _ppMathDailyChart(data.daily_recent || []) +
@@ -139,48 +138,5 @@ function _ppMathKangaroo(kang) {
         </table>`;
 }
 
-/** Streak condition picker: both / either / english_only / math_only. @tag PARENT MATH STREAK */
-function _ppMathStreakCond(current) {
-    const OPTS = [
-        ["both",         "Both subjects required"],
-        ["either",       "Either subject counts"],
-        ["english_only", "English only"],
-        ["math_only",    "Math only"],
-    ];
-    const options = OPTS.map(([v, label]) =>
-        `<option value="${v}"${v === current ? " selected" : ""}>${label}</option>`
-    ).join("");
-    return `
-        <div class="pp-section-title">Streak Rule</div>
-        <div class="pp-task-row" style="gap:10px">
-            <span class="pp-task-key">Counts toward streak</span>
-            <select id="pp-streak-cond" class="pp-input" style="max-width:220px;padding:6px 10px;font-size:13px"
-                    onchange="_ppSaveStreakCond(this.value)">
-                ${options}
-            </select>
-        </div>
-        <p id="pp-streak-msg" style="font-size:12px;min-height:16px;color:var(--text-secondary);margin-top:6px"></p>`;
-}
-
-/** POST new streak_condition value via shared /api/parent/config. @tag PARENT MATH STREAK */
-async function _ppSaveStreakCond(value) {
-    const msg = document.getElementById("pp-streak-msg");
-    try {
-        const res = await window._ppFetch("/api/parent/config", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ key: "streak_condition", value }),
-        });
-        if (msg) {
-            msg.textContent = res.ok ? "✓ Saved." : "Failed to save.";
-            msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
-        }
-    } catch (err) {
-        console.error("[parent-math] streak save failed:", err);
-        if (msg) { msg.textContent = "Network error."; msg.style.color = "var(--color-error)"; }
-    }
-}
-
 // Expose for parent-panel.js
-window._ppMathSummary    = _ppMathSummary;
-window._ppSaveStreakCond = _ppSaveStreakCond;
+window._ppMathSummary = _ppMathSummary;

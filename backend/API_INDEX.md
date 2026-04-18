@@ -122,25 +122,25 @@
 | POST | /api/schedules | main.py | parent.js |
 | DELETE | /api/schedules/{schedule_id} | main.py | parent.js |
 
-## XP System (Phase 3)
+## XP System (Phase 3) ✅
 
 | Method | Path | Defined In | Called From |
 |--------|------|-----------|-------------|
-| GET | /api/xp/summary | routers/xp.py (TODO) | home.js |
-| POST | /api/xp/award | routers/xp.py (TODO) | analytics.js |
-| GET | /api/streak/status | routers/xp.py (TODO) | home.js |
+| GET | /api/xp/summary | routers/xp.py | home.js |
+| POST | /api/xp/award | routers/xp.py | analytics.js |
+| GET | /api/streak/status | routers/xp.py | home.js |
 
-## Today's Tasks (Phase 2)
-
-| Method | Path | Defined In | Called From |
-|--------|------|-----------|-------------|
-| GET | /api/tasks/today | routers/xp.py (TODO) | home.js |
-
-## Reminders (Phase 2)
+## Today's Tasks (Phase 2) ✅
 
 | Method | Path | Defined In | Called From |
 |--------|------|-----------|-------------|
-| GET | /api/reminders/today | routers/reminder.py (TODO) | home.js |
+| GET | /api/tasks/today | routers/xp.py | home.js |
+
+## Reminders (Phase 2) ✅
+
+| Method | Path | Defined In | Called From |
+|--------|------|-----------|-------------|
+| GET | /api/reminders/today | routers/reminder.py | home.js |
 
 ## Shop (Phase 5) ✅
 
@@ -164,31 +164,65 @@
 | GET | /api/daily-words/weekly-test | routers/daily_words.py | daily-words-weekly.js |
 | POST | /api/daily-words/weekly-test/result | routers/daily_words.py | daily-words-weekly.js |
 
-## GIA's Diary (Phase 6)
+## GIA's Diary (Phase 6) ✅
 
 | Method | Path | Defined In | Called From |
 |--------|------|-----------|-------------|
-| POST | /api/diary/entries | routers/diary.py (TODO) | diary.js |
-| GET | /api/diary/entries | routers/diary.py (TODO) | diary.js |
-| GET | /api/growth/timeline | routers/diary.py (TODO) | diary.js |
-| GET | /api/calendar/{year}/{month} | routers/calendar_api.py (TODO) | calendar.js |
-| POST | /api/day-off/request | routers/diary.py (TODO) | diary.js |
+| POST | /api/diary/entries | routers/diary.py | diary.js |
+| GET | /api/diary/entries | routers/diary.py | diary.js |
+| GET | /api/diary/{subject}/{textbook} | routers/diary.py | diary.js |
+| GET | /api/growth/timeline | routers/diary.py | diary.js |
+| GET | /api/calendar/{year}/{month} | routers/calendar_api.py | calendar.js |
+| POST | /api/day-off/request | routers/diary.py | diary.js |
 | GET | /api/day-off/requests | routers/diary.py | diary.js |
 | POST | /api/diary/photo | routers/diary.py | diary.js |
 | DELETE | /api/diary/photo/{filename} | routers/diary.py | diary.js |
 | GET | /api/diary/photo/{filename} | routers/diary.py | diary.js |
+| GET | /api/free-writing/entries | routers/free_writing.py | free-writing.js |
+| POST | /api/free-writing/entries | routers/free_writing.py | free-writing.js |
+| DELETE | /api/free-writing/entries/{id} | routers/free_writing.py | free-writing.js |
 
-## Parent Dashboard (Phase 7)
+## Parent Dashboard (Phase 7) ✅
 
 | Method | Path | Defined In | Called From |
 |--------|------|-----------|-------------|
-| GET | /api/parent/overview | routers/parent.py (TODO) | parent.js |
-| GET | /api/parent/word-stats | routers/parent.py (TODO) | parent.js |
-| PUT | /api/parent/task-settings/{key} | routers/parent.py (TODO) | parent.js |
-| POST | /api/parent/academy-schedule | routers/parent.py (TODO) | parent.js |
-| POST | /api/parent/config | routers/parent.py (TODO) | parent.js |
-| GET | /api/parent/day-off-requests | routers/parent.py (TODO) | parent.js |
-| PUT | /api/parent/day-off-requests/{id} | routers/parent.py (TODO) | parent.js |
+| POST | /api/parent/verify-pin | routers/parent.py | parent-panel.js |
+| GET | /api/parent/overview | routers/parent.py | parent-overview.js |
+| GET | /api/parent/summary | routers/parent.py | parent-overview.js |
+| GET | /api/parent/activity | routers/parent.py | parent-overview.js |
+| GET | /api/parent/stage-stats | routers/parent.py | parent-overview.js |
+| GET | /api/parent/math-summary | routers/parent.py | parent-math.js |
+| GET | /api/parent/word-stats | routers/parent.py | parent-overview.js |
+| GET | /api/parent/task-settings | routers/parent.py | parent-settings.js |
+| PUT | /api/parent/task-settings/{key} | routers/parent.py | parent-settings.js |
+| GET | /api/parent/academy-schedule | routers/parent.py | parent-settings.js |
+| POST | /api/parent/academy-schedule | routers/parent.py | parent-settings.js |
+| POST | /api/parent/config | routers/parent.py | parent-settings.js |
+| GET | /api/parent/config/{key} | routers/parent.py | parent-settings.js |
+| GET | /api/parent/day-off-requests | routers/parent.py | parent-panel.js |
+| PUT | /api/parent/day-off-requests/{req_id} | routers/parent.py | parent-panel.js |
+| GET | /api/parent/streak | routers/parent.py | parent-streak.js |
+| POST | /api/parent/streak-rule | routers/parent.py | parent-streak.js |
+| POST | /api/parent/streak-recalc | routers/parent.py | parent-streak.js |
+
+## System (Phase 10) ✅
+
+| Method | Path | Defined In | Called From |
+|--------|------|-----------|-------------|
+| GET | /api/system/status | routers/system.py | parent.js |
+| GET | /api/system/ollama | routers/system.py | parent.js |
+| POST | /api/system/ollama/restart | routers/system.py | parent.js |
+| GET | /api/system/backups | routers/system.py | parent.js |
+| POST | /api/system/backups/restore | routers/system.py | parent.js |
+
+## Growth Theme (Phase 8) ✅
+
+| Method | Path | Defined In | Called From |
+|--------|------|-----------|-------------|
+| GET | /api/growth/theme | routers/growth_theme.py | growth-theme.js |
+| GET | /api/growth/theme/all | routers/growth_theme.py | diary.js |
+| POST | /api/growth/theme/select | routers/growth_theme.py | growth-theme.js |
+| POST | /api/growth/theme/advance | routers/growth_theme.py | growth-theme.js |
 
 ---
 

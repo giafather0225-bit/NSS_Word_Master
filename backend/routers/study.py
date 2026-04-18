@@ -21,6 +21,7 @@ from sqlalchemy.orm import Session
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import StudyItem, Progress
 from backend.voca_sync import load_lesson_json, sync_lesson_to_db
+from backend.services import academy_session as academy_sess
 
 router = APIRouter()
 
@@ -165,12 +166,15 @@ def get_study_data(subject: str, textbook: str, lesson: str, db: Session = Depen
         db.commit()
         db.refresh(progress)
 
+    # @tag ACADEMY — ensure an in-progress AcademySession tracks this lesson
+    academy_sess.upsert_session(db, subject, textbook, lesson)
+
     return {"items": [serialize_item(r) for r in rows], "progress": progress}
 
 
 # @tag STUDY @tag ANALYTICS
 @router.post("/api/learning/log")
-def save_learning_log(body: LearningLogCreate):
+def save_learning_log(body: LearningLogCreate, db: Session = Depends(get_db)):
     """Save a stage completion log entry to the learning_logs table."""
     body.clean()
     with _sqlite3.connect(_DB_PATH) as conn:
@@ -182,6 +186,8 @@ def save_learning_log(body: LearningLogCreate):
              body.started_at, body.completed_at,
              body.duration_sec),
         )
+    if body.textbook and body.lesson:
+        academy_sess.touch_session(db, body.textbook, body.lesson, body.stage)
     return {"ok": True}
 
 

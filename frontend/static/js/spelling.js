@@ -7,9 +7,11 @@
 
 /**
  * Build the display mask for a word at a given pass (1–3).
- * Pass 1: hide alternating alpha chars (even-indexed).
- * Pass 2: hide the other half (odd-indexed).
- * Pass 3: hide all alpha chars.
+ * Phonics-based progression (pedagogically grounded):
+ *   Pass 1: hide vowels only — reinforces consonant/vowel recognition ("wound" → "w_ _nd").
+ *   Pass 2: show first + last letter only — anchors word boundaries ("wound" → "w___d").
+ *   Pass 3: hide everything — full recall.
+ * Fallback for words with no vowels (rare, e.g. "hmm"): hide every other alpha char.
  * @tag SPELLING ENGLISH
  */
 function makeSpellMask(word, pass) {
@@ -20,8 +22,19 @@ function makeSpellMask(word, pass) {
     if (pass === CONF.SPELLING_PASSES) {
         return chars.map(c => /[a-zA-Z]/.test(c) ? "_" : c).join("");
     }
-    const hideSet = new Set(alphaIdx.filter((_, k) => pass === 1 ? k % 2 === 0 : k % 2 !== 0));
-    return chars.map((c, i) => hideSet.has(i) ? "_" : c).join("");
+
+    if (pass === 1) {
+        const vowelIdx = alphaIdx.filter(i => /[aeiouAEIOU]/.test(chars[i]));
+        if (vowelIdx.length > 0) {
+            const hide = new Set(vowelIdx);
+            return chars.map((c, i) => hide.has(i) ? "_" : c).join("");
+        }
+        const hide = new Set(alphaIdx.filter((_, k) => k % 2 === 1));
+        return chars.map((c, i) => hide.has(i) ? "_" : c).join("");
+    }
+
+    const keep = new Set([alphaIdx[0], alphaIdx[alphaIdx.length - 1]]);
+    return chars.map((c, i) => (/[a-zA-Z]/.test(c) && !keep.has(i)) ? "_" : c).join("");
 }
 
 /**

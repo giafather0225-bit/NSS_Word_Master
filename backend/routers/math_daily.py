@@ -20,18 +20,22 @@ from sqlalchemy.orm import Session
 
 try:
     from ..database import get_db
-    from ..models import MathDailyChallenge
-    from ..services import xp_engine
+    from ..models import MathDailyChallenge, MathProgress, MathWrongReview
+    from ..services import xp_engine, streak_engine
 except ImportError:
     from database import get_db
-    from models import MathDailyChallenge
-    from services import xp_engine
+    from models import MathDailyChallenge, MathProgress, MathWrongReview
+    from services import xp_engine, streak_engine
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
 _MATH_DIR = Path(__file__).parent.parent / "data" / "math"
-_DAILY_COUNT = 3
+_DAILY_COUNT = 5
+# Composition per MATH_SPEC §Daily Challenge: 50% current + 30% spaced + 20% spiral.
+_MIX_CURRENT_PCT = 0.50
+_MIX_SPACED_PCT = 0.30
+_MIX_SPIRAL_PCT = 0.20
 
 
 # ── Problem pool ─────────────────────────────────────────────
@@ -70,15 +74,113 @@ def _collect_practice_problems() -> list[dict]:
     return pool
 
 
+def _parse_problem_id(pid: str) -> tuple[str, str, str]:
+    """Parse 'G3/U1_xxx/L2_yyy#p_01' -> (grade, unit, lesson). Returns '' on malformed."""
+    try:
+        path, _ = pid.split("#", 1)
+        g, u, l = path.split("/", 2)
+        return g, u, l
+    except Exception:
+        return "", "", ""
+
+
 # @tag MATH @tag DAILY
-def _pick_daily_problems(date_str: str) -> list[dict]:
-    """Deterministically pick N problems for a given date."""
+def _pick_daily_problems(date_str: str, db: Session | None = None) -> list[dict]:
+    """Compose daily challenge per spec: 50% current unit + 30% spaced + 20% spiral.
+
+    Falls back gracefully when a bucket is empty (e.g., new user with no
+    progress or no wrong-review items): remaining slots are filled from a
+    deterministic random pool so the challenge is never short.
+    """
     pool = _collect_practice_problems()
     if not pool:
         return []
     seed = int(hashlib.sha256(date_str.encode()).hexdigest(), 16) % (2**32)
     rng = random.Random(seed)
-    sample = rng.sample(pool, k=min(_DAILY_COUNT, len(pool)))
+
+    n = min(_DAILY_COUNT, len(pool))
+    target_current = round(n * _MIX_CURRENT_PCT)
+    target_spaced  = round(n * _MIX_SPACED_PCT)
+    target_spiral  = n - target_current - target_spaced  # remainder absorbs rounding
+
+    pool_by_id = {p["id"]: p for p in pool}
+    picked: list[dict] = []
+    used_ids: set[str] = set()
+
+    def _take(items: list[dict], k: int) -> list[dict]:
+        fresh = [p for p in items if p["id"] not in used_ids]
+        if not fresh or k <= 0:
+            return []
+        rng.shuffle(fresh)
+        out = fresh[:k]
+        for p in out:
+            used_ids.add(p["id"])
+        return out
+
+    # Current unit: problems from the lesson the user is most recently working on.
+    # Fallback to any unit with in-progress MathProgress if last_accessed missing.
+    current_items: list[dict] = []
+    completed_keys: set[tuple[str, str]] = set()  # (grade, unit) for spiral
+    if db is not None:
+        try:
+            latest = (
+                db.query(MathProgress)
+                .order_by(MathProgress.last_accessed.desc().nullslast())
+                .first()
+            )
+            if latest and latest.grade and latest.unit:
+                current_items = [
+                    p for p in pool
+                    if _parse_problem_id(p["id"])[:2] == (latest.grade, latest.unit)
+                ]
+            for row in db.query(MathProgress).filter_by(is_completed=True).all():
+                if row.grade and row.unit:
+                    completed_keys.add((row.grade, row.unit))
+        except Exception as e:
+            logger.warning("Daily current-unit lookup failed: %s", e)
+
+    picked.extend(_take(current_items, target_current))
+
+    # Spaced review: wrong items due today (or overdue), not yet mastered.
+    spaced_items: list[dict] = []
+    if db is not None:
+        try:
+            due = (
+                db.query(MathWrongReview)
+                .filter(
+                    MathWrongReview.is_mastered == False,  # noqa: E712
+                    MathWrongReview.next_review_date <= date_str,
+                )
+                .all()
+            )
+            for r in due:
+                p = pool_by_id.get(r.problem_id)
+                if p and p["id"] not in used_ids:
+                    spaced_items.append(p)
+        except Exception as e:
+            logger.warning("Daily spaced-review lookup failed: %s", e)
+
+    picked.extend(_take(spaced_items, target_spaced))
+
+    # Spiral: problems from completed units other than the current one.
+    spiral_items: list[dict] = []
+    if completed_keys:
+        latest_key = None
+        if current_items:
+            latest_key = _parse_problem_id(current_items[0]["id"])[:2]
+        spiral_items = [
+            p for p in pool
+            if _parse_problem_id(p["id"])[:2] in completed_keys
+            and _parse_problem_id(p["id"])[:2] != latest_key
+        ]
+
+    picked.extend(_take(spiral_items, target_spiral))
+
+    # Backfill any shortfall from the full pool so the challenge always
+    # has _DAILY_COUNT problems even when buckets are empty (new users).
+    if len(picked) < n:
+        picked.extend(_take(pool, n - len(picked)))
+
     # Strip answer before sending to client
     return [{
         "index": i,
@@ -87,7 +189,7 @@ def _pick_daily_problems(date_str: str) -> list[dict]:
         "question": p["question"],
         "options": p["options"],
         "concept": p["concept"],
-    } for i, p in enumerate(sample)]
+    } for i, p in enumerate(picked)]
 
 
 # ── Endpoints ────────────────────────────────────────────────
@@ -100,7 +202,7 @@ def daily_today(db: Session = Depends(get_db)):
     row = db.query(MathDailyChallenge).filter_by(challenge_date=today).first()
 
     if not row:
-        problems = _pick_daily_problems(today)
+        problems = _pick_daily_problems(today, db)
         if not problems:
             return {"date": today, "exists": False, "completed": False, "problems": []}
         row = MathDailyChallenge(
@@ -196,6 +298,10 @@ def daily_complete(req: DailyCompleteIn, db: Session = Depends(get_db)):
             awarded += 3
     except Exception as e:
         logger.warning("XP award failed: %s", e)
+    try:
+        streak_engine.mark_math_done(db)
+    except Exception as e:
+        logger.warning("Streak math mark failed: %s", e)
 
     db.commit()
     return {"status": "completed", "score": req.score, "total": req.total, "xp": awarded}

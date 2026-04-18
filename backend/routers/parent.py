@@ -13,6 +13,7 @@ API: GET /api/parent/overview, GET /api/parent/word-stats,
 """
 
 import logging
+import re
 import secrets
 from datetime import datetime, date, timedelta
 
@@ -25,7 +26,7 @@ try:
     from ..database import get_db
     from ..models import (AppConfig, TaskSetting, AcademySchedule,
                           DayOffRequest, RewardItem, LearningLog, WordAttempt,
-                          Progress, StudyItem, XPLog,
+                          Progress, StudyItem, XPLog, StreakLog,
                           MathProgress, MathAttempt, MathWrongReview,
                           MathFactFluency, MathDailyChallenge,
                           MathKangarooProgress)
@@ -407,10 +408,6 @@ def parent_math_summary(db: Session = Depends(get_db)):
         "completed_at": (r.completed_at or "")[:10],
     } for r in kang_rows]
 
-    # Streak condition (both / either / english_only / math_only)
-    streak_row = db.query(AppConfig).filter(AppConfig.key == "streak_condition").first()
-    streak_condition = streak_row.value if (streak_row and streak_row.value) else "both"
-
     return {
         "academy": {
             "total_lessons": total_lessons,
@@ -431,7 +428,6 @@ def parent_math_summary(db: Session = Depends(get_db)):
         "fluency": fluency,
         "daily_recent": daily_recent,
         "kangaroo": kangaroo,
-        "streak_condition": streak_condition,
     }
 
 
@@ -544,15 +540,36 @@ def parent_set_schedule(
 
 # ─── Config (PIN, email) ──────────────────────────────────────
 
+# Whitelist of AppConfig keys safely readable via the public GET endpoint.
+# Excludes "pin" so the PIN itself never leaks over the wire.
+_READABLE_CONFIG_KEYS = {"parent_email"}
+
+
+@router.get("/api/parent/config/{key}")
+def parent_get_config(key: str, db: Session = Depends(get_db)):
+    """Read a whitelisted AppConfig value. Returns "" if unset. @tag PARENT SETTINGS"""
+    if key not in _READABLE_CONFIG_KEYS:
+        raise HTTPException(status_code=404, detail="Config key not readable")
+    row = db.query(AppConfig).filter(AppConfig.key == key).first()
+    return {"key": key, "value": (row.value or "") if row else ""}
+
+
+_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+
 @router.post("/api/parent/config")
 def parent_set_config(
     body: ConfigIn,
     db: Session = Depends(get_db),
     _pin: bool = Depends(require_parent_pin),
 ):
-    """Set an AppConfig key/value (e.g. PIN). PIN-protected. @tag PARENT SETTINGS PIN"""
+    """Set an AppConfig key/value (e.g. PIN, parent_email). PIN-protected. @tag PARENT SETTINGS PIN"""
     if body.key == "pin" and (not body.value.isdigit() or len(body.value) != 4):
         raise HTTPException(status_code=400, detail="PIN must be exactly 4 digits")
+    if body.key == "parent_email":
+        body.value = body.value.strip()
+        if body.value and not _EMAIL_RE.match(body.value):
+            raise HTTPException(status_code=400, detail="Invalid email address")
     row = db.query(AppConfig).filter(AppConfig.key == body.key).first()
     now = datetime.now().isoformat()
     if row:
@@ -562,6 +579,18 @@ def parent_set_config(
         db.add(AppConfig(key=body.key, value=body.value, updated_at=now))
     db.commit()
     return {"ok": True}
+
+
+# ─── Shared helpers (used by parent_streak.py, parent_xp.py) ─────
+
+def _upsert_app_config(db: Session, key: str, value: str, now: str) -> None:
+    """Insert or update a single AppConfig row. Callers must db.commit()."""
+    row = db.query(AppConfig).filter(AppConfig.key == key).first()
+    if row:
+        row.value = value
+        row.updated_at = now
+    else:
+        db.add(AppConfig(key=key, value=value, updated_at=now))
 
 
 # ─── Day Off Requests ─────────────────────────────────────────

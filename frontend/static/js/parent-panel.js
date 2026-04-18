@@ -125,11 +125,13 @@ function _ppRemovePin() {
 
 const PP_TABS = [
     ["overview",   "Overview"],
+    ["streak",     "Streak"],
     ["dayoff",     "Day Off"],
     ["tasks",      "Tasks"],
     ["schedule",   "Schedule"],
     ["wordstats",  "Word Stats"],
     ["math",       "Math"],
+    ["xp",         "XP"],
     ["textbooks",  "Textbooks"],
     ["pin",        "Change PIN"],
 ];
@@ -160,9 +162,11 @@ async function _ppLoadTab(tab) {
     const missing = `<p style="color:var(--color-error);padding:20px">Module not loaded.</p>`;
     switch (tab) {
         case "overview":  if (typeof _ppOverview     === "function") await _ppOverview(body);     else body.innerHTML = missing; break;
+        case "streak":    if (typeof _ppStreak       === "function") await _ppStreak(body);       else body.innerHTML = missing; break;
         case "dayoff":    await _ppDayOff(body);    break;
         case "wordstats": await _ppWordStats(body); break;
         case "math":      if (typeof _ppMathSummary  === "function") await _ppMathSummary(body);  else body.innerHTML = missing; break;
+        case "xp":        if (typeof _ppXP           === "function") await _ppXP(body);           else body.innerHTML = missing; break;
         case "textbooks": if (typeof _ppTextbooks    === "function") await _ppTextbooks(body);    else body.innerHTML = missing; break;
         case "tasks":     if (typeof ppRenderTasks   === "function") await ppRenderTasks(body);   else body.innerHTML = missing; break;
         case "schedule":  if (typeof ppRenderSchedule=== "function") await ppRenderSchedule(body);else body.innerHTML = missing; break;

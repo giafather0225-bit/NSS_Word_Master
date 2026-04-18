@@ -7,16 +7,18 @@ API: called by routers/xp.py
 
 from datetime import datetime, date
 from sqlalchemy.orm import Session
-from backend.models import XPLog, WordReview
+from backend.models import XPLog, WordReview, AppConfig
 
-# XP awarded per action (immutable)
-XP_RULES: dict[str, int] = {
+# XP awarded per action — defaults. Parent can override via app_config
+# keys of the form `xp_rule_<action>`. See get_xp_rules().
+XP_RULES_DEFAULT: dict[str, int] = {
     "word_correct":           1,
     "stage_complete":         2,
     "final_test_pass":       10,
     "unit_test_pass":         5,
     "daily_words_complete":   5,
     "weekly_test_pass":      10,
+    "mywords_weekly_test_pass": 10,
     "review_complete":        2,
     "journal_complete":      10,
     "must_do_bonus":          5,
@@ -24,10 +26,43 @@ XP_RULES: dict[str, int] = {
     "streak_7_bonus":        30,
     "streak_30_bonus":       200,
 }
+# Back-compat alias: callers that imported XP_RULES still see defaults.
+XP_RULES = XP_RULES_DEFAULT
 
-# Arcade XP is variable per play (tier-based); awarded directly via award_arcade_xp
-# rather than through XP_RULES. Daily cap is enforced in award_arcade_xp.
-ARCADE_DAILY_CAP = 10
+# Arcade daily cap default. Override via app_config key `arcade_daily_cap`.
+ARCADE_DAILY_CAP_DEFAULT = 10
+ARCADE_DAILY_CAP = ARCADE_DAILY_CAP_DEFAULT  # back-compat alias
+
+
+# @tag XP @tag SETTINGS
+def get_xp_rules(db: Session) -> dict[str, int]:
+    """Merge XP_RULES_DEFAULT with app_config overrides keyed `xp_rule_<action>`."""
+    rules = dict(XP_RULES_DEFAULT)
+    rows = (
+        db.query(AppConfig)
+        .filter(AppConfig.key.like("xp_rule_%"))
+        .all()
+    )
+    for r in rows:
+        action = r.key[len("xp_rule_"):]
+        if action in rules:
+            try:
+                rules[action] = int(r.value)
+            except (TypeError, ValueError):
+                pass
+    return rules
+
+
+# @tag XP @tag ARCADE @tag SETTINGS
+def get_arcade_daily_cap(db: Session) -> int:
+    """Read arcade daily cap from app_config, falling back to default."""
+    row = db.query(AppConfig).filter(AppConfig.key == "arcade_daily_cap").first()
+    if row:
+        try:
+            return max(0, int(row.value))
+        except (TypeError, ValueError):
+            pass
+    return ARCADE_DAILY_CAP_DEFAULT
 
 
 # @tag XP @tag AWARD
@@ -52,7 +87,7 @@ def award_xp(
         XP points actually inserted, or 0 if deduped / unknown action.
     """
     today = earned_date or date.today().isoformat()
-    xp_amount = XP_RULES.get(action, 0)
+    xp_amount = get_xp_rules(db).get(action, 0)
     if xp_amount == 0:
         return 0
 
@@ -175,7 +210,8 @@ def award_arcade_xp(db: Session, score: int, game: str = "word_invaders") -> dic
     """
     tier = score_to_arcade_tier(score)
     earned_today = get_arcade_xp_today(db)
-    remaining = max(0, ARCADE_DAILY_CAP - earned_today)
+    cap = get_arcade_daily_cap(db)
+    remaining = max(0, cap - earned_today)
     to_award = min(tier, remaining)
 
     if to_award > 0:
@@ -193,7 +229,7 @@ def award_arcade_xp(db: Session, score: int, game: str = "word_invaders") -> dic
         "tier": tier,
         "xp_awarded": to_award,
         "daily_total": earned_today + to_award,
-        "daily_cap": ARCADE_DAILY_CAP,
+        "daily_cap": cap,
     }
 
 

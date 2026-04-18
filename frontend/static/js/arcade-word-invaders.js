@@ -92,6 +92,7 @@ async function wiStart(level = 'normal') {
         <div class="wi-hud-item"><span class="wi-hud-label">COMBO</span><b id="wi-streak">0</b>x</div>
         <div class="wi-hud-item" id="wi-shield-slot">🛡️<b id="wi-shield">0</b></div>
         <div class="wi-hud-item wi-hud-lives" id="wi-lives">❤️❤️❤️</div>
+        <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit">✕</button>
       </div>
       <div class="wi-canvas-wrap">
         <canvas id="wi-canvas"></canvas>

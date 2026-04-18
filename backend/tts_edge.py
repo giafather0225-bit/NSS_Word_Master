@@ -39,7 +39,11 @@ def _speak(text: str, rate: str = "+0%") -> None:
     t = (text or "").strip()
     if not t:
         return
-    asyncio.run(_speak_async(t, rate))
+    loop = asyncio.new_event_loop()
+    try:
+        loop.run_until_complete(_speak_async(t, rate))
+    finally:
+        loop.close()
 
 
 # Friendly phrases per repetition (0-indexed)
@@ -124,7 +128,11 @@ async def _generate_mp3_bytes(text: str, rate: str) -> bytes:
 
 
 def generate_mp3_bytes(text: str, rate: str = "+0%") -> bytes:
-    return asyncio.run(_generate_mp3_bytes(text, rate))
+    loop = asyncio.new_event_loop()
+    try:
+        return loop.run_until_complete(_generate_mp3_bytes(text, rate))
+    finally:
+        loop.close()
 
 
 def preview_word_meaning_bytes(word: str, meaning: str, rep: int = 1) -> bytes:

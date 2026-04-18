@@ -19,6 +19,7 @@ function openDiarySection(section) {
     view.style.display = "flex";
     switch (section) {
         case "journal":   _renderJournal();   break;
+        case "freewriting": _renderFreeWriting(); break;
         case "timeline":  _renderTimeline();  break;
         case "dayoff":    _renderDayOff();    break;
         case "sentences": _renderSentences(); break;
@@ -53,6 +54,7 @@ function _renderDiaryHome() {
         <div class="diary-home-list">
             ${[
                 ["✏️","Daily Journal","journal"],
+                ["📝","Free Writing","freewriting"],
                 ["💬","My Sentences","sentences"],
                 ["📈","Growth Timeline","timeline"],
                 ["📅","Calendar","calendar"],
@@ -276,7 +278,10 @@ async function _submitDayOff(e) {
             body: JSON.stringify({ request_date: date, reason }),
         });
         if (res.ok) {
-            if (btn) { btn.textContent = "Sent ✓"; }
+            const data = await res.json().catch(() => ({}));
+            if (btn) {
+                btn.textContent = data.email_queued ? "Sent ✓ (parent emailed)" : "Sent ✓";
+            }
             _loadDayOffStatus();
         } else {
             const err = await res.json().catch(() => ({}));

@@ -67,7 +67,7 @@ function _renderCurrentLearnCard() {
             <div class="math-learn-card ${cpa.cls}">
                 <h2 class="math-learn-title">${_esc(card.title || '')}</h2>
                 <div class="math-learn-content">${_esc(card.content || '')}</div>
-                ${_renderLearnVisual(card.visual)}
+                ${_renderLearnVisual(card)}
                 ${card.interaction === 'quiz_mini' ? _renderMiniQuiz(card) : ''}
             </div>
 
@@ -125,11 +125,18 @@ function _renderCurrentLearnCard() {
     };
     document.addEventListener('keydown', _learnKeyHandler);
 
-    // Hydrate manipulative widget if needed
-    if (card.visual && typeof card.visual === 'object' && card.visual.tool) {
+    // Hydrate visual widget based on visual_type
+    const vtype = card.visual_type;
+    const vdata = card.visual_data || {};
+    if (vtype && vtype !== 'none') {
         const slot = document.getElementById('math-learn-manip');
-        if (slot && typeof renderManipulative === 'function') {
-            renderManipulative(slot, card.visual);
+        if (slot) {
+            if (vtype === 'manipulative' && typeof renderManipulative === 'function') {
+                renderManipulative(slot, vdata);
+            } else if (vtype === 'addition_table' && typeof _renderAdditionTable === 'function') {
+                _renderAdditionTable(slot, vdata);
+            }
+            // svg/png <img> is emitted statically in _renderLearnVisual
         }
     }
 
@@ -137,16 +144,26 @@ function _renderCurrentLearnCard() {
     setTimeout(() => _playLearnTTS(card), 400);
 }
 
-// ── Visual block renderer (string or manipulative) ────────
+// ── Visual block renderer ─────────────────────────────────
 /** @tag MATH @tag LEARN @tag MANIPULATIVE */
-function _renderLearnVisual(visual) {
-    if (!visual) return '';
-    if (typeof visual === 'string') {
-        return `<div class="math-learn-visual">${_esc(visual)}</div>`;
+function _renderLearnVisual(card) {
+    if (!card) return '';
+    const vtype = card.visual_type;
+    const vdata = card.visual_data || {};
+    if (!vtype || vtype === 'none') return '';
+    if (vtype === 'svg' || vtype === 'png') {
+        const src = vdata.src || vdata.url || '';
+        const alt = vdata.alt || card.title || '';
+        if (!src) return '';
+        return `<div class="math-learn-visual"><img src="${_esc(src)}" alt="${_esc(alt)}" /></div>`;
     }
-    if (typeof visual === 'object' && visual.tool) {
-        // Slot to be hydrated post-render
+    if (vtype === 'manipulative' || vtype === 'addition_table') {
+        // Slot hydrated post-render
         return `<div class="math-learn-manip" id="math-learn-manip"></div>`;
+    }
+    // Unknown types: render description text if present, else nothing.
+    if (typeof vdata.description === 'string') {
+        return `<div class="math-learn-visual">${_esc(vdata.description)}</div>`;
     }
     return '';
 }

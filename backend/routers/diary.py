@@ -1,38 +1,34 @@
 """
-routers/diary.py — GIA's Diary API
+routers/diary.py — GIA's Daily Journal + Growth Timeline.
 Section: Diary
-Dependencies: models.py (DiaryEntry, GrowthEvent, DayOffRequest)
+Dependencies: models.py (DiaryEntry, GrowthEvent)
 API: GET /api/diary/entries, POST /api/diary/entries,
-     GET /api/growth/timeline, POST /api/day-off/request
+     GET /api/growth/timeline
+
+Sister modules (split from this file to honor the 300-line ceiling):
+  - routers/diary_photo.py     — photo upload/delete/serve
+  - routers/day_off.py         — child-side day-off submission + listing
+  - routers/diary_sentences.py — "My Sentences" practice-sentence view
+  - routers/free_writing.py    — Free Writing entries (imports
+                                 _get_grammar_feedback from this module)
 """
 
 import logging
 import os
 import re as _re
-import time as _time
 from datetime import datetime, timezone
-from pathlib import Path
 
 import httpx
-from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
-from fastapi.responses import FileResponse
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 try:
-    from ..database import get_db, LEARNING_ROOT
-    from ..models import AppConfig, DiaryEntry, GrowthEvent, DayOffRequest, UserPracticeSentence, StudyItem
-    from ..services.email_sender import send_email
+    from ..database import get_db
+    from ..models import DiaryEntry, GrowthEvent
 except ImportError:
-    from database import get_db, LEARNING_ROOT
-    from models import AppConfig, DiaryEntry, GrowthEvent, DayOffRequest, UserPracticeSentence, StudyItem
-    from services.email_sender import send_email
-
-_PHOTO_DIR        = LEARNING_ROOT / "diary_photos"
-_PHOTO_DIR.mkdir(parents=True, exist_ok=True)
-_PHOTO_EXTS       = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".heic", ".heif"}
-_PHOTO_MAX_BYTES  = 10_000_000  # 10 MB
-_PHOTO_NAME_RE    = _re.compile(r"^[A-Za-z0-9._-]+$")
+    from database import get_db
+    from models import DiaryEntry, GrowthEvent
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -56,22 +52,6 @@ class DiaryEntryCreate(BaseModel):
         self.entry_date = self.entry_date.strip()
         if not _DATE_RE.match(self.entry_date):
             raise HTTPException(status_code=400, detail="entry_date must be YYYY-MM-DD")
-        return self
-
-
-class DayOffRequestCreate(BaseModel):
-    """Request body for submitting a day-off request."""
-    request_date: str
-    reason: str
-
-    def clean(self) -> "DayOffRequestCreate":
-        """Sanitize and validate fields."""
-        self.request_date = self.request_date.strip()
-        self.reason       = self.reason.strip()[:1000]
-        if not _DATE_RE.match(self.request_date):
-            raise HTTPException(status_code=400, detail="request_date must be YYYY-MM-DD")
-        if not self.reason:
-            raise HTTPException(status_code=400, detail="reason is required")
         return self
 
 
@@ -223,111 +203,10 @@ async def create_or_update_diary_entry(
     }
 
 
-# @tag DIARY @tag JOURNAL
-@router.post("/api/diary/photo", status_code=201)
-async def upload_diary_photo(
-    entry_date: str = Form(...),
-    file:       UploadFile = File(...),
-    db:         Session = Depends(get_db),
-):
-    """
-    Attach a photo to the DiaryEntry for `entry_date`.
-
-    Saves the file under LEARNING_ROOT/diary_photos/ with a deterministic
-    name (date + epoch ms + ext) and stores the filename in
-    DiaryEntry.photo_path. Creates a stub entry if none exists yet.
-    """
-    if not _DATE_RE.match(entry_date.strip()):
-        raise HTTPException(status_code=400, detail="entry_date must be YYYY-MM-DD")
-
-    ext = Path(file.filename or "upload.jpg").suffix.lower()
-    if ext not in _PHOTO_EXTS:
-        raise HTTPException(status_code=400, detail=f"File type '{ext}' not allowed")
-
-    raw = await file.read()
-    if not raw:
-        raise HTTPException(status_code=400, detail="Empty file")
-    if len(raw) > _PHOTO_MAX_BYTES:
-        raise HTTPException(status_code=413, detail="Photo too large (max 10 MB)")
-
-    safe_date = entry_date.strip()
-    fname     = f"{safe_date}_{int(_time.time() * 1000)}{ext}"
-    fpath     = _PHOTO_DIR / fname
-    fpath.write_bytes(raw)
-
-    now_iso = datetime.now(timezone.utc).isoformat()
-    entry = (
-        db.query(DiaryEntry)
-        .filter(DiaryEntry.entry_date == safe_date)
-        .first()
-    )
-    if entry:
-        # Best-effort: delete prior file if it lived in our diary_photos dir
-        old = (entry.photo_path or "").strip()
-        if old and _PHOTO_NAME_RE.match(old):
-            old_path = _PHOTO_DIR / old
-            if old_path.exists() and old_path.parent == _PHOTO_DIR:
-                try:
-                    old_path.unlink()
-                except OSError as exc:
-                    logger.warning("Failed to remove old diary photo %s: %s", old_path, exc)
-        entry.photo_path = fname
-    else:
-        entry = DiaryEntry(
-            entry_date  = safe_date,
-            content     = "",
-            photo_path  = fname,
-            created_at  = now_iso,
-        )
-        db.add(entry)
-    db.commit()
-    db.refresh(entry)
-
-    return {
-        "entry_date": entry.entry_date,
-        "photo_path": entry.photo_path,
-        "photo_url":  f"/api/diary/photo/{entry.photo_path}",
-    }
-
-
-# @tag DIARY @tag JOURNAL
-@router.delete("/api/diary/photo/{filename}")
-def delete_diary_photo(filename: str, db: Session = Depends(get_db)):
-    """Remove a diary photo file and clear its DB reference."""
-    if not _PHOTO_NAME_RE.match(filename):
-        raise HTTPException(status_code=400, detail="Invalid filename")
-    fpath = _PHOTO_DIR / filename
-    if fpath.exists() and fpath.parent == _PHOTO_DIR:
-        try:
-            fpath.unlink()
-        except OSError as exc:
-            logger.warning("Failed to delete diary photo %s: %s", fpath, exc)
-
-    entry = db.query(DiaryEntry).filter(DiaryEntry.photo_path == filename).first()
-    if entry:
-        entry.photo_path = None
-        db.commit()
-    return {"deleted": filename}
-
-
-# @tag DIARY @tag JOURNAL
-@router.get("/api/diary/photo/{filename}")
-def get_diary_photo(filename: str):
-    """Serve a stored diary photo. Validates filename to prevent traversal."""
-    if not _PHOTO_NAME_RE.match(filename):
-        raise HTTPException(status_code=400, detail="Invalid filename")
-    fpath = (_PHOTO_DIR / filename).resolve()
-    if fpath.parent != _PHOTO_DIR.resolve() or not fpath.exists():
-        raise HTTPException(status_code=404, detail="Photo not found")
-    return FileResponse(str(fpath))
-
-
 # @tag DIARY @tag GROWTH_TIMELINE
 @router.get("/api/growth/timeline")
 def get_growth_timeline(db: Session = Depends(get_db)):
-    """
-    Return the 50 most recent GrowthEvent rows ordered by event_date DESC.
-    """
+    """Return the 50 most recent GrowthEvent rows ordered by event_date DESC."""
     events = (
         db.query(GrowthEvent)
         .order_by(GrowthEvent.event_date.desc())
@@ -348,128 +227,3 @@ def get_growth_timeline(db: Session = Depends(get_db)):
             for e in events
         ],
     }
-
-
-# @tag DIARY @tag DAY_OFF
-@router.get("/api/day-off/requests")
-def list_day_off_requests(db: Session = Depends(get_db)):
-    """
-    Return all DayOffRequest rows ordered by request_date DESC.
-
-    Used by the diary "Day Off" section to render the user's history of
-    pending / approved / denied requests.
-    """
-    rows = (
-        db.query(DayOffRequest)
-        .order_by(DayOffRequest.request_date.desc())
-        .all()
-    )
-    return {
-        "count": len(rows),
-        "requests": [
-            {
-                "id":              r.id,
-                "request_date":    r.request_date,
-                "reason":          r.reason,
-                "status":          r.status,
-                "parent_response": r.parent_response,
-                "created_at":      r.created_at,
-            }
-            for r in rows
-        ],
-    }
-
-
-# @tag DIARY @tag DAY_OFF
-@router.post("/api/day-off/request", status_code=201)
-def create_day_off_request(req: DayOffRequestCreate, db: Session = Depends(get_db)):
-    """
-    Create a DayOffRequest for the given date.
-
-    Returns 409 if a request already exists for that date so duplicates
-    cannot be submitted.
-    """
-    req.clean()
-
-    duplicate = (
-        db.query(DayOffRequest)
-        .filter(DayOffRequest.request_date == req.request_date)
-        .first()
-    )
-    if duplicate:
-        raise HTTPException(
-            status_code=409,
-            detail=f"A day-off request for {req.request_date} already exists (status: {duplicate.status})",
-        )
-
-    now_iso = datetime.now(timezone.utc).isoformat()
-    day_off = DayOffRequest(
-        request_date = req.request_date,
-        reason       = req.reason,
-        status       = "pending",
-        created_at   = now_iso,
-    )
-    db.add(day_off)
-    db.commit()
-    db.refresh(day_off)
-
-    return {
-        "id":              day_off.id,
-        "request_date":    day_off.request_date,
-        "reason":          day_off.reason,
-        "status":          day_off.status,
-        "parent_response": day_off.parent_response,
-        "created_at":      day_off.created_at,
-    }
-
-
-# @tag DIARY @tag MY_SENTENCES
-@router.get("/api/diary/{subject}/{textbook}")
-def get_diary_sentences(subject: str, textbook: str, db: Session = Depends(get_db)):
-    """
-    Return ALL practice sentences for a subject/textbook, grouped by lesson.
-
-    Used by the top-bar 📖 diary overlay to show all sentences the student
-    has written in Step 5 across all lessons.
-
-    Args:
-        subject: e.g. "English"
-        textbook: e.g. "Voca_8000" (empty string for all)
-        db: Injected SQLAlchemy session.
-
-    Returns:
-        Dict with lessons (list of {lesson, sentences}) and total_sentences count.
-    """
-    query = (
-        db.query(UserPracticeSentence)
-        .filter(UserPracticeSentence.subject == subject)
-    )
-    if textbook:
-        query = query.filter(UserPracticeSentence.textbook == textbook)
-
-    rows = query.order_by(
-        UserPracticeSentence.lesson,
-        UserPracticeSentence.id.desc(),
-    ).all()
-
-    # Group by lesson, join with study_items to get the word
-    item_cache: dict[int, str] = {}
-    lessons_map: dict[str, list] = {}
-    for r in rows:
-        if r.item_id not in item_cache:
-            si = db.query(StudyItem.answer).filter(StudyItem.id == r.item_id).first()
-            item_cache[r.item_id] = si.answer if si else ""
-        word = item_cache[r.item_id]
-        lessons_map.setdefault(r.lesson, []).append({
-            "word": word,
-            "sentence": r.sentence,
-            "created_at": getattr(r, "created_at", "") or "",
-        })
-
-    lessons_list = [
-        {"lesson": lesson, "sentences": sents}
-        for lesson, sents in lessons_map.items()
-    ]
-    total = sum(len(l["sentences"]) for l in lessons_list)
-
-    return {"lessons": lessons_list, "total_sentences": total}

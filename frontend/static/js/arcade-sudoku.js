@@ -259,6 +259,10 @@ async function _suFinish() {
   const accuracy = total > 0 ? correct / total : 1;
 
   const result = await _arcadeReportScore('sudoku', score, correct, total, accuracy, _suLevel);
+  _arcadeRenderGameOver({
+    state: { score, correct, total },
+    accuracy, result, replay: `suStart('${_suLevel}')`,
+  });
   const body = document.getElementById('arcade-body');
   const msg = `
     <div class="su-finish">
@@ -267,8 +271,4 @@ async function _suFinish() {
       <div class="stat">Mistakes: <b>${state.mistakes}</b></div>
     </div>`;
   if (body) body.insertAdjacentHTML('afterbegin', msg);
-  _arcadeRenderGameOver({
-    state: { score, correct, total },
-    accuracy, result, replay: `suStart('${_suLevel}')`,
-  });
 }

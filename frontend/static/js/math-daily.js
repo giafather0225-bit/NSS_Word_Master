@@ -49,7 +49,7 @@ async function startMathDaily() {
         }
     } catch (err) {
         console.warn('[math] daily load failed', err);
-        stage.innerHTML = `<div class="math-daily"><p class="math-err">Failed to load.</p></div>`;
+        stage.innerHTML = `<div class="math-daily"><p class="math-err">Hmm, that didn't load. Let's try again!</p><button class="math-btn-primary" onclick="startMathDaily()">↻ Try Again</button></div>`;
     }
 }
 

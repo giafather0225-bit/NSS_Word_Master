@@ -33,7 +33,7 @@ async function startMathGlossary(grade) {
         _renderGlossaryList(data);
     } catch (err) {
         console.warn('[math] glossary load failed', err);
-        stage.innerHTML = `<div class="math-gloss"><p class="math-err">Failed to load glossary.</p></div>`;
+        stage.innerHTML = `<div class="math-gloss"><p class="math-err">Hmm, that didn't load. Let's try again!</p><button class="math-btn-primary" onclick="startMathGlossary()">↻ Try Again</button></div>`;
     }
 }
 

@@ -20,11 +20,11 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import MathKangarooProgress
-    from ..services import xp_engine
+    from ..services import xp_engine, streak_engine
 except ImportError:
     from database import get_db
     from models import MathKangarooProgress
-    from services import xp_engine
+    from services import xp_engine, streak_engine
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -112,7 +112,7 @@ def kangaroo_submit_answer(req: KangarooAnswerIn):
     return {
         "is_correct": is_correct,
         "correct_answer": target.get("answer", ""),
-        "feedback": target.get("feedback_wrong", "") if not is_correct else "Correct!",
+        "feedback": target.get("feedback_wrong") or "Not quite — take another look!" if not is_correct else "Correct!",
     }
 
 
@@ -158,6 +158,10 @@ def kangaroo_submit(req: KangarooCompleteIn, db: Session = Depends(get_db)):
             awarded += 5
     except Exception as e:
         logger.warning("XP award failed: %s", e)
+    try:
+        streak_engine.mark_math_done(db)
+    except Exception as e:
+        logger.warning("Streak math mark failed: %s", e)
 
     db.commit()
     return {"score": req.score, "total": req.total, "perfect": req.score == req.total, "xp": awarded}

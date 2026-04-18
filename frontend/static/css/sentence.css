@@ -18,57 +18,57 @@
 
 /* ───── Textarea ───── */
 textarea.sentence-input {
-  width: 100% !important;
-  max-width: 600px !important;
-  min-height: 120px !important;
-  padding: 16px 20px !important;
-  margin: 0 auto 24px auto !important;
-  display: block !important;
-  background: var(--surface) !important;
-  border: 1.5px solid var(--border) !important;
-  border-radius: 12px !important;
-  font-size: 15px !important;
-  font-weight: 400 !important;
-  color: var(--text-primary) !important;
-  line-height: 1.6 !important;
-  resize: vertical !important;
-  transition: all 0.2s ease !important;
-  font-family: -apple-system, sans-serif !important;
+  width: 100%;
+  max-width: 600px;
+  min-height: 120px;
+  padding: 16px 20px;
+  margin: 0 auto 24px auto;
+  display: block;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-size: var(--font-learner-lg);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: var(--line-learner);
+  resize: vertical;
+  transition: all 0.2s ease;
+  font-family: -apple-system, sans-serif;
 }
 
 textarea.sentence-input:focus {
-  outline: none !important;
-  border-color: var(--primary) !important;
-  box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 textarea.sentence-input::placeholder {
-  color: var(--text-secondary) !important;
+  color: var(--text-secondary);
 }
 
 /* ───── Submit Button ───── */
 button.sentence-submit {
-  min-width: 140px !important;
-  height: 52px !important;
-  padding: 0 32px !important;
-  background: var(--primary) !important;
-  border: none !important;
-  border-radius: 12px !important;
-  font-size: 15px !important;
-  font-weight: 600 !important;
-  color: #FFFFFF !important;
-  cursor: pointer !important;
-  transition: all 0.15s ease !important;
+  min-width: 140px;
+  height: 52px;
+  padding: 0 32px;
+  background: var(--primary);
+  border: none;
+  border-radius: 12px;
+  font-size: var(--font-learner-lg);
+  font-weight: 600;
+  color: var(--text-on-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
 button.sentence-submit:hover {
-  background: var(--primary-hover) !important;
-  transform: translateY(-1px) !important;
-  box-shadow: none !important;
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: none;
 }
 
 button.sentence-submit:active {
-  transform: translateY(0) !important;
+  transform: translateY(0);
 }
 
 /* ───── AI Checking 로딩 상태 ───── */
@@ -117,7 +117,7 @@ button.sentence-submit:active {
 }
 
 .feedback-title {
-  font-size: 14px;
+  font-size: var(--font-learner-md);
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 8px;
@@ -127,7 +127,7 @@ button.sentence-submit:active {
 }
 
 .feedback-content {
-  font-size: 14px;
+  font-size: var(--font-learner-md);
   font-weight: 400;
   color: var(--text-secondary);
   line-height: 1.6;
@@ -136,52 +136,52 @@ button.sentence-submit:active {
 .feedback-overall {
   margin-top: 20px;
   padding: 16px;
-  background: var(--zia-accent-light);
+  background: var(--color-accent-light);
   border: 1px solid var(--color-accent-light);
   border-radius: 8px;
-  font-size: 14px;
+  font-size: var(--font-learner-md);
   font-weight: 500;
-  color: var(--zia-accent);
+  color: var(--color-accent);
   text-align: center;
 }
 
 /* ───── Next Word Button ───── */
 button.next-word-btn,
 button[class*="next"] {
-  min-width: 160px !important;
-  height: 52px !important;
-  padding: 0 32px !important;
-  background: var(--primary) !important;
-  border: none !important;
-  border-radius: 12px !important;
-  font-size: 15px !important;
-  font-weight: 600 !important;
-  color: #FFFFFF !important;
-  cursor: pointer !important;
-  transition: all 0.15s ease !important;
-  margin: 24px auto !important;
-  display: block !important;
+  min-width: 160px;
+  height: 52px;
+  padding: 0 32px;
+  background: var(--primary);
+  border: none;
+  border-radius: 12px;
+  font-size: var(--font-learner-lg);
+  font-weight: 600;
+  color: var(--text-on-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin: 24px auto;
+  display: block;
 }
 
 button.next-word-btn:hover,
 button[class*="next"]:hover {
-  background: var(--primary-hover) !important;
-  transform: translateY(-1px) !important;
-  box-shadow: none !important;
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: none;
 }
 
 /* ── Zia gradient word chip ── */
 .sm-word-chip {
-  background: var(--zia-gradient) !important;
-  color: #fff !important;
-  border: none !important;
+  background: var(--gradient-main);
+  color: var(--text-on-primary);
+  border: none;
 }
 /* 예제 문장 숨기기 */
 .example-sentence,
 .sentence-example,
 p > em,
 p:has(em):not(.feedback-content) {
-  display: none !important;
+  display: none;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -212,8 +212,8 @@ p:has(em):not(.feedback-content) {
 }
 
 /* pass / fail / neutral tints */
-.sm-ai-pass  { background: #F0FBF4; }
-.sm-ai-fail  { background: #FFF5F5; }
+.sm-ai-pass  { background: var(--color-success-light); }
+.sm-ai-fail  { background: var(--color-error-light); }
 .sm-ai-neutral { background: var(--surface); }
 
 /* ── Icon column ── */
@@ -230,8 +230,8 @@ p:has(em):not(.feedback-content) {
   margin-top: 1px;
 }
 
-.sm-ai-pass  .sm-ai-icon { background: var(--success); color: #fff; }
-.sm-ai-fail  .sm-ai-icon { background: var(--danger);  color: #fff; }
+.sm-ai-pass  .sm-ai-icon { background: var(--color-success); color: var(--text-on-primary); }
+.sm-ai-fail  .sm-ai-icon { background: var(--color-error);   color: var(--text-on-primary); }
 .sm-ai-neutral .sm-ai-icon {
   background: var(--primary-light);
   color: var(--primary);
@@ -313,7 +313,7 @@ p:has(em):not(.feedback-content) {
 }
 
 .sm-ai-overall-text {
-  font-size: 14px;
+  font-size: var(--font-learner-md);
   font-weight: 500;
   color: var(--primary);
   line-height: 1.55;

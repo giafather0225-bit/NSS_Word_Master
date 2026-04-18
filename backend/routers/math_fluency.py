@@ -18,11 +18,11 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import MathFactFluency
-    from ..services import xp_engine
+    from ..services import xp_engine, streak_engine
 except ImportError:
     from database import get_db
     from models import MathFactFluency
-    from services import xp_engine
+    from services import xp_engine, streak_engine
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -208,6 +208,12 @@ def submit_round(req: RoundResultIn, db: Session = Depends(get_db)):
             xp_engine.award_xp(db, "math_fluency_best", 2, f"Fluency {req.fact_set}")
         except Exception as e:
             logger.warning("XP award failed: %s", e)
+
+    # Every completed fluency round counts toward streak
+    try:
+        streak_engine.mark_math_done(db)
+    except Exception as e:
+        logger.warning("Streak math mark failed: %s", e)
 
     # Check mastery (Phase C, 95%+)
     mastered = row.current_phase == "C" and accuracy >= 95.0

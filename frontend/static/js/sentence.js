@@ -76,12 +76,15 @@ async function loadOwnSentences(lesson) {
 
 /**
  * Entry point for the Make-a-Sentence stage.
+ * Per-item flow: Phase 1 (word-scramble drag/drop) → Phase 2 (AI-graded free writing).
+ * Items without an example sentence (item.hint) skip Phase 1.
  * @tag SENTENCE ENGLISH
  */
 function renderSentenceMaker(el) {
     if (!smState.initialized) {
         smState.initialized = true;
         smState.attempt = {};
+        smState.phase   = {};
         stageIndex = 0;
         const shuffled = shuffle(items);
         items.splice(0, items.length, ...shuffled);
@@ -94,7 +97,120 @@ function renderSentenceMaker(el) {
         return;
     }
 
-    renderSentenceItem(el, item);
+    const hasExample = !!(item.hint && String(item.hint).trim());
+    const phase = smState.phase[item.id] || (hasExample ? 'scramble' : 'write');
+    smState.phase[item.id] = phase;
+
+    if (phase === 'scramble') {
+        renderSentenceScramble(el, item);
+    } else {
+        renderSentenceItem(el, item);
+    }
+}
+
+/**
+ * Phase 1 — Tap-to-order word scramble. User rebuilds item.hint from shuffled chips.
+ * On success: advance to free-writing phase for same word.
+ * @tag SENTENCE ENGLISH
+ */
+function renderSentenceScramble(el, item) {
+    const total   = items.length;
+    const current = stageIndex + 1;
+    const tokens  = String(item.hint).trim().split(/\s+/);
+    if (tokens.length < 2) {
+        smState.phase[item.id] = 'write';
+        renderSentenceItem(el, item);
+        return;
+    }
+    const order = tokens.map((_, i) => i);
+    const bank  = shuffle(order.slice());
+    if (bank.every((v, i) => v === order[i])) {
+        [bank[0], bank[1]] = [bank[1], bank[0]];
+    }
+
+    el.innerHTML = `
+        <p class="st-h1">Step 5 — Make a Sentence</p>
+        <p class="st-sub">First, put the words in order:</p>
+        <div class="sm-word-chip">${escapeHtml(item.answer)}</div>
+        <div class="sm-scramble-answer" id="sm-scr-answer" aria-label="Answer row"></div>
+        <div class="sm-scramble-bank" id="sm-scr-bank" aria-label="Word bank"></div>
+        <div class="st-input-row">
+            <button type="button" class="st-btn ghost" id="sm-scr-reset">Reset</button>
+            <button type="button" class="st-btn" id="sm-scr-check" disabled>Check ✓</button>
+        </div>
+        <p id="sm-scr-feedback" class="sm-scr-feedback"></p>
+        <p class="st-prog">${current} / ${total} &nbsp;·&nbsp; Phase 1 / 2</p>
+    `;
+
+    const bankEl   = el.querySelector('#sm-scr-bank');
+    const answerEl = el.querySelector('#sm-scr-answer');
+    const checkBtn = el.querySelector('#sm-scr-check');
+    const resetBtn = el.querySelector('#sm-scr-reset');
+    const fbEl     = el.querySelector('#sm-scr-feedback');
+
+    const placed = [];
+
+    function makeChip(tokenIdx, label) {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'sm-scr-chip';
+        chip.textContent = label;
+        chip.dataset.idx = String(tokenIdx);
+        return chip;
+    }
+
+    function refreshCheck() {
+        checkBtn.disabled = placed.length !== tokens.length;
+        fbEl.textContent = '';
+        fbEl.className = 'sm-scr-feedback';
+    }
+
+    function render() {
+        bankEl.innerHTML = '';
+        answerEl.innerHTML = '';
+        bank.forEach(idx => {
+            if (placed.includes(idx)) return;
+            const chip = makeChip(idx, tokens[idx]);
+            chip.addEventListener('click', () => {
+                placed.push(idx);
+                render();
+            });
+            bankEl.appendChild(chip);
+        });
+        placed.forEach((idx, pos) => {
+            const chip = makeChip(idx, tokens[idx]);
+            chip.classList.add('placed');
+            chip.addEventListener('click', () => {
+                placed.splice(pos, 1);
+                render();
+            });
+            answerEl.appendChild(chip);
+        });
+        refreshCheck();
+    }
+
+    resetBtn.addEventListener('click', () => { placed.length = 0; render(); });
+
+    checkBtn.addEventListener('click', () => {
+        const correct = placed.every((idx, i) => idx === order[i]);
+        if (correct) {
+            stageFxCorrect();
+            fbEl.textContent = 'Great! Now write your own sentence. ✨';
+            fbEl.classList.add('correct');
+            checkBtn.disabled = true;
+            setTimeout(() => {
+                smState.phase[item.id] = 'write';
+                renderSentenceMaker(el);
+            }, 900);
+        } else {
+            stageFxWrong();
+            fbEl.textContent = 'Not quite — try again!';
+            fbEl.classList.add('wrong');
+            _trackWordAttempt && _trackWordAttempt(item, false, 'scramble:wrong');
+        }
+    });
+
+    render();
 }
 
 /**

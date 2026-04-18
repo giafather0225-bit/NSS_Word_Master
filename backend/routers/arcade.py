@@ -23,6 +23,7 @@ from backend.services.xp_engine import (
     score_to_arcade_tier,
     ARCADE_DAILY_CAP,
 )
+from backend.services import streak_engine
 
 router = APIRouter()
 
@@ -225,6 +226,11 @@ def arcade_score(req: ScoreRequest, db: Session = Depends(get_db)) -> dict:
     new_best = req.score > prev_best["score"]
     if new_best:
         _set_best(db, req.game, req.score, req.level)
+
+    try:
+        streak_engine.mark_game_done(db)
+    except Exception:
+        pass
 
     return {
         "tier": xp_result["tier"],

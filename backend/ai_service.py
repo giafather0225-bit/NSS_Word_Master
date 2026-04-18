@@ -28,6 +28,8 @@ from typing import Any
 import httpx
 from dotenv import load_dotenv
 
+from backend.utils import parse_json_array, strip_json_fences
+
 load_dotenv()
 
 log = logging.getLogger(__name__)
@@ -51,38 +53,6 @@ QUALITY_THRESHOLD = 0.55
 # ══════════════════════════════════════════════════════════════════
 # 공통 유틸
 # ══════════════════════════════════════════════════════════════════
-
-def _strip_fences(text: str) -> str:
-    t = text.strip()
-    for prefix in ("```json", "```"):
-        if t.startswith(prefix):
-            t = t[len(prefix):]
-            break
-    if t.endswith("```"):
-        t = t[:-3]
-    return t.strip()
-
-
-def _parse_vocab_array(text: str) -> list[dict] | None:
-    """JSON 배열 파싱 — 앞뒤 오염 텍스트에 강인."""
-    clean = _strip_fences(text)
-    try:
-        data = json.loads(clean)
-        if isinstance(data, list):
-            return data
-    except json.JSONDecodeError:
-        pass
-    # 첫 번째 [ ... ] 구간 추출 시도
-    lb, rb = clean.find("["), clean.rfind("]")
-    if lb != -1 and rb > lb:
-        try:
-            data = json.loads(clean[lb: rb + 1])
-            if isinstance(data, list):
-                return data
-        except json.JSONDecodeError:
-            pass
-    return None
-
 
 def _normalize_entry(e: dict) -> dict:
     """각 항목의 필드를 string으로 정규화."""
@@ -209,12 +179,16 @@ async def _gemini_generate(prompt: str, timeout: float = 60.0) -> str:
         "generationConfig": {"temperature": 0.2, "maxOutputTokens": 2048},
     }
     async with httpx.AsyncClient(timeout=timeout) as client:
-        resp = await client.post(
-            GEMINI_ENDPOINT,
-            json=body,
-            params={"key": GEMINI_API_KEY},
-        )
-        resp.raise_for_status()
+        try:
+            resp = await client.post(
+                GEMINI_ENDPOINT,
+                json=body,
+                params={"key": GEMINI_API_KEY},
+            )
+            resp.raise_for_status()
+        except Exception as exc:
+            log.warning("Gemini request failed: %s", type(exc).__name__)
+            raise RuntimeError(f"Gemini request failed: {type(exc).__name__}") from None
         candidates = resp.json().get("candidates", [])
         if not candidates:
             raise ValueError("Gemini 응답에 candidates 없음")

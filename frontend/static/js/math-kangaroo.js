@@ -39,7 +39,7 @@ async function startMathKangaroo() {
         _renderKangPicker(data.sets);
     } catch (err) {
         console.warn('[math] kangaroo load failed', err);
-        stage.innerHTML = `<div class="math-kang"><p class="math-err">Failed to load.</p></div>`;
+        stage.innerHTML = `<div class="math-kang"><p class="math-err">Hmm, that didn't load. Let's try again!</p><button class="math-btn-primary" onclick="startMathKangaroo()">↻ Try Again</button></div>`;
     }
 }
 
@@ -105,7 +105,7 @@ async function _startKangSet(setId) {
         _renderKangProblem();
     } catch (err) {
         console.warn('[math] kangaroo set failed', err);
-        stage.innerHTML = `<div class="math-kang"><p class="math-err">Failed to load.</p></div>`;
+        stage.innerHTML = `<div class="math-kang"><p class="math-err">Hmm, that didn't load. Let's try again!</p><button class="math-btn-primary" onclick="_startKangSet('${encodeURIComponent(setId).replace(/'/g, "\\'")}')">↻ Try Again</button></div>`;
     }
 }
 

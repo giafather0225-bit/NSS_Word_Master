@@ -48,9 +48,10 @@
   /* ── Lesson List ─────────────────────────────────────── */
   async function renderLessonList() {
     const body = $("wm-body");
-    body.innerHTML = 
+    body.innerHTML =
       '<div class="wm-lesson-list">' +
         '<div class="wm-section-title">My Word Lists</div>' +
+        '<div id="wm-weekly-test-bar" class="wm-weekly-test-bar"></div>' +
         '<div id="wm-lessons-container" class="wm-lessons-container">' +
           '<div class="wm-loading">Loading...</div>' +
         '</div>' +
@@ -62,6 +63,7 @@
 
     $("wm-btn-create").onclick = createLesson;
     $("wm-new-lesson").onkeydown = (e) => { if (e.key === "Enter") createLesson(); };
+    renderWeeklyTestBar();
 
     try {
       const res = await fetch("/api/lessons/English/My_Words");
@@ -461,6 +463,125 @@
     }
 
     next();
+  }
+
+  /* ── Weekly Test ─────────────────────────────────────── */
+  /**
+   * Render the Weekly Test bar above the lesson list. Shows total word count;
+   * enables the test when ≥ min_required (50). Gate is enforced server-side too.
+   * @tag MYWORDS @tag WEEKLY_TEST
+   */
+  async function renderWeeklyTestBar() {
+    const bar = $("wm-weekly-test-bar");
+    if (!bar) return;
+    try {
+      const res = await fetch("/api/mywords/weekly-test");
+      if (!res.ok) { bar.innerHTML = ""; return; }
+      const d = await res.json();
+      const total = d.total_word_count || 0;
+      const need = d.min_required || 50;
+      const ok = !!d.available;
+      bar.innerHTML =
+        '<div class="wm-wt-bar ' + (ok ? 'ready' : 'locked') + '">' +
+          '<div class="wm-wt-info">' +
+            '<span class="wm-wt-title">Weekly Test</span>' +
+            '<span class="wm-wt-sub">' +
+              (ok
+                ? 'Ready — ' + total + ' words available'
+                : (need - total) + ' more words needed (' + total + '/' + need + ')') +
+            '</span>' +
+          '</div>' +
+          '<button id="wm-wt-start" class="wm-btn-primary" ' +
+            (ok ? '' : 'disabled') + '>Start</button>' +
+        '</div>';
+      const btn = $("wm-wt-start");
+      if (btn && ok) btn.onclick = startWeeklyTest;
+    } catch (err) {
+      bar.innerHTML = "";
+    }
+  }
+
+  /**
+   * Run the Weekly Test. Presents definition → user types word → auto-grade
+   * (case-insensitive exact match). Submits result on completion.
+   * @tag MYWORDS @tag WEEKLY_TEST
+   */
+  async function startWeeklyTest() {
+    let data;
+    try {
+      const res = await fetch("/api/mywords/weekly-test");
+      data = await res.json();
+      if (!data.available) { alert("Not enough words yet."); return; }
+    } catch (err) { alert("Failed to load test."); return; }
+
+    const words = data.words || [];
+    if (!words.length) return;
+
+    let idx = 0, correct = 0;
+    const body = $("wm-body");
+
+    function renderQ() {
+      if (idx >= words.length) return submit();
+      const w = words[idx];
+      body.innerHTML =
+        '<div class="wm-detail">' +
+          '<div class="wm-detail-title">Weekly Test  ' +
+            '<span class="wm-word-count">' + (idx + 1) + ' / ' + words.length + '</span></div>' +
+          '<div class="wm-wt-def">' + (w.definition || '(no definition)') + '</div>' +
+          (w.example ? '<div class="wm-wt-ex">' + w.example.replace(new RegExp(w.word, 'ig'), '____') + '</div>' : '') +
+          '<input type="text" id="wm-wt-input" class="wm-input" placeholder="Type the word..." autocomplete="off" />' +
+          '<button id="wm-wt-submit" class="wm-btn-primary" style="margin-top:12px;">Submit</button>' +
+          '<div id="wm-wt-fb" class="wm-wt-fb"></div>' +
+        '</div>';
+      const input = $("wm-wt-input");
+      input.focus();
+      input.onkeydown = (e) => { if (e.key === "Enter") grade(); };
+      $("wm-wt-submit").onclick = grade;
+
+      function grade() {
+        const ans = (input.value || "").trim().toLowerCase();
+        const truth = (w.word || "").trim().toLowerCase();
+        const fb = $("wm-wt-fb");
+        if (ans === truth) {
+          correct++;
+          fb.className = "wm-wt-fb ok";
+          fb.textContent = "✓ Correct!";
+        } else {
+          fb.className = "wm-wt-fb ng";
+          fb.textContent = "✗ Answer: " + w.word;
+        }
+        input.disabled = true;
+        $("wm-wt-submit").textContent = "Next →";
+        $("wm-wt-submit").onclick = () => { idx++; renderQ(); };
+      }
+    }
+
+    async function submit() {
+      let result = { passed: false, xp_awarded: 0, accuracy: 0 };
+      try {
+        const r = await fetch("/api/mywords/weekly-test/result", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ correct_count: correct, total_count: words.length }),
+        });
+        result = await r.json();
+      } catch (err) {}
+
+      body.innerHTML =
+        '<div class="wm-detail" style="text-align:center;">' +
+          '<div class="wm-detail-title">' + (result.passed ? "🎉 Passed!" : "Keep practicing") + '</div>' +
+          '<div style="font-size:48px;font-weight:700;margin:20px 0;">' +
+            correct + ' / ' + words.length + '</div>' +
+          '<div style="color:var(--text-secondary);margin-bottom:16px;">' +
+            Math.round((result.accuracy || 0) * 100) + '% accuracy' +
+            (result.xp_awarded > 0 ? ' · +' + result.xp_awarded + ' XP' : '') +
+          '</div>' +
+          '<button id="wm-wt-done" class="wm-btn-primary">Done</button>' +
+        '</div>';
+      $("wm-wt-done").onclick = renderLessonList;
+    }
+
+    renderQ();
   }
 
   /* ── Init ────────────────────────────────────────────── */

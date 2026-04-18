@@ -13,14 +13,50 @@ const MK_CFG = {
   streakBonus: 20,
   streakCap: 8,
   skipPenalty: 40,
-  numbersMin: 1,
-  numbersMax: 9,
+};
+
+/** @tag ARCADE */
+const MK_LEVELS = {
+  easy:   { label: 'Easy',   icon: '➕', ops: ['+', '-'],             target: 20, numbersMin: 1, numbersMax: 9 },
+  normal: { label: 'Normal', icon: '✖️', ops: ['+', '-', '*', '/'],   target: 24, numbersMin: 1, numbersMax: 9 },
 };
 
 let _mk = null;
+let _mkLevel = 'normal';
+
+/** Show Make 24 level picker. @tag ARCADE */
+async function mkShowLevelPicker() {
+  mkStop();
+  const body = document.getElementById('arcade-body');
+  if (!body) return;
+  body.innerHTML = `
+    <div class="wi-level-picker">
+      <h2 class="wi-level-title">Select Difficulty</h2>
+      <div class="wi-level-sub">Make 24</div>
+      <div class="wi-level-list" id="mk-level-list">Loading…</div>
+      <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
+    </div>`;
+  const bests = await Promise.all(
+    Object.keys(MK_LEVELS).map((lv) =>
+      fetch(`/api/arcade/best/make24?level=${lv}`).then((r) => r.ok ? r.json() : { score: 0 }).catch(() => ({ score: 0 }))
+    )
+  );
+  const list = document.getElementById('mk-level-list');
+  if (!list) return;
+  list.innerHTML = Object.entries(MK_LEVELS).map(([key, cfg], i) => `
+    <div class="wi-level-card" onclick="mkStart('${key}')">
+      <div class="wi-level-icon">${cfg.icon}</div>
+      <div class="wi-level-name">${cfg.label}</div>
+      <div class="wi-level-spec">${cfg.ops.join(' ')} · target ${cfg.target}</div>
+      <div class="wi-level-pb">🏆 ${bests[i].score || 0}</div>
+    </div>`).join('');
+}
 
 /** Start Make 24. @tag ARCADE */
-function mkStart() {
+function mkStart(level = 'normal') {
+  mkStop();
+  _mkLevel = MK_LEVELS[level] ? level : 'normal';
+  const lv = MK_LEVELS[_mkLevel];
   mkStop();
   const body = document.getElementById('arcade-body');
   if (!body) return;
@@ -39,7 +75,7 @@ function mkStart() {
         <div class="wi-hud-item"><span class="wi-hud-label">STREAK</span><b id="mk-streak">0</b></div>
       </div>
       <div class="mk-stage">
-        <div class="mk-target">Make <b>24</b></div>
+        <div class="mk-target">Make <b>${lv.target}</b></div>
         <div class="mk-nums" id="mk-nums"></div>
         <div class="mk-expr" id="mk-expr">—</div>
         <div class="mk-preview" id="mk-preview"></div>
@@ -48,8 +84,8 @@ function mkStart() {
           <button type="button" class="mk-op" data-op=")">)</button>
           <button type="button" class="mk-op" data-op="+">+</button>
           <button type="button" class="mk-op" data-op="-">−</button>
-          <button type="button" class="mk-op" data-op="*">×</button>
-          <button type="button" class="mk-op" data-op="/">÷</button>
+          ${lv.ops.includes('*') ? '<button type="button" class="mk-op" data-op="*">×</button>' : ''}
+          ${lv.ops.includes('/') ? '<button type="button" class="mk-op" data-op="/">÷</button>' : ''}
         </div>
         <div class="mk-actions">
           <button type="button" class="wi-btn" id="mk-undo">↶ Undo</button>
@@ -118,8 +154,9 @@ function _mkRenderExpr() {
   if (!_mk.expr.length) { exprEl.textContent = '—'; prev.textContent = ''; return; }
   exprEl.textContent = _mk.expr.map((t) => t.v === '*' ? '×' : t.v === '/' ? '÷' : t.v === '-' ? '−' : t.v).join(' ');
   const val = _mkEval(_mk.expr);
+  const target = MK_LEVELS[_mkLevel].target;
   if (val === null) prev.textContent = '…';
-  else if (Math.abs(val - MK_CFG.target) < 1e-9) prev.textContent = `= ${val} ✓`;
+  else if (Math.abs(val - target) < 1e-9) prev.textContent = `= ${val} ✓`;
   else prev.textContent = `= ${Math.round(val * 100) / 100}`;
 }
 
@@ -141,7 +178,8 @@ function _mkSubmit() {
   }
   const val = _mkEval(_mk.expr);
   _mk.total += 1;
-  if (val !== null && Math.abs(val - MK_CFG.target) < 1e-9) {
+  const target = MK_LEVELS[_mkLevel].target;
+  if (val !== null && Math.abs(val - target) < 1e-9) {
     _mk.correct += 1;
     _mk.streak += 1;
     const bonus = Math.min(MK_CFG.streakCap, _mk.streak) * MK_CFG.streakBonus;
@@ -198,17 +236,17 @@ function _mkEval(tokens) {
 /* ── Solvable hand generator ─────────────────────────────────── */
 
 function _mkGenSolvable() {
-  for (let attempt = 0; attempt < 50; attempt++) {
+  const lv = MK_LEVELS[_mkLevel];
+  for (let attempt = 0; attempt < 80; attempt++) {
     const nums = Array.from({ length: 4 }, () =>
-      MK_CFG.numbersMin + Math.floor(Math.random() * (MK_CFG.numbersMax - MK_CFG.numbersMin + 1))
+      lv.numbersMin + Math.floor(Math.random() * (lv.numbersMax - lv.numbersMin + 1))
     );
-    if (_mkHasSolution(nums)) return nums;
+    if (_mkHasSolution(nums, lv.ops, lv.target)) return nums;
   }
-  return [3, 3, 8, 8]; // classic fallback
+  return _mkLevel === 'easy' ? [5, 6, 4, 5] : [3, 3, 8, 8];
 }
 
-function _mkHasSolution(nums) {
-  const ops = ['+', '-', '*', '/'];
+function _mkHasSolution(nums, ops, target) {
   const perms = _perm(nums);
   for (const [a, b, c, d] of perms) {
     for (const o1 of ops) for (const o2 of ops) for (const o3 of ops) {
@@ -222,7 +260,7 @@ function _mkHasSolution(nums) {
       for (const e of exprs) {
         try {
           const v = Function(`"use strict"; return (${e});`)();
-          if (Number.isFinite(v) && Math.abs(v - MK_CFG.target) < 1e-9) return true;
+          if (Number.isFinite(v) && Math.abs(v - target) < 1e-9) return true;
         } catch {}
       }
     }
@@ -245,6 +283,6 @@ async function _mkGameOver() {
   const state = _mk;
   _mk.running = false;
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
-  const result = await _arcadeReportScore('make24', state.score, state.correct, state.total, accuracy);
-  _arcadeRenderGameOver({ state, accuracy, result, replay: 'mkStart()' });
+  const result = await _arcadeReportScore('make24', state.score, state.correct, state.total, accuracy, _mkLevel);
+  _arcadeRenderGameOver({ state, accuracy, result, replay: `mkStart('${_mkLevel}')` });
 }

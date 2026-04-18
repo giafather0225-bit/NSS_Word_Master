@@ -239,17 +239,46 @@ function advanceToNextStage() {
         const next      = allDone ? null : nextStageToStart();
         const nextLabel = next ? (ROADMAP_LABELS[ROADMAP_STAGES.indexOf(next)] || "Next") : null;
         const nextBtnHtml = allDone
-            ? `<button type="button" id="stage-complete-btn" class="sc-btn">Take Final Test</button>`
-            : `<button type="button" id="stage-complete-btn" class="sc-btn">${nextLabel} \u2192</button>`;
+            ? `<button type="button" id="stage-complete-btn" class="sc-btn sc-btn-primary">Take Final Test</button>`
+            : `<button type="button" id="stage-complete-btn" class="sc-btn sc-btn-primary">${nextLabel} \u2192</button>`;
+
+        const okItems   = items.filter(it => !wrongMap[it.id]);
+        const missItems = items.filter(it => wrongMap[it.id] > 0);
+        const totalCt   = items.length;
+        const okCt      = okItems.length;
+        const missCt    = missItems.length;
+
+        const chipHtml = items.map(it => {
+            const isMiss = wrongMap[it.id] > 0;
+            const cls = isMiss ? 'sc-chip sc-chip-miss' : 'sc-chip sc-chip-ok';
+            const mark = isMiss ? '~' : '\u2713';
+            return `<span class="${cls}"><span class="sc-chip-mark">${mark}</span>${escapeHtml(it.answer)}</span>`;
+        }).join('');
+
+        const retryBtnHtml = missCt > 0 && !allDone
+            ? `<button type="button" id="sc-retry-btn" class="sc-btn sc-btn-ghost">Review ${missCt} word${missCt > 1 ? 's' : ''}</button>`
+            : '';
 
         stageEl.innerHTML = `
             <div class="sc-card">
-                <svg class="sc-svg" viewBox="0 0 52 52">
-                    <circle class="sc-circle" cx="26" cy="26" r="24"/>
-                    <path class="sc-tick" d="M15 27l7 7 15-15"/>
-                </svg>
-                <p class="sc-title">${completedStageLabel}</p>
-                <div class="sc-btn-wrap">${nextBtnHtml}</div>
+                <div class="sc-hero">
+                    <svg class="sc-svg" viewBox="0 0 52 52" aria-hidden="true">
+                        <circle class="sc-circle" cx="26" cy="26" r="24"/>
+                        <path class="sc-tick" d="M15 27l7 7 15-15"/>
+                    </svg>
+                    <p class="sc-eyebrow">Stage Complete</p>
+                    <p class="sc-title">${completedStageLabel}</p>
+                </div>
+                <div class="sc-stats">
+                    <div class="sc-stat"><span class="sc-stat-val">${okCt}</span><span class="sc-stat-lbl">Mastered</span></div>
+                    <div class="sc-stat"><span class="sc-stat-val sc-stat-val-miss">${missCt}</span><span class="sc-stat-lbl">To Review</span></div>
+                    <div class="sc-stat"><span class="sc-stat-val">${totalCt}</span><span class="sc-stat-lbl">Total</span></div>
+                </div>
+                <div class="sc-chips" aria-label="Words in this stage">${chipHtml}</div>
+                <div class="sc-cta-row">
+                    ${retryBtnHtml}
+                    ${nextBtnHtml}
+                </div>
             </div>
         `;
 
@@ -260,15 +289,31 @@ function advanceToNextStage() {
                 @keyframes sc-draw{from{stroke-dashoffset:151}to{stroke-dashoffset:0}}
                 @keyframes sc-tick{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
                 @keyframes sc-fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-                .sc-card{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:20px}
-                .sc-svg{width:72px;height:72px}
-                .sc-circle{fill:none;stroke:#34C759;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:151;stroke-dashoffset:151;animation:sc-draw 0.7s ease forwards}
-                .sc-tick{fill:none;stroke:#34C759;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:sc-tick 0.35s 0.55s ease forwards}
-                .sc-title{font-size:1.15rem;font-weight:600;color:#1D1D1F;letter-spacing:-0.01em;opacity:0;animation:sc-fade 0.4s 0.7s ease forwards}
-                .sc-btn-wrap{opacity:0;animation:sc-fade 0.4s 1.1s ease forwards}
-                .sc-btn{padding:12px 36px;border:none;border-radius:12px;background:#007AFF;color:#fff;font-size:0.95rem;font-weight:600;cursor:pointer;transition:transform 0.12s,opacity 0.12s}
-                .sc-btn:hover{transform:scale(1.03)}
-                .sc-btn:active{transform:scale(0.97);opacity:0.85}
+                .sc-card{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:24px;max-width:680px;margin:24px auto;padding:32px 28px;background:var(--bg-card);border:1px solid var(--border-card);border-radius:var(--radius-lg)}
+                .sc-hero{display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;animation:sc-fade 0.4s 0.2s ease forwards}
+                .sc-svg{width:64px;height:64px;margin-bottom:4px}
+                .sc-circle{fill:none;stroke:var(--color-success);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:151;stroke-dashoffset:151;animation:sc-draw 0.7s ease forwards}
+                .sc-tick{fill:none;stroke:var(--color-success);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:sc-tick 0.35s 0.55s ease forwards}
+                .sc-eyebrow{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-secondary);margin:0}
+                .sc-title{font-size:22px;font-weight:700;color:var(--text-primary);letter-spacing:-0.01em;margin:0}
+                .sc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px;background:var(--bg-surface);border-radius:var(--radius-md);opacity:0;animation:sc-fade 0.4s 0.5s ease forwards}
+                .sc-stat{display:flex;flex-direction:column;align-items:center;gap:2px}
+                .sc-stat-val{font-size:24px;font-weight:700;color:var(--color-primary);line-height:1.1}
+                .sc-stat-val-miss{color:var(--color-warning)}
+                .sc-stat-lbl{font-size:11px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-secondary)}
+                .sc-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-height:160px;overflow-y:auto;padding:4px 0;opacity:0;animation:sc-fade 0.4s 0.7s ease forwards}
+                .sc-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--radius-full);font-size:13px;font-weight:500;border:1px solid var(--border-default);background:var(--bg-card);color:var(--text-primary)}
+                .sc-chip-ok{border-color:var(--color-success);color:var(--color-success);background:var(--color-success-light)}
+                .sc-chip-miss{border-color:var(--color-warning);color:var(--color-warning);background:var(--color-warning-light)}
+                .sc-chip-mark{font-weight:700;font-size:12px}
+                .sc-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0;animation:sc-fade 0.4s 0.9s ease forwards}
+                .sc-btn{padding:12px 28px;border-radius:var(--radius-md);font-size:15px;font-weight:600;cursor:pointer;transition:background 0.15s ease,transform 0.12s ease,border-color 0.15s ease;border:1px solid transparent;min-height:44px}
+                .sc-btn-primary{background:var(--color-primary);border-color:var(--color-primary);color:var(--text-on-primary)}
+                .sc-btn-primary:hover{background:var(--color-primary-hover);border-color:var(--color-primary-hover)}
+                .sc-btn-ghost{background:transparent;border-color:var(--border-default);color:var(--text-primary)}
+                .sc-btn-ghost:hover{background:var(--bg-surface);border-color:var(--border-strong)}
+                .sc-btn:active{transform:scale(0.98);opacity:0.9}
+                @media (max-width:520px){.sc-card{padding:24px 18px;gap:18px}.sc-title{font-size:20px}.sc-stat-val{font-size:20px}}
             `;
             document.head.appendChild(sty);
         }
@@ -294,6 +339,16 @@ function advanceToNextStage() {
                 }
                 jumpToStage(_savedNextKey);
             }
+        });
+    }
+    const retryBtn = stageEl ? stageEl.querySelector('#sc-retry-btn') : null;
+    if (retryBtn && _stageAtComplete) {
+        retryBtn.addEventListener('click', async () => {
+            if (!items.length) {
+                const lesson = lessonSelected();
+                if (lesson) await loadStudyItems(lesson);
+            }
+            jumpToStage(_stageAtComplete);
         });
     }
 
@@ -382,6 +437,10 @@ function renderExam(el) {
 
     $("btn-exam-listen").addEventListener("click", async () => {
         await apiExampleFull(sentence);
+    });
+
+    $("answer-input").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") $("exam-submit").click();
     });
 
     $("exam-submit").addEventListener("click", async () => {
@@ -732,8 +791,6 @@ const TEXT_REPLACEMENTS = {
         'Some letters are hidden.',
     'More letters hidden':
         'More letters are hidden now!',
-    'All hidden — type from memory!':
-        'All hidden — type from memory!',
     'Listen, then type the word.':
         'Listen and type the word.',
     'Use this word in a sentence':
@@ -755,8 +812,10 @@ function replaceDescriptionTexts() {
             return;
         }
         for (const [original, replacement] of Object.entries(TEXT_REPLACEMENTS)) {
+            if (original === replacement) continue;
             if (el.textContent.includes(original)) {
-                el.textContent = el.textContent.replace(original, replacement);
+                const next = el.textContent.replace(original, replacement);
+                if (next !== el.textContent) el.textContent = next;
             }
         }
     });

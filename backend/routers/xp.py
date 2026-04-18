@@ -269,4 +269,13 @@ def tasks_today(db: Session = Depends(get_db)) -> list:
                 )
             )
 
+    # Auto-award daily bonuses (XPLog daily-dedup makes this idempotent).
+    # Why: bonus rules existed in XP_RULES but no caller wired them in.
+    if tasks:
+        required = [t for t in tasks if t["is_required"]]
+        if required and all(t["is_done"] for t in required):
+            award_xp(db, "must_do_bonus")
+        if all(t["is_done"] for t in tasks):
+            award_xp(db, "all_complete_bonus")
+
     return tasks

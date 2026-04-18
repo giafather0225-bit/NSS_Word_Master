@@ -21,11 +21,11 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import MathProblem, MathProgress, MathAttempt, MathWrongReview
-    from ..services import xp_engine
+    from ..services import xp_engine, streak_engine
 except ImportError:
     from database import get_db
     from models import MathProblem, MathProgress, MathAttempt, MathWrongReview
-    from services import xp_engine
+    from services import xp_engine, streak_engine
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -63,17 +63,37 @@ def _load_lesson_json(grade: str, unit: str, lesson: str) -> dict:
 
 
 # @tag MATH @tag ACADEMY
+def _normalize_item(item: dict) -> dict:
+    """Normalize item field aliases (U8 uses `question` + lowercase `type`)."""
+    if not isinstance(item, dict):
+        return item
+    out = dict(item)
+    if "stem" not in out and "question" in out:
+        out["stem"] = out["question"]
+    if "answer" not in out and "correct_answer" in out:
+        out["answer"] = out["correct_answer"]
+    t = out.get("type")
+    if isinstance(t, str):
+        out["type"] = t.upper() if t.lower() in {"mc", "card"} else t
+    return out
+
+
+# @tag MATH @tag ACADEMY
 def _stage_problems(data: dict, stage: str) -> list:
-    """Extract stage problems from either lesson schema.
+    """Extract stage problems from any lesson schema.
 
     U1 schema: top-level key per stage (data["pretest"], data["learn"], ...).
     U2 schema: single data["items"] list where each item has a "section" field.
+    U8 schema: data["sections"][stage] wrapper with renamed item fields.
     """
     if stage in data and isinstance(data[stage], list):
-        return data[stage]
+        return [_normalize_item(it) for it in data[stage]]
+    sections = data.get("sections")
+    if isinstance(sections, dict) and isinstance(sections.get(stage), list):
+        return [_normalize_item(it) for it in sections[stage]]
     items = data.get("items")
     if isinstance(items, list):
-        return [it for it in items if it.get("section") == stage]
+        return [_normalize_item(it) for it in items if it.get("section") == stage]
     return []
 
 
@@ -297,6 +317,10 @@ def submit_unit_test(
             xp_engine.award_xp(db, "math_unit_test_pass", 15, f"Math {grade}/{unit}")
         except Exception as e:
             logger.warning("XP award failed: %s", e)
+        try:
+            streak_engine.mark_math_done(db)
+        except Exception as e:
+            logger.warning("Streak math mark failed: %s", e)
 
     db.commit()
 

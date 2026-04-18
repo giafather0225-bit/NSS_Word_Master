@@ -16,11 +16,13 @@ try:
     from ..models import (
         StreakLog, WordReview, AcademySession, GrowthEvent, DayOffRequest,
     )
+    from ..services import academy_session as academy_sess
 except ImportError:
     from database import get_db  # type: ignore
     from models import (  # type: ignore
         StreakLog, WordReview, AcademySession, GrowthEvent, DayOffRequest,
     )
+    from services import academy_session as academy_sess  # type: ignore
 
 router = APIRouter(prefix="/api/reminders", tags=["reminders"])
 
@@ -61,8 +63,9 @@ def _stale_lesson(db: Session) -> AcademySession | None:
             db.query(AcademySession)
               .filter(AcademySession.is_completed == False)  # noqa: E712
               .filter(AcademySession.is_reset == False)      # noqa: E712
-              .filter(AcademySession.started_date <= cutoff)
-              .order_by(AcademySession.started_date.asc())
+              .filter(AcademySession.last_active_date != None)  # noqa: E711
+              .filter(AcademySession.last_active_date <= cutoff)
+              .order_by(AcademySession.last_active_date.asc())
               .first()
         )
     except Exception:
@@ -110,6 +113,9 @@ def today_reminders(db: Session = Depends(get_db)) -> List[dict]:
     """
     banners: List[dict] = []
     today_iso = date.today().isoformat()
+
+    # Enforce 2-day idle → auto-reset before computing banners.
+    academy_sess.enforce_session_gap(db)
 
     # 1. Review due — the most common nudge
     due = _review_due_count(db, today_iso)

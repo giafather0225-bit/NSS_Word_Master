@@ -129,21 +129,76 @@ async function _ppSaveSchedule() {
  */
 function ppRenderPin(body) {
     body.innerHTML = `
-        <div class="pp-section-title">Change PIN</div>
-        <div style="max-width:320px;display:flex;flex-direction:column;gap:12px">
+        <div class="pp-section-title">Parent Email</div>
+        <div class="pp-form-stack">
             <div>
-                <label style="font-size:13px;color:var(--text-secondary);display:block;margin-bottom:4px">New PIN (4 digits)</label>
+                <label class="pp-form-label">Notification email</label>
+                <input id="pp-parent-email" class="pp-input" type="email"
+                       placeholder="parent@example.com" autocomplete="email" />
+                <p class="pp-form-hint">GIA's Day Off requests will be sent here.</p>
+            </div>
+            <button class="pp-btn primary" onclick="_ppSaveParentEmail()">Save Email</button>
+            <p id="pp-email-msg" class="pp-form-msg"></p>
+        </div>
+
+        <div class="pp-section-divider"></div>
+
+        <div class="pp-section-title">Change PIN</div>
+        <div class="pp-form-stack">
+            <div>
+                <label class="pp-form-label">New PIN (4 digits)</label>
                 <input id="pp-new-pin" class="pp-input" type="password" maxlength="4"
                        inputmode="numeric" placeholder="Enter new PIN" autocomplete="new-password" />
             </div>
             <div>
-                <label style="font-size:13px;color:var(--text-secondary);display:block;margin-bottom:4px">Confirm PIN</label>
+                <label class="pp-form-label">Confirm PIN</label>
                 <input id="pp-confirm-pin" class="pp-input" type="password" maxlength="4"
                        inputmode="numeric" placeholder="Confirm new PIN" autocomplete="new-password" />
             </div>
             <button class="pp-btn primary" onclick="_ppSavePin()">Change PIN</button>
-            <p id="pp-pin-msg" style="font-size:13px;min-height:18px"></p>
+            <p id="pp-pin-msg" class="pp-form-msg"></p>
         </div>`;
+
+    _ppLoadParentEmail();
+}
+
+/** Load existing parent email into the input. @tag PARENT SETTINGS */
+async function _ppLoadParentEmail() {
+    const input = document.getElementById("pp-parent-email");
+    if (!input) return;
+    try {
+        const res = await fetch("/api/parent/config/parent_email");
+        if (!res.ok) return;
+        const data = await res.json();
+        input.value = data.value || "";
+    } catch (_) {}
+}
+
+/** Save parent email via /api/parent/config. @tag PARENT SETTINGS */
+async function _ppSaveParentEmail() {
+    const input = document.getElementById("pp-parent-email");
+    const msg   = document.getElementById("pp-email-msg");
+    const value = (input?.value || "").trim();
+    if (msg) { msg.textContent = ""; msg.classList.remove("error", "success"); }
+    try {
+        const res = await window._ppFetch("/api/parent/config", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ key: "parent_email", value }),
+        });
+        if (msg) {
+            if (res.ok) {
+                msg.textContent = value ? "✓ Email saved." : "✓ Email cleared.";
+                msg.classList.add("success");
+            } else {
+                const err = await res.json().catch(() => ({}));
+                msg.textContent = err.detail || "Failed to save.";
+                msg.classList.add("error");
+            }
+        }
+    } catch (_) {
+        if (msg) { msg.textContent = "Network error."; msg.classList.add("error"); }
+    }
 }
 
 /** POST new PIN to /api/parent/config. Requires current PIN to already be verified. @tag PARENT PIN */
@@ -151,12 +206,18 @@ async function _ppSavePin() {
     const newPin  = document.getElementById("pp-new-pin")?.value.trim();
     const confirm = document.getElementById("pp-confirm-pin")?.value.trim();
     const msg     = document.getElementById("pp-pin-msg");
+    const setMsg  = (text, kind) => {
+        if (!msg) return;
+        msg.textContent = text;
+        msg.classList.remove("error", "success");
+        if (kind) msg.classList.add(kind);
+    };
     if (!newPin || newPin.length !== 4 || !/^\d+$/.test(newPin)) {
-        if (msg) { msg.textContent = "PIN must be exactly 4 digits."; msg.style.color = "var(--color-error)"; }
+        setMsg("PIN must be exactly 4 digits.", "error");
         return;
     }
     if (newPin !== confirm) {
-        if (msg) { msg.textContent = "PINs do not match."; msg.style.color = "var(--color-error)"; }
+        setMsg("PINs do not match.", "error");
         return;
     }
     try {
@@ -167,15 +228,14 @@ async function _ppSavePin() {
         });
         // Update the in-memory verified PIN so subsequent calls keep working
         if (res.ok) window._ppVerifiedPin = newPin;
-        if (msg) {
-            msg.textContent = res.ok ? "✓ PIN changed successfully!" : "Failed to save.";
-            msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
-        }
+        setMsg(res.ok ? "✓ PIN changed successfully!" : "Failed to save.", res.ok ? "success" : "error");
         if (res.ok) {
-            const inputs = ["pp-new-pin", "pp-confirm-pin"].map(id => document.getElementById(id));
-            inputs.forEach(i => { if (i) i.value = ""; });
+            ["pp-new-pin", "pp-confirm-pin"].forEach(id => {
+                const i = document.getElementById(id);
+                if (i) i.value = "";
+            });
         }
     } catch (_) {
-        if (msg) { msg.textContent = "Network error."; msg.style.color = "var(--color-error)"; }
+        setMsg("Network error.", "error");
     }
 }

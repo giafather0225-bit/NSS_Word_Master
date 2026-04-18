@@ -229,6 +229,24 @@
   font-weight: 400;
 }
 
+/* Mirror task-item.done styling so awarded bonuses show as completed. */
+.bonus-row.done .task-check-circle {
+  background: #AE397D;
+  border-color: #AE397D;
+}
+.bonus-row.done .task-check-circle::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-size: 11px;
+  font-weight: 700;
+}
+.bonus-row.done .task-label { opacity: 0.45; text-decoration: line-through; }
+
 /* ── MIDDLE: Category column ─────────────────────────────── */
 .home-cat-column {
   display: flex;

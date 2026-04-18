@@ -171,6 +171,13 @@ async function renderTodayTasks() {
     }
   } catch { /* use stubs */ }
 
+  // Bonus done state mirrors backend rule (xp.py tasks_today): the bonus
+  // is considered earned today as soon as the corresponding task subset is
+  // complete. Backend XPLog dedup makes the actual XP award idempotent.
+  const required     = tasks.filter(t => t.is_required);
+  const mustDoDone   = required.length > 0 && required.every(t => t.is_done);
+  const allDone      = tasks.length > 0    && tasks.every(t => t.is_done);
+
   list.innerHTML = tasks.map(t => `
     <div class="task-item${t.is_done ? ' done' : ''}${t.is_done ? '' : ' task-clickable'}"
          data-key="${t.key}" data-required="${t.is_required ? 'true' : 'false'}">
@@ -179,12 +186,12 @@ async function renderTodayTasks() {
       <span class="task-xp-pill">+${t.xp} XP</span>
     </div>
   `).join('') + `
-    <div class="bonus-row" data-required="false">
+    <div class="bonus-row${mustDoDone ? ' done' : ''}" data-key="must_do_bonus" data-required="false">
       <div class="task-check-circle"></div>
       <span class="task-label">Must Do bonus</span>
       <span class="task-xp-pill">+5 XP</span>
     </div>
-    <div class="bonus-row" data-required="false">
+    <div class="bonus-row${allDone ? ' done' : ''}" data-key="all_complete_bonus" data-required="false">
       <div class="task-check-circle"></div>
       <span class="task-label">All complete bonus</span>
       <span class="task-xp-pill">+15 XP</span>

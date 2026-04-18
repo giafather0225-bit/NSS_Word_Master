@@ -39,6 +39,9 @@ function renderMathProblem() {
         ? `<button class="math-btn-ghost math-3read-btn" id="math-3read-btn" type="button">📖 3-Read</button>`
         : '';
 
+    // Tools panel (Try stage only — optional scaffolding)
+    const toolsHtml = (mathState.stage === 'try') ? _renderMathToolsPanel() : '';
+
     stage.innerHTML = `
         <div class="math-problem-wrap">
             <div class="math-problem-header">
@@ -54,8 +57,12 @@ function renderMathProblem() {
                 <div class="math-problem-body" id="math-problem-body"></div>
                 ${hintsHtml}
             </div>
+
+            ${toolsHtml}
         </div>
     `;
+
+    if (toolsHtml) _wireMathToolsPanel(p);
 
     const body = document.getElementById('math-problem-body');
 
@@ -294,6 +301,54 @@ function _mathStageLabel(stage) {
         practice_r3: '🏋️ Practice R3',
     };
     return labels[stage] || stage;
+}
+
+// ── Try-stage Tools panel (optional manipulatives) ────────
+
+const _MATH_TOOL_DEFS = [
+    { tool: 'number_line',   label: '📏 Number Line',  defaults: { min: 0, max: 20, step: 1 } },
+    { tool: 'base10_blocks', label: '🧱 Base-10',      defaults: { start: 0, max: 999 } },
+    { tool: 'fraction_bar',  label: '🧩 Fraction Bar', defaults: { denominator: 4, numerator: 1 } },
+    { tool: 'array_grid',    label: '▦ Array',         defaults: { rows: 3, cols: 4 } },
+    { tool: 'bar_model',     label: '▭ Bar Model',     defaults: { parts: [{ label: 'Part 1', value: 0 }, { label: 'Part 2', value: 0 }] } },
+];
+
+/** @tag MATH @tag PROBLEM @tag MANIPULATIVE */
+function _renderMathToolsPanel() {
+    const btns = _MATH_TOOL_DEFS
+        .map(t => `<button class="math-btn-ghost math-tool-btn" data-tool="${t.tool}" type="button">${t.label}</button>`)
+        .join('');
+    return `
+        <details class="math-tools-panel" id="math-tools-panel">
+            <summary class="math-tools-summary">🧰 Tools <span class="math-tools-hint">— optional</span></summary>
+            <div class="math-tools-buttons">${btns}</div>
+            <div class="math-tools-slot" id="math-tools-slot"></div>
+        </details>
+    `;
+}
+
+/** @tag MATH @tag PROBLEM @tag MANIPULATIVE */
+function _wireMathToolsPanel(problem) {
+    const panel = document.getElementById('math-tools-panel');
+    const slot = document.getElementById('math-tools-slot');
+    if (!panel || !slot) return;
+
+    // Problem-supplied tool configs (optional): p.tools = { number_line: {...}, ... }
+    const overrides = (problem && typeof problem.tools === 'object') ? problem.tools : {};
+
+    panel.querySelectorAll('.math-tool-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tool = btn.dataset.tool;
+            const def = _MATH_TOOL_DEFS.find(t => t.tool === tool);
+            if (!def) return;
+            const cfg = Object.assign({}, def.defaults, overrides[tool] || {});
+            slot.innerHTML = '';
+            if (typeof renderManipulative === 'function') {
+                renderManipulative(slot, { tool, config: cfg });
+            }
+            panel.querySelectorAll('.math-tool-btn').forEach(b => b.classList.toggle('active', b === btn));
+        });
+    });
 }
 
 // ── Escape helpers ─────────────────────────────────────────
