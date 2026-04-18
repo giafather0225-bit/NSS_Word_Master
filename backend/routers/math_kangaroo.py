@@ -140,8 +140,13 @@ def kangaroo_submit(req: KangarooCompleteIn, db: Session = Depends(get_db)):
         )
         db.add(row)
     else:
-        row.score = max(row.score, req.score)
-        row.total = req.total
+        # Keep best score but only when compared against the same total, so
+        # score/total stays internally consistent.
+        if req.total != row.total:
+            row.score = req.score
+            row.total = req.total
+        elif req.score > row.score:
+            row.score = req.score
         row.completed_at = now
 
     awarded = 0

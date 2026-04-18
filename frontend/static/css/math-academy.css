@@ -292,20 +292,26 @@
 }
 
 .math-dot {
+    /* Visual dot stays 8px, but the hit target is 24px via padding + bg-clip
+       so touch users can tap accurately without changing the look. */
     width: 8px;
     height: 8px;
+    padding: 8px;
+    box-sizing: content-box;
+    background-color: rgba(0,0,0,0.12);
+    background-clip: content-box;
     border-radius: 50%;
-    background: rgba(0,0,0,0.12);
-    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
 }
 
 .math-dot.active {
-    background: var(--math-primary);
+    background-color: var(--math-primary);
     transform: scale(1.3);
 }
 
 .math-dot.done {
-    background: var(--math-pass);
+    background-color: var(--math-pass);
 }
 
 /* ── Problem cards ─────────────────────────────────────────── */
@@ -1383,13 +1389,13 @@
 
 .math-daily-opt-correct {
     background: var(--math-pass) !important;
-    color: #fff !important;
+    color: var(--text-on-primary) !important;
     border-color: var(--math-pass) !important;
 }
 
 .math-daily-opt-wrong {
     background: var(--math-fail) !important;
-    color: #fff !important;
+    color: var(--text-on-primary) !important;
     border-color: var(--math-fail) !important;
 }
 
@@ -1420,12 +1426,12 @@
 
 .math-fb-ok {
     background: var(--math-pass);
-    color: #fff;
+    color: var(--text-on-primary);
 }
 
 .math-fb-no {
     background: var(--math-fail);
-    color: #fff;
+    color: var(--text-on-primary);
 }
 
 .math-fb-line {
@@ -1588,13 +1594,13 @@
 
 .math-kang-opt-correct {
     background: var(--math-pass) !important;
-    color: #fff !important;
+    color: var(--text-on-primary) !important;
     border-color: var(--math-pass) !important;
 }
 
 .math-kang-opt-wrong {
     background: var(--math-fail) !important;
-    color: #fff !important;
+    color: var(--text-on-primary) !important;
     border-color: var(--math-fail) !important;
 }
 
@@ -1710,7 +1716,7 @@
 
 .math-gloss-cat.active {
     background: var(--math-primary);
-    color: #fff;
+    color: var(--text-on-primary);
     border-color: var(--math-primary);
 }
 
@@ -1783,15 +1789,23 @@
 
 .math-gloss-close {
     position: absolute;
-    top: 10px;
-    right: 14px;
+    top: 4px;
+    right: 6px;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: transparent;
     border: 0;
+    border-radius: 50%;
     font-size: 28px;
     color: var(--text-secondary);
     cursor: pointer;
     line-height: 1;
+    transition: background 0.15s;
 }
+.math-gloss-close:hover { background: var(--math-primary-light); }
 
 .math-gloss-modal-head {
     display: flex;
@@ -1885,15 +1899,23 @@
 
 .math-3read-close {
     position: absolute;
-    top: 10px;
-    right: 14px;
+    top: 4px;
+    right: 6px;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: transparent;
     border: 0;
+    border-radius: 50%;
     font-size: 28px;
     color: var(--text-secondary);
     cursor: pointer;
     line-height: 1;
+    transition: background 0.15s;
 }
+.math-3read-close:hover { background: var(--math-primary-light); }
 
 .math-3read-head {
     display: flex;
@@ -2009,7 +2031,7 @@
 
 /* M13: dot progress — smooth fill transition */
 .math-dot {
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .math-dot.active { transform: scale(1.25); }
 
@@ -2054,13 +2076,13 @@
     animation: math-confetti-burst 0.9s ease-out both;
 }
 .math-confetti span:nth-child(1) { background: var(--math-primary); --tx: -80px; --ty: -70px; animation-delay: 0.02s; }
-.math-confetti span:nth-child(2) { background: var(--math-pass, #34C759); --tx: 80px; --ty: -70px; animation-delay: 0.04s; }
-.math-confetti span:nth-child(3) { background: var(--color-warning, #FF9500); --tx: -100px; --ty: 20px; animation-delay: 0.06s; }
-.math-confetti span:nth-child(4) { background: var(--math-cpa-pictorial-fg, #8B6FA5); --tx: 100px; --ty: 20px; animation-delay: 0.08s; }
+.math-confetti span:nth-child(2) { background: var(--math-pass); --tx: 80px; --ty: -70px; animation-delay: 0.04s; }
+.math-confetti span:nth-child(3) { background: var(--color-warning); --tx: -100px; --ty: 20px; animation-delay: 0.06s; }
+.math-confetti span:nth-child(4) { background: var(--math-cpa-pictorial-fg); --tx: 100px; --ty: 20px; animation-delay: 0.08s; }
 .math-confetti span:nth-child(5) { background: var(--math-primary); --tx: -60px; --ty: 80px; animation-delay: 0.05s; }
-.math-confetti span:nth-child(6) { background: var(--math-pass, #34C759); --tx: 60px; --ty: 80px; animation-delay: 0.07s; }
-.math-confetti span:nth-child(7) { background: var(--color-warning, #FF9500); --tx: -30px; --ty: -100px; animation-delay: 0.09s; }
-.math-confetti span:nth-child(8) { background: var(--math-cpa-pictorial-fg, #8B6FA5); --tx: 30px; --ty: -100px; animation-delay: 0.11s; }
+.math-confetti span:nth-child(6) { background: var(--math-pass); --tx: 60px; --ty: 80px; animation-delay: 0.07s; }
+.math-confetti span:nth-child(7) { background: var(--color-warning); --tx: -30px; --ty: -100px; animation-delay: 0.09s; }
+.math-confetti span:nth-child(8) { background: var(--math-cpa-pictorial-fg); --tx: 30px; --ty: -100px; animation-delay: 0.11s; }
 
 @keyframes math-confetti-burst {
     0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 0; }
@@ -2074,6 +2096,64 @@
 }
 .math-mc-btn:active, .math-tf-btn:active {
     transform: scale(0.97);
+}
+
+/* ── Mobile (≤640px) ──────────────────────────────────────── */
+@media (max-width: 640px) {
+    .math-learn-wrap,
+    .math-problem-wrap,
+    .math-fluency-picker,
+    .math-fluency-round,
+    .math-daily,
+    .math-kang,
+    .math-gloss {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    /* Cards shrink vertical padding so content isn't pushed below the fold */
+    .math-learn-card,
+    .math-problem-card,
+    .math-daily,
+    .math-kang,
+    .math-fluency-card-big,
+    .math-round-summary,
+    .math-stage-feedback,
+    .math-complete {
+        padding: 20px 16px;
+    }
+
+    /* Typography: scale down the biggest headlines */
+    .math-learn-title       { font-size: 18px; }
+    .math-problem-question  { font-size: 16px; }
+    .math-daily-title,
+    .math-kang-title,
+    .math-fluency-title     { font-size: 20px; }
+    .math-fluency-question  { font-size: 32px; }
+    .math-summary-score,
+    .math-daily-score,
+    .math-kang-score        { font-size: 36px; }
+
+    /* Grids collapse to single column where a 2-col layout would overflow */
+    .math-daily-options,
+    .math-kang-options      { grid-template-columns: 1fr; }
+
+    .math-fluency-grid,
+    .math-kang-grid,
+    .math-gloss-grid        { grid-template-columns: 1fr; }
+
+    /* Inputs stack above the submit button on narrow screens */
+    .math-input-group,
+    .math-daily-input-wrap,
+    .math-kang-input-wrap   { flex-direction: column; align-items: stretch; }
+    .math-submit-btn        { width: 100%; }
+
+    .math-fluency-input     { width: 100%; max-width: 240px; font-size: 26px; }
+
+    /* Virtual manipulative visuals never overflow container */
+    .math-manip-svg,
+    .math-learn-visual      { max-width: 100%; }
+    .math-tf-frame          { grid-template-columns: repeat(5, 24px); grid-template-rows: repeat(2, 24px); }
 }
 
 /* M13: respect reduced motion */

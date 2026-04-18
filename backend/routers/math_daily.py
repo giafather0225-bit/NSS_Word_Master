@@ -132,16 +132,28 @@ class DailyAnswerIn(BaseModel):
 # @tag MATH @tag DAILY
 @router.post("/api/math/daily/submit-answer")
 def daily_submit_answer(req: DailyAnswerIn, db: Session = Depends(get_db)):
-    """Score a single daily-challenge answer. Answer key resolved server-side."""
-    today = datetime.now().strftime("%Y-%m-%d")
-    full_pool = {p["id"]: p for p in _collect_practice_problems()}
+    """Score a single daily-challenge answer. Answer key resolved server-side.
 
-    # Re-pick today's problems to get answer
-    picks = _pick_daily_problems(today)
-    if not picks or req.index < 0 or req.index >= len(picks):
+    Uses the problem set persisted at first-call time (daily_today). Re-picking
+    on every submit is unsafe: if the lesson pool changes mid-day (new JSON,
+    edited file) the random sample can shift, scoring against a problem the
+    user never saw.
+    """
+    today = datetime.now().strftime("%Y-%m-%d")
+    row = db.query(MathDailyChallenge).filter_by(challenge_date=today).first()
+    if not row or not row.problems_json:
+        raise HTTPException(status_code=400, detail="Daily challenge not started")
+
+    try:
+        stored = json.loads(row.problems_json)
+    except Exception:
+        raise HTTPException(status_code=500, detail="Corrupt daily challenge data")
+
+    if req.index < 0 or req.index >= len(stored):
         raise HTTPException(status_code=400, detail="Invalid problem index")
 
-    problem_id = picks[req.index]["id"]
+    problem_id = stored[req.index].get("id")
+    full_pool = {p["id"]: p for p in _collect_practice_problems()}
     full = full_pool.get(problem_id)
     if not full:
         raise HTTPException(status_code=404, detail="Problem not found")

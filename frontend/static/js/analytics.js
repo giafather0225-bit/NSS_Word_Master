@@ -193,6 +193,29 @@ function challengeResetStorageKey() {
 }
 
 /**
+ * Remove stale per-day challenge-reset keys from sessionStorage.
+ * Called once at startup; only today's key survives.
+ * @tag FINAL_TEST SYSTEM
+ */
+function pruneStaleChallengeResets() {
+    const todayKey = challengeResetStorageKey();
+    for (let i = sessionStorage.length - 1; i >= 0; i--) {
+        const k = sessionStorage.key(i);
+        if (k && k.startsWith('nss_challenge_reset_') && k !== todayKey) {
+            sessionStorage.removeItem(k);
+        }
+    }
+}
+
+if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', pruneStaleChallengeResets);
+    } else {
+        pruneStaleChallengeResets();
+    }
+}
+
+/**
  * Return the number of challenge resets that have occurred today.
  * @tag FINAL_TEST
  */

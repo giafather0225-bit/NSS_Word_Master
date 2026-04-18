@@ -102,9 +102,16 @@ def fluency_catalog(db: Session = Depends(get_db)):
     return {"fact_sets": out}
 
 
+# Per-problem time budget by phase (MATH_SPEC.md §Fact Fluency):
+#   Phase A: Untimed (understand)          → 0 = disabled on client
+#   Phase B: Gentle timer (10s/problem)
+#   Phase C: Speed (5s/problem)
+_PHASE_SECS_PER_PROBLEM = {"A": 0, "B": 10, "C": 5}
+
+
 # @tag MATH @tag FLUENCY
 @router.get("/api/math/fluency/start-round")
-def start_round(fact_set: str, count: int = 10):
+def start_round(fact_set: str, count: int = 10, db: Session = Depends(get_db)):
     """Generate a new fluency round (not persisted until submit)."""
     if fact_set not in _FACT_SETS:
         raise HTTPException(status_code=404, detail=f"Unknown fact_set: {fact_set}")
@@ -120,11 +127,19 @@ def start_round(fact_set: str, count: int = 10):
             continue
         seen.add(q)
         questions.append({"question": q, "answer": a})
+
+    row = db.query(MathFactFluency).filter_by(fact_set=fact_set).first()
+    phase = row.current_phase if row else "A"
+    per_problem = _PHASE_SECS_PER_PROBLEM.get(phase, 0)
+    time_limit_sec = per_problem * len(questions) if per_problem else 0
+
     return {
         "fact_set": fact_set,
         "label": spec["label"],
         "op": spec["op"],
-        "time_limit_sec": 60,
+        "phase": phase,
+        "sec_per_problem": per_problem,
+        "time_limit_sec": time_limit_sec,
         "questions": questions,
     }
 
@@ -180,10 +195,11 @@ def submit_round(req: RoundResultIn, db: Session = Depends(get_db)):
             row.best_time_sec = req.time_sec
         row.accuracy_pct = max(row.accuracy_pct, accuracy)
 
-        # Phase progression
-        if row.current_phase == "A" and req.score >= 10 and req.total == 10:
+        # Phase progression: require perfect score on a round of >= 10 problems
+        perfect_round = req.total >= 10 and req.score == req.total
+        if row.current_phase == "A" and perfect_round:
             row.current_phase = "B"
-        elif row.current_phase == "B" and req.score >= 10 and req.total == 10:
+        elif row.current_phase == "B" and perfect_round:
             row.current_phase = "C"
 
     # XP for personal best

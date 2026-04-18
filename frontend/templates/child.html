@@ -12,28 +12,29 @@
     <meta name="apple-mobile-web-app-title" content="GIA">
     <link rel="apple-touch-icon" href="/static/img/GIA_Logo.png">
     <meta name="theme-color" content="#D4619E">
-    <link rel="stylesheet" href="/static/css/theme.css?v=2">
-    <link rel="stylesheet" href="/static/css/main.css?v=4">
+    <link rel="stylesheet" href="/static/css/theme.css?v=3">
+    <link rel="stylesheet" href="/static/css/main.css?v=16">
     <link rel="stylesheet" href="/static/css/style.css?v=2">
     <link rel="stylesheet" href="/static/css/preview.css">
     <link rel="stylesheet" href="/static/css/wordmatch.css">
-    <link rel="stylesheet" href="/static/css/fillblank.css">
+    <link rel="stylesheet" href="/static/css/fillblank.css?v=1">
     <link rel="stylesheet" href="/static/css/spelling.css">
     <link rel="stylesheet" href="/static/css/sentence.css">
     <link rel="stylesheet" href="/static/css/finaltest.css">
     <link rel="stylesheet" href="/static/css/unittest.css?v=4">
-    <link rel="stylesheet" href="/static/css/word-manager.css?v=12">
+    <link rel="stylesheet" href="/static/css/word-manager.css?v=13">
     <link rel="stylesheet" href="/static/css/review.css?v=5">
-    <link rel="stylesheet" href="/static/css/home.css?v=3">
-    <link rel="stylesheet" href="/static/css/daily-words.css">
+    <link rel="stylesheet" href="/static/css/home.css?v=4">
+    <link rel="stylesheet" href="/static/css/daily-words.css?v=3">
     <link rel="stylesheet" href="/static/css/reward-shop.css?v=3">
     <link rel="stylesheet" href="/static/css/parent.css?v=3">
-    <link rel="stylesheet" href="/static/css/diary.css">
+    <link rel="stylesheet" href="/static/css/diary.css?v=1">
     <link rel="stylesheet" href="/static/css/calendar.css">
     <link rel="stylesheet" href="/static/css/xp.css">
     <link rel="stylesheet" href="/static/css/collocation.css">
     <link rel="stylesheet" href="/static/css/splash.css?v=2">
     <link rel="stylesheet" href="/static/css/math-academy.css?v=13">
+    <link rel="stylesheet" href="/static/css/arcade.css?v=7">
 
 </head>
 <body>
@@ -126,6 +127,17 @@
                 </div>
 
                 <div class="sb-section">
+                    <div class="sb-section-label">REVIEW</div>
+                    <!-- Unified Review: Academy + Daily Words + My Words due -->
+                    <button type="button" class="sb-sidebar-card" id="btn-review">
+                        <span class="sb-card-label">Review</span>
+                        <span class="sb-card-chevron">›</span>
+                        <span class="sb-review-badge" id="review-badge" style="display:none;">0</span>
+                    </button>
+                </div>
+
+                <div class="sb-div"></div>
+                <div class="sb-section">
                     <div class="sb-section-label">VOCABULARY</div>
 
                     <!-- Academy accordion -->
@@ -166,12 +178,6 @@
                             </button>
                         </div>
                         <div class="sb-div"></div>
-                        <!-- Review (existing ID preserved) -->
-                        <button type="button" class="sb-sidebar-card" id="btn-review">
-                            <span class="sb-card-label">Today's Review</span>
-                            <span class="sb-card-chevron">›</span>
-                            <span class="sb-review-badge" id="review-badge" style="display:none;">0</span>
-                        </button>
                         <!-- Test buttons (existing IDs preserved) -->
                         <button type="button" class="sb-sidebar-card" id="btn-exam">
                             <span class="sb-card-label">Final Test</span>
@@ -477,60 +483,27 @@
                 </div>
             </div>
 
-            <!-- Settings (always visible) -->
-            <div class="sb-div"></div>
-            <div class="sb-bottom">
-                <button type="button" id="btn-parent" title="Parent mode (⌘,)" aria-label="Parent mode">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06
-                                 a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09
-                                 A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83
-                                 l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09
-                                 A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83
-                                 l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09
-                                 a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83
-                                 l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09
-                                 a1.65 1.65 0 0 0-1.51 1z"/>
-                    </svg>
-                </button>
-            </div>
         </div>
     </aside>
 
     <!-- ═══ Main Content ══════════════════════════════════════ -->
     <div class="main-content">
 
-        <!-- Top bar: hamburger | roadmap | stars + progress -->
-        <div class="top-bar">
+        <!-- Floating sidebar toggle (shown only when sidebar is collapsed) -->
+        <button class="sidebar-toggle sidebar-toggle--floating" id="sidebar-toggle"
+                aria-label="Toggle sidebar (⌘\)" title="Toggle sidebar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round">
+                <line x1="3" y1="6"  x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
 
-            <!-- LEFT: sidebar toggle -->
-            <button class="sidebar-toggle" id="sidebar-toggle"
-                    aria-label="Toggle sidebar (⌘\)" title="Toggle sidebar">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2.2" stroke-linecap="round">
-                    <line x1="3" y1="6"  x2="21" y2="6"/>
-                    <line x1="3" y1="12" x2="21" y2="12"/>
-                    <line x1="3" y1="18" x2="21" y2="18"/>
-                </svg>
-            </button>
-
-            <!-- CENTER: roadmap circle flow -->
-            <div id="roadmap" aria-label="Roadmap"></div>
-
-            <!-- RIGHT: diary + stars + progress bar + % + word count -->
-            <div class="top-right">
-                <button type="button" class="top-diary-btn" title="GIA's Diary" aria-label="GIA's Diary">📖</button>
-                <span id="stars-count">0</span>
-                <div class="top-progress-bar-wrap" title="Progress">
-                    <div class="top-progress-fill" id="top-progress-fill"></div>
-                </div>
-                <div class="pct-big" id="progress-pct">0%</div>
-                <div class="challenge-meta" id="challenge-meta"></div>
-            </div>
-
-        </div>
+        <!-- Hidden compat elements (referenced by legacy JS) -->
+        <span id="stars-count" style="display:none">0</span>
+        <div id="top-progress-fill" style="display:none"></div>
+        <div id="progress-pct" style="display:none">0%</div>
 
         <!-- Hidden SVG ring — kept for child.js compat -->
         <svg id="progress-ring" style="position:absolute;visibility:hidden;pointer-events:none;width:0;height:0"
@@ -542,7 +515,7 @@
         </svg>
 
         <!-- Stage workspace -->
-        <div class="stage-area">
+        <div class="stage-area" id="stage-area">
 
             <!-- Home Dashboard (shown on app start) -->
             <div id="home-dashboard">
@@ -598,11 +571,11 @@
                                 <div class="cat-sub">Write about your day</div>
                             </div>
                         </div>
-                        <div class="home-cat-card home-cat-card--disabled" id="section-card-arcade">
+                        <div class="home-cat-card" id="section-card-arcade">
                             <span class="cat-dot cat-dot--arcade"></span>
                             <div class="cat-body">
                                 <div class="cat-title">Arcade</div>
-                                <div class="cat-sub">Coming soon</div>
+                                <div class="cat-sub">Type fast, earn XP</div>
                             </div>
                         </div>
                         <div class="home-cat-card" id="home-reward-card">
@@ -654,17 +627,15 @@
                 </div>
             </div>
 
-<!-- Idle card (shown before session starts) -->
-            <div id="idle-wrapper">
-                <div id="idle-card">
-                    <div class="idle-lesson-name" id="idle-lesson-name">Select a lesson to begin</div>
-                    <div class="idle-lesson-meta" id="idle-lesson-meta"></div>
-                    <button type="button" id="btn-start">▶ Start</button>
-                </div>
-            </div>
+<!-- Hero card (shown before a session starts — replaces the legacy idle+Start pattern) -->
+            <div id="idle-wrapper"></div>
 
             <!-- Active session card (hidden until session starts) -->
             <div id="stage-card" class="hidden">
+                <div class="stage-header">
+                    <div id="roadmap" aria-label="Roadmap"></div>
+                    <div class="stage-meta" id="challenge-meta"></div>
+                </div>
                 <div id="stage"></div>
             </div>
 
@@ -762,29 +733,31 @@
 <script src="/static/js/offline-indicator.js?v=1"></script>
 <script src="/static/js/core.js?v=2"></script>
 <script src="/static/js/tts-client.js?v=2"></script>
-<script src="/static/js/analytics.js?v=1"></script>
-<script src="/static/js/navigation.js?v=1"></script>
-<script src="/static/js/preview.js?v=2"></script>
-<script src="/static/js/preview-sr.js?v=2"></script>
+<script src="/static/js/analytics.js?v=2"></script>
+<script src="/static/js/navigation.js?v=5"></script>
+<script src="/static/js/preview.js?v=4"></script>
 <script src="/static/js/wordmatch.js?v=1"></script>
 <script src="/static/js/fillblank.js?v=1"></script>
 <script src="/static/js/spelling.js?v=1"></script>
 <script src="/static/js/sentence.js?v=1"></script>
-<script src="/static/js/home.js?v=3"></script>
+<script src="/static/js/home.js?v=4"></script>
 <script src="/static/js/growth-theme.js?v=2"></script>
-<script src="/static/js/parent-panel.js?v=4"></script>
+<script src="/static/js/parent-panel.js?v=7"></script>
+<script src="/static/js/parent-overview.js?v=1"></script>
+<script src="/static/js/parent-textbooks.js?v=1"></script>
+<script src="/static/js/parent-math.js?v=2"></script>
 <script src="/static/js/parent-settings.js?v=2"></script>
 <script src="/static/js/reward-shop.js?v=3"></script>
 <script src="/static/js/diary.js?v=1"></script>
 <script src="/static/js/calendar.js?v=1"></script>
-<script src="/static/js/daily-words.js?v=1"></script>
+<script src="/static/js/daily-words.js?v=7"></script>
 <script src="/static/js/daily-words-weekly.js?v=1"></script>
-<script src="/static/js/child.js?v=32"></script>
+<script src="/static/js/child.js?v=34"></script>
 <script src="/static/js/sentence_ai.js?v=1"></script>
 <script src="/static/js/collocation.js?v=1"></script>
 <script src="/static/js/finaltest.js?v=11"></script>
 <script src="/static/js/unittest.js?v=5"></script>
-<script src="/static/js/review.js?v=3"></script>
+<script src="/static/js/review.js?v=4"></script>
 
 <script src="/static/js/math-navigation.js?v=5"></script>
 <script src="/static/js/math-academy.js?v=5"></script>
@@ -798,7 +771,28 @@
 <script src="/static/js/math-kangaroo.js?v=1"></script>
 <script src="/static/js/math-glossary.js?v=1"></script>
 <script src="/static/js/math-3read.js?v=1"></script>
-<script src="/static/js/word-manager.js?v=14"></script>
+<script src="/static/js/word-manager.js?v=15"></script>
+<script src="/static/js/arcade-sfx.js?v=1"></script>
+<script src="/static/js/arcade.js?v=8"></script>
+<script src="/static/js/arcade-word-invaders.js?v=7"></script>
+<script src="/static/js/arcade-definition-match.js?v=3"></script>
+<script src="/static/js/arcade-spell-rush.js?v=2"></script>
+<script src="/static/js/arcade-crossword.js?v=1"></script>
+<script src="/static/js/arcade-math-invaders.js?v=1"></script>
+<script src="/static/js/arcade-sudoku.js?v=1"></script>
+<script src="/static/js/arcade-make24.js?v=1"></script>
+
+<!-- Arcade Full-screen Overlay -->
+<div id="arcade-overlay" class="hidden" role="dialog" aria-label="Arcade">
+  <div class="arcade-header">
+    <div class="arcade-header-title">🕹️ Arcade</div>
+    <div style="display:flex; gap:8px;">
+      <button class="arcade-close-btn" id="arcade-mute" onclick="toggleArcadeMute()" title="Toggle sound">🔊</button>
+      <button class="arcade-close-btn" id="arcade-close" onclick="closeArcade()">✕</button>
+    </div>
+  </div>
+  <div class="arcade-body" id="arcade-body"></div>
+</div>
 <!-- Word Manager Full-screen Overlay -->
 <div id="wm-overlay" class="hidden" role="dialog" aria-label="Word Manager">
   <div class="wm-header">

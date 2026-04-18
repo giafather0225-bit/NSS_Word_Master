@@ -115,87 +115,96 @@ function renderStage() {
 }
 
 /**
- * Render the idle (no-session) placeholder card.
+ * Render the Hero card shown before a session starts.
+ * Replaces the legacy idle+Start pattern — main CTA ("Jump back in")
+ * plus per-stage chips let the user jump straight into any unlocked step.
  * @tag NAVIGATION
  */
 function renderIdleStage() {
-    const stageEl = document.getElementById('stage');
-    if (!stageEl) return;
+    const wrap = document.getElementById('idle-wrapper');
+    if (!wrap) return;
 
     const lesson    = lessonSelected();
-    const isDone    = allStagesDone();
-    const doneSet   = getCompletedStages();
-    const doneCount = doneSet.size;
+    const textbook  = (currentTextbook || '').replace(/_/g, ' ');
 
     if (!lesson) {
-        stageEl.innerHTML = `
-            <div style="display:flex;align-items:center;justify-content:center;
-                        height:100%;min-height:260px;">
-                <div style="background:#FFFFFF;border-radius:16px;
-                            border:1px solid #E0E0E5;padding:48px;
-                            min-width:320px;max-width:420px;width:100%;text-align:center;">
-                    <div style="font-size:15px;font-weight:400;color:#6E6E73;line-height:1.75;">
-                        Select a textbook and lesson<br>from the left panel,<br>
-                        then press <strong style="color:#1D1D1F;font-weight:600;">▶ Start</strong> to begin.
-                    </div>
+        wrap.innerHTML = `
+            <div class="hero-card">
+                <div class="hero-empty">
+                    Pick a textbook and lesson on the left<br>to start learning.
                 </div>
             </div>`;
         showIdleCard();
-        const btn = $("btn-start");
-        if (btn) {
-            const done = getCompletedStages();
-            const dc = ROADMAP_STAGES.filter(s => done.has(s)).length;
-            if (allStagesDone()) { btn.textContent = "Repeat ↩"; }
-            else if (dc === 0)   { btn.textContent = "▶  Start"; }
-            else {
-                const next = nextStageToStart();
-                const nextLabel = ROADMAP_LABELS[ROADMAP_STAGES.indexOf(next)] || "Start";
-                btn.textContent = `▶  ${nextLabel}`;
-            }
-        }
+        refreshStartLabel();
         return;
     }
 
-    let subtitle;
+    const isDone    = allStagesDone();
+    const doneSet   = getCompletedStages();
+    const doneCount = ROADMAP_STAGES.filter(s => doneSet.has(s)).length;
+    const total     = ROADMAP_STAGES.length;
+    const pct       = Math.round((doneCount / total) * 100);
+    const next      = isDone ? null : nextStageToStart();
+    const nextLabel = next ? (ROADMAP_LABELS[ROADMAP_STAGES.indexOf(next)] || '') : '';
+
+    let headline, ctaLabel, ctaTarget;
     if (isDone) {
-        subtitle = 'All steps complete — press <strong style="color:#1D1D1F;font-weight:600;">📝 Final Test</strong> to go!';
+        headline  = 'All done! 🎉';
+        ctaLabel  = '📝 Take Final Test';
+        ctaTarget = 'exam';
     } else if (doneCount > 0) {
-        subtitle = `${doneCount} / 5 steps complete — press <strong style="color:#1D1D1F;font-weight:600;">▶ Start</strong> to continue.`;
+        headline  = 'Keep going! 🔥';
+        ctaLabel  = `▶ Continue · ${nextLabel}`;
+        ctaTarget = next;
     } else {
-        subtitle = 'Press <strong style="color:#1D1D1F;font-weight:600;">▶ Start</strong> to begin.';
+        headline  = `Let's start Lesson ${lesson.replace(/^Lesson_?/, '')}!`;
+        ctaLabel  = `▶ Begin · ${nextLabel}`;
+        ctaTarget = next;
     }
 
-    const wc = wordCountAll();
-    const subInfo = `${wc} words · 5 steps`;
-    stageEl.innerHTML = `
-        <div style="display:flex;align-items:center;justify-content:center;
-                    height:100%;min-height:260px;">
-            <div style="background:#FFFFFF;border-radius:16px;
-                        border:1px solid #E0E0E5;padding:48px;
-                        min-width:320px;max-width:420px;width:100%;text-align:center;">
-                <div style="font-size:22px;font-weight:600;color:#1D1D1F;
-                            margin-bottom:8px;overflow:hidden;text-overflow:ellipsis;
-                            white-space:nowrap;">${escapeHtml(lesson)}</div>
-                <div style="font-size:13px;color:#6E6E73;">${subInfo}</div>
-                <div style="font-size:15px;color:#6E6E73;margin-top:24px;
-                            line-height:1.75;">${subtitle}</div>
+    const chipsHtml = ROADMAP_STAGES.map((s, i) => {
+        const label    = ROADMAP_LABELS[i] || '';
+        const done     = doneSet.has(s);
+        const isNext   = !done && s === next;
+        const unlocked = done || isNext;
+        const cls      = done ? 'done' : (isNext ? 'current' : 'locked');
+        const icon     = done ? '✓' : (isNext ? '●' : '🔒');
+        const attrs    = unlocked ? `data-stage="${s}"` : 'disabled';
+        return `<button type="button" class="hero-chip ${cls}" ${attrs}>
+            <span class="hero-chip-icon">${icon}</span>
+            <span class="hero-chip-label">${escapeHtml(label)}</span>
+        </button>`;
+    }).join('');
+
+    wrap.innerHTML = `
+        <div class="hero-card">
+            <div class="hero-eyebrow">${escapeHtml(textbook)} · ${escapeHtml(lesson.replace(/_/g, ' '))}</div>
+            <h1 class="hero-title">${escapeHtml(headline)}</h1>
+            <div class="hero-progress">
+                <div class="hero-progress-bar"><div class="hero-progress-fill" style="width:${pct}%"></div></div>
+                <div class="hero-progress-meta">${doneCount} / ${total} steps · ${pct}%</div>
             </div>
+            <button type="button" class="hero-cta" id="hero-cta" data-target="${ctaTarget}">${escapeHtml(ctaLabel)}</button>
+            <div class="hero-divider"><span>Or pick a step</span></div>
+            <div class="hero-chips">${chipsHtml}</div>
         </div>`;
 
-    showIdleCard();
-
-    const btn = $("btn-start");
-    if (btn) {
-        const done = getCompletedStages();
-        const dc = ROADMAP_STAGES.filter(s => done.has(s)).length;
-        if (isDone)    { btn.textContent = "Repeat ↩"; }
-        else if (dc === 0) { btn.textContent = "▶  Start"; }
-        else {
-            const next = nextStageToStart();
-            const nextLabel = ROADMAP_LABELS[ROADMAP_STAGES.indexOf(next)] || "Start";
-            btn.textContent = `▶  ${nextLabel}`;
+    const cta = document.getElementById('hero-cta');
+    if (cta) cta.addEventListener('click', () => {
+        const target = cta.dataset.target;
+        if (target === 'exam') {
+            const ex = document.getElementById('btn-exam');
+            if (ex && !ex.disabled) ex.click();
+        } else {
+            startLessonAt(target);
         }
-    }
+    });
+    wrap.querySelectorAll('.hero-chip[data-stage]').forEach(chip => {
+        chip.addEventListener('click', () => startLessonAt(chip.dataset.stage));
+    });
+
+    showIdleCard();
+    refreshStartLabel();
 }
 
 /**
@@ -540,84 +549,86 @@ function wireTutorModal() {
 
 // ─── Start / Exam buttons ─────────────────────────────────────
 /**
- * Wire the Start and Final Test buttons in the idle card.
+ * Begin (or resume) a lesson at the given stage key.
+ * Shared by the Hero CTA and per-stage chips; no Start button required.
  * @tag NAVIGATION
+ * @param {string} stageKey - One of ROADMAP_STAGES; falls back to nextStageToStart().
  */
-function wireStartButtons() {
-    $("btn-start").addEventListener("click", async () => {
-        const btnStart = $("btn-start");
-        if (btnStart) btnStart.disabled = true;
+async function startLessonAt(stageKey) {
+    const targetStage = stageKey || nextStageToStart();
+    const targetIdx   = ROADMAP_STAGES.indexOf(targetStage);
+    if (targetIdx < 0) return;
 
-        const targetStage  = nextStageToStart();
-        const targetIdx    = ROADMAP_STAGES.indexOf(targetStage);
+    currentPhaseIndex  = targetIdx;
+    unlockedPhaseIndex = Math.max(unlockedPhaseIndex, targetIdx);
+    sessionActive      = true;
+    roadmapComplete    = allStagesDone();
+    stage              = targetStage;
+    resetAllStageState();
+    magicFailCount = 0;
+    examQueue      = [];
+    examIndex      = 0;
+    wordVaultSet.clear();
+    renderWordVault();
 
-        currentPhaseIndex  = targetIdx;
-        unlockedPhaseIndex = Math.max(unlockedPhaseIndex, targetIdx);
-        sessionActive      = true;
-        roadmapComplete    = allStagesDone();
-        stage              = targetStage;
-        resetAllStageState();
-        magicFailCount = 0;
-        examQueue      = [];
-        examIndex      = 0;
-        wordVaultSet.clear();
-        renderWordVault();
+    const ex0 = $("btn-exam");
+    if (ex0) ex0.disabled = !allStagesDone();
 
-        const ex0 = $("btn-exam");
-        if (ex0) ex0.disabled = !allStagesDone();
+    setStatus("Loading lesson…");
+    const lesson = lessonSelected();
 
-        setStatus("Loading lesson…");
-        const lesson = lessonSelected();
+    showStageCard();
+    const stageEl = $("stage");
+    if (stageEl) {
+        stageEl.innerHTML = `<p class="st-h1">Loading</p><p class="st-sub">${escapeHtml(lesson)}</p>`;
+    }
 
-        showStageCard();
-        const stageEl = $("stage");
-        if (stageEl) {
-            stageEl.innerHTML = `<p class="st-h1">Loading</p><p class="st-sub">${escapeHtml(lesson)}</p>`;
-        }
-
-        try {
-            await loadStudyItems(lesson);
-        } catch (e) {
-            sessionActive   = false;
-            roadmapComplete = false;
-            stage           = null;
-            showIdleCard();
-            setStatus("Error loading lesson.");
-            if (console && console.error) console.error(e);
-            if (btnStart) btnStart.disabled = false;
-            updateRoadmapUI();
-            updateProgressPct();
-            updateChallengeMeta();
-            return;
-        }
-
-        if (!items.length) {
-            sessionActive = false;
-            stage         = null;
-            showIdleCard();
-            setStatus("No items.");
-            if (btnStart) btnStart.disabled = false;
-            updateRoadmapUI();
-            updateProgressPct();
-            return;
-        }
-
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar) sidebar.classList.add('collapsed');
-        localStorage.setItem('sb_collapsed', '1');
-        renderStage();
-        enterSessionSidebar();
-        setStatus(`${stageTitle()} — start!`);
-
+    try {
+        await loadStudyItems(lesson);
+    } catch (e) {
+        sessionActive   = false;
+        roadmapComplete = false;
+        stage           = null;
+        renderIdleStage();
+        setStatus("Error loading lesson.");
+        if (console && console.error) console.error(e);
         updateRoadmapUI();
         updateProgressPct();
         updateChallengeMeta();
-        refreshStartLabel();
+        return;
+    }
 
-        if (btnStart) btnStart.disabled = false;
-    });
+    if (!items.length) {
+        sessionActive = false;
+        stage         = null;
+        renderIdleStage();
+        setStatus("No items.");
+        updateRoadmapUI();
+        updateProgressPct();
+        return;
+    }
 
-    $("btn-exam").addEventListener("click", async () => {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) sidebar.classList.add('collapsed');
+    localStorage.setItem('sb_collapsed', '1');
+    renderStage();
+    enterSessionSidebar();
+    setStatus(`${stageTitle()} — start!`);
+
+    updateRoadmapUI();
+    updateProgressPct();
+    updateChallengeMeta();
+    refreshStartLabel();
+}
+
+/**
+ * Wire the Final Test button. The legacy Start button is gone — the
+ * Hero card handles lesson entry now.
+ * @tag NAVIGATION
+ */
+function wireStartButtons() {
+    const ex = $("btn-exam");
+    if (ex) ex.addEventListener("click", async () => {
         if (!canStartExamNow()) return;
         await startPerfectChallenge();
     });

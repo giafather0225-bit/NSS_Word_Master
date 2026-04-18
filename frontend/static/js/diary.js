@@ -50,7 +50,7 @@ function _renderDiaryHome() {
                 <span class="diary-header-title">📖 GIA's Diary</span>
             </div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:10px;max-width:480px;margin:0 auto;width:100%">
+        <div class="diary-home-list">
             ${[
                 ["✏️","Daily Journal","journal"],
                 ["💬","My Sentences","sentences"],
@@ -59,11 +59,10 @@ function _renderDiaryHome() {
                 ["🏖️","Day Off Request","dayoff"],
                 ["🌍","My Worlds","worlds"],
             ].map(([icon, label, key]) =>
-                `<button class="sb-sidebar-card" style="background:var(--bg-card);border:none;border-radius:var(--radius-md);padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;box-shadow:var(--shadow-card);"
-                         onclick="openDiarySection('${key}')">
-                    <span style="font-size:22px">${icon}</span>
-                    <span style="font-size:15px;font-weight:600;color:var(--text-primary)">${label}</span>
-                    <span style="margin-left:auto;color:var(--text-secondary)">›</span>
+                `<button type="button" class="diary-home-card" onclick="openDiarySection('${key}')">
+                    <span class="diary-home-card-icon">${icon}</span>
+                    <span class="diary-home-card-label">${label}</span>
+                    <span class="diary-home-card-chevron">›</span>
                 </button>`
             ).join("")}
         </div>`;
@@ -87,6 +86,14 @@ async function _renderJournal() {
                       placeholder="Write about your day in English…"
                       oninput="_journalCharCount(this)"></textarea>
             <div class="journal-char-count" id="journal-cc">0 characters</div>
+            <div class="journal-photo-row">
+                <input type="file" id="journal-photo-input" accept="image/*"
+                       data-date="${today}" onchange="_uploadJournalPhoto(this)" hidden />
+                <button type="button" class="journal-photo-btn"
+                        onclick="document.getElementById('journal-photo-input').click()">📷 Add Photo</button>
+                <span class="journal-photo-status" id="journal-photo-status"></span>
+            </div>
+            <div id="journal-photo-preview" class="journal-photo-preview"></div>
             <button class="journal-submit-btn" onclick="_submitJournal('${today}')">Save & Get Feedback ✨</button>
             <div id="journal-feedback"></div>
         </div>`;
@@ -101,9 +108,58 @@ async function _renderJournal() {
                 const ta = document.getElementById("journal-text");
                 if (ta) { ta.value = entry.content || ""; _journalCharCount(ta); }
                 if (entry.ai_feedback) _showFeedback(entry.ai_feedback);
+                if (entry.photo_path)  _showJournalPhoto(entry.photo_path);
             }
         }
     } catch (_) {}
+}
+
+/** Render the journal photo preview with a remove button. @tag DIARY JOURNAL */
+function _showJournalPhoto(filename) {
+    const el = document.getElementById("journal-photo-preview");
+    if (!el) return;
+    const safe = encodeURIComponent(filename);
+    el.innerHTML = `
+        <img class="journal-photo-img" src="/api/diary/photo/${safe}" alt="Journal photo" />
+        <button type="button" class="journal-photo-remove" onclick="_removeJournalPhoto('${filename}')">Remove photo</button>`;
+}
+
+/** Upload a photo for today's journal entry. @tag DIARY JOURNAL */
+async function _uploadJournalPhoto(input) {
+    const file = input.files && input.files[0];
+    if (!file) return;
+    const date   = input.dataset.date;
+    const status = document.getElementById("journal-photo-status");
+    if (status) status.textContent = "Uploading…";
+
+    const fd = new FormData();
+    fd.append("entry_date", date);
+    fd.append("file", file);
+
+    try {
+        const res = await fetch("/api/diary/photo", { method: "POST", body: fd });
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            if (status) status.textContent = err.detail || "Upload failed.";
+            return;
+        }
+        const data = await res.json();
+        if (status) status.textContent = "";
+        if (data.photo_path) _showJournalPhoto(data.photo_path);
+    } catch (_) {
+        if (status) status.textContent = "Upload failed.";
+    } finally {
+        input.value = "";
+    }
+}
+
+/** Delete the journal photo from server and clear preview. @tag DIARY JOURNAL */
+async function _removeJournalPhoto(filename) {
+    try {
+        await fetch(`/api/diary/photo/${encodeURIComponent(filename)}`, { method: "DELETE" });
+    } catch (_) {}
+    const el = document.getElementById("journal-photo-preview");
+    if (el) el.innerHTML = "";
 }
 
 /** Update character count display. @tag DIARY JOURNAL */
@@ -154,13 +210,13 @@ function _showFeedback(text) {
  */
 async function _renderTimeline() {
     const view = document.getElementById("diary-view");
-    view.innerHTML = `${_diaryHeader("Growth Timeline", "Your learning milestones")}<div id="timeline-body" style="width:100%"><p style="text-align:center;color:var(--text-secondary);padding:40px;">Loading…</p></div>`;
+    view.innerHTML = `${_diaryHeader("Growth Timeline", "Your learning milestones")}<div id="timeline-body" class="diary-body"><p class="diary-state-msg">Loading…</p></div>`;
     try {
         const res = await fetch("/api/growth/timeline");
         const data = await res.json();
         const body = document.getElementById("timeline-body");
         if (!data.events || data.events.length === 0) {
-            body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px;">No events yet. Keep learning! 🌱</p>`;
+            body.innerHTML = `<p class="diary-state-msg">No events yet. Keep learning! 🌱</p>`;
             return;
         }
         const ICONS = { lesson_pass:"✦", streak_7:"✦", milestone_100:"✓", theme_complete:"✦", lesson_reset:"↺", review_complete:"📖" };
@@ -175,7 +231,7 @@ async function _renderTimeline() {
         ).join("")}</div>`;
     } catch (_) {
         const body = document.getElementById("timeline-body");
-        if (body) body.innerHTML = `<p style="text-align:center;color:var(--color-error);padding:40px;">Failed to load.</p>`;
+        if (body) body.innerHTML = `<p class="diary-state-msg error">Failed to load.</p>`;
     }
 }
 
@@ -201,7 +257,7 @@ async function _renderDayOff() {
             </div>
             <button type="submit" class="journal-submit-btn" id="dayoff-btn">Send Request 🏖️</button>
         </form>
-        <div id="dayoff-status" style="margin-top:24px;width:100%;max-width:480px;margin-left:auto;margin-right:auto"></div>`;
+        <div id="dayoff-status" class="dayoff-status-wrap"></div>`;
     _loadDayOffStatus();
 }
 
@@ -234,16 +290,45 @@ async function _submitDayOff(e) {
 
 /** Load and render past day-off requests. @tag DIARY DAY_OFF */
 async function _loadDayOffStatus() {
-    // We get all entries and filter client-side (no dedicated list endpoint yet)
     const el = document.getElementById("dayoff-status");
     if (!el) return;
     try {
-        const res = await fetch("/api/diary/entries"); // reuse entries endpoint for now
-        // Actually use day-off from timeline
+        const res = await fetch("/api/day-off/requests");
+        if (!res.ok) return;
+        const data = await res.json();
+        const rows = data.requests || [];
+        if (rows.length === 0) {
+            el.innerHTML = `<p class="diary-state-msg compact">No previous requests.</p>`;
+            return;
+        }
+        const STATUS_LABEL = { pending: "Pending", approved: "Approved", denied: "Denied" };
+        el.innerHTML = `<div class="dayoff-status-list">${rows.map(r => {
+            const status = (r.status || "pending").toLowerCase();
+            const label  = STATUS_LABEL[status] || status;
+            return `<div class="dayoff-status-row">
+                <div class="dayoff-status-info">
+                    <div class="dayoff-status-date">${escapeHtml(r.request_date)}</div>
+                    <div class="dayoff-status-reason">${escapeHtml(r.reason || "")}</div>
+                </div>
+                <span class="status-badge ${status}">${label}</span>
+            </div>`;
+        }).join("")}</div>`;
     } catch (_) {}
 }
 
 // ─── My Sentences ─────────────────────────────────────────────
+
+/**
+ * Days elapsed since an ISO 8601 timestamp. Returns null if unparseable.
+ * @tag DIARY MY_SENTENCES
+ */
+function _sentenceAgeDays(iso, now) {
+    if (!iso) return null;
+    const t = Date.parse(iso);
+    if (isNaN(t)) return null;
+    return Math.floor((now - t) / 86400000);
+}
+
 
 /**
  * Render the My Sentences list (Step 5 practice sentences).
@@ -251,24 +336,43 @@ async function _loadDayOffStatus() {
  */
 async function _renderSentences() {
     const view = document.getElementById("diary-view");
-    view.innerHTML = `${_diaryHeader("My Sentences", "Sentences I created in Step 5")}<div id="sentences-body" style="width:100%"><p style="text-align:center;color:var(--text-secondary);padding:40px;">Loading…</p></div>`;
+    view.innerHTML = `${_diaryHeader("My Sentences", "Sentences I created in Step 5")}<div id="sentences-body" class="diary-body"><p class="diary-state-msg">Loading…</p></div>`;
+
+    const subject  = (typeof currentSubject  !== "undefined" && currentSubject)  ? currentSubject  : "English";
+    const textbook = (typeof currentTextbook !== "undefined" && currentTextbook) ? currentTextbook : "";
+
     try {
-        const res = await fetch("/api/practice/sentences/English//");
+        const res = await fetch(`/api/diary/${encodeURIComponent(subject)}/${encodeURIComponent(textbook)}`);
+        if (!res.ok) throw new Error("fetch failed");
         const data = await res.json();
         const body = document.getElementById("sentences-body");
-        if (!data.sentences || data.sentences.length === 0) {
-            body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px;">No sentences yet. Complete Step 5 in a lesson!</p>`;
+        const lessons = data.lessons || [];
+        if (lessons.length === 0 || data.total_sentences === 0) {
+            body.innerHTML = `<p class="diary-state-msg">No sentences yet. Complete Step 5 in a lesson!</p>`;
             return;
         }
-        body.innerHTML = `<div class="sentences-list">${data.sentences.map(s =>
-            `<div class="sentence-card">
-                <div class="sentence-word">${escapeHtml(s.lesson || "")}</div>
-                <div class="sentence-text">${escapeHtml(s.sentence)}</div>
-            </div>`
-        ).join("")}</div>`;
+        const REWRITE_AFTER_DAYS = 14;
+        const now = Date.now();
+        const cards = lessons.flatMap(lesson =>
+            lesson.sentences.map(s => {
+                const ageDays = _sentenceAgeDays(s.created_at, now);
+                const stale   = ageDays !== null && ageDays >= REWRITE_AFTER_DAYS;
+                const badge   = stale
+                    ? `<span class="sentence-rewrite-badge" title="Written ${ageDays} days ago">Rewrite ✏️</span>`
+                    : "";
+                return `<div class="sentence-card${stale ? " stale" : ""}">
+                    <div class="sentence-card-head">
+                        <div class="sentence-word">${escapeHtml(s.word || lesson.lesson || "")}</div>
+                        ${badge}
+                    </div>
+                    <div class="sentence-text">${escapeHtml(s.sentence || "")}</div>
+                </div>`;
+            })
+        ).join("");
+        body.innerHTML = `<div class="sentences-list">${cards}</div>`;
     } catch (_) {
         const body = document.getElementById("sentences-body");
-        if (body) body.innerHTML = `<p style="text-align:center;color:var(--color-error);padding:40px;">Failed to load.</p>`;
+        if (body) body.innerHTML = `<p class="diary-state-msg error">Failed to load.</p>`;
     }
 }
 
@@ -283,7 +387,7 @@ async function openDiaryOverlay() {
     const body = document.getElementById('diary-overlay-body');
     if (!overlay || !body) return;
     overlay.classList.remove('hidden');
-    body.innerHTML = '<p style="text-align:center;color:var(--text-secondary);padding:40px;">Loading...</p>';
+    body.innerHTML = '<p class="diary-state-msg">Loading…</p>';
 
     const subject = typeof currentSubject !== 'undefined' ? currentSubject : 'English';
     const textbook = typeof currentTextbook !== 'undefined' ? currentTextbook : '';
@@ -321,7 +425,7 @@ async function openDiaryOverlay() {
 
         body.innerHTML = html;
     } catch (e) {
-        body.innerHTML = '<div class="diary-empty" style="color:var(--color-error)">Failed to load sentences.</div>';
+        body.innerHTML = '<div class="diary-empty error">Failed to load sentences.</div>';
     }
 }
 
@@ -370,25 +474,28 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 async function _renderWorlds() {
     const view = document.getElementById("diary-view");
-    view.innerHTML = `${_diaryHeader("My Worlds", "Completed growth themes")}<div id="worlds-body" style="width:100%"><p style="text-align:center;color:var(--text-secondary);padding:40px;">Loading…</p></div>`;
+    view.innerHTML = `${_diaryHeader("My Worlds", "Completed growth themes")}<div id="worlds-body" class="diary-body"><p class="diary-state-msg">Loading…</p></div>`;
     try {
         const res  = await fetch("/api/growth/theme/all");
         const data = await res.json();
         const done = (data.themes || []).filter(t => t.is_completed);
         const body = document.getElementById("worlds-body");
         if (!done.length) {
-            body.innerHTML = `<div style="text-align:center;padding:40px"><div style="font-size:48px">🌍</div><p style="color:var(--text-secondary);margin-top:8px">Complete a Growth Theme to add your first world!</p></div>`;
+            body.innerHTML = `<div class="worlds-empty">
+                <div class="worlds-empty-icon">🌍</div>
+                <p class="worlds-empty-text">Complete a Growth Theme to add your first world!</p>
+            </div>`;
             return;
         }
         const cards = done.map(t => `
-            <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:16px;text-align:center;box-shadow:var(--shadow-card)">
-                <img src="${t.img_url}" style="width:100px;height:100px;border-radius:var(--radius-md)" onerror="this.style.opacity='0.3'">
-                <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-top:8px">${escapeHtml(t.label||t.theme)}</div>
-                <div style="font-size:11px;color:var(--color-success);display:inline-flex;align-items:center;gap:4px"><span class="check-dot"></span> Completed</div>
+            <div class="worlds-card">
+                <img class="worlds-card-img" src="${t.img_url}" alt="${escapeHtml(t.label || t.theme)}" onerror="this.classList.add('broken')">
+                <div class="worlds-card-title">${escapeHtml(t.label || t.theme)}</div>
+                <div class="worlds-card-status"><span class="check-dot"></span> Completed</div>
             </div>`).join("");
-        body.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;max-width:480px;margin:0 auto">${cards}</div>`;
+        body.innerHTML = `<div class="worlds-grid">${cards}</div>`;
     } catch (_) {
         const body = document.getElementById("worlds-body");
-        if (body) body.innerHTML = `<p style="color:var(--color-error);padding:20px;text-align:center">Failed to load.</p>`;
+        if (body) body.innerHTML = `<p class="diary-state-msg error">Failed to load.</p>`;
     }
 }

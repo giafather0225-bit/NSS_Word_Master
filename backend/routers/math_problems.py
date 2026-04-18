@@ -87,19 +87,35 @@ def problems_review(db: Session = Depends(get_db)):
         .all()
     )
 
+    # Batch-load originating attempts to avoid N+1 queries.
+    attempt_ids = [r.original_attempt_id for r in rows if r.original_attempt_id]
+    attempts_by_id = {}
+    if attempt_ids:
+        attempts_by_id = {
+            a.id: a for a in db.query(MathAttempt).filter(MathAttempt.id.in_(attempt_ids)).all()
+        }
+    # Fallback lookup: for rows missing a resolvable attempt, grab the most
+    # recent attempt per problem_id in a single query.
+    fallback_problem_ids = [
+        r.problem_id for r in rows
+        if not r.original_attempt_id or r.original_attempt_id not in attempts_by_id
+    ]
+    fallback_by_problem = {}
+    if fallback_problem_ids:
+        recent = (
+            db.query(MathAttempt)
+            .filter(MathAttempt.problem_id.in_(fallback_problem_ids))
+            .order_by(MathAttempt.id.desc())
+            .all()
+        )
+        for a in recent:
+            fallback_by_problem.setdefault(a.problem_id, a)
+
     items = []
     for r in rows:
-        attempt = None
-        if r.original_attempt_id:
-            attempt = db.query(MathAttempt).filter_by(id=r.original_attempt_id).first()
+        attempt = attempts_by_id.get(r.original_attempt_id) if r.original_attempt_id else None
         if attempt is None:
-            # Fallback: most recent attempt for that problem_id
-            attempt = (
-                db.query(MathAttempt)
-                .filter_by(problem_id=r.problem_id)
-                .order_by(MathAttempt.id.desc())
-                .first()
-            )
+            attempt = fallback_by_problem.get(r.problem_id)
         problem = _load_problem(attempt) if attempt else None
         if not problem:
             continue  # skip unresolvable

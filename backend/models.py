@@ -78,8 +78,9 @@ class UserPracticeSentence(Base):
     subject  = Column(String, index=True)
     textbook = Column(String, index=True, default="")  # e.g., "Voca_8000"
     lesson   = Column(String, index=True)
-    item_id  = Column(Integer, index=True)  # study_items.id
-    sentence = Column(String)
+    item_id    = Column(Integer, index=True)  # study_items.id
+    sentence   = Column(String)
+    created_at = Column(String, default="")  # ISO 8601 UTC; set on insert
 
     __table_args__ = (
         Index("ix_practice_sentences_subject_textbook_lesson", "subject", "textbook", "lesson"),
@@ -111,7 +112,8 @@ class WordReview(Base):
     __tablename__ = "word_reviews"
 
     id             = Column(Integer, primary_key=True, index=True)
-    study_item_id  = Column(Integer, ForeignKey("study_items.id"), nullable=False, index=True)
+    # Nullable: only 'academy' rows link back to StudyItem; daily/my carry word data directly.
+    study_item_id  = Column(Integer, ForeignKey("study_items.id"), nullable=True, index=True)
     word           = Column(String, index=True)
     subject        = Column(String, default="English")
     textbook       = Column(String, default="")
@@ -125,6 +127,13 @@ class WordReview(Base):
 
     total_reviews  = Column(Integer, default=0)
     total_correct  = Column(Integer, default=0)
+
+    # Unified Review: one of 'academy' | 'daily' | 'my'.
+    # For non-academy sources, question/hint carry word meaning+example directly.
+    source      = Column(String, default="academy", index=True)
+    question    = Column(String, default="")
+    hint        = Column(String, default="")
+    source_ref  = Column(String, default="")
 
     __table_args__ = (
         Index("ix_word_reviews_next_review", "next_review"),

@@ -121,7 +121,7 @@ button.st-btn.st-btn {
   border-radius: 12px !important;
   font-size: 15px !important;
   font-weight: 600 !important;
-  color: #FFFFFF !important;
+  color: var(--text-on-primary) !important;
   cursor: pointer !important;
   transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease !important;
   display: inline-flex !important;
@@ -143,12 +143,12 @@ button.st-btn.st-btn:active {
 /* ───── Correct / Wrong States ───── */
 input.st-input.st-input.correct {
   border-color: var(--success) !important;
-  background: #F0FBF4 !important;
+  background: var(--color-success-light) !important;
 }
 
 input.st-input.st-input.wrong {
   border-color: var(--danger) !important;
-  background: #FFF2F1 !important;
+  background: var(--color-error-light) !important;
   animation: fb-shake 0.3s ease !important;
 }
 

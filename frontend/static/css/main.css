@@ -193,7 +193,7 @@ body {
 }
 
 .sb-tb-name-text {
-    font-size: var(--font-size-md, 15px);
+    font-size: var(--font-size-sm, 13px);
     font-weight: var(--font-weight-bold, 600);
     color: var(--text-primary, #1A1A1A);
     flex: 1;
@@ -226,12 +226,17 @@ body {
     background: var(--bg-card, #fff);
     border: 1.5px solid var(--border-default, #E5E5EA);
     border-radius: var(--radius-md, 12px);
-    box-shadow: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     z-index: 200;
-    max-height: 200px;
+    max-height: min(360px, calc(100vh - 240px));
     overflow-y: auto;
+    overscroll-behavior: contain;
     display: none;
 }
+
+/* Visible scrollbar so long lesson lists don't look cut off */
+.sb-tb-dropdown::-webkit-scrollbar { width: 6px; }
+.sb-tb-dropdown::-webkit-scrollbar-thumb { background: var(--border-default, #E5E5EA); border-radius: 3px; }
 
 .sb-tb-dropdown.open { display: block; }
 
@@ -562,76 +567,57 @@ body {
     z-index: 5;
 }
 
-/* ─── Roadmap (horizontal connected pills) ───────────── */
+/* ─── Roadmap (Option F: underline tabs, evenly distributed) ─── */
 #roadmap {
     flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
+    justify-content: space-around;
     gap: 0;
     position: relative;
-}
-
-/* Thin connector line behind all pills */
-#roadmap::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: var(--border-default);
-    z-index: 0;
-    transform: translateY(-50%);
+    min-height: 48px;
 }
 
 .road-pill {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 4px 14px;
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #6E6E73;
+    padding: 14px 8px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
     cursor: default;
     position: relative;
-    z-index: 1;
     background: transparent;
     white-space: nowrap;
-    transition: all 0.15s;
-    flex-direction: row;
-    width: auto;
-    flex-shrink: 0;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+    flex: 1 1 0;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
 }
 
-/* Hide old circle ::before and label ::after */
 .road-pill::before { display: none !important; }
 .road-pill::after  { display: none !important; }
 
-/* State: done — gray text (✓ prefix set by child.js) */
-.road-pill.done { color: #6E6E73; }
+/* State: done — muted text with ✓ prefix (set by child.js) */
+.road-pill.done { color: var(--text-secondary); }
 
-/* State: current — white capsule with shadow */
+/* State: current — teal underline + primary text */
 .road-pill.current {
-    background: #FFFFFF;
-    border-radius: 9999px;
-    box-shadow: none;
-    border: 1px solid var(--border-card);
-    padding: 4px 14px;
-    color: #1D1D1F;
-    font-weight: 600;
+    color: var(--text-primary);
+    font-weight: var(--font-weight-bold);
+    border-bottom-color: var(--color-primary);
 }
 
-/* State: next — slightly darker */
-.road-pill.next { color: #1D1D1F; }
+/* State: next — unlocked, awaiting click */
+.road-pill.next { color: var(--text-secondary); }
 
-/* State: locked — light gray */
-.road-pill.locked { color: #B0B0B5; opacity: 1; pointer-events: none; }
-
-@keyframes pill-pulse {
-    0%, 100% { box-shadow: none; }
-    50%       { box-shadow: none; }
+/* State: locked — hint color, no interaction */
+.road-pill.locked {
+    color: var(--text-hint);
+    pointer-events: none;
 }
 
 /* ─── Top-right: diary + stars + progress + % ───────── */
@@ -680,6 +666,64 @@ body {
 .challenge-meta {
     font-size: 13px; font-weight: 500; color: var(--text-secondary);
     white-space: nowrap;
+}
+
+/* ─── Stage header (in-card mini progress) ─────────────── */
+.stage-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 20px;
+    border-bottom: 1px solid var(--border-default, #E5E5EA);
+    background: var(--bg-card, #FFFFFF);
+}
+.stage-header #roadmap {
+    flex: 1;
+    min-height: 40px;
+}
+.stage-header .stage-meta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ─── Floating sidebar toggle (always visible; slides with sidebar) ─── */
+.sidebar-toggle--floating {
+    position: fixed;
+    top: 14px;
+    /* When sidebar open (240px), sit just outside its right edge */
+    left: 254px;
+    z-index: 101;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full, 9999px);
+    background: var(--bg-card, #FFFFFF);
+    border: 1px solid var(--border-default, #E5E5EA);
+    box-shadow: var(--shadow-card, 0 2px 12px rgba(0,0,0,0.06));
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: left 0.3s ease, background 0.15s;
+}
+.sidebar-toggle--floating svg { width: 20px; height: 20px; }
+.sidebar-toggle--floating:hover { background: var(--bg-page, #FDF2F8); }
+
+/* When sidebar collapsed, slide button to top-left corner */
+body.sb-collapsed .sidebar-toggle--floating {
+    left: 14px;
+}
+
+/* Hide on Home view (no sidebar shown there) */
+body[data-view="home"] .sidebar-toggle--floating { display: none; }
+
+/* Hide top-xp-meta (Lv.1 · 0d) injected by home.js in English view */
+body[data-view="english"] #top-xp-meta,
+body[data-view="diary"] #top-xp-meta {
+    display: none !important;
 }
 
 /* Hidden compat ring */
@@ -960,8 +1004,8 @@ body {
 #preview-modal.hidden { display: none !important; }
 .pm-box {
     background: #FFFFFF;
-    border-radius: 24px; padding: 32px;
-    width: 480px; max-width: 100%;
+    border-radius: 24px; padding: 28px 32px;
+    width: 480px; max-width: 96vw;
     box-shadow: none;
     border: 1px solid var(--border-card);
     position: relative; max-height: 94vh; overflow-y: auto;
@@ -1473,20 +1517,26 @@ body.math-mode {
 
 /* ── Phase 2: Sidebar accordion & back button ─────────────── */
 .sb-back-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  width: 100%;
-  background: none;
-  border: none;
+  background: transparent;
+  border: 1px solid var(--border-default, #E5E5EA);
+  border-radius: var(--radius-full, 9999px);
   color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  padding: 8px 4px;
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 500;
+  padding: 6px 12px;
+  margin: 10px 12px 6px;
   cursor: pointer;
   text-align: left;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
-.sb-back-btn:hover { color: var(--text-primary); }
+.sb-back-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--color-primary, #4A8E8E);
+  background: var(--color-primary-light, rgba(74,142,142,0.08));
+}
 
 .sb-card-icon {
   font-size: 16px;
@@ -1570,3 +1620,175 @@ body[data-view="diary"]   .top-bar        { display: none !important; }
    Also drop the toggle button since there's nothing to toggle. */
 body[data-view="home"] .sidebar       { display: none !important; }
 body[data-view="home"] .sidebar-toggle { display: none !important; }
+
+/* ── Idle stage card (shown before a session starts) ───────────── */
+.idle-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 260px;
+}
+.idle-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-default);
+    padding: 48px;
+    min-width: 320px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+}
+.idle-lesson-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.idle-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+.idle-subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-top: 24px;
+    line-height: 1.75;
+}
+.idle-empty {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.75;
+}
+.idle-accent {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ── Hero card (English pre-session launcher) ──────────────── */
+.hero-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 40px 40px 32px;
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+}
+.hero-empty {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    padding: 40px 8px;
+    text-align: center;
+}
+.hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+.hero-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+.hero-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+}
+.hero-progress-bar {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--border-default);
+    overflow: hidden;
+}
+.hero-progress-fill {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+.hero-progress-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+.hero-cta {
+    background: var(--color-primary);
+    color: var(--text-on-primary, #fff);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 20px;
+    margin-top: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.08s ease;
+}
+.hero-cta:hover { background: var(--color-primary-hover, var(--color-primary)); }
+.hero-cta:active { transform: scale(0.98); }
+.hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0;
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+.hero-divider::before,
+.hero-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border-default);
+}
+.hero-chips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+}
+.hero-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+}
+.hero-chip-icon { font-size: 14px; flex-shrink: 0; }
+.hero-chip.done { color: var(--color-success); border-color: var(--color-success-light); background: var(--color-success-light); }
+.hero-chip.done .hero-chip-icon { color: var(--color-success); }
+.hero-chip.current {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
+    font-weight: 600;
+    animation: hero-pulse 1.8s ease-in-out infinite;
+}
+.hero-chip.locked { color: var(--text-secondary); opacity: 0.55; cursor: not-allowed; }
+.hero-chip:not(.locked):hover { border-color: var(--color-primary); }
+@keyframes hero-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 142, 142, 0.35); }
+    50%      { box-shadow: 0 0 0 6px rgba(74, 142, 142, 0); }
+}

@@ -63,6 +63,21 @@ def _load_lesson_json(grade: str, unit: str, lesson: str) -> dict:
 
 
 # @tag MATH @tag ACADEMY
+def _stage_problems(data: dict, stage: str) -> list:
+    """Extract stage problems from either lesson schema.
+
+    U1 schema: top-level key per stage (data["pretest"], data["learn"], ...).
+    U2 schema: single data["items"] list where each item has a "section" field.
+    """
+    if stage in data and isinstance(data[stage], list):
+        return data[stage]
+    items = data.get("items")
+    if isinstance(items, list):
+        return [it for it in items if it.get("section") == stage]
+    return []
+
+
+# @tag MATH @tag ACADEMY
 def _list_dirs(parent: Path) -> list[str]:
     """List sorted subdirectory names under parent."""
     if not parent.is_dir():
@@ -151,7 +166,7 @@ def get_stage_problems(grade: str, unit: str, lesson: str, stage: str):
     if not data:
         raise HTTPException(status_code=404, detail="Lesson data not found")
 
-    problems = data.get(stage, [])
+    problems = _stage_problems(data, stage)
     return {
         "grade": grade,
         "unit": unit,
@@ -183,7 +198,7 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
 
     # Load problem to check answer
     data = _load_lesson_json(req.grade, req.unit, req.lesson)
-    stage_problems = data.get(req.stage, [])
+    stage_problems = _stage_problems(data, req.stage)
     problem = next((p for p in stage_problems if p.get("id") == req.problem_id), None)
 
     if not problem:

@@ -10,6 +10,7 @@
 // ── Learn card state ───────────────────────────────────────
 let _learnCards = [];
 let _learnIdx = 0;
+let _learnKeyHandler = null;
 
 // ── CPA phase colours ──────────────────────────────────────
 const CPA_META = {
@@ -37,7 +38,11 @@ function _renderCurrentLearnCard() {
     if (!stage) return;
 
     if (_learnIdx >= _learnCards.length) {
-        // All cards done — advance to next stage
+        // All cards done — detach any lingering keyboard handler and advance.
+        if (_learnKeyHandler) {
+            document.removeEventListener('keydown', _learnKeyHandler);
+            _learnKeyHandler = null;
+        }
         advanceMathStage();
         return;
     }
@@ -100,19 +105,25 @@ function _renderCurrentLearnCard() {
         });
     }
 
-    // Keyboard nav
-    const handler = (e) => {
+    // Keyboard nav — always detach the prior handler before attaching a new
+    // one so mouse-driven re-renders don't accumulate listeners on document.
+    if (_learnKeyHandler) {
+        document.removeEventListener('keydown', _learnKeyHandler);
+    }
+    _learnKeyHandler = (e) => {
         if (e.key === 'ArrowRight' || e.key === 'Enter') {
-            document.removeEventListener('keydown', handler);
+            document.removeEventListener('keydown', _learnKeyHandler);
+            _learnKeyHandler = null;
             _learnIdx++;
             _renderCurrentLearnCard();
         } else if (e.key === 'ArrowLeft' && _learnIdx > 0) {
-            document.removeEventListener('keydown', handler);
+            document.removeEventListener('keydown', _learnKeyHandler);
+            _learnKeyHandler = null;
             _learnIdx--;
             _renderCurrentLearnCard();
         }
     };
-    document.addEventListener('keydown', handler);
+    document.addEventListener('keydown', _learnKeyHandler);
 
     // Hydrate manipulative widget if needed
     if (card.visual && typeof card.visual === 'object' && card.visual.tool) {

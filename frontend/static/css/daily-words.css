@@ -182,14 +182,14 @@
 
 .dw-choice-btn.correct {
   border-color: var(--color-success);
-  background: #F0FFF4;
+  background: var(--color-success-light);
   color: var(--color-success);
   font-weight: 600;
 }
 
 .dw-choice-btn.wrong {
   border-color: var(--color-error);
-  background: #FFF5F5;
+  background: var(--color-error-light);
   color: var(--color-error);
 }
 
@@ -267,7 +267,7 @@
 
 .dw-btn-primary {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--text-on-primary);
 }
 
 .dw-btn-primary:hover { background: var(--color-primary-hover); }
@@ -277,7 +277,7 @@
   color: var(--color-primary);
 }
 
-.dw-btn-secondary:hover { background: #f0d4e8; }
+.dw-btn-secondary:hover { background: var(--color-primary-glow); }
 
 /* ─── Result / Summary screen ────────────────────────────── */
 .dw-result {
@@ -363,4 +363,54 @@
 .dw-week-pill.today {
   background: var(--color-primary);
   color: #fff;
+}
+
+/* ─── Study card steps (Listen / Shadow / Spell) ──────────── */
+.dw-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 420px;
+  margin: 8px auto 0;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default, #E5E5EA);
+  border-radius: var(--radius-md);
+  transition: opacity 0.15s, border-color 0.15s;
+}
+.dw-step.locked { opacity: 0.45; pointer-events: none; }
+.dw-step.active { border-color: var(--color-primary); }
+.dw-step.done   { border-color: var(--color-success); background: #F5FDF7; }
+.dw-step-hint {
+  color: var(--text-secondary);
+  font-size: 13px;
+  flex: 1;
+}
+.dw-mic-btn { min-width: 140px; }
+.dw-mic-btn.recording { background: var(--color-error); color: #fff; }
+.dw-mic-btn.done { background: var(--color-success); color: #fff; }
+.dw-spell-input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 12px;
+  font-size: 15px;
+  border: 1px solid var(--border-default, #E5E5EA);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--text-primary);
+}
+.dw-spell-input:focus { outline: none; border-color: var(--color-primary); }
+.dw-spell-input:disabled { background: #F5F5F7; }
+.dw-row-icon { font-size: 18px; width: 20px; text-align: center; }
+.dw-chk-btn { min-width: 72px; }
+
+/* Clickable study card (opens Academy Preview modal) */
+.dw-card-clickable { cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+.dw-card-clickable:hover { transform: translateY(-2px); box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+.dw-card-cta {
+  margin-top: 14px;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 14px;
 }

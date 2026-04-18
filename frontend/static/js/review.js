@@ -244,6 +244,23 @@
     if (btn) btn.addEventListener("click", openReview);
     updateBadge();
     setInterval(updateBadge, 5 * 60 * 1000);
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key !== "Escape") return;
+      var rating = document.getElementById("review-rating-overlay");
+      if (rating && rating.classList.contains("active")) {
+        rating.classList.remove("active");
+        reopenSidebar();
+        updateBadge();
+        return;
+      }
+      var done = document.getElementById("review-done-overlay");
+      if (done && done.classList.contains("active")) {
+        done.classList.remove("active");
+        reopenSidebar();
+        updateBadge();
+      }
+    });
   }
 
   window.ReviewModule = {

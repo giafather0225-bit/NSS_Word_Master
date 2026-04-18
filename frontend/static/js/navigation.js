@@ -9,6 +9,32 @@
    ================================================================ */
 
 /**
+ * Mirror `.sidebar.collapsed` onto `body.sb-collapsed` so CSS rules that must
+ * react to sidebar state (e.g. the floating toggle position) can use a stable
+ * selector instead of the less-reliable `~` sibling combinator with fixed
+ * positioning.
+ * @tag NAVIGATION SIDEBAR
+ */
+(function mirrorSidebarCollapsed() {
+    const apply = () => {
+        const sidebar = document.getElementById('sidebar');
+        if (!sidebar) return;
+        document.body.classList.toggle('sb-collapsed', sidebar.classList.contains('collapsed'));
+    };
+    const init = () => {
+        const sidebar = document.getElementById('sidebar');
+        if (!sidebar) { setTimeout(init, 100); return; }
+        apply();
+        new MutationObserver(apply).observe(sidebar, { attributes: true, attributeFilter: ['class'] });
+    };
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+
+/**
  * Load the list of textbooks for a subject and populate the select.
  * Auto-selects if only one textbook is available.
  * @tag NAVIGATION SIDEBAR
@@ -24,7 +50,7 @@ async function loadTextbooks(subject) {
             (data.textbooks || []).forEach((tb) => {
                 const opt = document.createElement("option");
                 opt.value = tb;
-                opt.textContent = tb;
+                opt.textContent = tb.replace(/_/g, ' ');
                 sel.appendChild(opt);
             });
             if (data.textbooks && data.textbooks.length === 1) {
@@ -72,11 +98,19 @@ async function loadLessons(subject, textbook) {
         const opt = document.createElement("option");
         opt.value = l;
         const done = isLessonComplete(subject, textbook, l);
-        opt.textContent = `${done ? "✓ " : ""}${l}${ready ? "" : " ·"}`;
+        const label = l.replace(/_/g, ' ');
+        opt.textContent = `${done ? "✓ " : ""}${label}${ready ? "" : " ·"}`;
         opt.dataset.ready = ready ? "true" : "false";
         if (l === selectedLesson) opt.selected = true;
         sel.appendChild(opt);
     });
+
+    setActiveLessonTab(selectedLesson);
+    renderIdleStage();
+    updateRoadmapUI();
+    updateProgressPct();
+    updateChallengeMeta();
+    refreshStartLabel();
 
     sel.onchange = () => {
         const l = sel.value;
@@ -180,15 +214,6 @@ function refreshStartLabel() {
     const isDone = allStagesDone();
     const ex = $("btn-exam");
     if (ex) ex.disabled = !isDone;
-    const btn = $("btn-start");
-    if (!btn) return;
-    if (isDone) { btn.textContent = "Repeat ↩"; return; }
-    const done = getCompletedStages();
-    const doneCount = ROADMAP_STAGES.filter((s) => done.has(s)).length;
-    if (doneCount === 0) { btn.textContent = "Start"; return; }
-    const next = nextStageToStart();
-    const nextLabel = ROADMAP_LABELS[ROADMAP_STAGES.indexOf(next)] || "Start";
-    btn.textContent = `▶ ${nextLabel}`;
 }
 
 /**
@@ -201,12 +226,13 @@ function updateRoadmapUI() {
     rm.innerHTML = "";
     const inExam = stage === STAGE.EXAM;
     const completedSet = getCompletedStages();
+    const hasLesson = !!lessonSelected();
 
     for (let i = 0; i < ROADMAP_STAGES.length; i++) {
         const key = ROADMAP_STAGES[i];
         const isDone     = completedSet.has(key);
-        const isCurrent  = stage === key;
-        const isUnlocked = isStageUnlocked(key);
+        const isCurrent  = hasLesson && (stage === key);
+        const isUnlocked = hasLesson && isStageUnlocked(key);
 
         const div = document.createElement("div");
         div.className = "road-pill";

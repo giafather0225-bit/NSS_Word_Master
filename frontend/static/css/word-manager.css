@@ -392,6 +392,28 @@
 }
 .wm-lesson-rename:hover { background: #E8E8ED; }
 
+/* ── Learn Button (My Words 학습 진입) ───────────────────── */
+.wm-lesson-learn {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 14px;
+  border: 1px solid var(--color-secondary);
+  background: #fff;
+  color: var(--color-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.wm-lesson-learn:hover:not(:disabled) {
+  background: var(--color-secondary);
+  color: #fff;
+}
+.wm-lesson-learn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 /* ── Textarea ──────────────────────────────────────────── */
 .wm-textarea {
   resize: vertical;

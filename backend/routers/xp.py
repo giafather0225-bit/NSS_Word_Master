@@ -222,11 +222,16 @@ def tasks_today(db: Session = Depends(get_db)) -> list:
     tasks: list[dict] = []
 
     if "review" in settings:
+        review_due_count = (
+            db.query(WordReview)
+            .filter(WordReview.next_review <= today)
+            .count()
+        )
         tasks.append(
             _make_task(
                 "review",
                 "Review",
-                "—",
+                f"{review_due_count} words" if review_due_count else "No words due",
                 streak_log.review_done if streak_log else False,
                 settings,
             )

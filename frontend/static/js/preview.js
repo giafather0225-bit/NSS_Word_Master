@@ -1,5 +1,5 @@
 /* ================================================================
-   preview.js — Step 1: Preview + Shadow + Spell + Sentence Reading
+   preview.js — Step 1: Preview + Shadow + Spell
    Section: English / Preview
    Dependencies: core.js, tts-client.js, analytics.js
    API endpoints: /api/tts/preview_word_meaning, /api/tts/example_full,
@@ -33,8 +33,8 @@ function renderPreview(el) {
 }
 
 /**
- * Open preview popup modal with Shadow, Spell, and Sentence Reading flows.
- * @tag PREVIEW SHADOW SPELL SENTENCE_READ TTS
+ * Open preview popup modal with Shadow and Spell flows.
+ * @tag PREVIEW SHADOW SPELL TTS
  */
 function openPreviewModal(item, onClose) {
     const modal = $('preview-modal'), content = $('pm-content');
@@ -60,7 +60,6 @@ function openPreviewModal(item, onClose) {
         <p class="pm-spell-unlock-hint hidden" id="pm-spell-unlock-hint">Great! Now type the word</p>
         <p class="pm-spell-label locked" id="pm-spell-label">SPELL (Type 3×)</p>
         <div class="pm-spell-rows locked" id="pm-spell-rows"></div>
-        ${item.hint ? `<p class="pm-sr-label locked" id="pm-sr-label">SENTENCE READ (×2)</p><div class="pm-sr-rows" id="pm-sr-rows"></div>` : ''}
         <div class="pm-verdict" id="pm-verdict"></div>`;
 
     modal.classList.remove('hidden'); modal.hidden = false; modal.style.display = '';
@@ -135,8 +134,8 @@ function openPreviewModal(item, onClose) {
 
     function checkShadowDone() {
         if (!shadowState.every(s=>s!==null&&s>=90)) return;
-        spellUnlocked=true;
-        const h=$('pm-spell-unlock-hint'); if(h) h.classList.remove('hidden');
+        spellUnlocked = true;
+        const h = $('pm-spell-unlock-hint'); if (h) h.classList.remove('hidden');
         buildSpellRows();
     }
 
@@ -200,11 +199,6 @@ function openPreviewModal(item, onClose) {
         if (!allOk) {
             verdict.className='pm-verdict retry'; verdict.textContent='Not quite — try the missed ones again!';
             setTimeout(()=>{ spellState.forEach((s,i)=>{ if(s===false) spellState[i]=null; }); verdict.className='pm-verdict'; buildSpellRows(); },1000);
-            return;
-        }
-        if (item.hint && typeof window.pmStartSR === 'function') {
-            window.pmStartSR({hint: item.hint, playTTS: _playTTS, SpeechRec,
-                setRec: r => activeRec = r, onDone: showVerdict});
             return;
         }
         showVerdict();

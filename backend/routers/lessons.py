@@ -31,6 +31,10 @@ router = APIRouter()
 # ── Constants ──────────────────────────────────────────────
 VOCA_ROOT = LEARNING_ROOT / "English" / "Voca_8000"
 
+# Canonical subjects exposed by the app. LEARNING_ROOT is co-located with
+# backup/storage/app dirs, so filesystem listing alone is not authoritative.
+SUBJECTS = ("English", "Math")
+
 _SAFE_LESSON_RE = _re.compile(r'^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$')
 _SAFE_NAME_RE   = _re.compile(r'^[A-Za-z0-9][A-Za-z0-9_\- ]{0,49}$')
 
@@ -66,10 +70,7 @@ def _validate_lesson(lesson: str) -> str:
 def list_subjects():
     """Return list of subject (top-level) folders under ~/NSS_Learning/."""
     LEARNING_ROOT.mkdir(parents=True, exist_ok=True)
-    subjects = [
-        p.name for p in sorted(LEARNING_ROOT.iterdir())
-        if p.is_dir() and not p.name.startswith(".") and p.name != "database"
-    ]
+    subjects = [s for s in SUBJECTS if (LEARNING_ROOT / s).is_dir()]
     return {"subjects": subjects}
 
 
@@ -81,10 +82,15 @@ def list_textbooks(subject: str):
     subject_dir = LEARNING_ROOT / subject_key
     if not subject_dir.is_dir():
         raise HTTPException(status_code=404, detail=f"Subject '{subject_key}' not found")
-    textbooks = [
-        p.name for p in sorted(subject_dir.iterdir())
+    names = [
+        p.name for p in subject_dir.iterdir()
         if p.is_dir() and not p.name.startswith(".")
     ]
+    # Sort Voca_NNNN numerically by NNNN, then everything else alphabetically after.
+    def _sort_key(n: str):
+        m = _re.match(r'^Voca_(\d+)$', n)
+        return (0, int(m.group(1))) if m else (1, n.lower())
+    textbooks = sorted(names, key=_sort_key)
     return {"subject": subject_key, "textbooks": textbooks}
 
 

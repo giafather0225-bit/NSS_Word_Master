@@ -36,6 +36,19 @@ class ReviewResultRequest(BaseModel):
     attempts: int = 1
 
 
+class WordEntry(BaseModel):
+    word: str
+    question: str = ""   # meaning
+    hint: str = ""       # example sentence
+
+
+class RegisterWordsRequest(BaseModel):
+    """Register Daily Words / My Words into the unified SM-2 queue."""
+    source: str                   # 'daily' | 'my'
+    source_ref: str = ""          # e.g. 'grade_3/week_2' or list name
+    words: list[WordEntry]
+
+
 # ── Routes ─────────────────────────────────────────────────
 
 # @tag REVIEW @tag SM2
@@ -60,9 +73,16 @@ def register_lesson_for_review(
     tomorrow = (_date.today() + timedelta(days=1)).isoformat()
     registered = 0
 
+    item_ids = [item.id for item in study_items]
+    existing_ids = {
+        row.study_item_id
+        for row in db.query(WordReview.study_item_id)
+        .filter(WordReview.study_item_id.in_(item_ids))
+        .all()
+    }
+
     for item in study_items:
-        existing = db.query(WordReview).filter(WordReview.study_item_id == item.id).first()
-        if existing:
+        if item.id in existing_ids:
             continue
         wr = WordReview(
             study_item_id=item.id,
@@ -88,7 +108,7 @@ def register_lesson_for_review(
 # @tag REVIEW @tag SM2
 @router.get("/api/review/today")
 def get_today_reviews(db: Session = Depends(get_db)):
-    """Return all words due for review today (next_review <= today)."""
+    """Return all words due for review today across Academy/Daily/My sources."""
     today_str = _date.today().isoformat()
 
     reviews = (
@@ -98,22 +118,37 @@ def get_today_reviews(db: Session = Depends(get_db)):
         .all()
     )
 
+    academy_ids = [wr.study_item_id for wr in reviews
+                   if (wr.source or "academy") == "academy" and wr.study_item_id]
+    items_by_id = {
+        item.id: item
+        for item in db.query(StudyItem).filter(StudyItem.id.in_(academy_ids)).all()
+    }
+
     result = []
     for wr in reviews:
-        item = db.query(StudyItem).filter(StudyItem.id == wr.study_item_id).first()
-        if not item:
-            continue
+        src = wr.source or "academy"
+        if src == "academy":
+            item = items_by_id.get(wr.study_item_id)
+            if not item:
+                continue  # orphaned academy row — skip
+            question, answer, hint, extra = item.question, item.answer, item.hint, item.extra_data
+        else:
+            question, answer, hint, extra = (wr.question or ""), wr.word, (wr.hint or ""), ""
+
         result.append({
             "review_id":      wr.id,
             "study_item_id":  wr.study_item_id,
             "word":           wr.word,
+            "source":         src,
+            "source_ref":     wr.source_ref or "",
             "subject":        wr.subject,
             "textbook":       wr.textbook,
             "lesson":         wr.lesson,
-            "question":       item.question,
-            "answer":         item.answer,
-            "hint":           item.hint,
-            "extra_data":     item.extra_data,
+            "question":       question,
+            "answer":         answer,
+            "hint":           hint,
+            "extra_data":     extra,
             "easiness":       float(wr.easiness),
             "interval":       wr.interval,
             "repetitions":    wr.repetitions,
@@ -122,6 +157,58 @@ def get_today_reviews(db: Session = Depends(get_db)):
         })
 
     return {"date": today_str, "count": len(result), "reviews": result}
+
+
+# @tag REVIEW @tag SM2 @tag DAILY_WORDS @tag MY_WORDS
+@router.post("/api/review/register-words")
+def register_words_for_review(req: RegisterWordsRequest, db: Session = Depends(get_db)):
+    """Register Daily Words / My Words into the unified SM-2 queue.
+
+    De-duplicates by (source, source_ref, word) so re-completing a Daily Words
+    day won't re-insert rows.
+    """
+    if req.source not in ("daily", "my"):
+        raise HTTPException(status_code=400, detail="source must be 'daily' or 'my'")
+
+    tomorrow = (_date.today() + timedelta(days=1)).isoformat()
+    words_in_req = [w.word for w in req.words if w.word]
+    existing_words = {
+        row.word for row in
+        db.query(WordReview.word)
+        .filter(
+            WordReview.source == req.source,
+            WordReview.source_ref == (req.source_ref or ""),
+            WordReview.word.in_(words_in_req),
+        ).all()
+    }
+
+    registered = 0
+    for w in req.words:
+        if not w.word or w.word in existing_words:
+            continue
+        wr = WordReview(
+            study_item_id=None,
+            word=w.word,
+            subject="English",
+            textbook="",
+            lesson="",
+            easiness="2.5",
+            interval=0,
+            repetitions=0,
+            next_review=tomorrow,
+            last_review="",
+            total_reviews=0,
+            total_correct=0,
+            source=req.source,
+            question=w.question or "",
+            hint=w.hint or "",
+            source_ref=req.source_ref or "",
+        )
+        db.add(wr)
+        registered += 1
+
+    db.commit()
+    return {"registered": registered, "source": req.source, "source_ref": req.source_ref}
 
 
 # @tag REVIEW @tag SM2

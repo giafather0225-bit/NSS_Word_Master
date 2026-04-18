@@ -50,13 +50,14 @@ async function _drawCalendar() {
     const label  = new Date(_calYear, _calMonth - 1, 1)
         .toLocaleDateString("en-US", { month: "long", year: "numeric" });
 
-    // Fetch calendar data
+    // Fetch calendar data — backend returns a flat array of day objects
     let dayMap = {}; // "YYYY-MM-DD" → {marker, streak, journal, day_off}
     try {
         const res = await fetch(`/api/calendar/${_calYear}/${m2}`);
         if (res.ok) {
             const data = await res.json();
-            (data.days || []).forEach(d => { dayMap[d.date] = d; });
+            const days = Array.isArray(data) ? data : (data.days || []);
+            days.forEach(d => { dayMap[d.date] = d; });
         }
     } catch (_) {}
 
@@ -94,7 +95,8 @@ async function _drawCalendar() {
             ${dayCells}
         </div>
         <div class="cal-legend">
-            <span class="cal-legend-item">Streak</span>
+            <span class="cal-legend-item">✅ All done</span>
+            <span class="cal-legend-item">🔥 Streak</span>
             <span class="cal-legend-item">📝 Journal</span>
             <span class="cal-legend-item">🏖️ Day off</span>
             <span class="cal-legend-item">⬜ Missed</span>

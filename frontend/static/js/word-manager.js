@@ -90,7 +90,8 @@
         } catch (e) {}
 
         const card = ce("div", "wm-lesson-card");
-        card.innerHTML = 
+        const canLearn = wordCount > 0;
+        card.innerHTML =
           '<div class="wm-lesson-info" data-lesson="' + name + '">' +
             '<span class="wm-lesson-icon">📝</span>' +
             '<div class="wm-lesson-meta">' +
@@ -99,10 +100,17 @@
             '</div>' +
           '</div>' +
           '<div class="wm-lesson-actions">' +
+            '<button class="wm-lesson-learn" data-lesson="' + name + '" title="Learn"' +
+              (canLearn ? '' : ' disabled') + '>▶ Learn</button>' +
             '<button class="wm-lesson-rename" data-lesson="' + name + '" title="Rename">✏️</button>' +
             '<button class="wm-lesson-del" data-lesson="' + name + '" title="Delete">✕</button>' +
           '</div>';
         card.querySelector(".wm-lesson-info").onclick = () => openLesson(name);
+        const learnBtn = card.querySelector(".wm-lesson-learn");
+        if (learnBtn && canLearn) learnBtn.onclick = (e) => {
+          e.stopPropagation();
+          startLearning(name);
+        };
         card.querySelector(".wm-lesson-rename").onclick = (e) => {
           e.stopPropagation();
           renameLesson(name);
@@ -376,6 +384,83 @@
     } catch (err) {
       alert(err.message);
     }
+  }
+
+  /* ── Learn Flow (Daily Words 스타일 Preview 재사용) ─── */
+  /**
+   * Iterate through every word in `lessonName` via the Academy Preview modal
+   * (Listen → Shadow → Spell). On each pass, collect the word; when the
+   * session ends, register all completed words into the unified SM-2 Review
+   * queue so they show up in the Review section alongside Academy / Daily.
+   */
+  async function startLearning(lessonName) {
+    let wordList = [];
+    try {
+      const res = await fetch("/api/study/English/My_Words/" + encodeURIComponent(lessonName));
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const data = await res.json();
+      wordList = (data.items || []).map((it) => ({
+        id: "mw-" + lessonName + "-" + it.id,
+        answer: it.answer,
+        question: it.question || "",
+        hint: it.hint || "",
+      }));
+    } catch (err) {
+      alert("Failed to load words: " + err.message);
+      return;
+    }
+    if (!wordList.length) { alert("No words in this list."); return; }
+    if (typeof window.openPreviewModal !== "function") {
+      alert("Preview module not loaded."); return;
+    }
+
+    const ov = $("wm-overlay");
+    ov.classList.add("hidden");
+
+    const learned = [];
+    let idx = 0;
+
+    const restoreAcademy = (() => {
+      const prevItems = window.items;
+      const prevStage = window.stage;
+      return () => { window.items = prevItems; window.stage = prevStage; };
+    })();
+
+    function next() {
+      if (idx >= wordList.length) { finish(); return; }
+      const item = wordList[idx];
+      // Stub Academy globals so closeModal() doesn't trigger advanceToNextStage.
+      window.items = [item];
+      if (typeof previewDoneMap !== "undefined") previewDoneMap.clear();
+      window.stage = "mywords";
+      window.openPreviewModal(item, (status) => {
+        if (status === "ok" || status === "auto-pass") {
+          learned.push({ word: item.answer, question: item.question, hint: item.hint });
+          idx++;
+          next();
+        } else {
+          // 'skip' → user closed modal; end session and register what we have.
+          finish();
+        }
+      });
+    }
+
+    async function finish() {
+      restoreAcademy();
+      if (learned.length > 0) {
+        try {
+          await api("/api/review/register-words", {
+            method: "POST",
+            body: JSON.stringify({ source: "my", source_ref: lessonName, words: learned }),
+          });
+        } catch (err) { console.warn("[MyWords] register-words failed", err); }
+      }
+      ov.classList.remove("hidden");
+      // Refresh review badge if review.js exposes a refresher.
+      if (typeof window.refreshReviewBadge === "function") window.refreshReviewBadge();
+    }
+
+    next();
   }
 
   /* ── Init ────────────────────────────────────────────── */

@@ -12,7 +12,7 @@ import sqlite3 as _sqlite3
 import sys
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
-from datetime import date as _date, timedelta
+from datetime import date as _date, datetime, timedelta, timezone
 from pathlib import Path
 
 import httpx
@@ -54,6 +54,7 @@ from backend.routers import math_kangaroo as math_kangaroo_router
 from backend.routers import math_glossary as math_glossary_router
 from backend.routers import math_problems as math_problems_router
 from backend.routers import speech as speech_router
+from backend.routers import arcade as arcade_router
 from backend.services import ollama_manager, backup_engine
 
 # ── DB init ────────────────────────────────────────────────
@@ -177,6 +178,7 @@ app.include_router(math_kangaroo_router.router)
 app.include_router(math_glossary_router.router)
 app.include_router(math_problems_router.router)
 app.include_router(speech_router.router)
+app.include_router(arcade_router.router)
 
 
 # ── Pydantic schemas (kept here for dashboard/rewards/schedules/AI routes) ──
@@ -378,6 +380,7 @@ def save_practice_sentence(req: PracticeSentenceCreate, db: Session = Depends(ge
         lesson=req.lesson,
         item_id=req.item_id,
         sentence=req.sentence,
+        created_at=datetime.now(timezone.utc).isoformat(),
     )
     db.add(row)
     db.commit()

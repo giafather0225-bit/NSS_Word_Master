@@ -173,6 +173,10 @@
 | GET | /api/growth/timeline | routers/diary.py (TODO) | diary.js |
 | GET | /api/calendar/{year}/{month} | routers/calendar_api.py (TODO) | calendar.js |
 | POST | /api/day-off/request | routers/diary.py (TODO) | diary.js |
+| GET | /api/day-off/requests | routers/diary.py | diary.js |
+| POST | /api/diary/photo | routers/diary.py | diary.js |
+| DELETE | /api/diary/photo/{filename} | routers/diary.py | diary.js |
+| GET | /api/diary/photo/{filename} | routers/diary.py | diary.js |
 
 ## Parent Dashboard (Phase 7)
 

@@ -18,13 +18,61 @@ try:
     from ..database import get_db
     from ..services import daily_words_engine as dwe
     from ..services import xp_engine, streak_engine
+    from ..models import WordReview
 except ImportError:
     from database import get_db
     from services import daily_words_engine as dwe
     from services import xp_engine, streak_engine
+    from models import WordReview
+
+from datetime import date as _date, timedelta
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
+
+
+# @tag DAILY_WORDS @tag REVIEW @tag SM2
+def _register_daily_words_for_review(db: Session, today_payload: dict) -> None:
+    """Insert today's Daily Words into WordReview so they appear in unified Review.
+
+    De-duplicates by (source='daily', source_ref=grade/day, word). Day 1 and
+    Day 7 are tests — skip registration on those days.
+    """
+    cycle_day = today_payload.get("cycle_day", 0)
+    if cycle_day in (1, 7):
+        return
+    grade = today_payload.get("grade", "")
+    words = today_payload.get("words", []) or []
+    if not words:
+        return
+    source_ref = f"{grade}/day_{cycle_day}"
+    tomorrow = (_date.today() + timedelta(days=1)).isoformat()
+    word_strs = [w.get("word", "") for w in words if w.get("word")]
+    existing = {
+        row.word for row in
+        db.query(WordReview.word)
+        .filter(
+            WordReview.source == "daily",
+            WordReview.source_ref == source_ref,
+            WordReview.word.in_(word_strs),
+        ).all()
+    }
+    for w in words:
+        name = w.get("word", "")
+        if not name or name in existing:
+            continue
+        db.add(WordReview(
+            study_item_id=None, word=name,
+            subject="English", textbook="", lesson="",
+            easiness="2.5", interval=0, repetitions=0,
+            next_review=tomorrow, last_review="",
+            total_reviews=0, total_correct=0,
+            source="daily",
+            question=w.get("definition", "") or "",
+            hint=w.get("example", "") or "",
+            source_ref=source_ref,
+        ))
+    db.commit()
 
 
 # ─── Pydantic schemas ─────────────────────────────────────────
@@ -94,7 +142,11 @@ def daily_words_complete(body: DailyCompleteIn, db: Session = Depends(get_db)):
     @tag DAILY_WORDS XP STREAK
     """
     try:
+        today_payload = dwe.get_today_words(db)
         dwe.mark_daily_complete(db, body.learned_count)
+
+        # Register today's studied words into the unified SM-2 Review queue.
+        _register_daily_words_for_review(db, today_payload)
 
         # Award XP
         xp_awarded = xp_engine.award_xp(db, "daily_words_complete", "daily_words")

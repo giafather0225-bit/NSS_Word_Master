@@ -407,6 +407,10 @@ def parent_math_summary(db: Session = Depends(get_db)):
         "completed_at": (r.completed_at or "")[:10],
     } for r in kang_rows]
 
+    # Streak condition (both / either / english_only / math_only)
+    streak_row = db.query(AppConfig).filter(AppConfig.key == "streak_condition").first()
+    streak_condition = streak_row.value if (streak_row and streak_row.value) else "both"
+
     return {
         "academy": {
             "total_lessons": total_lessons,
@@ -427,6 +431,7 @@ def parent_math_summary(db: Session = Depends(get_db)):
         "fluency": fluency,
         "daily_recent": daily_recent,
         "kangaroo": kangaroo,
+        "streak_condition": streak_condition,
     }
 
 

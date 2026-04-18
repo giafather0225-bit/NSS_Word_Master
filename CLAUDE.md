@@ -315,6 +315,7 @@ VOCABULARY
     Textbook: [dropdown]
     Lesson:   [dropdown]
     ─────────────────
+    Today's Review  [N]   (SM-2 due count badge; hidden when 0)
     Final Test  🔒
     Unit Test   ›
   📗 Daily Words      ▼
@@ -326,8 +327,10 @@ VOCABULARY
     Weekly Test › (needs 50+ words)
 READING
   📖 Articles  › (Coming Soon)
-⚙️ Settings
 ```
+
+Settings (Parent Dashboard) access: Home banner "···" menu → 4-digit PIN.
+Not duplicated in English sidebar.
 
 ---
 
@@ -344,7 +347,7 @@ READING
   ─────────────────────────────
   Must Do bonus ................ +5 XP
   All complete bonus ........... +15 XP
-[Section Cards: English | GIA's Diary | Math (Coming Soon)]
+[Section Cards: English | Math | Diary | Arcade (Coming Soon) | Reward Shop]
 [Growth Theme Illustration (200×200 SVG)]
 [Bottom Bar: Words I Know | ⭐ Total XP | 🔥 Streak | Reward Shop]
 ```
@@ -367,6 +370,7 @@ READING
 | All tasks complete | +15 | once/day |
 | 7-day streak | +30 | per occurrence |
 | 30-day streak | +200 | per occurrence |
+| Arcade round (tiered) | +1 / +2 / +3 | 500 / 1000 / 2000 score; daily cap +10 |
 
 No XP: test fail, re-study after fail.
 

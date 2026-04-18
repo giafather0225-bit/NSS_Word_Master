@@ -50,10 +50,6 @@ function switchView(view) {
     show(topBar);                  // roadmap tabs visible during lesson flow
     sidebar.dataset.mode = 'english';
     updateSidebarMode('english');
-    // Auto-open Academy accordion when entering English view
-    // (only if no accordion is currently open)
-    const anyOpen = document.querySelector('.sb-accordion-panel.open');
-    if (!anyOpen) toggleAccordion('academy');
   } else if (view === 'diary') {
     hide(homeDash);
     hide(idleWrap);
@@ -252,6 +248,12 @@ function renderSectionCards() {
   const rewardCard = document.getElementById('home-reward-card');
   if (rewardCard) rewardCard.onclick = () => {
     if (typeof openRewardShop === 'function') openRewardShop();
+  };
+
+  // Arcade card → overlay (arcade.js)
+  const arcadeCard = document.getElementById('section-card-arcade');
+  if (arcadeCard) arcadeCard.onclick = () => {
+    if (typeof openArcade === 'function') openArcade();
   };
 
   // Ocean World card → open growth theme detail modal (growth-theme.js)

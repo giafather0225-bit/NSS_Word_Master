@@ -128,19 +128,25 @@ def save_placement_results(req: SaveResultsIn, db: Session = Depends(get_db)):
     domains_by_key = {d["domain"]: d for d in bank["domains"]}
     now = datetime.now().strftime("%Y-%m-%d")
 
-    # Clear previous results — this is a fresh placement
-    db.query(MathPlacementResult).delete()
-
-    saved = []
-    overall = []
+    # Score and validate every domain BEFORE touching the DB so that a
+    # partial failure cannot wipe existing placement history.
+    scored_entries = []
     for r in req.results:
         spec = domains_by_key.get(r.domain)
         if not spec:
             continue
         scored = _score_domain(spec, r.answers or {})
+        scored_entries.append((r.domain, spec, scored))
+
+    # Now mutate the DB in a single unit.
+    db.query(MathPlacementResult).delete()
+
+    saved = []
+    overall = []
+    for domain_key, spec, scored in scored_entries:
         row = MathPlacementResult(
             test_date=now,
-            domain=r.domain,
+            domain=domain_key,
             estimated_grade=scored["estimated_grade"],
             rit_estimate=None,
             raw_score=scored["raw_score"],
@@ -151,9 +157,9 @@ def save_placement_results(req: SaveResultsIn, db: Session = Depends(get_db)):
             }),
         )
         db.add(row)
-        saved.append(r.domain)
+        saved.append(domain_key)
         overall.append({
-            "domain": r.domain,
+            "domain": domain_key,
             "label": spec["label"],
             "estimated_grade": scored["estimated_grade"],
             "raw_score": scored["raw_score"],

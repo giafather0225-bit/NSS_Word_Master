@@ -129,6 +129,7 @@ const PP_TABS = [
     ["tasks",      "Tasks"],
     ["schedule",   "Schedule"],
     ["wordstats",  "Word Stats"],
+    ["math",       "Math"],
     ["textbooks",  "Textbooks"],
     ["pin",        "Change PIN"],
 ];
@@ -138,7 +139,7 @@ function _ppRenderShell() {
     const el = document.getElementById("parent-overlay");
     if (!el) return;
     const tabs = PP_TABS.map(([key, label]) =>
-        `<button class="pp-nav-btn${key === _ppTab ? " active" : ""}" onclick="_ppLoadTab('${key}')">${label}</button>`
+        `<button class="pp-nav-btn${key === _ppTab ? " active" : ""}" data-tab-key="${key}" onclick="_ppLoadTab('${key}')">${label}</button>`
     ).join("");
     el.innerHTML = `
         <div class="pp-header">
@@ -152,76 +153,22 @@ function _ppRenderShell() {
 /** Switch tab and render content. @tag PARENT */
 async function _ppLoadTab(tab) {
     _ppTab = tab;
-    document.querySelectorAll(".pp-nav-btn").forEach(b => b.classList.toggle("active", b.textContent === PP_TABS.find(t => t[0] === tab)?.[1]));
+    document.querySelectorAll(".pp-nav-btn").forEach(b => b.classList.toggle("active", b.dataset.tabKey === tab));
     const body = document.getElementById("pp-body");
     if (!body) return;
     body.innerHTML = `<p style="text-align:center;padding:40px;color:var(--text-secondary);">Loading…</p>`;
+    const missing = `<p style="color:var(--color-error);padding:20px">Module not loaded.</p>`;
     switch (tab) {
-        case "overview":  await _ppOverview(body);  break;
+        case "overview":  if (typeof _ppOverview     === "function") await _ppOverview(body);     else body.innerHTML = missing; break;
         case "dayoff":    await _ppDayOff(body);    break;
-        case "wordstats":  await _ppWordStats(body);  break;
-        case "textbooks":  await _ppTextbooks(body); break;
-        case "tasks":      if (typeof ppRenderTasks    === "function") await ppRenderTasks(body);     break;
-        case "schedule":   if (typeof ppRenderSchedule === "function") await ppRenderSchedule(body);  break;
-        case "pin":        if (typeof ppRenderPin      === "function") ppRenderPin(body);             break;
+        case "wordstats": await _ppWordStats(body); break;
+        case "math":      if (typeof _ppMathSummary  === "function") await _ppMathSummary(body);  else body.innerHTML = missing; break;
+        case "textbooks": if (typeof _ppTextbooks    === "function") await _ppTextbooks(body);    else body.innerHTML = missing; break;
+        case "tasks":     if (typeof ppRenderTasks   === "function") await ppRenderTasks(body);   else body.innerHTML = missing; break;
+        case "schedule":  if (typeof ppRenderSchedule=== "function") await ppRenderSchedule(body);else body.innerHTML = missing; break;
+        case "pin":       if (typeof ppRenderPin     === "function") ppRenderPin(body);           else body.innerHTML = missing; break;
         default: body.innerHTML = "<p>Coming soon.</p>";
     }
-}
-
-// ─── Overview ─────────────────────────────────────────────────
-
-/** Render the enhanced overview: summary cards + activity chart + stage stats. @tag PARENT */
-async function _ppOverview(body) {
-    try {
-        const [sumRes, actRes, stgRes] = await Promise.all([
-            fetch("/api/parent/summary"),
-            fetch("/api/parent/activity?days=7"),
-            fetch("/api/parent/stage-stats"),
-        ]);
-        const sum = await sumRes.json();
-        const act = await actRes.json();
-        const stg = await stgRes.json();
-
-        // Summary cards (2×2)
-        const cards = `
-            <div class="pp-stats">
-                <div class="pp-stat"><div class="pp-stat-num">${sum.total_xp||0} XP</div><div class="pp-stat-label">Total · Lv.${sum.current_level||1}</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">${sum.current_streak||0}d</div><div class="pp-stat-label">Streak (best ${sum.longest_streak||0}d)</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">${sum.total_words_learned||0}</div><div class="pp-stat-label">Words Learned</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">${sum.total_study_minutes||0}m</div><div class="pp-stat-label">${sum.total_study_sessions||0} sessions</div></div>
-            </div>`;
-
-        // 7-day activity bar chart (CSS-only)
-        const daily = act.daily || [];
-        const maxXP = Math.max(1, ...daily.map(d => d.xp));
-        const bars = daily.map(d => {
-            const pct = Math.round((d.xp / maxXP) * 100);
-            const dayLabel = d.date.slice(5); // MM-DD
-            return `<div class="pp-bar-col">
-                <div class="pp-bar-value">${d.xp}</div>
-                <div class="pp-bar-track"><div class="pp-bar-fill" style="height:${pct}%"></div></div>
-                <div class="pp-bar-label">${dayLabel}</div>
-            </div>`;
-        }).join("");
-        const chart = `
-            <div class="pp-section-title">7-Day XP Activity</div>
-            <div class="pp-bar-chart">${bars}</div>`;
-
-        // Stage performance
-        const STAGE_NAMES = {preview:"Preview", word_match:"Word Match", fill_blank:"Fill Blank", spelling:"Spelling", sentence:"Sentence", final_test:"Final Test"};
-        const stageCards = Object.entries(stg.stages || {}).map(([key, s]) => {
-            const name = STAGE_NAMES[key] || key;
-            return `<div class="pp-stage-card">
-                <div class="pp-stage-name">${name}</div>
-                <div class="pp-stage-row"><span>Avg Accuracy</span><strong>${s.avg_accuracy}%</strong></div>
-                <div class="pp-stage-row"><span>Avg Time</span><strong>${Math.round(s.avg_time_sec/60)}m</strong></div>
-                <div class="pp-stage-row"><span>Completed</span><strong>${s.completions}x</strong></div>
-            </div>`;
-        }).join("");
-        const stageSection = stageCards ? `<div class="pp-section-title">Stage Performance</div><div class="pp-stage-grid">${stageCards}</div>` : "";
-
-        body.innerHTML = cards + chart + stageSection;
-    } catch (_) { body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`; }
 }
 
 // ─── Day Off Requests ─────────────────────────────────────────
@@ -258,94 +205,6 @@ async function _ppDecideDayOff(id, status) {
         });
         if (res.ok) _ppLoadTab("dayoff");
     } catch (_) {}
-}
-
-// ─── Word Stats ───────────────────────────────────────────────
-
-// ─── Textbooks Overview ───────────────────────────────────────
-
-/**
- * Render textbook accordion with lesson breakdown.
- * Uses /api/dashboard/stats for the list and /api/dashboard/textbook/{tb} for details.
- * @tag PARENT WORD_STATS
- */
-async function _ppTextbooks(body) {
-    try {
-        const res  = await fetch("/api/dashboard/stats");
-        const data = await res.json();
-        const tbs  = (data.textbooks || []).filter(tb => tb.name.toLowerCase() !== 'my_words');
-
-        if (!tbs.length) {
-            body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px">No textbooks found.</p>`;
-            return;
-        }
-
-        // Summary row
-        const summary = `
-            <div class="pp-stats" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px">
-                <div class="pp-stat"><div class="pp-stat-num">${data.total_words || 0}</div><div class="pp-stat-label">Total Words</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">${data.textbook_count || 0}</div><div class="pp-stat-label">Textbooks</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">${data.lesson_count || 0}</div><div class="pp-stat-label">Lessons</div></div>
-            </div>`;
-
-        // Accordion rows
-        const rows = tbs.map((tb, i) => `
-            <div style="border-bottom:1px solid var(--color-primary-light)">
-                <div style="display:flex;align-items:center;gap:12px;padding:14px 4px;cursor:pointer"
-                     onclick="_ppTbToggle('ppTb${i}', '${escapeHtml(tb.name)}')">
-                    <span style="font-size:20px">📚</span>
-                    <div style="flex:1;min-width:0">
-                        <div style="font-size:15px;font-weight:600;color:var(--text-primary)">${escapeHtml(tb.name)}</div>
-                        <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">${tb.lessons||0} lessons · ${tb.words||0} words</div>
-                    </div>
-                    <span id="ppTbArrow${i}" style="font-size:18px;color:var(--text-secondary);transition:transform 0.2s">›</span>
-                </div>
-                <div id="ppTb${i}" style="display:none;padding:0 0 8px 52px"></div>
-            </div>`).join("");
-
-        const addBtn = `
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-                <div class="pp-section-title" style="margin:0">Textbook Overview</div>
-                <button class="pp-btn primary" style="font-size:12px;padding:6px 14px"
-                        onclick="window.open('/ingest','_blank')">+ Add Textbook</button>
-            </div>`;
-        body.innerHTML = summary + addBtn + `<div>${rows}</div>`;
-    } catch (_) {
-        body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`;
-    }
-}
-
-/**
- * Toggle textbook accordion and lazy-load lessons.
- * @tag PARENT WORD_STATS
- */
-async function _ppTbToggle(panelId, tbName) {
-    const panel = document.getElementById(panelId);
-    const idx   = panelId.replace("ppTb", "");
-    const arrow = document.getElementById(`ppTbArrow${idx}`);
-    if (!panel) return;
-
-    const isOpen = panel.style.display !== "none";
-    panel.style.display = isOpen ? "none" : "block";
-    if (arrow) arrow.style.transform = isOpen ? "" : "rotate(90deg)";
-    if (isOpen || panel.dataset.loaded) return;
-
-    panel.dataset.loaded = "1";
-    panel.innerHTML = `<p style="font-size:13px;color:var(--text-secondary);padding:4px 0">Loading…</p>`;
-    try {
-        const res  = await fetch("/api/dashboard/textbook/" + encodeURIComponent(tbName));
-        const data = await res.json();
-        const lessons = data.lessons || [];
-        if (!lessons.length) { panel.innerHTML = `<p style="font-size:13px;color:var(--text-secondary);padding:4px 0">No lessons.</p>`; return; }
-        panel.innerHTML = lessons.map(l => `
-            <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--radius-sm);transition:background 0.15s"
-                 onmouseover="this.style.background='var(--color-primary-light)'" onmouseout="this.style.background=''">
-                <span style="font-size:13px;font-weight:500;color:var(--text-primary);flex:1">${escapeHtml(l.lesson)}</span>
-                <span style="font-size:12px;color:var(--text-secondary)">${l.words||0} words</span>
-            </div>`).join("");
-    } catch (_) {
-        panel.innerHTML = `<p style="font-size:13px;color:var(--color-error);padding:4px 0">Failed to load.</p>`;
-    }
 }
 
 // ─── Word Stats ───────────────────────────────────────────────

@@ -9,19 +9,30 @@ API: GET /api/diary/entries, POST /api/diary/entries,
 import logging
 import os
 import re as _re
+import time as _time
 from datetime import datetime, timezone
+from pathlib import Path
 
 import httpx
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 try:
-    from ..database import get_db
-    from ..models import DiaryEntry, GrowthEvent, DayOffRequest, UserPracticeSentence, StudyItem
+    from ..database import get_db, LEARNING_ROOT
+    from ..models import AppConfig, DiaryEntry, GrowthEvent, DayOffRequest, UserPracticeSentence, StudyItem
+    from ..services.email_sender import send_email
 except ImportError:
-    from database import get_db
-    from models import DiaryEntry, GrowthEvent, DayOffRequest, UserPracticeSentence, StudyItem
+    from database import get_db, LEARNING_ROOT
+    from models import AppConfig, DiaryEntry, GrowthEvent, DayOffRequest, UserPracticeSentence, StudyItem
+    from services.email_sender import send_email
+
+_PHOTO_DIR        = LEARNING_ROOT / "diary_photos"
+_PHOTO_DIR.mkdir(parents=True, exist_ok=True)
+_PHOTO_EXTS       = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".heic", ".heif"}
+_PHOTO_MAX_BYTES  = 10_000_000  # 10 MB
+_PHOTO_NAME_RE    = _re.compile(r"^[A-Za-z0-9._-]+$")
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -212,6 +223,105 @@ async def create_or_update_diary_entry(
     }
 
 
+# @tag DIARY @tag JOURNAL
+@router.post("/api/diary/photo", status_code=201)
+async def upload_diary_photo(
+    entry_date: str = Form(...),
+    file:       UploadFile = File(...),
+    db:         Session = Depends(get_db),
+):
+    """
+    Attach a photo to the DiaryEntry for `entry_date`.
+
+    Saves the file under LEARNING_ROOT/diary_photos/ with a deterministic
+    name (date + epoch ms + ext) and stores the filename in
+    DiaryEntry.photo_path. Creates a stub entry if none exists yet.
+    """
+    if not _DATE_RE.match(entry_date.strip()):
+        raise HTTPException(status_code=400, detail="entry_date must be YYYY-MM-DD")
+
+    ext = Path(file.filename or "upload.jpg").suffix.lower()
+    if ext not in _PHOTO_EXTS:
+        raise HTTPException(status_code=400, detail=f"File type '{ext}' not allowed")
+
+    raw = await file.read()
+    if not raw:
+        raise HTTPException(status_code=400, detail="Empty file")
+    if len(raw) > _PHOTO_MAX_BYTES:
+        raise HTTPException(status_code=413, detail="Photo too large (max 10 MB)")
+
+    safe_date = entry_date.strip()
+    fname     = f"{safe_date}_{int(_time.time() * 1000)}{ext}"
+    fpath     = _PHOTO_DIR / fname
+    fpath.write_bytes(raw)
+
+    now_iso = datetime.now(timezone.utc).isoformat()
+    entry = (
+        db.query(DiaryEntry)
+        .filter(DiaryEntry.entry_date == safe_date)
+        .first()
+    )
+    if entry:
+        # Best-effort: delete prior file if it lived in our diary_photos dir
+        old = (entry.photo_path or "").strip()
+        if old and _PHOTO_NAME_RE.match(old):
+            old_path = _PHOTO_DIR / old
+            if old_path.exists() and old_path.parent == _PHOTO_DIR:
+                try:
+                    old_path.unlink()
+                except OSError as exc:
+                    logger.warning("Failed to remove old diary photo %s: %s", old_path, exc)
+        entry.photo_path = fname
+    else:
+        entry = DiaryEntry(
+            entry_date  = safe_date,
+            content     = "",
+            photo_path  = fname,
+            created_at  = now_iso,
+        )
+        db.add(entry)
+    db.commit()
+    db.refresh(entry)
+
+    return {
+        "entry_date": entry.entry_date,
+        "photo_path": entry.photo_path,
+        "photo_url":  f"/api/diary/photo/{entry.photo_path}",
+    }
+
+
+# @tag DIARY @tag JOURNAL
+@router.delete("/api/diary/photo/{filename}")
+def delete_diary_photo(filename: str, db: Session = Depends(get_db)):
+    """Remove a diary photo file and clear its DB reference."""
+    if not _PHOTO_NAME_RE.match(filename):
+        raise HTTPException(status_code=400, detail="Invalid filename")
+    fpath = _PHOTO_DIR / filename
+    if fpath.exists() and fpath.parent == _PHOTO_DIR:
+        try:
+            fpath.unlink()
+        except OSError as exc:
+            logger.warning("Failed to delete diary photo %s: %s", fpath, exc)
+
+    entry = db.query(DiaryEntry).filter(DiaryEntry.photo_path == filename).first()
+    if entry:
+        entry.photo_path = None
+        db.commit()
+    return {"deleted": filename}
+
+
+# @tag DIARY @tag JOURNAL
+@router.get("/api/diary/photo/{filename}")
+def get_diary_photo(filename: str):
+    """Serve a stored diary photo. Validates filename to prevent traversal."""
+    if not _PHOTO_NAME_RE.match(filename):
+        raise HTTPException(status_code=400, detail="Invalid filename")
+    fpath = (_PHOTO_DIR / filename).resolve()
+    if fpath.parent != _PHOTO_DIR.resolve() or not fpath.exists():
+        raise HTTPException(status_code=404, detail="Photo not found")
+    return FileResponse(str(fpath))
+
+
 # @tag DIARY @tag GROWTH_TIMELINE
 @router.get("/api/growth/timeline")
 def get_growth_timeline(db: Session = Depends(get_db)):
@@ -236,6 +346,36 @@ def get_growth_timeline(db: Session = Depends(get_db)):
                 "created_at": e.created_at,
             }
             for e in events
+        ],
+    }
+
+
+# @tag DIARY @tag DAY_OFF
+@router.get("/api/day-off/requests")
+def list_day_off_requests(db: Session = Depends(get_db)):
+    """
+    Return all DayOffRequest rows ordered by request_date DESC.
+
+    Used by the diary "Day Off" section to render the user's history of
+    pending / approved / denied requests.
+    """
+    rows = (
+        db.query(DayOffRequest)
+        .order_by(DayOffRequest.request_date.desc())
+        .all()
+    )
+    return {
+        "count": len(rows),
+        "requests": [
+            {
+                "id":              r.id,
+                "request_date":    r.request_date,
+                "reason":          r.reason,
+                "status":          r.status,
+                "parent_response": r.parent_response,
+                "created_at":      r.created_at,
+            }
+            for r in rows
         ],
     }
 

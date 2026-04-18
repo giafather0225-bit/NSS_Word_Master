@@ -27,18 +27,30 @@ const dwState = {
 async function showDailyWordsView() {
     const view = document.getElementById("daily-words-view");
     if (!view) return;
+    // Clear inline display set by switchView() so the .active CSS rule wins.
+    view.style.display = "";
     view.classList.add("active");
     const sa = document.getElementById("stage-area");
     if (sa) sa.style.display = "none";
+    // Auto-collapse sidebar on study entry (matches Academy behavior)
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar) { sidebar.classList.add("collapsed"); localStorage.setItem("sb_collapsed", "1"); }
     await _dwLoadAndRender();
 }
 
 /** Hide Daily Words view and restore stage area. @tag DAILY_WORDS NAVIGATION */
 function hideDailyWordsView() {
     const view = document.getElementById("daily-words-view");
-    if (view) view.classList.remove("active");
+    if (view) {
+        view.classList.remove("active");
+        view.style.display = "none";
+    }
     const sa = document.getElementById("stage-area");
     if (sa) sa.style.display = "";
+    // Re-open sidebar so the user can pick another activity instead of landing
+    // on the Academy empty state.
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar) { sidebar.classList.remove("collapsed"); localStorage.removeItem("sb_collapsed"); }
 }
 
 // ─── Load & Render ────────────────────────────────────────────
@@ -213,8 +225,25 @@ async function _dwFinishPlacement() {
 // ─── Daily Study (Days 2–6) ───────────────────────────────────
 
 /**
- * Render the current flashcard for daily study.
- * @tag DAILY_WORDS
+ * Convert a Daily Words row (word/definition/example) into the Academy Preview
+ * item shape (answer/question/hint) so openPreviewModal can consume it directly.
+ * @tag DAILY_WORDS PREVIEW
+ */
+function _dwToPreviewItem(w, idx) {
+    return {
+        id: `dw-${dwState.cycleDay}-${idx}`,
+        answer:   w.word,
+        question: w.definition || '',
+        hint:     w.example || '',
+        pos:      w.pos || '',
+    };
+}
+
+/**
+ * Render the current Day 2–6 study card and auto-open the Academy Preview
+ * modal (Listen → Shadow ×2 → Spell ×3 → Sentence Read ×2). On modal close
+ * (status 'ok' or 'auto-pass') → advance to next word.
+ * @tag DAILY_WORDS PREVIEW
  */
 function _dwRenderStudyCard() {
     if (dwState.currentIndex >= dwState.words.length) { _dwFinishStudy(); return; }
@@ -223,18 +252,60 @@ function _dwRenderStudyCard() {
     view.innerHTML = `
         ${_dwHeader(`Day ${dwState.cycleDay}`, `${dwState.currentIndex + 1} / ${dwState.words.length}`)}
         ${_dwProgressBar(dwState.currentIndex / dwState.words.length)}
-        <div class="dw-card">
+        <div class="dw-card dw-card-clickable" onclick="_dwOpenPreview()">
             <div class="dw-card-word">${escapeHtml(item.word)}</div>
             <div class="dw-card-definition">${escapeHtml(item.definition)}</div>
             ${item.example ? `<div class="dw-card-example">${escapeHtml(item.example)}</div>` : ""}
-        </div>
-        <div class="dw-btn-row">
-            <button class="dw-btn dw-btn-primary" onclick="_dwStudyNext()">Next →</button>
+            <div class="dw-card-cta">Tap to learn →</div>
         </div>`;
+    // Auto-open preview modal on card render
+    setTimeout(() => _dwOpenPreview(), 80);
 }
 
 /**
- * Advance to next study card.
+ * Open the Academy Preview modal for the current Daily Words item.
+ * On close (ok / auto-pass) → advance index and re-render.
+ * @tag DAILY_WORDS PREVIEW
+ */
+function _dwOpenPreview() {
+    if (typeof window.openPreviewModal !== 'function') {
+        console.warn('[DailyWords] openPreviewModal unavailable; falling back to flashcard');
+        _dwStudyNext();
+        return;
+    }
+    const w = dwState.words[dwState.currentIndex];
+    const pItem = _dwToPreviewItem(w, dwState.currentIndex);
+
+    // Prevent Academy closeModal side-effects: stub `items` so size check matches,
+    // and set `stage` to a sentinel so advanceToNextStage() is skipped.
+    const prevItems = window.items;
+    const prevStage = window.stage;
+    window.items = [pItem];
+    if (typeof previewDoneMap !== 'undefined') previewDoneMap.clear();
+    window.stage = 'dailywords';
+
+    const restore = () => {
+        window.items = prevItems;
+        window.stage = prevStage;
+    };
+
+    window.openPreviewModal(pItem, (status) => {
+        restore();
+        if (status === 'skip') {
+            // User pressed X or Escape — exit Daily Words view, don't reopen.
+            hideDailyWordsView();
+            return;
+        }
+        if (status === 'ok' || status === 'auto-pass') {
+            dwState.correctCount++;
+            dwState.currentIndex++;
+        }
+        _dwRenderStudyCard();
+    });
+}
+
+/**
+ * Advance to next study card without modal (fallback when preview unavailable).
  * @tag DAILY_WORDS
  */
 function _dwStudyNext() {

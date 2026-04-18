@@ -31,6 +31,52 @@
   margin-bottom: 20px; text-align: center;
 }
 
+/* ── Shared body wrappers ── */
+.diary-body         { width: 100%; }
+.dayoff-status-wrap { margin-top: 24px; width: 100%; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+/* ── Shared State Messages (loading / empty / error) ── */
+.diary-state-msg {
+  text-align: center; color: var(--text-secondary);
+  font-size: 14px; padding: 40px 20px; margin: 0;
+}
+.diary-state-msg.error   { color: var(--color-error); }
+.diary-state-msg.compact { padding: 8px; font-size: 13px; }
+
+/* ── Diary Home (section list) ── */
+.diary-home-list {
+  display: flex; flex-direction: column; gap: 10px;
+  max-width: 480px; margin: 0 auto; width: 100%;
+}
+.diary-home-card {
+  background: var(--bg-card); border: none; border-radius: var(--radius-md);
+  padding: 14px 16px; display: flex; align-items: center; gap: 12px;
+  cursor: pointer; box-shadow: var(--shadow-card);
+  font-family: var(--font-family); text-align: left;
+  transition: background 0.12s ease;
+}
+.diary-home-card:hover     { background: var(--color-primary-light); }
+.diary-home-card-icon      { font-size: 22px; line-height: 1; flex-shrink: 0; }
+.diary-home-card-label     { font-size: 15px; font-weight: 600; color: var(--text-primary); flex: 1; }
+.diary-home-card-chevron   { color: var(--text-secondary); font-size: 16px; }
+
+/* ── Worlds Grid ── */
+.worlds-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px; max-width: 480px; margin: 0 auto; width: 100%;
+}
+.worlds-card {
+  background: var(--bg-card); border-radius: var(--radius-lg);
+  padding: 16px; text-align: center; box-shadow: var(--shadow-card);
+}
+.worlds-card-img    { width: 100px; height: 100px; border-radius: var(--radius-md); object-fit: contain; }
+.worlds-card-img.broken { opacity: 0.3; }
+.worlds-card-title  { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-top: 8px; }
+.worlds-card-status { font-size: 11px; color: var(--color-success); display: inline-flex; align-items: center; gap: 4px; }
+.worlds-empty       { text-align: center; padding: 40px 20px; }
+.worlds-empty-icon  { font-size: 48px; line-height: 1; }
+.worlds-empty-text  { color: var(--text-secondary); margin-top: 8px; font-size: 14px; }
+
 /* ── Journal ── */
 .journal-area {
   max-width: 640px; margin: 0 auto; width: 100%;
@@ -59,6 +105,32 @@
 }
 .journal-submit-btn:hover    { background: var(--color-primary-hover); }
 .journal-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Journal Photo ── */
+.journal-photo-row {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.journal-photo-btn {
+  background: var(--bg-card); border: 1px dashed var(--color-primary);
+  color: var(--color-primary); border-radius: var(--radius-full);
+  padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer;
+  font-family: var(--font-family); transition: background 0.12s;
+}
+.journal-photo-btn:hover { background: var(--color-primary-light); }
+.journal-photo-status    { font-size: 12px; color: var(--text-secondary); }
+
+.journal-photo-preview { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.journal-photo-preview:empty { display: none; }
+.journal-photo-img {
+  max-width: 100%; max-height: 320px; border-radius: var(--radius-md);
+  border: 1px solid var(--border-card); object-fit: contain; background: var(--bg-card);
+}
+.journal-photo-remove {
+  background: none; border: none; color: var(--color-error);
+  font-size: 12px; font-weight: 600; cursor: pointer; padding: 4px 8px;
+  font-family: var(--font-family);
+}
+.journal-photo-remove:hover { text-decoration: underline; }
 
 /* ── AI Feedback ── */
 .ai-feedback-box {
@@ -107,16 +179,27 @@
   box-shadow: none; border: 1px solid var(--border-card); display: flex; align-items: center;
   justify-content: space-between; gap: 12px;
 }
-.status-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-full); flex-shrink: 0; }
-.status-badge.pending  { background: #FFF3CD; color: #856404; }
-.status-badge.approved { background: #D4EDDA; color: #155724; }
-.status-badge.denied   { background: #F8D7DA; color: #721c24; }
+.dayoff-status-info   { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.dayoff-status-date   { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.dayoff-status-reason { font-size: 12px; color: var(--text-secondary); line-height: 1.4; overflow: hidden; text-overflow: ellipsis; }
+.status-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-full); flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.04em; }
+.status-badge.pending  { background: var(--color-warning-light); color: var(--color-warning); }
+.status-badge.approved { background: var(--color-success-light); color: var(--color-success); }
+.status-badge.denied   { background: var(--color-error-light);   color: var(--color-error); }
 
 /* ── My Sentences ── */
 .sentences-list { display: flex; flex-direction: column; gap: 10px; max-width: 560px; margin: 0 auto; width: 100%; }
 .sentence-card  { background: var(--bg-card); border-radius: var(--radius-md); padding: 14px 16px; box-shadow: none; border: 1px solid var(--border-card); }
-.sentence-word  { font-size: 13px; font-weight: 700; color: var(--color-primary); margin-bottom: 4px; }
+.sentence-card.stale { border-color: var(--color-warning); }
+.sentence-card-head  { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.sentence-word  { font-size: 13px; font-weight: 700; color: var(--color-primary); }
 .sentence-text  { font-size: 15px; color: var(--text-primary); line-height: 1.5; }
+.sentence-rewrite-badge {
+  font-size: 11px; font-weight: 700; padding: 2px 8px;
+  border-radius: var(--radius-full); flex-shrink: 0;
+  background: var(--color-warning-light); color: var(--color-warning);
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
 
 /* ── Diary Overlay (top-bar 📖 button) ── */
 #diary-overlay {
@@ -190,3 +273,4 @@
     text-align: center; padding: 60px 20px;
     color: var(--text-secondary); font-size: 15px;
 }
+.diary-empty.error { color: var(--color-error); }

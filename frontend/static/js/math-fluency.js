@@ -94,9 +94,14 @@ async function _startRound(factSet) {
         fluencyState.idx = 0;
         fluencyState.correct = 0;
         fluencyState.answered = 0;
-        fluencyState.timeLimit = data.time_limit_sec || 60;
+        // Phase A is untimed: backend returns time_limit_sec === 0.
+        fluencyState.timeLimit = Number(data.time_limit_sec) || 0;
+        fluencyState.untimed = fluencyState.timeLimit <= 0;
+        fluencyState.phase = data.phase || 'A';
         fluencyState.startedAt = Date.now();
-        fluencyState.endsAt = fluencyState.startedAt + fluencyState.timeLimit * 1000;
+        fluencyState.endsAt = fluencyState.untimed
+            ? 0
+            : fluencyState.startedAt + fluencyState.timeLimit * 1000;
         _renderRoundFrame(data.label || factSet);
         _renderCurrentQuestion();
         _startTimer();
@@ -113,9 +118,9 @@ function _renderRoundFrame(label) {
         <div class="math-fluency-round">
             <div class="math-fluency-header">
                 <span class="math-fluency-label">${_escF(label)}</span>
-                <span class="math-fluency-timer" id="math-fluency-timer">${fluencyState.timeLimit}s</span>
+                <span class="math-fluency-timer" id="math-fluency-timer">${fluencyState.untimed ? '∞' : fluencyState.timeLimit + 's'}</span>
             </div>
-            <div class="math-fluency-bar">
+            <div class="math-fluency-bar" ${fluencyState.untimed ? 'style="visibility:hidden"' : ''}>
                 <div class="math-fluency-bar-fill" id="math-fluency-bar-fill" style="width:100%"></div>
             </div>
             <div class="math-fluency-card-big" id="math-fluency-card"></div>
@@ -199,6 +204,7 @@ function _updateScoreDisplay() {
 /** @tag MATH @tag FLUENCY */
 function _startTimer() {
     _clearTimer();
+    if (fluencyState.untimed) return;  // Phase A: no countdown
     fluencyState.timerId = setInterval(() => {
         const left = Math.max(0, Math.round((fluencyState.endsAt - Date.now()) / 1000));
         const tEl = document.getElementById('math-fluency-timer');
