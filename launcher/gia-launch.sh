@@ -34,7 +34,10 @@ cd "$APP_DIR" || {
 if [ "$AUTO_UPDATE" = true ]; then
   echo -e "${YELLOW}📦 Checking for updates...${NC}"
   OLD_HEAD=$(git rev-parse HEAD 2>/dev/null)
-  if ! git pull origin main 2>&1 | tee -a "$LOG_FILE"; then
+  # Abort git pull on slow/flaky wifi (hotels, planes) to avoid blocking startup
+  export GIT_HTTP_LOW_SPEED_LIMIT=1000
+  export GIT_HTTP_LOW_SPEED_TIME=10
+  if ! git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=10 pull origin main 2>&1 | tee -a "$LOG_FILE"; then
     echo -e "${RED}⚠️ git pull failed — continuing with current code.${NC}"
     osascript -e 'display notification "Update failed — using current version." with title "GIA"' 2>/dev/null
   else
@@ -83,7 +86,7 @@ fi
 
 # ─── Start server (background) ───
 echo -e "${GREEN}🚀 Starting server on port $PORT...${NC}"
-nohup uvicorn backend.main:app --host 0.0.0.0 --port $PORT \
+nohup uvicorn backend.main:app --host 127.0.0.1 --port $PORT \
   >> "$LOG_FILE" 2>&1 &
 SERVER_PID=$!
 echo $SERVER_PID > "$PID_FILE"
