@@ -1,0 +1,160 @@
+{
+  "lesson_id": "L11_combine_place_values_to_subtract",
+  "title": "Combine Place Values to Subtract",
+  "ccss": ["3.NBT.A.2"],
+  "grade": "G3",
+  "unit": "U1_add_sub_1000",
+  "go_math_ref": { "chapter": 1, "lesson": 1.11, "pages": "47-50" },
+  "essential_question": "How can you combine place values to subtract 3-digit numbers?",
+  "key_vocabulary": ["regroup", "combine", "place value", "hundreds", "tens", "ones"],
+  "strategies": ["combine_place_values_before_subtracting", "regroup_across_zeros"],
+
+  "pretest": [
+    {
+      "id": "PT_01", "type": "multiple_choice",
+      "question": "476 − 269 =",
+      "choices": ["A. 197", "B. 207", "C. 217", "D. 203"],
+      "answer": "B",
+      "solution_steps": ["Ones: 6−9→regroup: 16−9=7", "Tens: 6−6=0 (after regrouping 7t→6t)", "Hundreds: 4−2=2", "207"],
+      "hint": "Regroup tens to ones first.", "difficulty": 3,
+      "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_regrouping",
+      "expected_errors": ["476−269=217 (regrouping error)"]
+    },
+    {
+      "id": "PT_02", "type": "multiple_choice",
+      "question": "615 − 342 =",
+      "choices": ["A. 263", "B. 273", "C. 283", "D. 277"],
+      "answer": "B",
+      "solution_steps": ["Ones: 5−2=3", "Tens: 1−4→regroup: 11−4=7", "Hundreds: 5−3=2", "273"],
+      "hint": "Regroup hundreds to tens.", "difficulty": 3,
+      "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_regrouping",
+      "expected_errors": ["615−342=283"]
+    },
+    {
+      "id": "PT_03", "type": "multiple_choice",
+      "question": "700 − 326 =",
+      "choices": ["A. 364", "B. 374", "C. 384", "D. 376"],
+      "answer": "B",
+      "solution_steps": ["7h 0t 0o → combine: 6h 9t 10o", "10−6=4, 9−2=7, 6−3=3", "374"],
+      "hint": "Combine: 7 hundreds = 6 hundreds + 9 tens + 10 ones.", "difficulty": 4,
+      "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros",
+      "expected_errors": ["700−326=384"]
+    },
+    {
+      "id": "PT_04", "type": "multiple_choice",
+      "question": "508 − 113 =",
+      "choices": ["A. 385", "B. 395", "C. 405", "D. 391"],
+      "answer": "B",
+      "solution_steps": ["Ones: 8−3=5", "Tens: 0−1→regroup: 10−1=9", "Hundreds: 4−1=3", "395"],
+      "hint": "Regroup from hundreds to tens.", "difficulty": 3,
+      "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_zero_tens",
+      "expected_errors": ["508−113=405"]
+    },
+    {
+      "id": "PT_05", "type": "multiple_choice",
+      "question": "Bev scored 540 points — 158 more than Ike. How many did Ike score?",
+      "choices": ["A. 372", "B. 382", "C. 392", "D. 698"],
+      "answer": "B",
+      "solution_steps": ["540−158", "Ones: 0−8→combine: 5h→4h, 4t→3t, 10o. 10−8=2", "Tens: 3−5→regroup: 13−5=8", "Hundreds: 3−1=2? Wait, let me redo.", "540 = 5h 4t 0o. Regroup: 5h 3t 10o. 10−8=2. 3−5→regroup: 4h 13t. 13−5=8. 4−1=3. → 382"],
+      "hint": "'158 more than' means subtract 158 from 540.", "difficulty": 4,
+      "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_word_problem",
+      "expected_errors": ["Adding: 540+158=698"]
+    }
+  ],
+
+  "learn": [
+    {
+      "id": "LEARN_01", "type": "concept_card",
+      "title": "What Does 'Combine Place Values' Mean?",
+      "content": "Instead of regrouping one place at a time, you can COMBINE place values before subtracting. Example: 700 = 7 hundreds. You can think of it as 6 hundreds + 10 tens, or 6 hundreds + 9 tens + 10 ones. Then subtract!",
+      "visual_type": "place_value_chart", "cpa_stage": "concrete"
+    },
+    {
+      "id": "LEARN_02", "type": "concept_card",
+      "title": "Example: 700 − 326",
+      "content": "Step 1: 700 = 6 hundreds + 9 tens + 10 ones (combine!). Step 2: Ones: 10−6=4. Step 3: Tens: 9−2=7. Step 4: Hundreds: 6−3=3. Answer: 374.",
+      "visual_type": "step_by_step", "cpa_stage": "pictorial",
+      "example": { "problem": "700−326", "combined": "6h 9t 10o", "answer": 374 }
+    },
+    {
+      "id": "LEARN_03", "type": "concept_card",
+      "title": "Why Combine?",
+      "content": "When you have zeros in the middle (like 700, 508, 900), combining makes it easier because you do all the regrouping in ONE step instead of going back and forth.",
+      "visual_type": "comparison_table", "cpa_stage": "abstract"
+    },
+    {
+      "id": "LEARN_04", "type": "concept_card",
+      "title": "Example: 476 − 269",
+      "content": "Ones: 6−9? Can't! Regroup: 476 = 4h 6t 16o. 16−9=7. Tens: 6−6=0. Hundreds: 4−2=2. Answer: 207.",
+      "visual_type": "step_by_step", "cpa_stage": "pictorial"
+    },
+    {
+      "id": "LEARN_05", "type": "concept_card",
+      "title": "Example: 900 − 158",
+      "content": "900 = 8 hundreds + 9 tens + 10 ones. Ones: 10−8=2. Tens: 9−5=4. Hundreds: 8−1=7. Answer: 742.",
+      "visual_type": "step_by_step", "cpa_stage": "pictorial",
+      "example": { "problem": "900−158", "combined": "8h 9t 10o", "answer": 742 }
+    },
+    {
+      "id": "LEARN_06", "type": "concept_card",
+      "title": "Estimate First!",
+      "content": "Always estimate before solving. 476−269: estimate 500−300=200. Your answer (207) is close. 700−326: estimate 700−300=400. Your answer (374) is close.",
+      "visual_type": "comparison_table", "cpa_stage": "abstract"
+    },
+    {
+      "id": "LEARN_07", "type": "concept_card",
+      "title": "Check by Adding",
+      "content": "After subtracting, add your answer to the smaller number. 374+326=700 ✓. 207+269=476 ✓. If they match, your subtraction is correct!",
+      "visual_type": "step_by_step", "cpa_stage": "abstract"
+    },
+    {
+      "id": "LEARN_08", "type": "concept_card",
+      "title": "Combining vs. Regular Regrouping",
+      "content": "Both methods give the same answer! Combining is just a shortcut for numbers with zeros. Use whichever method feels easier to you.",
+      "visual_type": "comparison_table", "cpa_stage": "abstract"
+    }
+  ],
+
+  "try": [
+    { "id": "TRY_01", "type": "multiple_choice", "question": "716 − 229 =", "choices": ["A. 477", "B. 487", "C. 497", "D. 483"], "answer": "B", "solution_steps": ["Ones: 6−9→16−9=7", "Tens: 0−2→10−2=8", "Hundreds: 6−2=4", "487"], "hint": "Regroup ones, then tens.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract", "expected_errors": ["716−229=497"] },
+    { "id": "TRY_02", "type": "multiple_choice", "question": "325 − 179 =", "choices": ["A. 136", "B. 146", "C. 156", "D. 142"], "answer": "B", "solution_steps": ["Ones: 5−9→15−9=6", "Tens: 1−7→11−7=4", "Hundreds: 2−1=1", "146"], "hint": "Double regroup.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_double", "expected_errors": ["325−179=156"] },
+    { "id": "TRY_03", "type": "multiple_choice", "question": "935 − 813 =", "choices": ["A. 112", "B. 122", "C. 132", "D. 118"], "answer": "B", "solution_steps": ["Ones: 5−3=2", "Tens: 3−1=2", "Hundreds: 9−8=1", "122"], "hint": "No regrouping needed!", "difficulty": 2, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_no_regroup", "expected_errors": ["935−813=132"] },
+    { "id": "TRY_04", "type": "multiple_choice", "question": "358 − 292 =", "choices": ["A. 56", "B. 66", "C. 76", "D. 62"], "answer": "B", "solution_steps": ["Ones: 8−2=6", "Tens: 5−9→15−9=6", "Hundreds: 2−2=0", "66"], "hint": "When hundreds subtract to 0, the answer starts with tens.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_zero_hundreds", "expected_errors": ["358−292=76"] },
+    { "id": "TRY_05", "type": "multiple_choice", "question": "826 − 617 =", "choices": ["A. 199", "B. 209", "C. 219", "D. 211"], "answer": "B", "solution_steps": ["Ones: 6−7→16−7=9", "Tens: 1−1=0", "Hundreds: 8−6=2", "209"], "hint": "Regroup for ones.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract", "expected_errors": ["826−617=219"] }
+  ],
+
+  "practice_r1": [
+    { "id": "R1_01", "type": "multiple_choice", "question": "900 − 158 =", "choices": ["A. 732", "B. 742", "C. 752", "D. 748"], "answer": "B", "solution_steps": ["Combine: 8h 9t 10o. 10−8=2, 9−5=4, 8−1=7 → 742"], "hint": "900 = 8 hundreds + 9 tens + 10 ones.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["900−158=752"] },
+    { "id": "R1_02", "type": "multiple_choice", "question": "607 − 568 =", "choices": ["A. 29", "B. 39", "C. 49", "D. 41"], "answer": "B", "solution_steps": ["Combine: 5h 9t 17o. 17−8=9, 9−6=3, 5−5=0 → 39"], "hint": "Combine: 607 = 5h 9t 17o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["607−568=49"] },
+    { "id": "R1_03", "type": "multiple_choice", "question": "973 − 869 =", "choices": ["A. 94", "B. 104", "C. 114", "D. 96"], "answer": "B", "solution_steps": ["Ones: 3−9→13−9=4", "Tens: 6−6=0", "Hundreds: 9−8=1", "104"], "hint": "Regroup for ones.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract", "expected_errors": ["973−869=114"] },
+    { "id": "R1_04", "type": "multiple_choice", "question": "400 − 237 =", "choices": ["A. 153", "B. 163", "C. 173", "D. 167"], "answer": "B", "solution_steps": ["Combine: 3h 9t 10o. 10−7=3, 9−3=6, 3−2=1 → 163"], "hint": "400 = 3 hundreds + 9 tens + 10 ones.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["400−237=173"] },
+    { "id": "R1_05", "type": "multiple_choice", "question": "562 − 387 =", "choices": ["A. 165", "B. 175", "C. 185", "D. 171"], "answer": "B", "solution_steps": ["Ones: 2−7→12−7=5", "Tens: 5−8→15−8=7", "Hundreds: 4−3=1", "175"], "hint": "Double regroup.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_double", "expected_errors": ["562−387=185"] },
+    { "id": "R1_06", "type": "multiple_choice", "question": "801 − 456 =", "choices": ["A. 335", "B. 345", "C. 355", "D. 341"], "answer": "B", "solution_steps": ["Combine: 7h 9t 11o. 11−6=5, 9−5=4, 7−4=3 → 345"], "hint": "801 = 7h 9t 11o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["801−456=355"] },
+    { "id": "R1_07", "type": "multiple_choice", "question": "750 − 386 =", "choices": ["A. 354", "B. 364", "C. 374", "D. 366"], "answer": "B", "solution_steps": ["Ones: 0−6→10−6=4", "Tens: 4−8→14−8=6", "Hundreds: 6−3=3", "364"], "hint": "Regroup through the places.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract", "expected_errors": ["750−386=374"] },
+    { "id": "R1_08", "type": "multiple_choice", "question": "Bev scored 540 points. Ike scored 158 fewer. How many did Ike score?", "choices": ["A. 372", "B. 382", "C. 392", "D. 388"], "answer": "B", "solution_steps": ["540−158=382"], "hint": "'Fewer' means subtract.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_word_problem", "expected_errors": ["540+158=698"] },
+    { "id": "R1_09", "type": "multiple_choice", "question": "A group earned $285 washing cars. Expenses: $79. Profit?", "choices": ["A. $196", "B. $206", "C. $216", "D. $204"], "answer": "B", "solution_steps": ["285−79=206"], "hint": "Profit = earnings − expenses.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_word_problem", "expected_errors": ["285−79=196"] },
+    { "id": "R1_10", "type": "multiple_choice", "question": "643 − 475 =", "choices": ["A. 158", "B. 168", "C. 178", "D. 172"], "answer": "B", "solution_steps": ["Ones: 3−5→13−5=8", "Tens: 3−7→13−7=6", "Hundreds: 5−4=1", "168"], "hint": "Double regroup.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_double", "expected_errors": ["643−475=178"] }
+  ],
+
+  "practice_r2": [
+    { "id": "R2_01", "type": "multiple_choice", "question": "1000 − 537 =", "choices": ["A. 453", "B. 463", "C. 473", "D. 467"], "answer": "B", "solution_steps": ["Combine: 9h 9t 10o. 10−7=3, 9−3=6, 9−5=4 → 463"], "hint": "1000 = 9h 9t 10o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_1000", "expected_errors": ["1000−537=473"] },
+    { "id": "R2_02", "type": "multiple_choice", "question": "500 − 268 =", "choices": ["A. 222", "B. 232", "C. 242", "D. 228"], "answer": "B", "solution_steps": ["Combine: 4h 9t 10o. 10−8=2, 9−6=3, 4−2=2 → 232"], "hint": "500 = 4h 9t 10o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["500−268=242"] },
+    { "id": "R2_03", "type": "multiple_choice", "question": "302 − 185 =", "choices": ["A. 107", "B. 117", "C. 127", "D. 113"], "answer": "B", "solution_steps": ["Combine: 2h 9t 12o. 12−5=7, 9−8=1, 2−1=1 → 117"], "hint": "302 = 2h 9t 12o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["302−185=127"] },
+    { "id": "R2_04", "type": "multiple_choice", "question": "Which subtraction shows the CORRECT way to combine place values for 600 − 247?", "choices": ["A. 6h 0t 0o → 5h 10t 0o → 5h 9t 10o", "B. 6h 0t 0o → 5h 9t 10o (combine all at once)", "C. Both A and B are correct", "D. Neither is correct"],
+      "answer": "C", "solution_steps": ["A steps through it; B combines in one step", "Both arrive at 5h 9t 10o", "Both are correct methods"], "hint": "Try both methods — do they give the same result?", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_conceptual", "expected_errors": ["Thinking only B is correct"] },
+    { "id": "R2_05", "type": "multiple_choice", "question": "705 − 368 =", "choices": ["A. 327", "B. 337", "C. 347", "D. 333"], "answer": "B", "solution_steps": ["Combine: 6h 9t 15o. 15−8=7, 9−6=3, 6−3=3 → 337"], "hint": "705 = 6h 9t 15o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["705−368=347"] },
+    { "id": "R2_06", "type": "multiple_choice", "question": "A school has 803 students. 547 are in K-3. How many in grades 4-6?", "choices": ["A. 246", "B. 256", "C. 266", "D. 252"], "answer": "B", "solution_steps": ["803−547: combine 7h 9t 13o. 13−7=6, 9−4=5, 7−5=2 → 256"], "hint": "Combine place values for 803.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_word_problem", "expected_errors": ["803−547=266"] },
+    { "id": "R2_07", "type": "multiple_choice", "question": "456 − 289 =", "choices": ["A. 157", "B. 167", "C. 177", "D. 163"], "answer": "B", "solution_steps": ["Ones: 6−9→16−9=7", "Tens: 4−8→14−8=6", "Hundreds: 3−2=1", "167"], "hint": "Double regroup.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_double", "expected_errors": ["456−289=177"] },
+    { "id": "R2_08", "type": "multiple_choice", "question": "A store had 920 items. Sold 483. How many left?", "choices": ["A. 427", "B. 437", "C. 447", "D. 433"], "answer": "B", "solution_steps": ["920−483: Ones: 0−3→10−3=7. Tens: 1−8→11−8=3. Hundreds: 8−4=4. → 437"], "hint": "Regroup from tens, then hundreds.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_word_problem", "expected_errors": ["920−483=447"] },
+    { "id": "R2_09", "type": "multiple_choice", "question": "How do you check if 700−326=374 is correct?", "choices": ["A. 374+326=700 ✓", "B. 700−374=326 ✓", "C. Both A and B work", "D. Estimate: 700−300=400, close to 374 ✓"], "answer": "C", "solution_steps": ["A: addition check → 374+326=700 ✓", "B: reverse subtraction → 700−374=326 ✓", "Both verify the answer"], "hint": "There are multiple ways to check subtraction!", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_verify", "expected_errors": ["Thinking only A works"] },
+    { "id": "R2_10", "type": "multiple_choice", "question": "604 − 357 =", "choices": ["A. 237", "B. 247", "C. 257", "D. 243"], "answer": "B", "solution_steps": ["Combine: 5h 9t 14o. 14−7=7, 9−5=4, 5−3=2 → 247"], "hint": "604 = 5h 9t 14o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["604−357=257"] }
+  ],
+
+  "practice_r3": [
+    { "id": "R3_01", "type": "multiple_choice", "question": "Sarah says 500−263=247. Tim says 500−263=237. Who is correct?", "choices": ["A. Sarah", "B. Tim", "C. Neither", "D. Both"], "answer": "B", "solution_steps": ["500 = 4h 9t 10o. 10−3=7, 9−6=3, 4−2=2 → 237", "Check: 237+263=500 ✓", "Tim is correct"], "hint": "Calculate it yourself.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_error_analysis", "expected_errors": ["Choosing Sarah"] },
+    { "id": "R3_02", "type": "multiple_choice", "question": "A farmer harvested 806 apples Monday and 459 Tuesday. He sold all Monday's apples and 278 of Tuesday's. How many Tuesday apples are left?", "choices": ["A. 171", "B. 181", "C. 191", "D. 175"], "answer": "B", "solution_steps": ["Only need Tuesday: 459−278", "Ones: 9−8=1", "Tens: 5−7→15−7=8", "Hundreds: 3−2=1", "181"], "hint": "Monday's apples don't matter! Focus on Tuesday.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_multi_step", "expected_errors": ["Using 806 in the calculation"] },
+    { "id": "R3_03", "type": "multiple_choice", "question": "Find two numbers: their sum is 800 and their difference is 124. What are they?", "choices": ["A. 462 and 338", "B. 472 and 328", "C. 450 and 350", "D. 400 and 400"], "answer": "A", "solution_steps": ["If a+b=800 and a−b=124", "Then 2a=924, a=462, b=800−462=338", "Check: 462−338=124 ✓, 462+338=800 ✓"], "hint": "Add sum and difference, divide by 2 for the larger number.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_reasoning", "expected_errors": ["Guessing: 450 and 350 (difference=100, not 124)"] },
+    { "id": "R3_04", "type": "multiple_choice", "question": "Which problem gives the SMALLEST difference?", "choices": ["A. 903 − 897", "B. 700 − 685", "C. 500 − 492", "D. 801 − 799"], "answer": "D", "solution_steps": ["A: 903−897=6", "B: 700−685=15", "C: 500−492=8", "D: 801−799=2", "Smallest is D (2)"], "hint": "Calculate each difference.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_compare", "expected_errors": ["Choosing A (6) without checking D"] },
+    { "id": "R3_05", "type": "multiple_choice", "question": "A library has 900 books. Fiction: 358. Non-fiction: 276. The rest are magazines. How many magazines?", "choices": ["A. 256", "B. 266", "C. 276", "D. 246"], "answer": "B", "solution_steps": ["Total other: 358+276=634", "Magazines: 900−634", "Combine: 8h 9t 10o. 10−4=6, 9−3=6, 8−6=2 → 266"], "hint": "First add fiction + non-fiction, then subtract from 900.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_multi_step", "expected_errors": ["900−358=542, forgetting non-fiction"] }
+  ]
+}

@@ -48,7 +48,10 @@ def load_grade_words(grade: str) -> list[dict]:
         return []
     try:
         with open(path, encoding="utf-8") as f:
-            return json.load(f)
+            data = json.load(f)
+        if isinstance(data, list):
+            return data
+        return [w for week in data.get("weeks", []) for w in week.get("words", [])]
     except Exception as exc:
         logger.error("Failed to load %s: %s", path, exc)
         return []

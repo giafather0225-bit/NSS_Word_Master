@@ -3,7 +3,7 @@
 # GIA Learning App — Server Stop
 # ═══════════════════════════════════════════
 
-APP_DIR="$HOME/Documents/Antigravity/NSS_Word_Master"
+APP_DIR="$HOME/NSS_Learning/NSS_Word_Master"
 PID_FILE="$APP_DIR/logs/server.pid"
 
 if [ -f "$PID_FILE" ]; then

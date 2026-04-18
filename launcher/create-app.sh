@@ -5,7 +5,7 @@
 # Result: ~/Desktop/GIA.app
 # ═══════════════════════════════════════════
 
-APP_DIR="$HOME/Documents/Antigravity/NSS_Word_Master"
+APP_DIR="$HOME/NSS_Learning/NSS_Word_Master"
 APP_NAME="GIA"
 APP_PATH="$HOME/Desktop/$APP_NAME.app"
 ICON_SOURCE="$APP_DIR/frontend/static/img/GIA_Logo.png"
