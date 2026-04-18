@@ -33,13 +33,31 @@ cd "$APP_DIR" || {
 # ─── Auto-update (only when flag is true) ───
 if [ "$AUTO_UPDATE" = true ]; then
   echo -e "${YELLOW}📦 Checking for updates...${NC}"
-  git pull origin main 2>&1 | tee -a "$LOG_FILE"
+  OLD_HEAD=$(git rev-parse HEAD 2>/dev/null)
+  if ! git pull origin main 2>&1 | tee -a "$LOG_FILE"; then
+    echo -e "${RED}⚠️ git pull failed — continuing with current code.${NC}"
+    osascript -e 'display notification "Update failed — using current version." with title "GIA"' 2>/dev/null
+  else
+    NEW_HEAD=$(git rev-parse HEAD 2>/dev/null)
+    CHANGED=$(git diff --name-only "$OLD_HEAD" "$NEW_HEAD" 2>/dev/null)
 
-  # Install deps if requirements.txt changed
-  if git diff HEAD~1 --name-only 2>/dev/null | grep -q "requirements.txt"; then
-    echo -e "${YELLOW}📚 Installing updated dependencies...${NC}"
-    source "$VENV_DIR/bin/activate" 2>/dev/null
-    pip install -r requirements.txt 2>&1 | tee -a "$LOG_FILE"
+    # Install deps if requirements.txt changed
+    if echo "$CHANGED" | grep -q "requirements.txt"; then
+      echo -e "${YELLOW}📚 Installing updated dependencies...${NC}"
+      source "$VENV_DIR/bin/activate" 2>/dev/null
+      pip install -r requirements.txt 2>&1 | tee -a "$LOG_FILE"
+    fi
+
+    # Run new migrations if any
+    if echo "$CHANGED" | grep -q "backend/migrations/"; then
+      echo -e "${YELLOW}🗄️  Applying database migrations...${NC}"
+      source "$VENV_DIR/bin/activate" 2>/dev/null
+      for mig in backend/migrations/[0-9]*.py; do
+        [ -f "$mig" ] || continue
+        echo "  → $(basename "$mig")" | tee -a "$LOG_FILE"
+        python3 "$mig" 2>&1 | tee -a "$LOG_FILE"
+      done
+    fi
   fi
 fi
 
