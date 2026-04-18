@@ -67,16 +67,16 @@ window.pmStartSR = function(ctx) {
         });
     }
 
+    const isOffline = () => typeof navigator !== 'undefined' && navigator.onLine === false;
+
     async function startRec(i) {
         const mic = document.querySelectorAll('#pm-sr-rows .pm-mic-btn')[i];
         if (mic) { mic.disabled = true; mic.innerHTML = '🎵 Playing…'; }
         try { await playTTS('/api/tts/example_full', {sentence: hint}); } catch (_) {}
 
-        if (!SpeechRec) {
-            // Fallback: no speech recognition → auto-pass
-            state[i] = 100;
-            buildRows();
-            checkDone();
+        // Offline or no Web Speech API → route to local Whisper via backend
+        if (isOffline() || !SpeechRec) {
+            await _recordAndRecognizeLocal(i, mic);
             return;
         }
 
@@ -94,11 +94,69 @@ window.pmStartSR = function(ctx) {
             if (score >= 90) checkDone();
             else setTimeout(() => { state[i] = null; buildRows(); }, 1500);
         };
-        rec.onerror = () => { buildRows(); };
+        rec.onerror = (ev) => {
+            // 'network' error on flaky/blocked connection → fall back to local Whisper
+            if (ev && ev.error === 'network') {
+                _recordAndRecognizeLocal(i, mic);
+                return;
+            }
+            buildRows();
+        };
         rec.onend   = () => { if (state[i] === null) buildRows(); };
 
         if (typeof setRec === 'function') setRec(rec);
         try { rec.start(); } catch (_) {}
+    }
+
+    /**
+     * Record 4s of mic audio and send to /api/speech/recognize (local Whisper).
+     * Used as offline fallback for the Shadow stage.
+     * @tag SENTENCE_READ SPEECH OFFLINE
+     */
+    async function _recordAndRecognizeLocal(i, mic) {
+        if (!navigator.mediaDevices || !window.MediaRecorder) {
+            state[i] = 100;  // hardware unavailable → auto-pass
+            buildRows();
+            checkDone();
+            return;
+        }
+        if (mic) { mic.classList.add('recording'); mic.innerHTML = '&#9209; Say it now'; }
+        let stream;
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        } catch (_) {
+            state[i] = 100;
+            buildRows();
+            checkDone();
+            return;
+        }
+        const rec = new MediaRecorder(stream);
+        const chunks = [];
+        rec.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+        rec.onstop = async () => {
+            stream.getTracks().forEach(t => t.stop());
+            const blob = new Blob(chunks, { type: 'audio/webm' });
+            try {
+                const fd = new FormData();
+                fd.append('audio', blob, 'clip.webm');
+                fd.append('lang', 'en');
+                const res = await fetch('/api/speech/recognize', { method: 'POST', body: fd });
+                if (!res.ok) throw new Error('recognize ' + res.status);
+                const data = await res.json();
+                const score = _srSimilarity(data.transcript || '', hint);
+                state[i] = score;
+                buildRows();
+                if (score >= 90) checkDone();
+                else setTimeout(() => { state[i] = null; buildRows(); }, 1500);
+            } catch (err) {
+                console.warn('[SR] local recognize failed, auto-pass:', err.message || err);
+                state[i] = 100;
+                buildRows();
+                checkDone();
+            }
+        };
+        rec.start();
+        setTimeout(() => { try { rec.stop(); } catch (_) {} }, 4000);
     }
 
     function checkDone() {

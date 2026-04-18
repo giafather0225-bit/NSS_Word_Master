@@ -53,6 +53,7 @@ from backend.routers import math_daily as math_daily_router
 from backend.routers import math_kangaroo as math_kangaroo_router
 from backend.routers import math_glossary as math_glossary_router
 from backend.routers import math_problems as math_problems_router
+from backend.routers import speech as speech_router
 from backend.services import ollama_manager, backup_engine
 
 # ── DB init ────────────────────────────────────────────────
@@ -175,6 +176,7 @@ app.include_router(math_daily_router.router)
 app.include_router(math_kangaroo_router.router)
 app.include_router(math_glossary_router.router)
 app.include_router(math_problems_router.router)
+app.include_router(speech_router.router)
 
 
 # ── Pydantic schemas (kept here for dashboard/rewards/schedules/AI routes) ──
