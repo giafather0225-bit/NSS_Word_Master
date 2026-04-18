@@ -6,7 +6,7 @@
    ================================================================ */
 
 /** @tag SYSTEM @tag PWA @tag OFFLINE */
-const SW_VERSION = 'gia-sw-v2';
+const SW_VERSION = 'gia-sw-v3';
 const STATIC_CACHE = `${SW_VERSION}-static`;
 const DATA_CACHE   = `${SW_VERSION}-data`;
 
@@ -56,11 +56,21 @@ function isStaticAsset(url) {
 function isCacheableApi(url, method) {
     if (method !== 'GET') return false;
     const p = url.pathname;
+    // Math
     if (p.startsWith('/api/math/academy/') && !p.endsWith('/submit-answer')) return true;
     if (p.startsWith('/api/math/glossary/')) return true;
     if (p.startsWith('/api/math/kangaroo/set')) return true;
     if (p === '/api/math/kangaroo/sets') return true;
     if (p === '/api/math/daily/today') return true;
+    // English — read-only lesson data (safe to serve stale offline)
+    if (p === '/api/subjects') return true;
+    if (p.startsWith('/api/textbooks/')) return true;
+    if (p.startsWith('/api/voca/')) return true;
+    if (p.startsWith('/api/lessons/')) return true;
+    if (p.startsWith('/api/study/')) return true;
+    if (p.startsWith('/api/words/')) return true;
+    if (p === '/api/daily-words/today' || p === '/api/daily-words/status') return true;
+    if (p === '/api/daily-words/weekly-test') return true;
     return false;
 }
 
@@ -74,6 +84,13 @@ self.addEventListener('fetch', (event) => {
 
     if (isStaticAsset(url)) {
         event.respondWith(cacheFirst(req, STATIC_CACHE));
+        return;
+    }
+
+    // HTML pages (/, /child, /parent, ...) — network-first with cache fallback
+    // so the app shell is available offline after first visit.
+    if (req.method === 'GET' && req.mode === 'navigate') {
+        event.respondWith(networkFirst(req, STATIC_CACHE));
         return;
     }
 
@@ -101,6 +118,19 @@ async function cacheFirst(req, cacheName) {
         return res;
     } catch (err) {
         return new Response('Offline', { status: 503, statusText: 'Offline' });
+    }
+}
+
+async function networkFirst(req, cacheName) {
+    const cache = await caches.open(cacheName);
+    try {
+        const res = await fetch(req);
+        if (res && res.ok) cache.put(req, res.clone());
+        return res;
+    } catch {
+        const cached = await cache.match(req);
+        if (cached) return cached;
+        return new Response('Offline — page not cached yet', { status: 503 });
     }
 }
 

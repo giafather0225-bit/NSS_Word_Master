@@ -12,6 +12,40 @@
 /** @tag TTS */
 let _globalCurrentAudio = null;
 
+// ─── Offline TTS fallback (speechSynthesis) ──────────────────
+/**
+ * Speak text using the browser's built-in SpeechSynthesis (works offline).
+ * Prefers a high-quality en-US voice (Samantha / Ava / etc).
+ * @tag TTS OFFLINE
+ */
+function _speakLocal(text, { rate = 0.9, pitch = 1.0 } = {}) {
+    if (!('speechSynthesis' in window)) return Promise.resolve();
+    return new Promise((resolve) => {
+        try {
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = 'en-US';
+            u.rate = rate;
+            u.pitch = pitch;
+            const voices = window.speechSynthesis.getVoices();
+            const preferred = voices.find(v => /Samantha|Ava|Karen|Moira|Daniel/i.test(v.name) && v.lang.startsWith('en'))
+                || voices.find(v => v.lang === 'en-US')
+                || voices.find(v => v.lang.startsWith('en'));
+            if (preferred) u.voice = preferred;
+            u.onend = () => resolve();
+            u.onerror = () => resolve();
+            window.speechSynthesis.speak(u);
+        } catch {
+            resolve();
+        }
+    });
+}
+
+/** Is the browser currently offline? @tag OFFLINE */
+function _isOffline() {
+    return typeof navigator !== 'undefined' && navigator.onLine === false;
+}
+
 /**
  * Preview TTS — fire-and-forget server-side sequence trigger.
  * @tag TTS PREVIEW
@@ -40,15 +74,22 @@ let _wordOnlyInFlight = false;
 async function apiWordOnly(word) {
     if (_wordOnlyInFlight) return;
     _wordOnlyInFlight = true;
+
+    // Offline: go straight to local speechSynthesis
+    if (_isOffline()) {
+        _wordOnlyInFlight = false;
+        return _speakLocal(word, { rate: 0.85 });
+    }
+
     try {
         const res = await fetch("/api/tts/word_only", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ word }),
         });
-        if (!res.ok) return;
+        if (!res.ok) throw new Error(`tts ${res.status}`);
         const blob = await res.blob();
-        if (blob.size === 0) return;
+        if (blob.size === 0) throw new Error('empty blob');
         const url = URL.createObjectURL(blob);
         const audio = new Audio(url);
         _globalCurrentAudio = audio;
@@ -58,7 +99,10 @@ async function apiWordOnly(word) {
             audio.play().catch(reject);
         });
     } catch (err) {
-        if (err.name !== 'AbortError') console.warn('[TTS] apiWordOnly failed:', err.message || err);
+        if (err.name !== 'AbortError') {
+            console.warn('[TTS] apiWordOnly failed, falling back to local voice:', err.message || err);
+            await _speakLocal(word, { rate: 0.85 });
+        }
     } finally {
         _wordOnlyInFlight = false;
     }
@@ -76,15 +120,22 @@ let _exampleFullInFlight = false;
 async function apiExampleFull(sentence) {
     if (_exampleFullInFlight) return;
     _exampleFullInFlight = true;
+
+    // Offline: go straight to local speechSynthesis
+    if (_isOffline()) {
+        _exampleFullInFlight = false;
+        return _speakLocal(sentence, { rate: 0.9 });
+    }
+
     try {
         const res = await fetch("/api/tts/example_full", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ sentence }),
         });
-        if (!res.ok) return;
+        if (!res.ok) throw new Error(`tts ${res.status}`);
         const blob = await res.blob();
-        if (blob.size === 0) return;
+        if (blob.size === 0) throw new Error('empty blob');
         const url = URL.createObjectURL(blob);
         const audio = new Audio(url);
         _globalCurrentAudio = audio;
@@ -94,7 +145,8 @@ async function apiExampleFull(sentence) {
             audio.play().catch(reject);
         });
     } catch (err) {
-        console.warn('[TTS] apiExampleFull failed:', err.message || err);
+        console.warn('[TTS] apiExampleFull failed, falling back to local voice:', err.message || err);
+        await _speakLocal(sentence, { rate: 0.9 });
     } finally {
         _exampleFullInFlight = false;
     }
