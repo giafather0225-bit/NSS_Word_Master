@@ -20,6 +20,7 @@ from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import StudyItem, Progress
+from backend.schemas_common import Str30, Str50, Str100
 from backend.voca_sync import load_lesson_json, sync_lesson_to_db
 from backend.services import academy_session as academy_sess
 
@@ -59,23 +60,18 @@ def serialize_item(row: StudyItem) -> dict:
 # ── Pydantic Schemas ───────────────────────────────────────
 
 class LearningLogCreate(BaseModel):
-    textbook: str = ""
-    lesson: str = ""
-    stage: str = ""
+    textbook: Str100 = ""
+    lesson: Str100 = ""
+    stage: Str50 = ""
     word_count: int = 0
     correct_count: int = 0
     wrong_words: list = []
-    started_at: str = ""
-    completed_at: str = ""
+    started_at: Str30 = ""
+    completed_at: Str30 = ""
     duration_sec: int = 0
 
     def clean(self):
-        """Sanitize and clamp all fields."""
-        self.textbook = self.textbook.strip()[:100]
-        self.lesson = self.lesson.strip()[:100]
-        self.stage = self.stage.strip()[:50]
-        self.started_at = self.started_at.strip()[:30]
-        self.completed_at = self.completed_at.strip()[:30]
+        """Clamp negatives to 0 (strings validated by Pydantic — 422 on overflow)."""
         if self.duration_sec < 0:
             self.duration_sec = 0
         if self.word_count < 0:
@@ -136,7 +132,13 @@ def get_study_data(subject: str, textbook: str, lesson: str, db: Session = Depen
         lesson_dir = LEARNING_ROOT / subject / textbook / lesson
         jrows = load_lesson_json(lesson_dir.parent, lesson)
         if jrows:
-            sync_lesson_to_db(db, lesson_dir.parent, lesson, jrows, subject=subject, textbook=textbook)
+            # Legacy disk auto-sync: on-disk data.json may predate the
+            # definition-validation rules, so allow entries without definitions.
+            sync_lesson_to_db(
+                db, lesson_dir.parent, lesson, jrows,
+                subject=subject, textbook=textbook,
+                require_definition=False,
+            )
             rows = (
                 db.query(StudyItem)
                 .filter(
@@ -179,7 +181,7 @@ def save_learning_log(body: LearningLogCreate, db: Session = Depends(get_db)):
     body.clean()
     with _sqlite3.connect(_DB_PATH) as conn:
         conn.execute(
-            "INSERT INTO learning_logs (textbook, lesson, stage, word_count, correct_count, wrong_words, started_at, completed_at, duration_sec) VALUES (?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO learning_logs (textbook, lesson, stage, word_count, correct_count, wrong_words_json, started_at, completed_at, duration_sec) VALUES (?,?,?,?,?,?,?,?,?)",
             (body.textbook, body.lesson, body.stage,
              body.word_count, body.correct_count,
              json.dumps(body.wrong_words),
