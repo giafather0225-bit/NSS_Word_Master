@@ -35,8 +35,43 @@ _PHOTO_DIR        = LEARNING_ROOT / "diary_photos"
 _PHOTO_DIR.mkdir(parents=True, exist_ok=True)
 _PHOTO_EXTS       = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".heic", ".heif"}
 _PHOTO_MAX_BYTES  = 10_000_000  # 10 MB
+_CHUNK_SIZE       = 1_048_576   # 1 MB
 _PHOTO_NAME_RE    = _re.compile(r"^[A-Za-z0-9._-]+$")
 _DATE_RE          = _re.compile(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$')
+
+
+async def _stream_save_photo(file: UploadFile, dest: Path) -> int:
+    """
+    Stream an UploadFile to disk in 1 MB chunks, enforcing _PHOTO_MAX_BYTES.
+
+    Mirrors routers/files.py::_stream_save_upload — a prior audit found that
+    `await file.read()` on the whole body would pin the full 10 MB in RAM
+    per concurrent uploader. Streaming caps peak memory at _CHUNK_SIZE and
+    aborts early on oversized input (413), leaving no partial file behind.
+    """
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    total = 0
+    try:
+        with open(dest, "wb") as out:
+            while True:
+                chunk = await file.read(_CHUNK_SIZE)
+                if not chunk:
+                    break
+                total += len(chunk)
+                if total > _PHOTO_MAX_BYTES:
+                    out.close()
+                    dest.unlink(missing_ok=True)
+                    raise HTTPException(status_code=413, detail="Photo too large (max 10 MB)")
+                out.write(chunk)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        dest.unlink(missing_ok=True)
+        raise HTTPException(status_code=500, detail=f"Upload save failed: {exc!s}") from exc
+    if total == 0:
+        dest.unlink(missing_ok=True)
+        raise HTTPException(status_code=400, detail="Empty file")
+    return total
 
 
 # @tag DIARY @tag JOURNAL
@@ -60,16 +95,12 @@ async def upload_diary_photo(
     if ext not in _PHOTO_EXTS:
         raise HTTPException(status_code=400, detail=f"File type '{ext}' not allowed")
 
-    raw = await file.read()
-    if not raw:
-        raise HTTPException(status_code=400, detail="Empty file")
-    if len(raw) > _PHOTO_MAX_BYTES:
-        raise HTTPException(status_code=413, detail="Photo too large (max 10 MB)")
-
     safe_date = entry_date.strip()
     fname     = f"{safe_date}_{int(_time.time() * 1000)}{ext}"
     fpath     = _PHOTO_DIR / fname
-    fpath.write_bytes(raw)
+    # Stream to disk — _stream_save_photo enforces size + empty-file checks
+    # and cleans up the partial file on any failure.
+    await _stream_save_photo(file, fpath)
 
     now_iso = datetime.now(timezone.utc).isoformat()
     entry = (

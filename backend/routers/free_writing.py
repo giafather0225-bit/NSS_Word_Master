@@ -15,10 +15,12 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import FreeWriting
+    from ..schemas_common import Str120, Str10000
     from .diary import _get_grammar_feedback
 except ImportError:
     from database import get_db
     from models import FreeWriting
+    from schemas_common import Str120, Str10000
     from routers.diary import _get_grammar_feedback
 
 router = APIRouter()
@@ -26,13 +28,11 @@ router = APIRouter()
 
 class FreeWritingCreate(BaseModel):
     """Request body for creating a free-writing entry."""
-    title: str
-    content: str
+    title: Str120
+    content: Str10000
 
     def clean(self) -> "FreeWritingCreate":
-        """Sanitize and validate fields."""
-        self.title   = self.title.strip()[:120]
-        self.content = self.content.strip()[:10000]
+        """Validate non-empty (length enforced by Pydantic — 422 on overflow)."""
         if not self.title:
             raise HTTPException(status_code=400, detail="title is required")
         if not self.content:

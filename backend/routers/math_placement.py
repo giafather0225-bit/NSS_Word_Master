@@ -178,6 +178,118 @@ def save_placement_results(req: SaveResultsIn, db: Session = Depends(get_db)):
     return {"saved_domains": saved, "results": overall, "suggested_grade": suggested}
 
 
+# ── Adaptive (CAT-lite) next-question ──────────────────────
+#
+# The bulk /start endpoint above ships all questions at once (legacy flow).
+# This endpoint supports spec §Placement Test Design — serve one question at
+# a time, branching on correctness: start at G3, bump grade on correct,
+# drop on wrong, stop when we've probed each adjacent grade or hit a cap.
+#
+# Stateless by design — the client passes `history` each call so the server
+# holds no per-user session. History entries: [{"id": str, "grade": "G3",
+# "correct": bool}, ...]
+
+_GRADE_ORDER = ["G2", "G3", "G4", "G5", "G6"]
+_CAT_START_GRADE = "G3"
+_CAT_MAX_PER_DOMAIN = 5  # conservative — 4 adjacent probes + 1 tiebreaker
+
+
+class AdaptiveNextIn(BaseModel):
+    domain: str
+    history: list[dict] = []  # [{id, grade, correct}]
+
+
+def _next_grade(history: list[dict]) -> str:
+    """Decide next target grade from history using simple up/down rule."""
+    if not history:
+        return _CAT_START_GRADE
+    last = history[-1]
+    cur_idx = _GRADE_ORDER.index(last["grade"]) if last.get("grade") in _GRADE_ORDER else 1
+    # Correct → step up one grade (cap at G6). Wrong → step down (floor G2).
+    if last.get("correct"):
+        return _GRADE_ORDER[min(cur_idx + 1, len(_GRADE_ORDER) - 1)]
+    return _GRADE_ORDER[max(cur_idx - 1, 0)]
+
+
+# @tag MATH @tag PLACEMENT
+@router.post("/api/math/placement/next")
+def placement_next(req: AdaptiveNextIn):
+    """Return the next question for adaptive placement, or signal done.
+
+    Picks a random unseen question at the target grade. If none available at
+    that grade, falls back to adjacent grades. Stops after _CAT_MAX_PER_DOMAIN
+    probes or when the bank is exhausted for this domain.
+    """
+    bank = _load_bank()
+    spec = next((d for d in bank.get("domains", []) if d["domain"] == req.domain), None)
+    if not spec:
+        raise HTTPException(status_code=404, detail=f"Unknown domain: {req.domain}")
+
+    seen = {h.get("id") for h in req.history if h.get("id")}
+    remaining = _CAT_MAX_PER_DOMAIN - len(req.history)
+    if remaining <= 0:
+        return {"done": True, "asked": len(req.history)}
+
+    target = _next_grade(req.history)
+    target_idx = _GRADE_ORDER.index(target)
+
+    # Candidate order: target grade first, then widening adjacency.
+    by_grade: dict[str, list[dict]] = {}
+    for q in spec.get("questions", []):
+        if q["id"] in seen:
+            continue
+        by_grade.setdefault(q.get("grade", ""), []).append(q)
+
+    # Walk outward from target grade.
+    import random as _r
+    for offset in range(len(_GRADE_ORDER)):
+        for i in (target_idx - offset, target_idx + offset):
+            if 0 <= i < len(_GRADE_ORDER):
+                candidates = by_grade.get(_GRADE_ORDER[i], [])
+                if candidates:
+                    q = _r.choice(candidates)
+                    return {
+                        "done": False,
+                        "asked": len(req.history),
+                        "target_grade": target,
+                        "question": {
+                            "id": q["id"],
+                            "grade": q["grade"],
+                            "type": q.get("type", "input"),
+                            "question": q["question"],
+                            "options": q.get("options"),
+                        },
+                    }
+
+    # Exhausted — end domain.
+    return {"done": True, "asked": len(req.history)}
+
+
+class AdaptiveCheckIn(BaseModel):
+    domain: str
+    question_id: str
+    answer: str
+
+
+# @tag MATH @tag PLACEMENT
+@router.post("/api/math/placement/check")
+def placement_check(req: AdaptiveCheckIn):
+    """Grade a single placement answer. Server-side answer key lookup."""
+    bank = _load_bank()
+    spec = next((d for d in bank.get("domains", []) if d["domain"] == req.domain), None)
+    if not spec:
+        raise HTTPException(status_code=404, detail=f"Unknown domain: {req.domain}")
+    q = next((x for x in spec.get("questions", []) if x["id"] == req.question_id), None)
+    if not q:
+        raise HTTPException(status_code=404, detail="Question not found")
+    correct = str(q.get("answer", "")).strip().lower()
+    user = str(req.answer).strip().lower()
+    return {
+        "is_correct": user != "" and user == correct,
+        "grade": q.get("grade"),
+    }
+
+
 # @tag MATH @tag PLACEMENT
 @router.get("/api/math/placement/results")
 def placement_results(db: Session = Depends(get_db)):

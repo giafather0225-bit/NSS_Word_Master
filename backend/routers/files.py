@@ -82,6 +82,49 @@ def _validate_lang(lang: str) -> str:
     return l
 
 
+# @tag FILES @tag UPLOAD — streaming helper (no RAM spike on 10× HEIC)
+# Replaces `raw = await file.read()` pattern that loaded 10–20 MB per file
+# into memory. A parent uploading 10 photos used to spike ~200 MB peak RSS;
+# this streams in 1 MB chunks and caps peak at ~chunk_size regardless of count.
+CHUNK_SIZE = 1_048_576  # 1 MB
+
+
+async def _stream_save_upload(
+    file: UploadFile,
+    dest: Path,
+    max_bytes: int = MAX_UPLOAD_BYTES,
+) -> int:
+    """Stream an UploadFile to `dest` in chunks, enforcing max_bytes.
+
+    Returns total bytes written. Raises HTTPException(413) if oversized,
+    HTTPException(400) if empty. Cleans up partial file on failure.
+    """
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    total = 0
+    try:
+        with open(dest, "wb") as out:
+            while True:
+                chunk = await file.read(CHUNK_SIZE)
+                if not chunk:
+                    break
+                total += len(chunk)
+                if total > max_bytes:
+                    out.close()
+                    dest.unlink(missing_ok=True)
+                    raise HTTPException(status_code=413, detail="File too large (max 20 MB)")
+                out.write(chunk)
+    except HTTPException:
+        raise
+    except Exception as e:
+        dest.unlink(missing_ok=True)
+        raise HTTPException(status_code=500, detail=f"Upload save failed: {e!s}") from e
+
+    if total == 0:
+        dest.unlink(missing_ok=True)
+        raise HTTPException(status_code=400, detail="Empty file")
+    return total
+
+
 def _has_def_ex(e: dict) -> bool:
     """Return True if a vocab entry has a definition or example field."""
     for dk in ("definition", "meaning", "question", "desc", "description"):
@@ -117,20 +160,17 @@ async def files_upload(
     if ext not in ALLOWED_UPLOAD_EXTS:
         raise HTTPException(status_code=400, detail=f"File type '{ext}' not allowed")
 
-    raw = await file.read()
-    if not raw:
-        raise HTTPException(status_code=400, detail="Empty file")
-    if len(raw) > MAX_UPLOAD_BYTES:
-        raise HTTPException(status_code=413, detail="File too large (max 20 MB)")
-
     dir_path = LEARNING_ROOT / subject_key / textbook_key / lesson_key
-    dir_path.mkdir(parents=True, exist_ok=True)
-    (dir_path / f"source{ext}").write_bytes(raw)
+    src_path = dir_path / f"source{ext}"
+    await _stream_save_upload(file, src_path)
+    raw = src_path.read_bytes()  # single read for OCR — peak = 1× file size
 
     try:
         data = await extract_vocab_from_bytes(raw)
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Vision OCR error: {e!s}")
+    finally:
+        del raw  # release ASAP
 
     if not data:
         raise HTTPException(status_code=422, detail="OCR extracted no vocabulary words.")
@@ -139,12 +179,16 @@ async def files_upload(
         try:
             data = await ollama_enrich_vocab(data)
         except Exception as _enrich_err:
-            logger.warning("ollama_enrich_vocab failed (keeping original): %s", _enrich_err)
+            logger.warning("ollama_enrich_vocab failed: %s", _enrich_err)
+            raise HTTPException(
+                status_code=422,
+                detail="AI definition generation failed. Please retry — we won't save incomplete word data.",
+            )
 
     (dir_path / "data.json").write_text(
         json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
     )
-    n = sync_lesson_to_db(
+    result = sync_lesson_to_db(
         db,
         LEARNING_ROOT / subject_key / textbook_key,
         lesson_key,
@@ -152,11 +196,17 @@ async def files_upload(
         subject=subject_key,
         textbook=textbook_key,
     )
+    if result["synced"] == 0:
+        raise HTTPException(
+            status_code=422,
+            detail=f"No valid words to save. Skipped {result['skipped']} rows: {'; '.join(result['reasons'][:3])}",
+        )
     return {
         "subject": subject_key,
         "textbook": textbook_key,
         "lesson": lesson_key,
-        "synced": n,
+        "synced": result["synced"],
+        "skipped": result["skipped"],
         "data_json": str(dir_path / "data.json"),
     }
 
@@ -176,8 +226,17 @@ async def upload_lesson_file(
     if not lesson:
         raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} 없음")
 
-    raw = await file.read()
     original_name = file.filename or "upload.bin"
+    # Stream to a temp file first, then hand off bytes to save_lesson_file.
+    # Peak RSS = 1× file (unavoidable if save_lesson_file consumes bytes), but
+    # parallel uploads no longer share a 10-file spike.
+    with tempfile.NamedTemporaryFile(delete=False) as _tmp:
+        tmp_path = Path(_tmp.name)
+    try:
+        await _stream_save_upload(file, tmp_path)
+        raw = tmp_path.read_bytes()
+    finally:
+        tmp_path.unlink(missing_ok=True)
 
     try:
         record = save_lesson_file(lesson_id, raw, original_name)
@@ -322,11 +381,16 @@ def voca_save_reviewed(
         return {"lesson": lesson_key, "synced": 0, "data_json": str(out)}
 
     out.write_text(json.dumps(words, ensure_ascii=False, indent=2), encoding="utf-8")
-    n = sync_lesson_to_db(
+    result = sync_lesson_to_db(
         db, LEARNING_ROOT / "English" / textbook, lesson_key, words,
         subject="English", textbook=textbook,
     )
-    return {"lesson": lesson_key, "synced": n, "data_json": str(out)}
+    return {
+        "lesson": lesson_key,
+        "synced": result["synced"],
+        "skipped": result["skipped"],
+        "data_json": str(out),
+    }
 
 
 # @tag FILES @tag OCR @tag VOCA
@@ -344,15 +408,10 @@ async def voca_ingest(
     if ext not in ALLOWED_UPLOAD_EXTS:
         raise HTTPException(status_code=400, detail=f"File type '{ext}' not allowed")
 
-    raw = await file.read()
-    if not raw:
-        raise HTTPException(status_code=400, detail="Empty file")
-    if len(raw) > MAX_UPLOAD_BYTES:
-        raise HTTPException(status_code=413, detail="File too large (max 20 MB)")
-
     dir_path = VOCA_ROOT / lesson_key
-    dir_path.mkdir(parents=True, exist_ok=True)
-    (dir_path / f"source{ext}").write_bytes(raw)
+    src_path = dir_path / f"source{ext}"
+    await _stream_save_upload(file, src_path)
+    raw = src_path.read_bytes()
 
     try:
         data = await extract_vocab_from_bytes(raw, fname)
@@ -362,18 +421,34 @@ async def voca_ingest(
         raise
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Vision OCR error: {e!s}")
+    finally:
+        del raw
 
     if not any(_has_def_ex(e) for e in data):
         try:
             data = await ollama_enrich_vocab(data)
-        except Exception:
-            pass
+        except Exception as _enrich_err:
+            logger.warning("ollama_enrich_vocab failed: %s", _enrich_err)
+            raise HTTPException(
+                status_code=422,
+                detail="AI definition generation failed. Please retry — we won't save incomplete word data.",
+            )
 
     (dir_path / "data.json").write_text(
         json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8",
     )
-    n = sync_lesson_to_db(db, VOCA_ROOT, lesson_key, data, subject="English", textbook="Voca_8000")
-    return {"lesson": lesson_key, "synced": n, "data_json": str(dir_path / "data.json")}
+    result = sync_lesson_to_db(db, VOCA_ROOT, lesson_key, data, subject="English", textbook="Voca_8000")
+    if result["synced"] == 0:
+        raise HTTPException(
+            status_code=422,
+            detail=f"No valid words to save. Skipped {result['skipped']} rows: {'; '.join(result['reasons'][:3])}",
+        )
+    return {
+        "lesson": lesson_key,
+        "synced": result["synced"],
+        "skipped": result["skipped"],
+        "data_json": str(dir_path / "data.json"),
+    }
 
 
 # @tag FILES @tag VOCA @tag FOLDERS
@@ -388,27 +463,40 @@ async def voca_folder_upload(
     textbook   = _validate_name(textbook, "textbook")
     lesson_dir = LEARNING_ROOT / "English" / textbook / lesson_key
     lesson_dir.mkdir(parents=True, exist_ok=True)
-    saved = []
+    saved: list[str] = []
+    skipped: list[str] = []
     allowed = (".heic", ".heif", ".jpg", ".jpeg", ".png", ".webp", ".bmp", ".gif")
+    # Stream every file directly to disk. Peak RSS per request ≈ CHUNK_SIZE,
+    # regardless of whether the parent uploads 1 or 50 HEIC photos.
     for f in files:
-        raw_name = Path(f.filename or "").name  # strip any directory components
+        raw_name = Path(f.filename or "").name
         ext = Path(raw_name).suffix.lower() if raw_name else ".png"
         if ext not in allowed:
+            skipped.append(f"{raw_name}: ext")
             continue
         if not raw_name or not _SAFE_FILENAME_RE.match(raw_name):
+            skipped.append(f"{raw_name}: invalid name")
             continue
-        data = await f.read()
-        if len(data) > 20_000_000:
-            continue
+
         dest = lesson_dir / raw_name
         counter = 1
         while dest.exists():
             stem = Path(raw_name).stem
             dest = lesson_dir / f"{stem}_{counter}{ext}"
             counter += 1
-        dest.write_bytes(data)
+        try:
+            await _stream_save_upload(f, dest)
+        except HTTPException as e:
+            # Per-file skip; don't fail the whole batch.
+            skipped.append(f"{raw_name}: {e.detail}")
+            continue
         saved.append(dest.name)
-    return {"lesson": lesson_key, "saved": saved, "count": len(saved)}
+    return {
+        "lesson": lesson_key,
+        "saved": saved,
+        "count": len(saved),
+        "skipped": skipped,
+    }
 
 
 # @tag FILES @tag OCR @tag VOCA @tag FOLDERS
@@ -467,18 +555,29 @@ async def voca_folder_ocr(
             words_list = await ollama_enrich_vocab(words_list)
         except Exception as enrich_err:
             logger.warning("Enrichment failed: %s", enrich_err)
+            raise HTTPException(
+                status_code=422,
+                detail="AI definition generation failed. Please retry — we won't save incomplete word data.",
+            )
 
     data_json = lesson_dir / "data.json"
     data_json.write_text(
         json.dumps(words_list, ensure_ascii=False, indent=2), encoding="utf-8"
     )
-    sync_lesson_to_db(db, VOCA_ROOT, lesson_key, words_list, subject="English", textbook=textbook)
+    result = sync_lesson_to_db(db, VOCA_ROOT, lesson_key, words_list, subject="English", textbook=textbook)
+    if result["synced"] == 0:
+        raise HTTPException(
+            status_code=422,
+            detail=f"No valid words to save. Skipped {result['skipped']} rows: {'; '.join(result['reasons'][:3])}",
+        )
 
     bad_count = sum(1 for w in words_list if not w.get("definition") or len(w.get("definition", "")) < 5)
     return {
         "lesson": lesson_key,
         "words": words_list,
         "word_count": len(words_list),
+        "synced": result["synced"],
+        "skipped": result["skipped"],
         "images_processed": len(images),
         "errors": errors,
         "quality": {
@@ -497,27 +596,34 @@ async def ocr_vocab_image(file: UploadFile = File(...)):
     if ext not in ALLOWED_UPLOAD_EXTS:
         raise HTTPException(status_code=400, detail=f"File type '{ext}' not allowed")
 
-    raw = await file.read()
-    if not raw:
-        raise HTTPException(status_code=400, detail="Empty file")
-    if len(raw) > MAX_UPLOAD_BYTES:
-        raise HTTPException(status_code=413, detail="File too large (max 20 MB)")
+    # Preview endpoint — stream to a temp file, then OCR. Temp file is deleted.
+    with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as _tmp:
+        tmp_path = Path(_tmp.name)
+    try:
+        await _stream_save_upload(file, tmp_path)
+        raw = tmp_path.read_bytes()
+    finally:
+        tmp_path.unlink(missing_ok=True)
 
     try:
         data = await extract_vocab_from_bytes(raw)
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Vision OCR error: {e!s}")
+    finally:
+        del raw
 
     if not data:
         return {"parsed": None, "warning": "OCR extracted no vocabulary words."}
 
+    enrich_warning = None
     if not any(_has_def_ex(e) for e in data):
         try:
             data = await ollama_enrich_vocab(data)
         except Exception as _enrich_err:
-            logger.warning("ollama_enrich_vocab failed (keeping original): %s", _enrich_err)
+            logger.warning("ollama_enrich_vocab failed (preview keeps partial): %s", _enrich_err)
+            enrich_warning = "AI definition generation failed — preview shows partial data. Please retry before saving."
 
-    return {"parsed": data}
+    return {"parsed": data, **({"warning": enrich_warning} if enrich_warning else {})}
 
 
 # @tag FILES @tag OCR @tag LEGACY
@@ -538,12 +644,14 @@ async def ingest_from_disk(lesson: str, force: bool = False, db: Session = Depen
     if data_json_path.exists() and not force:
         existing = json.loads(data_json_path.read_text(encoding="utf-8"))
         if isinstance(existing, list) and existing:
-            n = sync_lesson_to_db(
+            result = sync_lesson_to_db(
                 db, VOCA_ROOT, lesson_key, existing,
                 subject="English", textbook="Voca_8000",
+                require_definition=False,  # existing on-disk data may be legacy
             )
             return {
-                "lesson": lesson_key, "synced": n,
+                "lesson": lesson_key, "synced": result["synced"],
+                "skipped_rows": result["skipped"],
                 "words": len(existing), "images_processed": 0, "skipped": True,
             }
 
@@ -606,18 +714,28 @@ async def ingest_from_disk(lesson: str, force: bool = False, db: Session = Depen
         try:
             unique_data = await ollama_enrich_vocab(unique_data)
         except Exception as _enrich_err:
-            logger.warning("ollama_enrich_vocab failed (keeping original): %s", _enrich_err)
+            logger.warning("ollama_enrich_vocab failed: %s", _enrich_err)
+            raise HTTPException(
+                status_code=422,
+                detail="AI definition generation failed. Please retry — we won't save incomplete word data.",
+            )
 
     (dir_path / "data.json").write_text(
         json.dumps(unique_data, ensure_ascii=False, indent=2), encoding="utf-8"
     )
-    n = sync_lesson_to_db(
+    result = sync_lesson_to_db(
         db, VOCA_ROOT, lesson_key, unique_data,
         subject="English", textbook="Voca_8000",
     )
+    if result["synced"] == 0:
+        raise HTTPException(
+            status_code=422,
+            detail=f"No valid words to save. Skipped {result['skipped']} rows: {'; '.join(result['reasons'][:3])}",
+        )
     return {
         "lesson": lesson_key,
-        "synced": n,
+        "synced": result["synced"],
+        "skipped": result["skipped"],
         "words": len(unique_data),
         "images_processed": len(image_files),
         "errors": errors,

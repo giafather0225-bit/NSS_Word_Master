@@ -1,14 +1,18 @@
 """
-routers/tts.py — Text-to-speech audio generation routes
+routers/tts.py — Text-to-speech audio generation routes (all return MP3 bytes)
 Section: English
-Dependencies: tts_edge (primary), tts_say (fallback), concurrent.futures
+Dependencies: tts_edge (edge-tts → BytesIO), concurrent.futures
 API:
-  POST /api/tts/preview_sequence
-  POST /api/tts/preview_word_meaning
-  POST /api/tts/word_meaning
-  POST /api/tts/word_only
-  POST /api/tts/example_full
-  POST /api/tts
+  POST /api/tts/preview_sequence      → MP3 bytes
+  POST /api/tts/preview_word_meaning  → MP3 bytes
+  POST /api/tts/word_meaning          → MP3 bytes
+  POST /api/tts/word_only             → MP3 bytes
+  POST /api/tts/example_full          → MP3 bytes
+  POST /api/tts                       → MP3 bytes
+
+Server never plays audio on its own speakers — browser receives MP3 and plays
+via fetch → Blob → HTMLAudioElement. This lets the child study on any device
+(iPad / phone / other computer) while the backend runs on the parent's Mac.
 """
 
 import asyncio
@@ -18,36 +22,20 @@ from fastapi import APIRouter
 from fastapi.responses import Response
 from pydantic import BaseModel
 
-try:
-    from backend.tts_edge import (
-        say_preview_sequence,
-        say_preview_word_meaning,
-        say_word_then_meaning,
-        say_line,
-        say_word_twice,
-        say_full_sentence,
-        say_example_with_intro,
-        preview_word_meaning_bytes,
-        example_full_bytes,
-        word_only_bytes,
-        word_meaning_bytes,
-        preview_sequence_bytes,
-    )
-except ImportError:
-    from backend.tts_say import (  # type: ignore[assignment]
-        say_preview_sequence,
-        say_preview_word_meaning,
-        say_word_then_meaning,
-        say_line,
-        say_word_twice,
-        say_full_sentence,
-    )
-    def say_example_with_intro(example: str) -> None:  # type: ignore[misc]
-        say_full_sentence(example)
+from backend.tts_edge import (
+    preview_sequence_bytes,
+    preview_word_meaning_bytes,
+    word_meaning_bytes,
+    word_only_bytes,
+    example_full_bytes,
+    line_bytes,
+)
 
 router = APIRouter()
 
-_executor = ThreadPoolExecutor(max_workers=2)
+# Larger pool: every request does a blocking edge-tts network call. With only 2
+# workers, rapid taps (common with kids) would queue and feel like a freeze.
+_executor = ThreadPoolExecutor(max_workers=8)
 
 
 # ── Pydantic Schemas ───────────────────────────────────────
@@ -107,17 +95,18 @@ class TTSExampleFullRequest(BaseModel):
 
 # ── Routes ─────────────────────────────────────────────────
 
+async def _run(fn, *args):
+    loop = asyncio.get_event_loop()
+    return await loop.run_in_executor(_executor, lambda: fn(*args))
+
+
 # @tag TTS @tag PREVIEW
 @router.post("/api/tts/preview_sequence")
 async def tts_preview_sequence(req: PreviewTTSRequest):
-    """Play word → meaning → example sentence as a TTS sequence (no audio bytes returned)."""
+    """Return MP3 bytes for the preview sequence: word → meaning → example."""
     req.clean()
-    loop = asyncio.get_event_loop()
-    await loop.run_in_executor(
-        _executor,
-        lambda: say_preview_sequence(req.word, req.meaning, req.example),
-    )
-    return Response(status_code=200)
+    audio = await _run(preview_sequence_bytes, req.word, req.meaning, req.example)
+    return Response(content=audio, media_type="audio/mpeg")
 
 
 # @tag TTS @tag PREVIEW
@@ -125,25 +114,17 @@ async def tts_preview_sequence(req: PreviewTTSRequest):
 async def tts_preview_word_meaning(req: WordMeaningTTSRequest):
     """Return MP3 bytes for word (normal speed) → meaning (slow); call 3× for repetition."""
     req.clean()
-    loop = asyncio.get_event_loop()
-    audio = await loop.run_in_executor(
-        _executor,
-        lambda: preview_word_meaning_bytes(req.word, req.meaning, req.rep),
-    )
+    audio = await _run(preview_word_meaning_bytes, req.word, req.meaning, req.rep)
     return Response(content=audio, media_type="audio/mpeg")
 
 
 # @tag TTS
 @router.post("/api/tts/word_meaning")
 async def tts_word_meaning(req: WordMeaningTTSRequest):
-    """Play word then meaning via TTS (no audio bytes returned)."""
+    """Return MP3 bytes for word then meaning."""
     req.clean()
-    loop = asyncio.get_event_loop()
-    await loop.run_in_executor(
-        _executor,
-        lambda: say_word_then_meaning(req.word, req.meaning),
-    )
-    return Response(status_code=200)
+    audio = await _run(word_meaning_bytes, req.word, req.meaning)
+    return Response(content=audio, media_type="audio/mpeg")
 
 
 # @tag TTS
@@ -151,11 +132,7 @@ async def tts_word_meaning(req: WordMeaningTTSRequest):
 async def tts_word_only(req: TTSWordOnlyRequest):
     """Return MP3 bytes for a single word spoken aloud."""
     req.clean()
-    loop = asyncio.get_event_loop()
-    audio = await loop.run_in_executor(
-        _executor,
-        lambda: word_only_bytes(req.word),
-    )
+    audio = await _run(word_only_bytes, req.word)
     return Response(content=audio, media_type="audio/mpeg")
 
 
@@ -164,19 +141,14 @@ async def tts_word_only(req: TTSWordOnlyRequest):
 async def tts_example_full(req: TTSExampleFullRequest):
     """Return MP3 bytes for a full example sentence."""
     req.clean()
-    loop = asyncio.get_event_loop()
-    audio = await loop.run_in_executor(
-        _executor,
-        lambda: example_full_bytes(req.sentence),
-    )
+    audio = await _run(example_full_bytes, req.sentence)
     return Response(content=audio, media_type="audio/mpeg")
 
 
 # @tag TTS
 @router.post("/api/tts")
 async def play_tts_line(req: TTSLineRequest):
-    """Play a single line of text (overlay narration etc.) via TTS."""
+    """Return MP3 bytes for a single line of narration."""
     req.clean()
-    loop = asyncio.get_event_loop()
-    await loop.run_in_executor(_executor, lambda: say_line(req.text))
-    return Response(status_code=200)
+    audio = await _run(line_bytes, req.text)
+    return Response(content=audio, media_type="audio/mpeg")

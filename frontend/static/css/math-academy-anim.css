@@ -1,0 +1,308 @@
+/* ================================================================
+   math-academy-anim.css — Animations, mobile, manipulatives extras
+   Section: Math
+   Dependencies: theme.css
+   ================================================================ */
+
+/* ── Animation ─────────────────────────────────────────────── */
+
+@keyframes math-fade-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* M13: CPA card enter — gentle slide + fade on every re-render */
+@keyframes math-card-enter {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.math-learn-card {
+    animation: math-card-enter 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* M13: CPA badge pulse on phase show */
+@keyframes math-cpa-pulse {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+.math-learn-cpa {
+    animation: math-cpa-pulse 0.6s ease-out both;
+}
+
+/* M13: dot progress — smooth fill transition */
+.math-dot {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.math-dot.active { transform: scale(1.25); }
+
+/* M13: correct celebration — scale+pop on result headline */
+@keyframes math-pop {
+    0%   { transform: scale(0.6); opacity: 0; }
+    60%  { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.math-feedback-correct .math-feedback-result,
+.math-feedback-correct .math-feedback-icon {
+    animation: math-pop 0.45s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+
+/* M13: wrong — stronger shake */
+@keyframes math-shake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-8px); }
+    40%      { transform: translateX(8px); }
+    60%      { transform: translateX(-6px); }
+    80%      { transform: translateX(4px); }
+}
+.math-feedback-wrong .math-feedback-card {
+    animation: math-fade-in 0.2s ease, math-shake 0.45s ease 0.2s;
+}
+
+/* M13: confetti burst — 8 dots radiating outward */
+.math-confetti {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.math-confetti span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: math-confetti-burst 0.9s ease-out both;
+}
+.math-confetti span:nth-child(1) { background: var(--math-primary); --tx: -80px; --ty: -70px; animation-delay: 0.02s; }
+.math-confetti span:nth-child(2) { background: var(--math-pass); --tx: 80px; --ty: -70px; animation-delay: 0.04s; }
+.math-confetti span:nth-child(3) { background: var(--color-warning); --tx: -100px; --ty: 20px; animation-delay: 0.06s; }
+.math-confetti span:nth-child(4) { background: var(--math-cpa-pictorial-fg); --tx: 100px; --ty: 20px; animation-delay: 0.08s; }
+.math-confetti span:nth-child(5) { background: var(--math-primary); --tx: -60px; --ty: 80px; animation-delay: 0.05s; }
+.math-confetti span:nth-child(6) { background: var(--math-pass); --tx: 60px; --ty: 80px; animation-delay: 0.07s; }
+.math-confetti span:nth-child(7) { background: var(--color-warning); --tx: -30px; --ty: -100px; animation-delay: 0.09s; }
+.math-confetti span:nth-child(8) { background: var(--math-cpa-pictorial-fg); --tx: 30px; --ty: -100px; animation-delay: 0.11s; }
+
+@keyframes math-confetti-burst {
+    0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 0; }
+    20%  { opacity: 1; }
+    100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1); opacity: 0; }
+}
+
+/* M13: MC/TF button press micro-interaction */
+.math-mc-btn, .math-tf-btn {
+    transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.math-mc-btn:active, .math-tf-btn:active {
+    transform: scale(0.97);
+}
+
+/* ── Mobile (≤640px) ──────────────────────────────────────── */
+@media (max-width: 640px) {
+    .math-learn-wrap,
+    .math-problem-wrap,
+    .math-fluency-picker,
+    .math-fluency-round,
+    .math-daily,
+    .math-kang,
+    .math-gloss {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    /* Cards shrink vertical padding so content isn't pushed below the fold */
+    .math-learn-card,
+    .math-problem-card,
+    .math-daily,
+    .math-kang,
+    .math-fluency-card-big,
+    .math-round-summary,
+    .math-stage-feedback,
+    .math-complete {
+        padding: 20px 16px;
+    }
+
+    /* Typography: scale down the biggest headlines */
+    .math-learn-title       { font-size: 18px; }
+    .math-problem-question  { font-size: 16px; }
+    .math-daily-title,
+    .math-kang-title,
+    .math-fluency-title     { font-size: 20px; }
+    .math-fluency-question  { font-size: 32px; }
+    .math-summary-score,
+    .math-daily-score,
+    .math-kang-score        { font-size: 36px; }
+
+    /* Grids collapse to single column where a 2-col layout would overflow */
+    .math-daily-options,
+    .math-kang-options      { grid-template-columns: 1fr; }
+
+    .math-fluency-grid,
+    .math-kang-grid,
+    .math-gloss-grid        { grid-template-columns: 1fr; }
+
+    /* Inputs stack above the submit button on narrow screens */
+    .math-input-group,
+    .math-daily-input-wrap,
+    .math-kang-input-wrap   { flex-direction: column; align-items: stretch; }
+    .math-submit-btn        { width: 100%; }
+
+    .math-fluency-input     { width: 100%; max-width: 240px; font-size: 26px; }
+
+    /* Virtual manipulative visuals never overflow container */
+    .math-manip-svg,
+    .math-learn-visual      { max-width: 100%; }
+    .math-tf-frame          { grid-template-columns: repeat(5, 24px); grid-template-rows: repeat(2, 24px); }
+}
+
+/* M13: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .math-learn-card,
+    .math-learn-cpa,
+    .math-feedback-correct .math-feedback-result,
+    .math-feedback-correct .math-feedback-icon,
+    .math-feedback-wrong .math-feedback-card,
+    .math-confetti span {
+        animation: none !important;
+    }
+    .math-dot { transition: none; }
+}
+
+/* Addition table */
+.math-addtbl {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    font-variant-numeric: tabular-nums;
+}
+.math-addtbl th,
+.math-addtbl td {
+    border: 1px solid rgba(0,0,0,0.08);
+    text-align: center;
+    padding: 6px 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.math-addtbl thead th {
+    background: var(--math-primary-light);
+    color: var(--math-primary);
+    font-weight: 700;
+}
+.math-addtbl tbody th {
+    background: var(--math-primary-light);
+    color: var(--math-primary);
+    font-weight: 700;
+}
+.math-addtbl td:hover { background: var(--color-primary-light); }
+.math-addtbl-hi-row,
+.math-addtbl td.math-addtbl-hi-row { background: rgba(212,97,158,0.15); }
+.math-addtbl-hi-col,
+.math-addtbl td.math-addtbl-hi-col { background: rgba(74,142,142,0.15); }
+.math-addtbl-hi-cell {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+}
+
+/* Bar model */
+.math-bar-total {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    text-align: center;
+}
+.math-bar-row {
+    display: flex;
+    width: 100%;
+    min-height: 56px;
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    gap: 2px;
+}
+.math-bar-seg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--math-primary);
+    color: white;
+    padding: 8px 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+    min-width: 40px;
+}
+.math-bar-seg:hover { filter: brightness(1.08); }
+.math-bar-seg:nth-child(2n) { background: var(--math-accent-pink, var(--color-primary)); }
+.math-bar-seg:nth-child(3n) { background: var(--color-secondary); }
+.math-bar-seg-empty {
+    background: rgba(0,0,0,0.08);
+    color: var(--text-secondary);
+    font-style: italic;
+}
+.math-bar-label {
+    font-size: 11px;
+    opacity: 0.9;
+}
+.math-bar-val {
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Try-stage Tools panel */
+.math-tools-panel {
+    margin-top: 14px;
+    background: var(--bg-card);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    box-shadow: var(--shadow-card);
+}
+.math-tools-summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--math-primary);
+    padding: 4px 0;
+    list-style: none;
+}
+.math-tools-summary::-webkit-details-marker { display: none; }
+.math-tools-summary::before {
+    content: '▸ ';
+    display: inline-block;
+    transition: transform 0.15s ease;
+}
+.math-tools-panel[open] .math-tools-summary::before {
+    transform: rotate(90deg);
+}
+.math-tools-hint {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: 6px;
+}
+.math-tools-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+.math-tool-btn.active {
+    background: var(--math-primary);
+    color: white;
+    border-color: var(--math-primary);
+}
+.math-tools-slot {
+    margin-top: 12px;
+}
+.math-tools-slot:empty {
+    display: none;
+}

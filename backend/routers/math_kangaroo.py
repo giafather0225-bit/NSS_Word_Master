@@ -88,6 +88,8 @@ def kangaroo_set(set_id: str):
         "title": data.get("title", set_id),
         "category": data.get("category", ""),
         "difficulty_level": data.get("difficulty_level", "pre_ecolier"),
+        "source": data.get("source", ""),
+        "source_type": data.get("source_type", ""),
         "problems": _strip_answers(data.get("problems", [])),
     }
 

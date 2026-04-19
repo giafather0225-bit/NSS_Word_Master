@@ -18,9 +18,11 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import XPLog, DailyWordsProgress
+    from ..schemas_common import Str80, Str200
 except ImportError:
     from database import get_db
     from models import XPLog, DailyWordsProgress
+    from schemas_common import Str80, Str200
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -96,9 +98,9 @@ def collocation_today(grade: int = 0, db: Session = Depends(get_db)):
 
 class AnswerItem(BaseModel):
     """Single quiz answer."""
-    word: str
-    collocation: str
-    user_answer: str
+    word: Str80
+    collocation: Str200
+    user_answer: Str200
     correct: bool
 
 
@@ -108,11 +110,8 @@ class SubmitIn(BaseModel):
     answers: list[AnswerItem]
 
     def sanitize(self) -> "SubmitIn":
+        """Cap array length (field lengths enforced by Pydantic)."""
         self.answers = self.answers[:MAX_ITEMS]
-        for a in self.answers:
-            a.word = a.word.strip()[:80]
-            a.collocation = a.collocation.strip()[:200]
-            a.user_answer = a.user_answer.strip()[:200]
         return self
 
 

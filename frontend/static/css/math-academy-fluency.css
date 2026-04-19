@@ -1,0 +1,364 @@
+/* ================================================================
+   math-academy-fluency.css — M4 Drag/CPA + Round summary + Fact Fluency
+   Section: Math
+   Dependencies: theme.css
+   ================================================================ */
+
+/* ── Drag-sort (M4) ────────────────────────────────────────── */
+
+.math-drag-hint {
+    margin: 0 0 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.math-drag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.math-drag-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border: 2px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-md);
+    cursor: grab;
+    user-select: none;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+}
+
+.math-drag-item:hover {
+    border-color: var(--math-primary);
+    background: var(--math-primary-light);
+}
+
+.math-drag-item.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+    border-color: var(--math-primary);
+    box-shadow: none;
+}
+
+.math-drag-handle {
+    color: var(--text-secondary);
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.math-drag-label {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* ── CPA Fallback (M4) ─────────────────────────────────────── */
+
+.math-cpa-fallback {
+    margin: 16px 0;
+    padding: 14px;
+    background: var(--math-cpa-pictorial-bg);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--math-cpa-pictorial-fg);
+    text-align: left;
+}
+
+.math-cpa-fallback-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--math-cpa-pictorial-fg);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.math-cpa-fallback-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.math-cpa-fallback-visual {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* ── Round summary (M4) ────────────────────────────────────── */
+
+.math-round-summary {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 40px 32px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
+    text-align: center;
+}
+
+.math-summary-icon {
+    font-size: 56px;
+    margin-bottom: 12px;
+}
+
+.math-summary-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 12px;
+}
+
+.math-summary-score {
+    font-size: 44px;
+    font-weight: 800;
+    color: var(--math-primary);
+    margin-bottom: 4px;
+}
+
+.math-summary-pct {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.math-summary-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(0,0,0,0.06);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.math-summary-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+
+.math-summary-bar-fill.pass { background: var(--math-pass); }
+.math-summary-bar-fill.fail { background: var(--math-fail); }
+
+.math-summary-weak {
+    margin-bottom: 24px;
+    text-align: left;
+    padding: 12px 16px;
+    background: var(--math-focus-bg);
+    border-radius: var(--radius-md);
+}
+
+.math-summary-weak-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--math-focus-fg);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.math-summary-weak-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.math-summary-chip {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+.math-summary-cta {
+    min-width: 180px;
+}
+
+/* ── Fact Fluency ──────────────────────────────────────────── */
+
+.math-fluency-picker {
+    max-width: 640px;
+    margin: 24px auto;
+    padding: 0 16px;
+    text-align: center;
+}
+
+.math-fluency-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+}
+
+.math-fluency-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 24px;
+}
+
+.math-fluency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.math-fluency-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 16px 14px;
+    background: var(--bg-card);
+    border: 2px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    text-align: left;
+}
+
+.math-fluency-card:hover {
+    border-color: var(--math-primary);
+    background: var(--math-primary-light);
+    transform: translateY(-2px);
+}
+
+.math-fluency-card-op {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--math-primary);
+    line-height: 1;
+}
+
+.math-fluency-card-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.math-fluency-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.math-fluency-phase {
+    padding: 2px 8px;
+    background: var(--math-accent-violet-light);
+    color: var(--math-accent-violet);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+}
+
+.math-fluency-round {
+    max-width: 480px;
+    margin: 24px auto;
+    padding: 0 16px;
+    text-align: center;
+}
+
+.math-fluency-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.math-fluency-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--math-primary);
+}
+
+.math-fluency-timer {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.math-fluency-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(0,0,0,0.06);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.math-fluency-bar-fill {
+    height: 100%;
+    background: var(--math-primary);
+    transition: width 0.2s linear;
+}
+
+.math-fluency-card-big {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 48px 24px;
+    box-shadow: none;
+    border: 1px solid var(--border-card);
+    margin-bottom: 20px;
+    transition: background 0.15s;
+}
+
+.math-fluency-card-big.flash-correct { background: rgba(52, 199, 89, 0.14); }
+.math-fluency-card-big.flash-wrong   { background: rgba(255, 59, 48, 0.12); }
+
+.math-fluency-question {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-variant-numeric: tabular-nums;
+}
+
+.math-fluency-input {
+    width: 180px;
+    padding: 16px 18px;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: var(--radius-md);
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-primary);
+    background: var(--bg-card);
+    font-variant-numeric: tabular-nums;
+    transition: border-color 0.15s;
+}
+
+.math-fluency-input:focus-visible {
+    outline: none;
+    border-color: var(--math-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.math-fluency-score {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    font-variant-numeric: tabular-nums;
+}
+
+.math-fluency-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+

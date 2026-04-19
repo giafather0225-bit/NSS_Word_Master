@@ -11,6 +11,9 @@
   let sessionTotal = 0;
   let ratingOverlay = null;
   let doneOverlay = null;
+  let badgeTimer = null;
+  let badgeInFlight = false;
+  let openReviewInFlight = false;
 
   function escapeHtml(s) {
     return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -122,16 +125,32 @@
   }
 
   /* ── Badge ── */
+  /** @tag REVIEW @tag SM2 — guarded against overlapping calls */
   async function updateBadge() {
-    var words = await fetchDueWords();
-    var badge = document.getElementById("review-badge");
-    if (!badge) return;
-    if (words.length > 0) {
-      badge.textContent = words.length;
-      badge.style.display = "inline-block";
-    } else {
-      badge.style.display = "none";
+    if (badgeInFlight) return;
+    badgeInFlight = true;
+    try {
+      var words = await fetchDueWords();
+      var badge = document.getElementById("review-badge");
+      if (!badge) return;
+      if (words.length > 0) {
+        badge.textContent = words.length;
+        badge.style.display = "inline-block";
+      } else {
+        badge.style.display = "none";
+      }
+    } finally {
+      badgeInFlight = false;
     }
+  }
+
+  /** @tag REVIEW — pause/resume badge polling on tab visibility */
+  function startBadgeTimer() {
+    if (badgeTimer) return;
+    badgeTimer = setInterval(updateBadge, 5 * 60 * 1000);
+  }
+  function stopBadgeTimer() {
+    if (badgeTimer) { clearInterval(badgeTimer); badgeTimer = null; }
   }
 
   /* ── Ensure Preview modal is fully hidden ── */
@@ -145,7 +164,11 @@
   }
 
   /* ── Open review session ── */
+  /** @tag REVIEW — guarded against double-click opening two sessions */
   async function openReview() {
+    if (openReviewInFlight) return;
+    openReviewInFlight = true;
+    try {
     buildRatingOverlay();
     buildDoneOverlay();
     reviewWords = await fetchDueWords();
@@ -167,6 +190,9 @@
     }
 
     showNextCard();
+    } finally {
+      openReviewInFlight = false;
+    }
   }
 
   /* ── Show next card using Preview modal ── */
@@ -243,7 +269,18 @@
     var btn = document.getElementById("btn-review");
     if (btn) btn.addEventListener("click", openReview);
     updateBadge();
-    setInterval(updateBadge, 5 * 60 * 1000);
+    startBadgeTimer();
+
+    // Pause polling when tab hidden; resume + immediate refresh on visible.
+    document.addEventListener("visibilitychange", function() {
+      if (document.hidden) {
+        stopBadgeTimer();
+      } else {
+        updateBadge();
+        startBadgeTimer();
+      }
+    });
+    window.addEventListener("pagehide", stopBadgeTimer);
 
     document.addEventListener("keydown", function(e) {
       if (e.key !== "Escape") return;

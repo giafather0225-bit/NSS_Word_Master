@@ -80,15 +80,22 @@
   border: 1.5px solid var(--border, #E0E0E5);
   transition: color 0.3s, border-color 0.3s, background 0.3s;
 }
+/* 5-min warning: calm amber, no pulse — "pace yourself", not panic */
 .eo-timer.eo-timer-warn {
-  color: var(--danger, #FF3B30);
-  border-color: var(--danger, #FF3B30);
-  background: #FFF5F5;
-  animation: timer-pulse 1s ease-in-out infinite;
+  color: var(--color-warning, #F59E0B);
+  border-color: var(--color-warning, #F59E0B);
+  background: var(--color-warning-light, rgba(245, 158, 11, 0.15));
+}
+/* Final 60s: red + slow pulse — true crunch cue */
+.eo-timer.eo-timer-urgent {
+  color: var(--color-error, #FF3B30);
+  border-color: var(--color-error, #FF3B30);
+  background: var(--color-error-light, #FFF5F5);
+  animation: timer-pulse 1.4s ease-in-out infinite;
 }
 @keyframes timer-pulse {
   0%,100% { opacity: 1; }
-  50%      { opacity: 0.65; }
+  50%      { opacity: 0.75; }
 }
 
 /* Close button */
@@ -499,6 +506,58 @@
 }
 .eo-btn-secondary:hover { border-color: var(--primary, #4A9B8E); background: var(--primary-light, #EAF4F2); transform: translateY(-1px); }
 .eo-btn-secondary:active { transform: translateY(0); }
+
+/* ── Missed-words review block (fail path) ──────────────── */
+.eo-miss-block {
+  max-width: 560px;
+  margin: 20px auto 8px auto;
+  padding: 16px 18px;
+  background: var(--color-warning-light, rgba(245, 158, 11, 0.12));
+  border: 1.5px solid var(--color-warning, #F59E0B);
+  border-radius: 14px;
+  text-align: left;
+}
+.eo-miss-title {
+  font-size: var(--font-learner-md, 16px);
+  font-weight: 700;
+  color: var(--color-warning, #F59E0B);
+  margin-bottom: 10px;
+  text-align: center;
+}
+.eo-miss-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.eo-miss-row {
+  padding: 10px 12px;
+  background: var(--bg-card, #FFFFFF);
+  border-radius: 10px;
+  border: 1px solid var(--border, #E0E0E5);
+}
+.eo-miss-word {
+  font-size: var(--font-learner-lg, 17px);
+  font-weight: 700;
+  color: var(--text-primary, #2D2D3F);
+}
+.eo-miss-def {
+  font-size: var(--font-learner-sm, 14px);
+  color: var(--text-secondary, #6E6E73);
+  margin-top: 2px;
+}
+.eo-miss-yours {
+  font-size: var(--font-learner-sm, 14px);
+  color: var(--color-error, #FF3B30);
+  margin-top: 6px;
+}
+.eo-miss-yours em {
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: line-through;
+}
 
 /* ── Keep system modals above overlay ───────────────────── */
 #magic-overlay { z-index: 210 !important; }

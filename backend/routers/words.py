@@ -32,6 +32,7 @@ from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import Lesson, StudyItem, Word, GrowthEvent
+from backend.schemas_common import Str20, Str100, Str500
 from backend.services import xp_engine
 
 router = APIRouter()
@@ -59,33 +60,23 @@ def _validate_lesson(lesson: str) -> str:
 # ── Pydantic Schemas ───────────────────────────────────────
 
 class ManualWordCreate(BaseModel):
-    word: str
-    definition: str
-    example: str = ""
-    pos: str = ""
+    word: Str100
+    definition: Str500
+    example: Str500 = ""
+    pos: Str20 = ""
 
     def clean(self):
-        """Sanitize all word fields."""
-        self.word       = self.word.strip()[:100]
-        self.definition = self.definition.strip()[:500]
-        self.example    = self.example.strip()[:500]
-        self.pos        = self.pos.strip()[:20]
+        """No-op — length/strip enforced by Pydantic (422 on overflow)."""
         return self
 
 
 class ManualWordUpdate(BaseModel):
-    definition: str | None = None
-    example:    str | None = None
-    pos:        str | None = None
+    definition: Str500 | None = None
+    example:    Str500 | None = None
+    pos:        Str20  | None = None
 
     def clean(self):
-        """Sanitize optional update fields."""
-        if self.definition is not None:
-            self.definition = self.definition.strip()[:500]
-        if self.example is not None:
-            self.example = self.example.strip()[:500]
-        if self.pos is not None:
-            self.pos = self.pos.strip()[:20]
+        """No-op — length/strip enforced by Pydantic (422 on overflow)."""
         return self
 
 

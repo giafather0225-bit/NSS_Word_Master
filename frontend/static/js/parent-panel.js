@@ -180,8 +180,7 @@ async function _ppLoadTab(tab) {
 /** Render day-off requests with approve/deny buttons. @tag PARENT DAY_OFF */
 async function _ppDayOff(body) {
     try {
-        const res  = await fetch("/api/parent/day-off-requests");
-        const data = await res.json();
+        const data = await apiFetchJSON("/api/parent/day-off-requests");
         if (!data.requests.length) {
             body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px">No requests yet.</p>`; return;
         }
@@ -201,14 +200,29 @@ async function _ppDayOff(body) {
 
 /** POST approve/deny decision. PIN-protected. @tag PARENT DAY_OFF */
 async function _ppDecideDayOff(id, status) {
+    // Errors were silently swallowed — a parent tapping Approve and seeing
+    // nothing happen couldn't tell if the network failed, their PIN lapsed,
+    // or the request id was stale. Surface every non-OK branch as a toast.
     try {
         const res = await window._ppFetch(`/api/parent/day-off-requests/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status }),
         });
-        if (res.ok) _ppLoadTab("dayoff");
-    } catch (_) {}
+        if (res.ok) { _ppLoadTab("dayoff"); return; }
+        let detail = "";
+        try { detail = (await res.json()).detail || ""; } catch (_) {}
+        if (res.status === 403) {
+            window.toast && window.toast("Parent PIN required — please re-enter.", "error");
+        } else if (res.status === 404) {
+            window.toast && window.toast("Request no longer exists.", "warn");
+            _ppLoadTab("dayoff"); // refresh to drop the stale row
+        } else {
+            window.toast && window.toast(detail || "Could not save decision.", "error");
+        }
+    } catch (_) {
+        window.toast && window.toast("Network error — try again.", "error");
+    }
 }
 
 // ─── Word Stats ───────────────────────────────────────────────
@@ -216,8 +230,7 @@ async function _ppDecideDayOff(id, status) {
 /** Render top wrong words table. @tag PARENT WORD_STATS */
 async function _ppWordStats(body) {
     try {
-        const res  = await fetch("/api/parent/word-stats");
-        const data = await res.json();
+        const data = await apiFetchJSON("/api/parent/word-stats");
         if (!data.top_wrong.length) {
             body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px">No word attempt data yet.</p>`; return;
         }

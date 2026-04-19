@@ -26,11 +26,35 @@ const WI_CFG = {
   waveBonus: 25,
 };
 
+/** Read a CSS custom property at runtime (canvas can't use var()). @tag ARCADE */
+function _wiCssVar(name, fallback) {
+  try {
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return v || fallback;
+  } catch (_e) { return fallback; }
+}
+
+/** Centralized color palette — semantic tokens read from theme.css, arcade-only
+ * game tokens (boss gold, deep-space bg, ice blue) kept named as exemptions
+ * since the Apple-minimal theme has no equivalents. @tag ARCADE @tag THEME */
+const WI_COLORS = {
+  success: _wiCssVar('--color-success', '#34C759'),
+  error:   _wiCssVar('--color-error',   '#FF3B30'),
+  white:   '#FFFFFF',
+  // arcade-only game palette
+  bgTop:   '#1A1033',
+  bgBot:   '#0A0818',
+  ink:     '#1A1033',
+  boss:    '#FFD700',
+  bombRed: '#FF6B6B',
+  ice:     '#4FC3F7',
+};
+
 /** @tag ARCADE */
 const WI_POWERUPS = {
-  ice:    { label: 'ICE',    icon: '🧊', color: '#4FC3F7' },
-  bomb:   { label: 'BOMB',   icon: '💣', color: '#FF6B6B' },
-  shield: { label: 'SHIELD', icon: '🛡️', color: '#34C759' },
+  ice:    { label: 'ICE',    icon: '🧊', color: WI_COLORS.ice },
+  bomb:   { label: 'BOMB',   icon: '💣', color: WI_COLORS.bombRed },
+  shield: { label: 'SHIELD', icon: '🛡️', color: WI_COLORS.success },
 };
 
 let _wi = null; // state container
@@ -103,6 +127,8 @@ async function wiStart(level = 'normal') {
         </div>
       </div>
     </div>`;
+
+  if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('word_invaders');
 
   const words = await _arcadeFetchWords(60);
   if (!words.length) {
@@ -226,7 +252,7 @@ function _wiKeydown(e) {
 function _wiKill(idx) {
   const en = _wi.active[idx];
   const isBoss = !!en.isBoss;
-  _wiBurst(en.x, en.y + 18, isBoss ? '#FFD700' : '#34C759');
+  _wiBurst(en.x, en.y + 18, isBoss ? WI_COLORS.boss : WI_COLORS.success);
   _wi.active.splice(idx, 1);
 
   const base = 10 + Math.min(20, _wi.streak * 2);
@@ -278,7 +304,7 @@ function _wiActivatePowerup(type, x, y) {
     _wi.slowUntil = performance.now() + WI_CFG.slowDurationMs;
   } else if (type === 'bomb') {
     const count = _wi.active.length;
-    _wi.active.forEach((en) => _wiBurst(en.x, en.y + 18, '#FF6B6B'));
+    _wi.active.forEach((en) => _wiBurst(en.x, en.y + 18, WI_COLORS.bombRed));
     _wi.score += count * 15;
     _wi.active = [];
     _wi.banner = { text: `💥 BOOM  +${count * 15}`, until: performance.now() + 1000 };
@@ -378,11 +404,11 @@ function _wiLoop(ts) {
       _wi.total += 1;
       if (_wi.shieldCharges > 0) {
         _wi.shieldCharges -= 1;
-        _wiBurst(en.x, floorY, '#34C759');
+        _wiBurst(en.x, floorY, WI_COLORS.success);
         _wi.banner = { text: '🛡️ SHIELD', until: ts + 900 };
         if (typeof sfxCombo === 'function') sfxCombo();
       } else {
-        _wiBurst(en.x, floorY, '#FF3B30');
+        _wiBurst(en.x, floorY, WI_COLORS.error);
         _wi.lives -= 1;
         _wi.shakeUntil = ts + 280;
         if (typeof sfxExplode === 'function') sfxExplode();
@@ -433,8 +459,8 @@ function _wiDraw(ts) {
 
   // Background gradient
   const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, '#1A1033');
-  grad.addColorStop(1, '#0A0818');
+  grad.addColorStop(0, WI_COLORS.bgTop);
+  grad.addColorStop(1, WI_COLORS.bgBot);
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, W, H);
 
@@ -481,11 +507,11 @@ function _wiDraw(ts) {
       const pulseB = 0.7 + 0.3 * Math.sin(ts / 120);
       ctx.shadowColor = `rgba(255, 215, 0, ${pulseB})`;
       ctx.shadowBlur = 28;
-      ctx.fillStyle = '#FFD700';
+      ctx.fillStyle = WI_COLORS.boss;
       _wiRoundRect(ctx, x, y, w, h, 16);
       ctx.fill();
       ctx.shadowBlur = 0;
-      ctx.fillStyle = '#1A1033';
+      ctx.fillStyle = WI_COLORS.ink;
     } else {
       const danger = Math.max(0, Math.min(1, (y - (H - 200)) / 140));
       const hue = 320 - danger * 320;
@@ -495,7 +521,7 @@ function _wiDraw(ts) {
       _wiRoundRect(ctx, x, y, w, h, 14);
       ctx.fill();
       ctx.shadowBlur = 0;
-      ctx.fillStyle = '#FFFFFF';
+      ctx.fillStyle = WI_COLORS.white;
     }
     ctx.fillText(text, x + w / 2, y + h / 2 + 1);
   });
@@ -514,7 +540,7 @@ function _wiDraw(ts) {
     _wiRoundRect(ctx, x, y + float, w, h, 10);
     ctx.fill();
     ctx.shadowBlur = 0;
-    ctx.fillStyle = '#0A0818';
+    ctx.fillStyle = WI_COLORS.bgBot;
     ctx.fillText(`${cfg.icon} ${cfg.label}`, x + w / 2, y + float + h / 2 + 1);
   });
 
@@ -538,7 +564,7 @@ function _wiDraw(ts) {
     ctx.textBaseline = 'middle';
     ctx.shadowColor = 'rgba(255,255,255,0.8)';
     ctx.shadowBlur = 20;
-    ctx.fillStyle = '#FFFFFF';
+    ctx.fillStyle = WI_COLORS.white;
     ctx.fillText(_wi.banner.text, W / 2, H / 2);
     ctx.shadowBlur = 0;
     ctx.globalAlpha = 1;

@@ -187,21 +187,18 @@ async function _playLearnTTS(card) {
     if (btn) { btn.disabled = true; btn.textContent = '🔊 ...'; }
 
     try {
-        if (typeof playTTS === 'function') {
-            await playTTS(text);
-        } else {
-            const res = await fetch('/api/tts/speak', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text, voice: 'en-US-AriaNeural' }),
-            });
-            if (res.ok) {
-                const blob = await res.blob();
-                const url = URL.createObjectURL(blob);
-                const audio = new Audio(url);
-                audio.play();
-                audio.onended = () => URL.revokeObjectURL(url);
-            }
+        const res = await fetch('/api/tts', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text }),
+        });
+        if (res.ok) {
+            const blob = await res.blob();
+            const url = URL.createObjectURL(blob);
+            const audio = new Audio(url);
+            audio.onended = () => URL.revokeObjectURL(url);
+            audio.onerror = () => URL.revokeObjectURL(url);
+            await audio.play().catch(() => URL.revokeObjectURL(url));
         }
     } catch (err) {
         console.warn('[math] TTS failed:', err);

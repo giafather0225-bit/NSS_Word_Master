@@ -1,0 +1,194 @@
+/* ================================================================
+   main-topbar.css — App shell main layout — topbar
+   Section: System
+   Dependencies: theme.css
+   ================================================================ */
+
+
+/* ─── Main Content ──────────────────────────────────── */
+.main-content {
+    flex: 1; min-width: 0; 
+    display: flex; flex-direction: column;
+    position: relative;
+}
+
+/* ─── Top Bar (Apple minimal) ───────────────────────────── */
+.top-bar {
+    display: flex; align-items: center;
+    padding: 0 20px;
+    gap: 12px;
+    background: var(--bg-card, #FFFFFF);
+    border-bottom: 1px solid var(--border-default, #E5E5EA);
+    overflow: visible;
+    position: relative;
+    z-index: 5;
+}
+
+/* ─── Roadmap (Option F: underline tabs, evenly distributed) ─── */
+#roadmap {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    gap: 0;
+    position: relative;
+    min-height: 48px;
+}
+
+.road-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 8px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    cursor: default;
+    position: relative;
+    background: transparent;
+    white-space: nowrap;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+    flex: 1 1 0;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+}
+
+.road-pill::before { display: none !important; }
+.road-pill::after  { display: none !important; }
+
+/* State: done — muted text with ✓ prefix (set by child.js) */
+.road-pill.done { color: var(--text-secondary); }
+
+/* State: current — teal underline + primary text */
+.road-pill.current {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-bold);
+    border-bottom-color: var(--color-primary);
+}
+
+/* State: next — unlocked, awaiting click */
+.road-pill.next { color: var(--text-secondary); }
+
+/* State: locked — hint color, no interaction */
+.road-pill.locked {
+    color: var(--text-hint);
+    pointer-events: none;
+}
+
+/* ─── Top-right: diary + stars + progress + % ───────── */
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.top-diary-btn {
+    border: none; background: transparent; cursor: pointer;
+    font-size: 16px; padding: 4px; border-radius: 6px;
+    transition: background 0.15s; line-height: 1;
+}
+.top-diary-btn:hover { background: rgba(0,0,0,0.06); }
+.top-star-icon {
+    font-size: 14px;
+    color: #f59e0b;
+    line-height: 1;
+}
+#stars-count {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 14px;
+}
+.top-progress-bar-wrap {
+    width: 80px;
+    height: 3px;
+    background: #E0E0E5;
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.top-progress-fill {
+    
+    width: 0%;
+    background: #4A9B8E;
+    border-radius: 999px;
+    transition: width 0.65s cubic-bezier(0.4,0,0.2,1);
+}
+.pct-big {
+    font-size: 13px; font-weight: 600; color: var(--text-primary);
+    letter-spacing: -0.02em; min-width: 36px;
+}
+.challenge-meta {
+    font-size: 13px; font-weight: 500; color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* ─── Stage header (in-card mini progress) ─────────────── */
+.stage-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 20px;
+    border-bottom: 1px solid var(--border-default, #E5E5EA);
+    background: var(--bg-card, #FFFFFF);
+}
+.stage-header #roadmap {
+    flex: 1;
+    min-height: 40px;
+}
+.stage-header .stage-meta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ─── Floating sidebar toggle (always visible; slides with sidebar) ─── */
+.sidebar-toggle--floating {
+    position: fixed;
+    top: 14px;
+    /* When sidebar open (240px), sit just outside its right edge */
+    left: 254px;
+    z-index: 101;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full, 9999px);
+    background: var(--bg-card, #FFFFFF);
+    border: 1px solid var(--border-default, #E5E5EA);
+    box-shadow: var(--shadow-card, 0 2px 12px rgba(0,0,0,0.06));
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: left 0.3s ease, background 0.15s;
+}
+.sidebar-toggle--floating svg { width: 20px; height: 20px; }
+.sidebar-toggle--floating:hover { background: var(--bg-page, #FDF2F8); }
+
+/* When sidebar collapsed, slide button to top-left corner */
+body.sb-collapsed .sidebar-toggle--floating {
+    left: 14px;
+}
+
+/* Hide on Home view (no sidebar shown there) */
+body[data-view="home"] .sidebar-toggle--floating { display: none; }
+
+/* Hide top-xp-meta (Lv.1 · 0d) injected by home.js in English view */
+body[data-view="english"] #top-xp-meta,
+body[data-view="diary"] #top-xp-meta {
+    display: none !important;
+}
+
+/* Hidden compat ring */
+.ring-fill {
+    stroke: var(--primary);
+    stroke-dasharray: 100.53;
+    stroke-dashoffset: 100.53;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.65s cubic-bezier(0.4,0,0.2,1);
+}
+

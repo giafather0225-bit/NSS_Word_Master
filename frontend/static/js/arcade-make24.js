@@ -103,6 +103,8 @@ function mkStart(level = 'normal') {
   document.getElementById('mk-skip').addEventListener('click', _mkSkip);
   document.querySelectorAll('.mk-op').forEach((b) => b.addEventListener('click', () => _mkPush({ kind: 'op', v: b.dataset.op })));
 
+  if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('make24');
+
   if (typeof sfxStart === 'function') sfxStart();
   _mkNextHand();
   _mkTick();

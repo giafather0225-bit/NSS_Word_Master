@@ -9,6 +9,7 @@ API:
 """
 
 import json
+import logging
 import random
 from datetime import date, datetime
 
@@ -17,7 +18,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
-from backend.models import Word, StudyItem, AppConfig, AcademySession, WordReview
+from backend.models import Word, StudyItem, AppConfig, WordReview
 from backend.services.xp_engine import (
     award_arcade_xp,
     score_to_arcade_tier,
@@ -26,6 +27,7 @@ from backend.services.xp_engine import (
 from backend.services import streak_engine
 
 router = APIRouter()
+logger = logging.getLogger(__name__)
 
 _BEST_KEY_PREFIX = "arcade_best_"
 _DUE_BOOST = 3  # how many times a due word appears in the weighted pool
@@ -71,46 +73,6 @@ def _set_best(db: Session, game: str, score: int, level: str = "") -> None:
     else:
         db.add(AppConfig(key=key, value=payload, updated_at=now))
     db.commit()
-
-
-def _academy_words(db: Session) -> list[dict]:
-    """Return words from StudyItem rows whose lessons are completed in AcademySession."""
-    completed = (
-        db.query(AcademySession.textbook, AcademySession.lesson)
-        .filter(
-            AcademySession.subject == "English",
-            AcademySession.is_completed == True,  # noqa: E712
-        )
-        .all()
-    )
-    if not completed:
-        return []
-
-    key_set = {(tb, ls) for (tb, ls) in completed}
-    items = (
-        db.query(StudyItem)
-        .filter(
-            StudyItem.subject == "English",
-            StudyItem.answer.isnot(None),
-            StudyItem.question.isnot(None),
-        )
-        .all()
-    )
-    out: list[dict] = []
-    seen: set[str] = set()
-    for it in items:
-        if (it.textbook, it.lesson) not in key_set:
-            continue
-        w = (it.answer or "").strip()
-        d = (it.question or "").strip()
-        if not (w and d) or not w.isascii():
-            continue
-        key = w.lower()
-        if key in seen:
-            continue
-        seen.add(key)
-        out.append({"word": w, "definition": _short_def(d)})
-    return out
 
 
 def _fallback_words(db: Session) -> list[dict]:
@@ -164,17 +126,14 @@ def _due_word_set(db: Session) -> set[str]:
 def arcade_words(count: int = 40, db: Session = Depends(get_db)) -> dict:
     """Return a weighted, shuffled word pool for arcade games.
 
-    Base pool: words from StudyItem rows whose lesson is marked completed in
-    AcademySession. SM-2 due words (WordReview.next_review <= today) are
-    duplicated `_DUE_BOOST` times to bias spawn frequency.
-
-    Falls back to the Word/StudyItem global pool if nothing is completed yet.
+    Pool: combined Word + StudyItem (English) global pool, de-duplicated.
+    SM-2 due words (WordReview.next_review <= today) are duplicated
+    `_DUE_BOOST` times to bias spawn frequency.
     """
     count = max(10, min(200, int(count)))
 
     # Full pool — include all known words (learned or not) for maximum variety.
     base = _fallback_words(db)
-    source = "all"
 
     due = _due_word_set(db) if base else set()
     weighted: list[dict] = []
@@ -190,7 +149,7 @@ def arcade_words(count: int = 40, db: Session = Depends(get_db)) -> dict:
     random.shuffle(weighted)
     return {
         "words": weighted[:count],
-        "source": source,
+        "source": "all",
         "unique_count": len(base),
         "due_count": due_count,
     }
@@ -229,8 +188,8 @@ def arcade_score(req: ScoreRequest, db: Session = Depends(get_db)) -> dict:
 
     try:
         streak_engine.mark_game_done(db)
-    except Exception:
-        pass
+    except Exception as e:
+        logger.warning("Streak game mark failed: %s", e)
 
     return {
         "tier": xp_result["tier"],

@@ -188,6 +188,24 @@ function $(id) {
 }
 
 /**
+ * fetch + res.ok check + res.json() as one atomic op.
+ * Throws Error(`METHOD URL → STATUS STATUSTEXT: <body preview>`) on non-2xx.
+ * Callers can no longer forget the status check — that is the point.
+ * @tag SYSTEM @tag API
+ */
+async function apiFetchJSON(url, opts) {
+    const res = await fetch(url, opts);
+    if (!res.ok) {
+        let detail = "";
+        try { detail = (await res.text()).slice(0, 200); } catch (_) {}
+        const method = (opts && opts.method) || "GET";
+        throw new Error(`${method} ${url} → ${res.status} ${res.statusText}${detail ? ": " + detail : ""}`);
+    }
+    return res.json();
+}
+window.apiFetchJSON = apiFetchJSON;
+
+/**
  * Escape HTML special characters.
  * @tag SYSTEM
  */
@@ -707,7 +725,7 @@ function showMagicOverlayBrief(resetCount) {
     if (c) c.textContent = String(resetCount);
     if (o) {
         o.classList.remove("hidden");
-        setTimeout(() => o.classList.add("hidden"), 1150);
+        setTimeout(() => o.classList.add("hidden"), 2500);
     }
 }
 

@@ -9,16 +9,12 @@
 /** Render enhanced overview: summary cards + activity chart + stage stats + math snapshot. @tag PARENT */
 async function _ppOverview(body) {
     try {
-        const [sumRes, actRes, stgRes, mathRes] = await Promise.all([
-            fetch("/api/parent/summary"),
-            fetch("/api/parent/activity?days=7"),
-            fetch("/api/parent/stage-stats"),
-            fetch("/api/parent/math-summary").catch(() => null),
+        const [sum, act, stg, math] = await Promise.all([
+            apiFetchJSON("/api/parent/summary"),
+            apiFetchJSON("/api/parent/activity?days=7"),
+            apiFetchJSON("/api/parent/stage-stats"),
+            apiFetchJSON("/api/parent/math-summary").catch(() => null),
         ]);
-        const sum = await sumRes.json();
-        const act = await actRes.json();
-        const stg = await stgRes.json();
-        const math = (mathRes && mathRes.ok) ? await mathRes.json() : null;
 
         body.innerHTML =
             _ppOverviewCards(sum) +

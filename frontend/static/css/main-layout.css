@@ -1,0 +1,393 @@
+/* ================================================================
+   main-layout.css — App shell main layout — layout
+   Section: System
+   Dependencies: theme.css
+   ================================================================ */
+
+/* == Unified Sidebar Card Style == */
+
+/* Section label (TEXTBOOK / TEST style) */
+.sb-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary, #6B7280);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 0 16px 6px;
+}
+
+.sb-sidebar-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    margin: 0 12px 4px;
+    background: var(--bg-card, #fff);
+    border: 1.5px solid var(--border-default, #E5E5EA);
+    border-radius: var(--radius-md, 12px);
+    font-size: var(--font-size-md, 15px);
+    font-weight: var(--font-weight-bold, 600);
+    color: var(--text-primary, #1A1A1A);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: calc(100% - 24px);
+    box-sizing: border-box;
+}
+.sb-sidebar-card:hover {
+    border-color: var(--color-primary, #4A8E8E);
+    box-shadow: none;
+}
+.sb-card-label { flex: 1; text-align: left; }
+.sb-card-chevron {
+    font-size: 16px;
+    color: var(--text-secondary, #6B7280);
+    transition: color 0.2s;
+}
+.sb-sidebar-card:hover .sb-card-chevron {
+    color: var(--color-primary, #4A8E8E);
+}
+.btn-lock-icon {
+    font-size: 14px;
+    line-height: 1;
+}
+.sb-sidebar-card:hover .btn-lock-icon {
+    color: var(--color-primary, #4A8E8E);
+}
+
+/* ── Compact sidebar to fit without scroll ── */
+/* ── Sidebar Layout Overrides (unified spacing) ─── */
+.sb-profile {
+    padding: 20px 16px 16px;
+    gap: 12px;
+}
+.sb-profile .avatar-img {
+    width: 48px;
+}
+.sb-subject-tabs {
+    margin: 0 12px 8px;
+}
+.sb-div {
+    height: 1px;
+    background: var(--border-default, #E5E5EA);
+    margin: 6px 16px;
+}
+.sb-label {
+    margin-bottom: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary, #6B7280);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 0 16px;
+}
+.sb-textbook-display {
+    padding: 9px 14px;
+    margin: 0 12px 4px;
+}
+.sb-section {
+    padding: 0;
+    margin-bottom: 2px;
+}
+.sb-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    padding: 2px 16px 4px;
+}
+.sb-sidebar-card {
+    padding: 10px 14px;
+    margin: 0 12px 4px;
+    min-height: 40px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+.sb-bottom {
+    padding: 6px 16px 8px;
+    border-top: 1px solid var(--border-default, #E5E5EA);
+}
+.sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 0 0 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* ── Phase 2: Sidebar accordion & back button ─────────────── */
+.sb-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--border-default, #E5E5EA);
+  border-radius: var(--radius-full, 9999px);
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 500;
+  padding: 6px 12px;
+  margin: 10px 12px 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+.sb-back-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--color-primary, #4A8E8E);
+  background: var(--color-primary-light, rgba(74,142,142,0.08));
+}
+
+.sb-card-icon {
+  font-size: 16px;
+  margin-right: 2px;
+}
+.sb-card-badge {
+  font-size: 10px;
+  background: var(--bg-chip);
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
+  padding: 2px 6px;
+  margin-left: auto;
+}
+.sb-card-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sb-accordion-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 8px;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: background var(--transition-fast);
+}
+.sb-accordion-btn:hover { background: var(--bg-chip); }
+.sb-accordion-btn .sb-accordion-arrow {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: transform var(--transition-fast);
+}
+.sb-accordion-btn.open .sb-accordion-arrow { transform: rotate(180deg); }
+
+.sb-accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  opacity: 0;
+  padding-left: 8px;
+}
+.sb-accordion-panel.open {
+  max-height: 600px;
+  opacity: 1;
+}
+
+.sb-accordion-info {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  padding: 4px 8px;
+}
+
+/* ── View visibility (Phase 2 home dashboard refactor) ───────
+ * `.stage-area` is the SHARED container for home-dashboard, idle-wrapper,
+ * stage-card, daily-words-view, and diary-view. We keep it visible at all
+ * times and hide individual children based on body[data-view].
+ * The previous rules hid the parent on home/diary which also hid the
+ * home-dashboard child even when JS tried to show it.
+ */
+body[data-view="english"] #home-dashboard { display: none !important; }
+body[data-view="diary"]   #home-dashboard { display: none !important; }
+body[data-view="home"]    #idle-wrapper,
+body[data-view="diary"]   #idle-wrapper   { display: none !important; }
+body[data-view="home"]    #stage-card,
+body[data-view="diary"]   #stage-card     { display: none !important; }
+body[data-view="home"]    #diary-view,
+body[data-view="english"] #diary-view     { display: none !important; }
+body[data-view="home"]    .top-bar,
+body[data-view="diary"]   .top-bar        { display: none !important; }
+
+/* Hide sidebar entirely on home — section cards live in the main dashboard.
+   Also drop the toggle button since there's nothing to toggle. */
+body[data-view="home"] .sidebar       { display: none !important; }
+body[data-view="home"] .sidebar-toggle { display: none !important; }
+
+/* ── Idle stage card (shown before a session starts) ───────────── */
+.idle-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 260px;
+}
+.idle-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-default);
+    padding: 48px;
+    min-width: 320px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+}
+.idle-lesson-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.idle-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+.idle-subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-top: 24px;
+    line-height: 1.75;
+}
+.idle-empty {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.75;
+}
+.idle-accent {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ── Hero card (English pre-session launcher) ──────────────── */
+.hero-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 40px 40px 32px;
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+}
+.hero-empty {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    padding: 40px 8px;
+    text-align: center;
+}
+.hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+.hero-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+.hero-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+}
+.hero-progress-bar {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--border-default);
+    overflow: hidden;
+}
+.hero-progress-fill {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+.hero-progress-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+.hero-cta {
+    background: var(--color-primary);
+    color: var(--text-on-primary, #fff);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 20px;
+    margin-top: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.08s ease;
+}
+.hero-cta:hover { background: var(--color-primary-hover, var(--color-primary)); }
+.hero-cta:active { transform: scale(0.98); }
+.hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0;
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+.hero-divider::before,
+.hero-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border-default);
+}
+.hero-chips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+}
+.hero-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+}
+.hero-chip-icon { font-size: 14px; flex-shrink: 0; }
+.hero-chip.done { color: var(--color-success); border-color: var(--color-success-light); background: var(--color-success-light); }
+.hero-chip.done .hero-chip-icon { color: var(--color-success); }
+.hero-chip.current {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
+    font-weight: 600;
+    animation: hero-pulse 1.8s ease-in-out infinite;
+}
+.hero-chip.locked { color: var(--text-secondary); opacity: 0.55; cursor: not-allowed; }
+.hero-chip:not(.locked):hover { border-color: var(--color-primary); }
+@keyframes hero-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 142, 142, 0.35); }
+    50%      { box-shadow: 0 0 0 6px rgba(74, 142, 142, 0); }
+}

@@ -1,5 +1,5 @@
 """
-migrations/005_academy_session_active.py
+migrations/006_academy_session_active.py
 Adds last_active_date column to academy_sessions for 2-day auto-reset logic.
 Idempotent: safe to re-run.
 """

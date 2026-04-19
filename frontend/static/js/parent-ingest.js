@@ -16,8 +16,7 @@
     // --- Sidebar ---
     async function loadTextbooks() {
         try {
-            var res = await fetch("/api/textbooks/English");
-            var data = await res.json();
+            var data = await apiFetchJSON("/api/textbooks/English");
             var sel = $("textbook-select");
             sel.innerHTML = "";
             (data.textbooks || []).filter(function(tb) { return tb !== "My_Words"; }).forEach(function(tb) {
@@ -42,8 +41,7 @@
 
     async function loadFolders() {
         try {
-            var res = await fetch("/api/voca/folders?textbook=" + encodeURIComponent(currentTextbook));
-            var data = await res.json();
+            var data = await apiFetchJSON("/api/voca/folders?textbook=" + encodeURIComponent(currentTextbook));
             renderFolderList(data.folders || []);
         } catch(e) { console.error("loadFolders:", e); }
     }
@@ -86,8 +84,7 @@
 
     async function loadLessonDetail(lesson) {
         try {
-            var res = await fetch("/api/voca/folder-detail/" + encodeURIComponent(lesson) + "?textbook=" + encodeURIComponent(currentTextbook));
-            folderData = await res.json();
+            folderData = await apiFetchJSON("/api/voca/folder-detail/" + encodeURIComponent(lesson) + "?textbook=" + encodeURIComponent(currentTextbook));
             editedWords = JSON.parse(JSON.stringify(folderData.words || []));
             isDirty = false;
             document.getElementById("btn-delete-folder").style.display = "inline-block";
@@ -133,7 +130,7 @@
                 if (!confirm("Delete " + img.name + "?")) return;
                 fetch("/api/voca/folder-image/" + encodeURIComponent(currentLesson) + "/" + encodeURIComponent(img.name) + "?textbook=" + encodeURIComponent(currentTextbook), {method:"DELETE"})
                     .then(function() { loadLessonDetail(currentLesson); loadFolders(); })
-                    .catch(function(err) { alert("Delete failed: " + err.message); });
+                    .catch(function(err) { toast("Delete failed: " + err.message, "error"); });
             });
             grid.appendChild(card);
         });
@@ -209,7 +206,7 @@
     // --- Add word ---
     function initAddWord() {
         $("btn-delete-all-words").addEventListener("click", function() {
-            if (!editedWords.length) { alert("No words to delete."); return; }
+            if (!editedWords.length) { toast("No words to delete.", "warn"); return; }
             if (!confirm("Delete all " + editedWords.length + " words?")) return;
             var autoSave = confirm("Save immediately?\n\nOK = Save now (clear data.json + DB)\nCancel = Edit more before saving");
             editedWords = [];
@@ -263,75 +260,161 @@
         zone.addEventListener("drop", function(e) {
             e.preventDefault();
             zone.classList.remove("dragover");
-            if (!currentLesson) { alert("Select a lesson first."); return; }
+            if (!currentLesson) { toast("Select a lesson first.", "warn"); return; }
             uploadFiles(e.dataTransfer.files);
         });
         input.addEventListener("change", function() {
-            if (!currentLesson) { alert("Select a lesson first."); return; }
+            if (!currentLesson) { toast("Select a lesson first.", "warn"); return; }
             if (input.files.length) uploadFiles(input.files);
             input.value = "";
         });
     }
 
+    /**
+     * Upload a batch of image files to the current lesson folder.
+     * Handles: 413 (oversized) per-file skip, 422 (server rejected all),
+     * network failure. On partial skip, shows skipped-file count + Retry for
+     * the skipped ones. On hard failure, shows Retry for the whole batch.
+     * @tag PARENT @tag UPLOAD @tag RETRY
+     */
     async function uploadFiles(fileList) {
         if (!currentLesson) return;
-        showStatus("Uploading " + fileList.length + " file(s)...");
+        // Keep a stable array ref so Retry can re-send the same files.
+        var files = Array.prototype.slice.call(fileList);
+        showStatus("Uploading " + files.length + " file(s)...");
         var fd = new FormData();
-        for (var i = 0; i < fileList.length; i++) fd.append("files", fileList[i]);
+        for (var i = 0; i < files.length; i++) fd.append("files", files[i]);
+
+        var retry = function() { uploadFiles(files); };
+
+        var res;
         try {
-            var res = await fetch("/api/voca/folder-upload/" + encodeURIComponent(currentLesson) + "?textbook=" + encodeURIComponent(currentTextbook), {method:"POST", body:fd});
-            var data = await res.json();
-            showStatus("Uploaded " + data.count + " file(s)", false);
-            await loadLessonDetail(currentLesson);
-            loadFolders();
-            setTimeout(hideStatus, 2000);
+            res = await fetch(
+                "/api/voca/folder-upload/" + encodeURIComponent(currentLesson)
+                  + "?textbook=" + encodeURIComponent(currentTextbook),
+                { method: "POST", body: fd }
+            );
         } catch(e) {
-            showStatus("Upload failed: " + e.message, false);
+            // Network error (server down, CORS, aborted).
+            showError("Upload failed — network error: " + e.message + ". Check the server is running.", retry);
+            return;
         }
+
+        var parsed = await parseApiResponse(res);
+        if (!parsed.ok) {
+            var msg;
+            if (parsed.status === 413) msg = "One or more files are too large (max 20 MB each). " + parsed.detail;
+            else if (parsed.status === 422) msg = "Upload rejected: " + parsed.detail;
+            else msg = "Upload failed (" + parsed.status + "): " + parsed.detail;
+            showError(msg, retry);
+            return;
+        }
+
+        var data = parsed.data || {};
+        var savedCount = data.count || 0;
+        var skippedList = Array.isArray(data.skipped) ? data.skipped : [];
+        if (skippedList.length > 0) {
+            showStatus(
+                "Uploaded " + savedCount + " file(s). Skipped " + skippedList.length
+                + ": " + skippedList.slice(0, 2).join("; ")
+                + (skippedList.length > 2 ? "…" : ""),
+                false
+            );
+        } else {
+            showStatus("Uploaded " + savedCount + " file(s)", false);
+        }
+        await loadLessonDetail(currentLesson);
+        loadFolders();
+        setTimeout(hideStatus, 3000);
     }
 
     // --- OCR ---
-    function initOCR() {
-        $("btn-run-folder-ocr").addEventListener("click", async function() {
-            if (!currentLesson || !folderData) return;
-            var imgCount = folderData.image_count || 0;
-            if (!imgCount) { alert("No images to process."); return; }
-            if (!confirm("Run OCR on " + imgCount + " image(s) in " + currentLesson + "?\nEstimated: ~" + (imgCount*10) + "s")) return;
-            var btn = $("btn-run-folder-ocr");
-            btn.disabled = true;
-            btn.textContent = "Running OCR...";
-            showStatus("Running OCR on " + imgCount + " image(s)... (~" + (imgCount*10) + "s)");
-            $("ocr-progress").style.display = "block";
-            var progress = 0;
-            var iv = setInterval(function() {
-                progress = Math.min(progress + 100/(imgCount*10), 95);
-                $("ocr-progress-fill").style.width = progress + "%";
-            }, 1000);
-            try {
-                var res = await fetch("/api/voca/folder-ocr/" + encodeURIComponent(currentLesson) + "?textbook=" + encodeURIComponent(currentTextbook), {method:"POST"});
-                clearInterval(iv);
-                $("ocr-progress-fill").style.width = "100%";
-                if (!res.ok) {
-                    var err = await res.json();
-                    throw new Error(err.detail || "OCR failed");
-                }
-                var data = await res.json();
-                showStatus("Done! " + data.word_count + " words from " + data.images_processed + " image(s).", false, true);
-                await loadLessonDetail(currentLesson);
-                loadFolders();
-                setTimeout(hideStatus, 3000);
-            } catch(e) {
-                clearInterval(iv);
-                showStatus("OCR failed: " + e.message, false);
-            } finally {
-                btn.disabled = false;
-                btn.textContent = "Run OCR on All Images";
-                setTimeout(function() {
-                    $("ocr-progress").style.display = "none";
-                    $("ocr-progress-fill").style.width = "0%";
-                }, 2000);
+    /**
+     * Kick off OCR on the lesson folder. Backend contract (updated Phase 10+):
+     *   200 → { synced, skipped, word_count, images_processed }
+     *   422 → AI enrichment failed OR all rows were garbage (no definitions).
+     *         This is the fail-closed path — retry is the right call because
+     *         Ollama may have been warming up or briefly unreachable.
+     *   502 → Vision OCR error upstream.
+     * @tag PARENT @tag OCR @tag RETRY
+     */
+    async function runFolderOcr() {
+        if (!currentLesson || !folderData) return;
+        var imgCount = folderData.image_count || 0;
+        if (!imgCount) { toast("No images to process.", "warn"); return; }
+        if (!confirm("Run OCR on " + imgCount + " image(s) in " + currentLesson + "?\nEstimated: ~" + (imgCount*10) + "s")) return;
+
+        var btn = $("btn-run-folder-ocr");
+        btn.disabled = true;
+        btn.textContent = "Running OCR...";
+        showStatus("Running OCR on " + imgCount + " image(s)... (~" + (imgCount*10) + "s)");
+        $("ocr-progress").style.display = "block";
+        var progress = 0;
+        var iv = setInterval(function() {
+            progress = Math.min(progress + 100/(imgCount*10), 95);
+            $("ocr-progress-fill").style.width = progress + "%";
+        }, 1000);
+
+        var cleanup = function() {
+            clearInterval(iv);
+            btn.disabled = false;
+            btn.textContent = "Run OCR on All Images";
+            setTimeout(function() {
+                $("ocr-progress").style.display = "none";
+                $("ocr-progress-fill").style.width = "0%";
+            }, 2000);
+        };
+
+        var res;
+        try {
+            res = await fetch(
+                "/api/voca/folder-ocr/" + encodeURIComponent(currentLesson)
+                  + "?textbook=" + encodeURIComponent(currentTextbook),
+                { method: "POST" }
+            );
+        } catch(e) {
+            cleanup();
+            showError("OCR failed — network error: " + e.message, runFolderOcr);
+            return;
+        }
+
+        $("ocr-progress-fill").style.width = "100%";
+        var parsed = await parseApiResponse(res);
+        if (!parsed.ok) {
+            cleanup();
+            var msg;
+            if (parsed.status === 422) {
+                // Fail-closed: AI unreachable or returned no valid definitions.
+                msg = "OCR ran but saved nothing: " + parsed.detail
+                    + " (Ollama may be warming up — try again in a few seconds.)";
+            } else if (parsed.status === 502) {
+                msg = "Vision OCR error: " + parsed.detail;
+            } else {
+                msg = "OCR failed (" + parsed.status + "): " + parsed.detail;
             }
-        });
+            showError(msg, runFolderOcr);
+            return;
+        }
+
+        var data = parsed.data || {};
+        var extras = "";
+        if (data.skipped && data.skipped > 0) {
+            extras = " (" + data.skipped + " row(s) skipped — missing definitions)";
+        }
+        showStatus(
+            "Done! " + (data.word_count || 0) + " words from "
+              + (data.images_processed || 0) + " image(s)." + extras,
+            false,
+            true
+        );
+        await loadLessonDetail(currentLesson);
+        loadFolders();
+        setTimeout(hideStatus, 3000);
+        cleanup();
+    }
+
+    function initOCR() {
+        $("btn-run-folder-ocr").addEventListener("click", runFolderOcr);
     }
 
     // --- New lesson ---
@@ -351,7 +434,7 @@
         await loadFolders();
                 document.getElementById("lesson-detail").innerHTML = "<p style='color:#888;text-align:center;margin-top:60px;'>Select a lesson</p>";
             } catch(e) {
-                alert("Delete failed: " + e.message);
+                toast("Delete failed: " + e.message, "error");
             }
         });
     }
@@ -361,7 +444,7 @@
             var name = prompt("Enter lesson name:", "Lesson_");
             if (!name) return;
             if (!/^Lesson_\d{1,3}$/.test(name.trim())) {
-                alert("Format: Lesson_XX (e.g. Lesson_05)");
+                toast("Format: Lesson_XX (e.g. Lesson_05)", "warn");
                 return;
             }
             try {
@@ -370,7 +453,7 @@
                 await loadTextbooks();
         await loadFolders();
                 selectLesson(name.trim());
-            } catch(e) { alert("Failed: " + e.message); }
+            } catch(e) { toast("Failed: " + e.message, "error"); }
         });
     }
 
@@ -382,36 +465,97 @@
         $("status-spinner").style.display = showSpinner ? "block" : "none";
         $("btn-save-words").style.display = showSave ? "inline-block" : "none";
         $("btn-discard").style.display = "none";
+        var retryBtn = $("btn-retry");
+        if (retryBtn) retryBtn.style.display = "none";
         $("status-bar").classList.add("visible");
     }
     function hideStatus() {
         $("status-bar").classList.remove("visible");
     }
 
+    /**
+     * Normalize fetch errors from the new 422/413/502 backend contract.
+     * Returns { ok, status, detail, data } — safe to inspect without throwing.
+     * @tag PARENT @tag UPLOAD
+     */
+    async function parseApiResponse(res) {
+        var data = null;
+        try { data = await res.json(); } catch(_) { data = null; }
+        if (res.ok) return { ok: true, status: res.status, data: data };
+        var detail = (data && (data.detail || data.error)) || res.statusText || "Request failed";
+        return { ok: false, status: res.status, detail: String(detail), data: data };
+    }
+
+    /**
+     * Show a failure status with a Retry button that re-runs `retryFn`.
+     * Pass null for retryFn to hide the Retry button (non-retryable).
+     * @tag PARENT @tag UPLOAD @tag RETRY
+     */
+    function showError(message, retryFn) {
+        showStatus(message, false);
+        var retryBtn = $("btn-retry");
+        if (!retryBtn) return;
+        if (typeof retryFn === "function") {
+            retryBtn.style.display = "inline-block";
+            retryBtn.onclick = function() {
+                retryBtn.style.display = "none";
+                retryFn();
+            };
+        } else {
+            retryBtn.style.display = "none";
+            retryBtn.onclick = null;
+        }
+    }
+
     // --- Save ---
+    /**
+     * Persist the reviewer-edited word list to the DB. Backend now returns
+     *   { synced, skipped, ... } — skipped > 0 means rows were dropped because
+     *   they had no definition (fail-closed in voca_sync.py). Show that back
+     *   to the parent so they can fix and re-save.
+     * @tag PARENT @tag SAVE @tag RETRY
+     */
+    async function saveReviewedWords() {
+        if (!currentLesson) return;
+        var cleaned = editedWords.filter(function(w) { return w.word && w.word.trim(); });
+        showStatus("Saving " + cleaned.length + " words...");
+
+        var retry = function() { saveReviewedWords(); };
+
+        var res;
+        try {
+            var fd = new FormData();
+            fd.append("lesson", currentLesson);
+            fd.append("textbook", currentTextbook);
+            fd.append("words_json", JSON.stringify(cleaned));
+            res = await fetch("/api/voca/save-reviewed", { method: "POST", body: fd });
+        } catch(e) {
+            showError("Save failed — network error: " + e.message, retry);
+            return;
+        }
+
+        var parsed = await parseApiResponse(res);
+        if (!parsed.ok) {
+            var msg;
+            if (parsed.status === 422) msg = "Save rejected: " + parsed.detail;
+            else msg = "Save failed (" + parsed.status + "): " + parsed.detail;
+            showError(msg, retry);
+            return;
+        }
+
+        var data = parsed.data || {};
+        isDirty = false;
+        var extras = (data.skipped && data.skipped > 0)
+            ? " (" + data.skipped + " skipped — missing definitions)"
+            : "";
+        showStatus("Saved " + (data.synced || 0) + " words to DB." + extras, false);
+        await loadLessonDetail(currentLesson);
+        loadFolders();
+        setTimeout(hideStatus, 2500);
+    }
+
     function initSave() {
-        $("btn-save-words").addEventListener("click", async function() {
-            if (!currentLesson) return;
-            // Filter out empty words
-            var cleaned = editedWords.filter(function(w) { return w.word && w.word.trim(); });
-            showStatus("Saving " + cleaned.length + " words...");
-            try {
-                var fd = new FormData();
-                fd.append("lesson", currentLesson);
-                fd.append("textbook", currentTextbook);
-                fd.append("words_json", JSON.stringify(cleaned));
-                var res = await fetch("/api/voca/save-reviewed", {method:"POST", body:fd});
-                if (!res.ok) throw new Error("Save failed");
-                var data = await res.json();
-                isDirty = false;
-                showStatus("Saved " + data.synced + " words to DB.", false);
-                await loadLessonDetail(currentLesson);
-                loadFolders();
-                setTimeout(hideStatus, 2000);
-            } catch(e) {
-                showStatus("Save failed: " + e.message, false);
-            }
-        });
+        $("btn-save-words").addEventListener("click", saveReviewedWords);
 
         $("btn-discard").addEventListener("click", function() {
             if (!confirm("Discard all changes?")) return;

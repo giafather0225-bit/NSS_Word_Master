@@ -47,18 +47,36 @@ function _isOffline() {
 }
 
 /**
- * Preview TTS — fire-and-forget server-side sequence trigger.
+ * Preview TTS — fetch MP3 bytes and play in the browser.
+ * (Server never plays on its own speakers — the child's device plays the audio.)
  * @tag TTS PREVIEW
  */
 async function apiPreviewTTS(item) {
+    if (_isOffline()) {
+        const text = [item.answer, item.question, item.hint].filter(Boolean).join('. ');
+        return _speakLocal(text, { rate: 0.9 });
+    }
     try {
-        await fetch("/api/tts/preview_sequence", {
+        const res = await fetch("/api/tts/preview_sequence", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ word: item.answer, meaning: item.question, example: item.hint }),
         });
+        if (!res.ok) throw new Error(`tts ${res.status}`);
+        const blob = await res.blob();
+        if (blob.size === 0) throw new Error('empty blob');
+        const url = URL.createObjectURL(blob);
+        const audio = new Audio(url);
+        _globalCurrentAudio = audio;
+        await new Promise((resolve, reject) => {
+            audio.onended = () => { URL.revokeObjectURL(url); _globalCurrentAudio = null; resolve(); };
+            audio.onerror = (e) => { URL.revokeObjectURL(url); _globalCurrentAudio = null; reject(e); };
+            audio.play().catch(reject);
+        });
     } catch (err) {
-        console.warn('[TTS] Preview failed:', err.message || err);
+        console.warn('[TTS] Preview failed, falling back to local voice:', err.message || err);
+        const text = [item.answer, item.question, item.hint].filter(Boolean).join('. ');
+        await _speakLocal(text, { rate: 0.9 });
     }
 }
 

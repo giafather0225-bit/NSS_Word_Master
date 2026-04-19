@@ -14,9 +14,11 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import Schedule
+    from ..schemas_common import Str30, Str200
 except ImportError:
     from database import get_db
     from models import Schedule
+    from schemas_common import Str30, Str200
 
 router = APIRouter()
 
@@ -24,11 +26,11 @@ _DATE_RE = _re.compile(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$')
 
 
 class ScheduleCreate(BaseModel):
-    test_date: str
-    memo: str
+    test_date: Str30
+    memo: Str200
 
     def clean(self):
-        self.memo = self.memo.strip()[:200]
+        """Validate date format (length enforced by Pydantic)."""
         if not _DATE_RE.match(self.test_date):
             raise HTTPException(status_code=400, detail="test_date must be YYYY-MM-DD")
         return self

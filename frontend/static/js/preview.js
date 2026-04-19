@@ -149,6 +149,11 @@ function openPreviewModal(item, onClose) {
             verdict.textContent = "Good try! Let's move on \uD83D\uDCAA";
             setTimeout(() => { verdict.className = 'pm-verdict'; verdict.textContent = ''; }, 2000);
         }
+        // Analytics safety net: 3 prior is_correct=false entries would mark the word
+        // as struggled in SM-2 / review queue. Auto-pass means we chose to release
+        // the child — log one compensating neutral-pass so the word isn't queued as
+        // "failed" purely from a possibly-broken mic / noisy environment.
+        _trackWordAttempt(item, true, 'shadow_auto_pass');
         spellUnlocked = true;
         const h = $('pm-spell-unlock-hint'); if (h) h.classList.remove('hidden');
         buildSpellRows();
@@ -218,18 +223,37 @@ function openPreviewModal(item, onClose) {
     }
 
     // ── TTS playback ─────────────────────────────────────────────
+    // Never fail silently: if server TTS errors / returns empty / playback fails,
+    // fall back to the browser's built-in speechSynthesis so the child always
+    // hears *something*. Silent "Listen" buttons break the shadow-repeat gate.
     let ttsAbort=null, currentAudio=null;
     const _playTTS = async (url, body) => {
+        const fallbackText = body.sentence || body.word || body.meaning || '';
+        const speakFallback = () => fallbackText ? _speakLocal(fallbackText, { rate: 0.85 }) : Promise.resolve();
         ttsAbort = new AbortController();
-        const res = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:ttsAbort.signal});
-        if (!res.ok) return;
-        const blob = await res.blob(); if (blob.size<100) return;
+        let res;
+        try {
+            res = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:ttsAbort.signal});
+        } catch (err) {
+            if (err.name === 'AbortError') throw err;
+            return speakFallback();
+        }
+        if (!res.ok) return speakFallback();
+        const blob = await res.blob();
+        if (blob.size < 100) return speakFallback();
         const blobUrl = URL.createObjectURL(blob);
         currentAudio = new Audio(blobUrl);
         await new Promise(resolve => {
-            currentAudio.onended = () => { URL.revokeObjectURL(blobUrl); currentAudio=null; resolve(); };
-            currentAudio.onerror = () => { URL.revokeObjectURL(blobUrl); currentAudio=null; resolve(); };
-            currentAudio.play().catch(()=>resolve());
+            let settled = false;
+            const done = async (errored) => {
+                if (settled) return; settled = true;
+                URL.revokeObjectURL(blobUrl); currentAudio=null;
+                if (errored) await speakFallback();
+                resolve();
+            };
+            currentAudio.onended = () => done(false);
+            currentAudio.onerror = () => done(true);
+            currentAudio.play().catch(() => done(true));
         });
     };
 

@@ -8,9 +8,7 @@
 /** Render Math tab: academy progress, weak areas, fluency, daily challenge. @tag PARENT MATH */
 async function _ppMathSummary(body) {
     try {
-        const res = await fetch("/api/parent/math-summary");
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
+        const data = await apiFetchJSON("/api/parent/math-summary");
 
         body.innerHTML =
             _ppMathHeader(data) +

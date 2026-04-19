@@ -6,7 +6,7 @@
    ================================================================ */
 
 /** @tag SYSTEM @tag PWA @tag OFFLINE */
-const SW_VERSION = 'gia-sw-v3';
+const SW_VERSION = 'gia-sw-v4';
 const STATIC_CACHE = `${SW_VERSION}-static`;
 const DATA_CACHE   = `${SW_VERSION}-data`;
 
@@ -15,8 +15,19 @@ const DATA_CACHE   = `${SW_VERSION}-data`;
 const APP_SHELL = [
     '/static/css/theme.css',
     '/static/css/style.css',
-    '/static/css/main.css',
-    '/static/css/math-academy.css?v=13',
+    '/static/css/main-shell.css?v=1',
+    '/static/css/main-idle.css?v=1',
+    '/static/css/main-topbar.css?v=1',
+    '/static/css/main-stage.css?v=1',
+    '/static/css/main-responsive.css?v=1',
+    '/static/css/main-layout.css?v=1',
+    '/static/css/math-academy-sidebar.css?v=1',
+    '/static/css/math-academy-stages.css?v=1',
+    '/static/css/math-academy-fluency.css?v=1',
+    '/static/css/math-academy-modes.css?v=1',
+    '/static/css/math-academy-content.css?v=1',
+    '/static/css/math-academy-anim.css?v=1',
+    '/static/css/toast.css?v=1',
     '/static/js/core.js?v=2',
     '/static/js/tts-client.js?v=1',
     '/static/js/navigation.js?v=1',

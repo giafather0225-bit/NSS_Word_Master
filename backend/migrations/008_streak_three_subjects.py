@@ -1,5 +1,5 @@
 """
-migrations/006_streak_three_subjects.py — Three-subject streak
+migrations/008_streak_three_subjects.py — Three-subject streak
 Section: System
 Dependencies: database.py
 API: none (run directly)

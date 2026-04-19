@@ -11,7 +11,11 @@
     /* ── Constants ──────────────────────────────────────────── */
     var PASS_PCT       = 90;           // pass threshold %
     var TIMER_SEC      = 30 * 60;      // 30 minutes
-    var WARN_SEC       = 5  * 60;      // last 5 min → timer turns red
+    // Two-tier warning to reduce panic in young test-takers:
+    //   • WARN_SEC (5 min) → amber pill, no pulse   — "pace yourself"
+    //   • URGENT_SEC (60s) → red pulse              — true crunch
+    var WARN_SEC       = 5  * 60;
+    var URGENT_SEC     = 60;
     var REQUIRED       = ['PREVIEW', 'A', 'B', 'C', 'D'];
 
     /* ── State ──────────────────────────────────────────────── */
@@ -150,7 +154,8 @@
         var m  = Math.floor(secsLeft / 60);
         var s  = secsLeft % 60;
         el.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-        el.classList.toggle('eo-timer-warn', secsLeft <= WARN_SEC);
+        el.classList.toggle('eo-timer-warn',   secsLeft <= WARN_SEC && secsLeft > URGENT_SEC);
+        el.classList.toggle('eo-timer-urgent', secsLeft <= URGENT_SEC);
     }
     function onTimeUp() {
         if (phase === 'mc') {
@@ -335,9 +340,24 @@
 
         var mcCorrect   = 0;
         var fillCorrect = 0;
+        var missed      = []; // per-word miss detail for pedagogical review
         words.forEach(function(w, i) {
-            if (mcAnswers[w.id]   && mcAnswers[w.id].toLowerCase()   === w.answer.toLowerCase()) mcCorrect++;
-            if (fillAnswers[i] && fillAnswers[i].toLowerCase().trim() === w.answer.toLowerCase()) fillCorrect++;
+            var userMc   = (mcAnswers[w.id] || '').toLowerCase();
+            var userFill = (fillAnswers[i] || '').toLowerCase().trim();
+            var mcOk     = userMc === w.answer.toLowerCase();
+            var fillOk   = userFill === w.answer.toLowerCase();
+            if (mcOk)   mcCorrect++;
+            if (fillOk) fillCorrect++;
+            if (!mcOk || !fillOk) {
+                missed.push({
+                    word: w.answer,
+                    definition: getDef(w),
+                    userMc: mcAnswers[w.id] || '',
+                    userFill: fillAnswers[i] || '',
+                    mcOk: mcOk,
+                    fillOk: fillOk,
+                });
+            }
         });
 
         var total  = mcCorrect + fillCorrect;
@@ -348,16 +368,28 @@
         // Save permanent pass on 90%+ — unlocks exam button forever
         if (passed) savePass(ctx);
 
-        eo('body').innerHTML = buildResultsHTML(mcCorrect, fillCorrect, total, maxPts, pct, passed);
+        eo('body').innerHTML = buildResultsHTML(mcCorrect, fillCorrect, total, maxPts, pct, passed, missed);
 
         $id('eo-action-btn').addEventListener('click', function() {
             if (passed) {
                 closeExam();
-            } else {
-                clearStages(ctx);
-                closeExam();
-                setTimeout(function() { location.reload(); }, 300);
+                return;
             }
+            // Fail path: spec requires re-study, but don't nuke with location.reload.
+            // Clear stage completion so the roadmap shows fresh stages, then let
+            // child.js's own nav flow take over (idle card / hero CTA re-renders).
+            clearStages(ctx);
+            closeExam();
+            setTimeout(function() {
+                if (typeof window.renderStage === 'function') {
+                    // Reset in-memory stage state so the idle card shows
+                    if (typeof window.stage !== 'undefined') window.stage = null;
+                    window.renderStage();
+                } else {
+                    // Absolute fallback — rare
+                    location.reload();
+                }
+            }, 300);
         });
 
         // Chunk Challenge button: show only when collocation data exists
@@ -376,7 +408,7 @@
         }
     }
 
-    function buildResultsHTML(mcC, fillC, total, maxPts, pct, passed) {
+    function buildResultsHTML(mcC, fillC, total, maxPts, pct, passed, missed) {
         var icon, headline, msg, btnLabel, btnClass;
 
         if (passed) {
@@ -390,9 +422,29 @@
             icon     = '💪';
             headline = 'Almost there — you\'ve got this!';
             msg      = 'You scored <strong>' + pct + '%</strong>. You need <strong>90%</strong> to pass.<br>' +
-                       'Don\'t give up — review the words and try again!';
+                       'Here are the words to review before your next try:';
             btnLabel = 'Back to Study';
             btnClass = 'eo-btn-primary eo-btn-danger';
+        }
+
+        // Pedagogical missed-words breakdown — only on fail and only if there are misses.
+        var missedHtml = '';
+        if (!passed && missed && missed.length) {
+            var rows = missed.map(function(m) {
+                var parts = [];
+                if (!m.mcOk)   parts.push('MC: <em>' + esc(m.userMc || '(blank)') + '</em>');
+                if (!m.fillOk) parts.push('Spelling: <em>' + esc(m.userFill || '(blank)') + '</em>');
+                return '<li class="eo-miss-row">' +
+                           '<div class="eo-miss-word">' + esc(m.word) + '</div>' +
+                           '<div class="eo-miss-def">' + esc(m.definition) + '</div>' +
+                           '<div class="eo-miss-yours">You wrote — ' + parts.join(' · ') + '</div>' +
+                       '</li>';
+            }).join('');
+            missedHtml =
+                '<div class="eo-miss-block">' +
+                    '<div class="eo-miss-title">📝 ' + missed.length + ' word' + (missed.length === 1 ? '' : 's') + ' to review</div>' +
+                    '<ul class="eo-miss-list">' + rows + '</ul>' +
+                '</div>';
         }
 
         return '<div class="eo-results">' +
@@ -414,6 +466,7 @@
                     '<span class="eo-res-pts">' + total + ' / ' + maxPts + '</span>' +
                 '</div>' +
             '</div>' +
+            missedHtml +
             '<button class="' + btnClass + '" id="eo-action-btn">' + btnLabel + '</button>' +
             '<button class="eo-chunk-btn" id="eo-chunk-btn" style="display:none">✦ Chunk Challenge</button>' +
         '</div>';

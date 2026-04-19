@@ -1,5 +1,5 @@
 """
-migrations/006_free_writings.py — Add FreeWriting table.
+migrations/007_free_writings.py — Add FreeWriting table.
 
 Creates the `free_writings` table backing the diary "Free Writing" section
 (open-ended creative entries, no date constraint, optional AI feedback).
@@ -31,14 +31,14 @@ def migrate() -> None:
                 created_at  TEXT
             )
         """)
-        conn.execute("CREATE INDEX ix_free_writings_created_at ON free_writings(created_at)")
+        conn.execute("CREATE INDEX IF NOT EXISTS ix_free_writings_created_at ON free_writings(created_at)")
         print("[migration] Created free_writings table + index.")
     else:
         print("[migration] free_writings table already exists; skipping.")
 
     conn.commit()
     conn.close()
-    print("[migration] 006_free_writings complete.")
+    print("[migration] 007_free_writings complete.")
 
 
 if __name__ == "__main__":

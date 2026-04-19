@@ -38,6 +38,8 @@ async function srStart() {
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Quit</button>
     </div>`;
 
+  if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('spell_rush');
+
   const all = await _arcadeFetchWords(80);
   const words = all.filter((w) => {
     const len = w.word.length;

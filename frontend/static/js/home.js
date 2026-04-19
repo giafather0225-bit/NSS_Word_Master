@@ -100,8 +100,7 @@ async function renderAICoach() {
   const el = document.getElementById('coach-message');
   if (!el) return;
   try {
-    const res = await fetch('/api/ai-coach/today');
-    const data = await res.json();
+    const data = await apiFetchJSON('/api/ai-coach/today');
     el.textContent = data.message || 'Keep up the great work!';
   } catch {
     el.textContent = 'Ready to learn today? Let\'s go!';
@@ -293,8 +292,7 @@ async function _loadOceanImage() {
   // Show fallback immediately so the card never renders as a blank white box.
   if (card && !card.getAttribute('src')) card.src = FALLBACK;
   try {
-    const res = await fetch('/api/growth/theme');
-    const data = await res.json();
+    const data = await apiFetchJSON('/api/growth/theme');
     const url = data?.active?.img_url || FALLBACK;
     if (card) card.src = url;
   } catch {

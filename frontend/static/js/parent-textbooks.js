@@ -8,8 +8,7 @@
 /** Render textbook accordion with lesson breakdown. @tag PARENT WORD_STATS */
 async function _ppTextbooks(body) {
     try {
-        const res  = await fetch("/api/dashboard/stats");
-        const data = await res.json();
+        const data = await apiFetchJSON("/api/dashboard/stats");
         const tbs  = (data.textbooks || []).filter(tb => tb.name.toLowerCase() !== 'my_words');
 
         if (!tbs.length) {
@@ -66,8 +65,7 @@ async function _ppTbToggle(panelId, tbName) {
     panel.dataset.loaded = "1";
     panel.innerHTML = `<p style="font-size:13px;color:var(--text-secondary);padding:4px 0">Loading…</p>`;
     try {
-        const res  = await fetch("/api/dashboard/textbook/" + encodeURIComponent(tbName));
-        const data = await res.json();
+        const data = await apiFetchJSON("/api/dashboard/textbook/" + encodeURIComponent(tbName));
         const lessons = data.lessons || [];
         if (!lessons.length) {
             panel.innerHTML = `<p style="font-size:13px;color:var(--text-secondary);padding:4px 0">No lessons.</p>`;

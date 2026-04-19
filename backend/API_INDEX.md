@@ -95,32 +95,32 @@
 
 | Method | Path | Defined In | Called From |
 |--------|------|-----------|-------------|
-| POST | /api/tutor | main.py | child.js |
-| POST | /api/evaluate-sentence | main.py | sentence.js |
-| POST | /api/practice/sentence | main.py | sentence.js |
-| GET | /api/practice/sentences/{subject}/{textbook}/{lesson} | main.py | sentence.js |
+| POST | /api/tutor | routers/tutor_sentence.py | child.js |
+| POST | /api/evaluate-sentence | routers/tutor_sentence.py | sentence.js |
+| POST | /api/practice/sentence | routers/tutor_sentence.py | sentence.js |
+| GET | /api/practice/sentences/{subject}/{textbook}/{lesson} | routers/tutor_sentence.py | sentence.js |
 | GET | /api/ai-coach/today | routers/ai_coach.py | home.js (Phase 2) |
 
 ## Dashboard / Analytics
 
 | Method | Path | Defined In | Called From |
 |--------|------|-----------|-------------|
-| GET | /api/dashboard/stats | main.py | parent-dashboard.js |
-| GET | /api/dashboard/textbook/{textbook} | main.py | parent-dashboard.js |
-| GET | /api/dashboard/analytics | main.py | parent-dashboard.js |
+| GET | /api/dashboard/stats | routers/dashboard.py | parent-dashboard.js |
+| GET | /api/dashboard/textbook/{textbook} | routers/dashboard.py | parent-dashboard.js |
+| GET | /api/dashboard/analytics | routers/dashboard.py | parent-dashboard.js |
 
 ## Rewards / Schedules (Legacy)
 
 | Method | Path | Defined In | Called From |
 |--------|------|-----------|-------------|
-| GET | /api/rewards | main.py | parent.js |
-| POST | /api/rewards | main.py | parent.js |
-| PUT | /api/rewards/{reward_id} | main.py | parent.js |
-| DELETE | /api/rewards/{reward_id} | main.py | parent.js |
-| POST | /api/rewards/earn_all | main.py | parent.js |
-| GET | /api/schedules | main.py | parent.js |
-| POST | /api/schedules | main.py | parent.js |
-| DELETE | /api/schedules/{schedule_id} | main.py | parent.js |
+| GET | /api/rewards | routers/rewards.py | parent.js |
+| POST | /api/rewards | routers/rewards.py | parent.js |
+| PUT | /api/rewards/{reward_id} | routers/rewards.py | parent.js |
+| DELETE | /api/rewards/{reward_id} | routers/rewards.py | parent.js |
+| POST | /api/rewards/earn_all | routers/rewards.py | parent.js |
+| GET | /api/schedules | routers/schedules.py | parent.js |
+| POST | /api/schedules | routers/schedules.py | parent.js |
+| DELETE | /api/schedules/{schedule_id} | routers/schedules.py | parent.js |
 
 ## XP System (Phase 3) ✅
 

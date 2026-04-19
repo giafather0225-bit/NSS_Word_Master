@@ -62,14 +62,17 @@ NSS_Word_Master/
 │   │   ├── calendar_api.py        # ★ Phase 6: /api/calendar/*
 │   │   ├── parent.py              # ★ Phase 7: /api/parent/*
 │   │   └── reminder.py            # ★ Phase 2: /api/reminders/today
+│   ├── sm2.py                     # SM-2 algorithm (top-level, existing)
+│   ├── ai_service.py              # Ollama/Gemini unified (top-level, existing)
+│   ├── tts_edge.py                # edge-tts BytesIO (top-level, existing)
 │   ├── services/
-│   │   ├── sm2.py                 # SM-2 algorithm (existing)
-│   │   ├── ai_service.py          # Ollama/Gemini unified (existing)
-│   │   ├── tts_edge.py            # edge-tts BytesIO (existing)
 │   │   ├── xp_engine.py           # ★ Phase 3
 │   │   ├── streak_engine.py       # ★ Phase 3
-│   │   ├── reminder_engine.py     # ★ Phase 2
 │   │   ├── daily_words_engine.py  # ★ Phase 4
+│   │   ├── academy_session.py     # Phase 2: session tracking
+│   │   ├── email_sender.py        # Phase 6: day-off email
+│   │   ├── pin_guard.py           # Phase 5/7: PIN verification dep
+│   │   ├── pin_hash.py            # Phase 5/7: pbkdf2 PIN hashing
 │   │   ├── backup_engine.py       # ★ Phase 10
 │   │   └── ollama_manager.py      # ★ Phase 10
 │   ├── data/

@@ -1,0 +1,128 @@
+/* ================================================================
+   math-academy-sidebar.css — Math section sidebar styles
+   Section: Math
+   Dependencies: theme.css
+   API endpoints: none
+   ================================================================ */
+
+/* ── Math sidebar accordion ─────────────────────────────── */
+
+#sb-math-section .sb-accordion {
+    margin-bottom: 2px;
+}
+
+#sb-math-section .sb-accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    border-radius: var(--radius-sm);
+    transition: background 0.15s;
+}
+
+#sb-math-section .sb-accordion-header:hover {
+    background: var(--math-primary-light);
+}
+
+#sb-math-section .sb-accordion-arrow {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--text-secondary);
+    transition: transform 0.2s;
+}
+
+#sb-math-section .sb-accordion-header.math-acc-open .sb-accordion-arrow {
+    transform: rotate(0deg);
+}
+
+#sb-math-section .sb-accordion-header:not(.math-acc-open) .sb-accordion-arrow {
+    transform: rotate(-90deg);
+}
+
+/* ── Math sidebar fields ────────────────────────────────── */
+
+#sb-math-section .sb-field {
+    padding: 4px 12px;
+}
+
+#sb-math-section .sb-field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#sb-math-section .sb-field select {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+#sb-math-section .sb-field select:focus-visible {
+    outline: none;
+    border-color: var(--math-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+/* ── Math sidebar info rows ─────────────────────────────── */
+
+#sb-math-section .sb-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+#sb-math-section .sb-info-row span:last-child {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ── Math sidebar buttons ───────────────────────────────── */
+
+#sb-math-section .sb-action-btn {
+    display: block;
+    width: calc(100% - 24px);
+    margin: 8px 12px;
+    padding: 8px 16px;
+    background: var(--math-primary);
+    color: var(--math-primary-on);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+#sb-math-section .sb-action-btn:hover {
+    background: var(--math-primary-hover);
+}
+
+#sb-math-section .sb-action-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#sb-math-section .sb-card-sm {
+    padding: 8px 12px;
+    font-size: 13px;
+}
+

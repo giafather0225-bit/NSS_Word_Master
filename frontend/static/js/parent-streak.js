@@ -15,9 +15,7 @@ const _PP_STREAK_SUBJECTS = [
 /** Render Streak tab: stats cards + rule config + 30-day calendar + milestones. @tag PARENT STREAK */
 async function _ppStreak(body) {
     try {
-        const res = await fetch("/api/parent/streak");
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
+        const data = await apiFetchJSON("/api/parent/streak");
         window._ppStreakData = data;
 
         body.innerHTML =

@@ -738,11 +738,13 @@ POST /api/math/my-problems/submit-answer
 
 ### CSS Files
 ```html
-<link rel="stylesheet" href="/static/css/math-academy.css?v=1">
-<link rel="stylesheet" href="/static/css/math-fluency.css?v=1">
-<link rel="stylesheet" href="/static/css/math-kangaroo.css?v=1">
-<link rel="stylesheet" href="/static/css/math-problems.css?v=1">
-<link rel="stylesheet" href="/static/css/math-manipulatives.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-sidebar.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-stages.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-fluency.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-modes.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-content.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-anim.css?v=1">
+<link rel="stylesheet" href="/static/css/math-learn-visuals.css?v=1">
 ```
 
 ### CSS Naming Convention
@@ -863,14 +865,18 @@ NSS_Word_Master/
 ├── frontend/
 │   └── static/
 │       ├── css/
-│       │   ├── math-academy.css
-│       │   ├── math-fluency.css
-│       │   ├── math-kangaroo.css
-│       │   ├── math-problems.css
-│       │   └── math-manipulatives.css
+│       │   ├── math-academy-sidebar.css
+│       │   ├── math-academy-stages.css
+│       │   ├── math-academy-fluency.css
+│       │   ├── math-academy-modes.css
+│       │   ├── math-academy-content.css
+│       │   ├── math-academy-anim.css
+│       │   └── math-learn-visuals.css
 │       └── js/
 │           ├── math-navigation.js     # Math sidebar, grade/unit/lesson dropdowns
-│           ├── math-academy.js        # Pretest, Learn, Try, Practice, Wrong Review
+│           ├── math-academy.js        # Core lesson flow (state, load, advance, submit)
+│           ├── math-academy-ui.js     # Roadmap, round summary, complete/wrong-review
+│           ├── math-academy-feedback.js # Answer feedback overlay + step-by-step
 │           ├── math-learn-cards.js    # CPA card renderer with static SVG + TTS
 │           ├── math-problem-ui.js     # Problem type renderers (MC, input, TF, drag)
 │           ├── math-step-solver.js    # Step-by-step solution UI (Try stage only)

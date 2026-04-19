@@ -137,7 +137,7 @@
       input.value = "";
       renderLessonList();
     } catch (err) {
-      alert(err.message);
+      toast(err.message, "error");
     }
   }
 
@@ -151,7 +151,7 @@
       });
       renderLessonList();
     } catch (err) {
-      alert(err.message);
+      toast(err.message, "error");
     }
   }
 
@@ -161,7 +161,7 @@
       await api(API + "/lessons/" + encodeURIComponent(name), { method: "DELETE" });
       renderLessonList();
     } catch (err) {
-      alert(err.message);
+      toast(err.message, "error");
     }
   }
 
@@ -292,7 +292,7 @@
       example = aiEx ? aiEx.value.trim() : "";
       if (aiPos && !pos) pos = aiPos.value.trim();
       if (!definition) {
-        alert("Generate AI definition first, or switch to Direct Input.");
+        toast("Generate AI definition first, or switch to Direct Input.", "warn");
         return;
       }
     } else {
@@ -321,7 +321,7 @@
 
       await loadWords();
     } catch (err) {
-      alert(err.message);
+      toast(err.message, "error");
     } finally {
       btn.disabled = false;
       btn.textContent = "+ Add Word";
@@ -384,7 +384,7 @@
       await api(API + "/" + encodeURIComponent(currentLesson) + "/words/" + encodeURIComponent(word), { method: "DELETE" });
       await loadWords();
     } catch (err) {
-      alert(err.message);
+      toast(err.message, "error");
     }
   }
 
@@ -408,12 +408,12 @@
         hint: it.hint || "",
       }));
     } catch (err) {
-      alert("Failed to load words: " + err.message);
+      toast("Failed to load words: " + err.message, "error");
       return;
     }
-    if (!wordList.length) { alert("No words in this list."); return; }
+    if (!wordList.length) { toast("No words in this list.", "warn"); return; }
     if (typeof window.openPreviewModal !== "function") {
-      alert("Preview module not loaded."); return;
+      toast("Preview module not loaded.", "error"); return;
     }
 
     const ov = $("wm-overlay");
@@ -511,8 +511,8 @@
     try {
       const res = await fetch("/api/mywords/weekly-test");
       data = await res.json();
-      if (!data.available) { alert("Not enough words yet."); return; }
-    } catch (err) { alert("Failed to load test."); return; }
+      if (!data.available) { toast("Not enough words yet.", "warn"); return; }
+    } catch (err) { toast("Failed to load test.", "error"); return; }
 
     const words = data.words || [];
     if (!words.length) return;

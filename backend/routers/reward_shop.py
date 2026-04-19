@@ -10,7 +10,6 @@ API: GET /api/shop/items, POST /api/shop/buy,
 """
 
 import logging
-import secrets
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -20,11 +19,11 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import AppConfig, PurchasedReward, RewardItem
-    from ..services import xp_engine
+    from ..services import xp_engine, pin_guard, pin_hash
 except ImportError:
     from database import get_db
     from models import AppConfig, PurchasedReward, RewardItem
-    from services import xp_engine
+    from services import xp_engine, pin_guard, pin_hash
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -174,20 +173,47 @@ def shop_buy(body: BuyIn, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Item not found")
 
     price = _final_price(item)
-    ok = xp_engine.spend_xp(db, price, detail=item.name)
-    if not ok:
-        raise HTTPException(status_code=400, detail="Not enough XP")
+    # Atomic: balance check + XPLog spend + PurchasedReward insert all share
+    # one BEGIN IMMEDIATE transaction. Double-click during network lag can't
+    # double-spend, and a mid-op failure won't leave XP deducted without a
+    # corresponding reward row.
+    from sqlalchemy import text
+    if db.in_transaction():
+        db.rollback()
+    db.execute(text("BEGIN IMMEDIATE"))
+    try:
+        current_xp = xp_engine.get_total_xp(db)
+        if current_xp < price:
+            db.rollback()
+            raise HTTPException(status_code=400, detail="Not enough XP")
 
-    pr = PurchasedReward(
-        reward_item_id=item.id,
-        xp_spent=price,
-        is_used=False,
-        purchased_at=datetime.now().isoformat(),
-        used_at=None,
-    )
-    db.add(pr)
-    db.commit()
-    db.refresh(pr)
+        now_iso = datetime.now().isoformat()
+        today   = datetime.now().date().isoformat()
+        # Import XPLog locally to avoid circular import at module top.
+        from backend.models import XPLog
+        db.add(XPLog(
+            action="shop_purchase",
+            xp_amount=-price,
+            detail=item.name,
+            earned_date=today,
+            created_at=now_iso,
+        ))
+        pr = PurchasedReward(
+            reward_item_id=item.id,
+            xp_spent=price,
+            is_used=False,
+            purchased_at=now_iso,
+            used_at=None,
+        )
+        db.add(pr)
+        db.commit()
+        db.refresh(pr)
+    except HTTPException:
+        raise
+    except Exception:
+        db.rollback()
+        logger.exception("Purchase failed for item %s", item.id)
+        raise HTTPException(status_code=500, detail="Purchase failed")
 
     return {
         "ok": True,
@@ -221,15 +247,29 @@ def shop_use_reward(purchase_id: int, body: UseRewardIn, db: Session = Depends(g
     Mark a purchased reward as used after PIN verification.
     @tag SHOP PIN
     """
+    # Rate-limit PIN attempts BEFORE looking up the purchase — attackers
+    # shouldn't get timing info about which purchase IDs exist.
+    pin_guard.assert_not_locked(db, "shop")
+
     pr = db.query(PurchasedReward).filter(PurchasedReward.id == purchase_id).first()
     if not pr:
         raise HTTPException(status_code=404, detail="Purchase not found")
     if pr.is_used:
         raise HTTPException(status_code=400, detail="Already used")
 
-    correct_pin = _get_pin(db)
-    if not secrets.compare_digest(body.pin or "", correct_pin):
+    stored_pin = _get_pin(db)
+    if not pin_hash.verify_pin(body.pin or "", stored_pin):
+        pin_guard.record_failure(db, "shop")
         raise HTTPException(status_code=403, detail="Wrong PIN")
+    pin_guard.record_success(db, "shop")
+
+    # Transparent migration: if the stored PIN is still legacy plaintext,
+    # rewrite it as a pbkdf2 hash now that we know the caller has the right
+    # value. Parent dashboard flow does the same thing in parent.py.
+    row = db.query(AppConfig).filter(AppConfig.key == "pin").first()
+    if row and pin_hash.needs_upgrade(row.value or ""):
+        row.value = pin_hash.hash_pin(body.pin or "")
+        row.updated_at = datetime.now().isoformat()
 
     pr.is_used = True
     pr.used_at = datetime.now().isoformat()
@@ -273,8 +313,14 @@ def shop_pin_status(db: Session = Depends(get_db)):
     @tag SHOP PIN
     """
     row = db.query(AppConfig).filter(AppConfig.key == "pin").first()
-    is_set = bool(row and row.value and row.value != DEFAULT_PIN)
-    return {"pin_set": is_set}
+    # A row exists and is EITHER hashed (must be a real custom PIN —
+    # DEFAULT_PIN is only ever stored plaintext) OR a plaintext row whose
+    # value differs from DEFAULT_PIN. Both cases mean the initial setup ran.
+    if not (row and row.value):
+        return {"pin_set": False}
+    if pin_hash.is_hashed(row.value):
+        return {"pin_set": True}
+    return {"pin_set": row.value != DEFAULT_PIN}
 
 
 @router.post("/api/shop/set-pin")
@@ -289,17 +335,25 @@ def shop_set_pin(body: SetPinIn, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="PIN must be exactly 4 digits")
     # Require knowledge of the current PIN (DEFAULT_PIN on fresh install) —
     # prevents an unauthenticated caller from hijacking the initial PIN setup.
+    # `verify_pin` transparently handles hashed + legacy plaintext rows, and
+    # falls back to DEFAULT_PIN when no row exists yet.
     existing = db.query(AppConfig).filter(AppConfig.key == "pin").first()
     current = existing.value if (existing and existing.value) else DEFAULT_PIN
-    if not secrets.compare_digest(body.current_pin or "", current):
+    if not pin_hash.verify_pin(body.current_pin or "", current):
         raise HTTPException(status_code=403, detail="Current PIN required")
-    if existing and existing.value and existing.value != DEFAULT_PIN:
+    # Refuse if a non-default PIN is already established — even a legacy
+    # plaintext row counts, as long as it isn't DEFAULT_PIN.
+    already_set = bool(existing and existing.value and (
+        pin_hash.is_hashed(existing.value) or existing.value != DEFAULT_PIN
+    ))
+    if already_set:
         raise HTTPException(status_code=403, detail="PIN already set. Change it in Parent Dashboard.")
     now = datetime.now().isoformat()
+    hashed = pin_hash.hash_pin(body.pin)
     if existing:
-        existing.value = body.pin
+        existing.value = hashed
         existing.updated_at = now
     else:
-        db.add(AppConfig(key="pin", value=body.pin, updated_at=now))
+        db.add(AppConfig(key="pin", value=hashed, updated_at=now))
     db.commit()
     return {"ok": True}

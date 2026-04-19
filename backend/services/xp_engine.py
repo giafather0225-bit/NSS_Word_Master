@@ -151,6 +151,12 @@ def get_today_xp(db: Session) -> int:
 def spend_xp(db: Session, amount: int, detail: str = "") -> bool:
     """Deduct XP for a shop purchase. Returns False if insufficient balance.
 
+    Atomicity: wrapped in `BEGIN IMMEDIATE` so two concurrent callers (e.g.
+    a double-clicked Buy button during network lag) cannot both pass the
+    balance check before either writes. In SQLite WAL mode, plain
+    read→insert→commit lets the second request observe the pre-insert
+    balance and over-spend. `BEGIN IMMEDIATE` serializes writers here.
+
     Args:
         db: SQLAlchemy session.
         amount: XP to deduct (positive number).
@@ -159,18 +165,35 @@ def spend_xp(db: Session, amount: int, detail: str = "") -> bool:
     Returns:
         True if deduction succeeded, False if not enough XP.
     """
-    if get_total_xp(db) < amount:
+    if amount <= 0:
         return False
-    log = XPLog(
-        action="shop_purchase",
-        xp_amount=-amount,
-        detail=detail,
-        earned_date=date.today().isoformat(),
-        created_at=datetime.now().isoformat(),
-    )
-    db.add(log)
-    db.commit()
-    return True
+
+    from sqlalchemy import text
+
+    # Ensure we're not already in a transaction before asking for IMMEDIATE.
+    # SQLAlchemy auto-begins on first read; roll it back so we can upgrade.
+    if db.in_transaction():
+        db.rollback()
+
+    db.execute(text("BEGIN IMMEDIATE"))
+    try:
+        current = get_total_xp(db)
+        if current < amount:
+            db.rollback()
+            return False
+        log = XPLog(
+            action="shop_purchase",
+            xp_amount=-amount,
+            detail=detail,
+            earned_date=date.today().isoformat(),
+            created_at=datetime.now().isoformat(),
+        )
+        db.add(log)
+        db.commit()
+        return True
+    except Exception:
+        db.rollback()
+        raise
 
 
 # @tag XP @tag ARCADE

@@ -1,9 +1,10 @@
 /* ================================================================
-   reward-shop.js — Reward Shop overlay (buy + use + PIN modal)
+   reward-shop.js — Reward Shop overlay: browsing + buy flow.
+                    My Rewards / PIN / Equip split into reward-shop-use.js
+                    to honor the 300-line CLAUDE.md ceiling.
    Section: Shop
    Dependencies: core.js
-   API endpoints: /api/shop/items, /api/shop/buy,
-                  /api/shop/my-rewards, /api/shop/use-reward/{id}
+   API endpoints: /api/shop/items, /api/shop/buy, /api/shop/my-rewards
    ================================================================ */
 
 // ─── State ────────────────────────────────────────────────────
@@ -12,8 +13,11 @@
  */
 let _shopTab = "shop"; // "shop" | "my-rewards"
 let _shopCategory = "all"; // "all" | "badge" | "theme" | "power" | "real"
-let _pinTarget = null; // purchase_id pending use
-let _pinDigits = "";   // current PIN entry (up to 4 digits)
+// Guard against double-click / rapid-tap buy spam. The backend now uses
+// BEGIN IMMEDIATE to prevent double-spend at the DB layer, but we also
+// short-circuit at the UI so the user doesn't see 2× "Purchase failed"
+// toasts when the second request loses the race.
+let _buyInFlight = false;
 
 // ─── Open / Close ─────────────────────────────────────────────
 
@@ -169,6 +173,8 @@ function _shopConfirmBuy(itemId, name, icon, price) {
  * @tag SHOP XP
  */
 async function _doBuy(itemId) {
+    if (_buyInFlight) return;           // defuse double-click
+    _buyInFlight = true;
     _closePopup();
     try {
         const res = await fetch("/api/shop/buy", {
@@ -186,151 +192,18 @@ async function _doBuy(itemId) {
             const err = await res.json().catch(() => ({}));
             _showShopToast(err.detail || "Purchase failed.", true);
         }
-    } catch (_) { _showShopToast("Network error.", true); }
-}
-
-// ─── My Rewards Tab ───────────────────────────────────────────
-
-/**
- * Render the My Rewards list.
- * @tag SHOP
- */
-function _renderMyRewards(rewards) {
-    const body = document.getElementById("shop-body");
-    const unused = rewards.filter(r => !r.is_used);
-    const used   = rewards.filter(r => r.is_used);
-    if (!rewards.length) {
-        body.innerHTML = `<p style="text-align:center;padding:40px;color:var(--text-secondary);">No rewards yet. Go buy something!</p>`;
-        return;
+    } catch (_) {
+        _showShopToast("Network error.", true);
+    } finally {
+        _buyInFlight = false;
     }
-    const row = r => {
-        const date = r.purchased_at ? r.purchased_at.slice(0,10) : "";
-        const usedLabel = r.is_used ? `Used ${r.used_at ? r.used_at.slice(0,10) : ""}` : `Bought ${date}`;
-        const desc = r.description ? `<div class="my-reward-desc">${escapeHtml(r.description)}</div>` : "";
-        const canEquip = !r.is_used && (r.category === "badge" || r.category === "theme");
-        const equipBtn = canEquip
-            ? `<button class="my-reward-equip-btn${r.is_equipped ? " equipped" : ""}"
-                       onclick="_shopToggleEquip(${r.id}, ${!r.is_equipped})">${r.is_equipped ? "Equipped" : "Equip"}</button>`
-            : "";
-        return `<div class="my-reward-row${r.is_used ? " used" : ""}${r.is_equipped ? " equipped" : ""}">
-            <span class="my-reward-icon">${r.icon}</span>
-            <div class="my-reward-info">
-                <div class="my-reward-name">${escapeHtml(r.name)}</div>
-                ${desc}
-                <div class="my-reward-meta">${r.xp_spent} XP · ${usedLabel}</div>
-            </div>
-            <div class="my-reward-actions">
-                ${equipBtn}
-                <button class="my-reward-use-btn" onclick="_shopOpenPin(${r.id})"
-                        ${r.is_used ? "disabled" : ""}>${r.is_used ? "Used ✓" : "Use"}</button>
-            </div>
-        </div>`;
-    };
-    body.innerHTML = `<div class="my-rewards-list">
-        ${[...unused, ...used].map(row).join("")}
-    </div>`;
-}
-
-// ─── PIN Modal ────────────────────────────────────────────────
-
-/**
- * Open the PIN entry modal for using a reward.
- * @tag SHOP PIN
- */
-function _shopOpenPin(purchaseId) {
-    _pinTarget = purchaseId;
-    _pinDigits = "";
-    _closePopup();
-    const bg = document.createElement("div");
-    bg.className = "shop-popup-bg";
-    bg.id = "shop-popup-bg";
-    bg.innerHTML = `
-        <div class="shop-popup">
-            <div class="shop-popup-title">Enter PIN</div>
-            <div class="shop-popup-sub" style="margin-bottom:12px;">Parent approval required</div>
-            <div class="pin-dots" id="pin-dots">
-                ${[0,1,2,3].map(() => `<div class="pin-dot"></div>`).join("")}
-            </div>
-            <div class="pin-error" id="pin-error"></div>
-            <div class="pin-pad">
-                ${[1,2,3,4,5,6,7,8,9].map(n => `<button class="pin-key" onclick="_pinPress('${n}')">${n}</button>`).join("")}
-                <button class="pin-key pin-key--clear" onclick="_pinPress('clear')">C</button>
-                <button class="pin-key" onclick="_pinPress('0')">0</button>
-                <button class="pin-key pin-key--del" onclick="_pinPress('del')">Del</button>
-            </div>
-        </div>`;
-    document.body.appendChild(bg);
-}
-
-/**
- * Handle a PIN pad key press.
- * @tag SHOP PIN
- */
-function _pinPress(key) {
-    if (key === "del")   { _pinDigits = _pinDigits.slice(0, -1); }
-    else if (key === "clear") { _pinDigits = ""; document.getElementById("pin-error").textContent = ""; }
-    else if (_pinDigits.length < 4) { _pinDigits += key; }
-    _updatePinDots();
-    if (_pinDigits.length === 4) setTimeout(_submitPin, 200);
-}
-
-/**
- * Update PIN dot fill display.
- * @tag SHOP PIN
- */
-function _updatePinDots() {
-    const dots = document.querySelectorAll(".pin-dot");
-    dots.forEach((d, i) => d.classList.toggle("filled", i < _pinDigits.length));
-}
-
-/**
- * Submit PIN to /api/shop/use-reward/{id}.
- * @tag SHOP PIN
- */
-async function _submitPin() {
-    try {
-        const res = await fetch(`/api/shop/use-reward/${_pinTarget}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ pin: _pinDigits }),
-        });
-        if (res.ok) {
-            _closePopup();
-            _showShopToast("Reward unlocked!");
-            _loadShopTab("my-rewards");
-        } else {
-            _pinDigits = "";
-            _updatePinDots();
-            const errEl = document.getElementById("pin-error");
-            if (errEl) errEl.textContent = "Wrong PIN. Try again.";
-        }
-    } catch (_) { _pinDigits = ""; _updatePinDots(); }
-}
-
-// ─── Equip / Unequip ──────────────────────────────────────────
-
-/**
- * Toggle equip status for a purchased reward (badges/themes).
- * @tag SHOP
- */
-async function _shopToggleEquip(purchaseId, equip) {
-    try {
-        const res = await fetch(`/api/shop/equip/${purchaseId}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ equip }),
-        });
-        if (res.ok) {
-            _showShopToast(equip ? "Equipped!" : "Unequipped");
-            _loadShopTab("my-rewards");
-        } else {
-            const err = await res.json().catch(() => ({}));
-            _showShopToast(err.detail || "Failed.", true);
-        }
-    } catch (_) { _showShopToast("Network error.", true); }
 }
 
 // ─── Utilities ────────────────────────────────────────────────
+// My Rewards / PIN modal / Equip handlers live in reward-shop-use.js.
+// They reach back into _closePopup / _showShopToast / _loadShopTab through
+// the shared window scope (CLAUDE.md: "All modules share global window
+// scope — no ES module import/export").
 
 /** Close any open popup. @tag SHOP */
 function _closePopup() {
@@ -338,9 +211,38 @@ function _closePopup() {
     if (bg) bg.remove();
 }
 
+/**
+ * Read a CSS custom property from :root, falling back to the given default.
+ * Lets confetti reuse theme.css tokens instead of hardcoded hex — the
+ * CLAUDE.md "no hard-coded hex colors" rule covers JS-generated color too,
+ * otherwise a theme swap leaves confetti stuck on the old palette.
+ * @tag SHOP @tag THEME
+ */
+function _cssVar(name, fallback) {
+    try {
+        const v = getComputedStyle(document.documentElement).getPropertyValue(name);
+        return (v && v.trim()) || fallback;
+    } catch (_) {
+        return fallback;
+    }
+}
+
 /** Spawn confetti particles on purchase success. @tag SHOP */
 function _shopConfetti() {
-    const colors = ['#D4619E', '#4A8E8E', '#34C759', '#F59E0B', '#FF3B30', '#a29bfe', '#fd79a8'];
+    // Pull from theme.css; fallbacks match the Phase-5 pink-first palette so
+    // a browser without CSS custom property support still gets festive colors.
+    const colors = [
+        _cssVar('--color-primary',   '#D4619E'),
+        _cssVar('--color-secondary', '#4A8E8E'),
+        _cssVar('--color-success',   '#34C759'),
+        _cssVar('--color-warning',   '#FF9500'),
+        _cssVar('--color-error',     '#FF3B30'),
+        // Two accent confetti colors kept as literals — deliberately outside
+        // the theme token set so confetti stays visually varied even when a
+        // future theme collapses primary/secondary into a single hue.
+        _cssVar('--color-confetti-a', '#a29bfe'),
+        _cssVar('--color-confetti-b', '#fd79a8'),
+    ];
     for (let i = 0; i < 50; i++) {
         const el = document.createElement('div');
         el.className = 'shop-confetti';

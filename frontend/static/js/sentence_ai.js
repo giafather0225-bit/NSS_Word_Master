@@ -23,21 +23,23 @@
 
             if (!text) return;
 
-            /* Grammar row */
+            /* Grammar row — coaching tone on 1st-attempt errors */
             if (/^[✅⚠️]\s*Grammar:/i.test(text)) {
                 var pass    = text.startsWith('✅');
                 var content = text.replace(/^[✅⚠️]\s*Grammar:\s*/i, '');
-                rows += buildRow('Grammar', content, pass ? 'pass' : 'fail',
-                                 pass ? '✓' : '✗');
+                rows += buildRow(pass ? 'Grammar' : 'Grammar Tip', content,
+                                 pass ? 'pass' : 'fail',
+                                 pass ? '✓' : '💡');
                 return;
             }
 
-            /* Word Use row */
+            /* Word Use row — coaching tone on 1st-attempt errors */
             if (/^[✅⚠️]\s*Word Use:/i.test(text)) {
                 var pass    = text.startsWith('✅');
                 var content = text.replace(/^[✅⚠️]\s*Word Use:\s*/i, '');
-                rows += buildRow('Word Use', content, pass ? 'pass' : 'fail',
-                                 pass ? '✓' : '✗');
+                rows += buildRow(pass ? 'Word Use' : 'Word Use Tip', content,
+                                 pass ? 'pass' : 'fail',
+                                 pass ? '✓' : '💡');
                 return;
             }
 

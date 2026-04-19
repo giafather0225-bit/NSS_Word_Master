@@ -20,10 +20,12 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import AppConfig, DayOffRequest
+    from ..schemas_common import Str30, Str1000
     from ..services.email_sender import send_email
 except ImportError:
     from database import get_db
     from models import AppConfig, DayOffRequest
+    from schemas_common import Str30, Str1000
     from services.email_sender import send_email
 
 router = APIRouter()
@@ -34,13 +36,11 @@ _DATE_RE = _re.compile(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$')
 
 class DayOffRequestCreate(BaseModel):
     """Request body for submitting a day-off request."""
-    request_date: str
-    reason: str
+    request_date: Str30
+    reason: Str1000
 
     def clean(self) -> "DayOffRequestCreate":
-        """Sanitize and validate fields."""
-        self.request_date = self.request_date.strip()
-        self.reason       = self.reason.strip()[:1000]
+        """Validate date format + non-empty (length enforced by Pydantic)."""
         if not _DATE_RE.match(self.request_date):
             raise HTTPException(status_code=400, detail="request_date must be YYYY-MM-DD")
         if not self.reason:

@@ -15,8 +15,7 @@
  */
 async function ppRenderTasks(body) {
     try {
-        const res  = await fetch("/api/parent/task-settings");
-        const data = await res.json();
+        const data = await apiFetchJSON("/api/parent/task-settings");
         const rows = (data.tasks || []).map(t => {
             const label = t.task_key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
             return `<div class="pp-task-row">
@@ -77,8 +76,7 @@ const _DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 async function ppRenderSchedule(body) {
     let activeDays = new Set();
     try {
-        const res  = await fetch("/api/parent/academy-schedule");
-        const data = await res.json();
+        const data = await apiFetchJSON("/api/parent/academy-schedule");
         (data.days || []).forEach(d => activeDays.add(d.day_of_week));
     } catch (_) {}
 

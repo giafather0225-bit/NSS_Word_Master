@@ -226,12 +226,18 @@ function renderMeaningMatch(el) {
                     renderMeaningMatch(el);
                 }
             } else {
-                // Wrong match
+                // Wrong match — flash BOTH the picked word and the clicked meaning
+                // in red so the child clearly sees which pair was wrong, then re-render
+                // after the feedback lands (no immediate re-render race).
                 stageFxWrong();
-                wmState.selectedWordIdx = null;
-                btn.classList.add("wm-shake");
-                setTimeout(function() { btn.classList.remove("wm-shake"); }, 500);
+                const wrongWordBtn = el.querySelector("#wm-w-" + prevSelected);
+                btn.classList.add("wm-shake", "wm-wrong");
+                if (wrongWordBtn) wrongWordBtn.classList.add("wm-wrong");
                 setStatus("Not quite — try again!");
+                await new Promise(function(r) { setTimeout(r, 600); });
+                btn.classList.remove("wm-shake", "wm-wrong");
+                if (wrongWordBtn) wrongWordBtn.classList.remove("wm-wrong");
+                wmState.selectedWordIdx = null;
                 renderMeaningMatch(el);
             }
         });

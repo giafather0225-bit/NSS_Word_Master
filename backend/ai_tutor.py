@@ -5,6 +5,8 @@ import os
 
 import httpx
 
+from backend.utils import parse_json_array, strip_json_fences
+
 log = logging.getLogger(__name__)
 
 OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
@@ -46,7 +48,7 @@ Keep total under 14 short lines. Never lecture. Always celebrate creativity."""
 async def _get_tutor_feedback_gemini(word: str, sentence: str) -> str:
     url = (
         "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash"
-        f":generateContent?key={GEMINI_API_KEY}"
+        ":generateContent"
     )
     prompt = _TUTOR_PROMPT.format(word=word, sentence=sentence)
     body = {
@@ -54,7 +56,7 @@ async def _get_tutor_feedback_gemini(word: str, sentence: str) -> str:
         "generationConfig": {"temperature": 0.7, "maxOutputTokens": 500},
     }
     async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.post(url, json=body)
+        response = await client.post(url, json=body, headers={"x-goog-api-key": GEMINI_API_KEY})
         response.raise_for_status()
         data = response.json()
         return data["candidates"][0]["content"]["parts"][0]["text"].strip()
@@ -224,49 +226,21 @@ Input JSON: {payload_json}
         msg = data.get("message", {})
         text = (msg.get("content") or "").strip()
 
-    # Strip ```json fences if any
-    if text.startswith("```json"):
-        text = text[7:]
-    elif text.startswith("```"):
-        text = text[3:]
-    if text.endswith("```"):
-        text = text[:-3]
-    text = text.strip()
-
-    def _parse_enriched(t: str):
-        # 1) try direct parse
-        parsed = None
-        try:
-            parsed = json.loads(t)
-        except Exception:
-            pass
-        if isinstance(parsed, list):
-            # 2) Sometimes model returns: ["{...}", "{...}"] (array of JSON strings)
-            if parsed and all(isinstance(x, str) for x in parsed):
-                objs = []
-                for item_str in parsed:
-                    try:
-                        objs.append(json.loads(item_str))
-                    except Exception:
-                        objs = None
-                        break
-                if objs and all(isinstance(o, dict) for o in objs):
-                    return objs
-            return parsed
-
-        # 3) Fallback: extract first JSON array segment: ...[ ... ]...
-        lb = t.find("[")
-        rb = t.rfind("]")
-        if lb != -1 and rb != -1 and rb > lb:
-            segment = t[lb : rb + 1]
-            return json.loads(segment)
-
+    text = strip_json_fences(text)
+    parsed = parse_json_array(text)
+    if parsed is None:
         raise ValueError("Could not parse enriched vocab JSON")
 
-    enriched = _parse_enriched(text)
-    if not isinstance(enriched, list):
-        raise ValueError("enriched is not a list")
-    return enriched
+    # Handle models that return an array of JSON strings: ["{...}", "{...}"]
+    if parsed and all(isinstance(x, str) for x in parsed):
+        try:
+            objs = [json.loads(s) for s in parsed]
+            if all(isinstance(o, dict) for o in objs):
+                return objs
+        except Exception:
+            pass
+
+    return parsed
 
 
 async def gemini_vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
@@ -276,7 +250,7 @@ async def gemini_vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
     b64 = base64.b64encode(image_bytes).decode("ascii")
     url = (
         "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash"
-        f":generateContent?key={GEMINI_API_KEY}"
+        ":generateContent"
     )
     payload = {
         "contents": [{
@@ -288,7 +262,7 @@ async def gemini_vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
         "generationConfig": {"temperature": 0.1, "maxOutputTokens": 8192},
     }
     async with httpx.AsyncClient(timeout=120.0) as client:
-        resp = await client.post(url, json=payload)
+        resp = await client.post(url, json=payload, headers={"x-goog-api-key": GEMINI_API_KEY})
         resp.raise_for_status()
         data = resp.json()
         return data["candidates"][0]["content"]["parts"][0]["text"].strip()

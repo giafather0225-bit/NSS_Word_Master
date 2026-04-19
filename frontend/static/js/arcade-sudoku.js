@@ -63,6 +63,7 @@ function suStart(level = 'easy') {
   };
 
   _suRender();
+  if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('sudoku');
   _su.tickHandle = setInterval(_suTick, 1000);
   if (typeof sfxStart === 'function') sfxStart();
 }
@@ -167,7 +168,7 @@ function _suRender() {
         <div class="wi-hud-item"><span class="wi-hud-label">MISS</span><b id="su-miss">0</b></div>
         <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Quit</button>
       </div>
-      <div class="su-grid" style="grid-template-columns:repeat(${N},40px)">
+      <div class="su-grid" style="grid-template-columns:repeat(${N},var(--su-cell,40px))">
         ${rows.join('')}
       </div>
       <div class="su-hint">Fill each row, column, and box (${br}×${bc}) with 1–${N}.</div>

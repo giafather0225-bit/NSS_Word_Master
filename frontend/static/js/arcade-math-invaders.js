@@ -8,8 +8,8 @@
 /** @tag ARCADE */
 const MI_LEVELS = {
   easy:   { label: 'Easy',   icon: '🐢', ops: ['+','-'],            max: 10, fall: 22, spawnMin: 3200, spawnMax: 5000, ramp: 0.10, maxActive: 3 },
-  normal: { label: 'Normal', icon: '🚀', ops: ['+','-','×'],        max: 12, fall: 30, spawnMin: 2400, spawnMax: 3800, ramp: 0.25, maxActive: 4 },
-  hard:   { label: 'Hard',   icon: '🔥', ops: ['+','-','×','÷'],    max: 15, fall: 42, spawnMin: 1700, spawnMax: 2800, ramp: 0.40, maxActive: 5 },
+  normal: { label: 'Normal', icon: '🚀', ops: ['+','-','×'],        max: 10, fall: 30, spawnMin: 2400, spawnMax: 3800, ramp: 0.25, maxActive: 4 },
+  hard:   { label: 'Hard',   icon: '🔥', ops: ['+','-','×','÷'],    max: 12, fall: 42, spawnMin: 1700, spawnMax: 2800, ramp: 0.40, maxActive: 5 },
 };
 const MI_CFG = { maxLives: 3 };
 let _mi = null;
@@ -68,6 +68,8 @@ function miStart(level = 'normal') {
         </div>
       </div>
     </div>`;
+
+  if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('math_invaders');
 
   const canvas = document.getElementById('mi-canvas');
   _mi = {
@@ -173,12 +175,14 @@ function _miGenEquation() {
     if (b > a) [a, b] = [b, a];
     answer = a - b; text = `${a} − ${b}`;
   } else if (op === '×') {
-    a = 1 + Math.floor(Math.random() * M); b = 1 + Math.floor(Math.random() * M);
+    // Cap × operands so products stay mental-math friendly (max ≈ 9×9=81)
+    const mulCap = Math.min(M, 9);
+    a = 1 + Math.floor(Math.random() * mulCap); b = 1 + Math.floor(Math.random() * mulCap);
     answer = a * b; text = `${a} × ${b}`;
   } else {
-    // ÷: ensure integer answer
-    b = 1 + Math.floor(Math.random() * (M - 1));
-    answer = 1 + Math.floor(Math.random() * M);
+    // ÷: ensure integer answer; keep divisor small (2–9) so answers fit in kid's head
+    b = 2 + Math.floor(Math.random() * 8);
+    answer = 1 + Math.floor(Math.random() * Math.min(M, 9));
     a = answer * b;
     text = `${a} ÷ ${b}`;
   }

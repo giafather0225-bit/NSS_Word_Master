@@ -1,0 +1,257 @@
+/* ================================================================
+   math-academy-problems.css — Problem UI: buttons, MC/TF, input, hint
+   Section: Math
+   Dependencies: theme.css
+   Split from: math-academy-stages.css
+   ================================================================ */
+
+/* ── Shared buttons ────────────────────────────────────────── */
+
+.math-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 24px;
+    background: var(--math-primary);
+    color: var(--math-primary-on);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.math-btn-primary:hover { background: var(--math-primary-hover); }
+.math-btn-primary:active { transform: scale(0.97); }
+.math-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.math-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background: var(--math-primary-light);
+    color: var(--math-primary);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.math-btn-secondary:hover { background: var(--math-primary); color: var(--math-primary-on); }
+.math-btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.math-btn-ghost {
+    padding: 8px 16px;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.math-btn-ghost:hover { background: var(--math-primary-light); color: var(--text-primary); }
+.math-btn-ghost:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ── Problem cards ─────────────────────────────────────────── */
+
+.math-problem-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.math-problem-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.math-problem-stage {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--math-primary);
+}
+
+.math-problem-counter {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.math-problem-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    box-shadow: none;
+    border: 1px solid var(--border-card);
+}
+
+.math-problem-question {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-bottom: 24px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ── MC buttons ────────────────────────────────────────────── */
+
+.math-mc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.math-mc-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border: 2px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    text-align: left;
+    font-size: 15px;
+}
+
+.math-mc-btn:hover {
+    border-color: var(--math-primary);
+    background: var(--math-primary-light);
+}
+
+.math-mc-btn:active { transform: scale(0.98); }
+.math-mc-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.math-mc-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--math-primary-light);
+    color: var(--math-primary);
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.math-mc-text {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* ── TF buttons ────────────────────────────────────────────── */
+
+.math-tf-grid {
+    display: flex;
+    gap: 12px;
+}
+
+.math-tf-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 16px;
+    background: var(--bg-card);
+    border: 2px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.math-tf-btn:hover { border-color: var(--math-primary); background: var(--math-primary-light); }
+.math-tf-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.math-tf-icon { font-size: 28px; }
+
+/* ── Input field ───────────────────────────────────────────── */
+
+.math-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.math-input-field {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: var(--radius-md);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: var(--bg-card);
+    transition: border-color 0.15s;
+}
+
+.math-input-field:focus-visible {
+    outline: none;
+    border-color: var(--math-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.math-submit-btn {
+    flex-shrink: 0;
+}
+
+/* ── Hint box ──────────────────────────────────────────────── */
+
+.math-hint-btn {
+    margin-top: 16px;
+}
+
+.math-hint-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.math-hint-countdown {
+    font-size: 12px;
+    margin-left: 6px;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+}
+
+.math-hint-box {
+    margin-top: 10px;
+    padding: 12px;
+    background: var(--math-hint-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+.math-hint-box.hidden { display: none; }
+
+.math-hint-item {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.math-hint-item:last-child { margin-bottom: 0; }
+
+/* ── Stage container needs relative for overlay positioning ── */
+
+#stage {
+    position: relative;
+}

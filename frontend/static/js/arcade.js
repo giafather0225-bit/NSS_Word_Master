@@ -69,7 +69,8 @@ async function _renderArcadeLobby() {
   );
 
   const cardFor = (g, i) => {
-    const cls = g.enabled ? 'arcade-game-card' : 'arcade-game-card disabled';
+    const catCls = g.category === 'math' ? 'cat-math' : 'cat-english';
+    const cls = `arcade-game-card ${catCls}${g.enabled ? '' : ' disabled'}`;
     const click = g.enabled ? `onclick="_launchArcadeGame('${g.id}')"` : '';
     const pb = bests[i].score || 0;
     const pbLine = g.enabled
@@ -125,6 +126,37 @@ function arcadeReturnToLobby() {
 
 /* ── Shared helpers for all arcade games ─────────────────────── */
 
+const _ARCADE_TIPS = {
+  word_invaders: 'Type the falling word before it hits the ground. ⚡ Power-ups drop in gold pills — type their keyword to use them.',
+  math_invaders: 'Type the answer to the falling equation, then press Enter.',
+  definition_match: 'Does the definition fit the word? Tap ✓ if yes, ✗ if not. 60 seconds.',
+  spell_rush: 'Type each word letter-by-letter. Press Enter to submit.',
+  crossword: 'Click a square to highlight the word. Type letters in the boxes. Green = correct!',
+  sudoku: 'Every row, column, and box must have each number once. Green cells are right, red are wrong.',
+  make24: 'Tap numbers and operators to build an expression that equals the target. Use all four numbers.',
+};
+
+/** Show a one-time tutorial banner above a game. Dismissed forever after tap. @tag ARCADE */
+function _arcadeShowTutorialOnce(gameId) {
+  try {
+    const key = `arcade_tutorial_seen_${gameId}`;
+    if (localStorage.getItem(key) === '1') return;
+    const body = document.getElementById('arcade-body');
+    const tip = _ARCADE_TIPS[gameId];
+    if (!body || !tip) return;
+    const el = document.createElement('div');
+    el.className = 'arcade-tip';
+    el.innerHTML = `<span class="arcade-tip-icon">💡</span><span class="arcade-tip-text">${tip}</span><button type="button" class="arcade-tip-x" aria-label="Dismiss">✕</button>`;
+    body.insertBefore(el, body.firstChild);
+    const dismiss = () => {
+      try { localStorage.setItem(key, '1'); } catch (_) {}
+      el.remove();
+    };
+    el.querySelector('.arcade-tip-x').addEventListener('click', dismiss);
+    setTimeout(dismiss, 8000);
+  } catch (_) { /* localStorage blocked — silently skip */ }
+}
+
 /** Fetch arcade word pool. @tag ARCADE */
 async function _arcadeFetchWords(count = 40) {
   try {
@@ -134,6 +166,7 @@ async function _arcadeFetchWords(count = 40) {
     return data.words || [];
   } catch (e) {
     console.error('[arcade] word fetch failed', e);
+    if (typeof toast === 'function') toast('Could not load words — check connection.', 'error');
     return [];
   }
 }
@@ -151,6 +184,7 @@ async function _arcadeReportScore(game, score, correct, total, accuracy, level =
     return await r.json();
   } catch (e) {
     console.error('[arcade] score report failed', e);
+    if (typeof toast === 'function') toast('Score not saved — network error.', 'error');
     return fallback;
   }
 }

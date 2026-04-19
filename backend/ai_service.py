@@ -183,7 +183,7 @@ async def _gemini_generate(prompt: str, timeout: float = 60.0) -> str:
             resp = await client.post(
                 GEMINI_ENDPOINT,
                 json=body,
-                params={"key": GEMINI_API_KEY},
+                headers={"x-goog-api-key": GEMINI_API_KEY},
             )
             resp.raise_for_status()
         except Exception as exc:

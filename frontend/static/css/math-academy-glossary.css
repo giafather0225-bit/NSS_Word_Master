@@ -1,0 +1,210 @@
+/* ================================================================
+   math-academy-glossary.css — Glossary list, categories, modal
+   Section: Math
+   Dependencies: theme.css
+   Split from: math-academy-content.css
+   ================================================================ */
+
+/* ── Glossary ──────────────────────────────────────────────── */
+
+.math-gloss {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
+}
+
+.math-gloss-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.math-gloss-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--math-primary);
+    margin: 0;
+    flex: 1 1 auto;
+}
+
+.math-gloss-search {
+    flex: 1 1 220px;
+    min-width: 180px;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 2px solid var(--math-primary-light);
+    border-radius: var(--radius-md);
+}
+
+.math-gloss-search:focus-visible {
+    outline: none;
+    border-color: var(--math-primary);
+}
+
+.math-gloss-cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.math-gloss-cat {
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--math-primary);
+    background: var(--bg-card);
+    border: 1px solid var(--math-primary-light);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.math-gloss-cat.active {
+    background: var(--math-primary);
+    color: var(--text-on-primary);
+    border-color: var(--math-primary);
+}
+
+.math-gloss-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin: 20px 0 10px 0;
+}
+
+.math-gloss-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.math-gloss-item {
+    padding: 14px;
+    background: var(--math-hint-bg);
+    border: 2px solid var(--math-primary-light);
+    border-radius: var(--radius-md);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.math-gloss-item:hover {
+    border-color: var(--math-primary);
+    transform: translateY(-2px);
+}
+
+.math-gloss-term {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    text-transform: capitalize;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.math-gloss-kid {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.math-gloss-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: math-fade-in 0.18s ease;
+}
+
+.math-gloss-modal-card {
+    position: relative;
+    max-width: 560px;
+    width: 100%;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 28px 28px 24px;
+    box-shadow: none;
+    border: 1px solid var(--border-card);
+}
+
+.math-gloss-close {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    font-size: 28px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.15s;
+}
+.math-gloss-close:hover { background: var(--math-primary-light); }
+
+.math-gloss-modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.math-gloss-modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--math-primary);
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.math-gloss-tts {
+    font-size: 13px;
+    padding: 6px 12px;
+}
+
+.math-gloss-modal-kid {
+    font-size: 15px;
+    color: var(--text-primary);
+    font-style: italic;
+    margin-bottom: 14px;
+}
+
+.math-gloss-modal-def,
+.math-gloss-modal-ex {
+    font-size: 14px;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.math-gloss-modal-vis {
+    margin-top: 12px;
+    padding: 12px;
+    text-align: center;
+    background: var(--math-hint-bg);
+    border-radius: var(--radius-md);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--math-primary);
+    letter-spacing: 1px;
+}

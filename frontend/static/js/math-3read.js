@@ -130,21 +130,18 @@ async function _play3ReadTTS(question, prompt) {
     const text = `${question}. ${prompt}`;
     if (!text) return;
     try {
-        if (typeof playTTS === 'function') {
-            await playTTS(text);
-            return;
-        }
-        const res = await fetch('/api/tts/speak', {
+        const res = await fetch('/api/tts', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text, voice: 'en-US-AriaNeural' }),
+            body: JSON.stringify({ text }),
         });
         if (res.ok) {
             const blob = await res.blob();
             const url = URL.createObjectURL(blob);
             const audio = new Audio(url);
-            audio.play();
             audio.onended = () => URL.revokeObjectURL(url);
+            audio.onerror = () => URL.revokeObjectURL(url);
+            await audio.play().catch(() => URL.revokeObjectURL(url));
         }
     } catch (err) {
         console.warn('[math] 3-read TTS failed', err);

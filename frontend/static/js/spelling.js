@@ -108,8 +108,9 @@ function renderSpellItem(el, item, isRetry) {
         mask = (spState.masks[stageIndex] || {})[pass] || makeSpellMask(item.answer, pass);
     }
 
-    const passDesc = pass === 1 ? "Some letters hidden"
-                   : pass === 2 ? "More letters hidden"
+    // Labels match the phonics-based mask progression (vowels → first+last → all).
+    const passDesc = pass === 1 ? "Vowels are hidden"
+                   : pass === 2 ? "Only the first and last letter"
                    : "All hidden — type from memory!";
     const retryLabel = isRetry ? " — Retry" : "";
     const progLabel  = `${current} / ${total}${isRetry ? " retries" : ""} &nbsp;·&nbsp; Pass ${pass}/${CONF.SPELLING_PASSES}`;
@@ -118,18 +119,28 @@ function renderSpellItem(el, item, isRetry) {
         ? "var(--color-error, #FF3B30)"
         : "var(--color-primary, #D4619E)";
 
+    // Letter count — especially critical for Pass 2 (first+last only) and Pass 3 (all hidden).
+    const letterCount = (item.answer.match(/[a-zA-Z]/g) || []).length;
+    const letterHint  = `<p class="sp-letter-hint">💡 ${letterCount} letter${letterCount === 1 ? '' : 's'}</p>`;
+
+    // Retry mode: soften the tone — the child already missed this once.
+    const subText = isRetry
+        ? `One more try — you've got this! &nbsp;·&nbsp; ${escapeHtml(passDesc)}`
+        : `${escapeHtml(passDesc)} &nbsp;·&nbsp; Listen, then type the word.`;
+
     el.innerHTML = `
         <p class="st-h1">Step 4 — Spelling Master${retryLabel}</p>
-        <p class="st-sub">${escapeHtml(passDesc)} &nbsp;·&nbsp; Listen, then type the word.</p>
+        <p class="st-sub">${subText}</p>
         <div style="text-align:center">
             <span class="sp-pass-badge" style="background:${badgeBg}">
                 Pass ${pass} / ${CONF.SPELLING_PASSES}
             </span>
         </div>
         <div class="sp-mask-box">${escapeHtml(mask)}</div>
+        ${letterHint}
         <p class="sp-meaning">${escapeHtml(item.question)}</p>
         <div class="st-input-row">
-            <input class="st-input" id="answer-input" type="text"
+            <input class="st-input" id="answer-input" type="text" maxlength="${item.answer.length}"
                    autocomplete="off" spellcheck="false" placeholder="Type the word…"/>
             <button type="button" class="st-btn ghost" id="btn-listen-word">🔊 Listen</button>
             <button type="button" class="st-btn" id="spell-submit">Check</button>
@@ -201,7 +212,7 @@ function renderSpellItem(el, item, isRetry) {
             inp.style.borderColor = "var(--color-error, #FF3B30)";
             inp.style.boxShadow   = "0 0 0 4px var(--color-error-light, rgba(255,59,48,0.12))";
             feedback.style.color  = "var(--color-error, #FF3B30)";
-            feedback.textContent  = "\uc815\ub2f5: " + item.answer;
+            feedback.textContent  = "Answer: " + item.answer;
 
             if (!spState.retryQueue.find(it => it.id === item.id)) {
                 spState.retryQueue.push(item);

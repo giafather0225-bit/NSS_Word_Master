@@ -44,6 +44,8 @@ async function dmStart() {
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Quit</button>
     </div>`;
 
+  if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('definition_match');
+
   const words = await _arcadeFetchWords(60);
   if (words.length < 4) {
     body.innerHTML = `

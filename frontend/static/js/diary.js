@@ -178,7 +178,14 @@ async function _submitJournal(date) {
     const ta = document.getElementById("journal-text");
     if (!ta || !ta.value.trim()) return;
     const btn = document.querySelector(".journal-submit-btn");
+    const resetBtn = () => {
+        if (btn) { btn.disabled = false; btn.textContent = "Save & Get Feedback ✨"; }
+    };
     if (btn) { btn.disabled = true; btn.textContent = "Saving…"; }
+    // Previously, any non-OK response (422 on Str5000 overflow, 500, 400)
+    // left the button frozen on "Saving…" forever — the success and catch
+    // branches both reset it, but the "not ok, didn't throw" path didn't.
+    // Route every exit through resetBtn() so the UI never gets stuck.
     try {
         const res = await fetch("/api/diary/entries", {
             method: "POST",
@@ -189,9 +196,19 @@ async function _submitJournal(date) {
             const data = await res.json();
             if (btn) { btn.disabled = false; btn.textContent = "Saved ✓"; }
             if (data.ai_feedback) _showFeedback(data.ai_feedback);
+            return;
         }
+        // Non-OK: toast.js global 422 interceptor handles validation errors;
+        // for other statuses surface the detail so the parent can debug.
+        if (res.status !== 422) {
+            let detail = "";
+            try { detail = (await res.json()).detail || ""; } catch (_) {}
+            if (window.toast) window.toast(detail || "Could not save entry.", "error");
+        }
+        resetBtn();
     } catch (_) {
-        if (btn) { btn.disabled = false; btn.textContent = "Save & Get Feedback ✨"; }
+        if (window.toast) window.toast("Network error — try again.", "error");
+        resetBtn();
     }
 }
 
@@ -215,6 +232,7 @@ async function _renderTimeline() {
     view.innerHTML = `${_diaryHeader("Growth Timeline", "Your learning milestones")}<div id="timeline-body" class="diary-body"><p class="diary-state-msg">Loading…</p></div>`;
     try {
         const res = await fetch("/api/growth/timeline");
+        if (!res.ok) throw new Error(`growth/timeline ${res.status}`);
         const data = await res.json();
         const body = document.getElementById("timeline-body");
         if (!data.events || data.events.length === 0) {
@@ -286,10 +304,11 @@ async function _submitDayOff(e) {
         } else {
             const err = await res.json().catch(() => ({}));
             if (btn) { btn.disabled = false; btn.textContent = "Send Request 🏖️"; }
-            alert(err.detail || "Could not submit request.");
+            toast(err.detail || "Could not submit request.", "error");
         }
     } catch (_) {
         if (btn) { btn.disabled = false; btn.textContent = "Send Request 🏖️"; }
+        toast("Network error — please try again.", "error");
     }
 }
 
@@ -482,6 +501,7 @@ async function _renderWorlds() {
     view.innerHTML = `${_diaryHeader("My Worlds", "Completed growth themes")}<div id="worlds-body" class="diary-body"><p class="diary-state-msg">Loading…</p></div>`;
     try {
         const res  = await fetch("/api/growth/theme/all");
+        if (!res.ok) throw new Error(`growth/theme/all ${res.status}`);
         const data = await res.json();
         const done = (data.themes || []).filter(t => t.is_completed);
         const body = document.getElementById("worlds-body");

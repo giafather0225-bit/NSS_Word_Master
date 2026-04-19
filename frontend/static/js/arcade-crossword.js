@@ -53,13 +53,13 @@ async function cwStart() {
   };
 
   _cwRender();
+  if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('crossword');
 }
 
 /** Stop & release listeners. @tag ARCADE */
 function cwStop() {
   if (!_cw) return;
   _cw.running = false;
-  document.removeEventListener('keydown', _cwGlobalKey);
   _cw = null;
 }
 
@@ -445,5 +445,3 @@ async function _cwFinish() {
   const result = await _arcadeReportScore('crossword', state.score, state.correct, state.total, accuracy);
   _arcadeRenderGameOver({ state, accuracy, result, replay: 'cwStart()' });
 }
-
-function _cwGlobalKey() { /* reserved */ }

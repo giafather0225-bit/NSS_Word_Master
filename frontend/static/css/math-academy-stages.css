@@ -1,0 +1,219 @@
+/* ================================================================
+   math-academy-stages.css — Stage-level result UI (feedback, complete, review)
+   Section: Math
+   Dependencies: theme.css
+   Companions: math-academy-learn.css (learn cards), math-academy-problems.css (buttons/MC/TF/input/hint)
+   ================================================================ */
+
+/* ── Feedback overlay (per-problem) ────────────────────────── */
+
+.math-feedback-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    animation: math-fade-in 0.25s ease;
+}
+
+.math-feedback-correct { background: rgba(52, 199, 89, 0.12); }
+.math-feedback-wrong   { background: rgba(255, 59, 48, 0.08); }
+
+.math-feedback-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: none;
+    border: 1px solid var(--border-card);
+    text-align: center;
+}
+
+.math-feedback-result {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.math-feedback-correct .math-feedback-result { color: var(--math-pass); }
+.math-feedback-wrong .math-feedback-result   { color: var(--color-error); }
+
+.math-feedback-answer {
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.math-feedback-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.math-feedback-steps {
+    text-align: left;
+    margin: 0 0 16px;
+    padding-left: 20px;
+    font-size: 14px;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* ── Stage feedback (pass/fail summary) ────────────────────── */
+
+.math-stage-feedback {
+    max-width: 400px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
+}
+
+.math-feedback-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.math-stage-feedback h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+}
+
+.math-stage-feedback p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: 0 0 24px;
+}
+
+/* ── Complete screen ───────────────────────────────────────── */
+
+.math-complete {
+    max-width: 400px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
+}
+
+.math-complete-icon { font-size: 56px; margin-bottom: 16px; }
+
+.math-complete h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+}
+
+.math-complete p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin: 0 0 8px;
+}
+
+.math-complete-detail {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+/* ── Wrong review ──────────────────────────────────────────── */
+
+.math-wrong-review {
+    max-width: 500px;
+    margin: 40px auto;
+    text-align: center;
+    padding: 32px 24px;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: none;
+    border: 1px solid var(--border-card);
+}
+
+.math-wrong-review h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+}
+
+.math-wrong-review p { font-size: 14px; color: var(--text-secondary); margin: 0 0 12px; }
+
+.math-wrong-list {
+    font-size: 12px;
+    color: var(--text-secondary);
+    word-break: break-all;
+}
+
+/* ── Interactive step-by-step inputs (math-academy-feedback.js) ── */
+
+.math-steps-interactive {
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--math-primary);
+}
+.math-steps-title {
+    font-weight: 700;
+    color: var(--math-primary);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.math-isteps-list {
+    list-style: decimal inside;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+.math-istep {
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    background: var(--bg-page);
+    border-radius: var(--radius-sm);
+}
+.math-istep-prompt {
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+.math-istep-inputs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.math-istep-input {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+.math-istep-field {
+    width: 64px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+.math-istep-field.math-istep-ok {
+    border-color: var(--color-success);
+    background: rgba(52,199,89,0.08);
+}
+.math-istep-field.math-istep-bad {
+    border-color: var(--color-error);
+    background: rgba(255,59,48,0.08);
+}
+.math-istep-mark {
+    font-weight: 700;
+    min-width: 14px;
+}

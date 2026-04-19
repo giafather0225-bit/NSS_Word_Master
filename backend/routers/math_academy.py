@@ -174,7 +174,7 @@ def _list_json_files(parent: Path) -> list[str]:
 
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/grades")
-def get_grades():
+def get_grades() -> dict:
     """Return available grade folders (e.g., G3, G4, G5, G6)."""
     grades = [g for g in _list_dirs(_DATA_DIR) if g.startswith("G")]
     return {"grades": grades}
@@ -182,7 +182,7 @@ def get_grades():
 
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/{grade}/units")
-def get_units(grade: str):
+def get_units(grade: str) -> dict:
     """Return available units for a grade."""
     units = _list_dirs(_DATA_DIR / grade)
     return {"grade": grade, "units": units}
@@ -190,7 +190,7 @@ def get_units(grade: str):
 
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/{grade}/{unit}/lessons")
-def get_lessons(grade: str, unit: str, db: Session = Depends(get_db)):
+def get_lessons(grade: str, unit: str, db: Session = Depends(get_db)) -> dict:
     """Return available lessons for a unit, with progress info."""
     lesson_names = _list_json_files(_DATA_DIR / grade / unit)
     # Filter out unit_test from lesson list
@@ -224,7 +224,7 @@ def get_lessons(grade: str, unit: str, db: Session = Depends(get_db)):
 
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/{grade}/{unit}/{lesson}/{stage}")
-def get_stage_problems(grade: str, unit: str, lesson: str, stage: str):
+def get_stage_problems(grade: str, unit: str, lesson: str, stage: str) -> dict:
     """Return problems for a specific lesson stage.
 
     Stages: pretest, learn, try, practice_r1, practice_r2, practice_r3
@@ -250,7 +250,7 @@ def get_stage_problems(grade: str, unit: str, lesson: str, stage: str):
 
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/{grade}/{unit}/unit-test")
-def get_unit_test(grade: str, unit: str):
+def get_unit_test(grade: str, unit: str) -> dict:
     """Return unit test problems."""
     path = _DATA_DIR / grade / unit / "unit_test.json"
     if not path.exists():

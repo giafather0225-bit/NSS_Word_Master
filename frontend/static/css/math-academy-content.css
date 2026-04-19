@@ -1,0 +1,154 @@
+/* ================================================================
+   math-academy-content.css — 3-Read Strategy (word-problem scaffold)
+   Section: Math
+   Dependencies: theme.css
+   Companions: math-academy-kangaroo.css, math-academy-glossary.css
+   ================================================================ */
+
+/* ── 3-Read Strategy ───────────────────────────────────────── */
+
+.math-3read-btn {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 13px;
+    padding: 4px 10px;
+    color: var(--math-primary);
+    background: var(--math-hint-bg);
+    border: 1px solid var(--math-primary-light);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.math-3read-btn:hover {
+    background: var(--math-primary-light);
+}
+
+.math-3read-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: math-fade-in 0.18s ease;
+}
+
+.math-3read-card {
+    position: relative;
+    max-width: 560px;
+    width: 100%;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 28px 28px 24px;
+    box-shadow: none;
+    border: 1px solid var(--border-card);
+}
+
+.math-3read-close {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    font-size: 28px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.15s;
+}
+.math-3read-close:hover { background: var(--math-primary-light); }
+
+.math-3read-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.math-3read-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--math-primary);
+    margin: 0;
+}
+
+.math-3read-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.math-3read-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--math-primary-light);
+}
+
+.math-3read-dot.active {
+    background: var(--math-primary);
+    transform: scale(1.15);
+}
+
+.math-3read-dot.done {
+    background: var(--math-pass);
+}
+
+.math-3read-question {
+    margin: 0 0 18px 0;
+    padding: 14px 16px;
+    background: var(--math-hint-bg);
+    border-left: 4px solid var(--math-primary);
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.math-3read-step {
+    margin-bottom: 18px;
+    animation: math-fade-in 0.2s ease;
+}
+
+.math-3read-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--math-accent-violet, var(--math-primary));
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.math-3read-icon {
+    font-size: 18px;
+    margin-right: 4px;
+}
+
+.math-3read-prompt {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.math-3read-hint {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.math-3read-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}

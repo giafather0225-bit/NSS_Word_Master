@@ -61,7 +61,10 @@
   box-shadow: var(--shadow-card);
   cursor: pointer;
   transition: transform 0.15s ease;
+  border-left: 4px solid transparent;
 }
+.arcade-game-card.cat-english { border-left-color: var(--color-primary); }
+.arcade-game-card.cat-math    { border-left-color: var(--color-secondary); }
 .arcade-game-card:hover { transform: translateY(-2px); }
 .arcade-game-card.disabled { opacity: 0.5; cursor: default; }
 .arcade-game-card.disabled:hover { transform: none; }
@@ -552,6 +555,37 @@
   border-color: rgba(255, 255, 255, 0.6);
 }
 
+/* ── First-play tutorial banner ───────────────────────────────── */
+.arcade-tip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-primary-light);
+  color: var(--text-primary);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  margin: 10px 14px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  animation: arcade-tip-in 0.3s ease;
+}
+@keyframes arcade-tip-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.arcade-tip-icon { font-size: 18px; flex-shrink: 0; }
+.arcade-tip-text { flex: 1; }
+.arcade-tip-x {
+  width: 28px; height: 28px;
+  border: 0; background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px; font-weight: 700;
+  cursor: pointer;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.arcade-tip-x:hover { background: rgba(0,0,0,0.08); }
+
 /* ── Lobby section labels ─────────────────────────────────────── */
 .arcade-section-label {
   font-size: 13px;
@@ -573,8 +607,8 @@
   border-radius: var(--radius-sm);
 }
 .su-cell {
-  width: 40px;
-  height: 40px;
+  width: var(--su-cell, 40px);
+  height: var(--su-cell, 40px);
   background: var(--bg-card);
   text-align: center;
   font-size: 20px;
@@ -585,6 +619,14 @@
   justify-content: center;
   border: 0;
   outline: none;
+}
+@media (max-width: 480px) {
+  .su-grid { --su-cell: 32px; }
+  .su-cell { font-size: 16px; }
+}
+@media (max-width: 380px) {
+  .su-grid { --su-cell: 28px; }
+  .su-cell { font-size: 14px; }
 }
 .su-cell--given { background: var(--color-primary-light); color: var(--color-primary); }
 .su-inp:focus { background: #FFF3DA; }
@@ -641,12 +683,12 @@
 .mk-preview { color: var(--text-secondary); font-size: 14px; min-height: 16px; }
 .mk-ops { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .mk-op {
-  width: 42px; height: 42px;
+  width: 56px; height: 56px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--text-secondary);
   background: var(--bg-card);
   color: var(--text-primary);
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
   cursor: pointer;
 }

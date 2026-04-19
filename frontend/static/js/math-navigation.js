@@ -92,9 +92,7 @@ async function loadMathGrades() {
     if (!sel) return;
     sel.innerHTML = '<option value="">Select grade</option>';
     try {
-        const res = await fetch('/api/math/academy/grades');
-        if (!res.ok) return;
-        const data = await res.json();
+        const data = await apiFetchJSON('/api/math/academy/grades');
         (data.grades || []).forEach(g => {
             const opt = document.createElement('option');
             opt.value = g;
@@ -122,9 +120,7 @@ async function loadMathUnits(grade) {
     if (!grade) return;
 
     try {
-        const res = await fetch(`/api/math/academy/${encodeURIComponent(grade)}/units`);
-        if (!res.ok) return;
-        const data = await res.json();
+        const data = await apiFetchJSON(`/api/math/academy/${encodeURIComponent(grade)}/units`);
         (data.units || []).forEach(u => {
             const opt = document.createElement('option');
             opt.value = u;
@@ -146,9 +142,7 @@ async function loadMathLessons(grade, unit) {
     if (!unit) return;
 
     try {
-        const res = await fetch(`/api/math/academy/${encodeURIComponent(grade)}/${encodeURIComponent(unit)}/lessons`);
-        if (!res.ok) return;
-        const data = await res.json();
+        const data = await apiFetchJSON(`/api/math/academy/${encodeURIComponent(grade)}/${encodeURIComponent(unit)}/lessons`);
         (data.lessons || []).forEach(l => {
             const opt = document.createElement('option');
             opt.value = l.name;
@@ -190,47 +184,35 @@ function updateMathStartBtn() {
 async function loadMathSidebarStatus() {
     // Fluency summary
     try {
-        const res = await fetch('/api/math/fluency/summary');
-        if (res.ok) {
-            const data = await res.json();
-            const el = document.getElementById('math-fluency-today');
-            if (el) el.textContent = `${data.today_rounds}/${data.daily_target} rounds`;
-        }
+        const data = await apiFetchJSON('/api/math/fluency/summary');
+        const el = document.getElementById('math-fluency-today');
+        if (el) el.textContent = `${data.today_rounds}/${data.daily_target} rounds`;
     } catch (e) { /* silent */ }
 
     // My Problems summary
     try {
-        const res = await fetch('/api/math/my-problems/summary');
-        if (res.ok) {
-            const data = await res.json();
-            const el = document.getElementById('math-problems-count');
-            if (el) el.textContent = `${data.due_today} items`;
-        }
+        const data = await apiFetchJSON('/api/math/my-problems/summary');
+        const el = document.getElementById('math-problems-count');
+        if (el) el.textContent = `${data.due_today} items`;
     } catch (e) { /* silent */ }
 
     // Kangaroo sets status
     try {
-        const res = await fetch('/api/math/kangaroo/sets');
-        if (res.ok) {
-            const data = await res.json();
-            const total = (data.sets || []).length;
-            const done = (data.sets || []).filter(s => s.completed).length;
-            const el = document.getElementById('math-kangaroo-week');
-            if (el) el.textContent = `${done}/${total} sets`;
-        }
+        const data = await apiFetchJSON('/api/math/kangaroo/sets');
+        const total = (data.sets || []).length;
+        const done = (data.sets || []).filter(s => s.completed).length;
+        const el = document.getElementById('math-kangaroo-week');
+        if (el) el.textContent = `${done}/${total} sets`;
     } catch (e) { /* silent */ }
 
     // Daily Challenge status
     try {
-        const res = await fetch('/api/math/daily/today');
-        if (res.ok) {
-            const data = await res.json();
-            const el = document.getElementById('math-daily-status');
-            if (el) {
-                if (!data.exists) el.textContent = 'Not available';
-                else if (data.completed) el.textContent = `✓ ${data.score}/${data.total}`;
-                else el.textContent = `${data.total} problems`;
-            }
+        const data = await apiFetchJSON('/api/math/daily/today');
+        const el = document.getElementById('math-daily-status');
+        if (el) {
+            if (!data.exists) el.textContent = 'Not available';
+            else if (data.completed) el.textContent = `✓ ${data.score}/${data.total}`;
+            else el.textContent = `${data.total} problems`;
         }
     } catch (e) { /* silent */ }
 }

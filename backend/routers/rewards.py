@@ -16,20 +16,21 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import Reward
+    from ..schemas_common import Str100, Str300
 except ImportError:
     from database import get_db
     from models import Reward
+    from schemas_common import Str100, Str300
 
 router = APIRouter()
 
 
 class RewardCreate(BaseModel):
-    title: str
-    description: str
+    title: Str100
+    description: Str300
 
     def clean(self):
-        self.title = self.title.strip()[:100]
-        self.description = self.description.strip()[:300]
+        """No-op — Pydantic enforces length (422 on overflow)."""
         return self
 
 

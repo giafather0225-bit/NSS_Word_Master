@@ -1,0 +1,374 @@
+/* ================================================================
+   main-shell.css — App shell main layout — shell
+   Section: System
+   Dependencies: theme.css
+   ================================================================ */
+
+:root {
+    /* ── Aliases: bridge old --primary names to theme.css tokens ── */
+    --primary:      var(--color-primary);
+    --primary-glow: var(--color-primary-glow);
+    --primary-tint: var(--color-primary-light);
+
+    /* ── Layout / surface tokens (no equivalent in theme.css) ── */
+    --bg:          var(--bg-page);
+    --surface:     var(--bg-card);
+    --muted:       var(--text-secondary);
+    --text:        var(--text-primary);
+    --shadow-deep: 0 24px 72px rgba(15, 23, 42, 0.13), 0 8px 24px rgba(15, 23, 42, 0.07);
+    --shadow-soft: var(--shadow-card);
+    --sidebar-w:   240px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    
+    overflow: hidden;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+                 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+}
+
+body {
+    background: var(--bg-page, #FFFFFF);
+}
+
+/* Ambient orbs — hidden */
+.orb { display: none !important; }
+
+/* ─── App Shell ─────────────────────────────────────── */
+.app-shell {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+.sidebar {
+    width: 240px;
+    min-width: 240px;
+    height: 100vh;
+    background: var(--bg-sidebar, #FFFFFF);
+    border-right: 1px solid rgba(74, 142, 142, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 100;
+    transition: width 0.3s ease, min-width 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: 0;
+    min-width: 0;
+    border-right: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+/* ── Profile ─────────────────────────── */
+
+.sb-profile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 20px 20px;
+}
+
+.avatar-img {
+    width: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2.5px solid var(--color-accent, #AE397D);
+    background: #fff;
+    flex-shrink: 0;
+    box-shadow: none;
+    transition: transform 0.2s ease;
+}
+
+.avatar-img:hover {
+    transform: scale(1.08);
+}
+
+.logo-text-img {
+    display: none;
+}
+
+.logo-brand-text {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--color-primary);
+    letter-spacing: -0.5px;
+}
+
+.profile-name {
+    display: none;
+}
+
+/* ── Subject Tabs ────────────────────── */
+
+.sb-subject-tabs {
+    display: flex;
+    margin: 0 16px 16px;
+    background: var(--color-primary-light, #FFFFFF);
+    border-radius: var(--radius-full, 9999px);
+    padding: 3px;
+    gap: 0;
+}
+
+.sb-subject-tab {
+    flex: 1;
+    padding: 8px 0;
+    border: none;
+    background: transparent;
+    font-size: var(--font-size-sm, 13px);
+    font-weight: var(--font-weight-bold, 600);
+    color: var(--text-secondary, #6B7280);
+    border-radius: var(--radius-full, 9999px);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.sb-subject-tab.active {
+    background: var(--color-primary, #4A8E8E);
+    color: var(--text-on-primary, #fff);
+    box-shadow: none;
+}
+
+.sb-subject-tab:not(.active):hover {
+    color: var(--text-primary, #1A1A1A);
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* ── Stars ────────────────────────────── */
+
+.sb-stars {
+    display: none;
+}
+
+/* ── Divider ──────────────────────────── */
+
+.sb-div {
+    height: 1px;
+    background: var(--border-default, #E5E5EA);
+    margin: 8px 16px 12px;
+}
+
+/* ── Labels ───────────────────────────── */
+
+.sb-label {
+    font-size: var(--font-size-xs, 11px);
+    font-weight: var(--font-weight-bold, 600);
+    color: var(--text-secondary, #6B7280);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 0 20px;
+    margin-bottom: 8px;
+}
+
+/* ── Textbook / Lesson Display ────────── */
+
+.sb-textbook-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    margin: 0 12px 4px;
+    background: var(--bg-card, #fff);
+    border: 1.5px solid var(--border-default, #E5E5EA);
+    border-radius: var(--radius-md, 12px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sb-textbook-display:hover {
+    border-color: var(--color-primary, #4A8E8E);
+    box-shadow: none;
+}
+
+.sb-tb-name-text {
+    font-size: var(--font-size-sm, 13px);
+    font-weight: var(--font-weight-bold, 600);
+    color: var(--text-primary, #1A1A1A);
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sb-tb-chevron {
+    font-size: 10px;
+    color: var(--text-secondary, #6B7280);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 6px;
+}
+
+.sb-textbook-display:hover .sb-tb-chevron {
+    color: var(--color-primary, #4A8E8E);
+}
+
+.sb-textbook-display.open .sb-tb-chevron { transform: rotate(180deg); }
+
+/* ── Dropdown ─────────────────────────── */
+
+.sb-tb-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 12px;
+    right: 12px;
+    background: var(--bg-card, #fff);
+    border: 1.5px solid var(--border-default, #E5E5EA);
+    border-radius: var(--radius-md, 12px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    z-index: 200;
+    max-height: min(360px, calc(100vh - 240px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    display: none;
+}
+
+/* Visible scrollbar so long lesson lists don't look cut off */
+.sb-tb-dropdown::-webkit-scrollbar { width: 6px; }
+.sb-tb-dropdown::-webkit-scrollbar-thumb { background: var(--border-default, #E5E5EA); border-radius: 3px; }
+
+.sb-tb-dropdown.open { display: block; }
+
+.sb-tb-option {
+    padding: 8px 16px;
+    font-size: var(--font-size-sm, 13px);
+    color: var(--text-primary, #1A1A1A);
+    cursor: pointer;
+}
+
+.sb-tb-option:hover { background: var(--bg-sidebar, #FFFFFF); }
+.sb-tb-option.selected { color: var(--color-primary, #4A8E8E); font-weight: 600; }
+
+/* Hidden native selects */
+#textbook-select,
+#lesson-select {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+}
+
+/* ── Folder Tree ──────────────────────── */
+
+.sb-lesson-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 4px;
+    overflow-y: auto;
+    max-height: 280px;
+}
+
+.sb-tree-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-height: 36px;
+    padding: 0 12px;
+    border-radius: var(--radius-sm, 8px);
+    cursor: pointer;
+    transition: background 0.15s;
+    border-left: 3px solid transparent;
+    box-sizing: border-box;
+}
+
+.sb-tree-item:hover { background: var(--color-primary-light, #FFFFFF); }
+
+.sb-tree-item.sb-tree-current {
+    background: var(--color-primary-light, #FFFFFF);
+    border-left: 3px solid var(--color-primary, #4A8E8E);
+    font-weight: 600;
+}
+
+.sb-tree-prefix {
+    font-size: 11px; color: #C7C7CC;
+    font-family: monospace; flex-shrink: 0;
+    width: 12px; text-align: center;
+}
+
+.sb-tree-icon { font-size: 13px; flex-shrink: 0; line-height: 1; }
+
+.sb-tree-label {
+    flex: 1;
+    font-size: var(--font-size-sm, 13px);
+    font-weight: var(--font-weight-normal, 500);
+    color: var(--text-primary, #1A1A1A);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sb-tree-test-btn {
+    border: none; border-radius: 5px;
+    padding: 2px 6px; font-size: 11px; font-weight: 500;
+    color: var(--color-primary, #4A8E8E); background: transparent;
+    cursor: pointer; flex-shrink: 0;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+}
+
+.sb-tree-test-btn:hover { opacity: 0.7; }
+.sb-tree-item.sb-tree-locked { color: #C7C7CC; cursor: not-allowed; pointer-events: none; }
+.sb-tree-item.sb-tree-locked .sb-tree-label { color: #C7C7CC; }
+
+.tab-dot {
+    display: inline-block; width: 5px; height: 5px;
+    border-radius: 50%; background: currentColor;
+    vertical-align: middle; margin-left: 3px; opacity: 0.5;
+}
+
+/* ── OCR Button ───────────────────────── */
+
+.ocr-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 12px 16px;
+    padding: 10px 16px;
+    background: var(--color-accent-light, #FFFFFF);
+    color: var(--color-accent, #AE397D);
+    border: 1.5px dashed var(--color-accent, #AE397D);
+    border-radius: var(--radius-md, 12px);
+    font-size: var(--font-size-sm, 13px);
+    font-weight: var(--font-weight-bold, 600);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: calc(100% - 32px);
+}
+
+.ocr-btn:hover {
+    background: var(--color-accent, #AE397D);
+    color: var(--text-on-primary, #fff);
+}
+
+.ocr-btn.loading { opacity: 0.6; cursor: wait; }
+
+/* 로드맵 pill hover (clickable pills) */
+.road-pill[style*="pointer"] { transition: transform 0.15s, filter 0.15s; }
+.road-pill[style*="pointer"]:hover { transform: translateY(-2px) scale(1.06); filter: brightness(1.08); }
+
+/* Sidebar actions */
+.sb-actions {
+    display: flex; flex-direction: column; gap: 6px;
+}
+.sb-actions .dock-btn { width: 100%; text-align: center; }
+
