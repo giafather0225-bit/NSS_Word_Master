@@ -24,6 +24,7 @@ import httpx
 
 from backend.models import Word, StudyItem, Lesson
 from backend.file_storage import STORAGE_ROOT
+from backend.utils import parse_json_array, strip_json_fences
 
 # ──────────────────────────────────────────────
 # 설정
@@ -171,35 +172,6 @@ Raw OCR text:
 """
 
 
-def _strip_fences(text: str) -> str:
-    t = re.sub(r'^```[a-zA-Z]*\s*', '', text.strip())
-    if t.endswith("```"):
-        t = t[:-3]
-    return t.strip()
-
-
-def _extract_json_array(text: str) -> list[dict] | None:
-    """JSON 배열 파싱 — 앞뒤 텍스트 오염에 강인."""
-    clean = _strip_fences(text)
-    try:
-        data = json.loads(clean)
-        if isinstance(data, list):
-            return data
-    except json.JSONDecodeError:
-        pass
-    # fallback: 첫 번째 [ ... ] 구간 추출
-    lb = clean.find("[")
-    rb = clean.rfind("]")
-    if lb != -1 and rb > lb:
-        try:
-            data = json.loads(clean[lb : rb + 1])
-            if isinstance(data, list):
-                return data
-        except json.JSONDecodeError:
-            pass
-    return None
-
-
 async def refine_with_ollama(ocr_text: str, model: str | None = None) -> list[dict]:
     """OCR raw text → Ollama → [{word, pos, definition, example}] 배열.
 
@@ -228,7 +200,7 @@ async def refine_with_ollama(ocr_text: str, model: str | None = None) -> list[di
         resp.raise_for_status()
         content = resp.json().get("message", {}).get("content", "").strip()
 
-    result = _extract_json_array(content)
+    result = parse_json_array(content)
     if result is None:
         raise ValueError(f"Ollama 응답을 JSON 배열로 파싱 실패:\n{content[:400]}")
 

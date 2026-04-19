@@ -15,8 +15,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -36,6 +37,8 @@ from backend.routers import diary_sentences as diary_sentences_router
 from backend.routers import free_writing as free_writing_router
 from backend.routers import calendar_api as calendar_router
 from backend.routers import parent as parent_router
+from backend.routers import parent_stats as parent_stats_router
+from backend.routers import parent_math as parent_math_router
 from backend.routers import parent_streak as parent_streak_router
 from backend.routers import parent_xp as parent_xp_router
 from backend.routers import growth_theme as growth_theme_router
@@ -63,7 +66,7 @@ Base.metadata.create_all(bind=engine)
 # ── Constants ──────────────────────────────────────────────
 VOCA_ROOT = LEARNING_ROOT / "English" / "Voca_8000"
 
-_executor = ThreadPoolExecutor(max_workers=2)
+_executor = ThreadPoolExecutor(max_workers=8)
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
@@ -125,6 +128,47 @@ app.add_middleware(
     allow_headers=["Content-Type", "Authorization"],
 )
 
+
+# ── Validation error → child-friendly 422 JSON ───────────────
+# Replaces the old silent ``.strip()[:N]`` pattern. When a payload field is
+# too long (or missing), the frontend receives a clear message it can toast,
+# instead of data being silently truncated before saving.
+_FIELD_LABELS = {
+    "title": "Title", "content": "Text", "reason": "Reason", "memo": "Memo",
+    "word": "Word", "definition": "Definition", "example": "Example",
+    "sentence": "Sentence", "description": "Description",
+    "textbook": "Textbook", "lesson": "Lesson", "stage": "Stage",
+    "collocation": "Phrase", "user_answer": "Your answer",
+    "request_date": "Date", "test_date": "Date", "entry_date": "Date",
+}
+
+
+@app.exception_handler(RequestValidationError)
+async def _validation_error_handler(request: Request, exc: RequestValidationError):
+    """Turn Pydantic errors into one short user-facing message + structured field list."""
+    errors = exc.errors()
+    first = errors[0] if errors else {}
+    loc = [str(p) for p in first.get("loc", []) if p not in ("body",)]
+    field_key = loc[-1] if loc else ""
+    label = _FIELD_LABELS.get(field_key, field_key.replace("_", " ").title() or "Input")
+    err_type = first.get("type", "")
+    ctx = first.get("ctx", {}) or {}
+
+    if "string_too_long" in err_type or "too_long" in err_type:
+        limit = ctx.get("max_length", "")
+        message = f"{label} is too long — please shorten it (max {limit} characters)."
+    elif "missing" in err_type:
+        message = f"{label} is required."
+    elif "string_type" in err_type or "type_error" in err_type:
+        message = f"{label} has an invalid format."
+    else:
+        message = f"{label}: {first.get('msg', 'invalid value')}"
+
+    return JSONResponse(
+        status_code=422,
+        content={"message": message, "field": field_key, "errors": errors},
+    )
+
 BASE_DIR      = Path(__file__).parent.parent
 FRONTEND_DIR  = BASE_DIR / "frontend"
 STATIC_DIR    = FRONTEND_DIR / "static"
@@ -163,6 +207,8 @@ app.include_router(diary_sentences_router.router)
 app.include_router(free_writing_router.router)
 app.include_router(calendar_router.router)
 app.include_router(parent_router.router)
+app.include_router(parent_stats_router.router)
+app.include_router(parent_math_router.router)
 app.include_router(parent_streak_router.router)
 app.include_router(parent_xp_router.router)
 app.include_router(growth_theme_router.router)

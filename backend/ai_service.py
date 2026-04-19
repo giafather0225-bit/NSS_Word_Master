@@ -124,8 +124,8 @@ Return ONLY a valid JSON array. Each object must have exactly these 4 keys:
 
 Example output:
 [
-  {"word": "upside down", "pos": "adv", "definition": "having the part that is usually at the top turned to be at the bottom", "example": "The box was lying on the floor upside down."},
-  {"word": "beak", "pos": "n", "definition": "the hard curved or pointed parts of the mouth of birds", "example": "He avoided the goose's beak and ran away."}
+  {{"word": "upside down", "pos": "adv", "definition": "having the part that is usually at the top turned to be at the bottom", "example": "The box was lying on the floor upside down."}},
+  {{"word": "beak", "pos": "n", "definition": "the hard curved or pointed parts of the mouth of birds", "example": "He avoided the goose's beak and ran away."}}
 ]
 
 No markdown fences, no extra text, no explanation. JSON array only.
@@ -221,7 +221,7 @@ async def refine_ocr_text(
     if not use_gemini_first:
         try:
             raw = await _ollama_chat(prompt, timeout=120.0)
-            entries = _parse_vocab_array(raw)
+            entries = parse_json_array(raw)
             if entries is not None:
                 normalized = [_normalize_entry(e) for e in entries if e.get("word")]
                 score = quality_score(normalized)
@@ -238,7 +238,7 @@ async def refine_ocr_text(
     # Gemini 폴백 (또는 직행)
     provider = "gemini"
     raw = await _gemini_generate(prompt)
-    entries = _parse_vocab_array(raw)
+    entries = parse_json_array(raw)
     if entries is None:
         raise ValueError(f"Gemini 응답을 JSON으로 파싱 실패:\n{raw[:400]}")
     normalized = [_normalize_entry(e) for e in entries if e.get("word")]
@@ -263,7 +263,7 @@ async def enrich_words(
     if not force_gemini:
         try:
             raw = await _ollama_chat(prompt, timeout=90.0)
-            entries = _parse_vocab_array(raw)
+            entries = parse_json_array(raw)
             if entries:
                 normalized = [_normalize_entry(e) for e in entries if e.get("word")]
                 if quality_score(normalized) >= QUALITY_THRESHOLD:
@@ -272,7 +272,7 @@ async def enrich_words(
             log.warning("Ollama enrich error: %s — falling back to Gemini", exc)
 
     raw = await _gemini_generate(prompt)
-    entries = _parse_vocab_array(raw)
+    entries = parse_json_array(raw)
     if not entries:
         raise ValueError("Gemini enrich 파싱 실패")
     return [_normalize_entry(e) for e in entries if e.get("word")], "gemini"

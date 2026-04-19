@@ -468,7 +468,17 @@ function renderExam(el) {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ text: "Magic broke! Reset to the beginning!" }),
-            }).catch(() => {});
+            })
+                .then(r => r.ok ? r.blob() : null)
+                .then(blob => {
+                    if (!blob || blob.size === 0) return;
+                    const url = URL.createObjectURL(blob);
+                    const audio = new Audio(url);
+                    audio.onended = () => URL.revokeObjectURL(url);
+                    audio.onerror = () => URL.revokeObjectURL(url);
+                    audio.play().catch(() => URL.revokeObjectURL(url));
+                })
+                .catch(() => {});
             inp.value = "";
             setTimeout(async () => {
                 hideMagicOverlay();
@@ -840,7 +850,7 @@ function replaceDescriptionTexts() {
 // powers the small #sb-cal-grid widget in the sidebar. Renamed to _sbCal*
 // to avoid colliding with calendar.js's _calYear/_calMonth (1-indexed).
 /** @tag SYSTEM */
-var _sbCalYear, _sbCalMonth;
+let _sbCalYear, _sbCalMonth;
 
 /**
  * Alias kept for compatibility — delegates to initMonthlyCalendar().
@@ -853,12 +863,12 @@ function initWeeklyCalendar() { initMonthlyCalendar(); }
  * @tag SYSTEM
  */
 function initMonthlyCalendar() {
-    var now = new Date();
+    const now = new Date();
     _sbCalYear  = now.getFullYear();
     _sbCalMonth = now.getMonth();
     renderMonthlyCalendar();
-    var prev = document.getElementById("sb-cal-prev");
-    var next = document.getElementById("sb-cal-next");
+    const prev = document.getElementById("sb-cal-prev");
+    const next = document.getElementById("sb-cal-next");
     if (prev) prev.onclick = function() { _sbCalMonth--; if (_sbCalMonth < 0)  { _sbCalMonth = 11; _sbCalYear--; } renderMonthlyCalendar(); };
     if (next) next.onclick = function() { _sbCalMonth++; if (_sbCalMonth > 11) { _sbCalMonth = 0;  _sbCalYear++; } renderMonthlyCalendar(); };
 }
@@ -868,33 +878,33 @@ function initMonthlyCalendar() {
  * @tag SYSTEM
  */
 function renderMonthlyCalendar() {
-    var grid  = document.getElementById("sb-cal-grid");
-    var title = document.getElementById("sb-cal-title");
+    const grid  = document.getElementById("sb-cal-grid");
+    const title = document.getElementById("sb-cal-title");
     if (!grid) return;
-    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     if (title) title.textContent = months[_sbCalMonth] + " " + _sbCalYear;
     grid.innerHTML = "";
-    var headers = ["Mo","Tu","We","Th","Fr","Sa","Su"];
+    const headers = ["Mo","Tu","We","Th","Fr","Sa","Su"];
     headers.forEach(function(h) {
-        var el = document.createElement("div");
+        const el = document.createElement("div");
         el.className = "sb-cal-day-header";
         el.textContent = h;
         grid.appendChild(el);
     });
-    var firstDay    = new Date(_sbCalYear, _sbCalMonth, 1).getDay();
-    var startOffset = firstDay === 0 ? 6 : firstDay - 1;
-    var daysInMonth = new Date(_sbCalYear, _sbCalMonth + 1, 0).getDate();
-    var now         = new Date();
-    var todayDate   = now.getDate();
-    var todayMonth  = now.getMonth();
-    var todayYear   = now.getFullYear();
-    for (var i = 0; i < startOffset; i++) {
-        var empty = document.createElement("div");
+    const firstDay    = new Date(_sbCalYear, _sbCalMonth, 1).getDay();
+    const startOffset = firstDay === 0 ? 6 : firstDay - 1;
+    const daysInMonth = new Date(_sbCalYear, _sbCalMonth + 1, 0).getDate();
+    const now         = new Date();
+    const todayDate   = now.getDate();
+    const todayMonth  = now.getMonth();
+    const todayYear   = now.getFullYear();
+    for (let i = 0; i < startOffset; i++) {
+        const empty = document.createElement("div");
         empty.className = "sb-cal-day empty";
         grid.appendChild(empty);
     }
-    for (var d = 1; d <= daysInMonth; d++) {
-        var cell = document.createElement("div");
+    for (let d = 1; d <= daysInMonth; d++) {
+        const cell = document.createElement("div");
         cell.className = "sb-cal-day";
         cell.textContent = d;
         cell.dataset.date = _sbCalYear + "-" + String(_sbCalMonth+1).padStart(2,"0") + "-" + String(d).padStart(2,"0");
@@ -914,13 +924,13 @@ function loadMonthlyStudyData() {
     fetch("/api/dashboard/analytics")
         .then(function(res) { return res.json(); })
         .then(function(data) {
-            var sessions = data.daily_sessions || data.sessions || [];
-            var studiedDates = new Set();
+            const sessions = data.daily_sessions || data.sessions || [];
+            const studiedDates = new Set();
             sessions.forEach(function(s) {
-                var dateStr = s.date || (s.started_at ? s.started_at.substring(0,10) : "");
+                const dateStr = s.date || (s.started_at ? s.started_at.substring(0,10) : "");
                 if (dateStr) studiedDates.add(dateStr);
             });
-            var grid = document.getElementById("sb-cal-grid");
+            const grid = document.getElementById("sb-cal-grid");
             if (!grid) return;
             grid.querySelectorAll(".sb-cal-day[data-date]").forEach(function(cell) {
                 if (studiedDates.has(cell.dataset.date)) {
@@ -930,29 +940,6 @@ function loadMonthlyStudyData() {
         })
         .catch(function() {});
 }
-
-// ─── Legacy dev tools (window.*) ─────────────────────────────
-window.devComplete      = function() { advanceToNextStage(); };
-window.devCompleteUpTo  = function(n) {
-    const stages = [STAGE.PREVIEW, STAGE.A, STAGE.B, STAGE.C, STAGE.D];
-    for (let i = 0; i < Math.min(n, stages.length); i++) markStageComplete(stages[i]);
-    updateRoadmapUI(); refreshStartLabel(); renderStage();
-    console.log("✅ Completed up to stage", n);
-};
-window.devReset = function() {
-    localStorage.removeItem(stageStorageKey());
-    location.reload();
-};
-window.devJump = function(n) {
-    const stages = [STAGE.PREVIEW, STAGE.A, STAGE.B, STAGE.C, STAGE.D];
-    if (n >= 1 && n <= 5) jumpToStage(stages[n-1]);
-};
-window.devSkipWord = function() {
-    stageIndex++;
-    renderStage();
-    console.log("⏭ Skipped to word", stageIndex + 1);
-};
-console.log("🛠 Dev tools: devComplete() devCompleteUpTo(n) devReset() devJump(n) devSkipWord()");
 
 // ─── DOMContentLoaded bootstrap ──────────────────────────────
 /**
