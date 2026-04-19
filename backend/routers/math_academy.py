@@ -10,9 +10,58 @@ API: GET /api/math/academy/grades, GET /api/math/academy/{grade}/units,
 
 import json
 import logging
-from datetime import datetime
+import re
+from datetime import datetime, timedelta
+from fractions import Fraction
 from pathlib import Path
 from typing import Optional
+
+# @tag MATH @tag ACADEMY
+MATH_UNIT_TEST_PASS_RATIO = 0.9
+
+
+# @tag MATH @tag ACADEMY
+def _normalize_math_answer(s: str) -> str:
+    """Normalize a raw answer string for tolerant comparison.
+
+    Strips whitespace, lowercases, removes leading currency symbols, trailing
+    percent signs, and digit-grouping commas. Collapses internal whitespace.
+    """
+    s = (s or "").strip().lower()
+    s = s.lstrip("$").rstrip("%")
+    s = s.replace(",", "")
+    s = re.sub(r"\s+", " ", s)
+    return s
+
+
+# @tag MATH @tag ACADEMY
+def _to_number(s: str) -> Optional[float]:
+    """Parse a normalized answer as a number — supports decimals and fractions."""
+    if not s:
+        return None
+    try:
+        return float(s)
+    except ValueError:
+        pass
+    if "/" in s:
+        try:
+            return float(Fraction(s.replace(" ", "")))
+        except (ValueError, ZeroDivisionError):
+            return None
+    return None
+
+
+# @tag MATH @tag ACADEMY
+def _answers_equivalent(user: str, correct: str) -> bool:
+    """Compare answers tolerantly: numeric equality first, else string equality."""
+    u = _normalize_math_answer(user)
+    c = _normalize_math_answer(correct)
+    if u == c:
+        return True
+    un, cn = _to_number(u), _to_number(c)
+    if un is not None and cn is not None:
+        return abs(un - cn) < 1e-9
+    return False
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
@@ -72,6 +121,8 @@ def _normalize_item(item: dict) -> dict:
         out["stem"] = out["question"]
     if "answer" not in out and "correct_answer" in out:
         out["answer"] = out["correct_answer"]
+    if "correct_answer" not in out and "answer" in out:
+        out["correct_answer"] = out["answer"]
     t = out.get("type")
     if isinstance(t, str):
         out["type"] = t.upper() if t.lower() in {"mc", "card"} else t
@@ -224,8 +275,28 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
     if not problem:
         raise HTTPException(status_code=404, detail=f"Problem {req.problem_id} not found")
 
-    correct_answer = str(problem.get("answer", "")).strip()
-    is_correct = req.user_answer.strip().lower() == correct_answer.lower()
+    correct_raw = str(problem.get("correct_answer", problem.get("answer", ""))).strip()
+    user_raw = req.user_answer.strip()
+    choices = problem.get("choices", [])
+
+    is_correct = False
+
+    if correct_raw.upper() in "ABCDEFGH" and len(correct_raw) == 1 and choices:
+        correct_idx = ord(correct_raw.upper()) - 65
+        if 0 <= correct_idx < len(choices):
+            correct_text = choices[correct_idx]
+            clean_correct = correct_text.split(")", 1)[-1].strip() if ")" in correct_text else correct_text.strip()
+            is_correct = (
+                user_raw.lower() == correct_raw.lower()
+                or user_raw.lower() == clean_correct.lower()
+                or user_raw.lower() == correct_text.strip().lower()
+            )
+        else:
+            is_correct = user_raw.lower() == correct_raw.lower()
+    elif correct_raw.lower() in ("true", "false"):
+        is_correct = user_raw.lower() == correct_raw.lower()
+    else:
+        is_correct = _answers_equivalent(user_raw, correct_raw)
 
     # Record attempt
     attempt = MathAttempt(
@@ -273,7 +344,6 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
                 .first()
             )
             if not existing:
-                from datetime import timedelta
                 next_date = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
                 wrong = MathWrongReview(
                     problem_id=req.problem_id,
@@ -289,10 +359,24 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
 
     db.commit()
 
+    fb = problem.get("feedback", {})
+    if isinstance(fb, dict):
+        feedback_text = fb.get("correct", "") if is_correct else fb.get("incorrect", fb.get("wrong", ""))
+    elif isinstance(fb, str):
+        feedback_text = fb
+    else:
+        feedback_text = ""
+
+    if not feedback_text:
+        feedback_text = problem.get("feedback_correct" if is_correct else "feedback_wrong", "")
+
+    if not feedback_text:
+        feedback_text = "Great job!" if is_correct else f"The correct answer is {correct_raw}."
+
     return {
         "is_correct": is_correct,
-        "correct_answer": correct_answer,
-        "feedback": problem.get("feedback_correct" if is_correct else "feedback_wrong", ""),
+        "correct_answer": correct_raw,
+        "feedback": feedback_text,
         "solution_steps": problem.get("solution_steps", []),
     }
 
@@ -304,7 +388,7 @@ def submit_unit_test(
     db: Session = Depends(get_db),
 ):
     """Submit unit test results."""
-    passed = total > 0 and (score / total) >= 0.9
+    passed = total > 0 and (score / total) >= MATH_UNIT_TEST_PASS_RATIO
 
     # Update all lesson progress for this unit with unit test info
     progs = db.query(MathProgress).filter_by(grade=grade, unit=unit).all()

@@ -8,6 +8,52 @@
 /* global mathState, submitMathAnswer, handleMathAnswerResult, renderMathRoadmap */
 
 /**
+ * Normalize a problem object so the renderer sees a canonical shape.
+ * Absorbs schema variance across authors:
+ *   - choices[] ("A) ..") → options[] (label stripped)
+ *   - type: "true_false"/"MC"/etc → "tf"/"mc"/... (lowercase)
+ *   - hint → hints[]
+ *   - feedback: {correct, incorrect} → feedback_correct / feedback_wrong
+ * @tag MATH @tag PROBLEM
+ */
+function _normalizeProblem(p) {
+    if (!p) return p;
+
+    // choices → options 변환 (앞의 "A) " 레이블 제거)
+    if (!p.options && p.choices) {
+        p.options = p.choices.map(function(c) {
+            return typeof c === 'string' ? c.replace(/^[A-Z]\)\s*/, '') : c;
+        });
+    }
+
+    // type 정규화
+    var typeMap = {
+        'true_false': 'tf',
+        'TRUE_FALSE': 'tf',
+        'MC': 'mc',
+        'INPUT': 'input',
+        'DRAG_SORT': 'drag_sort'
+    };
+    if (p.type && typeMap[p.type]) {
+        p.type = typeMap[p.type];
+    }
+    if (p.type) p.type = p.type.toLowerCase();
+
+    // hint(단수) → hints(배열)
+    if (p.hint && !p.hints) {
+        p.hints = [p.hint];
+    }
+
+    // feedback 객체를 flat 필드로 분리
+    if (p.feedback && typeof p.feedback === 'object' && !Array.isArray(p.feedback)) {
+        if (!p.feedback_correct) p.feedback_correct = p.feedback.correct || '';
+        if (!p.feedback_wrong) p.feedback_wrong = p.feedback.incorrect || p.feedback.wrong || '';
+    }
+
+    return p;
+}
+
+/**
  * Render the current problem based on its type.
  * @tag MATH @tag PROBLEM
  */
@@ -20,16 +66,18 @@ function renderMathProblem() {
 
     if (idx >= problems.length) return;
 
-    const p = problems[idx];
+    const p = _normalizeProblem(problems[idx]);
     const total = problems.length;
     const num = idx + 1;
     const stageLabel = _mathStageLabel(mathState.stage);
 
     renderMathRoadmap();
 
-    // Hints (Try stage only)
+    // Hints (Try stage only). Per MATH_SPEC §Pillar 7, delay the hint by
+    // ~30s to encourage productive struggle. When the adaptive `forceHints`
+    // flag is on (after 3 consecutive wrong), surface it immediately.
     const hintsHtml = (p.hints && p.hints.length > 0 && mathState.stage === 'try')
-        ? `<button class="math-btn-ghost math-hint-btn" id="math-hint-btn">💡 Hint</button>
+        ? `<button class="math-btn-ghost math-hint-btn" id="math-hint-btn" disabled>💡 Hint <span class="math-hint-countdown" id="math-hint-countdown">(30s)</span></button>
            <div class="math-hint-box hidden" id="math-hint-box"></div>`
         : '';
 
@@ -101,9 +149,28 @@ function renderMathProblem() {
         };
         hintBtn.addEventListener('click', showNextHint);
 
-        // Adaptive: auto-expand first hint after 3 consecutive wrong
-        if (typeof mathState !== 'undefined' && mathState.forceHints) {
+        // Productive-struggle gate: unlock the hint after a short delay.
+        // Clear any prior countdown so re-renders don't leak intervals.
+        const countdownEl = document.getElementById('math-hint-countdown');
+        if (window._mathHintTimer) { clearInterval(window._mathHintTimer); window._mathHintTimer = null; }
+        const forceNow = (typeof mathState !== 'undefined' && mathState.forceHints);
+        if (forceNow) {
+            // 3 consecutive wrong → unlock immediately and auto-show first hint.
+            hintBtn.disabled = false;
+            if (countdownEl) countdownEl.remove();
             showNextHint();
+        } else {
+            let remaining = 30;
+            window._mathHintTimer = setInterval(() => {
+                remaining -= 1;
+                if (countdownEl) countdownEl.textContent = `(${remaining}s)`;
+                if (remaining <= 0) {
+                    clearInterval(window._mathHintTimer);
+                    window._mathHintTimer = null;
+                    hintBtn.disabled = false;
+                    if (countdownEl) countdownEl.remove();
+                }
+            }, 1000);
         }
     }
 

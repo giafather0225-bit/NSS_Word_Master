@@ -66,7 +66,7 @@ function _renderCurrentLearnCard() {
 
             <div class="math-learn-card ${cpa.cls}">
                 <h2 class="math-learn-title">${_esc(card.title || '')}</h2>
-                <div class="math-learn-content">${_esc(card.content || '')}</div>
+                <div class="math-learn-content">${_formatLearnContent(card.content || '')}</div>
                 ${_renderLearnVisual(card)}
                 ${card.interaction === 'quiz_mini' ? _renderMiniQuiz(card) : ''}
             </div>
@@ -135,8 +135,11 @@ function _renderCurrentLearnCard() {
                 renderManipulative(slot, vdata);
             } else if (vtype === 'addition_table' && typeof _renderAdditionTable === 'function') {
                 _renderAdditionTable(slot, vdata);
+            } else if (vtype === 'bar_model' && Array.isArray(vdata.parts) && vdata.parts.length
+                       && typeof renderManipulative === 'function') {
+                renderManipulative(slot, { tool: 'bar_model', config: vdata });
             }
-            // svg/png <img> is emitted statically in _renderLearnVisual
+            // svg/png <img> and other static types render inline via _renderLearnVisual
         }
     }
 
@@ -145,7 +148,7 @@ function _renderCurrentLearnCard() {
 }
 
 // ── Visual block renderer ─────────────────────────────────
-/** @tag MATH @tag LEARN @tag MANIPULATIVE */
+/** @tag MATH @tag LEARN @tag VISUAL */
 function _renderLearnVisual(card) {
     if (!card) return '';
     const vtype = card.visual_type;
@@ -161,7 +164,12 @@ function _renderLearnVisual(card) {
         // Slot hydrated post-render
         return `<div class="math-learn-manip" id="math-learn-manip"></div>`;
     }
-    // Unknown types: render description text if present, else nothing.
+    // Delegate static visuals (equation, step_by_step, etc.) to math-learn-visuals.js
+    if (typeof renderLearnStaticVisual === 'function') {
+        const html = renderLearnStaticVisual(vtype, vdata, card);
+        if (html) return html;
+    }
+    // Last-resort text fallback
     if (typeof vdata.description === 'string') {
         return `<div class="math-learn-visual">${_esc(vdata.description)}</div>`;
     }
@@ -219,4 +227,22 @@ function _esc(str) {
     const d = document.createElement('div');
     d.textContent = str;
     return d.innerHTML;
+}
+
+/**
+ * Format Learn-card body: escape first, then decorate math expressions,
+ * keywords, step numbers, and inline headers. Safe because all decoration
+ * uses literal strings / regex captures over already-escaped text.
+ * @tag MATH @tag LEARN
+ */
+function _formatLearnContent(text) {
+    if (!text) return '';
+    var safe = _esc(text);
+    return safe
+        .replace(/(For example:|Example:|Remember:|Rule:|Tip:)/gi, '<strong class="math-learn-highlight">$1</strong>')
+        .replace(/(\d+\s*[\+\-\×\÷\*\/]\s*\d+\s*=\s*\d+)/g, '<code class="math-expr">$1</code>')
+        .replace(/(\d+\s*[\+\-\×\÷\*\/]\s*\d+)/g, '<code class="math-expr">$1</code>')
+        .replace(/\((\d+)\)\s/g, '<span class="math-learn-step-num">$1</span> ')
+        .replace(/(Commutative Property of Addition|Commutative Property|Identity Property of Addition|Identity Property|even \+ even|odd \+ odd|even \+ odd|odd \+ even|addition table|pattern|sum|addend|doubles)/gi, '<strong class="math-keyword">$1</strong>')
+        .replace(/\. /g, '.<br>');
 }
