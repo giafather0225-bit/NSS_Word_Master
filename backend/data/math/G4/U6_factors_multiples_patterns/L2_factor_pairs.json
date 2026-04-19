@@ -1,0 +1,789 @@
+{
+  "lesson_id": "L2",
+  "title": "Factor Pairs",
+  "grade": "G4",
+  "unit": "U6_factors_multiples_patterns",
+  "lesson": "L2",
+  "ccss": [
+    "4.OA.B.4"
+  ],
+  "standard": "4.OA.B.4",
+  "go_math_ref": "Go Math G4 Ch5 L2",
+  "essential_question": "How do you find all the factor pairs of a number?",
+  "vocabulary": [
+    "factor pair",
+    "multiply",
+    "array"
+  ],
+  "concept": "factor_pairs",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "Which pair multiplies to 18?",
+      "choices": [
+        "A) 2×8",
+        "B) 3×6",
+        "C) 4×5",
+        "D) 3×5"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 3×6=18."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "Fill in: 4 × ___ = 24",
+      "correct_answer": "6",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 20 have?",
+      "correct_answer": "3",
+      "hints": [
+        "(1,20),(2,10),(4,5).",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. 3 pairs."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "Every factor has a partner that multiplies with it to make the number.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "Which is a factor pair of 32?",
+      "choices": [
+        "A) (3,10)",
+        "B) (4,8)",
+        "C) (5,6)",
+        "D) (2,15)"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 4×8=32."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Pairs That Multiply",
+      "content": "Factor pairs are two factors that multiply to the number. For 15, one pair is (3,5).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Factor pairs are two factors that multiply to the number. For 15, one pair is (3,5)."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Find All Pairs",
+      "content": "Start with 1 × n. Then 2 × (n÷2) if it divides. Keep going until pairs repeat.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Start with 1 × n. Then 2 × (n÷2) if it divides. Keep going until pairs repeat."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example: 24",
+      "content": "1×24, 2×12, 3×8, 4×6. Four pairs.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "1×24, 2×12, 3×8, 4×6. Four pairs."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Stop at Square Root",
+      "content": "Once your pair crosses the middle (like 4×4 for 16), you've found them all.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Once your pair crosses the middle (like 4×4 for 16), you've found them all."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Perfect Squares",
+      "content": "Numbers like 16 or 36 have an 'odd' count of factors because one pair is a×a.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Numbers like 16 or 36 have an 'odd' count of factors because one pair is a×a."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Arrays and Pairs",
+      "content": "Each factor pair corresponds to a rectangular array of that many squares.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 8
+        }
+      },
+      "tts": "Each factor pair corresponds to a rectangular array of that many squares."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "List all factor pairs of 18.",
+      "correct_answer": "(1,18),(2,9),(3,6)",
+      "hints": [
+        "Think about factor pairs.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "1×18=18.",
+        "2×9=18.",
+        "3×6=18. That's all."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is (1,18),(2,9),(3,6)."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "List all factor pairs of 36.",
+      "correct_answer": "(1,36),(2,18),(3,12),(4,9),(6,6)",
+      "hints": [
+        "Think about factor pairs.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "1×36, 2×18, 3×12, 4×9.",
+        "Then 6×6.",
+        "Five pairs."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is (1,36),(2,18),(3,12),(4,9),(6,6)."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "What pairs with 7 to multiply to 42?",
+      "correct_answer": "6",
+      "hints": [
+        "Think about factor pairs.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "42 ÷ 7.",
+        "= 6.",
+        "Partner is 6."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "How many factor pairs does 25 have?",
+      "correct_answer": "2",
+      "hints": [
+        "Think about factor pairs.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "1×25, 5×5.",
+        "Pairs: (1,25),(5,5).",
+        "2 pairs."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "What partners with 8 in the factor pairs of 56?",
+      "correct_answer": "7",
+      "hints": [
+        "Think about factor pairs.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "56÷8.",
+        "= 7.",
+        "Partner 7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 30 have?",
+      "correct_answer": "4",
+      "hints": [
+        "Pairs of factors of 30.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 40 have?",
+      "correct_answer": "4",
+      "hints": [
+        "Pairs of factors of 40.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 18 have?",
+      "correct_answer": "3",
+      "hints": [
+        "Pairs of factors of 18.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 24 have?",
+      "correct_answer": "4",
+      "hints": [
+        "Pairs of factors of 24.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 35 have?",
+      "correct_answer": "2",
+      "hints": [
+        "Pairs of factors of 35.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 48 have?",
+      "correct_answer": "5",
+      "hints": [
+        "Pairs of factors of 48.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 28 have?",
+      "correct_answer": "3",
+      "hints": [
+        "Pairs of factors of 28.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 20 have?",
+      "correct_answer": "3",
+      "hints": [
+        "Pairs of factors of 20.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 32 have?",
+      "correct_answer": "3",
+      "hints": [
+        "Pairs of factors of 32.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "How many factor pairs does 45 have?",
+      "correct_answer": "3",
+      "hints": [
+        "Pairs of factors of 45.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "10 × ___ = 50",
+      "correct_answer": "5",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "10 × ___ = 120",
+      "correct_answer": "12",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "12 × ___ = 60",
+      "correct_answer": "5",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "9 × ___ = 63",
+      "correct_answer": "7",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "8 × ___ = 96",
+      "correct_answer": "12",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "10 × ___ = 80",
+      "correct_answer": "8",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "5 × ___ = 25",
+      "correct_answer": "5",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "12 × ___ = 108",
+      "correct_answer": "9",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "4 × ___ = 36",
+      "correct_answer": "9",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "10 × ___ = 100",
+      "correct_answer": "10",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "How many factor pairs does 64 have?",
+      "correct_answer": "4",
+      "hints": [
+        "(1,64),(2,32),(4,16),(8,8).",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 1,
+      "question": "8 × ___ = 72",
+      "correct_answer": "9",
+      "hints": [
+        "Think about factor pairs.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "Which is NOT a factor pair of 48?",
+      "choices": [
+        "A) (2,24)",
+        "B) (3,16)",
+        "C) (4,12)",
+        "D) (5,10)"
+      ],
+      "correct_answer": "D",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is D. 5×10=50."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "List factor pairs of 49.",
+      "correct_answer": "(1,49),(7,7)",
+      "hints": [
+        "Perfect square.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is (1,49),(7,7). "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "pairs_that_multiply",
+      "concept": "factor_pairs",
+      "difficulty": 2,
+      "question": "How many factor pairs does 100 have?",
+      "correct_answer": "5",
+      "hints": [
+        "(1,100),(2,50),(4,25),(5,20),(10,10).",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    }
+  ]
+}

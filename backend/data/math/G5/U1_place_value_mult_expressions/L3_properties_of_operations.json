@@ -1,0 +1,792 @@
+{
+  "lesson_id": "L3",
+  "title": "Properties of Operations",
+  "grade": "G5",
+  "unit": "U1_place_value_mult_expressions",
+  "lesson": "L3",
+  "ccss": [
+    "5.NBT.B.5"
+  ],
+  "standard": "5.NBT.B.5",
+  "go_math_ref": "Go Math G5 Ch1 L3",
+  "essential_question": "How do properties help us compute efficiently?",
+  "vocabulary": [
+    "commutative",
+    "associative",
+    "distributive",
+    "identity",
+    "zero property"
+  ],
+  "concept": "properties",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "3 + 4 = 4 + 3 is the ___ property.",
+      "choices": [
+        "A) commutative",
+        "B) associative",
+        "C) distributive",
+        "D) identity"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. "
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "(2+3)+4 = 2+(3+4) is the ___ property.",
+      "choices": [
+        "A) commutative",
+        "B) associative",
+        "C) distributive",
+        "D) identity"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "3\u00d7(4+5) = 3\u00d74 + 3\u00d75 is the ___ property.",
+      "choices": [
+        "A) commutative",
+        "B) associative",
+        "C) distributive",
+        "D) identity"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "4\u00d7(10+2) = 4\u00d710 + 4\u00d7___.",
+      "correct_answer": "2",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "7 \u00d7 1 = ___ (identity).",
+      "correct_answer": "7",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Commutative",
+      "content": "a + b = b + a, a \u00d7 b = b \u00d7 a. Order doesn't change the result.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "a + b = b + a, a \u00d7 b = b \u00d7 a. Order doesn't change the result."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Associative",
+      "content": "(a+b)+c = a+(b+c). Grouping doesn't change the result.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "(a+b)+c = a+(b+c). Grouping doesn't change the result."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Distributive",
+      "content": "a\u00d7(b+c) = a\u00d7b + a\u00d7c. Spread out multiplication over addition.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "a\u00d7(b+c) = a\u00d7b + a\u00d7c. Spread out multiplication over addition."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Identity",
+      "content": "a + 0 = a, a \u00d7 1 = a.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "a + 0 = a, a \u00d7 1 = a."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Zero Property",
+      "content": "a \u00d7 0 = 0.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "a \u00d7 0 = 0."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Use to Simplify",
+      "content": "Properties help regroup for easier mental math.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Properties help regroup for easier mental math."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "Name the property: 5\u00d7(6+4) = 5\u00d76 + 5\u00d74.",
+      "correct_answer": "distributive",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "solution_steps": [
+        "Spread \u00d7 over +.",
+        "Distributive."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is distributive."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "4+0 = 4 is the ___ property.",
+      "correct_answer": "identity",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "solution_steps": [
+        "Adding 0 keeps same.",
+        "Identity."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is identity."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "6\u00d7(2\u00d75) = (6\u00d72)\u00d75 is ___.",
+      "correct_answer": "associative",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "solution_steps": [
+        "Regrouping.",
+        "Associative."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is associative."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "12+8 = 8+12 is ___.",
+      "correct_answer": "commutative",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "solution_steps": [
+        "Order swapped.",
+        "Commutative."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is commutative."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "5\u00d7(20+3) = 5\u00d720 + 5\u00d7?.",
+      "correct_answer": "3",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "solution_steps": [
+        "Distribute.",
+        "? = 3."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "8+0=8 is:",
+      "choices": [
+        "A) commutative",
+        "B) identity",
+        "C) associative",
+        "D) distributive"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "9\u00d71=9 is:",
+      "choices": [
+        "A) identity",
+        "B) commutative",
+        "C) associative",
+        "D) zero"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "6\u00d70=0 is:",
+      "choices": [
+        "A) identity",
+        "B) commutative",
+        "C) zero",
+        "D) distributive"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "3+(4+5)=(3+4)+5 is:",
+      "choices": [
+        "A) commutative",
+        "B) associative",
+        "C) identity",
+        "D) distributive"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "4\u00d73=3\u00d74 is:",
+      "choices": [
+        "A) commutative",
+        "B) associative",
+        "C) identity",
+        "D) zero"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "7\u00d7(8+2) = 7\u00d78 + 7\u00d7___.",
+      "correct_answer": "2",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "6\u00d7(5+4) = 6\u00d75 + 6\u00d7___.",
+      "correct_answer": "4",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "0 + 15 = ___.",
+      "correct_answer": "15",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "1 \u00d7 23 = ___.",
+      "correct_answer": "23",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 23. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "9 \u00d7 0 = ___.",
+      "correct_answer": "0",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "(4+3)+7 = 4+(3+7) is ___.",
+      "choices": [
+        "A) commutative",
+        "B) associative",
+        "C) distributive",
+        "D) identity"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "6\u00d7(10+3) = 60+18 uses ___.",
+      "choices": [
+        "A) identity",
+        "B) commutative",
+        "C) distributive",
+        "D) zero"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "Which shows commutative of multiplication?",
+      "choices": [
+        "A) 3\u00d74=12",
+        "B) 4\u00d73=3\u00d74",
+        "C) 3\u00d7(4\u00d75)=(3\u00d74)\u00d75",
+        "D) 3\u00d70=0"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "5\u00d7(6+10) = 5\u00d76 + 5\u00d7___.",
+      "correct_answer": "10",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "3\u00d7(7+8) = 3\u00d77 + ___ \u00d78.",
+      "correct_answer": "3",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "Subtraction is commutative.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is False. 3-5 \u2260 5-3."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "Division is associative.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is False. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "Commutative of addition: a+b = b+___.",
+      "correct_answer": "a",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is a. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "4 \u00d7 1 = ___.",
+      "correct_answer": "4",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "6 + 0 = ___.",
+      "correct_answer": "6",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "a \u00d7 1 = a is ___.",
+      "choices": [
+        "A) commutative",
+        "B) identity",
+        "C) distributive",
+        "D) associative"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "a\u00d7(b+c) = a\u00d7b + a\u00d7c is ___.",
+      "choices": [
+        "A) distributive",
+        "B) commutative",
+        "C) identity",
+        "D) associative"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "8+0 = ___.",
+      "correct_answer": "8",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 2,
+      "question": "7\u00d7(5+2) = 7\u00d75 + 7\u00d7___.",
+      "correct_answer": "2",
+      "hints": [
+        "Think about properties.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.5",
+      "skill_tag": "apply_properties",
+      "concept": "properties",
+      "difficulty": 1,
+      "question": "Addition is commutative.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    }
+  ]
+}

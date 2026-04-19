@@ -1,0 +1,805 @@
+{
+  "lesson_id": "L3_subtract_whole_numbers",
+  "title": "Subtract Whole Numbers",
+  "grade": "G4",
+  "unit": "U2_add_subtract_whole_numbers",
+  "lesson": "L3_subtract_whole_numbers",
+  "ccss": [
+    "4.NBT.B.4"
+  ],
+  "standard": "4.NBT.B.4",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.3",
+  "essential_question": "How do you subtract multi-digit whole numbers?",
+  "vocabulary": [
+    "minuend",
+    "subtrahend",
+    "difference",
+    "regroup",
+    "borrow"
+  ],
+  "concept": "subtract_multi_digit_whole_numbers",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "543 − 178 = ___",
+      "correct_answer": "365",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 365. Regroup from the left as needed: 365."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "8,765 − 3,421 = ?",
+      "choices": [
+        "A) 5,344",
+        "B) 5,354",
+        "C) 5,334",
+        "D) 5,444"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Subtract place by place; regroup when top digit is smaller."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "1,000 − 456 = ___",
+      "correct_answer": "544",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 544. Regroup from the left as needed: 544."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 1,
+      "question": "You must regroup when the top digit is smaller than the bottom digit.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. Regroup to make the top digit large enough."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 3,
+      "question": "54,321 − 12,345 = ___",
+      "correct_answer": "41976",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 41976. Regroup from the left as needed: 41,976."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Line Up Places",
+      "content": "Line up numbers by place when subtracting. Always start from the ones place and work left.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "base10_blocks",
+        "config": {
+          "start": 0,
+          "max": 9999
+        }
+      },
+      "tts": "Line up numbers by place when subtracting. Always start from the ones place and work left."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "When to Regroup",
+      "content": "If the top digit is smaller than the bottom digit in a column, borrow 1 from the next place on the left.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "base10_blocks",
+        "config": {
+          "start": 0,
+          "max": 9999
+        }
+      },
+      "tts": "If the top digit is smaller than the bottom digit in a column, borrow 1 from the next place on the left."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example: 632 − 478",
+      "content": "Ones: 2<8. Borrow a ten. Now 12−8=4. Tens: 2<7. Borrow a hundred. 12−7=5. Hundreds: 5−4=1. Answer: 154.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Ones: 2<8. Borrow a ten. Now 12−8=4. Tens: 2<7. Borrow a hundred. 12−7=5. Hundreds: 5−4=1. Answer: 154."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Across Zeros",
+      "content": "When the top has zeros, borrow across them. 500−236: borrow from hundreds to tens to ones.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "When the top has zeros, borrow across them. 500−236: borrow from hundreds to tens to ones."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Four-Digit Subtraction",
+      "content": "Use the same steps for any number of digits: regroup one place at a time.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Use the same steps for any number of digits: regroup one place at a time."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check with Addition",
+      "content": "To check subtraction, add the difference and subtrahend. If you get the minuend back, your answer is right.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To check subtraction, add the difference and subtrahend. If you get the minuend back, your answer is right."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "Subtract: 823 − 457 = ___",
+      "correct_answer": "366",
+      "hints": [
+        "Think about what subtract multi digit whole numbers means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Ones: 3<7, borrow. 13−7=6.",
+        "Tens: 1<5, borrow. 11−5=6.",
+        "Hundreds: 7−4=3.",
+        "Answer: 366."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 366. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 3,
+      "question": "Subtract: 5,000 − 2,468 = ___",
+      "correct_answer": "2532",
+      "hints": [
+        "Think about what subtract multi digit whole numbers means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Ones: 0<8, borrow across zeros.",
+        "Regrouped: 4|9|9|10.",
+        "10−8=2, 9−6=3, 9−4=5, 4−2=2. Answer: 2,532."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2532. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "Subtract: 7,245 − 3,189 = ___",
+      "correct_answer": "4056",
+      "hints": [
+        "Think about what subtract multi digit whole numbers means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Ones: 5<9, borrow. 15−9=6.",
+        "Tens: 3<8, borrow. 13−8=5.",
+        "Hundreds: 1−1=0.",
+        "Thousands: 7−3=4. Answer: 4,056."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4056. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 3,
+      "question": "Subtract: 10,000 − 4,567 = ___",
+      "correct_answer": "5433",
+      "hints": [
+        "Think about what subtract multi digit whole numbers means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Borrow across the zeros.",
+        "9,9,9,10 after regrouping.",
+        "Answer: 5,433."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5433. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 3,
+      "question": "Subtract: 45,678 − 12,345 = ___",
+      "correct_answer": "33333",
+      "hints": [
+        "Think about what subtract multi digit whole numbers means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Ones: 8−5=3.",
+        "Tens: 7−4=3.",
+        "Hundreds: 6−3=3.",
+        "Thousands: 5−2=3.",
+        "Ten-thousands: 4−1=3. Answer: 33,333."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 33333. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 1,
+      "question": "543 − 178 = ___",
+      "correct_answer": "365",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 365. Regroup from the left as needed: 365."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 1,
+      "question": "987 − 234 = ___",
+      "correct_answer": "753",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 753. Regroup from the left as needed: 753."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 1,
+      "question": "1,234 − 567 = ___",
+      "correct_answer": "667",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 667. Regroup from the left as needed: 667."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 1,
+      "question": "5,678 − 3,421 = ___",
+      "correct_answer": "2257",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2257. Regroup from the left as needed: 2,257."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "10,000 − 4,567 = ___",
+      "correct_answer": "5433",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5433. Regroup from the left as needed: 5,433."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "8,765 − 4,321 = ___",
+      "correct_answer": "4444",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4444. Regroup from the left as needed: 4,444."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "2,345 − 1,789 = ___",
+      "correct_answer": "556",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 556. Regroup from the left as needed: 556."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "6,000 − 2,375 = ___",
+      "correct_answer": "3625",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3625. Regroup from the left as needed: 3,625."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 3,
+      "question": "9,876 − 1,234 = ___",
+      "correct_answer": "8642",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8642. Regroup from the left as needed: 8,642."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 3,
+      "question": "50,000 − 23,456 = ___",
+      "correct_answer": "26544",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 26544. Regroup from the left as needed: 26,544."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 1,
+      "question": "765 − 438 = ?",
+      "choices": [
+        "A) 327",
+        "B) 337",
+        "C) 317",
+        "D) 427"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Subtract place by place; regroup when top digit is smaller."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 1,
+      "question": "892 − 567 = ___",
+      "correct_answer": "325",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 325. Regroup from the left as needed: 325."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 1,
+      "question": "4,567 − 2,345 = ___",
+      "correct_answer": "2222",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2222. Regroup from the left as needed: 2,222."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 1,
+      "question": "8,900 − 3,456 = ?",
+      "choices": [
+        "A) 5,444",
+        "B) 5,454",
+        "C) 5,434",
+        "D) 5,544"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Subtract place by place; regroup when top digit is smaller."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "12,000 − 7,890 = ___",
+      "correct_answer": "4110",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4110. Regroup from the left as needed: 4,110."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "6,543 − 2,198 = ___",
+      "correct_answer": "4345",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4345. Regroup from the left as needed: 4,345."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "34,567 − 12,345 = ?",
+      "choices": [
+        "A) 22,222",
+        "B) 22,232",
+        "C) 22,212",
+        "D) 22,322"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Subtract place by place; regroup when top digit is smaller."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "99,999 − 12,345 = ___",
+      "correct_answer": "87654",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 87654. Regroup from the left as needed: 87,654."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 3,
+      "question": "5,432 − 1,987 = ___",
+      "correct_answer": "3445",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3445. Regroup from the left as needed: 3,445."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 3,
+      "question": "80,000 − 45,678 = ?",
+      "choices": [
+        "A) 34,322",
+        "B) 34,332",
+        "C) 34,312",
+        "D) 34,422"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Subtract place by place; regroup when top digit is smaller."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "823 − 457 = ___",
+      "correct_answer": "366",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 366. Regroup from the left as needed: 366."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "4,567 − 2,189 = ___",
+      "correct_answer": "2378",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2378. Regroup from the left as needed: 2,378."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 2,
+      "question": "10,000 − 3,456 = ___",
+      "correct_answer": "6544",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6544. Regroup from the left as needed: 6,544."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 3,
+      "question": "56,789 − 12,345 = ___",
+      "correct_answer": "44444",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 44444. Regroup from the left as needed: 44,444."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "standard_algorithm_subtraction",
+      "concept": "subtract_multi_digit_whole_numbers",
+      "difficulty": 3,
+      "question": "900 − 378 = ___",
+      "correct_answer": "522",
+      "hints": [
+        "Line up places. Regroup when the top digit is less than the bottom.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 522. Regroup from the left as needed: 522."
+      }
+    }
+  ]
+}

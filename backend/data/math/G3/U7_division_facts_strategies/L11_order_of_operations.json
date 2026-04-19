@@ -3,49 +3,487 @@
   "title": "Order of Operations",
   "grade": "G3",
   "unit": "U7_division_facts_strategies",
-  "ccss": ["3.OA.D.8"],
-  "go_math_ref": { "chapter": 7, "lesson": "7.11", "pages": "307-310" },
+  "ccss": [
+    "3.OA.D.8"
+  ],
+  "go_math_ref": {
+    "chapter": 7,
+    "lesson": "7.11",
+    "pages": "307-310"
+  },
   "essential_question": "What is the order of operations and why does it matter?",
-  "key_vocabulary": ["order of operations", "parentheses", "multiply", "divide", "add", "subtract"],
+  "key_vocabulary": [
+    "order of operations",
+    "parentheses",
+    "multiply",
+    "divide",
+    "add",
+    "subtract"
+  ],
   "strategies": [
     "First do operations inside parentheses.",
     "Then multiply and divide from left to right.",
     "Then add and subtract from left to right."
   ],
   "pretest": [
-    { "id": "PT_01", "type": "MC", "stem": "3 + 2 × 4 = ?", "choices": ["11", "14", "20", "24"], "answer": "A", "explanation": "Multiply first: 2 × 4 = 8. Then add: 3 + 8 = 11.", "difficulty": 2 },
-    { "id": "PT_02", "type": "MC", "stem": "(3 + 2) × 4 = ?", "choices": ["11", "14", "20", "24"], "answer": "C", "explanation": "Parentheses first: 3 + 2 = 5. Then 5 × 4 = 20.", "difficulty": 2 },
-    { "id": "PT_03", "type": "MC", "stem": "20 − 12 ÷ 4 = ?", "choices": ["2", "4", "8", "17"], "answer": "D", "explanation": "Divide first: 12 ÷ 4 = 3. Then 20 − 3 = 17.", "difficulty": 2 },
-    { "id": "PT_04", "type": "MC", "stem": "5 × (6 − 2) = ?", "choices": ["13", "16", "20", "28"], "answer": "C", "explanation": "Parentheses: 6 − 2 = 4. Then 5 × 4 = 20.", "difficulty": 2 },
-    { "id": "PT_05", "type": "MC", "stem": "4 + 5 × 2 − 3 = ?", "choices": ["8", "11", "15", "18"], "answer": "B", "explanation": "5 × 2 = 10. Then 4 + 10 − 3 = 11.", "difficulty": 2 }
+    {
+      "id": "PT_01",
+      "type": "MC",
+      "stem": "3 + 2 × 4 = ?",
+      "choices": [
+        "11",
+        "14",
+        "20",
+        "24"
+      ],
+      "answer": "A",
+      "explanation": "Multiply first: 2 × 4 = 8. Then add: 3 + 8 = 11.",
+      "difficulty": 2
+    },
+    {
+      "id": "PT_02",
+      "type": "MC",
+      "stem": "(3 + 2) × 4 = ?",
+      "choices": [
+        "11",
+        "14",
+        "20",
+        "24"
+      ],
+      "answer": "C",
+      "explanation": "Parentheses first: 3 + 2 = 5. Then 5 × 4 = 20.",
+      "difficulty": 2
+    },
+    {
+      "id": "PT_03",
+      "type": "MC",
+      "stem": "20 − 12 ÷ 4 = ?",
+      "choices": [
+        "2",
+        "4",
+        "8",
+        "17"
+      ],
+      "answer": "D",
+      "explanation": "Divide first: 12 ÷ 4 = 3. Then 20 − 3 = 17.",
+      "difficulty": 2
+    },
+    {
+      "id": "PT_04",
+      "type": "MC",
+      "stem": "5 × (6 − 2) = ?",
+      "choices": [
+        "13",
+        "16",
+        "20",
+        "28"
+      ],
+      "answer": "C",
+      "explanation": "Parentheses: 6 − 2 = 4. Then 5 × 4 = 20.",
+      "difficulty": 2
+    },
+    {
+      "id": "PT_05",
+      "type": "MC",
+      "stem": "4 + 5 × 2 − 3 = ?",
+      "choices": [
+        "8",
+        "11",
+        "15",
+        "18"
+      ],
+      "answer": "B",
+      "explanation": "5 × 2 = 10. Then 4 + 10 − 3 = 11.",
+      "difficulty": 2
+    }
   ],
   "learn": [
-    { "id": "LN_01", "type": "concept_card", "title": "What Is the Order of Operations?", "content": "It's a set of rules that tells you which operation to do first when there is more than one in an expression. Without these rules, you could get different answers." },
-    { "id": "LN_02", "type": "concept_card", "title": "The Rules", "content": "1. Parentheses first. 2. Multiply and divide (left to right). 3. Add and subtract (left to right)." },
-    { "id": "LN_03", "type": "concept_card", "title": "Example", "content": "Solve: 4 + 3 × 5. Step 1: 3 × 5 = 15. Step 2: 4 + 15 = 19." }
+    {
+      "id": "LN_01",
+      "type": "concept_card",
+      "title": "What Is the Order of Operations?",
+      "content": "It's a set of rules that tells you which operation to do first when there is more than one in an expression. Without these rules, you could get different answers.",
+      "cpa_phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "LN_02",
+      "type": "concept_card",
+      "title": "The Rules",
+      "content": "1. Parentheses first. 2. Multiply and divide (left to right). 3. Add and subtract (left to right).",
+      "cpa_phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "LN_03",
+      "type": "concept_card",
+      "title": "Example",
+      "content": "Solve: 4 + 3 × 5. Step 1: 3 × 5 = 15. Step 2: 4 + 15 = 19.",
+      "cpa_phase": "pictorial",
+      "visual_type": "none"
+    }
   ],
   "try": [
-    { "id": "TRY_01", "type": "MC", "stem": "2 × 3 + 4 = ?", "choices": ["10", "14", "18", "24"], "answer": "A", "explanation": "2 × 3 = 6. 6 + 4 = 10.", "difficulty": 2 },
-    { "id": "TRY_02", "type": "MC", "stem": "(8 − 3) × 2 = ?", "choices": ["7", "10", "13", "16"], "answer": "B", "explanation": "8 − 3 = 5. 5 × 2 = 10.", "difficulty": 2 }
+    {
+      "id": "TRY_01",
+      "type": "MC",
+      "stem": "2 × 3 + 4 = ?",
+      "choices": [
+        "10",
+        "14",
+        "18",
+        "24"
+      ],
+      "answer": "A",
+      "explanation": "2 × 3 = 6. 6 + 4 = 10.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_02",
+      "type": "MC",
+      "stem": "(8 − 3) × 2 = ?",
+      "choices": [
+        "7",
+        "10",
+        "13",
+        "16"
+      ],
+      "answer": "B",
+      "explanation": "8 − 3 = 5. 5 × 2 = 10.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how order of operations works."
+      },
+      "solution_steps": []
+    }
   ],
   "practice_r1": [
-    { "id": "R1_01", "type": "MC", "stem": "6 + 3 × 2 = ?", "choices": ["12", "15", "18", "21"], "answer": "A", "explanation": "3 × 2 = 6. 6 + 6 = 12.", "difficulty": 1 },
-    { "id": "R1_02", "type": "MC", "stem": "10 − 2 × 3 = ?", "choices": ["4", "14", "24", "16"], "answer": "A", "explanation": "2 × 3 = 6. 10 − 6 = 4.", "difficulty": 2 },
-    { "id": "R1_03", "type": "MC", "stem": "(4 + 6) × 3 = ?", "choices": ["18", "22", "30", "36"], "answer": "C", "explanation": "4 + 6 = 10. 10 × 3 = 30.", "difficulty": 2 },
-    { "id": "R1_04", "type": "MC", "stem": "18 ÷ 3 + 5 = ?", "choices": ["8", "9", "10", "11"], "answer": "D", "explanation": "18 ÷ 3 = 6. 6 + 5 = 11.", "difficulty": 2 },
-    { "id": "R1_05", "type": "MC", "stem": "7 × 2 − 5 = ?", "choices": ["7", "9", "11", "14"], "answer": "B", "explanation": "7 × 2 = 14. 14 − 5 = 9.", "difficulty": 2 },
-    { "id": "R1_06", "type": "MC", "stem": "(12 − 4) ÷ 2 = ?", "choices": ["2", "4", "6", "10"], "answer": "B", "explanation": "12 − 4 = 8. 8 ÷ 2 = 4.", "difficulty": 2 },
-    { "id": "R1_07", "type": "MC", "stem": "Danny buys a marker for $4 and 5 pens for $2 each. Which expression shows the total?", "choices": ["4 + 5 + 2", "4 + 5 × 2", "(4 + 5) × 2", "4 × 5 + 2"], "answer": "B", "explanation": "$4 + (5 × $2) = $4 + $10 = $14.", "difficulty": 2 }
+    {
+      "id": "R1_01",
+      "type": "MC",
+      "stem": "6 + 3 × 2 = ?",
+      "choices": [
+        "12",
+        "15",
+        "18",
+        "21"
+      ],
+      "answer": "A",
+      "explanation": "3 × 2 = 6. 6 + 6 = 12.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "MC",
+      "stem": "10 − 2 × 3 = ?",
+      "choices": [
+        "4",
+        "14",
+        "24",
+        "16"
+      ],
+      "answer": "A",
+      "explanation": "2 × 3 = 6. 10 − 6 = 4.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "MC",
+      "stem": "(4 + 6) × 3 = ?",
+      "choices": [
+        "18",
+        "22",
+        "30",
+        "36"
+      ],
+      "answer": "C",
+      "explanation": "4 + 6 = 10. 10 × 3 = 30.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "MC",
+      "stem": "18 ÷ 3 + 5 = ?",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "answer": "D",
+      "explanation": "18 ÷ 3 = 6. 6 + 5 = 11.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "MC",
+      "stem": "7 × 2 − 5 = ?",
+      "choices": [
+        "7",
+        "9",
+        "11",
+        "14"
+      ],
+      "answer": "B",
+      "explanation": "7 × 2 = 14. 14 − 5 = 9.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "MC",
+      "stem": "(12 − 4) ÷ 2 = ?",
+      "choices": [
+        "2",
+        "4",
+        "6",
+        "10"
+      ],
+      "answer": "B",
+      "explanation": "12 − 4 = 8. 8 ÷ 2 = 4.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "MC",
+      "stem": "Danny buys a marker for $4 and 5 pens for $2 each. Which expression shows the total?",
+      "choices": [
+        "4 + 5 + 2",
+        "4 + 5 × 2",
+        "(4 + 5) × 2",
+        "4 × 5 + 2"
+      ],
+      "answer": "B",
+      "explanation": "$4 + (5 × $2) = $4 + $10 = $14.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how order of operations works."
+      }
+    }
   ],
   "practice_r2": [
-    { "id": "R2_01", "type": "MC", "stem": "3 × (4 + 5) − 7 = ?", "choices": ["14", "18", "20", "22"], "answer": "C", "explanation": "4 + 5 = 9. 3 × 9 = 27. 27 − 7 = 20.", "difficulty": 2 },
-    { "id": "R2_02", "type": "MC", "stem": "24 ÷ (8 − 2) = ?", "choices": ["2", "3", "4", "6"], "answer": "C", "explanation": "8 − 2 = 6. 24 ÷ 6 = 4.", "difficulty": 2 },
-    { "id": "R2_03", "type": "MC", "stem": "Which expression equals 15?", "choices": ["3 + 4 × 3", "(3 + 4) × 3", "3 × 3 + 4", "4 × 4 − 3"], "answer": "A", "explanation": "3 + 4 × 3 = 3 + 12 = 15. ✓", "difficulty": 2 },
-    { "id": "R2_04", "type": "MC", "stem": "8 + 16 ÷ 4 − 2 = ?", "choices": ["4", "8", "10", "12"], "answer": "C", "explanation": "16 ÷ 4 = 4. 8 + 4 − 2 = 10.", "difficulty": 2 }
+    {
+      "id": "R2_01",
+      "type": "MC",
+      "stem": "3 × (4 + 5) − 7 = ?",
+      "choices": [
+        "14",
+        "18",
+        "20",
+        "22"
+      ],
+      "answer": "C",
+      "explanation": "4 + 5 = 9. 3 × 9 = 27. 27 − 7 = 20.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "MC",
+      "stem": "24 ÷ (8 − 2) = ?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "C",
+      "explanation": "8 − 2 = 6. 24 ÷ 6 = 4.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "MC",
+      "stem": "Which expression equals 15?",
+      "choices": [
+        "3 + 4 × 3",
+        "(3 + 4) × 3",
+        "3 × 3 + 4",
+        "4 × 4 − 3"
+      ],
+      "answer": "A",
+      "explanation": "3 + 4 × 3 = 3 + 12 = 15. ✓",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "MC",
+      "stem": "8 + 16 ÷ 4 − 2 = ?",
+      "choices": [
+        "4",
+        "8",
+        "10",
+        "12"
+      ],
+      "answer": "C",
+      "explanation": "16 ÷ 4 = 4. 8 + 4 − 2 = 10.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how order of operations works."
+      }
+    }
   ],
   "practice_r3": [
-    { "id": "R3_01", "type": "MC", "stem": "Add parentheses to make this true: 2 + 3 × 6 = 30", "choices": ["(2 + 3) × 6", "2 + (3 × 6)", "2 + 3 × (6)", "No parentheses needed"], "answer": "A", "explanation": "(2 + 3) × 6 = 5 × 6 = 30. ✓", "difficulty": 3 },
-    { "id": "R3_02", "type": "MC", "stem": "Sara says 5 + 3 × 2 = 16. Leo says it equals 11. Who is correct?", "choices": ["Sara", "Leo", "Both", "Neither"], "answer": "B", "explanation": "Multiply first: 3 × 2 = 6. Then 5 + 6 = 11. Leo is correct.", "difficulty": 3 },
-    { "id": "R3_03", "type": "MC", "stem": "Which has the greatest value?", "choices": ["(2 + 4) × 5", "2 + 4 × 5", "2 × (4 + 5)", "2 × 4 + 5"], "answer": "A", "explanation": "A: 6×5=30. B: 2+20=22. C: 2×9=18. D: 8+5=13. Greatest is 30.", "difficulty": 3 }
-  ]
+    {
+      "id": "R3_01",
+      "type": "MC",
+      "stem": "Add parentheses to make this true: 2 + 3 × 6 = 30",
+      "choices": [
+        "(2 + 3) × 6",
+        "2 + (3 × 6)",
+        "2 + 3 × (6)",
+        "No parentheses needed"
+      ],
+      "answer": "A",
+      "explanation": "(2 + 3) × 6 = 5 × 6 = 30. ✓",
+      "difficulty": 3,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "MC",
+      "stem": "Sara says 5 + 3 × 2 = 16. Leo says it equals 11. Who is correct?",
+      "choices": [
+        "Sara",
+        "Leo",
+        "Both",
+        "Neither"
+      ],
+      "answer": "B",
+      "explanation": "Multiply first: 3 × 2 = 6. Then 5 + 6 = 11. Leo is correct.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how order of operations works."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "MC",
+      "stem": "Which has the greatest value?",
+      "choices": [
+        "(2 + 4) × 5",
+        "2 + 4 × 5",
+        "2 × (4 + 5)",
+        "2 × 4 + 5"
+      ],
+      "answer": "A",
+      "explanation": "A: 6×5=30. B: 2+20=22. C: 2×9=18. D: 8+5=13. Greatest is 30.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what order of operations means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+      }
+    }
+  ],
+  "concept": "order_of_operations"
 }

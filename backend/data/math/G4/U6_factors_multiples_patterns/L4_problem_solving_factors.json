@@ -1,0 +1,790 @@
+{
+  "lesson_id": "L4",
+  "title": "Problem Solving with Factors",
+  "grade": "G4",
+  "unit": "U6_factors_multiples_patterns",
+  "lesson": "L4",
+  "ccss": [
+    "4.OA.B.4"
+  ],
+  "standard": "4.OA.B.4",
+  "go_math_ref": "Go Math G4 Ch5 L4",
+  "essential_question": "How can factors help solve equal-sharing problems?",
+  "vocabulary": [
+    "factor",
+    "GCF",
+    "equal groups",
+    "share"
+  ],
+  "concept": "factor_word_problems",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "24 cupcakes into equal boxes. Which box size does NOT work?",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 24÷5 has remainder. 5 is not a factor of 24."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "Ali has 30 candies to share equally. If each friend gets 5, friends = ___.",
+      "correct_answer": "6",
+      "hints": [
+        "30÷5.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "36 desks into equal rows. One option: 6 rows of ___.",
+      "correct_answer": "6",
+      "hints": [
+        "36÷6.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "To share n items equally, the group size must be a factor of n.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "45 pencils: which group size works?",
+      "choices": [
+        "A) 4",
+        "B) 6",
+        "C) 9",
+        "D) 8"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 9 divides 45."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Factors in Real Life",
+      "content": "If you want to split something into equal groups, the group sizes must be factors of the total.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If you want to split something into equal groups, the group sizes must be factors of the total."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Example: 30 Cookies",
+      "content": "30 cookies can be split into groups of 1, 2, 3, 5, 6, 10, 15, or 30 — the factors of 30.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "30 cookies can be split into groups of 1, 2, 3, 5, 6, 10, 15, or 30 — the factors of 30."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Array Arrangements",
+      "content": "Factors tell you all possible rectangle arrangements.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 5,
+          "cols": 6
+        }
+      },
+      "tts": "Factors tell you all possible rectangle arrangements."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Finding All Options",
+      "content": "List all factor pairs to find all group-size options.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "List all factor pairs to find all group-size options."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "GCF for Sharing",
+      "content": "When two people share different items equally into groups of equal size, use the GCF.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "When two people share different items equally into groups of equal size, use the GCF."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Practical Context",
+      "content": "Gardens, packaging, seating — factors solve many real problems.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Gardens, packaging, seating — factors solve many real problems."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "A class has 36 students. Can they sit in rows of 8?",
+      "correct_answer": "no",
+      "hints": [
+        "Think about factor word problems.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "36÷8=4 R4.",
+        "Not a whole.",
+        "No — 8 isn't a factor of 36."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "36 students, rows of 6. Rows = ?",
+      "correct_answer": "6",
+      "hints": [
+        "Think about factor word problems.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "36÷6.",
+        "=6.",
+        "6 rows."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "42 apples equally in baskets. Possible basket sizes include 1,2,3,6,7,14,21,42. How many options?",
+      "correct_answer": "8",
+      "hints": [
+        "Think about factor word problems.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "Factors of 42.",
+        "1,2,3,6,7,14,21,42.",
+        "8 options."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "24 cookies, 4 friends. Each gets ___.",
+      "correct_answer": "6",
+      "hints": [
+        "Think about factor word problems.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "24÷4.",
+        "=6.",
+        "6 cookies each."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "20 red + 30 blue beads. Largest group size so each group has whole beads of each color?",
+      "correct_answer": "10",
+      "hints": [
+        "Think about factor word problems.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "Need GCF of 20 and 30.",
+        "GCF = 10.",
+        "Group size 10."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "24 students, groups of 3. How many groups?",
+      "correct_answer": "8",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "48 flowers, bouquets of 6. Bouquets?",
+      "correct_answer": "8",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "Can 28 cupcakes go in rows of 5? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "35 stickers shared by 5 kids. Each gets?",
+      "correct_answer": "7",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "27 apples in baskets of 3. Baskets?",
+      "correct_answer": "9",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "Factor pair of 40 other than (1,40): (4,___)",
+      "correct_answer": "10",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "Can 30 students sit in rows of 6? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "56 ÷ 7 = ___ (groups)",
+      "correct_answer": "8",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "64 ÷ 8 = ___",
+      "correct_answer": "8",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "How many factor pairs does 30 have?",
+      "correct_answer": "4",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "GCF of 16 and 24, used as largest equal group size = ___",
+      "correct_answer": "8",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "45 and 60: GCF?",
+      "correct_answer": "15",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "72 flowers into 8 vases. Each vase has ___.",
+      "correct_answer": "9",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "54 books on 6 equal shelves = ___ per shelf",
+      "correct_answer": "9",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "Factor pairs of 36: how many?",
+      "correct_answer": "5",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "GCF of 24 and 60?",
+      "correct_answer": "12",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "48 pieces of candy shared equally by 8 kids. Each gets?",
+      "correct_answer": "6",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "GCF of 32 and 48?",
+      "correct_answer": "16",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 16. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "A yard fence of 60 ft into equal posts. One option: 5-ft posts → ___ posts",
+      "correct_answer": "12",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 1,
+      "question": "96 ÷ 8 = ___",
+      "correct_answer": "12",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "GCF of 18 and 48 (largest equal group) = ___",
+      "correct_answer": "6",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "80 cookies in boxes. Box sizes possible = factor count of 80 = ___",
+      "correct_answer": "10",
+      "hints": [
+        "1,2,4,5,8,10,16,20,40,80.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "Which arrangement of 60 chairs is impossible?",
+      "choices": [
+        "A) 6 rows × 10",
+        "B) 5 rows × 12",
+        "C) 7 rows × 9",
+        "D) 4 rows × 15"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 7×9=63, not 60."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "GCF of 36 and 54?",
+      "correct_answer": "18",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 18. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "apply_factors",
+      "concept": "factor_word_problems",
+      "difficulty": 2,
+      "question": "GCF of 50 and 75?",
+      "correct_answer": "25",
+      "hints": [
+        "Think about factor word problems.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 25. "
+      }
+    }
+  ]
+}

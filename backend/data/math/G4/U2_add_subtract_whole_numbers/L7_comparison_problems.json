@@ -1,0 +1,810 @@
+{
+  "lesson_id": "L7_comparison_problems",
+  "title": "Compare Using Bar Models",
+  "grade": "G4",
+  "unit": "U2_add_subtract_whole_numbers",
+  "lesson": "L7_comparison_problems",
+  "ccss": [
+    "4.NBT.B.4",
+    "4.OA.A.3"
+  ],
+  "standard": "4.NBT.B.4",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.7",
+  "essential_question": "How can a bar model help solve comparison problems?",
+  "vocabulary": [
+    "comparison",
+    "more than",
+    "less than",
+    "bar model"
+  ],
+  "concept": "comparison_problems",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Sam has 245 stickers. Ella has 178 more than Sam. How many does Ella have?",
+      "choices": [
+        "A) 67",
+        "B) 323",
+        "C) 413",
+        "D) 423"
+      ],
+      "correct_answer": "D",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. 245+178=423."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Tom has $350. Lee has $215 less than Tom. How much does Lee have?",
+      "correct_answer": "135",
+      "hints": [
+        "Subtract: 350−215.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 135. Work through it place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "A book has 250 pages. A longer book has 175 more. How many pages in the longer book?",
+      "correct_answer": "425",
+      "hints": [
+        "Add: 250+175.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 425. Work through it place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 1,
+      "question": "'How many more' problems ask you to subtract to find the difference.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "A farm has 1,250 chickens. Another farm has 480 fewer. How many does the other farm have?",
+      "choices": [
+        "A) 770",
+        "B) 830",
+        "C) 870",
+        "D) 1,730"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. 1,250−480=770."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Comparison Problems",
+      "content": "Comparison problems ask how two amounts relate: which is bigger, how much more, or how much less. Using a bar model helps you see the parts.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "A",
+              "value": 0
+            },
+            {
+              "label": "B",
+              "value": 0
+            }
+          ]
+        }
+      },
+      "tts": "Comparison problems ask how two amounts relate: which is bigger, how much more, or how much less. Using a bar model helps you see the parts."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Draw Two Bars",
+      "content": "Draw two bars, one for each quantity. Align them at the left. The difference shows at the right end of the longer bar.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "Sam",
+              "value": 245
+            },
+            {
+              "label": "Ella",
+              "value": 423
+            }
+          ]
+        }
+      },
+      "tts": "Draw two bars, one for each quantity. Align them at the left. The difference shows at the right end of the longer bar."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "'More Than' = Add",
+      "content": "If one amount is 'more than' another, add the difference to the smaller amount to find the larger one.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If one amount is 'more than' another, add the difference to the smaller amount to find the larger one."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "'Less Than' = Subtract",
+      "content": "If one amount is 'less than' another, subtract the difference from the larger amount.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If one amount is 'less than' another, subtract the difference from the larger amount."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Find the Difference",
+      "content": "To find 'how many more' or 'how many fewer,' subtract the smaller amount from the larger amount.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To find 'how many more' or 'how many fewer,' subtract the smaller amount from the larger amount."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Label Everything",
+      "content": "Always label your bars with quantities. Check your answer against the words in the problem.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Always label your bars with quantities. Check your answer against the words in the problem."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Ana has 378 beads. Kim has 215 more beads than Ana. How many beads does Kim have?",
+      "correct_answer": "593",
+      "hints": [
+        "Think about what comparison problems means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Ana = 378.",
+        "Kim has more, so add: 378+215.",
+        "Kim = 593."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 593. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "A store has 1,450 apples. Another store has 870 fewer. How many does the other have?",
+      "correct_answer": "580",
+      "hints": [
+        "Think about what comparison problems means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Start: 1,450.",
+        "Fewer means subtract 870.",
+        "1,450−870=580."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 580. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Book A has 234 pages. Book B has 412 pages. How many more pages does Book B have?",
+      "correct_answer": "178",
+      "hints": [
+        "Think about what comparison problems means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Larger = 412, smaller = 234.",
+        "Difference: 412−234=178."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 178. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Tom ran 2,340 m. Sam ran 1,875 m. How much farther did Tom run?",
+      "correct_answer": "465",
+      "hints": [
+        "Think about what comparison problems means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Larger amount = Tom's 2,340 m.",
+        "Smaller amount = Sam's 1,875 m.",
+        "Difference: 2,340 − 1,875 = 465 m."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 465. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "A ticket costs $125. A premium ticket costs $85 more. How much is the premium?",
+      "correct_answer": "210",
+      "hints": [
+        "Think about what comparison problems means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Premium is $85 more than regular.",
+        "Regular = $125.",
+        "Add: 125 + 85 = 210."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 210. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 1,
+      "question": "Ana has 345. Ben has 178 more. How many does Ben have?",
+      "correct_answer": "523",
+      "hints": [
+        "Add: 345+178.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 523. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 1,
+      "question": "Cara has 890. Dan has 234 fewer. How many does Dan have?",
+      "correct_answer": "656",
+      "hints": [
+        "Subtract: 890−234.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 656. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Eli has 567. Finn has 432. How many more does the larger have?",
+      "correct_answer": "135",
+      "hints": [
+        "Subtract smaller from larger.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 135. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Gia has 1,250. Hal has 450 more. How many does Hal have?",
+      "correct_answer": "1700",
+      "hints": [
+        "Add: 1,250+450.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1700. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Ivy has 3,450. Jon has 1,280 fewer. How many does Jon have?",
+      "correct_answer": "2170",
+      "hints": [
+        "Subtract: 3,450−1,280.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2170. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Kim has 2,345. Lee has 1,876. How many more does the larger have?",
+      "correct_answer": "469",
+      "hints": [
+        "Subtract smaller from larger.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 469. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Mia has 4,560. Nico has 1,240 more. How many does Nico have?",
+      "correct_answer": "5800",
+      "hints": [
+        "Add: 4,560+1,240.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5800. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Oli has 8,900. Paul has 2,450 fewer. How many does Paul have?",
+      "correct_answer": "6450",
+      "hints": [
+        "Subtract: 8,900−2,450.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6450. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 3,
+      "question": "Quin has 12,500. Rio has 4,500 more. How many does Rio have?",
+      "correct_answer": "17000",
+      "hints": [
+        "Add: 12,500+4,500.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 17000. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 3,
+      "question": "Sam has 15,000. Tia has 9,876. How many more does the larger have?",
+      "correct_answer": "5124",
+      "hints": [
+        "Subtract smaller from larger.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5124. Work through it place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 1,
+      "question": "Ari has 234. Bo has 156 more. How many does Bo have?",
+      "correct_answer": "390",
+      "hints": [
+        "Add: 234+156.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 390. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 1,
+      "question": "Cal has 789. Dee has 345 fewer. How many does Dee have?",
+      "correct_answer": "444",
+      "hints": [
+        "Subtract: 789−345.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 444. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Ed has 1,200. Fi has 600 more. How many does Fi have?",
+      "correct_answer": "1800",
+      "hints": [
+        "Add: 1,200+600.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1800. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Gus has 1,890. Han has 1,234. How many more does the larger have?",
+      "correct_answer": "656",
+      "hints": [
+        "Subtract smaller from larger.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 656. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Ian has 4,500. Jen has 1,750 fewer. How many does Jen have?",
+      "correct_answer": "2750",
+      "hints": [
+        "Subtract: 4,500−1,750.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2750. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Kai has 6,300. Liv has 2,100 more. How many does Liv have?",
+      "correct_answer": "8400",
+      "hints": [
+        "Add: 6,300+2,100.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8400. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Moe has 7,890. Noa has 3,456. How many more does the larger have?",
+      "correct_answer": "4434",
+      "hints": [
+        "Subtract smaller from larger.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4434. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 3,
+      "question": "Ora has 12,500. Pat has 4,500 fewer. How many does Pat have?",
+      "correct_answer": "8000",
+      "hints": [
+        "Subtract: 12,500−4,500.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8000. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 3,
+      "question": "Rey has 25,000. Sol has 8,900 more. How many does Sol have?",
+      "correct_answer": "33900",
+      "hints": [
+        "Add: 25,000+8,900.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 33900. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 3,
+      "question": "Tam has 34,500. Uma has 12,345. How many more does the larger have?",
+      "correct_answer": "22155",
+      "hints": [
+        "Subtract smaller from larger.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 22155. Work through it place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Pat has 567. Rio has 234 more. How many does Rio have?",
+      "correct_answer": "801",
+      "hints": [
+        "Add: 567+234.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 801. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Sky has 2,345. Tia has 890 fewer. How many does Tia have?",
+      "correct_answer": "1455",
+      "hints": [
+        "Subtract: 2,345−890.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1455. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 2,
+      "question": "Uma has 4,567. Van has 2,345. How many more does the larger have?",
+      "correct_answer": "2222",
+      "hints": [
+        "Subtract smaller from larger.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2222. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 3,
+      "question": "Wen has 8,900. Xin has 3,400 more. How many does Xin have?",
+      "correct_answer": "12300",
+      "hints": [
+        "Add: 8,900+3,400.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 12300. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "bar_model_comparison",
+      "concept": "comparison_problems",
+      "difficulty": 3,
+      "question": "Yan has 23,456. Zoe has 12,345. How many more does the larger have?",
+      "correct_answer": "11111",
+      "hints": [
+        "Subtract smaller from larger.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 11111. Work through it place by place."
+      }
+    }
+  ]
+}

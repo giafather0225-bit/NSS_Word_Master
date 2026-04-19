@@ -1,0 +1,787 @@
+{
+  "lesson_id": "L3",
+  "title": "Area Models and Partial Products",
+  "grade": "G4",
+  "unit": "U4_multiply_by_2_digit",
+  "lesson": "L3",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4 Ch3-Unit4 L3",
+  "essential_question": "How do area models help you multiply 2-digit numbers?",
+  "vocabulary": [
+    "area model",
+    "partial product",
+    "distributive property"
+  ],
+  "concept": "area_model_2d",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "Which shows 23 × 14 as a sum of partial products?",
+      "choices": [
+        "A) 20×10+20×4+3×10+3×4",
+        "B) 23+14",
+        "C) 23×14",
+        "D) 20×14"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Split both into tens and ones."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "12 × 13 = ___",
+      "correct_answer": "156",
+      "hints": [
+        "10×13=130, 2×13=26. Add.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 156. 130+26=156."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "20 × 30 + 20 × 4 + 5 × 30 + 5 × 4 = ___",
+      "correct_answer": "840",
+      "hints": [
+        "Add partial products: 600+80+150+20.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 840. =840 (which equals 25×34)."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "Area models split each factor into tens and ones.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "15 × 12 = ___",
+      "correct_answer": "180",
+      "hints": [
+        "10×12+5×12.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 180. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Area Model: Split the Factors",
+      "content": "Write each factor as tens + ones. Draw a rectangle divided into 4 parts — one for each combination.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 4,
+          "cols": 4
+        }
+      },
+      "tts": "Write each factor as tens + ones. Draw a rectangle divided into 4 parts — one for each combination."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Four Partial Products",
+      "content": "Each cell of the rectangle is a partial product: tens×tens, tens×ones, ones×tens, ones×ones.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Each cell of the rectangle is a partial product: tens×tens, tens×ones, ones×tens, ones×ones."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example: 23 × 14",
+      "content": "Split: 23 = 20+3, 14 = 10+4. Cells: 20×10=200, 20×4=80, 3×10=30, 3×4=12. Sum = 322.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Split: 23 = 20+3, 14 = 10+4. Cells: 20×10=200, 20×4=80, 3×10=30, 3×4=12. Sum = 322."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Add the Partial Products",
+      "content": "Adding all four cells gives the full product. This is the Distributive Property in action.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Adding all four cells gives the full product. This is the Distributive Property in action."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Shortcut Notation",
+      "content": "Write partial products in a column then add. It's the same as the algorithm you'll learn soon.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Write partial products in a column then add. It's the same as the algorithm you'll learn soon."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check with Estimation",
+      "content": "23 × 14 ≈ 20 × 10 = 200… but closer, 20 × 15 = 300. The exact answer 322 makes sense.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "23 × 14 ≈ 20 × 10 = 200… but closer, 20 × 15 = 300. The exact answer 322 makes sense."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "Use partial products: 13 × 21 = ___",
+      "correct_answer": "273",
+      "hints": [
+        "Think about what area model 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "10×20=200, 10×1=10.",
+        "3×20=60, 3×1=3.",
+        "200+10+60+3=273."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 273. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "14 × 15 = ___",
+      "correct_answer": "210",
+      "hints": [
+        "Think about what area model 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "10×15=150.",
+        "4×15=60.",
+        "150+60=210."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 210. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "22 × 13 = ___",
+      "correct_answer": "286",
+      "hints": [
+        "Think about what area model 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "20×13=260.",
+        "2×13=26.",
+        "260+26=286."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 286. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "11 × 25 = ___",
+      "correct_answer": "275",
+      "hints": [
+        "Think about what area model 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "10×25=250.",
+        "1×25=25.",
+        "250+25=275."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 275. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "17 × 12 = ___",
+      "correct_answer": "204",
+      "hints": [
+        "Think about what area model 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "10×12=120.",
+        "7×12=84.",
+        "120+84=204."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 204. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "15 × 16 = ___",
+      "correct_answer": "240",
+      "hints": [
+        "10×16+5×16.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 240. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "14 × 17 = ___",
+      "correct_answer": "238",
+      "hints": [
+        "10×17+4×17.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 238. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "12 × 16 = ___",
+      "correct_answer": "192",
+      "hints": [
+        "10×16+2×16.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 192. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "16 × 12 = ___",
+      "correct_answer": "192",
+      "hints": [
+        "10×12+6×12.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 192. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "14 × 11 = ___",
+      "correct_answer": "154",
+      "hints": [
+        "10×11+4×11.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 154. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "17 × 11 = ___",
+      "correct_answer": "187",
+      "hints": [
+        "10×11+7×11.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 187. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "18 × 12 = ___",
+      "correct_answer": "216",
+      "hints": [
+        "10×12+8×12.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 216. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "13 × 13 = ___",
+      "correct_answer": "169",
+      "hints": [
+        "10×13+3×13.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 169. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "11 × 15 = ___",
+      "correct_answer": "165",
+      "hints": [
+        "10×15+1×15.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 165. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 1,
+      "question": "12 × 15 = ___",
+      "correct_answer": "180",
+      "hints": [
+        "10×15+2×15.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 180. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "14 × 12 = ___ (use partial products)",
+      "correct_answer": "168",
+      "hints": [
+        "Split both into tens and ones.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 168. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "25 × 20 = ___ (use partial products)",
+      "correct_answer": "500",
+      "hints": [
+        "Split both into tens and ones.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "17 × 28 = ___ (use partial products)",
+      "correct_answer": "476",
+      "hints": [
+        "Split both into tens and ones.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 476. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "18 × 13 = ___ (use partial products)",
+      "correct_answer": "234",
+      "hints": [
+        "Split both into tens and ones.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 234. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "20 × 27 = ___ (use partial products)",
+      "correct_answer": "540",
+      "hints": [
+        "Split both into tens and ones.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 540. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "20 × 14 = ___ (use partial products)",
+      "correct_answer": "280",
+      "hints": [
+        "Split both into tens and ones.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 280. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "28 × 22 = ___ (use partial products)",
+      "correct_answer": "616",
+      "hints": [
+        "Split both into tens and ones.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 616. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "29 × 27 = ___ (use partial products)",
+      "correct_answer": "783",
+      "hints": [
+        "Split both into tens and ones.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 783. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "14 × 21 = ___ (use partial products)",
+      "correct_answer": "294",
+      "hints": [
+        "Split both into tens and ones.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 294. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "27 × 21 = ___ (use partial products)",
+      "correct_answer": "567",
+      "hints": [
+        "Split both into tens and ones.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 567. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "23 × 18 = ___",
+      "correct_answer": "414",
+      "hints": [
+        "20×18+3×18.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 414. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "16 × 24 = ___",
+      "correct_answer": "384",
+      "hints": [
+        "10×24+6×24.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 384. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "Which sum equals 21 × 14?",
+      "choices": [
+        "A) 20×10+20×4+1×10+1×4",
+        "B) 21+14",
+        "C) 21×10",
+        "D) 20+14"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. =200+80+10+4=294=21×14."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "25 × 13 = ___",
+      "correct_answer": "325",
+      "hints": [
+        "Partial products.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 325. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_2d",
+      "concept": "area_model_2d",
+      "difficulty": 2,
+      "question": "19 × 16 = ___",
+      "correct_answer": "304",
+      "hints": [
+        "20×16−1×16=320−16.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 304. Multiply place by place."
+      }
+    }
+  ]
+}

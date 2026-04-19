@@ -1,0 +1,786 @@
+{
+  "lesson_id": "L7",
+  "title": "Divide Using Repeated Subtraction",
+  "grade": "G4",
+  "unit": "U5_divide_by_1_digit",
+  "lesson": "L7",
+  "ccss": [
+    "4.NBT.B.6"
+  ],
+  "standard": "4.NBT.B.6",
+  "go_math_ref": "Go Math G4 Ch4 L7",
+  "essential_question": "How is division related to repeated subtraction?",
+  "vocabulary": [
+    "repeated subtraction",
+    "divide",
+    "quotient"
+  ],
+  "concept": "repeated_subtraction",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "How many 6s can you subtract from 24 to reach 0?",
+      "correct_answer": "4",
+      "hints": [
+        "6+6+6+6=24.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "45 ÷ 9 by repeated subtraction: ___",
+      "correct_answer": "5",
+      "hints": [
+        "Subtract 9 until 0.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "Which shows 28 ÷ 7 by repeated subtraction?",
+      "choices": [
+        "A) 28−7−7−7−7 = 0 (4 times)",
+        "B) 28+7",
+        "C) 28×7",
+        "D) 7+7"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. Four 7s fit in 28."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "Repeated subtraction is another way to see division.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "63 ÷ 9 = ___",
+      "correct_answer": "7",
+      "hints": [
+        "How many 9s in 63?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work through each place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Division = Taking Away",
+      "content": "Division can be seen as: how many times can I subtract the divisor?",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Division can be seen as: how many times can I subtract the divisor?"
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Example",
+      "content": "48 ÷ 8: subtract 8 from 48 until you hit 0. Count the subtractions → 6.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "48 ÷ 8: subtract 8 from 48 until you hit 0. Count the subtractions → 6."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Number Line Model",
+      "content": "Jump backward by the divisor until you reach 0. Count the jumps.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 0,
+        "max": 48,
+        "step": 8,
+        "highlight": 0
+      },
+      "tts": "Jump backward by the divisor until you reach 0. Count the jumps."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Make It Faster",
+      "content": "Instead of one 8 at a time, subtract larger groups (8×5=40) to speed up.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Instead of one 8 at a time, subtract larger groups (8×5=40) to speed up."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Connection to Multiplication",
+      "content": "If you subtract 8 six times from 48, it's the same as 8×6=48.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If you subtract 8 six times from 48, it's the same as 8×6=48."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Handles Remainders",
+      "content": "When you can't subtract any more without going below 0, what's left is the remainder.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "When you can't subtract any more without going below 0, what's left is the remainder."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "56 ÷ 7 by repeated subtraction.",
+      "correct_answer": "8",
+      "hints": [
+        "Think about repeated subtraction.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "56−7=49, −7=42, …continue.",
+        "Count subtractions to reach 0.",
+        "8 times."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "30 ÷ 6 = ?",
+      "correct_answer": "5",
+      "hints": [
+        "Think about repeated subtraction.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "30−6=24, −6=18, −6=12, −6=6, −6=0.",
+        "5 subtractions.",
+        "= 5."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "42 ÷ 6.",
+      "correct_answer": "7",
+      "hints": [
+        "Think about repeated subtraction.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "Subtract 6 from 42.",
+        "7 times gets to 0.",
+        "= 7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "35 ÷ 5.",
+      "correct_answer": "7",
+      "hints": [
+        "Think about repeated subtraction.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "7 subtractions of 5 from 35.",
+        "= 7.",
+        "Answer: 7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "27 ÷ 3.",
+      "correct_answer": "9",
+      "hints": [
+        "Think about repeated subtraction.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "9 subtractions of 3.",
+        "= 9.",
+        "Answer: 9."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "48 ÷ 8 (repeated subtraction) = ___",
+      "correct_answer": "6",
+      "hints": [
+        "How many 8s in 48?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work through each place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "63 ÷ 9 (repeated subtraction) = ___",
+      "correct_answer": "7",
+      "hints": [
+        "How many 9s in 63?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work through each place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "72 ÷ 8 (repeated subtraction) = ___",
+      "correct_answer": "9",
+      "hints": [
+        "How many 8s in 72?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "56 ÷ 7 (repeated subtraction) = ___",
+      "correct_answer": "8",
+      "hints": [
+        "How many 7s in 56?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work through each place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "42 ÷ 6 (repeated subtraction) = ___",
+      "correct_answer": "7",
+      "hints": [
+        "How many 6s in 42?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work through each place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "54 ÷ 9 (repeated subtraction) = ___",
+      "correct_answer": "6",
+      "hints": [
+        "How many 9s in 54?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work through each place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "24 ÷ 6 (repeated subtraction) = ___",
+      "correct_answer": "4",
+      "hints": [
+        "How many 6s in 24?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "35 ÷ 7 (repeated subtraction) = ___",
+      "correct_answer": "5",
+      "hints": [
+        "How many 7s in 35?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "36 ÷ 4 (repeated subtraction) = ___",
+      "correct_answer": "9",
+      "hints": [
+        "How many 4s in 36?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 1,
+      "question": "45 ÷ 5 (repeated subtraction) = ___",
+      "correct_answer": "9",
+      "hints": [
+        "How many 5s in 45?",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "91 ÷ 7 = ___",
+      "correct_answer": "13",
+      "hints": [
+        "Subtract in bigger chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 13. Work through each place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "90 ÷ 9 = ___",
+      "correct_answer": "10",
+      "hints": [
+        "Subtract in bigger chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. Work through each place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "54 ÷ 6 = ___",
+      "correct_answer": "9",
+      "hints": [
+        "Subtract in bigger chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "135 ÷ 9 = ___",
+      "correct_answer": "15",
+      "hints": [
+        "Subtract in bigger chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. Work through each place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "80 ÷ 8 = ___",
+      "correct_answer": "10",
+      "hints": [
+        "Subtract in bigger chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. Work through each place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "112 ÷ 8 = ___",
+      "correct_answer": "14",
+      "hints": [
+        "Subtract in bigger chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14. Work through each place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "56 ÷ 4 = ___",
+      "correct_answer": "14",
+      "hints": [
+        "Subtract in bigger chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14. Work through each place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "48 ÷ 4 = ___",
+      "correct_answer": "12",
+      "hints": [
+        "Subtract in bigger chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work through each place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "56 ÷ 7 = ___",
+      "correct_answer": "8",
+      "hints": [
+        "Subtract in bigger chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work through each place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "40 ÷ 5 = ___",
+      "correct_answer": "8",
+      "hints": [
+        "Subtract in bigger chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work through each place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "96 ÷ 8 = ___",
+      "correct_answer": "12",
+      "hints": [
+        "8×10=80, then 16÷8=2.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work through each place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "72 ÷ 6 = ___",
+      "correct_answer": "12",
+      "hints": [
+        "Think about repeated subtraction.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work through each place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "60 ÷ 5 by repeated subtraction:",
+      "choices": [
+        "A) 10",
+        "B) 12",
+        "C) 15",
+        "D) 20"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 12 fives in 60."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "108 ÷ 9 = ___",
+      "correct_answer": "12",
+      "hints": [
+        "9×10=90, 18÷9=2.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work through each place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "subtract_groups",
+      "concept": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "84 ÷ 7 = ___",
+      "correct_answer": "12",
+      "hints": [
+        "Think about repeated subtraction.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work through each place."
+      }
+    }
+  ]
+}

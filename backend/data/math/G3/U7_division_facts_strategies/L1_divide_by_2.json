@@ -3,45 +3,486 @@
   "title": "Divide by 2",
   "grade": "G3",
   "unit": "U7_division_facts_strategies",
-  "ccss": ["3.OA.A.3"],
-  "go_math_ref": { "chapter": 7, "lesson": "7.1", "pages": "265-268" },
+  "ccss": [
+    "3.OA.A.3"
+  ],
+  "go_math_ref": {
+    "chapter": 7,
+    "lesson": "7.1",
+    "pages": "265-268"
+  },
   "essential_question": "What does it mean to divide by 2?",
-  "key_vocabulary": ["divide", "quotient", "equal groups", "halve", "fact family"],
-  "strategies": ["Use doubles facts: if 2 × 7 = 14, then 14 ÷ 2 = 7.", "Think: half of the number.", "Draw 2 equal groups."],
+  "key_vocabulary": [
+    "divide",
+    "quotient",
+    "equal groups",
+    "halve",
+    "fact family"
+  ],
+  "strategies": [
+    "Use doubles facts: if 2 × 7 = 14, then 14 ÷ 2 = 7.",
+    "Think: half of the number.",
+    "Draw 2 equal groups."
+  ],
   "pretest": [
-    { "id": "PT_01", "type": "MC", "stem": "8 ÷ 2 = ?", "choices": ["2", "3", "4", "6"], "answer": "C", "explanation": "8 ÷ 2 = 4.", "difficulty": 1 },
-    { "id": "PT_02", "type": "MC", "stem": "14 ÷ 2 = ?", "choices": ["5", "6", "7", "8"], "answer": "C", "explanation": "14 ÷ 2 = 7.", "difficulty": 1 },
-    { "id": "PT_03", "type": "MC", "stem": "Two friends share 16 marbles equally. How many each?", "choices": ["6", "7", "8", "9"], "answer": "C", "explanation": "16 ÷ 2 = 8.", "difficulty": 1 },
-    { "id": "PT_04", "type": "MC", "stem": "18 ÷ 2 = ?", "choices": ["7", "8", "9", "10"], "answer": "C", "explanation": "18 ÷ 2 = 9.", "difficulty": 1 },
-    { "id": "PT_05", "type": "MC", "stem": "If 2 × 6 = 12, then 12 ÷ 2 = ?", "choices": ["4", "5", "6", "7"], "answer": "C", "explanation": "12 ÷ 2 = 6.", "difficulty": 1 }
+    {
+      "id": "PT_01",
+      "type": "MC",
+      "stem": "8 ÷ 2 = ?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "C",
+      "explanation": "8 ÷ 2 = 4.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_02",
+      "type": "MC",
+      "stem": "14 ÷ 2 = ?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "C",
+      "explanation": "14 ÷ 2 = 7.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_03",
+      "type": "MC",
+      "stem": "Two friends share 16 marbles equally. How many each?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "16 ÷ 2 = 8.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_04",
+      "type": "MC",
+      "stem": "18 ÷ 2 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "18 ÷ 2 = 9.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_05",
+      "type": "MC",
+      "stem": "If 2 × 6 = 12, then 12 ÷ 2 = ?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "C",
+      "explanation": "12 ÷ 2 = 6.",
+      "difficulty": 1
+    }
   ],
   "learn": [
-    { "id": "LN_01", "type": "concept_card", "title": "Dividing by 2", "content": "Dividing by 2 is the same as finding half. 10 ÷ 2 = 5 because half of 10 is 5." },
-    { "id": "LN_02", "type": "concept_card", "title": "Use Doubles", "content": "If you know 2 × 8 = 16, then 16 ÷ 2 = 8. Doubles facts help you divide by 2 quickly." },
-    { "id": "LN_03", "type": "concept_card", "title": "Model It", "content": "To find 14 ÷ 2: draw 2 circles. Deal 14 counters evenly. Each circle gets 7." }
+    {
+      "id": "LN_01",
+      "type": "concept_card",
+      "title": "Dividing by 2",
+      "content": "Dividing by 2 is the same as finding half. 10 ÷ 2 = 5 because half of 10 is 5.",
+      "cpa_phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "LN_02",
+      "type": "concept_card",
+      "title": "Use Doubles",
+      "content": "If you know 2 × 8 = 16, then 16 ÷ 2 = 8. Doubles facts help you divide by 2 quickly.",
+      "cpa_phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "LN_03",
+      "type": "concept_card",
+      "title": "Model It",
+      "content": "To find 14 ÷ 2: draw 2 circles. Deal 14 counters evenly. Each circle gets 7.",
+      "cpa_phase": "pictorial",
+      "visual_type": "none"
+    }
   ],
   "try": [
-    { "id": "TRY_01", "type": "MC", "stem": "6 ÷ 2 = ?", "choices": ["2", "3", "4", "6"], "answer": "B", "explanation": "6 ÷ 2 = 3.", "difficulty": 1 },
-    { "id": "TRY_02", "type": "MC", "stem": "Sam splits 10 stickers between 2 friends. How many does each friend get?", "choices": ["3", "4", "5", "6"], "answer": "C", "explanation": "10 ÷ 2 = 5.", "difficulty": 1 }
+    {
+      "id": "TRY_01",
+      "type": "MC",
+      "stem": "6 ÷ 2 = ?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "6 ÷ 2 = 3.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_02",
+      "type": "MC",
+      "stem": "Sam splits 10 stickers between 2 friends. How many does each friend get?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "C",
+      "explanation": "10 ÷ 2 = 5.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+      },
+      "solution_steps": []
+    }
   ],
   "practice_r1": [
-    { "id": "R1_01", "type": "MC", "stem": "4 ÷ 2 = ?", "choices": ["1", "2", "3", "4"], "answer": "B", "explanation": "4 ÷ 2 = 2.", "difficulty": 1 },
-    { "id": "R1_02", "type": "MC", "stem": "10 ÷ 2 = ?", "choices": ["4", "5", "6", "7"], "answer": "B", "explanation": "10 ÷ 2 = 5.", "difficulty": 1 },
-    { "id": "R1_03", "type": "MC", "stem": "20 ÷ 2 = ?", "choices": ["8", "9", "10", "11"], "answer": "C", "explanation": "20 ÷ 2 = 10.", "difficulty": 1 },
-    { "id": "R1_04", "type": "MC", "stem": "16 ÷ 2 = ?", "choices": ["6", "7", "8", "9"], "answer": "C", "explanation": "16 ÷ 2 = 8.", "difficulty": 1 },
-    { "id": "R1_05", "type": "MC", "stem": "2 ÷ 2 = ?", "choices": ["0", "1", "2", "4"], "answer": "B", "explanation": "2 ÷ 2 = 1.", "difficulty": 1 },
-    { "id": "R1_06", "type": "MC", "stem": "A box has 12 cookies. You share them with 1 friend. How many each?", "choices": ["4", "5", "6", "7"], "answer": "C", "explanation": "12 ÷ 2 = 6.", "difficulty": 1 },
-    { "id": "R1_07", "type": "MC", "stem": "If 2 × 9 = 18, then 18 ÷ 2 = ?", "choices": ["7", "8", "9", "10"], "answer": "C", "explanation": "18 ÷ 2 = 9.", "difficulty": 1 }
+    {
+      "id": "R1_01",
+      "type": "MC",
+      "stem": "4 ÷ 2 = ?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "B",
+      "explanation": "4 ÷ 2 = 2.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "MC",
+      "stem": "10 ÷ 2 = ?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "10 ÷ 2 = 5.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "MC",
+      "stem": "20 ÷ 2 = ?",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "answer": "C",
+      "explanation": "20 ÷ 2 = 10.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "MC",
+      "stem": "16 ÷ 2 = ?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "16 ÷ 2 = 8.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "MC",
+      "stem": "2 ÷ 2 = ?",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "4"
+      ],
+      "answer": "B",
+      "explanation": "2 ÷ 2 = 1.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "MC",
+      "stem": "A box has 12 cookies. You share them with 1 friend. How many each?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "C",
+      "explanation": "12 ÷ 2 = 6.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "MC",
+      "stem": "If 2 × 9 = 18, then 18 ÷ 2 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "18 ÷ 2 = 9.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+      }
+    }
   ],
   "practice_r2": [
-    { "id": "R2_01", "type": "MC", "stem": "Which multiplication fact helps you solve 14 ÷ 2?", "choices": ["2 × 6 = 12", "2 × 7 = 14", "2 × 8 = 16", "2 × 9 = 18"], "answer": "B", "explanation": "2 × 7 = 14, so 14 ÷ 2 = 7.", "difficulty": 2 },
-    { "id": "R2_02", "type": "MC", "stem": "Tom has some coins. He divides them into 2 piles of 8. How many did he start with?", "choices": ["8", "10", "14", "16"], "answer": "D", "explanation": "2 × 8 = 16.", "difficulty": 2 },
-    { "id": "R2_03", "type": "MC", "stem": "Which has the greatest quotient?", "choices": ["10 ÷ 2", "14 ÷ 2", "18 ÷ 2", "12 ÷ 2"], "answer": "C", "explanation": "18 ÷ 2 = 9 (greatest).", "difficulty": 2 },
-    { "id": "R2_04", "type": "MC", "stem": "A teacher gives 2 pencils to each student. She uses 16 pencils. How many students?", "choices": ["6", "7", "8", "9"], "answer": "C", "explanation": "16 ÷ 2 = 8 students.", "difficulty": 2 }
+    {
+      "id": "R2_01",
+      "type": "MC",
+      "stem": "Which multiplication fact helps you solve 14 ÷ 2?",
+      "choices": [
+        "2 × 6 = 12",
+        "2 × 7 = 14",
+        "2 × 8 = 16",
+        "2 × 9 = 18"
+      ],
+      "answer": "B",
+      "explanation": "2 × 7 = 14, so 14 ÷ 2 = 7.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "MC",
+      "stem": "Tom has some coins. He divides them into 2 piles of 8. How many did he start with?",
+      "choices": [
+        "8",
+        "10",
+        "14",
+        "16"
+      ],
+      "answer": "D",
+      "explanation": "2 × 8 = 16.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "MC",
+      "stem": "Which has the greatest quotient?",
+      "choices": [
+        "10 ÷ 2",
+        "14 ÷ 2",
+        "18 ÷ 2",
+        "12 ÷ 2"
+      ],
+      "answer": "C",
+      "explanation": "18 ÷ 2 = 9 (greatest).",
+      "difficulty": 2,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "MC",
+      "stem": "A teacher gives 2 pencils to each student. She uses 16 pencils. How many students?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "16 ÷ 2 = 8 students.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+      }
+    }
   ],
   "practice_r3": [
-    { "id": "R3_01", "type": "MC", "stem": "Sam had 18 stickers. He gave half to his sister, then split the rest equally between 3 friends. How many did each friend get?", "choices": ["2", "3", "4", "6"], "answer": "B", "explanation": "Half: 18 ÷ 2 = 9. Then 9 ÷ 3 = 3 each.", "difficulty": 3 },
-    { "id": "R3_02", "type": "MC", "stem": "A number ÷ 2 = 8. What is the number × 3?", "choices": ["24", "36", "48", "54"], "answer": "C", "explanation": "Number = 2 × 8 = 16. 16 × 3 = 48.", "difficulty": 3 },
-    { "id": "R3_03", "type": "MC", "stem": "Which three division problems have the same answer? A) 14÷2  B) 21÷3  C) 28÷4  D) 16÷2", "choices": ["A and B only", "A and C only", "B and C only", "A, B, and C"], "answer": "D", "explanation": "A=7, B=7, C=7, D=8. A, B, C all equal 7.", "difficulty": 3 }
-  ]
+    {
+      "id": "R3_01",
+      "type": "MC",
+      "stem": "Sam had 18 stickers. He gave half to his sister, then split the rest equally between 3 friends. How many did each friend get?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "Half: 18 ÷ 2 = 9. Then 9 ÷ 3 = 3 each.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "MC",
+      "stem": "A number ÷ 2 = 8. What is the number × 3?",
+      "choices": [
+        "24",
+        "36",
+        "48",
+        "54"
+      ],
+      "answer": "C",
+      "explanation": "Number = 2 × 8 = 16. 16 × 3 = 48.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "MC",
+      "stem": "Which three division problems have the same answer? A) 14÷2  B) 21÷3  C) 28÷4  D) 16÷2",
+      "choices": [
+        "A and B only",
+        "A and C only",
+        "B and C only",
+        "A, B, and C"
+      ],
+      "answer": "D",
+      "explanation": "A=7, B=7, C=7, D=8. A, B, C all equal 7.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what divide by 2 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how divide by 2 works."
+      }
+    }
+  ],
+  "concept": "divide_by_2"
 }

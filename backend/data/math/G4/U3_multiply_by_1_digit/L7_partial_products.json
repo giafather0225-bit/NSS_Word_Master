@@ -1,0 +1,784 @@
+{
+  "lesson_id": "L7_partial_products",
+  "title": "Multiply Using Partial Products",
+  "grade": "G4",
+  "unit": "U3_multiply_by_1_digit",
+  "lesson": "L7_partial_products",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.7",
+  "essential_question": "How do partial products help you multiply?",
+  "vocabulary": [
+    "partial product",
+    "place value",
+    "area model"
+  ],
+  "concept": "partial_products",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "In partial products for 4 × 23, one partial product is:",
+      "choices": [
+        "A) 4×2",
+        "B) 4×20",
+        "C) 42×3",
+        "D) 4+23"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Work through it step by step."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Partial products of 6 × 54: 6×50 + 6×4 = 300 + ___ = ___",
+      "correct_answer": "24",
+      "hints": [
+        "Think about what partial products means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 24. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "7 × 48 partial products: 7×40=280, 7×8=56, sum = ___",
+      "correct_answer": "336",
+      "hints": [
+        "Think about what partial products means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 336. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Partial products and Distributive Property produce the same answer.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 3,
+      "question": "8 × 256 partial products sum to ___",
+      "correct_answer": "2048",
+      "hints": [
+        "8×200 + 8×50 + 8×6.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2048. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "What Are Partial Products?",
+      "content": "Partial products are the small products you get when you multiply by each place value of the other factor. Add them to get the total.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Partial products are the small products you get when you multiply by each place value of the other factor. Add them to get the total."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Set Up a Grid",
+      "content": "Draw a rectangle split by place value. Label sides with the digits. Multiply within each cell.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      },
+      "tts": "Draw a rectangle split by place value. Label sides with the digits. Multiply within each cell."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example: 4 × 237",
+      "content": "Make cells: 4×200=800, 4×30=120, 4×7=28. Add: 800+120+28=948.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Make cells: 4×200=800, 4×30=120, 4×7=28. Add: 800+120+28=948."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Vertical Algorithm",
+      "content": "Write the partial products in a column, one per row, aligned by place value. Add them up.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Write the partial products in a column, one per row, aligned by place value. Add them up."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "No Regrouping Needed",
+      "content": "Partial products don't require regrouping during multiplication — you keep each product whole until the final addition.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Partial products don't require regrouping during multiplication — you keep each product whole until the final addition."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Why It Helps",
+      "content": "Partial products makes every step visible, which prevents errors and helps you spot mistakes.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Partial products makes every step visible, which prevents errors and helps you spot mistakes."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Find 3 × 124 using partial products.",
+      "correct_answer": "372",
+      "hints": [
+        "Think about what partial products means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "3×100=300.",
+        "3×20=60.",
+        "3×4=12.",
+        "Add: 300+60+12=372."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 372. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Find 5 × 326 using partial products.",
+      "correct_answer": "1630",
+      "hints": [
+        "Think about what partial products means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "5×300=1,500.",
+        "5×20=100.",
+        "5×6=30.",
+        "Sum: 1,630."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1630. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "6 × 248 using partial products.",
+      "correct_answer": "1488",
+      "hints": [
+        "Think about what partial products means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "6×200=1,200, 6×40=240, 6×8=48.",
+        "Sum: 1,488."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1488. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 3,
+      "question": "7 × 1,245 using partial products.",
+      "correct_answer": "8715",
+      "hints": [
+        "Think about what partial products means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "7×1,000=7,000, 7×200=1,400, 7×40=280, 7×5=35.",
+        "Sum: 8,715."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8715. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "9 × 432 using partial products.",
+      "correct_answer": "3888",
+      "hints": [
+        "Think about what partial products means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "9×400=3,600, 9×30=270, 9×2=18.",
+        "Sum: 3,888."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3888. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 1,
+      "question": "Use partial products: 3 × 123 = ___",
+      "correct_answer": "369",
+      "hints": [
+        "Break 123 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 369. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 1,
+      "question": "Use partial products: 4 × 256 = ___",
+      "correct_answer": "1024",
+      "hints": [
+        "Break 256 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1024. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 1,
+      "question": "Use partial products: 5 × 347 = ___",
+      "correct_answer": "1735",
+      "hints": [
+        "Break 347 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1735. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 1,
+      "question": "Use partial products: 6 × 468 = ___",
+      "correct_answer": "2808",
+      "hints": [
+        "Break 468 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2808. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 7 × 512 = ___",
+      "correct_answer": "3584",
+      "hints": [
+        "Break 512 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3584. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 8 × 234 = ___",
+      "correct_answer": "1872",
+      "hints": [
+        "Break 234 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1872. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 9 × 345 = ___",
+      "correct_answer": "3105",
+      "hints": [
+        "Break 345 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3105. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 3 × 1,234 = ___",
+      "correct_answer": "3702",
+      "hints": [
+        "Break 1,234 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3702. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 3,
+      "question": "Use partial products: 4 × 2,045 = ___",
+      "correct_answer": "8180",
+      "hints": [
+        "Break 2,045 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8180. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 3,
+      "question": "Use partial products: 5 × 1,356 = ___",
+      "correct_answer": "6780",
+      "hints": [
+        "Break 1,356 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6780. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 1,
+      "question": "Use partial products: 4 × 127 = ___",
+      "correct_answer": "508",
+      "hints": [
+        "Break 127 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 508. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 1,
+      "question": "Use partial products: 6 × 253 = ___",
+      "correct_answer": "1518",
+      "hints": [
+        "Break 253 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1518. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 1,
+      "question": "Use partial products: 7 × 348 = ___",
+      "correct_answer": "2436",
+      "hints": [
+        "Break 348 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2436. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 1,
+      "question": "Use partial products: 8 × 425 = ___",
+      "correct_answer": "3400",
+      "hints": [
+        "Break 425 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 9 × 516 = ___",
+      "correct_answer": "4644",
+      "hints": [
+        "Break 516 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4644. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 3 × 689 = ___",
+      "correct_answer": "2067",
+      "hints": [
+        "Break 689 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2067. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 5 × 724 = ___",
+      "correct_answer": "3620",
+      "hints": [
+        "Break 724 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3620. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 6 × 1,345 = ___",
+      "correct_answer": "8070",
+      "hints": [
+        "Break 1,345 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8070. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 3,
+      "question": "Use partial products: 7 × 2,056 = ___",
+      "correct_answer": "14392",
+      "hints": [
+        "Break 2,056 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 14392. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 3,
+      "question": "Use partial products: 8 × 3,127 = ___",
+      "correct_answer": "25016",
+      "hints": [
+        "Break 3,127 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 25016. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 5 × 289 = ___",
+      "correct_answer": "1445",
+      "hints": [
+        "Break 289 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1445. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 7 × 365 = ___",
+      "correct_answer": "2555",
+      "hints": [
+        "Break 365 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2555. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 2,
+      "question": "Use partial products: 9 × 423 = ___",
+      "correct_answer": "3807",
+      "hints": [
+        "Break 423 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3807. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 3,
+      "question": "Use partial products: 6 × 1,567 = ___",
+      "correct_answer": "9402",
+      "hints": [
+        "Break 1,567 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 9402. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "partial_products_algorithm",
+      "concept": "partial_products",
+      "difficulty": 3,
+      "question": "Use partial products: 8 × 2,345 = ___",
+      "correct_answer": "18760",
+      "hints": [
+        "Break 2,345 by place value and add the products.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 18760. Multiply place by place."
+      }
+    }
+  ]
+}

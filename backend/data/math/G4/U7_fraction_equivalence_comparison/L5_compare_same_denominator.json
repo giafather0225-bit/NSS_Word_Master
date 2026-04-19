@@ -1,0 +1,792 @@
+{
+  "lesson_id": "L5",
+  "title": "Compare Fractions with Same Denominator",
+  "grade": "G4",
+  "unit": "U7_fraction_equivalence_comparison",
+  "lesson": "L5",
+  "ccss": [
+    "4.NF.A.2"
+  ],
+  "standard": "4.NF.A.2",
+  "go_math_ref": "Go Math G4 Ch6 L5",
+  "essential_question": "How do you compare fractions with the same denominator?",
+  "vocabulary": [
+    "compare",
+    "numerator",
+    "denominator"
+  ],
+  "concept": "compare_same_denom",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Which is greater: 3/5 or 2/5?",
+      "choices": [
+        "A) 3/5",
+        "B) 2/5",
+        "C) equal"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. Same denom: bigger numerator wins."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 5/8 and 3/8. Which is greater?",
+      "correct_answer": "5/8",
+      "hints": [
+        "Same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/8. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Which symbol goes between 4/7 and 6/7?",
+      "choices": [
+        "A) <",
+        "B) >",
+        "C) ="
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. 4<6."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "With the same denominator, the larger numerator is the larger fraction.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 7/10 and 4/10. Larger?",
+      "correct_answer": "7/10",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/10. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Same Denominator Rule",
+      "content": "When denominators are equal, compare numerators only.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "When denominators are equal, compare numerators only."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Equal Pieces",
+      "content": "If pieces are the same size, whoever has more pieces has more.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "numerator": 3,
+          "denominator": 5
+        }
+      },
+      "tts": "If pieces are the same size, whoever has more pieces has more."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Number Line",
+      "content": "3/5 and 4/5 live on the same line; 4/5 is to the right, so it's bigger.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 0,
+        "max": 1,
+        "step": 0.2,
+        "highlight": 0.8
+      },
+      "tts": "3/5 and 4/5 live on the same line; 4/5 is to the right, so it's bigger."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Use Symbols",
+      "content": "Write <, >, or = between the fractions.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Write <, >, or = between the fractions."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Watch the Denominator",
+      "content": "This rule ONLY works when denominators match.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "This rule ONLY works when denominators match."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Quick Check",
+      "content": "Count pieces. Bigger number of equal pieces = bigger fraction.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Count pieces. Bigger number of equal pieces = bigger fraction."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 2/9 and 5/9. Use <, >, or =.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare same denom.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "Same denom.",
+        "2 < 5.",
+        "2/9 < 5/9."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Which is greater: 7/12 or 5/12?",
+      "correct_answer": "7/12",
+      "hints": [
+        "Think about compare same denom.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "Same denom.",
+        "7 > 5.",
+        "7/12."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/12."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 3/8 and 6/8.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare same denom.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "Same denom.",
+        "3 < 6.",
+        "3/8 < 6/8."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Which is smaller: 2/5 or 4/5?",
+      "correct_answer": "2/5",
+      "hints": [
+        "Think about compare same denom.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "Same denom.",
+        "2 < 4.",
+        "2/5."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/5."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 9/10 and 7/10.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare same denom.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "Same denom.",
+        "9 > 7.",
+        "9/10 > 7/10."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 6/7 and 1/7. Use <, >, =.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 3/5 and 4/5. Use <, >, =.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 6/9 and 2/9. Use <, >, =.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 4/5 and 3/5. Use <, >, =.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 2/4 and 3/4. Use <, >, =.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 2/4 and 3/4. Use <, >, =.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 3/8 and 2/8. Use <, >, =.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 2/8 and 4/8. Use <, >, =.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 4/8 and 7/8. Use <, >, =.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 6/11 and 1/11. Use <, >, =.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Which is greater: 5/8 or 4/8?",
+      "correct_answer": "5/8",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/8. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Which is greater: 1/6 or 4/6?",
+      "correct_answer": "4/6",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/6. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Which is greater: 9/13 or 8/13?",
+      "correct_answer": "9/13",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9/13. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Which is greater: 14/15 or 5/15?",
+      "correct_answer": "14/15",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14/15. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Which is greater: 2/10 or 5/10?",
+      "correct_answer": "5/10",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/10. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Which is greater: 2/7 or 4/7?",
+      "correct_answer": "4/7",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/7. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Which is greater: 8/11 or 7/11?",
+      "correct_answer": "8/11",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8/11. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Which is greater: 5/9 or 6/9?",
+      "correct_answer": "6/9",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/9. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Which is greater: 1/14 or 10/14?",
+      "correct_answer": "10/14",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10/14. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Which is greater: 10/12 or 8/12?",
+      "correct_answer": "10/12",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10/12. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 11/12 and 7/12.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Which is smaller: 1/6 or 5/6?",
+      "correct_answer": "1/6",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/6. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 2,
+      "question": "Order least to greatest: 3/8, 1/8, 5/8.",
+      "choices": [
+        "A) 1/8,3/8,5/8",
+        "B) 5/8,3/8,1/8",
+        "C) 3/8,1/8,5/8",
+        "D) 1/8,5/8,3/8"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Compare 4/9 and 4/9.",
+      "correct_answer": "=",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is =. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "numerator_comparison",
+      "concept": "compare_same_denom",
+      "difficulty": 1,
+      "question": "Greatest of 2/11, 8/11, 5/11?",
+      "correct_answer": "8/11",
+      "hints": [
+        "Think about compare same denom.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8/11. "
+      }
+    }
+  ]
+}

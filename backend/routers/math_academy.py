@@ -328,6 +328,10 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
 
     prog.last_accessed = now
     prog.attempts = (prog.attempts or 0) + 1
+    prog.stage = req.stage
+    if req.stage == "practice_r3" and is_correct:
+        # 마지막 라운드 정답이면 완료 가능성 체크 (advanceMathStage에서 처리)
+        pass
 
     # XP for correct answer
     if is_correct:

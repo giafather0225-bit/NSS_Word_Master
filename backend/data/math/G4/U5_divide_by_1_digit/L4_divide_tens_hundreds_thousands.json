@@ -1,0 +1,782 @@
+{
+  "lesson_id": "L4",
+  "title": "Divide Tens, Hundreds, Thousands",
+  "grade": "G4",
+  "unit": "U5_divide_by_1_digit",
+  "lesson": "L4",
+  "ccss": [
+    "4.NBT.B.6"
+  ],
+  "standard": "4.NBT.B.6",
+  "go_math_ref": "Go Math G4 Ch4 L4",
+  "essential_question": "How do place value patterns help you divide?",
+  "vocabulary": [
+    "divide",
+    "place value",
+    "basic fact",
+    "multiple of 10"
+  ],
+  "concept": "divide_multiples_10",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "360 ÷ 6 = ___",
+      "correct_answer": "60",
+      "hints": [
+        "36÷6=6, keep a zero.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 60. 36÷6=6, so 360÷6=60."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "2400 ÷ 4 = ___",
+      "correct_answer": "600",
+      "hints": [
+        "24÷4=6, add two zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 600. 24÷4=6."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "8000 ÷ 8 = ?",
+      "choices": [
+        "A) 100",
+        "B) 1000",
+        "C) 800",
+        "D) 80"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 8÷8=1 with three zeros."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "Dividing multiples of 10 uses basic facts plus place value.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "450 ÷ 9 = ___",
+      "correct_answer": "50",
+      "hints": [
+        "45÷9=5, keep a zero.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 50. Work through each place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Use Basic Facts",
+      "content": "For 420 ÷ 7, think 42 ÷ 7 = 6, then bring the zero → 60.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "For 420 ÷ 7, think 42 ÷ 7 = 6, then bring the zero → 60."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Same Number of Zeros",
+      "content": "Count zeros in the dividend. After using the basic fact, attach the zeros that remain.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Count zeros in the dividend. After using the basic fact, attach the zeros that remain."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Place Value View",
+      "content": "420 ÷ 7 = 42 tens ÷ 7 = 6 tens = 60.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "420 ÷ 7 = 42 tens ÷ 7 = 6 tens = 60."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Hundreds and Thousands",
+      "content": "2400 ÷ 6 = 24 hundreds ÷ 6 = 4 hundreds = 400.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "2400 ÷ 6 = 24 hundreds ÷ 6 = 4 hundreds = 400."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check with Multiplication",
+      "content": "60 × 7 = 420. So 420 ÷ 7 = 60 is correct.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "60 × 7 = 420. So 420 ÷ 7 = 60 is correct."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate First",
+      "content": "Before dividing, estimate to check you have the right number of zeros.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Before dividing, estimate to check you have the right number of zeros."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "480 ÷ 8 = ___",
+      "correct_answer": "60",
+      "hints": [
+        "Think about divide multiples 10.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "48÷8=6.",
+        "Keep one zero.",
+        "= 60."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 60. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "3500 ÷ 7 = ___",
+      "correct_answer": "500",
+      "hints": [
+        "Think about divide multiples 10.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "35÷7=5.",
+        "Keep two zeros.",
+        "= 500."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 500. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "5400 ÷ 9 = ___",
+      "correct_answer": "600",
+      "hints": [
+        "Think about divide multiples 10.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "54÷9=6.",
+        "Two zeros remain.",
+        "= 600."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 600. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "6300 ÷ 7 = ___",
+      "correct_answer": "900",
+      "hints": [
+        "Think about divide multiples 10.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "63÷7=9.",
+        "Two zeros.",
+        "= 900."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 900. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "800 ÷ 4 = ___",
+      "correct_answer": "200",
+      "hints": [
+        "Think about divide multiples 10.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "8÷4=2.",
+        "Two zeros.",
+        "= 200."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 200. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "150 ÷ 5 = ___",
+      "correct_answer": "30",
+      "hints": [
+        "15÷5=3, keep zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. Work through each place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "1200 ÷ 3 = ___",
+      "correct_answer": "400",
+      "hints": [
+        "12÷3=4, keep zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 400. Work through each place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "1200 ÷ 4 = ___",
+      "correct_answer": "300",
+      "hints": [
+        "12÷4=3, keep zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 300. Work through each place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "4800 ÷ 8 = ___",
+      "correct_answer": "600",
+      "hints": [
+        "48÷8=6, keep zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 600. Work through each place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "640 ÷ 8 = ___",
+      "correct_answer": "80",
+      "hints": [
+        "64÷8=8, keep zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 80. Work through each place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "600 ÷ 2 = ___",
+      "correct_answer": "300",
+      "hints": [
+        "6÷2=3, keep zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 300. Work through each place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "4000 ÷ 8 = ___",
+      "correct_answer": "500",
+      "hints": [
+        "40÷8=5, keep zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 500. Work through each place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "630 ÷ 7 = ___",
+      "correct_answer": "90",
+      "hints": [
+        "63÷7=9, keep zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. Work through each place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "1600 ÷ 8 = ___",
+      "correct_answer": "200",
+      "hints": [
+        "16÷8=2, keep zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 200. Work through each place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "180 ÷ 2 = ___",
+      "correct_answer": "90",
+      "hints": [
+        "18÷2=9, keep zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. Work through each place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "2800 ÷ 4 = ___",
+      "correct_answer": "700",
+      "hints": [
+        "Basic fact + zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 700. Work through each place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "1200 ÷ 4 = ___",
+      "correct_answer": "300",
+      "hints": [
+        "Basic fact + zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 300. Work through each place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "21000 ÷ 3 = ___",
+      "correct_answer": "7000",
+      "hints": [
+        "Basic fact + zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7000. Work through each place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "56000 ÷ 7 = ___",
+      "correct_answer": "8000",
+      "hints": [
+        "Basic fact + zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8000. Work through each place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "45000 ÷ 9 = ___",
+      "correct_answer": "5000",
+      "hints": [
+        "Basic fact + zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5000. Work through each place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "63000 ÷ 9 = ___",
+      "correct_answer": "7000",
+      "hints": [
+        "Basic fact + zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7000. Work through each place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "21000 ÷ 7 = ___",
+      "correct_answer": "3000",
+      "hints": [
+        "Basic fact + zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3000. Work through each place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "48000 ÷ 8 = ___",
+      "correct_answer": "6000",
+      "hints": [
+        "Basic fact + zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6000. Work through each place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "21000 ÷ 7 = ___",
+      "correct_answer": "3000",
+      "hints": [
+        "Basic fact + zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3000. Work through each place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "36000 ÷ 4 = ___",
+      "correct_answer": "9000",
+      "hints": [
+        "Basic fact + zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9000. Work through each place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "2800 ÷ 4 = ___",
+      "correct_answer": "700",
+      "hints": [
+        "28÷4=7.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 700. Work through each place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "4500 ÷ 5 = ___",
+      "correct_answer": "900",
+      "hints": [
+        "Think about divide multiples 10.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 900. Work through each place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "9000 ÷ 3 = ?",
+      "choices": [
+        "A) 30",
+        "B) 300",
+        "C) 3000",
+        "D) 30000"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 9÷3=3, three zeros."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 2,
+      "question": "5600 ÷ 8 = ___",
+      "correct_answer": "700",
+      "hints": [
+        "56÷8=7.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 700. Work through each place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "place_value_division",
+      "concept": "divide_multiples_10",
+      "difficulty": 1,
+      "question": "720 ÷ 9 = ___",
+      "correct_answer": "80",
+      "hints": [
+        "72÷9=8.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 80. Work through each place."
+      }
+    }
+  ]
+}

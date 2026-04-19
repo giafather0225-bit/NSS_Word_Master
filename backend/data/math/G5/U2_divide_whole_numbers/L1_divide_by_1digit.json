@@ -1,0 +1,784 @@
+{
+  "lesson_id": "L1",
+  "title": "Divide by 1-Digit Divisors",
+  "grade": "G5",
+  "unit": "U2_divide_whole_numbers",
+  "lesson": "L1",
+  "ccss": [
+    "5.NBT.B.6"
+  ],
+  "standard": "5.NBT.B.6",
+  "go_math_ref": "Go Math G5 Ch2 L1",
+  "essential_question": "How do we divide by a 1-digit divisor?",
+  "vocabulary": [
+    "dividend",
+    "divisor",
+    "quotient",
+    "long division"
+  ],
+  "concept": "div_1digit",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "84 \u00f7 4 = ___.",
+      "correct_answer": "21",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 21. "
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "96 \u00f7 6 = ___.",
+      "correct_answer": "16",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 16. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "420 \u00f7 5 = ___.",
+      "correct_answer": "84",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 84. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "738 \u00f7 6 = ___.",
+      "correct_answer": "123",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 123. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 3,
+      "question": "945 \u00f7 7 = ___.",
+      "correct_answer": "135",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 135. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Division",
+      "content": "Split into equal groups. 84 \u00f7 4 means 4 equal groups from 84.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Split into equal groups. 84 \u00f7 4 means 4 equal groups from 84."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Long Division Steps",
+      "content": "Divide, Multiply, Subtract, Bring down.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Divide, Multiply, Subtract, Bring down."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Place Value",
+      "content": "Line up digits. Start from the leftmost digit of the dividend.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Line up digits. Start from the leftmost digit of the dividend."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Check Work",
+      "content": "quotient \u00d7 divisor + remainder = dividend.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "quotient \u00d7 divisor + remainder = dividend."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate First",
+      "content": "Round to check reasonableness.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Round to check reasonableness."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Multi-Digit",
+      "content": "Same steps repeat for larger dividends.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Same steps repeat for larger dividends."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "72 \u00f7 3 = ___.",
+      "correct_answer": "24",
+      "hints": [
+        "Think about div 1digit.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "7 \u00f7 3 = 2 r 1",
+        "12 \u00f7 3 = 4",
+        "= 24."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "525 \u00f7 5 = ___.",
+      "correct_answer": "105",
+      "hints": [
+        "Think about div 1digit.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "5\u00f75=1",
+        "2\u00f75=0",
+        "25\u00f75=5",
+        "= 105."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 105."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "144 \u00f7 6 = ___.",
+      "correct_answer": "24",
+      "hints": [
+        "Think about div 1digit.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "14\u00f76=2 r 2",
+        "24\u00f76=4",
+        "= 24."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "672 \u00f7 8 = ___.",
+      "correct_answer": "84",
+      "hints": [
+        "Think about div 1digit.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "67\u00f78=8 r 3",
+        "32\u00f78=4",
+        "= 84."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 84."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 3,
+      "question": "819 \u00f7 7 = ___.",
+      "correct_answer": "117",
+      "hints": [
+        "Think about div 1digit.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "8\u00f77=1 r 1",
+        "11\u00f77=1 r 4",
+        "49\u00f77=7",
+        "= 117."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 117."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "96 \u00f7 6 = ___.",
+      "correct_answer": "16",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 16. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "513 \u00f7 9 = ___.",
+      "correct_answer": "57",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 57. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "112 \u00f7 8 = ___.",
+      "correct_answer": "14",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "120 \u00f7 4 = ___.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "264 \u00f7 8 = ___.",
+      "correct_answer": "33",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 33. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "462 \u00f7 7 = ___.",
+      "correct_answer": "66",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 66. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "28 \u00f7 2 = ___.",
+      "correct_answer": "14",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "528 \u00f7 8 = ___.",
+      "correct_answer": "66",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 66. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "80 \u00f7 2 = ___.",
+      "correct_answer": "40",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "90 \u00f7 3 = ___.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "2372 \u00f7 4 = ___.",
+      "correct_answer": "593",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 593. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "3700 \u00f7 5 = ___.",
+      "correct_answer": "740",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 740. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "3600 \u00f7 6 = ___.",
+      "correct_answer": "600",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 600. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "4725 \u00f7 9 = ___.",
+      "correct_answer": "525",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 525. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "2934 \u00f7 3 = ___.",
+      "correct_answer": "978",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 978. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "1466 \u00f7 2 = ___.",
+      "correct_answer": "733",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 733. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "1544 \u00f7 8 = ___.",
+      "correct_answer": "193",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 193. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "6296 \u00f7 8 = ___.",
+      "correct_answer": "787",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 787. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "4592 \u00f7 7 = ___.",
+      "correct_answer": "656",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 656. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "980 \u00f7 4 = ___.",
+      "correct_answer": "245",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 245. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 1,
+      "question": "128 \u00f7 4 = ___.",
+      "correct_answer": "32",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 32. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "336 \u00f7 6 = ___.",
+      "correct_answer": "56",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 56. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "576 \u00f7 8 = ___.",
+      "correct_answer": "72",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 72. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 2,
+      "question": "945 \u00f7 9 = ___.",
+      "correct_answer": "105",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 105. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_3d_by_1d",
+      "concept": "div_1digit",
+      "difficulty": 3,
+      "question": "672 \u00f7 7 = ___.",
+      "correct_answer": "96",
+      "hints": [
+        "Think about div 1digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 96. "
+      }
+    }
+  ]
+}

@@ -1,0 +1,801 @@
+{
+  "lesson_id": "L1",
+  "title": "Equivalent Fractions",
+  "grade": "G4",
+  "unit": "U7_fraction_equivalence_comparison",
+  "lesson": "L1",
+  "ccss": [
+    "4.NF.A.1"
+  ],
+  "standard": "4.NF.A.1",
+  "go_math_ref": "Go Math G4 Ch6 L1",
+  "essential_question": "How can two fractions represent the same amount?",
+  "vocabulary": [
+    "equivalent",
+    "fraction",
+    "numerator",
+    "denominator"
+  ],
+  "concept": "equivalent_fractions",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "Which is equivalent to 1/2?",
+      "choices": [
+        "A) 2/5",
+        "B) 3/6",
+        "C) 2/3",
+        "D) 4/10"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 3/6 = 1/2."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "1/3 = ___/9",
+      "correct_answer": "3",
+      "hints": [
+        "Multiply numerator and denominator by 3.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. 1×3=3; 3×3=9."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "2/4 is equivalent to ___/2",
+      "correct_answer": "1",
+      "hints": [
+        "Divide both by 2.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "Equivalent fractions name the same amount.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "2/5 is equivalent to:",
+      "choices": [
+        "A) 4/10",
+        "B) 3/5",
+        "C) 2/10",
+        "D) 5/2"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. Multiply by 2/2."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Same Amount, Different Names",
+      "content": "Equivalent fractions look different but represent the same part of a whole.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "numerator": 1,
+          "denominator": 2
+        }
+      },
+      "tts": "Equivalent fractions look different but represent the same part of a whole."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Fraction Bars",
+      "content": "A bar split into 2 with 1 shaded = bar split into 4 with 2 shaded.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "numerator": 2,
+          "denominator": 4
+        }
+      },
+      "tts": "A bar split into 2 with 1 shaded = bar split into 4 with 2 shaded."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Multiply by 1",
+      "content": "Multiply numerator AND denominator by the same number to get an equivalent fraction.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Multiply numerator AND denominator by the same number to get an equivalent fraction."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example",
+      "content": "1/2 × 3/3 = 3/6. Both equal 1/2.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "1/2 × 3/3 = 3/6. Both equal 1/2."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Divide by the Same Number",
+      "content": "You can also divide both by the same factor: 4/8 ÷ 4/4 = 1/2.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "You can also divide both by the same factor: 4/8 ÷ 4/4 = 1/2."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Visual Check",
+      "content": "On a number line, equivalent fractions land at the same point.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 0,
+        "max": 1,
+        "step": 0.25,
+        "highlight": 0.5
+      },
+      "tts": "On a number line, equivalent fractions land at the same point."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "Find an equivalent of 1/4 with denominator 12.",
+      "correct_answer": "3/12",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "12 ÷ 4 = 3.",
+        "Multiply 1/4 by 3/3.",
+        "= 3/12."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/12."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "2/3 = ___/6",
+      "correct_answer": "4",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "6 ÷ 3 = 2.",
+        "Multiply 2/3 by 2/2.",
+        "= 4/6."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "Is 3/4 equivalent to 6/8? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "3×2=6, 4×2=8.",
+        "Yes, same ratio.",
+        "Equivalent."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "4/10 = ___/5",
+      "correct_answer": "2",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "Divide both by 2.",
+        "4/2=2, 10/2=5.",
+        "= 2/5."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "Name 3 fractions equivalent to 1/3.",
+      "correct_answer": "2/6,3/9,4/12",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "Multiply 1/3 by 2/2, 3/3, 4/4.",
+        "2/6, 3/9, 4/12.",
+        "Three equivalents."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/6,3/9,4/12."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "3/4 = ___/20",
+      "correct_answer": "15",
+      "hints": [
+        "Multiply by 5/5.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "5/9 = ___/36",
+      "correct_answer": "20",
+      "hints": [
+        "Multiply by 4/4.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "3/8 = ___/40",
+      "correct_answer": "15",
+      "hints": [
+        "Multiply by 5/5.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "4/9 = ___/18",
+      "correct_answer": "8",
+      "hints": [
+        "Multiply by 2/2.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "4/5 = ___/10",
+      "correct_answer": "8",
+      "hints": [
+        "Multiply by 2/2.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "1/6 = ___/30",
+      "correct_answer": "5",
+      "hints": [
+        "Multiply by 5/5.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "5/6 = ___/24",
+      "correct_answer": "20",
+      "hints": [
+        "Multiply by 4/4.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "5/9 = ___/27",
+      "correct_answer": "15",
+      "hints": [
+        "Multiply by 3/3.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "2/7 = ___/28",
+      "correct_answer": "8",
+      "hints": [
+        "Multiply by 4/4.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "4/6 = ___/12",
+      "correct_answer": "8",
+      "hints": [
+        "Multiply by 2/2.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "18/54 simplifies to 1/3? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "12/32 simplifies to 3/8? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "12/24 simplifies to 1/2? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "4/10 simplifies to 2/5? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "6/16 simplifies to 3/8? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "15/20 simplifies to 3/4? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "9/15 simplifies to 3/5? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "5/40 simplifies to 1/8? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "18/54 simplifies to 1/3? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "8/36 simplifies to 2/9? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "3/5 = ___/10",
+      "correct_answer": "6",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "8/12 = ___/3",
+      "correct_answer": "2",
+      "hints": [
+        "Divide by 4.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "Which is equivalent to 2/3?",
+      "choices": [
+        "A) 4/9",
+        "B) 4/6",
+        "C) 6/8",
+        "D) 3/4"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 2/3 = 4/6."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 1,
+      "question": "5/10 = ___/2",
+      "correct_answer": "1",
+      "hints": [
+        "Think about equivalent fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "identify_equivalent",
+      "concept": "equivalent_fractions",
+      "difficulty": 2,
+      "question": "3/4 = ___/16",
+      "correct_answer": "12",
+      "hints": [
+        "×4/4.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. "
+      }
+    }
+  ]
+}

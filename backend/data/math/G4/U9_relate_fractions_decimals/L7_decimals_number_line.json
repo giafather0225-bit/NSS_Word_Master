@@ -1,0 +1,789 @@
+{
+  "lesson_id": "L7",
+  "title": "Decimals on a Number Line",
+  "grade": "G4",
+  "unit": "U9_relate_fractions_decimals",
+  "lesson": "L7",
+  "ccss": [
+    "4.NF.C.6"
+  ],
+  "standard": "4.NF.C.6",
+  "go_math_ref": "Go Math G4 Ch9 L7",
+  "essential_question": "How do you place and read decimals on a number line?",
+  "vocabulary": [
+    "decimal",
+    "number line",
+    "tenth",
+    "hundredth"
+  ],
+  "concept": "decimal_number_line",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "On a tenths number line from 0 to 1, where is 0.6?",
+      "choices": [
+        "A) 6 ticks from 0",
+        "B) 60 ticks from 0",
+        "C) halfway",
+        "D) at 1"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. 6 tenths = 6 ticks."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Between 0.3 and 0.4, what decimal is halfway?",
+      "correct_answer": "0.35",
+      "hints": [
+        "Midpoint of 0.30 and 0.40.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.35. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Between 0 and 1, which tick is at 0.5?",
+      "choices": [
+        "A) 1st",
+        "B) 5th (of 10)",
+        "C) 10th",
+        "D) 50th"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 5 tenths."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "A number line can show decimals just like fractions.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "A tick between 0.7 and 0.8 at hundredths: 0.7___",
+      "correct_answer": "5",
+      "hints": [
+        "Halfway is 0.75.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Decimal Number Line",
+      "content": "Same as fraction lines — divide into 10 or 100 equal steps.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 0,
+        "max": 1,
+        "step": 0.1,
+        "highlight": 0.7
+      },
+      "tts": "Same as fraction lines — divide into 10 or 100 equal steps."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Tenths Line",
+      "content": "0 to 1 with 10 equal parts; each tick = 0.1.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "0 to 1 with 10 equal parts; each tick = 0.1."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Hundredths Line",
+      "content": "Zoom in: each tenth has 10 smaller ticks. Each small tick = 0.01.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Zoom in: each tenth has 10 smaller ticks. Each small tick = 0.01."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Locate a Decimal",
+      "content": "Read the position based on how many tenths (or hundredths) past 0.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Read the position based on how many tenths (or hundredths) past 0."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Compare on Line",
+      "content": "Bigger decimal is to the right.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Bigger decimal is to the right."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Mixed Numbers",
+      "content": "Mixed numbers land between whole numbers, just like decimals land between whole ticks.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Mixed numbers land between whole numbers, just like decimals land between whole ticks."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "What decimal is at tick 3 on a 0-to-1 tenths line?",
+      "correct_answer": "0.3",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "Tick 3 of 10.",
+        "3/10.",
+        "0.3."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.3."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Halfway between 0.2 and 0.3 (hundredths)?",
+      "correct_answer": "0.25",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "0.2 = 0.20.",
+        "0.3 = 0.30.",
+        "Halfway = 0.25."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.25."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "On a hundredths line, where is 0.43? (tick number)",
+      "correct_answer": "43",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "43 hundredths.",
+        "43rd tick from 0.",
+        "43."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 43."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Between 0.5 and 0.6, name three hundredths decimals.",
+      "correct_answer": "0.51,0.55,0.59",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "Between 0.50 and 0.60.",
+        "Any 0.5_.",
+        "0.51, 0.55, 0.59."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.51,0.55,0.59."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Which is farther right: 0.7 or 0.07?",
+      "correct_answer": "0.7",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "0.7 > 0.07.",
+        "Bigger → farther right.",
+        "0.7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.7."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal at tick 4 on a tenths line from 0 to 1?",
+      "correct_answer": "0.4",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.4. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal at tick 1 on a tenths line from 0 to 1?",
+      "correct_answer": "0.1",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.1. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal at tick 4 on a tenths line from 0 to 1?",
+      "correct_answer": "0.4",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.4. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal at tick 6 on a tenths line from 0 to 1?",
+      "correct_answer": "0.6",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.6. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal at tick 9 on a tenths line from 0 to 1?",
+      "correct_answer": "0.9",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.9. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal at tick 5 on a tenths line from 0 to 1?",
+      "correct_answer": "0.5",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.5. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal at tick 2 on a tenths line from 0 to 1?",
+      "correct_answer": "0.2",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.2. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal at tick 3 on a tenths line from 0 to 1?",
+      "correct_answer": "0.3",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.3. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal at tick 6 on a tenths line from 0 to 1?",
+      "correct_answer": "0.6",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.6. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal at tick 9 on a tenths line from 0 to 1?",
+      "correct_answer": "0.9",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.9. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal at tick 23 on a hundredths line from 0 to 1?",
+      "correct_answer": "0.23",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.23. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal at tick 38 on a hundredths line from 0 to 1?",
+      "correct_answer": "0.38",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.38. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal at tick 18 on a hundredths line from 0 to 1?",
+      "correct_answer": "0.18",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.18. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal at tick 22 on a hundredths line from 0 to 1?",
+      "correct_answer": "0.22",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.22. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal at tick 18 on a hundredths line from 0 to 1?",
+      "correct_answer": "0.18",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.18. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal at tick 70 on a hundredths line from 0 to 1?",
+      "correct_answer": "0.70",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.70. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal at tick 20 on a hundredths line from 0 to 1?",
+      "correct_answer": "0.20",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.20. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal at tick 41 on a hundredths line from 0 to 1?",
+      "correct_answer": "0.41",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.41. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal at tick 40 on a hundredths line from 0 to 1?",
+      "correct_answer": "0.40",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.40. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal at tick 52 on a hundredths line from 0 to 1?",
+      "correct_answer": "0.52",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.52. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Halfway between 0.4 and 0.5 (hundredths) = ___",
+      "correct_answer": "0.45",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.45. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Decimal for tick 90 on hundredths line = ___",
+      "correct_answer": "0.90",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.90. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Which is between 0.3 and 0.4?",
+      "choices": [
+        "A) 0.35",
+        "B) 0.25",
+        "C) 0.45",
+        "D) 0.5"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 1,
+      "question": "Number of ticks on 0 to 1 hundredths line = ___",
+      "correct_answer": "100",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 100. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "locate_decimals",
+      "concept": "decimal_number_line",
+      "difficulty": 2,
+      "question": "Decimal 3 ticks right of 0.5 on hundredths line = ___",
+      "correct_answer": "0.53",
+      "hints": [
+        "Think about decimal number line.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.53. "
+      }
+    }
+  ]
+}

@@ -1,0 +1,796 @@
+{
+  "lesson_id": "L10",
+  "title": "Problem Solving with Fractions",
+  "grade": "G4",
+  "unit": "U7_fraction_equivalence_comparison",
+  "lesson": "L10",
+  "ccss": [
+    "4.NF.A.1",
+    "4.NF.A.2"
+  ],
+  "standard": "4.NF.A.1",
+  "go_math_ref": "Go Math G4 Ch6 L10",
+  "essential_question": "How do you apply equivalent fractions and comparison to real problems?",
+  "vocabulary": [
+    "fraction",
+    "compare",
+    "equivalent",
+    "word problem"
+  ],
+  "concept": "fraction_word_problems",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Sam ate 3/8 of a pizza; Ana ate 1/4. Who ate more?",
+      "choices": [
+        "A) Sam",
+        "B) Ana",
+        "C) same"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. 1/4=2/8, 3/8>2/8."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Lina ran 2/3 mile; Tim ran 3/4 mile. Who ran more?",
+      "choices": [
+        "A) Lina",
+        "B) Tim"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. LCD 12: 8 vs 9."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Is 5/6 equivalent to 10/12? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "×2/2.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "You may need to find a common denominator to compare in word problems.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "A pitcher holds 3/4 L; a bottle holds 5/8 L. Which is smaller?",
+      "correct_answer": "5/8",
+      "hints": [
+        "LCD 8: 6 vs 5.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/8. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Read Carefully",
+      "content": "Identify the fractions in the story and what is being compared or combined.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Identify the fractions in the story and what is being compared or combined."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Pick a Strategy",
+      "content": "Same denominators → compare numerators. Different → find common denominator or use benchmarks.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Same denominators → compare numerators. Different → find common denominator or use benchmarks."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Use a Bar Model",
+      "content": "Draw bars to visualize each fraction for clarity.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "A",
+              "value": 3
+            },
+            {
+              "label": "B",
+              "value": 4
+            }
+          ]
+        }
+      },
+      "tts": "Draw bars to visualize each fraction for clarity."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Equivalent Fractions",
+      "content": "Sometimes you need to rewrite fractions to make them easier.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Sometimes you need to rewrite fractions to make them easier."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check Reasonableness",
+      "content": "Ask: does the answer make sense in context?",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Ask: does the answer make sense in context?"
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Give Units",
+      "content": "Include the unit (cups, miles, pizzas) in your final answer.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Include the unit (cups, miles, pizzas) in your final answer."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Amy studied 2/3 hour; Ben studied 3/5 hour. Who studied more?",
+      "correct_answer": "Amy",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "LCD 15: 10/15 vs 9/15.",
+        "10 > 9.",
+        "Amy."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Amy."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "A recipe uses 3/4 cup flour; a second uses 5/8 cup. Which uses more?",
+      "correct_answer": "first",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "LCD 8: 6/8 vs 5/8.",
+        "6 > 5.",
+        "First recipe."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is first."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Chris walked 5/6 mile; Dan walked 7/8 mile. Who walked farther?",
+      "correct_answer": "Dan",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "LCD 24: 20/24 vs 21/24.",
+        "21 > 20.",
+        "Dan."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Dan."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Is 1/2 more or less than 3/7?",
+      "correct_answer": "more",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "Half of 7 is 3.5.",
+        "3 < 3.5.",
+        "3/7 < 1/2."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is more."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Two classes finished 2/5 and 3/8 of a project. Who finished more?",
+      "correct_answer": "first",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "LCD 40: 16/40 vs 15/40.",
+        "16 > 15.",
+        "First class."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is first."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Amy ran 3/5 mi; Ben ran 1/8 mi. Who ran more?",
+      "correct_answer": "Amy",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Amy. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Sam ran 4/8 mi; Liz ran 4/6 mi. Who ran more?",
+      "correct_answer": "Liz",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Liz. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Tim ran 3/5 mi; Joy ran 2/3 mi. Who ran more?",
+      "correct_answer": "Joy",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Joy. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Ken ran 4/5 mi; Mia ran 2/3 mi. Who ran more?",
+      "correct_answer": "Ken",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Ken. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Eve ran 1/4 mi; Dan ran 1/5 mi. Who ran more?",
+      "correct_answer": "Eve",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Eve. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Rob ran 2/8 mi; Ann ran 3/4 mi. Who ran more?",
+      "correct_answer": "Ann",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Ann. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Joe ran 1/4 mi; Zoe ran 2/3 mi. Who ran more?",
+      "correct_answer": "Zoe",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Zoe. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Max ran 2/6 mi; Lee ran 2/8 mi. Who ran more?",
+      "correct_answer": "Max",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Max. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Ali ran 4/6 mi; Sue ran 3/8 mi. Who ran more?",
+      "correct_answer": "Ali",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Ali. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 1,
+      "question": "Tom ran 1/4 mi; Kim ran 1/3 mi. Who ran more?",
+      "correct_answer": "Kim",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is Kim. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Compare 2/10 and 1/4. Greater?",
+      "correct_answer": "1/4",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/4. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Compare 2/5 and 2/3. Greater?",
+      "correct_answer": "2/3",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/3. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Compare 7/10 and 5/8. Greater?",
+      "correct_answer": "7/10",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/10. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Compare 2/8 and 1/3. Greater?",
+      "correct_answer": "1/3",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/3. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Compare 2/5 and 2/3. Greater?",
+      "correct_answer": "2/3",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/3. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Compare 8/10 and 4/6. Greater?",
+      "correct_answer": "8/10",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8/10. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Compare 7/10 and 4/5. Greater?",
+      "correct_answer": "4/5",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/5. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Compare 1/10 and 2/4. Greater?",
+      "correct_answer": "2/4",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/4. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Compare 6/8 and 4/6. Greater?",
+      "correct_answer": "6/8",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/8. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Compare 5/6 and 3/5. Greater?",
+      "correct_answer": "5/6",
+      "hints": [
+        "Think about fraction word problems.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/6. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "A jug holds 3/4 gal; a bottle holds 5/6 gal. Larger container?",
+      "correct_answer": "bottle",
+      "hints": [
+        "LCD 12: 9 vs 10.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is bottle. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Is 4/9 more or less than 1/2?",
+      "correct_answer": "less",
+      "hints": [
+        "Half of 9 is 4.5.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is less. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Simplify the winner's portion of 6/8:",
+      "choices": [
+        "A) 2/3",
+        "B) 3/4",
+        "C) 1/2",
+        "D) 4/6"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 6/8=3/4."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Order: 1/2, 2/3, 3/5 least→greatest",
+      "correct_answer": "1/2,3/5,2/3",
+      "hints": [
+        "LCD 30: 15, 18, 20.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/2,3/5,2/3. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "apply_fractions",
+      "concept": "fraction_word_problems",
+      "difficulty": 2,
+      "question": "Is 7/8 > 5/6? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "LCD 24: 21 vs 20.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    }
+  ]
+}

@@ -3,190 +3,871 @@
   "title": "Use and Make Line Plots",
   "grade": "G3",
   "unit": "U2_represent_interpret_data",
-  "ccss": ["3.MD.B.4"],
-  "go_math_ref": { "chapter": 2, "lesson": "2.7", "pages": "89-92" },
+  "ccss": [
+    "3.MD.B.4"
+  ],
+  "go_math_ref": {
+    "chapter": 2,
+    "lesson": "2.7",
+    "pages": "89-92"
+  },
   "essential_question": "How can you read and make line plots to show data?",
-  "key_vocabulary": ["line plot", "X mark", "number line", "data point", "measurement"],
-  "strategies": ["Each X above a number means one data point", "Count the Xs to find how many", "Line plots often show measurement data"],
+  "key_vocabulary": [
+    "line plot",
+    "X mark",
+    "number line",
+    "data point",
+    "measurement"
+  ],
+  "strategies": [
+    "Each X above a number means one data point",
+    "Count the Xs to find how many",
+    "Line plots often show measurement data"
+  ],
   "items": [
     {
-      "id": "PT_01", "section": "pretest", "difficulty": 1,
+      "id": "PT_01",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "A line plot shows shirt prices. There are 4 Xs above $12. How many shirts sold for $12?",
-      "data_table": { "title": "Shirt Prices", "type": "line_plot", "categories": ["$10","$11","$12","$13","$14"], "values": [2,3,4,1,2], "scale": 1, "unit": "shirts" },
-      "choices": ["A. 2","B. 3","C. 4","D. 12"], "answer": "C",
+      "data_table": {
+        "title": "Shirt Prices",
+        "type": "line_plot",
+        "categories": [
+          "$10",
+          "$11",
+          "$12",
+          "$13",
+          "$14"
+        ],
+        "values": [
+          2,
+          3,
+          4,
+          1,
+          2
+        ],
+        "scale": 1,
+        "unit": "shirts"
+      },
+      "choices": [
+        "A. 2",
+        "B. 3",
+        "C. 4",
+        "D. 12"
+      ],
+      "answer": "C",
       "explanation": "4 Xs above $12 = 4 shirts."
     },
     {
-      "id": "PT_02", "section": "pretest", "difficulty": 1,
+      "id": "PT_02",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "On a line plot, what does each X represent?",
-      "choices": ["A. 10 items","B. 5 items","C. 2 items","D. 1 item"], "answer": "D",
+      "choices": [
+        "A. 10 items",
+        "B. 5 items",
+        "C. 2 items",
+        "D. 1 item"
+      ],
+      "answer": "D",
       "explanation": "Each X on a line plot represents one data point."
     },
     {
-      "id": "PT_03", "section": "pretest", "difficulty": 2,
+      "id": "PT_03",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Line plot of plant heights: 1 inch has 2 Xs, 2 inches has 5 Xs, 3 inches has 4 Xs, 4 inches has 1 X. How many plants are less than 3 inches tall?",
-      "data_table": { "title": "Plant Heights", "type": "line_plot", "categories": ["1 in","2 in","3 in","4 in"], "values": [2,5,4,1], "scale": 1, "unit": "plants" },
-      "choices": ["A. 5","B. 7","C. 11","D. 12"], "answer": "B",
+      "data_table": {
+        "title": "Plant Heights",
+        "type": "line_plot",
+        "categories": [
+          "1 in",
+          "2 in",
+          "3 in",
+          "4 in"
+        ],
+        "values": [
+          2,
+          5,
+          4,
+          1
+        ],
+        "scale": 1,
+        "unit": "plants"
+      },
+      "choices": [
+        "A. 5",
+        "B. 7",
+        "C. 11",
+        "D. 12"
+      ],
+      "answer": "B",
       "explanation": "Less than 3 inches: 1 in (2) + 2 in (5) = 7."
     },
     {
-      "id": "PT_04", "section": "pretest", "difficulty": 2,
+      "id": "PT_04",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Line plot: $10 has 2 Xs, $11 has 3 Xs, $12 has 4 Xs, $13 has 1 X, $14 has 2 Xs. How many shirts were sold in all?",
-      "data_table": { "title": "Shirt Prices", "type": "line_plot", "categories": ["$10","$11","$12","$13","$14"], "values": [2,3,4,1,2], "scale": 1, "unit": "shirts" },
-      "choices": ["A. 10","B. 12","C. 14","D. 5"], "answer": "B",
+      "data_table": {
+        "title": "Shirt Prices",
+        "type": "line_plot",
+        "categories": [
+          "$10",
+          "$11",
+          "$12",
+          "$13",
+          "$14"
+        ],
+        "values": [
+          2,
+          3,
+          4,
+          1,
+          2
+        ],
+        "scale": 1,
+        "unit": "shirts"
+      },
+      "choices": [
+        "A. 10",
+        "B. 12",
+        "C. 14",
+        "D. 5"
+      ],
+      "answer": "B",
       "explanation": "2+3+4+1+2 = 12."
     },
     {
-      "id": "PT_05", "section": "pretest", "difficulty": 2,
+      "id": "PT_05",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Same line plot. At which price were the most shirts sold?",
-      "data_table": { "title": "Shirt Prices", "type": "line_plot", "categories": ["$10","$11","$12","$13","$14"], "values": [2,3,4,1,2], "scale": 1, "unit": "shirts" },
-      "choices": ["A. $10","B. $11","C. $12","D. $14"], "answer": "C",
+      "data_table": {
+        "title": "Shirt Prices",
+        "type": "line_plot",
+        "categories": [
+          "$10",
+          "$11",
+          "$12",
+          "$13",
+          "$14"
+        ],
+        "values": [
+          2,
+          3,
+          4,
+          1,
+          2
+        ],
+        "scale": 1,
+        "unit": "shirts"
+      },
+      "choices": [
+        "A. $10",
+        "B. $11",
+        "C. $12",
+        "D. $14"
+      ],
+      "answer": "C",
       "explanation": "$12 has the most Xs (4)."
     },
     {
-      "id": "LN_01", "section": "learn", "difficulty": 0,
+      "id": "LN_01",
+      "section": "learn",
+      "difficulty": 0,
       "type": "concept_card",
       "title": "What is a Line Plot?",
-      "content": "A line plot uses Xs (or dots) above a number line to show data. Each X represents one piece of data. The number line shows the values (like measurements or prices)."
+      "content": "A line plot uses Xs (or dots) above a number line to show data. Each X represents one piece of data. The number line shows the values (like measurements or prices).",
+      "cpa_phase": "concrete",
+      "visual_type": "none"
     },
     {
-      "id": "LN_02", "section": "learn", "difficulty": 0,
+      "id": "LN_02",
+      "section": "learn",
+      "difficulty": 0,
       "type": "concept_card",
       "title": "Reading a Line Plot",
-      "content": "To find how many for a value, count the Xs above that number. To find the total, count ALL the Xs. To find 'most,' look for the tallest stack of Xs."
+      "content": "To find how many for a value, count the Xs above that number. To find the total, count ALL the Xs. To find 'most,' look for the tallest stack of Xs.",
+      "cpa_phase": "concrete",
+      "visual_type": "none"
     },
     {
-      "id": "LN_03", "section": "learn", "difficulty": 0,
+      "id": "LN_03",
+      "section": "learn",
+      "difficulty": 0,
       "type": "concept_card",
       "title": "Making a Line Plot",
-      "content": "Step 1: Draw a number line with the values from your data. Step 2: Write a title. Step 3: For each data point, draw an X above the correct number. Step 4: Check that your total Xs match the total data points."
+      "content": "Step 1: Draw a number line with the values from your data. Step 2: Write a title. Step 3: For each data point, draw an X above the correct number. Step 4: Check that your total Xs match the total data points.",
+      "cpa_phase": "pictorial",
+      "visual_type": "none"
     },
     {
-      "id": "TRY_01", "section": "try", "difficulty": 1,
+      "id": "TRY_01",
+      "section": "try",
+      "difficulty": 1,
       "question": "Line plot of shoe sizes: Size 1 has 3 Xs, Size 2 has 5 Xs, Size 3 has 2 Xs. How many students wear Size 2?",
-      "data_table": { "title": "Shoe Sizes", "type": "line_plot", "categories": ["Size 1","Size 2","Size 3"], "values": [3,5,2], "scale": 1, "unit": "students" },
-      "choices": ["A. 2","B. 3","C. 5","D. 10"], "answer": "C",
-      "explanation": "5 Xs above Size 2."
+      "data_table": {
+        "title": "Shoe Sizes",
+        "type": "line_plot",
+        "categories": [
+          "Size 1",
+          "Size 2",
+          "Size 3"
+        ],
+        "values": [
+          3,
+          5,
+          2
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 2",
+        "B. 3",
+        "C. 5",
+        "D. 10"
+      ],
+      "answer": "C",
+      "explanation": "5 Xs above Size 2.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use and make line plots works."
+      },
+      "solution_steps": []
     },
     {
-      "id": "TRY_02", "section": "try", "difficulty": 2,
+      "id": "TRY_02",
+      "section": "try",
+      "difficulty": 2,
       "question": "Line plot: 4 inches = 1X, 4½ inches = 3X, 5 inches = 5X, 5½ inches = 2X, 6 inches = 1X. How many items are 5 inches or longer?",
-      "data_table": { "title": "Ribbon Lengths", "type": "line_plot", "categories": ["4","4½","5","5½","6"], "values": [1,3,5,2,1], "scale": 1, "unit": "ribbons" },
-      "choices": ["A. 5","B. 7","C. 8","D. 12"], "answer": "C",
-      "explanation": "5 in (5) + 5½ in (2) + 6 in (1) = 8."
+      "data_table": {
+        "title": "Ribbon Lengths",
+        "type": "line_plot",
+        "categories": [
+          "4",
+          "4½",
+          "5",
+          "5½",
+          "6"
+        ],
+        "values": [
+          1,
+          3,
+          5,
+          2,
+          1
+        ],
+        "scale": 1,
+        "unit": "ribbons"
+      },
+      "choices": [
+        "A. 5",
+        "B. 7",
+        "C. 8",
+        "D. 12"
+      ],
+      "answer": "C",
+      "explanation": "5 in (5) + 5½ in (2) + 6 in (1) = 8.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use and make line plots works."
+      },
+      "solution_steps": []
     },
     {
-      "id": "TRY_03", "section": "try", "difficulty": 2,
+      "id": "TRY_03",
+      "section": "try",
+      "difficulty": 2,
       "question": "Line plot of shirt prices. How many shirts were sold for $13 or more?",
-      "data_table": { "title": "Shirt Prices", "type": "line_plot", "categories": ["$10","$11","$12","$13","$14"], "values": [2,3,4,1,2], "scale": 1, "unit": "shirts" },
-      "choices": ["A. 1","B. 2","C. 3","D. 5"], "answer": "C",
-      "explanation": "$13 (1) + $14 (2) = 3."
+      "data_table": {
+        "title": "Shirt Prices",
+        "type": "line_plot",
+        "categories": [
+          "$10",
+          "$11",
+          "$12",
+          "$13",
+          "$14"
+        ],
+        "values": [
+          2,
+          3,
+          4,
+          1,
+          2
+        ],
+        "scale": 1,
+        "unit": "shirts"
+      },
+      "choices": [
+        "A. 1",
+        "B. 2",
+        "C. 3",
+        "D. 5"
+      ],
+      "answer": "C",
+      "explanation": "$13 (1) + $14 (2) = 3.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use and make line plots works."
+      },
+      "solution_steps": []
     },
     {
-      "id": "R1_01", "section": "practice_r1", "difficulty": 1,
+      "id": "R1_01",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "Line plot: Value 5 has 6 Xs, Value 6 has 2 Xs, Value 7 has 4 Xs. Which value appears the most?",
-      "data_table": { "title": "Number of Push-ups", "type": "line_plot", "categories": ["5","6","7"], "values": [6,2,4], "scale": 1, "unit": "students" },
-      "choices": ["A. 5","B. 6","C. 7","D. All equal"], "answer": "A",
-      "explanation": "Value 5 has the most Xs (6)."
+      "data_table": {
+        "title": "Number of Push-ups",
+        "type": "line_plot",
+        "categories": [
+          "5",
+          "6",
+          "7"
+        ],
+        "values": [
+          6,
+          2,
+          4
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 5",
+        "B. 6",
+        "C. 7",
+        "D. All equal"
+      ],
+      "answer": "A",
+      "explanation": "Value 5 has the most Xs (6).",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R1_02", "section": "practice_r1", "difficulty": 1,
+      "id": "R1_02",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "Line plot: 2 inches = 3X, 3 inches = 5X, 4 inches = 2X. How many total measurements?",
-      "data_table": { "title": "Leaf Lengths", "type": "line_plot", "categories": ["2 in","3 in","4 in"], "values": [3,5,2], "scale": 1, "unit": "leaves" },
-      "choices": ["A. 5","B. 8","C. 10","D. 12"], "answer": "C",
-      "explanation": "3+5+2 = 10."
+      "data_table": {
+        "title": "Leaf Lengths",
+        "type": "line_plot",
+        "categories": [
+          "2 in",
+          "3 in",
+          "4 in"
+        ],
+        "values": [
+          3,
+          5,
+          2
+        ],
+        "scale": 1,
+        "unit": "leaves"
+      },
+      "choices": [
+        "A. 5",
+        "B. 8",
+        "C. 10",
+        "D. 12"
+      ],
+      "answer": "C",
+      "explanation": "3+5+2 = 10.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R1_03", "section": "practice_r1", "difficulty": 1,
+      "id": "R1_03",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "On a line plot, there are 0 Xs above the number 8. What does that mean?",
-      "choices": ["A. 8 items were counted","B. No data points have the value 8","C. The line plot is wrong","D. You should skip that number"], "answer": "B",
-      "explanation": "0 Xs means no data has that value."
+      "choices": [
+        "A. 8 items were counted",
+        "B. No data points have the value 8",
+        "C. The line plot is wrong",
+        "D. You should skip that number"
+      ],
+      "answer": "B",
+      "explanation": "0 Xs means no data has that value.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R1_04", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_04",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Line plot of test scores: 80=1X, 85=3X, 90=5X, 95=4X, 100=2X. How many students scored 90 or higher?",
-      "data_table": { "title": "Test Scores", "type": "line_plot", "categories": ["80","85","90","95","100"], "values": [1,3,5,4,2], "scale": 1, "unit": "students" },
-      "choices": ["A. 5","B. 9","C. 11","D. 15"], "answer": "C",
-      "explanation": "90(5)+95(4)+100(2) = 11."
+      "data_table": {
+        "title": "Test Scores",
+        "type": "line_plot",
+        "categories": [
+          "80",
+          "85",
+          "90",
+          "95",
+          "100"
+        ],
+        "values": [
+          1,
+          3,
+          5,
+          4,
+          2
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 5",
+        "B. 9",
+        "C. 11",
+        "D. 15"
+      ],
+      "answer": "C",
+      "explanation": "90(5)+95(4)+100(2) = 11.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R1_05", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_05",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Line plot: $5=2X, $6=0X, $7=4X, $8=3X. Is there a price with no data?",
-      "data_table": { "title": "Toy Prices", "type": "line_plot", "categories": ["$5","$6","$7","$8"], "values": [2,0,4,3], "scale": 1, "unit": "toys" },
-      "choices": ["A. Yes, $5","B. Yes, $6","C. Yes, $8","D. No, all have data"], "answer": "B",
-      "explanation": "$6 has 0 Xs."
+      "data_table": {
+        "title": "Toy Prices",
+        "type": "line_plot",
+        "categories": [
+          "$5",
+          "$6",
+          "$7",
+          "$8"
+        ],
+        "values": [
+          2,
+          0,
+          4,
+          3
+        ],
+        "scale": 1,
+        "unit": "toys"
+      },
+      "choices": [
+        "A. Yes, $5",
+        "B. Yes, $6",
+        "C. Yes, $8",
+        "D. No, all have data"
+      ],
+      "answer": "B",
+      "explanation": "$6 has 0 Xs.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R1_06", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_06",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Line plot: 6 in = 2X, 6½ in = 4X, 7 in = 3X, 7½ in = 1X. How many items are shorter than 7 inches?",
-      "data_table": { "title": "Pencil Lengths", "type": "line_plot", "categories": ["6","6½","7","7½"], "values": [2,4,3,1], "scale": 1, "unit": "pencils" },
-      "choices": ["A. 2","B. 4","C. 6","D. 9"], "answer": "C",
-      "explanation": "6 in (2) + 6½ in (4) = 6."
+      "data_table": {
+        "title": "Pencil Lengths",
+        "type": "line_plot",
+        "categories": [
+          "6",
+          "6½",
+          "7",
+          "7½"
+        ],
+        "values": [
+          2,
+          4,
+          3,
+          1
+        ],
+        "scale": 1,
+        "unit": "pencils"
+      },
+      "choices": [
+        "A. 2",
+        "B. 4",
+        "C. 6",
+        "D. 9"
+      ],
+      "answer": "C",
+      "explanation": "6 in (2) + 6½ in (4) = 6.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R1_07", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_07",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Line plot: 3 in = 1X, 3¼ in = 2X, 3½ in = 4X, 3¾ in = 3X, 4 in = 2X. What length appears the most?",
-      "data_table": { "title": "Worm Lengths", "type": "line_plot", "categories": ["3","3¼","3½","3¾","4"], "values": [1,2,4,3,2], "scale": 1, "unit": "worms" },
-      "choices": ["A. 3 inches","B. 3¼ inches","C. 3½ inches","D. 3¾ inches"], "answer": "C",
-      "explanation": "3½ inches has the most Xs (4)."
+      "data_table": {
+        "title": "Worm Lengths",
+        "type": "line_plot",
+        "categories": [
+          "3",
+          "3¼",
+          "3½",
+          "3¾",
+          "4"
+        ],
+        "values": [
+          1,
+          2,
+          4,
+          3,
+          2
+        ],
+        "scale": 1,
+        "unit": "worms"
+      },
+      "choices": [
+        "A. 3 inches",
+        "B. 3¼ inches",
+        "C. 3½ inches",
+        "D. 3¾ inches"
+      ],
+      "answer": "C",
+      "explanation": "3½ inches has the most Xs (4).",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R2_01", "section": "practice_r2", "difficulty": 2,
+      "id": "R2_01",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "Line plot of crayon lengths: 2 in = 3X, 2½ in = 5X, 3 in = 4X, 3½ in = 2X, 4 in = 1X. Were more crayons shorter than 3 inches or longer than 3 inches?",
-      "data_table": { "title": "Crayon Lengths", "type": "line_plot", "categories": ["2","2½","3","3½","4"], "values": [3,5,4,2,1], "scale": 1, "unit": "crayons" },
-      "choices": ["A. Shorter (8 crayons)","B. Longer (3 crayons)","C. Equal","D. Shorter (3 crayons)"], "answer": "A",
-      "explanation": "Shorter than 3: 2 in(3)+2½ in(5)=8. Longer than 3: 3½(2)+4(1)=3. Shorter wins."
+      "data_table": {
+        "title": "Crayon Lengths",
+        "type": "line_plot",
+        "categories": [
+          "2",
+          "2½",
+          "3",
+          "3½",
+          "4"
+        ],
+        "values": [
+          3,
+          5,
+          4,
+          2,
+          1
+        ],
+        "scale": 1,
+        "unit": "crayons"
+      },
+      "choices": [
+        "A. Shorter (8 crayons)",
+        "B. Longer (3 crayons)",
+        "C. Equal",
+        "D. Shorter (3 crayons)"
+      ],
+      "answer": "A",
+      "explanation": "Shorter than 3: 2 in(3)+2½ in(5)=8. Longer than 3: 3½(2)+4(1)=3. Shorter wins.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R2_02", "section": "practice_r2", "difficulty": 2,
+      "id": "R2_02",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "You measured 15 erasers. You plotted 13 Xs on your line plot. What happened?",
-      "choices": ["A. You measured 2 extra","B. You forgot to plot 2 erasers","C. The line plot is correct","D. You measured 13 correctly"], "answer": "B",
-      "explanation": "15 erasers but only 13 Xs means 2 are missing."
+      "choices": [
+        "A. You measured 2 extra",
+        "B. You forgot to plot 2 erasers",
+        "C. The line plot is correct",
+        "D. You measured 13 correctly"
+      ],
+      "answer": "B",
+      "explanation": "15 erasers but only 13 Xs means 2 are missing.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R2_03", "section": "practice_r2", "difficulty": 3,
+      "id": "R2_03",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "Line plot: 1 in=2X, 1½ in=3X, 2 in=6X, 2½ in=4X, 3 in=1X. If you add 3 more items that are each 1½ inches, what would be the new most common length?",
-      "data_table": { "title": "Caterpillar Lengths", "type": "line_plot", "categories": ["1","1½","2","2½","3"], "values": [2,3,6,4,1], "scale": 1, "unit": "caterpillars" },
-      "choices": ["A. 1½ inches (6 Xs) — tied with 2 inches","B. 2 inches (6 Xs) — still the most","C. 1½ inches (6 Xs) — the new most","D. 2½ inches (4 Xs)"], "answer": "A",
-      "explanation": "1½ becomes 3+3=6. 2 inches is also 6. They're tied."
+      "data_table": {
+        "title": "Caterpillar Lengths",
+        "type": "line_plot",
+        "categories": [
+          "1",
+          "1½",
+          "2",
+          "2½",
+          "3"
+        ],
+        "values": [
+          2,
+          3,
+          6,
+          4,
+          1
+        ],
+        "scale": 1,
+        "unit": "caterpillars"
+      },
+      "choices": [
+        "A. 1½ inches (6 Xs) — tied with 2 inches",
+        "B. 2 inches (6 Xs) — still the most",
+        "C. 1½ inches (6 Xs) — the new most",
+        "D. 2½ inches (4 Xs)"
+      ],
+      "answer": "A",
+      "explanation": "1½ becomes 3+3=6. 2 inches is also 6. They're tied.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R2_04", "section": "practice_r2", "difficulty": 3,
+      "id": "R2_04",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "Find the sum: 642 + 259.",
-      "choices": ["A. 383","B. 801","C. 891","D. 901"], "answer": "D",
-      "explanation": "642+259: 2+9=11 (carry 1), 4+5+1=10 (carry 1), 6+2+1=9. Result: 901."
+      "choices": [
+        "A. 383",
+        "B. 801",
+        "C. 891",
+        "D. 901"
+      ],
+      "answer": "D",
+      "explanation": "642+259: 2+9=11 (carry 1), 4+5+1=10 (carry 1), 6+2+1=9. Result: 901.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R3_01", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_01",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Line plot of heights in inches: 48=1X, 49=3X, 50=5X, 51=4X, 52=2X. The average height is closest to which number?",
-      "data_table": { "title": "Student Heights", "type": "line_plot", "categories": ["48","49","50","51","52"], "values": [1,3,5,4,2], "scale": 1, "unit": "students" },
-      "choices": ["A. 49","B. 50","C. 51","D. 52"], "answer": "B",
-      "explanation": "Total: 48+147+250+204+104=753. Count: 15. 753÷15=50.2 ≈ 50."
+      "data_table": {
+        "title": "Student Heights",
+        "type": "line_plot",
+        "categories": [
+          "48",
+          "49",
+          "50",
+          "51",
+          "52"
+        ],
+        "values": [
+          1,
+          3,
+          5,
+          4,
+          2
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 49",
+        "B. 50",
+        "C. 51",
+        "D. 52"
+      ],
+      "answer": "B",
+      "explanation": "Total: 48+147+250+204+104=753. Count: 15. 753÷15=50.2 ≈ 50.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R3_02", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_02",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Find the difference: 460 − 309.",
-      "choices": ["A. 61","B. 151","C. 161","D. 169"], "answer": "B",
-      "explanation": "460−309: 0−9 (borrow) → 10−9=1, 5−0=5, 4−3=1. Result: 151."
+      "choices": [
+        "A. 61",
+        "B. 151",
+        "C. 161",
+        "D. 169"
+      ],
+      "answer": "B",
+      "explanation": "460−309: 0−9 (borrow) → 10−9=1, 5−0=5, 4−3=1. Result: 151.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R3_03", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_03",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "262 hamburgers rounded to the nearest hundred is?",
-      "choices": ["A. 200","B. 260","C. 270","D. 300"], "answer": "D",
-      "explanation": "262: tens digit is 6 ≥ 5 → round up to 300."
+      "choices": [
+        "A. 200",
+        "B. 260",
+        "C. 270",
+        "D. 300"
+      ],
+      "answer": "D",
+      "explanation": "262: tens digit is 6 ≥ 5 → round up to 300.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R3_04", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_04",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Line plot: 5 in=2X, 5½ in=4X, 6 in=6X, 6½ in=3X, 7 in=1X. How many items are between 5½ and 6½ inches (inclusive)?",
-      "data_table": { "title": "Ribbon Lengths", "type": "line_plot", "categories": ["5","5½","6","6½","7"], "values": [2,4,6,3,1], "scale": 1, "unit": "ribbons" },
-      "choices": ["A. 6","B. 10","C. 13","D. 16"], "answer": "C",
-      "explanation": "5½(4)+6(6)+6½(3) = 13."
+      "data_table": {
+        "title": "Ribbon Lengths",
+        "type": "line_plot",
+        "categories": [
+          "5",
+          "5½",
+          "6",
+          "6½",
+          "7"
+        ],
+        "values": [
+          2,
+          4,
+          6,
+          3,
+          1
+        ],
+        "scale": 1,
+        "unit": "ribbons"
+      },
+      "choices": [
+        "A. 6",
+        "B. 10",
+        "C. 13",
+        "D. 16"
+      ],
+      "answer": "C",
+      "explanation": "5½(4)+6(6)+6½(3) = 13.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use and make line plots works."
+      }
     },
     {
-      "id": "R3_05", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_05",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "517 stickers rounded to the nearest ten is?",
-      "choices": ["A. 500","B. 510","C. 520","D. 600"], "answer": "C",
-      "explanation": "517: ones digit 7 ≥ 5 → round up to 520."
+      "choices": [
+        "A. 500",
+        "B. 510",
+        "C. 520",
+        "D. 600"
+      ],
+      "answer": "C",
+      "explanation": "517: ones digit 7 ≥ 5 → round up to 520.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use and make line plots works."
+      }
     }
-  ]
+  ],
+  "concept": "use_and_make_line_plots"
 }

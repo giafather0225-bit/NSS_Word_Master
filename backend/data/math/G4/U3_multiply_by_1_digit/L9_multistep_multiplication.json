@@ -1,0 +1,789 @@
+{
+  "lesson_id": "L9_multistep_multiplication",
+  "title": "Solve Multistep Multiplication Problems",
+  "grade": "G4",
+  "unit": "U3_multiply_by_1_digit",
+  "lesson": "L9_multistep_multiplication",
+  "ccss": [
+    "4.NBT.B.5",
+    "4.OA.A.3"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.9",
+  "essential_question": "How do you plan and solve multi-step problems that include multiplication?",
+  "vocabulary": [
+    "multi-step",
+    "order of operations",
+    "plan"
+  ],
+  "concept": "multi_step_multiplication_problems",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "A pack of pencils has 12. Ava buys 6 packs and loses 5. How many does she have?",
+      "choices": [
+        "A) 67",
+        "B) 72",
+        "C) 77",
+        "D) 82"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. 6×12=72; 72−5=67."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "A box holds 8 crayons. 9 boxes total. 14 are broken. Working: ___",
+      "correct_answer": "58",
+      "hints": [
+        "9×8, then subtract 14.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 58. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "A farm has 6 rows of 125 plants; 45 die. Plants left: ___",
+      "correct_answer": "705",
+      "hints": [
+        "Think about what multi step multiplication problems means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 705. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 1,
+      "question": "Multi-step problems always need both × and −.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is False. They may need +, −, ×, ÷ in any combo."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "Tom bikes 8 km/day for 7 days, then 5 km/day for 3 more days. Total km: ___",
+      "correct_answer": "71",
+      "hints": [
+        "Think about what multi step multiplication problems means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 71. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Plan Before Calculating",
+      "content": "Multi-step problems need a plan. Identify each step: what are you multiplying, adding, or subtracting?",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Multi-step problems need a plan. Identify each step: what are you multiplying, adding, or subtracting?"
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Use Bar Models",
+      "content": "Draw bars for each group. Add bars together or subtract to show what's removed.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "Groups",
+              "value": 0
+            },
+            {
+              "label": "Remove",
+              "value": 0
+            }
+          ]
+        }
+      },
+      "tts": "Draw bars for each group. Add bars together or subtract to show what's removed."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Order of Operations",
+      "content": "Do multiplication first, then addition and subtraction (unless parentheses say otherwise).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Do multiplication first, then addition and subtraction (unless parentheses say otherwise)."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Label Each Step",
+      "content": "Write Step 1, Step 2, etc., so you don't lose track. Check each step makes sense.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Write Step 1, Step 2, etc., so you don't lose track. Check each step makes sense."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate for Reasonableness",
+      "content": "Round to check if each step's partial answer looks reasonable.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Round to check if each step's partial answer looks reasonable."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Reread the Question",
+      "content": "After calculating, make sure your answer matches what was asked. Underline key words.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "After calculating, make sure your answer matches what was asked. Underline key words."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "A box has 12 cupcakes. Sam buys 5 boxes and eats 8. How many are left?",
+      "correct_answer": "52",
+      "hints": [
+        "Think about what multi step multiplication problems means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "5 × 12 = 60.",
+        "60 − 8 = 52."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 52. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "A school has 8 classes of 25 students. 40 are absent. Present: ___",
+      "correct_answer": "160",
+      "hints": [
+        "Think about what multi step multiplication problems means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "8×25=200.",
+        "200−40=160."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 160. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "Lea runs 6 laps × 400 m = ? Then adds 1 more lap. Total m: ___",
+      "correct_answer": "2800",
+      "hints": [
+        "Think about what multi step multiplication problems means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "6×400=2,400.",
+        "2,400+400=2,800."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2800. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "Tim buys 4 packs of 15 pens and gives 8 to his friends. Left: ___",
+      "correct_answer": "52",
+      "hints": [
+        "Think about what multi step multiplication problems means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "4×15=60.",
+        "60−8=52."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 52. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "A van holds 9 people. 7 vans are full. 5 more arrive. Total: ___",
+      "correct_answer": "68",
+      "hints": [
+        "Think about what multi step multiplication problems means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "7×9=63.",
+        "63+5=68."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 68. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 1,
+      "question": "4 groups of 12; then + 6. Total = ___",
+      "correct_answer": "54",
+      "hints": [
+        "Multiply first: 4×12.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 54. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "5 groups of 20; then - 8. Total = ___",
+      "correct_answer": "92",
+      "hints": [
+        "Multiply first: 5×20.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 92. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "6 groups of 25; then + 15. Total = ___",
+      "correct_answer": "165",
+      "hints": [
+        "Multiply first: 6×25.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 165. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "7 groups of 30; then - 12. Total = ___",
+      "correct_answer": "198",
+      "hints": [
+        "Multiply first: 7×30.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 198. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "8 groups of 15; then - 20. Total = ___",
+      "correct_answer": "100",
+      "hints": [
+        "Multiply first: 8×15.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 100. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "9 groups of 14; then + 18. Total = ___",
+      "correct_answer": "144",
+      "hints": [
+        "Multiply first: 9×14.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 144. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "3 groups of 125; then + 25. Total = ___",
+      "correct_answer": "400",
+      "hints": [
+        "Multiply first: 3×125.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "4 groups of 100; then - 45. Total = ___",
+      "correct_answer": "355",
+      "hints": [
+        "Multiply first: 4×100.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 355. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "6 groups of 75; then - 50. Total = ___",
+      "correct_answer": "400",
+      "hints": [
+        "Multiply first: 6×75.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "8 groups of 50; then + 25. Total = ___",
+      "correct_answer": "425",
+      "hints": [
+        "Multiply first: 8×50.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 425. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 1,
+      "question": "5 groups of 15; then + 10. Total = ___",
+      "correct_answer": "85",
+      "hints": [
+        "Multiply first: 5×15.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 85. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "6 groups of 18; then - 12. Total = ___",
+      "correct_answer": "96",
+      "hints": [
+        "Multiply first: 6×18.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 96. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "7 groups of 22; then - 14. Total = ___",
+      "correct_answer": "140",
+      "hints": [
+        "Multiply first: 7×22.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 140. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "8 groups of 30; then + 16. Total = ___",
+      "correct_answer": "256",
+      "hints": [
+        "Multiply first: 8×30.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 256. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "9 groups of 40; then - 25. Total = ___",
+      "correct_answer": "335",
+      "hints": [
+        "Multiply first: 9×40.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 335. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "4 groups of 55; then + 20. Total = ___",
+      "correct_answer": "240",
+      "hints": [
+        "Multiply first: 4×55.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 240. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "5 groups of 120; then + 30. Total = ___",
+      "correct_answer": "630",
+      "hints": [
+        "Multiply first: 5×120.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 630. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "6 groups of 85; then - 35. Total = ___",
+      "correct_answer": "475",
+      "hints": [
+        "Multiply first: 6×85.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 475. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "7 groups of 200; then - 100. Total = ___",
+      "correct_answer": "1300",
+      "hints": [
+        "Multiply first: 7×200.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1300. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "3 groups of 350; then + 150. Total = ___",
+      "correct_answer": "1200",
+      "hints": [
+        "Multiply first: 3×350.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1200. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "6 groups of 45; then + 15. Total = ___",
+      "correct_answer": "285",
+      "hints": [
+        "Multiply first: 6×45.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 285. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 2,
+      "question": "8 groups of 32; then - 22. Total = ___",
+      "correct_answer": "234",
+      "hints": [
+        "Multiply first: 8×32.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 234. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "9 groups of 125; then - 45. Total = ___",
+      "correct_answer": "1080",
+      "hints": [
+        "Multiply first: 9×125.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1080. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "7 groups of 250; then + 50. Total = ___",
+      "correct_answer": "1800",
+      "hints": [
+        "Multiply first: 7×250.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1800. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "plan_multistep",
+      "concept": "multi_step_multiplication_problems",
+      "difficulty": 3,
+      "question": "5 groups of 175; then - 75. Total = ___",
+      "correct_answer": "800",
+      "hints": [
+        "Multiply first: 5×175.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 800. Multiply place by place."
+      }
+    }
+  ]
+}

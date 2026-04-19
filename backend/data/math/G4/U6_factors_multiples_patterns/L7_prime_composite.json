@@ -1,0 +1,781 @@
+{
+  "lesson_id": "L7",
+  "title": "Prime and Composite Numbers",
+  "grade": "G4",
+  "unit": "U6_factors_multiples_patterns",
+  "lesson": "L7",
+  "ccss": [
+    "4.OA.B.4"
+  ],
+  "standard": "4.OA.B.4",
+  "go_math_ref": "Go Math G4 Ch5 L7",
+  "essential_question": "How do you tell if a number is prime or composite?",
+  "vocabulary": [
+    "prime",
+    "composite",
+    "factor"
+  ],
+  "concept": "prime_composite",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Which is prime?",
+      "choices": [
+        "A) 9",
+        "B) 11",
+        "C) 15",
+        "D) 21"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 11 has only factors 1 and 11."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Which is composite?",
+      "choices": [
+        "A) 2",
+        "B) 7",
+        "C) 13",
+        "D) 15"
+      ],
+      "correct_answer": "D",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is D. 15 = 3×5."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 17 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "No factors other than 1 and 17.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "1 is neither prime nor composite.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Smallest prime number = ___",
+      "correct_answer": "2",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Prime Numbers",
+      "content": "A prime has exactly two factors: 1 and itself. Examples: 2, 3, 5, 7, 11.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A prime has exactly two factors: 1 and itself. Examples: 2, 3, 5, 7, 11."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Composite Numbers",
+      "content": "A composite has more than two factors. Examples: 4, 6, 8, 9, 10.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A composite has more than two factors. Examples: 4, 6, 8, 9, 10."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Why 1 is Special",
+      "content": "1 has only ONE factor (itself). So it's neither prime nor composite.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "1 has only ONE factor (itself). So it's neither prime nor composite."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Quick Tests",
+      "content": "Even numbers > 2 are composite. Numbers ending in 5 (except 5) are composite.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Even numbers > 2 are composite. Numbers ending in 5 (except 5) are composite."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Primes under 20",
+      "content": "2, 3, 5, 7, 11, 13, 17, 19. Memorize these!",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "2, 3, 5, 7, 11, 13, 17, 19. Memorize these!"
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Checking Primality",
+      "content": "Try dividing by small primes up to the square root. If none divides, it's prime.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Try dividing by small primes up to the square root. If none divides, it's prime."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 13 prime?",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "Divisors of 13: only 1 and 13.",
+        "No other factors.",
+        "Prime."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 21 prime?",
+      "correct_answer": "no",
+      "hints": [
+        "Think about prime composite.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "21 = 3 × 7.",
+        "Has factors 3 and 7.",
+        "Composite."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Smallest composite number?",
+      "correct_answer": "4",
+      "hints": [
+        "Think about prime composite.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "Check 2,3: prime.",
+        "4 = 2×2.",
+        "Smallest composite."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 29 prime?",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "Try dividing by 2,3,5.",
+        "None divides.",
+        "Prime."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "How many primes are between 1 and 10?",
+      "correct_answer": "4",
+      "hints": [
+        "Think about prime composite.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "2,3,5,7.",
+        "Four primes.",
+        "4."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 4 prime? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 7 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 15 prime? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 11 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 12 prime? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 17 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 13 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 5 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 9 prime? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Is 6 prime? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Is 39 prime? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Is 19 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Is 49 prime? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Is 27 prime? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Is 35 prime? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Is 29 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Is 31 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Is 37 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Is 23 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Is 43 prime? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about prime composite.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "How many prime numbers are between 10 and 20?",
+      "correct_answer": "4",
+      "hints": [
+        "11,13,17,19.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Which is composite?",
+      "choices": [
+        "A) 2",
+        "B) 17",
+        "C) 23",
+        "D) 27"
+      ],
+      "correct_answer": "D",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is D. 27=3×9."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Which is prime?",
+      "choices": [
+        "A) 25",
+        "B) 27",
+        "C) 29",
+        "D) 33"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 29 only divisible by 1 and 29."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 2,
+      "question": "Number of primes between 1 and 20?",
+      "correct_answer": "8",
+      "hints": [
+        "2,3,5,7,11,13,17,19.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "classify_numbers",
+      "concept": "prime_composite",
+      "difficulty": 1,
+      "question": "Every even number greater than 2 is composite.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    }
+  ]
+}

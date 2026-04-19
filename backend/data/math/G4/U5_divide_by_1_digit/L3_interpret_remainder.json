@@ -1,0 +1,786 @@
+{
+  "lesson_id": "L3",
+  "title": "Interpret the Remainder",
+  "grade": "G4",
+  "unit": "U5_divide_by_1_digit",
+  "lesson": "L3",
+  "ccss": [
+    "4.NBT.B.6"
+  ],
+  "standard": "4.NBT.B.6",
+  "go_math_ref": "Go Math G4 Ch4 L3",
+  "essential_question": "How does the story decide what the remainder means?",
+  "vocabulary": [
+    "interpret",
+    "remainder",
+    "context",
+    "round up"
+  ],
+  "concept": "interpret_remainder",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "47 students in vans of 6. How many vans needed?",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 6"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 47÷6 = 7 R5 — but 5 extra kids still need a van, so 8."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "50 cookies in bags of 8. How many FULL bags?",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 50÷8=6 R2. Only 6 bags are full."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "37 apples shared equally by 4 friends. How many each?",
+      "choices": [
+        "A) 9",
+        "B) 10",
+        "C) 8",
+        "D) 12"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. 37÷4=9 R1. Each gets 9; 1 left over."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 1,
+      "question": "The remainder sometimes means 'round up' in real problems.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "21 cups in packs of 4. Leftover cups?",
+      "correct_answer": "1",
+      "hints": [
+        "21−20=1.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. Work through each place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Story Matters",
+      "content": "The remainder means different things in different stories. Read carefully.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "The remainder means different things in different stories. Read carefully."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Round Up (Containers)",
+      "content": "If the remainder means 'still needs space', you round UP. 47 kids in vans of 6 → 8 vans.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If the remainder means 'still needs space', you round UP. 47 kids in vans of 6 → 8 vans."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Round Down (Full Groups)",
+      "content": "If you only count full groups, ignore the remainder. 50 cookies in bags of 8 → 6 full bags.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If you only count full groups, ignore the remainder. 50 cookies in bags of 8 → 6 full bags."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Report the Remainder",
+      "content": "If the question asks 'how many left over', give just the remainder.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If the question asks 'how many left over', give just the remainder."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Use as a Fraction",
+      "content": "Sometimes the remainder is written as a fraction (e.g., ½ a pizza left).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Sometimes the remainder is written as a fraction (e.g., ½ a pizza left)."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Pick the Right Meaning",
+      "content": "Ask: does the extra need to fit? Is it wasted? Is it shared?",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Ask: does the extra need to fit? Is it wasted? Is it shared?"
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "29 students in teams of 4. How many full teams? (Report full teams.)",
+      "correct_answer": "7",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "29÷4=7 R1.",
+        "Only full teams count.",
+        "7 teams."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "29 students in teams of 4. How many teams needed so everyone plays? (Round up.)",
+      "correct_answer": "8",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "29÷4=7 R1.",
+        "1 extra still needs a team.",
+        "8 teams."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "36 pencils in boxes of 5. Leftover pencils?",
+      "correct_answer": "1",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "36÷5=7 R1.",
+        "Remainder is 1.",
+        "1 pencil left."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "50 books, 8 per shelf. Full shelves?",
+      "correct_answer": "6",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "50÷8=6 R2.",
+        "Only full shelves.",
+        "6 full."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "50 books, 8 per shelf. Shelves needed?",
+      "correct_answer": "7",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "50÷8=6 R2.",
+        "Extra 2 also need a shelf.",
+        "7 shelves."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 1,
+      "question": "23 ÷ 5 remainder?",
+      "correct_answer": "3",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. Work through each place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 1,
+      "question": "23 cups in packs of 5. Full packs?",
+      "correct_answer": "4",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 1,
+      "question": "23 cups in packs of 5. Packs needed for all?",
+      "correct_answer": "5",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 1,
+      "question": "41 kids in teams of 6. Full teams?",
+      "correct_answer": "6",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work through each place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 1,
+      "question": "41 kids in teams of 6. Leftover kids?",
+      "correct_answer": "5",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "54 apples in bags of 7. Bags needed for all?",
+      "correct_answer": "8",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work through each place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 1,
+      "question": "54 ÷ 7 quotient?",
+      "correct_answer": "7",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work through each place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 1,
+      "question": "38 candies shared among 4 kids. Each gets?",
+      "correct_answer": "9",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 1,
+      "question": "38 candies shared among 4 kids. Leftover?",
+      "correct_answer": "2",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. Work through each place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "62 ÷ 9 remainder?",
+      "correct_answer": "8",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work through each place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "75 ÷ 8 remainder?",
+      "correct_answer": "3",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. Work through each place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "75 students, 8 per van. Vans needed?",
+      "correct_answer": "10",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. Work through each place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "75 students, 8 per van. Full vans?",
+      "correct_answer": "9",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "96 ÷ 7 quotient?",
+      "correct_answer": "13",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 13. Work through each place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "96 ÷ 7 remainder?",
+      "correct_answer": "5",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "100 pages, 6 per chapter. Full chapters?",
+      "correct_answer": "16",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 16. Work through each place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "100 pages, 6 per chapter. Leftover pages?",
+      "correct_answer": "4",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "83 ÷ 9 quotient?",
+      "correct_answer": "9",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "83 ÷ 9 remainder?",
+      "correct_answer": "2",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. Work through each place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "49 eggs in cartons of 12. Cartons needed?",
+      "correct_answer": "5",
+      "hints": [
+        "Think about interpret remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "57 cookies, 4 per box. Full boxes?",
+      "correct_answer": "14",
+      "hints": [
+        "57÷4=14 R1.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14. Work through each place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "57 cookies, 4 per box. Boxes needed for all?",
+      "correct_answer": "15",
+      "hints": [
+        "Round up.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. Work through each place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "73 campers in cabins of 8. Cabins needed?",
+      "choices": [
+        "A) 8",
+        "B) 9",
+        "C) 10",
+        "D) 7"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 73÷8=9 R1 → 10 cabins."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "88 chairs arranged 6 per row. Full rows?",
+      "correct_answer": "14",
+      "hints": [
+        "88÷6=14 R4.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14. Work through each place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "context_remainder",
+      "concept": "interpret_remainder",
+      "difficulty": 2,
+      "question": "88 chairs arranged 6 per row. Leftover chairs?",
+      "correct_answer": "4",
+      "hints": [
+        "Remainder.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    }
+  ]
+}

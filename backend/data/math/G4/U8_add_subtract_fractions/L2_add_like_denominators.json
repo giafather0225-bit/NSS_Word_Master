@@ -1,0 +1,787 @@
+{
+  "lesson_id": "L2",
+  "title": "Add Fractions with Like Denominators",
+  "grade": "G4",
+  "unit": "U8_add_subtract_fractions",
+  "lesson": "L2",
+  "ccss": [
+    "4.NF.B.3"
+  ],
+  "standard": "4.NF.B.3",
+  "go_math_ref": "Go Math G4 Ch7 L2",
+  "essential_question": "How do you add fractions with the same denominator?",
+  "vocabulary": [
+    "add",
+    "like denominator",
+    "numerator"
+  ],
+  "concept": "add_like_denom",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "2/5 + 1/5 = ___",
+      "correct_answer": "3/5",
+      "hints": [
+        "Add numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/5. 2+1=3, denom stays."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "3/8 + 4/8 = ___",
+      "correct_answer": "7/8",
+      "hints": [
+        "3+4=7.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/8. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "1/6 + 2/6 = ?",
+      "choices": [
+        "A) 3/12",
+        "B) 3/6",
+        "C) 2/6",
+        "D) 3/36"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. Keep denom."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "When adding like-denom fractions, you keep the denominator.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "5/10 + 3/10 = ___",
+      "correct_answer": "8/10",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8/10. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Adding Like Fractions",
+      "content": "When denominators match, add only the numerators. Denominator stays the same.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "When denominators match, add only the numerators. Denominator stays the same."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Why?",
+      "content": "Adding 1/5 + 2/5 means 1 piece of 1/5 plus 2 pieces of 1/5 = 3 pieces of 1/5.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "numerator": 3,
+          "denominator": 5
+        }
+      },
+      "tts": "Adding 1/5 + 2/5 means 1 piece of 1/5 plus 2 pieces of 1/5 = 3 pieces of 1/5."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Fraction Bars",
+      "content": "Shade part of a bar, then shade more. Total shaded parts / total parts = sum.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Shade part of a bar, then shade more. Total shaded parts / total parts = sum."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Simplify if Needed",
+      "content": "After adding, simplify if both parts share a factor.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "After adding, simplify if both parts share a factor."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Sums Over 1",
+      "content": "When the sum's numerator ≥ denominator, you have more than 1 whole.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "When the sum's numerator ≥ denominator, you have more than 1 whole."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Write Equations",
+      "content": "Always write your addition with an equals sign and a reasonable answer.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Always write your addition with an equals sign and a reasonable answer."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "3/7 + 2/7 = ___",
+      "correct_answer": "5/7",
+      "hints": [
+        "Think about add like denom.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Same denom.",
+        "3+2=5.",
+        "5/7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/7."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "5/9 + 3/9 = ___",
+      "correct_answer": "8/9",
+      "hints": [
+        "Think about add like denom.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Add: 5+3.",
+        "=8.",
+        "8/9."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8/9."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "1/4 + 3/4 = ___",
+      "correct_answer": "4/4",
+      "hints": [
+        "Think about add like denom.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "1+3=4.",
+        "4/4=1 whole.",
+        "4/4."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/4."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "2/6 + 3/6 = ___",
+      "correct_answer": "5/6",
+      "hints": [
+        "Think about add like denom.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "2+3=5.",
+        "Keep denom.",
+        "5/6."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/6."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "2/10 + 5/10 = ___",
+      "correct_answer": "7/10",
+      "hints": [
+        "Think about add like denom.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "2+5=7.",
+        "7/10.",
+        "Done."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/10."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "4/7 + 2/7 = ___",
+      "correct_answer": "6/7",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/7. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "1/8 + 1/8 = ___",
+      "correct_answer": "2/8",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/8. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "4/7 + 2/7 = ___",
+      "correct_answer": "6/7",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/7. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "1/7 + 5/7 = ___",
+      "correct_answer": "6/7",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/7. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "7/12 + 4/12 = ___",
+      "correct_answer": "11/12",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11/12. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "5/8 + 2/8 = ___",
+      "correct_answer": "7/8",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/8. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "3/6 + 1/6 = ___",
+      "correct_answer": "4/6",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/6. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "5/8 + 1/8 = ___",
+      "correct_answer": "6/8",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/8. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "10/12 + 1/12 = ___",
+      "correct_answer": "11/12",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11/12. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "2/6 + 1/6 = ___",
+      "correct_answer": "3/6",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/6. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 2,
+      "question": "7/10 + 9/10 = ___",
+      "correct_answer": "16/10",
+      "hints": [
+        "Sum numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 16/10. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 2,
+      "question": "10/12 + 7/12 = ___",
+      "correct_answer": "17/12",
+      "hints": [
+        "Sum numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 17/12. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 2,
+      "question": "4/6 + 5/6 = ___",
+      "correct_answer": "9/6",
+      "hints": [
+        "Sum numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9/6. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 2,
+      "question": "1/10 + 2/10 = ___",
+      "correct_answer": "3/10",
+      "hints": [
+        "Sum numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/10. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 2,
+      "question": "1/6 + 1/6 = ___",
+      "correct_answer": "2/6",
+      "hints": [
+        "Sum numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/6. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 2,
+      "question": "6/10 + 2/10 = ___",
+      "correct_answer": "8/10",
+      "hints": [
+        "Sum numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8/10. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 2,
+      "question": "9/12 + 8/12 = ___",
+      "correct_answer": "17/12",
+      "hints": [
+        "Sum numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 17/12. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 2,
+      "question": "4/6 + 5/6 = ___",
+      "correct_answer": "9/6",
+      "hints": [
+        "Sum numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9/6. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 2,
+      "question": "4/6 + 2/6 = ___",
+      "correct_answer": "6/6",
+      "hints": [
+        "Sum numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/6. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 2,
+      "question": "7/8 + 1/8 = ___",
+      "correct_answer": "8/8",
+      "hints": [
+        "Sum numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8/8. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "4/8 + 3/8 = ___",
+      "correct_answer": "7/8",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/8. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "6/10 + 3/10 = ___",
+      "correct_answer": "9/10",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9/10. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "7/12 + 4/12 = ?",
+      "choices": [
+        "A) 11/24",
+        "B) 11/12",
+        "C) 3/12",
+        "D) 7/12"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 7+4=11."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "5/6 + 1/6 = ___",
+      "correct_answer": "6/6",
+      "hints": [
+        "= 1 whole.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/6. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "add_numerators",
+      "concept": "add_like_denom",
+      "difficulty": 1,
+      "question": "2/7 + 4/7 = ___",
+      "correct_answer": "6/7",
+      "hints": [
+        "Think about add like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/7. "
+      }
+    }
+  ]
+}

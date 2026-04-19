@@ -1,0 +1,783 @@
+{
+  "lesson_id": "L10",
+  "title": "Divide 4-Digit Numbers & Multistep Problems",
+  "grade": "G4",
+  "unit": "U5_divide_by_1_digit",
+  "lesson": "L10",
+  "ccss": [
+    "4.NBT.B.6",
+    "4.OA.A.3"
+  ],
+  "standard": "4.NBT.B.6",
+  "go_math_ref": "Go Math G4 Ch4 L10",
+  "essential_question": "How do you divide 4-digit numbers and solve multistep problems?",
+  "vocabulary": [
+    "long division",
+    "multistep",
+    "quotient",
+    "word problem"
+  ],
+  "concept": "divide_4d_multistep",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "2856 ÷ 4 = ___",
+      "correct_answer": "714",
+      "hints": [
+        "28÷4=7; 05÷4=1 R1; 16÷4=4.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 714. Work through each place."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "A factory makes 3624 toys in 6 days, equally. Per day?",
+      "correct_answer": "604",
+      "hints": [
+        "3624÷6.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 604. Work through each place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "A bakery packs 1248 cupcakes into boxes of 8. Boxes = ?",
+      "choices": [
+        "A) 150",
+        "B) 156",
+        "C) 160",
+        "D) 162"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 1248÷8=156."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 1,
+      "question": "Long division works the same for 4-digit dividends.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 1,
+      "question": "4200 ÷ 7 = ___",
+      "correct_answer": "600",
+      "hints": [
+        "42÷7=6, add two zeros.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 600. Work through each place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Same Steps, More Digits",
+      "content": "Long division works the same for any number of digits.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Long division works the same for any number of digits."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Zeros in the Quotient",
+      "content": "If the current portion is smaller than the divisor, put 0 in the quotient and bring down the next digit.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If the current portion is smaller than the divisor, put 0 in the quotient and bring down the next digit."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Check with Multiplication",
+      "content": "Always multiply quotient × divisor (+ remainder) to verify.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Always multiply quotient × divisor (+ remainder) to verify."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Multi-step Word Problems",
+      "content": "Real problems combine division with other operations. Read and plan each step.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Real problems combine division with other operations. Read and plan each step."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Identify the Operation",
+      "content": "Look for clue words: 'shared equally', 'per group', 'each'.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Look for clue words: 'shared equally', 'per group', 'each'."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate to Check",
+      "content": "Estimate the answer first so you can catch big errors.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimate the answer first so you can catch big errors."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "2436 ÷ 6 = ___",
+      "correct_answer": "406",
+      "hints": [
+        "Think about divide 4d multistep.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "24÷6=4.",
+        "03÷6=0, bring 6 → 36÷6=6.",
+        "406."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 406. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "A school has 1620 books, 5 libraries. Each has ___ books.",
+      "correct_answer": "324",
+      "hints": [
+        "Think about divide 4d multistep.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "1620÷5.",
+        "16÷5=3 R1; 12÷5=2 R2; 20÷5=4.",
+        "324."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 324. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "3150 ÷ 7 = ___",
+      "correct_answer": "450",
+      "hints": [
+        "Think about divide 4d multistep.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "31÷7=4 R3.",
+        "35÷7=5.",
+        "50÷7? Actually 50 has a 0 → bring down 0: 00÷7=0. So 450."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 450. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "A factory makes 5472 items in 8 days. Items/day?",
+      "correct_answer": "684",
+      "hints": [
+        "Think about divide 4d multistep.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "5472÷8.",
+        "54÷8=6 R6; 67÷8=8 R3; 32÷8=4.",
+        "684."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 684. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "A fund has $2916 shared among 6 teams. Each team gets $___.",
+      "correct_answer": "486",
+      "hints": [
+        "Think about divide 4d multistep.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "2916÷6.",
+        "29÷6=4 R5; 51÷6=8 R3; 36÷6=6.",
+        "$486."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 486. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "2712 ÷ 3 = ___",
+      "correct_answer": "904",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 904. Work through each place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "1290 ÷ 2 = ___",
+      "correct_answer": "645",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 645. Work through each place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "4890 ÷ 5 = ___",
+      "correct_answer": "978",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 978. Work through each place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "7290 ÷ 9 = ___",
+      "correct_answer": "810",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 810. Work through each place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "3128 ÷ 8 = ___",
+      "correct_answer": "391",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 391. Work through each place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "3390 ÷ 6 = ___",
+      "correct_answer": "565",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 565. Work through each place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "7722 ÷ 9 = ___",
+      "correct_answer": "858",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 858. Work through each place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "1016 ÷ 2 = ___",
+      "correct_answer": "508",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 508. Work through each place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "3145 ÷ 5 = ___",
+      "correct_answer": "629",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 629. Work through each place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "6345 ÷ 9 = ___",
+      "correct_answer": "705",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 705. Work through each place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "3591 ÷ 7 = ___",
+      "correct_answer": "513",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 513. Work through each place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "8096 ÷ 8 = ___",
+      "correct_answer": "1012",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1012. Work through each place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "3504 ÷ 4 = ___",
+      "correct_answer": "876",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 876. Work through each place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "6732 ÷ 9 = ___",
+      "correct_answer": "748",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 748. Work through each place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "5570 ÷ 5 = ___",
+      "correct_answer": "1114",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1114. Work through each place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "2990 ÷ 5 = ___",
+      "correct_answer": "598",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 598. Work through each place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "4020 ÷ 5 = ___",
+      "correct_answer": "804",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 804. Work through each place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "4752 ÷ 8 = ___",
+      "correct_answer": "594",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 594. Work through each place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "3125 ÷ 5 = ___",
+      "correct_answer": "625",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 625. Work through each place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "4272 ÷ 4 = ___",
+      "correct_answer": "1068",
+      "hints": [
+        "Long division.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1068. Work through each place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "A company ships 3456 toys equally into 8 trucks. Per truck?",
+      "correct_answer": "432",
+      "hints": [
+        "3456÷8.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 432. Work through each place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "6480 ÷ 9 = ___",
+      "correct_answer": "720",
+      "hints": [
+        "Think about divide 4d multistep.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 720. Work through each place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "A farm had 4800 eggs in cartons of 6. Cartons?",
+      "choices": [
+        "A) 700",
+        "B) 800",
+        "C) 900",
+        "D) 1000"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 4800÷6=800."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "A bookstore stocks 2184 books on 7 shelves equally. Per shelf?",
+      "correct_answer": "312",
+      "hints": [
+        "Think about divide 4d multistep.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 312. Work through each place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "divide_4d_multistep",
+      "difficulty": 2,
+      "question": "A concert hall earned $7245 from tickets at $5 each. Tickets sold?",
+      "correct_answer": "1449",
+      "hints": [
+        "7245÷5.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1449. Work through each place."
+      }
+    }
+  ]
+}

@@ -72,6 +72,7 @@ async function startMathLesson(grade, unit, lesson) {
     const sidebar = document.getElementById('sidebar');
     if (sidebar) { sidebar.classList.add('collapsed'); localStorage.setItem('sb_collapsed', '1'); }
 
+    if (typeof mountMathShell === 'function') mountMathShell();
     renderMathRoadmap();
     await loadMathStage('pretest');
 }

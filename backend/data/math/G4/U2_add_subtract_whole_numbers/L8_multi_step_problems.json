@@ -1,0 +1,794 @@
+{
+  "lesson_id": "L8_multi_step_problems",
+  "title": "Solve Multi-step Problems",
+  "grade": "G4",
+  "unit": "U2_add_subtract_whole_numbers",
+  "lesson": "L8_multi_step_problems",
+  "ccss": [
+    "4.NBT.B.4",
+    "4.OA.A.3"
+  ],
+  "standard": "4.NBT.B.4",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.8",
+  "essential_question": "How do you solve problems that need more than one step?",
+  "vocabulary": [
+    "multi-step",
+    "plan",
+    "check",
+    "estimate"
+  ],
+  "concept": "multi_step_problems",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A store had 450 hats. They sold 180, then got 95 more. How many now?",
+      "choices": [
+        "A) 365",
+        "B) 375",
+        "C) 545",
+        "D) 735"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. 450−180=270; 270+95=365."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "Ari had $500. She spent $125 on shoes and $75 on a book. How much is left?",
+      "correct_answer": "300",
+      "hints": [
+        "Subtract total spent: 500−(125+75).",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 300. Work through it place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A library had 1,200 books. They removed 180 and added 345. How many now?",
+      "correct_answer": "1365",
+      "hints": [
+        "1,200−180+345.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1365. Work through it place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 1,
+      "question": "In a multi-step problem, you should plan each step before calculating.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "Tim had 2,300 stickers. He gave 450 to friends and received 175 new ones. How many does he have?",
+      "choices": [
+        "A) 1,625",
+        "B) 2,025",
+        "C) 2,025",
+        "D) 2,925"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 2,300−450=1,850; 1,850+175=2,025."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "What is a Multi-step Problem?",
+      "content": "Multi-step problems need more than one calculation. You have to do one operation, then use that answer in another operation.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Multi-step problems need more than one calculation. You have to do one operation, then use that answer in another operation."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Make a Plan",
+      "content": "Before you calculate, write down what each step will do. Example: Step 1 subtract, Step 2 add. A clear plan prevents mistakes.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Before you calculate, write down what each step will do. Example: Step 1 subtract, Step 2 add. A clear plan prevents mistakes."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Use Bar Models",
+      "content": "Bar models help organize information. Draw rectangles for each amount to see how the parts fit together.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "Part A",
+              "value": 0
+            },
+            {
+              "label": "Part B",
+              "value": 0
+            }
+          ]
+        }
+      },
+      "tts": "Bar models help organize information. Draw rectangles for each amount to see how the parts fit together."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Check Each Step",
+      "content": "After each calculation, estimate to check. If a partial answer seems wrong, fix it before moving to the next step.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "After each calculation, estimate to check. If a partial answer seems wrong, fix it before moving to the next step."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Watch for Key Words",
+      "content": "'In all' usually means add. 'How many left' usually means subtract. But always read carefully — sometimes key words are misleading.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "'In all' usually means add. 'How many left' usually means subtract. But always read carefully — sometimes key words are misleading."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check the Final Answer",
+      "content": "Reread the problem. Does your answer fit the question? Estimate to verify it's reasonable.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Reread the problem. Does your answer fit the question? Estimate to verify it's reasonable."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "Mia had $720. She earned $150 and spent $245. How much does she have now?",
+      "correct_answer": "625",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Start: $720.",
+        "Earned: 720+150=870.",
+        "Spent: 870−245=625."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 625. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A zoo had 450 birds. They got 120 more, then 75 flew away. How many birds now?",
+      "correct_answer": "495",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "450+120=570.",
+        "570−75=495."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 495. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A tank held 2,400 L. 560 L drained, then 890 L added. Total?",
+      "correct_answer": "2730",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "2,400−560=1,840.",
+        "1,840+890=2,730."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2730. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "Pam saved $1,200. She spent $350 and $475 on trips. How much saved?",
+      "correct_answer": "375",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Total spent: 350+475=825.",
+        "1,200−825=375."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 375. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 3,
+      "question": "A store had 3,500 candles. They sold 1,200 in Jan, 950 in Feb, and got 600 more. How many now?",
+      "correct_answer": "1950",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "3,500−1,200=2,300.",
+        "2,300−950=1,350.",
+        "1,350+600=1,950."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1950. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "Maya had 320 beads, bought 145 more, gave 75 to her friend. How many now?",
+      "correct_answer": "390",
+      "hints": [
+        "320+145−75.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 390. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A farm had 250 eggs. They sold 80, then collected 135 more. How many?",
+      "correct_answer": "305",
+      "hints": [
+        "250−80+135.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 305. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A trip is 840 km. Day 1: 325 km. Day 2: 280 km. Remaining?",
+      "correct_answer": "235",
+      "hints": [
+        "840−325−280.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 235. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "Dan had $500. Earned $225, spent $140. How much?",
+      "correct_answer": "585",
+      "hints": [
+        "500+225−140.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 585. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A library had 1,450 books. Added 320, removed 210. Total?",
+      "correct_answer": "1560",
+      "hints": [
+        "1,450+320−210.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1560. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A tank had 3,200 L. Lost 450, gained 780. Final?",
+      "correct_answer": "3530",
+      "hints": [
+        "3,200−450+780.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3530. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A store had 5,000 apples. Sold 1,200 Mon, 850 Tue. Left?",
+      "correct_answer": "2950",
+      "hints": [
+        "5,000−1,200−850.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2950. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 3,
+      "question": "Kim had $1,500. Spent $350, $275, $180. Left?",
+      "correct_answer": "695",
+      "hints": [
+        "Total spent: 350+275+180=805.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 695. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A bus had 320 riders Mon, 280 Tue, 345 Wed. Total?",
+      "correct_answer": "945",
+      "hints": [
+        "Add all three.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 945. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A farm has 890 cows. Sold 120, bought 210. Total?",
+      "correct_answer": "980",
+      "hints": [
+        "890−120+210.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 980. Work through it place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "Lee had 450 cards. Got 120, gave 80. Total?",
+      "correct_answer": "490",
+      "hints": [
+        "450+120−80.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 490. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A tank had 2,200 L. Used 560, filled 890. Total?",
+      "correct_answer": "2530",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2530. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 3,
+      "question": "A store had 3,400 candles. Sold 1,100, 750, got 500. Total?",
+      "correct_answer": "2050",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2050. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "Ada had $2,000. Spent $425, $350. Left?",
+      "correct_answer": "1225",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1225. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A bus line carried 2,340 Mon, 2,560 Tue, 2,100 Wed. Total?",
+      "correct_answer": "7000",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7000. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A school had 1,250 books. Added 345, removed 120. Total?",
+      "correct_answer": "1475",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1475. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 1,
+      "question": "Pam biked 12 km, 18 km, 25 km in three days. Total km?",
+      "correct_answer": "55",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 55. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 3,
+      "question": "A farm had 4,500 chickens. Lost 890, bought 1,240. Total?",
+      "correct_answer": "4850",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4850. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 3,
+      "question": "Kai had $3,000. Spent $450, $275, $120. Left?",
+      "correct_answer": "2155",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2155. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 3,
+      "question": "A store sold 1,234 items Mon, 2,345 Tue, 1,567 Wed. Total?",
+      "correct_answer": "5146",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5146. Work through it place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A ship carried 560 crates. Loaded 240 more, unloaded 180. Total?",
+      "correct_answer": "620",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 620. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 3,
+      "question": "A pond held 3,500 L. Lost 750, gained 1,200. Total?",
+      "correct_answer": "3950",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3950. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 2,
+      "question": "A bakery sold 1,200 Mon, 1,450 Tue, 1,180 Wed. Total?",
+      "correct_answer": "3830",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3830. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 3,
+      "question": "Mia had $2,500. Earned $450, spent $125, $375. Left?",
+      "correct_answer": "2450",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2450. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "plan_multi_step_solution",
+      "concept": "multi_step_problems",
+      "difficulty": 3,
+      "question": "A farm had 5,400 eggs. Sold 1,890, collected 2,340. Left?",
+      "correct_answer": "5850",
+      "hints": [
+        "Think about what multi step problems means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5850. Work through it place by place."
+      }
+    }
+  ]
+}

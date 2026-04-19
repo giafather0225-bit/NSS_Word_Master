@@ -3,49 +3,506 @@
   "title": "Number of Equal Groups",
   "grade": "G3",
   "unit": "U6_understand_division",
-  "ccss": ["3.OA.A.2"],
-  "go_math_ref": { "chapter": 6, "lesson": "6.3", "pages": "227-230" },
+  "ccss": [
+    "3.OA.A.2"
+  ],
+  "go_math_ref": {
+    "chapter": 6,
+    "lesson": "6.3",
+    "pages": "227-230"
+  },
   "essential_question": "How can you model division to find how many equal groups?",
-  "key_vocabulary": ["equal groups", "divide", "number of groups", "quotient"],
+  "key_vocabulary": [
+    "equal groups",
+    "divide",
+    "number of groups",
+    "quotient"
+  ],
   "strategies": [
     "Circle groups of the given size until all counters are used.",
     "Think: total ÷ size of each group = number of groups.",
     "Skip count up to the total."
   ],
   "pretest": [
-    { "id": "PT_01", "type": "MC", "stem": "35 counters, 7 in each group. How many groups?", "choices": ["4", "5", "6", "7"], "answer": "B", "explanation": "35 ÷ 7 = 5 groups.", "difficulty": 1 },
-    { "id": "PT_02", "type": "MC", "stem": "30 counters, 5 in each group. How many groups?", "choices": ["5", "6", "7", "8"], "answer": "B", "explanation": "30 ÷ 5 = 6.", "difficulty": 1 },
-    { "id": "PT_03", "type": "MC", "stem": "Toby puts 21 books on shelves with 7 per shelf. How many shelves?", "choices": ["2", "3", "4", "7"], "answer": "B", "explanation": "21 ÷ 7 = 3.", "difficulty": 1 },
-    { "id": "PT_04", "type": "MC", "stem": "Mr. Holden has 32 quarters in stacks of 4. How many stacks?", "choices": ["6", "7", "8", "9"], "answer": "C", "explanation": "32 ÷ 4 = 8.", "difficulty": 1 },
-    { "id": "PT_05", "type": "MC", "stem": "16 counters, 4 in each group. How many groups?", "choices": ["3", "4", "5", "6"], "answer": "B", "explanation": "16 ÷ 4 = 4.", "difficulty": 1 }
+    {
+      "id": "PT_01",
+      "type": "MC",
+      "stem": "35 counters, 7 in each group. How many groups?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "35 ÷ 7 = 5 groups.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_02",
+      "type": "MC",
+      "stem": "30 counters, 5 in each group. How many groups?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "B",
+      "explanation": "30 ÷ 5 = 6.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_03",
+      "type": "MC",
+      "stem": "Toby puts 21 books on shelves with 7 per shelf. How many shelves?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "21 ÷ 7 = 3.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_04",
+      "type": "MC",
+      "stem": "Mr. Holden has 32 quarters in stacks of 4. How many stacks?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "32 ÷ 4 = 8.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_05",
+      "type": "MC",
+      "stem": "16 counters, 4 in each group. How many groups?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "16 ÷ 4 = 4.",
+      "difficulty": 1
+    }
   ],
   "learn": [
-    { "id": "LN_01", "type": "concept_card", "title": "Finding the Number of Groups", "content": "When you know the total and how many in each group, divide to find the number of groups. 24 ÷ 8 = 3 means 24 items, 8 in each group, makes 3 groups." },
-    { "id": "LN_02", "type": "concept_card", "title": "Model It", "content": "For 35 ÷ 7: circle groups of 7 from 35 counters. You make 5 circles. So there are 5 groups." },
-    { "id": "LN_03", "type": "concept_card", "title": "Skip Count Up", "content": "To find 36 ÷ 9: count by 9s → 9, 18, 27, 36. That's 4 counts. So 36 ÷ 9 = 4 groups." }
+    {
+      "id": "LN_01",
+      "type": "concept_card",
+      "title": "Finding the Number of Groups",
+      "content": "When you know the total and how many in each group, divide to find the number of groups. 24 ÷ 8 = 3 means 24 items, 8 in each group, makes 3 groups.",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "LN_02",
+      "type": "concept_card",
+      "title": "Model It",
+      "content": "For 35 ÷ 7: circle groups of 7 from 35 counters. You make 5 circles. So there are 5 groups.",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "LN_03",
+      "type": "concept_card",
+      "title": "Skip Count Up",
+      "content": "To find 36 ÷ 9: count by 9s → 9, 18, 27, 36. That's 4 counts. So 36 ÷ 9 = 4 groups.",
+      "cpa_phase": "pictorial",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    }
   ],
   "try": [
-    { "id": "TRY_01", "type": "MC", "stem": "12 counters, 6 in each group. How many groups?", "choices": ["2", "3", "4", "6"], "answer": "A", "explanation": "12 ÷ 6 = 2.", "difficulty": 1 },
-    { "id": "TRY_02", "type": "MC", "stem": "36 counters, 9 in each group. How many groups?", "choices": ["3", "4", "5", "6"], "answer": "B", "explanation": "36 ÷ 9 = 4.", "difficulty": 1 }
+    {
+      "id": "TRY_01",
+      "type": "MC",
+      "stem": "12 counters, 6 in each group. How many groups?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "A",
+      "explanation": "12 ÷ 6 = 2.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how number of equal groups works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_02",
+      "type": "MC",
+      "stem": "36 counters, 9 in each group. How many groups?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "36 ÷ 9 = 4.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how number of equal groups works."
+      },
+      "solution_steps": []
+    }
   ],
   "practice_r1": [
-    { "id": "R1_01", "type": "MC", "stem": "18 ÷ 3 = ?", "choices": ["5", "6", "7", "9"], "answer": "B", "explanation": "18 ÷ 3 = 6.", "difficulty": 1 },
-    { "id": "R1_02", "type": "MC", "stem": "15 ÷ 5 = ?", "choices": ["2", "3", "4", "5"], "answer": "B", "explanation": "15 ÷ 5 = 3.", "difficulty": 1 },
-    { "id": "R1_03", "type": "MC", "stem": "28 ÷ 4 = ?", "choices": ["6", "7", "8", "9"], "answer": "B", "explanation": "28 ÷ 4 = 7.", "difficulty": 1 },
-    { "id": "R1_04", "type": "MC", "stem": "27 ÷ 3 = ?", "choices": ["7", "8", "9", "10"], "answer": "C", "explanation": "27 ÷ 3 = 9.", "difficulty": 1 },
-    { "id": "R1_05", "type": "MC", "stem": "A gardener has 24 plants. He puts 8 in each row. How many rows?", "choices": ["2", "3", "4", "6"], "answer": "B", "explanation": "24 ÷ 8 = 3 rows.", "difficulty": 1 },
-    { "id": "R1_06", "type": "MC", "stem": "40 ÷ 5 = ?", "choices": ["7", "8", "9", "10"], "answer": "B", "explanation": "40 ÷ 5 = 8.", "difficulty": 1 },
-    { "id": "R1_07", "type": "MC", "stem": "A coach puts 42 balls into bags of 6. How many bags?", "choices": ["6", "7", "8", "9"], "answer": "B", "explanation": "42 ÷ 6 = 7.", "difficulty": 1 }
+    {
+      "id": "R1_01",
+      "type": "MC",
+      "stem": "18 ÷ 3 = ?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "9"
+      ],
+      "answer": "B",
+      "explanation": "18 ÷ 3 = 6.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "MC",
+      "stem": "15 ÷ 5 = ?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "B",
+      "explanation": "15 ÷ 5 = 3.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "MC",
+      "stem": "28 ÷ 4 = ?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "B",
+      "explanation": "28 ÷ 4 = 7.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "MC",
+      "stem": "27 ÷ 3 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "27 ÷ 3 = 9.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "MC",
+      "stem": "A gardener has 24 plants. He puts 8 in each row. How many rows?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "24 ÷ 8 = 3 rows.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "MC",
+      "stem": "40 ÷ 5 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "B",
+      "explanation": "40 ÷ 5 = 8.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "MC",
+      "stem": "A coach puts 42 balls into bags of 6. How many bags?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "B",
+      "explanation": "42 ÷ 6 = 7.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how number of equal groups works."
+      }
+    }
   ],
   "practice_r2": [
-    { "id": "R2_01", "type": "MC", "stem": "A toy store has 56 toy cars in boxes of 8. How many boxes?", "choices": ["6", "7", "8", "9"], "answer": "B", "explanation": "56 ÷ 8 = 7.", "difficulty": 2 },
-    { "id": "R2_02", "type": "MC", "stem": "63 ÷ 7 = ?", "choices": ["7", "8", "9", "10"], "answer": "C", "explanation": "63 ÷ 7 = 9.", "difficulty": 2 },
-    { "id": "R2_03", "type": "MC", "stem": "A librarian has 45 new books. She fills shelves with 9 each. How many shelves?", "choices": ["4", "5", "6", "7"], "answer": "B", "explanation": "45 ÷ 9 = 5.", "difficulty": 2 },
-    { "id": "R2_04", "type": "MC", "stem": "81 ÷ 9 = ?", "choices": ["7", "8", "9", "10"], "answer": "C", "explanation": "81 ÷ 9 = 9.", "difficulty": 2 }
+    {
+      "id": "R2_01",
+      "type": "MC",
+      "stem": "A toy store has 56 toy cars in boxes of 8. How many boxes?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "B",
+      "explanation": "56 ÷ 8 = 7.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "MC",
+      "stem": "63 ÷ 7 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "63 ÷ 7 = 9.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "MC",
+      "stem": "A librarian has 45 new books. She fills shelves with 9 each. How many shelves?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "45 ÷ 9 = 5.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "MC",
+      "stem": "81 ÷ 9 = ?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "81 ÷ 9 = 9.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how number of equal groups works."
+      }
+    }
   ],
   "practice_r3": [
-    { "id": "R3_01", "type": "MC", "stem": "A baker bakes 60 muffins. He fills boxes of 6 and sells each box for $4. If he sells all boxes, how much money does he make?", "choices": ["$36", "$40", "$44", "$48"], "answer": "B", "explanation": "60 ÷ 6 = 10 boxes. 10 × $4 = $40.", "difficulty": 3 },
-    { "id": "R3_02", "type": "MC", "stem": "72 students line up in rows of 8. The first 3 rows go inside. How many students are still outside?", "choices": ["24", "36", "48", "56"], "answer": "C", "explanation": "72 ÷ 8 = 9 rows. 3 rows go in = 3 × 8 = 24. 72 − 24 = 48 still outside.", "difficulty": 3 },
-    { "id": "R3_03", "type": "MC", "stem": "Emma has 40 stickers. She gives 5 stickers to each friend until she has 10 left. How many friends got stickers?", "choices": ["4", "5", "6", "8"], "answer": "C", "explanation": "She gave away 40 − 10 = 30. 30 ÷ 5 = 6 friends.", "difficulty": 3 }
-  ]
+    {
+      "id": "R3_01",
+      "type": "MC",
+      "stem": "A baker bakes 60 muffins. He fills boxes of 6 and sells each box for $4. If he sells all boxes, how much money does he make?",
+      "choices": [
+        "$36",
+        "$40",
+        "$44",
+        "$48"
+      ],
+      "answer": "B",
+      "explanation": "60 ÷ 6 = 10 boxes. 10 × $4 = $40.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "MC",
+      "stem": "72 students line up in rows of 8. The first 3 rows go inside. How many students are still outside?",
+      "choices": [
+        "24",
+        "36",
+        "48",
+        "56"
+      ],
+      "answer": "C",
+      "explanation": "72 ÷ 8 = 9 rows. 3 rows go in = 3 × 8 = 24. 72 − 24 = 48 still outside.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how number of equal groups works."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "MC",
+      "stem": "Emma has 40 stickers. She gives 5 stickers to each friend until she has 10 left. How many friends got stickers?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "8"
+      ],
+      "answer": "C",
+      "explanation": "She gave away 40 − 10 = 30. 30 ÷ 5 = 6 friends.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what number of equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how number of equal groups works."
+      }
+    }
+  ],
+  "concept": "number_of_equal_groups"
 }

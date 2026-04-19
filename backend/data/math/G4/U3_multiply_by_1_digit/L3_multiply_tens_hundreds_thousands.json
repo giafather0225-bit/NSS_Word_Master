@@ -1,0 +1,785 @@
+{
+  "lesson_id": "L3_multiply_tens_hundreds_thousands",
+  "title": "Multiply Tens, Hundreds, Thousands",
+  "grade": "G4",
+  "unit": "U3_multiply_by_1_digit",
+  "lesson": "L3_multiply_tens_hundreds_thousands",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.3",
+  "essential_question": "How do you multiply by tens, hundreds, and thousands?",
+  "vocabulary": [
+    "basic fact",
+    "place value",
+    "multiple of ten"
+  ],
+  "concept": "multiply_by_tens_hundreds_thousands",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "3 × 40 = ___",
+      "correct_answer": "120",
+      "hints": [
+        "3×4, then add one zero.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 120. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "5 × 600 = ___",
+      "correct_answer": "3000",
+      "hints": [
+        "5×6, then add two zeros.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3000. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "Which is 7 × 200?",
+      "choices": [
+        "A) 1,400",
+        "B) 140",
+        "C) 14",
+        "D) 14,000"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Work through it step by step."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "6 × 5,000 has three zeros in the product.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. 6×5=30 → 30,000 has 3 zeros (2 from thousand + inner)."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "8 × 9,000 = ___",
+      "correct_answer": "72000",
+      "hints": [
+        "Think about what multiply by tens hundreds thousands means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 72000. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Use Basic Facts",
+      "content": "To multiply by 10, 100, or 1,000, use a basic multiplication fact, then add zeros to the answer.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To multiply by 10, 100, or 1,000, use a basic multiplication fact, then add zeros to the answer."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Count the Zeros",
+      "content": "3 × 40 = 3 × 4 × 10 = 12 × 10 = 120. Count the zeros in the factor and add them to the basic fact answer.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "base10_blocks",
+        "config": {
+          "start": 0,
+          "max": 9999
+        }
+      },
+      "tts": "3 × 40 = 3 × 4 × 10 = 12 × 10 = 120. Count the zeros in the factor and add them to the basic fact answer."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Multiply by Hundreds",
+      "content": "5 × 300 = 5 × 3 × 100 = 15 × 100 = 1,500. Two zeros in 300 → add two zeros.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "5 × 300 = 5 × 3 × 100 = 15 × 100 = 1,500. Two zeros in 300 → add two zeros."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Multiply by Thousands",
+      "content": "7 × 6,000 = 7 × 6 × 1,000 = 42,000. Three zeros → add three zeros.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "7 × 6,000 = 7 × 6 × 1,000 = 42,000. Three zeros → add three zeros."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Handle Inner Zeros",
+      "content": "4 × 25 = 100. Then 4 × 250 = 1,000. The basic fact may already end in zero, so your product has even more zeros.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "4 × 25 = 100. Then 4 × 250 = 1,000. The basic fact may already end in zero, so your product has even more zeros."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate to Check",
+      "content": "Estimate with basic facts. 5 × 389 ≈ 5 × 400 = 2,000. The exact answer should be close.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimate with basic facts. 5 × 389 ≈ 5 × 400 = 2,000. The exact answer should be close."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "4 × 600 = ___",
+      "correct_answer": "2400",
+      "hints": [
+        "Think about what multiply by tens hundreds thousands means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "Basic fact: 4×6=24.",
+        "Two zeros in 600.",
+        "Answer: 2,400."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2400. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "7 × 8,000 = ___",
+      "correct_answer": "56000",
+      "hints": [
+        "Think about what multiply by tens hundreds thousands means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "7×8=56.",
+        "Three zeros.",
+        "Answer: 56,000."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 56000. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "9 × 50 = ___",
+      "correct_answer": "450",
+      "hints": [
+        "Think about what multiply by tens hundreds thousands means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "9×5=45.",
+        "One zero.",
+        "Answer: 450."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 450. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "6 × 700 = ___",
+      "correct_answer": "4200",
+      "hints": [
+        "Think about what multiply by tens hundreds thousands means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "6×7=42.",
+        "Two zeros.",
+        "Answer: 4,200."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4200. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "3 × 2,000 = ___",
+      "correct_answer": "6000",
+      "hints": [
+        "Think about what multiply by tens hundreds thousands means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "3×2=6.",
+        "Three zeros.",
+        "Answer: 6,000."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6000. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "3 × 40 = ___",
+      "correct_answer": "120",
+      "hints": [
+        "3×4 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 120. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "4 × 70 = ___",
+      "correct_answer": "280",
+      "hints": [
+        "4×7 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 280. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "6 × 300 = ___",
+      "correct_answer": "1800",
+      "hints": [
+        "6×30 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1800. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "8 × 500 = ___",
+      "correct_answer": "4000",
+      "hints": [
+        "8×50 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "5 × 200 = ___",
+      "correct_answer": "1000",
+      "hints": [
+        "5×20 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "9 × 600 = ___",
+      "correct_answer": "5400",
+      "hints": [
+        "9×60 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "7 × 2,000 = ___",
+      "correct_answer": "14000",
+      "hints": [
+        "7×200 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 14000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "4 × 6,000 = ___",
+      "correct_answer": "24000",
+      "hints": [
+        "4×600 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 24000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 3,
+      "question": "2 × 900 = ___",
+      "correct_answer": "1800",
+      "hints": [
+        "2×90 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1800. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 3,
+      "question": "5 × 8,000 = ___",
+      "correct_answer": "40000",
+      "hints": [
+        "5×800 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 40000. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "6 × 20 = ___",
+      "correct_answer": "120",
+      "hints": [
+        "6×2 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 120. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "9 × 40 = ___",
+      "correct_answer": "360",
+      "hints": [
+        "9×4 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 360. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "7 × 500 = ___",
+      "correct_answer": "3500",
+      "hints": [
+        "7×50 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 1,
+      "question": "3 × 800 = ___",
+      "correct_answer": "2400",
+      "hints": [
+        "3×80 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "8 × 70 = ___",
+      "correct_answer": "560",
+      "hints": [
+        "8×7 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 560. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "5 × 400 = ___",
+      "correct_answer": "2000",
+      "hints": [
+        "5×40 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "4 × 3,000 = ___",
+      "correct_answer": "12000",
+      "hints": [
+        "4×300 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 12000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "6 × 5,000 = ___",
+      "correct_answer": "30000",
+      "hints": [
+        "6×500 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 30000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 3,
+      "question": "9 × 2,000 = ___",
+      "correct_answer": "18000",
+      "hints": [
+        "9×200 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 18000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 3,
+      "question": "7 × 7,000 = ___",
+      "correct_answer": "49000",
+      "hints": [
+        "7×700 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 49000. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "4 × 90 = ___",
+      "correct_answer": "360",
+      "hints": [
+        "4×9 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 360. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "7 × 600 = ___",
+      "correct_answer": "4200",
+      "hints": [
+        "7×60 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4200. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 2,
+      "question": "3 × 5,000 = ___",
+      "correct_answer": "15000",
+      "hints": [
+        "3×500 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 15000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 3,
+      "question": "8 × 4,000 = ___",
+      "correct_answer": "32000",
+      "hints": [
+        "8×400 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 32000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "basic_fact_with_zeros",
+      "concept": "multiply_by_tens_hundreds_thousands",
+      "difficulty": 3,
+      "question": "9 × 7,000 = ___",
+      "correct_answer": "63000",
+      "hints": [
+        "9×700 first.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 63000. Multiply place by place."
+      }
+    }
+  ]
+}

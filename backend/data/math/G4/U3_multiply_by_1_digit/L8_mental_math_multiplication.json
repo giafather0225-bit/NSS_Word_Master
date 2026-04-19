@@ -1,0 +1,776 @@
+{
+  "lesson_id": "L8_mental_math_multiplication",
+  "title": "Mental Math Multiplication",
+  "grade": "G4",
+  "unit": "U3_multiply_by_1_digit",
+  "lesson": "L8_mental_math_multiplication",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.8",
+  "essential_question": "What strategies help you multiply mentally?",
+  "vocabulary": [
+    "mental math",
+    "compensation",
+    "halving",
+    "doubling"
+  ],
+  "concept": "mental_math_multiplication",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 1,
+      "question": "Mental math: 4 × 25 = ?",
+      "choices": [
+        "A) 75",
+        "B) 100",
+        "C) 125",
+        "D) 150"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 25=1/4 of 100, so 4×25=100."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "4 × 99 = ___ (think 4×100 − 4)",
+      "correct_answer": "396",
+      "hints": [
+        "Think about what mental math multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 396. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use halving and doubling: 5 × 28 = 10 × 14 = ___",
+      "correct_answer": "140",
+      "hints": [
+        "Think about what mental math multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 140. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Mental math: 6×52 ≈ 6×50+6×2 = 300+12 = 312.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "8 × 125 = ___ (think 8×100+8×25)",
+      "correct_answer": "1000",
+      "hints": [
+        "Think about what mental math multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1000. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Why Mental Math?",
+      "content": "Quick mental multiplication saves time and helps you spot mistakes. Use patterns and shortcuts.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Quick mental multiplication saves time and helps you spot mistakes. Use patterns and shortcuts."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Friendly Factors",
+      "content": "Some numbers multiply easily: 4×25=100, 5×20=100, 8×125=1,000. Memorize these friendly pairs.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Some numbers multiply easily: 4×25=100, 5×20=100, 8×125=1,000. Memorize these friendly pairs."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Compensation",
+      "content": "For 6 × 99, think 6×100=600, then subtract 6: 594. Adjust after using a friendlier number.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "For 6 × 99, think 6×100=600, then subtract 6: 594. Adjust after using a friendlier number."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Halving and Doubling",
+      "content": "a × b stays the same if you double one and halve the other: 5×28 = 10×14 = 140.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "a × b stays the same if you double one and halve the other: 5×28 = 10×14 = 140."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Break Apart",
+      "content": "Use distributive mentally: 7×32 = 7×30 + 7×2 = 210+14 = 224.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Use distributive mentally: 7×32 = 7×30 + 7×2 = 210+14 = 224."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Choose the Best Strategy",
+      "content": "Different numbers suit different tricks. Pick the fastest one.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Different numbers suit different tricks. Pick the fastest one."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Mental: 4 × 99 = ___",
+      "correct_answer": "396",
+      "hints": [
+        "Think about what mental math multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "Think 4×100=400.",
+        "Subtract 4×1=4.",
+        "400−4=396."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 396. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Mental: 5 × 48 = ___ (halving/doubling)",
+      "correct_answer": "240",
+      "hints": [
+        "Think about what mental math multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "Double 5 to 10, halve 48 to 24.",
+        "10×24=240."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 240. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Mental: 8 × 125 = ___",
+      "correct_answer": "1000",
+      "hints": [
+        "Think about what mental math multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "8×125 is 8×(100+25).",
+        "800+200=1,000."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1000. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Mental: 6 × 102 = ___",
+      "correct_answer": "612",
+      "hints": [
+        "Think about what mental math multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "Think 6×100+6×2.",
+        "600+12=612."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 612. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 1,
+      "question": "Mental: 9 × 50 = ___",
+      "correct_answer": "450",
+      "hints": [
+        "Think about what mental math multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "9×5=45.",
+        "×10 → 450."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 450. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 1,
+      "question": "Use mental math: 4 × 99 = ___",
+      "correct_answer": "396",
+      "hints": [
+        "Think 4×100−4.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 396. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 1,
+      "question": "Use mental math: 5 × 48 = ___",
+      "correct_answer": "240",
+      "hints": [
+        "Double/halve.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 240. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 1,
+      "question": "Use mental math: 8 × 125 = ___",
+      "correct_answer": "1000",
+      "hints": [
+        "8×100+8×25.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 1,
+      "question": "Use mental math: 6 × 98 = ___",
+      "correct_answer": "588",
+      "hints": [
+        "6×100−6×2.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 588. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 9 × 25 = ___",
+      "correct_answer": "225",
+      "hints": [
+        "9×25=9×100÷4.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 225. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 7 × 30 = ___",
+      "correct_answer": "210",
+      "hints": [
+        "7×3×10.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 210. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 4 × 250 = ___",
+      "correct_answer": "1000",
+      "hints": [
+        "4×250=1,000.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 5 × 200 = ___",
+      "correct_answer": "1000",
+      "hints": [
+        "5×200=1,000.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 3,
+      "question": "Use mental math: 8 × 75 = ___",
+      "correct_answer": "600",
+      "hints": [
+        "8×75=600.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 600. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 3,
+      "question": "Use mental math: 6 × 150 = ___",
+      "correct_answer": "900",
+      "hints": [
+        "6×150=900.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 900. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 1,
+      "question": "Use mental math: 5 × 19 = ___",
+      "correct_answer": "95",
+      "hints": [
+        "5×20−5.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 95. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 1,
+      "question": "Use mental math: 4 × 98 = ___",
+      "correct_answer": "392",
+      "hints": [
+        "4×100−8.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 392. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 1,
+      "question": "Use mental math: 7 × 99 = ___",
+      "correct_answer": "693",
+      "hints": [
+        "7×100−7.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 693. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 1,
+      "question": "Use mental math: 6 × 50 = ___",
+      "correct_answer": "300",
+      "hints": [
+        "6×50=300.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 300. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 8 × 250 = ___",
+      "correct_answer": "2000",
+      "hints": [
+        "8×250=2,000.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 9 × 11 = ___",
+      "correct_answer": "99",
+      "hints": [
+        "9×10+9.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 99. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 3 × 125 = ___",
+      "correct_answer": "375",
+      "hints": [
+        "3×125=375.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 375. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 5 × 72 = ___",
+      "correct_answer": "360",
+      "hints": [
+        "Double/halve.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 360. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 3,
+      "question": "Use mental math: 4 × 75 = ___",
+      "correct_answer": "300",
+      "hints": [
+        "4×75=300.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 300. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 3,
+      "question": "Use mental math: 8 × 500 = ___",
+      "correct_answer": "4000",
+      "hints": [
+        "8×5×100.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4000. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 7 × 98 = ___",
+      "correct_answer": "686",
+      "hints": [
+        "7×100−14.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 686. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 5 × 48 = ___",
+      "correct_answer": "240",
+      "hints": [
+        "Double/halve.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 240. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 2,
+      "question": "Use mental math: 4 × 125 = ___",
+      "correct_answer": "500",
+      "hints": [
+        "4×125=500.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 3,
+      "question": "Use mental math: 9 × 102 = ___",
+      "correct_answer": "918",
+      "hints": [
+        "9×100+18.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 918. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "compensate_and_doubling",
+      "concept": "mental_math_multiplication",
+      "difficulty": 3,
+      "question": "Use mental math: 6 × 125 = ___",
+      "correct_answer": "750",
+      "hints": [
+        "6×125=750.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 750. Multiply place by place."
+      }
+    }
+  ]
+}

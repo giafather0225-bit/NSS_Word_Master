@@ -1,0 +1,784 @@
+{
+  "lesson_id": "L1",
+  "title": "Estimate Quotients Using Multiples",
+  "grade": "G4",
+  "unit": "U5_divide_by_1_digit",
+  "lesson": "L1",
+  "ccss": [
+    "4.NBT.B.6"
+  ],
+  "standard": "4.NBT.B.6",
+  "go_math_ref": "Go Math G4 Ch4 L1",
+  "essential_question": "How can multiples help you estimate quotients?",
+  "vocabulary": [
+    "estimate",
+    "quotient",
+    "multiple",
+    "divisor",
+    "dividend"
+  ],
+  "concept": "estimate_quotient_multiples",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 58 ÷ 6 using multiples of 6:",
+      "choices": [
+        "A) 6",
+        "B) 8",
+        "C) 10",
+        "D) 12"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 6×10=60 is closest to 58."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 79 ÷ 9.",
+      "correct_answer": "9",
+      "hints": [
+        "9×9=81 is close.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. ≈9."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 43 ÷ 7.",
+      "correct_answer": "6",
+      "hints": [
+        "7×6=42.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. 42 is closest to 43."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimating a quotient means finding an exact answer.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is False. It's an approximation."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 62 ÷ 8.",
+      "correct_answer": "8",
+      "hints": [
+        "8×8=64.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work through each place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Why Estimate?",
+      "content": "Estimating quotients gives a ballpark answer so you can judge if your exact answer is reasonable.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimating quotients gives a ballpark answer so you can judge if your exact answer is reasonable."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Find a Close Multiple",
+      "content": "For 62 ÷ 8, find a multiple of 8 near 62. 8×8=64, so 62÷8 ≈ 8.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "For 62 ÷ 8, find a multiple of 8 near 62. 8×8=64, so 62÷8 ≈ 8."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Number Line Thinking",
+      "content": "Put the dividend on a line of multiples. The closest multiple gives the estimate.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 0,
+        "max": 80,
+        "step": 8,
+        "highlight": 64
+      },
+      "tts": "Put the dividend on a line of multiples. The closest multiple gives the estimate."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Two-Way Estimate",
+      "content": "Sometimes 50÷6 fits between 48 (×8) and 54 (×9). Pick the closer one: ≈8.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Sometimes 50÷6 fits between 48 (×8) and 54 (×9). Pick the closer one: ≈8."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Use for Reasonableness",
+      "content": "After computing, compare with your estimate — big gap means re-check.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "After computing, compare with your estimate — big gap means re-check."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate ≠ Exact",
+      "content": "An estimate is NOT the answer. Always refine with an exact calculation when needed.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "An estimate is NOT the answer. Always refine with an exact calculation when needed."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 35 ÷ 6.",
+      "correct_answer": "6",
+      "hints": [
+        "Think about estimate quotient multiples.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "6×6=36.",
+        "36 is closest to 35.",
+        "≈ 6."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 73 ÷ 9.",
+      "correct_answer": "8",
+      "hints": [
+        "Think about estimate quotient multiples.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "9×8=72.",
+        "72 is close to 73.",
+        "≈ 8."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 48 ÷ 7.",
+      "correct_answer": "7",
+      "hints": [
+        "Think about estimate quotient multiples.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "7×7=49.",
+        "49 is closest to 48.",
+        "≈ 7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 26 ÷ 4.",
+      "correct_answer": "7",
+      "hints": [
+        "Think about estimate quotient multiples.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "4×6=24, 4×7=28.",
+        "28 closer to 26? No, 24 is.",
+        "Actually 4×6=24 (diff 2), 4×7=28 (diff 2). Either works; ≈7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 55 ÷ 8.",
+      "correct_answer": "7",
+      "hints": [
+        "Think about estimate quotient multiples.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "8×7=56.",
+        "56 closest to 55.",
+        "≈ 7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimate 61 ÷ 6.",
+      "correct_answer": "10",
+      "hints": [
+        "Find a multiple of 6 near 61.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. Work through each place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimate 30 ÷ 6.",
+      "correct_answer": "5",
+      "hints": [
+        "Find a multiple of 6 near 30.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimate 22 ÷ 6.",
+      "correct_answer": "4",
+      "hints": [
+        "Find a multiple of 6 near 22.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimate 26 ÷ 7.",
+      "correct_answer": "4",
+      "hints": [
+        "Find a multiple of 7 near 26.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimate 30 ÷ 6.",
+      "correct_answer": "5",
+      "hints": [
+        "Find a multiple of 6 near 30.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimate 38 ÷ 9.",
+      "correct_answer": "4",
+      "hints": [
+        "Find a multiple of 9 near 38.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimate 24 ÷ 4.",
+      "correct_answer": "6",
+      "hints": [
+        "Find a multiple of 4 near 24.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work through each place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimate 53 ÷ 9.",
+      "correct_answer": "6",
+      "hints": [
+        "Find a multiple of 9 near 53.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work through each place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimate 88 ÷ 9.",
+      "correct_answer": "10",
+      "hints": [
+        "Find a multiple of 9 near 88.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. Work through each place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimate 79 ÷ 8.",
+      "correct_answer": "10",
+      "hints": [
+        "Find a multiple of 8 near 79.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. Work through each place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 46 ÷ 8.",
+      "correct_answer": "6",
+      "hints": [
+        "Use multiples of 8.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work through each place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 32 ÷ 4.",
+      "correct_answer": "8",
+      "hints": [
+        "Use multiples of 4.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work through each place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 60 ÷ 5.",
+      "correct_answer": "12",
+      "hints": [
+        "Use multiples of 5.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work through each place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 25 ÷ 3.",
+      "correct_answer": "9",
+      "hints": [
+        "Use multiples of 3.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 36 ÷ 3.",
+      "correct_answer": "12",
+      "hints": [
+        "Use multiples of 3.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work through each place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 61 ÷ 5.",
+      "correct_answer": "12",
+      "hints": [
+        "Use multiples of 5.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work through each place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 90 ÷ 8.",
+      "correct_answer": "11",
+      "hints": [
+        "Use multiples of 8.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11. Work through each place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 82 ÷ 8.",
+      "correct_answer": "10",
+      "hints": [
+        "Use multiples of 8.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. Work through each place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 99 ÷ 9.",
+      "correct_answer": "11",
+      "hints": [
+        "Use multiples of 9.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11. Work through each place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 75 ÷ 7.",
+      "correct_answer": "11",
+      "hints": [
+        "Use multiples of 7.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11. Work through each place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 67 ÷ 8.",
+      "correct_answer": "8",
+      "hints": [
+        "8×8=64.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work through each place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 95 ÷ 9.",
+      "correct_answer": "11",
+      "hints": [
+        "9×11=99, closest to 95? Also 9×10=90. 90 or 99 — 9×11=99 diff 4; 9×10=90 diff 5. ≈11.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11. Work through each place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Best estimate for 45 ÷ 6:",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 6×8=48 closest."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 2,
+      "question": "Estimate 82 ÷ 9.",
+      "correct_answer": "9",
+      "hints": [
+        "9×9=81.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "find_nearest_multiple",
+      "concept": "estimate_quotient_multiples",
+      "difficulty": 1,
+      "question": "Estimates help check whether your exact answer is reasonable.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    }
+  ]
+}

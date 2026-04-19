@@ -1,0 +1,777 @@
+{
+  "lesson_id": "L2",
+  "title": "Estimate with 2-Digit Divisors",
+  "grade": "G5",
+  "unit": "U2_divide_whole_numbers",
+  "lesson": "L2",
+  "ccss": [
+    "5.NBT.B.6"
+  ],
+  "standard": "5.NBT.B.6",
+  "go_math_ref": "Go Math G5 Ch2 L2",
+  "essential_question": "How do we estimate quotients with 2-digit divisors?",
+  "vocabulary": [
+    "estimate",
+    "compatible numbers",
+    "round",
+    "divisor"
+  ],
+  "concept": "estimate_division",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 410 \u00f7 19 using 400 \u00f7 20 = ___.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 812 \u00f7 38 using 800 \u00f7 40 = ___.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 245 \u00f7 48 using 250 \u00f7 50 = ___.",
+      "correct_answer": "5",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 3,600 \u00f7 89 using 3600 \u00f7 90 = ___.",
+      "correct_answer": "40",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 2,448 \u00f7 61 using 2400 \u00f7 60 = ___.",
+      "correct_answer": "40",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Compatible Numbers",
+      "content": "Numbers close to the original that divide evenly.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Numbers close to the original that divide evenly."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Round Divisor",
+      "content": "Round divisor to nearest 10 first.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Round divisor to nearest 10 first."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Round Dividend",
+      "content": "Adjust dividend to a multiple of the rounded divisor.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Adjust dividend to a multiple of the rounded divisor."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example",
+      "content": "412 \u00f7 19 \u2192 400 \u00f7 20 = 20.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "412 \u00f7 19 \u2192 400 \u00f7 20 = 20."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check Reasonableness",
+      "content": "Actual quotient should be near the estimate.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Actual quotient should be near the estimate."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Two Estimates",
+      "content": "Sometimes over- and underestimates bracket the answer.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Sometimes over- and underestimates bracket the answer."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 612 \u00f7 29.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about estimate division.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "600 \u00f7 30",
+        "= 20."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 2,780 \u00f7 68.",
+      "correct_answer": "40",
+      "hints": [
+        "Think about estimate division.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "2800 \u00f7 70",
+        "= 40."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 315 \u00f7 48.",
+      "correct_answer": "6",
+      "hints": [
+        "Think about estimate division.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "300 \u00f7 50",
+        "= 6."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 1,215 \u00f7 38.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about estimate division.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "1200 \u00f7 40",
+        "= 30."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 4,500 \u00f7 49.",
+      "correct_answer": "90",
+      "hints": [
+        "Think about estimate division.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "4500 \u00f7 50",
+        "= 90."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 400 \u00f7 19 \u2248 ___.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 800 \u00f7 39 \u2248 ___.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 1,000 \u00f7 52 \u2248 ___.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 900 \u00f7 29 \u2248 ___.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 2,000 \u00f7 48 \u2248 ___.",
+      "correct_answer": "40",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 3,600 \u00f7 91 \u2248 ___.",
+      "correct_answer": "40",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 600 \u00f7 31 \u2248 ___.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 2,400 \u00f7 82 \u2248 ___.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 450 \u00f7 49 \u2248 ___.",
+      "correct_answer": "9",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 5,600 \u00f7 72 \u2248 ___.",
+      "correct_answer": "80",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 80. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 245 \u00f7 51 \u2248 ___.",
+      "correct_answer": "5",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 612 \u00f7 22 \u2248 ___.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 1,485 \u00f7 48 \u2248 ___.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 2,108 \u00f7 31 \u2248 ___.",
+      "correct_answer": "70",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 70. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 3,215 \u00f7 39 \u2248 ___.",
+      "correct_answer": "80",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 80. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 4,815 \u00f7 58 \u2248 ___.",
+      "correct_answer": "80",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 80. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 2,700 \u00f7 88 \u2248 ___.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 5,400 \u00f7 91 \u2248 ___.",
+      "correct_answer": "60",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 60. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 820 \u00f7 41 \u2248 ___.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 9,000 \u00f7 29 \u2248 ___.",
+      "correct_answer": "300",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 300. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 400 \u00f7 21 \u2248 ___.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 2,
+      "question": "Estimate 1,800 \u00f7 58 \u2248 ___.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 3,600 \u00f7 91 \u2248 ___.",
+      "correct_answer": "40",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 520 \u00f7 68 \u2248 ___.",
+      "correct_answer": "8",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "compatible_numbers",
+      "concept": "estimate_division",
+      "difficulty": 3,
+      "question": "Estimate 2,750 \u00f7 48 \u2248 ___.",
+      "correct_answer": "60",
+      "hints": [
+        "Think about estimate division.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 60. "
+      }
+    }
+  ]
+}

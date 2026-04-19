@@ -1,0 +1,797 @@
+{
+  "lesson_id": "L8",
+  "title": "Solve Multistep Problems",
+  "grade": "G4",
+  "unit": "U4_multiply_by_2_digit",
+  "lesson": "L8",
+  "ccss": [
+    "4.NBT.B.5",
+    "4.OA.A.3"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4 Ch3-Unit4 L8",
+  "essential_question": "How do you solve problems that use more than one operation?",
+  "vocabulary": [
+    "multistep",
+    "word problem",
+    "operation",
+    "equation"
+  ],
+  "concept": "multistep_combine",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A store has 12 boxes of pencils. Each box has 48 pencils. After selling 120, how many left?",
+      "correct_answer": "456",
+      "hints": [
+        "Multiply then subtract.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 456. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "14 × 25 + 50 = ?",
+      "choices": [
+        "A) 400",
+        "B) 350",
+        "C) 300",
+        "D) 500"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. 14×25=350. 350+50=400."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A baker has 240 cookies, boxes 18 cookies each. Extra cookies after filling as many boxes as possible = ___ .",
+      "correct_answer": "6",
+      "hints": [
+        "Divide then subtract.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 1,
+      "question": "Multistep problems often mix multiplication with addition or subtraction.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 1,
+      "question": "A class of 28 students has $5 each. Total money = $___.",
+      "correct_answer": "140",
+      "hints": [
+        "28×5.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 140. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Break It Down",
+      "content": "Multistep problems have 2 or more operations. Solve one step at a time.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Multistep problems have 2 or more operations. Solve one step at a time."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Find the Key Steps",
+      "content": "Read carefully and list what you need to compute in order. Write each step.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Read carefully and list what you need to compute in order. Write each step."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Use Bar Models",
+      "content": "Draw a bar model to see what combines, what is left, or what is shared.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "Part 1",
+              "value": 1
+            },
+            {
+              "label": "Part 2",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "tts": "Draw a bar model to see what combines, what is left, or what is shared."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Write Equations",
+      "content": "Translate each step into an equation. Keep track of units.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Translate each step into an equation. Keep track of units."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Order Matters",
+      "content": "Follow order of operations (multiply/divide first, then add/subtract), or solve in story order.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Follow order of operations (multiply/divide first, then add/subtract), or solve in story order."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check Reasonableness",
+      "content": "Estimate each step and compare with your final answer.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimate each step and compare with your final answer."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A library had 450 books. 12 shelves got 24 new books each. New total?",
+      "correct_answer": "738",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "12×24=288.",
+        "450+288.",
+        "=738 books."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 738. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "Jim buys 15 packs of 24 cards. He gives away 60. How many left?",
+      "correct_answer": "300",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "15×24=360.",
+        "360−60.",
+        "=300 cards."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 300. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A field has 18 rows of 25 plants. 50 plants died. Alive = ___ .",
+      "correct_answer": "400",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "18×25=450.",
+        "450−50.",
+        "=400 plants."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 400. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "Each ticket is $15. 42 tickets sold, plus $80 in snacks. Total money?",
+      "correct_answer": "710",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "42×15=630.",
+        "630+80.",
+        "=$710."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 710. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A bus has 48 seats. 17 buses carry students, 12 seats empty total. Students?",
+      "correct_answer": "804",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "48×17=816.",
+        "816−12.",
+        "=804 students."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 804. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "16 × 25 + 100 = ___",
+      "correct_answer": "500",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A class of 24 raises $18 each plus $200 bonus. Total = $___.",
+      "correct_answer": "632",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 632. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "30 × 14 − 50 = ___",
+      "correct_answer": "370",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 370. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A box has 36 cans; buy 12 boxes then use 72. Left = ___.",
+      "correct_answer": "360",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 360. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "45 × 12 + 15 × 20 = ___",
+      "correct_answer": "840",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 840. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "18 × 22 − 100 = ___",
+      "correct_answer": "296",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 296. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A shop sells 28 shirts at $19 and 15 caps at $12. Total revenue?",
+      "correct_answer": "712",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 712. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "35 × 15 + 40 = ___",
+      "correct_answer": "565",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 565. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A school has 24 classes of 26 students. 40 leave early. Remaining?",
+      "correct_answer": "584",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 584. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "14 × 30 + 14 × 20 = ___",
+      "correct_answer": "700",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 700. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "58 × 17 + 200 = ___",
+      "correct_answer": "1186",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1186. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A farmer has 42 trees with 36 apples each. 150 rot. Good apples = ___.",
+      "correct_answer": "1362",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1362. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "75 × 24 − 500 = ___",
+      "correct_answer": "1300",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1300. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "28 × 19 + 33 × 12 = ___",
+      "correct_answer": "928",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 928. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A crate has 48 cans. 26 crates, 120 cans sold. Left = ___.",
+      "correct_answer": "1128",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1128. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "63 × 14 − 100 = ___",
+      "correct_answer": "782",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 782. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A theater seats 85 per row, 18 rows. 42 seats reserved. Available = ___.",
+      "correct_answer": "1488",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1488. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "92 × 13 + 50 = ___",
+      "correct_answer": "1246",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1246. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A factory makes 72 parts/hour for 15 hours, then 48 parts/hour for 5 hours. Total = ___.",
+      "correct_answer": "1320",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1320. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "54 × 22 − 300 = ___",
+      "correct_answer": "888",
+      "hints": [
+        "Think about what multistep combine means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 888. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A truck holds 36 boxes of 48 cans each. After 150 cans are unloaded, how many left in the truck?",
+      "correct_answer": "1578",
+      "hints": [
+        "Multiply first.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1578. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A class of 28 reads 25 pages/day for 14 days. Total pages read?",
+      "correct_answer": "9800",
+      "hints": [
+        "Multiply all three. Or: 28×25=700, ×14.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9800. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A store sold 42 shirts at $18 and 35 hats at $12. Revenue?",
+      "choices": [
+        "A) $1176",
+        "B) $1056",
+        "C) $1296",
+        "D) $1120"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. 42×18=756; 35×12=420; 756+420=1176."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A library has 6 floors × 18 rooms × 45 books. Total books?",
+      "correct_answer": "4860",
+      "hints": [
+        "6×18=108, ×45.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4860. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "combine_operations",
+      "concept": "multistep_combine",
+      "difficulty": 2,
+      "question": "A bake sale had 24 × 15 = 360 cookies. 285 sold. Left = ___.",
+      "correct_answer": "75",
+      "hints": [
+        "Subtract.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 75. Multiply place by place."
+      }
+    }
+  ]
+}

@@ -3,100 +3,484 @@
   "title": "Skip Count on a Number Line",
   "grade": "G3",
   "unit": "U3_understand_multiplication",
-  "ccss": ["3.OA.A.3"],
-  "go_math_ref": { "chapter": 3, "lesson": "3.3", "pages": "109-112" },
+  "ccss": [
+    "3.OA.A.3"
+  ],
+  "go_math_ref": {
+    "chapter": 3,
+    "lesson": "3.3",
+    "pages": "109-112"
+  },
   "essential_question": "How can you use a number line to skip count and find how many in all?",
-  "key_vocabulary": ["number line", "skip count", "jump", "equal jumps", "product"],
-  "strategies": ["Draw equal jumps on a number line", "Each jump = the size of each group", "Number of jumps = number of groups", "Where you land = the product"],
+  "key_vocabulary": [
+    "number line",
+    "skip count",
+    "jump",
+    "equal jumps",
+    "product"
+  ],
+  "strategies": [
+    "Draw equal jumps on a number line",
+    "Each jump = the size of each group",
+    "Number of jumps = number of groups",
+    "Where you land = the product"
+  ],
   "items": [
-    { "id": "PT_01", "section": "pretest", "difficulty": 1,
+    {
+      "id": "PT_01",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "Skip count by 3s on a number line: 0, 3, 6, 9, ?. What comes next?",
-      "choices": ["A. 10","B. 11","C. 12","D. 15"], "answer": "C",
-      "explanation": "9 + 3 = 12." },
-    { "id": "PT_02", "section": "pretest", "difficulty": 1,
+      "choices": [
+        "A. 10",
+        "B. 11",
+        "C. 12",
+        "D. 15"
+      ],
+      "answer": "C",
+      "explanation": "9 + 3 = 12."
+    },
+    {
+      "id": "PT_02",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "Skip count by 5 on a number line. Make 4 jumps. Where do you land?",
-      "choices": ["A. 15","B. 20","C. 25","D. 9"], "answer": "B",
-      "explanation": "5, 10, 15, 20." },
-    { "id": "PT_03", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 15",
+        "B. 20",
+        "C. 25",
+        "D. 9"
+      ],
+      "answer": "B",
+      "explanation": "5, 10, 15, 20."
+    },
+    {
+      "id": "PT_03",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Louise skip counts by 4 on a number line to find 5 × 4. How many jumps?",
-      "choices": ["A. 3","B. 4","C. 5","D. 9"], "answer": "C",
-      "explanation": "5 × 4 means 5 jumps of 4." },
-    { "id": "PT_04", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 3",
+        "B. 4",
+        "C. 5",
+        "D. 9"
+      ],
+      "answer": "C",
+      "explanation": "5 × 4 means 5 jumps of 4."
+    },
+    {
+      "id": "PT_04",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Theo needs 4 boards, each 3 feet long. How many feet total? (Skip count by 3.)",
-      "choices": ["A. 12 feet","B. 7 feet","C. 4 feet","D. 3 feet"], "answer": "A",
-      "explanation": "4 jumps of 3: 3, 6, 9, 12." },
-    { "id": "PT_05", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 12 feet",
+        "B. 7 feet",
+        "C. 4 feet",
+        "D. 3 feet"
+      ],
+      "answer": "A",
+      "explanation": "4 jumps of 3: 3, 6, 9, 12."
+    },
+    {
+      "id": "PT_05",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Skip count by 6 on a number line. Make 3 jumps. Where do you land?",
-      "choices": ["A. 12","B. 15","C. 18","D. 24"], "answer": "C",
-      "explanation": "6, 12, 18." },
-    { "id": "LN_01", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "choices": [
+        "A. 12",
+        "B. 15",
+        "C. 18",
+        "D. 24"
+      ],
+      "answer": "C",
+      "explanation": "6, 12, 18."
+    },
+    {
+      "id": "LN_01",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "Skip Counting on a Number Line",
-      "content": "A number line starts at 0. Each jump is the same size. To find 3 × 4, make 3 jumps of 4: start at 0, jump to 4, then 8, then 12. You land on 12, so 3 × 4 = 12." },
-    { "id": "LN_02", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "content": "A number line starts at 0. Each jump is the same size. To find 3 × 4, make 3 jumps of 4: start at 0, jump to 4, then 8, then 12. You land on 12, so 3 × 4 = 12.",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "min": 0,
+          "max": 50,
+          "step": 5
+        }
+      }
+    },
+    {
+      "id": "LN_02",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "Number of Jumps = Number of Groups",
-      "content": "For 5 × 4: make 5 jumps (groups), each jump is 4. For 4 × 5: make 4 jumps, each is 5. Both land on 20!" },
-    { "id": "LN_03", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "content": "For 5 × 4: make 5 jumps (groups), each jump is 4. For 4 × 5: make 4 jumps, each is 5. Both land on 20!",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "LN_03",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "Using the Number Line to Multiply",
-      "content": "Step 1: Start at 0. Step 2: Decide the jump size (= items per group). Step 3: Jump that many times (= number of groups). Step 4: Where you land is the product." },
-    { "id": "TRY_01", "section": "try", "difficulty": 1,
+      "content": "Step 1: Start at 0. Step 2: Decide the jump size (= items per group). Step 3: Jump that many times (= number of groups). Step 4: Where you land is the product.",
+      "cpa_phase": "pictorial",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "TRY_01",
+      "section": "try",
+      "difficulty": 1,
       "question": "Skip count by 2 on a number line. Make 6 jumps. Where do you land?",
-      "choices": ["A. 8","B. 10","C. 12","D. 14"], "answer": "C",
-      "explanation": "2,4,6,8,10,12." },
-    { "id": "TRY_02", "section": "try", "difficulty": 2,
+      "choices": [
+        "A. 8",
+        "B. 10",
+        "C. 12",
+        "D. 14"
+      ],
+      "answer": "C",
+      "explanation": "2,4,6,8,10,12.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how skip count on number line works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_02",
+      "section": "try",
+      "difficulty": 2,
       "question": "To find 7 × 3, you skip count by 3. How many jumps do you draw?",
-      "choices": ["A. 3","B. 7","C. 10","D. 21"], "answer": "B",
-      "explanation": "7 × 3 = 7 jumps of 3." },
-    { "id": "TRY_03", "section": "try", "difficulty": 2,
+      "choices": [
+        "A. 3",
+        "B. 7",
+        "C. 10",
+        "D. 21"
+      ],
+      "answer": "B",
+      "explanation": "7 × 3 = 7 jumps of 3.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how skip count on number line works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "section": "try",
+      "difficulty": 2,
       "question": "Skip count by 4: 0, 4, 8, 12, 16, 20. This shows ? × 4 = 20.",
-      "choices": ["A. 4","B. 5","C. 6","D. 7"], "answer": "B",
-      "explanation": "5 jumps of 4 lands on 20. 5 × 4 = 20." },
-    { "id": "R1_01", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 4",
+        "B. 5",
+        "C. 6",
+        "D. 7"
+      ],
+      "answer": "B",
+      "explanation": "5 jumps of 4 lands on 20. 5 × 4 = 20.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how skip count on number line works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R1_01",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "Skip count by 5: 0, 5, 10, 15, 20, 25. How many jumps?",
-      "choices": ["A. 3","B. 4","C. 5","D. 6"], "answer": "C",
-      "explanation": "Five jumps: 5,10,15,20,25." },
-    { "id": "R1_02", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 3",
+        "B. 4",
+        "C. 5",
+        "D. 6"
+      ],
+      "answer": "C",
+      "explanation": "Five jumps: 5,10,15,20,25.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R1_02",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "Skip count by 3 and make 4 jumps. Where do you land?",
-      "choices": ["A. 7","B. 9","C. 12","D. 15"], "answer": "C",
-      "explanation": "3,6,9,12." },
-    { "id": "R1_03", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 7",
+        "B. 9",
+        "C. 12",
+        "D. 15"
+      ],
+      "answer": "C",
+      "explanation": "3,6,9,12.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R1_03",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "Skip count by 10. Make 3 jumps. Product?",
-      "choices": ["A. 13","B. 20","C. 30","D. 40"], "answer": "C",
-      "explanation": "10,20,30." },
-    { "id": "R1_04", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 13",
+        "B. 20",
+        "C. 30",
+        "D. 40"
+      ],
+      "answer": "C",
+      "explanation": "10,20,30.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R1_04",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "To find 8 × 2, you skip count by 2. Where do you land after 8 jumps?",
-      "choices": ["A. 10","B. 14","C. 16","D. 18"], "answer": "C",
-      "explanation": "2,4,6,8,10,12,14,16." },
-    { "id": "R1_05", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 10",
+        "B. 14",
+        "C. 16",
+        "D. 18"
+      ],
+      "answer": "C",
+      "explanation": "2,4,6,8,10,12,14,16.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R1_05",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Skip count by 4: 0, 4, 8, ?, 16. What is the missing number?",
-      "choices": ["A. 10","B. 11","C. 12","D. 14"], "answer": "C",
-      "explanation": "8 + 4 = 12." },
-    { "id": "R1_06", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 10",
+        "B. 11",
+        "C. 12",
+        "D. 14"
+      ],
+      "answer": "C",
+      "explanation": "8 + 4 = 12.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R1_06",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "You land on 24 after skip counting by 6. How many jumps did you make?",
-      "choices": ["A. 3","B. 4","C. 5","D. 6"], "answer": "B",
-      "explanation": "6,12,18,24 = 4 jumps." },
-    { "id": "R2_01", "section": "practice_r2", "difficulty": 2,
+      "choices": [
+        "A. 3",
+        "B. 4",
+        "C. 5",
+        "D. 6"
+      ],
+      "answer": "B",
+      "explanation": "6,12,18,24 = 4 jumps.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R2_01",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "Estimate 518 + 251.",
-      "choices": ["A. 200","B. 700","C. 800","D. 900"], "answer": "C",
-      "explanation": "500 + 300 = 800." },
-    { "id": "R2_02", "section": "practice_r2", "difficulty": 3,
+      "choices": [
+        "A. 200",
+        "B. 700",
+        "C. 800",
+        "D. 900"
+      ],
+      "answer": "C",
+      "explanation": "500 + 300 = 800.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R2_02",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "346 rounded to nearest hundred?",
-      "choices": ["A. 400","B. 350","C. 340","D. 300"], "answer": "D",
-      "explanation": "346: tens digit 4 < 5 → 300." },
-    { "id": "R2_03", "section": "practice_r2", "difficulty": 3,
+      "choices": [
+        "A. 400",
+        "B. 350",
+        "C. 340",
+        "D. 300"
+      ],
+      "answer": "D",
+      "explanation": "346: tens digit 4 < 5 → 300.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R2_03",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "Skip count by 7. After 5 jumps, where are you?",
-      "choices": ["A. 28","B. 35","C. 42","D. 49"], "answer": "B",
-      "explanation": "7,14,21,28,35." },
-    { "id": "R3_01", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. 28",
+        "B. 35",
+        "C. 42",
+        "D. 49"
+      ],
+      "answer": "B",
+      "explanation": "7,14,21,28,35.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R3_01",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "You skip counted by some number and landed on 0, 8, 16, 24, 32. What number did you skip count by? How many jumps?",
-      "choices": ["A. By 4, 8 jumps","B. By 8, 4 jumps","C. By 6, 4 jumps","D. By 8, 5 jumps"], "answer": "B",
-      "explanation": "Each jump = 8. Four jumps: 8,16,24,32." },
-    { "id": "R3_02", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. By 4, 8 jumps",
+        "B. By 8, 4 jumps",
+        "C. By 6, 4 jumps",
+        "D. By 8, 5 jumps"
+      ],
+      "answer": "B",
+      "explanation": "Each jump = 8. Four jumps: 8,16,24,32.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R3_02",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Amy skip counts by 3 and makes some jumps to land on 27. Ben skip counts by 9 and makes some jumps to also land on 27. How many jumps did each make?",
-      "choices": ["A. Amy 9, Ben 3","B. Amy 3, Ben 9","C. Amy 8, Ben 2","D. Amy 9, Ben 9"], "answer": "A",
-      "explanation": "Amy: 27÷3=9 jumps. Ben: 27÷9=3 jumps." },
-    { "id": "R3_03", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. Amy 9, Ben 3",
+        "B. Amy 3, Ben 9",
+        "C. Amy 8, Ben 2",
+        "D. Amy 9, Ben 9"
+      ],
+      "answer": "A",
+      "explanation": "Amy: 27÷3=9 jumps. Ben: 27÷9=3 jumps.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how skip count on number line works."
+      }
+    },
+    {
+      "id": "R3_03",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Toby reads 2 books per month. In a picture graph, each 📖 = 2 books. Month 1 has 3 book pictures. How many books in Month 1?",
-      "choices": ["A. 2","B. 3","C. 6","D. 8"], "answer": "C",
-      "explanation": "3 × 2 = 6 books." }
-  ]
+      "choices": [
+        "A. 2",
+        "B. 3",
+        "C. 6",
+        "D. 8"
+      ],
+      "answer": "C",
+      "explanation": "3 × 2 = 6 books.",
+      "hints": [
+        "Think about what skip count on number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how skip count on number line works."
+      }
+    }
+  ],
+  "concept": "skip_count_on_number_line"
 }

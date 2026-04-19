@@ -1,0 +1,788 @@
+{
+  "lesson_id": "L4",
+  "title": "Multiply with Regrouping",
+  "grade": "G4",
+  "unit": "U4_multiply_by_2_digit",
+  "lesson": "L4",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4 Ch3-Unit4 L4",
+  "essential_question": "How do you multiply when a place-value product is 10 or more?",
+  "vocabulary": [
+    "regroup",
+    "carry",
+    "multiply",
+    "place value"
+  ],
+  "concept": "multiply_regroup",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "7 × 28 = ?",
+      "choices": [
+        "A) 186",
+        "B) 196",
+        "C) 146",
+        "D) 286"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 7×8=56 (write 6, carry 5). 7×2=14, +5=19 → 196."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "6 × 47 = ___",
+      "correct_answer": "282",
+      "hints": [
+        "6×7=42, carry 4.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 282. 6×7=42, 6×4=24+4=28 → 282."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "9 × 36 = ___",
+      "correct_answer": "324",
+      "hints": [
+        "9×6=54, carry 5.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 324. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "When ones-product is 10 or more, you regroup to the tens place.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "4 × 59 = ___",
+      "correct_answer": "236",
+      "hints": [
+        "4×9=36, carry 3.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 236. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Regrouping",
+      "content": "When a place-value product is 10 or more, you 'carry' the tens to the next column.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "When a place-value product is 10 or more, you 'carry' the tens to the next column."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Multiply Ones First",
+      "content": "Start at the ones place. If the product is ≥ 10, write the ones digit and carry the tens digit.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Start at the ones place. If the product is ≥ 10, write the ones digit and carry the tens digit."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Base-Ten Blocks View",
+      "content": "Think of 3 × 24 as 3 groups of 2 tens + 4 ones = 6 tens + 12 ones = 7 tens + 2 ones = 72.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "base10_blocks",
+        "config": {
+          "ones": 12,
+          "tens": 6
+        }
+      },
+      "tts": "Think of 3 × 24 as 3 groups of 2 tens + 4 ones = 6 tens + 12 ones = 7 tens + 2 ones = 72."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example: 8 × 37",
+      "content": "8×7=56, write 6 carry 5. 8×3=24, +5=29. Write 29 → 296.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "8×7=56, write 6 carry 5. 8×3=24, +5=29. Write 29 → 296."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Add the Carry",
+      "content": "Always add the carried number AFTER you multiply the next digit, not before.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Always add the carried number AFTER you multiply the next digit, not before."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate Check",
+      "content": "8 × 37 ≈ 8 × 40 = 320. Our answer 296 is close — reasonable!",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "8 × 37 ≈ 8 × 40 = 320. Our answer 296 is close — reasonable!"
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "5 × 36 = ___",
+      "correct_answer": "180",
+      "hints": [
+        "Think about what multiply regroup means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "5×6=30, write 0 carry 3.",
+        "5×3=15, +3=18.",
+        "Answer: 180."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 180. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "7 × 48 = ___",
+      "correct_answer": "336",
+      "hints": [
+        "Think about what multiply regroup means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "7×8=56, write 6 carry 5.",
+        "7×4=28, +5=33.",
+        "Answer: 336."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 336. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "3 × 67 = ___",
+      "correct_answer": "201",
+      "hints": [
+        "Think about what multiply regroup means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "3×7=21, write 1 carry 2.",
+        "3×6=18, +2=20.",
+        "Answer: 201."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 201. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "6 × 79 = ___",
+      "correct_answer": "474",
+      "hints": [
+        "Think about what multiply regroup means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "6×9=54, write 4 carry 5.",
+        "6×7=42, +5=47.",
+        "Answer: 474."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 474. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "9 × 58 = ___",
+      "correct_answer": "522",
+      "hints": [
+        "Think about what multiply regroup means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "9×8=72, write 2 carry 7.",
+        "9×5=45, +7=52.",
+        "Answer: 522."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 522. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "8 × 38 = ___",
+      "correct_answer": "304",
+      "hints": [
+        "Multiply ones first, carry if ≥ 10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 304. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "6 × 48 = ___",
+      "correct_answer": "288",
+      "hints": [
+        "Multiply ones first, carry if ≥ 10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 288. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "9 × 17 = ___",
+      "correct_answer": "153",
+      "hints": [
+        "Multiply ones first, carry if ≥ 10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 153. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "7 × 29 = ___",
+      "correct_answer": "203",
+      "hints": [
+        "Multiply ones first, carry if ≥ 10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 203. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "4 × 21 = ___",
+      "correct_answer": "84",
+      "hints": [
+        "Multiply ones first, carry if ≥ 10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 84. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "4 × 17 = ___",
+      "correct_answer": "68",
+      "hints": [
+        "Multiply ones first, carry if ≥ 10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 68. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "9 × 38 = ___",
+      "correct_answer": "342",
+      "hints": [
+        "Multiply ones first, carry if ≥ 10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 342. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "7 × 41 = ___",
+      "correct_answer": "287",
+      "hints": [
+        "Multiply ones first, carry if ≥ 10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 287. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "3 × 30 = ___",
+      "correct_answer": "90",
+      "hints": [
+        "Multiply ones first, carry if ≥ 10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 1,
+      "question": "4 × 30 = ___",
+      "correct_answer": "120",
+      "hints": [
+        "Multiply ones first, carry if ≥ 10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 120. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "8 × 89 = ___",
+      "correct_answer": "712",
+      "hints": [
+        "Regroup as needed.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 712. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "9 × 71 = ___",
+      "correct_answer": "639",
+      "hints": [
+        "Regroup as needed.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 639. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "4 × 29 = ___",
+      "correct_answer": "116",
+      "hints": [
+        "Regroup as needed.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 116. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "8 × 54 = ___",
+      "correct_answer": "432",
+      "hints": [
+        "Regroup as needed.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 432. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "7 × 87 = ___",
+      "correct_answer": "609",
+      "hints": [
+        "Regroup as needed.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 609. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "3 × 89 = ___",
+      "correct_answer": "267",
+      "hints": [
+        "Regroup as needed.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 267. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "5 × 77 = ___",
+      "correct_answer": "385",
+      "hints": [
+        "Regroup as needed.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 385. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "8 × 42 = ___",
+      "correct_answer": "336",
+      "hints": [
+        "Regroup as needed.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 336. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "6 × 57 = ___",
+      "correct_answer": "342",
+      "hints": [
+        "Regroup as needed.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 342. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "4 × 54 = ___",
+      "correct_answer": "216",
+      "hints": [
+        "Regroup as needed.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 216. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "A class has 6 tables with 23 students each. Total students?",
+      "correct_answer": "138",
+      "hints": [
+        "6×23.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 138. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "8 × 67 = ___",
+      "correct_answer": "536",
+      "hints": [
+        "Think about what multiply regroup means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 536. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "4 × 78 = ?",
+      "choices": [
+        "A) 282",
+        "B) 312",
+        "C) 328",
+        "D) 302"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 4×8=32, carry 3. 4×7=28+3=31 → 312."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "7 × 96 = ___",
+      "correct_answer": "672",
+      "hints": [
+        "7×6=42, carry 4.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 672. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regroup_ones_tens",
+      "concept": "multiply_regroup",
+      "difficulty": 2,
+      "question": "5 × 89 = ___",
+      "correct_answer": "445",
+      "hints": [
+        "5×9=45, carry 4.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 445. Multiply place by place."
+      }
+    }
+  ]
+}

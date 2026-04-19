@@ -1,0 +1,788 @@
+{
+  "lesson_id": "L2",
+  "title": "Remainders",
+  "grade": "G4",
+  "unit": "U5_divide_by_1_digit",
+  "lesson": "L2",
+  "ccss": [
+    "4.NBT.B.6"
+  ],
+  "standard": "4.NBT.B.6",
+  "go_math_ref": "Go Math G4 Ch4 L2",
+  "essential_question": "What does a remainder mean in division?",
+  "vocabulary": [
+    "remainder",
+    "quotient",
+    "divisor",
+    "dividend"
+  ],
+  "concept": "remainder",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "17 ÷ 5 = ?",
+      "choices": [
+        "A) 3 R1",
+        "B) 3 R2",
+        "C) 4 R0",
+        "D) 2 R7"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 5×3=15, 17−15=2, so 3 R2."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "23 ÷ 4 has quotient ___ (whole).",
+      "correct_answer": "5",
+      "hints": [
+        "4×5=20.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "23 ÷ 4 has remainder ___.",
+      "correct_answer": "3",
+      "hints": [
+        "23−20=3.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. Work through each place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "A remainder is always less than the divisor.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. If remainder ≥ divisor, divide again."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "What is the remainder in 39 ÷ 7?",
+      "correct_answer": "4",
+      "hints": [
+        "7×5=35.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "What's a Remainder?",
+      "content": "When you can't divide evenly, the leftover is called the remainder (written 'R').",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "When you can't divide evenly, the leftover is called the remainder (written 'R')."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Equal Sharing",
+      "content": "If 17 cookies are shared among 5 kids, each gets 3 and 2 are left over. 17 ÷ 5 = 3 R2.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 5,
+          "cols": 3
+        }
+      },
+      "tts": "If 17 cookies are shared among 5 kids, each gets 3 and 2 are left over. 17 ÷ 5 = 3 R2."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Drawing Groups",
+      "content": "Draw 17 dots, circle groups of 5. Three circles, two dots remain outside.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Draw 17 dots, circle groups of 5. Three circles, two dots remain outside."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Remainder Rule",
+      "content": "The remainder must be less than the divisor. Otherwise, one more group fits.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "The remainder must be less than the divisor. Otherwise, one more group fits."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check Division",
+      "content": "Multiply quotient × divisor, then add remainder. Should equal the dividend.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Multiply quotient × divisor, then add remainder. Should equal the dividend."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Notation",
+      "content": "Write 17 ÷ 5 = 3 R 2. 'R' means remainder.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Write 17 ÷ 5 = 3 R 2. 'R' means remainder."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "25 ÷ 4 = ?",
+      "correct_answer": "6 R1",
+      "hints": [
+        "Think about remainder.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "4×6=24.",
+        "25−24=1.",
+        "So 6 R 1."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6 R1. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "31 ÷ 5 = ?",
+      "correct_answer": "6 R1",
+      "hints": [
+        "Think about remainder.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "5×6=30.",
+        "31−30=1.",
+        "6 R 1."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6 R1. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Remainder of 47 ÷ 6.",
+      "correct_answer": "5",
+      "hints": [
+        "Think about remainder.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "6×7=42.",
+        "47−42=5.",
+        "Remainder 5."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 50 ÷ 7.",
+      "correct_answer": "7",
+      "hints": [
+        "Think about remainder.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "7×7=49.",
+        "50−49=1.",
+        "Quotient 7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "22 ÷ 3 = ?",
+      "correct_answer": "7 R1",
+      "hints": [
+        "Think about remainder.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "3×7=21.",
+        "22−21=1.",
+        "7 R 1."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7 R1. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "Remainder of 44 ÷ 6.",
+      "correct_answer": "2",
+      "hints": [
+        "6×7=42.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. Work through each place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "Remainder of 21 ÷ 5.",
+      "correct_answer": "1",
+      "hints": [
+        "5×4=20.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. Work through each place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "Remainder of 39 ÷ 4.",
+      "correct_answer": "3",
+      "hints": [
+        "4×9=36.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. Work through each place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "Remainder of 59 ÷ 7.",
+      "correct_answer": "3",
+      "hints": [
+        "7×8=56.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. Work through each place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "Remainder of 34 ÷ 4.",
+      "correct_answer": "2",
+      "hints": [
+        "4×8=32.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. Work through each place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "Remainder of 29 ÷ 6.",
+      "correct_answer": "5",
+      "hints": [
+        "6×4=24.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "Remainder of 23 ÷ 6.",
+      "correct_answer": "5",
+      "hints": [
+        "6×3=18.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "Remainder of 17 ÷ 6.",
+      "correct_answer": "5",
+      "hints": [
+        "6×2=12.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "Remainder of 19 ÷ 7.",
+      "correct_answer": "5",
+      "hints": [
+        "7×2=14.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "Remainder of 45 ÷ 7.",
+      "correct_answer": "3",
+      "hints": [
+        "7×6=42.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. Work through each place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 38 ÷ 6.",
+      "correct_answer": "6",
+      "hints": [
+        "Find largest multiple.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work through each place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 33 ÷ 4.",
+      "correct_answer": "8",
+      "hints": [
+        "Find largest multiple.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work through each place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 36 ÷ 7.",
+      "correct_answer": "5",
+      "hints": [
+        "Find largest multiple.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 77 ÷ 8.",
+      "correct_answer": "9",
+      "hints": [
+        "Find largest multiple.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 70 ÷ 6.",
+      "correct_answer": "11",
+      "hints": [
+        "Find largest multiple.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11. Work through each place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 48 ÷ 5.",
+      "correct_answer": "9",
+      "hints": [
+        "Find largest multiple.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. Work through each place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 39 ÷ 5.",
+      "correct_answer": "7",
+      "hints": [
+        "Find largest multiple.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work through each place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 25 ÷ 4.",
+      "correct_answer": "6",
+      "hints": [
+        "Find largest multiple.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work through each place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 71 ÷ 8.",
+      "correct_answer": "8",
+      "hints": [
+        "Find largest multiple.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. Work through each place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient of 37 ÷ 7.",
+      "correct_answer": "5",
+      "hints": [
+        "Find largest multiple.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. Work through each place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "39 ÷ 5: quotient?",
+      "correct_answer": "7",
+      "hints": [
+        "5×7=35.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. Work through each place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 1,
+      "question": "39 ÷ 5: remainder?",
+      "correct_answer": "4",
+      "hints": [
+        "39−35=4.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "43 ÷ 6 = ?",
+      "choices": [
+        "A) 6 R1",
+        "B) 7 R1",
+        "C) 7 R2",
+        "D) 6 R7"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 6×7=42, 43−42=1."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Quotient 58 ÷ 9.",
+      "correct_answer": "6",
+      "hints": [
+        "9×6=54.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. Work through each place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "div_with_remainder",
+      "concept": "remainder",
+      "difficulty": 2,
+      "question": "Remainder 58 ÷ 9.",
+      "correct_answer": "4",
+      "hints": [
+        "58−54=4.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. Work through each place."
+      }
+    }
+  ]
+}

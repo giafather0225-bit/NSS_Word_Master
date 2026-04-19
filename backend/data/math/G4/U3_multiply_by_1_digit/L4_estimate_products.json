@@ -1,0 +1,778 @@
+{
+  "lesson_id": "L4_estimate_products",
+  "title": "Estimate Products",
+  "grade": "G4",
+  "unit": "U3_multiply_by_1_digit",
+  "lesson": "L4_estimate_products",
+  "ccss": [
+    "4.NBT.B.5",
+    "4.OA.A.3"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.4",
+  "essential_question": "How can you estimate products?",
+  "vocabulary": [
+    "estimate",
+    "round",
+    "product",
+    "factor"
+  ],
+  "concept": "estimate_products",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 4 × 78 by rounding to the nearest ten.",
+      "choices": [
+        "A) 280",
+        "B) 320",
+        "C) 400",
+        "D) 480"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 78→80; 4×80=320."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 6 × 287 (round to hundred).",
+      "correct_answer": "1800",
+      "hints": [
+        "287→300, 6×300.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1800. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 3 × 4,213 (round to thousand).",
+      "choices": [
+        "A) 8,000",
+        "B) 12,000",
+        "C) 14,000",
+        "D) 16,000"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Work through it step by step."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 1,
+      "question": "7 × 298 is close to 7 × 300 = 2,100.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 3,
+      "question": "Estimate 8 × 695 (round to hundred).",
+      "correct_answer": "5600",
+      "hints": [
+        "695→700, 8×700.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5600. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Why Estimate Products?",
+      "content": "Estimating before you multiply helps you check if your final answer is reasonable. It also helps when you need a quick rough answer.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimating before you multiply helps you check if your final answer is reasonable. It also helps when you need a quick rough answer."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Round First",
+      "content": "Round the larger factor to a friendly number (nearest ten, hundred, or thousand). Keep the single-digit factor the same.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Round the larger factor to a friendly number (nearest ten, hundred, or thousand). Keep the single-digit factor the same."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Multiply",
+      "content": "After rounding, multiply using basic facts and zeros. 4 × 78 → 4 × 80 = 320.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "After rounding, multiply using basic facts and zeros. 4 × 78 → 4 × 80 = 320."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Choose the Place",
+      "content": "Round to the place that makes the number simple but close: 287 → 300 (hundred), 4,213 → 4,000 (thousand).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Round to the place that makes the number simple but close: 287 → 300 (hundred), 4,213 → 4,000 (thousand)."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Compare Estimates",
+      "content": "If you round up, the estimate is higher than the real answer. If you round down, it's lower. Know which way your estimate goes.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If you round up, the estimate is higher than the real answer. If you round down, it's lower. Know which way your estimate goes."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Use to Check",
+      "content": "Use an estimate to verify a multiplication. If your answer and estimate are far apart, something went wrong.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Use an estimate to verify a multiplication. If your answer and estimate are far apart, something went wrong."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 5 × 83 (round to ten).",
+      "correct_answer": "400",
+      "hints": [
+        "Think about what estimate products means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "83→80.",
+        "5×80=400."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 400. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 7 × 312 (round to hundred).",
+      "correct_answer": "2100",
+      "hints": [
+        "Think about what estimate products means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "312→300.",
+        "7×300=2,100."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2100. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 3,
+      "question": "Estimate 4 × 5,890 (round to thousand).",
+      "correct_answer": "24000",
+      "hints": [
+        "Think about what estimate products means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "5,890→6,000.",
+        "4×6,000=24,000."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 24000. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 6 × 489 (round to hundred).",
+      "correct_answer": "3000",
+      "hints": [
+        "Think about what estimate products means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "489→500.",
+        "6×500=3,000."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3000. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 9 × 127 (round to hundred).",
+      "correct_answer": "900",
+      "hints": [
+        "Think about what estimate products means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "127→100.",
+        "9×100=900."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 900. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 1,
+      "question": "Estimate 4 × 78 by rounding to the nearest ten.",
+      "correct_answer": "320",
+      "hints": [
+        "Round 78 to the nearest ten.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 320. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 1,
+      "question": "Estimate 5 × 46 by rounding to the nearest ten.",
+      "correct_answer": "250",
+      "hints": [
+        "Round 46 to the nearest ten.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 250. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 1,
+      "question": "Estimate 6 × 287 by rounding to the nearest hundred.",
+      "correct_answer": "1800",
+      "hints": [
+        "Round 287 to the nearest hundred.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1800. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 1,
+      "question": "Estimate 3 × 419 by rounding to the nearest hundred.",
+      "correct_answer": "1200",
+      "hints": [
+        "Round 419 to the nearest hundred.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1200. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 7 × 612 by rounding to the nearest hundred.",
+      "correct_answer": "4200",
+      "hints": [
+        "Round 612 to the nearest hundred.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4200. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 4 × 3,218 by rounding to the nearest thousand.",
+      "correct_answer": "12000",
+      "hints": [
+        "Round 3,218 to the nearest thousand.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 12000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 8 × 6,789 by rounding to the nearest thousand.",
+      "correct_answer": "56000",
+      "hints": [
+        "Round 6,789 to the nearest thousand.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 56000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 9 × 57 by rounding to the nearest ten.",
+      "correct_answer": "540",
+      "hints": [
+        "Round 57 to the nearest ten.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 540. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 3,
+      "question": "Estimate 5 × 824 by rounding to the nearest hundred.",
+      "correct_answer": "4000",
+      "hints": [
+        "Round 824 to the nearest hundred.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 3,
+      "question": "Estimate 6 × 1,250 by rounding to the nearest thousand.",
+      "correct_answer": "6000",
+      "hints": [
+        "Round 1,250 to the nearest thousand.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6000. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 1,
+      "question": "Estimate 3 × 82 by rounding to the nearest ten.",
+      "correct_answer": "240",
+      "hints": [
+        "Round 82 to the nearest ten.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 240. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 1,
+      "question": "Estimate 4 × 67 by rounding to the nearest ten.",
+      "correct_answer": "280",
+      "hints": [
+        "Round 67 to the nearest ten.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 280. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 1,
+      "question": "Estimate 5 × 345 by rounding to the nearest hundred.",
+      "correct_answer": "1500",
+      "hints": [
+        "Round 345 to the nearest hundred.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 1,
+      "question": "Estimate 6 × 789 by rounding to the nearest hundred.",
+      "correct_answer": "4800",
+      "hints": [
+        "Round 789 to the nearest hundred.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4800. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 7 × 234 by rounding to the nearest hundred.",
+      "correct_answer": "1400",
+      "hints": [
+        "Round 234 to the nearest hundred.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 8 × 6,123 by rounding to the nearest thousand.",
+      "correct_answer": "48000",
+      "hints": [
+        "Round 6,123 to the nearest thousand.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 48000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 9 × 4,567 by rounding to the nearest thousand.",
+      "correct_answer": "45000",
+      "hints": [
+        "Round 4,567 to the nearest thousand.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 45000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 5 × 98 by rounding to the nearest ten.",
+      "correct_answer": "500",
+      "hints": [
+        "Round 98 to the nearest ten.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 3,
+      "question": "Estimate 3 × 912 by rounding to the nearest hundred.",
+      "correct_answer": "2700",
+      "hints": [
+        "Round 912 to the nearest hundred.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2700. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 3,
+      "question": "Estimate 7 × 2,345 by rounding to the nearest thousand.",
+      "correct_answer": "14000",
+      "hints": [
+        "Round 2,345 to the nearest thousand.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 14000. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 4 × 89 by rounding to the nearest ten.",
+      "correct_answer": "360",
+      "hints": [
+        "Round 89 to the nearest ten.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 360. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 6 × 456 by rounding to the nearest hundred.",
+      "correct_answer": "3000",
+      "hints": [
+        "Round 456 to the nearest hundred.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 2,
+      "question": "Estimate 5 × 2,789 by rounding to the nearest thousand.",
+      "correct_answer": "15000",
+      "hints": [
+        "Round 2,789 to the nearest thousand.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 15000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 3,
+      "question": "Estimate 8 × 378 by rounding to the nearest hundred.",
+      "correct_answer": "3200",
+      "hints": [
+        "Round 378 to the nearest hundred.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3200. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_then_multiply",
+      "concept": "estimate_products",
+      "difficulty": 3,
+      "question": "Estimate 9 × 5,234 by rounding to the nearest thousand.",
+      "correct_answer": "45000",
+      "hints": [
+        "Round 5,234 to the nearest thousand.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 45000. Multiply place by place."
+      }
+    }
+  ]
+}

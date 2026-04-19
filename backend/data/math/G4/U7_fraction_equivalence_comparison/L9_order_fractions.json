@@ -1,0 +1,790 @@
+{
+  "lesson_id": "L9",
+  "title": "Order Fractions",
+  "grade": "G4",
+  "unit": "U7_fraction_equivalence_comparison",
+  "lesson": "L9",
+  "ccss": [
+    "4.NF.A.2"
+  ],
+  "standard": "4.NF.A.2",
+  "go_math_ref": "Go Math G4 Ch6 L9",
+  "essential_question": "How do you order three or more fractions?",
+  "vocabulary": [
+    "order",
+    "compare",
+    "least",
+    "greatest"
+  ],
+  "concept": "order_fractions",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order 1/2, 1/3, 3/4 from least to greatest:",
+      "choices": [
+        "A) 1/3, 1/2, 3/4",
+        "B) 3/4, 1/2, 1/3",
+        "C) 1/2, 1/3, 3/4",
+        "D) 1/3, 3/4, 1/2"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. LCD 12: 4/12, 6/12, 9/12."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Greatest of 2/5, 3/5, 1/5?",
+      "choices": [
+        "A) 2/5",
+        "B) 3/5",
+        "C) 1/5"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order 3/4, 2/3, 5/6 least to greatest:",
+      "choices": [
+        "A) 2/3, 3/4, 5/6",
+        "B) 5/6, 3/4, 2/3",
+        "C) 3/4, 2/3, 5/6",
+        "D) 2/3, 5/6, 3/4"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. LCD 12: 8/12, 9/12, 10/12."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "To order fractions, rewrite with a common denominator.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Greatest of 1/2, 2/5, 3/10?",
+      "correct_answer": "1/2",
+      "hints": [
+        "LCD 10: 5/10, 4/10, 3/10.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/2. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Ordering Fractions",
+      "content": "Arrange fractions from least to greatest using the strategies you know.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Arrange fractions from least to greatest using the strategies you know."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Common Denominator First",
+      "content": "Find the LCD, rewrite each fraction, then order the numerators.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Find the LCD, rewrite each fraction, then order the numerators."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Benchmarks Help",
+      "content": "Group as < 1/2 vs > 1/2 first, then order within groups.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Group as < 1/2 vs > 1/2 first, then order within groups."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Number Line Method",
+      "content": "Place each fraction on a number line. Read off the order left to right.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 0,
+        "max": 1,
+        "step": 0.25,
+        "highlight": 0.5
+      },
+      "tts": "Place each fraction on a number line. Read off the order left to right."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Three or More",
+      "content": "Same methods work for 3+ fractions.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Same methods work for 3+ fractions."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check Your Order",
+      "content": "Read the final list and confirm each < next.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Read the final list and confirm each < next."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least to greatest: 1/4, 1/2, 1/3.",
+      "correct_answer": "1/4,1/3,1/2",
+      "hints": [
+        "Think about order fractions.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "LCD 12: 3/12, 6/12, 4/12.",
+        "Order: 3,4,6.",
+        "1/4, 1/3, 1/2."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/4,1/3,1/2."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order greatest to least: 2/5, 1/5, 3/5.",
+      "correct_answer": "3/5,2/5,1/5",
+      "hints": [
+        "Think about order fractions.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "Same denom.",
+        "Compare numerators.",
+        "3, 2, 1."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/5,2/5,1/5."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least to greatest: 3/8, 1/2, 5/8.",
+      "correct_answer": "3/8,1/2,5/8",
+      "hints": [
+        "Think about order fractions.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "1/2=4/8.",
+        "3 < 4 < 5.",
+        "3/8, 1/2, 5/8."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/8,1/2,5/8."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order: 2/3, 5/6, 1/2 (least to greatest).",
+      "correct_answer": "1/2,2/3,5/6",
+      "hints": [
+        "Think about order fractions.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "LCD 6: 4/6, 5/6, 3/6.",
+        "Order: 3, 4, 5.",
+        "1/2, 2/3, 5/6."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/2,2/3,5/6."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order: 7/10, 2/5, 9/10 least to greatest.",
+      "correct_answer": "2/5,7/10,9/10",
+      "hints": [
+        "Think about order fractions.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "2/5 = 4/10.",
+        "4, 7, 9.",
+        "2/5, 7/10, 9/10."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/5,7/10,9/10."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order least→greatest: 7/12, 6/12, 8/12",
+      "correct_answer": "6/12,7/12,8/12",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/12,7/12,8/12. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order least→greatest: 1/10, 8/10, 2/10",
+      "correct_answer": "1/10,2/10,8/10",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/10,2/10,8/10. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order least→greatest: 7/10, 1/10, 9/10",
+      "correct_answer": "1/10,7/10,9/10",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/10,7/10,9/10. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order least→greatest: 4/6, 2/6, 5/6",
+      "correct_answer": "2/6,4/6,5/6",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/6,4/6,5/6. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order least→greatest: 9/10, 2/10, 3/10",
+      "correct_answer": "2/10,3/10,9/10",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/10,3/10,9/10. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order least→greatest: 8/10, 2/10, 1/10",
+      "correct_answer": "1/10,2/10,8/10",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/10,2/10,8/10. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order least→greatest: 5/12, 2/12, 3/12",
+      "correct_answer": "2/12,3/12,5/12",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/12,3/12,5/12. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order least→greatest: 2/8, 4/8, 6/8",
+      "correct_answer": "2/8,4/8,6/8",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/8,4/8,6/8. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order least→greatest: 3/8, 1/8, 6/8",
+      "correct_answer": "1/8,3/8,6/8",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/8,3/8,6/8. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Order least→greatest: 3/6, 2/6, 5/6",
+      "correct_answer": "2/6,3/6,5/6",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/6,3/6,5/6. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 2/3, 1/2, 5/6",
+      "correct_answer": "1/2,2/3,5/6",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/2,2/3,5/6. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 1/6, 5/12, 1/3",
+      "correct_answer": "1/6,1/3,5/12",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/6,1/3,5/12. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 3/4, 5/6, 2/3",
+      "correct_answer": "2/3,3/4,5/6",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/3,3/4,5/6. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 5/16, 3/8, 1/4",
+      "correct_answer": "1/4,5/16,3/8",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/4,5/16,3/8. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 1/3, 1/4, 1/2",
+      "correct_answer": "1/4,1/3,1/2",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/4,1/3,1/2. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 5/12, 2/3, 1/2",
+      "correct_answer": "5/12,1/2,2/3",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/12,1/2,2/3. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 3/8, 5/8, 1/2",
+      "correct_answer": "3/8,1/2,5/8",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/8,1/2,5/8. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 2/5, 3/10, 1/2",
+      "correct_answer": "3/10,2/5,1/2",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/10,2/5,1/2. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 4/5, 7/10, 3/5",
+      "correct_answer": "3/5,7/10,4/5",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/5,7/10,4/5. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 5/8, 7/16, 3/4",
+      "correct_answer": "7/16,5/8,3/4",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/16,5/8,3/4. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order least→greatest: 2/3, 1/2, 5/6",
+      "correct_answer": "1/2,2/3,5/6",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/2,2/3,5/6. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Greatest of 3/5, 7/10, 2/3?",
+      "correct_answer": "7/10",
+      "hints": [
+        "LCD 30: 18/30, 21/30, 20/30.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/10. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order 3/4, 1/2, 5/8 greatest to least:",
+      "choices": [
+        "A) 3/4, 5/8, 1/2",
+        "B) 5/8, 3/4, 1/2",
+        "C) 1/2, 5/8, 3/4",
+        "D) 3/4, 1/2, 5/8"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 1,
+      "question": "Smallest of 2/9, 1/3, 4/9?",
+      "correct_answer": "2/9",
+      "hints": [
+        "Think about order fractions.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/9. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "order_three",
+      "concept": "order_fractions",
+      "difficulty": 2,
+      "question": "Order: 1/4, 2/5, 3/10 least→greatest",
+      "correct_answer": "1/4,3/10,2/5",
+      "hints": [
+        "LCD 20: 5, 6, 8.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/4,3/10,2/5. "
+      }
+    }
+  ]
+}

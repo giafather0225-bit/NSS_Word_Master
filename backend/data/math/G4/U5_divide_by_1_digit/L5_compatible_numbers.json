@@ -1,0 +1,787 @@
+{
+  "lesson_id": "L5",
+  "title": "Estimate Quotients with Compatible Numbers",
+  "grade": "G4",
+  "unit": "U5_divide_by_1_digit",
+  "lesson": "L5",
+  "ccss": [
+    "4.NBT.B.6"
+  ],
+  "standard": "4.NBT.B.6",
+  "go_math_ref": "Go Math G4 Ch4 L5",
+  "essential_question": "How do compatible numbers make estimating quotients easier?",
+  "vocabulary": [
+    "compatible",
+    "estimate",
+    "quotient",
+    "multiple"
+  ],
+  "concept": "compatible_numbers_div",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 178 ÷ 6 using compatible numbers.",
+      "choices": [
+        "A) 20",
+        "B) 30",
+        "C) 40",
+        "D) 50"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 180 ÷ 6 = 30."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 247 ÷ 8.",
+      "correct_answer": "30",
+      "hints": [
+        "240÷8=30.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. 240÷8=30."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 563 ÷ 7.",
+      "correct_answer": "80",
+      "hints": [
+        "560÷7=80.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 80. Work through each place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Compatible numbers are close to the originals and easy to compute.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 428 ÷ 6.",
+      "correct_answer": "70",
+      "hints": [
+        "420÷6=70.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 70. Work through each place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Compatible Numbers",
+      "content": "Compatible numbers are easy to divide — usually multiples of the divisor close to the dividend.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Compatible numbers are easy to divide — usually multiples of the divisor close to the dividend."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Find a Friendly Multiple",
+      "content": "For 185 ÷ 6, use 180 (since 180÷6=30). So 185÷6 ≈ 30.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "For 185 ÷ 6, use 180 (since 180÷6=30). So 185÷6 ≈ 30."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Number Line Help",
+      "content": "Put the dividend between two nearby multiples. Pick the closer one.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 180,
+        "max": 210,
+        "step": 6,
+        "highlight": 186
+      },
+      "tts": "Put the dividend between two nearby multiples. Pick the closer one."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Larger Estimates",
+      "content": "For 523 ÷ 7, try 490 (÷7=70) or 560 (÷7=80). 523 closer to 490 → ≈75.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "For 523 ÷ 7, try 490 (÷7=70) or 560 (÷7=80). 523 closer to 490 → ≈75."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check Reasonableness",
+      "content": "Estimated quotient × divisor should be close to the dividend.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimated quotient × divisor should be close to the dividend."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate Saves Time",
+      "content": "Great for mental math checks: 297÷3 ≈ 300÷3 = 100.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Great for mental math checks: 297÷3 ≈ 300÷3 = 100."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 356 ÷ 5.",
+      "correct_answer": "70",
+      "hints": [
+        "Think about compatible numbers div.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "Pick a multiple of 5 close to 356.",
+        "350 works: 350÷5=70.",
+        "≈ 70."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 70. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 489 ÷ 6.",
+      "correct_answer": "80",
+      "hints": [
+        "Think about compatible numbers div.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "480 is close to 489.",
+        "480÷6=80.",
+        "≈ 80."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 80. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 215 ÷ 4.",
+      "correct_answer": "50",
+      "hints": [
+        "Think about compatible numbers div.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "200÷4=50.",
+        "200 close to 215.",
+        "≈ 50."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 50. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 728 ÷ 9.",
+      "correct_answer": "80",
+      "hints": [
+        "Think about compatible numbers div.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "720÷9=80.",
+        "720 close to 728.",
+        "≈ 80."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 80. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 634 ÷ 7.",
+      "correct_answer": "90",
+      "hints": [
+        "Think about compatible numbers div.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "630÷7=90.",
+        "Close to 634.",
+        "≈ 90."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Estimate 91 ÷ 3.",
+      "correct_answer": "30",
+      "hints": [
+        "Find a multiple of 3 near 91.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. Work through each place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Estimate 429 ÷ 8.",
+      "correct_answer": "54",
+      "hints": [
+        "Find a multiple of 8 near 429.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 54. Work through each place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Estimate 808 ÷ 9.",
+      "correct_answer": "90",
+      "hints": [
+        "Find a multiple of 9 near 808.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. Work through each place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Estimate 365 ÷ 6.",
+      "correct_answer": "61",
+      "hints": [
+        "Find a multiple of 6 near 365.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 61. Work through each place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Estimate 217 ÷ 3.",
+      "correct_answer": "72",
+      "hints": [
+        "Find a multiple of 3 near 217.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 72. Work through each place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Estimate 293 ÷ 8.",
+      "correct_answer": "37",
+      "hints": [
+        "Find a multiple of 8 near 293.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 37. Work through each place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Estimate 501 ÷ 7.",
+      "correct_answer": "72",
+      "hints": [
+        "Find a multiple of 7 near 501.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 72. Work through each place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Estimate 790 ÷ 9.",
+      "correct_answer": "88",
+      "hints": [
+        "Find a multiple of 9 near 790.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 88. Work through each place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Estimate 405 ÷ 8.",
+      "correct_answer": "51",
+      "hints": [
+        "Find a multiple of 8 near 405.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 51. Work through each place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 1,
+      "question": "Estimate 166 ÷ 8.",
+      "correct_answer": "21",
+      "hints": [
+        "Find a multiple of 8 near 166.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 21. Work through each place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 471 ÷ 8.",
+      "correct_answer": "59",
+      "hints": [
+        "Use compatible numbers.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 59. Work through each place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 659 ÷ 8.",
+      "correct_answer": "82",
+      "hints": [
+        "Use compatible numbers.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 82. Work through each place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 396 ÷ 8.",
+      "correct_answer": "49",
+      "hints": [
+        "Use compatible numbers.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 49. Work through each place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 609 ÷ 7.",
+      "correct_answer": "87",
+      "hints": [
+        "Use compatible numbers.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 87. Work through each place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 455 ÷ 6.",
+      "correct_answer": "76",
+      "hints": [
+        "Use compatible numbers.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 76. Work through each place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 319 ÷ 6.",
+      "correct_answer": "54",
+      "hints": [
+        "Use compatible numbers.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 54. Work through each place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 184 ÷ 4.",
+      "correct_answer": "47",
+      "hints": [
+        "Use compatible numbers.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 47. Work through each place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 296 ÷ 7.",
+      "correct_answer": "42",
+      "hints": [
+        "Use compatible numbers.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 42. Work through each place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 238 ÷ 3.",
+      "correct_answer": "79",
+      "hints": [
+        "Use compatible numbers.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 79. Work through each place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 427 ÷ 7.",
+      "correct_answer": "61",
+      "hints": [
+        "Use compatible numbers.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 61. Work through each place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 548 ÷ 8.",
+      "correct_answer": "70",
+      "hints": [
+        "560÷8=70.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 70. Work through each place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 842 ÷ 9.",
+      "correct_answer": "90",
+      "hints": [
+        "Think about compatible numbers div.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. Work through each place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Best estimate for 367 ÷ 6:",
+      "choices": [
+        "A) 40",
+        "B) 50",
+        "C) 60",
+        "D) 70"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 360÷6=60."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 295 ÷ 5.",
+      "correct_answer": "60",
+      "hints": [
+        "Think about compatible numbers div.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 60. Work through each place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "estimate_compatible",
+      "concept": "compatible_numbers_div",
+      "difficulty": 2,
+      "question": "Estimate 417 ÷ 7.",
+      "correct_answer": "60",
+      "hints": [
+        "420÷7=60.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 60. Work through each place."
+      }
+    }
+  ]
+}

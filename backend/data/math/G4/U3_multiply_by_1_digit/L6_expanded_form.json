@@ -1,0 +1,785 @@
+{
+  "lesson_id": "L6_expanded_form",
+  "title": "Multiply Using Expanded Form",
+  "grade": "G4",
+  "unit": "U3_multiply_by_1_digit",
+  "lesson": "L6_expanded_form",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.6",
+  "essential_question": "How does expanded form help you multiply?",
+  "vocabulary": [
+    "expanded form",
+    "place value",
+    "partial products"
+  ],
+  "concept": "multiply_expanded_form",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 1,
+      "question": "Expanded form of 456 is:",
+      "choices": [
+        "A) 400+50+6",
+        "B) 4+5+6",
+        "C) 4×5×6",
+        "D) 456"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Work through it step by step."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Using expanded form: 3 × 234 = 3×200 + 3×30 + 3×4 = ___",
+      "correct_answer": "702",
+      "hints": [
+        "Think about what multiply expanded form means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 702. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "4 × 127 using expanded form = 400 + 80 + ___ = ___",
+      "correct_answer": "28",
+      "hints": [
+        "Find 4×7 then sum.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 28. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 1,
+      "question": "Expanded form breaks a number into its place values.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "5 × 312 = 5×300 + 5×10 + 5×2 = ___",
+      "correct_answer": "1560",
+      "hints": [
+        "Think about what multiply expanded form means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1560. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "What is Expanded Form?",
+      "content": "Expanded form shows the value of each digit. 438 = 400 + 30 + 8. This makes it easier to multiply mentally.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Expanded form shows the value of each digit. 438 = 400 + 30 + 8. This makes it easier to multiply mentally."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Multiply Each Part",
+      "content": "4 × 237 = 4×200 + 4×30 + 4×7. Multiply each part separately, then add them.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "base10_blocks",
+        "config": {
+          "start": 0,
+          "max": 9999
+        }
+      },
+      "tts": "4 × 237 = 4×200 + 4×30 + 4×7. Multiply each part separately, then add them."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example: 6 × 345",
+      "content": "6×300=1,800. 6×40=240. 6×5=30. Sum: 1,800+240+30=2,070.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "6×300=1,800. 6×40=240. 6×5=30. Sum: 1,800+240+30=2,070."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Work Down to Ones",
+      "content": "Break the larger factor into thousands, hundreds, tens, ones. Handle each piece separately.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Break the larger factor into thousands, hundreds, tens, ones. Handle each piece separately."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Compare with Partial Products",
+      "content": "Expanded form is a way to see partial products clearly. Each partial product corresponds to a place value.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Expanded form is a way to see partial products clearly. Each partial product corresponds to a place value."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check Your Sum",
+      "content": "Add the partial products in columns. Regroup if needed.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Add the partial products in columns. Regroup if needed."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 4 × 234 = ___",
+      "correct_answer": "936",
+      "hints": [
+        "Think about what multiply expanded form means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "234 = 200+30+4.",
+        "4×200=800. 4×30=120. 4×4=16.",
+        "800+120+16=936."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 936. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "6 × 352 (expanded) = ___",
+      "correct_answer": "2112",
+      "hints": [
+        "Think about what multiply expanded form means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "352=300+50+2.",
+        "6×300=1,800. 6×50=300. 6×2=12.",
+        "1,800+300+12=2,112."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2112. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 3,
+      "question": "3 × 1,245 = ___",
+      "correct_answer": "3735",
+      "hints": [
+        "Think about what multiply expanded form means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "1,245=1,000+200+40+5.",
+        "3×1,000=3,000. 3×200=600. 3×40=120. 3×5=15.",
+        "Sum: 3,735."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3735. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "7 × 506 = ___",
+      "correct_answer": "3542",
+      "hints": [
+        "Think about what multiply expanded form means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "506=500+0+6.",
+        "7×500=3,500. 7×6=42.",
+        "3,500+42=3,542."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3542. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 3,
+      "question": "8 × 2,134 = ___",
+      "correct_answer": "17072",
+      "hints": [
+        "Think about what multiply expanded form means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "2,134=2,000+100+30+4.",
+        "8×2,000=16,000. 8×100=800. 8×30=240. 8×4=32.",
+        "Sum: 17,072."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 17072. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 1,
+      "question": "Use expanded form: 3 × 124 = ___",
+      "correct_answer": "372",
+      "hints": [
+        "Break 124 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 372. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 1,
+      "question": "Use expanded form: 4 × 231 = ___",
+      "correct_answer": "924",
+      "hints": [
+        "Break 231 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 924. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 1,
+      "question": "Use expanded form: 5 × 342 = ___",
+      "correct_answer": "1710",
+      "hints": [
+        "Break 342 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1710. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 1,
+      "question": "Use expanded form: 6 × 453 = ___",
+      "correct_answer": "2718",
+      "hints": [
+        "Break 453 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2718. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 7 × 521 = ___",
+      "correct_answer": "3647",
+      "hints": [
+        "Break 521 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3647. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 8 × 612 = ___",
+      "correct_answer": "4896",
+      "hints": [
+        "Break 612 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4896. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 9 × 234 = ___",
+      "correct_answer": "2106",
+      "hints": [
+        "Break 234 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2106. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 3 × 1,234 = ___",
+      "correct_answer": "3702",
+      "hints": [
+        "Break 1,234 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3702. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 3,
+      "question": "Use expanded form: 4 × 2,345 = ___",
+      "correct_answer": "9380",
+      "hints": [
+        "Break 2,345 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 9380. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 3,
+      "question": "Use expanded form: 5 × 1,023 = ___",
+      "correct_answer": "5115",
+      "hints": [
+        "Break 1,023 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5115. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 1,
+      "question": "Use expanded form: 4 × 213 = ___",
+      "correct_answer": "852",
+      "hints": [
+        "Break 213 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 852. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 1,
+      "question": "Use expanded form: 6 × 345 = ___",
+      "correct_answer": "2070",
+      "hints": [
+        "Break 345 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2070. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 1,
+      "question": "Use expanded form: 7 × 468 = ___",
+      "correct_answer": "3276",
+      "hints": [
+        "Break 468 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3276. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 1,
+      "question": "Use expanded form: 8 × 539 = ___",
+      "correct_answer": "4312",
+      "hints": [
+        "Break 539 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4312. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 9 × 612 = ___",
+      "correct_answer": "5508",
+      "hints": [
+        "Break 612 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5508. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 3 × 789 = ___",
+      "correct_answer": "2367",
+      "hints": [
+        "Break 789 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2367. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 5 × 846 = ___",
+      "correct_answer": "4230",
+      "hints": [
+        "Break 846 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4230. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 6 × 1,257 = ___",
+      "correct_answer": "7542",
+      "hints": [
+        "Break 1,257 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7542. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 3,
+      "question": "Use expanded form: 7 × 2,036 = ___",
+      "correct_answer": "14252",
+      "hints": [
+        "Break 2,036 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 14252. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 3,
+      "question": "Use expanded form: 8 × 3,124 = ___",
+      "correct_answer": "24992",
+      "hints": [
+        "Break 3,124 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 24992. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 5 × 347 = ___",
+      "correct_answer": "1735",
+      "hints": [
+        "Break 347 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1735. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 7 × 526 = ___",
+      "correct_answer": "3682",
+      "hints": [
+        "Break 526 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3682. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 2,
+      "question": "Use expanded form: 9 × 813 = ___",
+      "correct_answer": "7317",
+      "hints": [
+        "Break 813 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7317. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 3,
+      "question": "Use expanded form: 6 × 1,234 = ___",
+      "correct_answer": "7404",
+      "hints": [
+        "Break 1,234 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7404. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "expanded_form_multiply",
+      "concept": "multiply_expanded_form",
+      "difficulty": 3,
+      "question": "Use expanded form: 8 × 2,345 = ___",
+      "correct_answer": "18760",
+      "hints": [
+        "Break 2,345 by place value.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 18760. Multiply place by place."
+      }
+    }
+  ]
+}

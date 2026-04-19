@@ -1,0 +1,797 @@
+{
+  "lesson_id": "L9_properties_of_addition",
+  "title": "Properties of Addition",
+  "grade": "G4",
+  "unit": "U2_add_subtract_whole_numbers",
+  "lesson": "L9_properties_of_addition",
+  "ccss": [
+    "4.NBT.B.4",
+    "4.OA.B.4"
+  ],
+  "standard": "4.NBT.B.4",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.9",
+  "essential_question": "How can properties make adding easier?",
+  "vocabulary": [
+    "Commutative",
+    "Associative",
+    "Identity",
+    "property"
+  ],
+  "concept": "properties_of_addition",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "Which shows the Commutative Property?",
+      "choices": [
+        "A) 3+0=3",
+        "B) 4+7=7+4",
+        "C) (1+2)+3=1+(2+3)",
+        "D) 5+0=5"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Commutative: order changes, sum same."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "Which shows the Associative Property?",
+      "choices": [
+        "A) 5+6=6+5",
+        "B) 7+0=7",
+        "C) (2+3)+4=2+(3+4)",
+        "D) 8+8=16"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Associative: grouping changes."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "Which shows the Identity Property?",
+      "choices": [
+        "A) 9+0=9",
+        "B) 3+3=6",
+        "C) 4+5=5+4",
+        "D) (1+2)+3=1+(2+3)"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Check your work step by step."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "8+0 equals 8 by the Identity Property.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "Use the Associative Property: (15+25)+75 = 15+(25+75) = ___",
+      "correct_answer": "115",
+      "hints": [
+        "Group the friendly pair first: 25+75=100.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 115. Work through it place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "The Commutative Property",
+      "content": "Order doesn't change the sum: a + b = b + a. This works with any numbers.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Order doesn't change the sum: a + b = b + a. This works with any numbers."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "The Associative Property",
+      "content": "Grouping doesn't change the sum: (a + b) + c = a + (b + c). Use parentheses to choose which numbers to add first.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Grouping doesn't change the sum: (a + b) + c = a + (b + c). Use parentheses to choose which numbers to add first."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "The Identity Property",
+      "content": "Adding zero keeps a number the same: a + 0 = a.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Adding zero keeps a number the same: a + 0 = a."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Use Properties to Add Fast",
+      "content": "Commutative lets you rearrange numbers. Associative lets you group friendly pairs. Example: 27+45+73 = (27+73)+45 = 100+45 = 145.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Commutative lets you rearrange numbers. Associative lets you group friendly pairs. Example: 27+45+73 = (27+73)+45 = 100+45 = 145."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Apply to Large Numbers",
+      "content": "Properties work for any size number. 1,250+350+1,750 = (1,250+1,750)+350 = 3,000+350 = 3,350.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Properties work for any size number. 1,250+350+1,750 = (1,250+1,750)+350 = 3,000+350 = 3,350."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Why Properties Matter",
+      "content": "Properties save time. They let you add mentally by making friendly sums first.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Properties save time. They let you add mentally by making friendly sums first."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "Use properties to find the sum: 45 + 28 + 55 = ___",
+      "correct_answer": "128",
+      "hints": [
+        "Think about what properties of addition means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Commutative: rearrange to 45+55+28.",
+        "45+55=100 (friendly).",
+        "100+28=128."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 128. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "Use properties: (18+47)+53 = ___",
+      "correct_answer": "118",
+      "hints": [
+        "Think about what properties of addition means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Associative: 18+(47+53).",
+        "47+53=100.",
+        "18+100=118."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 118. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "Use the Identity Property: 0 + 1,234 = ___",
+      "correct_answer": "1234",
+      "hints": [
+        "Think about what properties of addition means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Identity: 0 + any = that number.",
+        "Answer: 1,234."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1234. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "Find the sum using properties: 125 + 345 + 75 = ___",
+      "correct_answer": "545",
+      "hints": [
+        "Think about what properties of addition means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Rearrange: 125+75+345.",
+        "125+75=200.",
+        "200+345=545."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 545. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 3,
+      "question": "Use properties: 1,250 + 470 + 750 = ___",
+      "correct_answer": "2470",
+      "hints": [
+        "Think about what properties of addition means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "1,250+750=2,000.",
+        "2,000+470=2,470."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2470. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "Which is the Commutative Property?",
+      "choices": [
+        "A) 5+0=5",
+        "B) 3+8=8+3",
+        "C) (2+3)+4=2+(3+4)",
+        "D) 9+9=18"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Check your work step by step."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "Which is the Associative Property?",
+      "choices": [
+        "A) 7+0=7",
+        "B) 4+6=6+4",
+        "C) (5+1)+9=5+(1+9)",
+        "D) 8+8=16"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Check your work step by step."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "Which is the Identity Property?",
+      "choices": [
+        "A) 12+0=12",
+        "B) 2+3=3+2",
+        "C) (1+2)+3=1+(2+3)",
+        "D) 4+4=8"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Check your work step by step."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "0 + 567 = ___",
+      "correct_answer": "567",
+      "hints": [
+        "Think about what properties of addition means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 567. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "(25+15)+75 = ___",
+      "correct_answer": "115",
+      "hints": [
+        "Group 15+75=90.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 115. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "125+200+75 = ___",
+      "correct_answer": "400",
+      "hints": [
+        "125+75=200, then +200.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 400. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "48+52+37 = ___",
+      "correct_answer": "137",
+      "hints": [
+        "48+52=100.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 137. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "(190+310)+150 = ___",
+      "correct_answer": "650",
+      "hints": [
+        "190+310=500.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 650. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "1,250+0 = ___",
+      "correct_answer": "1250",
+      "hints": [
+        "Think about what properties of addition means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1250. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "17+23+45 = ___",
+      "correct_answer": "85",
+      "hints": [
+        "17+23=40.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 85. Work through it place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "Which property? (3+5)+7 = 3+(5+7)",
+      "choices": [
+        "A) Commutative",
+        "B) Associative",
+        "C) Identity",
+        "D) None"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Check your work step by step."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "Which property? 12+8 = 8+12",
+      "choices": [
+        "A) Commutative",
+        "B) Associative",
+        "C) Identity",
+        "D) Zero"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Check your work step by step."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "Which equals 9 by Identity?",
+      "choices": [
+        "A) 9+0",
+        "B) 9×1",
+        "C) 9−0",
+        "D) All"
+      ],
+      "correct_answer": "D",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Check your work step by step."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "175+125+89 = ___",
+      "correct_answer": "389",
+      "hints": [
+        "175+125=300.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 389. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "45+55+245 = ___",
+      "correct_answer": "345",
+      "hints": [
+        "45+55=100.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 345. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "0+2345 = ___",
+      "correct_answer": "2345",
+      "hints": [
+        "Think about what properties of addition means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2345. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "(230+470)+320 = ___",
+      "correct_answer": "1020",
+      "hints": [
+        "230+470=700.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1020. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "12+88+150 = ___",
+      "correct_answer": "250",
+      "hints": [
+        "12+88=100.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 250. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "400+150+600 = ___",
+      "correct_answer": "1150",
+      "hints": [
+        "400+600=1,000.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1150. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "25+175+300 = ___",
+      "correct_answer": "500",
+      "hints": [
+        "25+175=200.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 500. Work through it place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "(68+32)+45 = ___",
+      "correct_answer": "145",
+      "hints": [
+        "68+32=100.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 145. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "150+850+275 = ___",
+      "correct_answer": "1275",
+      "hints": [
+        "150+850=1,000.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1275. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 1,
+      "question": "0+9,876 = ___",
+      "correct_answer": "9876",
+      "hints": [
+        "Think about what properties of addition means.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 9876. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 2,
+      "question": "Which shows Associative?",
+      "choices": [
+        "A) 3+2=2+3",
+        "B) 7+0=7",
+        "C) (1+4)+6=1+(4+6)",
+        "D) 8+1=9"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Check your work step by step."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "apply_properties",
+      "concept": "properties_of_addition",
+      "difficulty": 3,
+      "question": "475+525+340 = ___",
+      "correct_answer": "1340",
+      "hints": [
+        "475+525=1,000.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1340. Work through it place by place."
+      }
+    }
+  ]
+}

@@ -1,0 +1,779 @@
+{
+  "lesson_id": "L8",
+  "title": "Evaluate Expressions (Order of Operations)",
+  "grade": "G5",
+  "unit": "U1_place_value_mult_expressions",
+  "lesson": "L8",
+  "ccss": [
+    "5.OA.A.1"
+  ],
+  "standard": "5.OA.A.1",
+  "go_math_ref": "Go Math G5 Ch1 L8",
+  "essential_question": "How do we evaluate expressions using order of operations?",
+  "vocabulary": [
+    "order of operations",
+    "PEMDAS",
+    "parentheses",
+    "evaluate"
+  ],
+  "concept": "order_of_operations",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "3 + 4 \u00d7 2 = ___.",
+      "correct_answer": "11",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11. "
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "(3 + 4) \u00d7 2 = ___.",
+      "correct_answer": "14",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "20 \u2212 6 \u00f7 2 = ___.",
+      "correct_answer": "17",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 17. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "6 + 2 \u00d7 (5 \u2212 3) = ___.",
+      "correct_answer": "10",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "(12 \u00f7 4) + 3 \u00d7 2 = ___.",
+      "correct_answer": "9",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Order of Operations",
+      "content": "PEMDAS: Parentheses, Exponents, \u00d7/\u00f7 (left to right), +/\u2212 (left to right).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "PEMDAS: Parentheses, Exponents, \u00d7/\u00f7 (left to right), +/\u2212 (left to right)."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Parentheses First",
+      "content": "Evaluate what's inside ( ) first.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Evaluate what's inside ( ) first."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Multiply / Divide",
+      "content": "Before adding or subtracting, do \u00d7 and \u00f7 left to right.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Before adding or subtracting, do \u00d7 and \u00f7 left to right."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Add / Subtract",
+      "content": "Then do + and \u2212 left to right.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Then do + and \u2212 left to right."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Example",
+      "content": "2 + 3\u00d7(4+1) \u2192 2 + 3\u00d75 \u2192 2 + 15 \u2192 17.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "2 + 3\u00d7(4+1) \u2192 2 + 3\u00d75 \u2192 2 + 15 \u2192 17."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Show Work",
+      "content": "Write each step in order.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Write each step in order."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 2 + 3 \u00d7 4.",
+      "correct_answer": "14",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "solution_steps": [
+        "Multiply first: 3\u00d74=12.",
+        "2+12=14."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate (2+3) \u00d7 4.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "solution_steps": [
+        "Parentheses: 2+3=5.",
+        "5\u00d74=20."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate 30 \u2212 4 \u00d7 5.",
+      "correct_answer": "10",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "solution_steps": [
+        "4\u00d75=20.",
+        "30\u221220=10."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate 16 \u00f7 (2+2) + 3.",
+      "correct_answer": "7",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "solution_steps": [
+        "2+2=4.",
+        "16\u00f74=4.",
+        "4+3=7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate 2\u00d7(6+4) \u2212 5.",
+      "correct_answer": "15",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "solution_steps": [
+        "6+4=10.",
+        "2\u00d710=20.",
+        "20\u22125=15."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 5 + 5 \u00d7 2.",
+      "correct_answer": "15",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 3 + 9 \u00d7 5.",
+      "correct_answer": "48",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 48. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 2 + 3 \u00d7 1.",
+      "correct_answer": "5",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 3 + 1 \u00d7 8.",
+      "correct_answer": "11",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 6 + 2 \u00d7 2.",
+      "correct_answer": "10",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 9 + 7 \u00d7 5.",
+      "correct_answer": "44",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 44. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 1 + 9 \u00d7 7.",
+      "correct_answer": "64",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 64. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 6 + 1 \u00d7 8.",
+      "correct_answer": "14",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 3 + 1 \u00d7 1.",
+      "correct_answer": "4",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "Evaluate 5 + 8 \u00d7 6.",
+      "correct_answer": "53",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 53. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate (2 + 9) \u00d7 1.",
+      "correct_answer": "11",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate (8 + 6) \u00d7 4.",
+      "correct_answer": "56",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 56. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate (7 + 8) \u00d7 2.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate (8 + 8) \u00d7 1.",
+      "correct_answer": "16",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 16. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate (6 + 1) \u00d7 4.",
+      "correct_answer": "28",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 28. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate (2 + 8) \u00d7 7.",
+      "correct_answer": "70",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 70. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate (4 + 3) \u00d7 8.",
+      "correct_answer": "56",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 56. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate (9 + 2) \u00d7 7.",
+      "correct_answer": "77",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 77. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate (6 + 9) \u00d7 2.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "Evaluate (2 + 3) \u00d7 7.",
+      "correct_answer": "35",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 35. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "5 + 2 \u00d7 3 = ___.",
+      "correct_answer": "11",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 1,
+      "question": "(5 + 2) \u00d7 3 = ___.",
+      "correct_answer": "21",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 21. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "20 \u2212 3 \u00d7 4 = ___.",
+      "correct_answer": "8",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "4 \u00d7 (6 \u2212 2) = ___.",
+      "correct_answer": "16",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 16. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.OA.A.1",
+      "skill_tag": "evaluate_expressions",
+      "concept": "order_of_operations",
+      "difficulty": 2,
+      "question": "(10 + 5) \u00f7 3 = ___.",
+      "correct_answer": "5",
+      "hints": [
+        "Think about order of operations.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    }
+  ]
+}

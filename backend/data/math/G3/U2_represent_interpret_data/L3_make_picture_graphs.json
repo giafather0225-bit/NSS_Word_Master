@@ -3,180 +3,740 @@
   "title": "Make Picture Graphs",
   "grade": "G3",
   "unit": "U2_represent_interpret_data",
-  "ccss": ["3.MD.B.3"],
-  "go_math_ref": { "chapter": 2, "lesson": "2.3", "pages": "71-74" },
+  "ccss": [
+    "3.MD.B.3"
+  ],
+  "go_math_ref": {
+    "chapter": 2,
+    "lesson": "2.3",
+    "pages": "71-74"
+  },
   "essential_question": "How can you make a picture graph to show data in a table?",
-  "key_vocabulary": ["picture graph", "key", "symbol", "frequency table", "scale"],
-  "strategies": ["Choose an appropriate key", "Divide the data value by the key to find number of symbols", "Use half symbols when needed"],
+  "key_vocabulary": [
+    "picture graph",
+    "key",
+    "symbol",
+    "frequency table",
+    "scale"
+  ],
+  "strategies": [
+    "Choose an appropriate key",
+    "Divide the data value by the key to find number of symbols",
+    "Use half symbols when needed"
+  ],
   "items": [
     {
-      "id": "PT_01", "section": "pretest", "difficulty": 1,
+      "id": "PT_01",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "A frequency table shows: Comedy 8, Drama 4, Sports 6. If each symbol = 2 students, how many symbols do you draw for Comedy?",
-      "data_table": { "title": "Favorite TV Show", "type": "frequency_table", "categories": ["Comedy","Drama","Sports"], "values": [8,4,6], "scale": 1, "unit": "students" },
-      "choices": ["A. 2","B. 4","C. 6","D. 8"], "answer": "B",
+      "data_table": {
+        "title": "Favorite TV Show",
+        "type": "frequency_table",
+        "categories": [
+          "Comedy",
+          "Drama",
+          "Sports"
+        ],
+        "values": [
+          8,
+          4,
+          6
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 2",
+        "B. 4",
+        "C. 6",
+        "D. 8"
+      ],
+      "answer": "B",
       "explanation": "8 ÷ 2 = 4 symbols."
     },
     {
-      "id": "PT_02", "section": "pretest", "difficulty": 1,
+      "id": "PT_02",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "You are making a picture graph where each symbol = 5 votes. A category has 15 votes. How many symbols do you draw?",
-      "choices": ["A. 2","B. 3","C. 5","D. 15"], "answer": "B",
+      "choices": [
+        "A. 2",
+        "B. 3",
+        "C. 5",
+        "D. 15"
+      ],
+      "answer": "B",
       "explanation": "15 ÷ 5 = 3 symbols."
     },
     {
-      "id": "PT_03", "section": "pretest", "difficulty": 2,
+      "id": "PT_03",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Frequency table: Cereal 10, Toast 5, Pancakes 15. If each symbol = 5 students, how many symbols for Toast?",
-      "data_table": { "title": "Breakfast Choices", "type": "frequency_table", "categories": ["Cereal","Toast","Pancakes"], "values": [10,5,15], "scale": 1, "unit": "students" },
-      "choices": ["A. 1","B. 2","C. 3","D. 5"], "answer": "A",
+      "data_table": {
+        "title": "Breakfast Choices",
+        "type": "frequency_table",
+        "categories": [
+          "Cereal",
+          "Toast",
+          "Pancakes"
+        ],
+        "values": [
+          10,
+          5,
+          15
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 1",
+        "B. 2",
+        "C. 3",
+        "D. 5"
+      ],
+      "answer": "A",
       "explanation": "5 ÷ 5 = 1 symbol."
     },
     {
-      "id": "PT_04", "section": "pretest", "difficulty": 2,
+      "id": "PT_04",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "You want to make a picture graph for: Soccer 12, Baseball 9, Tennis 6. Which key makes the most sense?",
-      "choices": ["A. Each symbol = 1","B. Each symbol = 2","C. Each symbol = 3","D. Each symbol = 5"], "answer": "C",
+      "choices": [
+        "A. Each symbol = 1",
+        "B. Each symbol = 2",
+        "C. Each symbol = 3",
+        "D. Each symbol = 5"
+      ],
+      "answer": "C",
       "explanation": "All values (12, 9, 6) are divisible by 3, so each symbol = 3 works best."
     },
     {
-      "id": "PT_05", "section": "pretest", "difficulty": 2,
+      "id": "PT_05",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Frequency table: Running 6, Jumping 9, Climbing 3. Each symbol = 3 students. How many total symbols will you draw?",
-      "data_table": { "title": "Favorite Recess Activity", "type": "frequency_table", "categories": ["Running","Jumping","Climbing"], "values": [6,9,3], "scale": 1, "unit": "students" },
-      "choices": ["A. 4","B. 5","C. 6","D. 18"], "answer": "C",
+      "data_table": {
+        "title": "Favorite Recess Activity",
+        "type": "frequency_table",
+        "categories": [
+          "Running",
+          "Jumping",
+          "Climbing"
+        ],
+        "values": [
+          6,
+          9,
+          3
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 4",
+        "B. 5",
+        "C. 6",
+        "D. 18"
+      ],
+      "answer": "C",
       "explanation": "Running: 6÷3=2. Jumping: 9÷3=3. Climbing: 3÷3=1. Total: 2+3+1=6."
     },
     {
-      "id": "LN_01", "section": "learn", "difficulty": 0,
+      "id": "LN_01",
+      "section": "learn",
+      "difficulty": 0,
       "type": "concept_card",
       "title": "Steps to Make a Picture Graph",
-      "content": "Step 1: Write the title. Step 2: Choose a key (decide how many each symbol represents). Step 3: Divide each data value by the key number to find how many symbols to draw. Step 4: Draw the symbols. Step 5: Write the key at the bottom."
+      "content": "Step 1: Write the title. Step 2: Choose a key (decide how many each symbol represents). Step 3: Divide each data value by the key number to find how many symbols to draw. Step 4: Draw the symbols. Step 5: Write the key at the bottom.",
+      "cpa_phase": "concrete",
+      "visual_type": "none"
     },
     {
-      "id": "LN_02", "section": "learn", "difficulty": 0,
+      "id": "LN_02",
+      "section": "learn",
+      "difficulty": 0,
       "type": "concept_card",
       "title": "Choosing a Good Key",
-      "content": "Pick a key number that divides evenly into most or all of your data values. Common keys: 2, 3, 4, 5, 10. If a value doesn't divide evenly, you can use a half symbol."
+      "content": "Pick a key number that divides evenly into most or all of your data values. Common keys: 2, 3, 4, 5, 10. If a value doesn't divide evenly, you can use a half symbol.",
+      "cpa_phase": "concrete",
+      "visual_type": "none"
     },
     {
-      "id": "LN_03", "section": "learn", "difficulty": 0,
+      "id": "LN_03",
+      "section": "learn",
+      "difficulty": 0,
       "type": "concept_card",
       "title": "Half Symbols",
-      "content": "If each symbol = 4 and you need to show 6, draw 1 full symbol and 1 half symbol (4 + 2 = 6). Half a symbol = half the key value."
+      "content": "If each symbol = 4 and you need to show 6, draw 1 full symbol and 1 half symbol (4 + 2 = 6). Half a symbol = half the key value.",
+      "cpa_phase": "pictorial",
+      "visual_type": "none"
     },
     {
-      "id": "TRY_01", "section": "try", "difficulty": 1,
+      "id": "TRY_01",
+      "section": "try",
+      "difficulty": 1,
       "question": "Frequency table: Cats 8, Dogs 12, Birds 4. Each symbol = 4. How many symbols for Dogs?",
-      "data_table": { "title": "Pets in Our Class", "type": "frequency_table", "categories": ["Cats","Dogs","Birds"], "values": [8,12,4], "scale": 1, "unit": "students" },
-      "choices": ["A. 2","B. 3","C. 4","D. 12"], "answer": "B",
-      "explanation": "12 ÷ 4 = 3."
+      "data_table": {
+        "title": "Pets in Our Class",
+        "type": "frequency_table",
+        "categories": [
+          "Cats",
+          "Dogs",
+          "Birds"
+        ],
+        "values": [
+          8,
+          12,
+          4
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 2",
+        "B. 3",
+        "C. 4",
+        "D. 12"
+      ],
+      "answer": "B",
+      "explanation": "12 ÷ 4 = 3.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      },
+      "solution_steps": []
     },
     {
-      "id": "TRY_02", "section": "try", "difficulty": 2,
+      "id": "TRY_02",
+      "section": "try",
+      "difficulty": 2,
       "question": "Frequency table: Apples 10, Bananas 7. Each symbol = 2 students. How many symbols including half symbols for Bananas?",
-      "data_table": { "title": "Fruit Snack", "type": "frequency_table", "categories": ["Apples","Bananas"], "values": [10,7], "scale": 1, "unit": "students" },
-      "choices": ["A. 3","B. 3½","C. 4","D. 7"], "answer": "B",
-      "explanation": "7 ÷ 2 = 3½ symbols."
+      "data_table": {
+        "title": "Fruit Snack",
+        "type": "frequency_table",
+        "categories": [
+          "Apples",
+          "Bananas"
+        ],
+        "values": [
+          10,
+          7
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 3",
+        "B. 3½",
+        "C. 4",
+        "D. 7"
+      ],
+      "answer": "B",
+      "explanation": "7 ÷ 2 = 3½ symbols.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      },
+      "solution_steps": []
     },
     {
-      "id": "TRY_03", "section": "try", "difficulty": 2,
+      "id": "TRY_03",
+      "section": "try",
+      "difficulty": 2,
       "question": "Sandy's sports graph: Soccer 4 symbols, Baseball 2½ symbols, Tennis 3 symbols. Each symbol = 2 students. How many fewer students chose Baseball than Soccer?",
-      "data_table": { "title": "Favorite Sports", "type": "picture_graph", "categories": ["Soccer","Baseball","Tennis"], "values": [8,5,6], "scale": 2, "key": "Each ⚽ = 2 students", "unit": "students" },
-      "choices": ["A. 2","B. 3","C. 4","D. 5"], "answer": "B",
-      "explanation": "Soccer: 4×2=8. Baseball: 2½×2=5. 8−5=3."
+      "data_table": {
+        "title": "Favorite Sports",
+        "type": "picture_graph",
+        "categories": [
+          "Soccer",
+          "Baseball",
+          "Tennis"
+        ],
+        "values": [
+          8,
+          5,
+          6
+        ],
+        "scale": 2,
+        "key": "Each ⚽ = 2 students",
+        "unit": "students"
+      },
+      "choices": [
+        "A. 2",
+        "B. 3",
+        "C. 4",
+        "D. 5"
+      ],
+      "answer": "B",
+      "explanation": "Soccer: 4×2=8. Baseball: 2½×2=5. 8−5=3.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      },
+      "solution_steps": []
     },
     {
-      "id": "R1_01", "section": "practice_r1", "difficulty": 1,
+      "id": "R1_01",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "Each symbol = 3. You need to show 9 votes. How many symbols?",
-      "choices": ["A. 2","B. 3","C. 6","D. 9"], "answer": "B",
-      "explanation": "9 ÷ 3 = 3."
+      "choices": [
+        "A. 2",
+        "B. 3",
+        "C. 6",
+        "D. 9"
+      ],
+      "answer": "B",
+      "explanation": "9 ÷ 3 = 3.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R1_02", "section": "practice_r1", "difficulty": 1,
+      "id": "R1_02",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "Each symbol = 5. A category has 20 votes. How many symbols do you draw?",
-      "choices": ["A. 2","B. 4","C. 5","D. 10"], "answer": "B",
-      "explanation": "20 ÷ 5 = 4."
+      "choices": [
+        "A. 2",
+        "B. 4",
+        "C. 5",
+        "D. 10"
+      ],
+      "answer": "B",
+      "explanation": "20 ÷ 5 = 4.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R1_03", "section": "practice_r1", "difficulty": 1,
+      "id": "R1_03",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "Frequency table: Red 6, Blue 10, Yellow 4. Each symbol = 2. How many symbols for Red?",
-      "data_table": { "title": "Favorite Crayon", "type": "frequency_table", "categories": ["Red","Blue","Yellow"], "values": [6,10,4], "scale": 1, "unit": "students" },
-      "choices": ["A. 2","B. 3","C. 5","D. 6"], "answer": "B",
-      "explanation": "6 ÷ 2 = 3."
+      "data_table": {
+        "title": "Favorite Crayon",
+        "type": "frequency_table",
+        "categories": [
+          "Red",
+          "Blue",
+          "Yellow"
+        ],
+        "values": [
+          6,
+          10,
+          4
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 2",
+        "B. 3",
+        "C. 5",
+        "D. 6"
+      ],
+      "answer": "B",
+      "explanation": "6 ÷ 2 = 3.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R1_04", "section": "practice_r1", "difficulty": 1,
+      "id": "R1_04",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "Tommy uses 1 music note = 2 people. He needs to show 4 people who chose country music. How many notes?",
-      "choices": ["A. 2","B. 4","C. 6","D. 8"], "answer": "A",
-      "explanation": "4 ÷ 2 = 2 notes."
+      "choices": [
+        "A. 2",
+        "B. 4",
+        "C. 6",
+        "D. 8"
+      ],
+      "answer": "A",
+      "explanation": "4 ÷ 2 = 2 notes.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R1_05", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_05",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Frequency table: Swim 14, Run 8, Bike 10. Which key would NOT work well for a picture graph?",
-      "choices": ["A. Each symbol = 2","B. Each symbol = 4","C. Each symbol = 3","D. Each symbol = 1"], "answer": "C",
-      "explanation": "14 ÷ 3 = 4⅔ (not a clean half). Key = 3 doesn't divide evenly into 14 or 8."
+      "choices": [
+        "A. Each symbol = 2",
+        "B. Each symbol = 4",
+        "C. Each symbol = 3",
+        "D. Each symbol = 1"
+      ],
+      "answer": "C",
+      "explanation": "14 ÷ 3 = 4⅔ (not a clean half). Key = 3 doesn't divide evenly into 14 or 8.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R1_06", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_06",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Frequency table: Fiction 12, Nonfiction 6, Poetry 9. Each symbol = 3 books. How many total symbols will the picture graph have?",
-      "data_table": { "title": "Library Books", "type": "frequency_table", "categories": ["Fiction","Nonfiction","Poetry"], "values": [12,6,9], "scale": 1, "unit": "books" },
-      "choices": ["A. 7","B. 8","C. 9","D. 27"], "answer": "C",
-      "explanation": "Fiction: 12÷3=4. Nonfiction: 6÷3=2. Poetry: 9÷3=3. Total: 4+2+3=9."
+      "data_table": {
+        "title": "Library Books",
+        "type": "frequency_table",
+        "categories": [
+          "Fiction",
+          "Nonfiction",
+          "Poetry"
+        ],
+        "values": [
+          12,
+          6,
+          9
+        ],
+        "scale": 1,
+        "unit": "books"
+      },
+      "choices": [
+        "A. 7",
+        "B. 8",
+        "C. 9",
+        "D. 27"
+      ],
+      "answer": "C",
+      "explanation": "Fiction: 12÷3=4. Nonfiction: 6÷3=2. Poetry: 9÷3=3. Total: 4+2+3=9.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R1_07", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_07",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "If 12 students chose Game Shows and each symbol = 4 students, how many pictures would you draw?",
-      "choices": ["A. 2","B. 3","C. 4","D. 8"], "answer": "B",
-      "explanation": "12 ÷ 4 = 3."
+      "choices": [
+        "A. 2",
+        "B. 3",
+        "C. 4",
+        "D. 8"
+      ],
+      "answer": "B",
+      "explanation": "12 ÷ 4 = 3.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R1_08", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_08",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "What key would you use if 10 students chose Cartoons and you want to show them with 5 symbols?",
-      "choices": ["A. Each symbol = 1","B. Each symbol = 2","C. Each symbol = 5","D. Each symbol = 10"], "answer": "B",
-      "explanation": "10 ÷ 5 = 2. Each symbol = 2."
+      "choices": [
+        "A. Each symbol = 1",
+        "B. Each symbol = 2",
+        "C. Each symbol = 5",
+        "D. Each symbol = 10"
+      ],
+      "answer": "B",
+      "explanation": "10 ÷ 5 = 2. Each symbol = 2.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R2_01", "section": "practice_r2", "difficulty": 2,
+      "id": "R2_01",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "Frequency table: Hiking 15, Camping 10, Fishing 5. Each symbol = 5. How many symbols for Hiking?",
-      "data_table": { "title": "Weekend Activities", "type": "frequency_table", "categories": ["Hiking","Camping","Fishing"], "values": [15,10,5], "scale": 1, "unit": "students" },
-      "choices": ["A. 1","B. 2","C. 3","D. 5"], "answer": "C",
-      "explanation": "15 ÷ 5 = 3."
+      "data_table": {
+        "title": "Weekend Activities",
+        "type": "frequency_table",
+        "categories": [
+          "Hiking",
+          "Camping",
+          "Fishing"
+        ],
+        "values": [
+          15,
+          10,
+          5
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 1",
+        "B. 2",
+        "C. 3",
+        "D. 5"
+      ],
+      "answer": "C",
+      "explanation": "15 ÷ 5 = 3.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R2_02", "section": "practice_r2", "difficulty": 2,
+      "id": "R2_02",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "Frequency table: Markers 7, Crayons 4, Paint 10. Each symbol = 2 students. How many symbols (including halves) for Markers?",
-      "data_table": { "title": "Art Supplies", "type": "frequency_table", "categories": ["Markers","Crayons","Paint"], "values": [7,4,10], "scale": 1, "unit": "students" },
-      "choices": ["A. 3","B. 3½","C. 4","D. 7"], "answer": "B",
-      "explanation": "7 ÷ 2 = 3½."
+      "data_table": {
+        "title": "Art Supplies",
+        "type": "frequency_table",
+        "categories": [
+          "Markers",
+          "Crayons",
+          "Paint"
+        ],
+        "values": [
+          7,
+          4,
+          10
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 3",
+        "B. 3½",
+        "C. 4",
+        "D. 7"
+      ],
+      "answer": "B",
+      "explanation": "7 ÷ 2 = 3½.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R2_03", "section": "practice_r2", "difficulty": 3,
+      "id": "R2_03",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "You collected data: Grapes 18, Melon 12, Berries 24, Peach 6. You want the largest category to have no more than 6 symbols. What is the smallest key you can use?",
-      "choices": ["A. Each symbol = 3","B. Each symbol = 4","C. Each symbol = 5","D. Each symbol = 6"], "answer": "B",
-      "explanation": "Largest = 24. 24 ÷ 6 = 4. If key = 4, symbols: 4½, 3, 6, 1½. Max is 6 symbols. Key = 3 → 24÷3=8 symbols (too many). Key = 4 works."
+      "choices": [
+        "A. Each symbol = 3",
+        "B. Each symbol = 4",
+        "C. Each symbol = 5",
+        "D. Each symbol = 6"
+      ],
+      "answer": "B",
+      "explanation": "Largest = 24. 24 ÷ 6 = 4. If key = 4, symbols: 4½, 3, 6, 1½. Max is 6 symbols. Key = 3 → 24÷3=8 symbols (too many). Key = 4 works.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R2_04", "section": "practice_r2", "difficulty": 3,
+      "id": "R2_04",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "Frequency table: Pizza 16, Burgers 10, Salad 6, Soup 8. Each symbol = 2. How many more symbols does Pizza have than Soup?",
-      "data_table": { "title": "Cafeteria Favorites", "type": "frequency_table", "categories": ["Pizza","Burgers","Salad","Soup"], "values": [16,10,6,8], "scale": 1, "unit": "students" },
-      "choices": ["A. 3","B. 4","C. 6","D. 8"], "answer": "B",
-      "explanation": "Pizza: 16÷2=8 symbols. Soup: 8÷2=4 symbols. 8−4=4."
+      "data_table": {
+        "title": "Cafeteria Favorites",
+        "type": "frequency_table",
+        "categories": [
+          "Pizza",
+          "Burgers",
+          "Salad",
+          "Soup"
+        ],
+        "values": [
+          16,
+          10,
+          6,
+          8
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 3",
+        "B. 4",
+        "C. 6",
+        "D. 8"
+      ],
+      "answer": "B",
+      "explanation": "Pizza: 16÷2=8 symbols. Soup: 8÷2=4 symbols. 8−4=4.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R3_01", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_01",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "A class of 30 students voted. Results: Soccer 12, Basketball 9, Tennis 6, Volleyball 3. Each symbol = 3. How many total symbols in the graph? Does 12+9+6+3 = 30?",
-      "data_table": { "title": "Sports Day Vote", "type": "frequency_table", "categories": ["Soccer","Basketball","Tennis","Volleyball"], "values": [12,9,6,3], "scale": 1, "unit": "students" },
-      "choices": ["A. 10 symbols, yes it equals 30","B. 10 symbols, no it doesn't equal 30","C. 12 symbols, yes it equals 30","D. 8 symbols, no it doesn't equal 30"], "answer": "A",
-      "explanation": "4+3+2+1=10 symbols. 12+9+6+3=30. Yes, it equals 30."
+      "data_table": {
+        "title": "Sports Day Vote",
+        "type": "frequency_table",
+        "categories": [
+          "Soccer",
+          "Basketball",
+          "Tennis",
+          "Volleyball"
+        ],
+        "values": [
+          12,
+          9,
+          6,
+          3
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 10 symbols, yes it equals 30",
+        "B. 10 symbols, no it doesn't equal 30",
+        "C. 12 symbols, yes it equals 30",
+        "D. 8 symbols, no it doesn't equal 30"
+      ],
+      "answer": "A",
+      "explanation": "4+3+2+1=10 symbols. 12+9+6+3=30. Yes, it equals 30.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R3_02", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_02",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Mia's picture graph uses each 🌸 = 4 students. She has 3½ flowers next to 'Park.' Later 6 more students vote for Park. How many flower symbols should be next to Park now?",
-      "choices": ["A. 4½","B. 5","C. 5½","D. 6"], "answer": "B",
-      "explanation": "Original: 3½ × 4 = 14 students. Add 6 → 20 students. 20 ÷ 4 = 5 symbols."
+      "choices": [
+        "A. 4½",
+        "B. 5",
+        "C. 5½",
+        "D. 6"
+      ],
+      "answer": "B",
+      "explanation": "Original: 3½ × 4 = 14 students. Add 6 → 20 students. 20 ÷ 4 = 5 symbols.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      }
     },
     {
-      "id": "R3_03", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_03",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Data: Band 20, Chorus 15, Art 25, Drama 10. Jake uses each symbol = 5. His friend uses each symbol = 10. How many fewer total symbols does his friend draw?",
-      "data_table": { "title": "After-School Club", "type": "frequency_table", "categories": ["Band","Chorus","Art","Drama"], "values": [20,15,25,10], "scale": 1, "unit": "students" },
-      "choices": ["A. 5","B. 7","C. 8","D. 14"], "answer": "B",
-      "explanation": "Jake (key=5): 4+3+5+2=14 symbols. Friend (key=10): 2+1½+2½+1=7 symbols. 14−7=7."
+      "data_table": {
+        "title": "After-School Club",
+        "type": "frequency_table",
+        "categories": [
+          "Band",
+          "Chorus",
+          "Art",
+          "Drama"
+        ],
+        "values": [
+          20,
+          15,
+          25,
+          10
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 5",
+        "B. 7",
+        "C. 8",
+        "D. 14"
+      ],
+      "answer": "B",
+      "explanation": "Jake (key=5): 4+3+5+2=14 symbols. Friend (key=10): 2+1½+2½+1=7 symbols. 14−7=7.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      }
     }
-  ]
+  ],
+  "concept": "make_picture_graphs"
 }

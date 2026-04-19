@@ -1,0 +1,794 @@
+{
+  "lesson_id": "L5",
+  "title": "Mixed Numbers",
+  "grade": "G4",
+  "unit": "U8_add_subtract_fractions",
+  "lesson": "L5",
+  "ccss": [
+    "4.NF.B.3"
+  ],
+  "standard": "4.NF.B.3",
+  "go_math_ref": "Go Math G4 Ch7 L5",
+  "essential_question": "What is a mixed number and how do you read one?",
+  "vocabulary": [
+    "mixed number",
+    "whole",
+    "fraction"
+  ],
+  "concept": "mixed_numbers",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Which is a mixed number?",
+      "choices": [
+        "A) 3/5",
+        "B) 1 2/3",
+        "C) 5/4",
+        "D) 12"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. Whole + fraction."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "2 wholes and 1/4 more = ___ (as mixed)",
+      "correct_answer": "2 1/4",
+      "hints": [
+        "Whole number + fraction.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2 1/4. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "3 1/2 means:",
+      "choices": [
+        "A) 3×1/2",
+        "B) 3+1/2",
+        "C) 3 halves",
+        "D) 1/2"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. Mixed = whole + fraction."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "A mixed number has a whole part and a fraction part.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "1 + 3/8 as mixed = ___",
+      "correct_answer": "1 3/8",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1 3/8. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "What is a Mixed Number?",
+      "content": "A mixed number combines a whole number and a fraction, like 2 1/3.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A mixed number combines a whole number and a fraction, like 2 1/3."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Visual",
+      "content": "If you have 2 whole pizzas and 1/3 more, that's 2 1/3 pizzas.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "numerator": 1,
+          "denominator": 3
+        }
+      },
+      "tts": "If you have 2 whole pizzas and 1/3 more, that's 2 1/3 pizzas."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Notation",
+      "content": "Write the whole number first, then the fraction, usually with a space.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Write the whole number first, then the fraction, usually with a space."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Addition Shortcut",
+      "content": "2 1/3 is just 2 + 1/3.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "2 1/3 is just 2 + 1/3."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "On a Number Line",
+      "content": "Mixed numbers land between whole numbers. 2 1/2 is halfway between 2 and 3.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 2,
+        "max": 3,
+        "step": 0.5,
+        "highlight": 2.5
+      },
+      "tts": "Mixed numbers land between whole numbers. 2 1/2 is halfway between 2 and 3."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Why Use Them?",
+      "content": "Mixed numbers feel more natural in everyday measurements (2 1/2 cups, 1 3/4 miles).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Mixed numbers feel more natural in everyday measurements (2 1/2 cups, 1 3/4 miles)."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write '3 wholes and 2/5 more' as a mixed number.",
+      "correct_answer": "3 2/5",
+      "hints": [
+        "Think about mixed numbers.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Whole: 3.",
+        "Fraction: 2/5.",
+        "Mixed: 3 2/5."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3 2/5."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "What is 4 + 1/2 as a mixed number?",
+      "correct_answer": "4 1/2",
+      "hints": [
+        "Think about mixed numbers.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Whole: 4.",
+        "Fraction: 1/2.",
+        "Mixed: 4 1/2."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4 1/2."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Between which whole numbers is 3 5/8?",
+      "correct_answer": "3 and 4",
+      "hints": [
+        "Think about mixed numbers.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Whole part: 3.",
+        "Fraction makes it past 3, less than 4.",
+        "Between 3 and 4."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3 and 4."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Is 5 0/7 a mixed number? (yes/no)",
+      "correct_answer": "no",
+      "hints": [
+        "Think about mixed numbers.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Fraction is 0.",
+        "So it's just 5.",
+        "Not mixed."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is no."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 2 wholes + 3/4 as a mixed number.",
+      "correct_answer": "2 3/4",
+      "hints": [
+        "Think about mixed numbers.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Whole 2.",
+        "Fraction 3/4.",
+        "2 3/4."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2 3/4."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 4 wholes and 4/5 as a mixed number.",
+      "correct_answer": "4 4/5",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4 4/5. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 7 wholes and 7/8 as a mixed number.",
+      "correct_answer": "7 7/8",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7 7/8. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 5 wholes and 1/6 as a mixed number.",
+      "correct_answer": "5 1/6",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5 1/6. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 7 wholes and 2/3 as a mixed number.",
+      "correct_answer": "7 2/3",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7 2/3. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 5 wholes and 2/3 as a mixed number.",
+      "correct_answer": "5 2/3",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5 2/3. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 6 wholes and 2/6 as a mixed number.",
+      "correct_answer": "6 2/6",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6 2/6. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 5 wholes and 2/5 as a mixed number.",
+      "correct_answer": "5 2/5",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5 2/5. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 7 wholes and 1/3 as a mixed number.",
+      "correct_answer": "7 1/3",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7 1/3. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 1 wholes and 2/3 as a mixed number.",
+      "correct_answer": "1 2/3",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1 2/3. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Write 7 wholes and 2/8 as a mixed number.",
+      "correct_answer": "7 2/8",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7 2/8. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "4 + 3/6 as mixed = ___",
+      "correct_answer": "4 3/6",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4 3/6. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "7 + 3/5 as mixed = ___",
+      "correct_answer": "7 3/5",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7 3/5. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "3 + 3/6 as mixed = ___",
+      "correct_answer": "3 3/6",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3 3/6. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "8 + 2/4 as mixed = ___",
+      "correct_answer": "8 2/4",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8 2/4. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "1 + 4/10 as mixed = ___",
+      "correct_answer": "1 4/10",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1 4/10. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "9 + 2/4 as mixed = ___",
+      "correct_answer": "9 2/4",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9 2/4. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "6 + 5/10 as mixed = ___",
+      "correct_answer": "6 5/10",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6 5/10. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "7 + 3/6 as mixed = ___",
+      "correct_answer": "7 3/6",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7 3/6. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "3 + 1/10 as mixed = ___",
+      "correct_answer": "3 1/10",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3 1/10. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "8 + 7/8 as mixed = ___",
+      "correct_answer": "8 7/8",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8 7/8. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "5 + 2/3 as a mixed number = ___",
+      "correct_answer": "5 2/3",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5 2/3. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Between which wholes is 2 3/8?",
+      "correct_answer": "2 and 3",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2 and 3. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Which is a mixed number?",
+      "choices": [
+        "A) 6/5",
+        "B) 3 2/5",
+        "C) 3/7",
+        "D) 15"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. Whole plus fraction."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Whole part of 7 4/9 = ___",
+      "correct_answer": "7",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "identify_mixed",
+      "concept": "mixed_numbers",
+      "difficulty": 1,
+      "question": "Fraction part of 4 5/12 = ___",
+      "correct_answer": "5/12",
+      "hints": [
+        "Think about mixed numbers.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/12. "
+      }
+    }
+  ]
+}

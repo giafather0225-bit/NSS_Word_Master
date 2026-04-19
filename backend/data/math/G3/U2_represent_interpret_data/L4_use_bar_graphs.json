@@ -3,178 +3,877 @@
   "title": "Use Bar Graphs",
   "grade": "G3",
   "unit": "U2_represent_interpret_data",
-  "ccss": ["3.MD.B.3"],
-  "go_math_ref": { "chapter": 2, "lesson": "2.4", "pages": "77-80" },
+  "ccss": [
+    "3.MD.B.3"
+  ],
+  "go_math_ref": {
+    "chapter": 2,
+    "lesson": "2.4",
+    "pages": "77-80"
+  },
   "essential_question": "How can you read and interpret data in a bar graph?",
-  "key_vocabulary": ["bar graph", "scale", "axis", "horizontal bar", "vertical bar"],
-  "strategies": ["Read the scale to find the value of each gridline", "Read where the bar ends to find the value", "Subtract to compare"],
+  "key_vocabulary": [
+    "bar graph",
+    "scale",
+    "axis",
+    "horizontal bar",
+    "vertical bar"
+  ],
+  "strategies": [
+    "Read the scale to find the value of each gridline",
+    "Read where the bar ends to find the value",
+    "Subtract to compare"
+  ],
   "items": [
     {
-      "id": "PT_01", "section": "pretest", "difficulty": 1,
+      "id": "PT_01",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "A bar graph has a scale of 0, 2, 4, 6, 8. The bar for 'Soccer' ends at 6. How many students chose Soccer?",
-      "choices": ["A. 3","B. 4","C. 6","D. 8"], "answer": "C",
+      "choices": [
+        "A. 3",
+        "B. 4",
+        "C. 6",
+        "D. 8"
+      ],
+      "answer": "C",
       "explanation": "The bar ends at 6, so 6 students."
     },
     {
-      "id": "PT_02", "section": "pretest", "difficulty": 1,
+      "id": "PT_02",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "In a bar graph, which activity has the tallest bar?",
-      "data_table": { "title": "After-School Activities", "type": "bar_graph", "categories": ["Homework","Games","Reading","TV"], "values": [7,5,4,3], "scale": 1, "unit": "students", "axis_label": {"x":"Activity","y":"Number of Students"} },
-      "choices": ["A. TV","B. Reading","C. Games","D. Homework"], "answer": "D",
+      "data_table": {
+        "title": "After-School Activities",
+        "type": "bar_graph",
+        "categories": [
+          "Homework",
+          "Games",
+          "Reading",
+          "TV"
+        ],
+        "values": [
+          7,
+          5,
+          4,
+          3
+        ],
+        "scale": 1,
+        "unit": "students",
+        "axis_label": {
+          "x": "Activity",
+          "y": "Number of Students"
+        }
+      },
+      "choices": [
+        "A. TV",
+        "B. Reading",
+        "C. Games",
+        "D. Homework"
+      ],
+      "answer": "D",
       "explanation": "Homework has the highest value (7), so the tallest bar."
     },
     {
-      "id": "PT_03", "section": "pretest", "difficulty": 2,
+      "id": "PT_03",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Bar graph: Homework 7, Games 5, Reading 4, TV 3. How many students played games or read?",
-      "data_table": { "title": "After-School Activities", "type": "bar_graph", "categories": ["Homework","Games","Reading","TV"], "values": [7,5,4,3], "scale": 1, "unit": "students", "axis_label": {"x":"Activity","y":"Number of Students"} },
-      "choices": ["A. 5","B. 7","C. 9","D. 12"], "answer": "C",
+      "data_table": {
+        "title": "After-School Activities",
+        "type": "bar_graph",
+        "categories": [
+          "Homework",
+          "Games",
+          "Reading",
+          "TV"
+        ],
+        "values": [
+          7,
+          5,
+          4,
+          3
+        ],
+        "scale": 1,
+        "unit": "students",
+        "axis_label": {
+          "x": "Activity",
+          "y": "Number of Students"
+        }
+      },
+      "choices": [
+        "A. 5",
+        "B. 7",
+        "C. 9",
+        "D. 12"
+      ],
+      "answer": "C",
       "explanation": "Games 5 + Reading 4 = 9."
     },
     {
-      "id": "PT_04", "section": "pretest", "difficulty": 2,
+      "id": "PT_04",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Bar graph: Sandwiches sold — Turkey 12, Ham 16, Tuna 18, Veggie 8. How many tuna sandwiches were sold?",
-      "data_table": { "title": "Sandwich Sales", "type": "bar_graph", "categories": ["Turkey","Ham","Tuna","Veggie"], "values": [12,16,18,8], "scale": 2, "unit": "sandwiches", "axis_label": {"x":"Type","y":"Number Sold"} },
-      "choices": ["A. 12","B. 16","C. 18","D. 20"], "answer": "C",
+      "data_table": {
+        "title": "Sandwich Sales",
+        "type": "bar_graph",
+        "categories": [
+          "Turkey",
+          "Ham",
+          "Tuna",
+          "Veggie"
+        ],
+        "values": [
+          12,
+          16,
+          18,
+          8
+        ],
+        "scale": 2,
+        "unit": "sandwiches",
+        "axis_label": {
+          "x": "Type",
+          "y": "Number Sold"
+        }
+      },
+      "choices": [
+        "A. 12",
+        "B. 16",
+        "C. 18",
+        "D. 20"
+      ],
+      "answer": "C",
       "explanation": "The bar for Tuna ends at 18."
     },
     {
-      "id": "PT_05", "section": "pretest", "difficulty": 2,
+      "id": "PT_05",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Bar graph: Homework 7, Games 5, Reading 4, TV 3. How many fewer students read than did homework?",
-      "data_table": { "title": "After-School Activities", "type": "bar_graph", "categories": ["Homework","Games","Reading","TV"], "values": [7,5,4,3], "scale": 1, "unit": "students", "axis_label": {"x":"Activity","y":"Number of Students"} },
-      "choices": ["A. 2","B. 3","C. 4","D. 5"], "answer": "B",
+      "data_table": {
+        "title": "After-School Activities",
+        "type": "bar_graph",
+        "categories": [
+          "Homework",
+          "Games",
+          "Reading",
+          "TV"
+        ],
+        "values": [
+          7,
+          5,
+          4,
+          3
+        ],
+        "scale": 1,
+        "unit": "students",
+        "axis_label": {
+          "x": "Activity",
+          "y": "Number of Students"
+        }
+      },
+      "choices": [
+        "A. 2",
+        "B. 3",
+        "C. 4",
+        "D. 5"
+      ],
+      "answer": "B",
       "explanation": "7 − 4 = 3."
     },
     {
-      "id": "LN_01", "section": "learn", "difficulty": 0,
+      "id": "LN_01",
+      "section": "learn",
+      "difficulty": 0,
       "type": "concept_card",
       "title": "What is a Bar Graph?",
-      "content": "A bar graph uses bars to show data. The length or height of each bar shows the value. One axis shows categories, the other shows numbers (the scale)."
+      "content": "A bar graph uses bars to show data. The length or height of each bar shows the value. One axis shows categories, the other shows numbers (the scale).",
+      "cpa_phase": "concrete",
+      "visual_type": "none"
     },
     {
-      "id": "LN_02", "section": "learn", "difficulty": 0,
+      "id": "LN_02",
+      "section": "learn",
+      "difficulty": 0,
       "type": "concept_card",
       "title": "Reading the Scale",
-      "content": "The scale is the set of numbers along one axis. It can count by 1s, 2s, 5s, 10s, etc. To read a bar's value, look at where the bar ends and match it to the scale."
+      "content": "The scale is the set of numbers along one axis. It can count by 1s, 2s, 5s, 10s, etc. To read a bar's value, look at where the bar ends and match it to the scale.",
+      "cpa_phase": "concrete",
+      "visual_type": "none"
     },
     {
-      "id": "LN_03", "section": "learn", "difficulty": 0,
+      "id": "LN_03",
+      "section": "learn",
+      "difficulty": 0,
       "type": "concept_card",
       "title": "Comparing Bars",
-      "content": "The tallest (or longest) bar represents the most. The shortest bar represents the least. To find 'how many more' or 'how many fewer,' subtract the two values."
+      "content": "The tallest (or longest) bar represents the most. The shortest bar represents the least. To find 'how many more' or 'how many fewer,' subtract the two values.",
+      "cpa_phase": "pictorial",
+      "visual_type": "none"
     },
     {
-      "id": "TRY_01", "section": "try", "difficulty": 1,
+      "id": "TRY_01",
+      "section": "try",
+      "difficulty": 1,
       "question": "Bar graph scale: 0, 5, 10, 15, 20. A bar ends at 15. How many does it represent?",
-      "choices": ["A. 3","B. 10","C. 15","D. 20"], "answer": "C",
-      "explanation": "The bar ends at 15."
+      "choices": [
+        "A. 3",
+        "B. 10",
+        "C. 15",
+        "D. 20"
+      ],
+      "answer": "C",
+      "explanation": "The bar ends at 15.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use bar graphs works."
+      },
+      "solution_steps": []
     },
     {
-      "id": "TRY_02", "section": "try", "difficulty": 1,
+      "id": "TRY_02",
+      "section": "try",
+      "difficulty": 1,
       "question": "Bar graph: Red 8, Blue 12, Green 6. Which color has the shortest bar?",
-      "data_table": { "title": "Favorite Color", "type": "bar_graph", "categories": ["Red","Blue","Green"], "values": [8,12,6], "scale": 2, "unit": "votes", "axis_label": {"x":"Color","y":"Votes"} },
-      "choices": ["A. Red","B. Blue","C. Green","D. Red and Green"], "answer": "C",
-      "explanation": "Green = 6 is the smallest."
+      "data_table": {
+        "title": "Favorite Color",
+        "type": "bar_graph",
+        "categories": [
+          "Red",
+          "Blue",
+          "Green"
+        ],
+        "values": [
+          8,
+          12,
+          6
+        ],
+        "scale": 2,
+        "unit": "votes",
+        "axis_label": {
+          "x": "Color",
+          "y": "Votes"
+        }
+      },
+      "choices": [
+        "A. Red",
+        "B. Blue",
+        "C. Green",
+        "D. Red and Green"
+      ],
+      "answer": "C",
+      "explanation": "Green = 6 is the smallest.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use bar graphs works."
+      },
+      "solution_steps": []
     },
     {
-      "id": "TRY_03", "section": "try", "difficulty": 2,
+      "id": "TRY_03",
+      "section": "try",
+      "difficulty": 2,
       "question": "Bar graph: Homework 7, Games 5, Reading 4, TV 3. How many students in all answered the survey?",
-      "data_table": { "title": "After-School Activities", "type": "bar_graph", "categories": ["Homework","Games","Reading","TV"], "values": [7,5,4,3], "scale": 1, "unit": "students", "axis_label": {"x":"Activity","y":"Number of Students"} },
-      "choices": ["A. 12","B. 15","C. 17","D. 19"], "answer": "D",
-      "explanation": "7+5+4+3 = 19."
+      "data_table": {
+        "title": "After-School Activities",
+        "type": "bar_graph",
+        "categories": [
+          "Homework",
+          "Games",
+          "Reading",
+          "TV"
+        ],
+        "values": [
+          7,
+          5,
+          4,
+          3
+        ],
+        "scale": 1,
+        "unit": "students",
+        "axis_label": {
+          "x": "Activity",
+          "y": "Number of Students"
+        }
+      },
+      "choices": [
+        "A. 12",
+        "B. 15",
+        "C. 17",
+        "D. 19"
+      ],
+      "answer": "D",
+      "explanation": "7+5+4+3 = 19.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how use bar graphs works."
+      },
+      "solution_steps": []
     },
     {
-      "id": "R1_01", "section": "practice_r1", "difficulty": 1,
+      "id": "R1_01",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "A bar graph shows: Apples 10, Oranges 6, Bananas 8. How many Oranges?",
-      "data_table": { "title": "Fruit Sales", "type": "bar_graph", "categories": ["Apples","Oranges","Bananas"], "values": [10,6,8], "scale": 2, "unit": "sold", "axis_label": {"x":"Fruit","y":"Number Sold"} },
-      "choices": ["A. 4","B. 6","C. 8","D. 10"], "answer": "B",
-      "explanation": "The Oranges bar ends at 6."
+      "data_table": {
+        "title": "Fruit Sales",
+        "type": "bar_graph",
+        "categories": [
+          "Apples",
+          "Oranges",
+          "Bananas"
+        ],
+        "values": [
+          10,
+          6,
+          8
+        ],
+        "scale": 2,
+        "unit": "sold",
+        "axis_label": {
+          "x": "Fruit",
+          "y": "Number Sold"
+        }
+      },
+      "choices": [
+        "A. 4",
+        "B. 6",
+        "C. 8",
+        "D. 10"
+      ],
+      "answer": "B",
+      "explanation": "The Oranges bar ends at 6.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R1_02", "section": "practice_r1", "difficulty": 1,
+      "id": "R1_02",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "Bar graph: Dogs 14, Cats 10, Fish 6, Birds 4. Which pet is most popular?",
-      "data_table": { "title": "Favorite Pets", "type": "bar_graph", "categories": ["Dogs","Cats","Fish","Birds"], "values": [14,10,6,4], "scale": 2, "unit": "students", "axis_label": {"x":"Pet","y":"Students"} },
-      "choices": ["A. Birds","B. Fish","C. Cats","D. Dogs"], "answer": "D",
-      "explanation": "Dogs has the highest bar at 14."
+      "data_table": {
+        "title": "Favorite Pets",
+        "type": "bar_graph",
+        "categories": [
+          "Dogs",
+          "Cats",
+          "Fish",
+          "Birds"
+        ],
+        "values": [
+          14,
+          10,
+          6,
+          4
+        ],
+        "scale": 2,
+        "unit": "students",
+        "axis_label": {
+          "x": "Pet",
+          "y": "Students"
+        }
+      },
+      "choices": [
+        "A. Birds",
+        "B. Fish",
+        "C. Cats",
+        "D. Dogs"
+      ],
+      "answer": "D",
+      "explanation": "Dogs has the highest bar at 14.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R1_03", "section": "practice_r1", "difficulty": 1,
+      "id": "R1_03",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "A bar graph has a scale counting by 5s: 0, 5, 10, 15, 20, 25. A bar ends halfway between 10 and 15. What value does it show?",
-      "choices": ["A. 10","B. 12","C. 12½","D. 13"], "answer": "C",
-      "explanation": "Halfway between 10 and 15 is 12½."
+      "choices": [
+        "A. 10",
+        "B. 12",
+        "C. 12½",
+        "D. 13"
+      ],
+      "answer": "C",
+      "explanation": "Halfway between 10 and 15 is 12½.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R1_04", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_04",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Bar graph: Pizza 11, Chicken 4, Hot Dog 7, Grilled Cheese 2. How many more students chose Pizza than Chicken?",
-      "data_table": { "title": "Favorite Hot Lunch", "type": "bar_graph", "categories": ["Pizza","Chicken","Hot Dog","Grilled Cheese"], "values": [11,4,7,2], "scale": 1, "unit": "students", "axis_label": {"x":"Food","y":"Students"} },
-      "choices": ["A. 5","B. 7","C. 9","D. 11"], "answer": "B",
-      "explanation": "11 − 4 = 7."
+      "data_table": {
+        "title": "Favorite Hot Lunch",
+        "type": "bar_graph",
+        "categories": [
+          "Pizza",
+          "Chicken",
+          "Hot Dog",
+          "Grilled Cheese"
+        ],
+        "values": [
+          11,
+          4,
+          7,
+          2
+        ],
+        "scale": 1,
+        "unit": "students",
+        "axis_label": {
+          "x": "Food",
+          "y": "Students"
+        }
+      },
+      "choices": [
+        "A. 5",
+        "B. 7",
+        "C. 9",
+        "D. 11"
+      ],
+      "answer": "B",
+      "explanation": "11 − 4 = 7.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R1_05", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_05",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Same lunch graph. How many students did NOT choose Pizza?",
-      "data_table": { "title": "Favorite Hot Lunch", "type": "bar_graph", "categories": ["Pizza","Chicken","Hot Dog","Grilled Cheese"], "values": [11,4,7,2], "scale": 1, "unit": "students", "axis_label": {"x":"Food","y":"Students"} },
-      "choices": ["A. 11","B. 13","C. 15","D. 24"], "answer": "B",
-      "explanation": "Total = 11+4+7+2 = 24. Not Pizza = 24−11 = 13."
+      "data_table": {
+        "title": "Favorite Hot Lunch",
+        "type": "bar_graph",
+        "categories": [
+          "Pizza",
+          "Chicken",
+          "Hot Dog",
+          "Grilled Cheese"
+        ],
+        "values": [
+          11,
+          4,
+          7,
+          2
+        ],
+        "scale": 1,
+        "unit": "students",
+        "axis_label": {
+          "x": "Food",
+          "y": "Students"
+        }
+      },
+      "choices": [
+        "A. 11",
+        "B. 13",
+        "C. 15",
+        "D. 24"
+      ],
+      "answer": "B",
+      "explanation": "Total = 11+4+7+2 = 24. Not Pizza = 24−11 = 13.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R1_06", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_06",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Bar graph: Homework 7, Games 5, Reading 4, TV 3. Suppose 3 students changed their answer to Reading instead of Homework. Where would the bar for Reading end?",
-      "data_table": { "title": "After-School Activities", "type": "bar_graph", "categories": ["Homework","Games","Reading","TV"], "values": [7,5,4,3], "scale": 1, "unit": "students", "axis_label": {"x":"Activity","y":"Students"} },
-      "choices": ["A. 4","B. 5","C. 7","D. 10"], "answer": "C",
-      "explanation": "Reading was 4, add 3 → 4+3 = 7."
+      "data_table": {
+        "title": "After-School Activities",
+        "type": "bar_graph",
+        "categories": [
+          "Homework",
+          "Games",
+          "Reading",
+          "TV"
+        ],
+        "values": [
+          7,
+          5,
+          4,
+          3
+        ],
+        "scale": 1,
+        "unit": "students",
+        "axis_label": {
+          "x": "Activity",
+          "y": "Students"
+        }
+      },
+      "choices": [
+        "A. 4",
+        "B. 5",
+        "C. 7",
+        "D. 10"
+      ],
+      "answer": "C",
+      "explanation": "Reading was 4, add 3 → 4+3 = 7.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R1_07", "section": "practice_r1", "difficulty": 2,
+      "id": "R1_07",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Bar graph: Reading 4, TV 3. How many more students read than watched TV?",
-      "choices": ["A. 1","B. 2","C. 3","D. 4"], "answer": "A",
-      "explanation": "4 − 3 = 1."
+      "choices": [
+        "A. 1",
+        "B. 2",
+        "C. 3",
+        "D. 4"
+      ],
+      "answer": "A",
+      "explanation": "4 − 3 = 1.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R2_01", "section": "practice_r2", "difficulty": 2,
+      "id": "R2_01",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "Bar graph (scale by 2): Pepperoni 6, Cheese 10, Mushroom 4, Veggie 8. How many people chose Cheese or Veggie?",
-      "data_table": { "title": "Pizza Toppings", "type": "bar_graph", "categories": ["Pepperoni","Cheese","Mushroom","Veggie"], "values": [6,10,4,8], "scale": 2, "unit": "people", "axis_label": {"x":"Topping","y":"People"} },
-      "choices": ["A. 12","B. 14","C. 16","D. 18"], "answer": "D",
-      "explanation": "10 + 8 = 18."
+      "data_table": {
+        "title": "Pizza Toppings",
+        "type": "bar_graph",
+        "categories": [
+          "Pepperoni",
+          "Cheese",
+          "Mushroom",
+          "Veggie"
+        ],
+        "values": [
+          6,
+          10,
+          4,
+          8
+        ],
+        "scale": 2,
+        "unit": "people",
+        "axis_label": {
+          "x": "Topping",
+          "y": "People"
+        }
+      },
+      "choices": [
+        "A. 12",
+        "B. 14",
+        "C. 16",
+        "D. 18"
+      ],
+      "answer": "D",
+      "explanation": "10 + 8 = 18.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R2_02", "section": "practice_r2", "difficulty": 2,
+      "id": "R2_02",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "Bar graph: Walk 10, Bus 12, Car 6, Bike 4. How many more students ride the Bus than walk?",
-      "data_table": { "title": "Getting to School", "type": "bar_graph", "categories": ["Walk","Bus","Car","Bike"], "values": [10,12,6,4], "scale": 2, "unit": "students", "axis_label": {"x":"Way","y":"Students"} },
-      "choices": ["A. 2","B. 4","C. 6","D. 8"], "answer": "A",
-      "explanation": "12 − 10 = 2."
+      "data_table": {
+        "title": "Getting to School",
+        "type": "bar_graph",
+        "categories": [
+          "Walk",
+          "Bus",
+          "Car",
+          "Bike"
+        ],
+        "values": [
+          10,
+          12,
+          6,
+          4
+        ],
+        "scale": 2,
+        "unit": "students",
+        "axis_label": {
+          "x": "Way",
+          "y": "Students"
+        }
+      },
+      "choices": [
+        "A. 2",
+        "B. 4",
+        "C. 6",
+        "D. 8"
+      ],
+      "answer": "A",
+      "explanation": "12 − 10 = 2.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R2_03", "section": "practice_r2", "difficulty": 3,
+      "id": "R2_03",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "Bar graph: Walk 10, Bus 12, Car 6, Bike 4. Is the number of students who get to school by Car and Bus greater than or less than Walk and Bike combined?",
-      "data_table": { "title": "Getting to School", "type": "bar_graph", "categories": ["Walk","Bus","Car","Bike"], "values": [10,12,6,4], "scale": 2, "unit": "students", "axis_label": {"x":"Way","y":"Students"} },
-      "choices": ["A. Greater, by 4","B. Less, by 4","C. Equal","D. Greater, by 2"], "answer": "A",
-      "explanation": "Car + Bus = 6+12 = 18. Walk + Bike = 10+4 = 14. 18 > 14, by 4."
+      "data_table": {
+        "title": "Getting to School",
+        "type": "bar_graph",
+        "categories": [
+          "Walk",
+          "Bus",
+          "Car",
+          "Bike"
+        ],
+        "values": [
+          10,
+          12,
+          6,
+          4
+        ],
+        "scale": 2,
+        "unit": "students",
+        "axis_label": {
+          "x": "Way",
+          "y": "Students"
+        }
+      },
+      "choices": [
+        "A. Greater, by 4",
+        "B. Less, by 4",
+        "C. Equal",
+        "D. Greater, by 2"
+      ],
+      "answer": "A",
+      "explanation": "Car + Bus = 6+12 = 18. Walk + Bike = 10+4 = 14. 18 > 14, by 4.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R2_04", "section": "practice_r2", "difficulty": 3,
+      "id": "R2_04",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "Bar graph: Bench Repair 4, Food Drive 14, Book Fair 10, Playground 6. How many fewer votes were for Bench Repair than Food Drive?",
-      "data_table": { "title": "School Project Votes", "type": "bar_graph", "categories": ["Bench Repair","Food Drive","Book Fair","Playground"], "values": [4,14,10,6], "scale": 2, "unit": "votes", "axis_label": {"x":"Project","y":"Votes"} },
-      "choices": ["A. 6","B. 8","C. 10","D. 14"], "answer": "C",
-      "explanation": "14 − 4 = 10."
+      "data_table": {
+        "title": "School Project Votes",
+        "type": "bar_graph",
+        "categories": [
+          "Bench Repair",
+          "Food Drive",
+          "Book Fair",
+          "Playground"
+        ],
+        "values": [
+          4,
+          14,
+          10,
+          6
+        ],
+        "scale": 2,
+        "unit": "votes",
+        "axis_label": {
+          "x": "Project",
+          "y": "Votes"
+        }
+      },
+      "choices": [
+        "A. 6",
+        "B. 8",
+        "C. 10",
+        "D. 14"
+      ],
+      "answer": "C",
+      "explanation": "14 − 4 = 10.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R3_01", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_01",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Bar graph: Mon 8, Tue 12, Wed 6, Thu 10, Fri 14. On which day did exactly twice as many books get returned as on Wednesday?",
-      "data_table": { "title": "Library Returns", "type": "bar_graph", "categories": ["Mon","Tue","Wed","Thu","Fri"], "values": [8,12,6,10,14], "scale": 2, "unit": "books", "axis_label": {"x":"Day","y":"Books"} },
-      "choices": ["A. Monday","B. Tuesday","C. Thursday","D. Friday"], "answer": "B",
-      "explanation": "Wed = 6. Twice = 12 = Tuesday."
+      "data_table": {
+        "title": "Library Returns",
+        "type": "bar_graph",
+        "categories": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "values": [
+          8,
+          12,
+          6,
+          10,
+          14
+        ],
+        "scale": 2,
+        "unit": "books",
+        "axis_label": {
+          "x": "Day",
+          "y": "Books"
+        }
+      },
+      "choices": [
+        "A. Monday",
+        "B. Tuesday",
+        "C. Thursday",
+        "D. Friday"
+      ],
+      "answer": "B",
+      "explanation": "Wed = 6. Twice = 12 = Tuesday.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R3_02", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_02",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Suppose 3 more friends chose mushrooms on a pizza graph where Mushroom currently has 4 votes (scale by 2). Where would the bar for Mushrooms end?",
-      "choices": ["A. 5","B. 6","C. 7","D. 8"], "answer": "C",
-      "explanation": "4 + 3 = 7."
+      "choices": [
+        "A. 5",
+        "B. 6",
+        "C. 7",
+        "D. 8"
+      ],
+      "answer": "C",
+      "explanation": "4 + 3 = 7.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use bar graphs works."
+      }
     },
     {
-      "id": "R3_03", "section": "practice_r3", "difficulty": 3,
+      "id": "R3_03",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Bar graph (scale by 5): Room A = 25, Room B = 15, Room C = 30, Room D = 20. The school goal is 100 cans total. How many more cans are needed?",
-      "data_table": { "title": "Can Collection", "type": "bar_graph", "categories": ["Room A","Room B","Room C","Room D"], "values": [25,15,30,20], "scale": 5, "unit": "cans", "axis_label": {"x":"Room","y":"Cans"} },
-      "choices": ["A. 5","B. 10","C. 15","D. 20"], "answer": "B",
-      "explanation": "Total: 25+15+30+20 = 90. Need: 100−90 = 10."
+      "data_table": {
+        "title": "Can Collection",
+        "type": "bar_graph",
+        "categories": [
+          "Room A",
+          "Room B",
+          "Room C",
+          "Room D"
+        ],
+        "values": [
+          25,
+          15,
+          30,
+          20
+        ],
+        "scale": 5,
+        "unit": "cans",
+        "axis_label": {
+          "x": "Room",
+          "y": "Cans"
+        }
+      },
+      "choices": [
+        "A. 5",
+        "B. 10",
+        "C. 15",
+        "D. 20"
+      ],
+      "answer": "B",
+      "explanation": "Total: 25+15+30+20 = 90. Need: 100−90 = 10.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use bar graphs works."
+      }
     }
-  ]
+  ],
+  "concept": "use_bar_graphs"
 }

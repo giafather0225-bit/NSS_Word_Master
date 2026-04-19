@@ -1,0 +1,782 @@
+{
+  "lesson_id": "L6",
+  "title": "Multiply 2-Digit by 2-Digit",
+  "grade": "G4",
+  "unit": "U4_multiply_by_2_digit",
+  "lesson": "L6",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4 Ch3-Unit4 L6",
+  "essential_question": "How do you multiply two 2-digit numbers efficiently?",
+  "vocabulary": [
+    "algorithm",
+    "regroup",
+    "partial products",
+    "multiply"
+  ],
+  "concept": "algorithm_2d_2d",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "23 × 14 = ___",
+      "correct_answer": "322",
+      "hints": [
+        "Multiply by 4, then by 10, then add.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 322. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "35 × 12 = ___",
+      "correct_answer": "420",
+      "hints": [
+        "35×2 + 35×10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 420. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "46 × 15 = ?",
+      "choices": [
+        "A) 590",
+        "B) 690",
+        "C) 790",
+        "D) 490"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 46×5=230, 46×10=460. 230+460=690."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "In the algorithm, the second row represents multiplying by tens.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "18 × 23 = ___",
+      "correct_answer": "414",
+      "hints": [
+        "18×3 + 18×20.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 414. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Standard Algorithm",
+      "content": "Write the numbers stacked. Multiply by the ones, then by the tens (place a zero below), then add.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Write the numbers stacked. Multiply by the ones, then by the tens (place a zero below), then add."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Step 1 — Multiply by Ones",
+      "content": "Multiply every digit of the top number by the ones digit, regrouping as needed.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Multiply every digit of the top number by the ones digit, regrouping as needed."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Step 2 — Place the Zero",
+      "content": "The second row is actually tens × number, so start with a 0 in the ones column.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "The second row is actually tens × number, so start with a 0 in the ones column."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Step 3 — Multiply by Tens",
+      "content": "Then multiply by the tens digit, writing results left of the zero placeholder.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Then multiply by the tens digit, writing results left of the zero placeholder."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Step 4 — Add the Rows",
+      "content": "Add the two partial-product rows to get the final answer.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Add the two partial-product rows to get the final answer."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate Check",
+      "content": "Always estimate first to spot errors in the algorithm.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Always estimate first to spot errors in the algorithm."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "26 × 14 = ___",
+      "correct_answer": "364",
+      "hints": [
+        "Think about what algorithm 2d 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "26×4=104.",
+        "26×10=260.",
+        "104+260=364."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 364. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "42 × 23 = ___",
+      "correct_answer": "966",
+      "hints": [
+        "Think about what algorithm 2d 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "42×3=126.",
+        "42×20=840.",
+        "126+840=966."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 966. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "38 × 15 = ___",
+      "correct_answer": "570",
+      "hints": [
+        "Think about what algorithm 2d 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "38×5=190.",
+        "38×10=380.",
+        "190+380=570."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 570. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "51 × 29 = ___",
+      "correct_answer": "1479",
+      "hints": [
+        "Think about what algorithm 2d 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "51×9=459.",
+        "51×20=1020.",
+        "459+1020=1479."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1479. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "67 × 18 = ___",
+      "correct_answer": "1206",
+      "hints": [
+        "Think about what algorithm 2d 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "67×8=536.",
+        "67×10=670.",
+        "536+670=1206."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1206. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "16 × 12 = ___",
+      "correct_answer": "192",
+      "hints": [
+        "Algorithm.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 192. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "16 × 19 = ___",
+      "correct_answer": "304",
+      "hints": [
+        "Algorithm.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 304. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "14 × 13 = ___",
+      "correct_answer": "182",
+      "hints": [
+        "Algorithm.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 182. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "24 × 15 = ___",
+      "correct_answer": "360",
+      "hints": [
+        "Algorithm.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 360. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "23 × 16 = ___",
+      "correct_answer": "368",
+      "hints": [
+        "Algorithm.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 368. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "18 × 15 = ___",
+      "correct_answer": "270",
+      "hints": [
+        "Algorithm.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 270. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "15 × 15 = ___",
+      "correct_answer": "225",
+      "hints": [
+        "Algorithm.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 225. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "19 × 17 = ___",
+      "correct_answer": "323",
+      "hints": [
+        "Algorithm.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 323. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "16 × 13 = ___",
+      "correct_answer": "208",
+      "hints": [
+        "Algorithm.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 208. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 1,
+      "question": "26 × 13 = ___",
+      "correct_answer": "338",
+      "hints": [
+        "Algorithm.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 338. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "40 × 41 = ___",
+      "correct_answer": "1640",
+      "hints": [
+        "Algorithm: ones then tens.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1640. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "78 × 44 = ___",
+      "correct_answer": "3432",
+      "hints": [
+        "Algorithm: ones then tens.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3432. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "52 × 31 = ___",
+      "correct_answer": "1612",
+      "hints": [
+        "Algorithm: ones then tens.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1612. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "72 × 32 = ___",
+      "correct_answer": "2304",
+      "hints": [
+        "Algorithm: ones then tens.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2304. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "66 × 49 = ___",
+      "correct_answer": "3234",
+      "hints": [
+        "Algorithm: ones then tens.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3234. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "78 × 41 = ___",
+      "correct_answer": "3198",
+      "hints": [
+        "Algorithm: ones then tens.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3198. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "53 × 37 = ___",
+      "correct_answer": "1961",
+      "hints": [
+        "Algorithm: ones then tens.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1961. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "52 × 42 = ___",
+      "correct_answer": "2184",
+      "hints": [
+        "Algorithm: ones then tens.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2184. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "29 × 30 = ___",
+      "correct_answer": "870",
+      "hints": [
+        "Algorithm: ones then tens.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 870. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "59 × 25 = ___",
+      "correct_answer": "1475",
+      "hints": [
+        "Algorithm: ones then tens.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1475. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "A theater has 48 rows of 32 seats. Total seats?",
+      "correct_answer": "1536",
+      "hints": [
+        "48×32.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1536. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "56 × 24 = ___",
+      "correct_answer": "1344",
+      "hints": [
+        "Think about what algorithm 2d 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1344. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "What is 73 × 18?",
+      "choices": [
+        "A) 1114",
+        "B) 1314",
+        "C) 1414",
+        "D) 1214"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 73×8=584, 73×10=730. 584+730=1314."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "29 × 36 = ___",
+      "correct_answer": "1044",
+      "hints": [
+        "Think about what algorithm 2d 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1044. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "standard_algorithm",
+      "concept": "algorithm_2d_2d",
+      "difficulty": 2,
+      "question": "85 × 17 = ___",
+      "correct_answer": "1445",
+      "hints": [
+        "Think about what algorithm 2d 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1445. Multiply place by place."
+      }
+    }
+  ]
+}

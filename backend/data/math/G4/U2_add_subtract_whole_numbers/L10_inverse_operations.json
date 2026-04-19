@@ -1,0 +1,785 @@
+{
+  "lesson_id": "L10_inverse_operations",
+  "title": "Inverse Operations — Check Your Work",
+  "grade": "G4",
+  "unit": "U2_add_subtract_whole_numbers",
+  "lesson": "L10_inverse_operations",
+  "ccss": [
+    "4.NBT.B.4",
+    "4.OA.A.3"
+  ],
+  "standard": "4.NBT.B.4",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.10",
+  "essential_question": "How do addition and subtraction undo each other?",
+  "vocabulary": [
+    "inverse operations",
+    "fact family",
+    "addend",
+    "sum",
+    "difference"
+  ],
+  "concept": "inverse_operations_addition_subtraction",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "To check 500−237=263, add:",
+      "choices": [
+        "A) 500+237",
+        "B) 263+237",
+        "C) 500−263",
+        "D) 263−237"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Check: difference + subtrahend = minuend. 263+237=500."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "If 645 − ___ = 278, the missing number is:",
+      "correct_answer": "367",
+      "hints": [
+        "Subtract: 645−278.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 367. Work through it place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "Check: does 892−345=547?",
+      "choices": [
+        "A) Yes, because 547+345=892",
+        "B) Yes, because 892+345=547",
+        "C) No, it should be 648",
+        "D) No, it should be 457"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Add diff+subtrahend to verify."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 1,
+      "question": "Addition and subtraction are inverse operations.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 1,
+      "question": "If 12+___=45, the missing number is:",
+      "correct_answer": "33",
+      "hints": [
+        "Subtract: 45−12.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 33. Work through it place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "What Are Inverse Operations?",
+      "content": "Addition and subtraction are inverse operations — they undo each other. If a+b=c, then c−b=a and c−a=b.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Addition and subtraction are inverse operations — they undo each other. If a+b=c, then c−b=a and c−a=b."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Check Subtraction",
+      "content": "To check a subtraction, add the difference and the subtrahend. The result should equal the original number (minuend).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To check a subtraction, add the difference and the subtrahend. The result should equal the original number (minuend)."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Check Addition",
+      "content": "To check an addition, subtract one addend from the sum. You should get the other addend.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To check an addition, subtract one addend from the sum. You should get the other addend."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Find the Missing Number",
+      "content": "Use inverse operations to solve: 38 + ___ = 75. Think 75−38=37. So the missing number is 37.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Use inverse operations to solve: 38 + ___ = 75. Think 75−38=37. So the missing number is 37."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Fact Families",
+      "content": "A fact family uses the same three numbers in 4 equations. For 8, 5, 13: 8+5=13, 5+8=13, 13−8=5, 13−5=8.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A fact family uses the same three numbers in 4 equations. For 8, 5, 13: 8+5=13, 5+8=13, 13−8=5, 13−5=8."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Why Use Inverses?",
+      "content": "Inverses let you check your work quickly and also help solve problems with missing numbers.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Inverses let you check your work quickly and also help solve problems with missing numbers."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "Check: 834−257=577. Is it right?",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about what inverse operations addition subtraction means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Add: 577+257=834.",
+        "Matches the minuend.",
+        "So yes, it's right."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is yes. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "Find missing: 428 + ___ = 1,000",
+      "correct_answer": "572",
+      "hints": [
+        "Think about what inverse operations addition subtraction means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Subtract: 1,000−428.",
+        "=572."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 572. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "Find missing: ___ − 345 = 678",
+      "correct_answer": "1023",
+      "hints": [
+        "Think about what inverse operations addition subtraction means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Add: 678+345.",
+        "=1,023."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1023. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "Check 2,456+1,789=4,245 by subtracting.",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about what inverse operations addition subtraction means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "4,245−1,789=2,456.",
+        "Matches first addend.",
+        "Right!"
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is yes. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 3,
+      "question": "Find missing: 5,000 − ___ = 2,345",
+      "correct_answer": "2655",
+      "hints": [
+        "Think about what inverse operations addition subtraction means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Subtract: 5,000−2,345.",
+        "=2,655."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2655. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 1,
+      "question": "234 + ___ = 500. The missing number is:",
+      "correct_answer": "266",
+      "hints": [
+        "Subtract: 500−234.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 266. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "700 − ___ = 345. The missing number is:",
+      "correct_answer": "355",
+      "hints": [
+        "Subtract: 700−345.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 355. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "___ − 250 = 340. The missing number is:",
+      "correct_answer": "590",
+      "hints": [
+        "Add: 250+340.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 590. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "1,234 + ___ = 5,000. The missing number is:",
+      "correct_answer": "3766",
+      "hints": [
+        "Subtract: 5,000−1,234.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3766. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "8,000 − ___ = 3,456. The missing number is:",
+      "correct_answer": "4544",
+      "hints": [
+        "Subtract: 8,000−3,456.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4544. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 1,
+      "question": "567 + ___ = 900. The missing number is:",
+      "correct_answer": "333",
+      "hints": [
+        "Subtract: 900−567.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 333. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "___ − 450 = 890. The missing number is:",
+      "correct_answer": "1340",
+      "hints": [
+        "Add: 450+890.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1340. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "2,345 + ___ = 7,000. The missing number is:",
+      "correct_answer": "4655",
+      "hints": [
+        "Subtract: 7,000−2,345.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4655. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 3,
+      "question": "10,000 − ___ = 4,567. The missing number is:",
+      "correct_answer": "5433",
+      "hints": [
+        "Subtract: 10,000−4,567.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5433. Work through it place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "Which is correct? 823−478=?",
+      "choices": [
+        "A) 345",
+        "B) 355",
+        "C) 445",
+        "D) 1,301"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Check: 345+478=823. ✓"
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "345 + ___ = 800. The missing number is:",
+      "correct_answer": "455",
+      "hints": [
+        "Subtract: 800−345.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 455. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "950 − ___ = 267. The missing number is:",
+      "correct_answer": "683",
+      "hints": [
+        "Subtract: 950−267.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 683. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "___ − 389 = 456. The missing number is:",
+      "correct_answer": "845",
+      "hints": [
+        "Add: 389+456.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 845. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "1,500 + ___ = 3,000. The missing number is:",
+      "correct_answer": "1500",
+      "hints": [
+        "Subtract: 3,000−1,500.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1500. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "6,000 − ___ = 2,345. The missing number is:",
+      "correct_answer": "3655",
+      "hints": [
+        "Subtract: 6,000−2,345.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3655. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "890 + ___ = 1,500. The missing number is:",
+      "correct_answer": "610",
+      "hints": [
+        "Subtract: 1,500−890.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 610. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 3,
+      "question": "___ − 670 = 1,200. The missing number is:",
+      "correct_answer": "1870",
+      "hints": [
+        "Add: 670+1,200.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1870. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 3,
+      "question": "4,567 + ___ = 10,000. The missing number is:",
+      "correct_answer": "5433",
+      "hints": [
+        "Subtract: 10,000−4,567.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5433. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 3,
+      "question": "12,000 − ___ = 4,567. The missing number is:",
+      "correct_answer": "7433",
+      "hints": [
+        "Subtract: 12,000−4,567.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7433. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "To check 967+234=1,201, subtract:",
+      "choices": [
+        "A) 1,201−967",
+        "B) 1,201+967",
+        "C) 967−234",
+        "D) 967+234"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Subtract one addend to recover the other: 1,201−967=234. ✓"
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 2,
+      "question": "478 + ___ = 1,000. The missing number is:",
+      "correct_answer": "522",
+      "hints": [
+        "Subtract: 1,000−478.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 522. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 3,
+      "question": "2,500 − ___ = 876. The missing number is:",
+      "correct_answer": "1624",
+      "hints": [
+        "Subtract: 2,500−876.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1624. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 3,
+      "question": "___ − 1,234 = 2,345. The missing number is:",
+      "correct_answer": "3579",
+      "hints": [
+        "Add: 1,234+2,345.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3579. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 3,
+      "question": "5,678 + ___ = 10,000. The missing number is:",
+      "correct_answer": "4322",
+      "hints": [
+        "Subtract: 10,000−5,678.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4322. Work through it place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "check_with_inverse",
+      "concept": "inverse_operations_addition_subtraction",
+      "difficulty": 3,
+      "question": "20,000 − ___ = 12,345. The missing number is:",
+      "correct_answer": "7655",
+      "hints": [
+        "Subtract: 20,000−12,345.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7655. Work through it place by place."
+      }
+    }
+  ]
+}

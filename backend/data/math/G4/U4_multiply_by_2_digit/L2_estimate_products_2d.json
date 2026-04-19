@@ -1,0 +1,785 @@
+{
+  "lesson_id": "L2",
+  "title": "Estimate Products",
+  "grade": "G4",
+  "unit": "U4_multiply_by_2_digit",
+  "lesson": "L2",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4 Ch3-Unit4 L2",
+  "essential_question": "How do you estimate products of 2-digit numbers?",
+  "vocabulary": [
+    "estimate",
+    "round",
+    "nearest ten",
+    "compatible"
+  ],
+  "concept": "estimate_2d_products",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 48 to the nearest ten.",
+      "choices": [
+        "A) 40",
+        "B) 45",
+        "C) 50",
+        "D) 60"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. 48 rounds up to 50."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate: 23 × 19 ≈ ___ (round each to nearest ten)",
+      "correct_answer": "400",
+      "hints": [
+        "23≈20, 19≈20.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 400. 20×20=400."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Best estimate for 62 × 38:",
+      "choices": [
+        "A) 1800",
+        "B) 2400",
+        "C) 3600",
+        "D) 4000"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 60×40=2400."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Estimating helps you check if your answer makes sense.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 74 to the nearest ten.",
+      "correct_answer": "70",
+      "hints": [
+        "74 is closer to 70.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 70. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Why Estimate?",
+      "content": "Estimating gives a quick answer so you can check if your exact answer is reasonable.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimating gives a quick answer so you can check if your exact answer is reasonable."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Rounding to Tens",
+      "content": "To round to the nearest ten, look at the ones digit. 5 or more → round up; less than 5 → round down.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To round to the nearest ten, look at the ones digit. 5 or more → round up; less than 5 → round down."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Number Line Rounding",
+      "content": "On a number line, 37 sits between 30 and 40, closer to 40. So 37 rounds to 40.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 30,
+        "max": 40,
+        "step": 1,
+        "highlight": 37
+      },
+      "tts": "On a number line, 37 sits between 30 and 40, closer to 40. So 37 rounds to 40."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Estimate Products",
+      "content": "Round each factor, then multiply the rounded numbers. 27 × 42 ≈ 30 × 40 = 1200.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Round each factor, then multiply the rounded numbers. 27 × 42 ≈ 30 × 40 = 1200."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Compatible Numbers",
+      "content": "Sometimes pick numbers that are easy to multiply. 48 × 23 ≈ 50 × 20 = 1000.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Sometimes pick numbers that are easy to multiply. 48 × 23 ≈ 50 × 20 = 1000."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Is Your Answer Reasonable?",
+      "content": "After computing exactly, compare with the estimate. Big differences signal an error.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "After computing exactly, compare with the estimate. Big differences signal an error."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 38 × 22 by rounding to nearest ten.",
+      "correct_answer": "800",
+      "hints": [
+        "Think about what estimate 2d products means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "38→40, 22→20.",
+        "40×20.",
+        "=800."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 800. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 67 to the nearest ten.",
+      "correct_answer": "70",
+      "hints": [
+        "Think about what estimate 2d products means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "Ones digit is 7.",
+        "7 ≥ 5, round up.",
+        "= 70."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 70. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 51 × 49 (nearest ten).",
+      "correct_answer": "2500",
+      "hints": [
+        "Think about what estimate 2d products means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "51→50, 49→50.",
+        "50×50.",
+        "=2500."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2500. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 18 × 73.",
+      "correct_answer": "1400",
+      "hints": [
+        "Think about what estimate 2d products means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "18→20, 73→70.",
+        "20×70.",
+        "=1400."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1400. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "A store has 29 boxes with 41 cans each. About how many cans?",
+      "correct_answer": "1200",
+      "hints": [
+        "Think about what estimate 2d products means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "29→30, 41→40.",
+        "30×40.",
+        "≈1200."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1200. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 42 to the nearest ten.",
+      "correct_answer": "40",
+      "hints": [
+        "Check the ones digit.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 17 to the nearest ten.",
+      "correct_answer": "20",
+      "hints": [
+        "Check the ones digit.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 16 to the nearest ten.",
+      "correct_answer": "20",
+      "hints": [
+        "Check the ones digit.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 97 to the nearest ten.",
+      "correct_answer": "100",
+      "hints": [
+        "Check the ones digit.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 100. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 98 to the nearest ten.",
+      "correct_answer": "100",
+      "hints": [
+        "Check the ones digit.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 100. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 66 to the nearest ten.",
+      "correct_answer": "70",
+      "hints": [
+        "Check the ones digit.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 70. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 15 to the nearest ten.",
+      "correct_answer": "20",
+      "hints": [
+        "Check the ones digit.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 99 to the nearest ten.",
+      "correct_answer": "100",
+      "hints": [
+        "Check the ones digit.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 100. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 94 to the nearest ten.",
+      "correct_answer": "90",
+      "hints": [
+        "Check the ones digit.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 53 to the nearest ten.",
+      "correct_answer": "50",
+      "hints": [
+        "Check the ones digit.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 50. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 59 × 72 (nearest ten).",
+      "correct_answer": "4200",
+      "hints": [
+        "59≈60, 72≈70.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4200. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 70 × 87 (nearest ten).",
+      "correct_answer": "6300",
+      "hints": [
+        "70≈70, 87≈90.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6300. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 81 × 31 (nearest ten).",
+      "correct_answer": "2400",
+      "hints": [
+        "81≈80, 31≈30.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 41 × 73 (nearest ten).",
+      "correct_answer": "2800",
+      "hints": [
+        "41≈40, 73≈70.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2800. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 70 × 56 (nearest ten).",
+      "correct_answer": "4200",
+      "hints": [
+        "70≈70, 56≈60.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4200. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 17 × 47 (nearest ten).",
+      "correct_answer": "1000",
+      "hints": [
+        "17≈20, 47≈50.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 32 × 13 (nearest ten).",
+      "correct_answer": "300",
+      "hints": [
+        "32≈30, 13≈10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 300. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 40 × 13 (nearest ten).",
+      "correct_answer": "400",
+      "hints": [
+        "40≈40, 13≈10.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 86 × 89 (nearest ten).",
+      "correct_answer": "8100",
+      "hints": [
+        "86≈90, 89≈90.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8100. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 83 × 81 (nearest ten).",
+      "correct_answer": "6400",
+      "hints": [
+        "83≈80, 81≈80.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6400. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Estimate 48 × 52.",
+      "correct_answer": "2500",
+      "hints": [
+        "50×50.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "A bus carries 38 people. 29 trips ≈ ___ people.",
+      "correct_answer": "1200",
+      "hints": [
+        "40×30.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1200. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "Best estimate for 67 × 83:",
+      "choices": [
+        "A) 4800",
+        "B) 5600",
+        "C) 6400",
+        "D) 7200"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 70×80=5600."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 1,
+      "question": "Round 85 to nearest ten.",
+      "correct_answer": "90",
+      "hints": [
+        "Think about what estimate 2d products means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "round_to_nearest_ten",
+      "concept": "estimate_2d_products",
+      "difficulty": 2,
+      "question": "82 × 19 ≈ 1600.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. 80×20=1600."
+      }
+    }
+  ]
+}

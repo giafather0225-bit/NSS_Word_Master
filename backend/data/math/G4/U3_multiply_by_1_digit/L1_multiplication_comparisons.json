@@ -1,0 +1,806 @@
+{
+  "lesson_id": "L1_multiplication_comparisons",
+  "title": "Multiplication Comparisons",
+  "grade": "G4",
+  "unit": "U3_multiply_by_1_digit",
+  "lesson": "L1_multiplication_comparisons",
+  "ccss": [
+    "4.NBT.B.5",
+    "4.OA.A.1",
+    "4.OA.A.2"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.1 (chap 2 here is multiplication)",
+  "essential_question": "How do multiplication comparisons differ from addition comparisons?",
+  "vocabulary": [
+    "times as many",
+    "multiplicative comparison",
+    "factor",
+    "product"
+  ],
+  "concept": "multiplicative_comparison",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 1,
+      "question": "Which equation means '20 is 4 times as many as 5'?",
+      "choices": [
+        "A) 20=4+5",
+        "B) 20=4×5",
+        "C) 20=4−5",
+        "D) 20=4÷5"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 'Times as many' means multiply."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 1,
+      "question": "6 is ___ times as many as 2.",
+      "correct_answer": "3",
+      "hints": [
+        "Divide: 6÷2.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3. 6÷2=3."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "35 is 5 times as many as what number?",
+      "choices": [
+        "A) 5",
+        "B) 7",
+        "C) 30",
+        "D) 40"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 35÷5=7."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 1,
+      "question": "'3 times as many as 8' can be written as 3 × 8.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "Write an equation: 48 is 6 times as many as ___.",
+      "correct_answer": "8",
+      "hints": [
+        "48÷6=?",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Compare by Multiplying",
+      "content": "A multiplicative comparison uses 'times as many' to compare two amounts. It asks how many times larger one amount is than another.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A multiplicative comparison uses 'times as many' to compare two amounts. It asks how many times larger one amount is than another."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Equal Groups Model",
+      "content": "If one bowl has 3 apples and another has 12 apples, the second has 4 times as many because 12 = 4 × 3.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 4,
+          "cols": 3
+        }
+      },
+      "tts": "If one bowl has 3 apples and another has 12 apples, the second has 4 times as many because 12 = 4 × 3."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Bar Models for Comparison",
+      "content": "Draw a bar for the smaller amount. Then draw longer bars made of equal-size pieces that represent 'times as many'.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "Small",
+              "value": 3
+            },
+            {
+              "label": "Large",
+              "value": 12
+            }
+          ]
+        }
+      },
+      "tts": "Draw a bar for the smaller amount. Then draw longer bars made of equal-size pieces that represent 'times as many'."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Write the Equation",
+      "content": "'x is n times as many as y' becomes x = n × y. Example: 18 is 3 times as many as 6 → 18 = 3 × 6.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "'x is n times as many as y' becomes x = n × y. Example: 18 is 3 times as many as 6 → 18 = 3 × 6."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Compare with Division",
+      "content": "To find how many times larger, divide. 24 ÷ 6 = 4, so 24 is 4 times as many as 6.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To find how many times larger, divide. 24 ÷ 6 = 4, so 24 is 4 times as many as 6."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Addition vs. Multiplication Comparison",
+      "content": "'5 more than 3' means add (3+5=8). '5 times as many as 3' means multiply (5×3=15). Watch the words.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "'5 more than 3' means add (3+5=8). '5 times as many as 3' means multiply (5×3=15). Watch the words."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "18 is ___ times as many as 3.",
+      "correct_answer": "6",
+      "hints": [
+        "Think about what multiplicative comparison means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "Divide: 18 ÷ 3.",
+        "= 6.",
+        "18 = 6 × 3."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "40 is 8 times as many as what number?",
+      "correct_answer": "5",
+      "hints": [
+        "Think about what multiplicative comparison means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "40 = 8 × ?",
+        "40 ÷ 8 = 5.",
+        "So it is 5."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "Write an equation: 45 is 5 times as many as 9.",
+      "correct_answer": "45=5×9",
+      "hints": [
+        "Think about what multiplicative comparison means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "Use the form x = n × y.",
+        "x=45, n=5, y=9.",
+        "Equation: 45 = 5 × 9."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 45=5×9. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "A kangaroo is 9 times as heavy as a cat. If the cat is 4 kg, the kangaroo is ___ kg.",
+      "correct_answer": "36",
+      "hints": [
+        "Think about what multiplicative comparison means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "Multiply: 9 × 4.",
+        "=36 kg."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 36. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "72 is 8 times as many as ___.",
+      "correct_answer": "9",
+      "hints": [
+        "Think about what multiplicative comparison means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "Divide: 72 ÷ 8.",
+        "= 9."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 9. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 1,
+      "question": "12 is ___ times as many as 3.",
+      "correct_answer": "4",
+      "hints": [
+        "Divide: 12÷3.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 1,
+      "question": "30 is ___ times as many as 5.",
+      "correct_answer": "6",
+      "hints": [
+        "Divide: 30÷5.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "28 is 7 times as many as ___.",
+      "correct_answer": "4",
+      "hints": [
+        "Divide: 28÷7.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "54 is 9 times as many as ___.",
+      "correct_answer": "6",
+      "hints": [
+        "Divide: 54÷9.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "40 is ___ times as many as 8.",
+      "correct_answer": "5",
+      "hints": [
+        "Divide: 40÷8.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "56 is 8 times as many as ___.",
+      "correct_answer": "7",
+      "hints": [
+        "Divide: 56÷8.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 1,
+      "question": "Which equation matches '30 is 6 times as many as 5'?",
+      "choices": [
+        "A) 30=6+5",
+        "B) 30=6×5",
+        "C) 30=6−5",
+        "D) 30=6÷5"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Work through it step by step."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "If 32 is 4 times as many as some number, the number is:",
+      "choices": [
+        "A) 4",
+        "B) 8",
+        "C) 28",
+        "D) 36"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 32÷4=8."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "54 is 9 times as many as 6.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. 9×6=54."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 3,
+      "question": "56 is ___ times as many as 8.",
+      "correct_answer": "7",
+      "hints": [
+        "Divide: 56÷8.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 1,
+      "question": "12 is ___ times as many as 4.",
+      "correct_answer": "3",
+      "hints": [
+        "Divide: 12÷4.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 1,
+      "question": "30 is ___ times as many as 6.",
+      "correct_answer": "5",
+      "hints": [
+        "Divide: 30÷6.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "42 is 6 times as many as ___.",
+      "correct_answer": "7",
+      "hints": [
+        "Divide: 42÷6.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "36 is 4 times as many as ___.",
+      "correct_answer": "9",
+      "hints": [
+        "Divide: 36÷4.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 9. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "45 is ___ times as many as 5.",
+      "correct_answer": "9",
+      "hints": [
+        "Divide: 45÷5.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 9. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "48 is 8 times as many as ___.",
+      "correct_answer": "6",
+      "hints": [
+        "Divide: 48÷8.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 1,
+      "question": "Which is a multiplicative comparison?",
+      "choices": [
+        "A) 5 more than 3",
+        "B) 5 less than 8",
+        "C) 5 times as many as 3",
+        "D) 5 plus 3"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Work through it step by step."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "A truck carries 7 times as many boxes as a van. If the van carries 8, the truck carries ___.",
+      "correct_answer": "56",
+      "hints": [
+        "Think about what multiplicative comparison means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 56. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "Mom is 4 times as old as Sam. Sam is 9. Mom's age is ___.",
+      "correct_answer": "36",
+      "hints": [
+        "Think about what multiplicative comparison means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 36. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 3,
+      "question": "72 is ___ times as many as 9.",
+      "correct_answer": "8",
+      "hints": [
+        "Divide: 72÷9.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "42 is ___ times as many as 6.",
+      "correct_answer": "7",
+      "hints": [
+        "Divide: 42÷6.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "72 is 9 times as many as ___.",
+      "correct_answer": "8",
+      "hints": [
+        "Divide: 72÷9.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 3,
+      "question": "A whale weighs 6 times as much as a dolphin. Dolphin=250 kg. Whale weighs ___ kg.",
+      "correct_answer": "1500",
+      "hints": [
+        "Think about what multiplicative comparison means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 3,
+      "question": "84 is ___ times as many as 7.",
+      "correct_answer": "12",
+      "hints": [
+        "Divide: 84÷7.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 12. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "times_as_many",
+      "concept": "multiplicative_comparison",
+      "difficulty": 2,
+      "question": "Which equation means '56 is 7 times as many as 8'?",
+      "choices": [
+        "A) 56=7+8",
+        "B) 56=7×8",
+        "C) 56=7−8",
+        "D) 56=7÷8"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Work through it step by step."
+      }
+    }
+  ]
+}

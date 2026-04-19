@@ -1,0 +1,781 @@
+{
+  "lesson_id": "L8",
+  "title": "Divide Using Partial Quotients",
+  "grade": "G4",
+  "unit": "U5_divide_by_1_digit",
+  "lesson": "L8",
+  "ccss": [
+    "4.NBT.B.6"
+  ],
+  "standard": "4.NBT.B.6",
+  "go_math_ref": "Go Math G4 Ch4 L8",
+  "essential_question": "How do partial quotients make long division easier?",
+  "vocabulary": [
+    "partial quotient",
+    "divide",
+    "chunk"
+  ],
+  "concept": "partial_quotients",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "Use partial quotients: 96 ÷ 4 = ___",
+      "correct_answer": "24",
+      "hints": [
+        "4×20=80, then 16÷4=4.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24. 20+4=24."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "168 ÷ 6 using partial quotients = ___",
+      "correct_answer": "28",
+      "hints": [
+        "6×20=120; 48÷6=8. Total 28.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 28. Work through each place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "Partial quotients for 144 ÷ 6:",
+      "choices": [
+        "A) 20+4",
+        "B) 20+5",
+        "C) 25",
+        "D) 10+14"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. 6×20=120; 24÷6=4 → 20+4=24."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "In partial quotients, you subtract groups of the divisor and add up the groups.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "85 ÷ 5 = ___",
+      "correct_answer": "17",
+      "hints": [
+        "5×10=50; 35÷5=7. Total 17.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 17. Work through each place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Partial Quotients Idea",
+      "content": "Subtract convenient multiples of the divisor, keep track of how many, then add the partials.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Subtract convenient multiples of the divisor, keep track of how many, then add the partials."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Example: 126 ÷ 6",
+      "content": "Take 20 sixes (120); leaves 6. One more six. Total 21.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Take 20 sixes (120); leaves 6. One more six. Total 21."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Flexible Chunks",
+      "content": "You can take any multiple you like — 10, 20, 100 — whichever is easy.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "You can take any multiple you like — 10, 20, 100 — whichever is easy."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Add the Partials",
+      "content": "All the 'how many sixes' pieces add up to the quotient.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "All the 'how many sixes' pieces add up to the quotient."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Handles Big Numbers",
+      "content": "Partial quotients work great for 3- and 4-digit dividends.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Partial quotients work great for 3- and 4-digit dividends."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Checks Your Work",
+      "content": "Quotient × divisor (+ remainder) should equal the dividend.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Quotient × divisor (+ remainder) should equal the dividend."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "156 ÷ 6 using partial quotients.",
+      "correct_answer": "26",
+      "hints": [
+        "Think about partial quotients.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "6×20=120, leaves 36.",
+        "36÷6=6.",
+        "Total 20+6=26."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 26. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "245 ÷ 5 using partial quotients.",
+      "correct_answer": "49",
+      "hints": [
+        "Think about partial quotients.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "5×40=200, leaves 45.",
+        "45÷5=9.",
+        "Total 49."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 49. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "192 ÷ 8 using partial quotients.",
+      "correct_answer": "24",
+      "hints": [
+        "Think about partial quotients.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "8×20=160, leaves 32.",
+        "32÷8=4.",
+        "Total 24."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "315 ÷ 7 using partial quotients.",
+      "correct_answer": "45",
+      "hints": [
+        "Think about partial quotients.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "7×40=280, leaves 35.",
+        "35÷7=5.",
+        "Total 45."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 45. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "288 ÷ 9 using partial quotients.",
+      "correct_answer": "32",
+      "hints": [
+        "Think about partial quotients.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "9×30=270, leaves 18.",
+        "18÷9=2.",
+        "Total 32."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 32. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "66 ÷ 3 = ___",
+      "correct_answer": "22",
+      "hints": [
+        "Use partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 22. Work through each place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "266 ÷ 7 = ___",
+      "correct_answer": "38",
+      "hints": [
+        "Use partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 38. Work through each place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "240 ÷ 8 = ___",
+      "correct_answer": "30",
+      "hints": [
+        "Use partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. Work through each place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "259 ÷ 7 = ___",
+      "correct_answer": "37",
+      "hints": [
+        "Use partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 37. Work through each place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "156 ÷ 6 = ___",
+      "correct_answer": "26",
+      "hints": [
+        "Use partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 26. Work through each place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "104 ÷ 4 = ___",
+      "correct_answer": "26",
+      "hints": [
+        "Use partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 26. Work through each place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "75 ÷ 3 = ___",
+      "correct_answer": "25",
+      "hints": [
+        "Use partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 25. Work through each place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "192 ÷ 8 = ___",
+      "correct_answer": "24",
+      "hints": [
+        "Use partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24. Work through each place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "147 ÷ 7 = ___",
+      "correct_answer": "21",
+      "hints": [
+        "Use partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 21. Work through each place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 1,
+      "question": "128 ÷ 4 = ___",
+      "correct_answer": "32",
+      "hints": [
+        "Use partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 32. Work through each place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "135 ÷ 5 = ___",
+      "correct_answer": "27",
+      "hints": [
+        "Large multiples first.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 27. Work through each place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "275 ÷ 5 = ___",
+      "correct_answer": "55",
+      "hints": [
+        "Large multiples first.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 55. Work through each place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "585 ÷ 9 = ___",
+      "correct_answer": "65",
+      "hints": [
+        "Large multiples first.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 65. Work through each place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "413 ÷ 7 = ___",
+      "correct_answer": "59",
+      "hints": [
+        "Large multiples first.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 59. Work through each place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "675 ÷ 9 = ___",
+      "correct_answer": "75",
+      "hints": [
+        "Large multiples first.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 75. Work through each place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "252 ÷ 7 = ___",
+      "correct_answer": "36",
+      "hints": [
+        "Large multiples first.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 36. Work through each place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "310 ÷ 5 = ___",
+      "correct_answer": "62",
+      "hints": [
+        "Large multiples first.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 62. Work through each place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "301 ÷ 7 = ___",
+      "correct_answer": "43",
+      "hints": [
+        "Large multiples first.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 43. Work through each place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "186 ÷ 6 = ___",
+      "correct_answer": "31",
+      "hints": [
+        "Large multiples first.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 31. Work through each place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "312 ÷ 4 = ___",
+      "correct_answer": "78",
+      "hints": [
+        "Large multiples first.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 78. Work through each place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "378 ÷ 6 = ___",
+      "correct_answer": "63",
+      "hints": [
+        "6×60=360, 18÷6=3.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 63. Work through each place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "512 ÷ 8 = ___",
+      "correct_answer": "64",
+      "hints": [
+        "Think about partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 64. Work through each place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "Best first chunk for 435 ÷ 5:",
+      "choices": [
+        "A) 5×10",
+        "B) 5×80",
+        "C) 5×50",
+        "D) 5×2"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 5×80=400, leaves 35."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "294 ÷ 7 = ___",
+      "correct_answer": "42",
+      "hints": [
+        "7×40=280.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 42. Work through each place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "multistep_division",
+      "concept": "partial_quotients",
+      "difficulty": 2,
+      "question": "486 ÷ 9 = ___",
+      "correct_answer": "54",
+      "hints": [
+        "Think about partial quotients.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 54. Work through each place."
+      }
+    }
+  ]
+}

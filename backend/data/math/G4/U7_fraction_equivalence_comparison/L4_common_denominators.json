@@ -1,0 +1,787 @@
+{
+  "lesson_id": "L4",
+  "title": "Common Denominators",
+  "grade": "G4",
+  "unit": "U7_fraction_equivalence_comparison",
+  "lesson": "L4",
+  "ccss": [
+    "4.NF.A.1"
+  ],
+  "standard": "4.NF.A.1",
+  "go_math_ref": "Go Math G4 Ch6 L4",
+  "essential_question": "How do you find a common denominator?",
+  "vocabulary": [
+    "common denominator",
+    "LCM",
+    "fraction"
+  ],
+  "concept": "common_denominator",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "Common denominator for 1/2 and 1/3?",
+      "correct_answer": "6",
+      "hints": [
+        "LCM(2,3).",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. 6 is LCM."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "Common denominator for 1/4 and 1/6?",
+      "correct_answer": "12",
+      "hints": [
+        "LCM(4,6).",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "Least common denominator of 2/3 and 3/5:",
+      "choices": [
+        "A) 8",
+        "B) 15",
+        "C) 10",
+        "D) 30"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. LCM(3,5)=15."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "You use the LCM of the denominators as a common denominator.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "Common denom for 1/2 and 3/4?",
+      "correct_answer": "4",
+      "hints": [
+        "LCM(2,4)=4.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Common Denominator",
+      "content": "A common denominator is a shared bottom number for two fractions.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A common denominator is a shared bottom number for two fractions."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Use LCM",
+      "content": "Find the LCM of the denominators. Rewrite each fraction with that denominator.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Find the LCM of the denominators. Rewrite each fraction with that denominator."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example",
+      "content": "1/2 and 1/3 → LCM(2,3)=6. 1/2=3/6; 1/3=2/6.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "numerator": 3,
+          "denominator": 6
+        }
+      },
+      "tts": "1/2 and 1/3 → LCM(2,3)=6. 1/2=3/6; 1/3=2/6."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Multiply Both Numerator and Denominator",
+      "content": "Scale each fraction without changing its value.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Scale each fraction without changing its value."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Why We Need It",
+      "content": "To compare or add fractions, the denominators must match.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To compare or add fractions, the denominators must match."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Shortcut",
+      "content": "If one denominator is a multiple of the other, use the larger one.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If one denominator is a multiple of the other, use the larger one."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "Rewrite 1/3 and 1/4 with common denominator 12.",
+      "correct_answer": "4/12,3/12",
+      "hints": [
+        "Think about common denominator.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "12÷3=4: 1/3=4/12.",
+        "12÷4=3: 1/4=3/12.",
+        "4/12 and 3/12."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/12,3/12."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "Common denominator for 2/5 and 3/10?",
+      "correct_answer": "10",
+      "hints": [
+        "Think about common denominator.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "10 is a multiple of 5.",
+        "Use 10.",
+        "= 10."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 3/4 and 5/6?",
+      "correct_answer": "12",
+      "hints": [
+        "Think about common denominator.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "LCM(4,6).",
+        "=12.",
+        "Use 12."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "Rewrite 1/2 and 2/5 with LCD 10.",
+      "correct_answer": "5/10,4/10",
+      "hints": [
+        "Think about common denominator.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "1/2=5/10.",
+        "2/5=4/10.",
+        "5/10 and 4/10."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/10,4/10."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "Common denominator of 1/3 and 5/9?",
+      "correct_answer": "9",
+      "hints": [
+        "Think about common denominator.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "9 is multiple of 3.",
+        "Use 9.",
+        "= 9."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "LCD of 1/2 and 1/6?",
+      "correct_answer": "6",
+      "hints": [
+        "LCM.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "LCD of 1/2 and 1/5?",
+      "correct_answer": "10",
+      "hints": [
+        "LCM.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "LCD of 1/5 and 1/8?",
+      "correct_answer": "40",
+      "hints": [
+        "LCM.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "LCD of 1/2 and 1/4?",
+      "correct_answer": "4",
+      "hints": [
+        "LCM.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "LCD of 1/4 and 1/5?",
+      "correct_answer": "20",
+      "hints": [
+        "LCM.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "LCD of 1/3 and 1/6?",
+      "correct_answer": "6",
+      "hints": [
+        "LCM.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "LCD of 1/2 and 1/8?",
+      "correct_answer": "8",
+      "hints": [
+        "LCM.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "LCD of 1/2 and 1/6?",
+      "correct_answer": "6",
+      "hints": [
+        "LCM.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "LCD of 1/5 and 1/8?",
+      "correct_answer": "40",
+      "hints": [
+        "LCM.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "LCD of 1/2 and 1/8?",
+      "correct_answer": "8",
+      "hints": [
+        "LCM.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 1/4 and 1/12?",
+      "correct_answer": "12",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 1/5 and 1/4?",
+      "correct_answer": "20",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 1/5 and 1/10?",
+      "correct_answer": "10",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 1/6 and 1/9?",
+      "correct_answer": "18",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 18. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 1/3 and 1/12?",
+      "correct_answer": "12",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 1/3 and 1/10?",
+      "correct_answer": "30",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 1/8 and 1/10?",
+      "correct_answer": "40",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 1/6 and 1/10?",
+      "correct_answer": "30",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 1/5 and 1/10?",
+      "correct_answer": "10",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 1/5 and 1/9?",
+      "correct_answer": "45",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 45. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 2/3 and 3/8?",
+      "correct_answer": "24",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 1,
+      "question": "Rewrite 1/2 with denominator 8.",
+      "correct_answer": "4/8",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/8. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 3/5 and 2/7:",
+      "choices": [
+        "A) 12",
+        "B) 30",
+        "C) 35",
+        "D) 42"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. LCM(5,7)=35."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "LCD of 2/9 and 1/6?",
+      "correct_answer": "18",
+      "hints": [
+        "Think about common denominator.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 18. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "find_common_denom",
+      "concept": "common_denominator",
+      "difficulty": 2,
+      "question": "Rewrite 5/6 with denominator 18.",
+      "correct_answer": "15/18",
+      "hints": [
+        "×3/3.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15/18. "
+      }
+    }
+  ]
+}

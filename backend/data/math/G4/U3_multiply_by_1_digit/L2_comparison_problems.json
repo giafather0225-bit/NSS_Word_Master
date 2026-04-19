@@ -1,0 +1,798 @@
+{
+  "lesson_id": "L2_comparison_problems",
+  "title": "Solve Comparison Problems",
+  "grade": "G4",
+  "unit": "U3_multiply_by_1_digit",
+  "lesson": "L2_comparison_problems",
+  "ccss": [
+    "4.NBT.B.5",
+    "4.OA.A.2"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.2",
+  "essential_question": "How do you solve word problems using multiplicative comparison?",
+  "vocabulary": [
+    "comparison",
+    "times as many",
+    "multiplier"
+  ],
+  "concept": "comparison_problems_multiplication",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A zoo has 12 tigers and 3 times as many monkeys. How many monkeys?",
+      "choices": [
+        "A) 4",
+        "B) 9",
+        "C) 15",
+        "D) 36"
+      ],
+      "correct_answer": "D",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. 3×12=36."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A box of paper has 6 reams. Another box has 5 times as many. The other has ___.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 30. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A store sells 48 apples; another sells 4 times as many. The other sells ___ apples.",
+      "correct_answer": "192",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 192. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "If A is 4 times as many as B, then A×B gives the difference.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is False. A = 4×B, not difference."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "Tom has 15 cards; Lia has 7 times as many. Lia has:",
+      "choices": [
+        "A) 22",
+        "B) 88",
+        "C) 95",
+        "D) 105"
+      ],
+      "correct_answer": "D",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. 7×15=105."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Read Carefully",
+      "content": "Multiplication comparison problems use phrases like 'times as many,' 'as long as,' and 'as heavy as.' Identify which number is smaller and which is larger.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Multiplication comparison problems use phrases like 'times as many,' 'as long as,' and 'as heavy as.' Identify which number is smaller and which is larger."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Draw a Bar Model",
+      "content": "Draw a bar for the smaller amount. Then draw a longer bar showing several equal parts, one for each 'time.'",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "Unit",
+              "value": 10
+            },
+            {
+              "label": "Large",
+              "value": 50
+            }
+          ]
+        }
+      },
+      "tts": "Draw a bar for the smaller amount. Then draw a longer bar showing several equal parts, one for each 'time.'"
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Set Up the Equation",
+      "content": "'Larger = n × smaller.' If n and smaller are given, multiply to find the larger.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "'Larger = n × smaller.' If n and smaller are given, multiply to find the larger."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Find the Smaller or the Factor",
+      "content": "Sometimes you are told the larger and must find the smaller (divide) or the factor of comparison (divide).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Sometimes you are told the larger and must find the smaller (divide) or the factor of comparison (divide)."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check with Estimation",
+      "content": "Estimate to see if the answer makes sense. '12 × 8' should be close to 100 (10×10). If you get 950, you made an error.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimate to see if the answer makes sense. '12 × 8' should be close to 100 (10×10). If you get 950, you made an error."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Write a Full Sentence",
+      "content": "After computing, write a sentence answer: 'The truck carries 56 boxes.' This makes your thinking clear.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "After computing, write a sentence answer: 'The truck carries 56 boxes.' This makes your thinking clear."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A library has 125 books. Another library has 4 times as many. How many in the other?",
+      "correct_answer": "500",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "Larger = 4 × 125.",
+        "4×100=400.",
+        "4×25=100.",
+        "400+100=500."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 500. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A toy store has 6 kites. A supermarket has 48. The store has ___ times fewer kites.",
+      "correct_answer": "8",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "Divide: 48 ÷ 6.",
+        "=8 times as many.",
+        "So store has 8 times fewer."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A pool holds 250 L. Another holds 6 times as much. How many liters?",
+      "correct_answer": "1500",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "6 × 250.",
+        "6×200=1,200, 6×50=300.",
+        "1,200+300=1,500 L."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1500. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "Sam ran 320 m. Pam ran 3 times as far. How many meters did Pam run?",
+      "correct_answer": "960",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "3 × 320 = 3×300 + 3×20.",
+        "=900+60=960 m."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 960. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 3,
+      "question": "A farm has 875 chickens and 5 times as many eggs in a week. How many eggs?",
+      "correct_answer": "4375",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "5 × 875.",
+        "5×800=4,000, 5×75=375.",
+        "4,000+375=4,375."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4375. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 1,
+      "question": "A bakery makes 24 cookies Monday and 3 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "72",
+      "hints": [
+        "3×24.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 72. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 35 cookies Monday and 4 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "140",
+      "hints": [
+        "4×35.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 140. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 120 cookies Monday and 5 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "600",
+      "hints": [
+        "5×120.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 600. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 250 cookies Monday and 6 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "1500",
+      "hints": [
+        "6×250.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 425 cookies Monday and 3 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "1275",
+      "hints": [
+        "3×425.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1275. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 78 cookies Monday and 7 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "546",
+      "hints": [
+        "7×78.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 546. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A shop has 15 hats. A warehouse has 8 times as many. Warehouse has:",
+      "choices": [
+        "A) 120",
+        "B) 75",
+        "C) 23",
+        "D) 180"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Work through it step by step."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A farm has 56 sheep. Another farm has 6 times as many. ___ sheep.",
+      "correct_answer": "336",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 336. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "If Mia picks 4 times as many as Lee's 25, Mia picks 100.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 3,
+      "question": "A bakery makes 314 cookies Monday and 5 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "1570",
+      "hints": [
+        "5×314.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1570. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 1,
+      "question": "A bakery makes 27 cookies Monday and 4 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "108",
+      "hints": [
+        "4×27.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 108. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 48 cookies Monday and 3 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "144",
+      "hints": [
+        "3×48.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 144. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 75 cookies Monday and 6 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "450",
+      "hints": [
+        "6×75.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 450. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 150 cookies Monday and 4 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "600",
+      "hints": [
+        "4×150.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 600. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 250 cookies Monday and 7 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "1750",
+      "hints": [
+        "7×250.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1750. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 89 cookies Monday and 5 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "445",
+      "hints": [
+        "5×89.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 445. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A box has 18 pens. Another has 9 times as many. ___ pens.",
+      "correct_answer": "162",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 162. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A library has 234 books. Another has 4 times as many. ___ books.",
+      "correct_answer": "936",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 936. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "Lily saved $45. Tom saved 6 times more. Tom saved:",
+      "choices": [
+        "A) $51",
+        "B) $270",
+        "C) $225",
+        "D) $315"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Work through it step by step."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 3,
+      "question": "A bakery makes 506 cookies Monday and 7 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "3542",
+      "hints": [
+        "7×506.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3542. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 125 cookies Monday and 4 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "500",
+      "hints": [
+        "4×125.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 2,
+      "question": "A bakery makes 234 cookies Monday and 5 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "1170",
+      "hints": [
+        "5×234.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1170. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 3,
+      "question": "A town has 1,250 people. A city has 6 times as many. ___ people.",
+      "correct_answer": "7500",
+      "hints": [
+        "Think about what comparison problems multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 3,
+      "question": "A bakery makes 456 cookies Monday and 8 times as many Tuesday. Tuesday count = ___.",
+      "correct_answer": "3648",
+      "hints": [
+        "8×456.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3648. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problems_times_as_many",
+      "concept": "comparison_problems_multiplication",
+      "difficulty": 3,
+      "question": "A ship has 325 boxes. Another has 4 times more. How many?",
+      "choices": [
+        "A) 1,000",
+        "B) 1,200",
+        "C) 1,300",
+        "D) 1,500"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. 4×325=1,300."
+      }
+    }
+  ]
+}

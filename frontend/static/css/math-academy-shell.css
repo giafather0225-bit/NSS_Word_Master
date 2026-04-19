@@ -1,0 +1,192 @@
+/* ================================================================
+   math-academy-shell.css — Math-mode stage shell (rail + lesson header)
+   Section: Math
+   Dependencies: theme.css, main-topbar.css (overrides #roadmap when .math-mode active)
+   Scoped under `#stage-card.math-mode` so English stages are untouched.
+   ================================================================ */
+
+/* ── Layout: rail (left) + body (right) ───────────────────── */
+
+#stage-card.math-mode {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    gap: 0;
+    overflow: hidden;
+    background: var(--bg-page);
+}
+
+#stage-card.math-mode .stage-header {
+    display: none;
+}
+
+.math-rail {
+    width: 96px;
+    flex-shrink: 0;
+    align-self: stretch;
+    background: var(--bg-card);
+    border-right: 1px solid var(--border-card);
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#stage-card.math-mode #roadmap {
+    flex: 0 0 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 0;
+}
+
+.math-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+#stage-card.math-mode #stage {
+    flex: 1;
+    padding: 16px 20px;
+    overflow: auto;
+    min-height: 0;
+}
+
+/* ── Rail items ───────────────────────────────────────────── */
+
+.math-rail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 4px;
+}
+
+.math-rail-badge {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    background: transparent;
+    color: var(--text-hint);
+    border: 1px solid var(--border-default);
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.math-rail-item.done .math-rail-badge {
+    background: var(--color-success-light);
+    color: var(--color-success);
+    border: none;
+}
+
+.math-rail-item.current .math-rail-badge {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.math-rail-item.current[data-key="complete"] .math-rail-badge {
+    background: rgba(52, 199, 89, 0.18);
+    color: var(--color-success);
+    border: 2px solid var(--color-success);
+}
+
+.math-rail-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.math-rail-item.current .math-rail-label {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.math-rail-meta {
+    font-size: 9px;
+    color: var(--text-hint);
+    margin-top: 1px;
+    font-variant-numeric: tabular-nums;
+}
+
+.math-rail-connector {
+    width: 2px;
+    height: 14px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 6px 0;
+}
+
+.math-rail-connector.done {
+    background: var(--color-success);
+}
+
+/* ── Lesson header ─────────────────────────────────────────── */
+
+.math-lesson-header {
+    padding: 14px 24px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-card);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-shrink: 0;
+}
+
+.math-lh-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.math-lh-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.math-lh-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 2px;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.math-lh-exit {
+    background: transparent;
+    border: 1px solid var(--border-default);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-family: inherit;
+    transition: background var(--transition-fast), color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.math-lh-exit:hover {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+}

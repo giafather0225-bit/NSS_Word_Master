@@ -1,0 +1,797 @@
+{
+  "lesson_id": "L7",
+  "title": "Multi-step Problems with 2-Digit Multiplication",
+  "grade": "G4",
+  "unit": "U4_multiply_by_2_digit",
+  "lesson": "L7",
+  "ccss": [
+    "4.NBT.B.5",
+    "4.OA.A.3"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4 Ch3-Unit4 L7",
+  "essential_question": "How do you model and solve 2-digit multiplication word problems?",
+  "vocabulary": [
+    "word problem",
+    "multiply",
+    "equation",
+    "unit"
+  ],
+  "concept": "multistep_2d",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A club has 24 members. Each pays $15 in dues. Total dues?",
+      "choices": [
+        "A) $240",
+        "B) $360",
+        "C) $320",
+        "D) $400"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 24×15=360."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "Each bus seats 48. 23 buses seat ___ people.",
+      "correct_answer": "1104",
+      "hints": [
+        "48×23.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1104. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A factory makes 38 widgets per hour for 16 hours. Total?",
+      "correct_answer": "608",
+      "hints": [
+        "38×16.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 608. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 1,
+      "question": "Word problems often hide a multiplication equation in the story.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "Tina reads 25 pages a day for 14 days. Total pages?",
+      "correct_answer": "350",
+      "hints": [
+        "25×14.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 350. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Read Carefully",
+      "content": "Word problems tell a story. Identify what you are multiplying and what the groups are.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Word problems tell a story. Identify what you are multiplying and what the groups are."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Find Groups × Size",
+      "content": "Many problems are 'groups of': (number of groups) × (amount per group).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Many problems are 'groups of': (number of groups) × (amount per group)."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Draw a Bar Model",
+      "content": "Drawing equal bars helps visualize 'groups'.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "1 group",
+              "value": 1
+            },
+            {
+              "label": "Total",
+              "value": 24
+            }
+          ]
+        }
+      },
+      "tts": "Drawing equal bars helps visualize 'groups'."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Write the Equation",
+      "content": "Translate the story into one equation. Then compute carefully.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Translate the story into one equation. Then compute carefully."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check Units",
+      "content": "Your answer should have sensible units (dollars, pages, seats). If not, re-read.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Your answer should have sensible units (dollars, pages, seats). If not, re-read."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate First",
+      "content": "Estimate to make sure your answer is reasonable before finalizing.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimate to make sure your answer is reasonable before finalizing."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A box holds 36 crayons. 14 boxes = ___ crayons.",
+      "correct_answer": "504",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "Multiply: 36×14.",
+        "36×4=144; 36×10=360.",
+        "Total: 504."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 504. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A store has 18 shelves with 45 books each. Total books?",
+      "correct_answer": "810",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "Multiply 18×45.",
+        "18×5=90; 18×40=720.",
+        "90+720=810."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 810. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "Ana runs 28 laps each day for 15 days. Total laps?",
+      "correct_answer": "420",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "28×15.",
+        "28×5=140; 28×10=280.",
+        "420 laps."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 420. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A truck delivers 42 boxes a trip, 24 trips. Boxes?",
+      "correct_answer": "1008",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "42×24.",
+        "42×4=168; 42×20=840.",
+        "1008."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1008. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A ream is 50 sheets. 36 reams = ___ sheets.",
+      "correct_answer": "1800",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "50×36.",
+        "50×36 = 1800.",
+        "1800 sheets."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1800. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A bus seats 52. 18 buses seat ___ people.",
+      "correct_answer": "936",
+      "hints": [
+        "52×18.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 936. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A box has 24 cans. 15 boxes = ___ cans.",
+      "correct_answer": "360",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 360. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A class reads 40 pages a week for 12 weeks. Total?",
+      "correct_answer": "480",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 480. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A farmer has 36 rows of 22 plants. Plants?",
+      "correct_answer": "792",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 792. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A band has 45 members; uniforms cost $28 each. Cost?",
+      "correct_answer": "1260",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1260. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A hotel has 32 floors with 16 rooms each. Rooms?",
+      "correct_answer": "512",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 512. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A baker bakes 24 loaves daily for 21 days. Loaves?",
+      "correct_answer": "504",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 504. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "Tim earns $18 per lawn. 14 lawns = $___.",
+      "correct_answer": "252",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 252. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A library shelves 72 books per shelf, 15 shelves. Books?",
+      "correct_answer": "1080",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1080. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "Each carton has 12 eggs. 85 cartons = ___ eggs.",
+      "correct_answer": "1020",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1020. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A school has 38 classrooms with 26 desks each. Desks?",
+      "correct_answer": "988",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 988. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A ticket costs $24. 47 tickets = $___.",
+      "correct_answer": "1128",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1128. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "68 × 19 = ___",
+      "correct_answer": "1292",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1292. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A hall seats 54 per row, 36 rows. Seats?",
+      "correct_answer": "1944",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1944. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "92 × 24 = ___",
+      "correct_answer": "2208",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2208. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A store sold 57 shirts daily for 28 days. Shirts?",
+      "correct_answer": "1596",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1596. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "85 × 39 = ___",
+      "correct_answer": "3315",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3315. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A train runs 48 miles/hour for 17 hours. Miles?",
+      "correct_answer": "816",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 816. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "63 × 45 = ___",
+      "correct_answer": "2835",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2835. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "77 × 32 = ___",
+      "correct_answer": "2464",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2464. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A farm has 45 cows each giving 26 L milk. Total L?",
+      "correct_answer": "1170",
+      "hints": [
+        "45×26.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1170. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "69 × 54 = ___",
+      "correct_answer": "3726",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3726. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "Which story matches 18 × 25?",
+      "choices": [
+        "A) 18 apples each day for 25 days",
+        "B) 18+25 items",
+        "C) 18 divided by 25",
+        "D) 18−25"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Multiplication: groups × per-group."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A pool holds 48 gallons/min for 35 min. Total?",
+      "correct_answer": "1680",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1680. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "word_problem_multiply",
+      "concept": "multistep_2d",
+      "difficulty": 2,
+      "question": "A team scored 24 points each game for 18 games. Points?",
+      "correct_answer": "432",
+      "hints": [
+        "Think about what multistep 2d means.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 432. Multiply place by place."
+      }
+    }
+  ]
+}

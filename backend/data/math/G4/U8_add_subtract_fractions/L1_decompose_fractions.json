@@ -1,0 +1,789 @@
+{
+  "lesson_id": "L1",
+  "title": "Decompose Fractions",
+  "grade": "G4",
+  "unit": "U8_add_subtract_fractions",
+  "lesson": "L1",
+  "ccss": [
+    "4.NF.B.3"
+  ],
+  "standard": "4.NF.B.3",
+  "go_math_ref": "Go Math G4 Ch7 L1",
+  "essential_question": "How can you break a fraction into smaller parts?",
+  "vocabulary": [
+    "decompose",
+    "unit fraction",
+    "sum"
+  ],
+  "concept": "decompose_fractions",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "Which shows 3/5 decomposed into unit fractions?",
+      "choices": [
+        "A) 1/5+1/5+1/5",
+        "B) 3/15",
+        "C) 3/5+3/5",
+        "D) 1/3+1/5"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. Three unit fractions of 1/5."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "4/6 = 1/6 + 1/6 + 1/6 + ___",
+      "correct_answer": "1/6",
+      "hints": [
+        "4 unit fractions.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/6. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "Another way to write 5/8:",
+      "choices": [
+        "A) 2/8+3/8",
+        "B) 4/8+2/8",
+        "C) 5+1/8",
+        "D) 2/8+2/8"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. Parts add to 5/8."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "Every fraction can be written as a sum of smaller fractions with the same denominator.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "7/10 = 2/10 + ___ + 3/10",
+      "correct_answer": "2/10",
+      "hints": [
+        "Sum must be 7/10. 2+2+3=7.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/10. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Decompose",
+      "content": "To decompose means to break a fraction into smaller fractions that add up to it.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To decompose means to break a fraction into smaller fractions that add up to it."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Unit Fractions",
+      "content": "A unit fraction has numerator 1. Every fraction is a sum of unit fractions: 3/5 = 1/5+1/5+1/5.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "numerator": 3,
+          "denominator": 5
+        }
+      },
+      "tts": "A unit fraction has numerator 1. Every fraction is a sum of unit fractions: 3/5 = 1/5+1/5+1/5."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Multiple Ways",
+      "content": "A fraction can be broken up in many ways: 5/8 = 2/8+3/8 = 1/8+4/8 = 1/8+2/8+2/8.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A fraction can be broken up in many ways: 5/8 = 2/8+3/8 = 1/8+4/8 = 1/8+2/8+2/8."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Same Denominator",
+      "content": "All parts must share the same denominator as the original.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "All parts must share the same denominator as the original."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Equation Form",
+      "content": "Write it as an equation: 3/4 = 1/4+1/4+1/4.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Write it as an equation: 3/4 = 1/4+1/4+1/4."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Useful For Adding",
+      "content": "Decomposing makes adding and subtracting fractions easier to see.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Decomposing makes adding and subtracting fractions easier to see."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "Decompose 4/7 into unit fractions.",
+      "correct_answer": "1/7+1/7+1/7+1/7",
+      "hints": [
+        "Think about decompose fractions.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "4 unit fractions of 1/7.",
+        "Write them summed.",
+        "1/7+1/7+1/7+1/7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/7+1/7+1/7+1/7."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "Fill in: 5/6 = 2/6 + ___ + 1/6",
+      "correct_answer": "2/6",
+      "hints": [
+        "Think about decompose fractions.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Sum must be 5/6.",
+        "2+?+1 = 5 → ?=2.",
+        "2/6."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/6."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "Two ways to decompose 3/4: (a) 1/4+1/4+1/4 (b) 2/4+1/4. Both valid? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about decompose fractions.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Both add to 3/4.",
+        "Same denominator.",
+        "Yes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "6/8 = 3/8 + ___",
+      "correct_answer": "3/8",
+      "hints": [
+        "Think about decompose fractions.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "6 = 3 + ?",
+        "? = 3.",
+        "3/8."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/8."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "Decompose 7/10 using non-unit parts.",
+      "correct_answer": "2/10+2/10+3/10",
+      "hints": [
+        "Think about decompose fractions.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Sum to 7/10.",
+        "2+2+3 = 7.",
+        "2/10+2/10+3/10."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/10+2/10+3/10."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "7/10 = 6/10 + ___/10",
+      "correct_answer": "1",
+      "hints": [
+        "Fill the missing piece.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "4/5 = 3/5 + ___/5",
+      "correct_answer": "1",
+      "hints": [
+        "Fill the missing piece.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "10/12 = 9/12 + ___/12",
+      "correct_answer": "1",
+      "hints": [
+        "Fill the missing piece.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "3/6 = 2/6 + ___/6",
+      "correct_answer": "1",
+      "hints": [
+        "Fill the missing piece.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "8/12 = 7/12 + ___/12",
+      "correct_answer": "1",
+      "hints": [
+        "Fill the missing piece.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "2/5 = 1/5 + ___/5",
+      "correct_answer": "1",
+      "hints": [
+        "Fill the missing piece.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "3/12 = 2/12 + ___/12",
+      "correct_answer": "1",
+      "hints": [
+        "Fill the missing piece.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "7/8 = 6/8 + ___/8",
+      "correct_answer": "1",
+      "hints": [
+        "Fill the missing piece.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "2/5 = 1/5 + ___/5",
+      "correct_answer": "1",
+      "hints": [
+        "Fill the missing piece.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "4/10 = 3/10 + ___/10",
+      "correct_answer": "1",
+      "hints": [
+        "Fill the missing piece.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "4/10 = 1/10 + 1/10 + ___/10",
+      "correct_answer": "2",
+      "hints": [
+        "Sum numerators = n.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "3/10 = 1/10 + 1/10 + ___/10",
+      "correct_answer": "1",
+      "hints": [
+        "Sum numerators = n.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "3/6 = 1/6 + 1/6 + ___/6",
+      "correct_answer": "1",
+      "hints": [
+        "Sum numerators = n.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "5/8 = 1/8 + 1/8 + ___/8",
+      "correct_answer": "3",
+      "hints": [
+        "Sum numerators = n.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "5/8 = 3/8 + 1/8 + ___/8",
+      "correct_answer": "1",
+      "hints": [
+        "Sum numerators = n.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "7/12 = 2/12 + 3/12 + ___/12",
+      "correct_answer": "2",
+      "hints": [
+        "Sum numerators = n.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "4/10 = 1/10 + 2/10 + ___/10",
+      "correct_answer": "1",
+      "hints": [
+        "Sum numerators = n.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "7/12 = 1/12 + 3/12 + ___/12",
+      "correct_answer": "3",
+      "hints": [
+        "Sum numerators = n.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "4/5 = 2/5 + 1/5 + ___/5",
+      "correct_answer": "1",
+      "hints": [
+        "Sum numerators = n.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "3/5 = 1/5 + 1/5 + ___/5",
+      "correct_answer": "1",
+      "hints": [
+        "Sum numerators = n.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "5/8 = 1/8 + 2/8 + ___ + 1/8",
+      "correct_answer": "1/8",
+      "hints": [
+        "Sum to 5/8.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/8. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "6/10 = ___/10 + 4/10",
+      "correct_answer": "2",
+      "hints": [
+        "Think about decompose fractions.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "Decompose 3/8 in any valid way:",
+      "choices": [
+        "A) 1/8+1/8+1/8",
+        "B) 3/10+1/8",
+        "C) 1/4+1/2",
+        "D) 3×8"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. Parts share denominator and sum to 3/8."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 2,
+      "question": "9/12 = 3/12 + ___ + 2/12",
+      "correct_answer": "4/12",
+      "hints": [
+        "Sum to 9.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/12. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "break_into_parts",
+      "concept": "decompose_fractions",
+      "difficulty": 1,
+      "question": "4/5 as unit fractions: 1/5+1/5+1/5+___",
+      "correct_answer": "1/5",
+      "hints": [
+        "Think about decompose fractions.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/5. "
+      }
+    }
+  ]
+}

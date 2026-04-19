@@ -75,42 +75,7 @@ function _showEarlyBumpPrompt() {
  * Render the math roadmap pills in the top bar.
  * @tag MATH @tag NAVIGATION
  */
-function renderMathRoadmap() {
-    const rm = document.getElementById('roadmap');
-    if (!rm) return;
-    rm.innerHTML = '';
-
-    const stagesVisible = ['pretest', 'learn', 'try', 'practice_r1', 'practice_r2', 'practice_r3'];
-    const currentIdx = stagesVisible.indexOf(mathState.stage);
-
-    stagesVisible.forEach((s, i) => {
-        const div = document.createElement('div');
-        div.className = 'road-pill';
-
-        if (i < currentIdx) {
-            div.classList.add('done');
-            div.textContent = '\u2713 ' + MATH_STAGE_LABELS[s];
-        } else if (i === currentIdx) {
-            div.classList.add('current');
-            const total = mathState.problems.length;
-            const progress = total > 0 ? ` (${Math.min(mathState.currentIdx + 1, total)}/${total})` : '';
-            div.textContent = MATH_STAGE_LABELS[s] + progress;
-        } else {
-            div.classList.add('locked');
-            div.textContent = MATH_STAGE_LABELS[s];
-        }
-
-        rm.appendChild(div);
-    });
-
-    const fill = document.getElementById('top-progress-fill');
-    const pct = document.getElementById('progress-pct');
-    if (fill && mathState.problems.length > 0) {
-        const p = Math.round(mathState.currentIdx / mathState.problems.length * 100);
-        fill.style.width = p + '%';
-        if (pct) pct.textContent = p + '%';
-    }
-}
+// renderMathRoadmap() lives in math-academy-shell.js (rail renderer).
 
 // ── Round summary (M4) ─────────────────────────────────────
 
@@ -230,6 +195,7 @@ function renderMathComplete() {
 
 /** @tag MATH @tag ACADEMY */
 function exitMathLesson() {
+    if (typeof unmountMathShell === 'function') unmountMathShell();
     const stageCard = document.getElementById('stage-card');
     if (stageCard) stageCard.classList.add('hidden');
     switchView('math');
@@ -252,14 +218,38 @@ function renderMathWrongReview() {
         return;
     }
 
-    stage.innerHTML = `
-        <div class="math-wrong-review">
-            <h2>Wrong Review</h2>
-            <p>You got ${wrongIds.length} problem(s) wrong. Review them to continue!</p>
-            <p class="math-wrong-list">${wrongIds.join(', ')}</p>
-            <button class="math-btn-primary" onclick="loadMathStage('complete')">
-                Continue (Phase M5 will add actual review)
-            </button>
-        </div>
-    `;
+    _loadWrongReviewProblems(wrongIds).then(problems => {
+        if (problems.length === 0) {
+            loadMathStage('complete');
+            return;
+        }
+        mathState.problems = problems;
+        mathState.currentIdx = 0;
+        mathState.correct = 0;
+        mathState.wrong = [];
+        mathState.wrongConcepts = [];
+        renderMathProblem();
+    });
+}
+
+/** @tag MATH @tag ACADEMY */
+async function _loadWrongReviewProblems(wrongIds) {
+    const problems = [];
+    for (const round of ['practice_r1', 'practice_r2', 'practice_r3']) {
+        try {
+            const url = '/api/math/academy/'
+                + encodeURIComponent(mathState.grade) + '/'
+                + encodeURIComponent(mathState.unit) + '/'
+                + encodeURIComponent(mathState.lesson) + '/' + round;
+            const res = await fetch(url);
+            if (!res.ok) continue;
+            const data = await res.json();
+            (data.problems || []).forEach(p => {
+                if (wrongIds.includes(p.id) && !problems.find(x => x.id === p.id)) {
+                    problems.push(p);
+                }
+            });
+        } catch (_) {}
+    }
+    return problems;
 }

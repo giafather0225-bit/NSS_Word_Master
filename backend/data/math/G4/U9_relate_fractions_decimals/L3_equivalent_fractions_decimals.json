@@ -1,0 +1,788 @@
+{
+  "lesson_id": "L3",
+  "title": "Equivalent Fractions and Decimals",
+  "grade": "G4",
+  "unit": "U9_relate_fractions_decimals",
+  "lesson": "L3",
+  "ccss": [
+    "4.NF.C.5"
+  ],
+  "standard": "4.NF.C.5",
+  "go_math_ref": "Go Math G4 Ch9 L3",
+  "essential_question": "How do you convert between tenths and hundredths?",
+  "vocabulary": [
+    "equivalent",
+    "tenth",
+    "hundredth",
+    "decimal"
+  ],
+  "concept": "equiv_fraction_decimal",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "3/10 = ___/100",
+      "correct_answer": "30",
+      "hints": [
+        "×10/10.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. 30/100."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "0.7 = 0.___ (in hundredths form)",
+      "correct_answer": "70",
+      "hints": [
+        "Trailing zero.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 70. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "Which equals 4/10?",
+      "choices": [
+        "A) 0.04",
+        "B) 0.4",
+        "C) 40",
+        "D) 4.10"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "0.5 and 0.50 are equal.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. 50 hundredths = 5 tenths."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "60/100 = ___/10",
+      "correct_answer": "6",
+      "hints": [
+        "÷10.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Tenths ↔ Hundredths",
+      "content": "You can write any tenth as hundredths by multiplying by 10/10.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "You can write any tenth as hundredths by multiplying by 10/10."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Example",
+      "content": "3/10 = 30/100. As decimals: 0.3 = 0.30.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "numerator": 30,
+          "denominator": 100
+        }
+      },
+      "tts": "3/10 = 30/100. As decimals: 0.3 = 0.30."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Remove Trailing Zeros",
+      "content": "Going from hundredths to tenths, drop the last zero if possible: 50/100 = 5/10.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Going from hundredths to tenths, drop the last zero if possible: 50/100 = 5/10."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Equivalent Decimals",
+      "content": "0.6 = 0.60 = 60/100 = 6/10.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "0.6 = 0.60 = 60/100 = 6/10."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Common Denominator Tool",
+      "content": "Converting to hundredths is helpful when adding tenths and hundredths.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Converting to hundredths is helpful when adding tenths and hundredths."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Reading Both Forms",
+      "content": "Same amount can be read as '6 tenths' or '60 hundredths'.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Same amount can be read as '6 tenths' or '60 hundredths'."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "Rewrite 4/10 as hundredths.",
+      "correct_answer": "40/100",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "Multiply by 10/10.",
+        "4×10=40, 10×10=100.",
+        "40/100."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40/100."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "Write 0.6 with two decimal places.",
+      "correct_answer": "0.60",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "0.6 = 0.60.",
+        "Same value.",
+        "0.60."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.60."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "Simplify 50/100 to tenths.",
+      "correct_answer": "5/10",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "Divide by 10.",
+        "= 5/10.",
+        "Done."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/10."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "0.9 = ___/100",
+      "correct_answer": "90",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "0.9 = 9/10 = 90/100.",
+        "So answer is 90.",
+        "Done."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "70/100 as tenths.",
+      "correct_answer": "7/10",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "÷10/10.",
+        "= 7/10.",
+        "Done."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/10."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "1/10 = ___/100",
+      "correct_answer": "10",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "9/10 = ___/100",
+      "correct_answer": "90",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "3/10 = ___/100",
+      "correct_answer": "30",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "1/10 = ___/100",
+      "correct_answer": "10",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "4/10 = ___/100",
+      "correct_answer": "40",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "2/10 = ___/100",
+      "correct_answer": "20",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "5/10 = ___/100",
+      "correct_answer": "50",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 50. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "2/10 = ___/100",
+      "correct_answer": "20",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "1/10 = ___/100",
+      "correct_answer": "10",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "6/10 = ___/100",
+      "correct_answer": "60",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 60. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "10/100 = ___/10",
+      "correct_answer": "1",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "70/100 = ___/10",
+      "correct_answer": "7",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "60/100 = ___/10",
+      "correct_answer": "6",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "20/100 = ___/10",
+      "correct_answer": "2",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "80/100 = ___/10",
+      "correct_answer": "8",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "40/100 = ___/10",
+      "correct_answer": "4",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "70/100 = ___/10",
+      "correct_answer": "7",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "50/100 = ___/10",
+      "correct_answer": "5",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "80/100 = ___/10",
+      "correct_answer": "8",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "30/100 = ___/10",
+      "correct_answer": "3",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "0.3 as hundredths decimal = ___",
+      "correct_answer": "0.30",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.30. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "80/100 as tenths = ___",
+      "correct_answer": "8/10",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8/10. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "Which is equivalent to 0.7?",
+      "choices": [
+        "A) 0.07",
+        "B) 0.70",
+        "C) 70",
+        "D) 7/100"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "5/10 as hundredths = ___/100",
+      "correct_answer": "50",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 50. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "equiv_tenths_hundredths",
+      "concept": "equiv_fraction_decimal",
+      "difficulty": 1,
+      "question": "90/100 = ___/10",
+      "correct_answer": "9",
+      "hints": [
+        "Think about equiv fraction decimal.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. "
+      }
+    }
+  ]
+}

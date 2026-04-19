@@ -1,0 +1,780 @@
+{
+  "lesson_id": "L8",
+  "title": "Compare Fractions Using Equivalents",
+  "grade": "G4",
+  "unit": "U7_fraction_equivalence_comparison",
+  "lesson": "L8",
+  "ccss": [
+    "4.NF.A.2"
+  ],
+  "standard": "4.NF.A.2",
+  "go_math_ref": "Go Math G4 Ch6 L8",
+  "essential_question": "How do equivalent fractions help compare?",
+  "vocabulary": [
+    "equivalent",
+    "compare",
+    "common denominator"
+  ],
+  "concept": "compare_equivalent",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 1/3 and 2/5 by converting to LCD 15:",
+      "choices": [
+        "A) 1/3 > 2/5",
+        "B) 1/3 < 2/5",
+        "C) equal"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 1/3=5/15, 2/5=6/15, 5<6."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 2/3 and 3/4 (use LCD 12). Greater?",
+      "correct_answer": "3/4",
+      "hints": [
+        "2/3=8/12, 3/4=9/12.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/4. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 3/8 and 5/12:",
+      "choices": [
+        "A) 3/8 > 5/12",
+        "B) 3/8 < 5/12",
+        "C) equal"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. LCD 24: 9/24 vs 10/24."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 1,
+      "question": "Rewriting with a common denominator lets you compare numerators directly.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 5/6 and 7/8 (LCD 24). Which is greater?",
+      "correct_answer": "7/8",
+      "hints": [
+        "20/24 vs 21/24.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/8. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Common Denominator Method",
+      "content": "Rewrite both fractions with the same denominator, then compare numerators.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Rewrite both fractions with the same denominator, then compare numerators."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Use LCM",
+      "content": "The LCM of the denominators is the easiest common denominator.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "The LCM of the denominators is the easiest common denominator."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example",
+      "content": "1/2 vs 2/5: LCD=10. 1/2=5/10, 2/5=4/10. 5>4, so 1/2 > 2/5.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "1/2 vs 2/5: LCD=10. 1/2=5/10, 2/5=4/10. 5>4, so 1/2 > 2/5."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Cross-Multiply Trick",
+      "content": "Compare a/b and c/d by comparing a×d and c×b (for positives).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Compare a/b and c/d by comparing a×d and c×b (for positives)."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Works for All Fractions",
+      "content": "This method works regardless of what the numerators and denominators are.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "This method works regardless of what the numerators and denominators are."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Pick the Best Tool",
+      "content": "Use benchmarks (like 1/2) when easy, common denominator when not.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Use benchmarks (like 1/2) when easy, common denominator when not."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 2/3 and 3/5 (LCD 15).",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "2/3=10/15.",
+        "3/5=9/15.",
+        "10>9, 2/3 > 3/5."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 3/4 and 5/6 (LCD 12).",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "3/4=9/12, 5/6=10/12.",
+        "9<10.",
+        "3/4 < 5/6."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Greater: 4/5 or 7/10?",
+      "correct_answer": "4/5",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "4/5=8/10.",
+        "8>7.",
+        "4/5."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/5."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 5/8 and 2/3 (LCD 24).",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "5/8=15/24, 2/3=16/24.",
+        "15<16.",
+        "5/8 < 2/3."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Smaller: 3/5 or 4/7?",
+      "correct_answer": "4/7",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use fraction strategies."
+      ],
+      "solution_steps": [
+        "LCD 35: 3/5=21/35, 4/7=20/35.",
+        "20<21.",
+        "4/7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/7."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 1/4 and 1/5.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 2/4 and 1/8.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 3/6 and 1/5.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 1/5 and 1/4.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 1/4 and 3/6.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 4/6 and 4/8.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 1/6 and 2/8.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 4/5 and 1/4.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 1/6 and 2/4.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 3/6 and 1/4.",
+      "correct_answer": ">",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is >. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Which is greater: 8/12 or 5/6?",
+      "correct_answer": "5/6",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/6. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Which is greater: 5/8 or 2/10?",
+      "correct_answer": "5/8",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/8. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Which is greater: 1/5 or 3/4?",
+      "correct_answer": "3/4",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/4. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Which is greater: 2/8 or 2/5?",
+      "correct_answer": "2/5",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/5. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Which is greater: 1/6 or 2/3?",
+      "correct_answer": "2/3",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/3. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Which is greater: 3/4 or 1/10?",
+      "correct_answer": "3/4",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/4. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Which is greater: 2/6 or 2/5?",
+      "correct_answer": "2/5",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/5. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Which is greater: 2/6 or 2/5?",
+      "correct_answer": "2/5",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/5. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Which is greater: 7/8 or 2/3?",
+      "correct_answer": "7/8",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/8. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Which is greater: 7/10 or 1/5?",
+      "correct_answer": "7/10",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/10. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.1",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 5/6 and 11/12.",
+      "correct_answer": "<",
+      "hints": [
+        "Think about compare equivalent.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Greater: 3/8 or 7/16?",
+      "correct_answer": "7/16",
+      "hints": [
+        "3/8=6/16.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/16. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 3/7 and 5/9:",
+      "choices": [
+        "A) 3/7 > 5/9",
+        "B) 3/7 < 5/9",
+        "C) equal"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. LCD 63: 27 vs 35."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Compare 7/10 and 3/4.",
+      "correct_answer": "<",
+      "hints": [
+        "LCD 20: 14 vs 15.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is <. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.A.2",
+      "skill_tag": "common_denom_compare",
+      "concept": "compare_equivalent",
+      "difficulty": 2,
+      "question": "Smaller: 5/12 or 1/3?",
+      "correct_answer": "1/3",
+      "hints": [
+        "1/3=4/12.",
+        "Use equivalent fractions."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/3. "
+      }
+    }
+  ]
+}

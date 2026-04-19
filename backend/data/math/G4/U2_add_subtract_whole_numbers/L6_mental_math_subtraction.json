@@ -1,0 +1,786 @@
+{
+  "lesson_id": "L6_mental_math_subtraction",
+  "title": "Mental Math for Subtraction",
+  "grade": "G4",
+  "unit": "U2_add_subtract_whole_numbers",
+  "lesson": "L6_mental_math_subtraction",
+  "ccss": [
+    "4.NBT.B.4"
+  ],
+  "standard": "4.NBT.B.4",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.6",
+  "essential_question": "What strategies can you use to subtract numbers mentally?",
+  "vocabulary": [
+    "mental math",
+    "constant difference",
+    "count up",
+    "friendly numbers"
+  ],
+  "concept": "mental_math_subtraction",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 500 − 298 = ___",
+      "correct_answer": "202",
+      "hints": [
+        "298 ≈ 300.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 202. 500−298=202."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "What is 1,000 − 597 using mental math?",
+      "choices": [
+        "A) 403",
+        "B) 413",
+        "C) 503",
+        "D) 413"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Add 3 to both: 1,003 − 600 = 403."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 2,500 − 450 = ___",
+      "correct_answer": "2050",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2050. 2,500−450=2,050."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Adding the same amount to both numbers in a subtraction doesn't change the difference.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. a−b = (a+k)−(b+k) for any k."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 3,
+      "question": "Use mental math to subtract: 8,002 − 3,001 = ___",
+      "correct_answer": "5001",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5001. 8,002−3,001=5,001."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Why Mental Subtraction?",
+      "content": "Quick mental math helps you check work or solve problems without paper. The trick is to change numbers into ones that are easy to subtract.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Quick mental math helps you check work or solve problems without paper. The trick is to change numbers into ones that are easy to subtract."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Constant Difference",
+      "content": "If you add the same number to both values, the difference stays the same. 500−298 = 502−300 = 202.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If you add the same number to both values, the difference stays the same. 500−298 = 502−300 = 202."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Count Up",
+      "content": "To find 500−298, count up from 298: 298→300 (add 2), 300→500 (add 200). Total added = 202.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "min": 0,
+          "max": 600,
+          "step": 100
+        }
+      },
+      "tts": "To find 500−298, count up from 298: 298→300 (add 2), 300→500 (add 200). Total added = 202."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Break Apart",
+      "content": "Break the subtracted number: 832−245 = 832 − 200 − 40 − 5 = 632 − 40 − 5 = 592 − 5 = 587.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Break the subtracted number: 832−245 = 832 − 200 − 40 − 5 = 632 − 40 − 5 = 592 − 5 = 587."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Use Friendly Numbers",
+      "content": "For 1,000−597: think of 597 as 600−3. 1,000−600=400, add 3: 403.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "For 1,000−597: think of 597 as 600−3. 1,000−600=400, add 3: 403."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Pick the Best Strategy",
+      "content": "Use count-up for small differences. Use constant difference when one number is near a round number.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Use count-up for small differences. Use constant difference when one number is near a round number."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "500 − 298 = ___ (mental)",
+      "correct_answer": "202",
+      "hints": [
+        "Think about what mental math subtraction means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Add 2 to both: 502−300.",
+        "502−300=202.",
+        "Answer: 202."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 202. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "1,200 − 497 = ___ (mental)",
+      "correct_answer": "703",
+      "hints": [
+        "Think about what mental math subtraction means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "497 ≈ 500.",
+        "1,200−500=700.",
+        "Add back 3: 703."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 703. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "3,000 − 1,450 = ___ (mental)",
+      "correct_answer": "1550",
+      "hints": [
+        "Think about what mental math subtraction means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "3,000−1,000=2,000.",
+        "2,000−450=1,550."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1550. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 3,
+      "question": "5,002 − 2,998 = ___ (mental)",
+      "correct_answer": "2004",
+      "hints": [
+        "Think about what mental math subtraction means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Add 2: 5,004−3,000.",
+        "=2,004."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2004. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 3,
+      "question": "8,500 − 6,750 = ___ (mental)",
+      "correct_answer": "1750",
+      "hints": [
+        "Think about what mental math subtraction means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Think 8,500 = 8,000+500, 6,750=6,000+750.",
+        "8,000−6,000=2,000.",
+        "500−750 = −250.",
+        "2,000−250=1,750."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1750. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 1,
+      "question": "Use mental math to subtract: 500 − 298 = ___",
+      "correct_answer": "202",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 202. 500−298=202."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 1,
+      "question": "Use mental math to subtract: 600 − 97 = ___",
+      "correct_answer": "503",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 503. 600−97=503."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 1,
+      "question": "Use mental math to subtract: 1,000 − 597 = ___",
+      "correct_answer": "403",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 403. 1,000−597=403."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 1,
+      "question": "Use mental math to subtract: 800 − 345 = ___",
+      "correct_answer": "455",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 455. 800−345=455."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 1,200 − 498 = ___",
+      "correct_answer": "702",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 702. 1,200−498=702."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 2,500 − 750 = ___",
+      "correct_answer": "1750",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1750. 2,500−750=1,750."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 3,000 − 1,498 = ___",
+      "correct_answer": "1502",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1502. 3,000−1,498=1,502."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 5,000 − 2,001 = ___",
+      "correct_answer": "2999",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2999. 5,000−2,001=2,999."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 3,
+      "question": "Use mental math to subtract: 4,500 − 1,500 = ___",
+      "correct_answer": "3000",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3000. 4,500−1,500=3,000."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 3,
+      "question": "Use mental math to subtract: 9,000 − 4,500 = ___",
+      "correct_answer": "4500",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4500. 9,000−4,500=4,500."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 1,
+      "question": "Use mental math to subtract: 400 − 198 = ___",
+      "correct_answer": "202",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 202. 400−198=202."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 1,
+      "question": "Use mental math to subtract: 900 − 297 = ___",
+      "correct_answer": "603",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 603. 900−297=603."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 1,
+      "question": "Use mental math to subtract: 1,100 − 395 = ___",
+      "correct_answer": "705",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 705. 1,100−395=705."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 1,
+      "question": "Use mental math to subtract: 2,000 − 998 = ___",
+      "correct_answer": "1002",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1002. 2,000−998=1,002."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 3,500 − 1,500 = ___",
+      "correct_answer": "2000",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2000. 3,500−1,500=2,000."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 5,000 − 1,997 = ___",
+      "correct_answer": "3003",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3003. 5,000−1,997=3,003."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 7,000 − 3,500 = ___",
+      "correct_answer": "3500",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3500. 7,000−3,500=3,500."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 8,002 − 2,998 = ___",
+      "correct_answer": "5004",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5004. 8,002−2,998=5,004."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 3,
+      "question": "Use mental math to subtract: 6,500 − 2,500 = ___",
+      "correct_answer": "4000",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4000. 6,500−2,500=4,000."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 3,
+      "question": "Use mental math to subtract: 10,000 − 4,999 = ___",
+      "correct_answer": "5001",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5001. 10,000−4,999=5,001."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 500 − 297 = ___",
+      "correct_answer": "203",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 203. 500−297=203."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 1,500 − 499 = ___",
+      "correct_answer": "1001",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1001. 1,500−499=1,001."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 2,
+      "question": "Use mental math to subtract: 3,000 − 1,998 = ___",
+      "correct_answer": "1002",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1002. 3,000−1,998=1,002."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 3,
+      "question": "Use mental math to subtract: 5,000 − 2,497 = ___",
+      "correct_answer": "2503",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2503. 5,000−2,497=2,503."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_for_subtraction",
+      "concept": "mental_math_subtraction",
+      "difficulty": 3,
+      "question": "Use mental math to subtract: 8,000 − 3,500 = ___",
+      "correct_answer": "4500",
+      "hints": [
+        "Change to a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4500. 8,000−3,500=4,500."
+      }
+    }
+  ]
+}

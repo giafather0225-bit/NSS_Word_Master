@@ -3,100 +3,480 @@
   "title": "Multiply with 1 and 0",
   "grade": "G3",
   "unit": "U3_understand_multiplication",
-  "ccss": ["3.OA.B.5"],
-  "go_math_ref": { "chapter": 3, "lesson": "3.7", "pages": "127-130" },
+  "ccss": [
+    "3.OA.B.5"
+  ],
+  "go_math_ref": {
+    "chapter": 3,
+    "lesson": "3.7",
+    "pages": "127-130"
+  },
   "essential_question": "What happens when you multiply a number by 1 or by 0?",
-  "key_vocabulary": ["Identity Property", "Zero Property", "factor", "product"],
-  "strategies": ["Any number × 1 = that number (Identity Property)", "Any number × 0 = 0 (Zero Property)"],
+  "key_vocabulary": [
+    "Identity Property",
+    "Zero Property",
+    "factor",
+    "product"
+  ],
+  "strategies": [
+    "Any number × 1 = that number (Identity Property)",
+    "Any number × 0 = 0 (Zero Property)"
+  ],
   "items": [
-    { "id": "PT_01", "section": "pretest", "difficulty": 1,
+    {
+      "id": "PT_01",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "What is 7 × 1?",
-      "choices": ["A. 0","B. 1","C. 7","D. 8"], "answer": "C",
-      "explanation": "Identity Property: 7 × 1 = 7." },
-    { "id": "PT_02", "section": "pretest", "difficulty": 1,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 7",
+        "D. 8"
+      ],
+      "answer": "C",
+      "explanation": "Identity Property: 7 × 1 = 7."
+    },
+    {
+      "id": "PT_02",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "What is 5 × 0?",
-      "choices": ["A. 0","B. 1","C. 5","D. 50"], "answer": "A",
-      "explanation": "Zero Property: 5 × 0 = 0." },
-    { "id": "PT_03", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 5",
+        "D. 50"
+      ],
+      "answer": "A",
+      "explanation": "Zero Property: 5 × 0 = 0."
+    },
+    {
+      "id": "PT_03",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Which property says any number times 1 equals itself?",
-      "choices": ["A. Zero Property","B. Commutative Property","C. Identity Property","D. Associative Property"], "answer": "C",
-      "explanation": "Identity Property of Multiplication." },
-    { "id": "PT_04", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. Zero Property",
+        "B. Commutative Property",
+        "C. Identity Property",
+        "D. Associative Property"
+      ],
+      "answer": "C",
+      "explanation": "Identity Property of Multiplication."
+    },
+    {
+      "id": "PT_04",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "0 × 100 = ?",
-      "choices": ["A. 100","B. 10","C. 1","D. 0"], "answer": "D",
-      "explanation": "Zero Property: 0 × anything = 0." },
-    { "id": "PT_05", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 100",
+        "B. 10",
+        "C. 1",
+        "D. 0"
+      ],
+      "answer": "D",
+      "explanation": "Zero Property: 0 × anything = 0."
+    },
+    {
+      "id": "PT_05",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "1 × 1 = ?",
-      "choices": ["A. 0","B. 1","C. 2","D. 11"], "answer": "B",
-      "explanation": "1 × 1 = 1." },
-    { "id": "LN_01", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 2",
+        "D. 11"
+      ],
+      "answer": "B",
+      "explanation": "1 × 1 = 1."
+    },
+    {
+      "id": "LN_01",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "Identity Property of Multiplication",
-      "content": "Any number multiplied by 1 equals that number. 8 × 1 = 8. 1 × 8 = 8. The number 1 is called the 'identity' because the number keeps its identity." },
-    { "id": "LN_02", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "content": "Any number multiplied by 1 equals that number. 8 × 1 = 8. 1 × 8 = 8. The number 1 is called the 'identity' because the number keeps its identity.",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "LN_02",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "Zero Property of Multiplication",
-      "content": "Any number multiplied by 0 equals 0. 6 × 0 = 0. 0 × 6 = 0. Think: zero groups of anything = nothing!" },
-    { "id": "LN_03", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "content": "Any number multiplied by 0 equals 0. 6 × 0 = 0. 0 × 6 = 0. Think: zero groups of anything = nothing!",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "LN_03",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "Why These Properties Matter",
-      "content": "These are the easiest multiplication facts! Any fact with 0 = 0. Any fact with 1 = the other number. This eliminates 19 facts from your times table instantly." },
-    { "id": "TRY_01", "section": "try", "difficulty": 1,
+      "content": "These are the easiest multiplication facts! Any fact with 0 = 0. Any fact with 1 = the other number. This eliminates 19 facts from your times table instantly.",
+      "cpa_phase": "pictorial",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "TRY_01",
+      "section": "try",
+      "difficulty": 1,
       "question": "9 × 0 = ?",
-      "choices": ["A. 0","B. 1","C. 9","D. 90"], "answer": "A",
-      "explanation": "9 × 0 = 0." },
-    { "id": "TRY_02", "section": "try", "difficulty": 1,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 9",
+        "D. 90"
+      ],
+      "answer": "A",
+      "explanation": "9 × 0 = 0.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how multiply with 1 and 0 works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_02",
+      "section": "try",
+      "difficulty": 1,
       "question": "1 × 6 = ?",
-      "choices": ["A. 0","B. 1","C. 6","D. 7"], "answer": "C",
-      "explanation": "1 × 6 = 6." },
-    { "id": "TRY_03", "section": "try", "difficulty": 2,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 6",
+        "D. 7"
+      ],
+      "answer": "C",
+      "explanation": "1 × 6 = 6.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how multiply with 1 and 0 works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "section": "try",
+      "difficulty": 2,
       "question": "There are 4 empty boxes (0 toys in each). How many toys total?",
-      "choices": ["A. 0","B. 1","C. 4","D. 40"], "answer": "A",
-      "explanation": "4 × 0 = 0." },
-    { "id": "R1_01", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 4",
+        "D. 40"
+      ],
+      "answer": "A",
+      "explanation": "4 × 0 = 0.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how multiply with 1 and 0 works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R1_01",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "3 × 1 = ?",
-      "choices": ["A. 0","B. 1","C. 3","D. 4"], "answer": "C",
-      "explanation": "3 × 1 = 3." },
-    { "id": "R1_02", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 3",
+        "D. 4"
+      ],
+      "answer": "C",
+      "explanation": "3 × 1 = 3.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R1_02",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "0 × 8 = ?",
-      "choices": ["A. 0","B. 1","C. 8","D. 80"], "answer": "A",
-      "explanation": "0 × 8 = 0." },
-    { "id": "R1_03", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 8",
+        "D. 80"
+      ],
+      "answer": "A",
+      "explanation": "0 × 8 = 0.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R1_03",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "1 × 10 = ?",
-      "choices": ["A. 0","B. 1","C. 10","D. 11"], "answer": "C",
-      "explanation": "1 × 10 = 10." },
-    { "id": "R1_04", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 10",
+        "D. 11"
+      ],
+      "answer": "C",
+      "explanation": "1 × 10 = 10.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R1_04",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "Which is greater: 5 × 1 or 5 × 0?",
-      "choices": ["A. 5 × 0","B. 5 × 1","C. They are equal","D. Cannot tell"], "answer": "B",
-      "explanation": "5 × 1 = 5, 5 × 0 = 0. 5 > 0." },
-    { "id": "R1_05", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 5 × 0",
+        "B. 5 × 1",
+        "C. They are equal",
+        "D. Cannot tell"
+      ],
+      "answer": "B",
+      "explanation": "5 × 1 = 5, 5 × 0 = 0. 5 > 0.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R1_05",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "? × 1 = 8. What is the missing number?",
-      "choices": ["A. 0","B. 1","C. 7","D. 8"], "answer": "D",
-      "explanation": "8 × 1 = 8." },
-    { "id": "R1_06", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 7",
+        "D. 8"
+      ],
+      "answer": "D",
+      "explanation": "8 × 1 = 8.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R1_06",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "0 × ? = 0. Which number(s) could go in the blank?",
-      "choices": ["A. Only 0","B. Only 1","C. Any number","D. No number works"], "answer": "C",
-      "explanation": "0 times anything = 0. Any number works." },
-    { "id": "R2_01", "section": "practice_r2", "difficulty": 2,
+      "choices": [
+        "A. Only 0",
+        "B. Only 1",
+        "C. Any number",
+        "D. No number works"
+      ],
+      "answer": "C",
+      "explanation": "0 times anything = 0. Any number works.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R2_01",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "Caleb has 1 bag with 9 marbles. Sam has 9 bags with 0 marbles each. Who has more marbles?",
-      "choices": ["A. Caleb (9 marbles)","B. Sam (9 marbles)","C. They are equal","D. Sam (0 marbles)"], "answer": "A",
-      "explanation": "Caleb: 1×9=9. Sam: 9×0=0. Caleb has more." },
-    { "id": "R2_02", "section": "practice_r2", "difficulty": 3,
+      "choices": [
+        "A. Caleb (9 marbles)",
+        "B. Sam (9 marbles)",
+        "C. They are equal",
+        "D. Sam (0 marbles)"
+      ],
+      "answer": "A",
+      "explanation": "Caleb: 1×9=9. Sam: 9×0=0. Caleb has more.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R2_02",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "1 × 1 × 1 × 1 × 1 = ?",
-      "choices": ["A. 0","B. 1","C. 5","D. 11111"], "answer": "B",
-      "explanation": "1 times itself any number of times = 1." },
-    { "id": "R2_03", "section": "practice_r2", "difficulty": 3,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 5",
+        "D. 11111"
+      ],
+      "answer": "B",
+      "explanation": "1 times itself any number of times = 1.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R2_03",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "What is 0 × 0?",
-      "choices": ["A. 0","B. 1","C. Undefined","D. 00"], "answer": "A",
-      "explanation": "0 × 0 = 0." },
-    { "id": "R3_01", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. Undefined",
+        "D. 00"
+      ],
+      "answer": "A",
+      "explanation": "0 × 0 = 0.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R3_01",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Emma multiplies a number by 1, then by 0, then by 1 again. She started with 7. What is the final answer?",
-      "choices": ["A. 7","B. 1","C. 0","D. 8"], "answer": "C",
-      "explanation": "7 × 1 = 7. 7 × 0 = 0. 0 × 1 = 0." },
-    { "id": "R3_02", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. 7",
+        "B. 1",
+        "C. 0",
+        "D. 8"
+      ],
+      "answer": "C",
+      "explanation": "7 × 1 = 7. 7 × 0 = 0. 0 × 1 = 0.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R3_02",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "A teacher says: 'The product of any two whole numbers is always greater than each factor.' Is this true?",
-      "choices": ["A. Always true","B. True except when 0 is a factor","C. True except when 0 or 1 is a factor","D. Never true"], "answer": "C",
-      "explanation": "With 0: product = 0 (not greater). With 1: product = the other number (not greater). Otherwise true for whole numbers ≥ 2." },
-    { "id": "R3_03", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. Always true",
+        "B. True except when 0 is a factor",
+        "C. True except when 0 or 1 is a factor",
+        "D. Never true"
+      ],
+      "answer": "C",
+      "explanation": "With 0: product = 0 (not greater). With 1: product = the other number (not greater). Otherwise true for whole numbers ≥ 2.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how multiply with 1 and 0 works."
+      }
+    },
+    {
+      "id": "R3_03",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "A train has 8 cars. Each car has 1 engine. How many engines? Each car also has 0 swimming pools. How many pools on the whole train?",
-      "choices": ["A. 8 engines, 0 pools","B. 1 engine, 8 pools","C. 8 engines, 8 pools","D. 0 engines, 0 pools"], "answer": "A",
-      "explanation": "Engines: 8×1=8. Pools: 8×0=0." }
-  ]
+      "choices": [
+        "A. 8 engines, 0 pools",
+        "B. 1 engine, 8 pools",
+        "C. 8 engines, 8 pools",
+        "D. 0 engines, 0 pools"
+      ],
+      "answer": "A",
+      "explanation": "Engines: 8×1=8. Pools: 8×0=0.",
+      "hints": [
+        "Think about what multiply with 1 and 0 means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how multiply with 1 and 0 works."
+      }
+    }
+  ],
+  "concept": "multiply_with_1_and_0"
 }

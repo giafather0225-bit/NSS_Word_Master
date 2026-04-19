@@ -1,0 +1,789 @@
+{
+  "lesson_id": "L12_solve_multistep_problems",
+  "title": "Solve Multistep Multiplication Problems",
+  "grade": "G4",
+  "unit": "U3_multiply_by_1_digit",
+  "lesson": "L12_solve_multistep_problems",
+  "ccss": [
+    "4.NBT.B.5",
+    "4.OA.A.3"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.12",
+  "essential_question": "How do you solve harder multi-step multiplication problems?",
+  "vocabulary": [
+    "multi-step",
+    "problem solving",
+    "plan"
+  ],
+  "concept": "solve_multistep_multiplication",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 2,
+      "question": "A band has 8 rows of 25 chairs. 35 are removed. How many left?",
+      "choices": [
+        "A) 165",
+        "B) 175",
+        "C) 185",
+        "D) 195"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. 8×25=200; 200−35=165."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A bag has 125 marbles. 4 bags total, 78 marbles lost. Count left: ___",
+      "correct_answer": "422",
+      "hints": [
+        "4×125=500; 500−78.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 422. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A train has 6 cars of 48 seats. 45 empty. Occupied: ___",
+      "correct_answer": "243",
+      "hints": [
+        "Think about what solve multistep multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 243. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 1,
+      "question": "Multiplication in word problems often means 'groups of' or 'times.'",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A farm grows 7 rows of 234 plants. 125 die. Count left: ___",
+      "correct_answer": "1513",
+      "hints": [
+        "Think about what solve multistep multiplication means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1513. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Multi-step Review",
+      "content": "These problems require several operations. Read carefully, plan, then compute.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "These problems require several operations. Read carefully, plan, then compute."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Identify Each Step",
+      "content": "Break the problem into small steps: what are the groups? What needs to be added or subtracted after multiplication?",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Break the problem into small steps: what are the groups? What needs to be added or subtracted after multiplication?"
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Draw a Diagram",
+      "content": "A bar model or equation chain keeps thinking clear.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "Total",
+              "value": 0
+            },
+            {
+              "label": "Loss",
+              "value": 0
+            }
+          ]
+        }
+      },
+      "tts": "A bar model or equation chain keeps thinking clear."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Write Equations",
+      "content": "Turn each step into an equation. 4 × 125 = 500. 500 − 78 = 422.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Turn each step into an equation. 4 × 125 = 500. 500 − 78 = 422."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimate as You Go",
+      "content": "Quick estimates at each step catch big errors early.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Quick estimates at each step catch big errors early."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Final Check",
+      "content": "Reread the question to make sure you answered what was asked.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Reread the question to make sure you answered what was asked."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 2,
+      "question": "A class has 6 groups of 24 crayons. 36 are broken. How many whole?",
+      "correct_answer": "108",
+      "hints": [
+        "Think about what solve multistep multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "6×24=144.",
+        "144−36=108."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 108. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 8 shelves, 125 books each. 234 sold. Books left: ___",
+      "correct_answer": "766",
+      "hints": [
+        "Think about what solve multistep multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "8×125=1,000.",
+        "1,000−234=766."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 766. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A bus carries 45 students per trip. 7 trips done, then 58 more arrive. Total students ever carried: ___",
+      "correct_answer": "373",
+      "hints": [
+        "Think about what solve multistep multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "7×45=315.",
+        "315+58=373."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 373. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A gym has 4 rooms of 75 lockers. 120 broken. Working lockers: ___",
+      "correct_answer": "180",
+      "hints": [
+        "Think about what solve multistep multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "4×75=300.",
+        "300−120=180."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 180. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A team sells 8 packs of 125 cookies. 47 extras baked. Total cookies: ___",
+      "correct_answer": "1047",
+      "hints": [
+        "Think about what solve multistep multiplication means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "8×125=1,000.",
+        "1,000+47=1,047."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1047. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 2,
+      "question": "A store has 5 shelves with 25 items each. Then + 15. Total = ___",
+      "correct_answer": "140",
+      "hints": [
+        "First multiply 5×25.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 140. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 2,
+      "question": "A store has 6 shelves with 32 items each. Then - 18. Total = ___",
+      "correct_answer": "174",
+      "hints": [
+        "First multiply 6×32.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 174. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 2,
+      "question": "A store has 7 shelves with 45 items each. Then + 30. Total = ___",
+      "correct_answer": "345",
+      "hints": [
+        "First multiply 7×45.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 345. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 2,
+      "question": "A store has 8 shelves with 50 items each. Then - 45. Total = ___",
+      "correct_answer": "355",
+      "hints": [
+        "First multiply 8×50.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 355. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 2,
+      "question": "A store has 9 shelves with 60 items each. Then + 55. Total = ___",
+      "correct_answer": "595",
+      "hints": [
+        "First multiply 9×60.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 595. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 4 shelves with 125 items each. Then - 45. Total = ___",
+      "correct_answer": "455",
+      "hints": [
+        "First multiply 4×125.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 455. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 6 shelves with 85 items each. Then + 35. Total = ___",
+      "correct_answer": "545",
+      "hints": [
+        "First multiply 6×85.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 545. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 8 shelves with 110 items each. Then - 80. Total = ___",
+      "correct_answer": "800",
+      "hints": [
+        "First multiply 8×110.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 800. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 5 shelves with 234 items each. Then + 50. Total = ___",
+      "correct_answer": "1220",
+      "hints": [
+        "First multiply 5×234.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1220. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 7 shelves with 156 items each. Then - 78. Total = ___",
+      "correct_answer": "1014",
+      "hints": [
+        "First multiply 7×156.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1014. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 2,
+      "question": "A store has 4 shelves with 35 items each. Then + 25. Total = ___",
+      "correct_answer": "165",
+      "hints": [
+        "First multiply 4×35.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 165. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 2,
+      "question": "A store has 6 shelves with 45 items each. Then - 34. Total = ___",
+      "correct_answer": "236",
+      "hints": [
+        "First multiply 6×45.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 236. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 7 shelves with 56 items each. Then + 28. Total = ___",
+      "correct_answer": "420",
+      "hints": [
+        "First multiply 7×56.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 420. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 8 shelves with 72 items each. Then - 42. Total = ___",
+      "correct_answer": "534",
+      "hints": [
+        "First multiply 8×72.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 534. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 9 shelves with 84 items each. Then + 40. Total = ___",
+      "correct_answer": "796",
+      "hints": [
+        "First multiply 9×84.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 796. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 3 shelves with 175 items each. Then - 75. Total = ___",
+      "correct_answer": "450",
+      "hints": [
+        "First multiply 3×175.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 450. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 5 shelves with 125 items each. Then + 45. Total = ___",
+      "correct_answer": "670",
+      "hints": [
+        "First multiply 5×125.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 670. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 8 shelves with 250 items each. Then - 125. Total = ___",
+      "correct_answer": "1875",
+      "hints": [
+        "First multiply 8×250.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1875. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 6 shelves with 345 items each. Then + 90. Total = ___",
+      "correct_answer": "2160",
+      "hints": [
+        "First multiply 6×345.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2160. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 9 shelves with 125 items each. Then + 250. Total = ___",
+      "correct_answer": "1375",
+      "hints": [
+        "First multiply 9×125.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1375. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 2,
+      "question": "A store has 7 shelves with 48 items each. Then + 32. Total = ___",
+      "correct_answer": "368",
+      "hints": [
+        "First multiply 7×48.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 368. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 8 shelves with 95 items each. Then - 85. Total = ___",
+      "correct_answer": "675",
+      "hints": [
+        "First multiply 8×95.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 675. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 9 shelves with 125 items each. Then - 40. Total = ___",
+      "correct_answer": "1085",
+      "hints": [
+        "First multiply 9×125.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1085. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 6 shelves with 275 items each. Then + 60. Total = ___",
+      "correct_answer": "1710",
+      "hints": [
+        "First multiply 6×275.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1710. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "multi_step_word_problems",
+      "concept": "solve_multistep_multiplication",
+      "difficulty": 3,
+      "question": "A store has 7 shelves with 350 items each. Then - 100. Total = ___",
+      "correct_answer": "2350",
+      "hints": [
+        "First multiply 7×350.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2350. Multiply place by place."
+      }
+    }
+  ]
+}

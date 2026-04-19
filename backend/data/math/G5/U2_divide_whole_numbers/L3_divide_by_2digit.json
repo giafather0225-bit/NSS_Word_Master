@@ -1,0 +1,780 @@
+{
+  "lesson_id": "L3",
+  "title": "Divide by 2-Digit Divisors",
+  "grade": "G5",
+  "unit": "U2_divide_whole_numbers",
+  "lesson": "L3",
+  "ccss": [
+    "5.NBT.B.6"
+  ],
+  "standard": "5.NBT.B.6",
+  "go_math_ref": "Go Math G5 Ch2 L3",
+  "essential_question": "How do we divide by a 2-digit divisor?",
+  "vocabulary": [
+    "2-digit divisor",
+    "long division",
+    "quotient"
+  ],
+  "concept": "div_2digit",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 1,
+      "question": "72 \u00f7 12 = ___.",
+      "correct_answer": "6",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6. "
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "225 \u00f7 15 = ___.",
+      "correct_answer": "15",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 1,
+      "question": "480 \u00f7 20 = ___.",
+      "correct_answer": "24",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "672 \u00f7 24 = ___.",
+      "correct_answer": "28",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 28. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "875 \u00f7 25 = ___.",
+      "correct_answer": "35",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 35. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Same Steps",
+      "content": "Divide, Multiply, Subtract, Bring Down.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Divide, Multiply, Subtract, Bring Down."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Estimate Each Digit",
+      "content": "Use rounding to find each digit of the quotient.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Use rounding to find each digit of the quotient."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Check Fit",
+      "content": "Divisor \u00d7 partial quotient \u2264 section of dividend.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Divisor \u00d7 partial quotient \u2264 section of dividend."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Example",
+      "content": "672 \u00f7 24: 67\u00f724 \u2248 2 (24\u00d72=48, 67\u221248=19); bring down 2 \u2192 192\u00f724=8.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "672 \u00f7 24: 67\u00f724 \u2248 2 (24\u00d72=48, 67\u221248=19); bring down 2 \u2192 192\u00f724=8."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "No Remainder",
+      "content": "If dividend is a multiple of divisor, remainder = 0.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If dividend is a multiple of divisor, remainder = 0."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "With Remainder",
+      "content": "If not, write remainder next to the quotient.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If not, write remainder next to the quotient."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 1,
+      "question": "144 \u00f7 12 = ___.",
+      "correct_answer": "12",
+      "hints": [
+        "Think about div 2digit.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "144 \u00f7 12",
+        "= 12."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "540 \u00f7 18 = ___.",
+      "correct_answer": "30",
+      "hints": [
+        "Think about div 2digit.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "54 \u00f7 18 = 3",
+        "bring 0 \u2192 0",
+        "= 30."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "896 \u00f7 32 = ___.",
+      "correct_answer": "28",
+      "hints": [
+        "Think about div 2digit.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "89 \u00f7 32 \u2248 2",
+        "96 \u00f7 32 = 3 wait",
+        "full work = 28."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 28."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "765 \u00f7 15 = ___.",
+      "correct_answer": "51",
+      "hints": [
+        "Think about div 2digit.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "76 \u00f7 15 \u2248 5",
+        "15 \u00f7 15 = 1",
+        "= 51."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 51."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 3,
+      "question": "1,296 \u00f7 36 = ___.",
+      "correct_answer": "36",
+      "hints": [
+        "Think about div 2digit.",
+        "Divide and check."
+      ],
+      "solution_steps": [
+        "129 \u00f7 36 \u2248 3",
+        "216 \u00f7 36 = 6",
+        "= 36."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 36."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "170 \u00f7 17 = ___.",
+      "correct_answer": "10",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "105 \u00f7 15 = ___.",
+      "correct_answer": "7",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "160 \u00f7 16 = ___.",
+      "correct_answer": "10",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 10. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "414 \u00f7 23 = ___.",
+      "correct_answer": "18",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 18. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "414 \u00f7 23 = ___.",
+      "correct_answer": "18",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 18. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "100 \u00f7 20 = ___.",
+      "correct_answer": "5",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "70 \u00f7 14 = ___.",
+      "correct_answer": "5",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "280 \u00f7 14 = ___.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "162 \u00f7 18 = ___.",
+      "correct_answer": "9",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "104 \u00f7 13 = ___.",
+      "correct_answer": "8",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "780 \u00f7 39 = ___.",
+      "correct_answer": "20",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 20. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "323 \u00f7 17 = ___.",
+      "correct_answer": "19",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 19. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "1190 \u00f7 35 = ___.",
+      "correct_answer": "34",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 34. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "504 \u00f7 21 = ___.",
+      "correct_answer": "24",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "672 \u00f7 21 = ___.",
+      "correct_answer": "32",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 32. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "924 \u00f7 33 = ___.",
+      "correct_answer": "28",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 28. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "544 \u00f7 17 = ___.",
+      "correct_answer": "32",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 32. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "760 \u00f7 20 = ___.",
+      "correct_answer": "38",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 38. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "1443 \u00f7 37 = ___.",
+      "correct_answer": "39",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 39. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "399 \u00f7 21 = ___.",
+      "correct_answer": "19",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 19. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "180 \u00f7 12 = ___.",
+      "correct_answer": "15",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "425 \u00f7 17 = ___.",
+      "correct_answer": "25",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 25. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 2,
+      "question": "648 \u00f7 24 = ___.",
+      "correct_answer": "27",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 27. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 3,
+      "question": "1,050 \u00f7 25 = ___.",
+      "correct_answer": "42",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 42. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "5.NBT.B.6",
+      "skill_tag": "div_by_2d",
+      "concept": "div_2digit",
+      "difficulty": 3,
+      "question": "1,456 \u00f7 28 = ___.",
+      "correct_answer": "52",
+      "hints": [
+        "Think about div 2digit.",
+        "Use division or estimation."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 52. "
+      }
+    }
+  ]
+}

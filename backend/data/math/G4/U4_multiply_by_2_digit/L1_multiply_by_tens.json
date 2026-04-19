@@ -1,0 +1,790 @@
+{
+  "lesson_id": "L1",
+  "title": "Multiply by Tens",
+  "grade": "G4",
+  "unit": "U4_multiply_by_2_digit",
+  "lesson": "L1",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4 Ch3-Unit4 L1",
+  "essential_question": "How can basic facts help you multiply by tens?",
+  "vocabulary": [
+    "multiply",
+    "tens",
+    "pattern",
+    "place value"
+  ],
+  "concept": "multiply_by_tens",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "What is 6 × 40?",
+      "choices": [
+        "A) 24",
+        "B) 240",
+        "C) 2400",
+        "D) 46"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 6×4=24, add one zero → 240."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "9 × 30 = ___",
+      "correct_answer": "270",
+      "hints": [
+        "9×3=27, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 270. 9×3=27, so 9×30=270."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "20 × 50 = ?",
+      "choices": [
+        "A) 100",
+        "B) 1000",
+        "C) 10",
+        "D) 250"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 2×5=10, add two zeros."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "8 × 70 = 560.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. 8×7=56, add a zero."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "40 × 60 = ___",
+      "correct_answer": "2400",
+      "hints": [
+        "4×6=24, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2400. 4×6=24→2400."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Multiplying by Tens",
+      "content": "When you multiply by 10, 20, 30…, the digits pattern stays the same — only the zeros change.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "When you multiply by 10, 20, 30…, the digits pattern stays the same — only the zeros change."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Use Basic Facts",
+      "content": "To find 5 × 40, think 5 × 4 = 20, then add one zero → 200.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To find 5 × 40, think 5 × 4 = 20, then add one zero → 200."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Area Model with Tens",
+      "content": "Draw a rectangle 5 wide by 40 tall. Split 40 into 4 tens: each row is 5 × 10 = 50.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 4,
+          "cols": 5
+        }
+      },
+      "tts": "Draw a rectangle 5 wide by 40 tall. Split 40 into 4 tens: each row is 5 × 10 = 50."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Place Value Shortcut",
+      "content": "Multiplying by 10 shifts digits one place left. So 7 × 60 = (7 × 6) × 10 = 420.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Multiplying by 10 shifts digits one place left. So 7 × 60 = (7 × 6) × 10 = 420."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Tens Times Tens",
+      "content": "20 × 30 = (2 × 10) × (3 × 10) = 6 × 100 = 600.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "20 × 30 = (2 × 10) × (3 × 10) = 6 × 100 = 600."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check Zeros",
+      "content": "Count the zeros in both factors, then attach that many zeros to the basic-fact answer.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Count the zeros in both factors, then attach that many zeros to the basic-fact answer."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "7 × 50 = ___",
+      "correct_answer": "350",
+      "hints": [
+        "Think about what multiply by tens means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "7×5=35.",
+        "Add one zero.",
+        "= 350."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 350. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "30 × 60 = ___",
+      "correct_answer": "1800",
+      "hints": [
+        "Think about what multiply by tens means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "3×6=18.",
+        "Add two zeros.",
+        "= 1800."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1800. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "80 × 40 = ___",
+      "correct_answer": "3200",
+      "hints": [
+        "Think about what multiply by tens means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "8×4=32.",
+        "Add two zeros.",
+        "= 3200."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3200. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "A box holds 30 markers. 20 boxes hold ___ markers.",
+      "correct_answer": "600",
+      "hints": [
+        "Think about what multiply by tens means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "30 × 20.",
+        "3×2=6.",
+        "Add two zeros → 600."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 600. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "6 × 90 = ___",
+      "correct_answer": "540",
+      "hints": [
+        "Think about what multiply by tens means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "6×9=54.",
+        "Add one zero.",
+        "= 540."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 540. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "8 × 90 = ___",
+      "correct_answer": "720",
+      "hints": [
+        "8×9, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 720. 8×9=72, add zero."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "3 × 30 = ___",
+      "correct_answer": "90",
+      "hints": [
+        "3×3, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. 3×3=9, add zero."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "8 × 40 = ___",
+      "correct_answer": "320",
+      "hints": [
+        "8×4, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 320. 8×4=32, add zero."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "6 × 10 = ___",
+      "correct_answer": "60",
+      "hints": [
+        "6×1, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 60. 6×1=6, add zero."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "5 × 20 = ___",
+      "correct_answer": "100",
+      "hints": [
+        "5×2, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 100. 5×2=10, add zero."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "2 × 20 = ___",
+      "correct_answer": "40",
+      "hints": [
+        "2×2, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. 2×2=4, add zero."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "4 × 90 = ___",
+      "correct_answer": "360",
+      "hints": [
+        "4×9, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 360. 4×9=36, add zero."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "6 × 70 = ___",
+      "correct_answer": "420",
+      "hints": [
+        "6×7, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 420. 6×7=42, add zero."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "8 × 60 = ___",
+      "correct_answer": "480",
+      "hints": [
+        "8×6, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 480. 8×6=48, add zero."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "7 × 20 = ___",
+      "correct_answer": "140",
+      "hints": [
+        "7×2, then add a zero.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 140. 7×2=14, add zero."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "70 × 60 = ___",
+      "correct_answer": "4200",
+      "hints": [
+        "Multiply the nonzero digits, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4200. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "40 × 30 = ___",
+      "correct_answer": "1200",
+      "hints": [
+        "Multiply the nonzero digits, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1200. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "30 × 30 = ___",
+      "correct_answer": "900",
+      "hints": [
+        "Multiply the nonzero digits, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 900. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "60 × 70 = ___",
+      "correct_answer": "4200",
+      "hints": [
+        "Multiply the nonzero digits, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4200. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "30 × 60 = ___",
+      "correct_answer": "1800",
+      "hints": [
+        "Multiply the nonzero digits, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1800. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "20 × 70 = ___",
+      "correct_answer": "1400",
+      "hints": [
+        "Multiply the nonzero digits, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "80 × 30 = ___",
+      "correct_answer": "2400",
+      "hints": [
+        "Multiply the nonzero digits, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "90 × 90 = ___",
+      "correct_answer": "8100",
+      "hints": [
+        "Multiply the nonzero digits, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8100. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "50 × 50 = ___",
+      "correct_answer": "2500",
+      "hints": [
+        "Multiply the nonzero digits, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2500. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "40 × 60 = ___",
+      "correct_answer": "2400",
+      "hints": [
+        "Multiply the nonzero digits, add two zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2400. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "A stadium has 40 rows with 50 seats each. Total seats?",
+      "correct_answer": "2000",
+      "hints": [
+        "40×50.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "Each pack has 30 stickers. 80 packs = ___ stickers.",
+      "correct_answer": "2400",
+      "hints": [
+        "30×80.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "70 × 90 = ___",
+      "correct_answer": "6300",
+      "hints": [
+        "7×9=63, +2 zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6300. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 2,
+      "question": "Which equals 6000?",
+      "choices": [
+        "A) 60×10",
+        "B) 60×100",
+        "C) 60×1000",
+        "D) 6×10"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 60×100=6000."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "tens_patterns",
+      "concept": "multiply_by_tens",
+      "difficulty": 1,
+      "question": "20 × 20 = ___",
+      "correct_answer": "400",
+      "hints": [
+        "2×2=4, +2 zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 400. Multiply place by place."
+      }
+    }
+  ]
+}

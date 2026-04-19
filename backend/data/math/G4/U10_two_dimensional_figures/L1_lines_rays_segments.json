@@ -1,0 +1,776 @@
+{
+  "lesson_id": "L1",
+  "title": "Lines, Rays, Segments, and Angles",
+  "grade": "G4",
+  "unit": "U10_two_dimensional_figures",
+  "lesson": "L1",
+  "ccss": [
+    "4.G.A.1"
+  ],
+  "standard": "4.G.A.1",
+  "go_math_ref": "Go Math G4 Ch10 L1",
+  "essential_question": "How do we name and describe basic geometric figures?",
+  "vocabulary": [
+    "point",
+    "line",
+    "ray",
+    "line segment",
+    "angle",
+    "vertex"
+  ],
+  "concept": "lines_rays_segments",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "A line that goes forever in both directions is a ___.",
+      "choices": [
+        "A) line segment",
+        "B) ray",
+        "C) line",
+        "D) point"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. "
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "Which has two endpoints?",
+      "choices": [
+        "A) line",
+        "B) ray",
+        "C) line segment",
+        "D) angle"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "A ray has ___ endpoint(s).",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 2",
+        "D) 3"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "A point has no size, only a location.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "How many endpoints does a line segment have?",
+      "correct_answer": "2",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Point",
+      "content": "A point marks an exact location. Labeled with a capital letter, like point A.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A point marks an exact location. Labeled with a capital letter, like point A."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Line",
+      "content": "A line goes forever in both directions. Arrows on both ends show this.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A line goes forever in both directions. Arrows on both ends show this."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Line Segment",
+      "content": "A line segment has two endpoints. It is a straight piece of a line.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A line segment has two endpoints. It is a straight piece of a line."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Ray",
+      "content": "A ray has one endpoint and goes forever in one direction.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A ray has one endpoint and goes forever in one direction."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Angle",
+      "content": "An angle is formed by two rays sharing the same endpoint (called the vertex).",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "An angle is formed by two rays sharing the same endpoint (called the vertex)."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Naming",
+      "content": "Lines are named by two points, like line AB. Angles are named by three points with the vertex in the middle.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Lines are named by two points, like line AB. Angles are named by three points with the vertex in the middle."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.2",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "How many endpoints does a ray have?",
+      "correct_answer": "1",
+      "hints": [
+        "Think about lines rays segments.",
+        "Count sides, angles, or parallel lines."
+      ],
+      "solution_steps": [
+        "Ray has one endpoint.",
+        "Goes forever one way.",
+        "= 1."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.2",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "How many endpoints does a line have?",
+      "correct_answer": "0",
+      "hints": [
+        "Think about lines rays segments.",
+        "Count sides, angles, or parallel lines."
+      ],
+      "solution_steps": [
+        "A line goes forever both ways.",
+        "No endpoints.",
+        "= 0."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.2",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "How many rays form an angle?",
+      "correct_answer": "2",
+      "hints": [
+        "Think about lines rays segments.",
+        "Count sides, angles, or parallel lines."
+      ],
+      "solution_steps": [
+        "Angle = 2 rays sharing a vertex.",
+        "= 2."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.2",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "The shared endpoint of an angle is called the ___.",
+      "correct_answer": "vertex",
+      "hints": [
+        "Think about lines rays segments.",
+        "Count sides, angles, or parallel lines."
+      ],
+      "solution_steps": [
+        "Two rays meet at one point.",
+        "That point is the vertex.",
+        "Answer: vertex."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is vertex."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.2",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "How many endpoints does a line segment have?",
+      "correct_answer": "2",
+      "hints": [
+        "Think about lines rays segments.",
+        "Count sides, angles, or parallel lines."
+      ],
+      "solution_steps": [
+        "Segment has two ends.",
+        "= 2."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "Which has 0 endpoints?",
+      "choices": [
+        "A) ray",
+        "B) line",
+        "C) segment",
+        "D) angle"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "Which has exactly 1 endpoint?",
+      "choices": [
+        "A) line",
+        "B) ray",
+        "C) segment",
+        "D) point"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "Which has 2 endpoints?",
+      "choices": [
+        "A) line",
+        "B) ray",
+        "C) segment",
+        "D) point"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "An angle is formed by ___ rays.",
+      "correct_answer": "2",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "The shared endpoint of an angle is the ___.",
+      "correct_answer": "vertex",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is vertex. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "A point has length.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is False. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "A line segment is a piece of a line.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "Point names use:",
+      "choices": [
+        "A) numbers",
+        "B) capital letters",
+        "C) symbols",
+        "D) arrows"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "A ray goes forever in one direction.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "How many endpoints on a ray?",
+      "correct_answer": "1",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "Name for two rays with common endpoint:",
+      "choices": [
+        "A) line",
+        "B) angle",
+        "C) segment",
+        "D) point"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "Angle ABC \u2014 which letter is the vertex?",
+      "correct_answer": "B",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "A line has ___ endpoints.",
+      "correct_answer": "0",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "A segment can be extended into a line.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "Which symbol shows a line?",
+      "choices": [
+        "A) \u2022",
+        "B) \u2192",
+        "C) \u2194",
+        "D) \u2014"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "A ray from point P through point Q is named:",
+      "correct_answer": "PQ",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is PQ. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 3,
+      "question": "Rays AB and BA are the same ray.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is False. Different starting points."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "Two rays form an angle \u2014 shared point called:",
+      "correct_answer": "vertex",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is vertex. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "A figure with 0 dimensions is a:",
+      "choices": [
+        "A) point",
+        "B) line",
+        "C) ray",
+        "D) plane"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "Number of endpoints on a line segment:",
+      "correct_answer": "2",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "A ray has ___ endpoint.",
+      "correct_answer": "1",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "What forms an angle?",
+      "choices": [
+        "A) 1 line",
+        "B) 2 rays with same vertex",
+        "C) 2 points",
+        "D) 1 segment"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "A line segment has no endpoints.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is False. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 2,
+      "question": "Middle letter in angle XYZ is the ___.",
+      "correct_answer": "vertex",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is vertex. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.G.A.1",
+      "skill_tag": "identify_line_types",
+      "concept": "lines_rays_segments",
+      "difficulty": 1,
+      "question": "A line has ___ endpoints.",
+      "correct_answer": "0",
+      "hints": [
+        "Think about lines rays segments.",
+        "Look at the shape's attributes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0. "
+      }
+    }
+  ]
+}

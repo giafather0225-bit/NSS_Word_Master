@@ -1,0 +1,780 @@
+{
+  "lesson_id": "L2",
+  "title": "Degrees",
+  "grade": "G4",
+  "unit": "U11_angles",
+  "lesson": "L2",
+  "ccss": [
+    "4.MD.C.5"
+  ],
+  "standard": "4.MD.C.5",
+  "go_math_ref": "Go Math G4 Ch11 L2",
+  "essential_question": "How do we measure and compare angles in degrees?",
+  "vocabulary": [
+    "degree",
+    "angle measure",
+    "acute",
+    "right",
+    "obtuse",
+    "straight"
+  ],
+  "concept": "degrees_measure",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "A degree is:",
+      "choices": [
+        "A) a unit of length",
+        "B) a unit of angle measure",
+        "C) an angle type",
+        "D) a shape"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "A right angle = ___\u00b0.",
+      "correct_answer": "90",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "A straight angle = ___\u00b0.",
+      "correct_answer": "180",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 180. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "An acute angle is:",
+      "choices": [
+        "A) = 90\u00b0",
+        "B) < 90\u00b0",
+        "C) > 90\u00b0",
+        "D) = 180\u00b0"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "An obtuse angle measures between ___\u00b0 and 180\u00b0.",
+      "correct_answer": "90",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Degree Symbol",
+      "content": "Angles are measured in degrees using the \u00b0 symbol.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Angles are measured in degrees using the \u00b0 symbol."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Right Angle",
+      "content": "A right angle is 90\u00b0, the corner of a square.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A right angle is 90\u00b0, the corner of a square."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Straight Angle",
+      "content": "A straight angle is 180\u00b0, rays pointing opposite.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A straight angle is 180\u00b0, rays pointing opposite."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Acute & Obtuse",
+      "content": "Acute: 0\u00b0< x <90\u00b0. Obtuse: 90\u00b0< x <180\u00b0.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Acute: 0\u00b0< x <90\u00b0. Obtuse: 90\u00b0< x <180\u00b0."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Compare to 90\u00b0",
+      "content": "To estimate: compare to a right angle. Smaller = acute. Larger = obtuse.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To estimate: compare to a right angle. Smaller = acute. Larger = obtuse."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimating",
+      "content": "A 45\u00b0 angle is half of a right angle. A 135\u00b0 angle is 90\u00b0+45\u00b0.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A 45\u00b0 angle is half of a right angle. A 135\u00b0 angle is 90\u00b0+45\u00b0."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "A right angle is ___\u00b0.",
+      "correct_answer": "90",
+      "hints": [
+        "Think about degrees measure.",
+        "Add or subtract angle measures."
+      ],
+      "solution_steps": [
+        "Right = 90\u00b0."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Half a straight angle is ___\u00b0.",
+      "correct_answer": "90",
+      "hints": [
+        "Think about degrees measure.",
+        "Add or subtract angle measures."
+      ],
+      "solution_steps": [
+        "180 \u00f7 2 = 90\u00b0."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "A 135\u00b0 angle is what type?",
+      "correct_answer": "obtuse",
+      "hints": [
+        "Think about degrees measure.",
+        "Add or subtract angle measures."
+      ],
+      "solution_steps": [
+        "135 > 90, < 180 \u2192 obtuse."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is obtuse."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "A 30\u00b0 angle is what type?",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Add or subtract angle measures."
+      ],
+      "solution_steps": [
+        "30 < 90 \u2192 acute."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Half of a right angle = ___\u00b0.",
+      "correct_answer": "45",
+      "hints": [
+        "Think about degrees measure.",
+        "Add or subtract angle measures."
+      ],
+      "solution_steps": [
+        "90 \u00f7 2 = 45\u00b0."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 45."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Classify a 30\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Classify a 30\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Classify a 90\u00b0 angle.",
+      "correct_answer": "right",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is right. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Classify a 60\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Classify a 75\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Classify a 90\u00b0 angle.",
+      "correct_answer": "right",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is right. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Classify a 165\u00b0 angle.",
+      "correct_answer": "obtuse",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is obtuse. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Classify a 165\u00b0 angle.",
+      "correct_answer": "obtuse",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is obtuse. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Classify a 75\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Classify a 45\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Classify a 151\u00b0 angle.",
+      "correct_answer": "obtuse",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is obtuse. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Classify a 125\u00b0 angle.",
+      "correct_answer": "obtuse",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is obtuse. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Classify a 111\u00b0 angle.",
+      "correct_answer": "obtuse",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is obtuse. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Classify a 92\u00b0 angle.",
+      "correct_answer": "obtuse",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is obtuse. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Classify a 34\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Classify a 87\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Classify a 37\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Classify a 61\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Classify a 22\u00b0 angle.",
+      "correct_answer": "acute",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is acute. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Classify a 137\u00b0 angle.",
+      "correct_answer": "obtuse",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is obtuse. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "A right angle measures ___\u00b0.",
+      "correct_answer": "90",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "A straight angle measures ___\u00b0.",
+      "correct_answer": "180",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 180. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 1,
+      "question": "Half of 90\u00b0 = ___\u00b0.",
+      "correct_answer": "45",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 45. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "170\u00b0 is:",
+      "choices": [
+        "A) acute",
+        "B) right",
+        "C) obtuse",
+        "D) straight"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.MD.C.5",
+      "skill_tag": "measure_in_degrees",
+      "concept": "degrees_measure",
+      "difficulty": 2,
+      "question": "Half of a straight angle = ___\u00b0.",
+      "correct_answer": "90",
+      "hints": [
+        "Think about degrees measure.",
+        "Use the angle relationship."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 90. "
+      }
+    }
+  ]
+}

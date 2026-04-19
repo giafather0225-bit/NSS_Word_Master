@@ -1,0 +1,786 @@
+{
+  "lesson_id": "L5",
+  "title": "Multiples",
+  "grade": "G4",
+  "unit": "U6_factors_multiples_patterns",
+  "lesson": "L5",
+  "ccss": [
+    "4.OA.B.4"
+  ],
+  "standard": "4.OA.B.4",
+  "go_math_ref": "Go Math G4 Ch5 L5",
+  "essential_question": "What are multiples and how do you find them?",
+  "vocabulary": [
+    "multiple",
+    "skip count",
+    "product"
+  ],
+  "concept": "multiples",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Which is NOT a multiple of 4?",
+      "choices": [
+        "A) 12",
+        "B) 16",
+        "C) 18",
+        "D) 20"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 18÷4 has remainder."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "First 5 multiples of 6: 6,12,18,24,___",
+      "correct_answer": "30",
+      "hints": [
+        "Add 6 each time.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 45 a multiple of 9? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "9×5=45.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "The multiples of a number are the products of that number and 1,2,3,…",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Tenth multiple of 3 = ___",
+      "correct_answer": "30",
+      "hints": [
+        "3×10.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "What is a Multiple?",
+      "content": "A multiple of a number is what you get when you multiply it by a whole number.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A multiple of a number is what you get when you multiply it by a whole number."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Skip Counting",
+      "content": "Multiples = skip counting. Multiples of 5: 5, 10, 15, 20, 25…",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Multiples = skip counting. Multiples of 5: 5, 10, 15, 20, 25…"
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Number Line",
+      "content": "Mark jumps of 3 on a number line: 3, 6, 9, 12… — these are multiples of 3.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 0,
+        "max": 30,
+        "step": 3,
+        "highlight": 12
+      },
+      "tts": "Mark jumps of 3 on a number line: 3, 6, 9, 12… — these are multiples of 3."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Infinite List",
+      "content": "The list of multiples goes on forever. Factors are finite, multiples aren't.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "The list of multiples goes on forever. Factors are finite, multiples aren't."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check if a Multiple",
+      "content": "To check whether n is a multiple of m, see if m divides n exactly.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To check whether n is a multiple of m, see if m divides n exactly."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Multiple vs Factor",
+      "content": "Be careful: 6 is a FACTOR of 24, and 24 is a MULTIPLE of 6.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Be careful: 6 is a FACTOR of 24, and 24 is a MULTIPLE of 6."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "First 6 multiples of 7.",
+      "correct_answer": "7,14,21,28,35,42",
+      "hints": [
+        "Think about multiples.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "7×1=7.",
+        "Add 7 each time.",
+        "7,14,21,28,35,42."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7,14,21,28,35,42."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 56 a multiple of 8?",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "56÷8.",
+        "=7.",
+        "Yes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Fifth multiple of 9.",
+      "correct_answer": "45",
+      "hints": [
+        "Think about multiples.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "9×5.",
+        "=45.",
+        "Fifth multiple: 45."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 45."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Next two multiples of 12 after 24.",
+      "correct_answer": "36,48",
+      "hints": [
+        "Think about multiples.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "After 24 add 12 → 36.",
+        "Add 12 → 48.",
+        "36, 48."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 36,48."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 63 a multiple of 9?",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "List systematically."
+      ],
+      "solution_steps": [
+        "63÷9=7.",
+        "Whole number.",
+        "Yes."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 80 a multiple of 8? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 54 a multiple of 6? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 32 a multiple of 8? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 48 a multiple of 8? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 32 a multiple of 8? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 16 a multiple of 8? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 6 a multiple of 3? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 15 a multiple of 5? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 56 a multiple of 8? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 60 a multiple of 6? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Multiple of 7 that equals 7×5?",
+      "correct_answer": "35",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 35. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Multiple of 8 that equals 8×8?",
+      "correct_answer": "64",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 64. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Multiple of 6 that equals 6×11?",
+      "correct_answer": "66",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 66. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Multiple of 9 that equals 9×9?",
+      "correct_answer": "81",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 81. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Multiple of 6 that equals 6×5?",
+      "correct_answer": "30",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Multiple of 5 that equals 5×5?",
+      "correct_answer": "25",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 25. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Multiple of 7 that equals 7×11?",
+      "correct_answer": "77",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 77. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Multiple of 6 that equals 6×5?",
+      "correct_answer": "30",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Multiple of 9 that equals 9×5?",
+      "correct_answer": "45",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 45. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Multiple of 7 that equals 7×9?",
+      "correct_answer": "63",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 63. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Fourth multiple of 11 = ___",
+      "correct_answer": "44",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 44. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Is 72 a multiple of 6? (yes/no)",
+      "correct_answer": "yes",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is yes. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Which is NOT a multiple of 7?",
+      "choices": [
+        "A) 35",
+        "B) 49",
+        "C) 56",
+        "D) 60"
+      ],
+      "correct_answer": "D",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is D. 60÷7 not whole."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Tenth multiple of 8 = ___",
+      "correct_answer": "80",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 80. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.OA.B.4",
+      "skill_tag": "find_multiples",
+      "concept": "multiples",
+      "difficulty": 1,
+      "question": "Seventh multiple of 6 = ___",
+      "correct_answer": "42",
+      "hints": [
+        "Think about multiples.",
+        "Check divisibility."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 42. "
+      }
+    }
+  ]
+}

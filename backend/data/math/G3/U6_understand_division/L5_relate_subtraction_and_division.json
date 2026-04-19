@@ -3,49 +3,518 @@
   "title": "Relate Subtraction and Division",
   "grade": "G3",
   "unit": "U6_understand_division",
-  "ccss": ["3.OA.A.3"],
-  "go_math_ref": { "chapter": 6, "lesson": "6.5", "pages": "235-238" },
+  "ccss": [
+    "3.OA.A.3"
+  ],
+  "go_math_ref": {
+    "chapter": 6,
+    "lesson": "6.5",
+    "pages": "235-238"
+  },
   "essential_question": "How is subtraction related to division?",
-  "key_vocabulary": ["repeated subtraction", "divide", "subtract", "equal groups"],
+  "key_vocabulary": [
+    "repeated subtraction",
+    "divide",
+    "subtract",
+    "equal groups"
+  ],
   "strategies": [
     "Subtract the same number again and again until you reach 0.",
     "Count how many times you subtracted — that's the quotient.",
     "Think: 12 ÷ 3 → 12 − 3 = 9, 9 − 3 = 6, 6 − 3 = 3, 3 − 3 = 0 → 4 times."
   ],
   "pretest": [
-    { "id": "PT_01", "type": "MC", "stem": "Use repeated subtraction. 12 ÷ 4 = ?", "choices": ["2", "3", "4", "6"], "answer": "B", "explanation": "12 − 4 = 8, 8 − 4 = 4, 4 − 4 = 0 → 3 times.", "difficulty": 1 },
-    { "id": "PT_02", "type": "MC", "stem": "15 ÷ 3 = ? (repeated subtraction)", "choices": ["3", "4", "5", "6"], "answer": "C", "explanation": "15 − 3 five times = 0. So 5.", "difficulty": 1 },
-    { "id": "PT_03", "type": "MC", "stem": "How many times can you subtract 6 from 30?", "choices": ["4", "5", "6", "7"], "answer": "B", "explanation": "30 ÷ 6 = 5.", "difficulty": 1 },
-    { "id": "PT_04", "type": "MC", "stem": "24 ÷ 8 = ?", "choices": ["2", "3", "4", "6"], "answer": "B", "explanation": "24 − 8 three times = 0.", "difficulty": 1 },
-    { "id": "PT_05", "type": "MC", "stem": "A number line starts at 40. You make jumps of 5 back to 0. How many jumps?", "choices": ["5", "6", "7", "8"], "answer": "D", "explanation": "40 ÷ 5 = 8 jumps.", "difficulty": 2 }
+    {
+      "id": "PT_01",
+      "type": "MC",
+      "stem": "Use repeated subtraction. 12 ÷ 4 = ?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "12 − 4 = 8, 8 − 4 = 4, 4 − 4 = 0 → 3 times.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_02",
+      "type": "MC",
+      "stem": "15 ÷ 3 = ? (repeated subtraction)",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "C",
+      "explanation": "15 − 3 five times = 0. So 5.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_03",
+      "type": "MC",
+      "stem": "How many times can you subtract 6 from 30?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "30 ÷ 6 = 5.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_04",
+      "type": "MC",
+      "stem": "24 ÷ 8 = ?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "24 − 8 three times = 0.",
+      "difficulty": 1
+    },
+    {
+      "id": "PT_05",
+      "type": "MC",
+      "stem": "A number line starts at 40. You make jumps of 5 back to 0. How many jumps?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "D",
+      "explanation": "40 ÷ 5 = 8 jumps.",
+      "difficulty": 2
+    }
   ],
   "learn": [
-    { "id": "LN_01", "type": "concept_card", "title": "Repeated Subtraction", "content": "Division can be shown by subtracting the same number until you reach 0. The number of times you subtract is the answer." },
-    { "id": "LN_02", "type": "concept_card", "title": "Example", "content": "18 ÷ 6: 18 − 6 = 12, 12 − 6 = 6, 6 − 6 = 0. You subtracted 3 times, so 18 ÷ 6 = 3." },
-    { "id": "LN_03", "type": "concept_card", "title": "Number Line Model", "content": "Start at the total on a number line. Jump back by the divisor. Count the jumps. For 20 ÷ 4: start at 20, jump back 4 five times to reach 0." }
+    {
+      "id": "LN_01",
+      "type": "concept_card",
+      "title": "Repeated Subtraction",
+      "content": "Division can be shown by subtracting the same number until you reach 0. The number of times you subtract is the answer.",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "Group 1",
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "LN_02",
+      "type": "concept_card",
+      "title": "Example",
+      "content": "18 ÷ 6: 18 − 6 = 12, 12 − 6 = 6, 6 − 6 = 0. You subtracted 3 times, so 18 ÷ 6 = 3.",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "Group 1",
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "LN_03",
+      "type": "concept_card",
+      "title": "Number Line Model",
+      "content": "Start at the total on a number line. Jump back by the divisor. Count the jumps. For 20 ÷ 4: start at 20, jump back 4 five times to reach 0.",
+      "cpa_phase": "pictorial",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "parts": [
+            {
+              "label": "Group 1",
+              "value": 0
+            }
+          ]
+        }
+      }
+    }
   ],
   "try": [
-    { "id": "TRY_01", "type": "MC", "stem": "Use repeated subtraction: 21 ÷ 7 = ?", "choices": ["2", "3", "4", "7"], "answer": "B", "explanation": "21 − 7 − 7 − 7 = 0 → 3 times.", "difficulty": 1 },
-    { "id": "TRY_02", "type": "MC", "stem": "How many times can you subtract 9 from 36?", "choices": ["3", "4", "5", "6"], "answer": "B", "explanation": "36 ÷ 9 = 4.", "difficulty": 1 }
+    {
+      "id": "TRY_01",
+      "type": "MC",
+      "stem": "Use repeated subtraction: 21 ÷ 7 = ?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "21 − 7 − 7 − 7 = 0 → 3 times.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_02",
+      "type": "MC",
+      "stem": "How many times can you subtract 9 from 36?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "36 ÷ 9 = 4.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+      },
+      "solution_steps": []
+    }
   ],
   "practice_r1": [
-    { "id": "R1_01", "type": "MC", "stem": "16 ÷ 4 = ?", "choices": ["3", "4", "5", "6"], "answer": "B", "explanation": "16 ÷ 4 = 4.", "difficulty": 1 },
-    { "id": "R1_02", "type": "MC", "stem": "25 ÷ 5 = ?", "choices": ["4", "5", "6", "7"], "answer": "B", "explanation": "25 ÷ 5 = 5.", "difficulty": 1 },
-    { "id": "R1_03", "type": "MC", "stem": "14 ÷ 2 = ?", "choices": ["5", "6", "7", "8"], "answer": "C", "explanation": "14 ÷ 2 = 7.", "difficulty": 1 },
-    { "id": "R1_04", "type": "MC", "stem": "How many times can you subtract 3 from 27?", "choices": ["7", "8", "9", "10"], "answer": "C", "explanation": "27 ÷ 3 = 9.", "difficulty": 1 },
-    { "id": "R1_05", "type": "MC", "stem": "48 ÷ 6 = ?", "choices": ["6", "7", "8", "9"], "answer": "C", "explanation": "48 ÷ 6 = 8.", "difficulty": 1 },
-    { "id": "R1_06", "type": "MC", "stem": "A rope is 35 inches. You cut 7-inch pieces. How many pieces?", "choices": ["4", "5", "6", "7"], "answer": "B", "explanation": "35 ÷ 7 = 5.", "difficulty": 1 },
-    { "id": "R1_07", "type": "MC", "stem": "54 ÷ 9 = ?", "choices": ["5", "6", "7", "8"], "answer": "B", "explanation": "54 ÷ 9 = 6.", "difficulty": 1 }
+    {
+      "id": "R1_01",
+      "type": "MC",
+      "stem": "16 ÷ 4 = ?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "16 ÷ 4 = 4.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "MC",
+      "stem": "25 ÷ 5 = ?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "25 ÷ 5 = 5.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "MC",
+      "stem": "14 ÷ 2 = ?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "C",
+      "explanation": "14 ÷ 2 = 7.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "MC",
+      "stem": "How many times can you subtract 3 from 27?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "27 ÷ 3 = 9.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "MC",
+      "stem": "48 ÷ 6 = ?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "48 ÷ 6 = 8.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "MC",
+      "stem": "A rope is 35 inches. You cut 7-inch pieces. How many pieces?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "35 ÷ 7 = 5.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "MC",
+      "stem": "54 ÷ 9 = ?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "B",
+      "explanation": "54 ÷ 9 = 6.",
+      "difficulty": 1,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+      }
+    }
   ],
   "practice_r2": [
-    { "id": "R2_01", "type": "MC", "stem": "72 ÷ 8 = ?", "choices": ["8", "9", "10", "11"], "answer": "B", "explanation": "72 ÷ 8 = 9.", "difficulty": 2 },
-    { "id": "R2_02", "type": "MC", "stem": "A number line: start at 56, jump back 7 each time. How many jumps to reach 0?", "choices": ["6", "7", "8", "9"], "answer": "C", "explanation": "56 ÷ 7 = 8.", "difficulty": 2 },
-    { "id": "R2_03", "type": "MC", "stem": "Which division can be solved by subtracting 4 six times? __ ÷ 4 = 6", "choices": ["20", "22", "24", "28"], "answer": "C", "explanation": "4 × 6 = 24. So 24 ÷ 4 = 6.", "difficulty": 2 },
-    { "id": "R2_04", "type": "MC", "stem": "How many 8s are in 64?", "choices": ["6", "7", "8", "9"], "answer": "C", "explanation": "64 ÷ 8 = 8.", "difficulty": 2 }
+    {
+      "id": "R2_01",
+      "type": "MC",
+      "stem": "72 ÷ 8 = ?",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "answer": "B",
+      "explanation": "72 ÷ 8 = 9.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "MC",
+      "stem": "A number line: start at 56, jump back 7 each time. How many jumps to reach 0?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "56 ÷ 7 = 8.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "MC",
+      "stem": "Which division can be solved by subtracting 4 six times? __ ÷ 4 = 6",
+      "choices": [
+        "20",
+        "22",
+        "24",
+        "28"
+      ],
+      "answer": "C",
+      "explanation": "4 × 6 = 24. So 24 ÷ 4 = 6.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "MC",
+      "stem": "How many 8s are in 64?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "64 ÷ 8 = 8.",
+      "difficulty": 2,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+      }
+    }
   ],
   "practice_r3": [
-    { "id": "R3_01", "type": "MC", "stem": "A teacher has 45 workbooks. She gives 5 to each student until she runs out. She already gave workbooks to 4 students. How many more students can get workbooks?", "choices": ["4", "5", "6", "7"], "answer": "B", "explanation": "45 ÷ 5 = 9 students total. 9 − 4 = 5 more.", "difficulty": 3 },
-    { "id": "R3_02", "type": "MC", "stem": "Start at 42 on a number line. Jump back 6. After 5 jumps, where are you?", "choices": ["6", "8", "10", "12"], "answer": "D", "explanation": "42 − (5 × 6) = 42 − 30 = 12.", "difficulty": 3 },
-    { "id": "R3_03", "type": "MC", "stem": "Tom subtracts 7 from a number four times and reaches 8. What was the starting number?", "choices": ["28", "32", "36", "40"], "answer": "C", "explanation": "8 + (4 × 7) = 8 + 28 = 36.", "difficulty": 3 }
-  ]
+    {
+      "id": "R3_01",
+      "type": "MC",
+      "stem": "A teacher has 45 workbooks. She gives 5 to each student until she runs out. She already gave workbooks to 4 students. How many more students can get workbooks?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "45 ÷ 5 = 9 students total. 9 − 4 = 5 more.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "MC",
+      "stem": "Start at 42 on a number line. Jump back 6. After 5 jumps, where are you?",
+      "choices": [
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      "answer": "D",
+      "explanation": "42 − (5 × 6) = 42 − 30 = 12.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how relate subtraction and division works."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "MC",
+      "stem": "Tom subtracts 7 from a number four times and reaches 8. What was the starting number?",
+      "choices": [
+        "28",
+        "32",
+        "36",
+        "40"
+      ],
+      "answer": "C",
+      "explanation": "8 + (4 × 7) = 8 + 28 = 36.",
+      "difficulty": 3,
+      "hints": [
+        "Think about what relate subtraction and division means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+      }
+    }
+  ],
+  "concept": "relate_subtraction_and_division"
 }

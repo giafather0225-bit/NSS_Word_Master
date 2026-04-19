@@ -1,0 +1,785 @@
+{
+  "lesson_id": "L5_mental_math_addition",
+  "title": "Mental Math for Addition",
+  "grade": "G4",
+  "unit": "U2_add_subtract_whole_numbers",
+  "lesson": "L5_mental_math_addition",
+  "ccss": [
+    "4.NBT.B.4"
+  ],
+  "standard": "4.NBT.B.4",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.5",
+  "essential_question": "What strategies can you use to add numbers mentally?",
+  "vocabulary": [
+    "mental math",
+    "compensation",
+    "friendly numbers"
+  ],
+  "concept": "mental_math_addition",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "What is 99 + 48 using mental math?",
+      "choices": [
+        "A) 137",
+        "B) 147",
+        "C) 148",
+        "D) 157"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 99+48 = (100+48)−1 = 147."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 298 + 47 = ___",
+      "correct_answer": "345",
+      "hints": [
+        "298+47 = 300+47 − 2",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 345. 298+47=345."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 1,500 + 450 = ___",
+      "correct_answer": "1950",
+      "hints": [
+        "Add hundreds, then add 50.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1950. 1,500+450=1,950."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 1,
+      "question": "Adding to a friendly number (like 100 or 1,000) can make mental math easier.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 3,
+      "question": "Use mental math to add: 4,999 + 3,001 = ___",
+      "correct_answer": "8000",
+      "hints": [
+        "4999 ≈ 5000, 3001 ≈ 3000.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8000. 4,999+3,001=8,000."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Friendly Numbers",
+      "content": "Numbers that end in zeros (10, 100, 1,000) are friendly for mental math. Nudge a hard number up or down to become friendly, then adjust.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Numbers that end in zeros (10, 100, 1,000) are friendly for mental math. Nudge a hard number up or down to become friendly, then adjust."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Compensation",
+      "content": "To add 99+48: pretend 99 is 100. Add 100+48=148. Since you added 1 extra, subtract 1: 148−1=147.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To add 99+48: pretend 99 is 100. Add 100+48=148. Since you added 1 extra, subtract 1: 148−1=147."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Add in Parts",
+      "content": "Break numbers into hundreds, tens, and ones. 230+140: add 200+100=300, then 30+40=70. Total 370.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "base10_blocks",
+        "config": {
+          "start": 0,
+          "max": 999
+        }
+      },
+      "tts": "Break numbers into hundreds, tens, and ones. 230+140: add 200+100=300, then 30+40=70. Total 370."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Make a Ten",
+      "content": "To add 27+48: move 2 from 27 to make 48 into 50. Now add 25+50=75.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To add 27+48: move 2 from 27 to make 48 into 50. Now add 25+50=75."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Use Doubles",
+      "content": "If numbers are close, use doubles. 25+26 = 25+25+1 = 51.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If numbers are close, use doubles. 25+26 = 25+25+1 = 51."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Pick the Best Strategy",
+      "content": "Different problems need different strategies. Friendly numbers work for near-round numbers. Parts work for clean place values.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Different problems need different strategies. Friendly numbers work for near-round numbers. Parts work for clean place values."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math: 298 + 146 = ___",
+      "correct_answer": "444",
+      "hints": [
+        "Think about what mental math addition means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Think 298 as 300−2.",
+        "300+146=446.",
+        "Subtract 2: 444."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 444. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math: 1,250 + 350 = ___",
+      "correct_answer": "1600",
+      "hints": [
+        "Think about what mental math addition means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Add hundreds: 1,200+300=1,500.",
+        "Add tens: 50+50=100.",
+        "1,500+100=1,600."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1600. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math: 495 + 215 = ___",
+      "correct_answer": "710",
+      "hints": [
+        "Think about what mental math addition means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "495 as 500−5.",
+        "500+215=715.",
+        "Subtract 5: 710."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 710. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math: 3,002 + 4,500 = ___",
+      "correct_answer": "7502",
+      "hints": [
+        "Think about what mental math addition means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "3,002 is near 3,000.",
+        "3,000+4,500=7,500.",
+        "Add 2 back: 7,502."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7502. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math: 199 + 199 = ___",
+      "correct_answer": "398",
+      "hints": [
+        "Think about what mental math addition means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "199 is 200−1.",
+        "200+200=400.",
+        "Subtract 2: 398."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 398. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 1,
+      "question": "Use mental math to add: 98 + 47 = ___",
+      "correct_answer": "145",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 145. 98+47=145."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 1,
+      "question": "Use mental math to add: 199 + 34 = ___",
+      "correct_answer": "233",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 233. 199+34=233."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 1,
+      "question": "Use mental math to add: 298 + 152 = ___",
+      "correct_answer": "450",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 450. 298+152=450."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 1,
+      "question": "Use mental math to add: 599 + 201 = ___",
+      "correct_answer": "800",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 800. 599+201=800."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 899 + 102 = ___",
+      "correct_answer": "1001",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1001. 899+102=1,001."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 1,200 + 500 = ___",
+      "correct_answer": "1700",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1700. 1,200+500=1,700."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 2,500 + 300 = ___",
+      "correct_answer": "2800",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2800. 2,500+300=2,800."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 3,999 + 2,001 = ___",
+      "correct_answer": "6000",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6000. 3,999+2,001=6,000."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 3,
+      "question": "Use mental math to add: 4,500 + 350 = ___",
+      "correct_answer": "4850",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4850. 4,500+350=4,850."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 3,
+      "question": "Use mental math to add: 7,800 + 1,200 = ___",
+      "correct_answer": "9000",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 9000. 7,800+1,200=9,000."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 1,
+      "question": "Use mental math to add: 97 + 45 = ___",
+      "correct_answer": "142",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 142. 97+45=142."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 1,
+      "question": "Use mental math to add: 198 + 42 = ___",
+      "correct_answer": "240",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 240. 198+42=240."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 1,
+      "question": "Use mental math to add: 299 + 101 = ___",
+      "correct_answer": "400",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 400. 299+101=400."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 1,
+      "question": "Use mental math to add: 498 + 502 = ___",
+      "correct_answer": "1000",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1000. 498+502=1,000."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 799 + 203 = ___",
+      "correct_answer": "1002",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1002. 799+203=1,002."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 1,400 + 600 = ___",
+      "correct_answer": "2000",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2000. 1,400+600=2,000."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 2,300 + 400 = ___",
+      "correct_answer": "2700",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 2700. 2,300+400=2,700."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 5,999 + 1,001 = ___",
+      "correct_answer": "7000",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7000. 5,999+1,001=7,000."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 3,
+      "question": "Use mental math to add: 3,200 + 800 = ___",
+      "correct_answer": "4000",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4000. 3,200+800=4,000."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 3,
+      "question": "Use mental math to add: 8,900 + 1,100 = ___",
+      "correct_answer": "10000",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 10000. 8,900+1,100=10,000."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 99 + 88 = ___",
+      "correct_answer": "187",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 187. 99+88=187."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 249 + 151 = ___",
+      "correct_answer": "400",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 400. 249+151=400."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 2,
+      "question": "Use mental math to add: 395 + 605 = ___",
+      "correct_answer": "1000",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1000. 395+605=1,000."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 3,
+      "question": "Use mental math to add: 1,999 + 1,001 = ___",
+      "correct_answer": "3000",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 3000. 1,999+1,001=3,000."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "compensate_and_make_friendly",
+      "concept": "mental_math_addition",
+      "difficulty": 3,
+      "question": "Use mental math to add: 4,500 + 3,500 = ___",
+      "correct_answer": "8000",
+      "hints": [
+        "Make a friendly number, then adjust.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 8000. 4,500+3,500=8,000."
+      }
+    }
+  ]
+}

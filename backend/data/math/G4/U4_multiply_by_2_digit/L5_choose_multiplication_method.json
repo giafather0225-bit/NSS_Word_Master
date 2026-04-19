@@ -1,0 +1,784 @@
+{
+  "lesson_id": "L5",
+  "title": "Choose a Multiplication Method",
+  "grade": "G4",
+  "unit": "U4_multiply_by_2_digit",
+  "lesson": "L5",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4 Ch3-Unit4 L5",
+  "essential_question": "How do you decide which method to use?",
+  "vocabulary": [
+    "mental math",
+    "partial products",
+    "algorithm",
+    "method"
+  ],
+  "concept": "choose_method",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "Which is most efficient for 50 × 8?",
+      "choices": [
+        "A) Partial products",
+        "B) Area model",
+        "C) Mental math (basic fact + zeros)",
+        "D) Column algorithm"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. 50×8 is 5×8=40 plus one zero → 400 by mental math."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "For 27 × 34, which is practical?",
+      "choices": [
+        "A) Mental math",
+        "B) Partial products or algorithm",
+        "C) Repeated addition",
+        "D) Skip counting"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Two 2-digit factors → partial products."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "Solve with any method: 14 × 25 = ___",
+      "correct_answer": "350",
+      "hints": [
+        "14×25 = 14 × 100 ÷ 4 = 350.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 350. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "Mental math works best when factors are simple (tens or single digits).",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "30 × 40 = ___",
+      "correct_answer": "1200",
+      "hints": [
+        "3×4=12, +2 zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1200. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Match Problem to Method",
+      "content": "Easy facts → mental. 1-digit × 2-digit → column algorithm. 2-digit × 2-digit → partial products or area model.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Easy facts → mental. 1-digit × 2-digit → column algorithm. 2-digit × 2-digit → partial products or area model."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Mental Math Tricks",
+      "content": "10×n shifts digits. ×5 is ×10 then ÷2. ×25 is ×100 then ÷4.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "10×n shifts digits. ×5 is ×10 then ÷2. ×25 is ×100 then ÷4."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "When Partial Products Shine",
+      "content": "Partial products show place value clearly — great for learning and checking.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Partial products show place value clearly — great for learning and checking."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Algorithm for Speed",
+      "content": "The column algorithm is fastest once you master regrouping.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "The column algorithm is fastest once you master regrouping."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Estimation First",
+      "content": "Whatever method you pick, estimate first so you catch errors.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Whatever method you pick, estimate first so you catch errors."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Pick What Works for You",
+      "content": "Different students prefer different methods — all that matters is getting the right answer.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Different students prefer different methods — all that matters is getting the right answer."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "Best method for 25 × 4: compute.",
+      "correct_answer": "100",
+      "hints": [
+        "Think about what choose method means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "25×4 is a known pair.",
+        "4 quarters = $1.00 = 100 cents.",
+        "Answer: 100."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 100. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "Solve: 60 × 7 (mental math).",
+      "correct_answer": "420",
+      "hints": [
+        "Think about what choose method means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "6×7=42.",
+        "Add one zero.",
+        "= 420."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 420. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "Solve: 34 × 12 (partial products).",
+      "correct_answer": "408",
+      "hints": [
+        "Think about what choose method means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "30×12=360.",
+        "4×12=48.",
+        "360+48=408."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 408. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "Solve: 8 × 250 (mental math).",
+      "correct_answer": "2000",
+      "hints": [
+        "Think about what choose method means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "8×25=200.",
+        "×10 → 2000.",
+        "Answer: 2000."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2000. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "Solve any way: 45 × 22.",
+      "correct_answer": "990",
+      "hints": [
+        "Think about what choose method means.",
+        "Use partial products or area model."
+      ],
+      "solution_steps": [
+        "45×20=900.",
+        "45×2=90.",
+        "900+90=990."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 990. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "28 × 3 = ___",
+      "correct_answer": "84",
+      "hints": [
+        "Pick a method that fits.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 84. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "22 × 6 = ___",
+      "correct_answer": "132",
+      "hints": [
+        "Pick a method that fits.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 132. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "10 × 3 = ___",
+      "correct_answer": "30",
+      "hints": [
+        "Pick a method that fits.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "24 × 6 = ___",
+      "correct_answer": "144",
+      "hints": [
+        "Pick a method that fits.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 144. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "19 × 4 = ___",
+      "correct_answer": "76",
+      "hints": [
+        "Pick a method that fits.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 76. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "20 × 2 = ___",
+      "correct_answer": "40",
+      "hints": [
+        "Pick a method that fits.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "21 × 3 = ___",
+      "correct_answer": "63",
+      "hints": [
+        "Pick a method that fits.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 63. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "100 × 4 = ___",
+      "correct_answer": "400",
+      "hints": [
+        "Pick a method that fits.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 400. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "20 × 2 = ___",
+      "correct_answer": "40",
+      "hints": [
+        "Pick a method that fits.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 40. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "10 × 3 = ___",
+      "correct_answer": "30",
+      "hints": [
+        "Pick a method that fits.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 30. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "38 × 28 = ___",
+      "correct_answer": "1064",
+      "hints": [
+        "Partial products work well.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1064. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "45 × 12 = ___",
+      "correct_answer": "540",
+      "hints": [
+        "Partial products work well.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 540. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "32 × 23 = ___",
+      "correct_answer": "736",
+      "hints": [
+        "Partial products work well.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 736. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "21 × 19 = ___",
+      "correct_answer": "399",
+      "hints": [
+        "Partial products work well.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 399. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "23 × 13 = ___",
+      "correct_answer": "299",
+      "hints": [
+        "Partial products work well.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 299. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "33 × 28 = ___",
+      "correct_answer": "924",
+      "hints": [
+        "Partial products work well.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 924. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "33 × 20 = ___",
+      "correct_answer": "660",
+      "hints": [
+        "Partial products work well.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 660. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "14 × 12 = ___",
+      "correct_answer": "168",
+      "hints": [
+        "Partial products work well.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 168. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "26 × 14 = ___",
+      "correct_answer": "364",
+      "hints": [
+        "Partial products work well.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 364. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "25 × 11 = ___",
+      "correct_answer": "275",
+      "hints": [
+        "Partial products work well.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 275. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "5 × 200 = ___",
+      "correct_answer": "1000",
+      "hints": [
+        "Mental math.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1000. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "28 × 13 = ___",
+      "correct_answer": "364",
+      "hints": [
+        "Partial products.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 364. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "Best method for 25 × 16:",
+      "choices": [
+        "A) 25×16 = 25×4×4 = 100×4 = 400",
+        "B) repeated add",
+        "C) count",
+        "D) tally"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Use known factors: 25×4=100, then ×4."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 1,
+      "question": "40 × 70 = ___",
+      "correct_answer": "2800",
+      "hints": [
+        "4×7=28, +2 zeros.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2800. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "method_selection",
+      "concept": "choose_method",
+      "difficulty": 2,
+      "question": "35 × 22 = ___",
+      "correct_answer": "770",
+      "hints": [
+        "35×20+35×2.",
+        "Break into tens and ones."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 770. Multiply place by place."
+      }
+    }
+  ]
+}

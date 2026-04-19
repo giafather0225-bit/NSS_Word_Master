@@ -3,108 +3,526 @@
   "title": "Count Equal Groups",
   "grade": "G3",
   "unit": "U3_understand_multiplication",
-  "ccss": ["3.OA.A.1"],
-  "go_math_ref": { "chapter": 3, "lesson": "3.1", "pages": "101-104" },
+  "ccss": [
+    "3.OA.A.1"
+  ],
+  "go_math_ref": {
+    "chapter": 3,
+    "lesson": "3.1",
+    "pages": "101-104"
+  },
   "essential_question": "How can you find how many in all when you have equal groups?",
-  "key_vocabulary": ["equal groups", "skip count", "multiply", "in all", "groups of"],
-  "strategies": ["Draw equal groups", "Skip count to find total", "Count: groups × items in each group"],
+  "key_vocabulary": [
+    "equal groups",
+    "skip count",
+    "multiply",
+    "in all",
+    "groups of"
+  ],
+  "strategies": [
+    "Draw equal groups",
+    "Skip count to find total",
+    "Count: groups × items in each group"
+  ],
   "items": [
-    { "id": "PT_01", "section": "pretest", "difficulty": 1,
+    {
+      "id": "PT_01",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "There are 3 bags. Each bag has 4 apples. How many apples in all?",
-      "choices": ["A. 7","B. 8","C. 12","D. 15"], "answer": "C",
-      "explanation": "3 groups of 4: skip count 4, 8, 12." },
-    { "id": "PT_02", "section": "pretest", "difficulty": 1,
+      "choices": [
+        "A. 7",
+        "B. 8",
+        "C. 12",
+        "D. 15"
+      ],
+      "answer": "C",
+      "explanation": "3 groups of 4: skip count 4, 8, 12."
+    },
+    {
+      "id": "PT_02",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "2 groups of 5 equals how many?",
-      "choices": ["A. 7","B. 10","C. 12","D. 15"], "answer": "B",
-      "explanation": "5 + 5 = 10." },
-    { "id": "PT_03", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 7",
+        "B. 10",
+        "C. 12",
+        "D. 15"
+      ],
+      "answer": "B",
+      "explanation": "5 + 5 = 10."
+    },
+    {
+      "id": "PT_03",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "4 groups of 3. How many in all?",
-      "choices": ["A. 7","B. 9","C. 12","D. 15"], "answer": "C",
-      "explanation": "3 + 3 + 3 + 3 = 12." },
-    { "id": "PT_04", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 7",
+        "B. 9",
+        "C. 12",
+        "D. 15"
+      ],
+      "answer": "C",
+      "explanation": "3 + 3 + 3 + 3 = 12."
+    },
+    {
+      "id": "PT_04",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Marcia puts 2 slices of cheese on each of 4 sandwiches. How many slices in all?",
-      "choices": ["A. 6","B. 8","C. 10","D. 12"], "answer": "B",
-      "explanation": "4 groups of 2 = 8." },
-    { "id": "PT_05", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 6",
+        "B. 8",
+        "C. 10",
+        "D. 12"
+      ],
+      "answer": "B",
+      "explanation": "4 groups of 2 = 8."
+    },
+    {
+      "id": "PT_05",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Tomas puts 3 tomatoes on each of 5 salads. How many tomatoes?",
-      "choices": ["A. 8","B. 12","C. 15","D. 18"], "answer": "C",
-      "explanation": "5 groups of 3 = 15." },
-    { "id": "LN_01", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "choices": [
+        "A. 8",
+        "B. 12",
+        "C. 15",
+        "D. 18"
+      ],
+      "answer": "C",
+      "explanation": "5 groups of 3 = 15."
+    },
+    {
+      "id": "LN_01",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "What Are Equal Groups?",
-      "content": "Equal groups have the same number of objects in each group. For example, 3 plates with 4 cookies each means 3 equal groups of 4." },
-    { "id": "LN_02", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "content": "Equal groups have the same number of objects in each group. For example, 3 plates with 4 cookies each means 3 equal groups of 4.",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "LN_02",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "Skip Counting to Find the Total",
-      "content": "To find 'how many in all,' skip count by the number in each group. For 4 groups of 5: count 5, 10, 15, 20. The answer is 20." },
-    { "id": "LN_03", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "content": "To find 'how many in all,' skip count by the number in each group. For 4 groups of 5: count 5, 10, 15, 20. The answer is 20.",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "LN_03",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "Groups Of",
-      "content": "'3 groups of 6' means there are 3 groups, each with 6 objects. Total = 6 + 6 + 6 = 18. This is the same as 3 × 6 = 18." },
-    { "id": "TRY_01", "section": "try", "difficulty": 1,
+      "content": "'3 groups of 6' means there are 3 groups, each with 6 objects. Total = 6 + 6 + 6 = 18. This is the same as 3 × 6 = 18.",
+      "cpa_phase": "pictorial",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "TRY_01",
+      "section": "try",
+      "difficulty": 1,
       "question": "5 groups of 2. How many in all?",
-      "choices": ["A. 7","B. 10","C. 12","D. 15"], "answer": "B",
-      "explanation": "2+2+2+2+2 = 10." },
-    { "id": "TRY_02", "section": "try", "difficulty": 1,
+      "choices": [
+        "A. 7",
+        "B. 10",
+        "C. 12",
+        "D. 15"
+      ],
+      "answer": "B",
+      "explanation": "2+2+2+2+2 = 10.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how count equal groups works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_02",
+      "section": "try",
+      "difficulty": 1,
       "question": "Jen makes 3 bracelets. Each has 3 beads. How many beads?",
-      "choices": ["A. 6","B. 9","C. 12","D. 15"], "answer": "B",
-      "explanation": "3 groups of 3 = 9." },
-    { "id": "TRY_03", "section": "try", "difficulty": 2,
+      "choices": [
+        "A. 6",
+        "B. 9",
+        "C. 12",
+        "D. 15"
+      ],
+      "answer": "B",
+      "explanation": "3 groups of 3 = 9.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how count equal groups works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "section": "try",
+      "difficulty": 2,
       "question": "Ian has 5 cards. Each needs 2 stamps. How many stamps?",
-      "choices": ["A. 7","B. 10","C. 12","D. 15"], "answer": "B",
-      "explanation": "5 groups of 2 = 10." },
-    { "id": "R1_01", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 7",
+        "B. 10",
+        "C. 12",
+        "D. 15"
+      ],
+      "answer": "B",
+      "explanation": "5 groups of 2 = 10.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how count equal groups works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R1_01",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "2 groups of 6. How many in all?",
-      "choices": ["A. 8","B. 10","C. 12","D. 14"], "answer": "C",
-      "explanation": "6 + 6 = 12." },
-    { "id": "R1_02", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 8",
+        "B. 10",
+        "C. 12",
+        "D. 14"
+      ],
+      "answer": "C",
+      "explanation": "6 + 6 = 12.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R1_02",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "4 groups of 2. How many in all?",
-      "choices": ["A. 6","B. 8","C. 10","D. 12"], "answer": "B",
-      "explanation": "2+2+2+2 = 8." },
-    { "id": "R1_03", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 6",
+        "B. 8",
+        "C. 10",
+        "D. 12"
+      ],
+      "answer": "B",
+      "explanation": "2+2+2+2 = 8.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R1_03",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "3 groups of 5. How many in all?",
-      "choices": ["A. 8","B. 12","C. 15","D. 18"], "answer": "C",
-      "explanation": "5+5+5 = 15." },
-    { "id": "R1_04", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 8",
+        "B. 12",
+        "C. 15",
+        "D. 18"
+      ],
+      "answer": "C",
+      "explanation": "5+5+5 = 15.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R1_04",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "6 groups of 2. Skip count to find the total.",
-      "choices": ["A. 8","B. 10","C. 12","D. 14"], "answer": "C",
-      "explanation": "2,4,6,8,10,12." },
-    { "id": "R1_05", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 8",
+        "B. 10",
+        "C. 12",
+        "D. 14"
+      ],
+      "answer": "C",
+      "explanation": "2,4,6,8,10,12.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R1_05",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "There are 4 vases. Each vase has 5 flowers. How many flowers?",
-      "choices": ["A. 9","B. 15","C. 20","D. 25"], "answer": "C",
-      "explanation": "4 × 5 = 20." },
-    { "id": "R1_06", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 9",
+        "B. 15",
+        "C. 20",
+        "D. 25"
+      ],
+      "answer": "C",
+      "explanation": "4 × 5 = 20.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R1_06",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "3 groups of 6. How many in all?",
-      "choices": ["A. 9","B. 12","C. 15","D. 18"], "answer": "D",
-      "explanation": "6+6+6 = 18." },
-    { "id": "R1_07", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 9",
+        "B. 12",
+        "C. 15",
+        "D. 18"
+      ],
+      "answer": "D",
+      "explanation": "6+6+6 = 18.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R1_07",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "5 groups of 4. How many in all?",
-      "choices": ["A. 9","B. 15","C. 20","D. 25"], "answer": "C",
-      "explanation": "4+4+4+4+4 = 20." },
-    { "id": "R2_01", "section": "practice_r2", "difficulty": 2,
+      "choices": [
+        "A. 9",
+        "B. 15",
+        "C. 20",
+        "D. 25"
+      ],
+      "answer": "C",
+      "explanation": "4+4+4+4+4 = 20.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R2_01",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "A store has 6 shelves. Each shelf has 4 books. How many books?",
-      "choices": ["A. 10","B. 18","C. 24","D. 30"], "answer": "C",
-      "explanation": "6 × 4 = 24." },
-    { "id": "R2_02", "section": "practice_r2", "difficulty": 2,
+      "choices": [
+        "A. 10",
+        "B. 18",
+        "C. 24",
+        "D. 30"
+      ],
+      "answer": "C",
+      "explanation": "6 × 4 = 24.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R2_02",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "7 groups of 3. How many in all?",
-      "choices": ["A. 10","B. 18","C. 21","D. 24"], "answer": "C",
-      "explanation": "3+3+3+3+3+3+3 = 21." },
-    { "id": "R2_03", "section": "practice_r2", "difficulty": 3,
+      "choices": [
+        "A. 10",
+        "B. 18",
+        "C. 21",
+        "D. 24"
+      ],
+      "answer": "C",
+      "explanation": "3+3+3+3+3+3+3 = 21.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R2_03",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "There are 384 people at a play Friday and 512 on Saturday. Best estimate of total?",
-      "choices": ["A. 900","B. 800","C. 700","D. 500"], "answer": "A",
-      "explanation": "400+500 = 900." },
-    { "id": "R2_04", "section": "practice_r2", "difficulty": 3,
+      "choices": [
+        "A. 900",
+        "B. 800",
+        "C. 700",
+        "D. 500"
+      ],
+      "answer": "A",
+      "explanation": "400+500 = 900.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R2_04",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "A pet store has 438 leashes and sells 79. How many left?",
-      "choices": ["A. 459","B. 441","C. 369","D. 359"], "answer": "D",
-      "explanation": "438 − 79 = 359." },
-    { "id": "R3_01", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. 459",
+        "B. 441",
+        "C. 369",
+        "D. 359"
+      ],
+      "answer": "D",
+      "explanation": "438 − 79 = 359.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R3_01",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "A baker puts 6 muffins in each box. She fills 8 boxes. She eats 3 muffins. How many muffins are left in the boxes?",
-      "choices": ["A. 45","B. 48","C. 51","D. 11"], "answer": "A",
-      "explanation": "8 × 6 = 48. 48 − 3 = 45." },
-    { "id": "R3_02", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. 45",
+        "B. 48",
+        "C. 51",
+        "D. 11"
+      ],
+      "answer": "A",
+      "explanation": "8 × 6 = 48. 48 − 3 = 45.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R3_02",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Emma has some bags of marbles. Each bag has 5 marbles. She has 35 marbles in all. How many bags?",
-      "choices": ["A. 5","B. 6","C. 7","D. 8"], "answer": "C",
-      "explanation": "35 ÷ 5 = 7 bags." },
-    { "id": "R3_03", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. 5",
+        "B. 6",
+        "C. 7",
+        "D. 8"
+      ],
+      "answer": "C",
+      "explanation": "35 ÷ 5 = 7 bags.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how count equal groups works."
+      }
+    },
+    {
+      "id": "R3_03",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Sam has 4 groups of stickers. Each group has the same number. He has 28 stickers total. How many in each group?",
-      "choices": ["A. 6","B. 7","C. 8","D. 9"], "answer": "B",
-      "explanation": "28 ÷ 4 = 7." }
-  ]
+      "choices": [
+        "A. 6",
+        "B. 7",
+        "C. 8",
+        "D. 9"
+      ],
+      "answer": "B",
+      "explanation": "28 ÷ 4 = 7.",
+      "hints": [
+        "Think about what count equal groups means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how count equal groups works."
+      }
+    }
+  ],
+  "concept": "count_equal_groups"
 }

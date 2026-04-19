@@ -49,6 +49,9 @@ function showMathFeedback(result, problem, onNext) {
         } else if (vtype && vtype !== 'none' && typeof vdata.description === 'string' && vdata.description) {
             cpaVisual = `<div class="math-cpa-fallback-visual">${_escS(vdata.description)}</div>`;
         }
+        if (vtype === 'manipulative' || vtype === 'addition_table' || vtype === 'bar_model') {
+            cpaVisual = '<div class="math-cpa-manip-slot" id="math-cpa-manip-slot"></div>';
+        }
         cpaHtml = `
             <div class="math-cpa-fallback">
                 <div class="math-cpa-fallback-label">\u{1F4A1} Remember the picture:</div>
@@ -115,6 +118,20 @@ function showMathFeedback(result, problem, onNext) {
 
     stage.appendChild(overlay);
 
+    if (result._cpaFallback) {
+        const cpaSlot = document.getElementById('math-cpa-manip-slot');
+        const c = result._cpaFallback;
+        if (cpaSlot && typeof renderManipulative === 'function') {
+            if (c.visual_type === 'manipulative') {
+                renderManipulative(cpaSlot, c.visual_data || {});
+            } else if (c.visual_type === 'addition_table') {
+                renderManipulative(cpaSlot, { tool: 'addition_table', config: c.visual_data || {} });
+            } else if (c.visual_type === 'bar_model') {
+                renderManipulative(cpaSlot, { tool: 'bar_model', config: c.visual_data || {} });
+            }
+        }
+    }
+
     if (hasInteractive) _wireInteractiveSteps(overlay);
     if (hasSteps) _wireReadOnlySteps(steps, autoOpen);
 
@@ -125,7 +142,9 @@ function showMathFeedback(result, problem, onNext) {
 
     // Also allow Enter key — but only when step-by-step is not the focus
     const handler = (e) => {
-        if (e.key === 'Enter' && document.activeElement?.id !== 'math-steps-next') {
+        if (e.key === 'Enter'
+            && !document.activeElement?.classList.contains('math-istep-field')
+            && document.activeElement?.id !== 'math-steps-next') {
             document.removeEventListener('keydown', handler);
             overlay.remove();
             onNext();

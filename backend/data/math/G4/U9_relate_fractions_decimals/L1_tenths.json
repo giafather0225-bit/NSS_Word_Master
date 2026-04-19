@@ -1,0 +1,793 @@
+{
+  "lesson_id": "L1",
+  "title": "Tenths as Fractions and Decimals",
+  "grade": "G4",
+  "unit": "U9_relate_fractions_decimals",
+  "lesson": "L1",
+  "ccss": [
+    "4.NF.C.6"
+  ],
+  "standard": "4.NF.C.6",
+  "go_math_ref": "Go Math G4 Ch9 L1",
+  "essential_question": "How do tenths connect fractions and decimals?",
+  "vocabulary": [
+    "tenth",
+    "decimal",
+    "fraction",
+    "place value"
+  ],
+  "concept": "tenths",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 3/10 as a decimal.",
+      "correct_answer": "0.3",
+      "hints": [
+        "Tenths place.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.3. 3 in tenths."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 0.7 as a fraction.",
+      "correct_answer": "7/10",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/10. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Which decimal equals 5/10?",
+      "choices": [
+        "A) 0.05",
+        "B) 0.5",
+        "C) 5.0",
+        "D) 50"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 5 tenths."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "The first digit after the decimal point is the tenths place.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 9/10 as a decimal.",
+      "correct_answer": "0.9",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.9. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Tenths",
+      "content": "A tenth is one of 10 equal parts of a whole. As fraction: 1/10. As decimal: 0.1.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "A tenth is one of 10 equal parts of a whole. As fraction: 1/10. As decimal: 0.1."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Grid Model",
+      "content": "A 10-strip with 3 shaded shows 3/10 or 0.3.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "numerator": 3,
+          "denominator": 10
+        }
+      },
+      "tts": "A 10-strip with 3 shaded shows 3/10 or 0.3."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Decimal Place Value",
+      "content": "After the decimal point, the first place is tenths.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "After the decimal point, the first place is tenths."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Reading Decimals",
+      "content": "0.4 is read 'four tenths'.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "0.4 is read 'four tenths'."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Whole + Tenths",
+      "content": "1.3 = 1 whole + 3 tenths = 1 3/10.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "1.3 = 1 whole + 3 tenths = 1 3/10."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Number Line",
+      "content": "On a number line from 0 to 1, tenths divide it into 10 equal steps.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 0,
+        "max": 1,
+        "step": 0.1,
+        "highlight": 0.3
+      },
+      "tts": "On a number line from 0 to 1, tenths divide it into 10 equal steps."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 4/10 as a decimal.",
+      "correct_answer": "0.4",
+      "hints": [
+        "Think about tenths.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "Tenths position.",
+        "4 goes in tenths.",
+        "0.4."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.4."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 0.8 as a fraction.",
+      "correct_answer": "8/10",
+      "hints": [
+        "Think about tenths.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "0.8 has 8 tenths.",
+        "So 8/10.",
+        "Done."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8/10."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 2,
+      "question": "Write 1 2/10 as a decimal.",
+      "correct_answer": "1.2",
+      "hints": [
+        "Think about tenths.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "1 whole + 2 tenths.",
+        "1.2.",
+        "Done."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1.2."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 2,
+      "question": "Write 2.5 as a mixed number.",
+      "correct_answer": "2 5/10",
+      "hints": [
+        "Think about tenths.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "2 wholes + 5 tenths.",
+        "2 5/10.",
+        "Done."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2 5/10."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Shade 0.6 of a 10-strip. How many boxes?",
+      "correct_answer": "6",
+      "hints": [
+        "Think about tenths.",
+        "Use place value or a model."
+      ],
+      "solution_steps": [
+        "6 tenths.",
+        "6 out of 10 boxes.",
+        "= 6."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 2/10 as a decimal.",
+      "correct_answer": "0.2",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.2. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 6/10 as a decimal.",
+      "correct_answer": "0.6",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.6. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 7/10 as a decimal.",
+      "correct_answer": "0.7",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.7. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 2/10 as a decimal.",
+      "correct_answer": "0.2",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.2. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 6/10 as a decimal.",
+      "correct_answer": "0.6",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.6. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 9/10 as a decimal.",
+      "correct_answer": "0.9",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.9. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 9/10 as a decimal.",
+      "correct_answer": "0.9",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.9. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 1/10 as a decimal.",
+      "correct_answer": "0.1",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.1. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 1/10 as a decimal.",
+      "correct_answer": "0.1",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.1. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 5/10 as a decimal.",
+      "correct_answer": "0.5",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.5. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 8 3/10 as a decimal.",
+      "correct_answer": "8.3",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 8.3. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 9 1/10 as a decimal.",
+      "correct_answer": "9.1",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9.1. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 4 9/10 as a decimal.",
+      "correct_answer": "4.9",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4.9. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 6 5/10 as a decimal.",
+      "correct_answer": "6.5",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6.5. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 1 7/10 as a decimal.",
+      "correct_answer": "1.7",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1.7. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 3 4/10 as a decimal.",
+      "correct_answer": "3.4",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3.4. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 7 2/10 as a decimal.",
+      "correct_answer": "7.2",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7.2. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 6 7/10 as a decimal.",
+      "correct_answer": "6.7",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6.7. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 5 6/10 as a decimal.",
+      "correct_answer": "5.6",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5.6. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 1 7/10 as a decimal.",
+      "correct_answer": "1.7",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1.7. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "0.6 as a fraction = ___",
+      "correct_answer": "6/10",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 6/10. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "8/10 as a decimal = ___",
+      "correct_answer": "0.8",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.8. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "3.2 in mixed form:",
+      "choices": [
+        "A) 3 2/10",
+        "B) 32/10",
+        "C) 3 2/100",
+        "D) 3.02"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. "
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "Write 'five tenths' as a decimal.",
+      "correct_answer": "0.5",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0.5. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.C.6",
+      "skill_tag": "tenths_fraction_decimal",
+      "concept": "tenths",
+      "difficulty": 1,
+      "question": "0.9 as a fraction = ___",
+      "correct_answer": "9/10",
+      "hints": [
+        "Think about tenths.",
+        "Use place value."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 9/10. "
+      }
+    }
+  ]
+}

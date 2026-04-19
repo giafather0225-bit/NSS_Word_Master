@@ -1,0 +1,792 @@
+{
+  "lesson_id": "L3",
+  "title": "Subtract Fractions with Like Denominators",
+  "grade": "G4",
+  "unit": "U8_add_subtract_fractions",
+  "lesson": "L3",
+  "ccss": [
+    "4.NF.B.3"
+  ],
+  "standard": "4.NF.B.3",
+  "go_math_ref": "Go Math G4 Ch7 L3",
+  "essential_question": "How do you subtract fractions with the same denominator?",
+  "vocabulary": [
+    "subtract",
+    "like denominator",
+    "numerator"
+  ],
+  "concept": "sub_like_denom",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "5/8 − 2/8 = ___",
+      "correct_answer": "3/8",
+      "hints": [
+        "Subtract numerators.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/8. 5−2=3."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "7/9 − 4/9 = ___",
+      "correct_answer": "3/9",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/9. "
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "6/7 − 3/7 = ?",
+      "choices": [
+        "A) 3/14",
+        "B) 3/7",
+        "C) 9/7",
+        "D) 0"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is B. 6−3=3."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "When subtracting like-denom fractions, keep the denominator.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "9/10 − 4/10 = ___",
+      "correct_answer": "5/10",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/10. "
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Same Denom Rule",
+      "content": "Subtract numerators; keep the denominator.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Subtract numerators; keep the denominator."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Take Away",
+      "content": "7/9 − 4/9: start with 7 pieces of ninth, take away 4. Left: 3.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "numerator": 3,
+          "denominator": 9
+        }
+      },
+      "tts": "7/9 − 4/9: start with 7 pieces of ninth, take away 4. Left: 3."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Number Line",
+      "content": "Jump backward on the number line by the second fraction.",
+      "visual_type": "number_line",
+      "visual_data": {
+        "min": 0,
+        "max": 1,
+        "step": 0.1,
+        "highlight": 0.3
+      },
+      "tts": "Jump backward on the number line by the second fraction."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Check with Addition",
+      "content": "Subtrahend + difference should = minuend.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Subtrahend + difference should = minuend."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Simplify if Needed",
+      "content": "Reduce your answer if possible.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Reduce your answer if possible."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Careful with Zero",
+      "content": "If a = b, the difference is 0.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "If a = b, the difference is 0."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "8/10 − 3/10 = ___",
+      "correct_answer": "5/10",
+      "hints": [
+        "Think about sub like denom.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Same denom.",
+        "8−3=5.",
+        "5/10."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/10."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "6/7 − 2/7 = ___",
+      "correct_answer": "4/7",
+      "hints": [
+        "Think about sub like denom.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "6−2=4.",
+        "Keep denom.",
+        "4/7."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/7."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "5/6 − 1/6 = ___",
+      "correct_answer": "4/6",
+      "hints": [
+        "Think about sub like denom.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "5−1=4.",
+        "Simplify if needed.",
+        "4/6."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/6."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "9/12 − 5/12 = ___",
+      "correct_answer": "4/12",
+      "hints": [
+        "Think about sub like denom.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "9−5=4.",
+        "Keep denom.",
+        "4/12."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/12."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "7/8 − 7/8 = ___",
+      "correct_answer": "0/8",
+      "hints": [
+        "Think about sub like denom.",
+        "Work with same denominators."
+      ],
+      "solution_steps": [
+        "Equal.",
+        "Difference 0.",
+        "0/8 = 0."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 0/8."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "11/12 − 4/12 = ___",
+      "correct_answer": "7/12",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/12. "
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "4/6 − 1/6 = ___",
+      "correct_answer": "3/6",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/6. "
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "6/8 − 4/8 = ___",
+      "correct_answer": "2/8",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/8. "
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "3/5 − 1/5 = ___",
+      "correct_answer": "2/5",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/5. "
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "7/12 − 4/12 = ___",
+      "correct_answer": "3/12",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/12. "
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "8/12 − 1/12 = ___",
+      "correct_answer": "7/12",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/12. "
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "5/12 − 4/12 = ___",
+      "correct_answer": "1/12",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/12. "
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "2/7 − 1/7 = ___",
+      "correct_answer": "1/7",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/7. "
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "2/5 − 1/5 = ___",
+      "correct_answer": "1/5",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/5. "
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "2/6 − 1/6 = ___",
+      "correct_answer": "1/6",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/6. "
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "5/8 − 3/8 = ___",
+      "correct_answer": "2/8",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/8. "
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "4/8 − 3/8 = ___",
+      "correct_answer": "1/8",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/8. "
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "3/12 − 1/12 = ___",
+      "correct_answer": "2/12",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/12. "
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "4/6 − 3/6 = ___",
+      "correct_answer": "1/6",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/6. "
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "5/6 − 3/6 = ___",
+      "correct_answer": "2/6",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/6. "
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "3/8 − 1/8 = ___",
+      "correct_answer": "2/8",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 2/8. "
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "3/6 − 2/6 = ___",
+      "correct_answer": "1/6",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 1/6. "
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "8/12 − 4/12 = ___",
+      "correct_answer": "4/12",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/12. "
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "7/12 − 3/12 = ___",
+      "correct_answer": "4/12",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/12. "
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "6/12 − 2/12 = ___",
+      "correct_answer": "4/12",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 4/12. "
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "7/12 − 2/12 = ___",
+      "correct_answer": "5/12",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/12. "
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "11/15 − 4/15 = ___",
+      "correct_answer": "7/15",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 7/15. "
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "8/9 − 3/9 = ?",
+      "choices": [
+        "A) 5/18",
+        "B) 11/9",
+        "C) 5/9",
+        "D) 3/9"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is C. 8−3=5."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 1,
+      "question": "9/11 − 6/11 = ___",
+      "correct_answer": "3/11",
+      "hints": [
+        "Think about sub like denom.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 3/11. "
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NF.B.3",
+      "skill_tag": "sub_numerators",
+      "concept": "sub_like_denom",
+      "difficulty": 2,
+      "question": "1 − 3/8 = ___",
+      "correct_answer": "5/8",
+      "hints": [
+        "1 = 8/8.",
+        "Add/subtract numerators; keep denominator."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 5/8. "
+      }
+    }
+  ]
+}

@@ -1,0 +1,788 @@
+{
+  "lesson_id": "L6",
+  "title": "Division and the Distributive Property",
+  "grade": "G4",
+  "unit": "U5_divide_by_1_digit",
+  "lesson": "L6",
+  "ccss": [
+    "4.NBT.B.6"
+  ],
+  "standard": "4.NBT.B.6",
+  "go_math_ref": "Go Math G4 Ch4 L6",
+  "essential_question": "How can the Distributive Property help you divide?",
+  "vocabulary": [
+    "distributive",
+    "split",
+    "divide",
+    "dividend"
+  ],
+  "concept": "division_distributive",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "Find 84 ÷ 4 by splitting: (80+4) ÷ 4 = ___ + ___ . Answer = ___",
+      "correct_answer": "21",
+      "hints": [
+        "80÷4=20, 4÷4=1, total 21.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 21. 80÷4+4÷4=20+1=21."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "Which split helps compute 72 ÷ 6 easily?",
+      "choices": [
+        "A) (60+12)÷6",
+        "B) (70+2)÷6",
+        "C) (50+22)÷6",
+        "D) (40+32)÷6"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is A. 60÷6=10, 12÷6=2 → 12."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "96 ÷ 4 using (80+16): ___",
+      "correct_answer": "24",
+      "hints": [
+        "80÷4=20, 16÷4=4.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24. Work through each place."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "Distributive property lets you split the dividend into easy-to-divide parts.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "(60+15) ÷ 5 = ___",
+      "correct_answer": "15",
+      "hints": [
+        "12+3.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 15. Work through each place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Split the Dividend",
+      "content": "Break the dividend into parts that divide easily by the divisor.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Break the dividend into parts that divide easily by the divisor."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Example 84 ÷ 4",
+      "content": "84 = 80 + 4. Then 80÷4=20 and 4÷4=1. Sum: 21.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "base10_blocks",
+        "config": {
+          "ones": 4,
+          "tens": 8
+        }
+      },
+      "tts": "84 = 80 + 4. Then 80÷4=20 and 4÷4=1. Sum: 21."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Using Place Value",
+      "content": "Split by tens and ones or hundreds and tens — whatever divides cleanly.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Split by tens and ones or hundreds and tens — whatever divides cleanly."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Distributive Pattern",
+      "content": "(a+b) ÷ n = a÷n + b÷n, when both divide evenly.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "(a+b) ÷ n = a÷n + b÷n, when both divide evenly."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Mental Math Tool",
+      "content": "This makes many 2- and 3-digit divisions doable in your head.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "This makes many 2- and 3-digit divisions doable in your head."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check by Multiplying",
+      "content": "Quotient × divisor should equal the dividend.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Quotient × divisor should equal the dividend."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "Compute 78 ÷ 6 by splitting 78 into 60+18.",
+      "correct_answer": "13",
+      "hints": [
+        "Think about division distributive.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "60 ÷ 6 = 10.",
+        "18 ÷ 6 = 3.",
+        "Total 13."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 13. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "Compute 96 ÷ 8 by splitting.",
+      "correct_answer": "12",
+      "hints": [
+        "Think about division distributive.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "80÷8=10.",
+        "16÷8=2.",
+        "Total 12."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "Compute 144 ÷ 6 by splitting 120+24.",
+      "correct_answer": "24",
+      "hints": [
+        "Think about division distributive.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "120÷6=20.",
+        "24÷6=4.",
+        "24."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "Compute 108 ÷ 4 by splitting.",
+      "correct_answer": "27",
+      "hints": [
+        "Think about division distributive.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "100÷4=25.",
+        "8÷4=2.",
+        "27."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 27. Work step by step."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "Compute 132 ÷ 4 by splitting.",
+      "correct_answer": "33",
+      "hints": [
+        "Think about division distributive.",
+        "Use a division strategy."
+      ],
+      "solution_steps": [
+        "120÷4=30.",
+        "12÷4=3.",
+        "33."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 33. Work step by step."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "90 ÷ 5 = ___",
+      "correct_answer": "18",
+      "hints": [
+        "Split 90.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 18. Work through each place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "63 ÷ 3 = ___",
+      "correct_answer": "21",
+      "hints": [
+        "Split 63.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 21. Work through each place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "84 ÷ 4 = ___",
+      "correct_answer": "21",
+      "hints": [
+        "Split 84.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 21. Work through each place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "56 ÷ 4 = ___",
+      "correct_answer": "14",
+      "hints": [
+        "Split 56.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 14. Work through each place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "72 ÷ 6 = ___",
+      "correct_answer": "12",
+      "hints": [
+        "Split 72.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work through each place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "66 ÷ 6 = ___",
+      "correct_answer": "11",
+      "hints": [
+        "Split 66.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 11. Work through each place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "96 ÷ 8 = ___",
+      "correct_answer": "12",
+      "hints": [
+        "Split 96.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 12. Work through each place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "78 ÷ 6 = ___",
+      "correct_answer": "13",
+      "hints": [
+        "Split 78.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 13. Work through each place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "92 ÷ 4 = ___",
+      "correct_answer": "23",
+      "hints": [
+        "Split 92.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 23. Work through each place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 1,
+      "question": "87 ÷ 3 = ___",
+      "correct_answer": "29",
+      "hints": [
+        "Split 87.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 29. Work through each place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "216 ÷ 8 = ___",
+      "correct_answer": "27",
+      "hints": [
+        "Split into place-value chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 27. Work through each place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "198 ÷ 9 = ___",
+      "correct_answer": "22",
+      "hints": [
+        "Split into place-value chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 22. Work through each place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "168 ÷ 8 = ___",
+      "correct_answer": "21",
+      "hints": [
+        "Split into place-value chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 21. Work through each place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "175 ÷ 5 = ___",
+      "correct_answer": "35",
+      "hints": [
+        "Split into place-value chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 35. Work through each place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "144 ÷ 6 = ___",
+      "correct_answer": "24",
+      "hints": [
+        "Split into place-value chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 24. Work through each place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "132 ÷ 3 = ___",
+      "correct_answer": "44",
+      "hints": [
+        "Split into place-value chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 44. Work through each place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "156 ÷ 4 = ___",
+      "correct_answer": "39",
+      "hints": [
+        "Split into place-value chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 39. Work through each place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "224 ÷ 8 = ___",
+      "correct_answer": "28",
+      "hints": [
+        "Split into place-value chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 28. Work through each place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "189 ÷ 9 = ___",
+      "correct_answer": "21",
+      "hints": [
+        "Split into place-value chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 21. Work through each place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "258 ÷ 6 = ___",
+      "correct_answer": "43",
+      "hints": [
+        "Split into place-value chunks.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 43. Work through each place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "92 ÷ 4 = ___ (split 80+12)",
+      "correct_answer": "23",
+      "hints": [
+        "Think about division distributive.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 23. Work through each place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "126 ÷ 6 = ___ (split 120+6)",
+      "correct_answer": "21",
+      "hints": [
+        "Think about division distributive.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 21. Work through each place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "Best split for 75 ÷ 5:",
+      "choices": [
+        "A) 50+25",
+        "B) 70+5",
+        "C) 60+15",
+        "D) any of these"
+      ],
+      "correct_answer": "D",
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is D. Any split that divides by 5 works."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "204 ÷ 4 = ___",
+      "correct_answer": "51",
+      "hints": [
+        "Think about division distributive.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 51. Work through each place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.6",
+      "skill_tag": "split_dividend",
+      "concept": "division_distributive",
+      "difficulty": 2,
+      "question": "165 ÷ 5 = ___",
+      "correct_answer": "33",
+      "hints": [
+        "Think about division distributive.",
+        "Use a known fact or break down the number."
+      ],
+      "feedback": {
+        "correct": "Great job!",
+        "incorrect": "Not quite. The answer is 33. Work through each place."
+      }
+    }
+  ]
+}

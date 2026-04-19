@@ -1,0 +1,785 @@
+{
+  "lesson_id": "L10_multiply_2digit",
+  "title": "Multiply 2-Digit Numbers with Regrouping",
+  "grade": "G4",
+  "unit": "U3_multiply_by_1_digit",
+  "lesson": "L10_multiply_2digit",
+  "ccss": [
+    "4.NBT.B.5"
+  ],
+  "standard": "4.NBT.B.5",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.10",
+  "essential_question": "How do you multiply a 2-digit number by a 1-digit number?",
+  "vocabulary": [
+    "regroup",
+    "carry",
+    "product"
+  ],
+  "concept": "multiply_2digit_regrouping",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 1,
+      "question": "4 × 26 = ___",
+      "correct_answer": "104",
+      "hints": [
+        "4×6=24, carry 2. 4×2+2=10.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 104. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "7 × 38 = ___",
+      "correct_answer": "266",
+      "hints": [
+        "Think about what multiply 2digit regrouping means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 266. Multiply place by place."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "6 × 47 = ?",
+      "choices": [
+        "A) 240",
+        "B) 282",
+        "C) 252",
+        "D) 292"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 6×7=42, 6×4=24, +4=28→282."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 1,
+      "question": "When a column product is 10 or more, regroup the tens digit.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. "
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "9 × 58 = ___",
+      "correct_answer": "522",
+      "hints": [
+        "Think about what multiply 2digit regrouping means.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 522. Multiply place by place."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "2-Digit × 1-Digit",
+      "content": "To multiply a 2-digit number by a 1-digit number, multiply the ones, regroup, then multiply the tens and add.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "To multiply a 2-digit number by a 1-digit number, multiply the ones, regroup, then multiply the tens and add."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Regroup the Ones",
+      "content": "4 × 26: 4×6=24. Write 4 in ones, carry 2 tens.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "base10_blocks",
+        "config": {
+          "start": 0,
+          "max": 99
+        }
+      },
+      "tts": "4 × 26: 4×6=24. Write 4 in ones, carry 2 tens."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Multiply the Tens",
+      "content": "Then 4×2(tens)=8(tens), plus the 2 tens you carried = 10 tens. Write 10. Final: 104.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Then 4×2(tens)=8(tens), plus the 2 tens you carried = 10 tens. Write 10. Final: 104."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Align the Answer",
+      "content": "Write the product below the line, starting from the ones place. Keep columns neat.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Write the product below the line, starting from the ones place. Keep columns neat."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Check with Estimation",
+      "content": "4×26 ≈ 4×25 = 100. Answer 104 is very close — looks right.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "4×26 ≈ 4×25 = 100. Answer 104 is very close — looks right."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Work Carefully",
+      "content": "Regrouping is easy to mess up. Take your time and write the carried digit clearly.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Regrouping is easy to mess up. Take your time and write the carried digit clearly."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "4 × 26 = ___",
+      "correct_answer": "104",
+      "hints": [
+        "Think about what multiply 2digit regrouping means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "4×6=24. Write 4, carry 2.",
+        "4×2=8, +2=10. Write 10.",
+        "Answer: 104."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 104. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "6 × 38 = ___",
+      "correct_answer": "228",
+      "hints": [
+        "Think about what multiply 2digit regrouping means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "6×8=48. Write 8, carry 4.",
+        "6×3=18, +4=22.",
+        "Answer: 228."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 228. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "7 × 54 = ___",
+      "correct_answer": "378",
+      "hints": [
+        "Think about what multiply 2digit regrouping means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "7×4=28. Write 8, carry 2.",
+        "7×5=35, +2=37.",
+        "Answer: 378."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 378. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "8 × 47 = ___",
+      "correct_answer": "376",
+      "hints": [
+        "Think about what multiply 2digit regrouping means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "8×7=56. Write 6, carry 5.",
+        "8×4=32, +5=37.",
+        "Answer: 376."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 376. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "9 × 63 = ___",
+      "correct_answer": "567",
+      "hints": [
+        "Think about what multiply 2digit regrouping means.",
+        "Try drawing an array or using partial products."
+      ],
+      "solution_steps": [
+        "9×3=27. Write 7, carry 2.",
+        "9×6=54, +2=56.",
+        "Answer: 567."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 567. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 1,
+      "question": "4 × 26 = ___",
+      "correct_answer": "104",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 104. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 1,
+      "question": "5 × 38 = ___",
+      "correct_answer": "190",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 190. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 1,
+      "question": "6 × 47 = ___",
+      "correct_answer": "282",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 282. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 1,
+      "question": "7 × 54 = ___",
+      "correct_answer": "378",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 378. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "8 × 63 = ___",
+      "correct_answer": "504",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 504. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "9 × 72 = ___",
+      "correct_answer": "648",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 648. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "4 × 89 = ___",
+      "correct_answer": "356",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 356. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "5 × 96 = ___",
+      "correct_answer": "480",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 480. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 3,
+      "question": "6 × 84 = ___",
+      "correct_answer": "504",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 504. Multiply place by place."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 3,
+      "question": "7 × 68 = ___",
+      "correct_answer": "476",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 476. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 1,
+      "question": "5 × 27 = ___",
+      "correct_answer": "135",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 135. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 1,
+      "question": "6 × 39 = ___",
+      "correct_answer": "234",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 234. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 1,
+      "question": "7 × 48 = ___",
+      "correct_answer": "336",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 336. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 1,
+      "question": "8 × 59 = ___",
+      "correct_answer": "472",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 472. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "9 × 64 = ___",
+      "correct_answer": "576",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 576. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "3 × 78 = ___",
+      "correct_answer": "234",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 234. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "4 × 87 = ___",
+      "correct_answer": "348",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 348. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "5 × 93 = ___",
+      "correct_answer": "465",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 465. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 3,
+      "question": "6 × 76 = ___",
+      "correct_answer": "456",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 456. Multiply place by place."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 3,
+      "question": "8 × 85 = ___",
+      "correct_answer": "680",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 680. Multiply place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "7 × 49 = ___",
+      "correct_answer": "343",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 343. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "8 × 58 = ___",
+      "correct_answer": "464",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 464. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 2,
+      "question": "9 × 77 = ___",
+      "correct_answer": "693",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 693. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 3,
+      "question": "6 × 89 = ___",
+      "correct_answer": "534",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 534. Multiply place by place."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.5",
+      "skill_tag": "regrouping_multiplication",
+      "concept": "multiply_2digit_regrouping",
+      "difficulty": 3,
+      "question": "5 × 97 = ___",
+      "correct_answer": "485",
+      "hints": [
+        "Multiply ones first, then tens with regrouping.",
+        "Try drawing an array or using place value."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 485. Multiply place by place."
+      }
+    }
+  ]
+}

@@ -1,0 +1,801 @@
+{
+  "lesson_id": "L1_estimate_sums_differences",
+  "title": "Estimate Sums and Differences",
+  "grade": "G4",
+  "unit": "U2_add_subtract_whole_numbers",
+  "lesson": "L1_estimate_sums_differences",
+  "ccss": [
+    "4.NBT.B.4",
+    "4.NBT.A.3"
+  ],
+  "standard": "4.NBT.B.4",
+  "go_math_ref": "Go Math G4, Ch 2 Lesson 2.1",
+  "essential_question": "How can you estimate sums and differences of whole numbers?",
+  "vocabulary": [
+    "estimate",
+    "round",
+    "nearest hundred",
+    "nearest thousand",
+    "sum",
+    "difference"
+  ],
+  "concept": "estimate_sum_difference",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 342 + 185 by rounding to the nearest hundred.",
+      "choices": [
+        "A) 400",
+        "B) 500",
+        "C) 600",
+        "D) 700"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 342→300, 185→200, sum=500."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 5,678 + 3,219 by rounding to the nearest thousand.",
+      "choices": [
+        "A) 8,000",
+        "B) 9,000",
+        "C) 10,000",
+        "D) 11,000"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 5,678→6,000, 3,219→3,000, sum=9,000."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 612 − 288 by rounding to the nearest hundred.",
+      "choices": [
+        "A) 200",
+        "B) 300",
+        "C) 400",
+        "D) 500"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 612→600, 288→300, diff=300."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 1,
+      "question": "547 rounds to 500 when rounded to the nearest hundred.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. Tens digit 4 < 5, round down."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 3,
+      "question": "Estimate 23,456 + 11,234 by rounding to the nearest ten-thousand.",
+      "choices": [
+        "A) 30,000",
+        "B) 34,000",
+        "C) 40,000",
+        "D) 45,000"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. 23,456→20,000, 11,234→10,000, sum=30,000."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LRN_01",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Why Estimate?",
+      "content": "Estimation helps you check if an answer is reasonable. When you round numbers before adding or subtracting, the sum or difference is close to the real answer but easier to find.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimation helps you check if an answer is reasonable. When you round numbers before adding or subtracting, the sum or difference is close to the real answer but easier to find."
+    },
+    {
+      "id": "LRN_02",
+      "type": "instruction",
+      "cpa_phase": "concrete",
+      "title": "Rounding Review",
+      "content": "To round to the nearest hundred, look at the tens digit. If it is 5 or more, round up. If it is less than 5, round down. Example: 342 → tens digit is 4, so round down to 300.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "min": 300,
+          "max": 400,
+          "step": 10
+        }
+      },
+      "tts": "To round to the nearest hundred, look at the tens digit. If it is 5 or more, round up. If it is less than 5, round down. Example: 342 → tens digit is 4, so round down to 300."
+    },
+    {
+      "id": "LRN_03",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Estimate a Sum",
+      "content": "Estimate 473 + 219 to the nearest hundred. Round each number: 473→500, 219→200. Then add: 500 + 200 = 700. The estimate is 700.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "min": 0,
+          "max": 800,
+          "step": 100
+        }
+      },
+      "tts": "Estimate 473 + 219 to the nearest hundred. Round each number: 473→500, 219→200. Then add: 500 + 200 = 700. The estimate is 700."
+    },
+    {
+      "id": "LRN_04",
+      "type": "instruction",
+      "cpa_phase": "pictorial",
+      "title": "Estimate a Difference",
+      "content": "Estimate 832 − 267 to the nearest hundred. Round: 832→800, 267→300. Subtract: 800 − 300 = 500.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Estimate 832 − 267 to the nearest hundred. Round: 832→800, 267→300. Subtract: 800 − 300 = 500."
+    },
+    {
+      "id": "LRN_05",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Round to Thousands",
+      "content": "For larger numbers, round to the nearest thousand. Example: 5,842 → look at the hundreds digit (8). 8 ≥ 5, round up to 6,000.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "For larger numbers, round to the nearest thousand. Example: 5,842 → look at the hundreds digit (8). 8 ≥ 5, round up to 6,000."
+    },
+    {
+      "id": "LRN_06",
+      "type": "instruction",
+      "cpa_phase": "abstract",
+      "title": "Choose the Place",
+      "content": "Choose a rounding place that makes sense: hundreds for 3-digit numbers, thousands for 4-digit, ten-thousands for 5-digit. A closer estimate comes from rounding to a smaller place.",
+      "visual_type": "none",
+      "visual_data": {},
+      "tts": "Choose a rounding place that makes sense: hundreds for 3-digit numbers, thousands for 4-digit, ten-thousands for 5-digit. A closer estimate comes from rounding to a smaller place."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 458 + 321 by rounding to the nearest hundred.",
+      "correct_answer": "800",
+      "hints": [
+        "Think about what estimate sum difference means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Round 458 to the nearest hundred: tens digit 5, round up to 500.",
+        "Round 321 to the nearest hundred: tens digit 2, round down to 300.",
+        "Add: 500 + 300 = 800."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 800. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 6,842 − 3,219 by rounding to the nearest thousand.",
+      "correct_answer": "4000",
+      "hints": [
+        "Think about what estimate sum difference means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "Round 6,842: hundreds 8, round up to 7,000.",
+        "Round 3,219: hundreds 2, round down to 3,000.",
+        "Subtract: 7,000 − 3,000 = 4,000."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4000. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 789 + 412 to the nearest hundred.",
+      "correct_answer": "1200",
+      "hints": [
+        "Think about what estimate sum difference means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "789→800.",
+        "412→400.",
+        "800+400=1,200."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1200. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 3,
+      "question": "Estimate 54,321 − 28,900 to the nearest ten-thousand.",
+      "correct_answer": "20000",
+      "hints": [
+        "Think about what estimate sum difference means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "54,321→50,000 (thousands digit 4, round down).",
+        "28,900→30,000 (thousands digit 8, round up).",
+        "50,000 − 30,000 = 20,000."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 20000. Work through each step carefully."
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 1,483 + 2,617 to the nearest thousand.",
+      "correct_answer": "4000",
+      "hints": [
+        "Think about what estimate sum difference means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "solution_steps": [
+        "1,483→1,000.",
+        "2,617→3,000.",
+        "1,000+3,000=4,000."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4000. Work through each step carefully."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 1,
+      "question": "Estimate 342 + 185 by rounding to the nearest hundred.",
+      "correct_answer": "500",
+      "hints": [
+        "Round each number to the nearest hundred, then add.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 500. 342→300, 185→200."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 1,
+      "question": "Estimate 567 + 234 by rounding to the nearest hundred.",
+      "correct_answer": "800",
+      "hints": [
+        "Round each number to the nearest hundred, then add.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 800. 567→600, 234→200."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 1,234 + 5,678 by rounding to the nearest thousand.",
+      "correct_answer": "7000",
+      "hints": [
+        "Round each number to the nearest thousand, then add.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7000. 1,234→1,000, 5,678→6,000."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 820 − 379 by rounding to the nearest hundred.",
+      "correct_answer": "400",
+      "hints": [
+        "Round each number to the nearest hundred, then subtract.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 400. 820→800, 379→400."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 6,500 − 2,300 by rounding to the nearest thousand.",
+      "correct_answer": "4000",
+      "hints": [
+        "Round each number to the nearest thousand, then subtract.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4000. 6,500→6,000, 2,300→2,000."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Which is the best estimate for 478 + 312 to the nearest hundred?",
+      "choices": [
+        "A) 700",
+        "B) 800",
+        "C) 900",
+        "D) 1,000"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 478→500, 312→300, sum=800."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Which is the best estimate for 9,234 − 4,789 to the nearest thousand?",
+      "choices": [
+        "A) 3,000",
+        "B) 4,000",
+        "C) 5,000",
+        "D) 6,000"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 9,234→9,000, 4,789→5,000, diff=4,000."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 1,
+      "question": "349 rounded to the nearest hundred is 300.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is True. Tens digit 4 < 5."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "4,500 rounded to the nearest thousand is 4,000.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is False. 4,500 rounds up to 5,000."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 2,310 + 4,890 by rounding to the nearest thousand.",
+      "correct_answer": "7000",
+      "hints": [
+        "Round each number to the nearest thousand, then add.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 7000. 2,310→2,000, 4,890→5,000."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 1,
+      "question": "Estimate 456 + 231 by rounding to the nearest hundred.",
+      "correct_answer": "700",
+      "hints": [
+        "Round each number to the nearest hundred, then add.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 700. 456→500, 231→200."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 712 + 489 by rounding to the nearest hundred.",
+      "correct_answer": "1200",
+      "hints": [
+        "Round each number to the nearest hundred, then add.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 1200. 712→700, 489→500."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 934 − 467 by rounding to the nearest hundred.",
+      "correct_answer": "400",
+      "hints": [
+        "Round each number to the nearest hundred, then subtract.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 400. 934→900, 467→500."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 3,456 + 2,789 by rounding to the nearest thousand.",
+      "correct_answer": "6000",
+      "hints": [
+        "Round each number to the nearest thousand, then add.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 6000. 3,456→3,000, 2,789→3,000."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 8,123 − 3,456 by rounding to the nearest thousand.",
+      "correct_answer": "5000",
+      "hints": [
+        "Round each number to the nearest thousand, then subtract.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5000. 8,123→8,000, 3,456→3,000."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 3,
+      "question": "Estimate 25,678 + 14,321 to the nearest ten-thousand.",
+      "choices": [
+        "A) 30,000",
+        "B) 40,000",
+        "C) 50,000",
+        "D) 60,000"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. 25,678→30,000, 14,321→10,000, sum=40,000."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Best estimate for 612 + 487 (nearest hundred)?",
+      "choices": [
+        "A) 900",
+        "B) 1,000",
+        "C) 1,100",
+        "D) 1,200"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. 612→600, 487→500, sum=1,100."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 3,
+      "question": "Estimate 55,555 + 44,444 to the nearest ten-thousand.",
+      "correct_answer": "100000",
+      "hints": [
+        "55,555→60,000, 44,444→40,000.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 100000. Work through it place by place."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "tf",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "6,499 rounded to the nearest thousand is 7,000.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "The answer is False. 6,499 rounds to 6,000 (hundreds digit 4 < 5)."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 1,
+      "question": "Estimate 48 + 31 by rounding to the nearest ten.",
+      "correct_answer": "80",
+      "hints": [
+        "48→50, 31→30.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 80. Work through it place by place."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 347 + 289 by rounding to the nearest hundred.",
+      "correct_answer": "600",
+      "hints": [
+        "Round each number to the nearest hundred, then add.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 600. 347→300, 289→300."
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Estimate 5,678 − 2,134 by rounding to the nearest thousand.",
+      "correct_answer": "4000",
+      "hints": [
+        "Round each number to the nearest thousand, then subtract.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 4000. 5,678→6,000, 2,134→2,000."
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 3,
+      "question": "Estimate 12,345 + 23,456 by rounding to the nearest ten-thousand.",
+      "correct_answer": "30000",
+      "hints": [
+        "Round each number to the nearest ten-thousand, then add.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 30000. 12,345→10,000, 23,456→20,000."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "mc",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 2,
+      "question": "Which estimate is closest to 729 + 481 (nearest hundred)?",
+      "choices": [
+        "A) 1,000",
+        "B) 1,100",
+        "C) 1,200",
+        "D) 1,300"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. 729→700, 481→500, sum=1,200."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_stage": "abstract",
+      "ccss": "4.NBT.B.4",
+      "skill_tag": "round_then_operate",
+      "concept": "estimate_sum_difference",
+      "difficulty": 3,
+      "question": "Estimate 9,876 − 4,321 to the nearest thousand.",
+      "correct_answer": "5000",
+      "hints": [
+        "9,876→10,000, 4,321→4,000.",
+        "Try drawing a picture or using a place-value chart."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is 5000. Work through it place by place."
+      }
+    }
+  ]
+}

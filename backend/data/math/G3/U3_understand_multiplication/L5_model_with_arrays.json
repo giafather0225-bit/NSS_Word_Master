@@ -3,92 +3,438 @@
   "title": "Model with Arrays",
   "grade": "G3",
   "unit": "U3_understand_multiplication",
-  "ccss": ["3.OA.A.3"],
-  "go_math_ref": { "chapter": 3, "lesson": "3.5", "pages": "119-122" },
+  "ccss": [
+    "3.OA.A.3"
+  ],
+  "go_math_ref": {
+    "chapter": 3,
+    "lesson": "3.5",
+    "pages": "119-122"
+  },
   "essential_question": "How can you use arrays to show multiplication and find products?",
-  "key_vocabulary": ["array", "row", "column", "product", "factor"],
-  "strategies": ["An array has rows and columns", "rows × columns = product", "Read arrays as 'rows of columns'"],
+  "key_vocabulary": [
+    "array",
+    "row",
+    "column",
+    "product",
+    "factor"
+  ],
+  "strategies": [
+    "An array has rows and columns",
+    "rows × columns = product",
+    "Read arrays as 'rows of columns'"
+  ],
   "items": [
-    { "id": "PT_01", "section": "pretest", "difficulty": 1,
+    {
+      "id": "PT_01",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "An array has 3 rows of 4. How many in all?",
-      "choices": ["A. 7","B. 10","C. 12","D. 15"], "answer": "C",
-      "explanation": "3 × 4 = 12." },
-    { "id": "PT_02", "section": "pretest", "difficulty": 1,
+      "choices": [
+        "A. 7",
+        "B. 10",
+        "C. 12",
+        "D. 15"
+      ],
+      "answer": "C",
+      "explanation": "3 × 4 = 12."
+    },
+    {
+      "id": "PT_02",
+      "section": "pretest",
+      "difficulty": 1,
       "question": "An array has 2 rows and 5 columns. What multiplication sentence does it show?",
-      "choices": ["A. 2 × 5 = 10","B. 5 × 5 = 25","C. 2 + 5 = 7","D. 5 × 2 = 7"], "answer": "A",
-      "explanation": "2 rows × 5 columns = 2 × 5 = 10." },
-    { "id": "PT_03", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 2 × 5 = 10",
+        "B. 5 × 5 = 25",
+        "C. 2 + 5 = 7",
+        "D. 5 × 2 = 7"
+      ],
+      "answer": "A",
+      "explanation": "2 rows × 5 columns = 2 × 5 = 10."
+    },
+    {
+      "id": "PT_03",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "An array shows 3 rows of 5. What is the product?",
-      "choices": ["A. 8","B. 12","C. 15","D. 20"], "answer": "C",
-      "explanation": "3 × 5 = 15." },
-    { "id": "PT_04", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 8",
+        "B. 12",
+        "C. 15",
+        "D. 20"
+      ],
+      "answer": "C",
+      "explanation": "3 × 5 = 15."
+    },
+    {
+      "id": "PT_04",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "Which array shows 4 × 6?",
-      "choices": ["A. 4 rows, 6 columns","B. 6 rows, 6 columns","C. 4 rows, 4 columns","D. 3 rows, 8 columns"], "answer": "A",
-      "explanation": "4 × 6 = 4 rows of 6." },
-    { "id": "PT_05", "section": "pretest", "difficulty": 2,
+      "choices": [
+        "A. 4 rows, 6 columns",
+        "B. 6 rows, 6 columns",
+        "C. 4 rows, 4 columns",
+        "D. 3 rows, 8 columns"
+      ],
+      "answer": "A",
+      "explanation": "4 × 6 = 4 rows of 6."
+    },
+    {
+      "id": "PT_05",
+      "section": "pretest",
+      "difficulty": 2,
       "question": "An array has 3 rows of 8. What is 3 × 8?",
-      "choices": ["A. 11","B. 21","C. 24","D. 27"], "answer": "C",
-      "explanation": "3 × 8 = 24." },
-    { "id": "LN_01", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "choices": [
+        "A. 11",
+        "B. 21",
+        "C. 24",
+        "D. 27"
+      ],
+      "answer": "C",
+      "explanation": "3 × 8 = 24."
+    },
+    {
+      "id": "LN_01",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "What is an Array?",
-      "content": "An array is a way to show objects in equal rows and columns. Rows go across (left to right). Columns go up and down. Every row has the same number of objects." },
-    { "id": "LN_02", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "content": "An array is a way to show objects in equal rows and columns. Rows go across (left to right). Columns go up and down. Every row has the same number of objects.",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "LN_02",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "Reading an Array",
-      "content": "To read an array: count the rows, then count how many in each row (columns). Example: 4 rows of 3 → 4 × 3 = 12." },
-    { "id": "LN_03", "section": "learn", "difficulty": 0, "type": "concept_card",
+      "content": "To read an array: count the rows, then count how many in each row (columns). Example: 4 rows of 3 → 4 × 3 = 12.",
+      "cpa_phase": "concrete",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "LN_03",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
       "title": "Arrays and Multiplication Sentences",
-      "content": "An array with 5 rows and 2 columns shows 5 × 2 = 10. You can also read it as 2 × 5 = 10 (columns × rows). The product is the same either way!" },
-    { "id": "TRY_01", "section": "try", "difficulty": 1,
+      "content": "An array with 5 rows and 2 columns shows 5 × 2 = 10. You can also read it as 2 × 5 = 10 (columns × rows). The product is the same either way!",
+      "cpa_phase": "pictorial",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      }
+    },
+    {
+      "id": "TRY_01",
+      "section": "try",
+      "difficulty": 1,
       "question": "Make an array: 2 rows of 6. Product?",
-      "choices": ["A. 8","B. 10","C. 12","D. 14"], "answer": "C",
-      "explanation": "2 × 6 = 12." },
-    { "id": "TRY_02", "section": "try", "difficulty": 2,
+      "choices": [
+        "A. 8",
+        "B. 10",
+        "C. 12",
+        "D. 14"
+      ],
+      "answer": "C",
+      "explanation": "2 × 6 = 12.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_02",
+      "section": "try",
+      "difficulty": 2,
       "question": "A marching band has 4 rows with 7 musicians in each row. How many musicians?",
-      "choices": ["A. 11","B. 21","C. 28","D. 32"], "answer": "C",
-      "explanation": "4 × 7 = 28." },
-    { "id": "TRY_03", "section": "try", "difficulty": 2,
+      "choices": [
+        "A. 11",
+        "B. 21",
+        "C. 28",
+        "D. 32"
+      ],
+      "answer": "C",
+      "explanation": "4 × 7 = 28.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "section": "try",
+      "difficulty": 2,
       "question": "An array shows 3 × 4 = 12. If you add one more row, what is the new product?",
-      "choices": ["A. 13","B. 15","C. 16","D. 20"], "answer": "C",
-      "explanation": "Now 4 rows of 4 = 4 × 4 = 16." },
-    { "id": "R1_01", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 13",
+        "B. 15",
+        "C. 16",
+        "D. 20"
+      ],
+      "answer": "C",
+      "explanation": "Now 4 rows of 4 = 4 × 4 = 16.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R1_01",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "5 rows of 3. Product?",
-      "choices": ["A. 8","B. 12","C. 15","D. 20"], "answer": "C",
-      "explanation": "5 × 3 = 15." },
-    { "id": "R1_02", "section": "practice_r1", "difficulty": 1,
+      "choices": [
+        "A. 8",
+        "B. 12",
+        "C. 15",
+        "D. 20"
+      ],
+      "answer": "C",
+      "explanation": "5 × 3 = 15.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+      }
+    },
+    {
+      "id": "R1_02",
+      "section": "practice_r1",
+      "difficulty": 1,
       "question": "An array has 6 rows of 2. Product?",
-      "choices": ["A. 8","B. 10","C. 12","D. 14"], "answer": "C",
-      "explanation": "6 × 2 = 12." },
-    { "id": "R1_03", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 8",
+        "B. 10",
+        "C. 12",
+        "D. 14"
+      ],
+      "answer": "C",
+      "explanation": "6 × 2 = 12.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+      }
+    },
+    {
+      "id": "R1_03",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "An array shows 3 × 7 = 21. How many rows and columns?",
-      "choices": ["A. 7 rows, 3 columns","B. 3 rows, 7 columns","C. 21 rows, 1 column","D. 1 row, 21 columns"], "answer": "B",
-      "explanation": "3 × 7: 3 rows, 7 columns." },
-    { "id": "R1_04", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 7 rows, 3 columns",
+        "B. 3 rows, 7 columns",
+        "C. 21 rows, 1 column",
+        "D. 1 row, 21 columns"
+      ],
+      "answer": "B",
+      "explanation": "3 × 7: 3 rows, 7 columns.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+      }
+    },
+    {
+      "id": "R1_04",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "235 rounded to the nearest ten?",
-      "choices": ["A. 200","B. 230","C. 240","D. 300"], "answer": "C",
-      "explanation": "235: ones digit 5 → round up to 240." },
-    { "id": "R1_05", "section": "practice_r1", "difficulty": 2,
+      "choices": [
+        "A. 200",
+        "B. 230",
+        "C. 240",
+        "D. 300"
+      ],
+      "answer": "C",
+      "explanation": "235: ones digit 5 → round up to 240.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+      }
+    },
+    {
+      "id": "R1_05",
+      "section": "practice_r1",
+      "difficulty": 2,
       "question": "A classroom has 5 rows of desks with 6 desks in each row. How many desks?",
-      "choices": ["A. 11","B. 25","C. 30","D. 35"], "answer": "C",
-      "explanation": "5 × 6 = 30." },
-    { "id": "R2_01", "section": "practice_r2", "difficulty": 2,
+      "choices": [
+        "A. 11",
+        "B. 25",
+        "C. 30",
+        "D. 35"
+      ],
+      "answer": "C",
+      "explanation": "5 × 6 = 30.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+      }
+    },
+    {
+      "id": "R2_01",
+      "section": "practice_r2",
+      "difficulty": 2,
       "question": "An array has 4 rows of 9. What is the product?",
-      "choices": ["A. 13","B. 32","C. 36","D. 40"], "answer": "C",
-      "explanation": "4 × 9 = 36." },
-    { "id": "R2_02", "section": "practice_r2", "difficulty": 3,
+      "choices": [
+        "A. 13",
+        "B. 32",
+        "C. 36",
+        "D. 40"
+      ],
+      "answer": "C",
+      "explanation": "4 × 9 = 36.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+      }
+    },
+    {
+      "id": "R2_02",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "Sam makes an array of stickers: 6 rows of 5. He gives away 1 full row. How many stickers does he have now?",
-      "choices": ["A. 20","B. 25","C. 29","D. 30"], "answer": "B",
-      "explanation": "6×5=30. Remove 1 row of 5: 30−5=25." },
-    { "id": "R2_03", "section": "practice_r2", "difficulty": 3,
+      "choices": [
+        "A. 20",
+        "B. 25",
+        "C. 29",
+        "D. 30"
+      ],
+      "answer": "B",
+      "explanation": "6×5=30. Remove 1 row of 5: 30−5=25.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+      }
+    },
+    {
+      "id": "R2_03",
+      "section": "practice_r2",
+      "difficulty": 3,
       "question": "An array has ? rows of 8 and the product is 40. How many rows?",
-      "choices": ["A. 4","B. 5","C. 6","D. 8"], "answer": "B",
-      "explanation": "40 ÷ 8 = 5 rows." },
-    { "id": "R3_01", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. 4",
+        "B. 5",
+        "C. 6",
+        "D. 8"
+      ],
+      "answer": "B",
+      "explanation": "40 ÷ 8 = 5 rows.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+      }
+    },
+    {
+      "id": "R3_01",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "Jenny arranges 24 chairs in equal rows. Which is NOT a possible arrangement?",
-      "choices": ["A. 3 rows of 8","B. 4 rows of 6","C. 5 rows of 5","D. 6 rows of 4"], "answer": "C",
-      "explanation": "5×5=25≠24. All others equal 24." },
-    { "id": "R3_02", "section": "practice_r3", "difficulty": 3,
+      "choices": [
+        "A. 3 rows of 8",
+        "B. 4 rows of 6",
+        "C. 5 rows of 5",
+        "D. 6 rows of 4"
+      ],
+      "answer": "C",
+      "explanation": "5×5=25≠24. All others equal 24.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+      }
+    },
+    {
+      "id": "R3_02",
+      "section": "practice_r3",
+      "difficulty": 3,
       "question": "An array is 3 rows of 9. Another array is 9 rows of 3. Are the products the same?",
-      "choices": ["A. No, first is larger","B. No, second is larger","C. Yes, both are 27","D. Yes, both are 12"], "answer": "C",
-      "explanation": "3×9=27 and 9×3=27." }
-  ]
+      "choices": [
+        "A. No, first is larger",
+        "B. No, second is larger",
+        "C. Yes, both are 27",
+        "D. Yes, both are 12"
+      ],
+      "answer": "C",
+      "explanation": "3×9=27 and 9×3=27.",
+      "hints": [
+        "Think about what model with arrays means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+      }
+    }
+  ],
+  "concept": "model_with_arrays"
 }
