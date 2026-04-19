@@ -146,7 +146,7 @@ async def _extract_via_gemini(b64_image: str, mime: str = "image/jpeg") -> list[
     try:
         async with httpx.AsyncClient(timeout=60) as client:
             resp = await client.post(
-                f"{_GEMINI_URL}?key={_GEMINI_KEY}", json=payload
+                _GEMINI_URL, json=payload, headers={"x-goog-api-key": _GEMINI_KEY}
             )
             if resp.status_code == 429:
                 log.warning("Gemini 429 rate-limited, will try local model")

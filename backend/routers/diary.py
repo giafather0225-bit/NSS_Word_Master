@@ -26,9 +26,11 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import DiaryEntry, GrowthEvent
+    from ..schemas_common import Str30, Str5000
 except ImportError:
     from database import get_db
     from models import DiaryEntry, GrowthEvent
+    from schemas_common import Str30, Str5000
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -43,13 +45,11 @@ _CANNED_FEEDBACK = "Great writing! Keep practicing every day. 📝"
 
 class DiaryEntryCreate(BaseModel):
     """Request body for creating or updating a diary entry."""
-    content: str
-    entry_date: str
+    content: Str5000
+    entry_date: Str30
 
     def clean(self) -> "DiaryEntryCreate":
-        """Sanitize and validate fields."""
-        self.content    = self.content.strip()[:5000]
-        self.entry_date = self.entry_date.strip()
+        """Validate entry_date format (length enforced by Pydantic — 422 on overflow)."""
         if not _DATE_RE.match(self.entry_date):
             raise HTTPException(status_code=400, detail="entry_date must be YYYY-MM-DD")
         return self
@@ -91,10 +91,14 @@ async def _feedback_gemini(content: str) -> str:
     prompt = _build_feedback_prompt(content)
     url = (
         "https://generativelanguage.googleapis.com/v1/models/"
-        f"gemini-2.0-flash:generateContent?key={_GEMINI_API_KEY}"
+        "gemini-2.0-flash:generateContent"
     )
     async with httpx.AsyncClient(timeout=8.0) as client:
-        resp = await client.post(url, json={"contents": [{"parts": [{"text": prompt}]}]})
+        resp = await client.post(
+            url,
+            json={"contents": [{"parts": [{"text": prompt}]}]},
+            headers={"x-goog-api-key": _GEMINI_API_KEY},
+        )
         resp.raise_for_status()
     try:
         return resp.json()["candidates"][0]["content"]["parts"][0]["text"].strip()

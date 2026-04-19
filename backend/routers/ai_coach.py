@@ -101,12 +101,13 @@ async def ai_coach_today(db: Session = Depends(get_db)) -> dict:
         try:
             gemini_url = (
                 "https://generativelanguage.googleapis.com/v1/models/"
-                f"gemini-1.5-flash:generateContent?key={gemini_key}"
+                "gemini-1.5-flash:generateContent"
             )
             async with httpx.AsyncClient(timeout=8.0) as client:
                 resp = await client.post(
                     gemini_url,
                     json={"contents": [{"parts": [{"text": prompt}]}]},
+                    headers={"x-goog-api-key": gemini_key},
                 )
                 if resp.status_code == 200:
                     text = (

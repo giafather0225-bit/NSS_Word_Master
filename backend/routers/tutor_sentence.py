@@ -120,9 +120,13 @@ async def _evaluate_with_gemini(word: str, sentence: str) -> dict:
     if not _GEMINI_API_KEY:
         raise ValueError("GEMINI_API_KEY not set")
     prompt = _EVAL_PROMPT_TEMPLATE.format(word=word, sentence=sentence)
-    url = f"https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key={_GEMINI_API_KEY}"
+    url = "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent"
     async with httpx.AsyncClient(timeout=15) as client:
-        resp = await client.post(url, json={"contents": [{"parts": [{"text": prompt}]}]})
+        resp = await client.post(
+            url,
+            json={"contents": [{"parts": [{"text": prompt}]}]},
+            headers={"x-goog-api-key": _GEMINI_API_KEY},
+        )
         resp.raise_for_status()
     raw = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
     m = _re.search(r"\{[\s\S]*\}", raw)
