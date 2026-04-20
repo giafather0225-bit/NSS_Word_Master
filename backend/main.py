@@ -59,6 +59,7 @@ from backend.routers import schedules as schedules_router
 from backend.routers import dashboard as dashboard_router
 from backend.routers import tutor_sentence as tutor_sentence_router
 from backend.routers import ai_assistant as ai_assistant_router
+from backend.routers import ai_assistant_log as ai_assistant_log_router
 from backend.services import ollama_manager, backup_engine
 
 # ── DB init ────────────────────────────────────────────────
@@ -129,6 +130,23 @@ app.add_middleware(
     allow_headers=["Content-Type", "Authorization"],
 )
 
+# ── Memory Rate Limiting Middleware (5 req/s) ────────────────
+import time
+_IP_TRACKER = {}
+
+@app.middleware("http")
+async def rate_limit_middleware(request: Request, call_next):
+    if request.url.path.startswith("/api/assistant/chat"):
+        client_ip = request.client.host if request.client else "0.0.0.0"
+        now = time.time()
+        reqs = _IP_TRACKER.get(client_ip, [])
+        # Filter requests within the last 1 second
+        reqs = [t for t in reqs if now - t < 1.0]
+        if len(reqs) >= 5:
+            return JSONResponse(status_code=429, content={"message": "Too Many Requests. Rate limited to 5 req/s."})
+        reqs.append(now)
+        _IP_TRACKER[client_ip] = reqs
+    return await call_next(request)
 
 # ── Validation error → child-friendly 422 JSON ───────────────
 # Replaces the old silent ``.strip()[:N]`` pattern. When a payload field is
@@ -230,6 +248,7 @@ app.include_router(schedules_router.router)
 app.include_router(dashboard_router.router)
 app.include_router(tutor_sentence_router.router)
 app.include_router(ai_assistant_router.router)
+app.include_router(ai_assistant_log_router.router)
 
 
 # ── Static page routes ─────────────────────────────────────

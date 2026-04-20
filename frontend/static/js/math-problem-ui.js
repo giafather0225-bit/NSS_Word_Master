@@ -114,6 +114,12 @@ function renderMathProblem() {
 
     if (toolsHtml) _wireMathToolsPanel(p);
 
+    // KaTeX: render math in the question area (body is populated by per-type renderer below)
+    if (typeof window.mathRenderIn === 'function') {
+        const qEl = stage.querySelector('.math-problem-question');
+        if (qEl) window.mathRenderIn(qEl);
+    }
+
     const body = document.getElementById('math-problem-body');
 
     // Render based on type (renderers live in math-problem-types.js)
@@ -145,6 +151,7 @@ function renderMathProblem() {
             if (hintIdx < p.hints.length) {
                 box.classList.remove('hidden');
                 box.innerHTML += `<p class="math-hint-item">💡 ${_escP(p.hints[hintIdx])}</p>`;
+                if (typeof window.mathRenderIn === 'function') window.mathRenderIn(box);
                 hintIdx++;
             }
             if (hintIdx >= p.hints.length) hintBtn.disabled = true;

@@ -43,6 +43,7 @@ from .math import (
     MathDailyChallenge,
     MathKangarooProgress,
 )
+from .assistant import AssistantLog
 
 __all__ = [
     "Base",
@@ -59,4 +60,6 @@ __all__ = [
     # math
     "MathPlacementResult", "MathProblem", "MathProgress", "MathAttempt",
     "MathWrongReview", "MathFactFluency", "MathDailyChallenge", "MathKangarooProgress",
+    # assistant
+    "AssistantLog",
 ]

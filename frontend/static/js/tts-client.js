@@ -12,6 +12,19 @@
 /** @tag TTS */
 let _globalCurrentAudio = null;
 
+window.TTS = {
+    stop: () => {
+        if (_globalCurrentAudio) {
+            _globalCurrentAudio.pause();
+            _globalCurrentAudio.currentTime = 0;
+            _globalCurrentAudio = null;
+        }
+        if (window.speechSynthesis?.speaking) {
+            window.speechSynthesis.cancel();
+        }
+    }
+};
+
 // ─── Offline TTS fallback (speechSynthesis) ──────────────────
 /**
  * Speak text using the browser's built-in SpeechSynthesis (works offline).
@@ -19,6 +32,7 @@ let _globalCurrentAudio = null;
  * @tag TTS OFFLINE
  */
 function _speakLocal(text, { rate = 0.9, pitch = 1.0 } = {}) {
+    if (window.ShadowTTS?.isPlaying) window.ShadowTTS.stop();
     if (!('speechSynthesis' in window)) return Promise.resolve();
     return new Promise((resolve) => {
         try {
@@ -52,6 +66,7 @@ function _isOffline() {
  * @tag TTS PREVIEW
  */
 async function apiPreviewTTS(item) {
+    if (window.ShadowTTS?.isPlaying) window.ShadowTTS.stop();
     if (_isOffline()) {
         const text = [item.answer, item.question, item.hint].filter(Boolean).join('. ');
         return _speakLocal(text, { rate: 0.9 });
@@ -90,6 +105,7 @@ let _wordOnlyInFlight = false;
  * @tag TTS SPELLING WORD_MATCH
  */
 async function apiWordOnly(word) {
+    if (window.ShadowTTS?.isPlaying) window.ShadowTTS.stop();
     if (_wordOnlyInFlight) return;
     _wordOnlyInFlight = true;
 
@@ -136,6 +152,7 @@ let _exampleFullInFlight = false;
  * @tag TTS FILL_BLANK FINAL_TEST SENTENCE
  */
 async function apiExampleFull(sentence) {
+    if (window.ShadowTTS?.isPlaying) window.ShadowTTS.stop();
     if (_exampleFullInFlight) return;
     _exampleFullInFlight = true;
 

@@ -91,6 +91,12 @@ function _renderCurrentLearnCard() {
         </div>
     `;
 
+    // KaTeX: render any math in title/content/mini-quiz
+    if (typeof window.mathRenderIn === 'function') {
+        const cardEl = stage.querySelector('.math-learn-card');
+        if (cardEl) window.mathRenderIn(cardEl);
+    }
+
     // Wire buttons
     document.getElementById('math-learn-tts').addEventListener('click', () => _playLearnTTS(card));
     document.getElementById('math-learn-next').addEventListener('click', () => {

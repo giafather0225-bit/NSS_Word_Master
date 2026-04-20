@@ -118,6 +118,9 @@ function showMathFeedback(result, problem, onNext) {
 
     stage.appendChild(overlay);
 
+    // KaTeX: render math in feedback answer, feedback text, and any solution steps
+    if (typeof window.mathRenderIn === 'function') window.mathRenderIn(overlay);
+
     if (result._cpaFallback) {
         const cpaSlot = document.getElementById('math-cpa-manip-slot');
         const c = result._cpaFallback;
@@ -210,6 +213,7 @@ function _wireReadOnlySteps(steps, autoOpen) {
         li.textContent = steps[idx];
         li.style.opacity = '0';
         listEl.appendChild(li);
+        if (typeof window.mathRenderIn === 'function') window.mathRenderIn(li);
         requestAnimationFrame(() => {
             li.style.transition = 'opacity 0.25s ease';
             li.style.opacity = '1';

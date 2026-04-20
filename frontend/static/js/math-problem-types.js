@@ -43,6 +43,7 @@ function _renderDragSort(body, problem) {
     `;
 
     const listEl = document.getElementById('math-drag-list');
+    if (typeof window.mathRenderIn === 'function') window.mathRenderIn(listEl);
     let draggingEl = null;
 
     listEl.querySelectorAll('.math-drag-item').forEach(el => {
@@ -105,6 +106,9 @@ function _renderMC(body, problem) {
     body.querySelectorAll('.math-mc-btn').forEach(btn => {
         btn.addEventListener('click', () => _submitProblemAnswer(problem, btn.dataset.val));
     });
+
+    // KaTeX on option labels
+    if (typeof window.mathRenderIn === 'function') window.mathRenderIn(body);
 
     // Keyboard shortcuts A-D
     const handler = (e) => {
