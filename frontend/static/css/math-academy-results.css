@@ -1,0 +1,297 @@
+/* ================================================================
+   math-academy-results.css — Round summary, Complete, Wrong Review
+   Section: Math
+   Dependencies: theme.css
+   Split from: math-academy-stages.css (2026-04, After redesign)
+   Styling: After (Math Academy redesign 2026-04) — tokens only.
+   ================================================================ */
+
+/* ── Round summary — hero stat + segmented bar + focus list ── */
+
+.math-round-summary {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.math-summary-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: var(--color-success-light);
+    color: var(--math-pass);
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+}
+
+.math-summary-chip.is-fail { background: var(--color-warning-light); color: var(--color-warning); }
+
+.math-summary-hero {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-card);
+    padding: 22px 24px;
+    margin-bottom: 12px;
+}
+
+.math-summary-hero-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    gap: 12px;
+}
+
+.math-summary-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.math-summary-pct {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--math-pass);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    margin-top: 4px;
+}
+
+.math-summary-pct .math-summary-pct-unit {
+    font-size: 24px;
+    color: var(--text-hint);
+    font-weight: 600;
+    margin-left: 2px;
+}
+
+.math-summary-pct.is-fail { color: var(--color-warning); }
+
+.math-summary-score {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+    margin-top: 4px;
+}
+
+.math-summary-score-total { color: var(--text-hint); font-weight: 500; }
+
+.math-summary-segments {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.math-summary-segment {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--bg-surface);
+}
+
+.math-summary-segment.correct { background: var(--math-pass); }
+.math-summary-segment.wrong   { background: var(--color-error); }
+
+.math-summary-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-hint);
+}
+
+.math-summary-meta-row .math-summary-xp {
+    color: var(--math-pass);
+    font-weight: 600;
+}
+
+.math-summary-weak {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-card);
+    padding: 16px 18px;
+    margin-bottom: 12px;
+}
+
+.math-summary-weak-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.math-summary-weak-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.math-summary-weak-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.math-summary-weak-row-count {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-secondary);
+    background: var(--color-secondary-light);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+}
+
+.math-summary-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.math-summary-actions .math-btn-ghost {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 14px;
+}
+
+.math-summary-actions .math-btn-primary { flex: 1.4; }
+
+/* ── Complete screen — hero celebration + stats grid ───────── */
+
+.math-complete {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.math-complete-hero {
+    background: linear-gradient(180deg, rgba(52, 199, 89, 0.12) 0%, rgba(52, 199, 89, 0.02) 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(52, 199, 89, 0.25);
+    padding: 28px 24px;
+    margin-bottom: 14px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.math-complete-icon { font-size: 48px; margin-bottom: 6px; }
+
+.math-complete h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--math-pass);
+    margin: 0 0 4px;
+}
+
+.math-complete p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0 0 16px;
+}
+
+.math-complete-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 12px 8px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-card);
+}
+
+.math-complete-stat { text-align: center; }
+
+.math-complete-stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.math-complete-stat-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+}
+
+.math-complete-stat-sub {
+    font-size: 10px;
+    color: var(--text-hint);
+    margin-top: 1px;
+}
+
+.math-complete-detail {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+}
+
+.math-complete-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.math-complete-actions .math-btn-ghost { flex: 1; padding: 12px 16px; font-size: 14px; }
+.math-complete-actions .math-btn-primary { flex: 1.4; }
+
+/* ── Wrong review ──────────────────────────────────────────── */
+
+.math-wrong-review {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.math-wrong-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: var(--color-secondary-light);
+    color: var(--color-secondary);
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.math-wrong-review h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 4px;
+}
+
+.math-wrong-review p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0 0 16px;
+    line-height: 1.55;
+}
+
+.math-wrong-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--text-primary);
+    word-break: break-word;
+}

@@ -87,28 +87,44 @@ function _renderRoundSummary({ stageLabel, correct, total, pct, passed, weakConc
     const stageEl = document.getElementById('stage');
     if (!stageEl) return;
 
-    const icon = passed ? '\u{1F389}' : '\u{1F4AA}';
-    const title = passed ? `${stageLabel} Complete!` : `Almost There!`;
+    const chipLabel = passed ? `\u2713 ${stageLabel} Passed` : `Need 80%`;
+    const segments = [];
+    for (let i = 0; i < total; i++) {
+        segments.push(`<div class="math-summary-segment ${i < correct ? 'correct' : 'wrong'}"></div>`);
+    }
     const weakHtml = weakConcepts.length > 0
         ? `<div class="math-summary-weak">
-              <div class="math-summary-weak-label">Focus areas</div>
-              <div class="math-summary-weak-list">${weakConcepts.map(c => `<span class="math-summary-chip">${_escS(c)}</span>`).join('')}</div>
+              <div class="math-summary-weak-label">\u{1F4CD} Focus areas</div>
+              <div class="math-summary-weak-list">${weakConcepts.map(c => `<div class="math-summary-weak-row"><span>${_escS(c)}</span></div>`).join('')}</div>
            </div>`
         : '';
 
     stageEl.innerHTML = `
         <div class="math-round-summary">
-            <div class="math-summary-icon">${icon}</div>
-            <h2 class="math-summary-title">${title}</h2>
-            <div class="math-summary-score">${correct} / ${total}</div>
-            <div class="math-summary-pct">${pct}% accuracy ${passed ? '\u2022 Passed' : '\u2022 Need 80%'}</div>
-            <div class="math-summary-bar">
-                <div class="math-summary-bar-fill ${passed ? 'pass' : 'fail'}" style="width:${pct}%"></div>
+            <span class="math-summary-chip ${passed ? '' : 'is-fail'}">${chipLabel}</span>
+            <div class="math-summary-hero">
+                <div class="math-summary-hero-row">
+                    <div>
+                        <div class="math-summary-label">Accuracy</div>
+                        <div class="math-summary-pct ${passed ? '' : 'is-fail'}">${pct}<span class="math-summary-pct-unit">%</span></div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="math-summary-label">Score</div>
+                        <div class="math-summary-score">${correct}<span class="math-summary-score-total"> / ${total}</span></div>
+                    </div>
+                </div>
+                <div class="math-summary-segments">${segments.join('')}</div>
+                <div class="math-summary-meta-row">
+                    <span>${stageLabel}</span>
+                    <span>${passed ? '\u2022 Passed' : '\u2022 Keep practicing'}</span>
+                </div>
             </div>
             ${weakHtml}
-            <button class="math-btn-primary math-summary-cta" id="math-summary-continue">
-                ${passed ? 'Continue \u2192' : 'Try Again'}
-            </button>
+            <div class="math-summary-actions">
+                <button class="math-btn-primary" id="math-summary-continue">
+                    ${passed ? 'Continue \u2192' : 'Try Again'}
+                </button>
+            </div>
         </div>
     `;
 
@@ -180,15 +196,35 @@ function renderMathComplete() {
     if (!stage) return;
     renderMathRoadmap();
 
+    const lessonName = (mathState.lesson || '').replace(/_/g, ' ');
+    const pretestPct = Math.round((mathState.pretestScore || 0) / 5 * 100);
     stage.innerHTML = `
         <div class="math-complete">
-            <div class="math-complete-icon">🎉</div>
-            <h2>Lesson Complete!</h2>
-            <p>${mathState.lesson.replace(/_/g, ' ')}</p>
-            <p class="math-complete-detail">
-                Pretest: ${mathState.pretestScore}/5
-            </p>
-            <button class="math-btn-primary" onclick="exitMathLesson()">Back to Math</button>
+            <div class="math-complete-hero">
+                <div class="math-complete-icon">\u{1F389}</div>
+                <h2>Lesson Complete!</h2>
+                <p>${_escS(lessonName)}</p>
+                <div class="math-complete-stats">
+                    <div class="math-complete-stat">
+                        <div class="math-complete-stat-label">Pretest</div>
+                        <div class="math-complete-stat-val">${mathState.pretestScore}/5</div>
+                        <div class="math-complete-stat-sub">${pretestPct}%</div>
+                    </div>
+                    <div class="math-complete-stat">
+                        <div class="math-complete-stat-label">Rounds</div>
+                        <div class="math-complete-stat-val">3</div>
+                        <div class="math-complete-stat-sub">Completed</div>
+                    </div>
+                    <div class="math-complete-stat">
+                        <div class="math-complete-stat-label">Mastery</div>
+                        <div class="math-complete-stat-val">\u2713</div>
+                        <div class="math-complete-stat-sub">Unlocked</div>
+                    </div>
+                </div>
+            </div>
+            <div class="math-complete-actions">
+                <button class="math-btn-primary" onclick="exitMathLesson()">Back to Math</button>
+            </div>
         </div>
     `;
 }
