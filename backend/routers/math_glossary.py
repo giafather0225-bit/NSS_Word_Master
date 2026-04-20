@@ -9,6 +9,7 @@ API: GET /api/math/glossary/grades
 
 import json
 import logging
+from functools import lru_cache
 from pathlib import Path
 
 from fastapi import APIRouter, HTTPException
@@ -19,11 +20,22 @@ logger = logging.getLogger(__name__)
 _GLOSSARY_DIR = Path(__file__).parent.parent / "data" / "math" / "glossary"
 
 
+@lru_cache(maxsize=32)
+def _read_json_cached(path_str: str, mtime: float) -> dict:
+    """Parse glossary JSON keyed by (path, mtime)."""
+    return json.loads(Path(path_str).read_text("utf-8"))
+
+
 def _load_grade(grade: str) -> dict:
     path = _GLOSSARY_DIR / f"{grade.lower()}.json"
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"Glossary for {grade} not found")
-    return json.loads(path.read_text("utf-8"))
+    return _read_json_cached(str(path), path.stat().st_mtime)
+
+
+def clear_caches() -> None:
+    """Drop cached glossary JSONs."""
+    _read_json_cached.cache_clear()
 
 
 # @tag MATH @tag GLOSSARY
@@ -35,7 +47,7 @@ def glossary_grades():
     grades = []
     for f in sorted(_GLOSSARY_DIR.glob("*.json")):
         try:
-            data = json.loads(f.read_text("utf-8"))
+            data = _read_json_cached(str(f), f.stat().st_mtime)
         except Exception:
             continue
         grades.append({

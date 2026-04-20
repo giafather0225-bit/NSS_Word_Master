@@ -9,6 +9,7 @@ API: GET /api/math/placement/status, GET /api/math/placement/start,
 import json
 import logging
 from datetime import datetime
+from functools import lru_cache
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -28,10 +29,21 @@ logger = logging.getLogger(__name__)
 _BANK_PATH = Path(__file__).resolve().parents[1] / "data" / "math" / "placement" / "bank.json"
 
 
+@lru_cache(maxsize=4)
+def _read_bank_cached(path_str: str, mtime: float) -> dict:
+    """Parse bank JSON keyed by (path, mtime) — file edits auto-invalidate."""
+    return json.loads(Path(path_str).read_text("utf-8"))
+
+
 def _load_bank():
     if not _BANK_PATH.exists():
         raise HTTPException(status_code=500, detail="Placement bank not found")
-    return json.loads(_BANK_PATH.read_text("utf-8"))
+    return _read_bank_cached(str(_BANK_PATH), _BANK_PATH.stat().st_mtime)
+
+
+def clear_caches() -> None:
+    """Drop the cached placement bank."""
+    _read_bank_cached.cache_clear()
 
 
 # ── Endpoints ────────────────────────────────────────────────

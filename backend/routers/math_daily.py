@@ -12,6 +12,7 @@ import json
 import logging
 import random
 from datetime import datetime
+from functools import lru_cache
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -40,11 +41,29 @@ _MIX_SPIRAL_PCT = 0.20
 
 # ── Problem pool ─────────────────────────────────────────────
 
+# Daily-keyed cache for the full practice-problem pool.
+# Scanning ~435 lesson JSONs on every /submit-answer call was a major
+# bottleneck. The pool itself is pure function of on-disk content; we key
+# by date so edits picked up once per day (or via clear_caches()).
+_pool_cache: dict[str, list[dict]] = {}
+
+
 # @tag MATH @tag DAILY
 def _collect_practice_problems() -> list[dict]:
-    """Walk all lesson JSONs and collect every practice problem (flat list)."""
+    """Walk all lesson JSONs and collect every practice problem (flat list).
+
+    Cached for the current day — subsequent calls same-day return the same
+    list reference. Call clear_caches() after content edits to force refresh.
+    """
+    today = datetime.now().strftime("%Y-%m-%d")
+    cached = _pool_cache.get(today)
+    if cached is not None:
+        return cached
+
     pool: list[dict] = []
     if not _MATH_DIR.is_dir():
+        _pool_cache.clear()
+        _pool_cache[today] = pool
         return pool
     for grade_dir in sorted(_MATH_DIR.iterdir()):
         if not grade_dir.is_dir() or not grade_dir.name.startswith("G"):
@@ -71,7 +90,15 @@ def _collect_practice_problems() -> list[dict]:
                             "feedback_correct": p.get("feedback_correct", "Correct!"),
                             "feedback_wrong": p.get("feedback_wrong", ""),
                         })
+    _pool_cache.clear()
+    _pool_cache[today] = pool
     return pool
+
+
+# @tag MATH @tag DAILY
+def clear_caches() -> None:
+    """Drop the cached practice-problem pool (force rescan on next call)."""
+    _pool_cache.clear()
 
 
 def _parse_problem_id(pid: str) -> tuple[str, str, str]:

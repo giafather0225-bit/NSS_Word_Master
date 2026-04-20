@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import logging
 from datetime import date, datetime
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -40,16 +41,29 @@ _KANGAROO_DIR = Path(__file__).parent.parent / "data" / "math" / "kangaroo"
 # ── Helpers ─────────────────────────────────────────────────
 
 # @tag MATH @tag KANGAROO
+@lru_cache(maxsize=128)
+def _read_set_cached(path_str: str, mtime: float) -> dict[str, Any]:
+    """Parse a kangaroo set JSON keyed by (path, mtime)."""
+    return json.loads(Path(path_str).read_text("utf-8"))
+
+
+# @tag MATH @tag KANGAROO
 def _load_set(set_id: str) -> dict[str, Any]:
-    """Load a Kangaroo set JSON by id or raise 404."""
+    """Load a Kangaroo set JSON by id or raise 404 (cached by mtime)."""
     path = _KANGAROO_DIR / f"{set_id}.json"
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"Set {set_id} not found")
     try:
-        return json.loads(path.read_text("utf-8"))
+        return _read_set_cached(str(path), path.stat().st_mtime)
     except json.JSONDecodeError as exc:
         logger.exception("Invalid JSON in %s", path)
         raise HTTPException(status_code=500, detail="Corrupt set data") from exc
+
+
+# @tag MATH @tag KANGAROO
+def clear_caches() -> None:
+    """Drop cached set JSONs (call after bulk file edits)."""
+    _read_set_cached.cache_clear()
 
 
 # @tag MATH @tag KANGAROO
@@ -116,14 +130,18 @@ def kangaroo_sets(db: Session = Depends(get_db)) -> dict[str, Any]:
     result: list[dict[str, Any]] = []
     if not _KANGAROO_DIR.is_dir():
         return {"sets": []}
+    # Batch-fetch all progress rows once — avoid N+1 (one query per set).
+    progress_by_id = {
+        p.set_id: p for p in db.query(MathKangarooProgress).all()
+    }
     for path in sorted(_KANGAROO_DIR.glob("*.json")):
         try:
-            data = json.loads(path.read_text("utf-8"))
+            data = _read_set_cached(str(path), path.stat().st_mtime)
         except Exception:
             logger.warning("Skipping unreadable set %s", path.name)
             continue
         set_id = data.get("set_id") or path.stem
-        prog = db.query(MathKangarooProgress).filter_by(set_id=set_id).first()
+        prog = progress_by_id.get(set_id)
         result.append({
             "set_id": set_id,
             "title": data.get("title", set_id),
