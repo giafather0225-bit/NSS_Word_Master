@@ -13,41 +13,13 @@
  * Find a cached Learn card whose concept matches the problem, for Pictorial fallback.
  * @tag MATH @tag CPA_FALLBACK
  */
-
-// ═══ PHASE-0 FIX P2: improved CPA fallback matching ═══
 function _findCpaFallback(problem) {
-  const cards = mathState.learnCards;
-  if (!cards || !cards.length) return null;
-  const pictorial = cards.filter(c => c.cpa_phase === 'pictorial');
-  if (!pictorial.length) return null;
-  const concept = (problem.concept || '').toLowerCase();
-  if (!concept) return pictorial[0];
-  const tokens = concept.replace(/_/g, ' ').split(/\s+/).filter(t => t.length >= 3);
-  // 1: exact concept match
-  const exact = pictorial.find(c => (c.concept || '').toLowerCase() === concept);
-  if (exact) return exact;
-  // 2: title token match (2+)
-  const titleMatch = pictorial.find(c => {
-    const t = (c.title || '').toLowerCase();
-    return tokens.filter(tok => t.includes(tok)).length >= 2;
-  });
-  if (titleMatch) return titleMatch;
-  // 3: content token match (2+)
-  const contentMatch = pictorial.find(c => {
-    const txt = ((c.content || '') + ' ' + (c.text || '')).toLowerCase();
-    return tokens.filter(tok => txt.includes(tok)).length >= 2;
-  });
-  if (contentMatch) return contentMatch;
-  // 4: single token in title
-  const singleMatch = pictorial.find(c => {
-    const t = (c.title || '').toLowerCase();
-    return tokens.some(tok => t.includes(tok));
-  });
-  if (singleMatch) return singleMatch;
-  return pictorial[0];
+    if (!mathState.learnCards || mathState.learnCards.length === 0) return null;
+    const concept = (problem.concept || '').toLowerCase();
+    const pictorialCards = mathState.learnCards.filter(c => c.cpa_phase === 'pictorial');
+    const matched = pictorialCards.find(c => concept && (c.content || '').toLowerCase().includes(concept.split(' ')[0]));
+    return matched || pictorialCards[0] || null;
 }
-// ═══ END P2 ═══════════════════════════════════════════
-
 
 // ── Early bump prompt (5 consecutive correct in Practice) ──
 
@@ -220,16 +192,6 @@ function retryMathStage() {
  * @tag MATH @tag ACADEMY
  */
 function renderMathComplete() {
-  // ── PHASE-0 FIX P0: call complete-lesson API ──
-  try {
-    await fetch('/api/math/academy/complete-lesson', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ grade: mathState.grade, unit: mathState.unit, lesson: mathState.lesson })
-    });
-  } catch (e) { console.error('complete-lesson failed', e); }
-  // ── END P0 ──
-
     const stage = document.getElementById('stage');
     if (!stage) return;
     renderMathRoadmap();

@@ -134,6 +134,7 @@ def kangaroo_sets(db: Session = Depends(get_db)) -> dict[str, Any]:
             "time_limit_minutes": int(data.get("time_limit_minutes", 0) or 0),
             "max_score": int(data.get("max_score", 0) or 0),
             "category": data.get("category", "full_test"),
+            "drill_topic": data.get("drill_topic"),
             "best_score": prog.score if prog else None,
             "completed": bool(prog and prog.completed_at),
         })

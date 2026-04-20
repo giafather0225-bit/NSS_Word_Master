@@ -144,7 +144,6 @@ function _renderTF(body, problem) {
 
 /** @tag MATH @tag PROBLEM @tag INPUT */
 function _renderInput(body, problem) {
-    let _inputSubmitted = false; // PHASE-0 FIX P3: prevent double submit
     body.innerHTML = `
         <div class="math-input-group">
             <input type="text" class="math-input-field" id="math-answer-input"
@@ -159,19 +158,15 @@ function _renderInput(body, problem) {
     const submitBtn = document.getElementById('math-submit-btn');
 
     submitBtn.addEventListener('click', () => {
-        if (_inputSubmitted) return; // P3 guard
         const val = input.value.trim();
         if (!val) { input.focus(); return; }
-        _inputSubmitted = true; // P3 lock
         _submitProblemAnswer(problem, val);
     });
 
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            if (_inputSubmitted) return; // P3 guard
             const val = input.value.trim();
             if (!val) return;
-            _inputSubmitted = true; // P3 lock
             _submitProblemAnswer(problem, val);
         }
     });

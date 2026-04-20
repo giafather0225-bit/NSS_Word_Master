@@ -112,11 +112,7 @@ function _kangRenderGrid() {
         (s.level === kangState.level) && ((s.category || 'full_test') === kangState.tab)
     );
     if (!filtered.length) {
-        if (kangState.tab === 'drill') {
-            grid.innerHTML = `<p class="kang-empty">Coming in Phase 4.</p>`;
-        } else {
-            grid.innerHTML = `<p class="kang-empty">No sets available for this level yet.</p>`;
-        }
+        grid.innerHTML = `<p class="kang-empty">No sets available for this level yet.</p>`;
         return;
     }
     grid.innerHTML = filtered.map(s => _kangCardHtml(s)).join('');
@@ -139,10 +135,13 @@ function _kangCardHtml(s) {
     const meta = `${qs} Qs · ${mins} min · ${maxPts} pts max`;
     const best = (s.best_score != null)
         ? `<div class="kang-card-best">Best: ${s.best_score}/${maxPts}</div>` : '';
+    const topic = s.drill_topic
+        ? `<div class="kang-card-topic">Focus: ${_kangEsc(s.drill_topic.replace(/_/g, ' '))}</div>` : '';
     return `
         <article class="kang-card">
             <h3 class="kang-card-title">${_kangEsc(s.title)}</h3>
             <div class="kang-card-meta">${_kangEsc(meta)}</div>
+            ${topic}
             ${best}
             <div class="kang-card-actions">
                 <button class="kang-btn kang-btn-primary" data-action="test" data-set-id="${_kangEsc(s.set_id)}">Test Mode</button>

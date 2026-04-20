@@ -18,12 +18,44 @@ EXPECTED = {
     "pre_ecolier_practice_02": ("pre_ecolier", 24, 96, 0.70),
     "pre_ecolier_practice_03": ("pre_ecolier", 24, 96, 0.70),
     "pre_ecolier_practice_04": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_practice_05": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_practice_06": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_practice_07": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_practice_08": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_practice_09": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_practice_10": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_practice_11": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_practice_12": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_practice_13": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_practice_14": ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_drill_01":    ("pre_ecolier", 24, 96, 0.70),
+    "pre_ecolier_drill_02":    ("pre_ecolier", 24, 96, 0.70),
     "ecolier_practice_01":     ("ecolier",     24, 96, 0.40),
     "ecolier_practice_02":     ("ecolier",     24, 96, 0.40),
     "ecolier_practice_03":     ("ecolier",     24, 96, 0.40),
+    "ecolier_practice_04":     ("ecolier",     24, 96, 0.40),
+    "ecolier_practice_05":     ("ecolier",     24, 96, 0.40),
+    "ecolier_practice_06":     ("ecolier",     24, 96, 0.40),
+    "ecolier_practice_07":     ("ecolier",     24, 96, 0.40),
+    "ecolier_practice_08":     ("ecolier",     24, 96, 0.40),
+    "ecolier_practice_09":     ("ecolier",     24, 96, 0.40),
+    "ecolier_practice_10":     ("ecolier",     24, 96, 0.40),
+    "ecolier_practice_11":     ("ecolier",     24, 96, 0.40),
+    "ecolier_drill_01":        ("ecolier",     24, 96, 0.40),
+    "ecolier_drill_02":        ("ecolier",     24, 96, 0.40),
     "benjamin_practice_01":    ("benjamin",    30, 120, 0.35),
     "benjamin_practice_02":    ("benjamin",    30, 120, 0.35),
     "benjamin_practice_03":    ("benjamin",    30, 120, 0.35),
+    "benjamin_practice_04":    ("benjamin",    30, 120, 0.35),
+    "benjamin_practice_05":    ("benjamin",    30, 120, 0.35),
+    "benjamin_practice_06":    ("benjamin",    30, 120, 0.35),
+    "benjamin_practice_07":    ("benjamin",    30, 120, 0.35),
+    "benjamin_practice_08":    ("benjamin",    30, 120, 0.35),
+    "benjamin_practice_09":    ("benjamin",    30, 120, 0.35),
+    "benjamin_practice_10":    ("benjamin",    30, 120, 0.35),
+    "benjamin_practice_11":    ("benjamin",    30, 120, 0.35),
+    "benjamin_drill_01":       ("benjamin",    30, 120, 0.35),
+    "benjamin_drill_02":       ("benjamin",    30, 120, 0.35),
 }
 
 
@@ -84,9 +116,9 @@ def main() -> int:
                     all_text.append(txt)
                 total_q += 1
 
-    results.append(("Pre-Ecolier structure (4 files × 24 = 96)", pre_ok))
-    results.append(("Ecolier structure (3 files × 24 = 72)", eco_ok))
-    results.append(("Benjamin structure (3 files × 30 = 90)", ben_ok))
+    results.append(("Pre-Ecolier structure (16 files × 24 = 384)", pre_ok))
+    results.append(("Ecolier structure (13 files × 24 = 312)", eco_ok))
+    results.append(("Benjamin structure (13 files × 30 = 390)", ben_ok))
 
     # 5: options 5 keys A-E
     opts_ok = True
@@ -166,9 +198,9 @@ def main() -> int:
     sol_ok = all((q.get("solution") or "").strip() for _, q in all_questions)
     results.append(("Every question has non-empty solution", sol_ok))
 
-    # 14: total count 258
-    total_ok = total_q == 258
-    results.append((f"Total problem count = 258 (got {total_q})", total_ok))
+    # 14: total count 1086 (Phase 1 + 2 + 3 + 4)
+    total_ok = total_q == 1086
+    results.append((f"Total problem count = 1086 (got {total_q})", total_ok))
 
     # Print table
     print("=== Math Kangaroo Phase 1 Validation ===\n")
