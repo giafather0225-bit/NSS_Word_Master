@@ -469,7 +469,7 @@ class CompleteLessonIn(BaseModel):
     unit: str
     lesson: str
 
-@router.post("/complete-lesson")
+@router.post("/api/math/academy/complete-lesson")
 async def complete_lesson(req: CompleteLessonIn, db: Session = Depends(get_db)):
     prog = (
         db.query(MathProgress)
@@ -509,7 +509,7 @@ class SubmitUnitTestIn(BaseModel):
     score: int
     total: int
 
-@router.post("/unit-test/submit-v2")
+@router.post("/api/math/academy/unit-test/submit-v2")
 async def submit_unit_test_v2(req: SubmitUnitTestIn, db: Session = Depends(get_db)):
     pct = (req.score / req.total * 100) if req.total else 0
     passed = pct >= 70

@@ -107,16 +107,13 @@ def mark_game_done(db: Session, day: str | None = None) -> None:
 # @tag STREAK
 def _reviews_were_due(db: Session, day: str) -> bool:
     """True if any SM-2 review was scheduled on or before the given day."""
-    try:
-        return (
-            db.query(WordReview)
-              .filter(WordReview.next_review_date != None)  # noqa: E711
-              .filter(WordReview.next_review_date <= day)
-              .first()
-            is not None
-        )
-    except Exception:
-        return True
+    return (
+        db.query(WordReview)
+          .filter(WordReview.next_review != None)  # noqa: E711
+          .filter(WordReview.next_review <= day)
+          .first()
+        is not None
+    )
 
 
 # @tag STREAK @tag ENGLISH
