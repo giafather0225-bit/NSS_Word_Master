@@ -25,6 +25,9 @@ XP_RULES_DEFAULT: dict[str, int] = {
     "all_complete_bonus":    15,
     "streak_7_bonus":        30,
     "streak_30_bonus":       200,
+    "math_kangaroo_complete":  5,
+    "math_kangaroo_80":        5,
+    "math_kangaroo_perfect":  10,
 }
 # Back-compat alias: callers that imported XP_RULES still see defaults.
 XP_RULES = XP_RULES_DEFAULT

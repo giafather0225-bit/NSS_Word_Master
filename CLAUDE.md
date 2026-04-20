@@ -451,6 +451,38 @@ Each phase: verify existing features still work before marking complete.
 
 ---
 
+## Math Kangaroo Module (Phase 1 — rebuilt)
+
+Real-competition-format practice for Pre-Ecolier (1-2), Ecolier (3-4), Benjamin (5-6).
+
+**API** — `backend/routers/math_kangaroo.py`
+- `GET  /api/math/kangaroo/sets` — list all sets with `best_score` + `completed` per `MathKangarooProgress`.
+- `GET  /api/math/kangaroo/set/{set_id}` — full set (answers/solutions/difficulty stripped).
+- `POST /api/math/kangaroo/submit-answer` — Practice mode, grade one question, return solution.
+- `POST /api/math/kangaroo/submit` — Test mode, weighted scoring (3/4/5 pts), save best, award XP.
+
+**XP rules** (in `services/xp_engine.py XP_RULES_DEFAULT`):
+`math_kangaroo_complete` +5, `math_kangaroo_80` +5 (≥80%), `math_kangaroo_perfect` +10.
+Awarded via direct `XPLog` insertion (bypasses action-level daily dedup so each set counts).
+
+**DB** — `MathKangarooProgress` (models/math.py). Migration `migrations/009_kangaroo_columns.py`
+adds: `level`, `max_score`, `time_spent_seconds`, `answers_json`. Idempotent.
+
+**Data** — `backend/data/math/kangaroo/*.json`. Schema: `sections[{name, points_per_question, questions[]}]`.
+Every question: `id, number, points, topic, question_text, image_svg, image_description, options{A..E}, answer, solution, difficulty`.
+Globally unique IDs (prefix `pp##_q`, `ep##_q`, `bp##_q`). Phase 1 ships 10 sets, 258 problems.
+
+**Frontend**
+- `static/js/math-kangaroo.js` — level tabs (Pre-Ecolier/Ecolier/Benjamin) + sub-tabs (Full Tests/Topic Drills) + set cards.
+- `static/js/math-kangaroo-exam.js` — timer (mm:ss, warn <10 min, crit + pulse <5 min), question navigator (answered/flagged/current states), radio option buttons, keyboard nav (←/→), Test vs Practice mode, submit confirmation modal.
+- `static/js/math-kangaroo-result.js` — score/grade/XP header, section + topic breakdown tables, collapsible per-question review.
+- `static/css/math-kangaroo.css` — theme.css variables only. Section tint (3pt=success / 4pt=primary / 5pt=error). Responsive + print styles.
+
+Entry: sidebar `#math-btn-kangaroo` → `startMathKangaroo()`.
+Validator: `scripts/validate_kangaroo_phase1.py` (13 checks).
+
+---
+
 ## Key HTML Element IDs (child.html)
 
 **Sidebar:** `#sidebar`, `#sb-profile`, `#tab-eng`, `#tab-math`, `#star-count`, `#textbook-select`, `#lesson-select`, `#btn-review`, `#btn-exam`, `#btn-word-manager`, `#btn-parent`, `#sidebar-toggle`

@@ -127,8 +127,12 @@ class MathKangarooProgress(Base):
     set_id = Column(String, unique=True, index=True)
     category = Column(String, default="")
     difficulty_level = Column(String, default="pre_ecolier")
+    level = Column(String, default="")
     score = Column(Integer, default=0)
+    max_score = Column(Integer, default=0)
     total = Column(Integer, default=0)
+    time_spent_seconds = Column(Integer, nullable=True)
+    answers_json = Column(String, nullable=True)
     completed_at = Column(String, nullable=True)
 
 
