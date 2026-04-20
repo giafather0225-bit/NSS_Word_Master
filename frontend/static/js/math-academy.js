@@ -58,6 +58,8 @@ async function startMathLesson(grade, unit, lesson) {
     mathState.correct = 0;
     mathState.wrong = [];
     mathState.pretestScore = 0;
+    mathState._allWrong = [];
+    mathState.learnCards = null;
 
     const stageCard = document.getElementById('stage-card');
     const idleWrap = document.getElementById('idle-wrapper');
@@ -92,6 +94,7 @@ async function loadMathStage(stageName) {
     mathState.consecCorrect = 0;
     mathState.consecWrong = 0;
     mathState.forceHints = false;
+    if (stageName === 'pretest') { mathState._allWrong = []; mathState.learnCards = null; }
 
     if (stageName === 'complete') { renderMathComplete(); return; }
     if (stageName === 'wrong_review') { renderMathWrongReview(); return; }

@@ -219,7 +219,7 @@ function retryMathStage() {
  * Render lesson complete screen.
  * @tag MATH @tag ACADEMY
  */
-function renderMathComplete() {
+async function renderMathComplete() {
   // ── PHASE-0 FIX P0: call complete-lesson API ──
   try {
     await fetch('/api/math/academy/complete-lesson', {
