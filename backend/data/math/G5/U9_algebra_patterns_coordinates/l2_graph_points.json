@@ -1,0 +1,563 @@
+{
+  "lesson_id": "math_g5_u9_l2",
+  "title": "좌표평면에 점 찍기",
+  "concept": "(x,y)만큼 이동해 점을 찍어요.",
+  "vocab": [
+    "점 찍기",
+    "수평선",
+    "수직선"
+  ],
+  "essential_question": "점을 정확히 찍으려면?",
+  "ccss": "5.G.A.2",
+  "go_math_ref": "Ch.9 L2",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "(3,4)를 그릴 때 원점에서 오른쪽 몇?",
+      "answer": "3",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "(3,4)를 그릴 때 위로 몇?",
+      "answer": "4",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "(7,2)를 그리기 위한 순서는?",
+      "choices": [
+        "먼저 위로 2, 다음 오른쪽 7",
+        "먼저 오른쪽 7, 다음 위로 2",
+        "어느 순서든 상관없음"
+      ],
+      "answer": "먼저 오른쪽 7, 다음 위로 2",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "(0, 5)를 그리면 어느 축 위?",
+      "answer": "y축",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "pt5",
+      "type": "input",
+      "question": "(5, 0)은 어디? (x축/y축)",
+      "answer": "x축",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "점 찍기",
+      "content": "원점에서 시작 → x만큼 오른쪽 → y만큼 위로",
+      "phase": "concrete",
+      "visual_type": "coordinate_grid",
+      "visual_data": {
+        "size": 10,
+        "points": [
+          [
+            4,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "title": "단계",
+      "content": "① x 이동 ② y 이동 ③ 점 찍기",
+      "phase": "pictorial",
+      "visual_type": "coordinate_grid",
+      "visual_data": {
+        "size": 10,
+        "points": [
+          [
+            2,
+            5
+          ]
+        ]
+      }
+    },
+    {
+      "id": "c3",
+      "title": "예",
+      "content": "(3,6): 오른쪽 3, 위로 6",
+      "phase": "pictorial",
+      "visual_type": "coordinate_grid",
+      "visual_data": {
+        "size": 10,
+        "points": [
+          [
+            3,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "c4",
+      "title": "여러 점",
+      "content": "(1,2),(3,4),(5,6) 세 점을 연결 → 선",
+      "phase": "pictorial",
+      "visual_type": "coordinate_grid",
+      "visual_data": {
+        "size": 10,
+        "points": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "c5",
+      "title": "모양 만들기",
+      "content": "점을 차례로 잇기 → 사각형, 삼각형 등",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "주의",
+      "content": "(a,b) ≠ (b,a): 순서 중요",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "(6,3): 오른쪽 a, 위로 b. a=?",
+      "answer": "6",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1",
+      "solution_steps": [
+        "① 첫 숫자가 x",
+        "② x=6"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "(6,3): 위로 b=?",
+      "answer": "3",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1",
+      "solution_steps": [
+        "① 둘째 숫자가 y",
+        "② y=3"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "(2,7), (2,3) 두 점을 연결하면 어떤 선? (수평/수직)",
+      "answer": "수직",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1",
+      "solution_steps": [
+        "① x좌표 같음",
+        "② 수직선"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "(1,5), (8,5)를 연결하면? (수평/수직)",
+      "answer": "수평",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1",
+      "solution_steps": [
+        "① y좌표 같음",
+        "② 수평선"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "A(1,1), B(1,4), C(4,4), D(4,1). 이 네 점은 어떤 도형을 이루나?",
+      "answer": "정사각형",
+      "concept": "graph",
+      "difficulty": 3,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2",
+      "solution_steps": [
+        "① 변 길이 계산",
+        "② 모두 3. 정사각형!"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "mc",
+      "question": "(4,5)의 x좌표는?",
+      "choices": [
+        "4",
+        "5",
+        "9",
+        "0"
+      ],
+      "answer": "4",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_2",
+      "type": "mc",
+      "question": "(4,5)의 y좌표는?",
+      "choices": [
+        "4",
+        "5",
+        "9",
+        "0"
+      ],
+      "answer": "5",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "(2,6)을 찍으려면 오른쪽 몇?",
+      "answer": "2",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "(2,6)을 찍으려면 위로 몇?",
+      "answer": "6",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_5",
+      "type": "mc",
+      "question": "(0,4)와 (0,7) 연결 선은? (수평/수직)",
+      "choices": [
+        "수평",
+        "수직",
+        "대각선"
+      ],
+      "answer": "수직",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_6",
+      "type": "mc",
+      "question": "(3,2)와 (9,2) 연결 선은?",
+      "choices": [
+        "수평",
+        "수직",
+        "대각선"
+      ],
+      "answer": "수평",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "(5,0)의 y좌표?",
+      "answer": "0",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "(0,9)의 x좌표?",
+      "answer": "0",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "(7,3)은 x축 위? (예/아니오)",
+      "answer": "아니오",
+      "concept": "graph",
+      "difficulty": 1,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "(3,3)과 (5,5) 중 원점에서 먼 점?",
+      "answer": "(5,5)",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "A(1,2), B(1,6). AB 길이?",
+      "answer": "4",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "C(2,3), D(8,3). CD 길이?",
+      "answer": "6",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "E(0,0), F(4,0). EF 길이?",
+      "answer": "4",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "(2,2),(2,5),(6,5),(6,2)은 무슨 모양?",
+      "answer": "직사각형",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "(1,1),(1,5),(5,5),(5,1) 둘레?",
+      "answer": "16",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "(2,3),(2,8),(7,8),(7,3) 넓이?",
+      "answer": "25",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "(0,0),(6,0),(6,4),(0,4) 넓이?",
+      "answer": "24",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "(1,2)에서 (1,9)까지 위로 몇 칸?",
+      "answer": "7",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "(3,1)에서 (3,8) 사이 y좌표가 5인 점?",
+      "answer": "(3,5)",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "(4,4)는 (0,0)에서 대각선 방향? (예/아니오)",
+      "answer": "예",
+      "concept": "graph",
+      "difficulty": 2,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "(2,3),(2,7),(6,7): 직사각형 4번째 꼭짓점?",
+      "answer": "(6,3)",
+      "concept": "graph",
+      "difficulty": 3,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "(1,1),(1,4),(5,4): 직사각형 4번째 꼭짓점?",
+      "answer": "(5,1)",
+      "concept": "graph",
+      "difficulty": 3,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "A(0,0), B(6,0), C(6,8), D(0,8) 둘레?",
+      "answer": "28",
+      "concept": "graph",
+      "difficulty": 3,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "A(0,0), B(5,0), C(5,3) 직각삼각형의 두 직각변 합?",
+      "answer": "8",
+      "concept": "graph",
+      "difficulty": 3,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "(2,2),(2,8),(9,8),(9,2) 사각형 넓이?",
+      "answer": "42",
+      "concept": "graph",
+      "difficulty": 3,
+      "skill": "graph_pt",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    }
+  ]
+}

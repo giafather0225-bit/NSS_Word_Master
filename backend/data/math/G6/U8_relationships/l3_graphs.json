@@ -1,0 +1,499 @@
+{
+  "lesson_id": "math_g6_u8_l3",
+  "title": "관계 그래프",
+  "concept": "직선으로 시각화.",
+  "vocab": [
+    "그래프",
+    "직선",
+    "기울기"
+  ],
+  "essential_question": "그래프로 무엇?",
+  "ccss": "6.EE.C.9",
+  "go_math_ref": "Ch.9 L3",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "y=x는 원점을 지나는 ___",
+      "choices": [
+        "직선",
+        "곡선",
+        "수평선",
+        "수직선"
+      ],
+      "answer": "직선",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "pt2",
+      "type": "mc",
+      "question": "y=2x와 y=3x 중 더 가파른 것",
+      "choices": [
+        "y=2x",
+        "y=3x",
+        "같다",
+        "판단 불가"
+      ],
+      "answer": "y=3x",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "compare",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "pt3",
+      "type": "input",
+      "question": "y=x+2의 y절편",
+      "answer": "2",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "pt4",
+      "type": "tf",
+      "question": "좌표평면에서 점 (3,6)은 y=2x 위에 있다.",
+      "answer": true,
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "check",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "기울기가 클수록 가파르다.",
+      "answer": true,
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "그래프",
+      "content": "점 연결.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "직선",
+      "content": "선형 관계.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "기울기",
+      "content": "y/x 비율.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "y절편",
+      "content": "x=0일 때 y.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "해석",
+      "content": "관계 시각화.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "추세 분석.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "y=3x, (2,?)",
+      "answer": "6",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9",
+      "solution_steps": [
+        "3×2"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "y=x+1, (4,?)",
+      "answer": "5",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9",
+      "solution_steps": [
+        "4+1"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "y=2x, (0,0) 지남?",
+      "answer": "예",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "check",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9",
+      "solution_steps": [
+        "원점"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "y=x+3의 y절편",
+      "answer": "3",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9",
+      "solution_steps": [
+        "x=0"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "y=4x와 y=2x 중 가파름",
+      "answer": "y=4x",
+      "concept": "graph_rel",
+      "difficulty": 3,
+      "skill": "compare",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9",
+      "solution_steps": [
+        "기울기 큼"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "y=4x 그래프 (x=7) y값",
+      "answer": "28",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "y=3x 그래프 (x=1) y값",
+      "answer": "3",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "y=2x 그래프 (x=7) y값",
+      "answer": "14",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "y=5x 그래프 (x=3) y값",
+      "answer": "15",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "y=3x 그래프 (x=2) y값",
+      "answer": "6",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "y=4x 그래프 (x=6) y값",
+      "answer": "24",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "y=4x 그래프 (x=4) y값",
+      "answer": "16",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "y=5x 그래프 (x=7) y값",
+      "answer": "35",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "y=5x 그래프 (x=8) y값",
+      "answer": "40",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "y=6x 그래프 (x=8) y값",
+      "answer": "48",
+      "concept": "graph_rel",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "y=x+7의 y절편",
+      "answer": "7",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "y=x+5의 y절편",
+      "answer": "5",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "y=x+1의 y절편",
+      "answer": "1",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "y=x+1의 y절편",
+      "answer": "1",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "y=x+9의 y절편",
+      "answer": "9",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "y=x+2의 y절편",
+      "answer": "2",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "y=x+8의 y절편",
+      "answer": "8",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "y=x+4의 y절편",
+      "answer": "4",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "y=x+10의 y절편",
+      "answer": "10",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "y=x+5의 y절편",
+      "answer": "5",
+      "concept": "graph_rel",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "y=3x와 y=6x 중 더 가파른 쪽 계수",
+      "answer": "6",
+      "concept": "graph_rel",
+      "difficulty": 3,
+      "skill": "compare",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "y=5x와 y=8x 중 더 가파른 쪽 계수",
+      "answer": "8",
+      "concept": "graph_rel",
+      "difficulty": 3,
+      "skill": "compare",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "y=2x와 y=3x 중 더 가파른 쪽 계수",
+      "answer": "3",
+      "concept": "graph_rel",
+      "difficulty": 3,
+      "skill": "compare",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "y=2x와 y=5x 중 더 가파른 쪽 계수",
+      "answer": "5",
+      "concept": "graph_rel",
+      "difficulty": 3,
+      "skill": "compare",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "y=3x와 y=6x 중 더 가파른 쪽 계수",
+      "answer": "6",
+      "concept": "graph_rel",
+      "difficulty": 3,
+      "skill": "compare",
+      "cpa": "abstract",
+      "ccss": "6.EE.C.9"
+    }
+  ]
+}

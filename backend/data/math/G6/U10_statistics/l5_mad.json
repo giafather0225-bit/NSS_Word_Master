@@ -1,0 +1,490 @@
+{
+  "lesson_id": "math_g6_u10_l5",
+  "title": "평균 절대편차(MAD)",
+  "concept": "분산 측정.",
+  "vocab": [
+    "MAD",
+    "편차"
+  ],
+  "essential_question": "MAD는?",
+  "ccss": "6.SP.B.5.c",
+  "go_math_ref": "Ch.12 L5",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "{2,4,6,8}의 MAD (평균=5)",
+      "answer": "2",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "{3,3,3,3}의 MAD",
+      "answer": "0",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt3",
+      "type": "tf",
+      "question": "MAD는 평균으로부터 절댓값 편차의 평균.",
+      "answer": true,
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt4",
+      "type": "mc",
+      "question": "MAD가 클수록?",
+      "choices": [
+        "집중",
+        "분산",
+        "같음",
+        "모름"
+      ],
+      "answer": "분산",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt5",
+      "type": "input",
+      "question": "{1,5}의 MAD (평균=3)",
+      "answer": "2",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "MAD",
+      "content": "평균 절댓값 편차.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "단계",
+      "content": "평균→|편차|→평균.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "예시",
+      "content": "{2,4,6,8} mean=5, MAD=2.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "해석",
+      "content": "분산 정도.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "0이면",
+      "content": "모두 같음.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "데이터 비교.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "{1,3,5,7}",
+      "answer": "2",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "평균 4, 편차 3,1,1,3, 합 8, MAD=2"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "{5,5,5,5}",
+      "answer": "0",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "모두 같음"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "{2,4,6,8,10}",
+      "answer": "2.4",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "평균 6"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "{10,20,30}",
+      "answer": "6.67",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "{1,2,3,4,5}",
+      "answer": "1.2",
+      "concept": "mad",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "평균 3"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "{5,8,8,11}의 MAD",
+      "answer": "1.5",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "{13,15,15,17}의 MAD",
+      "answer": "1",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "{5,8,8,11}의 MAD",
+      "answer": "1.5",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "{7,12,12,17}의 MAD",
+      "answer": "2.5",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "{1,5,5,9}의 MAD",
+      "answer": "2",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "{2,7,7,12}의 MAD",
+      "answer": "2.5",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "{5,8,8,11}의 MAD",
+      "answer": "1.5",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "{7,12,12,17}의 MAD",
+      "answer": "2.5",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "{5,10,10,15}의 MAD",
+      "answer": "2.5",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "{7,12,12,17}의 MAD",
+      "answer": "2.5",
+      "concept": "mad",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "{9,17,11,15}의 MAD",
+      "answer": "3",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "{6,8,9,19}의 MAD",
+      "answer": "4.25",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "{12,4,13,15}의 MAD",
+      "answer": "3.5",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "{2,12,10,18}의 MAD",
+      "answer": "4.5",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "{9,2,12,15}의 MAD",
+      "answer": "4",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "{4,6,20,9}의 MAD",
+      "answer": "5.12",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "{13,19,7,6}의 MAD",
+      "answer": "4.75",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "{4,18,11,14}의 MAD",
+      "answer": "4.25",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "{16,15,10,19}의 MAD",
+      "answer": "2.5",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "{11,16,14,12}의 MAD",
+      "answer": "1.75",
+      "concept": "mad",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "{1,27,4,26,6}의 MAD",
+      "answer": "10.96",
+      "concept": "mad",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "{17,30,21,17,17}의 MAD",
+      "answer": "4.08",
+      "concept": "mad",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "{28,7,22,22,22}의 MAD",
+      "answer": "5.28",
+      "concept": "mad",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "{11,8,13,2,26}의 MAD",
+      "answer": "6",
+      "concept": "mad",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "{29,23,7,14,10}의 MAD",
+      "answer": "7.52",
+      "concept": "mad",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ]
+}

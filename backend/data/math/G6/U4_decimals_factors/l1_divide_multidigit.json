@@ -1,0 +1,509 @@
+{
+  "lesson_id": "math_g6_u4_l1",
+  "title": "다자리 나눗셈",
+  "concept": "표준 알고리즘으로 정확히 나눈다.",
+  "vocab": [
+    "나눗셈",
+    "표준 알고리즘",
+    "몫"
+  ],
+  "essential_question": "큰 수의 나눗셈을?",
+  "ccss": "6.NS.B.2",
+  "go_math_ref": "Ch.1 L3",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "432 ÷ 12 = ?",
+      "choices": [
+        "34",
+        "36",
+        "38",
+        "40"
+      ],
+      "answer": "36",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "585 ÷ 15 = ?",
+      "answer": "39",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "924 ÷ 22 = ?",
+      "choices": [
+        "40",
+        "42",
+        "44",
+        "46"
+      ],
+      "answer": "42",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "1,176 ÷ 24 = ?",
+      "answer": "49",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "756 ÷ 18 = 42 이다.",
+      "answer": true,
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "verify",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "다자리 나눗셈",
+      "content": "표준 알고리즘으로 나눈다.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "단계",
+      "content": "나눌 자리 정하기→나누기→곱하기→빼기→내리기.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "예시",
+      "content": "432÷12: 43÷12=3, 나머지7, 내려서72÷12=6. 답 36.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "검산",
+      "content": "몫×제수=피제수 확인.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "나머지",
+      "content": "나머지는 제수보다 작아야.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "큰 수도 같은 방법.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "672 ÷ 16 = ?",
+      "answer": "42",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "67÷16=4 r 3",
+        "32÷16=2",
+        "몫 42"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "1,458 ÷ 27 = ?",
+      "answer": "54",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "145÷27=5 r 10",
+        "108÷27=4",
+        "몫 54"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "2,304 ÷ 32 = ?",
+      "answer": "72",
+      "concept": "long_division",
+      "difficulty": 3,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "230÷32=7 r 6",
+        "64÷32=2",
+        "몫 72"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "3,312 ÷ 48 = ?",
+      "answer": "69",
+      "concept": "long_division",
+      "difficulty": 3,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "331÷48=6 r 43",
+        "432÷48=9",
+        "몫 69"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "5,184 ÷ 72 = ?",
+      "answer": "72",
+      "concept": "long_division",
+      "difficulty": 3,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "518÷72=7 r 14",
+        "144÷72=2",
+        "몫 72"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "396 ÷ 18 = ?",
+      "answer": "22",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "840 ÷ 21 = ?",
+      "answer": "40",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "304 ÷ 19 = ?",
+      "answer": "16",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "448 ÷ 14 = ?",
+      "answer": "32",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "594 ÷ 22 = ?",
+      "answer": "27",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "528 ÷ 22 = ?",
+      "answer": "24",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "492 ÷ 12 = ?",
+      "answer": "41",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "486 ÷ 18 = ?",
+      "answer": "27",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "352 ÷ 22 = ?",
+      "answer": "16",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "480 ÷ 12 = ?",
+      "answer": "40",
+      "concept": "long_division",
+      "difficulty": 1,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "680 ÷ 20 = ?",
+      "answer": "34",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "900 ÷ 25 = ?",
+      "answer": "36",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "1,216 ÷ 38 = ?",
+      "answer": "32",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "1,748 ÷ 38 = ?",
+      "answer": "46",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "1,728 ÷ 27 = ?",
+      "answer": "64",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "910 ÷ 26 = ?",
+      "answer": "35",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "1,580 ÷ 20 = ?",
+      "answer": "79",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "1,870 ÷ 34 = ?",
+      "answer": "55",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "1,248 ÷ 26 = ?",
+      "answer": "48",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "1,560 ÷ 24 = ?",
+      "answer": "65",
+      "concept": "long_division",
+      "difficulty": 2,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "2,666 ÷ 43 = ?",
+      "answer": "62",
+      "concept": "long_division",
+      "difficulty": 3,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "2,714 ÷ 46 = ?",
+      "answer": "59",
+      "concept": "long_division",
+      "difficulty": 3,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "3,339 ÷ 53 = ?",
+      "answer": "63",
+      "concept": "long_division",
+      "difficulty": 3,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "3,692 ÷ 52 = ?",
+      "answer": "71",
+      "concept": "long_division",
+      "difficulty": 3,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "2,346 ÷ 46 = ?",
+      "answer": "51",
+      "concept": "long_division",
+      "difficulty": 3,
+      "skill": "divide",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ]
+}

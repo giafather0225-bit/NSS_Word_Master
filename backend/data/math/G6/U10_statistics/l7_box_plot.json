@@ -1,0 +1,498 @@
+{
+  "lesson_id": "math_g6_u10_l7",
+  "title": "박스플롯",
+  "concept": "5수 요약 시각화.",
+  "vocab": [
+    "박스플롯",
+    "IQR",
+    "Q1",
+    "Q3"
+  ],
+  "essential_question": "박스플롯이 보이는 것?",
+  "ccss": "6.SP.B.4",
+  "go_math_ref": "Ch.12 L7",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "박스플롯의 가운데 선은?",
+      "choices": [
+        "평균",
+        "중앙값",
+        "최빈값",
+        "최대"
+      ],
+      "answer": "중앙값",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt2",
+      "type": "mc",
+      "question": "박스 양끝은?",
+      "choices": [
+        "최소/최대",
+        "Q1/Q3",
+        "평균±1",
+        "범위"
+      ],
+      "answer": "Q1/Q3",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt3",
+      "type": "input",
+      "question": "{1,3,5,7,9}의 Q2(중앙값)",
+      "answer": "5",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "{1,3,5,7,9}의 IQR",
+      "answer": "4",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "IQR=Q3-Q1.",
+      "answer": true,
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "박스플롯",
+      "content": "5수 요약 시각화.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "5수 요약",
+      "content": "최소,Q1,중앙,Q3,최대.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "박스",
+      "content": "Q1~Q3 (IQR).",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "수염",
+      "content": "최소/최대까지.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "IQR",
+      "content": "Q3-Q1.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "데이터 분산.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "{1,2,3,4,5}의 중앙값",
+      "answer": "3",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "{1,2,3,4,5,6,7}의 Q1",
+      "answer": "2",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "하위 반 중앙"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "{1,2,3,4,5,6,7}의 Q3",
+      "answer": "6",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "상위 반 중앙"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "{2,4,6,8,10}의 IQR",
+      "answer": "6",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "Q3=8,Q1=2→외 주의"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "{1,3,5,7,9,11,13}의 IQR",
+      "answer": "8",
+      "concept": "box_plot",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "Q3=11,Q1=3"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "{5,6,21,26,28}의 중앙값",
+      "answer": "21",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "{1,7,13,21,22}의 중앙값",
+      "answer": "13",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "{7,12,17,21,28}의 중앙값",
+      "answer": "17",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "{12,14,22,23,24}의 중앙값",
+      "answer": "22",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "{6,7,13,28,29}의 중앙값",
+      "answer": "13",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "{15,16,20,24,26}의 중앙값",
+      "answer": "20",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "{2,13,14,15,23}의 중앙값",
+      "answer": "14",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "{3,6,23,24,26}의 중앙값",
+      "answer": "23",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "{5,13,16,25,27}의 중앙값",
+      "answer": "16",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "{3,6,10,11,15}의 중앙값",
+      "answer": "10",
+      "concept": "box_plot",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "{11,15,25,26,29,30,31}의 IQR",
+      "answer": "15",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "{9,10,13,22,24,30,32}의 IQR",
+      "answer": "20",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "{6,7,17,18,35,38,39}의 IQR",
+      "answer": "31",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "{2,4,15,17,32,34,39}의 IQR",
+      "answer": "30",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "{10,11,20,22,25,34,37}의 IQR",
+      "answer": "23",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "{4,8,10,15,17,18,38}의 IQR",
+      "answer": "10",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "{1,12,21,26,29,35,38}의 IQR",
+      "answer": "23",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "{1,6,9,15,26,35,38}의 IQR",
+      "answer": "29",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "{4,5,12,22,24,36,37}의 IQR",
+      "answer": "31",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "{1,2,4,5,14,18,39}의 IQR",
+      "answer": "16",
+      "concept": "box_plot",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "{1,5,15,20,22,29,37,43,46}의 IQR",
+      "answer": "30",
+      "concept": "box_plot",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "{1,2,13,31,37,40,41,46,47}의 IQR",
+      "answer": "36",
+      "concept": "box_plot",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "{3,9,15,16,19,38,40,46,48}의 IQR",
+      "answer": "31",
+      "concept": "box_plot",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "{2,8,15,17,24,35,38,41,42}의 IQR",
+      "answer": "28",
+      "concept": "box_plot",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "{9,12,14,16,17,20,32,36,48}의 IQR",
+      "answer": "21",
+      "concept": "box_plot",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ]
+}

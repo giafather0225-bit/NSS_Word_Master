@@ -1,0 +1,484 @@
+{
+  "lesson_id": "math_g6_u10_l4",
+  "title": "최빈값과 범위",
+  "concept": "빈도와 퍼짐.",
+  "vocab": [
+    "최빈값",
+    "범위"
+  ],
+  "essential_question": "분포 요약?",
+  "ccss": "6.SP.B.5.c",
+  "go_math_ref": "Ch.12 L4",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "{2,3,3,5,7}의 최빈값",
+      "answer": "3",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "{1,4,4,4,8}의 최빈값",
+      "answer": "4",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt3",
+      "type": "input",
+      "question": "{2,5,8,10}의 범위",
+      "answer": "8",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "{10,25,30,15}의 범위",
+      "answer": "20",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "범위=최대-최소.",
+      "answer": true,
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "최빈값",
+      "content": "가장 자주 나온 값.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "범위",
+      "content": "최대-최소.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "예시",
+      "content": "{1,2,2,3}: 최빈=2.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "여러 최빈",
+      "content": "복수 가능.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "변동성",
+      "content": "범위로 측정.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "분포 요약.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "{3,3,5,7}의 최빈값",
+      "answer": "3",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "{1,2,2,3,3,4}의 최빈값",
+      "answer": "2,3",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "둘 다"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "{10,15,20,25}의 범위",
+      "answer": "15",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "25-10"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "{5,8,10,12,15}의 범위",
+      "answer": "10",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "15-5"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "{2,4,4,6,8,8,8}의 최빈값",
+      "answer": "8",
+      "concept": "mode_range",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "3번"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "{6,6,6,4,7,5}의 최빈값",
+      "answer": "6",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "{6,6,6,18,2,19}의 최빈값",
+      "answer": "6",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "{10,10,10,17,13,14}의 최빈값",
+      "answer": "10",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "{1,1,1,12,14,10}의 최빈값",
+      "answer": "1",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "{5,5,5,13,8,17}의 최빈값",
+      "answer": "5",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "{4,4,4,16,2,18}의 최빈값",
+      "answer": "4",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "{8,8,8,11,17,14}의 최빈값",
+      "answer": "8",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "{10,10,10,4,6,9}의 최빈값",
+      "answer": "10",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "{6,6,6,16,13,7}의 최빈값",
+      "answer": "6",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "{9,9,9,9,3,11}의 최빈값",
+      "answer": "9",
+      "concept": "mode_range",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "{16,46,50,19,50,46}의 범위",
+      "answer": "34",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "{17,37,15,38,26,31}의 범위",
+      "answer": "23",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "{20,26,11,26,31,44}의 범위",
+      "answer": "33",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "{4,25,4,13,42,8}의 범위",
+      "answer": "38",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "{16,15,15,1,4,13}의 범위",
+      "answer": "15",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "{41,7,45,35,1,8}의 범위",
+      "answer": "44",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "{32,28,9,45,6,31}의 범위",
+      "answer": "39",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "{45,46,13,2,7,16}의 범위",
+      "answer": "44",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "{16,13,34,10,4,19}의 범위",
+      "answer": "30",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "{16,46,4,42,43,5}의 범위",
+      "answer": "42",
+      "concept": "mode_range",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "{78,31,63,66,88,32,24,30}의 범위",
+      "answer": "64",
+      "concept": "mode_range",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "{67,95,97,33,95,87,46,80}의 범위",
+      "answer": "64",
+      "concept": "mode_range",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "{26,85,79,60,55,86,1,7}의 범위",
+      "answer": "85",
+      "concept": "mode_range",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "{7,88,71,27,70,30,54,86}의 범위",
+      "answer": "81",
+      "concept": "mode_range",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "{84,21,3,51,74,21,95,6}의 범위",
+      "answer": "92",
+      "concept": "mode_range",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ]
+}

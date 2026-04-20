@@ -1,0 +1,673 @@
+{
+  "lesson_id": "math_g5_u8_l6",
+  "title": "나눗셈 어림",
+  "concept": "피제수/제수를 가까운 정수로 반올림.",
+  "vocab": [
+    "어림",
+    "반올림",
+    "합리성"
+  ],
+  "essential_question": "나눗셈 결과가 합리적인지 어떻게 확인하나요?",
+  "ccss": "5.NF.B.7",
+  "go_math_ref": "Ch.8 L6",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "15 ÷ 7/8 ≈ ?",
+      "choices": [
+        "약 15",
+        "약 2",
+        "약 8",
+        "약 30"
+      ],
+      "answer": "약 15",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "pt2",
+      "type": "mc",
+      "question": "24 ÷ 1/4 ≈ ?",
+      "choices": [
+        "6",
+        "30",
+        "100",
+        "96"
+      ],
+      "answer": "96",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "5 1/8 ÷ 1 9/10 ≈ ?",
+      "choices": [
+        "약 1",
+        "약 2.5",
+        "약 10",
+        "약 0.5"
+      ],
+      "answer": "약 2.5",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "pt4",
+      "type": "mc",
+      "question": "7/8 ÷ 9/10과 가장 가까운 것?",
+      "choices": [
+        "약 1",
+        "약 2",
+        "약 0.5",
+        "약 10"
+      ],
+      "answer": "약 1",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "pt5",
+      "type": "mc",
+      "question": "3/4 ÷ 2 ≈ ?",
+      "choices": [
+        "약 0.5",
+        "약 1.5",
+        "약 2",
+        "약 3"
+      ],
+      "answer": "약 0.5",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "어림 전략",
+      "content": "피제수와 제수를 가까운 정수/단위분수로 반올림",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "÷ (<1)",
+      "content": "정수 ÷ 진분수는 원래 수보다 커짐",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "÷ (>1)",
+      "content": "정수 ÷ 대분수는 원래 수보다 작아짐",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "비슷한 수끼리",
+      "content": "a/b ÷ c/d 에서 a/b ≈ c/d 이면 몫 ≈ 1",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "예",
+      "content": "7 3/4 ÷ 7/8 ≈ 8 ÷ 1 = 8",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "의미",
+      "content": "정답 합리성 점검 도구",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "23 ÷ 4/5 을 어림하면 약?",
+      "answer": "약 30",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7",
+      "solution_steps": [
+        "① 23≈24",
+        "② 24 ÷ 4/5 = 30"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "9/10 ÷ 4/5 ≈ ?",
+      "answer": "약 1",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7",
+      "solution_steps": [
+        "① 두 분수 모두 ≈ 1",
+        "② 1 ÷ 1 = 1"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "5 1/4 ÷ 1 7/8 ≈ ?",
+      "answer": "약 3",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7",
+      "solution_steps": [
+        "① 5 1/4 ≈ 6",
+        "② 1 7/8 ≈ 2",
+        "③ 6/2=3"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "1/3 ÷ 4 ≈ ?",
+      "answer": "약 0",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7",
+      "solution_steps": [
+        "① 1/3 작은 수",
+        "② ÷ 4는 더 작게"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "19 ÷ 1/5 ≈ ?",
+      "answer": "약 100",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7",
+      "solution_steps": [
+        "① 19 ≈ 20",
+        "② 20 ÷ 1/5 = 100"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "mc",
+      "question": "16 ÷ 1/4 ≈ ?",
+      "choices": [
+        "4",
+        "64",
+        "16",
+        "2"
+      ],
+      "answer": "64",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r1_2",
+      "type": "mc",
+      "question": "24 ÷ 1/3 ≈ ?",
+      "choices": [
+        "8",
+        "72",
+        "3",
+        "24"
+      ],
+      "answer": "72",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r1_3",
+      "type": "mc",
+      "question": "15 ÷ 1/2 ≈ ?",
+      "choices": [
+        "30",
+        "7",
+        "15",
+        "2"
+      ],
+      "answer": "30",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r1_4",
+      "type": "mc",
+      "question": "30 ÷ 1/5 ≈ ?",
+      "choices": [
+        "6",
+        "150",
+        "30",
+        "5"
+      ],
+      "answer": "150",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r1_5",
+      "type": "mc",
+      "question": "12 ÷ 1/6 ≈ ?",
+      "choices": [
+        "2",
+        "72",
+        "12",
+        "6"
+      ],
+      "answer": "72",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r1_6",
+      "type": "mc",
+      "question": "8 ÷ 1/2 ≈ ?",
+      "choices": [
+        "4",
+        "16",
+        "8",
+        "2"
+      ],
+      "answer": "16",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r1_7",
+      "type": "mc",
+      "question": "9 ÷ 1/3 ≈ ?",
+      "choices": [
+        "3",
+        "27",
+        "9",
+        "6"
+      ],
+      "answer": "27",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r1_8",
+      "type": "mc",
+      "question": "20 ÷ 1/4 ≈ ?",
+      "choices": [
+        "80",
+        "5",
+        "4",
+        "20"
+      ],
+      "answer": "80",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r1_9",
+      "type": "mc",
+      "question": "6 ÷ 1/8 ≈ ?",
+      "choices": [
+        "48",
+        "0.75",
+        "8",
+        "6"
+      ],
+      "answer": "48",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r1_10",
+      "type": "mc",
+      "question": "10 ÷ 1/10 ≈ ?",
+      "choices": [
+        "100",
+        "1",
+        "10",
+        "20"
+      ],
+      "answer": "100",
+      "concept": "est",
+      "difficulty": 1,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "mc",
+      "question": "5 7/8 ÷ 3/4 ≈ ?",
+      "choices": [
+        "약 2",
+        "약 8",
+        "약 20",
+        "약 1"
+      ],
+      "answer": "약 8",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r2_2",
+      "type": "mc",
+      "question": "8 1/3 ÷ 1 9/10 ≈ ?",
+      "choices": [
+        "약 4",
+        "약 1",
+        "약 10",
+        "약 20"
+      ],
+      "answer": "약 4",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r2_3",
+      "type": "mc",
+      "question": "11 7/8 ÷ 2 1/8 ≈ ?",
+      "choices": [
+        "약 6",
+        "약 1",
+        "약 24",
+        "약 10"
+      ],
+      "answer": "약 6",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r2_4",
+      "type": "mc",
+      "question": "9/10 ÷ 1 1/8 ≈ ?",
+      "choices": [
+        "약 1",
+        "약 10",
+        "약 9",
+        "약 0"
+      ],
+      "answer": "약 1",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r2_5",
+      "type": "mc",
+      "question": "23 ÷ 11/12 ≈ ?",
+      "choices": [
+        "약 2",
+        "약 23",
+        "약 25",
+        "약 100"
+      ],
+      "answer": "약 25",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r2_6",
+      "type": "mc",
+      "question": "3 1/8 ÷ 1/2 ≈ ?",
+      "choices": [
+        "약 6",
+        "약 3",
+        "약 2",
+        "약 1"
+      ],
+      "answer": "약 6",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r2_7",
+      "type": "mc",
+      "question": "15 7/8 ÷ 3 7/8 ≈ ?",
+      "choices": [
+        "약 4",
+        "약 2",
+        "약 1",
+        "약 12"
+      ],
+      "answer": "약 4",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r2_8",
+      "type": "mc",
+      "question": "1/10 ÷ 9/10 ≈ ?",
+      "choices": [
+        "약 0",
+        "약 1",
+        "약 10",
+        "약 9"
+      ],
+      "answer": "약 0",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r2_9",
+      "type": "mc",
+      "question": "19 1/4 ÷ 4 7/8 ≈ ?",
+      "choices": [
+        "약 4",
+        "약 15",
+        "약 1",
+        "약 100"
+      ],
+      "answer": "약 4",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r2_10",
+      "type": "mc",
+      "question": "6 9/10 ÷ 2 1/10 ≈ ?",
+      "choices": [
+        "약 3",
+        "약 15",
+        "약 1",
+        "약 30"
+      ],
+      "answer": "약 3",
+      "concept": "est",
+      "difficulty": 2,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "mc",
+      "question": "99 7/8 ÷ 4 9/10 ≈ ?",
+      "choices": [
+        "약 20",
+        "약 5",
+        "약 100",
+        "약 2"
+      ],
+      "answer": "약 20",
+      "concept": "est",
+      "difficulty": 3,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r3_2",
+      "type": "mc",
+      "question": "7/8 ÷ 8/9 ≈ ?",
+      "choices": [
+        "약 1",
+        "약 2",
+        "약 0",
+        "약 10"
+      ],
+      "answer": "약 1",
+      "concept": "est",
+      "difficulty": 3,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r3_3",
+      "type": "mc",
+      "question": "11/12 ÷ 1/10 ≈ ?",
+      "choices": [
+        "약 10",
+        "약 1",
+        "약 100",
+        "약 0"
+      ],
+      "answer": "약 10",
+      "concept": "est",
+      "difficulty": 3,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r3_4",
+      "type": "mc",
+      "question": "53 ÷ 9 3/4 ≈ ?",
+      "choices": [
+        "약 5",
+        "약 50",
+        "약 1",
+        "약 500"
+      ],
+      "answer": "약 5",
+      "concept": "est",
+      "difficulty": 3,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    },
+    {
+      "id": "r3_5",
+      "type": "mc",
+      "question": "1/4 ÷ 5 ≈ ?",
+      "choices": [
+        "약 0",
+        "약 1",
+        "약 5",
+        "약 25"
+      ],
+      "answer": "약 0",
+      "concept": "est",
+      "difficulty": 3,
+      "skill": "est_div",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.7"
+    }
+  ]
+}

@@ -1,0 +1,487 @@
+{
+  "lesson_id": "math_g6_u9_l5",
+  "title": "좌표평면 다각형",
+  "concept": "좌표로 넓이.",
+  "vocab": [
+    "좌표",
+    "다각형",
+    "넓이"
+  ],
+  "essential_question": "좌표로 어떻게?",
+  "ccss": "6.G.A.3",
+  "go_math_ref": "Ch.10 L5",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "(0,0),(4,0),(4,3),(0,3) 넓이",
+      "answer": "12",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "(1,1),(5,1),(5,4),(1,4) 넓이",
+      "answer": "12",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "pt3",
+      "type": "input",
+      "question": "(-2,0),(2,0),(2,3),(-2,3) 넓이",
+      "answer": "12",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "(0,0),(6,0),(6,5),(0,5) 넓이",
+      "answer": "30",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "격자 위 직사각형은 가로×세로.",
+      "answer": true,
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "격자 다각형",
+      "content": "좌표로 정의.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "직사각형",
+      "content": "가로×세로.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "변 길이",
+      "content": "절댓값 차.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "복합",
+      "content": "분해 후 합.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "좌표 활용",
+      "content": "정확 계산.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "GIS, 지도.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "(0,0)(5,0)(5,4)(0,4)",
+      "answer": "20",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A",
+      "solution_steps": [
+        "5×4"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "(2,3)(8,3)(8,7)(2,7)",
+      "answer": "24",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A",
+      "solution_steps": [
+        "6×4"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "(-3,-2)(3,-2)(3,4)(-3,4)",
+      "answer": "36",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A",
+      "solution_steps": [
+        "6×6"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "(0,0)(6,0)(6,2) 삼각형",
+      "answer": "6",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A",
+      "solution_steps": [
+        "6×2/2"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "(1,1)(7,1)(7,5)(1,5)",
+      "answer": "24",
+      "concept": "area_coord",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A",
+      "solution_steps": [
+        "6×4"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "직사각형 (5,0)-(13,6) 넓이",
+      "answer": "48",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "직사각형 (4,-2)-(6,3) 넓이",
+      "answer": "10",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "직사각형 (-1,-5)-(1,3) 넓이",
+      "answer": "16",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "직사각형 (1,4)-(9,8) 넓이",
+      "answer": "32",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "직사각형 (5,-2)-(10,2) 넓이",
+      "answer": "20",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "직사각형 (-4,-4)-(-1,-1) 넓이",
+      "answer": "9",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "직사각형 (-1,3)-(1,8) 넓이",
+      "answer": "10",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "직사각형 (0,-4)-(5,3) 넓이",
+      "answer": "35",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "직사각형 (-3,-4)-(1,0) 넓이",
+      "answer": "16",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "직사각형 (-4,-5)-(3,1) 넓이",
+      "answer": "42",
+      "concept": "area_coord",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "직사각형 (-3,-7)-(0,2)",
+      "answer": "27",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "직사각형 (-5,0)-(3,5)",
+      "answer": "40",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "직사각형 (-2,-4)-(2,0)",
+      "answer": "16",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "직사각형 (-4,0)-(4,7)",
+      "answer": "56",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "직사각형 (-7,-5)-(-4,2)",
+      "answer": "21",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "직사각형 (-2,-6)-(4,-3)",
+      "answer": "18",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "직사각형 (-4,-1)-(0,9)",
+      "answer": "40",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "직사각형 (-4,0)-(5,7)",
+      "answer": "63",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "직사각형 (-5,-2)-(1,3)",
+      "answer": "30",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "직사각형 (-2,-3)-(6,6)",
+      "answer": "72",
+      "concept": "area_coord",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "삼각형 (-5,-5)(5,-5)(-5,1)",
+      "answer": "30",
+      "concept": "area_coord",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "삼각형 (-4,0)(4,0)(-4,3)",
+      "answer": "12",
+      "concept": "area_coord",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "삼각형 (-3,-1)(1,-1)(-3,4)",
+      "answer": "10",
+      "concept": "area_coord",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "삼각형 (-9,3)(-4,3)(-9,10)",
+      "answer": "17.5",
+      "concept": "area_coord",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "삼각형 (-4,-2)(2,-2)(-4,1)",
+      "answer": "9",
+      "concept": "area_coord",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    }
+  ]
+}

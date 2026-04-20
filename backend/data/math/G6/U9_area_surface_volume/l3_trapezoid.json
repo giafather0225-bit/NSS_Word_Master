@@ -1,0 +1,484 @@
+{
+  "lesson_id": "math_g6_u9_l3",
+  "title": "사다리꼴 넓이",
+  "concept": "(b1+b2)h/2.",
+  "vocab": [
+    "사다리꼴",
+    "넓이"
+  ],
+  "essential_question": "공식?",
+  "ccss": "6.G.A.1",
+  "go_math_ref": "Ch.10 L3",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "사다리꼴 b1=4,b2=6,h=5 넓이",
+      "answer": "25",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "b1=8,b2=12,h=4",
+      "answer": "40",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "공식",
+      "choices": [
+        "(b1+b2)h",
+        "(b1+b2)h/2",
+        "b1b2h",
+        "b1h+b2"
+      ],
+      "answer": "(b1+b2)h/2",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "formula",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "b1=5,b2=9,h=6",
+      "answer": "42",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "사다리꼴 넓이는 두 밑변 평균×높이.",
+      "answer": true,
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "사다리꼴",
+      "content": "(b1+b2)h/2.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "두 밑변",
+      "content": "평행 두 변.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "예시",
+      "content": "b1=3,b2=5,h=4 → 16.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "평균 해석",
+      "content": "평균 너비×높이.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "분해",
+      "content": "삼각형+사각형도 가능.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "컵 단면.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "b1=3,b2=5,h=4",
+      "answer": "16",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A",
+      "solution_steps": [
+        "(3+5)×4/2"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "b1=6,b2=10,h=8",
+      "answer": "64",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "b1=7,b2=9,h=4",
+      "answer": "32",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "b1=2,b2=6,h=5",
+      "answer": "20",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "b1=10,b2=14,h=6",
+      "answer": "72",
+      "concept": "area_trap",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "b1=10,b2=10,h=2",
+      "answer": "20",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "b1=9,b2=9,h=6",
+      "answer": "54",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "b1=5,b2=10,h=8",
+      "answer": "60",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "b1=7,b2=3,h=2",
+      "answer": "10",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "b1=8,b2=4,h=8",
+      "answer": "48",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "b1=10,b2=3,h=8",
+      "answer": "52",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "b1=3,b2=9,h=8",
+      "answer": "48",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "b1=4,b2=10,h=5",
+      "answer": "35",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "b1=10,b2=7,h=2",
+      "answer": "17",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "b1=8,b2=8,h=6",
+      "answer": "48",
+      "concept": "area_trap",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "b1=9,b2=14,h=11",
+      "answer": "126.5",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "b1=8,b2=5,h=6",
+      "answer": "39",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "b1=6,b2=9,h=4",
+      "answer": "30",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "b1=6,b2=15,h=6",
+      "answer": "63",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "b1=9,b2=8,h=5",
+      "answer": "42.5",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "b1=9,b2=8,h=9",
+      "answer": "76.5",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "b1=14,b2=14,h=4",
+      "answer": "56",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "b1=12,b2=6,h=12",
+      "answer": "108",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "b1=9,b2=14,h=9",
+      "answer": "103.5",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "b1=5,b2=6,h=12",
+      "answer": "66",
+      "concept": "area_trap",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "b1=14,b2=12,h=15",
+      "answer": "195",
+      "concept": "area_trap",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "b1=16,b2=12,h=12",
+      "answer": "168",
+      "concept": "area_trap",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "b1=19,b2=12,h=13",
+      "answer": "201.5",
+      "concept": "area_trap",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "b1=14,b2=18,h=6",
+      "answer": "96",
+      "concept": "area_trap",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "b1=16,b2=15,h=15",
+      "answer": "232.5",
+      "concept": "area_trap",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.G.A"
+    }
+  ]
+}

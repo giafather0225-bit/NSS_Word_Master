@@ -1,0 +1,505 @@
+{
+  "lesson_id": "math_g6_u7_l6",
+  "title": "부등식 수직선",
+  "concept": "경계점과 화살표.",
+  "vocab": [
+    "수직선",
+    "그래프",
+    "부등식"
+  ],
+  "essential_question": "어떻게 그릴까?",
+  "ccss": "6.EE.B.8",
+  "go_math_ref": "Ch.8 L6",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "x>3 수직선: 3에 ___",
+      "choices": [
+        "채운 점",
+        "빈 점",
+        "X",
+        "화살표만"
+      ],
+      "answer": "빈 점",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "pt2",
+      "type": "mc",
+      "question": "x≤2: 2에 ___",
+      "choices": [
+        "빈 점",
+        "채운 점",
+        "없음",
+        "두 점"
+      ],
+      "answer": "채운 점",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "x<-1 화살표 방향",
+      "choices": [
+        "오른쪽",
+        "왼쪽",
+        "양쪽",
+        "없음"
+      ],
+      "answer": "왼쪽",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "pt4",
+      "type": "mc",
+      "question": "x≥0 화살표 방향",
+      "choices": [
+        "오른쪽",
+        "왼쪽",
+        "양쪽",
+        "없음"
+      ],
+      "answer": "오른쪽",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "'포함'은 채운 점, '미포함'은 빈 점.",
+      "answer": true,
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "점 표시",
+      "content": "≤,≥ 채운; <,> 빈.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "화살표",
+      "content": "방향으로 범위.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "예시",
+      "content": "x>2: 2 빈, 오른쪽.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "읽기",
+      "content": "그래프→식.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "양방향",
+      "content": "a<x<b 두 점.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "제약 조건.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "x>5: 5는 채움/빔?",
+      "answer": "빔",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B",
+      "solution_steps": [
+        ">는 빈 점"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "x≤-3: -3는?",
+      "answer": "채움",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B",
+      "solution_steps": [
+        "≤는 채움"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "x<0: 방향",
+      "answer": "왼쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "x≥4: 방향",
+      "answer": "오른쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "-1<x≤3: 두 끝 점(빔/채움)",
+      "answer": "빔,채움",
+      "concept": "ineq_graph",
+      "difficulty": 3,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "x≤8의 경계점",
+      "answer": "채움",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "x≥1의 경계점",
+      "answer": "채움",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "x≥0의 경계점",
+      "answer": "채움",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "x≥3의 경계점",
+      "answer": "채움",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "x≤-8의 경계점",
+      "answer": "채움",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "x>7의 경계점",
+      "answer": "빔",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "x<1의 경계점",
+      "answer": "빔",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "x<-7의 경계점",
+      "answer": "빔",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "x>4의 경계점",
+      "answer": "빔",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "x>4의 경계점",
+      "answer": "빔",
+      "concept": "ineq_graph",
+      "difficulty": 1,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "x>8의 화살표",
+      "answer": "오른쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "x≥9의 화살표",
+      "answer": "오른쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "x<-10의 화살표",
+      "answer": "왼쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "x≥6의 화살표",
+      "answer": "오른쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "x≥-1의 화살표",
+      "answer": "오른쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "x>-10의 화살표",
+      "answer": "오른쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "x≥-2의 화살표",
+      "answer": "오른쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "x>-9의 화살표",
+      "answer": "오른쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "x≥9의 화살표",
+      "answer": "오른쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "x≤-7의 화살표",
+      "answer": "왼쪽",
+      "concept": "ineq_graph",
+      "difficulty": 2,
+      "skill": "graph",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "2≤x<6의 정수 개수",
+      "answer": "4",
+      "concept": "ineq_graph",
+      "difficulty": 3,
+      "skill": "count",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "-2≤x<2의 정수 개수",
+      "answer": "4",
+      "concept": "ineq_graph",
+      "difficulty": 3,
+      "skill": "count",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "3≤x<6의 정수 개수",
+      "answer": "3",
+      "concept": "ineq_graph",
+      "difficulty": 3,
+      "skill": "count",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "3≤x<6의 정수 개수",
+      "answer": "3",
+      "concept": "ineq_graph",
+      "difficulty": 3,
+      "skill": "count",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "1≤x<6의 정수 개수",
+      "answer": "5",
+      "concept": "ineq_graph",
+      "difficulty": 3,
+      "skill": "count",
+      "cpa": "abstract",
+      "ccss": "6.EE.B"
+    }
+  ]
+}

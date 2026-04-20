@@ -1,0 +1,484 @@
+{
+  "lesson_id": "math_g6_u10_l3",
+  "title": "중앙값",
+  "concept": "정렬 후 가운데.",
+  "vocab": [
+    "중앙값",
+    "정렬"
+  ],
+  "essential_question": "중앙값?",
+  "ccss": "6.SP.B.5.c",
+  "go_math_ref": "Ch.12 L3",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "{3,5,7,9,11}의 중앙값",
+      "answer": "7",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "{2,4,6,8}의 중앙값",
+      "answer": "5",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt3",
+      "type": "input",
+      "question": "{1,3,5,7}의 중앙값",
+      "answer": "4",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "{10,20,30,40,50}",
+      "answer": "30",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "중앙값은 정렬 후 가운데.",
+      "answer": true,
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "중앙값",
+      "content": "가운데 값.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "홀수개",
+      "content": "가운데 값.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "짝수개",
+      "content": "가운데 두 값 평균.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "정렬 필수",
+      "content": "오름차순.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "이상치 영향 적음",
+      "content": "로버스트.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "소득 분석.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "{1,2,3,4,5}",
+      "answer": "3",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "{2,4,6,8}",
+      "answer": "5",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "(4+6)/2"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "{5,1,3,9,7}",
+      "answer": "5",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "정렬"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "{10,20,30,40,50,60}",
+      "answer": "35",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "(30+40)/2"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "{8,2,5,11,7,1,9}",
+      "answer": "7",
+      "concept": "median",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "정렬 후 가운데"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "{8,10,12,14,20}의 중앙값",
+      "answer": "12",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "{5,9,18,20,25}의 중앙값",
+      "answer": "18",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "{12,15,18,25,29}의 중앙값",
+      "answer": "18",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "{6,15,22,24,27}의 중앙값",
+      "answer": "22",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "{8,10,15,21,28}의 중앙값",
+      "answer": "15",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "{2,12,17,18,29}의 중앙값",
+      "answer": "17",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "{5,15,25,27,28}의 중앙값",
+      "answer": "25",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "{5,8,11,22,24}의 중앙값",
+      "answer": "11",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "{11,22,23,26,29}의 중앙값",
+      "answer": "23",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "{3,4,13,25,28}의 중앙값",
+      "answer": "13",
+      "concept": "median",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "{26,10,19,27}의 중앙값",
+      "answer": "22.5",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "{5,28,23,27}의 중앙값",
+      "answer": "25",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "{15,21,2,29}의 중앙값",
+      "answer": "18",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "{6,2,20,1}의 중앙값",
+      "answer": "4",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "{3,27,7,4}의 중앙값",
+      "answer": "5.5",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "{21,3,17,16}의 중앙값",
+      "answer": "16.5",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "{18,24,15,14}의 중앙값",
+      "answer": "16.5",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "{9,10,1,24}의 중앙값",
+      "answer": "9.5",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "{14,15,12,10}의 중앙값",
+      "answer": "13",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "{4,11,26,1}의 중앙값",
+      "answer": "7.5",
+      "concept": "median",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "{46,20,3,31,37,34}의 중앙값",
+      "answer": "32.5",
+      "concept": "median",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "{31,11,16,48,7,47}의 중앙값",
+      "answer": "23.5",
+      "concept": "median",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "{22,27,9,38,15,33}의 중앙값",
+      "answer": "24.5",
+      "concept": "median",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "{9,33,20,13,11,42}의 중앙값",
+      "answer": "16.5",
+      "concept": "median",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "{42,37,26,32,25,30}의 중앙값",
+      "answer": "31",
+      "concept": "median",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ]
+}

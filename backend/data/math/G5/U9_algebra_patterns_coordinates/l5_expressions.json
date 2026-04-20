@@ -1,0 +1,494 @@
+{
+  "lesson_id": "math_g5_u9_l5",
+  "title": "식 세우기와 계산",
+  "concept": "변수와 연산 순서를 이용해 식의 값 구하기.",
+  "vocab": [
+    "변수",
+    "식",
+    "PEMDAS"
+  ],
+  "essential_question": "식에 변수가 있으면 어떻게 계산?",
+  "ccss": "5.OA.A.1",
+  "go_math_ref": "Ch.1 L1",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "3 + (4 × 2) = ?",
+      "answer": "11",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "(6 + 2) × 3 = ?",
+      "answer": "24",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "pt3",
+      "type": "input",
+      "question": "x=5일 때 2x + 3 = ?",
+      "answer": "13",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "y=4일 때 3y - 2 = ?",
+      "answer": "10",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "pt5",
+      "type": "input",
+      "question": "n=7일 때 2(n+3) = ?",
+      "answer": "20",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "식 읽기",
+      "content": "PEMDAS/괄호 먼저 → 곱/나눗 → 덧/뺄",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "변수 치환",
+      "content": "x=3 → 식 속 x 자리에 3 대입",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "예",
+      "content": "2x + 5, x=4 → 2(4)+5 = 13",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "분배법칙",
+      "content": "2(x+3) = 2x + 6",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "식 세우기",
+      "content": "'3 더 많은'은 +3, '2배'는 ×2",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "검산",
+      "content": "답을 다시 넣어 식이 맞는지",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "(8 - 3) × 2 = ?",
+      "answer": "10",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1",
+      "solution_steps": [
+        "① 괄호: 5",
+        "② 5×2=10"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "x=6일 때 3x - 4 = ?",
+      "answer": "14",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2",
+      "solution_steps": [
+        "① 3×6=18",
+        "② 18-4=14"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "4(n + 2), n=5 → ?",
+      "answer": "28",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2",
+      "solution_steps": [
+        "① 5+2=7",
+        "② 4×7=28"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "50 - (3 × 6 + 5) = ?",
+      "answer": "27",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1",
+      "solution_steps": [
+        "① 3×6=18",
+        "② 18+5=23",
+        "③ 50-23=27"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "x=2, y=5일 때 2x + 3y = ?",
+      "answer": "19",
+      "concept": "expr",
+      "difficulty": 3,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2",
+      "solution_steps": [
+        "① 2×2=4",
+        "② 3×5=15",
+        "③ 4+15=19"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "5 + 3 × 2",
+      "answer": "11",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "(5+3) × 2",
+      "answer": "16",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "20 - 4 × 3",
+      "answer": "8",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "(20-4) × 3",
+      "answer": "48",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "12 ÷ 3 + 5",
+      "answer": "9",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "12 ÷ (3 + 5)",
+      "answer": "1.5",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "x=4, 2x+1",
+      "answer": "9",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "x=3, 5x-2",
+      "answer": "13",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "n=6, n/2+1",
+      "answer": "4",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "a=8, a-3",
+      "answer": "5",
+      "concept": "expr",
+      "difficulty": 1,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "3(x+4), x=2",
+      "answer": "18",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "2(n-3), n=8",
+      "answer": "10",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "5(2+y), y=3",
+      "answer": "25",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "x=5, y=4, x+2y",
+      "answer": "13",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "a=3, b=7, 2a+b",
+      "answer": "13",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "4 + 2×(5-1)",
+      "answer": "12",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "(6+4) × (8-3)",
+      "answer": "50",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "30 - 6×2 + 4",
+      "answer": "22",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "100 - (5×8+10)",
+      "answer": "50",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "x=7, 3x-2×4",
+      "answer": "13",
+      "concept": "expr",
+      "difficulty": 2,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "2(3x+1), x=5",
+      "answer": "32",
+      "concept": "expr",
+      "difficulty": 3,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "x=2, y=3, z=4. xy+z",
+      "answer": "10",
+      "concept": "expr",
+      "difficulty": 3,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "(10+2)×(15-5)",
+      "answer": "120",
+      "concept": "expr",
+      "difficulty": 3,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.1"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "x=4, 2(x+3)-5",
+      "answer": "9",
+      "concept": "expr",
+      "difficulty": 3,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "'n의 3배보다 5 큰 수'를 식으로 쓰고 n=7일 때 값",
+      "answer": "26",
+      "concept": "expr",
+      "difficulty": 3,
+      "skill": "expr",
+      "cpa": "abstract",
+      "ccss": "5.OA.A.2"
+    }
+  ]
+}

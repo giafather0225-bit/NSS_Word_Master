@@ -1,0 +1,498 @@
+{
+  "lesson_id": "math_g6_u4_l3",
+  "title": "소수 곱셈",
+  "concept": "소수 자릿수 합으로 답 결정.",
+  "vocab": [
+    "소수",
+    "곱셈",
+    "자릿수"
+  ],
+  "essential_question": "소수 곱은 어떻게?",
+  "ccss": "6.NS.B.3",
+  "go_math_ref": "Ch.2 L1",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "0.3 × 0.4 = ?",
+      "answer": "0.12",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "1.2 × 0.5 = ?",
+      "answer": "0.6",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "2.5 × 0.04 = ?",
+      "choices": [
+        "0.1",
+        "0.01",
+        "1.0",
+        "10"
+      ],
+      "answer": "0.1",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "3.6 × 2.5 = ?",
+      "answer": "9",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "소수점 이하 자릿수 합이 답의 자릿수.",
+      "answer": true,
+      "concept": "dec_rule",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "소수 곱셈",
+      "content": "정수처럼 곱하고 소수점 조정.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "규칙",
+      "content": "소수 자릿수 합 = 답의 소수 자릿수.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "예시",
+      "content": "0.3×0.4: 3×4=12, 2자리 → 0.12.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "10의 거듭제곱",
+      "content": "×10은 소수점 오른쪽 이동.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "추정",
+      "content": "어림 후 계산.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "면적, 돈.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "0.6 × 0.7",
+      "answer": "0.42",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "6×7=42",
+        "2자리 → 0.42"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "1.5 × 0.8",
+      "answer": "1.2",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "15×8=120",
+        "2자리 → 1.20=1.2"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "2.3 × 1.4",
+      "answer": "3.22",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "23×14=322",
+        "2자리 → 3.22"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "0.05 × 0.6",
+      "answer": "0.03",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "5×6=30",
+        "3자리 → 0.030=0.03"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "4.2 × 2.5",
+      "answer": "10.5",
+      "concept": "dec_mul",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "42×25=1050",
+        "2자리 → 10.50"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "0.2 × 0.9 = ?",
+      "answer": "0.18",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "0.1 × 0.3 = ?",
+      "answer": "0.03",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "0.6 × 0.9 = ?",
+      "answer": "0.54",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "0.5 × 0.7 = ?",
+      "answer": "0.35",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "0.8 × 0.1 = ?",
+      "answer": "0.08",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "0.8 × 0.6 = ?",
+      "answer": "0.48",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "0.9 × 0.1 = ?",
+      "answer": "0.09",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "0.1 × 0.9 = ?",
+      "answer": "0.09",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "0.6 × 0.3 = ?",
+      "answer": "0.18",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "0.2 × 0.9 = ?",
+      "answer": "0.18",
+      "concept": "dec_mul",
+      "difficulty": 1,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "5.2 × 0.5 = ?",
+      "answer": "2.6",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "8.9 × 0.9 = ?",
+      "answer": "8.01",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "2.6 × 0.7 = ?",
+      "answer": "1.82",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "5.9 × 0.6 = ?",
+      "answer": "3.54",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "2.7 × 0.6 = ?",
+      "answer": "1.62",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "6.3 × 0.1 = ?",
+      "answer": "0.63",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "9.6 × 0.1 = ?",
+      "answer": "0.96",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "4.9 × 0.3 = ?",
+      "answer": "1.47",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "5.8 × 0.3 = ?",
+      "answer": "1.74",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "7.7 × 0.4 = ?",
+      "answer": "3.08",
+      "concept": "dec_mul",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "7.0 × 4.5 = ?",
+      "answer": "31.5",
+      "concept": "dec_mul",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "8.2 × 6.7 = ?",
+      "answer": "54.94",
+      "concept": "dec_mul",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "2.0 × 5.0 = ?",
+      "answer": "10",
+      "concept": "dec_mul",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "4.8 × 4.2 = ?",
+      "answer": "20.16",
+      "concept": "dec_mul",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "1.3 × 6.4 = ?",
+      "answer": "8.32",
+      "concept": "dec_mul",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ]
+}

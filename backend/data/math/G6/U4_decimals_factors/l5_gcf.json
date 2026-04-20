@@ -1,0 +1,502 @@
+{
+  "lesson_id": "math_g6_u4_l5",
+  "title": "최대공약수(GCF)",
+  "concept": "공통 약수 중 최대를 찾는다.",
+  "vocab": [
+    "GCF",
+    "약수",
+    "공통"
+  ],
+  "essential_question": "GCF를 어떻게 찾나?",
+  "ccss": "6.NS.B.4",
+  "go_math_ref": "Ch.3 L1",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "12와 18의 GCF",
+      "answer": "6",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "24와 36의 GCF",
+      "answer": "12",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "15와 25의 GCF",
+      "choices": [
+        "3",
+        "5",
+        "15",
+        "25"
+      ],
+      "answer": "5",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "48과 60의 GCF",
+      "answer": "12",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "GCF는 두 수의 공약수 중 가장 큰 수.",
+      "answer": true,
+      "concept": "gcf_def",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "GCF 정의",
+      "content": "최대공약수=공통 약수 중 최대.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "방법1",
+      "content": "약수 나열 후 공통 중 최대.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "방법2",
+      "content": "소인수분해 후 공통 소인수 곱.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "예시",
+      "content": "12=2²×3, 18=2×3², GCF=2×3=6.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "활용",
+      "content": "분수 약분.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "범위",
+      "content": "1~100까지 자주 쓰임.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "16과 24의 GCF",
+      "answer": "8",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "16=2⁴",
+        "24=2³×3",
+        "공통=2³=8"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "20과 30의 GCF",
+      "answer": "10",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "공약수: 1,2,5,10",
+        "최대=10"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "36과 54의 GCF",
+      "answer": "18",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "36=2²×3²",
+        "54=2×3³",
+        "공통=2×3²=18"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "45와 75의 GCF",
+      "answer": "15",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "45=3²×5",
+        "75=3×5²",
+        "공통=3×5=15"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "72와 96의 GCF",
+      "answer": "24",
+      "concept": "gcf",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "72=2³×3²",
+        "96=2⁵×3",
+        "공통=2³×3=24"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "30과 24의 GCF",
+      "answer": "6",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "9과 12의 GCF",
+      "answer": "3",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "24과 20의 GCF",
+      "answer": "4",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "6과 4의 GCF",
+      "answer": "2",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "24과 20의 GCF",
+      "answer": "4",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "16과 20의 GCF",
+      "answer": "4",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "20과 24의 GCF",
+      "answer": "4",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "8과 20의 GCF",
+      "answer": "4",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "20과 8의 GCF",
+      "answer": "4",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "15과 6의 GCF",
+      "answer": "3",
+      "concept": "gcf",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "41과 38의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "14과 47의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "44과 45의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "47과 21의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "36과 40의 GCF",
+      "answer": "4",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "41과 60의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "40과 41의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "13과 35의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "36과 59의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "29과 45의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "73과 40의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "48과 53의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "83과 53의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "67과 41의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "85과 64의 GCF",
+      "answer": "1",
+      "concept": "gcf",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ]
+}

@@ -1,0 +1,502 @@
+{
+  "lesson_id": "math_g6_u4_l6",
+  "title": "최소공배수(LCM)",
+  "concept": "공통 배수 중 최소를 찾는다.",
+  "vocab": [
+    "LCM",
+    "배수",
+    "공통"
+  ],
+  "essential_question": "LCM은 어떻게 구하나?",
+  "ccss": "6.NS.B.4",
+  "go_math_ref": "Ch.3 L2",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "4와 6의 LCM",
+      "answer": "12",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "3과 5의 LCM",
+      "answer": "15",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "8과 12의 LCM",
+      "choices": [
+        "16",
+        "20",
+        "24",
+        "48"
+      ],
+      "answer": "24",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "6과 10의 LCM",
+      "answer": "30",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "LCM은 두 수의 공배수 중 최소.",
+      "answer": true,
+      "concept": "lcm_def",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "LCM 정의",
+      "content": "최소공배수=공통 배수 중 최소.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "방법",
+      "content": "소인수 중 높은 지수 곱.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "예시",
+      "content": "4=2², 6=2×3, LCM=2²×3=12.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "관계",
+      "content": "a×b = GCF×LCM.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "활용",
+      "content": "분수 공통분모.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "주기 일치 문제.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "6과 9의 LCM",
+      "answer": "18",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "6=2×3",
+        "9=3²",
+        "LCM=2×3²=18"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "5와 7의 LCM",
+      "answer": "35",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "서로소",
+        "LCM=5×7=35"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "8과 10의 LCM",
+      "answer": "40",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "8=2³",
+        "10=2×5",
+        "LCM=2³×5=40"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "12와 15의 LCM",
+      "answer": "60",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "12=2²×3",
+        "15=3×5",
+        "LCM=2²×3×5=60"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "9와 15의 LCM",
+      "answer": "45",
+      "concept": "lcm",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B",
+      "solution_steps": [
+        "9=3²",
+        "15=3×5",
+        "LCM=3²×5=45"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "5과 9의 LCM",
+      "answer": "45",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "3과 2의 LCM",
+      "answer": "6",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "7과 4의 LCM",
+      "answer": "28",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "5과 8의 LCM",
+      "answer": "40",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "6과 5의 LCM",
+      "answer": "30",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "6과 4의 LCM",
+      "answer": "12",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "8과 2의 LCM",
+      "answer": "8",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "6과 3의 LCM",
+      "answer": "6",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "2과 8의 LCM",
+      "answer": "8",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "8과 9의 LCM",
+      "answer": "72",
+      "concept": "lcm",
+      "difficulty": 1,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "8과 6의 LCM",
+      "answer": "24",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "11과 11의 LCM",
+      "answer": "11",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "10과 12의 LCM",
+      "answer": "60",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "15과 9의 LCM",
+      "answer": "45",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "10과 9의 LCM",
+      "answer": "90",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "5과 9의 LCM",
+      "answer": "45",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "13과 12의 LCM",
+      "answer": "156",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "13과 11의 LCM",
+      "answer": "143",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "13과 10의 LCM",
+      "answer": "130",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "6과 9의 LCM",
+      "answer": "18",
+      "concept": "lcm",
+      "difficulty": 2,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "17과 15의 LCM",
+      "answer": "255",
+      "concept": "lcm",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "15과 14의 LCM",
+      "answer": "210",
+      "concept": "lcm",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "17과 10의 LCM",
+      "answer": "170",
+      "concept": "lcm",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "7과 19의 LCM",
+      "answer": "133",
+      "concept": "lcm",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "7과 16의 LCM",
+      "answer": "112",
+      "concept": "lcm",
+      "difficulty": 3,
+      "skill": "find",
+      "cpa": "abstract",
+      "ccss": "6.NS.B"
+    }
+  ]
+}

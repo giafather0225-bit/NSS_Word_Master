@@ -1,0 +1,493 @@
+{
+  "lesson_id": "math_g6_u5_l5",
+  "title": "좌표평면 대칭",
+  "concept": "축/원점 대칭.",
+  "vocab": [
+    "대칭",
+    "반사",
+    "변환"
+  ],
+  "essential_question": "대칭의 규칙?",
+  "ccss": "6.NS.C.6.b",
+  "go_math_ref": "Ch.3 L9",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "(3,5)를 x축 대칭",
+      "answer": "(3,-5)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "(-2,7)을 y축 대칭",
+      "answer": "(2,7)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "(4,-6)을 원점 대칭",
+      "choices": [
+        "(-4,6)",
+        "(4,6)",
+        "(-4,-6)",
+        "(6,-4)"
+      ],
+      "answer": "(-4,6)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "(0,-3)을 x축 대칭",
+      "answer": "(0,3)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "x축 대칭은 y 부호만 반대.",
+      "answer": true,
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "x축 대칭",
+      "content": "(x,y)→(x,-y).",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "y축 대칭",
+      "content": "(x,y)→(-x,y).",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "원점 대칭",
+      "content": "(x,y)→(-x,-y).",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "거리 보존",
+      "content": "대칭축까지 거리 같음.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "시각화",
+      "content": "접어본다.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "도형 변환.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "(5,-2) x축 대칭",
+      "answer": "(5,2)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C",
+      "solution_steps": [
+        "y 부호 반대"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "(-3,4) y축 대칭",
+      "answer": "(3,4)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C",
+      "solution_steps": [
+        "x 부호 반대"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "(-6,-1) 원점 대칭",
+      "answer": "(6,1)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C",
+      "solution_steps": [
+        "둘 다 반대"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "(7,0) x축 대칭",
+      "answer": "(7,0)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C",
+      "solution_steps": [
+        "y=0은 그대로"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "(2,3)을 x축, 그 다음 y축",
+      "answer": "(-2,-3)",
+      "concept": "reflect",
+      "difficulty": 3,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C",
+      "solution_steps": [
+        "(2,-3)→(-2,-3)"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "(5,-5)를 x축 대칭",
+      "answer": "(5,5)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "(-9,-2)를 x축 대칭",
+      "answer": "(-9,2)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "(-3,4)를 x축 대칭",
+      "answer": "(-3,-4)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "(9,-3)를 x축 대칭",
+      "answer": "(9,3)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "(7,10)를 x축 대칭",
+      "answer": "(7,-10)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "(-8,-8)를 x축 대칭",
+      "answer": "(-8,8)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "(-7,-9)를 x축 대칭",
+      "answer": "(-7,9)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "(-4,-2)를 x축 대칭",
+      "answer": "(-4,2)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "(8,-1)를 x축 대칭",
+      "answer": "(8,1)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "(-9,-5)를 x축 대칭",
+      "answer": "(-9,5)",
+      "concept": "reflect",
+      "difficulty": 1,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "(10,10)을 y축 대칭",
+      "answer": "(-10,10)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "(-8,8)을 y축 대칭",
+      "answer": "(8,8)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "(-9,-5)을 y축 대칭",
+      "answer": "(9,-5)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "(-9,-9)을 y축 대칭",
+      "answer": "(9,-9)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "(10,-8)을 y축 대칭",
+      "answer": "(-10,-8)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "(0,3)을 y축 대칭",
+      "answer": "(0,3)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "(-1,-6)을 y축 대칭",
+      "answer": "(1,-6)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "(8,-10)을 y축 대칭",
+      "answer": "(-8,-10)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "(-6,4)을 y축 대칭",
+      "answer": "(6,4)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "(-4,6)을 y축 대칭",
+      "answer": "(4,6)",
+      "concept": "reflect",
+      "difficulty": 2,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "(-10,2)을 원점 대칭",
+      "answer": "(10,-2)",
+      "concept": "reflect",
+      "difficulty": 3,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "(4,1)을 원점 대칭",
+      "answer": "(-4,-1)",
+      "concept": "reflect",
+      "difficulty": 3,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "(-8,-12)을 원점 대칭",
+      "answer": "(8,12)",
+      "concept": "reflect",
+      "difficulty": 3,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "(4,7)을 원점 대칭",
+      "answer": "(-4,-7)",
+      "concept": "reflect",
+      "difficulty": 3,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "(-2,8)을 원점 대칭",
+      "answer": "(2,-8)",
+      "concept": "reflect",
+      "difficulty": 3,
+      "skill": "transform",
+      "cpa": "abstract",
+      "ccss": "6.NS.C"
+    }
+  ]
+}

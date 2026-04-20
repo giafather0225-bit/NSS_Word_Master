@@ -1,0 +1,521 @@
+{
+  "lesson_id": "math_g5_u6_l1",
+  "title": "공통분모 찾기 (Common Denominators)",
+  "concept": "최소공통분모(LCD)를 구하고 동치분수로 변환해요.",
+  "vocab": [
+    "공통분모",
+    "최소공통분모(LCD)",
+    "최소공배수(LCM)",
+    "동치분수"
+  ],
+  "essential_question": "어떻게 분모가 다른 분수에 공통분모를 부여하나요?",
+  "ccss": "5.NF.A.1",
+  "go_math_ref": "Ch.6 L1",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "3과 4의 최소공배수는?",
+      "choices": [
+        "6",
+        "12",
+        "24",
+        "8"
+      ],
+      "answer": "12",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt2",
+      "type": "mc",
+      "question": "2와 5의 최소공배수는?",
+      "choices": [
+        "5",
+        "10",
+        "20",
+        "7"
+      ],
+      "answer": "10",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt3",
+      "type": "input",
+      "question": "4와 6의 최소공배수를 구하세요.",
+      "answer": "12",
+      "concept": "LCM",
+      "difficulty": 2,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt4",
+      "type": "mc",
+      "question": "1/2와 1/3의 공통분모로 쓸 수 있는 수는?",
+      "choices": [
+        "5",
+        "6",
+        "8",
+        "3"
+      ],
+      "answer": "6",
+      "concept": "LCD",
+      "difficulty": 1,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt5",
+      "type": "input",
+      "question": "1/4와 1/6의 최소공통분모는?",
+      "answer": "12",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "공통분모",
+      "content": "서로 다른 분모를 가진 분수를 더하거나 빼려면 같은 분모(공통분모)로 바꿔야 해요.",
+      "phase": "concrete",
+      "visual_type": "fraction_bar",
+      "visual_data": {
+        "fractions": [
+          "1/2",
+          "1/3"
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "title": "최소공통분모",
+      "content": "두 분모의 최소공배수가 최소공통분모(LCD)예요.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "LCD 찾기",
+      "content": "예: 1/3, 1/4 → LCM(3,4)=12, LCD=12",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "동치분수로 바꾸기",
+      "content": "1/3 = 4/12, 1/4 = 3/12",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "방법 요약",
+      "content": "① 분모의 LCM 찾기 ② 각 분수를 LCD로 동치분수 만들기",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "핵심",
+      "content": "공통분모가 있어야 더하거나 뺄 수 있어요!",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "2/3과 3/4의 최소공통분모를 구하세요.",
+      "answer": "12",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 3의 배수: 3,6,9,12",
+        "② 4의 배수: 4,8,12",
+        "③ LCM=12"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "1/6을 분모 12로 바꾸면?",
+      "answer": "2/12",
+      "concept": "equiv",
+      "difficulty": 2,
+      "skill": "equiv",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 6×2=12",
+        "② 1×2=2",
+        "③ 1/6=2/12"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "3/4과 5/6의 LCD는?",
+      "answer": "12",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 4의 배수: 4,8,12",
+        "② 6의 배수: 6,12",
+        "③ LCM=12"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "2/5를 분모 10으로 바꾸면?",
+      "answer": "4/10",
+      "concept": "equiv",
+      "difficulty": 1,
+      "skill": "equiv",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 5×2=10",
+        "② 2×2=4",
+        "③ 2/5=4/10"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "1/4과 1/8의 LCD는?",
+      "answer": "8",
+      "concept": "LCD",
+      "difficulty": 1,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 8은 4의 배수",
+        "② LCD=8"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "2와 3의 최소공배수는?",
+      "answer": "6",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "3와 4의 최소공배수는?",
+      "answer": "12",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "2와 5의 최소공배수는?",
+      "answer": "10",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "4와 5의 최소공배수는?",
+      "answer": "20",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "3와 5의 최소공배수는?",
+      "answer": "15",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "2와 6의 최소공배수는?",
+      "answer": "6",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "3와 6의 최소공배수는?",
+      "answer": "6",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "4와 6의 최소공배수는?",
+      "answer": "12",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "5와 6의 최소공배수는?",
+      "answer": "30",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "2와 8의 최소공배수는?",
+      "answer": "8",
+      "concept": "LCM",
+      "difficulty": 1,
+      "skill": "lcm",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "1/2과 1/3의 최소공통분모는?",
+      "answer": "6",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "1/3과 1/4의 최소공통분모는?",
+      "answer": "12",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "1/2과 2/5의 최소공통분모는?",
+      "answer": "10",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "2/3과 3/5의 최소공통분모는?",
+      "answer": "15",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "1/4과 3/8의 최소공통분모는?",
+      "answer": "8",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "3/4과 1/6의 최소공통분모는?",
+      "answer": "12",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "2/3과 4/9의 최소공통분모는?",
+      "answer": "9",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "1/5과 3/10의 최소공통분모는?",
+      "answer": "10",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "5/6과 3/4의 최소공통분모는?",
+      "answer": "12",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "1/6과 2/9의 최소공통분모는?",
+      "answer": "18",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "5/6과 3/8의 LCD는?",
+      "answer": "24",
+      "concept": "LCD",
+      "difficulty": 2,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "2/9를 분모 18로 바꾸면? (형식: a/b)",
+      "answer": "4/18",
+      "concept": "equiv",
+      "difficulty": 2,
+      "skill": "equiv",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "7/10과 5/6의 LCD는?",
+      "answer": "30",
+      "concept": "LCD",
+      "difficulty": 3,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "3/4를 분모 12로 바꾸면?",
+      "answer": "9/12",
+      "concept": "equiv",
+      "difficulty": 1,
+      "skill": "equiv",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "3/8과 5/12의 LCD는?",
+      "answer": "24",
+      "concept": "LCD",
+      "difficulty": 3,
+      "skill": "lcd",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ]
+}

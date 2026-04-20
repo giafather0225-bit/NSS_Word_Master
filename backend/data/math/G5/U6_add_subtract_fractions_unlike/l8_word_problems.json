@@ -1,0 +1,499 @@
+{
+  "lesson_id": "math_g5_u6_l8",
+  "title": "분수 문장제",
+  "concept": "실생활 상황에서 분수 덧/뺄셈 적용.",
+  "vocab": [
+    "문장제",
+    "공통분모",
+    "기약분수"
+  ],
+  "essential_question": "언제 더하고 언제 빼는지 어떻게 판단하나요?",
+  "ccss": "5.NF.A.2",
+  "go_math_ref": "Ch.6 L9",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "피자를 재민이는 1/2판, 유나는 1/4판 먹었어요. 둘이 먹은 양은? (형식: a/b)",
+      "answer": "3/4",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "리본 5/6 m 중 1/3 m를 사용. 남은 길이는? (형식: a/b)",
+      "answer": "1/2",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt3",
+      "type": "input",
+      "question": "주스 2 1/4 L + 1 1/2 L = ? (w a/b)",
+      "answer": "3 3/4",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "물 4 L 중 1 2/3 L를 마셨어요. 남은 양? (w a/b)",
+      "answer": "2 1/3",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt5",
+      "type": "input",
+      "question": "밀가루 3/4컵 + 2/3컵 = ? (형식: a/b)",
+      "answer": "17/12",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "hint": "17/12는 1 5/12로도 표현 가능. 답은 분수(a/b)로 입력."
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "문장제 전략",
+      "content": "무엇을 묻는지, 어떤 연산인지 파악",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "덧셈 키워드",
+      "content": "'합', '모두', '합계' → 더하기",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "뺄셈 키워드",
+      "content": "'차이', '남은', '더 많은' → 빼기",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "공통분모",
+      "content": "계산 전에 반드시 공통분모로!",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "합리성",
+      "content": "답이 기준수로 어림한 값과 비슷한지 확인",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "단위 확인",
+      "content": "질문이 요구하는 형식(a/b, w a/b)으로 답하기",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "철수는 2/3 m, 영희는 5/6 m 리본 사용. 둘 합? (w a/b)",
+      "answer": "1 1/2",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 2/3+5/6",
+        "② LCD=6",
+        "③ 4/6+5/6=9/6",
+        "④ 기약=1 1/2"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "우유 3 1/4컵 있음. 1 1/2컵 사용. 남은 양? (w a/b)",
+      "answer": "1 3/4",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 3 1/4 - 1 1/2",
+        "② 공통분모 4",
+        "③ 3 1/4 = 2 5/4",
+        "④ 2 5/4 - 1 2/4 = 1 3/4"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "레시피에 밀가루 1 1/2컵, 설탕 3/4컵. 둘 합? (w a/b)",
+      "answer": "2 1/4",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 1 1/2+3/4",
+        "② 1 2/4+3/4",
+        "③ 1 5/4=2 1/4"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "끈 5 m 중 1 3/8 m 사용. 남은 길이? (w a/b)",
+      "answer": "3 5/8",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 5 - 1 3/8",
+        "② 5 = 4 8/8",
+        "③ 4 8/8 - 1 3/8 = 3 5/8"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "물 2/5 L와 3/10 L 합? (형식: a/b)",
+      "answer": "7/10",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① LCD=10",
+        "② 4/10+3/10=7/10"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "케이크 1/2판 + 1/4판 = ? (형식: a/b)",
+      "answer": "3/4",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "리본 3/4 m - 1/2 m = ? (형식: a/b)",
+      "answer": "1/4",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "주스 2/3 + 1/6 = ? (형식: a/b)",
+      "answer": "5/6",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "우유 5/6 - 1/3 = ? (형식: a/b)",
+      "answer": "1/2",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "설탕 1/2 + 1/3 = ? (형식: a/b)",
+      "answer": "5/6",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "밀가루 3/4 - 1/4 = ? (형식: a/b)",
+      "answer": "1/2",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "물 2/5 + 3/10 = ? (형식: a/b)",
+      "answer": "7/10",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "사과 2/3 + 1/4 = ? (형식: a/b)",
+      "answer": "11/12",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "기름 7/8 - 1/2 = ? (형식: a/b)",
+      "answer": "3/8",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "콩 5/8 + 1/4 = ? (형식: a/b)",
+      "answer": "7/8",
+      "concept": "wp",
+      "difficulty": 1,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "1 1/2 + 2 1/3 = ? (형식: w a/b 또는 정수)",
+      "answer": "3 5/6",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "3 3/4 - 1 1/2 = ? (형식: w a/b 또는 정수)",
+      "answer": "2 1/4",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "2 2/3 + 1 1/4 = ? (형식: w a/b 또는 정수)",
+      "answer": "3 11/12",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "4 1/2 - 2 1/3 = ? (형식: w a/b 또는 정수)",
+      "answer": "2 1/6",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "2 3/5 + 1 1/2 = ? (형식: w a/b 또는 정수)",
+      "answer": "4 1/10",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "5 1/4 - 2 3/8 = ? (형식: w a/b 또는 정수)",
+      "answer": "2 7/8",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "1 5/6 + 2 1/4 = ? (형식: w a/b 또는 정수)",
+      "answer": "4 1/12",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "3 1/2 - 1 2/3 = ? (형식: w a/b 또는 정수)",
+      "answer": "1 5/6",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "2 3/8 + 1 1/2 = ? (형식: w a/b 또는 정수)",
+      "answer": "3 7/8",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "4 - 1 1/3 = ? (형식: w a/b 또는 정수)",
+      "answer": "2 2/3",
+      "concept": "wp",
+      "difficulty": 2,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "빵 3컵 중 1 2/3컵 사용, 이후 1/2컵 더 사용. 남은 양? (w a/b)",
+      "answer": "5/6",
+      "concept": "wp",
+      "difficulty": 3,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "월 1 1/4시간, 화 1 3/4시간, 수 2시간 공부. 합? (w a/b)",
+      "answer": "5",
+      "concept": "wp",
+      "difficulty": 3,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "철사 5 1/2 m 중 2 1/3 m 자르고 남은 것을 반으로 자르면 한 조각? (w a/b)",
+      "answer": "1 7/12",
+      "concept": "wp",
+      "difficulty": 3,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "A통 3/4 L, B통 2/3 L, 둘 합에서 1/2 L 빼면? (형식: a/b 또는 w a/b)",
+      "answer": "11/12",
+      "concept": "wp",
+      "difficulty": 3,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "레시피에 2 1/2컵 밀가루, 실수로 1 3/4컵만 넣음. 더 넣어야 할 양? (w a/b)",
+      "answer": "3/4",
+      "concept": "wp",
+      "difficulty": 3,
+      "skill": "wp",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ]
+}

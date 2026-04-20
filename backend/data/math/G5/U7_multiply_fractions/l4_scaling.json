@@ -1,0 +1,577 @@
+{
+  "lesson_id": "math_g5_u7_l4",
+  "title": "곱과 인수의 크기 비교 (스케일링)",
+  "concept": "× (<1)은 작아지고, × (>1)은 커져요.",
+  "vocab": [
+    "스케일링",
+    "진분수",
+    "가분수"
+  ],
+  "essential_question": "곱한다고 항상 커지나요?",
+  "ccss": "5.NF.B.5",
+  "go_math_ref": "Ch.7 L5",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "5 × 2/3은 5와 비교해서?",
+      "choices": [
+        "더 크다",
+        "더 작다",
+        "같다"
+      ],
+      "answer": "더 작다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "pt2",
+      "type": "mc",
+      "question": "5 × 4/3은 5와 비교해서?",
+      "choices": [
+        "더 크다",
+        "더 작다",
+        "같다"
+      ],
+      "answer": "더 크다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "7 × 5/5는 7과 비교해서?",
+      "choices": [
+        "더 크다",
+        "더 작다",
+        "같다"
+      ],
+      "answer": "같다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "pt4",
+      "type": "mc",
+      "question": "1/2보다 1/2 × 3/4는?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "작다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "pt5",
+      "type": "mc",
+      "question": "3/4 × 7/6은 3/4보다?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "곱셈을 크기 조절로",
+      "content": "× (<1) 곱하기 = 작아지기, × (>1) = 커지기",
+      "phase": "concrete",
+      "visual_type": "number_line"
+    },
+    {
+      "id": "c2",
+      "title": "진분수 곱",
+      "content": "수 × (진분수) < 원래 수",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "가분수 곱",
+      "content": "수 × (가분수/대분수) > 원래 수",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "1 곱",
+      "content": "수 × 1 = 수",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "요약",
+      "content": "분자<분모 → 작아짐, 분자>분모 → 커짐, 같음 → 그대로",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "예",
+      "content": "10 × 3/4 = 7.5(작아짐), 10 × 5/4 = 12.5(커짐)",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "8 × 3/5는 8과 비교하면 (크다/작다/같다)?",
+      "answer": "작다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5",
+      "solution_steps": [
+        "① 3/5 < 1",
+        "② 결과 < 8"
+      ],
+      "feedback": {
+        "correct": "정답! 잘했어요.",
+        "incorrect": "다시 시도해봐요."
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "12 × 7/6은 12와 비교하면?",
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5",
+      "solution_steps": [
+        "① 7/6 > 1",
+        "② 결과 > 12"
+      ],
+      "feedback": {
+        "correct": "정답! 잘했어요.",
+        "incorrect": "다시 시도해봐요."
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "9 × 4/4는 9과 비교하면?",
+      "answer": "같다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5",
+      "solution_steps": [
+        "① 4/4=1",
+        "② 결과=9"
+      ],
+      "feedback": {
+        "correct": "정답! 잘했어요.",
+        "incorrect": "다시 시도해봐요."
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "3/4 × 1/2는 3/4보다 (크다/작다/같다)?",
+      "answer": "작다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5",
+      "solution_steps": [
+        "① 1/2<1",
+        "② 곱은 3/4보다 작음"
+      ],
+      "feedback": {
+        "correct": "정답! 잘했어요.",
+        "incorrect": "다시 시도해봐요."
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "5 × 8/5는 5와 비교하면?",
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5",
+      "solution_steps": [
+        "① 8/5>1",
+        "② 결과>5"
+      ],
+      "feedback": {
+        "correct": "정답! 잘했어요.",
+        "incorrect": "다시 시도해봐요."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "9 × 3/4는 9과 비교하면? (크다/작다/같다)",
+      "answer": "작다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "6 × 5/5는 6과 비교하면? (크다/작다/같다)",
+      "answer": "같다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "10 × 7/4는 10과 비교하면? (크다/작다/같다)",
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "15 × 2/3는 15과 비교하면? (크다/작다/같다)",
+      "answer": "작다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "4 × 9/8는 4과 비교하면? (크다/작다/같다)",
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "20 × 1/2는 20과 비교하면? (크다/작다/같다)",
+      "answer": "작다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "8 × 5/3는 8과 비교하면? (크다/작다/같다)",
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "12 × 6/7는 12과 비교하면? (크다/작다/같다)",
+      "answer": "작다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "5 × 4/4는 5과 비교하면? (크다/작다/같다)",
+      "answer": "같다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "7 × 11/9는 7과 비교하면? (크다/작다/같다)",
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 1,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "mc",
+      "question": "2/3 × 5/4와 2/3: 크기?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r2_2",
+      "type": "mc",
+      "question": "7/8 × 3/5와 7/8: 크기?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "작다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r2_3",
+      "type": "mc",
+      "question": "5/6 × 1과 5/6: 크기?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "같다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r2_4",
+      "type": "mc",
+      "question": "1/2 × 9/9와 1/2: 크기?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "같다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r2_5",
+      "type": "mc",
+      "question": "3/4 × 8/7과 3/4: 크기?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r2_6",
+      "type": "mc",
+      "question": "4/5 × 2/3와 4/5: 크기?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "작다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r2_7",
+      "type": "mc",
+      "question": "1 × 11/10와 1: 크기?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r2_8",
+      "type": "mc",
+      "question": "2 × 3/8과 2: 크기?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "작다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r2_9",
+      "type": "mc",
+      "question": "10 × 12/10과 10: 크기?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "크다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r2_10",
+      "type": "mc",
+      "question": "6 × 7/7과 6: 크기?",
+      "choices": [
+        "크다",
+        "작다",
+        "같다"
+      ],
+      "answer": "같다",
+      "concept": "scaling",
+      "difficulty": 2,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "빈칸: 7 × ___ < 7이려면 ___는 (1보다 큰/작은/같은) 분수? (큰/작은/같은)",
+      "answer": "작은",
+      "concept": "scaling",
+      "difficulty": 3,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "빈칸: 8 × ___ = 8이려면 ___는? (진분수/가분수/1과 같음 중)",
+      "answer": "1과 같음",
+      "concept": "scaling",
+      "difficulty": 3,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "빈칸: 10 × ___ > 10이려면 ___는? (1보다 큰/작은)",
+      "answer": "큰",
+      "concept": "scaling",
+      "difficulty": 3,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r3_4",
+      "type": "mc",
+      "question": "a × 4/5 = b. a와 b 관계?",
+      "choices": [
+        "a<b",
+        "a>b",
+        "a=b"
+      ],
+      "answer": "a>b",
+      "concept": "scaling",
+      "difficulty": 3,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    },
+    {
+      "id": "r3_5",
+      "type": "mc",
+      "question": "a × 9/8 = b. a와 b 관계?",
+      "choices": [
+        "a<b",
+        "a>b",
+        "a=b"
+      ],
+      "answer": "a<b",
+      "concept": "scaling",
+      "difficulty": 3,
+      "skill": "scaling",
+      "cpa": "abstract",
+      "ccss": "5.NF.B.5"
+    }
+  ]
+}

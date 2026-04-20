@@ -1,0 +1,503 @@
+{
+  "lesson_id": "math_g5_u6_l7",
+  "title": "분수 수열의 규칙",
+  "concept": "차이를 찾아 다음 항을 예측해요.",
+  "vocab": [
+    "수열",
+    "규칙",
+    "차이"
+  ],
+  "essential_question": "분수 수열의 규칙을 어떻게 찾나요?",
+  "ccss": "5.NF.A.1",
+  "go_math_ref": "Ch.6 L8",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "input",
+      "question": "1/4씩 커지는 규칙. 1/4, 1/2, 3/4, ? (형식: a/b 또는 정수)",
+      "answer": "1",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "1/2, 1, 3/2, 2, ? (형식: a/b 또는 정수)",
+      "answer": "5/2",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt3",
+      "type": "input",
+      "question": "1/3씩 커지는 규칙. 2/3, 1, 4/3, ? (형식: a/b)",
+      "answer": "5/3",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "5, 4 1/2, 4, 3 1/2, ? (형식: 정수 또는 w a/b)",
+      "answer": "3",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt5",
+      "type": "input",
+      "question": "1/8, 1/4, 3/8, 1/2, ? (형식: a/b)",
+      "answer": "5/8",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "분수 규칙",
+      "content": "같은 분수만큼 더하거나 빼면서 수열을 만들어요.",
+      "phase": "concrete",
+      "visual_type": "number_line",
+      "visual_data": {
+        "start": 0,
+        "end": 2,
+        "marks": [
+          "0",
+          "1/2",
+          "1",
+          "3/2",
+          "2"
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "title": "증가 규칙",
+      "content": "1/4씩 증가: 1/4, 2/4(=1/2), 3/4, 4/4(=1), 5/4",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "감소 규칙",
+      "content": "1/3씩 감소: 2, 1 2/3, 1 1/3, 1, 2/3",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "차이 찾기",
+      "content": "두 연속 항의 차이를 찾아 규칙 파악",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "예",
+      "content": "1/2, 3/4, 1, 1 1/4 → 매번 +1/4",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "다음 항",
+      "content": "규칙을 마지막 항에 적용",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "규칙 +1/4. 1/2, 3/4, 1, 1 1/4, ? (w a/b)",
+      "answer": "1 1/2",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 매번 +1/4",
+        "② 1 1/4 + 1/4 = 1 2/4 = 1 1/2"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "규칙 +1/6. 1/6, 1/3, 1/2, ? (형식: a/b)",
+      "answer": "2/3",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 매번 +1/6",
+        "② 1/2+1/6 = 3/6+1/6 = 4/6 = 2/3"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "규칙 -1/5. 2, 1 4/5, 1 3/5, ? (w a/b)",
+      "answer": "1 2/5",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 매번 -1/5",
+        "② 1 3/5 - 1/5 = 1 2/5"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "규칙 +1/3. 1 1/3, 1 2/3, 2, ? (w a/b)",
+      "answer": "2 1/3",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① +1/3",
+        "② 2+1/3 = 2 1/3"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "규칙 -1/4. 3 1/4, 3, 2 3/4, ? (w a/b)",
+      "answer": "2 1/2",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① -1/4",
+        "② 2 3/4-1/4 = 2 2/4 = 2 1/2"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "1/2, 3/4, 1, ? (규칙 +1/4)",
+      "answer": "1 1/4",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "1/3, 2/3, 1, ? (규칙 +1/3)",
+      "answer": "1 1/3",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "3/4, 1, 1 1/4, ? (규칙 +1/4)",
+      "answer": "1 1/2",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "1/6, 1/3, 1/2, ? (규칙 +1/6)",
+      "answer": "2/3",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "2, 1 1/2, 1, ? (규칙 -1 1/2)",
+      "answer": "1/2",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "2 1/2, 2 1/4, 2, ? (규칙 -1 3/4)",
+      "answer": "1 3/4",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "1/8, 1/4, 3/8, ? (규칙 +1/8)",
+      "answer": "1/2",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "1, 1 1/3, 1 2/3, ? (규칙 +1/3)",
+      "answer": "2",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "3, 2 4/5, 2 3/5, ? (규칙 -1 4/5)",
+      "answer": "2 2/5",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "1/2, 1, 1 1/2, ? (규칙 +1/2)",
+      "answer": "2",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "1/4, ?, 3/4, 1 (규칙 +1/4) — 빠진 수는?",
+      "answer": "1/2",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "2/3, 1, ?, 1 2/3 (규칙 +1/3) — 빠진 수는? (w a/b)",
+      "answer": "1 1/3",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "1 1/2, 1 1/4, ?, 3/4 (규칙 -1/4) — 빠진 수는? (정수 또는 w a/b)",
+      "answer": "1",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "1/6, 1/3, 1/2, 2/3, ? (형식: a/b)",
+      "answer": "5/6",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "3/8, 1/2, 5/8, 3/4, ? (형식: a/b)",
+      "answer": "7/8",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "2, 1 3/4, 1 1/2, 1 1/4, ? (정수 또는 a/b)",
+      "answer": "1",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "1/5, 2/5, 3/5, 4/5, ? (정수 또는 a/b)",
+      "answer": "1",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "1 1/2, 2, 2 1/2, 3, ? (정수 또는 w a/b)",
+      "answer": "3 1/2",
+      "concept": "pattern",
+      "difficulty": 1,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "5/6, 2/3, 1/2, 1/3, ? (형식: a/b)",
+      "answer": "1/6",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "1/12, 1/6, 1/4, 1/3, ? (형식: a/b)",
+      "answer": "5/12",
+      "concept": "pattern",
+      "difficulty": 2,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "1/4, 3/8, 1/2, 5/8, ? (형식: a/b)",
+      "answer": "3/4",
+      "concept": "pattern",
+      "difficulty": 3,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "2 1/6, 1 5/6, 1 1/2, ? (w a/b)",
+      "answer": "1 1/6",
+      "concept": "pattern",
+      "difficulty": 3,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "1 3/10, 1 3/5, 1 9/10, ? (w a/b)",
+      "answer": "2 1/5",
+      "concept": "pattern",
+      "difficulty": 3,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "4, 3 5/8, 3 1/4, ? (w a/b)",
+      "answer": "2 7/8",
+      "concept": "pattern",
+      "difficulty": 3,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "5/12, 7/12, 3/4, ? (형식: a/b)",
+      "answer": "11/12",
+      "concept": "pattern",
+      "difficulty": 3,
+      "skill": "pattern",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ]
+}

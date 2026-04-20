@@ -1,0 +1,536 @@
+{
+  "lesson_id": "math_g5_u6_l4",
+  "title": "분수의 합/차 어림하기",
+  "concept": "기준수 0, 1/2, 1로 어림해요.",
+  "vocab": [
+    "기준수(benchmark)",
+    "어림",
+    "반올림"
+  ],
+  "essential_question": "분수 계산의 합리성을 어떻게 확인하나요?",
+  "ccss": "5.NF.A.2",
+  "go_math_ref": "Ch.6 L4",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "7/8에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "choices": [
+        "0",
+        "1/2",
+        "1",
+        "2"
+      ],
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt2",
+      "type": "mc",
+      "question": "1/8에 가장 가까운 기준수는?",
+      "choices": [
+        "0",
+        "1/2",
+        "1",
+        "2"
+      ],
+      "answer": "0",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "5/9에 가장 가까운 기준수는?",
+      "choices": [
+        "0",
+        "1/2",
+        "1",
+        "2"
+      ],
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt4",
+      "type": "mc",
+      "question": "7/8 + 1/12 ≈ ?",
+      "choices": [
+        "0",
+        "1/2",
+        "1",
+        "2"
+      ],
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "pt5",
+      "type": "mc",
+      "question": "5/6 - 1/8 ≈ ?",
+      "choices": [
+        "0",
+        "1/2",
+        "1",
+        "2"
+      ],
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "기준수",
+      "content": "분수를 0, 1/2, 1에 가장 가까운 값으로 반올림해요.",
+      "phase": "concrete",
+      "visual_type": "number_line",
+      "visual_data": {
+        "start": 0,
+        "end": 1,
+        "marks": [
+          "0",
+          "1/2",
+          "1"
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "title": "판단 기준",
+      "content": "분자 < 분모/2 → 0 쪽, 분자 ≈ 분모/2 → 1/2, 분자 ≈ 분모 → 1",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "예",
+      "content": "3/8 → 분자 3, 반 4이므로 1/2에 가까움",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "어림하여 더하기",
+      "content": "7/8 + 1/10 ≈ 1 + 0 = 1",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "어림하여 빼기",
+      "content": "5/6 - 1/8 ≈ 1 - 0 = 1 (또는 1/2에 가까우면 1/2)",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "쓸모",
+      "content": "답이 합리적인지 확인할 때 유용해요.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "7/8 + 2/9 ≈ ? (기준수: 0, 1/2, 1, 2 중)",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 7/8 ≈ 1",
+        "② 2/9 ≈ 0",
+        "③ 1+0=1"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "5/12 + 1/10 ≈ ?",
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 5/12 ≈ 1/2",
+        "② 1/10 ≈ 0",
+        "③ 1/2+0=1/2"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "11/12 - 1/8 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 11/12 ≈ 1",
+        "② 1/8 ≈ 0",
+        "③ 1-0=1"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "3/8 + 5/9 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 3/8 ≈ 1/2",
+        "② 5/9 ≈ 1/2",
+        "③ 1/2+1/2=1"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "7/8 - 1/9 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1",
+      "solution_steps": [
+        "① 7/8≈1",
+        "② 1/9≈0",
+        "③ 1-0=1"
+      ],
+      "feedback": {
+        "correct": "정답! 단계를 잘 따랐어요.",
+        "incorrect": "다시 확인해봐요. 힌트를 참고하세요."
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "1/10에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "answer": "0",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "7/8에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "4/9에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "1/3에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "11/12에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "1/8에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "answer": "0",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "5/11에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "9/10에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "2/9에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "answer": "0",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "3/5에 가장 가까운 기준수(0, 1/2, 1)는?",
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 1,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "7/8 + 1/10 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "5/9 + 4/10 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "1/8 + 1/10 ≈ ?",
+      "answer": "0",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "11/12 - 1/9 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "7/8 - 4/9 ≈ ?",
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "5/12 + 1/10 ≈ ?",
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "3/8 + 5/11 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "9/10 - 1/12 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "2/9 + 5/11 ≈ ?",
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "7/8 - 1/10 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 2,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "5/8 + 7/12 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 3,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "11/12 - 5/9 ≈ ?",
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 3,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "9/10 + 1/12 ≈ ?",
+      "answer": "1",
+      "concept": "estimate",
+      "difficulty": 3,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "7/8 - 3/8 ≈ ?",
+      "answer": "1/2",
+      "concept": "estimate",
+      "difficulty": 3,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "1/9 + 1/10 ≈ ?",
+      "answer": "0",
+      "concept": "estimate",
+      "difficulty": 3,
+      "skill": "benchmark",
+      "cpa": "abstract",
+      "ccss": "5.NF.A.1"
+    }
+  ]
+}

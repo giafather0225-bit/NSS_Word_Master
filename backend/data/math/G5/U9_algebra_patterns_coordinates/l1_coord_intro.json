@@ -1,0 +1,560 @@
+{
+  "lesson_id": "math_g5_u9_l1",
+  "title": "좌표평면 소개",
+  "concept": "순서쌍 (x,y)으로 점의 위치 표현.",
+  "vocab": [
+    "좌표평면",
+    "순서쌍",
+    "x축",
+    "y축",
+    "원점"
+  ],
+  "essential_question": "좌표평면에서 점의 위치는 어떻게 표현하나요?",
+  "ccss": "5.G.A.1",
+  "go_math_ref": "Ch.9 L1",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "순서쌍 (3, 5)에서 첫 번째 숫자는?",
+      "choices": [
+        "x좌표",
+        "y좌표",
+        "원점",
+        "축"
+      ],
+      "answer": "x좌표",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "pt2",
+      "type": "mc",
+      "question": "원점의 좌표는?",
+      "choices": [
+        "(0,0)",
+        "(1,1)",
+        "(0,1)",
+        "(1,0)"
+      ],
+      "answer": "(0,0)",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "pt3",
+      "type": "mc",
+      "question": "(4, 0)는 어디?",
+      "choices": [
+        "x축 위",
+        "y축 위",
+        "원점",
+        "1사분면 내부"
+      ],
+      "answer": "x축 위",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "pt4",
+      "type": "mc",
+      "question": "점 (2,3)은 원점에서 오른쪽 2, 위로 몇?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "answer": "3",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "pt5",
+      "type": "input",
+      "question": "점 (0, 6)은 어느 축 위? (x축/y축)",
+      "answer": "y축",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "좌표평면",
+      "content": "두 수직선(가로=x, 세로=y)의 교차로 이루어진 평면",
+      "phase": "concrete",
+      "visual_type": "coordinate_grid",
+      "visual_data": {
+        "size": 10
+      }
+    },
+    {
+      "id": "c2",
+      "title": "원점",
+      "content": "두 축이 만나는 점 (0,0)",
+      "phase": "pictorial",
+      "visual_type": "coordinate_grid",
+      "visual_data": {
+        "size": 10,
+        "points": [
+          [
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "c3",
+      "title": "순서쌍",
+      "content": "(x, y): x는 가로, y는 세로",
+      "phase": "pictorial",
+      "visual_type": "coordinate_grid",
+      "visual_data": {
+        "size": 10,
+        "points": [
+          [
+            3,
+            4
+          ]
+        ]
+      }
+    },
+    {
+      "id": "c4",
+      "title": "순서 중요",
+      "content": "(3,5) ≠ (5,3)",
+      "phase": "pictorial",
+      "visual_type": "coordinate_grid",
+      "visual_data": {
+        "size": 10,
+        "points": [
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "id": "c5",
+      "title": "축 위의 점",
+      "content": "(a, 0)은 x축 위, (0, b)는 y축 위",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "1사분면",
+      "content": "x>0, y>0인 영역. 5학년에서는 주로 1사분면만!",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "점 (5, 2)는 x축에서 몇? y축에서 몇?",
+      "answer": "x=5, y=2",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1",
+      "solution_steps": [
+        "① x좌표=5",
+        "② y좌표=2"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "(0, 7)은 어느 축 위? (x축/y축)",
+      "answer": "y축",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1",
+      "solution_steps": [
+        "① x=0 → y축 위"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "(8, 0)은 어느 축 위?",
+      "answer": "x축",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1",
+      "solution_steps": [
+        "① y=0 → x축 위"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "순서쌍 (2,6)과 (6,2)는 같은 점인가? (예/아니오)",
+      "answer": "아니오",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1",
+      "solution_steps": [
+        "① 순서 다르면 다른 점"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "(0,0)의 이름?",
+      "answer": "원점",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1",
+      "solution_steps": [
+        "① 두 축 교차점"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "(3,7)의 x좌표?",
+      "answer": "3",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "(3,7)의 y좌표?",
+      "answer": "7",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "(9,2)의 x좌표?",
+      "answer": "9",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "(9,2)의 y좌표?",
+      "answer": "2",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "(0,0)의 이름?",
+      "answer": "원점",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_6",
+      "type": "mc",
+      "question": "(6,0)은 어디?",
+      "choices": [
+        "x축",
+        "y축",
+        "원점",
+        "1사분면 내부"
+      ],
+      "answer": "x축",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_7",
+      "type": "mc",
+      "question": "(0,5)는 어디?",
+      "choices": [
+        "x축",
+        "y축",
+        "원점",
+        "1사분면 내부"
+      ],
+      "answer": "y축",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "(4,8)의 y좌표?",
+      "answer": "8",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "(1,0) + x축/y축 중 어디?",
+      "answer": "x축",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "(0,1)은 x축/y축?",
+      "answer": "y축",
+      "concept": "coord",
+      "difficulty": 1,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "점 A(2,5)에서 x방향으로 3 이동. 새 좌표 (형식: (a,b))?",
+      "answer": "(5,5)",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "점 B(4,1)에서 y방향으로 3 이동. 새 좌표?",
+      "answer": "(4,4)",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "점 C(6,6)에서 x -2 이동. 새 좌표?",
+      "answer": "(4,6)",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "(3,8)과 (3,2)의 y좌표 차이?",
+      "answer": "6",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "(1,5)와 (7,5)의 x좌표 차이?",
+      "answer": "6",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "(0,0)에서 (4,3)까지 오른쪽 몇, 위로 몇? (형식: 오른쪽 a 위 b)",
+      "answer": "오른쪽 4 위 3",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "점 (5,5)는 x축 위? (예/아니오)",
+      "answer": "아니오",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "점 (0,9)의 x좌표?",
+      "answer": "0",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "점 (3,4)와 점 (3,9)의 거리?",
+      "answer": "5",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "점 (2,7)과 점 (8,7)의 거리?",
+      "answer": "6",
+      "concept": "coord",
+      "difficulty": 2,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "A(3,2), B(3,7). 선분 길이?",
+      "answer": "5",
+      "concept": "coord",
+      "difficulty": 3,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "C(1,4), D(6,4). 선분 길이?",
+      "answer": "5",
+      "concept": "coord",
+      "difficulty": 3,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "P(2,2), Q(8,2), R(8,7): 직각삼각형 두 변 길이 합?",
+      "answer": "11",
+      "concept": "coord",
+      "difficulty": 3,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "(0,0)에서 (5,0), (0,7)까지 거리 합?",
+      "answer": "12",
+      "concept": "coord",
+      "difficulty": 3,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "A(2,3), B(2,8), C(7,8), D(7,3). 사각형 둘레?",
+      "answer": "20",
+      "concept": "coord",
+      "difficulty": 3,
+      "skill": "coord_intro",
+      "cpa": "abstract",
+      "ccss": "5.G.A.1"
+    }
+  ]
+}

@@ -1,0 +1,498 @@
+{
+  "lesson_id": "math_g6_u10_l6",
+  "title": "점 그래프와 히스토그램",
+  "concept": "분포 시각화.",
+  "vocab": [
+    "점그래프",
+    "히스토그램"
+  ],
+  "essential_question": "어떻게 시각화?",
+  "ccss": "6.SP.B.4",
+  "go_math_ref": "Ch.12 L6",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "점 그래프는 각 값을 ___으로 표시",
+      "choices": [
+        "선",
+        "점",
+        "막대",
+        "원"
+      ],
+      "answer": "점",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt2",
+      "type": "mc",
+      "question": "히스토그램은 ___을 나타냄",
+      "choices": [
+        "개별값",
+        "구간 빈도",
+        "순서",
+        "비율"
+      ],
+      "answer": "구간 빈도",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt3",
+      "type": "tf",
+      "question": "히스토그램 막대는 서로 붙어 있다.",
+      "answer": true,
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt4",
+      "type": "mc",
+      "question": "점 그래프에 적합한 자료",
+      "choices": [
+        "개별 숫자 데이터",
+        "범주형",
+        "연속 구간",
+        "비율"
+      ],
+      "answer": "개별 숫자 데이터",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "pt5",
+      "type": "tf",
+      "question": "히스토그램은 연속 데이터 분포에 적합.",
+      "answer": true,
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "concept",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "점 그래프",
+      "content": "개별 값 점.",
+      "phase": "concrete",
+      "visual_type": "none"
+    },
+    {
+      "id": "c2",
+      "title": "히스토그램",
+      "content": "구간별 빈도 막대.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "비교",
+      "content": "점은 개별, 히스토는 구간.",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "읽기",
+      "content": "최빈, 범위 확인.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "대칭성",
+      "content": "분포 형태.",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "응용",
+      "content": "점수, 나이 분포.",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "점 그래프의 최빈값 = 가장 점 많은 값?",
+      "answer": "예",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "히스토그램 가로축은?",
+      "answer": "구간(값의 범위)",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "{2,3,3,4,4,4,5} 점 그래프에서 최빈",
+      "answer": "4",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "3번"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "히스토그램 막대 높이 의미",
+      "answer": "빈도",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "점 그래프에서 범위 찾기: {1,2,2,3,5}",
+      "answer": "4",
+      "concept": "plots",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A",
+      "solution_steps": [
+        "5-1"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "input",
+      "question": "점 그래프 {3,7,2,10,5,5,7,3} 최빈",
+      "answer": "3",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_2",
+      "type": "input",
+      "question": "점 그래프 {10,6,7,4,8,9,3,10} 최빈",
+      "answer": "10",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_3",
+      "type": "input",
+      "question": "점 그래프 {5,2,5,4,2,7,4,3} 최빈",
+      "answer": "5",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "점 그래프 {10,9,8,1,7,1,4,7} 최빈",
+      "answer": "1",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "점 그래프 {4,3,1,5,3,5,10,1} 최빈",
+      "answer": "3",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "점 그래프 {4,7,9,7,6,1,5,10} 최빈",
+      "answer": "7",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "점 그래프 {2,6,5,2,6,2,9,8} 최빈",
+      "answer": "2",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "점 그래프 {3,4,1,10,6,8,10,3} 최빈",
+      "answer": "3",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "점 그래프 {4,4,5,3,9,5,6,5} 최빈",
+      "answer": "5",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "점 그래프 {4,7,9,7,1,4,6,1} 최빈",
+      "answer": "4",
+      "concept": "plots",
+      "difficulty": 1,
+      "skill": "identify",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "점 그래프 {14,9,18,17,3,4} 범위",
+      "answer": "15",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "점 그래프 {9,9,1,1,5,18} 범위",
+      "answer": "17",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "점 그래프 {4,8,2,1,16,20} 범위",
+      "answer": "19",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "점 그래프 {3,15,14,16,18,18} 범위",
+      "answer": "15",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "점 그래프 {3,8,12,11,2,10} 범위",
+      "answer": "10",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "점 그래프 {8,14,4,13,5,20} 범위",
+      "answer": "16",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "점 그래프 {16,1,20,20,4,12} 범위",
+      "answer": "19",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "점 그래프 {10,4,1,16,13,5} 범위",
+      "answer": "15",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "점 그래프 {16,16,20,3,11,17} 범위",
+      "answer": "17",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "점 그래프 {19,2,12,6,12,11} 범위",
+      "answer": "17",
+      "concept": "plots",
+      "difficulty": 2,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "{10,11,24,6,5,16,6,22,4,19} 범위",
+      "answer": "20",
+      "concept": "plots",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "{22,26,20,16,28,9,2,12,28,2} 범위",
+      "answer": "26",
+      "concept": "plots",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "{19,2,12,5,3,10,4,24,26,6} 범위",
+      "answer": "24",
+      "concept": "plots",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "{20,2,11,18,29,26,13,13,12,18} 범위",
+      "answer": "27",
+      "concept": "plots",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "{6,20,10,27,19,18,30,5,4,20} 범위",
+      "answer": "26",
+      "concept": "plots",
+      "difficulty": 3,
+      "skill": "compute",
+      "cpa": "abstract",
+      "ccss": "6.SP.A"
+    }
+  ]
+}

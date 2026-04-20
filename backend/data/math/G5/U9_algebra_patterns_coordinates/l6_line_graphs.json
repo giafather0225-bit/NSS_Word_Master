@@ -1,0 +1,538 @@
+{
+  "lesson_id": "math_g5_u9_l6",
+  "title": "선 그래프와 데이터",
+  "concept": "시간에 따른 변화를 선 그래프로 분석.",
+  "vocab": [
+    "선 그래프",
+    "경향",
+    "추세"
+  ],
+  "essential_question": "데이터의 변화를 어떻게 읽나요?",
+  "ccss": "5.G.A.2",
+  "go_math_ref": "Ch.9 L3",
+  "pretest": [
+    {
+      "id": "pt1",
+      "type": "mc",
+      "question": "시간에 따른 온도 변화를 나타내기에 가장 적합한 그래프는?",
+      "choices": [
+        "막대",
+        "선",
+        "원",
+        "픽토그램"
+      ],
+      "answer": "선",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "pt2",
+      "type": "input",
+      "question": "선 그래프에서 x축은 보통 어떤 양?",
+      "answer": "시간",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "pt3",
+      "type": "input",
+      "question": "데이터 (월 1, 2, 3에 각각 10, 20, 30)의 패턴은? (증가/감소)",
+      "answer": "증가",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "pt4",
+      "type": "input",
+      "question": "데이터 (1, 2, 3)에 y(9, 6, 3)의 패턴?",
+      "answer": "감소",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "pt5",
+      "type": "mc",
+      "question": "선 그래프가 수평이면?",
+      "choices": [
+        "빠르게 증가",
+        "변화 없음",
+        "빠르게 감소"
+      ],
+      "answer": "변화 없음",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c1",
+      "title": "선 그래프",
+      "content": "시간 등 연속 변수의 변화 추이 표시",
+      "phase": "concrete",
+      "visual_type": "coordinate_grid",
+      "visual_data": {
+        "size": 10,
+        "points": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            10
+          ]
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "title": "해석",
+      "content": "기울기 = 변화 속도. 가파르면 빠른 변화",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c3",
+      "title": "경향",
+      "content": "위로 = 증가, 아래로 = 감소, 수평 = 변화 없음",
+      "phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "c4",
+      "title": "구성",
+      "content": "축 제목, 단위, 눈금, 제목",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c5",
+      "title": "예측",
+      "content": "기존 패턴으로 미래 값 예측",
+      "phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "c6",
+      "title": "용도",
+      "content": "관측·실험·기상 데이터에 유용",
+      "phase": "abstract",
+      "visual_type": "none"
+    }
+  ],
+  "try": [
+    {
+      "id": "t1",
+      "type": "input",
+      "question": "데이터 (월 1~4, 매출 100,150,200,250)의 변화 규칙?",
+      "answer": "매달 +50",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3",
+      "solution_steps": [
+        "① 150-100=50",
+        "② 200-150=50"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t2",
+      "type": "input",
+      "question": "(시간 1:20도, 2:22도, 3:24도). 규칙?",
+      "answer": "매시간 +2도",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3",
+      "solution_steps": [
+        "① 22-20=2",
+        "② 24-22=2"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t3",
+      "type": "input",
+      "question": "(1:10,2:20,3:40,4:80). 규칙?",
+      "answer": "매 단계 2배",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3",
+      "solution_steps": [
+        "① ×2 패턴"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t4",
+      "type": "input",
+      "question": "(일 1:100,2:90,3:80). 4일에 예상?",
+      "answer": "70",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3",
+      "solution_steps": [
+        "① -10 패턴",
+        "② 80-10=70"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    },
+    {
+      "id": "t5",
+      "type": "input",
+      "question": "(분 1:30,2:60,3:90). 5분에?",
+      "answer": "150",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3",
+      "solution_steps": [
+        "① +30",
+        "② 120,150"
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "다시 확인!"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "r1_1",
+      "type": "mc",
+      "question": "시간에 따른 식물의 키 → 그래프?",
+      "choices": [
+        "선",
+        "막대",
+        "원"
+      ],
+      "answer": "선",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r1_2",
+      "type": "mc",
+      "question": "학생들의 선호 과목 비율 → ?",
+      "choices": [
+        "선",
+        "막대",
+        "원"
+      ],
+      "answer": "원",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r1_3",
+      "type": "mc",
+      "question": "6학급 인원 비교 → ?",
+      "choices": [
+        "선",
+        "막대",
+        "원"
+      ],
+      "answer": "막대",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r1_4",
+      "type": "input",
+      "question": "(1,5),(2,10),(3,15). 규칙: +?",
+      "answer": "5",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r1_5",
+      "type": "input",
+      "question": "(1,20),(2,18),(3,16). 규칙: ?",
+      "answer": "-2",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r1_6",
+      "type": "input",
+      "question": "(1,2),(2,4),(3,8),(4,16). 규칙: ×?",
+      "answer": "2",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r1_7",
+      "type": "input",
+      "question": "(1,100),(2,90),(3,80). 4?",
+      "answer": "70",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r1_8",
+      "type": "input",
+      "question": "(1,3),(2,6),(3,9). 5?",
+      "answer": "15",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r1_9",
+      "type": "input",
+      "question": "(1,12),(2,24),(3,36). 6?",
+      "answer": "72",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r1_10",
+      "type": "input",
+      "question": "(1,50),(2,45),(3,40). 7?",
+      "answer": "20",
+      "concept": "graph_type",
+      "difficulty": 1,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "r2_1",
+      "type": "input",
+      "question": "(0,5),(1,7),(2,9),(3,11). 5번째?",
+      "answer": "13",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r2_2",
+      "type": "input",
+      "question": "(0,100),(1,95),(2,90). 6번째(x=5)?",
+      "answer": "75",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r2_3",
+      "type": "input",
+      "question": "(1,8),(2,16),(3,24). x=10일 때?",
+      "answer": "80",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r2_4",
+      "type": "input",
+      "question": "(1,2),(2,4),(3,8),(4,16). x=5?",
+      "answer": "32",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r2_5",
+      "type": "input",
+      "question": "(1,6),(2,11),(3,16). x=5?",
+      "answer": "26",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r2_6",
+      "type": "input",
+      "question": "(1,100),(2,200),(3,400). x=4?",
+      "answer": "800",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r2_7",
+      "type": "input",
+      "question": "선 그래프가 수평이면 y값은 (증가/감소/같음)",
+      "answer": "같음",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_8",
+      "type": "input",
+      "question": "선이 점점 가팔라지면 증가 속도는 (빨라짐/느려짐)",
+      "answer": "빨라짐",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r2_9",
+      "type": "input",
+      "question": "(0,0),(1,3),(2,6),(3,9). 관계식 y=?x",
+      "answer": "3",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r2_10",
+      "type": "input",
+      "question": "(0,0),(1,7),(2,14). x=5?",
+      "answer": "35",
+      "concept": "graph_type",
+      "difficulty": 2,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "r3_1",
+      "type": "input",
+      "question": "하루 온도 (6시: 10, 12시: 20, 18시: 22, 24시: 12). 최대는 몇 도?",
+      "answer": "22",
+      "concept": "graph_type",
+      "difficulty": 3,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.G.A.2"
+    },
+    {
+      "id": "r3_2",
+      "type": "input",
+      "question": "식물 성장: 일 (1:2cm, 2:4, 3:8, 4:16). 5일 예상?",
+      "answer": "32",
+      "concept": "graph_type",
+      "difficulty": 3,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r3_3",
+      "type": "input",
+      "question": "매출 (월 1:1000, 2:1500, 3:2000). 7월 예상(동일 규칙)?",
+      "answer": "4000",
+      "concept": "graph_type",
+      "difficulty": 3,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r3_4",
+      "type": "input",
+      "question": "저축 (주 1:5000, 2:10000, 3:15000). 10주 후?",
+      "answer": "50000",
+      "concept": "graph_type",
+      "difficulty": 3,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    },
+    {
+      "id": "r3_5",
+      "type": "input",
+      "question": "키 성장 (나이 1:70, 2:80, 3:90). 5살 예상?",
+      "answer": "110",
+      "concept": "graph_type",
+      "difficulty": 3,
+      "skill": "graph_type",
+      "cpa": "abstract",
+      "ccss": "5.OA.B.3"
+    }
+  ]
+}
