@@ -7,14 +7,23 @@
 
 const kangState = {
     sets: [],
-    level: 'ecolier',      // 'pre_ecolier' | 'ecolier' | 'benjamin'
-    tab: 'full_test',      // 'full_test' | 'drill'
+    level: 'ecolier',      // 'pre_ecolier' | 'ecolier' | 'benjamin' | 'cadet' | 'all'
+    tab: 'full_test',      // 'full_test' | 'drill' | 'past_paper'
 };
 
 const KANG_LEVELS = [
-    { key: 'pre_ecolier', label: 'Level 1-2 (Pre-Ecolier)' },
-    { key: 'ecolier',     label: 'Level 3-4 (Ecolier)' },
-    { key: 'benjamin',    label: 'Level 5-6 (Benjamin)' },
+    { key: 'pre_ecolier', label: 'Pre-Écolier (Grades 1-2)' },
+    { key: 'ecolier',     label: 'Écolier (Grades 3-4)' },
+    { key: 'benjamin',    label: 'Benjamin (Grades 5-6)' },
+    { key: 'cadet',       label: 'Cadet (Grades 7-8)' },
+];
+
+const KANG_PP_FILTERS = [
+    { key: 'all',         label: 'All' },
+    { key: 'pre_ecolier', label: 'Pre-Écolier' },
+    { key: 'ecolier',     label: 'Écolier' },
+    { key: 'benjamin',    label: 'Benjamin' },
+    { key: 'cadet',       label: 'Cadet' },
 ];
 
 // ── Stage helper ───────────────────────────────────────────
@@ -70,13 +79,15 @@ async function startMathKangaroo() {
 function _kangRenderPicker() {
     const stage = document.getElementById('stage');
     if (!stage) return;
-    const levelTabs = KANG_LEVELS.map(lv => `
+    const levels = (kangState.tab === 'past_paper') ? KANG_PP_FILTERS : KANG_LEVELS;
+    const levelTabs = levels.map(lv => `
         <button class="kang-tab ${lv.key === kangState.level ? 'is-active' : ''}"
                 data-level="${lv.key}">${_kangEsc(lv.label)}</button>
     `).join('');
     const subTabs = `
         <button class="kang-subtab ${kangState.tab === 'full_test' ? 'is-active' : ''}" data-tab="full_test">Full Tests</button>
         <button class="kang-subtab ${kangState.tab === 'drill' ? 'is-active' : ''}" data-tab="drill">Topic Drills</button>
+        <button class="kang-subtab ${kangState.tab === 'past_paper' ? 'is-active' : ''}" data-tab="past_paper">Past Papers</button>
     `;
     stage.innerHTML = `
         <div class="kang-wrap kang-picker">
@@ -98,6 +109,9 @@ function _kangRenderPicker() {
     stage.querySelectorAll('.kang-subtab').forEach(btn => {
         btn.addEventListener('click', () => {
             kangState.tab = btn.dataset.tab;
+            // When switching to past_paper, reset level to "all"; else default to ecolier
+            if (kangState.tab === 'past_paper') kangState.level = 'all';
+            else if (kangState.level === 'all') kangState.level = 'ecolier';
             _kangRenderPicker();
         });
     });
@@ -108,9 +122,19 @@ function _kangRenderPicker() {
 function _kangRenderGrid() {
     const grid = document.getElementById('kang-grid');
     if (!grid) return;
-    const filtered = kangState.sets.filter(s =>
-        (s.level === kangState.level) && ((s.category || 'full_test') === kangState.tab)
-    );
+    const filtered = kangState.sets.filter(s => {
+        const cat = s.category || 'full_test';
+        if (cat !== kangState.tab) return false;
+        if (kangState.tab === 'past_paper' && kangState.level === 'all') return true;
+        return s.level === kangState.level;
+    });
+    if (kangState.tab === 'past_paper') {
+        filtered.sort((a, b) => {
+            const yd = (b.source_year || 0) - (a.source_year || 0);
+            if (yd !== 0) return yd;
+            return String(a.level).localeCompare(String(b.level));
+        });
+    }
     if (!filtered.length) {
         grid.innerHTML = `<p class="kang-empty">No sets available for this level yet.</p>`;
         return;
@@ -118,9 +142,13 @@ function _kangRenderGrid() {
     grid.innerHTML = filtered.map(s => _kangCardHtml(s)).join('');
     grid.querySelectorAll('[data-action]').forEach(btn => {
         btn.addEventListener('click', () => {
+            if (btn.disabled) return;
             const setId = btn.dataset.setId;
             const mode = btn.dataset.action;
-            if (typeof startKangarooExam === 'function') {
+            const isPp = btn.dataset.kind === 'past_paper';
+            if (isPp && typeof startKangarooPdfExam === 'function') {
+                startKangarooPdfExam(setId, mode);
+            } else if (typeof startKangarooExam === 'function') {
                 startKangarooExam(setId, mode);
             }
         });
@@ -132,21 +160,62 @@ function _kangCardHtml(s) {
     const qs = s.total_questions || 0;
     const mins = s.time_limit_minutes || 0;
     const maxPts = s.max_score || 0;
-    const meta = `${qs} Qs · ${mins} min · ${maxPts} pts max`;
+    const isPp = (s.category === 'past_paper');
+    const meta = `${qs} questions · ${mins} min`;
+    const pct = (s.best_score != null && maxPts)
+        ? Math.round(s.best_score * 100 / maxPts) : null;
     const best = (s.best_score != null)
-        ? `<div class="kang-card-best">Best: ${s.best_score}/${maxPts}</div>` : '';
+        ? `<div class="kang-card-best">Best: ${s.best_score}/${maxPts}${pct != null ? ` (${pct}%)` : ''}</div>`
+        : '';
     const topic = s.drill_topic
         ? `<div class="kang-card-topic">Focus: ${_kangEsc(s.drill_topic.replace(/_/g, ' '))}</div>` : '';
+    const country = isPp && s.source_country
+        ? _kangEsc(s.source_country === 'International' ? 'IKMC' : s.source_country)
+        : '';
+    const yearBadge = (isPp && s.source_year)
+        ? `<span class="kang-card-year">${_kangEsc(s.source_year)}${country ? ` · ${country}` : ''}</span>`
+        : (s.source_year ? `<span class="kang-card-year">${_kangEsc(s.source_year)}</span>` : '');
+    const contest = (!isPp && s.source_contest)
+        ? `<div class="kang-card-contest">${_kangEsc(s.source_contest)}</div>` : '';
+    const levelLine = isPp
+        ? `<div class="kang-card-contest">${_kangEsc(s.level_label || '')}${s.grade_range ? ` (Grades ${_kangEsc(s.grade_range)})` : ''}</div>`
+        : '';
+
+    let actions = '';
+    let warning = '';
+    if (isPp) {
+        const pdfMissing = (s.pdf_available === false);
+        const pending = !!s.answers_pending;
+        const disabled = pdfMissing || pending;
+        if (pdfMissing) {
+            warning = `<div class="kang-card-warning">PDF not available on this device</div>`;
+        } else if (pending) {
+            warning = `<div class="kang-card-warning">Answer key coming soon</div>`;
+        }
+        actions = `
+            <button class="kang-btn kang-btn-primary" data-action="test" data-kind="past_paper"
+                data-set-id="${_kangEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Test Mode</button>
+            <button class="kang-btn kang-btn-secondary" data-action="practice" data-kind="past_paper"
+                data-set-id="${_kangEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Practice</button>
+        `;
+    } else {
+        actions = `
+            <button class="kang-btn kang-btn-primary" data-action="test" data-set-id="${_kangEsc(s.set_id)}">Test Mode</button>
+            <button class="kang-btn kang-btn-secondary" data-action="practice" data-set-id="${_kangEsc(s.set_id)}">Practice Mode</button>
+        `;
+    }
+
     return `
         <article class="kang-card">
+            ${yearBadge}
             <h3 class="kang-card-title">${_kangEsc(s.title)}</h3>
-            <div class="kang-card-meta">${_kangEsc(meta)}</div>
+            ${contest}
+            ${levelLine}
+            <div class="kang-card-meta">${_kangEsc(meta)}${!isPp ? ' · ' + maxPts + ' pts max' : ''}</div>
             ${topic}
             ${best}
-            <div class="kang-card-actions">
-                <button class="kang-btn kang-btn-primary" data-action="test" data-set-id="${_kangEsc(s.set_id)}">Test Mode</button>
-                <button class="kang-btn kang-btn-secondary" data-action="practice" data-set-id="${_kangEsc(s.set_id)}">Practice Mode</button>
-            </div>
+            ${warning}
+            <div class="kang-card-actions">${actions}</div>
         </article>
     `;
 }

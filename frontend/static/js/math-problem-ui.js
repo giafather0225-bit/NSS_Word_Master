@@ -68,6 +68,12 @@ function renderMathProblem() {
 
     if (idx >= problems.length) return;
 
+    // Transient loading indicator while we build the DOM. If the stage already
+    // contains problem content we skip, so in-place re-renders stay snappy.
+    if (!stage.querySelector('.math-problem-wrap')) {
+        _showMathLoading(stage);
+    }
+
     const p = _normalizeProblem(problems[idx]);
     const total = problems.length;
     const num = idx + 1;
@@ -200,8 +206,60 @@ async function _submitProblemAnswer(problem, answer) {
     const body = document.getElementById('math-problem-body');
     if (body) body.querySelectorAll('button, input').forEach(el => { el.disabled = true; });
 
-    const result = await submitMathAnswer(problem.id, answer);
-    handleMathAnswerResult(result, problem);
+    // Show spinner with a 3s retry escape hatch. If the network stalls, the
+    // user sees a "Retry" option rather than an apparent freeze.
+    const stage = document.getElementById('stage');
+    _showMathLoading(stage, { timeoutMs: 3000, onRetry: () => _submitProblemAnswer(problem, answer) });
+
+    try {
+        const result = await submitMathAnswer(problem.id, answer);
+        _hideMathLoading();
+        handleMathAnswerResult(result, problem);
+    } catch (err) {
+        _hideMathLoading();
+        console.warn('[math] submit failed:', err);
+        // Re-enable inputs so the user can try again manually.
+        if (body) body.querySelectorAll('button, input').forEach(el => { el.disabled = false; });
+    }
+}
+
+// ── Loading indicator ──────────────────────────────────────
+
+/** @tag MATH @tag PROBLEM @tag LOADING */
+function _showMathLoading(container, opts) {
+    if (!container) return;
+    _hideMathLoading();
+    const el = document.createElement('div');
+    el.className = 'math-loading';
+    el.id = 'math-loading';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
+    el.innerHTML = `<div class="math-spinner" aria-hidden="true"></div><span>Loading...</span>`;
+    container.appendChild(el);
+
+    const timeoutMs = opts && opts.timeoutMs;
+    if (timeoutMs && typeof opts.onRetry === 'function') {
+        el._retryTimer = setTimeout(() => {
+            if (!document.getElementById('math-loading')) return;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'math-loading-retry';
+            btn.textContent = 'Retry';
+            btn.addEventListener('click', () => {
+                _hideMathLoading();
+                opts.onRetry();
+            });
+            el.appendChild(btn);
+        }, timeoutMs);
+    }
+}
+
+/** @tag MATH @tag PROBLEM @tag LOADING */
+function _hideMathLoading() {
+    const el = document.getElementById('math-loading');
+    if (!el) return;
+    if (el._retryTimer) clearTimeout(el._retryTimer);
+    el.remove();
 }
 
 // ── Stage label helper ─────────────────────────────────────

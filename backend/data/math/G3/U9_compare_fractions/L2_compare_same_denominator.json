@@ -4,215 +4,260 @@
   "lesson": 2,
   "lesson_title": "Compare Fractions with the Same Denominator",
   "objective": "Compare two fractions with the same denominator using models and symbols (>, <, =)",
-  "stages": [
+  "pretest": [
     {
-      "stage": "pretest",
-      "items": [
-        {
-          "id": "c9_l2_pre_01",
-          "type": "compare",
-          "question": "Compare: 2/6 ○ 5/6",
-          "choices": [">", "<", "="],
-          "answer": "<"
-        },
-        {
-          "id": "c9_l2_pre_02",
-          "type": "compare",
-          "question": "Compare: 7/8 ○ 3/8",
-          "choices": [">", "<", "="],
-          "answer": ">"
-        },
-        {
-          "id": "c9_l2_pre_03",
-          "type": "multiple_choice",
-          "question": "Which fraction is greater: 1/4 or 3/4?",
-          "choices": ["1/4", "3/4", "They are equal"],
-          "answer": "3/4"
-        },
-        {
-          "id": "c9_l2_pre_04",
-          "type": "compare",
-          "question": "Compare: 4/6 ○ 4/6",
-          "choices": [">", "<", "="],
-          "answer": "="
-        },
-        {
-          "id": "c9_l2_pre_05",
-          "type": "multiple_choice",
-          "question": "Sam ate 5/8 of a pie. Kai ate 2/8 of the same pie. Who ate more?",
-          "choices": ["Sam", "Kai", "Same amount"],
-          "answer": "Sam"
-        }
+      "id": "c9_l2_pre_01",
+      "type": "compare",
+      "question": "Compare: 2/6 ○ 5/6",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "<"
+    },
+    {
+      "id": "c9_l2_pre_02",
+      "type": "compare",
+      "question": "Compare: 7/8 ○ 3/8",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": ">"
+    },
+    {
+      "id": "c9_l2_pre_03",
+      "type": "multiple_choice",
+      "question": "Which fraction is greater: 1/4 or 3/4?",
+      "choices": [
+        "1/4",
+        "3/4",
+        "They are equal"
+      ],
+      "answer": "3/4"
+    },
+    {
+      "id": "c9_l2_pre_04",
+      "type": "compare",
+      "question": "Compare: 4/6 ○ 4/6",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "="
+    },
+    {
+      "id": "c9_l2_pre_05",
+      "type": "multiple_choice",
+      "question": "Sam ate 5/8 of a pie. Kai ate 2/8 of the same pie. Who ate more?",
+      "choices": [
+        "Sam",
+        "Kai",
+        "Same amount"
+      ],
+      "answer": "Sam"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c9_l2_learn_01",
+      "type": "instruction_check",
+      "instruction": "When two fractions have the SAME DENOMINATOR, the pieces are the same size. You just compare how many pieces each fraction has — that's the numerator. More pieces = greater fraction. Example: 2/8 vs 6/8 → same size pieces, but 6 pieces > 2 pieces, so 6/8 > 2/8.",
+      "question": "Which is greater: 3/6 or 5/6?",
+      "answer": "5/6",
+      "explanation": "Same denominator (6). 5 pieces > 3 pieces → 5/6 > 3/6."
+    },
+    {
+      "id": "c9_l2_learn_02",
+      "type": "instruction_check",
+      "instruction": "You can use a fraction strip to see this. Imagine a bar split into 4 equal parts. Color 1 part → 1/4. Color 3 parts → 3/4. The bar with 3 parts colored is clearly more filled. So 3/4 > 1/4.",
+      "question": "A bar is split into 8 equal parts. One shows 2/8 colored, another shows 7/8 colored. Which is greater?",
+      "answer": "7/8",
+      "explanation": "7 parts colored > 2 parts colored → 7/8 > 2/8."
+    },
+    {
+      "id": "c9_l2_learn_03",
+      "type": "instruction_check",
+      "instruction": "If both fractions have the same numerator AND the same denominator, they are equal. Example: 3/4 = 3/4. This also works in word problems: if two people each eat 2/6 of the same cake, they ate the same amount.",
+      "question": "Compare: 5/8 ○ 5/8",
+      "answer": "=",
+      "explanation": "Same denominator, same numerator → equal fractions."
+    }
+  ],
+  "try": [
+    {
+      "id": "c9_l2_try_01",
+      "type": "compare",
+      "question": "Look at the fraction strips. Strip A shows 3/8 shaded. Strip B shows 6/8 shaded. Compare: 3/8 ○ 6/8",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "<",
+      "hint": "Count the shaded parts. Which strip has more shaded?",
+      "guided_steps": [
+        "Step 1: Both strips are split into 8 equal parts (same denominator).",
+        "Step 2: Strip A has 3 parts shaded. Strip B has 6 parts shaded.",
+        "Step 3: 3 < 6, so 3/8 < 6/8."
       ]
     },
     {
-      "stage": "learn",
-      "items": [
-        {
-          "id": "c9_l2_learn_01",
-          "type": "instruction_check",
-          "instruction": "When two fractions have the SAME DENOMINATOR, the pieces are the same size. You just compare how many pieces each fraction has — that's the numerator. More pieces = greater fraction. Example: 2/8 vs 6/8 → same size pieces, but 6 pieces > 2 pieces, so 6/8 > 2/8.",
-          "question": "Which is greater: 3/6 or 5/6?",
-          "answer": "5/6",
-          "explanation": "Same denominator (6). 5 pieces > 3 pieces → 5/6 > 3/6."
-        },
-        {
-          "id": "c9_l2_learn_02",
-          "type": "instruction_check",
-          "instruction": "You can use a fraction strip to see this. Imagine a bar split into 4 equal parts. Color 1 part → 1/4. Color 3 parts → 3/4. The bar with 3 parts colored is clearly more filled. So 3/4 > 1/4.",
-          "question": "A bar is split into 8 equal parts. One shows 2/8 colored, another shows 7/8 colored. Which is greater?",
-          "answer": "7/8",
-          "explanation": "7 parts colored > 2 parts colored → 7/8 > 2/8."
-        },
-        {
-          "id": "c9_l2_learn_03",
-          "type": "instruction_check",
-          "instruction": "If both fractions have the same numerator AND the same denominator, they are equal. Example: 3/4 = 3/4. This also works in word problems: if two people each eat 2/6 of the same cake, they ate the same amount.",
-          "question": "Compare: 5/8 ○ 5/8",
-          "answer": "=",
-          "explanation": "Same denominator, same numerator → equal fractions."
-        }
+      "id": "c9_l2_try_02",
+      "type": "word_problem",
+      "question": "Ella used 4/6 of her paint. Mia used 1/6 of the same paint. Who used more paint? Write a comparison.",
+      "answer": "Ella; 4/6 > 1/6",
+      "hint": "Same denominator (6). Compare the numerators.",
+      "guided_steps": [
+        "Step 1: Find the fractions — 4/6 and 1/6.",
+        "Step 2: Same denominator (6) → compare numerators.",
+        "Step 3: 4 > 1, so 4/6 > 1/6.",
+        "Step 4: Ella used more paint."
+      ]
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "c9_l2_pr1_01",
+      "type": "compare",
+      "question": "Compare: 1/4 ○ 3/4",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "<"
+    },
+    {
+      "id": "c9_l2_pr1_02",
+      "type": "compare",
+      "question": "Compare: 5/6 ○ 2/6",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": ">"
+    },
+    {
+      "id": "c9_l2_pr1_03",
+      "type": "compare",
+      "question": "Compare: 6/8 ○ 6/8",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "="
+    },
+    {
+      "id": "c9_l2_pr1_04",
+      "type": "multiple_choice",
+      "question": "Which is greater: 2/3 or 1/3?",
+      "choices": [
+        "2/3",
+        "1/3",
+        "They are equal"
+      ],
+      "answer": "2/3"
+    },
+    {
+      "id": "c9_l2_pr1_05",
+      "type": "compare",
+      "question": "Compare: 3/8 ○ 7/8",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "<"
+    },
+    {
+      "id": "c9_l2_pr1_06",
+      "type": "multiple_choice",
+      "question": "Jess walked 5/8 of a path. Tom walked 4/8 of the same path. Who walked farther?",
+      "choices": [
+        "Jess",
+        "Tom",
+        "Same distance"
+      ],
+      "answer": "Jess"
+    },
+    {
+      "id": "c9_l2_pr1_07",
+      "type": "compare",
+      "question": "Compare: 1/6 ○ 4/6",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "<"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "c9_l2_pr2_01",
+      "type": "word_problem",
+      "question": "Two same-size boards. Board A has 3/4 painted. Board B has 2/4 painted. Which board has more paint? Write a comparison.",
+      "answer": "Board A; 3/4 > 2/4"
+    },
+    {
+      "id": "c9_l2_pr2_02",
+      "type": "multiple_choice",
+      "question": "Which comparison is correct?",
+      "choices": [
+        "1/8 > 5/8",
+        "4/6 < 2/6",
+        "7/8 > 3/8"
+      ],
+      "answer": "7/8 > 3/8"
+    },
+    {
+      "id": "c9_l2_pr2_03",
+      "type": "fill_in",
+      "question": "Write a fraction with denominator 6 that is LESS than 5/6.",
+      "answer": "Any of: 1/6, 2/6, 3/6, 4/6",
+      "accept": [
+        "1/6",
+        "2/6",
+        "3/6",
+        "4/6"
       ]
     },
     {
-      "stage": "try",
-      "items": [
-        {
-          "id": "c9_l2_try_01",
-          "type": "compare",
-          "question": "Look at the fraction strips. Strip A shows 3/8 shaded. Strip B shows 6/8 shaded. Compare: 3/8 ○ 6/8",
-          "choices": [">", "<", "="],
-          "answer": "<",
-          "hint": "Count the shaded parts. Which strip has more shaded?",
-          "guided_steps": [
-            "Step 1: Both strips are split into 8 equal parts (same denominator).",
-            "Step 2: Strip A has 3 parts shaded. Strip B has 6 parts shaded.",
-            "Step 3: 3 < 6, so 3/8 < 6/8."
-          ]
-        },
-        {
-          "id": "c9_l2_try_02",
-          "type": "word_problem",
-          "question": "Ella used 4/6 of her paint. Mia used 1/6 of the same paint. Who used more paint? Write a comparison.",
-          "answer": "Ella; 4/6 > 1/6",
-          "hint": "Same denominator (6). Compare the numerators.",
-          "guided_steps": [
-            "Step 1: Find the fractions — 4/6 and 1/6.",
-            "Step 2: Same denominator (6) → compare numerators.",
-            "Step 3: 4 > 1, so 4/6 > 1/6.",
-            "Step 4: Ella used more paint."
-          ]
-        }
-      ]
+      "id": "c9_l2_pr2_04",
+      "type": "compare",
+      "question": "Compare: 0/4 ○ 3/4",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "<"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "c9_l2_pr3_01",
+      "type": "open_response",
+      "question": "Leo says 2/8 > 5/8 because 2 comes first when you count. Is Leo correct? Explain.",
+      "answer": "Leo is NOT correct. With the same denominator, the greater numerator means more pieces. 5 > 2, so 5/8 > 2/8."
     },
     {
-      "stage": "practice_r1",
-      "items": [
-        {
-          "id": "c9_l2_pr1_01",
-          "type": "compare",
-          "question": "Compare: 1/4 ○ 3/4",
-          "choices": [">", "<", "="],
-          "answer": "<"
-        },
-        {
-          "id": "c9_l2_pr1_02",
-          "type": "compare",
-          "question": "Compare: 5/6 ○ 2/6",
-          "choices": [">", "<", "="],
-          "answer": ">"
-        },
-        {
-          "id": "c9_l2_pr1_03",
-          "type": "compare",
-          "question": "Compare: 6/8 ○ 6/8",
-          "choices": [">", "<", "="],
-          "answer": "="
-        },
-        {
-          "id": "c9_l2_pr1_04",
-          "type": "multiple_choice",
-          "question": "Which is greater: 2/3 or 1/3?",
-          "choices": ["2/3", "1/3", "They are equal"],
-          "answer": "2/3"
-        },
-        {
-          "id": "c9_l2_pr1_05",
-          "type": "compare",
-          "question": "Compare: 3/8 ○ 7/8",
-          "choices": [">", "<", "="],
-          "answer": "<"
-        },
-        {
-          "id": "c9_l2_pr1_06",
-          "type": "multiple_choice",
-          "question": "Jess walked 5/8 of a path. Tom walked 4/8 of the same path. Who walked farther?",
-          "choices": ["Jess", "Tom", "Same distance"],
-          "answer": "Jess"
-        },
-        {
-          "id": "c9_l2_pr1_07",
-          "type": "compare",
-          "question": "Compare: 1/6 ○ 4/6",
-          "choices": [">", "<", "="],
-          "answer": "<"
-        }
-      ]
+      "id": "c9_l2_pr3_02",
+      "type": "fill_in",
+      "question": "Write ALL the fractions with denominator 4 (from 0 to 4 in the numerator) in order from least to greatest.",
+      "answer": "0/4, 1/4, 2/4, 3/4, 4/4"
     },
     {
-      "stage": "practice_r2",
-      "items": [
-        {
-          "id": "c9_l2_pr2_01",
-          "type": "word_problem",
-          "question": "Two same-size boards. Board A has 3/4 painted. Board B has 2/4 painted. Which board has more paint? Write a comparison.",
-          "answer": "Board A; 3/4 > 2/4"
-        },
-        {
-          "id": "c9_l2_pr2_02",
-          "type": "multiple_choice",
-          "question": "Which comparison is correct?",
-          "choices": ["1/8 > 5/8", "4/6 < 2/6", "7/8 > 3/8"],
-          "answer": "7/8 > 3/8"
-        },
-        {
-          "id": "c9_l2_pr2_03",
-          "type": "fill_in",
-          "question": "Write a fraction with denominator 6 that is LESS than 5/6.",
-          "answer": "Any of: 1/6, 2/6, 3/6, 4/6",
-          "accept": ["1/6", "2/6", "3/6", "4/6"]
-        },
-        {
-          "id": "c9_l2_pr2_04",
-          "type": "compare",
-          "question": "Compare: 0/4 ○ 3/4",
-          "choices": [">", "<", "="],
-          "answer": "<"
-        }
-      ]
-    },
-    {
-      "stage": "practice_r3",
-      "items": [
-        {
-          "id": "c9_l2_pr3_01",
-          "type": "open_response",
-          "question": "Leo says 2/8 > 5/8 because 2 comes first when you count. Is Leo correct? Explain.",
-          "answer": "Leo is NOT correct. With the same denominator, the greater numerator means more pieces. 5 > 2, so 5/8 > 2/8."
-        },
-        {
-          "id": "c9_l2_pr3_02",
-          "type": "fill_in",
-          "question": "Write ALL the fractions with denominator 4 (from 0 to 4 in the numerator) in order from least to greatest.",
-          "answer": "0/4, 1/4, 2/4, 3/4, 4/4"
-        },
-        {
-          "id": "c9_l2_pr3_03",
-          "type": "word_problem",
-          "question": "Ava, Ben, and Cal each have the same-size granola bar. Ava ate 6/8, Ben ate 3/8, and Cal ate 5/8. List who ate the most to the least.",
-          "answer": "Ava (6/8), Cal (5/8), Ben (3/8)"
-        }
-      ]
+      "id": "c9_l2_pr3_03",
+      "type": "word_problem",
+      "question": "Ava, Ben, and Cal each have the same-size granola bar. Ava ate 6/8, Ben ate 3/8, and Cal ate 5/8. List who ate the most to the least.",
+      "answer": "Ava (6/8), Cal (5/8), Ben (3/8)"
     }
   ]
 }

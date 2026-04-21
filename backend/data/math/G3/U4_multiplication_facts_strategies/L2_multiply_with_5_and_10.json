@@ -17,13 +17,15 @@
     "nickel",
     "dime",
     "product",
-    "pattern"
+    "pattern",
+    "half"
   ],
   "strategies": [
     "Skip count by 5s or 10s",
     "Products of 5 end in 0 or 5",
     "Products of 10 end in 0",
-    "Multiply by 10: add a zero"
+    "Multiply by 10: add a zero",
+    "×5 is half of ×10"
   ],
   "items": [
     {
@@ -31,12 +33,7 @@
       "section": "pretest",
       "difficulty": 1,
       "question": "5 × 3 = ?",
-      "choices": [
-        "A. 8",
-        "B. 10",
-        "C. 15",
-        "D. 20"
-      ],
+      "choices": ["A. 8", "B. 10", "C. 15", "D. 20"],
       "answer": "C",
       "explanation": "5 × 3 = 15."
     },
@@ -45,12 +42,7 @@
       "section": "pretest",
       "difficulty": 1,
       "question": "10 × 4 = ?",
-      "choices": [
-        "A. 14",
-        "B. 40",
-        "C. 44",
-        "D. 50"
-      ],
+      "choices": ["A. 14", "B. 40", "C. 44", "D. 50"],
       "answer": "B",
       "explanation": "10 × 4 = 40."
     },
@@ -59,12 +51,7 @@
       "section": "pretest",
       "difficulty": 2,
       "question": "5 × 8 = ?",
-      "choices": [
-        "A. 8",
-        "B. 16",
-        "C. 35",
-        "D. 40"
-      ],
+      "choices": ["A. 8", "B. 16", "C. 35", "D. 40"],
       "answer": "D",
       "explanation": "5 × 8 = 40."
     },
@@ -73,12 +60,7 @@
       "section": "pretest",
       "difficulty": 2,
       "question": "Mrs. Hinely has 10 rose bushes with 6 roses each. How many roses?",
-      "choices": [
-        "A. 16",
-        "B. 54",
-        "C. 60",
-        "D. 66"
-      ],
+      "choices": ["A. 16", "B. 54", "C. 60", "D. 66"],
       "answer": "C",
       "explanation": "10 × 6 = 60."
     },
@@ -87,15 +69,11 @@
       "section": "pretest",
       "difficulty": 2,
       "question": "5 × 7 = ?",
-      "choices": [
-        "A. 12",
-        "B. 25",
-        "C. 30",
-        "D. 35"
-      ],
+      "choices": ["A. 12", "B. 25", "C. 30", "D. 35"],
       "answer": "D",
       "explanation": "5 × 7 = 35."
     },
+
     {
       "id": "LN_01",
       "section": "learn",
@@ -121,31 +99,51 @@
       "section": "learn",
       "difficulty": 0,
       "type": "concept_card",
-      "title": "Connection: ×5 and ×10",
-      "content": "Multiplying by 5 is half of multiplying by 10. If 10 × 6 = 60, then 5 × 6 = 30 (half of 60).",
+      "title": "×5 Is Half of ×10",
+      "content": "Multiplying by 5 is half of multiplying by 10. If 10 × 6 = 60, then 5 × 6 = 30 (half of 60). This is a fast way to find ×5 facts when you already know ×10.",
       "cpa_phase": "pictorial",
       "visual_type": "none"
     },
+    {
+      "id": "LN_04",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
+      "title": "Arrays for ×5 and ×10",
+      "content": "An array of 5 rows by 4 dots shows 5 × 4 = 20. An array of 10 rows by 4 dots shows 10 × 4 = 40. Notice: doubling the number of rows from 5 to 10 doubles the product.",
+      "cpa_phase": "pictorial",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {"rows": 10, "cols": 4}
+      }
+    },
+    {
+      "id": "LN_05",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
+      "title": "Money Helps You See It",
+      "content": "A nickel is 5 cents and a dime is 10 cents. 6 nickels = 5 × 6 = 30 cents. 6 dimes = 10 × 6 = 60 cents. 6 dimes is exactly twice 6 nickels — just like ×10 is twice ×5.",
+      "cpa_phase": "abstract",
+      "visual_type": "none"
+    },
+
     {
       "id": "TRY_01",
       "section": "try",
       "difficulty": 1,
       "question": "10 × 7 = ?",
-      "choices": [
-        "A. 17",
-        "B. 70",
-        "C. 77",
-        "D. 100"
-      ],
+      "choices": ["A. 17", "B. 70", "C. 77", "D. 100"],
       "answer": "B",
-      "explanation": "10 × 7 = 70.",
+      "explanation": "10 × 7 = 70. Just put a 0 after 7.",
       "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
+        "To multiply by 10, attach a 0 to the other number.",
+        "Count by 10s: 10, 20, 30, 40, 50, 60, 70."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how multiply with 5 and 10 works."
+        "correct": "Right — 10 × 7 = 70.",
+        "incorrect": "Multiplying by 10 just puts a 0 after the number: 70. Answer is B."
       },
       "solution_steps": []
     },
@@ -154,21 +152,16 @@
       "section": "try",
       "difficulty": 2,
       "question": "5 × 9 = ?",
-      "choices": [
-        "A. 14",
-        "B. 35",
-        "C. 40",
-        "D. 45"
-      ],
+      "choices": ["A. 14", "B. 35", "C. 40", "D. 45"],
       "answer": "D",
-      "explanation": "5 × 9 = 45.",
+      "explanation": "5 × 9 = 45. Or take half of 10 × 9 = 90.",
       "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
+        "10 × 9 = 90. Take half of that.",
+        "Skip count by 5s nine times: 5, 10, 15, 20, 25, 30, 35, 40, 45."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how multiply with 5 and 10 works."
+        "correct": "Right — half of 90 is 45.",
+        "incorrect": "10 × 9 = 90, and 5 × 9 is half of that: 45. Answer is D."
       },
       "solution_steps": []
     },
@@ -176,45 +169,69 @@
       "id": "TRY_03",
       "section": "try",
       "difficulty": 2,
-      "question": "You have 10 bags with 8 marbles each. How many marbles?",
-      "choices": [
-        "A. 18",
-        "B. 60",
-        "C. 80",
-        "D. 100"
-      ],
+      "question": "You have 10 bags with 8 marbles each. How many marbles in all?",
+      "choices": ["A. 18", "B. 60", "C. 80", "D. 100"],
       "answer": "C",
-      "explanation": "10 × 8 = 80.",
+      "explanation": "10 × 8 = 80. Put a 0 after 8.",
       "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
+        "10 bags of 8 means 10 × 8.",
+        "Multiplying by 10 adds a 0 to the other number."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 5 and 10 works."
+        "correct": "Right — 10 × 8 = 80 marbles.",
+        "incorrect": "10 × 8 = 80. Just write the 8, then a 0. Answer is C."
       },
       "solution_steps": []
     },
+    {
+      "id": "TRY_04",
+      "section": "try",
+      "difficulty": 2,
+      "question": "5 × ? = 35. What is the missing factor?",
+      "choices": ["A. 5", "B. 6", "C. 7", "D. 8"],
+      "answer": "C",
+      "explanation": "5 × 7 = 35.",
+      "hints": [
+        "Skip count by 5s and stop at 35. Count how many jumps.",
+        "5, 10, 15, 20, 25, 30, 35 — that's seven 5s."
+      ],
+      "feedback": {
+        "correct": "Right — seven 5s make 35.",
+        "incorrect": "Count by 5s to 35: you land on 35 at the seventh count. Answer is C."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "section": "try",
+      "difficulty": 3,
+      "question": "Jia saves 10 cents every day. How much will she have after 8 days?",
+      "choices": ["A. 18 cents", "B. 60 cents", "C. 80 cents", "D. 100 cents"],
+      "answer": "C",
+      "explanation": "10 × 8 = 80 cents.",
+      "hints": [
+        "Each day adds 10. Multiply 10 by the number of days.",
+        "10 × 8 — just put a 0 after the 8."
+      ],
+      "feedback": {
+        "correct": "Right — 8 dimes = 80 cents.",
+        "incorrect": "10 cents a day for 8 days = 10 × 8 = 80 cents. Answer is C."
+      },
+      "solution_steps": []
+    },
+
     {
       "id": "R1_01",
       "section": "practice_r1",
       "difficulty": 1,
       "question": "5 × 4 = ?",
-      "choices": [
-        "A. 9",
-        "B. 15",
-        "C. 20",
-        "D. 25"
-      ],
+      "choices": ["A. 9", "B. 15", "C. 20", "D. 25"],
       "answer": "C",
       "explanation": "5 × 4 = 20.",
-      "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "hints": ["Skip count by 5s four times.", "5, 10, 15, 20."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 5 and 10 works."
+        "correct": "Right — four 5s make 20.",
+        "incorrect": "5, 10, 15, 20 — the fourth count is 20. Answer is C."
       }
     },
     {
@@ -222,21 +239,13 @@
       "section": "practice_r1",
       "difficulty": 1,
       "question": "10 × 3 = ?",
-      "choices": [
-        "A. 13",
-        "B. 30",
-        "C. 33",
-        "D. 40"
-      ],
+      "choices": ["A. 13", "B. 30", "C. 33", "D. 40"],
       "answer": "B",
-      "explanation": "10 × 3 = 30.",
-      "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "10 × 3 = 30. Put a 0 after 3.",
+      "hints": ["Add a 0 to the other number.", "3 → 30."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how multiply with 5 and 10 works."
+        "correct": "Right — 10 × 3 = 30.",
+        "incorrect": "Put a 0 after the 3 to get 30. Answer is B."
       }
     },
     {
@@ -244,21 +253,13 @@
       "section": "practice_r1",
       "difficulty": 2,
       "question": "5 × 6 = ?",
-      "choices": [
-        "A. 11",
-        "B. 25",
-        "C. 30",
-        "D. 35"
-      ],
+      "choices": ["A. 11", "B. 25", "C. 30", "D. 35"],
       "answer": "C",
-      "explanation": "5 × 6 = 30.",
-      "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "5 × 6 = 30. Half of 10 × 6 = 60.",
+      "hints": ["10 × 6 = 60. Take half.", "Skip count by 5s six times."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 5 and 10 works."
+        "correct": "Right — half of 60 is 30.",
+        "incorrect": "10 × 6 = 60; half of 60 is 30. Answer is C."
       }
     },
     {
@@ -266,109 +267,316 @@
       "section": "practice_r1",
       "difficulty": 2,
       "question": "10 × 9 = ?",
-      "choices": [
-        "A. 19",
-        "B. 80",
-        "C. 90",
-        "D. 100"
-      ],
+      "choices": ["A. 19", "B. 80", "C. 90", "D. 100"],
       "answer": "C",
-      "explanation": "10 × 9 = 90.",
-      "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "10 × 9 = 90. Put a 0 after 9.",
+      "hints": ["Multiplying by 10 adds a 0.", "9 → 90."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 5 and 10 works."
+        "correct": "Right — 10 × 9 = 90.",
+        "incorrect": "Put a 0 after 9 to get 90. Answer is C."
       }
     },
     {
+      "id": "R1_05",
+      "section": "practice_r1",
+      "difficulty": 1,
+      "question": "5 × 2 = ?",
+      "choices": ["A. 7", "B. 10", "C. 12", "D. 15"],
+      "answer": "B",
+      "explanation": "5 × 2 = 10.",
+      "hints": ["Two 5s.", "5 + 5 = 10."],
+      "feedback": {
+        "correct": "Right — two 5s make 10.",
+        "incorrect": "5 + 5 = 10. Answer is B."
+      }
+    },
+    {
+      "id": "R1_06",
+      "section": "practice_r1",
+      "difficulty": 1,
+      "question": "10 × 5 = ?",
+      "choices": ["A. 15", "B. 40", "C. 50", "D. 55"],
+      "answer": "C",
+      "explanation": "10 × 5 = 50. Put a 0 after 5.",
+      "hints": ["Add a 0 to the 5.", "Five dimes = 50 cents."],
+      "feedback": {
+        "correct": "Right — 10 × 5 = 50.",
+        "incorrect": "Put a 0 after 5 to get 50. Answer is C."
+      }
+    },
+    {
+      "id": "R1_07",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "question": "5 × 5 = ?",
+      "choices": ["A. 10", "B. 20", "C. 25", "D. 30"],
+      "answer": "C",
+      "explanation": "5 × 5 = 25.",
+      "hints": ["Skip count five times.", "5, 10, 15, 20, 25."],
+      "feedback": {
+        "correct": "Right — five 5s make 25.",
+        "incorrect": "5, 10, 15, 20, 25 — the fifth count is 25. Answer is C."
+      }
+    },
+    {
+      "id": "R1_08",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "question": "10 × 6 = ?",
+      "choices": ["A. 16", "B. 50", "C. 60", "D. 66"],
+      "answer": "C",
+      "explanation": "10 × 6 = 60. Put a 0 after 6.",
+      "hints": ["Attach 0 to 6.", "Six dimes = 60 cents."],
+      "feedback": {
+        "correct": "Right — 10 × 6 = 60.",
+        "incorrect": "Put a 0 after 6 to get 60. Answer is C."
+      }
+    },
+    {
+      "id": "R1_09",
+      "section": "practice_r1",
+      "difficulty": 1,
+      "question": "5 × 3 = ?",
+      "choices": ["A. 8", "B. 12", "C. 15", "D. 18"],
+      "answer": "C",
+      "explanation": "5 × 3 = 15.",
+      "hints": ["Three 5s.", "5, 10, 15."],
+      "feedback": {
+        "correct": "Right — three 5s make 15.",
+        "incorrect": "5, 10, 15 — the third count is 15. Answer is C."
+      }
+    },
+    {
+      "id": "R1_10",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "question": "10 × 8 = ?",
+      "choices": ["A. 18", "B. 70", "C. 80", "D. 88"],
+      "answer": "C",
+      "explanation": "10 × 8 = 80. Put a 0 after 8.",
+      "hints": ["Attach 0 to 8.", "Eight dimes = 80 cents."],
+      "feedback": {
+        "correct": "Right — 10 × 8 = 80.",
+        "incorrect": "Put a 0 after 8 to get 80. Answer is C."
+      }
+    },
+
+    {
       "id": "R2_01",
       "section": "practice_r2",
+      "type": "mc",
       "difficulty": 2,
       "question": "Which number is NOT a product of 5?",
-      "choices": [
-        "A. 15",
-        "B. 22",
-        "C. 30",
-        "D. 45"
-      ],
+      "choices": ["A. 15", "B. 22", "C. 30", "D. 45"],
       "answer": "B",
-      "explanation": "22 does not end in 0 or 5.",
-      "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "22 doesn't end in 0 or 5. All ×5 products do.",
+      "hints": ["Products of 5 always end in 0 or 5.", "Check the last digit of each."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how multiply with 5 and 10 works."
+        "correct": "Right — 22 breaks the pattern.",
+        "incorrect": "×5 products end in 0 or 5. Only 22 doesn't. Answer is B."
       }
     },
     {
       "id": "R2_02",
       "section": "practice_r2",
-      "difficulty": 3,
-      "question": "Estimate 479 + 89.",
-      "choices": [
-        "A. 300",
-        "B. 400",
-        "C. 500",
-        "D. 600"
-      ],
-      "answer": "D",
-      "explanation": "500 + 100 = 600.",
-      "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "type": "mc",
+      "difficulty": 2,
+      "question": "Which number IS a product of 10?",
+      "choices": ["A. 25", "B. 45", "C. 60", "D. 75"],
+      "answer": "C",
+      "explanation": "60 ends in 0. Products of 10 always end in 0.",
+      "hints": ["Products of 10 always end in 0 (exactly one 0 for these).", "Which choice ends in 0?"],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how multiply with 5 and 10 works."
+        "correct": "Right — 60 = 10 × 6.",
+        "incorrect": "Products of 10 end in 0. Only 60 qualifies. Answer is C."
       }
     },
+    {
+      "id": "R2_03",
+      "section": "practice_r2",
+      "type": "tf",
+      "difficulty": 2,
+      "question": "True or False: 5 × 8 equals half of 10 × 8.",
+      "choices": ["A. True", "B. False"],
+      "answer": "A",
+      "explanation": "10 × 8 = 80. Half of 80 is 40. And 5 × 8 = 40. True.",
+      "hints": ["Find 10 × 8 first.", "Then take half."],
+      "feedback": {
+        "correct": "Right — ×5 is always half of ×10.",
+        "incorrect": "10 × 8 = 80, half is 40, and 5 × 8 = 40. They match. True."
+      }
+    },
+    {
+      "id": "R2_04",
+      "section": "practice_r2",
+      "type": "input",
+      "difficulty": 2,
+      "question": "5 × ? = 45. What is the missing factor?",
+      "answer": "9",
+      "explanation": "5 × 9 = 45. Nine 5s make 45.",
+      "hints": ["Skip count by 5s until you reach 45.", "5, 10, 15, 20, 25, 30, 35, 40, 45."],
+      "feedback": {
+        "correct": "Right — nine 5s make 45.",
+        "incorrect": "Count by 5s to 45 — that's 9 jumps."
+      }
+    },
+    {
+      "id": "R2_05",
+      "section": "practice_r2",
+      "type": "input",
+      "difficulty": 2,
+      "question": "Fill in the missing number: 5, 10, 15, ?, 25, 30.",
+      "answer": "20",
+      "explanation": "Skip counting by 5s: after 15 comes 20.",
+      "hints": ["The pattern adds 5 each time.", "15 + 5 = ?"],
+      "feedback": {
+        "correct": "Right — skip counting by 5s gives 20.",
+        "incorrect": "Add 5 to 15 to continue the pattern: 20."
+      }
+    },
+    {
+      "id": "R2_06",
+      "section": "practice_r2",
+      "type": "input",
+      "difficulty": 2,
+      "question": "10 × ? = 90. What is the missing factor?",
+      "answer": "9",
+      "explanation": "10 × 9 = 90. Drop the 0 from 90 to see the factor.",
+      "hints": ["To multiply by 10 you add a 0. Work backwards.", "Drop the 0 from 90."],
+      "feedback": {
+        "correct": "Right — 10 × 9 = 90.",
+        "incorrect": "Drop the 0 from 90 to get 9. Answer is 9."
+      }
+    },
+    {
+      "id": "R2_07",
+      "section": "practice_r2",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "Which is greater: 5 × 8 or 10 × 4?",
+      "choices": ["A. 5 × 8 is greater", "B. 10 × 4 is greater", "C. They are equal", "D. Can't tell"],
+      "answer": "C",
+      "explanation": "5 × 8 = 40. 10 × 4 = 40. Equal.",
+      "hints": ["Find each product first.", "Compare your two answers."],
+      "feedback": {
+        "correct": "Right — both equal 40.",
+        "incorrect": "5 × 8 = 40 and 10 × 4 = 40. They are equal. Answer is C."
+      }
+    },
+    {
+      "id": "R2_08",
+      "section": "practice_r2",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "A book has 10 chapters. Each chapter has 5 pages. How many pages in the book?",
+      "choices": ["A. 15", "B. 25", "C. 50", "D. 55"],
+      "answer": "C",
+      "explanation": "10 × 5 = 50 pages.",
+      "hints": ["10 chapters of 5 pages each means 10 × 5.", "Put a 0 after the 5."],
+      "feedback": {
+        "correct": "Right — 50 pages.",
+        "incorrect": "10 × 5 = 50. Answer is C."
+      }
+    },
+    {
+      "id": "R2_09",
+      "section": "practice_r2",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "A family has 5 people. Each drinks 2 glasses of water a day. How many glasses in a 10-day trip?",
+      "choices": ["A. 70", "B. 80", "C. 100", "D. 150"],
+      "answer": "C",
+      "explanation": "5 × 2 = 10 glasses per day. 10 × 10 = 100 glasses total.",
+      "hints": ["First find glasses per day: 5 × 2.", "Then multiply by 10 days."],
+      "feedback": {
+        "correct": "Right — 10 glasses a day × 10 days = 100.",
+        "incorrect": "5 × 2 = 10 per day. 10 × 10 days = 100 glasses. Answer is C."
+      }
+    },
+    {
+      "id": "R2_10",
+      "section": "practice_r2",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "Emma counts 10 nickels. How many cents does she have?",
+      "choices": ["A. 15", "B. 20", "C. 50", "D. 100"],
+      "answer": "C",
+      "explanation": "A nickel is 5 cents. 10 × 5 = 50 cents.",
+      "hints": ["A nickel = 5 cents.", "10 nickels means 10 × 5."],
+      "feedback": {
+        "correct": "Right — 10 nickels = 50 cents.",
+        "incorrect": "Each nickel is 5 cents, so 10 × 5 = 50. Answer is C."
+      }
+    },
+
     {
       "id": "R3_01",
       "section": "practice_r3",
       "difficulty": 3,
       "question": "Sam has 5 boxes of pencils (10 each) and 3 boxes of pens (5 each). How many writing tools in all?",
-      "choices": [
-        "A. 55",
-        "B. 60",
-        "C. 65",
-        "D. 75"
-      ],
+      "choices": ["A. 55", "B. 60", "C. 65", "D. 75"],
       "answer": "C",
-      "explanation": "5×10=50. 3×5=15. 50+15=65.",
-      "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "5 × 10 = 50 pencils. 3 × 5 = 15 pens. 50 + 15 = 65.",
+      "hints": ["Find pencils and pens separately.", "Then add the two totals."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 5 and 10 works."
+        "correct": "Right — 50 + 15 = 65 tools.",
+        "incorrect": "50 pencils + 15 pens = 65. Answer is C."
       }
     },
     {
       "id": "R3_02",
       "section": "practice_r3",
       "difficulty": 3,
-      "question": "10 × ? = 5 × 16. What is ?",
-      "choices": [
-        "A. 6",
-        "B. 8",
-        "C. 10",
-        "D. 16"
-      ],
+      "question": "10 × ? = 5 × 16. What is the missing factor?",
+      "choices": ["A. 6", "B. 8", "C. 10", "D. 16"],
       "answer": "B",
-      "explanation": "5×16=80. 10×?=80. ?=8.",
-      "hints": [
-        "Think about what multiply with 5 and 10 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "5 × 16 = 80. 10 × 8 = 80. So ? = 8.",
+      "hints": ["Find 5 × 16 first.", "Then solve 10 × ? = 80."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how multiply with 5 and 10 works."
+        "correct": "Right — both sides equal 80.",
+        "incorrect": "5 × 16 = 80, then 10 × 8 = 80. Answer is B."
+      }
+    },
+    {
+      "id": "R3_03",
+      "section": "practice_r3",
+      "difficulty": 4,
+      "question": "A class has 10 tables with 5 chairs at each. Only half the chairs are filled. How many students are sitting?",
+      "choices": ["A. 15", "B. 20", "C. 25", "D. 50"],
+      "answer": "C",
+      "explanation": "10 × 5 = 50 chairs. Half of 50 = 25.",
+      "hints": ["Find total chairs first.", "Then take half."],
+      "feedback": {
+        "correct": "Right — half of 50 is 25.",
+        "incorrect": "10 × 5 = 50 chairs, half is 25 students. Answer is C."
+      }
+    },
+    {
+      "id": "R3_04",
+      "section": "practice_r3",
+      "difficulty": 4,
+      "question": "Lily has 3 dimes and 4 nickels. How many cents does she have?",
+      "choices": ["A. 30", "B. 40", "C. 50", "D. 70"],
+      "answer": "C",
+      "explanation": "3 × 10 = 30. 4 × 5 = 20. 30 + 20 = 50.",
+      "hints": ["Dimes × 10 and nickels × 5.", "Add the two amounts."],
+      "feedback": {
+        "correct": "Right — 30 cents + 20 cents = 50 cents.",
+        "incorrect": "3 dimes = 30, 4 nickels = 20, total = 50. Answer is C."
+      }
+    },
+    {
+      "id": "R3_05",
+      "section": "practice_r3",
+      "difficulty": 4,
+      "question": "Coach gives each of 10 players 5 baseballs. 7 baseballs are lost. How many baseballs remain?",
+      "choices": ["A. 35", "B. 43", "C. 45", "D. 50"],
+      "answer": "B",
+      "explanation": "10 × 5 = 50 baseballs. 50 − 7 = 43.",
+      "hints": ["Find the total given out: 10 × 5.", "Subtract the lost ones."],
+      "feedback": {
+        "correct": "Right — 50 − 7 = 43.",
+        "incorrect": "10 × 5 = 50, then 50 − 7 = 43. Answer is B."
       }
     }
   ],

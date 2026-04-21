@@ -44,6 +44,13 @@ from .math import (
     MathKangarooProgress,
 )
 from .assistant import AssistantLog
+from .us_academy import (
+    USAcademyWord,
+    USAcademyWordProgress,
+    USAcademyPassage,
+    USAcademySession,
+    USAcademyUnitResult,
+)
 
 __all__ = [
     "Base",
@@ -62,4 +69,7 @@ __all__ = [
     "MathWrongReview", "MathFactFluency", "MathDailyChallenge", "MathKangarooProgress",
     # assistant
     "AssistantLog",
+    # us academy
+    "USAcademyWord", "USAcademyWordProgress", "USAcademyPassage",
+    "USAcademySession", "USAcademyUnitResult",
 ]

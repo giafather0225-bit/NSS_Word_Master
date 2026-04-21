@@ -21,8 +21,18 @@ function showMathFeedback(result, problem, onNext) {
     const stage = document.getElementById('stage');
     if (!stage) return;
 
+    // Remember the element that had focus so we can restore it on dismiss
+    // (WCAG 2.4.3 Focus Order — keyboard users land back where they were).
+    const prevFocus = document.activeElement;
+
     const overlay = document.createElement('div');
     overlay.className = 'math-feedback-overlay ' + (result.is_correct ? 'math-feedback-correct' : 'math-feedback-wrong');
+    // ARIA: overlay behaves as a modal dialog — screen readers should
+    // treat it as a focus boundary until dismissed.
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    const titleId = 'math-feedback-title-' + Date.now();
+    overlay.setAttribute('aria-labelledby', titleId);
 
     // Step-by-Step Solution is enabled ONLY in the Try stage (per spec).
     // For Pretest/Practice we keep the compact feedback (no steps list).
@@ -103,10 +113,13 @@ function showMathFeedback(result, problem, onNext) {
         ? `<div class="math-confetti" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>`
         : '';
 
+    // Polite live-region announcement for screen readers.
+    const liveMsg = result.is_correct ? 'Correct answer.' : 'Incorrect answer.';
     overlay.innerHTML = `
         ${confettiHtml}
+        <div class="math-sr-only" role="status" aria-live="polite">${liveMsg}</div>
         <div class="math-feedback-card">
-            <div class="math-feedback-result">${result.is_correct ? '\u2713 Correct!' : '\u2717 Not quite'}</div>
+            <div class="math-feedback-result" id="${titleId}">${result.is_correct ? '\u2713 Correct!' : '\u2717 Not quite'}</div>
             ${!result.is_correct ? `<div class="math-feedback-answer">Answer: ${result.correct_answer}</div>` : ''}
             ${result.feedback ? `<div class="math-feedback-text">${_escS(result.feedback)}</div>` : ''}
             ${interactiveHtml}
@@ -138,19 +151,37 @@ function showMathFeedback(result, problem, onNext) {
     if (hasInteractive) _wireInteractiveSteps(overlay);
     if (hasSteps) _wireReadOnlySteps(steps, autoOpen);
 
-    document.getElementById('math-feedback-next').addEventListener('click', () => {
-        overlay.remove();
-        onNext();
+    const nextBtn = document.getElementById('math-feedback-next');
+    // Autofocus the Continue button so keyboard users land on the primary action.
+    // requestAnimationFrame lets the browser place the element before focus().
+    requestAnimationFrame(() => {
+        try { nextBtn.focus({ preventScroll: false }); } catch (_) { /* noop */ }
     });
 
-    // Also allow Enter key — but only when step-by-step is not the focus
+    const dismiss = () => {
+        document.removeEventListener('keydown', handler);
+        overlay.remove();
+        // Restore focus to the element that had it before we opened.
+        if (prevFocus && typeof prevFocus.focus === 'function' && document.contains(prevFocus)) {
+            try { prevFocus.focus({ preventScroll: true }); } catch (_) { /* noop */ }
+        }
+        onNext();
+    };
+
+    nextBtn.addEventListener('click', dismiss);
+
+    // Keyboard: Enter continues (unless an input inside the overlay has focus),
+    // Escape always dismisses.
     const handler = (e) => {
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            dismiss();
+            return;
+        }
         if (e.key === 'Enter'
             && !document.activeElement?.classList.contains('math-istep-field')
             && document.activeElement?.id !== 'math-steps-next') {
-            document.removeEventListener('keydown', handler);
-            overlay.remove();
-            onNext();
+            dismiss();
         }
     };
     document.addEventListener('keydown', handler);

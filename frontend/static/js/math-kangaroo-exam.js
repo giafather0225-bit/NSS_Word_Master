@@ -186,15 +186,29 @@ function _examRenderQuestion() {
     const sectionTint = pts === 3 ? 'kang-tint-3' : pts === 4 ? 'kang-tint-4' : 'kang-tint-5';
     const selected = examState.answers[q.id] || '';
     const flagged = !!examState.flagged[q.id];
-    const optsHtml = Object.entries(q.options || {}).map(([k, v]) => `
-        <button class="kang-opt ${selected === k ? 'is-selected' : ''}" data-opt="${k}">
-            <span class="kang-opt-letter">(${k})</span>
-            <span class="kang-opt-text">${_examEsc(v)}</span>
-        </button>
-    `).join('');
-    const imgHtml = q.image_svg
-        ? `<div class="kang-img" role="img" aria-label="${_examEsc(q.image_description || '')}">${q.image_svg}</div>`
-        : '';
+    const imageOnly = !!(q.image_only && q.image);
+    const optsHtml = imageOnly
+        ? ['A','B','C','D','E'].map(k => `
+            <button class="kang-opt kang-opt-compact ${selected === k ? 'is-selected' : ''}" data-opt="${k}">
+                <span class="kang-opt-letter">${k}</span>
+            </button>
+        `).join('')
+        : Object.entries(q.options || {}).map(([k, v]) => `
+            <button class="kang-opt ${selected === k ? 'is-selected' : ''}" data-opt="${k}">
+                <span class="kang-opt-letter">(${k})</span>
+                <span class="kang-opt-text">${_examEsc(v)}</span>
+            </button>
+        `).join('');
+    const imgHtml = imageOnly
+        ? `<div class="kang-img kang-img-full"><img src="${q.image}" alt="${_examEsc(q.image_description || q.question_text || '')}" loading="lazy"></div>`
+        : q.image
+            ? `<div class="kang-img"><img src="${q.image}" alt="${_examEsc(q.image_description || '')}" loading="lazy"></div>`
+            : q.image_description
+                ? `<div class="kang-img kang-img-desc">${_examEsc(q.image_description)}</div>`
+                : '';
+    const qTextHtml = imageOnly
+        ? ''
+        : `<div class="kang-q-text">${_examEsc(q.question_text)}</div>`;
     const checkHtml = examState.mode === 'practice'
         ? `<div class="kang-practice">
              <button class="kang-btn kang-btn-secondary" id="kang-check-btn">Check Answer</button>
@@ -208,9 +222,9 @@ function _examRenderQuestion() {
             <div class="kang-q-topic">${_examEsc(q.topic || '')}</div>
             <button class="kang-flag ${flagged ? 'is-on' : ''}" id="kang-flag-btn">⚑ Flag</button>
         </div>
-        <div class="kang-q-text">${_examEsc(q.question_text)}</div>
+        ${qTextHtml}
         ${imgHtml}
-        <div class="kang-opts">${optsHtml}</div>
+        <div class="kang-opts ${imageOnly ? 'kang-opts-compact' : ''}">${optsHtml}</div>
         ${checkHtml}
     `;
     if (pos) pos.textContent = `Question ${examState.idx + 1} of ${examState.questions.length}`;

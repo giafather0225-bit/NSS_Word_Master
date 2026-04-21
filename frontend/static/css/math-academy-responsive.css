@@ -1,0 +1,302 @@
+/* ================================================================
+   math-academy-responsive.css — Mobile / tablet responsive overrides
+   + loading spinner styles
+   Section: Math
+   Depends on: theme.css variables, math-academy-shell.css (and others)
+   Load AFTER all other math-academy-*.css so the overrides win without !important.
+   ================================================================ */
+
+/* ── Loading spinner (all viewports) ─────────────────────── */
+
+.math-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 32px 16px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    animation: math-fadein 0.2s ease-out;
+}
+
+.math-spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid var(--color-primary-light);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: math-spin 0.9s linear infinite;
+}
+
+.math-loading-retry {
+    margin-left: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--color-primary);
+    background: var(--bg-card);
+    color: var(--color-primary);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.math-loading-retry:hover {
+    background: var(--color-primary-light);
+}
+
+@keyframes math-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes math-fadein {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Accessibility: sr-only live region ──────────────────── */
+
+.math-sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+}
+
+/* ================================================================
+   TABLET (≤ 1024px)
+   ================================================================ */
+@media (max-width: 1024px) {
+    .math-rail {
+        width: 60px;
+    }
+    .math-rail-label {
+        font-size: 11px;
+    }
+    .math-rail-meta {
+        display: none;
+    }
+    .stage-card,
+    #stage-card {
+        padding: 20px 18px;
+    }
+    .math-mc-grid {
+        gap: 10px;
+    }
+    .math-learn-card {
+        padding: 20px;
+    }
+    .math-learn-card img,
+    .math-learn-visual img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* ================================================================
+   SMALL TABLET / LARGE PHONE (≤ 768px)
+   ================================================================ */
+@media (max-width: 768px) {
+    .math-rail {
+        width: 52px;
+        padding: 8px 4px;
+    }
+    .math-rail-label {
+        font-size: 10px;
+    }
+
+    .stage-card,
+    #stage-card {
+        padding: 16px 14px;
+        font-size: 15px;
+    }
+
+    .math-problem-question {
+        font-size: 17px;
+        line-height: 1.5;
+    }
+
+    /* MC: 2 columns still ok but wider buttons */
+    .math-mc-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .math-mc-btn {
+        min-height: 56px;
+        padding: 14px 12px;
+        font-size: 15px;
+    }
+
+    .math-tf-btn {
+        min-height: 64px;
+        font-size: 16px;
+    }
+
+    .math-input-field {
+        width: 100%;
+        min-height: 48px;
+        font-size: 16px; /* prevents iOS zoom */
+    }
+
+    .math-submit-btn,
+    .math-btn-primary {
+        min-height: 48px;
+    }
+
+    .math-drag-item {
+        min-height: 52px;
+        padding: 14px 12px;
+    }
+
+    .math-feedback-overlay {
+        padding: 12px;
+        overflow-y: auto;
+    }
+    .math-feedback-card {
+        max-width: 100%;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .math-round-summary,
+    .math-complete {
+        padding: 18px 14px;
+    }
+
+    /* Roadmap pills — horizontal scroll */
+    #roadmap,
+    .math-roadmap {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+    }
+    #roadmap > *,
+    .math-roadmap > * {
+        flex: 0 0 auto;
+    }
+}
+
+/* ================================================================
+   MOBILE (≤ 480px)
+   ================================================================ */
+@media (max-width: 480px) {
+    /* Hide the side rail; convert to bottom tab bar (optional pattern).
+       Keep content flowing full width. Shell layout must accept this. */
+    .math-rail {
+        display: none;
+    }
+    .math-academy-shell,
+    .math-shell {
+        flex-direction: column;
+    }
+
+    /* If future work ports the rail to a bottom tab bar, authors can
+       opt a custom element in via .math-rail-bottombar — no-op today. */
+    .math-rail-bottombar {
+        display: flex;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        height: 56px;
+        background: var(--bg-card);
+        border-top: 1px solid var(--color-primary-light);
+        z-index: 40;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .stage-card,
+    #stage-card {
+        padding: 14px 10px;
+        border-radius: var(--radius-md);
+    }
+
+    .math-problem-header {
+        font-size: 12px;
+    }
+    .math-problem-question {
+        font-size: 16px;
+    }
+
+    /* MC: single column stack */
+    .math-mc-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    .math-mc-btn {
+        min-height: 52px;
+        padding: 14px 12px;
+        font-size: 15px;
+        justify-content: flex-start;
+    }
+
+    .math-tf-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .math-tf-btn {
+        min-height: 60px;
+    }
+
+    .math-input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .math-input-field {
+        width: 100%;
+    }
+    .math-submit-btn,
+    .math-input-group .math-btn-primary {
+        width: 100%;
+    }
+
+    .math-drag-list {
+        padding: 4px;
+    }
+    .math-drag-item {
+        min-height: 56px;
+        padding: 16px 12px;
+        touch-action: none; /* better drag on touch */
+    }
+
+    .math-feedback-overlay {
+        padding: 8px;
+    }
+    .math-feedback-card {
+        width: 100%;
+        border-radius: var(--radius-md);
+        padding: 18px 14px;
+    }
+
+    /* Results screens — stack stat cards vertically */
+    .math-complete-stats,
+    .math-round-stats,
+    .math-stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px;
+    }
+
+    .math-learn-card {
+        width: 100%;
+        padding: 16px 12px;
+        border-radius: var(--radius-md);
+    }
+    .math-learn-visual,
+    .math-learn-visual img {
+        max-width: 100%;
+    }
+
+    .math-learn-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .math-learn-nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* Hint/Tools panel spacing */
+    .math-hint-btn,
+    .math-3read-btn {
+        width: 100%;
+    }
+}

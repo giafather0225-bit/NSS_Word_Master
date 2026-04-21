@@ -14,15 +14,17 @@
   "essential_question": "What strategies can you use to multiply with 3 and 6?",
   "key_vocabulary": [
     "triple",
-    "double a ×3 fact",
+    "double",
     "skip count",
     "factor",
-    "product"
+    "product",
+    "array"
   ],
   "strategies": [
-    "To multiply by 3: use skip counting by 3s or use a number line",
+    "Skip count by 3s or 6s",
     "To multiply by 6: double the ×3 fact",
-    "6×n = 2 × (3×n)"
+    "6 × n = 2 × (3 × n)",
+    "6 × n = 3 × n + 3 × n (split 6 into 3 + 3)"
   ],
   "items": [
     {
@@ -30,12 +32,7 @@
       "section": "pretest",
       "difficulty": 1,
       "question": "3 × 5 = ?",
-      "choices": [
-        "A. 8",
-        "B. 12",
-        "C. 15",
-        "D. 18"
-      ],
+      "choices": ["A. 8", "B. 12", "C. 15", "D. 18"],
       "answer": "C",
       "explanation": "3 × 5 = 15."
     },
@@ -44,12 +41,7 @@
       "section": "pretest",
       "difficulty": 1,
       "question": "6 × 2 = ?",
-      "choices": [
-        "A. 8",
-        "B. 10",
-        "C. 12",
-        "D. 14"
-      ],
+      "choices": ["A. 8", "B. 10", "C. 12", "D. 14"],
       "answer": "C",
       "explanation": "6 × 2 = 12."
     },
@@ -58,12 +50,7 @@
       "section": "pretest",
       "difficulty": 2,
       "question": "3 × 8 = ?",
-      "choices": [
-        "A. 11",
-        "B. 21",
-        "C. 24",
-        "D. 27"
-      ],
+      "choices": ["A. 11", "B. 21", "C. 24", "D. 27"],
       "answer": "C",
       "explanation": "3 × 8 = 24."
     },
@@ -72,36 +59,27 @@
       "section": "pretest",
       "difficulty": 2,
       "question": "To find 6 × 7, double 3 × 7. What is 3 × 7? Then double it.",
-      "choices": [
-        "A. 21, then 42",
-        "B. 21, then 28",
-        "C. 18, then 36",
-        "D. 24, then 48"
-      ],
+      "choices": ["A. 21, then 42", "B. 21, then 28", "C. 18, then 36", "D. 24, then 48"],
       "answer": "A",
-      "explanation": "3×7=21. Double=42."
+      "explanation": "3 × 7 = 21. Double 21 = 42."
     },
     {
       "id": "PT_05",
       "section": "pretest",
       "difficulty": 2,
       "question": "6 × 9 = ?",
-      "choices": [
-        "A. 48",
-        "B. 54",
-        "C. 56",
-        "D. 63"
-      ],
+      "choices": ["A. 48", "B. 54", "C. 56", "D. 63"],
       "answer": "B",
       "explanation": "6 × 9 = 54."
     },
+
     {
       "id": "LN_01",
       "section": "learn",
       "difficulty": 0,
       "type": "concept_card",
       "title": "Multiplying by 3",
-      "content": "Skip count by 3: 3, 6, 9, 12, 15, 18, 21, 24, 27, 30. Or use repeated addition: 3×4 = 3+3+3+3 = 12.",
+      "content": "Skip count by 3: 3, 6, 9, 12, 15, 18, 21, 24, 27, 30. Or add the number three times: 3 × 4 = 4 + 4 + 4 = 12.",
       "cpa_phase": "concrete",
       "visual_type": "none"
     },
@@ -110,8 +88,8 @@
       "section": "learn",
       "difficulty": 0,
       "type": "concept_card",
-      "title": "Multiplying by 6: Double the 3s",
-      "content": "Since 6 = 2 × 3, multiply by 3 first, then double. 6×5 → 3×5=15, double 15=30. So 6×5=30.",
+      "title": "Multiplying by 6: Double the ×3 Fact",
+      "content": "Since 6 = 2 × 3, you can multiply by 3 first, then double. 6 × 5 → 3 × 5 = 15, then double 15 = 30. So 6 × 5 = 30.",
       "cpa_phase": "concrete",
       "visual_type": "none"
     },
@@ -120,31 +98,51 @@
       "section": "learn",
       "difficulty": 0,
       "type": "concept_card",
-      "title": "Another Way for ×6",
-      "content": "You can also skip count by 6: 6, 12, 18, 24, 30, 36, 42, 48, 54, 60.",
+      "title": "Skip Counting by 6s",
+      "content": "You can also skip count by 6: 6, 12, 18, 24, 30, 36, 42, 48, 54, 60. Notice: every ×6 product is exactly double the matching ×3 product.",
       "cpa_phase": "pictorial",
       "visual_type": "none"
     },
+    {
+      "id": "LN_04",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
+      "title": "Arrays Show ×3 and ×6",
+      "content": "An array of 3 rows × 5 columns has 15 dots (3 × 5). An array of 6 rows × 5 columns has 30 dots (6 × 5). The ×6 array is just two ×3 arrays stacked — that's why 6 × 5 is double 3 × 5.",
+      "cpa_phase": "pictorial",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {"rows": 6, "cols": 5}
+      }
+    },
+    {
+      "id": "LN_05",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
+      "title": "Split 6 Into 3 + 3",
+      "content": "Another way to find ×6: split 6 into 3 + 3 and add. 6 × 7 = 3 × 7 + 3 × 7 = 21 + 21 = 42. This works because 6 groups of 7 is the same as two sets of 3 groups of 7.",
+      "cpa_phase": "abstract",
+      "visual_type": "none"
+    },
+
     {
       "id": "TRY_01",
       "section": "try",
       "difficulty": 1,
       "question": "3 × 7 = ?",
-      "choices": [
-        "A. 10",
-        "B. 18",
-        "C. 21",
-        "D. 24"
-      ],
+      "choices": ["A. 10", "B. 18", "C. 21", "D. 24"],
       "answer": "C",
-      "explanation": "3 × 7 = 21.",
+      "explanation": "3 × 7 = 21. Skip count: 7, 14, 21.",
       "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
+        "Skip count by 7s three times.",
+        "Or add 7 three times: 7 + 7 + 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 3 and 6 works."
+        "correct": "Right — three 7s make 21.",
+        "incorrect": "7 + 7 + 7 = 21, or 7, 14, 21. Answer is C."
       },
       "solution_steps": []
     },
@@ -153,21 +151,16 @@
       "section": "try",
       "difficulty": 2,
       "question": "6 × 4 = ? (Double 3 × 4.)",
-      "choices": [
-        "A. 12",
-        "B. 18",
-        "C. 24",
-        "D. 28"
-      ],
+      "choices": ["A. 12", "B. 18", "C. 24", "D. 28"],
       "answer": "C",
-      "explanation": "3×4=12. Double=24.",
+      "explanation": "3 × 4 = 12. Double 12 = 24.",
       "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
+        "Start with 3 × 4 = 12.",
+        "Now double 12."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 3 and 6 works."
+        "correct": "Right — double 12 is 24.",
+        "incorrect": "3 × 4 = 12, then doubled = 24. Answer is C."
       },
       "solution_steps": []
     },
@@ -176,44 +169,68 @@
       "section": "try",
       "difficulty": 2,
       "question": "6 × 6 = ?",
-      "choices": [
-        "A. 30",
-        "B. 36",
-        "C. 42",
-        "D. 48"
-      ],
+      "choices": ["A. 30", "B. 36", "C. 42", "D. 48"],
       "answer": "B",
-      "explanation": "6 × 6 = 36.",
+      "explanation": "3 × 6 = 18. Double 18 = 36.",
       "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
+        "Start with 3 × 6 = 18.",
+        "Double 18 to find 6 × 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how multiply with 3 and 6 works."
+        "correct": "Right — 6 × 6 = 36.",
+        "incorrect": "3 × 6 = 18, doubled = 36. Answer is B."
       },
       "solution_steps": []
     },
+    {
+      "id": "TRY_04",
+      "section": "try",
+      "difficulty": 2,
+      "question": "A beetle has 6 legs. How many legs do 8 beetles have?",
+      "choices": ["A. 14", "B. 32", "C. 42", "D. 48"],
+      "answer": "D",
+      "explanation": "6 × 8 = 48. (3 × 8 = 24, doubled = 48.)",
+      "hints": [
+        "8 beetles × 6 legs each means 6 × 8.",
+        "Double 3 × 8 = 24."
+      ],
+      "feedback": {
+        "correct": "Right — 48 legs in all.",
+        "incorrect": "3 × 8 = 24, doubled = 48. Answer is D."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "section": "try",
+      "difficulty": 3,
+      "question": "3 × ? = 27. What is the missing factor?",
+      "choices": ["A. 6", "B. 7", "C. 8", "D. 9"],
+      "answer": "D",
+      "explanation": "3 × 9 = 27.",
+      "hints": [
+        "Skip count by 3s until you reach 27.",
+        "3, 6, 9, 12, 15, 18, 21, 24, 27 — nine 3s."
+      ],
+      "feedback": {
+        "correct": "Right — nine 3s make 27.",
+        "incorrect": "Count by 3s to 27: you land at 27 on the ninth count. Answer is D."
+      },
+      "solution_steps": []
+    },
+
     {
       "id": "R1_01",
       "section": "practice_r1",
       "difficulty": 1,
       "question": "3 × 4 = ?",
-      "choices": [
-        "A. 7",
-        "B. 9",
-        "C. 12",
-        "D. 15"
-      ],
+      "choices": ["A. 7", "B. 9", "C. 12", "D. 15"],
       "answer": "C",
       "explanation": "3 × 4 = 12.",
-      "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "hints": ["Three 4s.", "4 + 4 + 4 = 12."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 3 and 6 works."
+        "correct": "Right — three 4s make 12.",
+        "incorrect": "4 + 4 + 4 = 12. Answer is C."
       }
     },
     {
@@ -221,21 +238,13 @@
       "section": "practice_r1",
       "difficulty": 1,
       "question": "6 × 3 = ?",
-      "choices": [
-        "A. 9",
-        "B. 12",
-        "C. 15",
-        "D. 18"
-      ],
+      "choices": ["A. 9", "B. 12", "C. 15", "D. 18"],
       "answer": "D",
-      "explanation": "6 × 3 = 18.",
-      "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "6 × 3 = 18. Double 3 × 3 = 9.",
+      "hints": ["3 × 3 = 9. Double it.", "Skip count by 6s: 6, 12, 18."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how multiply with 3 and 6 works."
+        "correct": "Right — 6 × 3 = 18.",
+        "incorrect": "3 × 3 = 9, doubled = 18. Answer is D."
       }
     },
     {
@@ -243,21 +252,13 @@
       "section": "practice_r1",
       "difficulty": 2,
       "question": "3 × 9 = ?",
-      "choices": [
-        "A. 12",
-        "B. 21",
-        "C. 27",
-        "D. 30"
-      ],
+      "choices": ["A. 12", "B. 21", "C. 27", "D. 30"],
       "answer": "C",
-      "explanation": "3 × 9 = 27.",
-      "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "3 × 9 = 27. Skip count: 3, 6, 9, ..., 27.",
+      "hints": ["Skip count by 3s nine times.", "Or add 9 three times."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 3 and 6 works."
+        "correct": "Right — nine 3s make 27.",
+        "incorrect": "9 + 9 + 9 = 27. Answer is C."
       }
     },
     {
@@ -265,109 +266,316 @@
       "section": "practice_r1",
       "difficulty": 2,
       "question": "6 × 8 = ?",
-      "choices": [
-        "A. 42",
-        "B. 46",
-        "C. 48",
-        "D. 54"
-      ],
+      "choices": ["A. 42", "B. 46", "C. 48", "D. 54"],
       "answer": "C",
-      "explanation": "6 × 8 = 48.",
-      "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "3 × 8 = 24. Double 24 = 48.",
+      "hints": ["Start with 3 × 8.", "Double your answer."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 3 and 6 works."
+        "correct": "Right — double 24 is 48.",
+        "incorrect": "3 × 8 = 24, doubled = 48. Answer is C."
       }
     },
     {
+      "id": "R1_05",
+      "section": "practice_r1",
+      "difficulty": 1,
+      "question": "3 × 2 = ?",
+      "choices": ["A. 5", "B. 6", "C. 8", "D. 9"],
+      "answer": "B",
+      "explanation": "3 × 2 = 6.",
+      "hints": ["Two 3s.", "3 + 3 = 6."],
+      "feedback": {
+        "correct": "Right — two 3s make 6.",
+        "incorrect": "3 + 3 = 6. Answer is B."
+      }
+    },
+    {
+      "id": "R1_06",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "question": "3 × 6 = ?",
+      "choices": ["A. 12", "B. 15", "C. 18", "D. 21"],
+      "answer": "C",
+      "explanation": "3 × 6 = 18. Skip count: 6, 12, 18.",
+      "hints": ["Three 6s.", "6 + 6 + 6 = 18."],
+      "feedback": {
+        "correct": "Right — three 6s make 18.",
+        "incorrect": "6 + 6 + 6 = 18. Answer is C."
+      }
+    },
+    {
+      "id": "R1_07",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "question": "6 × 5 = ?",
+      "choices": ["A. 24", "B. 28", "C. 30", "D. 36"],
+      "answer": "C",
+      "explanation": "3 × 5 = 15. Double 15 = 30.",
+      "hints": ["Start with 3 × 5 = 15.", "Double 15."],
+      "feedback": {
+        "correct": "Right — double 15 is 30.",
+        "incorrect": "3 × 5 = 15, doubled = 30. Answer is C."
+      }
+    },
+    {
+      "id": "R1_08",
+      "section": "practice_r1",
+      "difficulty": 1,
+      "question": "3 × 3 = ?",
+      "choices": ["A. 6", "B. 9", "C. 12", "D. 15"],
+      "answer": "B",
+      "explanation": "3 × 3 = 9.",
+      "hints": ["Three 3s.", "3 + 3 + 3 = 9."],
+      "feedback": {
+        "correct": "Right — 3 × 3 = 9.",
+        "incorrect": "3 + 3 + 3 = 9. Answer is B."
+      }
+    },
+    {
+      "id": "R1_09",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "question": "6 × 7 = ?",
+      "choices": ["A. 36", "B. 42", "C. 48", "D. 54"],
+      "answer": "B",
+      "explanation": "3 × 7 = 21. Double 21 = 42.",
+      "hints": ["Start with 3 × 7 = 21.", "Double 21."],
+      "feedback": {
+        "correct": "Right — double 21 is 42.",
+        "incorrect": "3 × 7 = 21, doubled = 42. Answer is B."
+      }
+    },
+    {
+      "id": "R1_10",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "question": "3 × 8 = ?",
+      "choices": ["A. 18", "B. 21", "C. 24", "D. 27"],
+      "answer": "C",
+      "explanation": "3 × 8 = 24. Skip count: 8, 16, 24.",
+      "hints": ["Three 8s.", "8 + 8 + 8 = 24."],
+      "feedback": {
+        "correct": "Right — three 8s make 24.",
+        "incorrect": "8 + 8 + 8 = 24. Answer is C."
+      }
+    },
+
+    {
       "id": "R2_01",
       "section": "practice_r2",
+      "type": "mc",
       "difficulty": 2,
-      "question": "Which is TRUE? 6 × 5 = 3 × ?",
-      "choices": [
-        "A. 5",
-        "B. 6",
-        "C. 10",
-        "D. 15"
-      ],
+      "question": "Which statement is TRUE? 6 × 5 = 3 × ?",
+      "choices": ["A. 5", "B. 6", "C. 10", "D. 15"],
       "answer": "C",
-      "explanation": "6×5=30. 3×?=30. ?=10.",
-      "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "6 × 5 = 30. 3 × 10 = 30.",
+      "hints": ["Find 6 × 5 first.", "Then solve 3 × ? = 30."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 3 and 6 works."
+        "correct": "Right — both sides equal 30.",
+        "incorrect": "6 × 5 = 30, then 3 × 10 = 30. Answer is C."
       }
     },
     {
       "id": "R2_02",
       "section": "practice_r2",
+      "type": "mc",
       "difficulty": 3,
       "question": "A spider has 8 legs. How many legs do 6 spiders have?",
-      "choices": [
-        "A. 14",
-        "B. 36",
-        "C. 42",
-        "D. 48"
-      ],
+      "choices": ["A. 14", "B. 36", "C. 42", "D. 48"],
       "answer": "D",
-      "explanation": "6 × 8 = 48.",
-      "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "6 × 8 = 48. (3 × 8 = 24, doubled = 48.)",
+      "hints": ["6 spiders × 8 legs each.", "Double 3 × 8."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how multiply with 3 and 6 works."
+        "correct": "Right — 48 legs.",
+        "incorrect": "3 × 8 = 24, doubled = 48. Answer is D."
       }
     },
+    {
+      "id": "R2_03",
+      "section": "practice_r2",
+      "type": "tf",
+      "difficulty": 2,
+      "question": "True or False: 6 × 4 equals 3 × 4 plus 3 × 4.",
+      "choices": ["A. True", "B. False"],
+      "answer": "A",
+      "explanation": "3 × 4 = 12, and 12 + 12 = 24, which equals 6 × 4. True.",
+      "hints": ["6 splits into 3 + 3.", "So 6 fours equals two sets of 3 fours."],
+      "feedback": {
+        "correct": "Right — splitting 6 into 3 + 3 keeps the product the same.",
+        "incorrect": "3 × 4 + 3 × 4 = 12 + 12 = 24, same as 6 × 4. True."
+      }
+    },
+    {
+      "id": "R2_04",
+      "section": "practice_r2",
+      "type": "input",
+      "difficulty": 2,
+      "question": "3 × ? = 21. What is the missing factor?",
+      "answer": "7",
+      "explanation": "3 × 7 = 21.",
+      "hints": ["Skip count by 3s until you reach 21.", "3, 6, 9, 12, 15, 18, 21 — seven 3s."],
+      "feedback": {
+        "correct": "Right — seven 3s make 21.",
+        "incorrect": "Count by 3s to 21; that's 7 jumps."
+      }
+    },
+    {
+      "id": "R2_05",
+      "section": "practice_r2",
+      "type": "input",
+      "difficulty": 2,
+      "question": "Fill in the missing number: 3, 6, 9, ?, 15, 18.",
+      "answer": "12",
+      "explanation": "Skip counting by 3s: after 9 comes 12.",
+      "hints": ["The pattern adds 3 each step.", "9 + 3 = ?"],
+      "feedback": {
+        "correct": "Right — 9 + 3 = 12.",
+        "incorrect": "Add 3 to 9 to continue the pattern: 12."
+      }
+    },
+    {
+      "id": "R2_06",
+      "section": "practice_r2",
+      "type": "input",
+      "difficulty": 2,
+      "question": "6 × ? = 42. What is the missing factor?",
+      "answer": "7",
+      "explanation": "6 × 7 = 42.",
+      "hints": ["Skip count by 6s until you reach 42.", "6, 12, 18, 24, 30, 36, 42 — seven 6s."],
+      "feedback": {
+        "correct": "Right — seven 6s make 42.",
+        "incorrect": "Count by 6s to 42; that's 7 jumps."
+      }
+    },
+    {
+      "id": "R2_07",
+      "section": "practice_r2",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "Which is greater: 3 × 8 or 6 × 4?",
+      "choices": ["A. 3 × 8 is greater", "B. 6 × 4 is greater", "C. They are equal", "D. Can't tell"],
+      "answer": "C",
+      "explanation": "3 × 8 = 24 and 6 × 4 = 24. Equal.",
+      "hints": ["Find each product first.", "Then compare."],
+      "feedback": {
+        "correct": "Right — both equal 24.",
+        "incorrect": "3 × 8 = 24 and 6 × 4 = 24 — they are equal. Answer is C."
+      }
+    },
+    {
+      "id": "R2_08",
+      "section": "practice_r2",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "Which number is NOT a product of 3?",
+      "choices": ["A. 12", "B. 15", "C. 20", "D. 27"],
+      "answer": "C",
+      "explanation": "Products of 3 come from skip counting by 3s: 3, 6, 9, 12, 15, 18, 21, 24, 27. 20 is not in the list.",
+      "hints": ["Skip count by 3s and check each choice.", "Which number is skipped over?"],
+      "feedback": {
+        "correct": "Right — 20 isn't in the ×3 sequence.",
+        "incorrect": "Count by 3s: you skip over 20. Answer is C."
+      }
+    },
+    {
+      "id": "R2_09",
+      "section": "practice_r2",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "An array has 6 rows and 8 columns. What multiplication fact does it show?",
+      "choices": ["A. 6 × 8 = 48", "B. 6 × 8 = 54", "C. 8 × 6 = 14", "D. 3 × 8 = 24"],
+      "answer": "A",
+      "explanation": "Rows × columns = 6 × 8 = 48.",
+      "hints": ["Multiply rows × columns.", "Double 3 × 8 = 24."],
+      "feedback": {
+        "correct": "Right — 6 × 8 = 48.",
+        "incorrect": "6 rows × 8 columns = 48. Answer is A."
+      }
+    },
+    {
+      "id": "R2_10",
+      "section": "practice_r2",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "A coach buys 3 packs of baseballs. Each pack has 6 balls. How many balls total?",
+      "choices": ["A. 9", "B. 12", "C. 15", "D. 18"],
+      "answer": "D",
+      "explanation": "3 × 6 = 18 balls.",
+      "hints": ["3 packs of 6 means 3 × 6.", "Or 6 + 6 + 6."],
+      "feedback": {
+        "correct": "Right — 18 balls total.",
+        "incorrect": "3 × 6 = 18. Answer is D."
+      }
+    },
+
     {
       "id": "R3_01",
       "section": "practice_r3",
       "difficulty": 3,
-      "question": "There are 3 classes. Each has 6 tables. Each table seats 4. How many seats total?",
-      "choices": [
-        "A. 48",
-        "B. 60",
-        "C. 72",
-        "D. 84"
-      ],
+      "question": "There are 3 classes. Each class has 6 tables. Each table seats 4. How many seats in all?",
+      "choices": ["A. 48", "B. 60", "C. 72", "D. 84"],
       "answer": "C",
-      "explanation": "3×6=18 tables. 18×4=72 seats.",
-      "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "explanation": "3 × 6 = 18 tables. 18 × 4 = 72 seats.",
+      "hints": ["First find the total number of tables.", "Then multiply by seats per table."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply with 3 and 6 works."
+        "correct": "Right — 18 tables × 4 seats = 72.",
+        "incorrect": "3 × 6 = 18 tables, 18 × 4 = 72 seats. Answer is C."
       }
     },
     {
       "id": "R3_02",
       "section": "practice_r3",
       "difficulty": 3,
-      "question": "6 × 7 = 3 × 7 + 3 × 7. Is this true?",
-      "choices": [
-        "A. Yes, 21+21=42",
-        "B. No, 6×7=42 but 3×7+3×7=28",
-        "C. Yes, 42=42",
-        "D. Both A and C"
-      ],
-      "answer": "D",
-      "explanation": "3×7=21. 21+21=42=6×7. A and C both say yes.",
-      "hints": [
-        "Think about what multiply with 3 and 6 means.",
-        "Try drawing a picture or using a number line."
-      ],
+      "question": "Sam finds 6 × 9 by computing 3 × 9 + 3 × 9. What does he get?",
+      "choices": ["A. 42", "B. 48", "C. 54", "D. 60"],
+      "answer": "C",
+      "explanation": "3 × 9 = 27. 27 + 27 = 54, which equals 6 × 9.",
+      "hints": ["Split 6 into 3 + 3.", "Find 3 × 9 and double it."],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how multiply with 3 and 6 works."
+        "correct": "Right — 27 + 27 = 54.",
+        "incorrect": "3 × 9 = 27, and 27 + 27 = 54. Answer is C."
+      }
+    },
+    {
+      "id": "R3_03",
+      "section": "practice_r3",
+      "difficulty": 4,
+      "question": "A garden has 6 rows with 7 tomato plants per row. 9 plants don't have any fruit. How many plants do have fruit?",
+      "choices": ["A. 33", "B. 35", "C. 42", "D. 45"],
+      "answer": "A",
+      "explanation": "6 × 7 = 42 plants. 42 − 9 = 33 with fruit.",
+      "hints": ["Find the total number of plants first.", "Then subtract the fruitless ones."],
+      "feedback": {
+        "correct": "Right — 42 − 9 = 33 plants with fruit.",
+        "incorrect": "6 × 7 = 42, then 42 − 9 = 33. Answer is A."
+      }
+    },
+    {
+      "id": "R3_04",
+      "section": "practice_r3",
+      "difficulty": 4,
+      "question": "Maya has 3 boxes of 8 crayons and 2 boxes of 6 crayons. How many crayons in all?",
+      "choices": ["A. 30", "B. 34", "C. 36", "D. 42"],
+      "answer": "C",
+      "explanation": "3 × 8 = 24. 2 × 6 = 12. 24 + 12 = 36.",
+      "hints": ["Find each group separately.", "Then add the two totals."],
+      "feedback": {
+        "correct": "Right — 24 + 12 = 36 crayons.",
+        "incorrect": "3 × 8 = 24, 2 × 6 = 12, total = 36. Answer is C."
+      }
+    },
+    {
+      "id": "R3_05",
+      "section": "practice_r3",
+      "difficulty": 4,
+      "question": "6 × ? = 3 × 14. What is the missing factor?",
+      "choices": ["A. 5", "B. 6", "C. 7", "D. 14"],
+      "answer": "C",
+      "explanation": "3 × 14 = 42. 6 × 7 = 42. So ? = 7.",
+      "hints": ["Find 3 × 14 first.", "Then solve 6 × ? = that number."],
+      "feedback": {
+        "correct": "Right — both sides equal 42.",
+        "incorrect": "3 × 14 = 42, and 6 × 7 = 42. Answer is C."
       }
     }
   ],

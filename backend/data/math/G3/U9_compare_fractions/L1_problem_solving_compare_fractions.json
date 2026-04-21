@@ -4,232 +4,272 @@
   "lesson": 1,
   "lesson_title": "Problem Solving – Compare Fractions",
   "objective": "Use strategies to compare fractions in real-world problems",
-  "stages": [
+  "pretest": [
     {
-      "stage": "pretest",
-      "items": [
-        {
-          "id": "c9_l1_pre_01",
-          "type": "multiple_choice",
-          "question": "Tom ate 2/4 of a pizza. Sara ate 3/4 of the same pizza. Who ate more?",
-          "choices": ["Tom", "Sara", "They ate the same amount"],
-          "answer": "Sara",
-          "hint": "The pizzas are the same size. Compare the numerators."
-        },
-        {
-          "id": "c9_l1_pre_02",
-          "type": "compare",
-          "question": "Compare: 1/3 ○ 1/6",
-          "choices": [">", "<", "="],
-          "answer": ">",
-          "hint": "When numerators are the same, the smaller denominator means a bigger piece."
-        },
-        {
-          "id": "c9_l1_pre_03",
-          "type": "multiple_choice",
-          "question": "Which fraction is greater: 5/8 or 3/8?",
-          "choices": ["5/8", "3/8", "They are equal"],
-          "answer": "5/8",
-          "hint": "Same denominator — compare the numerators."
-        },
-        {
-          "id": "c9_l1_pre_04",
-          "type": "multiple_choice",
-          "question": "Mia painted 2/6 of a wall. Joe painted 2/3 of the same wall. Who painted more?",
-          "choices": ["Mia", "Joe", "They painted the same amount"],
-          "answer": "Joe",
-          "hint": "Same numerator — which denominator makes bigger pieces?"
-        },
-        {
-          "id": "c9_l1_pre_05",
-          "type": "compare",
-          "question": "Compare: 4/6 ○ 5/6",
-          "choices": [">", "<", "="],
-          "answer": "<",
-          "hint": "Same denominator. Which numerator is larger?"
-        }
+      "id": "c9_l1_pre_01",
+      "type": "multiple_choice",
+      "question": "Tom ate 2/4 of a pizza. Sara ate 3/4 of the same pizza. Who ate more?",
+      "choices": [
+        "Tom",
+        "Sara",
+        "They ate the same amount"
+      ],
+      "answer": "Sara",
+      "hint": "The pizzas are the same size. Compare the numerators."
+    },
+    {
+      "id": "c9_l1_pre_02",
+      "type": "compare",
+      "question": "Compare: 1/3 ○ 1/6",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": ">",
+      "hint": "When numerators are the same, the smaller denominator means a bigger piece."
+    },
+    {
+      "id": "c9_l1_pre_03",
+      "type": "multiple_choice",
+      "question": "Which fraction is greater: 5/8 or 3/8?",
+      "choices": [
+        "5/8",
+        "3/8",
+        "They are equal"
+      ],
+      "answer": "5/8",
+      "hint": "Same denominator — compare the numerators."
+    },
+    {
+      "id": "c9_l1_pre_04",
+      "type": "multiple_choice",
+      "question": "Mia painted 2/6 of a wall. Joe painted 2/3 of the same wall. Who painted more?",
+      "choices": [
+        "Mia",
+        "Joe",
+        "They painted the same amount"
+      ],
+      "answer": "Joe",
+      "hint": "Same numerator — which denominator makes bigger pieces?"
+    },
+    {
+      "id": "c9_l1_pre_05",
+      "type": "compare",
+      "question": "Compare: 4/6 ○ 5/6",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "<",
+      "hint": "Same denominator. Which numerator is larger?"
+    }
+  ],
+  "learn": [
+    {
+      "id": "c9_l1_learn_01",
+      "type": "instruction_check",
+      "instruction": "When two fractions have the SAME DENOMINATOR, the pieces are the same size. Just compare how many pieces: the bigger numerator is the greater fraction. Example: 3/8 < 5/8 because 3 pieces < 5 pieces.",
+      "question": "Which is greater: 2/6 or 4/6?",
+      "answer": "4/6",
+      "explanation": "Same denominator (6). 4 pieces > 2 pieces, so 4/6 > 2/6."
+    },
+    {
+      "id": "c9_l1_learn_02",
+      "type": "instruction_check",
+      "instruction": "When two fractions have the SAME NUMERATOR, you have the same number of pieces — but the pieces are different sizes. A smaller denominator means bigger pieces. Example: 2/3 > 2/8 because thirds are bigger than eighths.",
+      "question": "Which is greater: 1/4 or 1/2?",
+      "answer": "1/2",
+      "explanation": "Same numerator (1). Halves are bigger than fourths, so 1/2 > 1/4."
+    },
+    {
+      "id": "c9_l1_learn_03",
+      "type": "instruction_check",
+      "instruction": "In word problems, first find the two fractions, then decide: same denominator? Compare numerators. Same numerator? Compare denominators. Use >, <, or = to show the result.",
+      "question": "Amy ran 3/4 of a lap. Ben ran 3/6 of the same lap. Who ran farther?",
+      "answer": "Amy",
+      "explanation": "Same numerator (3). Fourths are bigger than sixths, so 3/4 > 3/6. Amy ran farther."
+    }
+  ],
+  "try": [
+    {
+      "id": "c9_l1_try_01",
+      "type": "word_problem",
+      "question": "Lily drank 3/8 of a bottle of water. Max drank 6/8 of the same bottle. Who drank more water? Use >, <, or = to compare 3/8 and 6/8.",
+      "answer": "Max; 3/8 < 6/8",
+      "hint": "Same denominator. Compare the numerators: 3 vs 6.",
+      "guided_steps": [
+        "Step 1: Find the fractions — 3/8 and 6/8",
+        "Step 2: Same denominator (8) → compare numerators",
+        "Step 3: 3 < 6, so 3/8 < 6/8",
+        "Step 4: Max drank more."
       ]
     },
     {
-      "stage": "learn",
-      "items": [
-        {
-          "id": "c9_l1_learn_01",
-          "type": "instruction_check",
-          "instruction": "When two fractions have the SAME DENOMINATOR, the pieces are the same size. Just compare how many pieces: the bigger numerator is the greater fraction. Example: 3/8 < 5/8 because 3 pieces < 5 pieces.",
-          "question": "Which is greater: 2/6 or 4/6?",
-          "answer": "4/6",
-          "explanation": "Same denominator (6). 4 pieces > 2 pieces, so 4/6 > 2/6."
-        },
-        {
-          "id": "c9_l1_learn_02",
-          "type": "instruction_check",
-          "instruction": "When two fractions have the SAME NUMERATOR, you have the same number of pieces — but the pieces are different sizes. A smaller denominator means bigger pieces. Example: 2/3 > 2/8 because thirds are bigger than eighths.",
-          "question": "Which is greater: 1/4 or 1/2?",
-          "answer": "1/2",
-          "explanation": "Same numerator (1). Halves are bigger than fourths, so 1/2 > 1/4."
-        },
-        {
-          "id": "c9_l1_learn_03",
-          "type": "instruction_check",
-          "instruction": "In word problems, first find the two fractions, then decide: same denominator? Compare numerators. Same numerator? Compare denominators. Use >, <, or = to show the result.",
-          "question": "Amy ran 3/4 of a lap. Ben ran 3/6 of the same lap. Who ran farther?",
-          "answer": "Amy",
-          "explanation": "Same numerator (3). Fourths are bigger than sixths, so 3/4 > 3/6. Amy ran farther."
-        }
+      "id": "c9_l1_try_02",
+      "type": "word_problem",
+      "question": "Two gardens are the same size. Rosa planted flowers in 2/3 of her garden. Tom planted flowers in 2/8 of his garden. Who planted more? Compare 2/3 and 2/8.",
+      "answer": "Rosa; 2/3 > 2/8",
+      "hint": "Same numerator. Which denominator means bigger pieces?",
+      "guided_steps": [
+        "Step 1: Find the fractions — 2/3 and 2/8",
+        "Step 2: Same numerator (2) → compare denominators",
+        "Step 3: Thirds are bigger than eighths, so 2/3 > 2/8",
+        "Step 4: Rosa planted more."
       ]
     },
     {
-      "stage": "try",
-      "items": [
-        {
-          "id": "c9_l1_try_01",
-          "type": "word_problem",
-          "question": "Lily drank 3/8 of a bottle of water. Max drank 6/8 of the same bottle. Who drank more water? Use >, <, or = to compare 3/8 and 6/8.",
-          "answer": "Max; 3/8 < 6/8",
-          "hint": "Same denominator. Compare the numerators: 3 vs 6.",
-          "guided_steps": [
-            "Step 1: Find the fractions — 3/8 and 6/8",
-            "Step 2: Same denominator (8) → compare numerators",
-            "Step 3: 3 < 6, so 3/8 < 6/8",
-            "Step 4: Max drank more."
-          ]
-        },
-        {
-          "id": "c9_l1_try_02",
-          "type": "word_problem",
-          "question": "Two gardens are the same size. Rosa planted flowers in 2/3 of her garden. Tom planted flowers in 2/8 of his garden. Who planted more? Compare 2/3 and 2/8.",
-          "answer": "Rosa; 2/3 > 2/8",
-          "hint": "Same numerator. Which denominator means bigger pieces?",
-          "guided_steps": [
-            "Step 1: Find the fractions — 2/3 and 2/8",
-            "Step 2: Same numerator (2) → compare denominators",
-            "Step 3: Thirds are bigger than eighths, so 2/3 > 2/8",
-            "Step 4: Rosa planted more."
-          ]
-        },
-        {
-          "id": "c9_l1_try_03",
-          "type": "compare",
-          "question": "Compare using a strategy: 5/6 ○ 2/6",
-          "choices": [">", "<", "="],
-          "answer": ">",
-          "hint": "Same denominator → compare numerators.",
-          "guided_steps": [
-            "Step 1: Same denominator (6)",
-            "Step 2: 5 > 2",
-            "Step 3: 5/6 > 2/6"
-          ]
-        }
+      "id": "c9_l1_try_03",
+      "type": "compare",
+      "question": "Compare using a strategy: 5/6 ○ 2/6",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": ">",
+      "hint": "Same denominator → compare numerators.",
+      "guided_steps": [
+        "Step 1: Same denominator (6)",
+        "Step 2: 5 > 2",
+        "Step 3: 5/6 > 2/6"
       ]
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "c9_l1_pr1_01",
+      "type": "compare",
+      "question": "Compare: 4/8 ○ 7/8",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "<"
     },
     {
-      "stage": "practice_r1",
-      "items": [
-        {
-          "id": "c9_l1_pr1_01",
-          "type": "compare",
-          "question": "Compare: 4/8 ○ 7/8",
-          "choices": [">", "<", "="],
-          "answer": "<"
-        },
-        {
-          "id": "c9_l1_pr1_02",
-          "type": "compare",
-          "question": "Compare: 3/4 ○ 3/6",
-          "choices": [">", "<", "="],
-          "answer": ">"
-        },
-        {
-          "id": "c9_l1_pr1_03",
-          "type": "multiple_choice",
-          "question": "Jake colored 5/6 of a page. Emma colored 2/6 of the same page. Who colored more?",
-          "choices": ["Jake", "Emma", "Same amount"],
-          "answer": "Jake"
-        },
-        {
-          "id": "c9_l1_pr1_04",
-          "type": "compare",
-          "question": "Compare: 1/8 ○ 1/3",
-          "choices": [">", "<", "="],
-          "answer": "<"
-        },
-        {
-          "id": "c9_l1_pr1_05",
-          "type": "multiple_choice",
-          "question": "Which is greater: 6/8 or 2/8?",
-          "choices": ["6/8", "2/8", "They are equal"],
-          "answer": "6/8"
-        },
-        {
-          "id": "c9_l1_pr1_06",
-          "type": "compare",
-          "question": "Compare: 4/6 ○ 4/8",
-          "choices": [">", "<", "="],
-          "answer": ">"
-        },
-        {
-          "id": "c9_l1_pr1_07",
-          "type": "multiple_choice",
-          "question": "Two ribbons are the same length. Kim used 3/4 of hers. Liz used 1/4 of hers. Who used more ribbon?",
-          "choices": ["Kim", "Liz", "Same amount"],
-          "answer": "Kim"
-        }
-      ]
+      "id": "c9_l1_pr1_02",
+      "type": "compare",
+      "question": "Compare: 3/4 ○ 3/6",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": ">"
     },
     {
-      "stage": "practice_r2",
-      "items": [
-        {
-          "id": "c9_l1_pr2_01",
-          "type": "word_problem",
-          "question": "Ava read 2/3 of a book. Noah read 2/4 of the same book. Who read more? Explain your thinking.",
-          "answer": "Ava; 2/3 > 2/4 because same numerator and thirds are larger than fourths."
-        },
-        {
-          "id": "c9_l1_pr2_02",
-          "type": "compare",
-          "question": "Compare: 3/3 ○ 3/8",
-          "choices": [">", "<", "="],
-          "answer": ">"
-        },
-        {
-          "id": "c9_l1_pr2_03",
-          "type": "word_problem",
-          "question": "Sam walks 4/6 of a trail. Dan walks 5/6 of the same trail. Who walks farther? Write a comparison using >, <, or =.",
-          "answer": "Dan; 4/6 < 5/6"
-        },
-        {
-          "id": "c9_l1_pr2_04",
-          "type": "multiple_choice",
-          "question": "Which statement is TRUE?",
-          "choices": ["1/2 < 1/8", "3/4 > 3/6", "2/3 = 2/8"],
-          "answer": "3/4 > 3/6"
-        }
-      ]
+      "id": "c9_l1_pr1_03",
+      "type": "multiple_choice",
+      "question": "Jake colored 5/6 of a page. Emma colored 2/6 of the same page. Who colored more?",
+      "choices": [
+        "Jake",
+        "Emma",
+        "Same amount"
+      ],
+      "answer": "Jake"
     },
     {
-      "stage": "practice_r3",
-      "items": [
-        {
-          "id": "c9_l1_pr3_01",
-          "type": "word_problem",
-          "question": "Three friends share the same-size cake. Ali eats 2/8, Ben eats 5/8, and Cara eats 3/8. Write the fractions in order from least to greatest.",
-          "answer": "2/8, 3/8, 5/8"
-        },
-        {
-          "id": "c9_l1_pr3_02",
-          "type": "open_response",
-          "question": "Is 3/4 greater than, less than, or equal to 3/6? Explain how you know WITHOUT drawing a picture.",
-          "answer": "3/4 > 3/6. Same numerator (3). Fourths are bigger pieces than sixths because the whole is split into fewer parts. So 3 bigger pieces > 3 smaller pieces."
-        },
-        {
-          "id": "c9_l1_pr3_03",
-          "type": "word_problem",
-          "question": "Maya says 1/8 is greater than 1/3 because 8 is greater than 3. Is Maya correct? Explain why or why not.",
-          "answer": "Maya is NOT correct. A bigger denominator means smaller pieces. 1/8 is a smaller piece than 1/3, so 1/8 < 1/3."
-        }
-      ]
+      "id": "c9_l1_pr1_04",
+      "type": "compare",
+      "question": "Compare: 1/8 ○ 1/3",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": "<"
+    },
+    {
+      "id": "c9_l1_pr1_05",
+      "type": "multiple_choice",
+      "question": "Which is greater: 6/8 or 2/8?",
+      "choices": [
+        "6/8",
+        "2/8",
+        "They are equal"
+      ],
+      "answer": "6/8"
+    },
+    {
+      "id": "c9_l1_pr1_06",
+      "type": "compare",
+      "question": "Compare: 4/6 ○ 4/8",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": ">"
+    },
+    {
+      "id": "c9_l1_pr1_07",
+      "type": "multiple_choice",
+      "question": "Two ribbons are the same length. Kim used 3/4 of hers. Liz used 1/4 of hers. Who used more ribbon?",
+      "choices": [
+        "Kim",
+        "Liz",
+        "Same amount"
+      ],
+      "answer": "Kim"
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "c9_l1_pr2_01",
+      "type": "word_problem",
+      "question": "Ava read 2/3 of a book. Noah read 2/4 of the same book. Who read more? Explain your thinking.",
+      "answer": "Ava; 2/3 > 2/4 because same numerator and thirds are larger than fourths."
+    },
+    {
+      "id": "c9_l1_pr2_02",
+      "type": "compare",
+      "question": "Compare: 3/3 ○ 3/8",
+      "choices": [
+        ">",
+        "<",
+        "="
+      ],
+      "answer": ">"
+    },
+    {
+      "id": "c9_l1_pr2_03",
+      "type": "word_problem",
+      "question": "Sam walks 4/6 of a trail. Dan walks 5/6 of the same trail. Who walks farther? Write a comparison using >, <, or =.",
+      "answer": "Dan; 4/6 < 5/6"
+    },
+    {
+      "id": "c9_l1_pr2_04",
+      "type": "multiple_choice",
+      "question": "Which statement is TRUE?",
+      "choices": [
+        "1/2 < 1/8",
+        "3/4 > 3/6",
+        "2/3 = 2/8"
+      ],
+      "answer": "3/4 > 3/6"
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "c9_l1_pr3_01",
+      "type": "word_problem",
+      "question": "Three friends share the same-size cake. Ali eats 2/8, Ben eats 5/8, and Cara eats 3/8. Write the fractions in order from least to greatest.",
+      "answer": "2/8, 3/8, 5/8"
+    },
+    {
+      "id": "c9_l1_pr3_02",
+      "type": "open_response",
+      "question": "Is 3/4 greater than, less than, or equal to 3/6? Explain how you know WITHOUT drawing a picture.",
+      "answer": "3/4 > 3/6. Same numerator (3). Fourths are bigger pieces than sixths because the whole is split into fewer parts. So 3 bigger pieces > 3 smaller pieces."
+    },
+    {
+      "id": "c9_l1_pr3_03",
+      "type": "word_problem",
+      "question": "Maya says 1/8 is greater than 1/3 because 8 is greater than 3. Is Maya correct? Explain why or why not.",
+      "answer": "Maya is NOT correct. A bigger denominator means smaller pieces. 1/8 is a smaller piece than 1/3, so 1/8 < 1/3."
     }
   ]
 }

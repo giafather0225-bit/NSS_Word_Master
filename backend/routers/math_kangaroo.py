@@ -36,6 +36,22 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 _KANGAROO_DIR = Path(__file__).parent.parent / "data" / "math" / "kangaroo"
+_PDF_DIR = Path(__file__).parent.parent.parent / "frontend" / "static" / "math" / "kangaroo" / "pdf"
+
+
+def _is_past_paper(data: dict[str, Any]) -> bool:
+    return data.get("source_type") == "official_past_paper" or bool(data.get("pdf_file"))
+
+
+def _pdf_available(pdf_file: str | None) -> bool:
+    """Check whether the local PDF file exists (PDFs not committed to git)."""
+    if not pdf_file:
+        return False
+    rel = pdf_file.lstrip("/")
+    if rel.startswith("static/"):
+        rel = rel[len("static/"):]
+    p = Path(__file__).parent.parent.parent / "frontend" / "static" / rel
+    return p.is_file()
 
 
 # ── Helpers ─────────────────────────────────────────────────
@@ -142,7 +158,7 @@ def kangaroo_sets(db: Session = Depends(get_db)) -> dict[str, Any]:
             continue
         set_id = data.get("set_id") or path.stem
         prog = progress_by_id.get(set_id)
-        result.append({
+        entry = {
             "set_id": set_id,
             "title": data.get("title", set_id),
             "level": data.get("level", ""),
@@ -153,9 +169,18 @@ def kangaroo_sets(db: Session = Depends(get_db)) -> dict[str, Any]:
             "max_score": int(data.get("max_score", 0) or 0),
             "category": data.get("category", "full_test"),
             "drill_topic": data.get("drill_topic"),
+            "source_year": data.get("source_year"),
+            "source_contest": data.get("source_contest"),
+            "source_country": data.get("source_country"),
             "best_score": prog.score if prog else None,
             "completed": bool(prog and prog.completed_at),
-        })
+        }
+        if _is_past_paper(data):
+            pdf_file = data.get("pdf_file", "")
+            entry["pdf_file"] = pdf_file
+            entry["pdf_available"] = _pdf_available(pdf_file)
+            entry["answers_pending"] = bool(data.get("answers_pending"))
+        result.append(entry)
     return {"sets": result}
 
 
@@ -166,6 +191,45 @@ def kangaroo_sets(db: Session = Depends(get_db)) -> dict[str, Any]:
 def kangaroo_set(set_id: str) -> dict[str, Any]:
     """Return full set structure with answers/solutions stripped from questions."""
     data = _load_set(set_id)
+
+    if _is_past_paper(data):
+        # Past paper: return PDF-exam metadata (no answers, no questions)
+        scoring = data.get("scoring", {}) or {}
+        sections_meta: list[dict[str, Any]] = []
+        for key in ("section_one", "section_two", "section_three"):
+            sec = scoring.get(key)
+            if not sec:
+                continue
+            sections_meta.append({
+                "key": key,
+                "name": {"section_one": "Section One",
+                         "section_two": "Section Two",
+                         "section_three": "Section Three"}[key],
+                "questions": list(sec.get("questions", [])),
+                "points": int(sec.get("points", 0) or 0),
+            })
+        pdf_file = data.get("pdf_file", "")
+        return {
+            "set_id": data.get("set_id", set_id),
+            "title": data.get("title", set_id),
+            "level": data.get("level", ""),
+            "level_label": data.get("level_label", ""),
+            "grade_range": data.get("grade_range", ""),
+            "total_questions": int(data.get("total_questions", 0) or 0),
+            "time_limit_minutes": int(data.get("time_limit_minutes", 0) or 0),
+            "max_score": int(data.get("max_score", 0) or 0),
+            "category": data.get("category", "past_paper"),
+            "source_type": data.get("source_type"),
+            "source_year": data.get("source_year"),
+            "source_contest": data.get("source_contest"),
+            "source_country": data.get("source_country"),
+            "disclaimer": data.get("disclaimer", ""),
+            "pdf_file": pdf_file,
+            "pdf_available": _pdf_available(pdf_file),
+            "answers_pending": bool(data.get("answers_pending")),
+            "sections_meta": sections_meta,
+        }
+
     sections_out: list[dict[str, Any]] = []
     for section in data.get("sections", []) or []:
         qs_out: list[dict[str, Any]] = []
@@ -176,7 +240,8 @@ def kangaroo_set(set_id: str) -> dict[str, Any]:
                 "points": q.get("points"),
                 "topic": q.get("topic", ""),
                 "question_text": q.get("question_text", ""),
-                "image_svg": q.get("image_svg"),
+                "image": q.get("image"),
+                "image_only": bool(q.get("image_only", False)),
                 "image_description": q.get("image_description"),
                 "options": q.get("options", {}),
             })
@@ -204,8 +269,18 @@ def kangaroo_set(set_id: str) -> dict[str, Any]:
 
 class KangarooAnswerIn(BaseModel):
     set_id: str
-    question_id: str
+    question_id: str | None = None
+    question_number: int | None = None
     answer: str
+
+
+def _points_for_question_number(data: dict[str, Any], qnum: int) -> int:
+    scoring = data.get("scoring") or {}
+    for key in ("section_one", "section_two", "section_three"):
+        sec = scoring.get(key)
+        if sec and qnum in (sec.get("questions") or []):
+            return int(sec.get("points", 0) or 0)
+    return 0
 
 
 # @tag MATH @tag KANGAROO
@@ -213,6 +288,30 @@ class KangarooAnswerIn(BaseModel):
 def kangaroo_submit_answer(req: KangarooAnswerIn) -> dict[str, Any]:
     """Grade a single question (Practice mode). Returns correctness + solution."""
     data = _load_set(req.set_id)
+
+    if _is_past_paper(data):
+        qnum = req.question_number
+        if qnum is None and req.question_id is not None:
+            try:
+                qnum = int(req.question_id)
+            except (TypeError, ValueError):
+                qnum = None
+        if qnum is None:
+            raise HTTPException(status_code=400, detail="question_number required")
+        if data.get("answers_pending"):
+            raise HTTPException(status_code=409, detail="Answer key pending for this set")
+        correct = str((data.get("answers") or {}).get(str(qnum), "")).strip().upper()
+        given = str(req.answer or "").strip().upper()
+        is_correct = bool(correct) and given == correct
+        pts = _points_for_question_number(data, qnum)
+        return {
+            "is_correct": is_correct,
+            "correct_answer": correct,
+            "solution": "",
+            "points_earned": pts if is_correct else 0,
+            "points": pts,
+        }
+
     target: dict[str, Any] | None = None
     target_points = 0
     for _, pts, q in _iter_questions(data):
@@ -236,14 +335,148 @@ def kangaroo_submit_answer(req: KangarooAnswerIn) -> dict[str, Any]:
 # ── POST /submit (Test mode) ─────────────────────────────────
 
 class KangarooAnswerItem(BaseModel):
-    question_id: str
+    question_id: str | None = None
+    question_number: int | None = None
     answer: str | None = None
 
 
 class KangarooSubmitIn(BaseModel):
     set_id: str
-    answers: list[KangarooAnswerItem] = []
+    answers: list[KangarooAnswerItem] | dict[str, str] = []
     time_spent_seconds: int | None = None
+
+
+def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
+    """Grade past-paper submission using flat answers dict + scoring config."""
+    if data.get("answers_pending"):
+        raise HTTPException(status_code=409, detail="Answer key pending for this set")
+    correct_map: dict[str, str] = {
+        str(k): str(v).strip().upper()
+        for k, v in (data.get("answers") or {}).items()
+    }
+    scoring = data.get("scoring") or {}
+    sec_names = {"section_one": "Section One",
+                 "section_two": "Section Two",
+                 "section_three": "Section Three"}
+
+    section_stats: list[dict[str, Any]] = []
+    details: list[dict[str, Any]] = []
+    total_score = 0
+    total_max = int(data.get("max_score", 0) or 0)
+    total_correct = 0
+    wrong_count = 0
+    unanswered_count = 0
+    total_q = int(data.get("total_questions", 0) or 0)
+
+    for key in ("section_one", "section_two", "section_three"):
+        sec = scoring.get(key)
+        if not sec:
+            continue
+        pts = int(sec.get("points", 0) or 0)
+        qs = sec.get("questions", []) or []
+        sec_correct = 0
+        sec_score = 0
+        for qn in qs:
+            qk = str(qn)
+            given = answer_map.get(qk, "")
+            correct_ans = correct_map.get(qk, "")
+            is_correct = bool(correct_ans) and given == correct_ans
+            if is_correct:
+                sec_correct += 1
+                sec_score += pts
+                total_correct += 1
+                total_score += pts
+            elif given:
+                wrong_count += 1
+            else:
+                unanswered_count += 1
+            details.append({
+                "question": qn,
+                "student": given or None,
+                "correct": correct_ans,
+                "is_correct": is_correct,
+                "points": pts,
+            })
+        section_stats.append({
+            "key": key,
+            "name": sec_names[key],
+            "correct": sec_correct,
+            "total": len(qs),
+            "score": sec_score,
+            "max": pts * len(qs),
+        })
+
+    percentage = round((total_score / total_max * 100), 1) if total_max else 0.0
+    perfect = total_max > 0 and total_score == total_max
+
+    # Persist best
+    now_iso = datetime.now().isoformat()
+    row = db.query(MathKangarooProgress).filter_by(set_id=req.set_id).first()
+    is_new_best = False
+    if not row:
+        row = MathKangarooProgress(
+            set_id=req.set_id,
+            category=data.get("category", "past_paper"),
+            difficulty_level=data.get("level", ""),
+            level=data.get("level", ""),
+            score=total_score,
+            max_score=total_max,
+            total=total_q,
+            time_spent_seconds=req.time_spent_seconds,
+            answers_json=json.dumps(answer_map),
+            completed_at=now_iso,
+        )
+        db.add(row)
+        is_new_best = True
+    else:
+        row.level = data.get("level", row.level or "")
+        row.category = data.get("category", row.category or "past_paper")
+        row.max_score = total_max
+        row.total = total_q
+        if total_score > (row.score or 0):
+            row.score = total_score
+            row.time_spent_seconds = req.time_spent_seconds
+            row.answers_json = json.dumps(answer_map)
+            is_new_best = True
+        row.completed_at = now_iso
+
+    awarded = 0
+    try:
+        awarded += _award_kangaroo_xp(db, req.set_id, 5, "complete")
+        if percentage >= 80:
+            awarded += _award_kangaroo_xp(db, req.set_id, 5, "score80")
+        if perfect:
+            awarded += _award_kangaroo_xp(db, req.set_id, 10, "perfect")
+    except Exception as exc:
+        logger.warning("Kangaroo XP award failed: %s", exc)
+
+    try:
+        streak_engine.mark_math_done(db)
+    except Exception as exc:
+        logger.warning("Streak math mark failed: %s", exc)
+
+    db.commit()
+
+    return {
+        "score": total_score,
+        "max_score": total_max,
+        "percentage": percentage,
+        "correct_count": total_correct,
+        "wrong_count": wrong_count,
+        "unanswered_count": unanswered_count,
+        "total_questions": total_q,
+        "time_spent_seconds": req.time_spent_seconds or 0,
+        "time_spent_formatted": _format_time(req.time_spent_seconds),
+        "grade_label": _grade_label(percentage),
+        "section_breakdown": section_stats,
+        "details": details,
+        "xp_earned": awarded,
+        "perfect": perfect,
+        "is_new_best": is_new_best,
+        "is_past_paper": True,
+        "pdf_file": data.get("pdf_file", ""),
+        "title": data.get("title", req.set_id),
+    }
 
 
 # @tag MATH @tag KANGAROO @tag XP
@@ -251,9 +484,20 @@ class KangarooSubmitIn(BaseModel):
 def kangaroo_submit(req: KangarooSubmitIn, db: Session = Depends(get_db)) -> dict[str, Any]:
     """Grade entire Kangaroo set with weighted scoring. Save best + award XP."""
     data = _load_set(req.set_id)
-    answer_map: dict[str, str] = {
-        a.question_id: (a.answer or "").strip().upper() for a in (req.answers or [])
-    }
+
+    # Build answer_map: accept dict OR list form
+    answer_map: dict[str, str] = {}
+    if isinstance(req.answers, dict):
+        answer_map = {str(k): (v or "").strip().upper() for k, v in req.answers.items()}
+    else:
+        for a in (req.answers or []):
+            key = a.question_id if a.question_id is not None else (
+                str(a.question_number) if a.question_number is not None else None)
+            if key is not None:
+                answer_map[str(key)] = (a.answer or "").strip().upper()
+
+    if _is_past_paper(data):
+        return _grade_past_paper(data, req, answer_map, db)
 
     section_stats: list[dict[str, Any]] = []
     topic_stats: dict[str, dict[str, int]] = {}
@@ -294,7 +538,8 @@ def kangaroo_submit(req: KangarooSubmitIn, db: Session = Depends(get_db)) -> dic
                 "points": pts,
                 "topic": topic,
                 "question_text": q.get("question_text", ""),
-                "image_svg": q.get("image_svg"),
+                "image": q.get("image"),
+                "image_only": bool(q.get("image_only", False)),
                 "image_description": q.get("image_description"),
                 "options": q.get("options", {}),
                 "student_answer": given or None,
