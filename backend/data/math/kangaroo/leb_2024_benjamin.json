@@ -16,55 +16,146 @@
   "pdf_file": "/static/math/kangaroo/pdf/leb_2024_benjamin.pdf",
   "disclaimer": "Official Math Kangaroo past paper. For personal educational practice only.",
   "answers": {
-    "1": "B",
-    "2": "D",
-    "3": "C",
-    "4": "C",
-    "5": "B",
-    "6": "E",
-    "7": "B",
-    "8": "C",
-    "9": "A",
-    "10": "B",
-    "11": "C",
-    "12": "B",
-    "13": "B",
-    "14": "D",
-    "15": "C",
-    "16": "E",
-    "17": "D",
-    "18": "D",
-    "19": "C",
-    "20": "A",
-    "21": "C",
-    "22": "B",
-    "23": "E",
-    "24": "D"
+    "A1": "B",
+    "A2": "D",
+    "A3": "C",
+    "A4": "C",
+    "A5": "B",
+    "A6": "E",
+    "A7": "B",
+    "A8": "C",
+    "B1": "A",
+    "B2": "B",
+    "B3": "C",
+    "B4": "B",
+    "B5": "B",
+    "B6": "D",
+    "B7": "C",
+    "B8": "E",
+    "C1": "D",
+    "C2": "D",
+    "C3": "C",
+    "C4": "A",
+    "C5": "C",
+    "C6": "B",
+    "C7": "E",
+    "C8": "D"
   },
-  "uncertain": [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 13, 14, 15, 16, 19, 21],
+  "uncertain": [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "B1",
+    "B2",
+    "B3",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "C3",
+    "C5"
+  ],
   "answers_notes": {
-    "8":  "Confident: 3 fives in room numbers 1..N means N in 25..34; 14 twos up to 34 verified.",
-    "12": "Confident: {1,2,8} sum=11, max diff = 7.",
-    "17": "Confident: rencontres — D(4,3)=0, exactly 3 matches is impossible.",
-    "18": "Confident: 5+8 cuts, 2 coincide → 11 cuts → 12 pieces.",
-    "20": "Confident: pegs=14, socks=42 (3p = 2p+14).",
-    "22": "Confident: center counted 3× → 55 + 2·c = 69 → c=7.",
-    "23": "Confident: 20h+12=432 → h=21 > 12 ✓.",
-    "24": "Confident: 9N+d=2024, d = 2024 mod 9 = 8.",
+    "A8": "Confident: 3 fives in room numbers 1..N means N in 25..34; 14 twos up to 34 verified.",
+    "B4": "Confident: {1,2,8} sum=11, max diff = 7.",
+    "C1": "Confident: rencontres — D(4,3)=0, exactly 3 matches is impossible.",
+    "C2": "Confident: 5+8 cuts, 2 coincide → 11 cuts → 12 pieces.",
+    "C4": "Confident: pegs=14, socks=42 (3p = 2p+14).",
+    "C6": "Confident: center counted 3× → 55 + 2·c = 69 → c=7.",
+    "C7": "Confident: 20h+12=432 → h=21 > 12 ✓.",
+    "C8": "Confident: 9N+d=2024, d = 2024 mod 9 = 8.",
     "_note": "Questions listed in 'uncertain' rely on figures/diagrams not extractable from PDF text; answers are best guesses and should be verified against an official key."
   },
   "scoring": {
     "section_one": {
-      "questions": [1, 2, 3, 4, 5, 6, 7, 8],
+      "questions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
       "points": 3
     },
     "section_two": {
-      "questions": [9, 10, 11, 12, 13, 14, 15, 16],
+      "questions": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
       "points": 4
     },
     "section_three": {
-      "questions": [17, 18, 19, 20, 21, 22, 23, 24],
+      "questions": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
       "points": 5
     }
+  },
+  "numbering": {
+    "style": "sectioned",
+    "sections": [
+      {
+        "name": "Section One (3 pts)",
+        "questions": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "A6",
+          "A7",
+          "A8"
+        ],
+        "prefix": "A"
+      },
+      {
+        "name": "Section Two (4 pts)",
+        "questions": [
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7",
+          "B8"
+        ],
+        "prefix": "B"
+      },
+      {
+        "name": "Section Three (5 pts)",
+        "questions": [
+          "C1",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8"
+        ],
+        "prefix": "C"
+      }
+    ]
   }
 }

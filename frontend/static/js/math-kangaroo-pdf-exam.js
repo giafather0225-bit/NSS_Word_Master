@@ -96,6 +96,7 @@ function _ppRenderExam() {
     const modeBadge = `<span class="kang-mode-badge kang-mode-${kangPdfState.mode}">${
         kangPdfState.mode === 'test' ? 'Test Mode' : 'Practice Mode'}</span>`;
 
+    const pdfSrc = `${s.pdf_file}#toolbar=1&navpanes=0&view=FitH`;
     stage.innerHTML = `
         <div class="kang-pdf-wrap">
             <header class="kang-pdf-header">
@@ -109,10 +110,10 @@ function _ppRenderExam() {
             <div class="kang-pdf-exam">
                 <div class="kang-pdf-viewer-wrap">
                     <iframe class="kang-pdf-viewer" id="kang-pdf-iframe"
-                        src="${_ppEsc(s.pdf_file)}" type="application/pdf"
+                        src="${_ppEsc(pdfSrc)}" type="application/pdf"
                         title="Exam PDF"></iframe>
                     <a class="kang-pdf-open-btn" id="kang-pdf-open-fallback"
-                       href="${_ppEsc(s.pdf_file)}" target="_blank" rel="noopener"
+                       href="${_ppEsc(pdfSrc)}" target="_blank" rel="noopener"
                        style="display:none">📄 Open Exam PDF in New Tab</a>
                 </div>
                 <aside class="kang-answer-panel" id="kang-answer-panel">
@@ -148,8 +149,9 @@ function _ppRenderExam() {
 function _ppBuildPanelHtml(s) {
     const meta = s.sections_meta || [];
     const isPractice = (kangPdfState.mode === 'practice');
+    const style = s.numbering_style || 'sequential';
     const sections = meta.map(sec => {
-        const rows = (sec.questions || []).map(qn => _ppRowHtml(qn, sec.points, isPractice)).join('');
+        const rows = (sec.questions || []).map(lbl => _ppRowHtml(lbl, sec.points, isPractice, style)).join('');
         return `
             <div class="kang-section-block">
                 <div class="kang-section-divider">${_ppEsc(sec.name)} (${sec.points} pts each)</div>
@@ -166,15 +168,16 @@ function _ppBuildPanelHtml(s) {
 }
 
 /** @tag MATH @tag KANGAROO @tag PP */
-function _ppRowHtml(qn, points, isPractice) {
+function _ppRowHtml(label, points, isPractice, style) {
     const opts = ['A','B','C','D','E'].map(letter => `
-        <button class="kang-answer-btn" data-q="${qn}" data-letter="${letter}">${letter}</button>
+        <button class="kang-answer-btn" data-q="${_ppEsc(label)}" data-letter="${letter}">${letter}</button>
     `).join('');
     const checkBtn = isPractice
-        ? `<button class="kang-check-btn" data-check="${qn}">Check</button>` : '';
+        ? `<button class="kang-check-btn" data-check="${_ppEsc(label)}">Check</button>` : '';
+    const display = (style === 'sectioned') ? label : `Q${label}`;
     return `
-        <div class="kang-answer-row" data-row="${qn}">
-            <span class="kang-q-num">Q${qn}</span>
+        <div class="kang-answer-row" data-row="${_ppEsc(label)}">
+            <span class="kang-q-num">${_ppEsc(display)}</span>
             ${opts}
             ${checkBtn}
         </div>`;
@@ -242,7 +245,7 @@ async function _ppCheckOne(q) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 set_id: kangPdfState.set.set_id,
-                question_number: parseInt(q, 10),
+                question_id: q,
                 answer: ans,
             }),
         });

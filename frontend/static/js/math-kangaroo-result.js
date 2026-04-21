@@ -187,7 +187,7 @@ function showKangarooPdfResult(data, setInfo) {
         const you = d.student || '—';
         return `
             <tr class="kang-detail-${cls}">
-                <td>Q${d.question}</td>
+                <td>${/^[A-Za-z]/.test(String(d.question)) ? _resEsc(d.question) : 'Q' + _resEsc(d.question)}</td>
                 <td>${_resEsc(you)}</td>
                 <td>${_resEsc(d.correct)}</td>
                 <td>${icon}</td>

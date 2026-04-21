@@ -43,6 +43,51 @@ def _is_past_paper(data: dict[str, Any]) -> bool:
     return data.get("source_type") == "official_past_paper" or bool(data.get("pdf_file"))
 
 
+_SEC_KEYS = ("section_one", "section_two", "section_three")
+_SEC_DEFAULT_NAMES = {
+    "section_one": "Section One",
+    "section_two": "Section Two",
+    "section_three": "Section Three",
+}
+
+
+def _past_paper_sections(data: dict[str, Any]) -> list[dict[str, Any]]:
+    """Build a unified section list using numbering (labels) + scoring (points).
+
+    Returns [{key, name, points, questions: [label,...], prefix?}]. When a
+    `numbering` block is present its labels (e.g. A1..C8) win; otherwise the
+    labels are derived from scoring's integer question numbers.
+    """
+    scoring = data.get("scoring") or {}
+    numbering = data.get("numbering") or {}
+    num_sections = numbering.get("sections") or []
+    out: list[dict[str, Any]] = []
+    for i, key in enumerate(_SEC_KEYS):
+        sec = scoring.get(key)
+        if not sec:
+            continue
+        pts = int(sec.get("points", 0) or 0)
+        if i < len(num_sections):
+            num_sec = num_sections[i]
+            labels = [str(q) for q in (num_sec.get("questions") or [])]
+            name = num_sec.get("name") or _SEC_DEFAULT_NAMES[key]
+            prefix = num_sec.get("prefix")
+        else:
+            labels = [str(q) for q in (sec.get("questions") or [])]
+            name = _SEC_DEFAULT_NAMES[key]
+            prefix = None
+        entry = {
+            "key": key,
+            "name": name,
+            "points": pts,
+            "questions": labels,
+        }
+        if prefix:
+            entry["prefix"] = prefix
+        out.append(entry)
+    return out
+
+
 def _pdf_available(pdf_file: str | None) -> bool:
     """Check whether the local PDF file exists (PDFs not committed to git)."""
     if not pdf_file:
@@ -194,20 +239,8 @@ def kangaroo_set(set_id: str) -> dict[str, Any]:
 
     if _is_past_paper(data):
         # Past paper: return PDF-exam metadata (no answers, no questions)
-        scoring = data.get("scoring", {}) or {}
-        sections_meta: list[dict[str, Any]] = []
-        for key in ("section_one", "section_two", "section_three"):
-            sec = scoring.get(key)
-            if not sec:
-                continue
-            sections_meta.append({
-                "key": key,
-                "name": {"section_one": "Section One",
-                         "section_two": "Section Two",
-                         "section_three": "Section Three"}[key],
-                "questions": list(sec.get("questions", [])),
-                "points": int(sec.get("points", 0) or 0),
-            })
+        sections_meta = _past_paper_sections(data)
+        numbering = data.get("numbering") or {}
         pdf_file = data.get("pdf_file", "")
         return {
             "set_id": data.get("set_id", set_id),
@@ -228,6 +261,7 @@ def kangaroo_set(set_id: str) -> dict[str, Any]:
             "pdf_available": _pdf_available(pdf_file),
             "answers_pending": bool(data.get("answers_pending")),
             "sections_meta": sections_meta,
+            "numbering_style": numbering.get("style", "sequential"),
         }
 
     sections_out: list[dict[str, Any]] = []
@@ -274,12 +308,10 @@ class KangarooAnswerIn(BaseModel):
     answer: str
 
 
-def _points_for_question_number(data: dict[str, Any], qnum: int) -> int:
-    scoring = data.get("scoring") or {}
-    for key in ("section_one", "section_two", "section_three"):
-        sec = scoring.get(key)
-        if sec and qnum in (sec.get("questions") or []):
-            return int(sec.get("points", 0) or 0)
+def _points_for_question_label(data: dict[str, Any], label: str) -> int:
+    for sec in _past_paper_sections(data):
+        if label in sec["questions"]:
+            return sec["points"]
     return 0
 
 
@@ -290,20 +322,21 @@ def kangaroo_submit_answer(req: KangarooAnswerIn) -> dict[str, Any]:
     data = _load_set(req.set_id)
 
     if _is_past_paper(data):
-        qnum = req.question_number
-        if qnum is None and req.question_id is not None:
-            try:
-                qnum = int(req.question_id)
-            except (TypeError, ValueError):
-                qnum = None
-        if qnum is None:
-            raise HTTPException(status_code=400, detail="question_number required")
+        # Accept label from question_id (preferred, supports "A1") or
+        # question_number (legacy integer).
+        label: str | None = None
+        if req.question_id is not None:
+            label = str(req.question_id).strip()
+        elif req.question_number is not None:
+            label = str(req.question_number)
+        if not label:
+            raise HTTPException(status_code=400, detail="question_id required")
         if data.get("answers_pending"):
             raise HTTPException(status_code=409, detail="Answer key pending for this set")
-        correct = str((data.get("answers") or {}).get(str(qnum), "")).strip().upper()
+        correct = str((data.get("answers") or {}).get(label, "")).strip().upper()
         given = str(req.answer or "").strip().upper()
         is_correct = bool(correct) and given == correct
-        pts = _points_for_question_number(data, qnum)
+        pts = _points_for_question_label(data, label)
         return {
             "is_correct": is_correct,
             "correct_answer": correct,
@@ -354,10 +387,6 @@ def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
         str(k): str(v).strip().upper()
         for k, v in (data.get("answers") or {}).items()
     }
-    scoring = data.get("scoring") or {}
-    sec_names = {"section_one": "Section One",
-                 "section_two": "Section Two",
-                 "section_three": "Section Three"}
 
     section_stats: list[dict[str, Any]] = []
     details: list[dict[str, Any]] = []
@@ -368,18 +397,14 @@ def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
     unanswered_count = 0
     total_q = int(data.get("total_questions", 0) or 0)
 
-    for key in ("section_one", "section_two", "section_three"):
-        sec = scoring.get(key)
-        if not sec:
-            continue
-        pts = int(sec.get("points", 0) or 0)
-        qs = sec.get("questions", []) or []
+    for sec in _past_paper_sections(data):
+        pts = sec["points"]
+        labels = sec["questions"]
         sec_correct = 0
         sec_score = 0
-        for qn in qs:
-            qk = str(qn)
-            given = answer_map.get(qk, "")
-            correct_ans = correct_map.get(qk, "")
+        for label in labels:
+            given = answer_map.get(label, "")
+            correct_ans = correct_map.get(label, "")
             is_correct = bool(correct_ans) and given == correct_ans
             if is_correct:
                 sec_correct += 1
@@ -391,19 +416,19 @@ def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
             else:
                 unanswered_count += 1
             details.append({
-                "question": qn,
+                "question": label,
                 "student": given or None,
                 "correct": correct_ans,
                 "is_correct": is_correct,
                 "points": pts,
             })
         section_stats.append({
-            "key": key,
-            "name": sec_names[key],
+            "key": sec["key"],
+            "name": sec["name"],
             "correct": sec_correct,
-            "total": len(qs),
+            "total": len(labels),
             "score": sec_score,
-            "max": pts * len(qs),
+            "max": pts * len(labels),
         })
 
     percentage = round((total_score / total_max * 100), 1) if total_max else 0.0
