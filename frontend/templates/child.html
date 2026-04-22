@@ -57,6 +57,7 @@
     <link rel="stylesheet" href="/static/css/math-learn-visuals.css?v=1">
     <link rel="stylesheet" href="/static/css/math-academy-responsive.css?v=1">
     <link rel="stylesheet" href="/static/css/arcade.css?v=8">
+    <link rel="stylesheet" href="/static/css/ckla.css?v=1">
     <link rel="stylesheet" href="/static/css/ai-assistant.css?v=1">
 </head>
 <body>
@@ -207,6 +208,12 @@
                         </button>
                         <button type="button" class="sb-sidebar-card" id="btn-kigoosa">
                             <span class="sb-card-label">Unit Test</span>
+                            <span class="sb-card-chevron">›</span>
+                        </button>
+                        <div class="sb-div"></div>
+                        <!-- CKLA G3 entry -->
+                        <button type="button" class="sb-sidebar-card" onclick="showCKLAView()">
+                            <span class="sb-card-label">📖 CKLA Grade 3</span>
                             <span class="sb-card-chevron">›</span>
                         </button>
                     </div>
@@ -667,6 +674,9 @@
             <!-- Diary view (shown when switchView('diary') is active) -->
             <div id="diary-view" style="display:none"></div>
 
+            <!-- CKLA G3 view (shown when showCKLAView() is called) -->
+            <div id="ckla-view" style="display:none"></div>
+
         </div>
 
         <!-- Word vault (hidden, kept for JS compat) -->
@@ -779,6 +789,8 @@
 <script src="/static/js/calendar.js?v=3"></script>
 <script src="/static/js/daily-words.js?v=7"></script>
 <script src="/static/js/daily-words-weekly.js?v=1"></script>
+<script src="/static/js/ckla.js?v=1"></script>
+<script src="/static/js/ckla-lesson.js?v=1"></script>
 <script src="/static/js/child.js?v=37"></script>
 <script src="/static/js/sentence_ai.js?v=2"></script>
 <script src="/static/js/collocation.js?v=1"></script>

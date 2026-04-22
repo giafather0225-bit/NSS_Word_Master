@@ -51,6 +51,14 @@ from .us_academy import (
     USAcademySession,
     USAcademyUnitResult,
 )
+from .ckla import (
+    CKLADomain,
+    CKLALesson,
+    CKLAQuestion,
+    CKLAWordLesson,
+    CKLALessonProgress,
+    CKLAQuestionResponse,
+)
 
 __all__ = [
     "Base",
@@ -69,7 +77,10 @@ __all__ = [
     "MathWrongReview", "MathFactFluency", "MathDailyChallenge", "MathKangarooProgress",
     # assistant
     "AssistantLog",
-    # us academy
+    # us academy (word-first, SM-2)
     "USAcademyWord", "USAcademyWordProgress", "USAcademyPassage",
     "USAcademySession", "USAcademyUnitResult",
+    # ckla (passage-centric)
+    "CKLADomain", "CKLALesson", "CKLAQuestion",
+    "CKLAWordLesson", "CKLALessonProgress", "CKLAQuestionResponse",
 ]

@@ -61,6 +61,8 @@ from backend.routers import tutor_sentence as tutor_sentence_router
 from backend.routers import ai_assistant as ai_assistant_router
 from backend.routers import ai_assistant_log as ai_assistant_log_router
 from backend.routers import us_academy as us_academy_router
+from backend.routers import ckla as ckla_router
+from backend.routers import ckla_review as ckla_review_router
 from backend.services import ollama_manager, backup_engine
 
 # ── DB init ────────────────────────────────────────────────
@@ -251,6 +253,8 @@ app.include_router(tutor_sentence_router.router)
 app.include_router(ai_assistant_router.router)
 app.include_router(ai_assistant_log_router.router)
 app.include_router(us_academy_router.router)
+app.include_router(ckla_router.router)
+app.include_router(ckla_review_router.router)
 
 
 # ── Static page routes ─────────────────────────────────────

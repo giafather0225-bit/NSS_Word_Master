@@ -30,6 +30,10 @@ XP_RULES_DEFAULT: dict[str, int] = {
     "math_kangaroo_complete":  5,
     "math_kangaroo_80":        5,
     "math_kangaroo_perfect":  10,
+    # CKLA G3 — dedup by action+date+detail(lesson_id)
+    "ckla_reading_done":      2,   # 지문 읽기 완료
+    "ckla_vocab_done":        3,   # 단어 학습 완료
+    "ckla_lesson_complete":   5,   # 레슨 전체 완료 보너스
 }
 # Back-compat alias: callers that imported XP_RULES still see defaults.
 XP_RULES = XP_RULES_DEFAULT
@@ -96,13 +100,17 @@ def award_xp(
     if xp_amount == 0:
         return 0
 
-    # Dedup check (skip for word_correct — multiple per day is fine)
-    if action != "word_correct":
-        existing = db.query(XPLog).filter(
-            XPLog.action == action,
-            XPLog.earned_date == today,
-        ).first()
-        if existing:
+    # Dedup check
+    # - word_correct: no dedup (multiple words per day)
+    # - ckla_* actions: dedup by action + date + detail (레슨별 1회)
+    # - all others:  dedup by action + date only
+    _NO_DEDUP  = {"word_correct"}
+    _DETAIL_DEDUP = {"ckla_reading_done", "ckla_vocab_done", "ckla_lesson_complete"}
+    if action not in _NO_DEDUP:
+        filters = [XPLog.action == action, XPLog.earned_date == today]
+        if action in _DETAIL_DEDUP:
+            filters.append(XPLog.detail == detail)
+        if db.query(XPLog).filter(*filters).first():
             return 0
 
     log = XPLog(

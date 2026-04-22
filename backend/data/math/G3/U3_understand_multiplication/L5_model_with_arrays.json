@@ -101,7 +101,7 @@
       "difficulty": 0,
       "type": "concept_card",
       "title": "What is an Array?",
-      "content": "An array is a way to show objects in equal rows and columns. Rows go across (left to right). Columns go up and down. Every row has the same number of objects.",
+      "content": "An array is a way to show objects in equal rows and columns. Rows go across (left to right). Columns go up and down. Every row has the same number of objects. Example: 3 rows of 4 dots = 12 dots total.",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
@@ -118,14 +118,14 @@
       "difficulty": 0,
       "type": "concept_card",
       "title": "Reading an Array",
-      "content": "To read an array: count the rows, then count how many in each row (columns). Example: 4 rows of 3 → 4 × 3 = 12.",
+      "content": "To read an array: (1) Count the rows — how many rows go across? (2) Count the columns — how many are in each row? (3) Write the multiplication: rows × columns = product. Example: 4 rows of 3 → 4 × 3 = 12.",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "rows": 4,
+          "cols": 3
         }
       }
     },
@@ -135,7 +135,24 @@
       "difficulty": 0,
       "type": "concept_card",
       "title": "Arrays and Multiplication Sentences",
-      "content": "An array with 5 rows and 2 columns shows 5 × 2 = 10. You can also read it as 2 × 5 = 10 (columns × rows). The product is the same either way!",
+      "content": "An array with 5 rows and 2 columns shows 5 × 2 = 10. You can also read it as 2 × 5 = 10 (columns × rows). The product is the same either way! Both multiplication sentences describe the same array.",
+      "cpa_phase": "pictorial",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 5,
+          "cols": 2
+        }
+      }
+    },
+    {
+      "id": "LN_04",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
+      "title": "Rotating an Array",
+      "content": "Rotate a 3×4 array 90° and it becomes a 4×3 array — the product stays 12! This shows the Commutative Property: 3 × 4 = 4 × 3. Arrays prove it visually: same dots, just rearranged in rows and columns.",
       "cpa_phase": "pictorial",
       "visual_type": "manipulative",
       "visual_data": {
@@ -147,10 +164,27 @@
       }
     },
     {
+      "id": "LN_05",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
+      "title": "Arrays in Word Problems",
+      "content": "Word problems hide arrays. Look for clue words: 'rows' tells you the first factor; 'in each row' or 'columns' tells you the second factor. Example: '5 rows of seats with 4 seats in each row' → draw a 5×4 array → 5 × 4 = 20 seats.",
+      "cpa_phase": "abstract",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 5,
+          "cols": 4
+        }
+      }
+    },
+    {
       "id": "TRY_01",
       "section": "try",
       "difficulty": 1,
-      "question": "Make an array: 2 rows of 6. Product?",
+      "question": "Make an array: 2 rows of 6. What is the product?",
       "choices": [
         "A. 8",
         "B. 10",
@@ -158,14 +192,14 @@
         "D. 14"
       ],
       "answer": "C",
-      "explanation": "2 × 6 = 12.",
+      "explanation": "2 rows × 6 columns = 2 × 6 = 12.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Draw 2 rows. Put 6 dots in each row. Count all the dots.",
+        "rows × columns = product. Multiply 2 × 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Nice! 2 rows of 6 = 2 × 6 = 12.",
+        "incorrect": "Draw the array: 2 rows, 6 dots each. Count all: 6, 12. The product is 12."
       },
       "solution_steps": []
     },
@@ -173,7 +207,7 @@
       "id": "TRY_02",
       "section": "try",
       "difficulty": 2,
-      "question": "A marching band has 4 rows with 7 musicians in each row. How many musicians?",
+      "question": "A marching band has 4 rows with 7 musicians in each row. How many musicians in all?",
       "choices": [
         "A. 11",
         "B. 21",
@@ -181,14 +215,14 @@
         "D. 32"
       ],
       "answer": "C",
-      "explanation": "4 × 7 = 28.",
+      "explanation": "4 rows × 7 per row = 4 × 7 = 28.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "'4 rows' is your first factor. '7 musicians in each row' is your second factor.",
+        "rows × columns = product. Solve 4 × 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Great! 4 rows of 7 = 4 × 7 = 28 musicians.",
+        "incorrect": "4 rows, 7 per row → 4 × 7 = 28. Think of an array with 4 rows and 7 columns."
       },
       "solution_steps": []
     },
@@ -196,7 +230,7 @@
       "id": "TRY_03",
       "section": "try",
       "difficulty": 2,
-      "question": "An array shows 3 × 4 = 12. If you add one more row, what is the new product?",
+      "question": "An array shows 3 × 4 = 12. If you add one more row of 4, what is the new product?",
       "choices": [
         "A. 13",
         "B. 15",
@@ -204,14 +238,55 @@
         "D. 20"
       ],
       "answer": "C",
-      "explanation": "Now 4 rows of 4 = 4 × 4 = 16.",
+      "explanation": "Adding 1 more row makes 4 rows of 4. 4 × 4 = 16.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "The original array is 3 rows of 4. Adding 1 row means 3 + 1 = 4 rows of 4.",
+        "New array: 4 rows, 4 columns. Multiply: 4 × 4 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Correct! 3 rows + 1 row = 4 rows of 4. 4 × 4 = 16.",
+        "incorrect": "Start with 3 rows of 4. Add 1 more row: now 4 rows of 4. 4 × 4 = 16."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "section": "try",
+      "difficulty": 2,
+      "type": "input",
+      "question": "An array has 3 rows of 8. What is the product? Enter the number.",
+      "answer": "24",
+      "explanation": "3 rows × 8 columns = 3 × 8 = 24.",
+      "hints": [
+        "Count the rows (3) and the number in each row (8).",
+        "rows × columns = product. Solve 3 × 8."
+      ],
+      "feedback": {
+        "correct": "Yes! 3 × 8 = 24. Your array has 24 total objects.",
+        "incorrect": "3 rows of 8: skip-count by 8 three times — 8, 16, 24. The product is 24."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "section": "try",
+      "difficulty": 2,
+      "question": "Which array shows 2 × 9?",
+      "choices": [
+        "A. 9 rows, 9 columns",
+        "B. 2 rows, 9 columns",
+        "C. 9 rows, 2 columns",
+        "D. 2 rows, 2 columns"
+      ],
+      "answer": "B",
+      "explanation": "2 × 9 means 2 rows of 9: 2 rows, 9 columns.",
+      "hints": [
+        "In 2 × 9, the first factor (2) tells you the number of rows.",
+        "The second factor (9) tells you how many are in each row — that is the number of columns."
+      ],
+      "feedback": {
+        "correct": "Correct! 2 × 9 = 2 rows, 9 columns.",
+        "incorrect": "First factor = rows. Second factor = columns. So 2 × 9 → 2 rows, 9 columns."
       },
       "solution_steps": []
     },
@@ -219,7 +294,7 @@
       "id": "R1_01",
       "section": "practice_r1",
       "difficulty": 1,
-      "question": "5 rows of 3. Product?",
+      "question": "An array has 5 rows of 3. What is the product?",
       "choices": [
         "A. 8",
         "B. 12",
@@ -229,19 +304,19 @@
       "answer": "C",
       "explanation": "5 × 3 = 15.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Count the rows (5) and the number in each row (3).",
+        "5 × 3: skip-count by 3 five times — 3, 6, 9, 12, 15."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Well done! 5 rows of 3 = 5 × 3 = 15.",
+        "incorrect": "5 rows, 3 per row → 5 × 3 = 15. Count by 3s: 3, 6, 9, 12, 15."
       }
     },
     {
       "id": "R1_02",
       "section": "practice_r1",
       "difficulty": 1,
-      "question": "An array has 6 rows of 2. Product?",
+      "question": "An array has 6 rows of 2. What is the product?",
       "choices": [
         "A. 8",
         "B. 10",
@@ -251,19 +326,19 @@
       "answer": "C",
       "explanation": "6 × 2 = 12.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "6 rows of 2 means 6 groups with 2 in each.",
+        "Count by 2s, six times: 2, 4, 6, 8, 10, 12."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Great! 6 rows of 2 = 6 × 2 = 12.",
+        "incorrect": "6 rows, 2 per row. Skip-count by 2 six times: 2, 4, 6, 8, 10, 12 = 12."
       }
     },
     {
       "id": "R1_03",
       "section": "practice_r1",
       "difficulty": 2,
-      "question": "An array shows 3 × 7 = 21. How many rows and columns?",
+      "question": "An array shows 3 × 7 = 21. How is the array arranged?",
       "choices": [
         "A. 7 rows, 3 columns",
         "B. 3 rows, 7 columns",
@@ -271,43 +346,43 @@
         "D. 1 row, 21 columns"
       ],
       "answer": "B",
-      "explanation": "3 × 7: 3 rows, 7 columns.",
+      "explanation": "3 × 7 means the first factor (3) = rows, second factor (7) = columns.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "In a multiplication sentence, the first factor tells you the rows.",
+        "3 × 7 → 3 rows, 7 columns."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Correct! 3 × 7 → 3 rows, 7 columns.",
+        "incorrect": "First factor = rows, second factor = columns. So 3 × 7 → 3 rows, 7 columns."
       }
     },
     {
       "id": "R1_04",
       "section": "practice_r1",
       "difficulty": 2,
-      "question": "235 rounded to the nearest ten?",
+      "question": "An array has 4 rows of 6. What is the product?",
       "choices": [
-        "A. 200",
-        "B. 230",
-        "C. 240",
-        "D. 300"
+        "A. 10",
+        "B. 20",
+        "C. 24",
+        "D. 28"
       ],
       "answer": "C",
-      "explanation": "235: ones digit 5 → round up to 240.",
+      "explanation": "4 × 6 = 24.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "4 rows of 6: you need 4 groups of 6.",
+        "Count by 6 four times: 6, 12, 18, 24."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Excellent! 4 rows of 6 = 4 × 6 = 24.",
+        "incorrect": "4 rows, 6 per row → 4 × 6. Count by 6: 6, 12, 18, 24."
       }
     },
     {
       "id": "R1_05",
       "section": "practice_r1",
       "difficulty": 2,
-      "question": "A classroom has 5 rows of desks with 6 desks in each row. How many desks?",
+      "question": "A classroom has 5 rows of desks with 6 desks in each row. How many desks in all?",
       "choices": [
         "A. 11",
         "B. 25",
@@ -315,14 +390,114 @@
         "D. 35"
       ],
       "answer": "C",
-      "explanation": "5 × 6 = 30.",
+      "explanation": "5 rows × 6 desks per row = 5 × 6 = 30.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "'5 rows' = first factor, '6 desks in each row' = second factor.",
+        "Think of a 5-row, 6-column array. 5 × 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Nice! 5 × 6 = 30 desks.",
+        "incorrect": "Draw an array: 5 rows of 6. Count all: 5 × 6 = 30 desks."
+      }
+    },
+    {
+      "id": "R1_06",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "type": "input",
+      "question": "An array has 4 rows of 7. What is the product? Enter the number.",
+      "answer": "28",
+      "explanation": "4 × 7 = 28.",
+      "hints": [
+        "4 rows of 7: multiply 4 × 7.",
+        "Count by 7 four times: 7, 14, 21, 28."
+      ],
+      "feedback": {
+        "correct": "Correct! 4 × 7 = 28.",
+        "incorrect": "4 rows, 7 in each → 4 × 7. Count: 7, 14, 21, 28 = 28."
+      }
+    },
+    {
+      "id": "R1_07",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "question": "Which multiplication sentence matches an array of 2 rows and 9 columns?",
+      "choices": [
+        "A. 9 × 9 = 81",
+        "B. 2 + 9 = 11",
+        "C. 2 × 9 = 18",
+        "D. 9 × 2 = 9"
+      ],
+      "answer": "C",
+      "explanation": "2 rows × 9 columns = 2 × 9 = 18.",
+      "hints": [
+        "rows × columns = the multiplication sentence.",
+        "2 rows, 9 columns → write it as 2 × 9. Then find the product."
+      ],
+      "feedback": {
+        "correct": "Yes! 2 rows, 9 columns → 2 × 9 = 18.",
+        "incorrect": "rows × columns gives the sentence. 2 rows × 9 columns = 2 × 9 = 18."
+      }
+    },
+    {
+      "id": "R1_08",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "type": "input",
+      "question": "An array has 8 rows of 3. What is the product? Enter the number.",
+      "answer": "24",
+      "explanation": "8 × 3 = 24.",
+      "hints": [
+        "8 rows of 3: multiply 8 × 3.",
+        "Count by 3 eight times: 3, 6, 9, 12, 15, 18, 21, 24."
+      ],
+      "feedback": {
+        "correct": "Well done! 8 × 3 = 24.",
+        "incorrect": "8 rows, 3 in each. Count by 3: 3, 6, 9, 12, 15, 18, 21, 24 = 24."
+      }
+    },
+    {
+      "id": "R1_09",
+      "section": "practice_r1",
+      "difficulty": 2,
+      "question": "An array has 6 rows of 5. What is the product?",
+      "choices": [
+        "A. 11",
+        "B. 25",
+        "C. 30",
+        "D. 36"
+      ],
+      "answer": "C",
+      "explanation": "6 × 5 = 30.",
+      "hints": [
+        "6 rows of 5: multiply the rows by the columns.",
+        "Count by 5 six times: 5, 10, 15, 20, 25, 30."
+      ],
+      "feedback": {
+        "correct": "Great! 6 × 5 = 30.",
+        "incorrect": "6 rows, 5 per row → 6 × 5 = 30. Count by 5s: 5, 10, 15, 20, 25, 30."
+      }
+    },
+    {
+      "id": "R1_10",
+      "section": "practice_r1",
+      "difficulty": 3,
+      "question": "The product of an array is 36. Which arrangement is possible?",
+      "choices": [
+        "A. 5 rows of 7",
+        "B. 6 rows of 6",
+        "C. 4 rows of 8",
+        "D. 7 rows of 4"
+      ],
+      "answer": "B",
+      "explanation": "6 × 6 = 36. (5×7=35, 4×8=32, 7×4=28)",
+      "hints": [
+        "Multiply each option and check which one equals 36.",
+        "Try B: 6 × 6 = 36. Does that match the product?"
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 6 = 36. The others don't reach 36.",
+        "incorrect": "Check each: 5×7=35, 6×6=36 ✓, 4×8=32, 7×4=28. Only 6×6=36."
       }
     },
     {
@@ -339,12 +514,12 @@
       "answer": "C",
       "explanation": "4 × 9 = 36.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "4 rows of 9: multiply rows × columns.",
+        "Count by 9 four times: 9, 18, 27, 36."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Correct! 4 × 9 = 36.",
+        "incorrect": "4 rows, 9 per row → 4 × 9. Count by 9: 9, 18, 27, 36."
       }
     },
     {
@@ -359,21 +534,21 @@
         "D. 30"
       ],
       "answer": "B",
-      "explanation": "6×5=30. Remove 1 row of 5: 30−5=25.",
+      "explanation": "6×5=30 total. Remove 1 row of 5: 30−5=25.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "First find the total: 6 rows of 5 = 6 × 5 = 30.",
+        "Then take away 1 full row of 5: 30 − 5 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Great thinking! 6×5=30, then 30−5=25 stickers left.",
+        "incorrect": "Step 1: 6×5=30. Step 2: remove 1 row of 5: 30−5=25."
       }
     },
     {
       "id": "R2_03",
       "section": "practice_r2",
       "difficulty": 3,
-      "question": "An array has ? rows of 8 and the product is 40. How many rows?",
+      "question": "An array has some rows of 8 and the product is 40. How many rows?",
       "choices": [
         "A. 4",
         "B. 5",
@@ -381,21 +556,158 @@
         "D. 8"
       ],
       "answer": "B",
-      "explanation": "40 ÷ 8 = 5 rows.",
+      "explanation": "? × 8 = 40. 40 ÷ 8 = 5 rows.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "You know columns (8) and product (40). Find the rows.",
+        "Think: how many groups of 8 make 40? Count by 8: 8, 16, 24, 32, 40 — that's 5 groups."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Yes! 5 × 8 = 40, so there are 5 rows.",
+        "incorrect": "Count by 8 until you reach 40: 8, 16, 24, 32, 40 — five jumps = 5 rows."
+      }
+    },
+    {
+      "id": "R2_04",
+      "section": "practice_r2",
+      "difficulty": 2,
+      "type": "input",
+      "question": "An array has 7 rows of 5. What is the product? Enter the number.",
+      "answer": "35",
+      "explanation": "7 × 5 = 35.",
+      "hints": [
+        "7 rows of 5: multiply 7 × 5.",
+        "Count by 5 seven times: 5, 10, 15, 20, 25, 30, 35."
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 5 = 35.",
+        "incorrect": "7 rows, 5 per row. Count by 5: 5, 10, 15, 20, 25, 30, 35 = 35."
+      }
+    },
+    {
+      "id": "R2_05",
+      "section": "practice_r2",
+      "difficulty": 2,
+      "question": "Array A: 3 rows of 7. Array B: 7 rows of 3. Which statement is true?",
+      "choices": [
+        "A. Array A has a larger product",
+        "B. Array B has a larger product",
+        "C. Both arrays have the same product",
+        "D. The products cannot be compared"
+      ],
+      "answer": "C",
+      "explanation": "3×7=21 and 7×3=21. Rotating an array does not change the product.",
+      "hints": [
+        "Calculate each product: 3×7=? and 7×3=?",
+        "Remember the Commutative Property: changing the order of factors does not change the product."
+      ],
+      "feedback": {
+        "correct": "Right! 3×7=21 and 7×3=21. Rotating an array keeps the same product.",
+        "incorrect": "3×7=21 and 7×3=21. The order of factors doesn't matter — same product!"
+      }
+    },
+    {
+      "id": "R2_06",
+      "section": "practice_r2",
+      "difficulty": 2,
+      "type": "input",
+      "question": "An array has 9 rows of 3. What is the product? Enter the number.",
+      "answer": "27",
+      "explanation": "9 × 3 = 27.",
+      "hints": [
+        "9 rows of 3: multiply 9 × 3.",
+        "Count by 3 nine times: 3, 6, 9, 12, 15, 18, 21, 24, 27."
+      ],
+      "feedback": {
+        "correct": "Well done! 9 × 3 = 27.",
+        "incorrect": "9 rows, 3 per row. Count by 3: 3, 6, 9, 12, 15, 18, 21, 24, 27 = 27."
+      }
+    },
+    {
+      "id": "R2_07",
+      "section": "practice_r2",
+      "difficulty": 2,
+      "question": "A garden is planted in 5 rows with 8 plants in each row. How many plants are there?",
+      "choices": [
+        "A. 13",
+        "B. 35",
+        "C. 40",
+        "D. 45"
+      ],
+      "answer": "C",
+      "explanation": "5 rows × 8 plants per row = 5 × 8 = 40.",
+      "hints": [
+        "Identify rows and columns: 5 rows, 8 per row.",
+        "Draw a 5×8 array and multiply: 5 × 8 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 5 × 8 = 40 plants.",
+        "incorrect": "5 rows, 8 plants each → 5 × 8 = 40. Think of a 5-row, 8-column array."
+      }
+    },
+    {
+      "id": "R2_08",
+      "section": "practice_r2",
+      "difficulty": 2,
+      "question": "True or False: A 3×6 array and a 6×3 array have the same product.",
+      "choices": [
+        "A. True",
+        "B. False"
+      ],
+      "answer": "A",
+      "explanation": "3×6=18 and 6×3=18. The Commutative Property guarantees equal products.",
+      "hints": [
+        "Calculate 3×6 and 6×3 separately.",
+        "The Commutative Property says a×b = b×a."
+      ],
+      "feedback": {
+        "correct": "True! 3×6=18 and 6×3=18. Swapping rows and columns keeps the product.",
+        "incorrect": "Check: 3×6=18 and 6×3=18. Same product! The statement is True."
+      }
+    },
+    {
+      "id": "R2_09",
+      "section": "practice_r2",
+      "difficulty": 2,
+      "type": "input",
+      "question": "An array has 8 rows of 4. What is the product? Enter the number.",
+      "answer": "32",
+      "explanation": "8 × 4 = 32.",
+      "hints": [
+        "8 rows of 4: multiply 8 × 4.",
+        "Count by 4 eight times: 4, 8, 12, 16, 20, 24, 28, 32."
+      ],
+      "feedback": {
+        "correct": "Great! 8 × 4 = 32.",
+        "incorrect": "8 rows, 4 per row. Count by 4: 4, 8, 12, 16, 20, 24, 28, 32 = 32."
+      }
+    },
+    {
+      "id": "R2_10",
+      "section": "practice_r2",
+      "difficulty": 2,
+      "question": "An egg carton has 3 rows of 4 eggs. How many eggs are in the carton?",
+      "choices": [
+        "A. 7",
+        "B. 10",
+        "C. 12",
+        "D. 16"
+      ],
+      "answer": "C",
+      "explanation": "3 rows × 4 columns = 3 × 4 = 12 eggs.",
+      "hints": [
+        "Egg carton: 3 rows, 4 in each row. This is a 3×4 array.",
+        "Multiply: 3 × 4 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 3 × 4 = 12 eggs.",
+        "incorrect": "3 rows of 4: 3 × 4 = 12. Imagine the egg carton as a 3-row, 4-column array."
       }
     },
     {
       "id": "R3_01",
       "section": "practice_r3",
       "difficulty": 3,
-      "question": "Jenny arranges 24 chairs in equal rows. Which is NOT a possible arrangement?",
+      "question": "Jenny arranges 24 chairs in equal rows. Which arrangement is NOT possible?",
       "choices": [
         "A. 3 rows of 8",
         "B. 4 rows of 6",
@@ -403,36 +715,97 @@
         "D. 6 rows of 4"
       ],
       "answer": "C",
-      "explanation": "5×5=25≠24. All others equal 24.",
+      "explanation": "5×5=25, which is not 24. The others: 3×8=24, 4×6=24, 6×4=24.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Multiply each option and check if the product equals 24.",
+        "Try C: 5×5=25. Is that 24?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Correct! 5×5=25≠24. That arrangement is NOT possible.",
+        "incorrect": "Check each: 3×8=24 ✓, 4×6=24 ✓, 5×5=25 ✗, 6×4=24 ✓. Answer is C."
       }
     },
     {
       "id": "R3_02",
       "section": "practice_r3",
       "difficulty": 3,
-      "question": "An array is 3 rows of 9. Another array is 9 rows of 3. Are the products the same?",
+      "question": "Array 1: 3 rows of 9. Array 2: 9 rows of 3. Are the products the same?",
       "choices": [
-        "A. No, first is larger",
-        "B. No, second is larger",
-        "C. Yes, both are 27",
-        "D. Yes, both are 12"
+        "A. No, Array 1 is larger",
+        "B. No, Array 2 is larger",
+        "C. Yes, both equal 27",
+        "D. Yes, both equal 12"
       ],
       "answer": "C",
-      "explanation": "3×9=27 and 9×3=27.",
+      "explanation": "3×9=27 and 9×3=27. The Commutative Property: rows×cols = cols×rows.",
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Compute both: 3×9=? and 9×3=?",
+        "When you swap rows and columns, the product stays the same."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Right! 3×9=27 and 9×3=27. Arrays prove the Commutative Property.",
+        "incorrect": "3×9=27 and 9×3=27 — same product. Rotating the array doesn't change the total."
+      }
+    },
+    {
+      "id": "R3_03",
+      "section": "practice_r3",
+      "difficulty": 3,
+      "type": "input",
+      "question": "A school library has 6 rows of shelves with 7 books on each shelf. How many books in all? Enter the number.",
+      "answer": "42",
+      "explanation": "6 rows × 7 books per shelf = 6 × 7 = 42 books.",
+      "hints": [
+        "Identify rows and columns from the problem: 6 rows, 7 per row.",
+        "Multiply: 6 × 7 = ?"
+      ],
+      "feedback": {
+        "correct": "Excellent! 6 × 7 = 42 books.",
+        "incorrect": "6 rows, 7 books each → 6 × 7. Count by 7: 7, 14, 21, 28, 35, 42 = 42."
+      }
+    },
+    {
+      "id": "R3_04",
+      "section": "practice_r3",
+      "difficulty": 3,
+      "question": "A theater has 8 rows of 9 seats. The first 3 rows are reserved. How many seats are available?",
+      "choices": [
+        "A. 45",
+        "B. 27",
+        "C. 54",
+        "D. 72"
+      ],
+      "answer": "A",
+      "explanation": "Total: 8×9=72. Reserved: 3×9=27. Available: 72−27=45.",
+      "hints": [
+        "Step 1: Find total seats: 8 rows × 9 = 72.",
+        "Step 2: Find reserved seats: 3 rows × 9 = 27. Subtract from total: 72 − 27 = ?"
+      ],
+      "feedback": {
+        "correct": "Great multi-step thinking! 8×9=72, minus 3×9=27, gives 45 available seats.",
+        "incorrect": "Total = 8×9=72. Reserved = 3×9=27. Available = 72−27=45. Answer is A."
+      }
+    },
+    {
+      "id": "R3_05",
+      "section": "practice_r3",
+      "difficulty": 3,
+      "question": "Which array does NOT have a product of 18?",
+      "choices": [
+        "A. 2 rows of 9",
+        "B. 3 rows of 6",
+        "C. 4 rows of 5",
+        "D. 6 rows of 3"
+      ],
+      "answer": "C",
+      "explanation": "4×5=20, not 18. A: 2×9=18, B: 3×6=18, D: 6×3=18.",
+      "hints": [
+        "Multiply each option and find which one does NOT equal 18.",
+        "Try C: 4×5=20. Is that 18?"
+      ],
+      "feedback": {
+        "correct": "Correct! 4×5=20≠18. That array does NOT have a product of 18.",
+        "incorrect": "A:2×9=18, B:3×6=18, C:4×5=20 ✗, D:6×3=18. Only C doesn't equal 18."
       }
     }
   ],
