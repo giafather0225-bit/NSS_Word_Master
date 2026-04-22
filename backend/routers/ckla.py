@@ -28,6 +28,8 @@ from backend.models.ckla import (
 )
 from backend.models.us_academy import USAcademyWord
 from backend.services.ckla_grader import grade_answer
+from backend.models.us_academy import USAcademyWordProgress
+from datetime import date as _date, timedelta
 
 router = APIRouter(prefix="/api/academy/ckla", tags=["ckla"])
 
@@ -222,7 +224,10 @@ def get_lesson_progress(lesson_id: int, db: Session = Depends(get_db)):
 def update_lesson_progress(
     lesson_id: int, req: ProgressUpdate, db: Session = Depends(get_db)
 ):
-    """읽기/단어/Word Work 완료 기록. 세 가지 모두 완료 시 레슨 완료 처리."""
+    """읽기/단어/Word Work 완료 기록. 세 가지 모두 완료 시 레슨 완료 처리.
+    vocab_done 시 SM-2 복습 큐에 단어 등록. 완료 시 XP 지급."""
+    from backend.services.xp_engine import award_xp
+
     if not db.query(CKLALesson).filter_by(id=lesson_id).first():
         raise HTTPException(status_code=404, detail="Lesson not found")
 
@@ -232,9 +237,29 @@ def update_lesson_progress(
     if req.reading_done is True and not prog.reading_done:
         prog.reading_done    = True
         prog.reading_done_at = now
-    if req.vocab_done is True:
+        award_xp(db, "ckla_reading_done", detail=str(lesson_id))
+
+    if req.vocab_done is True and not prog.vocab_done:
         prog.vocab_done = True
-    if req.word_work_done is True:
+        award_xp(db, "ckla_vocab_done", detail=str(lesson_id))
+        # ── SM-2 연동: 레슨의 모든 단어에 WordProgress 생성 ──
+        word_links = db.query(CKLAWordLesson).filter_by(lesson_id=lesson_id).all()
+        tomorrow = (_date.today() + timedelta(days=1)).isoformat()
+        for wl in word_links:
+            existing = db.query(USAcademyWordProgress).filter_by(word_id=wl.word_id).first()
+            if not existing:
+                wp = USAcademyWordProgress(
+                    word_id=wl.word_id,
+                    word=db.query(USAcademyWord).filter_by(id=wl.word_id).first().word if db.query(USAcademyWord).filter_by(id=wl.word_id).first() else "",
+                    steps_completed=5,
+                    step_meet_it=True, step_see_it=True,
+                    step_use_it=True, step_know_it=True, step_own_it=True,
+                    next_review=tomorrow,
+                    last_studied=_date.today().isoformat(),
+                )
+                db.add(wp)
+
+    if req.word_work_done is True and not prog.word_work_done:
         prog.word_work_done = True
 
     prog.last_active = now
@@ -244,6 +269,7 @@ def update_lesson_progress(
             and not prog.completed):
         prog.completed    = True
         prog.completed_at = now
+        award_xp(db, "ckla_lesson_complete", detail=str(lesson_id))
 
     db.commit()
     return _progress_dict(prog)
