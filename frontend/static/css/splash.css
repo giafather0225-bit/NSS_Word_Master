@@ -12,14 +12,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FFFFFF;
+  background: var(--bg-card);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-#splash-screen[data-day="0"] { background: #FFFFFF; }
+#splash-screen[data-day="0"] { background: var(--bg-card); }
 #splash-screen[data-day="1"] { background: #EAF4F4; }
 #splash-screen[data-day="2"] { background: #E8F8EF; }
-#splash-screen[data-day="3"] { background: #FFFFFF; }
+#splash-screen[data-day="3"] { background: var(--bg-card); }
 #splash-screen[data-day="4"] { background: #F3EEFF; }
 #splash-screen[data-day="5"] { background: #FFF4E5; }
 #splash-screen[data-day="6"] { background: #E8F3FA; }
@@ -70,9 +70,9 @@
   animation: splash-arc-spin 2.8s linear infinite;
 }
 
-.splash-arc-1 { stroke: #4A8E8E; animation-delay: 0s; }
-.splash-arc-2 { stroke: #F96E69; animation-delay: -0.93s; }
-.splash-arc-3 { stroke: #AE397D; animation-delay: -1.86s; }
+.splash-arc-1 { stroke: var(--color-primary); animation-delay: 0s; }
+.splash-arc-2 { stroke: var(--color-primary-hover); animation-delay: -0.93s; }
+.splash-arc-3 { stroke: var(--color-lilac); animation-delay: -1.86s; }
 
 @keyframes splash-arc-spin {
   0%   { stroke-dashoffset: 0; }

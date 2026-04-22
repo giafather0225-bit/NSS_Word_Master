@@ -6,9 +6,9 @@
 
 /* ─── Math mode: purple theme ────────────────────────── */
 body.math-mode {
-    --primary: #8B5CF6;
-    --primary-glow: rgba(139, 92, 246, 0.32);
-    --primary-tint: rgba(139, 92, 246, 0.08);
+    --primary: var(--math-primary, #8B5CF6);
+    --primary-glow: var(--math-primary-glow, rgba(139, 92, 246, 0.32));
+    --primary-tint: var(--math-primary-light, rgba(139, 92, 246, 0.08));
 }
 
 /* ─── Responsive: narrow window / Split View ─────────── */
@@ -25,7 +25,7 @@ body.math-mode {
 #lesson-section-display { position: relative; }
 #sb-lesson-dropdown {
     display: none; position: absolute; left: 0; right: 0; top: calc(100% + 4px);
-    background: #FFFFFF; border: 1px solid #E0E0E5; border-radius: 8px;
+    background: var(--bg-card); border: 1px solid var(--border-default); border-radius: 8px;
     padding: 4px 0; z-index: 30;
     box-shadow: none; max-height: 200px; overflow-y: auto;
 }
@@ -33,10 +33,10 @@ body.math-mode {
 
 /* ── Preview Modal: Shadow mic states ──────────────────── */
 .pm-mic-btn.done {
-    border-color: #34C759; background: #F0FBF4; color: #34C759; cursor: default;
+    border-color: var(--color-success); background: #F0FBF4; color: var(--color-success); cursor: default;
 }
 .pm-mic-btn.recording {
-    border-color: #FF3B30; background: rgba(255,59,48,0.08); color: #FF3B30;
+    border-color: var(--color-error); background: rgba(255,69,58,0.08); color: var(--color-error);
     animation: mic-pulse 0.8s ease-in-out infinite;
 }
 @keyframes mic-pulse {
@@ -44,7 +44,7 @@ body.math-mode {
     50%      { box-shadow: none; }
 }
 .pm-spell-label.locked { opacity: 0.4; }
-.pm-spell-rows.locked .pm-typing-input { background: #F5F5F7; cursor: not-allowed; }
+.pm-spell-rows.locked .pm-typing-input { background: var(--bg-page); cursor: not-allowed; }
 .pm-row-icon { width: 22px; flex-shrink: 0; font-size: 15px; text-align: center; }
 
 /* ── Manage Words Button ──────────────── */

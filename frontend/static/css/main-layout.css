@@ -20,38 +20,52 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 16px;
-    margin: 0 12px 4px;
-    background: var(--bg-card, #fff);
-    border: 1.5px solid var(--border-default, #E5E5EA);
-    border-radius: var(--radius-md, 12px);
-    font-size: var(--font-size-md, 15px);
-    font-weight: var(--font-weight-bold, 600);
-    color: var(--text-primary, #1A1A1A);
+    padding: 9px 14px;
+    margin: 0 8px 2px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md, 10px);
+    font-size: 14px;
+    font-weight: var(--font-weight-medium, 500);
+    color: var(--text-secondary, #5C5C66);
     cursor: pointer;
-    transition: all 0.2s ease;
-    width: calc(100% - 24px);
+    transition: background 0.15s ease, color 0.15s ease;
+    width: calc(100% - 16px);
     box-sizing: border-box;
+    letter-spacing: 0.01em;
 }
 .sb-sidebar-card:hover {
-    border-color: var(--color-primary, #4A8E8E);
+    background: var(--bg-hover, #ECECF1);
+    color: var(--text-primary, #111111);
+    border: none;
     box-shadow: none;
+}
+.sb-sidebar-card.active {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold, 600);
 }
 .sb-card-label { flex: 1; text-align: left; }
 .sb-card-chevron {
-    font-size: 16px;
-    color: var(--text-secondary, #6B7280);
-    transition: color 0.2s;
+    font-size: 14px;
+    color: var(--text-hint, #8E8E98);
+    transition: color 0.15s;
 }
-.sb-sidebar-card:hover .sb-card-chevron {
-    color: var(--color-primary, #4A8E8E);
+.sb-sidebar-card:hover .sb-card-chevron,
+.sb-sidebar-card.active .sb-card-chevron {
+    color: var(--color-primary);
 }
 .btn-lock-icon {
     font-size: 14px;
     line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-hint);
+    margin-left: auto;
 }
+.btn-lock-icon svg { width: 14px; height: 14px; }
 .sb-sidebar-card:hover .btn-lock-icon {
-    color: var(--color-primary, #4A8E8E);
+    color: var(--color-primary);
 }
 
 /* ── Compact sidebar to fit without scroll ── */
@@ -68,8 +82,8 @@
 }
 .sb-div {
     height: 1px;
-    background: var(--border-default, #E5E5EA);
-    margin: 6px 16px;
+    background: var(--border-subtle, #ECECF1);
+    margin: 16px 20px;
 }
 .sb-label {
     margin-bottom: 4px;
@@ -86,7 +100,7 @@
 }
 .sb-section {
     padding: 0;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
 }
 .sb-section-label {
     font-size: 10px;
@@ -95,11 +109,13 @@
     padding: 2px 16px 4px;
 }
 .sb-sidebar-card {
-    padding: 10px 14px;
-    margin: 0 12px 4px;
-    min-height: 40px;
-    border-radius: 10px;
-    font-size: 14px;
+    padding: 11px 20px;
+    margin: 0 8px 6px;
+    min-height: auto;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    background: transparent !important;
+    border: none !important;
 }
 .sb-bottom {
     padding: 6px 16px 8px;
@@ -133,13 +149,27 @@
 }
 .sb-back-btn:hover {
   color: var(--text-primary);
-  border-color: var(--color-primary, #4A8E8E);
-  background: var(--color-primary-light, rgba(74,142,142,0.08));
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
 }
 
 .sb-card-icon {
   font-size: 16px;
   margin-right: 2px;
+  flex-shrink: 0;
+}
+
+/* Lucide icon-wrap in sidebar: compact 24px circle */
+.sb-card-icon.icon-wrap {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 6px;
+  margin-right: 6px;
+}
+.sb-card-icon.icon-wrap svg {
+  width: 14px;
+  height: 14px;
 }
 .sb-card-badge {
   font-size: 10px;
@@ -148,7 +178,11 @@
   border-radius: var(--radius-full);
   padding: 2px 6px;
   margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
 }
+.sb-card-badge svg { width: 12px; height: 12px; }
 .sb-card-disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -388,6 +422,6 @@ body[data-view="home"] .sidebar-toggle { display: none !important; }
 .hero-chip.locked { color: var(--text-secondary); opacity: 0.55; cursor: not-allowed; }
 .hero-chip:not(.locked):hover { border-color: var(--color-primary); }
 @keyframes hero-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 142, 142, 0.35); }
-    50%      { box-shadow: 0 0 0 6px rgba(74, 142, 142, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(10, 132, 255, 0.35); }
+    50%      { box-shadow: 0 0 0 6px rgba(10, 132, 255, 0); }
 }

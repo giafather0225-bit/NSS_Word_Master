@@ -59,6 +59,7 @@
     <link rel="stylesheet" href="/static/css/arcade.css?v=8">
     <link rel="stylesheet" href="/static/css/ckla.css?v=1">
     <link rel="stylesheet" href="/static/css/ai-assistant.css?v=1">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -115,12 +116,12 @@
                         <span class="sb-card-chevron">›</span>
                     </button>
                     <button type="button" class="sb-sidebar-card" onclick="switchView('diary')">
-                        <span class="sb-card-icon">📖</span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="book-heart" width="16" height="16"></i></span>
                         <span class="sb-card-label">GIA's Diary</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
                     <button type="button" class="sb-sidebar-card" onclick="switchView('math')">
-                        <span class="sb-card-icon">📐</span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--math"><i data-lucide="calculator" width="16" height="16"></i></span>
                         <span class="sb-card-label">Math</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
@@ -204,7 +205,7 @@
                         <!-- Test buttons (existing IDs preserved) -->
                         <button type="button" class="sb-sidebar-card" id="btn-exam">
                             <span class="sb-card-label">Final Test</span>
-                            <span class="btn-lock-icon" id="lock-exam">🔒</span>
+                            <span class="btn-lock-icon" id="lock-exam"><i data-lucide="lock" width="14" height="14"></i></span>
                         </button>
                         <button type="button" class="sb-sidebar-card" id="btn-kigoosa">
                             <span class="sb-card-label">Unit Test</span>
@@ -213,7 +214,7 @@
                         <div class="sb-div"></div>
                         <!-- CKLA G3 entry -->
                         <button type="button" class="sb-sidebar-card" onclick="showCKLAView()">
-                            <span class="sb-card-label">📖 CKLA Grade 3</span>
+                            <span class="sb-card-label">CKLA Grade 3</span>
                             <span class="sb-card-chevron">›</span>
                         </button>
                     </div>
@@ -256,7 +257,7 @@
                 <div class="sb-section">
                     <div class="sb-section-label">READING</div>
                     <button type="button" class="sb-sidebar-card sb-card-disabled">
-                        <span class="sb-card-icon">📖</span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--english"><i data-lucide="file-text" width="16" height="16"></i></span>
                         <span class="sb-card-label">Articles</span>
                         <span class="sb-card-badge">Soon</span>
                     </button>
@@ -301,14 +302,22 @@
                 </button>
                 <div class="sb-div"></div>
                 <div class="sb-section">
+                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('today')">
+                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="book-heart" width="16" height="16"></i></span>
+                        <span class="sb-card-label">Today</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                </div>
+                <div class="sb-div"></div>
+                <div class="sb-section">
                     <div class="sb-section-label">WRITING</div>
                     <button type="button" class="sb-sidebar-card" onclick="openDiarySection('journal')">
-                        <span class="sb-card-icon">✏️</span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="pencil" width="16" height="16"></i></span>
                         <span class="sb-card-label">Daily Journal</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
                     <button type="button" class="sb-sidebar-card sb-card-disabled">
-                        <span class="sb-card-icon">✍️</span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="pen-line" width="16" height="16"></i></span>
                         <span class="sb-card-label">Free Writing</span>
                         <span class="sb-card-badge">Soon</span>
                     </button>
@@ -317,17 +326,17 @@
                 <div class="sb-section">
                     <div class="sb-section-label">MY GROWTH</div>
                     <button type="button" class="sb-sidebar-card" onclick="openDiarySection('sentences')">
-                        <span class="sb-card-icon">💬</span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="message-square" width="16" height="16"></i></span>
                         <span class="sb-card-label">My Sentences</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
                     <button type="button" class="sb-sidebar-card" onclick="openDiarySection('worlds')">
-                        <span class="sb-card-icon">🌍</span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="globe" width="16" height="16"></i></span>
                         <span class="sb-card-label">My Worlds</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
                     <button type="button" class="sb-sidebar-card" onclick="openDiarySection('timeline')">
-                        <span class="sb-card-icon">📈</span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="trending-up" width="16" height="16"></i></span>
                         <span class="sb-card-label">Growth Timeline</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
@@ -336,12 +345,12 @@
                 <div class="sb-section">
                     <div class="sb-section-label">MY PLAN</div>
                     <button type="button" class="sb-sidebar-card" onclick="openDiarySection('calendar')">
-                        <span class="sb-card-icon">📅</span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="calendar" width="16" height="16"></i></span>
                         <span class="sb-card-label">Calendar</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
                     <button type="button" class="sb-sidebar-card" onclick="openDiarySection('dayoff')">
-                        <span class="sb-card-icon">🏖️</span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="umbrella" width="16" height="16"></i></span>
                         <span class="sb-card-label">Day Off</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
@@ -361,7 +370,7 @@
 
                     <div class="sb-accordion" data-group="math">
                         <button type="button" class="sb-accordion-header" data-target="math-placement-body">
-                            <span class="sb-card-icon">🎯</span>
+                            <span class="sb-card-icon icon-wrap icon-wrap--math"><i data-lucide="target" width="16" height="16"></i></span>
                             <span class="sb-card-label">Placement Test</span>
                             <span class="sb-accordion-arrow">▼</span>
                         </button>
@@ -382,7 +391,7 @@
 
                     <div class="sb-accordion" data-group="math">
                         <button type="button" class="sb-accordion-header math-acc-open" data-target="math-academy-body">
-                            <span class="sb-card-icon">📐</span>
+                            <span class="sb-card-icon icon-wrap icon-wrap--math"><i data-lucide="book-open" width="16" height="16"></i></span>
                             <span class="sb-card-label">Academy</span>
                             <span class="sb-accordion-arrow">▼</span>
                         </button>
@@ -410,16 +419,16 @@
                             </button>
                             <div class="sb-div"></div>
                             <button type="button" class="sb-sidebar-card sb-card-sm" id="math-btn-unit-test" disabled>
-                                <span class="sb-card-icon">📝</span>
+                                <span class="sb-card-icon icon-wrap icon-wrap--math"><i data-lucide="file-check" width="16" height="16"></i></span>
                                 <span class="sb-card-label">Unit Test</span>
-                                <span class="sb-card-badge">🔒</span>
+                                <span class="sb-card-badge"><i data-lucide="lock" width="12" height="12"></i></span>
                             </button>
                         </div>
                     </div>
 
                     <div class="sb-accordion" data-group="math">
                         <button type="button" class="sb-accordion-header" data-target="math-fluency-body">
-                            <span class="sb-card-icon">🔢</span>
+                            <span class="sb-card-icon icon-wrap icon-wrap--math"><i data-lucide="hash" width="16" height="16"></i></span>
                             <span class="sb-card-label">Fact Fluency</span>
                             <span class="sb-accordion-arrow">▼</span>
                         </button>
@@ -440,7 +449,7 @@
 
                     <div class="sb-accordion" data-group="math">
                         <button type="button" class="sb-accordion-header" data-target="math-glossary-body">
-                            <span class="sb-card-icon">📖</span>
+                            <span class="sb-card-icon icon-wrap icon-wrap--math"><i data-lucide="library" width="16" height="16"></i></span>
                             <span class="sb-card-label">Glossary</span>
                             <span class="sb-accordion-arrow">▼</span>
                         </button>
@@ -457,7 +466,7 @@
 
                     <div class="sb-accordion" data-group="math">
                         <button type="button" class="sb-accordion-header" data-target="math-daily-body">
-                            <span class="sb-card-icon">🌞</span>
+                            <span class="sb-card-icon icon-wrap icon-wrap--math"><i data-lucide="sun" width="16" height="16"></i></span>
                             <span class="sb-card-label">Daily Challenge</span>
                             <span class="sb-accordion-arrow">▼</span>
                         </button>
@@ -474,7 +483,7 @@
 
                     <div class="sb-accordion" data-group="math">
                         <button type="button" class="sb-accordion-header" data-target="math-kangaroo-body">
-                            <span class="sb-card-icon">🧩</span>
+                            <span class="sb-card-icon icon-wrap icon-wrap--math"><i data-lucide="rabbit" width="16" height="16"></i></span>
                             <span class="sb-card-label">Kangaroo Practice</span>
                             <span class="sb-accordion-arrow">▼</span>
                         </button>
@@ -491,7 +500,7 @@
 
                     <div class="sb-accordion" data-group="math">
                         <button type="button" class="sb-accordion-header" data-target="math-problems-body">
-                            <span class="sb-card-icon">📊</span>
+                            <span class="sb-card-icon icon-wrap icon-wrap--math"><i data-lucide="bar-chart-2" width="16" height="16"></i></span>
                             <span class="sb-card-label">My Problems</span>
                             <span class="sb-accordion-arrow">▼</span>
                         </button>
@@ -580,35 +589,35 @@
                     <!-- MIDDLE: Category cards -->
                     <div class="home-cat-column">
                         <div class="home-cat-card" id="section-card-english">
-                            <span class="cat-dot cat-dot--english"></span>
+                            <span class="icon-wrap icon-wrap--english"><i data-lucide="book-open" width="16" height="16"></i></span>
                             <div class="cat-body">
                                 <div class="cat-title">English</div>
                                 <div class="cat-sub">Vocabulary &amp; reading</div>
                             </div>
                         </div>
                         <div class="home-cat-card" id="section-card-math">
-                            <span class="cat-dot cat-dot--math"></span>
+                            <span class="icon-wrap icon-wrap--math"><i data-lucide="calculator" width="16" height="16"></i></span>
                             <div class="cat-body">
                                 <div class="cat-title">Math</div>
                                 <div class="cat-sub">Numbers &amp; solving</div>
                             </div>
                         </div>
                         <div class="home-cat-card" id="section-card-diary">
-                            <span class="cat-dot cat-dot--diary"></span>
+                            <span class="icon-wrap icon-wrap--diary"><i data-lucide="pencil-line" width="16" height="16"></i></span>
                             <div class="cat-body">
                                 <div class="cat-title">Diary</div>
                                 <div class="cat-sub">Write about your day</div>
                             </div>
                         </div>
-                        <div class="home-cat-card" id="section-card-arcade">
-                            <span class="cat-dot cat-dot--arcade"></span>
+                        <div class="home-cat-card home-cat-card--disabled" id="section-card-arcade">
+                            <span class="icon-wrap icon-wrap--arcade"><i data-lucide="gamepad-2" width="16" height="16"></i></span>
                             <div class="cat-body">
                                 <div class="cat-title">Arcade</div>
                                 <div class="cat-sub">Type fast, earn XP</div>
                             </div>
                         </div>
                         <div class="home-cat-card" id="home-reward-card">
-                            <span class="cat-dot cat-dot--reward"></span>
+                            <span class="icon-wrap icon-wrap--reward"><i data-lucide="gift" width="16" height="16"></i></span>
                             <div class="cat-body">
                                 <div class="cat-title">Reward Shop</div>
                                 <div class="cat-sub">Redeem your points</div>
@@ -713,7 +722,7 @@
 <!-- GIA's Diary full-screen overlay -->
 <div id="diary-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="GIA's Diary">
     <div class="diary-overlay-header">
-        <div class="diary-overlay-title">📖 GIA's Diary</div>
+        <div class="diary-overlay-title">GIA's Diary</div>
         <button class="diary-overlay-close" id="diary-close" type="button" aria-label="Close">✕</button>
     </div>
     <div class="diary-overlay-body" id="diary-overlay-body"></div>

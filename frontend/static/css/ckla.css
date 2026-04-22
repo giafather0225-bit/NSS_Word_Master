@@ -28,7 +28,7 @@
   align-items: flex-start;
   gap: 12px;
   padding: 14px 20px;
-  border-bottom: 1px solid #F0F0F5;
+  border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
 .ckla-back-btn {
@@ -94,7 +94,7 @@
 .ckla-chip-done { opacity: 1; }
 
 /* ── Tabs ───────────────────────────────────────────────────── */
-.ckla-tabs { display: flex; border-bottom: 2px solid #F0F0F5; padding: 0 20px; flex-shrink: 0; }
+.ckla-tabs { display: flex; border-bottom: 2px solid var(--border-subtle); padding: 0 20px; flex-shrink: 0; }
 .ckla-tab {
   background: none;
   border: none;
@@ -115,14 +115,30 @@
 .ckla-passage {
   background: var(--bg-card);
   border-radius: var(--radius-md);
-  padding: 20px 24px;
+  padding: 24px 32px;
   box-shadow: var(--shadow-card);
-  line-height: 1.85;
-  font-size: 0.95rem;
+  line-height: 1.9;
+  font-size: 1rem;
   color: var(--text-primary);
+  max-width: 680px;
 }
-.ckla-passage p { margin: 0 0 12px; }
+.ckla-passage p {
+  margin: 0 0 1.2em;
+  text-indent: 1.4em;
+}
+.ckla-passage p:first-child { text-indent: 0; }
 .ckla-passage p:last-child { margin-bottom: 0; }
+
+/* Image/section marker — subtle, unobtrusive */
+.ckla-image-marker {
+  font-size: 0.72rem;
+  color: var(--text-hint);
+  font-style: italic;
+  margin: 0.4em 0 1em;
+  padding-left: 0.8em;
+  border-left: 2px solid var(--border-subtle);
+  text-indent: 0;
+}
 
 /* ── Vocab card ─────────────────────────────────────────────── */
 .ckla-vocab-nav { text-align: center; font-size: 0.8rem; color: var(--text-secondary); }
@@ -154,7 +170,7 @@
 .ckla-vocab-arrows, .ckla-q-arrows { display: flex; justify-content: space-between; gap: 8px; }
 .ckla-arrow-btn {
   background: var(--bg-card);
-  border: 1px solid #E5E5EE;
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   padding: 8px 16px;
   font-size: 0.85rem;
@@ -174,7 +190,7 @@
 .ckla-question-text { font-size: 0.93rem; color: var(--text-primary); line-height: 1.65; font-weight: 500; }
 .ckla-answer-input {
   width: 100%;
-  border: 1.5px solid #E5E5EE;
+  border: 1.5px solid var(--border-default);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
   font-size: 0.88rem;

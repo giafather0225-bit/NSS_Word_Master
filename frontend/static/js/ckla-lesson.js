@@ -41,10 +41,10 @@ function renderCKLALesson(data) {
       </div>
     </div>
     <div class="ckla-tabs" role="tablist">
-      <button class="ckla-tab active" id="tab-reading"   onclick="switchCKLATab('reading')">📖 Read</button>
-      <button class="ckla-tab"        id="tab-vocab"     onclick="switchCKLATab('vocab')">📝 Words</button>
-      <button class="ckla-tab"        id="tab-questions" onclick="switchCKLATab('questions')">❓ Q&amp;A</button>
-      <button class="ckla-tab"        id="tab-word-work" onclick="switchCKLATab('word-work')">⭐ Word Work</button>
+      <button class="ckla-tab active" id="tab-reading"   onclick="switchCKLATab('reading')">Read</button>
+      <button class="ckla-tab"        id="tab-vocab"     onclick="switchCKLATab('vocab')">Words</button>
+      <button class="ckla-tab"        id="tab-questions" onclick="switchCKLATab('questions')">Q&amp;A</button>
+      <button class="ckla-tab"        id="tab-word-work" onclick="switchCKLATab('word-work')">Word Work</button>
     </div>
     <div id="ckla-tab-content" class="ckla-tab-content"></div>`;
 
@@ -69,18 +69,68 @@ function switchCKLATab(tab) {
 
 /* ── Tab: Reading ──────────────────────────────────────────────────────────── */
 
+/** Parse raw passage string into renderable blocks. @tag ACADEMY CKLA */
+function _parsePassage(raw) {
+  const lines = raw.split('\n');
+  const blocks = [];
+  let buf = [];
+
+  const flush = () => {
+    if (!buf.length) return;
+    // Join hyphenated line-breaks (spring-\ncleaning → spring-cleaning)
+    // and regular line-breaks with a space
+    let text = '';
+    for (let i = 0; i < buf.length; i++) {
+      const line = buf[i];
+      if (i === 0) { text = line; continue; }
+      text = text.endsWith('-') ? text + line : text + ' ' + line;
+    }
+    text = text.trim();
+    if (text) blocks.push({ type: 'text', content: text });
+    buf = [];
+  };
+
+  for (let i = 1; i < lines.length; i++) { // skip title line (shown in header)
+    const line = lines[i].trim();
+    if (!line) continue;
+
+    if (line.startsWith('§')) {
+      flush();
+      blocks.push({ type: 'marker', content: line.replace(/^§\s*/, '') });
+      continue;
+    }
+
+    buf.push(line);
+
+    // Heuristic paragraph break: line ends sentence AND buffer is substantial
+    const endsWithPunct = /[.!?'"""]\s*$/.test(line);
+    const nextLine = (lines[i + 1] || '').trim();
+    const nextIsNewSentence = /^[A-Z"']/.test(nextLine) && !nextLine.startsWith('§');
+    if (endsWithPunct && nextIsNewSentence && buf.join(' ').length > 80) {
+      flush();
+    }
+  }
+  flush();
+  return blocks;
+}
+
 /** @tag ACADEMY CKLA */
 function _renderReading() {
   const el = document.getElementById('ckla-tab-content');
   if (!el) return;
-  const prog  = _cklaLesson.progress;
-  const paras = _cklaLesson.passage.split('\n').filter(p => p.trim());
+  const prog   = _cklaLesson.progress;
+  const blocks = _parsePassage(_cklaLesson.passage);
+
+  const html = blocks.map(b => {
+    if (b.type === 'marker') {
+      return `<div class="ckla-image-marker">${_esc(b.content)}</div>`;
+    }
+    return `<p>${_esc(b.content)}</p>`;
+  }).join('');
 
   el.innerHTML = `
     <div class="ckla-passage-wrap">
-      <div class="ckla-passage">
-        ${paras.map(p => `<p>${_esc(p.trim())}</p>`).join('')}
-      </div>
+      <div class="ckla-passage">${html}</div>
     </div>
     <div class="ckla-action-bar">
       ${prog.reading_done

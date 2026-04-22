@@ -59,7 +59,7 @@ function switchView(view) {
     hide(topBar);                  // roadmap tabs not relevant on diary
     sidebar.dataset.mode = 'diary';
     updateSidebarMode('diary');
-    if (typeof openDiarySection === 'function') openDiarySection('journal');
+    if (typeof openDiarySection === 'function') openDiarySection('today');
   }
 }
 
@@ -90,6 +90,7 @@ async function renderHomeDashboard() {
   renderSectionCards();
   renderGrowthTheme();
   await renderSummaryBar();
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /**

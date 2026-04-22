@@ -1119,4 +1119,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         history.replaceState({}, "", window.location.pathname);
         if (typeof openParentPanel === "function") openParentPanel();
     }
+
+    if (typeof lucide !== "undefined") lucide.createIcons();
 });
