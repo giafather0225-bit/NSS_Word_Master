@@ -1,270 +1,157 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
+> Last updated: 2026-04 | 실제 현황 기준으로 전면 재작성
 
 ## Overview
-- **Product**: English vocabulary learning app for children — 5-stage lesson flow, AI scoring, XP/Streak system, Reward Shop, Parent Dashboard, and Growth Theme.
-- **Status**: ✅ Phases 1–10 complete. All planned features shipped.
+- **Product**: 9세 여아(Gia)를 위한 AI 학습 앱 — English vocabulary, Math Academy, Diary, Arcade
 - **GitHub**: https://github.com/giafather0225-bit/NSS_Word_Master
+- **Working directory**: `/Users/markjhlee/Documents/GitHub/NSS_Word_Master`
+- **DB**: `~/NSS_Learning/database/voca.db` (SQLite WAL)
+- **Server**: `python3 app.py` → http://localhost:8000
 
 ---
 
 ## Tech Stack
-- **Backend**: Python / FastAPI (`routers/` structure)
-- **Frontend**: HTML, CSS, Vanilla JS (modular — no bundler)
-- **Database**: SQLite WAL at `~/NSS_Learning/database/voca.db`
-- **AI**: Ollama (gemma2:2b, http://localhost:11434) / Gemini fallback
-- **Speech**: Web Speech API (browser-based)
-- **TTS**: edge-tts → BytesIO in-memory → fetch → Blob → Audio (no temp files, no afplay)
+- **Backend**: Python / FastAPI (`backend/routers/` — 40+ routers)
+- **Frontend**: HTML + CSS + Vanilla JS (no bundler, no framework)
+- **Database**: SQLite WAL
+- **AI**: Ollama (`gemma2:2b`, local) → Gemini fallback (`GEMINI_API_KEY`)
+- **TTS**: edge-tts → BytesIO in-memory (no temp files)
+- **Speech**: Web Speech API (browser)
+- **Icons**: Lucide (CDN, stroke-width 1.5) — emoji 사용 금지
 
 ---
 
-## Work Principles (MUST FOLLOW — violations invalidate the task)
+## Work Principles (MUST FOLLOW)
 
-1. Read existing code before modifying. Never break existing functionality.
-2. Max 300 lines per file. Split into modules when approaching limit.
-3. `child.js` is already split into modules (Phase 1 done). Do not revert.
-4. CSS: use `theme.css` variables only. No hard-coded hex colors in component CSS.
-5. All API endpoints: proper error handling + correct HTTP status codes.
-6. DB schema changes: write migration in `backend/migrations/`.
-7. Python: type hints + docstrings. JS: JSDoc `@tag` comments on every function.
-8. async/await consistently. No N+1 queries. Use indexes.
-9. Security: sanitize all user input. SQL injection / XSS prevention. Prompt injection defense on AI inputs.
-10. After any change: verify 5-Stage learning, Review, Final Test, Unit Test, Word Manager still work.
-11. UI text in English only. Apple-minimal design (no gradients, no heavy shadows).
-12. When changing element IDs/classes: update ALL references simultaneously.
-13. List all modified files at the end of every response.
-
----
-
-## File Structure
-
-```
-NSS_Word_Master/
-├── CLAUDE.md
-├── backend/
-│   ├── main.py                    # FastAPI entry point + legacy routes pending extraction
-│   ├── database.py                # SQLite WAL engine, get_db(), LEARNING_ROOT
-│   ├── models.py                  # SQLAlchemy models (8 existing + 15 new = 23 total)
-│   ├── API_INDEX.md               # All API endpoints index
-│   ├── DB_INDEX.md                # All DB tables index
-│   ├── routers/
-│   │   ├── lessons.py             # /api/subjects, /api/textbooks, /api/lessons, /api/voca/*
-│   │   ├── study.py               # /api/study, /api/learning/*
-│   │   ├── progress.py            # /api/progress/*
-│   │   ├── review.py              # /api/review/* (SM-2)
-│   │   ├── words.py               # /api/words/*, /api/mywords/*
-│   │   ├── files.py               # /api/files/*, /api/storage/*, /api/ocr/*
-│   │   ├── tts.py                 # /api/tts/*
-│   │   ├── ai_coach.py            # /api/ai-coach/today (stub → Phase 3)
-│   │   ├── xp.py                  # ★ Phase 3: /api/xp/*, /api/streak/*, /api/tasks/today
-│   │   ├── reward_shop.py         # ★ Phase 5: /api/shop/*
-│   │   ├── daily_words.py         # ★ Phase 4: /api/daily-words/*
-│   │   ├── diary.py               # ★ Phase 6: /api/diary/*, /api/growth/*, /api/day-off/*
-│   │   ├── calendar_api.py        # ★ Phase 6: /api/calendar/*
-│   │   ├── parent.py              # ★ Phase 7: /api/parent/*
-│   │   └── reminder.py            # ★ Phase 2: /api/reminders/today
-│   ├── sm2.py                     # SM-2 algorithm (top-level, existing)
-│   ├── ai_service.py              # Ollama/Gemini unified (top-level, existing)
-│   ├── tts_edge.py                # edge-tts BytesIO (top-level, existing)
-│   ├── services/
-│   │   ├── xp_engine.py           # ★ Phase 3
-│   │   ├── streak_engine.py       # ★ Phase 3
-│   │   ├── daily_words_engine.py  # ★ Phase 4
-│   │   ├── academy_session.py     # Phase 2: session tracking
-│   │   ├── email_sender.py        # Phase 6: day-off email
-│   │   ├── pin_guard.py           # Phase 5/7: PIN verification dep
-│   │   ├── pin_hash.py            # Phase 5/7: pbkdf2 PIN hashing
-│   │   ├── backup_engine.py       # ★ Phase 10
-│   │   └── ollama_manager.py      # ★ Phase 10
-│   ├── data/
-│   │   └── daily_words/           # ★ Phase 4: grade_2.json … grade_9.json
-│   └── migrations/
-│       └── 001_add_new_tables.py  # ✅ Phase 1: 15 new tables
-├── frontend/
-│   ├── COMPONENT_MAP.md           # Screen → JS/CSS/HTML/API map
-│   └── static/
-│       ├── css/
-│       │   ├── theme.css          # ★ SINGLE SOURCE OF TRUTH for all CSS variables
-│       │   ├── style.css          # Global styles (references theme.css vars)
-│       │   ├── main.css           # Layout (references theme.css vars, alias vars only)
-│       │   ├── home.css           # ★ Phase 2
-│       │   ├── preview.css
-│       │   ├── wordmatch.css
-│       │   ├── fillblank.css
-│       │   ├── spelling.css
-│       │   ├── sentence.css
-│       │   ├── finaltest.css
-│       │   ├── unittest.css
-│       │   ├── review.css
-│       │   ├── word-manager.css
-│       │   ├── reward-shop.css    # ★ Phase 5
-│       │   ├── diary.css          # ★ Phase 6
-│       │   ├── calendar.css       # ★ Phase 6
-│       │   └── parent.css         # ★ Phase 7
-│       └── js/
-│           ├── core.js            # ★ CONF, STAGE, global state, utilities, audio FX
-│           ├── tts-client.js      # ★ TTS fetch/play helpers
-│           ├── analytics.js       # ★ Learning log + word attempt tracking
-│           ├── navigation.js      # ★ Sidebar, dropdowns, roadmap UI
-│           ├── preview.js         # ★ Step 1: Preview + Shadow + Spell
-│           ├── wordmatch.js       # ★ Step 2: Word Match
-│           ├── fillblank.js       # ★ Step 3: Fill the Blank
-│           ├── spelling.js        # ★ Step 4: Spelling Master
-│           ├── sentence.js        # ★ Step 5: Make a Sentence
-│           ├── child.js           # App shell: renderStage, DEV, DOMContentLoaded
-│           ├── sentence_ai.js     # AI sentence evaluation helpers
-│           ├── finaltest.js
-│           ├── unittest.js
-│           ├── review.js
-│           ├── word-manager.js
-│           ├── home.js            # ★ Phase 2
-│           ├── reward-shop.js     # ★ Phase 5
-│           ├── diary.js           # ★ Phase 6
-│           ├── calendar.js        # ★ Phase 6
-│           ├── parent.js
-│           ├── growth-theme.js    # ★ Phase 8
-│           └── ai-coach.js        # ★ Phase 3
-```
+1. 수정 전 반드시 기존 코드 읽기. 기존 기능 절대 파괴 금지.
+2. 파일당 최대 300줄. 초과 시 모듈 분리.
+3. CSS: `theme.css` 변수만 사용. 하드코딩 hex 금지.
+4. 모든 API: 적절한 에러 핸들링 + HTTP 상태코드.
+5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 작성.
+6. Python: type hints + docstrings. JS: JSDoc `@tag` comments.
+7. async/await 일관성. N+1 쿼리 금지.
+8. 모든 사용자 입력 sanitize. SQL injection / XSS / prompt injection 방어.
+9. 변경 후 스모크 테스트: 5-Stage 학습, Review, Final Test, Unit Test, Word Manager.
+10. UI 텍스트: 영어만. 이모지 사용 금지 (Lucide 아이콘으로 대체).
+11. class/ID 변경 시 모든 참조 동시 업데이트.
+12. 응답 마지막에 수정된 파일 목록 기재.
 
 ---
 
 ## Design System (theme.css — single source of truth)
 
+**현재 적용된 토큰 (2026-04 Apple Soft Study 재설계):**
+
 ```css
 :root {
-  --color-primary:        #D4619E;
-  --color-primary-hover:  #C0508D;
-  --color-primary-light:  #FAE8F3;
-  --color-secondary:      #4A8E8E;
-  --color-success:        #34C759;
-  --color-error:          #FF3B30;
-  --color-warning:        #FF9500;
-  --bg-page:              #FDF2F8;
-  --bg-card:              #FFFFFF;
-  --text-primary:         #2D2D3F;
-  --text-secondary:       #8B8BA0;
-  --shadow-card:          0 2px 12px rgba(0,0,0,0.06);
-  --radius-sm:            8px;
-  --radius-md:            12px;
-  --radius-lg:            20px;
-  --radius-full:          9999px;
-  --font-family:          -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  /* Primary — Apple Blue (기능 요소 전용: 버튼, 링크, 활성 상태) */
+  --color-primary:       #0A84FF;
+  --color-primary-hover: #0070E0;
+  --color-primary-light: rgba(10, 132, 255, 0.08);
+  --color-primary-glow:  rgba(10, 132, 255, 0.15);
+
+  /* Subtle Accents — 점·선·뱃지 전용 (면적 <10% 규칙) */
+  --color-lilac:      #CDBDFF;  /* Diary / 완료 뱃지 */
+  --color-lilac-light:#F0ECFF;
+  --color-pink:       #E8CFE0;  /* 개인화 포인트 */
+  --color-pink-light: #F8F0F5;
+  --color-mint:       #CFE9E2;  /* Math / 긍정 피드백 */
+  --color-mint-light: #EBF7F4;
+  --color-peach:      #FFDAB9;
+  --color-peach-light:#FFF5EC;
+
+  /* 섹션 컬러 — 아이콘 색 + 4px vertical line 전용 */
+  --section-english-color: var(--color-primary);  /* Blue */
+  --section-diary-color:   var(--color-lilac);    /* Lilac */
+  --section-math-color:    var(--color-mint);     /* Mint */
+
+  /* 배경 */
+  --bg-page:    #F5F5F7;
+  --bg-card:    #FFFFFF;
+  --bg-sidebar: #F2F2F5;
+  --bg-surface: #ECECF1;
+
+  /* 텍스트 */
+  --text-primary:   #111111;
+  --text-secondary: #5C5C66;
+  --text-hint:      #8E8E98;
+
+  /* 테두리 */
+  --border-default: #D9D9E0;
+  --border-subtle:  #ECECF1;
+  --border-card:    rgba(0, 0, 0, 0.05);
+
+  /* 그림자 — 최소화, border 우선 */
+  --shadow-card:  0 0 0 1px var(--border-card);
+  --shadow-modal: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* Radius */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* Progress (Apple Fitness 스타일) */
+  --progress-bar-height: 2px;
+  --progress-bar-height-lg: 6px;
+
+  /* Sidebar */
+  --sidebar-width: 240px;
+
+  /* 폰트 */
+  --font-family:        -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-xs: 12px; --font-size-sm: 14px;
+  --font-size-md: 16px; --font-size-lg: 18px;
+  --font-size-xl: 24px; --font-size-2xl: 32px;
+  --font-weight-normal: 400; --font-weight-medium: 500;
+  --font-weight-bold: 600;   --font-weight-extra: 700;
+
+  /* 애니메이션 */
+  --transition-fast:   0.12s ease;
+  --transition-normal: 0.18s ease;
+  --transition-slow:   0.3s ease;
 }
 ```
 
-Rules:
-- All component CSS uses `var(--token)` only — no hard-coded hex values
-- Apple-minimal: no gradients, box-shadow ≤ `0 2px 12px rgba(0,0,0,0.06)`
-- Dark mode: reserved as `[data-theme="dark"]` in theme.css — not yet active
-
 ---
 
-## Script Loading Order (child.html)
+## Dark Mode 토큰 (준비됨 — UI 토글 미구현)
 
-```html
-<!-- Base modules (load first) -->
-<script src="/static/js/core.js?v=1"></script>
-<script src="/static/js/tts-client.js?v=1"></script>
-<script src="/static/js/analytics.js?v=1"></script>
-<script src="/static/js/navigation.js?v=1"></script>
-<!-- Stage modules -->
-<script src="/static/js/preview.js?v=1"></script>
-<script src="/static/js/wordmatch.js?v=1"></script>
-<script src="/static/js/fillblank.js?v=1"></script>
-<script src="/static/js/spelling.js?v=1"></script>
-<script src="/static/js/sentence.js?v=1"></script>
-<!-- App shell (last) -->
-<script src="/static/js/child.js?v=29"></script>
-<!-- Feature overlays -->
-<script src="/static/js/finaltest.js"></script>
-<script src="/static/js/unittest.js"></script>
-<script src="/static/js/review.js"></script>
-<script src="/static/js/word-manager.js"></script>
-<script src="/static/js/sentence_ai.js"></script>
+```css
+[data-theme="dark"] {
+  --bg-page:    #1C1C1E;
+  --bg-card:    #2C2C2E;
+  --bg-sidebar: #232326;
+  --bg-surface: #343438;
+
+  --text-primary:   #F5F5F7;
+  --text-secondary: #C7C7CC;
+  --text-hint:      #8E8E93;
+
+  --border-default: #3A3A3C;
+  --border-subtle:  #2F2F33;
+  --border-card:    rgba(255, 255, 255, 0.06);
+
+  --color-primary-light: #123A63;
+  --color-lilac-light:   #2A2547;
+  --color-mint-light:    #1A2E2B;
+  --color-pink-light:    #2E2030;
+
+  --color-success: #32D74B;
+  --color-error:   #FF6961;
+  --color-warning: #FFD60A;
+
+  --color-lilac: #B8A7FF;
+  --color-mint:  #9BCFC3;
+  --color-pink:  #CFAFC3;
+
+  --shadow-card:  0 0 0 1px var(--border-card);
+  --shadow-modal: 0 8px 24px rgba(0, 0, 0, 0.32);
+
+  --overlay-scrim: rgba(0, 0, 0, 0.6);
+}
 ```
-
-All modules share global `window` scope — no ES module `import`/`export`.
-
----
-
-## Dev Tools (child.js — do not modify)
-
-```javascript
-DEV.go(1)   // → Preview
-DEV.go(2)   // → Word Match
-DEV.go(3)   // → Fill the Blank
-DEV.go(4)   // → Spelling Master
-DEV.go(5)   // → Make a Sentence
-DEV.go(6)   // → Final Test
-DEV.skip()  // → skip current word
-```
-
----
-
-## Code Annotation Rules
-
-### File Header (every JS/CSS/Python file)
-
-```javascript
-/* ================================================================
-   [filename] — [one-line description]
-   Section: [Home / English / Diary / Shop / Parent / System]
-   Dependencies: [list]
-   API endpoints: [list or "none"]
-   ================================================================ */
-```
-
-```python
-"""
-routers/xp.py — XP system API
-Section: System
-Dependencies: services/xp_engine.py, models.py (XPLog)
-API: GET /api/xp/summary, POST /api/xp/award
-"""
-```
-
-### Function Tags (every function)
-
-```javascript
-/** @tag XP @tag AWARD */
-async function awardXP(action, detail) { ... }
-```
-
-```python
-# @tag XP @tag STREAK
-def check_streak_bonus(user_date: str) -> int:
-```
-
-Available tags:
-```
-HOME_DASHBOARD  TODAY_TASKS   REMINDER      AI_COACH
-SIDEBAR         ACCORDION     NAVIGATION
-ENGLISH         ACADEMY       DAILY_WORDS   MY_WORDS      READING
-PREVIEW         SHADOW        SENTENCE_READ SPELL
-WORD_MATCH      FILL_BLANK    SPELLING      SENTENCE
-FINAL_TEST      UNIT_TEST     WEEKLY_TEST
-REVIEW          SM2           ACTIVE_RECALL
-DIARY           JOURNAL       MY_SENTENCES  MY_WORLDS     GROWTH_TIMELINE
-CALENDAR        DAY_OFF
-XP              STREAK        AWARD         BONUS
-SHOP            REWARD        PURCHASE      PIN
-PARENT          SETTINGS      WORD_STATS    SCHEDULE      NOTIFICATION
-TTS             AI            OLLAMA        GEMINI        OCR
-BACKUP          SYSTEM        THEME         GROWTH_THEME
-```
-
----
-
-## Database Models
-
-### Existing (Phase 0 — DO NOT modify schema)
-`Lesson`, `StudyItem`, `Progress`, `Reward`, `Schedule`, `UserPracticeSentence`, `Word`, `WordReview`
-
-### New (Phase 1 — migration 001_add_new_tables.py)
-`AppConfig`, `XPLog`, `StreakLog`, `TaskSetting`, `RewardItem`, `PurchasedReward`,
-`DailyWordsProgress`, `DiaryEntry`, `GrowthEvent`, `DayOffRequest`, `AcademySession`,
-`LearningLog`, `WordAttempt`, `AcademySchedule`, `GrowthThemeProgress`
-
-Full column specs: `backend/DB_INDEX.md`
 
 ---
 
@@ -276,244 +163,210 @@ Home Dashboard → English → Lesson Select
 → Spelling (Step 4) → Make Sentence (Step 5) → Final Test → Complete
 ```
 
----
+### Step Specs
 
-## Step Specs
-
-### Step 1 — Preview
+**Step 1 — Preview**
 4×5 card grid. Click → popup modal.
 - POS pill → Word (32px 700) → Definition → Example (italic)
-- Listen (TTS) → Shadow ×2 (mic → Web Speech → ≥80% pass) → Spell ×2 (input → correct/wrong)
-- Phase 9 addition: Sentence Reading ×2 (TTS example → mic → ≥90% pass)
+- Listen (TTS) → Shadow ×2 (mic → Web Speech → ≥80%) → Spell ×2
+- Sentence Reading ×2 (TTS → mic → ≥90%)
 
-### Step 2 — Word Match
-7 words/round, two columns. Match word ↔ definition.
-- Selected: `--color-primary` border+bg. Matched: `--color-success` + opacity 0.6. Wrong: shake 0.3s.
+**Step 2 — Word Match**
+7 words/round, 두 컬럼. word ↔ definition 매칭.
+- Selected: `--color-primary` border+bg
+- Matched: `--color-success` + opacity 0.6
+- Wrong: shake 0.3s
 
-### Step 3 — Fill the Blank
-Sentence with blank + word tag pills. Select correct word.
-- Correct: `--color-success`. Wrong: `--color-error` + shake.
+**Step 3 — Fill the Blank**
+문장 빈칸 + word tag pills. 정답 선택.
+- Correct: `--color-success` / Wrong: `--color-error` + shake
 
-### Step 4 — Spelling Master
-Wordle-style 48×48px letter boxes. 3 passes (hint → first letter → blank).
-Wrong → retryQueue (must clear all before advancing).
+**Step 4 — Spelling Master**
+Wordle 스타일 48×48px 박스. 3 passes (hint→첫글자→blank). Wrong → retryQueue (전부 클리어 후 진행).
 
-### Step 5 — Make a Sentence
-Stage 1: drag-and-drop word scramble.
-Stage 2: free writing → AI scores grammar+spelling (Ollama → Gemini fallback).
+**Step 5 — Make a Sentence**
+Stage 1: drag-and-drop word scramble. Stage 2: free writing → AI 채점 (grammar+spelling, Ollama→Gemini fallback).
 
-### Final Test
-MC 20 + Fill-in 20. 30-minute timer. Pass = 90%.
-Pass → XP +10 + `GrowthEvent("lesson_pass")`.
-Fail → re-study required. Retry pass → XP +10.
-
----
-
-## Sidebar Structure (English Mode — Phase 2)
-
-```
-← Home
-VOCABULARY
-  📕 Academy         ▼   (accordion — one open at a time)
-    Textbook: [dropdown]
-    Lesson:   [dropdown]
-    ─────────────────
-    Today's Review  [N]   (SM-2 due count badge; hidden when 0)
-    Final Test  🔒
-    Unit Test   ›
-  📗 Daily Words      ▼
-    This Week: 42/70
-    Today: 3/10
-    Weekly Test ›
-  📘 My Words         ▼
-    3 lists
-    Weekly Test › (needs 50+ words)
-READING
-  📖 Articles  › (Coming Soon)
-```
-
-Settings (Parent Dashboard) access: Home banner "···" menu → 4-digit PIN.
-Not duplicated in English sidebar.
-
----
-
-## Home Dashboard Layout (Phase 2)
-
-```
-[AI Coach Message Card]           ← GET /api/ai-coach/today
-[Reminder Banners (stackable)]    ← GET /api/reminders/today
-[Today's Tasks]
-  ★ Review (12 words) .......... +2 XP [Required]
-    Daily Words (0/10) ......... +5 XP
-    Academy Lesson 5 ........... +10 XP
-    Daily Journal .............. +10 XP
-  ─────────────────────────────
-  Must Do bonus ................ +5 XP
-  All complete bonus ........... +15 XP
-[Section Cards: English | Math | Diary | Arcade (Coming Soon) | Reward Shop]
-[Growth Theme Illustration (200×200 SVG)]
-[Bottom Bar: Words I Know | ⭐ Total XP | 🔥 Streak | Reward Shop]
-```
+**Final Test**
+MC 20 + Fill-in 20. 30분 타이머. 합격 = 90%. 합격 → XP +10 + GrowthEvent("lesson_pass"). 불합격 → 재학습 필요. 재시도 합격 → XP +10.
 
 ---
 
 ## XP Rules
 
 | Action | XP | Limit |
-|--------|-----|-------|
+|---|---|---|
 | Word correct | +1 | per attempt |
 | Stage complete | +2 | once/stage/lesson |
-| Final Test pass | +10 | once; retry pass = +10 |
+| Final Test pass | +10 | once; retry = +10 |
 | Unit Test pass | +5 | once |
-| Daily Words daily complete | +5 | once/day |
+| Daily Words complete | +5 | once/day |
 | Weekly Test pass | +10 | once/week |
 | Review complete | +2 | once/day |
 | Daily Journal | +10 | once/day |
-| Must Do all complete | +5 | once/day |
+| Must Do all | +5 | once/day |
 | All tasks complete | +15 | once/day |
 | 7-day streak | +30 | per occurrence |
 | 30-day streak | +200 | per occurrence |
-| Arcade round (tiered) | +1 / +2 / +3 | 500 / 1000 / 2000 score; daily cap +10 |
+| Arcade round | +1/+2/+3 | 500/1000/2000점; daily cap +10 |
+| Math Kangaroo complete | +5 | per set |
+| Math Kangaroo ≥80% | +5 | per set |
+| Math Kangaroo perfect | +10 | per set |
 
-No XP: test fail, re-study after fail.
+No XP: 테스트 실패, 실패 후 재학습.
 
 ---
 
 ## Streak Rules
-- Review available day: Review + Daily Words → streak maintained
-- No review due: Daily Words only → streak maintained
-- Approved Day Off → streak frozen (maintained)
+- Review 가능한 날: Review + Daily Words → streak 유지
+- Review 없는 날: Daily Words만 → streak 유지
+- 승인된 Day Off → streak 동결 (유지)
 
 ---
 
-## Academy Session Rules (Phase 2+)
-- Session starts on lesson select
-- Max 2 days between stages; day 3 → auto-reset + `GrowthEvent("lesson_reset")` + home banner
-- Tracked via `AcademySession` table
+## Diary Sections
+
+| 섹션 | 설명 | 상태 |
+|---|---|---|
+| Today | 대시보드 (stats 4개 + week calendar + milestones) | ✅ 2026-04 신규 |
+| Daily Journal | 글쓰기 + AI feedback (2-column layout) | ✅ |
+| Free Writing | 자유 글쓰기 | ✅ |
+| My Sentences | Step 5 문장 모음, 2주 경과 → Rewrite 프롬프트 | ✅ |
+| My Worlds | 완료한 Growth Theme 컬렉션 | ✅ |
+| Growth Timeline | GrowthEvent 로그 (역순) | ✅ |
+| Calendar | 월간 뷰 (🔥⬜🏖️📝✅ 마커) | ✅ |
+| Day Off | 사유 폼 → 부모 이메일 → pending/approved/denied | ✅ |
 
 ---
 
-## GIA's Diary Sections (Phase 6)
-- **Daily Journal**: write + optional photo + AI grammar feedback
-- **Free Writing**: Coming Soon
-- **My Sentences**: Step 5 sentences; 2-week-old → "Rewrite!" prompt
-- **My Worlds**: completed theme collection
-- **Growth Timeline**: `GrowthEvent` log (reverse-chron)
-- **Calendar**: monthly view with 🔥⬜🏖️📝✅ markers
-- **Day Off**: reason form → email to parent → pending/approved/denied
+## Reward Shop
+기본 아이템: YouTube 30분(300), Roblox 30분(300), Family Movie(500), Dinner Out(500), Custom Reward(300).
+
+구매 플로우: 카드 클릭 → 확인 팝업 → XP 차감 → PurchasedReward 생성.
+사용 플로우: My Rewards → [Use] → 4자리 PIN → is_used=True.
 
 ---
 
-## Reward Shop (Phase 5)
-Default items (seeded): YouTube 30min (300), Roblox 30min (300), Family Movie (500), Dinner Out (500), Custom Reward (300).
-
-Buy flow: card click → confirm popup → XP deducted → `PurchasedReward` created.
-Use flow: "My Rewards" → [Use] → 4-digit PIN → `is_used=True`.
+## Parent Dashboard
+접근: Home 배너 "···" → 4자리 PIN.
+섹션: Overview, Word Stats, Shop Management, Task Settings, Academy Schedule, Day Off Requests, Notifications, Change PIN, Add Textbook.
 
 ---
 
-## Parent Dashboard (Phase 7)
-Access: Settings(⚙️) → 4-digit PIN.
-Sections: Overview, Word Stats, Shop Management, Task Settings, Academy Schedule, Day Off Requests, Notifications, Change PIN, Add Textbook.
+## Math Module
+
+### Math Academy
+- G4 완성, G3 일부 완성
+- CPA 방식 (Concrete → Pictorial → Abstract)
+- routers: `math_academy.py`, `math_daily.py`, `math_fluency.py`, `math_glossary.py`, `math_placement.py`, `math_problems.py`
+
+### Math Kangaroo
+- 100+ sets (IKMC 2012-2023, Lebanon, India KSF, USA 2003-2025)
+- 레벨: Pre-Ecolier(1-2), Ecolier(3-4), Benjamin(5-6)
+- 모드: Practice (즉시 채점) / Test (타이머 + 전체 채점)
+- XP: complete +5, ≥80% +5, perfect +10
 
 ---
 
-## Growth Theme (Phase 8)
-5 themes × 6 steps × 3 variations = 90 SVGs in `frontend/static/img/themes/`.
-XP milestones: 100→300→600→1000→1500 XP per step.
-Complete → `GrowthEvent("theme_complete")` + added to My Worlds.
+## Arcade
+
+| 게임 | 파일 |
+|---|---|
+| Word Invaders | `arcade-word-invaders.js` |
+| Spell Rush | `arcade-spell-rush.js` |
+| Definition Match | `arcade-definition-match.js` |
+| Crossword | `arcade-crossword.js` |
+| Sudoku | `arcade-sudoku.js` |
+| Make 24 | `arcade-make24.js` |
+| Math Invaders | `arcade-math-invaders.js` |
+
+허브 화면은 calm (배경 = `bg-page`, 카드만 표시). 게임 진입 후 내부에서만 에너지 허용.
 
 ---
 
-## System (Phase 10)
-- **Ollama auto-start**: `services/ollama_manager.py` — subprocess `ollama serve` + ping + fallback UI
-- **Auto-backup**: `services/backup_engine.py` — copy DB on startup, keep 7 days
-- **macOS LaunchAgent**: plist example in README
+## CKLA Academy
+- CKLA Grade 3 읽기 교재 기반
+- 탭: Read / Words / Q&A / Word Work
+- 아티클 텍스트: `_parsePassage()` 로 PDF 줄바꿈 처리 (산문 렌더링)
+- routers: `ckla.py`, `ckla_review.py`
+- frontend: `ckla.js`, `ckla-lesson.js`, `ckla.css`
 
 ---
 
-## Implementation Phases
-
-| Phase | Status | Description |
-|-------|--------|-------------|
-| 1 | ✅ DONE | Infra: JS modules, router split, CSS cleanup, DB migration |
-| 2 | ✅ DONE | Home dashboard + sidebar accordion + section navigation |
-| 3 | ✅ DONE | XP + Streak engines + AI coach |
-| 4 | ✅ DONE | Daily Words G2–G9 |
-| 5 | ✅ DONE | Reward Shop + PIN |
-| 6 | ✅ DONE | GIA's Diary (Journal, Timeline, Calendar, Day Off) |
-| 7 | ✅ DONE | Parent Dashboard |
-| 8 | ✅ DONE | Growth Theme (90 SVGs) |
-| 9 | ✅ DONE | Preview Sentence Reading (×2) |
-| 10 | ✅ DONE | Ollama auto-start, auto-backup, macOS LaunchAgent |
-
-Each phase: verify existing features still work before marking complete.
+## AI Assistant (Shadow)
+학습 중 실시간 도움 패널
+- STT: `ai-assistant-stt.js` (Web Speech API)
+- TTS: `ai-assistant-tts.js` (edge-tts)
+- routers: `ai_assistant.py`, `ai_assistant_log.py`, `ai_assistant_safety.py`
 
 ---
 
-## Math Kangaroo Module (Phase 1 — rebuilt)
+## System
 
-Real-competition-format practice for Pre-Ecolier (1-2), Ecolier (3-4), Benjamin (5-6).
-
-**API** — `backend/routers/math_kangaroo.py`
-- `GET  /api/math/kangaroo/sets` — list all sets with `best_score` + `completed` per `MathKangarooProgress`.
-- `GET  /api/math/kangaroo/set/{set_id}` — full set (answers/solutions/difficulty stripped).
-- `POST /api/math/kangaroo/submit-answer` — Practice mode, grade one question, return solution.
-- `POST /api/math/kangaroo/submit` — Test mode, weighted scoring (3/4/5 pts), save best, award XP.
-
-**XP rules** (in `services/xp_engine.py XP_RULES_DEFAULT`):
-`math_kangaroo_complete` +5, `math_kangaroo_80` +5 (≥80%), `math_kangaroo_perfect` +10.
-Awarded via direct `XPLog` insertion (bypasses action-level daily dedup so each set counts).
-
-**DB** — `MathKangarooProgress` (models/math.py). Migration `migrations/009_kangaroo_columns.py`
-adds: `level`, `max_score`, `time_spent_seconds`, `answers_json`. Idempotent.
-
-**Data** — `backend/data/math/kangaroo/*.json`. Schema: `sections[{name, points_per_question, questions[]}]`.
-Every question: `id, number, points, topic, question_text, image_svg, image_description, options{A..E}, answer, solution, difficulty`.
-Globally unique IDs (prefix `pp##_q`, `ep##_q`, `bp##_q`). Phase 1 ships 10 sets, 258 problems.
-
-**Frontend**
-- `static/js/math-kangaroo.js` — level tabs (Pre-Ecolier/Ecolier/Benjamin) + sub-tabs (Full Tests/Topic Drills) + set cards.
-- `static/js/math-kangaroo-exam.js` — timer (mm:ss, warn <10 min, crit + pulse <5 min), question navigator (answered/flagged/current states), radio option buttons, keyboard nav (←/→), Test vs Practice mode, submit confirmation modal.
-- `static/js/math-kangaroo-result.js` — score/grade/XP header, section + topic breakdown tables, collapsible per-question review.
-- `static/css/math-kangaroo.css` — theme.css variables only. Section tint (3pt=success / 4pt=primary / 5pt=error). Responsive + print styles.
-
-Entry: sidebar `#math-btn-kangaroo` → `startMathKangaroo()`.
-Validator: `scripts/validate_kangaroo_phase1.py` (13 checks).
+| 기능 | 파일 | 상태 |
+|---|---|---|
+| Ollama auto-start | `services/ollama_manager.py` | ✅ |
+| Auto-backup (7일) | `services/backup_engine.py` | ✅ |
+| Offline indicator | `offline-indicator.js` | ✅ |
+| Dark mode toggle | 미구현 | 🟡 |
+| macOS LaunchAgent | README 참조 | ✅ |
 
 ---
 
-## Key HTML Element IDs (child.html)
+## Database Models
 
-**Sidebar:** `#sidebar`, `#sb-profile`, `#tab-eng`, `#tab-math`, `#star-count`, `#textbook-select`, `#lesson-select`, `#btn-review`, `#btn-exam`, `#btn-word-manager`, `#btn-parent`, `#sidebar-toggle`
+### Phase 0 (수정 금지)
+Lesson, StudyItem, Progress, Reward, Schedule, UserPracticeSentence, Word, WordReview
 
-**Top Bar:** `#roadmap`, `#stars-count`, `#top-progress-fill`, `#progress-pct`
+### Phase 1 (migration 001)
+AppConfig, XPLog, StreakLog, TaskSetting, RewardItem, PurchasedReward, DailyWordsProgress, DiaryEntry, GrowthEvent, DayOffRequest, AcademySession, LearningLog, WordAttempt, AcademySchedule, GrowthThemeProgress
 
-**Main Content:** `#stage-area`, `#idle-wrapper`, `#btn-start`, `#stage-card`, `#stage`
+### Math (별도 migration)
+MathKangarooProgress, MathAcademySession 등
 
-**Modals:** `#preview-modal`, `#magic-overlay`, `#tutor-modal`, `#wm-overlay`, `#exam-overlay`, `#ut-overlay`
+전체 스키마: `backend/DB_INDEX.md`
 
 ---
 
-## Quick Reference
+## Code Annotation Rules
 
-```bash
-# Find functions by tag
-grep -r "@tag XP" .
-grep -r "@tag PREVIEW" frontend/static/js/
+### 파일 헤더 (모든 JS/CSS/Python 파일)
 
-# Find API endpoint definitions
-grep -rn "router\." backend/routers/
+```
+/* ================================================================
+   [filename] — [한줄 설명]
+   Section: [Home / English / Math / Diary / Arcade / Shop / Parent / System]
+   Dependencies: [목록]
+   API endpoints: [목록 또는 "none"]
+   ================================================================ */
+```
 
-# Find API calls in frontend
-grep -r "/api/xp" frontend/static/js/
+### 함수 태그
 
-# Component ownership lookup
-grep -A 8 "Home Dashboard" frontend/COMPONENT_MAP.md
+```js
+/** @tag XP @tag AWARD */
+async function awardXP(action, detail) { ... }
+```
 
-# DB status
-sqlite3 ~/NSS_Learning/database/voca.db ".tables"
+### 사용 가능한 태그
 
-# Run migration
-cd backend && python3 migrations/001_add_new_tables.py
+```
+HOME_DASHBOARD  TODAY_TASKS   REMINDER      AI_COACH      AI_ASSISTANT
+SIDEBAR         ACCORDION     NAVIGATION
+ENGLISH         ACADEMY       DAILY_WORDS   MY_WORDS      READING
+CKLA            COLLOCATION   US_ACADEMY
+PREVIEW         SHADOW        SENTENCE_READ SPELL
+WORD_MATCH      FILL_BLANK    SPELLING      SENTENCE
+FINAL_TEST      UNIT_TEST     WEEKLY_TEST
+REVIEW          SM2           ACTIVE_RECALL
+DIARY           JOURNAL       FREE_WRITING  MY_SENTENCES
+MY_WORLDS       GROWTH_TIMELINE CALENDAR    DAY_OFF
+MATH            MATH_ACADEMY  MATH_DAILY    MATH_FLUENCY
+MATH_KANGAROO   MATH_GLOSSARY MATH_PLACEMENT MATH_PROBLEMS
+ARCADE
+XP              STREAK        AWARD         BONUS
+SHOP            REWARD        PURCHASE      PIN
+PARENT          SETTINGS      WORD_STATS    SCHEDULE      NOTIFICATION
+TTS             AI            OLLAMA        GEMINI        OCR
+BACKUP          SYSTEM        THEME
 ```
