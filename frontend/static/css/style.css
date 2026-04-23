@@ -203,7 +203,7 @@ a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px so
 .view.active { display: block; animation: fadeIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-.top-bar { display: flex; justify-content: space-between; align-items: center; }
+/* .top-bar moved to main-topbar.css (single source of truth) */
 .mode-badge { padding: 10px 25px; background: white; border-radius: 20px; font-weight: 800; color: var(--primary); font-size: 1.2rem; box-shadow: none; border: 1px solid var(--border-card);}
 
 .progress-bar-container { height: 18px; border-radius: 10px; overflow: hidden; padding: 3px; }
@@ -973,20 +973,10 @@ a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px so
     border-image: var(--gradient-main) 1;
 }
 
-/* ─── Child Page: Top Bar overrides ────────────── */
+/* ─── Child Page: Top Bar subcomponent helpers ───
+   NOTE: .top-bar base selector lives in main-topbar.css.
+   Only keep subcomponent utilities that main-topbar doesn't define. */
 
-/* Top bar */
-.top-bar {
-    height: 52px;
-    background: #FFFFFF;
-    border-bottom: 1px solid var(--color-primary-glow);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-}
-
-/* Top bar left/center/right structure */
 .top-bar-left { flex-shrink: 0; }
 .top-bar-center { flex: 1; text-align: center; overflow: hidden; }
 .top-bar-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; overflow: visible; }
