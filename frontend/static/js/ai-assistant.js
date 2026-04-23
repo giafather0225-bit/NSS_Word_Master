@@ -5,12 +5,10 @@
   
     // 의존성 확인
     if (typeof ShadowSTT === 'undefined') {
-      console.error('[Shadow] ai-assistant-stt.js not loaded');
-      return;
+      console.warn('[Shadow] ai-assistant-stt.js not loaded - STT disabled');
     }
     if (typeof ShadowTTS === 'undefined') {
-      console.error('[Shadow] ai-assistant-tts.js not loaded');
-      return;
+      console.warn('[Shadow] ai-assistant-tts.js not loaded - TTS disabled');
     }
   
     // DOM 준비 대기
@@ -363,11 +361,12 @@
     
                 const data = await res.json();
                 
-                renderBubble(data.reply, false);
-                saveHistory('assistant', data.reply);
-                remainingLabel.textContent = data.remaining_today;
+                var reply = data.reply || data.message || '응답을 받지 못했어!';
+                renderBubble(reply, false);
+                saveHistory('assistant', reply);
+                if (data.remaining_today !== undefined) remainingLabel.textContent = data.remaining_today;
                 
-                if (window.ShadowTTS) window.ShadowTTS.speak(data.reply);
+                if (window.ShadowTTS && window.ShadowTTS.speak) window.ShadowTTS.speak(reply);
     
             } catch (e) {
                 thinkingIndicator.classList.add('hidden');
