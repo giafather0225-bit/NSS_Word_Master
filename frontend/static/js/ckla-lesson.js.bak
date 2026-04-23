@@ -17,18 +17,6 @@ let _cklaQIdx = 0;
 /** @type {Object.<number, object>} Cached AI responses keyed by question_id */
 let _cklaResponses = {};
 
-/* ── ① Reading Timer state ─────────────────────────────────────────────────── */
-/** @type {number|null} Timer interval ID */
-let _cklaTimerId = null;
-/** @type {number} Elapsed seconds */
-let _cklaTimerSec = 0;
-/** @type {boolean} Timer running */
-let _cklaTimerRunning = false;
-
-/* ── ② TTS state ───────────────────────────────────────────────────────────── */
-/** @type {boolean} TTS currently playing */
-let _cklaTTSPlaying = false;
-
 
 /* ── Lesson shell ──────────────────────────────────────────────────────────── */
 
@@ -39,7 +27,6 @@ function renderCKLALesson(data) {
   _cklaVocabIdx  = 0;
   _cklaQIdx      = 0;
   _cklaResponses = {};
-  _cklaStopTimer();
 
   const view = document.getElementById('ckla-view');
   if (!view) return;
@@ -66,13 +53,6 @@ function renderCKLALesson(data) {
 
 /** Switch between the four lesson tabs. @tag ACADEMY CKLA */
 function switchCKLATab(tab) {
-  // Stop timer if leaving reading tab
-  if (_cklaTab === 'reading' && tab !== 'reading') {
-    _cklaPauseTimer();
-  }
-  // Stop TTS on tab switch
-  _cklaStopTTS();
-
   _cklaTab = tab;
   document.querySelectorAll('.ckla-tab').forEach(btn =>
     btn.classList.toggle('active', btn.id === `tab-${tab}`)
@@ -87,150 +67,7 @@ function switchCKLATab(tab) {
 }
 
 
-/* ── ① Timer helpers ───────────────────────────────────────────────────────── */
-
-/** @tag ACADEMY CKLA */
-function _cklaStartTimer() {
-  if (_cklaTimerRunning) return;
-  _cklaTimerRunning = true;
-  _cklaTimerId = setInterval(() => {
-    _cklaTimerSec++;
-    const el = document.getElementById('ckla-timer-display');
-    if (el) el.textContent = _cklaFmtTime(_cklaTimerSec);
-  }, 1000);
-}
-
-/** @tag ACADEMY CKLA */
-function _cklaPauseTimer() {
-  if (_cklaTimerId) {
-    clearInterval(_cklaTimerId);
-    _cklaTimerId = null;
-  }
-  _cklaTimerRunning = false;
-}
-
-/** @tag ACADEMY CKLA */
-function _cklaStopTimer() {
-  _cklaPauseTimer();
-  _cklaTimerSec = 0;
-}
-
-/** @tag ACADEMY CKLA */
-function _cklaFmtTime(sec) {
-  const m = Math.floor(sec / 60);
-  const s = sec % 60;
-  return `${m}:${s < 10 ? '0' : ''}${s}`;
-}
-
-
-/* ── ② TTS helpers ─────────────────────────────────────────────────────────── */
-
-/** Play passage text via edge-tts or browser fallback. @tag ACADEMY CKLA TTS */
-async function _cklaReadAloud() {
-  if (_cklaTTSPlaying) {
-    _cklaStopTTS();
-    return;
-  }
-  const passage = _cklaLesson?.passage;
-  if (!passage) return;
-
-  // Extract clean text (skip title line, remove § markers)
-  const lines = passage.split('\n');
-  const cleanLines = [];
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-    if (line.startsWith('§')) continue;
-    cleanLines.push(line);
-  }
-  const text = cleanLines.join(' ').replace(/\s+/g, ' ').trim();
-  if (!text) return;
-
-  _cklaTTSPlaying = true;
-  _cklaUpdateTTSBtn();
-
-  // Pause timer during TTS (listening, not reading)
-  const wasTimerRunning = _cklaTimerRunning;
-  _cklaPauseTimer();
-
-  try {
-    // Try server TTS first (edge-tts)
-    if (!_isOffline()) {
-      try {
-        const res = await fetch('/api/tts', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text: text, voice: 'en-US-AriaNeural' }),
-        });
-        if (res.ok) {
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          const audio = new Audio(url);
-          _globalCurrentAudio = audio;
-          await new Promise((resolve) => {
-            audio.onended = resolve;
-            audio.onerror = resolve;
-            audio.play().catch(resolve);
-          });
-          URL.revokeObjectURL(url);
-          _globalCurrentAudio = null;
-          _cklaTTSPlaying = false;
-          _cklaUpdateTTSBtn();
-          if (wasTimerRunning) _cklaStartTimer();
-          return;
-        }
-      } catch (e) {
-        console.warn('CKLA TTS server failed, using browser fallback:', e);
-      }
-    }
-
-    // Browser fallback
-    if (typeof _speakLocal === 'function') {
-      await _speakLocal(text, { rate: 0.85 });
-    } else if ('speechSynthesis' in window) {
-      await new Promise((resolve) => {
-        window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(text);
-        u.lang = 'en-US';
-        u.rate = 0.85;
-        u.onend = resolve;
-        u.onerror = resolve;
-        window.speechSynthesis.speak(u);
-      });
-    }
-  } catch (e) {
-    console.error('CKLA TTS error:', e);
-  }
-
-  _cklaTTSPlaying = false;
-  _cklaUpdateTTSBtn();
-  if (wasTimerRunning) _cklaStartTimer();
-}
-
-/** @tag ACADEMY CKLA TTS */
-function _cklaStopTTS() {
-  _cklaTTSPlaying = false;
-  if (_globalCurrentAudio) {
-    _globalCurrentAudio.pause();
-    _globalCurrentAudio.currentTime = 0;
-    _globalCurrentAudio = null;
-  }
-  if (window.speechSynthesis?.speaking) {
-    window.speechSynthesis.cancel();
-  }
-  _cklaUpdateTTSBtn();
-}
-
-/** @tag ACADEMY CKLA TTS */
-function _cklaUpdateTTSBtn() {
-  const btn = document.getElementById('ckla-tts-btn');
-  if (!btn) return;
-  btn.textContent = _cklaTTSPlaying ? '⏹ Stop' : '🔊 Listen';
-  btn.classList.toggle('ckla-tts-playing', _cklaTTSPlaying);
-}
-
-
-/* ── Tab: Reading (① timer + ② TTS integrated) ────────────────────────────── */
+/* ── Tab: Reading ──────────────────────────────────────────────────────────── */
 
 /** Parse raw passage string into renderable blocks. @tag ACADEMY CKLA */
 function _parsePassage(raw) {
@@ -240,6 +77,8 @@ function _parsePassage(raw) {
 
   const flush = () => {
     if (!buf.length) return;
+    // Join hyphenated line-breaks (spring-\ncleaning → spring-cleaning)
+    // and regular line-breaks with a space
     let text = '';
     for (let i = 0; i < buf.length; i++) {
       const line = buf[i];
@@ -251,7 +90,7 @@ function _parsePassage(raw) {
     buf = [];
   };
 
-  for (let i = 1; i < lines.length; i++) {
+  for (let i = 1; i < lines.length; i++) { // skip title line (shown in header)
     const line = lines[i].trim();
     if (!line) continue;
 
@@ -263,6 +102,7 @@ function _parsePassage(raw) {
 
     buf.push(line);
 
+    // Heuristic paragraph break: line ends sentence AND buffer is substantial
     const endsWithPunct = /[.!?'"""]\s*$/.test(line);
     const nextLine = (lines[i + 1] || '').trim();
     const nextIsNewSentence = /^[A-Z"']/.test(nextLine) && !nextLine.startsWith('§');
@@ -280,7 +120,6 @@ function _renderReading() {
   if (!el) return;
   const prog   = _cklaLesson.progress;
   const blocks = _parsePassage(_cklaLesson.passage);
-  const chars  = _cklaLesson.passage_chars || 0;
 
   const html = blocks.map(b => {
     if (b.type === 'marker') {
@@ -290,51 +129,18 @@ function _renderReading() {
   }).join('');
 
   el.innerHTML = `
-    <div class="ckla-reading-toolbar">
-      <div class="ckla-timer-wrap">
-        <span class="ckla-timer-icon">⏱</span>
-        <span class="ckla-timer-display" id="ckla-timer-display">${_cklaFmtTime(_cklaTimerSec)}</span>
-        ${!prog.reading_done ? `
-          <button class="ckla-timer-btn" id="ckla-timer-btn" onclick="_cklaToggleTimer()">
-            ${_cklaTimerRunning ? 'Pause' : 'Start'}
-          </button>
-        ` : ''}
-      </div>
-      <div class="ckla-reading-tools">
-        <button class="ckla-tts-btn" id="ckla-tts-btn" onclick="_cklaReadAloud()">🔊 Listen</button>
-        <span class="ckla-char-count">${chars.toLocaleString()} chars</span>
-      </div>
-    </div>
     <div class="ckla-passage-wrap">
       <div class="ckla-passage">${html}</div>
     </div>
     <div class="ckla-action-bar">
       ${prog.reading_done
-        ? `<span class="ckla-done-badge">✓ Reading complete${prog.reading_done_at ? ' · ' + _cklaFmtTime(_cklaTimerSec) : ''}</span>`
-        : `<button class="ckla-primary-btn" onclick="_markReadingDone()">✓ Done Reading${_cklaTimerSec > 0 ? ' (' + _cklaFmtTime(_cklaTimerSec) + ')' : ''}</button>`}
+        ? '<span class="ckla-done-badge">✓ Reading complete</span>'
+        : '<button class="ckla-primary-btn" onclick="_markReadingDone()">✓ Done Reading</button>'}
     </div>`;
-
-  // Auto-start timer if not done
-  if (!prog.reading_done && !_cklaTimerRunning) {
-    _cklaStartTimer();
-  }
-}
-
-/** @tag ACADEMY CKLA */
-function _cklaToggleTimer() {
-  if (_cklaTimerRunning) {
-    _cklaPauseTimer();
-  } else {
-    _cklaStartTimer();
-  }
-  const btn = document.getElementById('ckla-timer-btn');
-  if (btn) btn.textContent = _cklaTimerRunning ? 'Pause' : 'Start';
 }
 
 /** @tag ACADEMY CKLA */
 async function _markReadingDone() {
-  _cklaPauseTimer();
-  _cklaStopTTS();
   const prog = await _postProgress({ reading_done: true });
   if (prog) { _cklaLesson.progress = prog; _renderReading(); }
 }

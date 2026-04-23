@@ -240,3 +240,299 @@
   .ckla-domain-grid { grid-template-columns: 1fr 1fr; }
   .ckla-tab { padding: 10px 8px; font-size: 0.75rem; }
 }
+
+/* ── ① Reading Timer ────────────────────────────────────────── */
+.ckla-reading-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  flex-shrink: 0;
+}
+.ckla-timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ckla-timer-icon {
+  font-size: 1rem;
+}
+.ckla-timer-display {
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  min-width: 48px;
+}
+.ckla-timer-btn {
+  background: none;
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.ckla-timer-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.ckla-reading-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ckla-char-count {
+  font-size: 0.72rem;
+  color: var(--text-hint);
+}
+
+/* ── ② TTS Button ──────────────────────────────────────────── */
+.ckla-tts-btn {
+  background: none;
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 5px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.ckla-tts-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.ckla-tts-playing {
+  background: var(--color-primary) !important;
+  color: #fff !important;
+  border-color: var(--color-primary) !important;
+}
+
+/* ── Image marker in passage ────────────────────────────────── */
+.ckla-image-marker {
+  font-size: 0.75rem;
+  color: var(--text-hint);
+  font-style: italic;
+  padding: 4px 0;
+}
+
+/* ── ⑤ CKLA Review screen ──────────────────────────────────── */
+.ckla-review-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 540px;
+  margin: 0 auto;
+  width: 100%;
+}
+.ckla-review-header {
+  text-align: center;
+}
+.ckla-review-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+.ckla-review-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+.ckla-review-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.ckla-review-bar {
+  flex: 1;
+  height: var(--progress-bar-height-lg);
+  background: var(--bg-surface);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.ckla-review-bar-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+.ckla-review-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-height: 200px;
+  justify-content: center;
+}
+.ckla-review-word {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.ckla-review-pos {
+  font-size: 0.72rem;
+  color: var(--color-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.ckla-review-audio-btn {
+  background: none;
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ckla-review-audio-btn:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+}
+.ckla-review-input-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ckla-review-hint {
+  font-size: 0.82rem;
+  color: var(--text-hint);
+  text-align: center;
+}
+.ckla-review-input {
+  width: 100%;
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  text-align: center;
+  box-sizing: border-box;
+}
+.ckla-review-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+.ckla-review-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.ckla-review-actions button {
+  flex: 1;
+}
+.ckla-review-check-btn {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ckla-review-check-btn:hover { background: var(--color-primary-hover); }
+.ckla-review-show-btn {
+  background: none;
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 12px 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.ckla-review-show-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+.ckla-review-result {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  text-align: center;
+}
+.ckla-review-correct {
+  background: #EAF7EE;
+  color: #15803D;
+}
+.ckla-review-wrong {
+  background: #FFEDED;
+  color: var(--color-error);
+}
+.ckla-review-result-word {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+.ckla-review-result-def {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.ckla-review-next-btn {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px 32px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+.ckla-review-next-btn:hover { background: var(--color-primary-hover); }
+.ckla-review-summary {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+.ckla-review-emoji { font-size: 3rem; }
+.ckla-review-score {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.ckla-review-detail {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.ckla-review-done-btn {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ckla-review-empty {
+  text-align: center;
+  padding: 60px 20px;
+}
+.ckla-review-empty-icon { font-size: 3rem; margin-bottom: 12px; }
+.ckla-review-empty-text { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.ckla-review-empty-sub { font-size: 0.85rem; color: var(--text-secondary); }
