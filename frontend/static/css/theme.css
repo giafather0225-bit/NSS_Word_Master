@@ -4,210 +4,179 @@
    Dependencies: none
    API endpoints: none
 
-   Design System: Apple Soft Study (2026-04 redesign)
-     Primary   #0A84FF  Apple Blue
-     Lilac     #CDBDFF  subtle accent (diary, badges)
-     Pink      #E8CFE0  subtle accent (personal)
-     Mint      #CFE9E2  subtle accent (math, positive feedback)
-     Text      #111111 / #5C5C66
-     Bg        #F5F5F7 / #FFFFFF
+   Palette (2026-04 redesign):
+     Primary   #4A8E8E  teal
+     Secondary #F96E69  coral
+     Accent    #AE397D  violet
+     Text      #1A1A1A / #6B7280
+     Bg        #FFFFFF
 
    Rules:
      - No gradients
-     - No heavy shadows (border + subtle elevation only)
-     - No emoji icons — use Lucide thin line icons
-     - Section color = 4px vertical line or icon only (never full bg)
-     - Accent colors at <10% of screen area (dot/line, not fill)
-     - One button style (.btn), one card style (.card)
-     - Sidebar 240px fixed, top toolbar 56px
+     - No shadows (1px border only)
+     - One button style (.btn)
+     - One card style (.card)
+     - Sidebar 240px fixed
      - Typography: heading 24 / body 16 / small 14
    ================================================================ */
 
 :root {
     /* ── Z-index Scale ── */
-    --z-sidebar:          100;
-    --z-topbar:           200;
+    --z-sidebar:         100;
+    --z-topbar:          200;
     --z-overlay-backdrop: 1000;
-    --z-overlay:          1100;
-    --z-overlay-header:   1150;
-    --z-modal:            2000;
-    --z-toast:            5000;
-    --z-shadow-widget:    6000;
-    --z-shadow-fab:       6500;
-    --z-splash:           9999;
+    --z-overlay:         1100;   /* shop, parent, arcade, wm, diary, exam, collocation */
+    --z-overlay-header:  1150;
+    --z-modal:           2000;   /* preview-modal, tutor-modal, magic-overlay */
+    --z-toast:           5000;
+    --z-shadow-widget:   6000;
+    --z-shadow-fab:      6500;
+    --z-splash:          9999;
 
-    /* ── Primary (Apple Blue) ────────────────── */
-    --color-primary:        #0A84FF;
-    --color-primary-hover:  #0070E0;
-    --color-primary-light:  rgba(10, 132, 255, 0.08);
-    --color-primary-glow:   rgba(10, 132, 255, 0.15);
+    /* ── 메인 색상 ───────────────────────── */
+    --color-primary:        #4A8E8E;
+    --color-primary-hover:  #3A7B7D;
+    --color-primary-light:  #EAF4F2;
+    --color-primary-glow:   rgba(74, 142, 142, 0.18);
 
-    /* ── Subtle Accents (점·선·뱃지 전용 — 면적 <10%) ── */
-    --color-lilac:          #CDBDFF;   /* Diary / 완료 뱃지 */
-    --color-lilac-light:    #F0ECFF;
-    --color-pink:           #E8CFE0;   /* 개인화 포인트 */
-    --color-pink-light:     #F8F0F5;
-    --color-mint:           #CFE9E2;   /* Math / 긍정 피드백 */
-    --color-mint-light:     #EBF7F4;
-    --color-peach:          #FFDAB9;   /* 따뜻한 액센트 포인트 */
-    --color-peach-light:    #FFF5EC;
+    /* ── 보조 색상 ───────────────────────── */
+    --color-secondary:       #F96E69;
+    --color-secondary-hover: #E55D58;
+    --color-secondary-light: #FDECEB;
+    --color-secondary-glow:  rgba(249, 110, 105, 0.18);
 
-    /* ── 상태 색상 ───────────────────────────── */
-    --color-success:        #28A745;
-    --color-success-light:  rgba(40, 167, 69, 0.12);
-    --color-error:          #FF453A;
-    --color-error-light:    rgba(255, 69, 58, 0.12);
-    --color-warning:        #FF9F0A;
-    --color-warning-light:  rgba(255, 159, 10, 0.15);
+    /* ── 강조 색상 ───────────────────────── */
+    --color-accent:        #AE397D;
+    --color-accent-hover:  #952E6A;
+    --color-accent-light:  #F7E7EF;
 
-    /* ── 배경 ────────────────────────────────── */
-    --bg-page:        #F5F5F7;
-    --bg-page-white:  #FFFFFF;
-    --bg-card:        #FFFFFF;
-    --bg-sidebar:     #F2F2F5;
-    --bg-input:       #FFFFFF;
-    --bg-surface:     #ECECF1;
-    --bg-hover:       #ECECF1;
-    --bg-selected:    rgba(10, 132, 255, 0.10);
-    --bg-chip:        var(--color-primary-light);
-    --bg-chip-used:   #F5F5F5;
+    /* ── 상태 색상 ───────────────────────── */
+    --color-success:       #34C759;
+    --color-success-light: rgba(52, 199, 89, 0.12);
+    --color-error:         #FF3B30;
+    --color-error-light:   rgba(255, 59, 48, 0.12);
+    --color-warning:       #F59E0B;
+    --color-warning-light: rgba(245, 158, 11, 0.15);
 
-    /* ── 섹션 구분 (아이콘 색 + 4px vertical line 전용) ── */
-    --section-english-color: var(--color-primary);     /* Blue */
-    --section-diary-color:   var(--color-lilac);       /* Lilac */
-    --section-math-color:    var(--color-mint);        /* Mint */
+    /* ── 그라데이션 (비활성 — 호환성을 위해 solid로 폴백) ── */
+    --gradient-main:   var(--color-primary);
+    --gradient-subtle: var(--bg-card);
 
-    /* 섹션 배경은 white — 절대 section tint fill 사용 금지 */
-    --bg-section-english: transparent;
-    --bg-section-diary:   transparent;
-    --bg-section-math:    transparent;
+    /* ── 배경 ────────────────────────────── */
+    --bg-page:       #F7F6F3;    /* 전체 앱 크림 배경 */
+    --bg-page-white: #FFFFFF;    /* 개별 화면 white 전환용 */
+    --bg-card:       #FFFFFF;
+    --bg-sidebar:    #FFFFFF;
+    --bg-input:      #FFFFFF;
+    --bg-surface:    #F2F1EE;    /* 영역 구분용 warm gray */
+    --bg-chip:       var(--color-primary-light);
+    --bg-chip-used:  #F5F5F5;
 
-    /* ── 섹션 아이콘 배경 (파스텔 원형) ────────── */
-    --icon-bg-english:  var(--color-primary-light);
-    --icon-bg-diary:    var(--color-lilac-light);
-    --icon-bg-math:     var(--color-mint-light);
+    /* ── GIA Soft 섹션 tint ───────────────── */
+    --bg-section-english: #E8F4F4;
+    --bg-section-diary:   #FEF0EE;
+    --bg-section-math:    #F5EFF8;
 
-    /* ── 게이미피케이션 (Apple Fitness 스타일) ─── */
-    --xp-color:         var(--color-primary);    /* Blue bar */
-    --xp-bg:            var(--color-primary-light);
-    --streak-color:     #FF9F0A;                 /* Orange — 불꽃만 허용 */
-    --streak-bg:        #FFF3E0;
+    /* ── Gamification tokens (L3) ─────────── */
+    --xp-color:     var(--color-secondary);
+    --xp-bg:        var(--color-secondary-light);
+    --streak-color: var(--color-warning);
+    --streak-bg:    #FFF8ED;
 
-    /* ── Calm easing ─────────────────────────── */
-    --ease-calm:        cubic-bezier(0.25, 0.1, 0.25, 1.0);
-    --ease-calm-out:    cubic-bezier(0.0, 0.0, 0.2, 1.0);
+    /* ── Calm easing ──────────────────────── */
+    --ease-calm:     cubic-bezier(0.25, 0.1, 0.25, 1.0);
+    --ease-calm-out: cubic-bezier(0.0, 0.0, 0.2, 1.0);
 
-    /* ── 그라데이션 (비활성 — solid 폴백) ───────── */
-    --gradient-main:    var(--color-primary);
-    --gradient-subtle:  var(--bg-card);
+    /* ── Growth / stat alias ──────────────── */
+    --radius-card:     14px;
+    --bg-growth-card:  var(--bg-section-english);
+    --bg-stat-inner:   rgba(255, 255, 255, 0.7);
+    --overlay-scrim:   rgba(0, 0, 0, 0.4);
+    --progress-height: 8px;
 
-    /* ── Growth / stat alias ─────────────────── */
-    --radius-card:      12px;
-    --bg-growth-card:   var(--color-primary-light);
-    --bg-stat-inner:    rgba(255, 255, 255, 0.7);
-    --overlay-scrim:    rgba(0, 0, 0, 0.4);
-    --progress-height:  8px;
-
-    /* ── 텍스트 ──────────────────────────────── */
-    --text-primary:    #111111;
-    --text-secondary:  #5C5C66;
-    --text-hint:       #8E8E98;
+    /* ── 텍스트 ──────────────────────────── */
+    --text-primary:    #1A1A1A;
+    --text-secondary:  #6B7280;
+    --text-hint:       #9CA3AF;
     --text-on-primary: #FFFFFF;
     --text-on-chip:    var(--color-primary);
 
-    /* ── 테두리 ──────────────────────────────── */
-    --border-default:      #D9D9E0;
-    --border-subtle:       #ECECF1;
-    --border-strong:       #C7C7CC;
-    --border-input:        #D9D9E0;
-    --border-input-focus:  var(--color-primary);
-    --border-chip:         var(--color-primary);
-    --border-chip-used:    #D9D9E0;
-    --border-card:         rgba(0, 0, 0, 0.05);
+    /* ── 테두리 (그림자 대체) ─────────────── */
+    --border-default:     #E5E7EB;
+    --border-strong:      #D1D5DB;
+    --border-input:       #D1D5DB;
+    --border-input-focus: var(--color-primary);
+    --border-chip:        var(--color-primary);
+    --border-chip-used:   #E5E7EB;
+    --border-card:        rgba(0, 0, 0, 0.06);
 
-    /* ── 그림자 (최소화 — border 우선) ──────────── */
+    /* ── 그림자 (사용 금지 — border로 대체; 호환 폴백만 남김) ── */
     --shadow-card:        0 0 0 1px var(--border-card);
     --shadow-button:      0 0 0 1px var(--border-default);
     --shadow-input-focus: 0 0 0 3px var(--color-primary-glow);
-    --shadow-modal:       0 8px 24px rgba(0, 0, 0, 0.08);
-    --shadow-float:       0 16px 40px rgba(0, 0, 0, 0.12);
 
-    /* ── 사이즈 / 반경 ───────────────────────── */
-    --radius-sm:    6px;
-    --radius-md:    10px;
-    --radius-lg:    12px;
-    --radius-xl:    16px;
-    --radius-full:  9999px;
+    /* ── 사이즈 / 반경 ────────────────────── */
+    --radius-sm:   6px;
+    --radius-md:   10px;
+    --radius-lg:   14px;
+    --radius-full: 9999px;
 
     --sidebar-width: 240px;
 
-    /* ── 폰트 ────────────────────────────────── */
-    --font-family:        -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-size-xs:       12px;
-    --font-size-sm:       14px;
-    --font-size-md:       16px;
-    --font-size-lg:       18px;
-    --font-size-xl:       24px;
-    --font-size-2xl:      32px;
+    /* ── 폰트 ────────────────────────────── */
+    --font-family:       -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-size-xs:      12px;
+    --font-size-sm:      14px;   /* 작은 텍스트 */
+    --font-size-md:      16px;   /* 본문 */
+    --font-size-lg:      18px;
+    --font-size-xl:      24px;   /* 헤더 */
+    --font-size-2xl:     32px;   /* 대형 헤더 */
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-bold:   600;
     --font-weight-extra:  700;
 
-    /* ── Learner scale (9세 학습자 — 16-20px 기준) ── */
-    --font-learner-sm:   14px;
-    --font-learner-md:   16px;
-    --font-learner-lg:   17px;
-    --font-learner-xl:   20px;
-    --font-learner-2xl:  28px;
-    --font-learner-3xl:  40px;
+    /* ── Learner (9세 아동 스테이지용) — Phase D
+       child-facing stage content uses larger scale for
+       reading comfort per ed-research (16-20px body min). */
+    --font-learner-sm:   14px;   /* 진행/힌트 */
+    --font-learner-md:   16px;   /* 카드 / 단어 버튼 */
+    --font-learner-lg:   17px;   /* 입력 / 정의 */
+    --font-learner-xl:   20px;   /* 문장 / 강조 */
+    --font-learner-2xl:  28px;   /* 단어 카드 hero */
+    --font-learner-3xl:  40px;   /* spelling 마스크 */
     --line-learner:      1.55;
 
-    /* ── 애니메이션 ──────────────────────────── */
-    --transition-fast:   0.12s ease;
-    --transition-normal: 0.18s ease;
-    --transition-slow:   0.3s ease;
-
-    /* ── 아이콘 래퍼 (Lucide thin line 전용) ───── */
-    --icon-size-sm:   20px;
-    --icon-size-md:   24px;
-    --icon-size-lg:   32px;
-    --icon-stroke:    1.5;
-    --icon-bg-size:   32px;
-    --icon-bg-radius: 50%;
-
-    /* ── Reward 카드 하단 액센트 라인 ───────────── */
-    --reward-line-height: 2px;   /* 카드 하단 1-2px 컬러 라인 */
-
-    /* ── Progress bar ────────────────────────── */
-    --progress-track-bg:     var(--bg-surface);
-    --progress-bar-radius:   var(--radius-full);
-    --progress-bar-height:   2px;   /* XP/Streak: Apple Fitness thin line */
-    --progress-bar-height-lg: 6px;
+    /* ── 애니메이션 ──────────────────────── */
+    --transition-fast:   0.15s ease;
+    --transition-normal: 0.25s ease;
+    --transition-slow:   0.4s ease;
 
     /* ================================================================
-       MATH SECTION TOKENS
+       MATH SECTION TOKENS — uses shared palette (no separate identity).
        ================================================================ */
-    --math-primary:           var(--color-primary);
-    --math-primary-hover:     var(--color-primary-hover);
-    --math-primary-light:     var(--color-primary-light);
-    --math-primary-glow:      var(--color-primary-glow);
-    --math-primary-on:        var(--text-on-primary);
 
-    --math-accent-violet:       var(--color-lilac);
-    --math-accent-violet-light: var(--color-lilac-light);
-    --math-accent-pink:         var(--color-pink);
-    --math-accent-pink-light:   var(--color-pink-light);
+    --math-primary:         var(--color-primary);
+    --math-primary-hover:   var(--color-primary-hover);
+    --math-primary-light:   var(--color-primary-light);
+    --math-primary-glow:    var(--color-primary-glow);
+    --math-primary-on:      var(--text-on-primary);
+
+    --math-accent-violet:       var(--color-accent);
+    --math-accent-violet-light: var(--color-accent-light);
+    --math-accent-pink:         var(--color-secondary);
+    --math-accent-pink-light:   var(--color-secondary-light);
 
     --math-bg-page:   var(--bg-page);
     --math-bg-card:   var(--bg-card);
 
-    --math-cpa-concrete-bg:  var(--color-pink-light);
-    --math-cpa-concrete-fg:  var(--color-pink);
+    /* CPA phases — use shared tokens instead of unique hues */
+    --math-cpa-concrete-bg: var(--color-secondary-light);
+    --math-cpa-concrete-fg: var(--color-secondary);
     --math-cpa-pictorial-bg: var(--color-primary-light);
     --math-cpa-pictorial-fg: var(--color-primary);
-    --math-cpa-abstract-bg:  var(--color-lilac-light);
-    --math-cpa-abstract-fg:  var(--color-lilac);
+    --math-cpa-abstract-bg: var(--color-accent-light);
+    --math-cpa-abstract-fg: var(--color-accent);
 
     --math-hint-bg:   var(--bg-surface);
     --math-hint-fg:   var(--text-primary);
@@ -217,72 +186,12 @@
     --math-pass:      var(--color-success);
     --math-fail:      var(--color-warning);
 
-    --math-shadow-card: var(--shadow-card);
-    --math-border-card: var(--border-card);
+    --math-shadow-card:   var(--shadow-card);
+    --math-border-card:   var(--border-card);
 }
 
 /* ================================================================
-   DARK MODE TOKENS
-   ================================================================ */
-[data-theme="dark"] {
-    --bg-page:        #1C1C1E;
-    --bg-page-white:  #2C2C2E;
-    --bg-card:        #2C2C2E;
-    --bg-sidebar:     #232326;
-    --bg-input:       #2C2C2E;
-    --bg-surface:     #343438;
-    --bg-hover:       #343438;
-    --bg-selected:    #123A63;
-    --bg-chip:        #123A63;
-    --bg-chip-used:   #343438;
-
-    --color-primary-light: #123A63;
-    --color-lilac-light:   #2A2547;
-    --color-pink-light:    #2E2030;
-    --color-mint-light:    #1A2E2B;
-
-    --icon-bg-english: #123A63;
-    --icon-bg-diary:   #2A2547;
-    --icon-bg-math:    #1A2E2B;
-
-    --text-primary:    #F5F5F7;
-    --text-secondary:  #C7C7CC;
-    --text-hint:       #8E8E93;
-    --text-on-chip:    #7EB8FF;
-
-    --border-default:  #3A3A3C;
-    --border-subtle:   #2F2F33;
-    --border-strong:   #4A4A4E;
-    --border-input:    #3A3A3C;
-    --border-card:     rgba(255, 255, 255, 0.06);
-    --border-chip:     #7EB8FF;
-    --border-chip-used: #3A3A3C;
-
-    --shadow-card:     0 0 0 1px var(--border-card);
-    --shadow-modal:    0 8px 24px rgba(0, 0, 0, 0.32);
-    --shadow-float:    0 16px 40px rgba(0, 0, 0, 0.4);
-
-    --color-success:       #32D74B;
-    --color-success-light: rgba(50, 215, 75, 0.15);
-    --color-error:         #FF6961;
-    --color-error-light:   rgba(255, 105, 97, 0.15);
-    --color-warning:       #FFD60A;
-    --color-warning-light: rgba(255, 214, 10, 0.15);
-
-    --color-lilac: #B8A7FF;
-    --color-mint:  #9BCFC3;
-    --color-pink:  #CFAFC3;
-
-    --xp-bg:       #123A63;
-    --streak-bg:   #2E2200;
-
-    --progress-track-bg: var(--bg-surface);
-    --bg-growth-card:    #123A63;
-    --overlay-scrim:     rgba(0, 0, 0, 0.6);
-}
-
-/* ================================================================
-   BASE TYPOGRAPHY
+   BASE TYPOGRAPHY — enforce the 24 / 16 / 14 hierarchy globally.
    ================================================================ */
 body {
     font-family: var(--font-family);
@@ -290,15 +199,16 @@ body {
     color: var(--text-primary);
     background: var(--bg-page);
     -webkit-font-smoothing: antialiased;
-    letter-spacing: 0.01em;
 }
-h1, .h1 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-extra); line-height: 1.2;  margin: 0 0 12px; }
-h2, .h2 { font-size: var(--font-size-xl);  font-weight: var(--font-weight-bold);  line-height: 1.25; margin: 0 0 10px; }
-h3, .h3 { font-size: var(--font-size-lg);  font-weight: var(--font-weight-bold);  line-height: 1.3;  margin: 0 0 8px;  }
+h1, .h1 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-extra); line-height: 1.2; margin: 0 0 12px; }
+h2, .h2 { font-size: var(--font-size-xl);  font-weight: var(--font-weight-extra); line-height: 1.25; margin: 0 0 10px; }
+h3, .h3 { font-size: var(--font-size-lg);  font-weight: var(--font-weight-bold);  line-height: 1.3;  margin: 0 0 8px; }
 small, .text-small { font-size: var(--font-size-sm); color: var(--text-secondary); }
 
 /* ================================================================
-   UNIFIED BUTTON
+   UNIFIED BUTTON — use .btn + modifier. Replaces every ad-hoc button.
+   Existing page CSS keeps working via legacy classes, but new code
+   should use .btn / .btn-primary / .btn-secondary / .btn-ghost.
    ================================================================ */
 .btn {
     display: inline-flex;
@@ -320,8 +230,8 @@ small, .text-small { font-size: var(--font-size-sm); color: var(--text-secondary
     box-shadow: none;
     text-decoration: none;
 }
-.btn:hover     { background: var(--bg-hover); }
-.btn:disabled  { opacity: 0.45; cursor: not-allowed; }
+.btn:hover { background: var(--bg-surface); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .btn-primary {
     background: var(--color-primary);
@@ -334,21 +244,26 @@ small, .text-small { font-size: var(--font-size-sm); color: var(--text-secondary
 }
 
 .btn-secondary {
-    background: var(--bg-surface);
-    border-color: var(--border-default);
-    color: var(--text-primary);
+    background: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: #FFFFFF;
 }
-.btn-secondary:hover { background: var(--bg-hover); }
+.btn-secondary:hover {
+    background: var(--color-secondary-hover);
+    border-color: var(--color-secondary-hover);
+}
 
 .btn-ghost {
     background: transparent;
     border-color: transparent;
     color: var(--color-primary);
 }
-.btn-ghost:hover { background: var(--color-primary-light); }
+.btn-ghost:hover {
+    background: var(--color-primary-light);
+}
 
 /* ================================================================
-   UNIFIED CARD
+   UNIFIED CARD — use .card. 1px border, no shadow.
    ================================================================ */
 .card {
     background: var(--bg-card);
@@ -359,70 +274,16 @@ small, .text-small { font-size: var(--font-size-sm); color: var(--text-secondary
 }
 
 /* ================================================================
-   ICON WRAPPER — Lucide thin line (stroke-width 1.5)
+   GLOBAL RESET for shadows & gradients so legacy CSS can't sneak
+   them back in. Any explicit shadow/gradient in component CSS will
+   be overridden by these rules unless they use !important or a
+   higher-specificity selector.
    ================================================================ */
-.icon-wrap {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--icon-bg-size);
-    height: var(--icon-bg-size);
-    border-radius: var(--icon-bg-radius);
-    flex-shrink: 0;
-}
-.icon-wrap--english { background: var(--icon-bg-english); color: var(--color-primary); }
-.icon-wrap--diary   { background: var(--icon-bg-diary);   color: var(--color-lilac);   }
-.icon-wrap--math    { background: var(--icon-bg-math);    color: var(--color-mint);    }
-.icon-wrap--neutral { background: var(--bg-surface);      color: var(--text-secondary); }
+/* (left intentionally unset — enforce via linting / manual pass) */
 
 /* ================================================================
-   SECTION VERTICAL LINE — 4px left border (sidebar nav items)
-   ================================================================ */
-.section-line--english { border-left: 4px solid var(--section-english-color); padding-left: 12px; }
-.section-line--diary   { border-left: 4px solid var(--section-diary-color);   padding-left: 12px; }
-.section-line--math    { border-left: 4px solid var(--section-math-color);    padding-left: 12px; }
-
-/* ================================================================
-   PROGRESS BAR — thin, rounded (Apple Fitness style)
-   ================================================================ */
-.progress-track {
-    width: 100%;
-    height: var(--progress-bar-height);
-    background: var(--progress-track-bg);
-    border-radius: var(--progress-bar-radius);
-    overflow: hidden;
-}
-.progress-fill {
-    height: 100%;
-    border-radius: var(--progress-bar-radius);
-    background: var(--color-primary);
-    transition: width var(--transition-normal);
-}
-.progress-fill--xp     { background: var(--color-primary); }
-.progress-fill--streak { background: var(--streak-color); }
-.progress-fill--success { background: var(--color-success); }
-
-/* ================================================================
-   SIDEBAR DOTS — section color dots (replaces sb-dot with icon)
-   ================================================================ */
-.sb-dot {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    margin-right: 6px;
-    flex-shrink: 0;
-    background: var(--border-default);
-}
-.sb-dot--english { background: var(--color-primary); }
-.sb-dot--academy { background: var(--color-primary); }
-.sb-dot--daily   { background: var(--color-primary); }
-.sb-dot--mywords { background: var(--color-lilac); }
-.sb-dot--math    { background: var(--color-mint); }
-.sb-dot--diary   { background: var(--color-lilac); }
-
-/* ================================================================
-   CHECK DOT — completion indicator
+   ICON UTILITIES — replacements for emoji (checkmarks, dots).
+   Keep tokens-only; no hard-coded colors.
    ================================================================ */
 .check-dot {
     display: inline-flex;
@@ -437,7 +298,21 @@ small, .text-small { font-size: var(--font-size-sm); color: var(--text-secondary
     font-weight: 700;
     line-height: 1;
     vertical-align: middle;
-    flex-shrink: 0;
 }
-.check-dot::before  { content: "\2713"; }
-.check-dot--lg      { width: 56px; height: 56px; font-size: 32px; }
+.check-dot::before { content: "\2713"; }
+
+.check-dot--lg { width: 56px; height: 56px; font-size: 32px; }
+
+.sb-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 2px;
+    flex-shrink: 0;
+    background: var(--color-primary);
+}
+.sb-dot--english  { background: var(--color-primary); }
+.sb-dot--academy  { background: var(--color-primary); }
+.sb-dot--daily    { background: var(--color-secondary); }
+.sb-dot--mywords  { background: var(--color-accent); }
