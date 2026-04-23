@@ -1,211 +1,18 @@
-:root {
-    --bg-base: var(--bg-page);
-    /* Keep accent strictly Electric Blue (tints only). */
-    --lavender: rgba(59, 130, 246, 0.14);
-    --mint: rgba(59, 130, 246, 0.10);
-    --mint-dark: rgba(59, 130, 246, 0.22);
-    --magic-pink: #3B82F6;
-    --text-dark: #2d3436;
-    --text-gray: #636e72;
-    --glass-bg: rgba(255, 255, 255, 0.4);
-    --glass-border: rgba(255, 255, 255, 0.6);
-
-    /* ── Apple Design System ── */
-    --bg: #F5F5F7;
-    --surface: #FFFFFF;
-    --primary-hover: var(--color-primary-hover);
-    --primary-light: var(--color-primary-light);
-    --success: var(--color-success);
-    --danger: var(--color-error);
-    --warning: var(--color-warning);
-
-    /* Typography scale */
-    --font-xs: 11px;
-    --font-sm: 13px;
-    --font-md: 15px;
-    --font-lg: 17px;
-    --font-xl: 22px;
-    --font-2xl: 28px;
-    --font-3xl: 34px;
-
-    /* Spacing */
-    --space-xs: 4px;
-    --space-sm: 8px;
-    --space-md: 16px;
-    --space-lg: 24px;
-    --space-xl: 32px;
-    --space-2xl: 48px;
-
-    /* Border radius */
-    --radius-xl: 24px;
-
-    /* Shadows */
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
-
-    /* Transitions */
-    --transition-base: 0.2s ease;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Pretendard", ui-sans-serif, system-ui, "San Francisco", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-body { background-color: var(--bg-base); color: var(--text-dark); min-height: 100vh; position: relative; overflow-x: hidden;}
-
-/* --- Aurora Background & Orbs --- */
-.aurora-bg {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-    background: var(--bg-page);
-}
-.orb {
-    position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1;
-    animation: float 15s infinite alternate ease-in-out;
-}
-.orb-1 { width: 40vw; height: 40vw; background: rgba(59, 130, 246, 0.18); top: -10%; left: -10%; }
-.orb-2 { width: 50vw; height: 50vw; background: rgba(59, 130, 246, 0.14); bottom: -20%; right: -10%; animation-delay: -5s; }
-
-@keyframes float {
-    0% { transform: translateY(0) scale(1); }
-    100% { transform: translateY(50px) scale(1.1); }
-}
-
-/* Layout */
-.app-container { max-width: 1100px; margin: 40px auto; padding: 30px; border-radius: 30px; }
-.dashboard-grid { display: grid; grid-template-columns: 1fr 400px; gap: 30px; }
-.left-col { display: flex; flex-direction: column; gap: 20px; }
-.right-col { display: flex; flex-direction: column; gap: 20px; }
-
-/* Glassmorphism Classes */
-.glass-panel {
-    background: rgba(255, 255, 255, 0.35); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-    border: 1px solid var(--glass-border); box-shadow: none;
-}
-.glass-card {
-    background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-    border-radius: 20px; border: 1px solid white; padding: 25px;
-    box-shadow: none;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-}
-.glass-card:hover { transform: translateY(-5px); box-shadow: none; }
-
-/* Typography & Titles */
-h1, h2, h3 { font-weight: 800; color: #333; }
-.mt-2 { margin-top: 15px; } .mt-3 { margin-top: 20px; } .mt-4 { margin-top: 30px; } .mb-2 { margin-bottom: 15px; } .mb-4 { margin-bottom: 30px;}
-.w-100 { width: 100%; } .text-center { text-align: center; } .text-nowrap { white-space: nowrap; }
-
-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 30px; margin-bottom: 20px; border-bottom: 2px dashed rgba(255,255,255,0.6);}
-.logo { display: flex; align-items: center; gap: 10px;}
-.logo-icon { font-size: 2.5rem; }
-header h1 { font-size: 2.2rem; color: var(--text-dark); }
-header h1 span { color: var(--color-primary); }
-
-/* Buttons */
-.nav-links { display: flex; gap: 15px; }
-.nav-btn {
-    background: white; border: none; padding: 12px 25px; border-radius: 20px;
-    font-weight: 600; font-size: 1.1rem; cursor: pointer; color: var(--text-gray);
-    box-shadow: none; border: 1px solid var(--border-card); transition: all 0.25s;
-}
-.nav-btn.active { background: var(--color-primary); color: white; }
-a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
-a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px solid var(--mint-dark); }
-.admin-btn { background: #fffbe6; color: #d63031; border: 2px solid #ffeaa7;}
-.nav-btn:hover { transform: scale(1.05) translateY(-2px); box-shadow: none;}
-
-.pill-btn {
-    border: none; border-radius: 30px; padding: 14px 28px;
-    font-size: 1.1rem; font-weight: 600; cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: white; color: var(--text-dark);
-    box-shadow: none; outline: none;
-}
-.pill-btn:active { transform: scale(0.95); }
-.pill-btn.primary { background: var(--color-primary); color: white; }
-.pill-btn.primary:hover { background: #8874f6; transform: translateY(-4px) scale(1.02); box-shadow: none;}
-.pill-btn.secondary { background: rgba(255,255,255,0.9); color: var(--color-primary); border: 2px solid rgba(155, 137, 248, 0.7); }
-.pill-btn.secondary:hover { transform: translateY(-4px) scale(1.02); box-shadow: none; }
-.pill-btn.exam { background: var(--color-primary); color: white; }
-
-/* Premium Inputs */
-.premium-input {
-    width: 100%; padding: 16px 20px; border: 2px solid rgba(255,255,255,0.9);
-    border-radius: 20px; background: rgba(255,255,255,0.7);
-    font-size: 1.2rem; font-weight: 600; color: var(--text-dark);
-    outline: none; transition: all 0.3s; box-shadow: none;
-}
-.premium-input:focus { background: white; border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-glow); }
-
-/* Dashboard UI */
-.stat-card { background: var(--bg-card); text-align: center; padding: 40px;}
-.stat-value { font-size: 5rem; font-weight: 800; color: var(--color-primary); line-height: 1; margin: 15px 0;}
-
-.selection-group { display: flex; gap: 15px; margin-top: 15px;}
-.subject-btn, .mode-btn {
-    flex: 1; padding: 16px; background: white; border: 3px solid transparent; border-radius: 20px;
-    font-weight: 800; font-size: 1.15rem; cursor: pointer; transition: all 0.2s;
-    box-shadow: none; color: var(--text-gray);
-}
-.subject-btn.active { border-color: var(--color-primary); color: var(--color-primary); transform: translateY(-2px); box-shadow: none;}
-.mode-btn.learning { background: var(--mint); color: #204c35; }
-.mode-btn.sparta { background: var(--magic-pink); color: white; }
-.mode-btn:hover { transform: translateY(-4px) scale(1.02); box-shadow: none; }
-
-/* Lists (Schedule & Rewards) */
-.card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(255,255,255,0.6); padding-bottom: 15px; margin-bottom: 15px;}
-.item-list { display: flex; flex-direction: column; gap: 12px; max-height: 350px; overflow-y: auto;}
-.item-list::-webkit-scrollbar { width: 6px; } .item-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px;}
-.empty-txt { color: var(--text-gray); font-style: italic; font-size: 1rem; text-align: center; padding: 20px;}
-
-/* Reward Card Micro-UI */
-.reward-item {
-    background: white; border-radius: 15px; padding: 18px; display: flex; flex-direction: column; gap: 5px; cursor: pointer;
-    border: 2px solid transparent; transition: all 0.2s; position: relative; box-shadow: none;
-}
-.reward-item:hover { transform: translateY(-2px); border-color: rgba(155, 137, 248, 0.5); }
-.reward-item h4 { font-size: 1.2rem; color: #333; margin-bottom: 2px;}
-.reward-item p { font-size: 0.9rem; color: #666; width: 85%; }
-.reward-item.earned { background: #fffcf0; border-color: #f1c40f; overflow: hidden; }
-
-@keyframes stampSlam {
-    0% { opacity: 0; transform: translateY(-50%) scale(3) rotate(-25deg); }
-    50% { opacity: 1; transform: translateY(-50%) scale(0.9) rotate(-10deg); }
-    100% { opacity: 1; transform: translateY(-50%) scale(1) rotate(-15deg); }
-}
-
-.reward-item.earned::after {
-    content: "💯 달성!"; position: absolute; right: 10px; top: 50%; 
-    font-weight: 900; font-size: 1.8rem; color: #e74c3c; 
-    border: 4px solid #e74c3c; padding: 5px 15px; border-radius: 10px;
-    background: rgba(255,255,255,0.85); box-shadow: none;
-    animation: stampSlam 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    pointer-events: none; transform-origin: center;
-}
-.reward-item .del-btn { position: absolute; bottom: 15px; right: 15px; background: none; border: none; color: #ff7675; cursor: pointer; font-size: 1.4rem;}
-
-.sch-item {
-    background: white; border-radius: 15px; padding: 18px; display: flex; flex-direction: column; position: relative;
-    border-left: 6px solid var(--color-primary); box-shadow: none;
-}
-.sch-item .sch-header { display: flex; align-items: center; gap: 10px; margin-bottom: 5px;}
-.sch-item strong { font-size: 1.3rem; color: var(--color-primary); }
-.badge-dday { font-size: 0.9rem; font-weight: 800; padding: 4px 10px; border-radius: 12px; background: #fffbe6; color: #d35400; border: 1px solid #f39c12; }
-.badge-dday.today { background: var(--magic-pink); color: white; border-color: #fda7df; animation: pulse 1.5s infinite; }
-.badge-dday.past { background: #f1f2f6; color: #a4b0be; border-color: #ced6e0; }
+/* ================================================================
+   legacy-app.css — Page-specific styles carried over from style.css
+   Section: System
+   Dependencies: theme.css, base.css, components.css, utilities.css
+   NOTE: Contains duplicate @keyframes (fadeIn/pulse) and selectors
+         (.hidden, .pos-badge, .spell-ok/bad/extra/gap) whose cascade
+         order MUST be preserved inside this single file.
+   ================================================================ */
 
 @keyframes pulse { 0% { box-shadow: none; } 70% { box-shadow: none; } 100% { box-shadow: none; } }
-
-.sch-item span { color: #555; margin-top: 5px; font-size: 1.1rem; width: 85%;}
-.sch-item .del-btn { position: absolute; top: 18px; right: 15px; background: none; border: none; color: #ff7675; cursor: pointer; font-size: 1.4rem;}
 
 /* Study View (Flashcard Area) */
 .view { display: none; }
 .view.active { display: block; animation: fadeIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
-
-/* .top-bar moved to main-topbar.css (single source of truth) */
-.mode-badge { padding: 10px 25px; background: white; border-radius: 20px; font-weight: 800; color: var(--color-primary); font-size: 1.2rem; box-shadow: none; border: 1px solid var(--border-card);}
-
-.progress-bar-container { height: 18px; border-radius: 10px; overflow: hidden; padding: 3px; }
-.progress-bar { height: 100%; border-radius: 8px; background: var(--color-primary); width: 0%; transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
 .flashcard-container { margin-top: 40px; perspective: 1500px; height: 500px; min-height: 380px; }
 .flashcard {
@@ -284,13 +91,6 @@ a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px so
 .definition { font-size: 2.5rem; font-weight: 600; color: #222; }
 .example { font-size: 1.8rem; font-style: italic; color: #555;}
 .input-area { display: flex; gap: 20px; margin-top: auto;}
-
-/* Admin Modal */
-.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.5); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 100; display: flex; align-items: center; justify-content: center;}
-.modal-content { width: 500px; max-width: 90%; max-height: 90vh; overflow-y: auto; position: relative;}
-.close-btn { position: absolute; top: 20px; right: 25px; font-size: 2.5rem; cursor: pointer; color: #888; transition: color 0.2s; line-height: 1;}
-.close-btn:hover { color: #d63031; }
-.admin-section { padding: 25px; background: rgba(255,255,255,0.7); border-radius: 20px; border: 2px dashed rgba(155, 137, 248, 0.4);}
 
 /* Magic Penalty Overlay */
 #sparta-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-primary); z-index: 999; display: flex; align-items: center; justify-content: center;}
@@ -783,7 +583,6 @@ a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px so
 }
 .reward-burst-title { color: var(--color-primary); margin: 16px 0; }
 .reward-burst-desc { font-size: 1.2rem; color: #444; }
-.muted { color: #888; font-size: 0.95rem; }
 
 /* ── Gia Edition 2.0 ── */
 
@@ -856,95 +655,10 @@ a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px so
     color: #2d3748;
 }
 
-/* ══════════════════════════════════════════
-   Apple Design System — Component Classes
-   ══════════════════════════════════════════ */
-
-/* Card */
-.card {
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-default);
-    padding: var(--space-lg) var(--space-xl);
-    box-shadow: none;
-}
-
-/* Buttons */
-.btn-primary {
-    background: var(--color-primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius-full);
-    padding: 12px 24px;
-    font-size: var(--font-md);
-    font-weight: 500;
-    cursor: pointer;
-    transition: background var(--transition-base);
-}
-.btn-primary:hover { background: var(--primary-hover); }
-
-.btn-secondary {
-    background: transparent;
-    color: var(--color-primary);
-    border: 1.5px solid var(--color-primary);
-    border-radius: var(--radius-full);
-    padding: 12px 24px;
-    font-size: var(--font-md);
-    font-weight: 500;
-    cursor: pointer;
-    transition: background var(--transition-base), color var(--transition-base);
-}
-
-.btn-ghost {
-    background: transparent;
-    color: var(--text-secondary);
-    border: 1px solid var(--border-default);
-    border-radius: var(--radius-full);
-    padding: 10px 20px;
-    font-size: var(--font-sm);
-    cursor: pointer;
-    transition: background var(--transition-base), color var(--transition-base);
-}
-
-/* Input */
-.input {
-    border: 1.5px solid var(--border-default);
-    border-radius: var(--radius-md);
-    padding: 12px 16px;
-    font-size: var(--font-md);
-    font-family: inherit;
-    outline: none;
-    transition: border-color var(--transition-base);
-    background: var(--surface);
-    color: var(--text-primary);
-}
-.input:focus { border-color: var(--color-primary); }
-
-/* Tag / Pill */
-.tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 14px;
-    border-radius: var(--radius-full);
-    font-size: var(--font-sm);
-    border: 1px solid var(--border-default);
-    background: var(--surface);
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-.tag:hover { border-color: var(--color-primary); color: var(--color-primary); }
-
-/* ── Animations ── */
+/* ── Late-wins keyframes (override earlier duplicates) ── */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes shake {
-    0%,  100% { transform: translateX(0); }
-    25%        { transform: translateX(-6px); }
-    75%        { transform: translateX(6px); }
 }
 
 @keyframes pulse {

@@ -6,7 +6,7 @@
    ================================================================ */
 
 /** @tag SYSTEM @tag PWA @tag OFFLINE */
-const SW_VERSION = 'gia-sw-v4';
+const SW_VERSION = 'gia-sw-v5';
 const STATIC_CACHE = `${SW_VERSION}-static`;
 const DATA_CACHE   = `${SW_VERSION}-data`;
 
@@ -14,7 +14,11 @@ const DATA_CACHE   = `${SW_VERSION}-data`;
 // on-demand via the runtime fetch handler (stale-while-revalidate).
 const APP_SHELL = [
     '/static/css/theme.css',
-    '/static/css/style.css',
+    '/static/css/base.css?v=1',
+    '/static/css/layout.css?v=1',
+    '/static/css/components.css?v=1',
+    '/static/css/utilities.css?v=1',
+    '/static/css/legacy-app.css?v=1',
     '/static/css/main-shell.css?v=1',
     '/static/css/main-idle.css?v=1',
     '/static/css/main-topbar.css?v=1',
