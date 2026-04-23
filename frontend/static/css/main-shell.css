@@ -90,7 +90,7 @@ body {
     width: 52px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2.5px solid var(--color-accent, #AE397D);
+    border: 2.5px solid var(--color-accent, var(--color-accent));
     background: #fff;
     flex-shrink: 0;
     box-shadow: none;
@@ -134,20 +134,20 @@ body {
     background: transparent;
     font-size: var(--font-size-sm, 13px);
     font-weight: var(--font-weight-bold, 600);
-    color: var(--text-secondary, #6B7280);
+    color: var(--text-secondary, var(--text-secondary));
     border-radius: var(--radius-full, 9999px);
     cursor: pointer;
     transition: all 0.25s ease;
 }
 
 .sb-subject-tab.active {
-    background: var(--color-primary, #4A8E8E);
+    background: var(--color-primary, var(--color-primary));
     color: var(--text-on-primary, #fff);
     box-shadow: none;
 }
 
 .sb-subject-tab:not(.active):hover {
-    color: var(--text-primary, #1A1A1A);
+    color: var(--text-primary, var(--text-primary));
     background: rgba(0, 0, 0, 0.04);
 }
 
@@ -161,7 +161,7 @@ body {
 
 .sb-div {
     height: 1px;
-    background: var(--border-default, #E5E5EA);
+    background: var(--border-default, var(--border-default));
     margin: 8px 16px 12px;
 }
 
@@ -170,7 +170,7 @@ body {
 .sb-label {
     font-size: var(--font-size-xs, 11px);
     font-weight: var(--font-weight-bold, 600);
-    color: var(--text-secondary, #6B7280);
+    color: var(--text-secondary, var(--text-secondary));
     text-transform: uppercase;
     letter-spacing: 1.2px;
     padding: 0 20px;
@@ -186,21 +186,21 @@ body {
     padding: 10px 16px;
     margin: 0 12px 4px;
     background: var(--bg-card, #fff);
-    border: 1.5px solid var(--border-default, #E5E5EA);
+    border: 1.5px solid var(--border-default, var(--border-default));
     border-radius: var(--radius-md, 12px);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .sb-textbook-display:hover {
-    border-color: var(--color-primary, #4A8E8E);
+    border-color: var(--color-primary, var(--color-primary));
     box-shadow: none;
 }
 
 .sb-tb-name-text {
     font-size: var(--font-size-sm, 13px);
     font-weight: var(--font-weight-bold, 600);
-    color: var(--text-primary, #1A1A1A);
+    color: var(--text-primary, var(--text-primary));
     flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -209,14 +209,14 @@ body {
 
 .sb-tb-chevron {
     font-size: 10px;
-    color: var(--text-secondary, #6B7280);
+    color: var(--text-secondary, var(--text-secondary));
     transition: transform 0.2s ease;
     flex-shrink: 0;
     margin-left: 6px;
 }
 
 .sb-textbook-display:hover .sb-tb-chevron {
-    color: var(--color-primary, #4A8E8E);
+    color: var(--color-primary, var(--color-primary));
 }
 
 .sb-textbook-display.open .sb-tb-chevron { transform: rotate(180deg); }
@@ -229,7 +229,7 @@ body {
     left: 12px;
     right: 12px;
     background: var(--bg-card, #fff);
-    border: 1.5px solid var(--border-default, #E5E5EA);
+    border: 1.5px solid var(--border-default, var(--border-default));
     border-radius: var(--radius-md, 12px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     z-index: 200;
@@ -241,19 +241,19 @@ body {
 
 /* Visible scrollbar so long lesson lists don't look cut off */
 .sb-tb-dropdown::-webkit-scrollbar { width: 6px; }
-.sb-tb-dropdown::-webkit-scrollbar-thumb { background: var(--border-default, #E5E5EA); border-radius: 3px; }
+.sb-tb-dropdown::-webkit-scrollbar-thumb { background: var(--border-default, var(--border-default)); border-radius: 3px; }
 
 .sb-tb-dropdown.open { display: block; }
 
 .sb-tb-option {
     padding: 8px 16px;
     font-size: var(--font-size-sm, 13px);
-    color: var(--text-primary, #1A1A1A);
+    color: var(--text-primary, var(--text-primary));
     cursor: pointer;
 }
 
 .sb-tb-option:hover { background: var(--bg-sidebar, #FFFFFF); }
-.sb-tb-option.selected { color: var(--color-primary, #4A8E8E); font-weight: 600; }
+.sb-tb-option.selected { color: var(--color-primary, var(--color-primary)); font-weight: 600; }
 
 /* Hidden native selects */
 #textbook-select,
@@ -293,7 +293,7 @@ body {
 
 .sb-tree-item.sb-tree-current {
     background: var(--color-primary-light, #FFFFFF);
-    border-left: 3px solid var(--color-primary, #4A8E8E);
+    border-left: 3px solid var(--color-primary, var(--color-primary));
     font-weight: 600;
 }
 
@@ -309,7 +309,7 @@ body {
     flex: 1;
     font-size: var(--font-size-sm, 13px);
     font-weight: var(--font-weight-normal, 500);
-    color: var(--text-primary, #1A1A1A);
+    color: var(--text-primary, var(--text-primary));
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -318,7 +318,7 @@ body {
 .sb-tree-test-btn {
     border: none; border-radius: 5px;
     padding: 2px 6px; font-size: 11px; font-weight: 500;
-    color: var(--color-primary, #4A8E8E); background: transparent;
+    color: var(--color-primary, var(--color-primary)); background: transparent;
     cursor: pointer; flex-shrink: 0;
     transition: opacity 0.15s;
     white-space: nowrap;
@@ -344,8 +344,8 @@ body {
     margin: 12px 16px;
     padding: 10px 16px;
     background: var(--color-accent-light, #FFFFFF);
-    color: var(--color-accent, #AE397D);
-    border: 1.5px dashed var(--color-accent, #AE397D);
+    color: var(--color-accent, var(--color-accent));
+    border: 1.5px dashed var(--color-accent, var(--color-accent));
     border-radius: var(--radius-md, 12px);
     font-size: var(--font-size-sm, 13px);
     font-weight: var(--font-weight-bold, 600);
@@ -355,7 +355,7 @@ body {
 }
 
 .ocr-btn:hover {
-    background: var(--color-accent, #AE397D);
+    background: var(--color-accent, var(--color-accent));
     color: var(--text-on-primary, #fff);
 }
 

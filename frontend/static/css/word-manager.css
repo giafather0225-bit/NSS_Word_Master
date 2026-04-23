@@ -7,7 +7,7 @@
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: var(--bg, #F5F5F7);
+  background: var(--bg, var(--bg-surface));
   display: flex;
   flex-direction: column;
   opacity: 1;
@@ -31,25 +31,25 @@
   justify-content: space-between;
   padding: 16px 24px;
   background: var(--surface, #fff);
-  border-bottom: 1px solid var(--border, #E0E0E5);
+  border-bottom: 1px solid var(--border, var(--border-default));
   flex-shrink: 0;
 }
 .wm-header-title {
   font-size: 20px;
   font-weight: 700;
-  color: var(--text-primary, #1D1D1F);
+  color: var(--text-primary, var(--text-primary));
 }
 .wm-close-btn {
   width: 36px; height: 36px;
   border-radius: 50%;
   border: none;
-  background: var(--border, #E0E0E5);
+  background: var(--border, var(--border-default));
   font-size: 18px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
   transition: background 0.15s;
 }
 .wm-close-btn:hover { background: #D1D1D6; }
@@ -71,7 +71,7 @@
 .wm-section-title {
   font-size: 24px;
   font-weight: 700;
-  color: var(--text-primary, #1D1D1F);
+  color: var(--text-primary, var(--text-primary));
   margin-bottom: 20px;
 }
 .wm-lessons-container {
@@ -87,13 +87,13 @@
   padding: 14px 18px;
   background: var(--surface, #fff);
   border-radius: 12px;
-  border: 1px solid var(--border, #E0E0E5);
+  border: 1px solid var(--border, var(--border-default));
   cursor: pointer;
   transition: box-shadow 0.15s, border-color 0.15s;
 }
 .wm-lesson-card:hover {
   box-shadow: none;
-  border-color: var(--primary, #3B82F6);
+  border-color: var(--primary, var(--color-info));
 }
 .wm-lesson-info {
   display: flex;
@@ -106,19 +106,19 @@
 .wm-lesson-name {
   font-size: 16px;
   font-weight: 600;
-  color: var(--text-primary, #1D1D1F);
+  color: var(--text-primary, var(--text-primary));
 }
 .wm-lesson-del {
   width: 28px; height: 28px;
   border-radius: 50%;
   border: none;
   background: transparent;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
   font-size: 14px;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }
-.wm-lesson-del:hover { background: #FFE5E5; color: #FF3B30; }
+.wm-lesson-del:hover { background: #FFE5E5; color: var(--color-error); }
 
 .wm-create-row {
   display: flex;
@@ -127,20 +127,20 @@
 .wm-input {
   flex: 1;
   padding: 10px 14px;
-  border: 1px solid var(--border, #E0E0E5);
+  border: 1px solid var(--border, var(--border-default));
   border-radius: 10px;
   font-size: 15px;
   background: var(--surface, #fff);
-  color: var(--text-primary, #1D1D1F);
+  color: var(--text-primary, var(--text-primary));
   outline: none;
   transition: border-color 0.15s;
 }
-.wm-input:focus { border-color: var(--primary, #3B82F6); }
-.wm-input::placeholder { color: var(--text-secondary, #6E6E73); }
+.wm-input:focus { border-color: var(--primary, var(--color-info)); }
+.wm-input::placeholder { color: var(--text-secondary, var(--text-secondary)); }
 
 .wm-btn-primary {
   padding: 10px 20px;
-  background: var(--primary, #3B82F6);
+  background: var(--primary, var(--color-info));
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -156,7 +156,7 @@
 .wm-empty, .wm-empty-words {
   text-align: center;
   padding: 40px 20px;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
   font-size: 15px;
   line-height: 1.6;
 }
@@ -170,7 +170,7 @@
 .wm-back-btn {
   background: none;
   border: none;
-  color: var(--primary, #3B82F6);
+  color: var(--primary, var(--color-info));
   font-size: 15px;
   cursor: pointer;
   padding: 0;
@@ -180,7 +180,7 @@
 .wm-detail-title {
   font-size: 22px;
   font-weight: 700;
-  color: var(--text-primary, #1D1D1F);
+  color: var(--text-primary, var(--text-primary));
   margin-bottom: 20px;
 }
 
@@ -189,7 +189,7 @@
   display: flex;
   gap: 0;
   margin-bottom: 20px;
-  background: var(--border, #E0E0E5);
+  background: var(--border, var(--border-default));
   border-radius: 10px;
   padding: 3px;
 }
@@ -202,12 +202,12 @@
   font-weight: 600;
   cursor: pointer;
   background: transparent;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
   transition: background 0.2s, color 0.2s;
 }
 .wm-mode-btn.active {
   background: var(--surface, #fff);
-  color: var(--text-primary, #1D1D1F);
+  color: var(--text-primary, var(--text-primary));
   box-shadow: none;
 }
 
@@ -242,7 +242,7 @@
 
 .wm-ai-card {
   background: var(--surface, #fff);
-  border: 1px solid var(--border, #E0E0E5);
+  border: 1px solid var(--border, var(--border-default));
   border-radius: 12px;
   padding: 16px;
   margin-top: 12px;
@@ -250,7 +250,7 @@
 .wm-ai-label {
   font-size: 12px;
   font-weight: 600;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
   text-transform: uppercase;
   margin-bottom: 4px;
   margin-top: 10px;
@@ -258,12 +258,12 @@
 .wm-ai-label:first-child { margin-top: 0; }
 .wm-ai-provider {
   font-size: 11px;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
   margin-top: 10px;
   text-align: right;
 }
 .wm-ai-fail {
-  color: #FF3B30;
+  color: var(--color-error);
   font-size: 14px;
   padding: 12px;
   text-align: center;
@@ -273,14 +273,14 @@
 .wm-wordlist-title {
   font-size: 17px;
   font-weight: 700;
-  color: var(--text-primary, #1D1D1F);
+  color: var(--text-primary, var(--text-primary));
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .wm-word-count {
-  background: var(--primary, #3B82F6);
+  background: var(--primary, var(--color-info));
   color: #fff;
   font-size: 12px;
   font-weight: 700;
@@ -299,13 +299,13 @@
   padding: 12px 16px;
   background: var(--surface, #fff);
   border-radius: 10px;
-  border: 1px solid var(--border, #E0E0E5);
+  border: 1px solid var(--border, var(--border-default));
 }
 .wm-word-num {
   width: 28px; height: 28px;
   border-radius: 50%;
   background: var(--primary-light, #EBF5FF);
-  color: var(--primary, #3B82F6);
+  color: var(--primary, var(--color-info));
   font-size: 13px;
   font-weight: 700;
   display: flex;
@@ -318,17 +318,17 @@
 .wm-word-text {
   font-size: 16px;
   font-weight: 600;
-  color: var(--text-primary, #1D1D1F);
+  color: var(--text-primary, var(--text-primary));
 }
 .wm-word-pos {
   font-size: 12px;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
   font-weight: 400;
   font-style: italic;
 }
 .wm-word-def {
   font-size: 14px;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
   margin-top: 2px;
 }
 .wm-word-ex {
@@ -349,7 +349,7 @@
   margin-top: 4px;
   transition: background 0.15s, color 0.15s;
 }
-.wm-word-del:hover { background: #FFE5E5; color: #FF3B30; }
+.wm-word-del:hover { background: #FFE5E5; color: var(--color-error); }
 
 .hidden { display: none !important; }
 
@@ -374,7 +374,7 @@
 }
 .wm-lesson-count {
   font-size: 12px;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
 }
 .wm-lesson-actions {
   display: flex;
@@ -434,7 +434,7 @@
   gap: 12px;
   padding: 14px 18px;
   border-radius: 12px;
-  border: 1px solid var(--border, #E0E0E5);
+  border: 1px solid var(--border, var(--border-default));
   background: var(--surface, #fff);
 }
 .wm-wt-bar.ready {
@@ -446,27 +446,27 @@
 .wm-wt-title {
   font-size: 15px;
   font-weight: 700;
-  color: var(--text-primary, #1D1D1F);
+  color: var(--text-primary, var(--text-primary));
 }
 .wm-wt-sub {
   font-size: 12px;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
 }
 
 /* ── Weekly Test Question View ─────────────────────────── */
 .wm-wt-def {
   font-size: 18px;
   font-weight: 600;
-  color: var(--text-primary, #1D1D1F);
+  color: var(--text-primary, var(--text-primary));
   padding: 16px;
   background: var(--surface, #fff);
-  border: 1px solid var(--border, #E0E0E5);
+  border: 1px solid var(--border, var(--border-default));
   border-radius: 12px;
   margin-bottom: 8px;
 }
 .wm-wt-ex {
   font-size: 14px;
-  color: var(--text-secondary, #6E6E73);
+  color: var(--text-secondary, var(--text-secondary));
   font-style: italic;
   margin-bottom: 12px;
 }
@@ -476,5 +476,5 @@
   font-weight: 600;
   min-height: 20px;
 }
-.wm-wt-fb.ok  { color: #34C759; }
-.wm-wt-fb.ng  { color: #FF3B30; }
+.wm-wt-fb.ok  { color: var(--color-success); }
+.wm-wt-fb.ng  { color: var(--color-error); }

@@ -7,7 +7,7 @@
     position: fixed;
     inset: 0;
     z-index: 200;
-    background: var(--bg, #F5F5F7);
+    background: var(--bg, var(--bg-surface));
     display: flex;
     flex-direction: column;
     opacity: 1;
@@ -39,13 +39,13 @@
     display: flex;
     align-items: center;
     padding: 20px 24px 12px;
-    border-bottom: 1px solid #E5E5EA;
+    border-bottom: 1px solid var(--border-default);
     gap: 12px;
 }
 .ut-title {
     font-size: 20px;
     font-weight: 700;
-    color: #1D1D1F;
+    color: var(--text-primary);
     margin: 0;
     flex: 1;
 }
@@ -57,21 +57,21 @@
 .ut-timer {
     font-size: 16px;
     font-weight: 700;
-    color: var(--color-primary, #4A8E8E);
+    color: var(--color-primary, var(--color-primary));
     font-variant-numeric: tabular-nums;
 }
 .ut-timer-warn { color: #EF4444; animation: ut-pulse 1s infinite; }
 @keyframes ut-pulse { 50% { opacity: 0.5; } }
 .ut-progress {
     font-size: 14px;
-    color: #6E6E73;
+    color: var(--text-secondary);
     font-weight: 600;
 }
 .ut-close-btn {
     width: 32px; height: 32px;
     border: none; border-radius: 50%;
-    background: #F5F5F7;
-    color: #6E6E73;
+    background: var(--bg-surface);
+    color: var(--text-secondary);
     font-size: 18px;
     cursor: pointer;
     display: flex;
@@ -79,16 +79,16 @@
     justify-content: center;
     transition: background 0.15s;
 }
-.ut-close-btn:hover { background: #E5E5EA; }
+.ut-close-btn:hover { background: var(--border-default); }
 
 /* ── Progress Bar ────────────────────────────────────────── */
 .ut-progress-track {
     height: 3px;
-    background: #F5F5F7;
+    background: var(--bg-surface);
 }
 .ut-progress-bar {
     height: 100%;
-    background: var(--color-primary, #4A8E8E);
+    background: var(--color-primary, var(--color-primary));
     transition: width 0.3s ease;
     width: 0;
 }
@@ -99,7 +99,7 @@
 }
 .ut-desc {
     font-size: 15px;
-    color: #6E6E73;
+    color: var(--text-secondary);
     margin: 0 0 16px;
 }
 .ut-lesson-list {
@@ -115,23 +115,23 @@
     align-items: center;
     gap: 10px;
     padding: 12px 16px;
-    border: 1.5px solid #E5E5EA;
+    border: 1.5px solid var(--border-default);
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.15s;
     font-size: 15px;
-    color: #1D1D1F;
+    color: var(--text-primary);
 }
 .ut-lesson-item:hover {
-    border-color: var(--color-primary, #4A8E8E);
+    border-color: var(--color-primary, var(--color-primary));
     background: var(--color-primary-light, #FFFFFF);
 }
 .ut-lesson-item:has(input:checked) {
-    border-color: var(--color-primary, #4A8E8E);
+    border-color: var(--color-primary, var(--color-primary));
     background: var(--color-primary-light, #FFFFFF);
 }
 .ut-lesson-cb {
-    accent-color: var(--color-primary, #4A8E8E);
+    accent-color: var(--color-primary, var(--color-primary));
     width: 18px; height: 18px;
 }
 .ut-lesson-name {
@@ -139,7 +139,7 @@
 }
 .ut-selected-info {
     font-size: 13px;
-    color: #6E6E73;
+    color: var(--text-secondary);
     margin-bottom: 16px;
     text-align: center;
 }
@@ -148,7 +148,7 @@
     padding: 14px;
     border: none;
     border-radius: 14px;
-    background: var(--color-primary, #4A8E8E);
+    background: var(--color-primary, var(--color-primary));
     color: #fff;
     font-size: 16px;
     font-weight: 700;
@@ -170,7 +170,7 @@
     padding: 60px 24px;
     text-align: center;
     font-size: 16px;
-    color: #6E6E73;
+    color: var(--text-secondary);
 }
 
 /* ── Question Body ───────────────────────────────────────── */
@@ -191,18 +191,18 @@
 .ut-q-number {
     font-size: 14px;
     font-weight: 600;
-    color: #6E6E73;
+    color: var(--text-secondary);
     margin-bottom: 12px;
 }
 .ut-q-def {
     font-size: 20px;
     font-weight: 600;
-    color: #1D1D1F;
+    color: var(--text-primary);
     line-height: 1.5;
     background: #fff;
     border-radius: 16px;
     padding: 24px 32px;
-    border: 1px solid #E5E5EA;
+    border: 1px solid var(--border-default);
 }
 
 /* ── MC Grid ─────────────────────────────────────────────── */
@@ -215,12 +215,12 @@
 }
 .ut-mc-opt {
     padding: 14px 16px 14px 44px;
-    border: 1.5px solid #E5E5EA;
+    border: 1.5px solid var(--border-default);
     border-radius: 12px;
     background: #fff;
     font-size: 15px;
     font-weight: 600;
-    color: #1D1D1F;
+    color: var(--text-primary);
     cursor: pointer;
     transition: all 0.15s;
     text-align: left;
@@ -233,8 +233,8 @@
     transform: translateY(-50%);
     width: 22px; height: 22px;
     border-radius: 6px;
-    background: #F5F5F7;
-    color: #6E6E73;
+    background: var(--bg-surface);
+    color: var(--text-secondary);
     font-size: 12px;
     font-weight: 700;
     display: flex;
@@ -242,7 +242,7 @@
     justify-content: center;
 }
 .ut-mc-opt:hover:not(:disabled) {
-    border-color: var(--color-primary, #4A8E8E);
+    border-color: var(--color-primary, var(--color-primary));
     background: var(--color-primary-light, #FFFFFF);
 }
 .ut-mc-correct {
@@ -270,12 +270,12 @@
 .ut-result-fail .ut-result-score { color: #EF4444; }
 .ut-result-detail {
     font-size: 16px;
-    color: #6E6E73;
+    color: var(--text-secondary);
     margin: 8px 0;
 }
 .ut-result-lessons {
     font-size: 13px;
-    color: #9CA3AF;
+    color: var(--text-hint);
     margin-bottom: 8px;
 }
 .ut-result-status {
@@ -306,7 +306,7 @@
 }
 .ut-retry-btn:hover { transform: translateY(-1px); }
 .ut-retry-all {
-    background: var(--color-primary, #4A8E8E);
+    background: var(--color-primary, var(--color-primary));
     color: #fff;
 }
 .ut-retry-wrong {
@@ -314,8 +314,8 @@
     color: #92400E;
 }
 .ut-retry-close {
-    background: #F5F5F7;
-    color: #6E6E73;
+    background: var(--bg-surface);
+    color: var(--text-secondary);
 }
 
 /* ── Wrong Answers List ──────────────────────────────────── */
@@ -325,7 +325,7 @@
 .ut-wrong-list h3 {
     font-size: 15px;
     font-weight: 700;
-    color: #1D1D1F;
+    color: var(--text-primary);
     margin: 16px 0 12px;
 }
 .ut-wrong-item {
@@ -333,11 +333,11 @@
     grid-template-columns: 1fr auto auto;
     gap: 12px;
     padding: 10px 14px;
-    border-bottom: 1px solid #F5F5F7;
+    border-bottom: 1px solid var(--bg-surface);
     font-size: 14px;
     align-items: center;
 }
-.ut-wrong-def { color: #6E6E73; }
+.ut-wrong-def { color: var(--text-secondary); }
 .ut-wrong-user {
     color: #EF4444;
     text-decoration: line-through;
@@ -358,7 +358,7 @@
 .ut-back-btn {
     border: none;
     background: none;
-    color: var(--color-primary, #4A8E8E);
+    color: var(--color-primary, var(--color-primary));
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -387,7 +387,7 @@
     width: 100%;
     max-width: 480px;
     height: 1px;
-    background: #E5E5EA;
+    background: var(--border-default);
     margin: 24px 0 16px;
 }
 .ut-result-wrap .ut-back-btn {
@@ -404,7 +404,7 @@
 }
 .ut-q-card {
     background: #fff;
-    border: 1.5px solid #E5E5EA;
+    border: 1.5px solid var(--border-default);
     border-radius: 16px;
     padding: 20px;
     transition: border-color 0.2s, opacity 0.3s;
@@ -422,7 +422,7 @@
     font-size: 12px;
     font-weight: 700;
     color: #fff;
-    background: var(--color-primary, #4A8E8E);
+    background: var(--color-primary, var(--color-primary));
     border-radius: 6px;
     padding: 2px 8px;
     flex-shrink: 0;
@@ -430,7 +430,7 @@
 .ut-q-def-text {
     font-size: 16px;
     font-weight: 600;
-    color: #1D1D1F;
+    color: var(--text-primary);
     line-height: 1.4;
 }
 .ut-q-opts {

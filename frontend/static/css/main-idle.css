@@ -74,11 +74,11 @@
     margin: 0;
     padding: 10px 16px;
     background: var(--bg-card, #fff);
-    border: 1.5px solid var(--border-default, #E5E5EA);
+    border: 1.5px solid var(--border-default, var(--border-default));
     border-radius: var(--radius-md, 12px);
     font-size: var(--font-size-md, 15px);
     font-weight: var(--font-weight-bold, 600);
-    color: var(--text-primary, #1A1A1A);
+    color: var(--text-primary, var(--text-primary));
     cursor: pointer;
     text-align: left;
     opacity: 1;
@@ -89,7 +89,7 @@
 
 .sb-bottom-btn:hover,
 .sb-action-btn:hover {
-    border-color: var(--color-primary, #4A8E8E);
+    border-color: var(--color-primary, var(--color-primary));
     box-shadow: none;
 }
 
@@ -100,9 +100,9 @@
     font-weight: var(--font-weight-bold, 600);
     text-align: left; padding: 14px 16px;
     background: var(--bg-card, #fff);
-    color: var(--text-primary, #1A1A1A);
+    color: var(--text-primary, var(--text-primary));
     border: none;
-    border-left: 3px solid var(--color-primary, #4A8E8E);
+    border-left: 3px solid var(--color-primary, var(--color-primary));
     opacity: 1; pointer-events: auto; cursor: pointer;
     box-shadow: none; width: 100%; margin: 0;
     display: flex; align-items: center; gap: 8px;
@@ -110,9 +110,9 @@
 }
 
 .sb-bottom-btns .dock-btn:hover {
-    border-color: var(--color-primary, #4A8E8E);
+    border-color: var(--color-primary, var(--color-primary));
     background: var(--color-primary-light, #FFFFFF);
-    color: var(--color-primary, #4A8E8E);
+    color: var(--color-primary, var(--color-primary));
     transform: none; box-shadow: none;
 }
 
@@ -133,43 +133,43 @@
 .sb-session-row.sb-session-lesson {
     display: flex; justify-content: space-between; align-items: center;
     gap: 6px; padding: 10px 0;
-    border-bottom: 1px solid var(--border-default, #E5E5EA);
+    border-bottom: 1px solid var(--border-default, var(--border-default));
 }
 
 .sb-session-key {
     font-size: var(--font-size-sm, 13px);
     font-weight: var(--font-weight-normal, 500);
-    color: var(--text-secondary, #6B7280);
+    color: var(--text-secondary, var(--text-secondary));
     text-transform: uppercase; letter-spacing: 0.06em; flex-shrink: 0;
 }
 
 .sb-session-val {
     font-size: var(--font-size-sm, 13px);
     font-weight: var(--font-weight-bold, 600);
-    color: var(--text-primary, #1A1A1A);
+    color: var(--text-primary, var(--text-primary));
     text-align: right; word-break: break-word;
 }
 
-.sb-session-val.val-warn { color: var(--color-error, #FF3B30); }
+.sb-session-val.val-warn { color: var(--color-error, var(--color-error)); }
 .sb-session-btns { display: none !important; }
 
 /* ── Sidebar bottom (gear) ────────────── */
 
 .sb-bottom {
     padding-top: 8px;
-    border-top: 1px solid var(--border-default, #E5E5EA);
+    border-top: 1px solid var(--border-default, var(--border-default));
     display: flex; justify-content: flex-end;
     padding: 8px 16px 12px;
 }
 
 #btn-parent {
     border: none; background: transparent; cursor: pointer;
-    color: var(--text-secondary, #6B7280); padding: 6px; border-radius: 8px;
+    color: var(--text-secondary, var(--text-secondary)); padding: 6px; border-radius: 8px;
     display: flex; align-items: center;
     transition: background 0.2s, color 0.2s;
 }
 
-#btn-parent:hover { background: rgba(0,0,0,0.05); color: var(--text-primary, #1A1A1A); }
+#btn-parent:hover { background: rgba(0,0,0,0.05); color: var(--text-primary, var(--text-primary)); }
 #btn-parent svg { width: 16px; height: 16px; }
 
 /* ─── Sidebar Toggle Button ─────────────────────────── */

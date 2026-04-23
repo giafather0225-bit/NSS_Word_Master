@@ -53,9 +53,9 @@
   animation: gia-arc-spin 2.8s linear infinite;
 }
 
-.gia-arc-1 { stroke: #4A8E8E; animation-delay: 0s; }
-.gia-arc-2 { stroke: #F96E69; animation-delay: -0.93s; }
-.gia-arc-3 { stroke: #AE397D; animation-delay: -1.86s; }
+.gia-arc-1 { stroke: var(--color-primary); animation-delay: 0s; }
+.gia-arc-2 { stroke: var(--color-secondary); animation-delay: -0.93s; }
+.gia-arc-3 { stroke: var(--color-accent); animation-delay: -1.86s; }
 
 @keyframes gia-arc-spin {
   0%   { stroke-dashoffset: 0; }
@@ -83,7 +83,7 @@
 .home-banner-title {
   font-size: 13px;
   font-weight: 500;
-  color: #1A1A1A;
+  color: var(--text-primary);
   line-height: 1.3;
 }
 
@@ -146,7 +146,7 @@
   align-items: center;
   gap: 12px;
   padding: 12px 4px;
-  border-bottom: 0.5px solid #F5F5F5;
+  border-bottom: 0.5px solid var(--bg-chip-used);
   transition: background 0.15s;
 }
 
@@ -164,16 +164,16 @@
 }
 
 .task-item[data-required="true"] {
-  border-left: 2px solid #AE397D;
+  border-left: 2px solid var(--color-accent);
   background: #F5EFF8;
   border-radius: 8px;
   padding-left: 8px;
-  border-bottom: 0.5px solid #F5F5F5;
+  border-bottom: 0.5px solid var(--bg-chip-used);
 }
 
 .task-item.done .task-check-circle {
-  background: #AE397D;
-  border-color: #AE397D;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .task-item.done .task-check-circle::after {
@@ -197,7 +197,7 @@
   flex: 1;
   font-size: 13px;
   font-weight: 500;
-  color: #1A1A1A;
+  color: var(--text-primary);
   min-width: 0;
 }
 
@@ -210,7 +210,7 @@
 .task-xp-pill {
   font-size: 11px;
   font-weight: 600;
-  color: #AE397D;
+  color: var(--color-accent);
   background: #F5EFF8;
   padding: 3px 10px;
   border-radius: 20px;
@@ -231,8 +231,8 @@
 
 /* Mirror task-item.done styling so awarded bonuses show as completed. */
 .bonus-row.done .task-check-circle {
-  background: #AE397D;
-  border-color: #AE397D;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
 }
 .bonus-row.done .task-check-circle::after {
   content: "✓";
@@ -288,11 +288,11 @@
   flex-shrink: 0;
 }
 
-.cat-dot--english { background: #4A8E8E; }
-.cat-dot--math    { background: #AE397D; }
-.cat-dot--diary   { background: #F96E69; }
+.cat-dot--english { background: var(--color-primary); }
+.cat-dot--math    { background: var(--color-accent); }
+.cat-dot--diary   { background: var(--color-secondary); }
 .cat-dot--arcade  { background: #BBB; }
-.cat-dot--reward  { background: #AE397D; opacity: 0.5; }
+.cat-dot--reward  { background: var(--color-accent); opacity: 0.5; }
 
 .cat-body {
   flex: 1;
@@ -302,7 +302,7 @@
 .cat-title {
   font-size: 14px;
   font-weight: 500;
-  color: #1A1A1A;
+  color: var(--text-primary);
   line-height: 1.3;
 }
 
@@ -371,13 +371,13 @@
 .level-label {
   font-size: 12px;
   font-weight: 500;
-  color: #AE397D;
+  color: var(--color-accent);
 }
 
 .level-xp-pill {
   font-size: 10px;
   font-weight: 600;
-  color: #AE397D;
+  color: var(--color-accent);
   background: #F5EFF8;
   padding: 2px 8px;
   border-radius: 20px;
@@ -385,7 +385,7 @@
 
 .level-progress {
   height: 6px;
-  background: #F5F5F5;
+  background: var(--bg-chip-used);
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 6px;
@@ -394,14 +394,14 @@
 .level-progress-fill {
   height: 100%;
   width: 0%;
-  background: #AE397D;
+  background: var(--color-accent);
   border-radius: 20px;
   transition: width 0.6s ease-out;
 }
 
 .level-hint {
   font-size: 10px;
-  color: #AE397D;
+  color: var(--color-accent);
   opacity: 0.6;
 }
 
@@ -434,9 +434,9 @@
   line-height: 1;
 }
 
-.stat-val--words  { color: #4A8E8E; }
-.stat-val--xp     { color: #F96E69; }
-.stat-val--streak { color: #AE397D; }
+.stat-val--words  { color: var(--color-primary); }
+.stat-val--xp     { color: var(--color-secondary); }
+.stat-val--streak { color: var(--color-accent); }
 .stat-val--done   { color: #BBB; }
 
 /* ── Ocean World Popup ───────────────────────────────────── */
@@ -499,7 +499,7 @@
 .ocean-popup-title {
   font-size: 16px;
   font-weight: 500;
-  color: #1A1A1A;
+  color: var(--text-primary);
 }
 
 .ocean-popup-sub {
@@ -511,7 +511,7 @@
 
 .ocean-popup-progress {
   height: 6px;
-  background: #F5F5F5;
+  background: var(--bg-chip-used);
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 14px;
@@ -520,7 +520,7 @@
 .ocean-popup-progress-fill {
   height: 100%;
   width: 0%;
-  background: #F96E69;
+  background: var(--color-secondary);
   border-radius: 20px;
   transition: width 0.6s ease-out;
 }
@@ -540,7 +540,7 @@
 .opop-lbl {
   font-size: 10px;
   font-weight: 600;
-  color: #F96E69;
+  color: var(--color-secondary);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 4px;
@@ -549,7 +549,7 @@
 .opop-val {
   font-size: 16px;
   font-weight: 600;
-  color: #F96E69;
+  color: var(--color-secondary);
   line-height: 1;
 }
 
@@ -560,15 +560,15 @@
   align-items: center;
   background: white;
   border: 0.5px solid rgba(0,0,0,.06);
-  border-left: 3px solid #F96E69;
+  border-left: 3px solid var(--color-secondary);
   padding: 10px 14px;
   border-radius: 12px;
   font-size: 12px;
-  color: #1A1A1A;
+  color: var(--text-primary);
 }
 
 .reminder-banner.danger {
-  border-left-color: #AE397D;
+  border-left-color: var(--color-accent);
 }
 
 .reminder-close {
@@ -586,7 +586,7 @@
   position: fixed;
   bottom: 80px;
   right: 24px;
-  background: #AE397D;
+  background: var(--color-accent);
   color: #fff;
   font-size: 13px;
   font-weight: 600;

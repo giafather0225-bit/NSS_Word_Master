@@ -25,7 +25,7 @@ body.math-mode {
 #lesson-section-display { position: relative; }
 #sb-lesson-dropdown {
     display: none; position: absolute; left: 0; right: 0; top: calc(100% + 4px);
-    background: #FFFFFF; border: 1px solid #E0E0E5; border-radius: 8px;
+    background: #FFFFFF; border: 1px solid var(--border-default); border-radius: 8px;
     padding: 4px 0; z-index: 30;
     box-shadow: none; max-height: 200px; overflow-y: auto;
 }
@@ -33,10 +33,10 @@ body.math-mode {
 
 /* ── Preview Modal: Shadow mic states ──────────────────── */
 .pm-mic-btn.done {
-    border-color: #34C759; background: #F0FBF4; color: #34C759; cursor: default;
+    border-color: var(--color-success); background: #F0FBF4; color: var(--color-success); cursor: default;
 }
 .pm-mic-btn.recording {
-    border-color: #FF3B30; background: rgba(255,59,48,0.08); color: #FF3B30;
+    border-color: var(--color-error); background: rgba(255,59,48,0.08); color: var(--color-error);
     animation: mic-pulse 0.8s ease-in-out infinite;
 }
 @keyframes mic-pulse {
@@ -44,7 +44,7 @@ body.math-mode {
     50%      { box-shadow: none; }
 }
 .pm-spell-label.locked { opacity: 0.4; }
-.pm-spell-rows.locked .pm-typing-input { background: #F5F5F7; cursor: not-allowed; }
+.pm-spell-rows.locked .pm-typing-input { background: var(--bg-surface); cursor: not-allowed; }
 .pm-row-icon { width: 22px; flex-shrink: 0; font-size: 15px; text-align: center; }
 
 /* ── Manage Words Button ──────────────── */
@@ -56,11 +56,11 @@ body.math-mode {
     padding: 10px 16px;
     margin: 0 12px 4px;
     background: var(--bg-card, #fff);
-    border: 1.5px solid var(--border-default, #E5E5EA);
+    border: 1.5px solid var(--border-default, var(--border-default));
     border-radius: var(--radius-md, 12px);
     font-size: var(--font-size-md, 15px);
     font-weight: var(--font-weight-bold, 600);
-    color: var(--text-primary, #1A1A1A);
+    color: var(--text-primary, var(--text-primary));
     cursor: pointer;
     transition: all 0.2s ease;
     width: calc(100% - 24px);
@@ -68,7 +68,7 @@ body.math-mode {
 }
 
 .wm-sidebar-trigger:hover {
-    border-color: var(--color-primary, #4A8E8E);
+    border-color: var(--color-primary, var(--color-primary));
     box-shadow: none;
 }
 
@@ -124,7 +124,7 @@ body.math-mode {
 .sb-day-label {
     font-size: 10px;
     font-weight: 600;
-    color: var(--text-secondary, #6B7280);
+    color: var(--text-secondary, var(--text-secondary));
     text-transform: uppercase;
 }
 
@@ -132,28 +132,28 @@ body.math-mode {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: var(--border-default, #E5E5EA);
+    background: var(--border-default, var(--border-default));
     transition: all 0.3s ease;
 }
 
 .sb-week-day.today .sb-day-label {
-    color: var(--color-primary, #4A8E8E);
+    color: var(--color-primary, var(--color-primary));
     font-weight: 700;
 }
 
 .sb-week-day.today .sb-day-dot {
-    border: 2px solid var(--color-primary, #4A8E8E);
+    border: 2px solid var(--color-primary, var(--color-primary));
     background: var(--color-primary-light, #FFFFFF);
 }
 
 .sb-week-day.studied .sb-day-dot {
-    background: var(--color-primary, #4A8E8E);
+    background: var(--color-primary, var(--color-primary));
     box-shadow: none;
 }
 
 .sb-week-day.studied.today .sb-day-dot {
-    background: var(--color-primary, #4A8E8E);
-    border-color: var(--color-primary, #4A8E8E);
+    background: var(--color-primary, var(--color-primary));
+    border-color: var(--color-primary, var(--color-primary));
 }
 
 /* ── Monthly Calendar ─────────────────── */
@@ -168,7 +168,7 @@ body.math-mode {
 .sb-cal-title {
     font-size: 12px;
     font-weight: 700;
-    color: var(--text-primary, #1A1A1A);
+    color: var(--text-primary, var(--text-primary));
     letter-spacing: 0.3px;
 }
 
@@ -177,7 +177,7 @@ body.math-mode {
     background: transparent;
     font-size: 18px;
     font-weight: 700;
-    color: var(--text-secondary, #6B7280);
+    color: var(--text-secondary, var(--text-secondary));
     cursor: pointer;
     padding: 2px 8px;
     border-radius: 6px;
@@ -187,7 +187,7 @@ body.math-mode {
 
 .sb-cal-nav:hover {
     background: var(--color-primary-light, #FFFFFF);
-    color: var(--color-primary, #4A8E8E);
+    color: var(--color-primary, var(--color-primary));
 }
 
 .sb-cal-grid {
@@ -201,7 +201,7 @@ body.math-mode {
 .sb-cal-day-header {
     font-size: 9px;
     font-weight: 700;
-    color: var(--text-secondary, #6B7280);
+    color: var(--text-secondary, var(--text-secondary));
     text-align: center;
     padding: 4px 0 8px;
     text-transform: uppercase;
@@ -214,7 +214,7 @@ body.math-mode {
     justify-content: center;
     font-size: 11px;
     font-weight: 500;
-    color: var(--text-primary, #1A1A1A);
+    color: var(--text-primary, var(--text-primary));
     border-radius: 50%;
     cursor: default;
     transition: all 0.2s ease;
@@ -227,25 +227,25 @@ body.math-mode {
 
 .sb-cal-day.today {
     font-weight: 800;
-    color: var(--color-primary, #4A8E8E);
-    border: 1.5px solid var(--color-primary, #4A8E8E);
+    color: var(--color-primary, var(--color-primary));
+    border: 1.5px solid var(--color-primary, var(--color-primary));
 }
 
 .sb-cal-day.studied {
-    background: var(--color-primary, #4A8E8E);
+    background: var(--color-primary, var(--color-primary));
     color: #fff;
     font-weight: 700;
     box-shadow: none;
 }
 
 .sb-cal-day.studied.today {
-    background: var(--color-primary, #4A8E8E);
+    background: var(--color-primary, var(--color-primary));
     color: #fff;
-    border-color: var(--color-primary, #4A8E8E);
+    border-color: var(--color-primary, var(--color-primary));
     box-shadow: none;
 }
 
 .sb-cal-day.other-month {
-    color: var(--border-default, #E5E5EA);
+    color: var(--border-default, var(--border-default));
 }
 

@@ -70,9 +70,9 @@
   animation: splash-arc-spin 2.8s linear infinite;
 }
 
-.splash-arc-1 { stroke: #4A8E8E; animation-delay: 0s; }
-.splash-arc-2 { stroke: #F96E69; animation-delay: -0.93s; }
-.splash-arc-3 { stroke: #AE397D; animation-delay: -1.86s; }
+.splash-arc-1 { stroke: var(--color-primary); animation-delay: 0s; }
+.splash-arc-2 { stroke: var(--color-secondary); animation-delay: -0.93s; }
+.splash-arc-3 { stroke: var(--color-accent); animation-delay: -1.86s; }
 
 @keyframes splash-arc-spin {
   0%   { stroke-dashoffset: 0; }

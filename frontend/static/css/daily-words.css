@@ -375,7 +375,7 @@
   margin: 8px auto 0;
   padding: 10px 14px;
   background: var(--bg-card);
-  border: 1px solid var(--border-default, #E5E5EA);
+  border: 1px solid var(--border-default, var(--border-default));
   border-radius: var(--radius-md);
   transition: opacity 0.15s, border-color 0.15s;
 }
@@ -395,13 +395,13 @@
   min-width: 0;
   padding: 8px 12px;
   font-size: 15px;
-  border: 1px solid var(--border-default, #E5E5EA);
+  border: 1px solid var(--border-default, var(--border-default));
   border-radius: var(--radius-sm);
   background: #fff;
   color: var(--text-primary);
 }
 .dw-spell-input:focus { outline: none; border-color: var(--color-primary); }
-.dw-spell-input:disabled { background: #F5F5F7; }
+.dw-spell-input:disabled { background: var(--bg-surface); }
 .dw-row-icon { font-size: 18px; width: 20px; text-align: center; }
 .dw-chk-btn { min-width: 72px; }
 

@@ -18,7 +18,7 @@
     padding: 0 20px;
     gap: 12px;
     background: var(--bg-card, #FFFFFF);
-    border-bottom: 1px solid var(--border-default, #E5E5EA);
+    border-bottom: 1px solid var(--border-default, var(--border-default));
     overflow: visible;
     position: relative;
     z-index: 5;
@@ -92,7 +92,7 @@
 }
 .top-progress-fill {
     width: 0%;
-    background: #4A9B8E;
+    background: var(--color-primary);
     border-radius: 999px;
     transition: width 0.65s cubic-bezier(0.4,0,0.2,1);
 }
@@ -107,7 +107,7 @@
     align-items: center;
     gap: 16px;
     padding: 8px 20px;
-    border-bottom: 1px solid var(--border-default, #E5E5EA);
+    border-bottom: 1px solid var(--border-default, var(--border-default));
     background: var(--bg-card, #FFFFFF);
 }
 .stage-header #roadmap {
@@ -136,7 +136,7 @@
     justify-content: center;
     border-radius: var(--radius-full, 9999px);
     background: var(--bg-card, #FFFFFF);
-    border: 1px solid var(--border-default, #E5E5EA);
+    border: 1px solid var(--border-default, var(--border-default));
     box-shadow: var(--shadow-card, 0 2px 12px rgba(0,0,0,0.06));
     color: var(--text-primary);
     cursor: pointer;
