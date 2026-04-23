@@ -57,7 +57,7 @@
     position: fixed; top: 50%; left: 50%;
     transform: translate(-50%,-50%) scale(0.7);
     font-size: 54px; font-weight: 900; letter-spacing: -0.04em;
-    color: var(--primary);
+    color: var(--color-primary);
     text-shadow: 0 6px 28px var(--primary-glow);
     pointer-events: none; z-index: 100;
     opacity: 0;
@@ -121,9 +121,9 @@
 .st-sub { text-align: center; color: var(--muted); font-weight: 600; margin-top: 8px; font-size: 15px; }
 .st-img { margin: 14px auto; max-width: 340px; max-height: 190px; border-radius: 16px; object-fit: cover; box-shadow: none; border: 1px solid var(--border-card); display: block; }
 .st-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
-.st-btn { border: none; border-radius: 13px; padding: 12px 20px; font-weight: 900; cursor: pointer; background: var(--primary); color: #fff; font-size: 14px; transition: transform 0.14s; }
+.st-btn { border: none; border-radius: 13px; padding: 12px 20px; font-weight: 900; cursor: pointer; background: var(--color-primary); color: #fff; font-size: 14px; transition: transform 0.14s; }
 .st-btn:hover { transform: translateY(-1px); }
-.st-btn.ghost { background: var(--primary-tint); color: var(--primary); }
+.st-btn.ghost { background: var(--primary-tint); color: var(--color-primary); }
 .st-prog { text-align: center; margin-top: 12px; font-weight: 800; color: var(--muted); font-size: 12px; }
 .meaning-box, .example-box { background: var(--primary-tint); border-radius: 15px; padding: 15px; font-weight: 700; line-height: 1.5; margin-top: 10px; }
 .choice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; margin-top: 12px; }
@@ -131,32 +131,32 @@
 .choice-btn:hover { transform: scale(1.02); background: var(--primary-tint); }
 .st-input-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
 .st-input { flex: 1; min-width: 200px; max-width: 420px; padding: 13px 17px; border-radius: 13px; border: 2px solid var(--primary-glow); background: rgba(255,255,255,0.7); font-size: 16px; font-weight: 700; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-.st-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--color-primary-glow); }
-.hint-line { margin-top: 9px; font-size: 13px; color: var(--primary); font-weight: 700; text-align: center; }
+.st-input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-glow); }
+.hint-line { margin-top: 9px; font-size: 13px; color: var(--color-primary); font-weight: 700; text-align: center; }
 .spell-feedback { margin-top: 9px; text-align: center; font-weight: 800; }
 .hidden { display: none !important; }
 
 /* ─── Sentence Maker (Step 5) ───────────────────────── */
-.sm-word-chip { font-size: 26px; font-weight: 900; text-align: center; color: var(--primary); background: var(--primary-tint); border-radius: 14px; padding: 14px; margin: 10px 0 4px; letter-spacing: 2px; }
+.sm-word-chip { font-size: 26px; font-weight: 900; text-align: center; color: var(--color-primary); background: var(--primary-tint); border-radius: 14px; padding: 14px; margin: 10px 0 4px; letter-spacing: 2px; }
 .sm-hint-block { text-align: center; margin: 4px 0 10px; padding: 6px 12px; }
 .sm-hint-meaning { font-size: 13px; font-weight: 600; color: #9ca3af; margin-bottom: 2px; }
 .sm-hint-example { font-size: 12px; font-style: italic; color: #c4c9d4; }
 .sm-feedback { background: rgba(255,255,255,0.75); border-radius: 14px; padding: 14px 16px; font-size: 13px; line-height: 1.7; margin-bottom: 10px; border: 1px solid var(--primary-glow); max-height: 260px; overflow-y: auto; }
 .sm-feedback.sm-hint { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.3); }
 .sm-textarea { flex: 1; min-width: 200px; max-width: 420px; padding: 13px 17px; border-radius: 13px; border: 2px solid var(--primary-glow); background: rgba(255,255,255,0.7); font-size: 16px; font-weight: 700; outline: none; transition: border-color 0.2s, box-shadow 0.2s; resize: none; font-family: inherit; line-height: 1.5; }
-.sm-textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--color-primary-glow); }
-.sm-ai-loading { text-align: center; font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 8px; animation: smBlink 1s ease-in-out infinite; }
+.sm-textarea:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-glow); }
+.sm-ai-loading { text-align: center; font-size: 13px; font-weight: 700; color: var(--color-primary); margin-bottom: 8px; animation: smBlink 1s ease-in-out infinite; }
 @keyframes smBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
 .sm-next-btn { width: 100%; padding: 16px; border-radius: 14px; border: none; background: #22c55e; color: #fff; font-size: 17px; font-weight: 900; cursor: pointer; margin-top: 4px; transition: transform 0.13s, box-shadow 0.13s; box-shadow: none; }
 .sm-next-btn:hover { transform: translateY(-2px); box-shadow: none; }
 
 /* ─── Spelling Master (Step 4) ──────────────────────── */
-.sp-mask-box { font-size: 28px; font-weight: 900; letter-spacing: 5px; text-align: center; padding: 18px 10px; background: var(--primary-tint); border-radius: 16px; margin: 10px 0 8px; color: var(--primary); font-family: monospace; }
+.sp-mask-box { font-size: 28px; font-weight: 900; letter-spacing: 5px; text-align: center; padding: 18px 10px; background: var(--primary-tint); border-radius: 16px; margin: 10px 0 8px; color: var(--color-primary); font-family: monospace; }
 .sp-meaning { text-align: center; color: var(--muted); font-size: 13px; font-weight: 600; margin-bottom: 8px; }
 
 /* ─── Fill the Blank (Step 3) ───────────────────────── */
 .fb-word-box { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px; background: var(--primary-tint); border-radius: 14px; margin-bottom: 12px; }
-.fb-word { font-weight: 700; font-size: 13px; color: var(--primary); padding: 3px 8px; border-radius: 8px; background: var(--primary-tint); transition: opacity 0.25s, background 0.15s, transform 0.1s; cursor: pointer; user-select: none; }
+.fb-word { font-weight: 700; font-size: 13px; color: var(--color-primary); padding: 3px 8px; border-radius: 8px; background: var(--primary-tint); transition: opacity 0.25s, background 0.15s, transform 0.1s; cursor: pointer; user-select: none; }
 .fb-word:not(.fb-used):hover { background: var(--color-primary-light); transform: scale(1.05); }
 .fb-word:not(.fb-used):active { transform: scale(0.97); }
 .fb-word.fb-used { opacity: 0.28; text-decoration: line-through; cursor: default; }
@@ -191,7 +191,7 @@
     max-width: 440px; width: 100%;
     box-shadow: none; border: 1px solid var(--border-card);
 }
-.tutor-box h2 { margin: 0 0 12px; font-size: 17px; color: var(--primary); font-weight: 900; }
+.tutor-box h2 { margin: 0 0 12px; font-size: 17px; color: var(--color-primary); font-weight: 900; }
 .tutor-body { font-size: 15px; line-height: 1.55; margin-bottom: 16px; }
 
 /* ─── Particles ──────────────────────────────────────── */
@@ -201,7 +201,7 @@
 }
 .particle {
     position: absolute; width: 7px; height: 7px;
-    border-radius: 50%; background: var(--primary);
+    border-radius: 50%; background: var(--color-primary);
     animation: particle-float 1.2s ease-out forwards;
 }
 @keyframes particle-float {
@@ -219,7 +219,7 @@
     display: none;
 }
 .preview-prog-pill {
-    font-size: 12px; font-weight: 800; color: var(--primary);
+    font-size: 12px; font-weight: 800; color: var(--color-primary);
     background: var(--primary-tint); border-radius: 999px;
     padding: 4px 11px;
 }
@@ -411,7 +411,7 @@
 }
 .pm-chk-btn {
     border: none; border-radius: 10px; padding: 10px 13px;
-    background: var(--primary); color: #fff;
+    background: var(--color-primary); color: #fff;
     font-weight: 900; font-size: 13px; cursor: pointer;
     transition: transform 0.12s; flex-shrink: 0;
 }

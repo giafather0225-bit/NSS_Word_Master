@@ -7,11 +7,11 @@
   display: inline-block;
   padding: 16px 32px;
   background: var(--primary-light);
-  border: 2px solid var(--primary);
+  border: 2px solid var(--color-primary);
   border-radius: 12px;
   font-size: 28px;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--color-primary);
   text-align: center;
   margin: 24px auto;
 }
@@ -25,7 +25,7 @@ textarea.sentence-input {
   margin: 0 auto 24px auto;
   display: block;
   background: var(--surface);
-  border: 1.5px solid var(--border);
+  border: 1.5px solid var(--border-default);
   border-radius: 12px;
   font-size: var(--font-learner-lg);
   font-weight: 400;
@@ -38,7 +38,7 @@ textarea.sentence-input {
 
 textarea.sentence-input:focus {
   outline: none;
-  border-color: var(--primary);
+  border-color: var(--color-primary);
   box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
@@ -51,7 +51,7 @@ button.sentence-submit {
   min-width: 140px;
   height: 52px;
   padding: 0 32px;
-  background: var(--primary);
+  background: var(--color-primary);
   border: none;
   border-radius: 12px;
   font-size: var(--font-learner-lg);
@@ -83,8 +83,8 @@ button.sentence-submit:active {
 .spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid var(--border);
-  border-top-color: var(--primary);
+  border: 3px solid var(--border-default);
+  border-top-color: var(--color-primary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-bottom: 16px;
@@ -99,7 +99,7 @@ button.sentence-submit:active {
   max-width: 700px;
   margin: 32px auto;
   background: var(--surface);
-  border: 1.5px solid var(--border);
+  border: 1.5px solid var(--border-default);
   border-radius: 12px;
   padding: 24px;
 }
@@ -107,7 +107,7 @@ button.sentence-submit:active {
 .feedback-section {
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .feedback-section:last-of-type {
@@ -151,7 +151,7 @@ button[class*="next"] {
   min-width: 160px;
   height: 52px;
   padding: 0 32px;
-  background: var(--primary);
+  background: var(--color-primary);
   border: none;
   border-radius: 12px;
   font-size: var(--font-learner-lg);
@@ -200,7 +200,7 @@ button[class*="next"]:hover {
 
 .sm-scramble-bank {
   background: var(--bg, #FDF2F8);
-  border: 1.5px solid var(--border);
+  border: 1.5px solid var(--border-default);
 }
 
 .sm-scr-chip {
@@ -259,7 +259,7 @@ p:has(em):not(.feedback-content) {
   margin: 20px auto 0;
   border-radius: 14px;
   overflow: hidden;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid var(--border-default);
   background: var(--surface);
   box-shadow: none;
 }
@@ -270,7 +270,7 @@ p:has(em):not(.feedback-content) {
   align-items: flex-start;
   gap: 12px;
   padding: 14px 18px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .sm-ai-row:last-child {
@@ -302,7 +302,7 @@ p:has(em):not(.feedback-content) {
 .sm-ai-fail  .sm-ai-icon { background: var(--color-warning); color: var(--text-on-primary); }
 .sm-ai-neutral .sm-ai-icon {
   background: var(--primary-light);
-  color: var(--primary);
+  color: var(--color-primary);
 }
 
 /* ── Body column ── */
@@ -323,7 +323,7 @@ p:has(em):not(.feedback-content) {
 
 .sm-ai-pass  .sm-ai-label { color: var(--success); }
 .sm-ai-fail  .sm-ai-label { color: var(--color-warning); }
-.sm-ai-neutral .sm-ai-label { color: var(--primary); }
+.sm-ai-neutral .sm-ai-label { color: var(--color-primary); }
 
 .sm-ai-text {
   font-size: 13.5px;
@@ -340,7 +340,7 @@ p:has(em):not(.feedback-content) {
 
 .sm-star {
   font-size: 18px;
-  color: var(--border);
+  color: var(--border-default);
   line-height: 1;
   transition: color 0.15s;
 }
@@ -354,7 +354,7 @@ p:has(em):not(.feedback-content) {
   margin-top: 8px;
   padding: 9px 12px;
   background: var(--bg);
-  border-left: 3px solid var(--primary);
+  border-left: 3px solid var(--color-primary);
   border-radius: 0 8px 8px 0;
   font-size: 13px;
   color: var(--text-primary);
@@ -367,7 +367,7 @@ p:has(em):not(.feedback-content) {
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--primary);
+  color: var(--color-primary);
   margin-bottom: 4px;
 }
 
@@ -383,14 +383,14 @@ p:has(em):not(.feedback-content) {
 .sm-ai-overall-text {
   font-size: var(--font-learner-md);
   font-weight: 500;
-  color: var(--primary);
+  color: var(--color-primary);
   line-height: 1.55;
   text-align: center;
 }
 
 .sm-ai-overall .sm-ai-fix {
   background: var(--surface);
-  border-left-color: var(--primary);
+  border-left-color: var(--color-primary);
 }
 
 /* ── Unrecognised lines ── */
@@ -398,5 +398,5 @@ p:has(em):not(.feedback-content) {
   padding: 10px 18px;
   font-size: 13px;
   color: var(--text-secondary);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-default);
 }
