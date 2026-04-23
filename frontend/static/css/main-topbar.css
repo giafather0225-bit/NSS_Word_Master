@@ -77,48 +77,24 @@
     pointer-events: none;
 }
 
-/* ─── Top-right: diary + stars + progress + % ───────── */
-.top-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-}
+/* ─── Top-right: diary + stars + progress ──────────── */
 .top-diary-btn {
     border: none; background: transparent; cursor: pointer;
     font-size: 16px; padding: 4px; border-radius: 6px;
     transition: background 0.15s; line-height: 1;
 }
 .top-diary-btn:hover { background: rgba(0,0,0,0.06); }
-.top-star-icon {
-    font-size: 14px;
-    color: #f59e0b;
-    line-height: 1;
-}
 #stars-count {
     font-size: 13px;
     font-weight: 600;
     color: var(--text-primary);
     min-width: 14px;
 }
-.top-progress-bar-wrap {
-    width: 80px;
-    height: 3px;
-    background: #E0E0E5;
-    border-radius: 999px;
-    overflow: hidden;
-    flex-shrink: 0;
-}
 .top-progress-fill {
-    
     width: 0%;
     background: #4A9B8E;
     border-radius: 999px;
     transition: width 0.65s cubic-bezier(0.4,0,0.2,1);
-}
-.pct-big {
-    font-size: 13px; font-weight: 600; color: var(--text-primary);
-    letter-spacing: -0.02em; min-width: 36px;
 }
 .challenge-meta {
     font-size: 13px; font-weight: 500; color: var(--text-secondary);
