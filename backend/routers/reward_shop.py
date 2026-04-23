@@ -10,6 +10,7 @@ API: GET /api/shop/items, POST /api/shop/buy,
 """
 
 import logging
+import os
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -67,7 +68,7 @@ def _seed_rewards_if_empty(db: Session) -> None:
     db.commit()
     logger.info("[shop] Seeded %d reward items", len(SEED_REWARDS))
 
-DEFAULT_PIN = "0000"
+DEFAULT_PIN = os.getenv("DEFAULT_PIN", "0000")
 
 
 # ─── Schemas ──────────────────────────────────────────────────
