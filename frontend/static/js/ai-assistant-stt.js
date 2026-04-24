@@ -1,6 +1,8 @@
+if (typeof window.ShadowSTT === 'undefined') { if (typeof window.ShadowSTT === 'undefined') {
+if (typeof ShadowSTT === 'undefined') {
 /* ai-assistant-stt.js — Speech Recognition (Shadow STT) */
 
-class ShadowSTT {
+class {
     constructor(onResult, onError, onEnd) {
         this.onResult = onResult;
         this.onError = onError;
@@ -71,3 +73,5 @@ class ShadowSTT {
 }
 
 window.ShadowSTT = ShadowSTT;
+}
+} }
