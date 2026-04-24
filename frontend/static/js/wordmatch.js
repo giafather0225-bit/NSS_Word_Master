@@ -1,17 +1,20 @@
 /* ================================================================
    wordmatch.js — Step 2: Word Match (dual-column matching with SVG lines).
    Section: English / Word Match
+   Palette B — connector uses var(--color-success) Sage; ghost uses
+   var(--section-primary) Baby Blue.
    Dependencies: core.js, tts-client.js, analytics.js
    API endpoints: none
    ================================================================ */
 
 /**
- * Remove the scroll event handler that redraws SVG lines, and remove the SVG overlay.
+ * Remove the scroll/resize handlers that redraw SVG lines, and remove the SVG overlay.
  * @tag WORD_MATCH SYSTEM
  */
 function clearWmScrollHandler() {
     if (wmState.scrollHandler) {
         window.removeEventListener("scroll", wmState.scrollHandler, true);
+        window.removeEventListener("resize", wmState.scrollHandler, true);
         wmState.scrollHandler = null;
     }
     const old = document.getElementById("wm-svg-overlay");
@@ -19,14 +22,31 @@ function clearWmScrollHandler() {
 }
 
 /**
- * Re-draw all Bezier connection lines for matched word–meaning pairs.
+ * Double-rAF scheduler — ensures layout is finalized (fonts, reflow) before drawing.
+ * @tag WORD_MATCH
+ */
+function scheduleWmDraw() {
+    requestAnimationFrame(function () {
+        requestAnimationFrame(drawWmLines);
+    });
+}
+
+/**
+ * Re-draw all Bezier connection lines for matched word–meaning pairs,
+ * plus a Baby Blue ghost line for the currently selected word (if any).
  * @tag WORD_MATCH
  */
 function drawWmLines() {
-    let svg = document.getElementById("wm-svg-overlay");
+    const svg = document.getElementById("wm-svg-overlay");
     if (!svg) return;
+    const host = svg.parentElement;
+    if (!host) return;
+    const colRect = host.getBoundingClientRect();
+    if (colRect.width === 0) return; // layout not ready
+
     while (svg.firstChild) svg.removeChild(svg.firstChild);
 
+    // Solid lines — matched pairs
     for (const mi of wmState.matched) {
         const wordBtn    = document.getElementById("wm-w-" + mi);
         const meaningBtn = document.getElementById("wm-m-" + mi);
@@ -35,20 +55,33 @@ function drawWmLines() {
         const wr = wordBtn.getBoundingClientRect();
         const mr = meaningBtn.getBoundingClientRect();
 
-        const x1 = wr.right;
-        const y1 = (wr.top + wr.bottom) / 2;
-        const x2 = mr.left;
-        const y2 = (mr.top + mr.bottom) / 2;
-
+        const x1 = wr.right - colRect.left;
+        const y1 = (wr.top + wr.bottom) / 2 - colRect.top;
+        const x2 = mr.left - colRect.left;
+        const y2 = (mr.top + mr.bottom) / 2 - colRect.top;
         const cx = (x1 + x2) / 2;
+
         const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
         path.setAttribute("d", "M " + x1 + " " + y1 + " C " + cx + " " + y1 + " " + cx + " " + y2 + " " + x2 + " " + y2);
-        path.setAttribute("stroke", "#22c55e");
-        path.setAttribute("stroke-width", "2.5");
-        path.setAttribute("fill", "none");
-        path.setAttribute("stroke-linecap", "round");
-        path.setAttribute("opacity", "0.75");
         svg.appendChild(path);
+    }
+
+    // Ghost line — currently selected word (not yet matched)
+    if (wmState.selectedWordIdx !== null && !wmState.matched.has(wmState.selectedWordIdx)) {
+        const wordBtn = document.getElementById("wm-w-" + wmState.selectedWordIdx);
+        if (wordBtn) {
+            const wr = wordBtn.getBoundingClientRect();
+            const x1 = wr.right - colRect.left;
+            const y1 = (wr.top + wr.bottom) / 2 - colRect.top;
+            const x2 = colRect.width + 10; // extend 10px past connector
+            const y2 = y1;
+            const cx = (x1 + x2) / 2;
+
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute("d", "M " + x1 + " " + y1 + " C " + cx + " " + y1 + " " + cx + " " + y2 + " " + x2 + " " + y2);
+            path.classList.add("ghost");
+            svg.appendChild(path);
+        }
     }
 }
 
@@ -82,7 +115,7 @@ function updateWmButtonStates(el) {
         }
         prog.textContent = batchMatchedCount + " / " + (batchEnd - batchStart) + " matched";
     }
-    requestAnimationFrame(drawWmLines);
+    scheduleWmDraw();
 }
 
 /**
@@ -151,21 +184,25 @@ function renderMeaningMatch(el) {
         + "</div>"
         + "<p class='st-prog'>" + batchMatchedCount + " / " + batchSize + " matched</p>";
 
-    // Fixed SVG overlay for connecting lines
+    // SVG overlay inside connector column (no longer body-fixed)
     const svgNS = "http://www.w3.org/2000/svg";
-    const svgEl = document.createElementNS(svgNS, "svg");
-    svgEl.setAttribute("id", "wm-svg-overlay");
-    svgEl.style.cssText = "position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:999;overflow:visible";
-    document.body.appendChild(svgEl);
+    const connectorCol = el.querySelector(".wm-col-connector");
+    if (connectorCol) {
+        const svgEl = document.createElementNS(svgNS, "svg");
+        svgEl.setAttribute("id", "wm-svg-overlay");
+        svgEl.style.cssText = "position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible";
+        connectorCol.appendChild(svgEl);
+    }
 
-    requestAnimationFrame(drawWmLines);
+    scheduleWmDraw();
 
-    wmState.scrollHandler = function() { requestAnimationFrame(drawWmLines); };
+    wmState.scrollHandler = function () { scheduleWmDraw(); };
     window.addEventListener("scroll", wmState.scrollHandler, { passive: true, capture: true });
+    window.addEventListener("resize", wmState.scrollHandler, { passive: true });
 
     // Wire word buttons
-    el.querySelectorAll(".wm-word-btn:not([disabled])").forEach(function(btn) {
-        btn.addEventListener("click", function() {
+    el.querySelectorAll(".wm-word-btn:not([disabled])").forEach(function (btn) {
+        btn.addEventListener("click", function () {
             const idx = Number(btn.dataset.idx);
             wmState.selectedWordIdx = (wmState.selectedWordIdx === idx) ? null : idx;
             updateWmButtonStates(el);
@@ -173,8 +210,8 @@ function renderMeaningMatch(el) {
     });
 
     // Wire meaning buttons
-    el.querySelectorAll(".wm-meaning-btn:not([disabled])").forEach(function(btn) {
-        btn.addEventListener("click", async function() {
+    el.querySelectorAll(".wm-meaning-btn:not([disabled])").forEach(function (btn) {
+        btn.addEventListener("click", async function () {
             if (wmState.selectedWordIdx === null) {
                 setStatus("👈 Click a word first!");
                 return;
@@ -197,8 +234,8 @@ function renderMeaningMatch(el) {
                 }
 
                 if (batchDone) {
-                    requestAnimationFrame(drawWmLines);
-                    await new Promise(function(r) { setTimeout(r, 700); });
+                    scheduleWmDraw();
+                    await new Promise(function (r) { setTimeout(r, 700); });
 
                     const hasNextBatch = (wmState.batchIdx + 1) < totalBatches;
                     if (hasNextBatch) {
@@ -218,7 +255,7 @@ function renderMeaningMatch(el) {
                     } else {
                         items.forEach(it => { if (!wrongMap[it.id]) _trackWordAttempt(it, true, it.answer); });
                         setStatus("Word Match complete!");
-                        await new Promise(function(r) { setTimeout(r, 600); });
+                        await new Promise(function (r) { setTimeout(r, 600); });
                         clearWmScrollHandler();
                         advanceToNextStage();
                     }
@@ -227,14 +264,13 @@ function renderMeaningMatch(el) {
                 }
             } else {
                 // Wrong match — flash BOTH the picked word and the clicked meaning
-                // in red so the child clearly sees which pair was wrong, then re-render
-                // after the feedback lands (no immediate re-render race).
+                // in Dusty Coral so the child clearly sees which pair was wrong.
                 stageFxWrong();
                 const wrongWordBtn = el.querySelector("#wm-w-" + prevSelected);
                 btn.classList.add("wm-shake", "wm-wrong");
                 if (wrongWordBtn) wrongWordBtn.classList.add("wm-wrong");
                 setStatus("Not quite — try again!");
-                await new Promise(function(r) { setTimeout(r, 600); });
+                await new Promise(function (r) { setTimeout(r, 700); });
                 btn.classList.remove("wm-shake", "wm-wrong");
                 if (wrongWordBtn) wrongWordBtn.classList.remove("wm-wrong");
                 wmState.selectedWordIdx = null;
