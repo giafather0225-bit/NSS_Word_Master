@@ -11,8 +11,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="GIA">
     <link rel="apple-touch-icon" href="/static/img/GIA_Logo.png">
-    <meta name="theme-color" content="#D4619E">
-    <link rel="stylesheet" href="/static/css/theme.css?v=4">
+    <meta name="theme-color" content="#E09AAE">
+    <!-- Fonts: Nunito (body) / Quicksand (display) / Caveat (hand accent) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/theme.css?v=5">
     <link rel="stylesheet" href="/static/css/toast.css?v=1">
     <link rel="stylesheet" href="/static/css/main-shell.css?v=1">
     <link rel="stylesheet" href="/static/css/main-idle.css?v=1">
@@ -34,7 +38,7 @@
     <link rel="stylesheet" href="/static/css/unittest.css?v=4">
     <link rel="stylesheet" href="/static/css/word-manager.css?v=14">
     <link rel="stylesheet" href="/static/css/review.css?v=5">
-    <link rel="stylesheet" href="/static/css/home.css?v=5">
+    <link rel="stylesheet" href="/static/css/home.css?v=7">
     <link rel="stylesheet" href="/static/css/daily-words.css?v=3">
     <link rel="stylesheet" href="/static/css/reward-shop.css?v=3">
     <link rel="stylesheet" href="/static/css/parent.css?v=6">
@@ -62,7 +66,7 @@
     <link rel="stylesheet" href="/static/css/math-academy-responsive.css?v=1">
     <link rel="stylesheet" href="/static/css/arcade.css?v=8">
     <link rel="stylesheet" href="/static/css/ckla.css?v=1">
-    <link rel="stylesheet" href="/static/css/ai-assistant.css?v=1">
+    <link rel="stylesheet" href="/static/css/ai-assistant.css?v=5">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
@@ -562,110 +566,144 @@
             <!-- Home Dashboard (shown on app start) -->
             <div id="home-dashboard">
 
-                <!-- Top Banner -->
-                <div class="home-banner">
-                    <div class="gia-logo-ring">
-                        <svg class="gia-ring-svg" viewBox="0 0 80 80" aria-hidden="true">
-                            <circle class="gia-arc gia-arc-1" cx="40" cy="40" r="36"/>
-                            <circle class="gia-arc gia-arc-2" cx="40" cy="40" r="36"/>
-                            <circle class="gia-arc gia-arc-3" cx="40" cy="40" r="36"/>
-                        </svg>
-                        <img src="/static/img/GIA_Logo.png" alt="GIA" class="gia-logo-img">
+                <!-- Top-right overflow menu (⋯) -->
+                <div class="top-right-menu" id="top-right-menu">
+                    <button class="trm-btn" id="trm-btn" aria-label="Menu" aria-haspopup="true" aria-expanded="false">
+                        <i data-lucide="more-horizontal" width="18" height="18"></i>
+                    </button>
+                    <div class="trm-dropdown" id="trm-dropdown" role="menu" aria-hidden="true">
+                        <button class="trm-item" role="menuitem" onclick="openParentDashboard()">
+                            <i data-lucide="users" width="14" height="14"></i>
+                            <span>Parent Dashboard</span>
+                        </button>
+                        <button class="trm-item" role="menuitem" onclick="openSettings()">
+                            <i data-lucide="settings" width="14" height="14"></i>
+                            <span>Settings</span>
+                        </button>
                     </div>
-                    <div class="home-banner-text">
-                        <div class="home-banner-title" id="coach-message">Keep up the great work!</div>
-                        <div class="home-banner-sub" id="coach-sub-message">Let's learn something awesome!</div>
-                    </div>
-                    <button class="home-banner-menu" onclick="openParentDashboard()" title="Settings">···</button>
                 </div>
 
-                <!-- Reminder banners -->
-                <div id="reminder-banners"></div>
+                <!-- Hidden legacy hooks (kept callable by home.js) -->
+                <span id="coach-message" hidden></span>
+                <span id="coach-sub-message" hidden></span>
+                <div id="reminder-banners" hidden></div>
+                <span id="growth-level-label" hidden></span>
+                <span id="growth-level-xp" hidden></span>
+                <span id="growth-progress-fill" hidden></span>
+                <span id="growth-level-hint" hidden></span>
+                <span id="summary-done" hidden></span>
 
                 <!-- Main 3-column grid -->
-                <div class="home-grid">
-                    <!-- LEFT: Today Tasks -->
-                    <div class="home-today-card">
-                        <div class="today-label">TODAY</div>
-                        <div class="task-list" id="today-task-list"></div>
-                    </div>
+                <div class="dashboard-grid">
 
-                    <!-- MIDDLE: Category cards -->
-                    <div class="home-cat-column">
-                        <div class="home-cat-card" id="section-card-english">
-                            <span class="icon-wrap icon-wrap--english"><i data-lucide="book-open" width="16" height="16"></i></span>
-                            <div class="cat-body">
-                                <div class="cat-title">English</div>
-                                <div class="cat-sub">Vocabulary &amp; reading</div>
-                            </div>
-                        </div>
-                        <div class="home-cat-card" id="section-card-math">
-                            <span class="icon-wrap icon-wrap--math"><i data-lucide="calculator" width="16" height="16"></i></span>
-                            <div class="cat-body">
-                                <div class="cat-title">Math</div>
-                                <div class="cat-sub">Numbers &amp; solving</div>
-                            </div>
-                        </div>
-                        <div class="home-cat-card" id="section-card-diary">
-                            <span class="icon-wrap icon-wrap--diary"><i data-lucide="pencil-line" width="16" height="16"></i></span>
-                            <div class="cat-body">
-                                <div class="cat-title">Diary</div>
-                                <div class="cat-sub">Write about your day</div>
-                            </div>
-                        </div>
-                        <div class="home-cat-card home-cat-card--disabled" id="section-card-arcade">
-                            <span class="icon-wrap icon-wrap--arcade"><i data-lucide="gamepad-2" width="16" height="16"></i></span>
-                            <div class="cat-body">
-                                <div class="cat-title">Arcade</div>
-                                <div class="cat-sub">Type fast, earn XP</div>
-                            </div>
-                        </div>
-                        <div class="home-cat-card" id="home-reward-card">
-                            <span class="icon-wrap icon-wrap--reward"><i data-lucide="gift" width="16" height="16"></i></span>
-                            <div class="cat-body">
-                                <div class="cat-title">Reward Shop</div>
-                                <div class="cat-sub">Redeem your points</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- RIGHT: Ocean World + Level + Stats -->
-                    <div class="home-right-column">
-                        <div class="ocean-world-card" id="ocean-world-card">
-                            <img id="ocean-world-img" src="/static/img/themes/ocean/step_0_v1.svg" alt="Ocean World">
-                            <div class="ocean-world-hover">Ocean World</div>
+                    <!-- ═══ LEFT: Greeting + Today's tasks ═══ -->
+                    <aside class="col-left">
+                        <div class="greeting-block">
+                            <div class="greeting-date" id="greeting-date"></div>
+                            <h1 class="greeting-hello">
+                                <span id="greeting-time">Good morning,</span><br>
+                                <span class="greeting-name" id="greeting-name">Gia</span>
+                            </h1>
                         </div>
 
-                        <div class="level-card">
-                            <div class="level-card-top">
-                                <span class="level-label" id="growth-level-label">Level 1</span>
-                                <span class="level-xp-pill" id="growth-level-xp">0/100 XP</span>
+                        <section class="today-checklist card" aria-labelledby="today-tasks-title">
+                            <header class="tc-header">
+                                <span class="tc-title" id="today-tasks-title">Today's tasks</span>
+                                <span class="tc-count" id="today-tasks-count">0 / 0 done</span>
+                            </header>
+                            <div class="tc-sub" id="today-tasks-xp">Set by parent · 0 / 0 XP earned</div>
+                            <div class="tc-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                <div class="tc-progress-fill" id="today-tasks-progress-fill"></div>
                             </div>
-                            <div class="level-progress">
-                                <div class="level-progress-fill" id="growth-progress-fill"></div>
-                            </div>
-                            <div class="level-hint" id="growth-level-hint">100 XP to Level 2</div>
+                            <div class="tc-list" id="today-task-list"></div>
+                        </section>
+                    </aside>
+
+                    <!-- ═══ CENTER: Header + 6-card grid + Weekly strip ═══ -->
+                    <section class="col-center">
+                        <div class="header-bar">
+                            <div class="hb-label">PICK A ROOM</div>
+                            <h2 class="hb-title">What do you feel like today?</h2>
                         </div>
 
-                        <div class="stats-grid">
-                            <div class="stat-box">
-                                <div class="stat-lbl">WORDS</div>
-                                <div class="stat-val stat-val--words" id="summary-words">0</div>
+                        <div class="section-grid" role="list">
+                            <button type="button" class="section-card section-card--english" id="section-card-english" role="listitem" aria-label="English — open">
+                                <span class="sc-title">English</span>
+                            </button>
+                            <button type="button" class="section-card section-card--math" id="section-card-math" role="listitem" aria-label="Math — open">
+                                <span class="sc-title">Math</span>
+                            </button>
+                            <button type="button" class="section-card section-card--diary" id="section-card-diary" role="listitem" aria-label="Diary — open">
+                                <span class="sc-title">Diary</span>
+                            </button>
+                            <button type="button" class="section-card section-card--arcade" id="section-card-arcade" role="listitem" aria-label="Arcade — open">
+                                <span class="sc-title">Arcade</span>
+                            </button>
+                            <button type="button" class="section-card section-card--shop" id="home-reward-card" role="listitem" aria-label="Shop — open">
+                                <span class="sc-title">Shop</span>
+                            </button>
+                            <button type="button" class="section-card section-card--review" id="section-card-review" role="listitem" aria-label="Review — coming soon" disabled>
+                                <span class="sc-title">Review</span>
+                                <span class="sc-badge">Coming soon</span>
+                            </button>
+                        </div>
+
+                        <section class="weekly-strip card" aria-labelledby="weekly-title">
+                            <header class="ws-header">
+                                <span class="ws-title" id="weekly-title">This week</span>
+                                <span class="ws-streak">
+                                    <span id="weekly-streak-days">0</span>-day streak
+                                    <i data-lucide="flame" width="12" height="12"></i>
+                                </span>
+                            </header>
+                            <div class="ws-bars" id="weekly-bars" aria-hidden="true"></div>
+                        </section>
+                    </section>
+
+                    <!-- ═══ RIGHT: Stats stack + Ocean World ═══ -->
+                    <aside class="col-right">
+                        <div class="stats-stack">
+                            <div class="stat-row">
+                                <span class="sr-icon sr-icon--words">
+                                    <i data-lucide="book-open" width="14" height="14"></i>
+                                </span>
+                                <div class="sr-body">
+                                    <div class="sr-label">Words learned</div>
+                                    <div class="sr-value" id="summary-words">0</div>
+                                </div>
+                                <div class="sr-sub">all-time</div>
                             </div>
-                            <div class="stat-box">
-                                <div class="stat-lbl">TOTAL XP</div>
-                                <div class="stat-val stat-val--xp" id="summary-xp">0</div>
+                            <div class="stat-row">
+                                <span class="sr-icon sr-icon--xp">
+                                    <i data-lucide="sparkles" width="14" height="14"></i>
+                                </span>
+                                <div class="sr-body">
+                                    <div class="sr-label">Total XP</div>
+                                    <div class="sr-value" id="summary-xp">0</div>
+                                </div>
+                                <div class="sr-sub" id="summary-xp-today">+0 today</div>
                             </div>
-                            <div class="stat-box">
-                                <div class="stat-lbl">STREAK</div>
-                                <div class="stat-val stat-val--streak" id="summary-streak">0d</div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="stat-lbl">DONE</div>
-                                <div class="stat-val stat-val--done" id="summary-done">0/0</div>
+                            <div class="stat-row">
+                                <span class="sr-icon sr-icon--streak">
+                                    <i data-lucide="flame" width="14" height="14"></i>
+                                </span>
+                                <div class="sr-body">
+                                    <div class="sr-label">Streak</div>
+                                    <div class="sr-value" id="summary-streak">0 days</div>
+                                </div>
+                                <div class="sr-sub" id="summary-streak-best">best: 0</div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="ocean-world-card" id="ocean-world-card" role="button" tabindex="0" aria-label="Ocean World">
+                            <div class="owc-label">WORLD</div>
+                            <div class="owc-name">Ocean World</div>
+                            <div class="owc-illustration">
+                                <img id="ocean-world-img" src="/static/img/themes/ocean/step_0_v1.svg" alt="" aria-hidden="true">
+                            </div>
+                            <div class="owc-footer" id="ocean-world-progress">0 / 10 sea creatures collected</div>
+                        </div>
+                    </aside>
                 </div>
             </div>
 
@@ -786,7 +824,7 @@
 <script src="/static/js/fillblank.js?v=1"></script>
 <script src="/static/js/spelling.js?v=4"></script>
 <script src="/static/js/sentence.js?v=2"></script>
-<script src="/static/js/home.js?v=5"></script>
+<script src="/static/js/home.js?v=6"></script>
 <script src="/static/js/growth-theme.js?v=2"></script>
 <script src="/static/js/parent-panel.js?v=10"></script>
 <script src="/static/js/parent-overview.js?v=1"></script>
@@ -795,6 +833,7 @@
 <script src="/static/js/parent-streak.js?v=1"></script>
 <script src="/static/js/parent-xp.js?v=1"></script>
 <script src="/static/js/parent-settings.js?v=3"></script>
+<script src="/static/js/parent-shadow.js?v=1"></script>
 <script src="/static/js/reward-shop.js?v=5"></script>
 <script src="/static/js/reward-shop-use.js?v=1"></script>
 <script src="/static/js/diary.js?v=4"></script>
@@ -804,7 +843,7 @@
 <script src="/static/js/daily-words-weekly.js?v=1"></script>
 <script src="/static/js/ckla.js?v=1"></script>
 <script src="/static/js/ckla-lesson.js?v=1"></script>
-<script src="/static/js/child.js?v=37"></script>
+<script src="/static/js/child.js?v=38"></script>
 <script src="/static/js/sentence_ai.js?v=2"></script>
 <script src="/static/js/collocation.js?v=1"></script>
 <script src="/static/js/finaltest.js?v=13"></script>
@@ -876,16 +915,20 @@
 <button id="shadow-fab"
         class="shadow-fab"
         type="button"
-        aria-label="Shadow에게 말하기"
+        aria-label="Talk to Shadow"
         aria-haspopup="dialog"
         aria-expanded="false"
         aria-controls="shadow-assistant-root">
+  <svg class="shadow-fab-ring" viewBox="0 0 80 80" aria-hidden="true">
+    <circle class="shadow-arc shadow-arc-1" cx="40" cy="40" r="34"/>
+    <circle class="shadow-arc shadow-arc-2" cx="40" cy="40" r="34"/>
+    <circle class="shadow-arc shadow-arc-3" cx="40" cy="40" r="34"/>
+  </svg>
   <img src="/static/img/GIA_Logo.png"
-       alt="" 
+       alt=""
        aria-hidden="true"
        class="shadow-fab-img"
        width="48" height="48">
-  <span class="shadow-fab-pulse" aria-hidden="true"></span>
 </button>
 
 <!-- Widget Panel -->
@@ -906,22 +949,22 @@
              width="32" height="32">
         <span class="shadow-status-dot" 
               id="shadow-status-dot"
-              aria-label="온라인"></span>
+              aria-label="Online"></span>
       </div>
       <div class="shadow-header-info">
         <span class="shadow-header-name">Shadow</span>
         <span class="shadow-header-status" 
-              id="shadow-header-status">대화 가능</span>
+              id="shadow-header-status">Ready</span>
       </div>
     </div>
     <div class="shadow-header-right">
       <span class="shadow-turn-badge" 
             id="shadow-turn-badge"
-            aria-label="남은 대화 횟수">30</span>
+            aria-label="Turns remaining">30</span>
       <button class="shadow-close-btn"
               id="shadow-close-btn"
               type="button"
-              aria-label="Shadow 창 닫기">✕</button>
+              aria-label="Close Shadow">✕</button>
     </div>
   </div>
 
@@ -932,43 +975,43 @@
        aria-valuemin="0"
        aria-valuemax="900"
        aria-valuenow="0"
-       aria-label="세션 남은 시간">
+       aria-label="Session time remaining">
     <div class="shadow-timer-fill" id="shadow-timer-fill"></div>
   </div>
 
-  <!-- ── Onboarding Panel (첫 방문 시만 표시) ── -->
+  <!-- ── Onboarding Panel ── -->
   <div id="shadow-onboarding" class="shadow-panel">
     <div class="shadow-onboarding-body">
       <img src="/static/img/GIA_Logo.png"
            alt="Shadow" 
            class="shadow-onboarding-avatar"
            width="80" height="80">
-      <h2 class="shadow-onboarding-title">안녕! 나는 Shadow야</h2>
+      <h2 class="shadow-onboarding-title">Hi! I'm Shadow</h2>
       <p class="shadow-onboarding-desc">
-        공부하다가 궁금한 게 있으면 나한테 물어봐!
-        목소리로 말해도 되고, 글로 써도 돼.
+        Got a question while studying? Just ask me!
+        You can type or use your voice.
       </p>
       <div class="shadow-onboarding-rules">
         <div class="shadow-rule-item">
           <span class="shadow-rule-icon" aria-hidden="true">💬</span>
-          <span>하루에 30번까지 대화할 수 있어</span>
+          <span>Up to 30 chats a day</span>
         </div>
         <div class="shadow-rule-item">
           <span class="shadow-rule-icon" aria-hidden="true">⏰</span>
-          <span>한 번에 15분까지 이야기하자</span>
+          <span>15 minutes per session</span>
         </div>
         <div class="shadow-rule-item">
           <span class="shadow-rule-icon" aria-hidden="true">🎤</span>
-          <span>마이크를 쓰면 목소리로 말할 수 있어</span>
+          <span>Use the mic to talk by voice</span>
         </div>
       </div>
       <button id="shadow-onboarding-ok"
               class="shadow-onboarding-btn"
-              type="button">알겠어!</button>
+              type="button">Got it!</button>
     </div>
   </div>
 
-  <!-- ── Chat Panel (온보딩 완료 후 표시) ── -->
+  <!-- ── Chat Panel ── -->
   <div id="shadow-chat" class="shadow-panel" style="display:none">
 
     <!-- Chat Messages Area -->
@@ -976,23 +1019,22 @@
          id="shadow-messages"
          role="log"
          aria-live="polite"
-         aria-label="대화 내역"
+         aria-label="Chat history"
          aria-relevant="additions">
-      <!-- 웰컴 메시지 (정적 — 서버 호출 없이 즉시 표시) -->
+      <!-- Static welcome message -->
       <div class="shadow-msg shadow-msg--assistant">
-        <span class="shadow-msg-text">안녕! 무엇이든 물어봐 😊</span>
+        <span class="shadow-msg-text">Hey! Ask me anything 😊</span>
       </div>
-      <!-- JS가 동적으로 말풍선을 append -->
+      <!-- JS appends bubbles here -->
     </div>
 
-    <!-- Thinking Indicator (숨김 상태) -->
+    <!-- Thinking Indicator -->
     <div class="shadow-thinking hidden"
          id="shadow-thinking"
-         aria-label="Shadow가 생각하고 있어요"
+         aria-label="Shadow is thinking"
          role="status">
-      <span class="shadow-dot"></span>
-      <span class="shadow-dot"></span>
-      <span class="shadow-dot"></span>
+      <span class="shadow-spinner" aria-hidden="true"></span>
+      <span class="shadow-thinking-label">Thinking...</span>
     </div>
 
     <!-- Input Area -->
@@ -1001,8 +1043,8 @@
         <button id="shadow-mic-btn"
                 class="shadow-mic-btn"
                 type="button"
-                aria-label="음성으로 말하기"
-                title="음성 입력">
+                aria-label="Speak by voice"
+                title="Voice input">
           <svg viewBox="0 0 24 24" fill="currentColor" 
                width="20" height="20" aria-hidden="true">
             <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5z"/>
@@ -1010,20 +1052,20 @@
           </svg>
         </button>
         <label for="shadow-text-input" class="sr-only">
-          Shadow에게 메시지 보내기
+          Send a message to Shadow
         </label>
         <input id="shadow-text-input"
                class="shadow-text-input"
                type="text"
-               placeholder="여기에 입력해봐..."
+               placeholder="Ask me anything..."
                maxlength="200"
                autocomplete="off"
                enterkeyhint="send">
         <button id="shadow-send-btn"
                 class="shadow-send-btn"
                 type="button"
-                aria-label="메시지 보내기"
-                title="보내기"
+                aria-label="Send message"
+                title="Send"
                 disabled>
           <svg viewBox="0 0 24 24" fill="currentColor" 
                width="20" height="20" aria-hidden="true">
@@ -1032,24 +1074,24 @@
         </button>
       </div>
       <div class="shadow-input-hint" id="shadow-input-hint">
-        <kbd>Enter</kbd> 보내기 · <kbd>Esc</kbd> 닫기
+        <kbd>Enter</kbd> to send · <kbd>Esc</kbd> to close
       </div>
     </div>
   </div>
 
-  <!-- ── Rest Break Overlay (15분 도달 시 표시) ── -->
+  <!-- ── Rest Break Overlay ── -->
   <div id="shadow-rest-overlay" 
        class="shadow-rest hidden"
        role="alertdialog"
-       aria-label="휴식 시간">
+       aria-label="Break time">
     <div class="shadow-rest-body">
       <span class="shadow-rest-icon" aria-hidden="true">😴</span>
       <p class="shadow-rest-text">
-        우리 잠깐 쉬자! 10분 뒤에 다시 만나!
+        Let's take a quick break! See you in 10 minutes!
       </p>
       <button id="shadow-rest-ok"
               class="shadow-rest-btn"
-              type="button">알겠어!</button>
+              type="button">Got it!</button>
     </div>
   </div>
 
@@ -1060,7 +1102,7 @@
        aria-live="polite">
     <span class="shadow-notice-icon" aria-hidden="true">🎤</span>
     <span class="shadow-notice-text">
-      마이크를 사용할 수 없어서 글로 대화할게!
+      Mic isn't available — let's chat by typing!
     </span>
   </div>
 
@@ -1075,10 +1117,8 @@
       .catch(err => console.log('SW registration failed:', err));
   }
 </script>
-<script src="/static/js/ai-assistant-stt.js?v=2"></script>
-<script src="/static/js/ai-assistant-tts.js?v=2"></script>
-<script src="/static/js/ai-assistant-stt.js?v=2"></script>
-<script src="/static/js/ai-assistant-tts.js?v=2"></script>
-<script src="/static/js/ai-assistant.js?v=3"></script>
+<script src="/static/js/ai-assistant-stt.js?v=4"></script>
+<script src="/static/js/ai-assistant-tts.js?v=4"></script>
+<script src="/static/js/ai-assistant.js?v=9"></script>
 </body>
 </html>

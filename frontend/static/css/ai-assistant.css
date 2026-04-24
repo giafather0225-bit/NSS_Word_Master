@@ -15,7 +15,7 @@
     height: 60px;
     border-radius: 50%;
     background: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     border: none;
     padding: 0;
@@ -26,37 +26,55 @@
 }
 
 .shadow-fab-img {
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     border-radius: 50%;
     object-fit: cover;
+    position: relative;
+    z-index: 1;
 }
 
-.shadow-fab:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
+.shadow-fab:hover { transform: scale(1.08); }
 
-.shadow-fab.listening .shadow-fab-pulse {
+/* 3-arc spinning ring */
+.shadow-fab-ring {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    border-radius: 50%;
-    border: 2px solid red;
-    animation: shadow-pulse 1s infinite alternate;
+    inset: -8px;
+    width: calc(100% + 16px);
+    height: calc(100% + 16px);
+    transform: rotate(-90deg);
+    overflow: visible;
+    pointer-events: none;
 }
 
-.shadow-fab.speaking::after,
-.shadow-fab.speaking::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid var(--shadow-accent);
-    top: -2px; left: -2px;
-    animation: shadow-soundwave 1.5s infinite linear;
+.shadow-arc {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 75 151;
+    transform-origin: 40px 40px;
 }
-.shadow-fab.speaking::before { animation-delay: 0.5s; }
+
+.shadow-arc-1 { stroke: var(--color-primary); }
+.shadow-arc-2 { stroke: var(--color-secondary); }
+.shadow-arc-3 { stroke: var(--color-accent); }
+
+/* Idle: same as splash but at 50% opacity */
+.shadow-fab .shadow-arc {
+    animation: shadow-arc-spin 2.8s linear infinite;
+    opacity: 0.45;
+}
+.shadow-fab .shadow-arc-1 { animation-delay: 0s; }
+.shadow-fab .shadow-arc-2 { animation-delay: -0.93s; }
+.shadow-fab .shadow-arc-3 { animation-delay: -1.86s; }
+
+/* Active: full opacity */
+.shadow-fab.active .shadow-arc { opacity: 1; }
+
+@keyframes shadow-arc-spin {
+    0%   { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -226; }
+}
 
 /* Widget Panel */
 .shadow-widget {
@@ -177,7 +195,7 @@
 
 /* Chat */
 .shadow-messages {
-    flex: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;
+    flex: 1; min-height: 0; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;
 }
 
 .shadow-msg {
@@ -199,16 +217,23 @@
 
 .shadow-rest.hidden, .shadow-notice.hidden, .shadow-thinking.hidden { display: none !important; }
 
-/* Thinking */
+/* Thinking spinner */
 .shadow-thinking {
-    padding: 8px 14px; display: flex; gap: 4px; align-self: flex-start;
+    padding: 8px 14px; align-self: flex-start; display: flex; align-items: center; gap: 8px;
 }
-.shadow-dot {
-    width: 6px; height: 6px; background: #888; border-radius: 50%;
-    animation: thinking-bounce 1s infinite alternate;
+.shadow-spinner {
+    width: 16px; height: 16px; border: 2px solid #ddd;
+    border-top-color: var(--shadow-accent);
+    border-radius: 50%;
+    animation: shadow-spin 0.7s linear infinite;
+    flex-shrink: 0;
 }
-.shadow-dot:nth-child(2) { animation-delay: 0.2s; }
-.shadow-dot:nth-child(3) { animation-delay: 0.4s; }
+.shadow-thinking-label {
+    font-size: 0.82rem; color: #888;
+}
+@keyframes shadow-spin {
+    to { transform: rotate(360deg); }
+}
 
 /* Input */
 .shadow-input-area {

@@ -633,6 +633,10 @@ async function startLessonAt(stageKey) {
     sessionActive      = true;
     roadmapComplete    = allStagesDone();
     stage              = targetStage;
+    window.shadowContext = {
+        lesson:   lessonSelected(),
+        activity: ROADMAP_LABELS[ROADMAP_STAGES.indexOf(targetStage)] || targetStage,
+    };
     resetAllStageState();
     magicFailCount = 0;
     examQueue      = [];

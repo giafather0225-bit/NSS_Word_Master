@@ -134,6 +134,7 @@ const PP_TABS = [
     ["xp",         "XP"],
     ["textbooks",  "Textbooks"],
     ["pin",        "Change PIN"],
+    ["shadow",     "Shadow AI"],
 ];
 
 /** Render the dashboard shell (header + nav + body). @tag PARENT */
@@ -171,6 +172,7 @@ async function _ppLoadTab(tab) {
         case "tasks":     if (typeof ppRenderTasks   === "function") await ppRenderTasks(body);   else body.innerHTML = missing; break;
         case "schedule":  if (typeof ppRenderSchedule=== "function") await ppRenderSchedule(body);else body.innerHTML = missing; break;
         case "pin":       if (typeof ppRenderPin     === "function") ppRenderPin(body);           else body.innerHTML = missing; break;
+        case "shadow":    if (typeof _ppShadow       === "function") await _ppShadow(body);       else body.innerHTML = missing; break;
         default: body.innerHTML = "<p>Coming soon.</p>";
     }
 }

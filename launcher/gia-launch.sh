@@ -5,7 +5,7 @@
 # ═══════════════════════════════════════════
 
 # ─── Config ───
-APP_DIR="$HOME/NSS_Learning/NSS_Word_Master"
+APP_DIR="$HOME/Documents/GitHub/NSS_Word_Master"
 VENV_DIR="$APP_DIR/.venv"
 PORT=8000
 LOG_FILE="$APP_DIR/logs/server.log"

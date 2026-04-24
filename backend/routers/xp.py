@@ -7,10 +7,11 @@ API:
   GET  /api/xp/summary
   POST /api/xp/award
   GET  /api/streak/status
+  GET  /api/xp/weekly
   GET  /api/tasks/today
 """
 
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
@@ -61,11 +62,40 @@ def xp_summary(db: Session = Depends(get_db)) -> dict:
     """
     streak = get_current_streak(db)
     total = get_total_xp(db)
+    today_xp = get_today_xp(db)
+
+    # Longest streak ever: scan StreakLog.streak_maintained ordered by date
+    logs = (
+        db.query(StreakLog)
+        .order_by(StreakLog.date.asc())
+        .all()
+    )
+    best = 0
+    run = 0
+    prev: date | None = None
+    for lg in logs:
+        try:
+            d = date.fromisoformat(lg.date)
+        except Exception:
+            continue
+        if not lg.streak_maintained:
+            run = 0
+            prev = d
+            continue
+        if prev is not None and (d - prev).days == 1 and run > 0:
+            run += 1
+        else:
+            run = 1
+        best = max(best, run)
+        prev = d
+
     return {
         "total_xp": total,
-        "today_xp": get_today_xp(db),
+        "today_xp": today_xp,
+        "xp_today": today_xp,
         "level": total // 100 + 1,
         "streak_days": streak,
+        "streak_best": best,
         "words_known": get_words_known(db),
     }
 
@@ -143,6 +173,53 @@ def streak_status(db: Session = Depends(get_db)) -> dict:
     }
 
 
+# @tag XP @tag STREAK
+@router.get("/api/xp/weekly")
+def xp_weekly(db: Session = Depends(get_db)) -> list[dict]:
+    """Return completion ratio for the last 7 calendar days (oldest → today).
+
+    For each day, ratio = (# done flags) / (# applicable flags). When the
+    day has no StreakLog row, ratio = 0. The client uses this to draw
+    the weekly activity bar chart.
+
+    Returns:
+        List of dicts: {date, label, value, maintained}.
+    """
+    today = date.today()
+    out: list[dict] = []
+    for i in range(6, -1, -1):
+        d = today - timedelta(days=i)
+        ds = d.isoformat()
+        log = db.query(StreakLog).filter(StreakLog.date == ds).first()
+        if log is None:
+            value = 0.0
+            maintained = False
+        else:
+            flags = [
+                bool(log.review_done),
+                bool(log.daily_words_done),
+                bool(log.math_done),
+                bool(log.game_done),
+            ]
+            value = sum(1 for f in flags if f) / len(flags)
+            # Bonus: journal completion for the date
+            journal = (
+                db.query(DiaryEntry)
+                .filter(DiaryEntry.entry_date == ds)
+                .first()
+            ) is not None
+            if journal:
+                value = min(1.0, value + 0.15)
+            maintained = bool(log.streak_maintained)
+        out.append({
+            "date": ds,
+            "label": d.strftime("%a")[:1],
+            "value": round(value, 2),
+            "maintained": maintained,
+        })
+    return out
+
+
 def _make_task(
     key: str,
     label: str,
@@ -165,12 +242,25 @@ def _make_task(
     s = settings.get(key)
     return {
         "key": key,
+        "section": _TASK_SECTION.get(key, "english"),
         "label": label,
         "detail": detail,
         "xp": s.xp_value if s else XP_RULES.get(key.replace("-", "_"), 0),
         "is_required": s.is_required if s else False,
         "is_done": is_done,
     }
+
+
+# Task key → dashboard section bucket. Keeps frontend heuristic in sync.
+_TASK_SECTION: dict[str, str] = {
+    "review": "review",
+    "daily_words": "english",
+    "academy": "english",
+    "english": "english",
+    "journal": "diary",
+    "math": "math",
+    "arcade": "arcade",
+}
 
 
 # @tag TODAY_TASKS @tag XP

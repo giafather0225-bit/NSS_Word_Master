@@ -19,20 +19,25 @@ except ImportError:
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from backend.models.assistant import AssistantLog
+from backend.models.system import AppConfig
 
-# Assuming there's a child auth dependency, usually get_current_child
-# But since this might fail if not found, we will fake it if it doesn't exist.
 try:
     from backend.auth import get_current_child
 except ImportError:
-    # A dummy fallback for now if the file structure differs
     def get_current_child():
         return {"id": 1, "username": "gia"}
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
-DAILY_LIMIT = 30
+_DEFAULT_DAILY_LIMIT = 30
+
+def _get_daily_limit(db: Session) -> int:
+    row = db.query(AppConfig).filter(AppConfig.key == "shadow_daily_limit").first()
+    try:
+        return int(row.value) if row else _DEFAULT_DAILY_LIMIT
+    except (ValueError, TypeError):
+        return _DEFAULT_DAILY_LIMIT
 
 @router.get("/api/assistant/usage")
 def get_assistant_usage(
@@ -41,17 +46,17 @@ def get_assistant_usage(
 ):
     """Get the number of queries the child has made today."""
     today = datetime.now(timezone.utc).date()
-    
-    # Count logs created today
+    daily_limit = _get_daily_limit(db)
+
     used_today = db.query(AssistantLog).filter(
         func.date(AssistantLog.created_at) == today
     ).count()
 
-    remaining = max(0, DAILY_LIMIT - used_today)
-    
+    remaining = max(0, daily_limit - used_today)
+
     return {
         "used_today": used_today,
-        "limit": DAILY_LIMIT,
+        "limit": daily_limit,
         "remaining": remaining
     }
 

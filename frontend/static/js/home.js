@@ -3,7 +3,8 @@
    Section: Home
    Dependencies: core.js
    API endpoints: GET /api/tasks/today, GET /api/xp/summary,
-                  GET /api/ai-coach/today, GET /api/reminders/today
+                  GET /api/xp/weekly, GET /api/ai-coach/today,
+                  GET /api/reminders/today
    ================================================================ */
 
 // Current view state
@@ -84,13 +85,76 @@ function updateSidebarMode(mode) {
  * @tag HOME_DASHBOARD @tag TODAY_TASKS
  */
 async function renderHomeDashboard() {
+  renderGreeting();
   await renderAICoach();
   await renderReminders();
   await renderTodayTasks();
   renderSectionCards();
   renderGrowthTheme();
+  await renderWeeklyStrip();
+  bindTopRightMenu();
   await renderSummaryBar();
   if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+/**
+ * Render greeting block — date + time-of-day salutation.
+ * @tag HOME_DASHBOARD
+ */
+function renderGreeting() {
+  const dateEl = document.getElementById('greeting-date');
+  const timeEl = document.getElementById('greeting-time');
+  const nameEl = document.getElementById('greeting-name');
+  if (dateEl) {
+    const d = new Date();
+    const fmt = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    dateEl.textContent = fmt.toUpperCase();
+  }
+  if (timeEl) {
+    const h = new Date().getHours();
+    let phrase = 'Hello,';
+    if (h >= 5 && h < 12) phrase = 'Good morning,';
+    else if (h >= 12 && h < 18) phrase = 'Good afternoon,';
+    else phrase = 'Good evening,';
+    timeEl.textContent = phrase;
+  }
+  if (nameEl && !nameEl.textContent.trim()) nameEl.textContent = 'Gia';
+}
+
+/**
+ * Wire up the top-right ⋯ menu (open/close + outside click + Esc).
+ * @tag HOME_DASHBOARD @tag NAVIGATION
+ */
+function bindTopRightMenu() {
+  const btn = document.getElementById('trm-btn');
+  const dd  = document.getElementById('trm-dropdown');
+  if (!btn || !dd || btn.dataset.bound === '1') return;
+  btn.dataset.bound = '1';
+
+  const setOpen = (open) => {
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    dd.setAttribute('aria-hidden',  open ? 'false' : 'true');
+  };
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    setOpen(open);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dd.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+}
+
+/** Placeholder entry point — wired in Phase 3. */
+function openSettings() {
+  if (typeof openSettingsModal === 'function') return openSettingsModal();
+  console.info('[home] Settings — coming soon');
 }
 
 /**
@@ -149,7 +213,37 @@ async function renderReminders() {
 }
 
 /**
- * Render Today's Tasks list.
+ * Map a task key to a section bucket used by the grouped UI.
+ * Backend API is currently flat; Phase 3 will add explicit `section` field.
+ * @tag HOME_DASHBOARD @tag TODAY_TASKS
+ */
+function _sectionOfTask(key) {
+  if (key === 'review') return 'review';
+  if (key === 'journal') return 'diary';
+  if (key === 'daily_words' || key === 'academy' || key === 'english') return 'english';
+  if (key === 'math') return 'math';
+  if (key === 'arcade') return 'arcade';
+  return 'english';
+}
+
+const _SECTION_LABELS = {
+  english: 'English',
+  math:    'Math',
+  diary:   'Diary',
+  review:  'Review',
+  arcade:  'Arcade',
+};
+
+const _SECTION_ORDER = ['english', 'math', 'diary', 'review', 'arcade'];
+
+function _escape(s) {
+  return String(s ?? '').replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+/**
+ * Render Today's Tasks list — grouped by section, with progress bar + XP pills.
  * @tag HOME_DASHBOARD @tag TODAY_TASKS @tag XP
  */
 async function renderTodayTasks() {
@@ -158,7 +252,7 @@ async function renderTodayTasks() {
 
   // Stub tasks (replaced by API in Phase 3)
   const tasks = [
-    { key: 'review', label: 'Review', detail: '—', xp: 2, is_required: true, is_done: false },
+    { key: 'review', label: 'Review', detail: '', xp: 2, is_required: true, is_done: false },
     { key: 'daily_words', label: 'Daily Words', detail: '0/10', xp: 5, is_required: false, is_done: false },
     { key: 'journal', label: 'Daily Journal', detail: '', xp: 10, is_required: false, is_done: false },
   ];
@@ -171,45 +265,106 @@ async function renderTodayTasks() {
     }
   } catch { /* use stubs */ }
 
-  // Bonus done state mirrors backend rule (xp.py tasks_today): the bonus
-  // is considered earned today as soon as the corresponding task subset is
-  // complete. Backend XPLog dedup makes the actual XP award idempotent.
-  const required     = tasks.filter(t => t.is_required);
-  const mustDoDone   = required.length > 0 && required.every(t => t.is_done);
-  const allDone      = tasks.length > 0    && tasks.every(t => t.is_done);
+  // Group by section
+  const groups = {};
+  tasks.forEach(t => {
+    const sec = t.section || _sectionOfTask(t.key);
+    (groups[sec] ||= []).push(t);
+  });
 
-  list.innerHTML = tasks.map(t => `
-    <div class="task-item${t.is_done ? ' done' : ''}${t.is_done ? '' : ' task-clickable'}"
-         data-key="${t.key}" data-required="${t.is_required ? 'true' : 'false'}">
-      <div class="task-check-circle"></div>
-      <span class="task-label">${t.label}${t.detail ? ` <span class="task-detail">(${t.detail})</span>` : ''}</span>
-      <span class="task-xp-pill">+${t.xp} XP</span>
-    </div>
-  `).join('') + `
-    <div class="bonus-row${mustDoDone ? ' done' : ''}" data-key="must_do_bonus" data-required="false">
-      <div class="task-check-circle"></div>
-      <span class="task-label">Must Do bonus</span>
-      <span class="task-xp-pill">+5 XP</span>
-    </div>
-    <div class="bonus-row${allDone ? ' done' : ''}" data-key="all_complete_bonus" data-required="false">
-      <div class="task-check-circle"></div>
-      <span class="task-label">All complete bonus</span>
-      <span class="task-xp-pill">+15 XP</span>
-    </div>
-  `;
+  const groupHtml = _SECTION_ORDER
+    .filter(sec => groups[sec] && groups[sec].length)
+    .map(sec => {
+      const items = groups[sec];
+      const done  = items.filter(t => t.is_done).length;
+      const rows = items.map(t => {
+        const detail = t.detail ? ` (${_escape(t.detail)})` : '';
+        const dueNow = !t.is_done && (t.due === 'now' || t.is_required);
+        const pill   = dueNow ? `<span class="tc-now-pill">NOW</span>` : '';
+        return `
+          <div class="tc-row${t.is_done ? ' done' : ''}${dueNow ? ' is-due-now' : ''}"
+               data-key="${_escape(t.key)}" data-section="${sec}">
+            <span class="tc-check" aria-hidden="true"></span>
+            <span class="tc-label">${_escape(t.label)}${detail}</span>
+            ${pill}
+            <span class="tc-xp-pill">+${Number(t.xp) || 0}</span>
+          </div>
+        `;
+      }).join('');
+      return `
+        <div class="tc-group" data-section="${sec}">
+          <div class="tc-group-head">
+            <span class="tc-group-label"><span class="tc-group-dot"></span>${_SECTION_LABELS[sec] || sec}</span>
+            <span class="tc-group-count">${done}/${items.length}</span>
+          </div>
+          ${rows}
+        </div>
+      `;
+    }).join('');
 
-  // Track today's totals for Done stat
-  window._todayTaskCounts = {
-    total: tasks.length,
-    done: tasks.filter(t => t.is_done).length,
-  };
-  const doneEl = document.getElementById('summary-done');
-  if (doneEl) doneEl.textContent = `${window._todayTaskCounts.done}/${window._todayTaskCounts.total}`;
+  list.innerHTML = groupHtml || '<div class="tc-sub">No tasks for today.</div>';
 
-  // Wire click handlers: each task navigates to its relevant screen
-  list.querySelectorAll('.task-clickable').forEach(el => {
+  // Summary counts + progress bar
+  const total = tasks.length;
+  const doneCount = tasks.filter(t => t.is_done).length;
+  const totalXp  = tasks.reduce((s, t) => s + (Number(t.xp) || 0), 0);
+  const earnedXp = tasks.filter(t => t.is_done).reduce((s, t) => s + (Number(t.xp) || 0), 0);
+
+  const countEl = document.getElementById('today-tasks-count');
+  if (countEl) countEl.textContent = `${doneCount} / ${total} done`;
+  const xpEl = document.getElementById('today-tasks-xp');
+  if (xpEl) xpEl.textContent = `Set by parent · ${earnedXp} / ${totalXp} XP earned`;
+  const fillEl = document.getElementById('today-tasks-progress-fill');
+  const pct = total ? Math.round((doneCount / total) * 100) : 0;
+  if (fillEl) fillEl.style.width = pct + '%';
+  const progressBar = fillEl ? fillEl.parentElement : null;
+  if (progressBar) progressBar.setAttribute('aria-valuenow', String(pct));
+
+  window._todayTaskCounts = { total, done: doneCount };
+  const doneStatEl = document.getElementById('summary-done');
+  if (doneStatEl) doneStatEl.textContent = `${doneCount}/${total}`;
+
+  // Wire click handlers
+  list.querySelectorAll('.tc-row').forEach(el => {
+    if (el.classList.contains('done')) return;
     el.addEventListener('click', () => _navigateTask(el.dataset.key));
   });
+}
+
+/**
+ * Render the weekly activity bar chart.
+ * @tag HOME_DASHBOARD @tag STREAK
+ */
+async function renderWeeklyStrip() {
+  const container = document.getElementById('weekly-bars');
+  if (!container) return;
+
+  // Fetch real 7-day activity. On failure, fall back to an empty week.
+  let days = Array.from({ length: 7 }, () => ({ label: '·', value: 0 }));
+  try {
+    const res = await fetch('/api/xp/weekly');
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length) {
+        days = data.map(d => ({ label: d.label || '·', value: Number(d.value) || 0 }));
+      }
+    }
+  } catch { /* fall back to empty */ }
+
+  const MAX_H = 56; // px
+  container.innerHTML = days.map(d => {
+    const h = Math.max(4, Math.round(d.value * MAX_H));
+    let tone = '';
+    if (d.value >= 0.9) tone = 'ws-bar--t3';
+    else if (d.value >= 0.5) tone = 'ws-bar--t2';
+    else if (d.value > 0) tone = 'ws-bar--t1';
+    return `
+      <div class="ws-day">
+        <div class="ws-bar ${tone}" style="height:${h}px"></div>
+        <div class="ws-label">${d.label}</div>
+      </div>
+    `;
+  }).join('');
 }
 
 /**
@@ -257,11 +412,20 @@ function renderSectionCards() {
     if (typeof openRewardShop === 'function') openRewardShop();
   };
 
-  // Arcade card → overlay (arcade.js)
+  // Arcade card → overlay (arcade.js). Enabled per dashboard redesign.
   const arcadeCard = document.getElementById('section-card-arcade');
-  if (arcadeCard) arcadeCard.onclick = () => {
-    if (typeof openArcade === 'function') openArcade();
-  };
+  if (arcadeCard) {
+    arcadeCard.disabled = false;
+    arcadeCard.onclick = () => {
+      if (typeof openArcade === 'function') openArcade();
+    };
+  }
+
+  // Review card — placeholder until review hub is built.
+  const reviewCard = document.getElementById('section-card-review');
+  if (reviewCard) {
+    reviewCard.onclick = () => { /* coming soon */ };
+  }
 
   // Ocean World card → open growth theme detail modal (growth-theme.js)
   const oceanCard = document.getElementById('ocean-world-card');
@@ -313,9 +477,18 @@ async function renderSummaryBar() {
       const xpEl = document.getElementById('summary-xp');
       const streakEl = document.getElementById('summary-streak');
       const wordsEl = document.getElementById('summary-words');
-      if (xpEl) xpEl.textContent = d.total_xp ?? 0;
-      if (streakEl) streakEl.textContent = (d.streak_days ?? 0) + 'd';
-      if (wordsEl) wordsEl.textContent = d.words_known ?? 0;
+      if (xpEl) xpEl.textContent = (d.total_xp ?? 0).toLocaleString();
+      const streakDays = d.streak_days ?? 0;
+      if (streakEl) streakEl.textContent = `${streakDays} day${streakDays === 1 ? '' : 's'}`;
+      if (wordsEl) wordsEl.textContent = (d.words_known ?? 0).toLocaleString();
+
+      // Sub-labels for the Stats stack
+      const xpToday = document.getElementById('summary-xp-today');
+      if (xpToday && typeof d.xp_today === 'number') xpToday.textContent = `+${d.xp_today} today`;
+      const streakBest = document.getElementById('summary-streak-best');
+      if (streakBest && typeof d.streak_best === 'number') streakBest.textContent = `best: ${d.streak_best}`;
+      const weeklyStreakEl = document.getElementById('weekly-streak-days');
+      if (weeklyStreakEl) weeklyStreakEl.textContent = String(streakDays);
 
       // Level + Progress (XP per level = 100)
       const totalXP = d.total_xp ?? 0;
@@ -353,7 +526,10 @@ function _updateTopBarXP(data) {
     const level = data.level ?? (Math.floor(totalXP / 100) + 1);
     const streak = data.streak_days ?? 0;
     starsEl.textContent = `${totalXP} XP`;
-    // Add level + streak meta after stars-count
+
+    // #stars-count is a hidden legacy compat element. Mirror its hidden state
+    // onto #top-xp-meta so the "Lv.1 · 0d" pill doesn't bleed through on home.
+    const starsHidden = getComputedStyle(starsEl).display === 'none';
     let metaEl = document.getElementById('top-xp-meta');
     if (!metaEl) {
         metaEl = document.createElement('span');
@@ -362,6 +538,7 @@ function _updateTopBarXP(data) {
         starsEl.parentNode.insertBefore(metaEl, starsEl.nextSibling);
     }
     metaEl.textContent = `Lv.${level} · ${streak}d`;
+    metaEl.style.display = starsHidden ? 'none' : '';
     // Sync sidebar star-count
     const sidebarStar = document.getElementById('star-count');
     if (sidebarStar) sidebarStar.textContent = String(totalXP);

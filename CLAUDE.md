@@ -40,116 +40,96 @@
 
 ## Design System (theme.css — single source of truth)
 
-**현재 적용된 토큰 (2026-04 Apple Soft Study 재설계):**
+**현재 적용된 토큰 (2026-04 Pinterest Schoolgirl Diary — Palette B):**
+
+컨셉: warm cream page + milk-tea pastel 6-section palette. Stationery 느낌 (soft shadow, 둥근 radius, Nunito/Quicksand/Caveat 조합). Brand anchor = Diary Pink `#E09AAE`.
 
 ```css
 :root {
-  /* Primary — Apple Blue (기능 요소 전용: 버튼, 링크, 활성 상태) */
-  --color-primary:       #0A84FF;
-  --color-primary-hover: #0070E0;
-  --color-primary-light: rgba(10, 132, 255, 0.08);
-  --color-primary-glow:  rgba(10, 132, 255, 0.15);
+  /* ═══ Section palette (B — Pinterest Schoolgirl) ═══ */
+  /* 각 섹션 5-tone: primary · hover · light(배경) · soft(중간) · ink(짙은 텍스트) */
 
-  /* Subtle Accents — 점·선·뱃지 전용 (면적 <10% 규칙) */
-  --color-lilac:      #CDBDFF;  /* Diary / 완료 뱃지 */
-  --color-lilac-light:#F0ECFF;
-  --color-pink:       #E8CFE0;  /* 개인화 포인트 */
-  --color-pink-light: #F8F0F5;
-  --color-mint:       #CFE9E2;  /* Math / 긍정 피드백 */
-  --color-mint-light: #EBF7F4;
-  --color-peach:      #FFDAB9;
-  --color-peach-light:#FFF5EC;
+  --english-primary: #7FA8CC; --english-light: #EEF4FA; --english-ink: #345A80;  /* Baby Blue */
+  --math-primary:    #8AC4A8; --math-light:    #EEF7F2; --math-ink:    #3A6A54;  /* Fresh Mint */
+  --diary-primary:   #E09AAE; --diary-light:   #FBEEF2; --diary-ink:   #84425A;  /* Sweet Pink */
+  --arcade-primary:  #EEC770; --arcade-light:  #FBF3DE; --arcade-ink:  #7A5A1E;  /* Butter */
+  --rewards-primary: #B8A4DC; --rewards-light: #F2ECFA; --rewards-ink: #5A4883;  /* Lavender */
+  --review-primary:  #EBA98C; --review-light:  #FBEBE0; --review-ink:  #844A30;  /* Peach */
 
-  /* 섹션 컬러 — 아이콘 색 + 4px vertical line 전용 */
-  --section-english-color: var(--color-primary);  /* Blue */
-  --section-diary-color:   var(--color-lilac);    /* Lilac */
-  --section-math-color:    var(--color-mint);     /* Mint */
+  /* Brand alias — Diary Pink */
+  --color-primary:       var(--diary-primary);
+  --color-primary-hover: var(--diary-hover);
+  --color-primary-light: var(--diary-light);
+  --color-primary-glow:  rgba(224, 154, 174, 0.22);
 
-  /* 배경 */
-  --bg-page:    #F5F5F7;
+  /* Warm cream neutrals */
+  --bg-page:    #FAF6EF;
   --bg-card:    #FFFFFF;
-  --bg-sidebar: #F2F2F5;
-  --bg-surface: #ECECF1;
+  --bg-sidebar: #F4EEE4;
+  --bg-surface: #EFE8DB;
 
-  /* 텍스트 */
-  --text-primary:   #111111;
-  --text-secondary: #5C5C66;
-  --text-hint:      #8E8E98;
+  /* Text (warm dark) */
+  --text-primary:   #2B2722;
+  --text-secondary: #706659;
+  --text-hint:      #A79A89;
 
-  /* 테두리 */
-  --border-default: #D9D9E0;
-  --border-subtle:  #ECECF1;
-  --border-card:    rgba(0, 0, 0, 0.05);
+  /* Borders */
+  --border-default: #DCD2C2;
+  --border-subtle:  #EBE3D5;
+  --border-card:    rgba(43, 39, 34, 0.06);
 
-  /* 그림자 — 최소화, border 우선 */
-  --shadow-card:  0 0 0 1px var(--border-card);
-  --shadow-modal: 0 8px 24px rgba(0, 0, 0, 0.08);
+  /* Shadows — soft stationery (border-only 규칙 폐기) */
+  --shadow-soft:  0 2px 10px rgba(120, 90, 60, 0.06);
+  --shadow-modal: 0 10px 30px rgba(90, 65, 40, 0.12);
 
-  /* Radius */
-  --radius-sm:   6px;
-  --radius-md:   10px;
-  --radius-lg:   12px;
-  --radius-xl:   16px;
-  --radius-full: 9999px;
-
-  /* Progress (Apple Fitness 스타일) */
-  --progress-bar-height: 2px;
-  --progress-bar-height-lg: 6px;
+  /* Radius — 넉넉한 둥글기 */
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+  --radius-xl: 20px; --radius-2xl: 28px; --radius-full: 9999px;
 
   /* Sidebar */
-  --sidebar-width: 240px;
+  --sidebar-width: 232px;
 
-  /* 폰트 */
-  --font-family:        -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-size-xs: 12px; --font-size-sm: 14px;
-  --font-size-md: 16px; --font-size-lg: 18px;
-  --font-size-xl: 24px; --font-size-2xl: 32px;
-  --font-weight-normal: 400; --font-weight-medium: 500;
-  --font-weight-bold: 600;   --font-weight-extra: 700;
+  /* Fonts (Google Fonts 로드 필수) */
+  --font-family:         'Nunito', -apple-system, sans-serif;     /* body */
+  --font-family-display: 'Quicksand', 'Nunito', sans-serif;        /* 헤드라인/카드 타이틀 */
+  --font-family-hand:    'Caveat', cursive;                        /* 손글씨 액센트 */
 
-  /* 애니메이션 */
-  --transition-fast:   0.12s ease;
-  --transition-normal: 0.18s ease;
-  --transition-slow:   0.3s ease;
+  --font-size-xs: 12px; --font-size-sm: 14px; --font-size-md: 16px;
+  --font-size-lg: 18px; --font-size-xl: 24px; --font-size-2xl: 32px; --font-size-3xl: 44px;
+
+  /* Motion */
+  --transition-fast: 0.12s ease; --transition-normal: 0.18s ease; --transition-slow: 0.3s ease;
 }
 ```
+
+**규칙**
+- 컴포넌트 CSS에서 hex 직접 금지 — `var(--token)`만 사용
+- 아이콘: Lucide (이모지 금지)
+- 헤드라인(`.h1` ~ `.h3`)은 Quicksand 자동 적용 + `letter-spacing: -0.02em`
+- UPPERCASE 라벨은 `letter-spacing: 0.08em`, weight 700, 10.5~11px
+- 카드 기본: `bg-card + border-subtle + radius-xl(20px) + shadow-soft`
 
 ---
 
 ## Dark Mode 토큰 (준비됨 — UI 토글 미구현)
 
+Warm dark(브라운 베이스 + 파스텔 액센트). 동일 6-section 구조 유지.
+
 ```css
 [data-theme="dark"] {
-  --bg-page:    #1C1C1E;
-  --bg-card:    #2C2C2E;
-  --bg-sidebar: #232326;
-  --bg-surface: #343438;
+  --bg-page: #201C18; --bg-card: #2C2822; --bg-sidebar: #25211C; --bg-surface: #352F28;
+  --text-primary: #F6F0E4; --text-secondary: #CABFAD; --text-hint: #8C8070;
+  --border-default: #3E362D; --border-subtle: #2F2A24; --border-card: rgba(255, 248, 232, 0.06);
 
-  --text-primary:   #F5F5F7;
-  --text-secondary: #C7C7CC;
-  --text-hint:      #8E8E93;
+  /* 섹션 tone 다크 변형 */
+  --english-light: #1E2A36; --math-light:    #1F2E26; --diary-light:   #33212A;
+  --arcade-light:  #33291A; --rewards-light: #2A2436; --review-light:  #33261D;
 
-  --border-default: #3A3A3C;
-  --border-subtle:  #2F2F33;
-  --border-card:    rgba(255, 255, 255, 0.06);
+  --english-primary: #9AC1E0; --math-primary:    #A4D7BF; --diary-primary:   #EDB1C2;
+  --arcade-primary:  #F2D489; --rewards-primary: #CDBCE8; --review-primary:  #F2BFA4;
 
-  --color-primary-light: #123A63;
-  --color-lilac-light:   #2A2547;
-  --color-mint-light:    #1A2E2B;
-  --color-pink-light:    #2E2030;
-
-  --color-success: #32D74B;
-  --color-error:   #FF6961;
-  --color-warning: #FFD60A;
-
-  --color-lilac: #B8A7FF;
-  --color-mint:  #9BCFC3;
-  --color-pink:  #CFAFC3;
-
-  --shadow-card:  0 0 0 1px var(--border-card);
-  --shadow-modal: 0 8px 24px rgba(0, 0, 0, 0.32);
-
-  --overlay-scrim: rgba(0, 0, 0, 0.6);
+  --color-success: #9BCF94; --color-error: #E48C8C; --color-warning: #F2D489;
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.3); --shadow-modal: 0 14px 34px rgba(0, 0, 0, 0.5);
 }
 ```
 

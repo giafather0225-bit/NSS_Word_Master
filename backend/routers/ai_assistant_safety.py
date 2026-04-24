@@ -17,15 +17,15 @@ SYSTEM_PROMPT_INJECTION_DEFENSE = (
 )
 
 BLOCKED_KEYWORDS = [
-    "바보", "멍청이", "씨발", "병신", "존나", "섹스", "죽어", 
-    "자살", "살인", "야동", "porn", "ignore previous", 
+    "바보", "멍청이", "씨발", "병신", "존나", "섹스", "죽어",
+    "자살", "살인", "야동", "porn", "ignore previous",
     "you are now", "system:", "[inst]", "새로운 규칙", "새 규칙"
 ]
 
 SAFE_FALLBACK_REPLIES = [
-    "그건 섀도우가 대답하기 어려운 거야! 다른 거 물어봐 😊",
-    "음... 그 질문 대신 재미있는 과학 이야기 어때? 🌟",
-    "섀도우는 그건 잘 몰라! 수학 질문은 어때? 🔬"
+    "That's something Shadow can't answer! Try asking something else.",
+    "Hmm, how about we talk about something fun instead?",
+    "Shadow doesn't know that one! Got a math or English question?"
 ]
 
 # Google Gemini API Safety Settings

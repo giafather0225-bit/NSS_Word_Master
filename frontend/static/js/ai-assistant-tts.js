@@ -5,51 +5,49 @@ class ShadowTTS {
   #isPlaying = false;
 
   async speak(text) {
-    // 1) 기존 GIA TTS가 재생 중이면 대기
+    // 1) stop any active GIA TTS first
     this.#stopGiaTTS();
 
-    // 2) 이전 Shadow TTS가 재생 중이면 즉시 중단
+    // 2) stop any previous Shadow TTS immediately
     this.stop();
 
-    // 3) 새 오디오 재생 (브라우저 내장 TTSFallback or API)
+    // 3) play via edge-tts backend (Jenny Neural), fallback to browser SpeechSynthesis
     try {
-      // V2 Ultimate: Use fallback SpeechSynthesis unless real /api/assistant/tts exists.
-      // Assuming for robust testing we just use JS standard, but the spec requested fetch:
-      
       const cleanText = text.replace(/[\u{1F600}-\u{1F6FF}]/gu, '').trim();
-      const u = new SpeechSynthesisUtterance(cleanText);
-      u.lang = /[가-힣]/.test(cleanText) ? 'ko-KR' : 'en-US';
-      u.rate = 1.0;
-      
-      u.onend = () => { this.#isPlaying = false; };
-      
-      this.#isPlaying = true;
-      window.speechSynthesis.speak(u);
-      
-      /* Network based API approach if active:
-      const res = await fetch('/api/assistant/tts', {
+      if (!cleanText) return;
+
+      const res = await fetch('/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text })
+        body: JSON.stringify({ text: cleanText })
       });
-      if (!res.ok) return;
 
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-
-      this.#audioEl = new Audio(url);
-      this.#isPlaying = true;
-
-      this.#audioEl.onended = () => {
-        this.#isPlaying = false;
-        URL.revokeObjectURL(url);
-      };
-
-      await this.#audioEl.play();
-      */
+      if (res.ok) {
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        this.#audioEl = new Audio(url);
+        this.#isPlaying = true;
+        this.#audioEl.onended = () => {
+          this.#isPlaying = false;
+          URL.revokeObjectURL(url);
+        };
+        await this.#audioEl.play();
+      } else {
+        throw new Error('TTS API failed');
+      }
     } catch (e) {
-      console.warn('[ShadowTTS] playback failed:', e);
-      this.#isPlaying = false;
+      console.warn('[ShadowTTS] edge-tts failed, using browser fallback:', e);
+      try {
+        const cleanText = text.replace(/[\u{1F600}-\u{1F6FF}]/gu, '').trim();
+        const u = new SpeechSynthesisUtterance(cleanText);
+        u.lang = 'en-US';
+        u.rate = 0.95;
+        u.onend = () => { this.#isPlaying = false; };
+        this.#isPlaying = true;
+        window.speechSynthesis.speak(u);
+      } catch {
+        this.#isPlaying = false;
+      }
     }
   }
 
@@ -69,7 +67,7 @@ class ShadowTTS {
     return this.#isPlaying;
   }
 
-  // 기존 GIA TTS 정지
+  // stop GIA TTS
   #stopGiaTTS() {
     if (window.TTS && typeof window.TTS.stop === 'function') {
       window.TTS.stop();

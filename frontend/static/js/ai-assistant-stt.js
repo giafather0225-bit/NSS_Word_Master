@@ -11,7 +11,7 @@ class ShadowSTT {
         const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRec) {
             this.recognition = new SpeechRec();
-            this.recognition.lang = 'ko-KR';
+            this.recognition.lang = 'en-US';
             this.recognition.continuous = false;
             this.recognition.interimResults = false;
 

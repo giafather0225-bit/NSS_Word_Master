@@ -3,7 +3,7 @@
 (function shadowAssistantInit() {
     'use strict';
   
-    // 의존성 확인
+    // dependency check
     if (typeof ShadowSTT === 'undefined') {
       console.warn('[Shadow] ai-assistant-stt.js not loaded - STT disabled');
     }
@@ -11,7 +11,7 @@
       console.warn('[Shadow] ai-assistant-tts.js not loaded - TTS disabled');
     }
   
-    // DOM 준비 대기
+    // wait for DOM
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
     } else {
@@ -26,14 +26,23 @@
         }
     
         const ERROR_MESSAGES = {
-            network: "인터넷이 쉬고 있어! 다시 연결되면 알려줄게 🗺️",
-            gemini_fail: "머리가 복잡해졌어. 한 번만 더 물어봐! 🤔",
-            mic_denied: "네 목소리가 안 들려! 마이크 권한을 허용해줘 🎙️",
-            mic_not_supported: "키보드로 타자를 쳐서 물어볼 수 있어요! ⌨️",
-            limit: "섀도우도 좀 쉬어야 해! 내일 또 만나자 😴",
-            timeout: "섀도우가 너무 오래 생각했어! 다시 물어봐줄래? ⏰",
-            empty: "뭐라고 했어? 섀도우가 못 들었어! 다시 말해줘 👂"
+            network: "No internet connection. I'll let you know when it's back!",
+            gemini_fail: "Something went wrong. Try asking again!",
+            mic_denied: "I can't hear you! Please allow microphone access.",
+            mic_not_supported: "Voice isn't supported here — try typing your question!",
+            timeout: "Shadow took too long thinking. Try asking again!",
+            empty: "Didn't catch that! Say it again."
         };
+
+        const LIMIT_MESSAGES = [
+            "Ugh, I'm SO sleepy right now... Talk tomorrow?",
+            "My tummy is growling like crazy. Gotta eat! See you tomorrow!",
+            "I'm running on empty today. Let's pick this up tomorrow!",
+            "Yawwwn... I literally cannot keep my eyes open. Tomorrow, okay?",
+            "I need a snack break. A long one. See you tomorrow!",
+            "Brain's full! No more room today. Back tomorrow fresh!",
+            "Okay I'm done for today, I need a nap. Bye for now!",
+        ];
     
         const fabBtn = document.getElementById('shadow-fab');
         const rootPanel = document.getElementById('shadow-assistant-root');
@@ -113,15 +122,15 @@
                 timerBar.setAttribute("aria-valuenow", currentSessionSec);
     
                 if (currentSessionSec === 12 * 60) {
-                    renderBubble("우리 조금 있으면 쉬는 시간이야! 🕐", false);
-                    if (window.ShadowTTS) window.ShadowTTS.speak("우리 조금 있으면 쉬는 시간이야!");
+                    renderBubble("Break time coming up soon!", false);
+                    if (window.ShadowTTS) window.ShadowTTS.speak("Break time coming up soon!");
                 }
                 if (currentSessionSec >= 15 * 60) {
                     clearInterval(timerInterval);
                     restOverlay.classList.remove('hidden');
                     document.getElementById('shadow-input-area').style.pointerEvents = 'none';
                     document.getElementById('shadow-input-area').style.opacity = '0.5';
-                    if (window.ShadowTTS) window.ShadowTTS.speak("잠깐 휴식 시간이야. 10분 뒤에 만나!");
+                    if (window.ShadowTTS) window.ShadowTTS.speak("Time for a quick break. See you in 10 minutes!");
                     
                     setTimeout(() => {
                         document.getElementById('shadow-input-area').style.pointerEvents = 'auto';
@@ -140,9 +149,15 @@
             restOverlay.classList.add('hidden');
         });
 
+        function isOpen() {
+            return !rootPanel.classList.contains('hidden');
+        }
+
         function openWidget() {
             rootPanel.classList.remove('hidden');
             fabBtn.setAttribute('aria-expanded', 'true');
+            fabBtn.classList.add('active');
+            stopWakeWord();
             if (window.visualViewport) window.visualViewport.addEventListener('resize', handleViewportResize);
             input?.focus();
         }
@@ -150,22 +165,84 @@
         function closeWidget() {
             rootPanel.classList.add('hidden');
             fabBtn.setAttribute('aria-expanded', 'false');
+            fabBtn.classList.remove('active');
             if (window.visualViewport) window.visualViewport.removeEventListener('resize', handleViewportResize);
             if (window.ShadowTTS?.isPlaying) window.ShadowTTS.stop();
+            startWakeWord();
         }
-    
+
         fabBtn.addEventListener('click', () => {
+            if (isOpen()) { closeWidget(); return; }
             if (!localStorage.getItem('shadow_onboarded')) {
                 onboarding.style.display = 'flex';
                 chatPanel.style.display = 'none';
             } else {
                 onboarding.style.display = 'none';
-                chatPanel.style.display = 'block';
+                chatPanel.style.display = 'flex';
             }
             openWidget();
         });
-    
+
         closeBtn.addEventListener('click', closeWidget);
+
+        // --- WAKE WORD ("Shadow") ---
+        let wakeRecognition = null;
+
+        function startWakeWord() {
+            const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRec || isOpen()) return;
+            try {
+                wakeRecognition = new SpeechRec();
+                wakeRecognition.lang = 'en-US';
+                wakeRecognition.continuous = true;
+                wakeRecognition.interimResults = true;
+                wakeRecognition.onresult = (e) => {
+                    for (let i = e.resultIndex; i < e.results.length; i++) {
+                        const t = e.results[i][0].transcript.toLowerCase();
+                        if (t.includes('shadow')) {
+                            wakeRecognition.stop();
+                            onWakeWord();
+                            return;
+                        }
+                    }
+                };
+                wakeRecognition.onend = () => {
+                    if (!isOpen()) startWakeWord();
+                };
+                wakeRecognition.onerror = () => {};
+                wakeRecognition.start();
+            } catch (e) {}
+        }
+
+        function stopWakeWord() {
+            try { wakeRecognition?.stop(); } catch (e) {}
+            wakeRecognition = null;
+        }
+
+        function onWakeWord() {
+            if (!localStorage.getItem('shadow_onboarded')) {
+                onboarding.style.display = 'flex';
+                chatPanel.style.display = 'none';
+            } else {
+                onboarding.style.display = 'none';
+                chatPanel.style.display = 'flex';
+            }
+            openWidget();
+            fabBtn.classList.add('active');
+            const greeting = "Hey! Go ahead, I'm listening.";
+            renderBubble(greeting, false);
+            if (window.ShadowTTS) window.ShadowTTS.speak(greeting);
+            setTimeout(() => {
+                if (stt && !stt.isRecording) {
+                    statusText.textContent = 'Listening...';
+                    statusDot.style.background = 'red';
+                    lastInputWasVoice = true;
+                    stt.startListening();
+                }
+            }, 800);
+        }
+
+        startWakeWord();
     
         // --- EVENT BUBBLING MITIGATION ---
         document.addEventListener('keydown', (e) => {
@@ -186,6 +263,7 @@
               if (document.activeElement === input && input.value.trim()) {
                 e.stopPropagation();
                 e.preventDefault();
+                lastInputWasVoice = false;
                 handleSend();
               }
             }
@@ -238,7 +316,7 @@
       
             localStorage.setItem('shadow_onboarded', 'true');
             onboarding.style.display = 'none';
-            chatPanel.style.display = 'block';
+            chatPanel.style.display = 'flex';
             input?.focus();
         }, { once: true });
     
@@ -267,7 +345,7 @@
     
         function renderBubble(text, isUser, isError = false, skipScroll = false) {
             const bubble = document.createElement('div');
-            bubble.className = \`shadow-msg shadow-msg--\${isUser ? 'user' : 'assistant'}\`;
+            bubble.className = `shadow-msg shadow-msg--${isUser ? 'user' : 'assistant'}`;
             
             const txtSpan = document.createElement('span');
             txtSpan.className = 'shadow-msg-text';
@@ -279,12 +357,14 @@
             if(!skipScroll) messagesBox.scrollTop = messagesBox.scrollHeight;
         }
     
+        let lastInputWasVoice = false;
+
         // STT Init
         if (window.ShadowSTT) {
             stt = new window.ShadowSTT(
-                (text) => { input.value = text; handleSend(); },
+                (text) => { input.value = text; lastInputWasVoice = true; handleSend(); },
                 (err) => { 
-                    statusText.textContent = '대화 가능';
+                    statusText.textContent = 'Ready';
                     statusDot.style.background = '#4CAF50';
                     if (err === 'not-allowed') {
                         showMicDeniedNotice();
@@ -292,7 +372,7 @@
                     }
                 },
                 () => { 
-                    statusText.textContent = '대화 가능';
+                    statusText.textContent = 'Ready';
                     statusDot.style.background = '#4CAF50';
                 }
             );
@@ -301,7 +381,7 @@
         micBtn.addEventListener('click', async () => {
             if (isDebouncing) return;
             if (stt && !stt.isRecording) {
-                statusText.textContent = '듣고 있어...';
+                statusText.textContent = 'Listening...';
                 statusDot.style.background = 'red';
                 await stt.startListening();
             } else if (stt && stt.isRecording) {
@@ -309,7 +389,7 @@
             }
         });
     
-        sendBtn.addEventListener('click', handleSend);
+        sendBtn.addEventListener('click', () => { lastInputWasVoice = false; handleSend(); });
     
         async function handleSend() {
             if (isDebouncing) return;
@@ -338,39 +418,45 @@
             thinkingIndicator.classList.remove('hidden');
             messagesBox.scrollTop = messagesBox.scrollHeight;
             
-            statusText.textContent = '생각하는 중...';
+            statusText.textContent = 'Thinking...';
             statusDot.style.background = 'orange';
     
             try {
                 const res = await fetch("/api/assistant/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: text, history: historyLog, session_id: sessionId })
+                    body: JSON.stringify({
+                        message: text,
+                        history: historyLog,
+                        session_id: sessionId,
+                        context: window.shadowContext || null,
+                    })
                 });
     
                 thinkingIndicator.classList.add('hidden');
-                statusText.textContent = '대화 가능';
+                statusText.textContent = 'Ready';
                 statusDot.style.background = '#4CAF50';
     
                 if (res.status === 429) {
-                    renderBubble(ERROR_MESSAGES.limit, false);
-                    document.getElementById('shadow-input-area').style.pointerEvents = 'none';
+                    const msg = LIMIT_MESSAGES[Math.floor(Math.random() * LIMIT_MESSAGES.length)];
+                    renderBubble(msg, false);
                     return;
                 }
                 if (!res.ok) throw new Error("Fallback Error");
     
                 const data = await res.json();
                 
-                var reply = data.reply || data.message || '응답을 받지 못했어!';
+                var reply = data.reply || data.message || 'No response received!';
                 renderBubble(reply, false);
                 saveHistory('assistant', reply);
                 if (data.remaining_today !== undefined) remainingLabel.textContent = data.remaining_today;
                 
-                if (window.ShadowTTS && window.ShadowTTS.speak) window.ShadowTTS.speak(reply);
+                if (lastInputWasVoice && window.ShadowTTS) window.ShadowTTS.speak(reply);
+                lastInputWasVoice = false;
     
             } catch (e) {
                 thinkingIndicator.classList.add('hidden');
-                statusText.textContent = '대화 가능';
+                statusText.textContent = 'Ready';
                 statusDot.style.background = '#4CAF50';
                 renderBubble(ERROR_MESSAGES.gemini_fail, false, true);
             } finally {
