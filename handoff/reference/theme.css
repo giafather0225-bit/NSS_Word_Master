@@ -1,0 +1,191 @@
+/* NSS Word Master — Pinterest Schoolgirl Diary Palette (B)
+ * Milk-tea pastel system for English / Math / Diary / Arcade / Shop
+ * Usage: var(--token) only, no hardcoded hex */
+
+:root {
+  /* ═══ Section palette (B — Pinterest Schoolgirl) ═══ */
+
+  /* English — Baby Blue (clear, fresh study) */
+  --english-primary:    #7FA8CC;
+  --english-hover:      #6994BC;
+  --english-light:      #EEF4FA;
+  --english-soft:       #CFE0EE;
+  --english-ink:        #345A80;
+
+  /* Math — Fresh Mint (leaf, calm logic) */
+  --math-primary:       #8AC4A8;
+  --math-hover:         #73AE92;
+  --math-light:         #EEF7F2;
+  --math-soft:          #CFE6D9;
+  --math-ink:           #3A6A54;
+
+  /* Diary — Sweet Pink (warm writing, handwritten mood) */
+  --diary-primary:      #E09AAE;
+  --diary-hover":       #CB8199;
+  --diary-hover:        #CB8199;
+  --diary-light:        #FBEEF2;
+  --diary-soft:         #F3D2DC;
+  --diary-ink:          #84425A;
+
+  /* Arcade — Butter Yellow (playful, soft sunshine) */
+  --arcade-primary:     #EEC770;
+  --arcade-hover:       #D8AE55;
+  --arcade-light:       #FBF3DE;
+  --arcade-soft:        #F1DCA5;
+  --arcade-ink:         #7A5A1E;
+
+  /* Reward Shop — Soft Lavender (dreamy, special) */
+  --rewards-primary:    #B8A4DC;
+  --rewards-hover:      #9F8BC5;
+  --rewards-light:      #F2ECFA;
+  --rewards-soft:       #DCCFEE;
+  --rewards-ink:        #5A4883;
+
+  /* Review — Peach (gentle revisit, warm tone) */
+  --review-primary:     #EBA98C;
+  --review-hover:       #D69074;
+  --review-light:       #FBEBE0;
+  --review-soft:        #F4D2BE;
+  --review-ink:         #844A30;
+
+  /* Dashboard / brand — Rose (pairs with cream page) */
+  --color-primary:       var(--diary-primary);
+  --color-primary-hover: var(--diary-hover);
+  --color-primary-light: var(--diary-light);
+  --color-primary-glow:  rgba(224, 154, 174, 0.18);
+
+  /* Section aliases (used by Sidebar + existing code) */
+  --section-english-color:  var(--english-primary);
+  --section-math-color:     var(--math-primary);
+  --section-diary-color:    var(--diary-primary);
+  --section-arcade-color:   var(--arcade-primary);
+  --section-rewards-color:  var(--rewards-primary);
+  --section-review-color:   var(--review-primary);
+  --section-fluency-color:  var(--arcade-primary);
+  --section-kangaroo-color: var(--math-hover);
+  --section-glossary-color: var(--english-hover);
+  --section-parent-color:   var(--review-primary);
+
+  /* Semantic — pastel-tuned */
+  --color-success: #8FBF87;
+  --color-error:   #D97A7A;
+  --color-warning: #EEC770;
+
+  /* Rose/pink accent (XP badge, highlights) */
+  --accent-rose:       var(--diary-soft);
+  --accent-rose-deep:  var(--diary-primary);
+
+  /* ═══ Warm cream neutrals ═══ */
+  --bg-page:    #FAF6EF;   /* Ivory cream (milk base) */
+  --bg-card:    #FFFFFF;
+  --bg-sidebar: #F4EEE4;   /* Paper cream */
+  --bg-surface: #EFE8DB;   /* Chip / soft hover */
+
+  /* Text — warm near-black */
+  --text-primary:   #2B2722;
+  --text-secondary: #706659;
+  --text-hint:      #A79A89;
+
+  /* Borders — warm tint */
+  --border-default: #DCD2C2;
+  --border-subtle:  #EBE3D5;
+  --border-card:    rgba(43, 39, 34, 0.06);
+
+  /* Shadows — soft */
+  --shadow-card:  0 0 0 1px var(--border-card);
+  --shadow-soft:  0 2px 10px rgba(120, 90, 60, 0.06);
+  --shadow-modal: 0 10px 30px rgba(90, 65, 40, 0.12);
+
+  /* Radius — stationery-friendly */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-full: 9999px;
+
+  /* Sidebar */
+  --sidebar-width: 232px;
+
+  /* Typography — rounded, warm, kid-friendly */
+  --font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-display: 'Quicksand', 'Nunito', -apple-system, sans-serif;
+  --font-family-hand: 'Caveat', 'Shadows Into Light', cursive;
+  --font-family-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+  --font-size-3xl: 44px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+  --font-weight-extra: 700;
+
+  /* Motion */
+  --transition-fast:   0.12s ease;
+  --transition-normal: 0.18s ease;
+  --transition-slow:   0.3s ease;
+
+  /* Progress */
+  --progress-bar-height: 2px;
+  --progress-bar-height-lg: 6px;
+}
+
+[data-theme="dark"] {
+  /* Warm dark — brown base with pastel accents */
+  --bg-page:    #201C18;
+  --bg-card:    #2C2822;
+  --bg-sidebar: #25211C;
+  --bg-surface: #352F28;
+
+  --text-primary:   #F6F0E4;
+  --text-secondary: #CABFAD;
+  --text-hint:      #8C8070;
+
+  --border-default: #3E362D;
+  --border-subtle:  #2F2A24;
+  --border-card:    rgba(255, 248, 232, 0.06);
+
+  /* Section tints softened for dark bg */
+  --english-light: #1E2A36;
+  --math-light:    #1F2E26;
+  --diary-light:   #33212A;
+  --arcade-light:  #33291A;
+  --rewards-light: #2A2436;
+  --review-light:  #33261D;
+  --color-primary-light: #33212A;
+
+  /* Section primaries lifted slightly */
+  --english-primary: #9AC1E0;
+  --math-primary:    #A4D7BF;
+  --diary-primary:   #EDB1C2;
+  --arcade-primary:  #F2D489;
+  --rewards-primary: #CDBCE8;
+  --review-primary:  #F2BFA4;
+
+  --color-success: #9BCF94;
+  --color-error:   #E48C8C;
+  --color-warning: #F2D489;
+
+  --shadow-card:  0 0 0 1px var(--border-card);
+  --shadow-soft:  0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-modal: 0 14px 34px rgba(0, 0, 0, 0.5);
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-family);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition-normal), color var(--transition-normal);
+}
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; padding: 0; }
+a { color: inherit; text-decoration: none; }
