@@ -1,91 +1,89 @@
-/* ── Preview Modal overrides ───────────────────────────────── */
+/* ================================================================
+   preview.css — Preview stage v5 (Palette B: Baby Blue English section)
+   Section: English / Preview
+   Dependencies: theme.css, main-stage.css
+   ================================================================ */
 
-.pm-listen-hint {
-    font-size: var(--font-learner-sm);
-    color: var(--text-secondary);
-    margin-top: 6px;
-    margin-bottom: 0;
-}
+/* ── English section color override ── */
+/* Primary actions & accents → Baby Blue */
+.pm-word { color: var(--english-ink); }
 
-.pm-spell-unlock-hint {
-    font-size: var(--font-learner-sm);
-    color: var(--color-primary);
-    margin-top: 6px;
-    margin-bottom: 0;
-}
-
-.pm-spell-unlock-hint.hidden {
-    display: none;
-}
-
-.pm-chk-btn {
-    background: var(--color-primary);
-}
-.pm-chk-btn:hover {
-    background: var(--color-primary-hover);
-}
-
-/* ── Zia color overrides for Preview modal ── */
-.pm-word {
-    color: var(--color-primary);
-}
-
+.pm-pos span,
 .pm-pos span[data-pos] {
-    background: var(--color-accent-light);
-    color: var(--color-accent);
+    background: var(--english-light);
+    color: var(--english-ink);
 }
 
-.pm-listen-btn {
-    background: var(--color-primary);
-}
-.pm-listen-btn:hover {
-    background: var(--color-primary-hover);
-}
+.pm-listen-btn { background: var(--english-primary); color: #fff; border-color: var(--english-primary); }
+.pm-listen-btn:hover    { background: var(--english-hover); border-color: var(--english-hover); color: #fff; }
+.pm-listen-btn.playing  { background: var(--english-hover); border-color: var(--english-hover); color: #fff; }
+.pm-listen-btn.done     { background: var(--color-success); border-color: var(--color-success); color: #fff; }
 
-.pm-next-btn {
-    background: var(--color-primary);
-}
-.pm-next-btn:hover {
-    background: var(--color-primary-hover);
-}
+.pm-chk-btn        { background: var(--english-primary); color: #fff; }
+.pm-chk-btn:hover  { background: var(--english-hover); }
+
+.pm-next-btn       { background: var(--english-primary); color: #fff; }
+.pm-next-btn:hover { background: var(--english-hover); }
 
 .pm-typing-input:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px var(--color-primary-glow);
+    border-color: var(--english-primary);
+    box-shadow: 0 0 0 3px var(--english-soft);
 }
 
+/* Success (Sage) */
 .pm-typing-input.correct {
     border-color: var(--color-success);
     background: var(--color-success-light);
+    color: var(--color-success-ink);
 }
 
+/* Error (Dusty Coral) */
 .pm-typing-input.wrong {
     border-color: var(--color-error);
+    background: var(--color-error-light);
+    color: var(--color-error-ink);
 }
 
+/* Preview progress pill (top of stage) */
 .preview-prog-pill {
-    background: var(--color-primary);
-    color: var(--text-on-primary);
+    background: var(--english-primary);
+    color: #fff;
     font-weight: 700;
 }
 
-.preview-card:hover {
-    border-color: var(--color-primary);
-}
+/* Card hover tint → Baby Blue */
+.preview-card:hover { border-color: var(--english-primary); }
 
+/* Done card → Sage */
 .preview-card.done {
-    background: var(--color-primary-glow);
-    border-color: var(--color-primary);
+    background: var(--color-success-light);
+    border-color: var(--color-success);
+    color: var(--color-success-ink);
+}
+.preview-card.done::after { color: var(--color-success-ink); }
+
+/* Listen / mic completed state (Sage) */
+.pm-listen-btn.done,
+.pm-mic-btn.done {
+    background: var(--color-success);
+    border-color: var(--color-success);
+    color: #fff;
 }
 
-/* ── Shadow Auto-Pass (3-attempt safety net) ── */
+/* ── Shadow Auto-Pass (Butter) ── */
 .pm-mic-btn.auto-passed {
     background: var(--color-warning);
+    border-color: var(--color-warning);
+    color: #fff;
     cursor: default;
+}
+.pm-shadow-row.auto-passed {
+    background: var(--color-warning-light);
+    border-radius: var(--radius-sm);
 }
 .preview-card.auto-passed {
     border-color: var(--color-warning);
-    background: rgba(245, 158, 11, 0.08);
+    background: var(--color-warning-light);
 }
 .pm-verdict.auto-pass {
     color: var(--color-warning);
@@ -93,3 +91,122 @@
     font-size: var(--font-learner-md);
 }
 
+/* ── Mic recording → Lavender pulse ── */
+@keyframes mic-pulse-lavender {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(184, 164, 220, 0.55); }
+    50%      { box-shadow: 0 0 0 10px rgba(184, 164, 220, 0); }
+}
+.pm-mic-btn.recording {
+    background: var(--rewards-primary);
+    border-color: var(--rewards-primary);
+    color: #fff;
+    animation: mic-pulse-lavender 1.2s ease-in-out infinite;
+}
+
+/* ── Verdict (pass) → Baby Blue bg + Sage border ── */
+.pm-verdict.pass {
+    display: block;
+    background: var(--english-light);
+    border: 2px solid var(--color-success);
+    color: var(--color-success-ink);
+}
+
+/* Spell correct/wrong row states */
+.pm-spell-row.correct { color: var(--color-success-ink); }
+.pm-spell-row.wrong   { color: var(--color-error-ink); }
+
+.pm-spell-unlock-hint { color: var(--english-ink); }
+.pm-spell-unlock-hint.hidden { display: none; }
+
+/* ================================================================
+   Stepbar (v5) — 5-column roadmap across the top
+   ================================================================ */
+.stepbar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    width: 100%;
+    align-items: stretch;
+}
+
+.stepbar .step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: default;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    min-height: 44px;
+}
+
+.stepbar .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 800;
+    background: var(--border-subtle);
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.stepbar .step-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: -0.01em;
+}
+
+/* Active — Baby Blue filled */
+.stepbar .step.active {
+    background: var(--english-primary);
+    border-color: var(--english-primary);
+    color: #fff;
+}
+.stepbar .step.active .step-num {
+    background: #fff;
+    color: var(--english-ink);
+}
+
+/* Done — English light bg + Sage number */
+.stepbar .step.done {
+    background: var(--english-light);
+    border-color: var(--english-soft);
+    color: var(--english-ink);
+    cursor: pointer;
+}
+.stepbar .step.done .step-num {
+    background: var(--color-success);
+    color: #fff;
+}
+.stepbar .step.done:hover {
+    border-color: var(--english-primary);
+}
+
+/* Locked — muted */
+.stepbar .step.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Unlocked but not current → clickable */
+.stepbar .step:not(.active):not(.locked):not(.done):hover {
+    border-color: var(--english-primary);
+    color: var(--english-ink);
+    cursor: pointer;
+}
+
+/* Responsive: hide labels, show numbers only */
+@media (max-width: 960px) {
+    .stepbar .step { padding: 10px 6px; min-height: 40px; }
+    .stepbar .step-label { display: none; }
+}

@@ -224,54 +224,64 @@ function updateRoadmapUI() {
     const rm = $("roadmap");
     if (!rm) return;
     rm.innerHTML = "";
+    rm.classList.add("stepbar");
     const inExam = stage === STAGE.EXAM;
     const completedSet = getCompletedStages();
     const hasLesson = !!lessonSelected();
 
     for (let i = 0; i < ROADMAP_STAGES.length; i++) {
         const key = ROADMAP_STAGES[i];
-        const isDone     = completedSet.has(key);
-        const isCurrent  = hasLesson && (stage === key);
+        const isDone     = completedSet.has(key) || inExam;
+        const isCurrent  = !inExam && hasLesson && (stage === key);
         const isUnlocked = hasLesson && isStageUnlocked(key);
 
-        const div = document.createElement("div");
-        div.className = "road-pill";
+        const step = document.createElement("div");
+        step.className = "step";
 
-        if (inExam) {
-            div.classList.add("done");
-            div.textContent = "✓ " + ROADMAP_LABELS[i];
-        } else if (isCurrent) {
-            div.classList.add("current");
+        // Base label: strip "N. " numeric prefix
+        const rawLabel = ROADMAP_LABELS[i] || "";
+        let label = rawLabel.replace(/^\d+\.\s*/, '').replace(/^✓\s*/, '').trim();
+
+        // Append progress info for the current stage
+        if (isCurrent) {
             const n = items.length;
-            let progressInfo = "";
             if (n > 0 && sessionActive) {
                 if (stage === STAGE.A) {
-                    progressInfo = ` (R${wmState.round + 1}/3)`;
+                    label += ` · R${wmState.round + 1}/3`;
                 } else if (stage === STAGE.B && fbState.retryMode) {
-                    progressInfo = " (retry)";
+                    label += " · retry";
                 } else if (stage === STAGE.C && spState.retryMode) {
-                    progressInfo = " (retry)";
+                    label += " · retry";
                 } else {
-                    progressInfo = ` (${Math.min(stageIndex + 1, n)}/${n})`;
+                    label += ` · ${Math.min(stageIndex + 1, n)}/${n}`;
                 }
             }
-            div.textContent = ROADMAP_LABELS[i] + progressInfo;
-        } else if (isDone) {
-            div.classList.add("done");
-            div.textContent = "✓ " + ROADMAP_LABELS[i];
-        } else if (isUnlocked) {
-            div.classList.add("next");
-            div.textContent = ROADMAP_LABELS[i];
-        } else {
-            div.classList.add("locked");
-            div.textContent = ROADMAP_LABELS[i];
         }
+
+        // State class
+        if (isCurrent) {
+            step.classList.add("active");
+        } else if (isDone) {
+            step.classList.add("done");
+        } else if (!isUnlocked) {
+            step.classList.add("locked");
+        }
+
+        const numEl = document.createElement("span");
+        numEl.className = "step-num";
+        numEl.textContent = String(i + 1);
+
+        const labelEl = document.createElement("span");
+        labelEl.className = "step-label";
+        labelEl.textContent = label;
+
+        step.appendChild(numEl);
+        step.appendChild(labelEl);
 
         const canClick = !inExam && isUnlocked;
         if (canClick) {
-            div.style.cursor = "pointer";
-            div.title = isDone ? `${ROADMAP_LABELS[i]} — redo` : `${ROADMAP_LABELS[i]} — start`;
-            div.addEventListener("click", async () => {
+            step.title = isDone ? `${label} — redo` : `${label} — start`;
+            step.addEventListener("click", async () => {
                 if (!items.length) {
                     const lesson = lessonSelected();
                     try {
@@ -285,9 +295,7 @@ function updateRoadmapUI() {
             });
         }
 
-        // Strip numeric prefix from pill labels
-        div.textContent = div.textContent.replace(/^\d+\.\s*/, '').replace(/^✓\s*/, '✓ ');
-        rm.appendChild(div);
+        rm.appendChild(step);
     }
 }
 
