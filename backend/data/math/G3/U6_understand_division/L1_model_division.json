@@ -108,7 +108,7 @@
         "tool": "array_grid",
         "config": {
           "rows": 3,
-          "cols": 4
+          "cols": 6
         }
       }
     },
@@ -116,17 +116,19 @@
       "id": "LN_02",
       "type": "concept_card",
       "title": "Model with Counters",
-      "content": "To solve 18 ÷ 6: draw 6 circles. Place 1 counter in each, then repeat. When all 18 counters are used, count: 3 in each circle.",
+      "content": "To solve 18 ÷ 6: draw 6 circles. Place 1 counter in each, then repeat. When all 18 counters are used, count: 3 in each circle. So 18 ÷ 6 = 3.",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "bar_model",
         "config": {
           "parts": [
-            {
-              "label": "Group 1",
-              "value": 0
-            }
+            {"label": "Group 1", "value": 3},
+            {"label": "Group 2", "value": 3},
+            {"label": "Group 3", "value": 3},
+            {"label": "Group 4", "value": 3},
+            {"label": "Group 5", "value": 3},
+            {"label": "Group 6", "value": 3}
           ]
         }
       }
@@ -135,14 +137,52 @@
       "id": "LN_03",
       "type": "concept_card",
       "title": "Connect to Multiplication",
-      "content": "Think: 6 × ? = 18. Since 6 × 3 = 18, then 18 ÷ 6 = 3.",
+      "content": "Think: 6 × ? = 18. Since 6 × 3 = 18, then 18 ÷ 6 = 3. Division and multiplication are related — one undoes the other.",
       "cpa_phase": "pictorial",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "array_grid",
         "config": {
           "rows": 3,
-          "cols": 4
+          "cols": 6
+        }
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Bar Model for Division",
+      "content": "A bar model shows division visually. For 24 ÷ 4: draw a bar labeled 24. Divide it into 4 equal parts. Each part = 24 ÷ 4 = 6. The bar model shows the whole (24) and the parts (6 each).",
+      "cpa_phase": "pictorial",
+      "visual_type": "bar_model",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "total": 24,
+          "parts": [
+            {"label": "?", "value": 6},
+            {"label": "?", "value": 6},
+            {"label": "?", "value": 6},
+            {"label": "?", "value": 6}
+          ]
+        }
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "Parts of a Division Equation",
+      "content": "In 18 ÷ 6 = 3: the dividend (18) is the total being divided; the divisor (6) is how many groups; the quotient (3) is how many in each group. Always ask: total ÷ groups = each.",
+      "cpa_phase": "abstract",
+      "visual_type": "equation",
+      "visual_data": {
+        "tool": "equation_display",
+        "config": {
+          "equations": [
+            "18 ÷ 6 = 3",
+            "dividend ÷ divisor = quotient",
+            "total ÷ groups = each"
+          ]
         }
       }
     }
@@ -162,12 +202,12 @@
       "explanation": "15 ÷ 5 = 3 bags.",
       "difficulty": 1,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Identify the total (15) and the group size (5). Write a division equation.",
+        "Think: 5 × ? = 15. Since 5 × 3 = 15, then 15 ÷ 5 = 3."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model division works."
+        "correct": "Correct! 15 ÷ 5 = 3 bags.",
+        "incorrect": "Draw 5 apples in each bag and keep going: 5, 10, 15. You need 3 bags."
       },
       "solution_steps": []
     },
@@ -185,12 +225,69 @@
       "explanation": "32 ÷ 8 = 4.",
       "difficulty": 1,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 8 circles for 8 rows. Share 32 bricks equally among them.",
+        "Think: 8 × ? = 32. Since 8 × 4 = 32, then 32 ÷ 8 = 4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model division works."
+        "correct": "Great! 32 ÷ 8 = 4 bricks per row.",
+        "incorrect": "Use the related fact: 8 × 4 = 32, so 32 ÷ 8 = 4."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "16 ÷ 2 = ?",
+      "answer": "8",
+      "explanation": "16 ÷ 2 = 8. Think: 2 × 8 = 16.",
+      "difficulty": 1,
+      "hints": [
+        "Draw 2 equal groups. Share 16 counters between them.",
+        "Think: 2 × ? = 16. Since 2 × 8 = 16, then 16 ÷ 2 = 8."
+      ],
+      "feedback": {
+        "correct": "Correct! 2 × 8 = 16, so 16 ÷ 2 = 8.",
+        "incorrect": "Use the related fact: 2 × ? = 16. Since 2 × 8 = 16, the answer is 8."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "36 ÷ 6 = ?",
+      "answer": "6",
+      "explanation": "36 ÷ 6 = 6. Think: 6 × 6 = 36.",
+      "difficulty": 1,
+      "hints": [
+        "Draw 6 equal circles. Share 36 counters equally among them.",
+        "Think: 6 × ? = 36. Since 6 × 6 = 36, then 36 ÷ 6 = 6."
+      ],
+      "feedback": {
+        "correct": "Right! 6 × 6 = 36, so 36 ÷ 6 = 6.",
+        "incorrect": "Use the related fact: 6 × ? = 36. Since 6 × 6 = 36, the answer is 6."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "A box has 35 stickers shared equally among 5 friends. How many stickers does each friend get?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "C",
+      "explanation": "35 ÷ 5 = 7. Think: 5 × 7 = 35.",
+      "difficulty": 1,
+      "hints": [
+        "Draw 5 circles for 5 friends. Share 35 stickers equally.",
+        "Think: 5 × ? = 35. Since 5 × 7 = 35, then 35 ÷ 5 = 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 35 ÷ 5 = 7 stickers each.",
+        "incorrect": "Use the related fact: 5 × 7 = 35, so 35 ÷ 5 = 7."
       },
       "solution_steps": []
     }
@@ -210,12 +307,12 @@
       "explanation": "12 ÷ 4 = 3.",
       "difficulty": 1,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 4 equal circles. Share 12 counters one by one.",
+        "Think: 4 × ? = 12. Since 4 × 3 = 12, then 12 ÷ 4 = 3."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model division works."
+        "correct": "Correct! 4 × 3 = 12, so 12 ÷ 4 = 3.",
+        "incorrect": "Use the related fact: 4 × 3 = 12, so 12 ÷ 4 = 3."
       }
     },
     {
@@ -232,12 +329,12 @@
       "explanation": "30 ÷ 5 = 6.",
       "difficulty": 1,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 5 equal circles. Share 30 counters equally.",
+        "Think: 5 × ? = 30. Since 5 × 6 = 30, then 30 ÷ 5 = 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model division works."
+        "correct": "Right! 5 × 6 = 30, so 30 ÷ 5 = 6.",
+        "incorrect": "Use the related fact: 5 × 6 = 30, so 30 ÷ 5 = 6."
       }
     },
     {
@@ -254,12 +351,12 @@
       "explanation": "27 ÷ 3 = 9.",
       "difficulty": 1,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 3 equal circles. Share 27 counters equally.",
+        "Think: 3 × ? = 27. Since 3 × 9 = 27, then 27 ÷ 3 = 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model division works."
+        "correct": "Correct! 3 × 9 = 27, so 27 ÷ 3 = 9.",
+        "incorrect": "Use the related fact: 3 × 9 = 27, so 27 ÷ 3 = 9."
       }
     },
     {
@@ -276,12 +373,12 @@
       "explanation": "40 ÷ 8 = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 8 circles for 8 students. Share 40 pencils equally.",
+        "Think: 8 × ? = 40. Since 8 × 5 = 40, then 40 ÷ 8 = 5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model division works."
+        "correct": "Right! 8 × 5 = 40, so 40 ÷ 8 = 5.",
+        "incorrect": "Use the related fact: 8 × 5 = 40, so 40 ÷ 8 = 5."
       }
     },
     {
@@ -298,12 +395,12 @@
       "explanation": "45 ÷ 9 = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 9 equal circles. Share 45 counters one by one.",
+        "Think: 9 × ? = 45. Since 9 × 5 = 45, then 45 ÷ 9 = 5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model division works."
+        "correct": "Correct! 9 × 5 = 45, so 45 ÷ 9 = 5.",
+        "incorrect": "Use the related fact: 9 × 5 = 45, so 45 ÷ 9 = 5."
       }
     },
     {
@@ -320,12 +417,12 @@
       "explanation": "28 ÷ 4 = 7.",
       "difficulty": 1,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 4 circles for 4 teams. Share 28 students equally.",
+        "Think: 4 × ? = 28. Since 4 × 7 = 28, then 28 ÷ 4 = 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model division works."
+        "correct": "Great! 4 × 7 = 28, so 28 ÷ 4 = 7.",
+        "incorrect": "Use the related fact: 4 × 7 = 28, so 28 ÷ 4 = 7."
       }
     },
     {
@@ -342,12 +439,66 @@
       "explanation": "56 ÷ 7 = 8.",
       "difficulty": 1,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 7 equal circles. Share 56 counters one by one.",
+        "Think: 7 × ? = 56. Since 7 × 8 = 56, then 56 ÷ 7 = 8."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model division works."
+        "correct": "Right! 7 × 8 = 56, so 56 ÷ 7 = 8.",
+        "incorrect": "Use the related fact: 7 × 8 = 56, so 56 ÷ 7 = 8."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "stem": "24 ÷ 4 = ?",
+      "answer": "6",
+      "explanation": "24 ÷ 4 = 6. Think: 4 × 6 = 24.",
+      "difficulty": 1,
+      "hints": [
+        "Draw 4 equal circles. Share 24 counters equally.",
+        "Think: 4 × ? = 24. Since 4 × 6 = 24, then 24 ÷ 4 = 6."
+      ],
+      "feedback": {
+        "correct": "Correct! 4 × 6 = 24, so 24 ÷ 4 = 6.",
+        "incorrect": "Use the related fact: 4 × 6 = 24, so 24 ÷ 4 = 6."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "stem": "A farmer picks 18 oranges and puts them into 3 equal baskets. How many oranges per basket?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "C",
+      "explanation": "18 ÷ 3 = 6.",
+      "difficulty": 1,
+      "hints": [
+        "Draw 3 circles for 3 baskets. Share 18 oranges equally.",
+        "Think: 3 × ? = 18. Since 3 × 6 = 18, then 18 ÷ 3 = 6."
+      ],
+      "feedback": {
+        "correct": "Correct! 3 × 6 = 18, so 18 ÷ 3 = 6 oranges per basket.",
+        "incorrect": "Use the related fact: 3 × 6 = 18, so 18 ÷ 3 = 6."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "stem": "42 ÷ 7 = ?",
+      "answer": "6",
+      "explanation": "42 ÷ 7 = 6. Think: 7 × 6 = 42.",
+      "difficulty": 1,
+      "hints": [
+        "Draw 7 equal circles. Share 42 counters one by one.",
+        "Think: 7 × ? = 42. Since 7 × 6 = 42, then 42 ÷ 7 = 6."
+      ],
+      "feedback": {
+        "correct": "Right! 7 × 6 = 42, so 42 ÷ 7 = 6.",
+        "incorrect": "Use the related fact: 7 × 6 = 42, so 42 ÷ 7 = 6."
       }
     }
   ],
@@ -366,12 +517,12 @@
       "explanation": "48 ÷ 6 = 8 boxes.",
       "difficulty": 2,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 6 cookies in each box and count how many boxes you fill.",
+        "Think: 6 × ? = 48. Since 6 × 8 = 48, then 48 ÷ 6 = 8."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model division works."
+        "correct": "Correct! 6 × 8 = 48, so 48 ÷ 6 = 8 boxes.",
+        "incorrect": "Use the related fact: 6 × 8 = 48, so 48 ÷ 6 = 8 boxes."
       }
     },
     {
@@ -388,12 +539,12 @@
       "explanation": "72 ÷ 8 = 9.",
       "difficulty": 2,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 8 equal circles. Share 72 counters one by one.",
+        "Think: 8 × ? = 72. Since 8 × 9 = 72, then 72 ÷ 8 = 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model division works."
+        "correct": "Right! 8 × 9 = 72, so 72 ÷ 8 = 9.",
+        "incorrect": "Use the related fact: 8 × 9 = 72, so 72 ÷ 8 = 9."
       }
     },
     {
@@ -410,12 +561,12 @@
       "explanation": "54 ÷ 6 = 9.",
       "difficulty": 2,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 6 circles for 6 shelves. Share 54 cans equally.",
+        "Think: 6 × ? = 54. Since 6 × 9 = 54, then 54 ÷ 6 = 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model division works."
+        "correct": "Correct! 6 × 9 = 54, so 54 ÷ 6 = 9 cans.",
+        "incorrect": "Use the related fact: 6 × 9 = 54, so 54 ÷ 6 = 9."
       }
     },
     {
@@ -432,12 +583,126 @@
       "explanation": "63 ÷ 9 = 7.",
       "difficulty": 2,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 9 circles for 9 students. Share 63 books equally.",
+        "Think: 9 × ? = 63. Since 9 × 7 = 63, then 63 ÷ 9 = 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model division works."
+        "correct": "Correct! 9 × 7 = 63, so 63 ÷ 9 = 7 books each.",
+        "incorrect": "Use the related fact: 9 × 7 = 63, so 63 ÷ 9 = 7."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "64 ÷ 8 = ?",
+      "answer": "8",
+      "explanation": "64 ÷ 8 = 8. Think: 8 × 8 = 64.",
+      "difficulty": 2,
+      "hints": [
+        "Draw 8 equal circles. Share 64 counters among them.",
+        "Think: 8 × ? = 64. Since 8 × 8 = 64, then 64 ÷ 8 = 8."
+      ],
+      "feedback": {
+        "correct": "Great! 8 × 8 = 64, so 64 ÷ 8 = 8.",
+        "incorrect": "Use the related fact: 8 × 8 = 64, so 64 ÷ 8 = 8."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "Which multiplication fact best helps you find 36 ÷ 9?",
+      "choices": [
+        "9 × 4 = 36",
+        "9 × 3 = 27",
+        "9 × 5 = 45",
+        "6 × 6 = 36"
+      ],
+      "answer": "A",
+      "explanation": "36 ÷ 9 = 4, so the related multiplication fact is 9 × 4 = 36.",
+      "difficulty": 2,
+      "hints": [
+        "To divide 36 by 9, think: 9 × ? = 36.",
+        "Which choice has 9 as a factor and 36 as the product? That's 9 × 4 = 36."
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 4 = 36, so 36 ÷ 9 = 4.",
+        "incorrect": "Look for a fact with 9 as a factor and 36 as the product: 9 × 4 = 36."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "28 ÷ 7 = ?",
+      "answer": "4",
+      "explanation": "28 ÷ 7 = 4. Think: 7 × 4 = 28.",
+      "difficulty": 2,
+      "hints": [
+        "Draw 7 equal circles. Share 28 counters equally.",
+        "Think: 7 × ? = 28. Since 7 × 4 = 28, then 28 ÷ 7 = 4."
+      ],
+      "feedback": {
+        "correct": "Right! 7 × 4 = 28, so 28 ÷ 7 = 4.",
+        "incorrect": "Use the related fact: 7 × 4 = 28, so 28 ÷ 7 = 4."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "A garden has 40 flowers planted equally in 5 rows. How many flowers per row?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "40 ÷ 5 = 8 flowers per row.",
+      "difficulty": 2,
+      "hints": [
+        "Draw 5 circles for 5 rows. Share 40 flowers equally.",
+        "Think: 5 × ? = 40. Since 5 × 8 = 40, then 40 ÷ 5 = 8."
+      ],
+      "feedback": {
+        "correct": "Correct! 5 × 8 = 40, so 40 ÷ 5 = 8 flowers per row.",
+        "incorrect": "Use the related fact: 5 × 8 = 40, so 40 ÷ 5 = 8."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "49 ÷ 7 = ?",
+      "answer": "7",
+      "explanation": "49 ÷ 7 = 7. Think: 7 × 7 = 49.",
+      "difficulty": 2,
+      "hints": [
+        "Draw 7 equal circles. Share 49 counters equally.",
+        "Think: 7 × ? = 49. Since 7 × 7 = 49, then 49 ÷ 7 = 7."
+      ],
+      "feedback": {
+        "correct": "Right! 7 × 7 = 49, so 49 ÷ 7 = 7.",
+        "incorrect": "Use the related fact: 7 × 7 = 49, so 49 ÷ 7 = 7."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "A novel has 45 pages. Each chapter has 5 pages. How many chapters are in the novel?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "45 ÷ 5 = 9 chapters.",
+      "difficulty": 2,
+      "hints": [
+        "Draw groups of 5 pages until you reach 45. Count the groups.",
+        "Think: 5 × ? = 45. Since 5 × 9 = 45, then 45 ÷ 5 = 9."
+      ],
+      "feedback": {
+        "correct": "Great! 5 × 9 = 45, so 45 ÷ 5 = 9 chapters.",
+        "incorrect": "Use the related fact: 5 × 9 = 45, so 45 ÷ 5 = 9 chapters."
       }
     }
   ],
@@ -456,12 +721,12 @@
       "explanation": "48 ÷ 8 = 6 bracelets = 6 friends.",
       "difficulty": 3,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "First find how many bracelets: 48 ÷ 8 = ? groups of 8.",
+        "Think: 8 × ? = 48. Since 8 × 6 = 48, she can make 6 bracelets for 6 friends."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model division works."
+        "correct": "Correct! 8 × 6 = 48, so 48 ÷ 8 = 6 friends.",
+        "incorrect": "Find total bracelets: 8 × 6 = 48, so 48 ÷ 8 = 6 bracelets = 6 friends."
       }
     },
     {
@@ -478,12 +743,12 @@
       "explanation": "81 ÷ 9 = 9 vans.",
       "difficulty": 3,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Draw 9 students per van and count how many vans you fill with 81 students.",
+        "Think: 9 × ? = 81. Since 9 × 9 = 81, then 81 ÷ 9 = 9 vans."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model division works."
+        "correct": "Correct! 9 × 9 = 81, so 81 ÷ 9 = 9 vans.",
+        "incorrect": "Use the related fact: 9 × 9 = 81, so 81 ÷ 9 = 9 vans."
       }
     },
     {
@@ -500,12 +765,50 @@
       "explanation": "56 ÷ 7 = 8 bags. He sells 3 bags: 3 × 7 = 21 apples.",
       "difficulty": 3,
       "hints": [
-        "Think about what model division means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: find how many bags. 56 ÷ 7 = ? (think: 7 × ? = 56).",
+        "Step 2: he sells 3 bags. Each bag has 7 apples: 3 × 7 = 21 apples sold."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model division works."
+        "correct": "Great! 56 ÷ 7 = 8 bags, then 3 × 7 = 21 apples sold.",
+        "incorrect": "First: 7 × 8 = 56, so 8 bags. Then: he sells 3 bags × 7 apples = 21 apples."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "A store receives 72 pens in 8 equal packs. After delivery, 4 pens are removed from each pack. How many pens remain in all?",
+      "choices": [
+        "32",
+        "36",
+        "40",
+        "48"
+      ],
+      "answer": "C",
+      "explanation": "72 ÷ 8 = 9 pens per pack. 9 − 4 = 5 left per pack. 5 × 8 = 40 pens remain.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: find pens per pack — 72 ÷ 8 = ? (think: 8 × ? = 72).",
+        "Step 2: subtract 4 from each pack (9 − 4 = 5). Step 3: multiply by 8 packs (5 × 8 = 40)."
+      ],
+      "feedback": {
+        "correct": "Excellent! 72÷8=9, then 9−4=5 per pack, then 5×8=40 pens remain.",
+        "incorrect": "Step 1: 8×9=72 → 9 per pack. Step 2: 9−4=5 left per pack. Step 3: 5×8=40."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "25 students are divided equally into 5 groups. How many students are in each group?",
+      "answer": "5",
+      "explanation": "25 ÷ 5 = 5 students per group.",
+      "difficulty": 3,
+      "hints": [
+        "Draw 5 circles for 5 groups. Share 25 students equally.",
+        "Think: 5 × ? = 25. Since 5 × 5 = 25, then 25 ÷ 5 = 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 5 × 5 = 25, so 25 ÷ 5 = 5 students per group.",
+        "incorrect": "Use the related fact: 5 × 5 = 25, so 25 ÷ 5 = 5."
       }
     }
   ],

@@ -100,17 +100,17 @@
       "id": "LN_01",
       "type": "concept_card",
       "title": "Repeated Subtraction",
-      "content": "Division can be shown by subtracting the same number until you reach 0. The number of times you subtract is the answer.",
+      "content": "Division can be shown by subtracting the same number until you reach 0. The number of times you subtract is the answer (quotient). Example: 18 ÷ 6 → subtract 6 three times to reach 0 → 18 ÷ 6 = 3.",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
-        "tool": "bar_model",
+        "tool": "equation_display",
         "config": {
-          "parts": [
-            {
-              "label": "Group 1",
-              "value": 0
-            }
+          "equations": [
+            "18 − 6 = 12 (1st subtraction)",
+            "12 − 6 = 6  (2nd subtraction)",
+            "6 − 6 = 0   (3rd subtraction)",
+            "18 ÷ 6 = 3"
           ]
         }
       }
@@ -118,18 +118,17 @@
     {
       "id": "LN_02",
       "type": "concept_card",
-      "title": "Example",
-      "content": "18 ÷ 6: 18 − 6 = 12, 12 − 6 = 6, 6 − 6 = 0. You subtracted 3 times, so 18 ÷ 6 = 3.",
+      "title": "Step-by-Step Example",
+      "content": "18 ÷ 6: Start with 18. Subtract 6: 18 − 6 = 12. Subtract 6: 12 − 6 = 6. Subtract 6: 6 − 6 = 0. You subtracted 3 times, so 18 ÷ 6 = 3.",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
-        "tool": "bar_model",
+        "tool": "equation_display",
         "config": {
-          "parts": [
-            {
-              "label": "Group 1",
-              "value": 0
-            }
+          "equations": [
+            "18 → 12 → 6 → 0",
+            "Count: 3 subtractions",
+            "18 ÷ 6 = 3"
           ]
         }
       }
@@ -138,17 +137,52 @@
       "id": "LN_03",
       "type": "concept_card",
       "title": "Number Line Model",
-      "content": "Start at the total on a number line. Jump back by the divisor. Count the jumps. For 20 ÷ 4: start at 20, jump back 4 five times to reach 0.",
+      "content": "Start at the total on a number line. Jump back by the divisor. Count the jumps. For 20 ÷ 4: start at 20, jump back 4 five times: 20 → 16 → 12 → 8 → 4 → 0. Five jumps → 20 ÷ 4 = 5.",
       "cpa_phase": "pictorial",
-      "visual_type": "manipulative",
+      "visual_type": "number_line",
       "visual_data": {
-        "tool": "bar_model",
+        "tool": "number_line",
         "config": {
-          "parts": [
-            {
-              "label": "Group 1",
-              "value": 0
-            }
+          "start": 0,
+          "end": 20,
+          "jump_size": 4,
+          "num_jumps": 5,
+          "direction": "backward"
+        }
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Number Line: Counting Jumps",
+      "content": "For 30 ÷ 5: start at 30 on a number line. Jump back 5 each time: 30 → 25 → 20 → 15 → 10 → 5 → 0. Count the jumps: 6. So 30 ÷ 5 = 6. Each backward jump removes one equal group.",
+      "cpa_phase": "pictorial",
+      "visual_type": "number_line",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "start": 0,
+          "end": 30,
+          "jump_size": 5,
+          "num_jumps": 6,
+          "direction": "backward"
+        }
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "Subtraction and Division Are Related",
+      "content": "Repeated subtraction and division always give the same answer. 24 ÷ 8: subtract 8 three times (24→16→8→0) OR use the related fact (8 × 3 = 24). Both show 24 ÷ 8 = 3. Division is a shortcut for repeated subtraction.",
+      "cpa_phase": "abstract",
+      "visual_type": "equation",
+      "visual_data": {
+        "tool": "equation_display",
+        "config": {
+          "equations": [
+            "Repeated subtraction: 24 − 8 − 8 − 8 = 0 (3 times)",
+            "Division: 24 ÷ 8 = 3",
+            "Both give the same answer!"
           ]
         }
       }
@@ -169,12 +203,12 @@
       "explanation": "21 − 7 − 7 − 7 = 0 → 3 times.",
       "difficulty": 1,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 7 from 21 again and again. Count how many times you subtract.",
+        "21 − 7 = 14, 14 − 7 = 7, 7 − 7 = 0. That's 3 subtractions, so 21 ÷ 7 = 3."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+        "correct": "Correct! 21 − 7 three times = 0, so 21 ÷ 7 = 3.",
+        "incorrect": "Subtract 7 repeatedly: 21→14→7→0. Count 3 subtractions = 21 ÷ 7 = 3."
       },
       "solution_steps": []
     },
@@ -192,12 +226,69 @@
       "explanation": "36 ÷ 9 = 4.",
       "difficulty": 1,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 9 from 36 again and again until you reach 0. Count each step.",
+        "36 − 9 = 27, 27 − 9 = 18, 18 − 9 = 9, 9 − 9 = 0. That's 4 times."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+        "correct": "Right! 36 − 9 four times = 0, so 36 ÷ 9 = 4.",
+        "incorrect": "Subtract 9 repeatedly: 36→27→18→9→0. Count 4 steps = 36 ÷ 9 = 4."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "How many times can you subtract 8 from 32?",
+      "answer": "4",
+      "explanation": "32 − 8 − 8 − 8 − 8 = 0 → 4 times. So 32 ÷ 8 = 4.",
+      "difficulty": 1,
+      "hints": [
+        "Subtract 8 from 32 again and again until you reach 0.",
+        "32 − 8 = 24, 24 − 8 = 16, 16 − 8 = 8, 8 − 8 = 0. Count: 4 times."
+      ],
+      "feedback": {
+        "correct": "Correct! 32 − 8 four times = 0, so 32 ÷ 8 = 4.",
+        "incorrect": "Subtract 8 repeatedly: 32→24→16→8→0. That's 4 subtractions."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "Use repeated subtraction to find 18 ÷ 6.",
+      "answer": "3",
+      "explanation": "18 − 6 = 12, 12 − 6 = 6, 6 − 6 = 0 → 3 times. So 18 ÷ 6 = 3.",
+      "difficulty": 1,
+      "hints": [
+        "Subtract 6 from 18 again and again until you reach 0. Count each subtraction.",
+        "18 − 6 = 12, 12 − 6 = 6, 6 − 6 = 0. That's 3 subtractions, so the answer is 3."
+      ],
+      "feedback": {
+        "correct": "Right! 18 − 6 three times = 0, so 18 ÷ 6 = 3.",
+        "incorrect": "Subtract 6 repeatedly: 18→12→6→0. Count 3 steps = 18 ÷ 6 = 3."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "A number line starts at 45. You jump back 9 each time. How many jumps to reach 0?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "45 ÷ 9 = 5 jumps.",
+      "difficulty": 1,
+      "hints": [
+        "On the number line: 45 → 36 → 27 → 18 → 9 → 0. Count the jumps.",
+        "You subtract 9 five times to reach 0. So 45 ÷ 9 = 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 45 − 9 five times = 0, so 45 ÷ 9 = 5 jumps.",
+        "incorrect": "Jump back 9 each time: 45→36→27→18→9→0. Count 5 jumps."
       },
       "solution_steps": []
     }
@@ -217,12 +308,12 @@
       "explanation": "16 ÷ 4 = 4.",
       "difficulty": 1,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 4 from 16 again and again: 16 → 12 → 8 → 4 → 0.",
+        "Count the subtractions: 4. So 16 ÷ 4 = 4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+        "correct": "Correct! 16 − 4 four times = 0, so 16 ÷ 4 = 4.",
+        "incorrect": "Subtract 4 repeatedly: 16→12→8→4→0. Count 4 steps."
       }
     },
     {
@@ -239,12 +330,12 @@
       "explanation": "25 ÷ 5 = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 5 from 25 again and again: 25 → 20 → 15 → 10 → 5 → 0.",
+        "Count the subtractions: 5. So 25 ÷ 5 = 5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+        "correct": "Right! 25 − 5 five times = 0, so 25 ÷ 5 = 5.",
+        "incorrect": "Subtract 5 repeatedly: 25→20→15→10→5→0. Count 5 steps."
       }
     },
     {
@@ -261,12 +352,12 @@
       "explanation": "14 ÷ 2 = 7.",
       "difficulty": 1,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 2 from 14 again and again until you reach 0.",
+        "14→12→10→8→6→4→2→0. Count: 7 subtractions. So 14 ÷ 2 = 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+        "correct": "Correct! 14 − 2 seven times = 0, so 14 ÷ 2 = 7.",
+        "incorrect": "Subtract 2 repeatedly from 14 until 0. Count 7 steps."
       }
     },
     {
@@ -283,12 +374,12 @@
       "explanation": "27 ÷ 3 = 9.",
       "difficulty": 1,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 3 from 27 again and again until you reach 0. Count each step.",
+        "27→24→21→18→15→12→9→6→3→0. Count: 9 subtractions."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+        "correct": "Right! Subtract 3 nine times from 27 to reach 0. 27 ÷ 3 = 9.",
+        "incorrect": "Subtract 3 from 27 repeatedly: 27→24→...→0. That's 9 steps."
       }
     },
     {
@@ -305,12 +396,12 @@
       "explanation": "48 ÷ 6 = 8.",
       "difficulty": 1,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 6 from 48 again and again until you reach 0.",
+        "Count the subtractions: 8. So 48 ÷ 6 = 8. Check: 6 × 8 = 48."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+        "correct": "Correct! 48 − 6 eight times = 0, so 48 ÷ 6 = 8.",
+        "incorrect": "Subtract 6 repeatedly from 48 until 0. Count 8 steps."
       }
     },
     {
@@ -327,12 +418,12 @@
       "explanation": "35 ÷ 7 = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 7 from 35 again and again: 35 → 28 → 21 → 14 → 7 → 0.",
+        "Count the cuts: 5. So 35 ÷ 7 = 5 pieces."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+        "correct": "Right! Subtract 7 five times from 35 to reach 0. 5 pieces.",
+        "incorrect": "Subtract 7 from 35 repeatedly: 35→28→21→14→7→0. Count 5 cuts."
       }
     },
     {
@@ -349,12 +440,66 @@
       "explanation": "54 ÷ 9 = 6.",
       "difficulty": 1,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 9 from 54 again and again until you reach 0.",
+        "54→45→36→27→18→9→0. Count: 6 subtractions. So 54 ÷ 9 = 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+        "correct": "Correct! 54 − 9 six times = 0, so 54 ÷ 9 = 6.",
+        "incorrect": "Subtract 9 repeatedly from 54: 54→45→...→0. Count 6 steps."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "stem": "How many times can you subtract 6 from 42?",
+      "answer": "7",
+      "explanation": "42 ÷ 6 = 7. Subtract 6 seven times to reach 0.",
+      "difficulty": 1,
+      "hints": [
+        "Subtract 6 from 42 again and again: 42 → 36 → 30 → 24 → 18 → 12 → 6 → 0.",
+        "Count the subtractions: 7. So 42 ÷ 6 = 7."
+      ],
+      "feedback": {
+        "correct": "Right! 42 − 6 seven times = 0, so 42 ÷ 6 = 7.",
+        "incorrect": "Subtract 6 from 42 repeatedly: 42→36→30→24→18→12→6→0. Count 7 steps."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "stem": "A spool has 63 feet of ribbon. You cut 9-foot pieces. How many pieces?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "C",
+      "explanation": "63 ÷ 9 = 7 pieces.",
+      "difficulty": 1,
+      "hints": [
+        "Subtract 9 from 63 again and again: 63 → 54 → 45 → 36 → 27 → 18 → 9 → 0.",
+        "Count the cuts: 7. So 63 ÷ 9 = 7 pieces."
+      ],
+      "feedback": {
+        "correct": "Correct! Subtract 9 seven times from 63 to reach 0. 7 pieces.",
+        "incorrect": "Subtract 9 from 63 repeatedly: 63→54→...→0. Count 7 steps."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "stem": "Use repeated subtraction to find 28 ÷ 4.",
+      "answer": "7",
+      "explanation": "28 − 4 seven times = 0. So 28 ÷ 4 = 7.",
+      "difficulty": 1,
+      "hints": [
+        "Subtract 4 from 28 again and again: 28 → 24 → 20 → 16 → 12 → 8 → 4 → 0.",
+        "Count the subtractions: 7. So 28 ÷ 4 = 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 28 − 4 seven times = 0, so 28 ÷ 4 = 7.",
+        "incorrect": "Subtract 4 from 28 repeatedly: 28→24→20→16→12→8→4→0. Count 7 steps."
       }
     }
   ],
@@ -373,12 +518,12 @@
       "explanation": "72 ÷ 8 = 9.",
       "difficulty": 2,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 8 from 72 again and again until you reach 0.",
+        "Count the subtractions: 9. So 72 ÷ 8 = 9. Check: 8 × 9 = 72."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+        "correct": "Correct! 72 − 8 nine times = 0, so 72 ÷ 8 = 9.",
+        "incorrect": "Subtract 8 from 72 repeatedly. Count 9 steps to reach 0."
       }
     },
     {
@@ -395,12 +540,12 @@
       "explanation": "56 ÷ 7 = 8.",
       "difficulty": 2,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Each backward jump of 7 is one subtraction. Start at 56 and jump back 7 each time.",
+        "56→49→42→35→28→21→14→7→0. Count 8 jumps. So 56 ÷ 7 = 8."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+        "correct": "Right! 56 − 7 eight times = 0, so 8 jumps.",
+        "incorrect": "Jump back 7 from 56: 56→49→42→35→28→21→14→7→0. Count 8 jumps."
       }
     },
     {
@@ -417,12 +562,12 @@
       "explanation": "4 × 6 = 24. So 24 ÷ 4 = 6.",
       "difficulty": 2,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "If you subtract 4 six times, you remove 4 × 6 = 24 in total.",
+        "The starting number must be 24. Check: 24 − 4 − 4 − 4 − 4 − 4 − 4 = 0."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+        "correct": "Correct! Subtracting 4 six times removes 4 × 6 = 24. So 24 ÷ 4 = 6.",
+        "incorrect": "6 subtractions of 4 = 4 × 6 = 24. The starting number is 24."
       }
     },
     {
@@ -439,12 +584,126 @@
       "explanation": "64 ÷ 8 = 8.",
       "difficulty": 2,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Subtract 8 from 64 repeatedly and count: 64→56→48→40→32→24→16→8→0.",
+        "Count 8 subtractions. So there are 8 eights in 64."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+        "correct": "Correct! 64 − 8 eight times = 0, so there are 8 eights in 64.",
+        "incorrect": "Subtract 8 from 64 repeatedly: 64→56→48→...→0. Count 8 steps."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "How many 6s are in 54?",
+      "answer": "9",
+      "explanation": "54 ÷ 6 = 9. Subtract 6 nine times from 54 to reach 0.",
+      "difficulty": 2,
+      "hints": [
+        "Subtract 6 from 54 repeatedly: 54 → 48 → 42 → 36 → 30 → 24 → 18 → 12 → 6 → 0.",
+        "Count: 9 subtractions. So there are 9 sixes in 54."
+      ],
+      "feedback": {
+        "correct": "Correct! 54 − 6 nine times = 0, so there are 9 sixes in 54.",
+        "incorrect": "Subtract 6 from 54 repeatedly: 54→48→42→...→0. Count 9 steps."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "Which subtraction chain correctly shows 28 ÷ 7 = 4?",
+      "choices": [
+        "28−7=21, 21−7=14, 14−7=7, 7−7=0 (4 times)",
+        "28−7=21, 21−7=14, 14−7=7 (3 times)",
+        "28−4=24, 24−4=20, 20−4=16, 16−4=12 (4 times)",
+        "28−7=20, 20−7=13 (2 times)"
+      ],
+      "answer": "A",
+      "explanation": "28 ÷ 7 = 4. Subtracting 7 four times from 28 reaches 0.",
+      "difficulty": 2,
+      "hints": [
+        "To show 28 ÷ 7, subtract 7 from 28 repeatedly until you reach 0.",
+        "28−7=21, 21−7=14, 14−7=7, 7−7=0. That's 4 subtractions = 4 groups."
+      ],
+      "feedback": {
+        "correct": "Correct! 28 − 7 four times = 0 correctly shows 28 ÷ 7 = 4.",
+        "incorrect": "Subtract 7 from 28 four times: 28→21→14→7→0. Choice A shows this."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "A number line starts at 45. You jump back 5 each time. How many jumps to reach 0?",
+      "answer": "9",
+      "explanation": "45 ÷ 5 = 9 jumps.",
+      "difficulty": 2,
+      "hints": [
+        "Jump back 5 from 45: 45 → 40 → 35 → 30 → 25 → 20 → 15 → 10 → 5 → 0.",
+        "Count the jumps: 9. So 45 ÷ 5 = 9."
+      ],
+      "feedback": {
+        "correct": "Correct! 45 − 5 nine times = 0, so 9 jumps.",
+        "incorrect": "Jump back 5 from 45: 45→40→35→...→0. Count 9 jumps."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "How many 7s are in 49?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "C",
+      "explanation": "49 ÷ 7 = 7.",
+      "difficulty": 2,
+      "hints": [
+        "Subtract 7 from 49 repeatedly: 49→42→35→28→21→14→7→0.",
+        "Count 7 subtractions. So there are 7 sevens in 49."
+      ],
+      "feedback": {
+        "correct": "Right! 49 − 7 seven times = 0, so there are 7 sevens in 49.",
+        "incorrect": "Subtract 7 from 49 repeatedly: 49→42→35→...→0. Count 7 steps."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "How many times can you subtract 9 from 81?",
+      "answer": "9",
+      "explanation": "81 ÷ 9 = 9. Subtract 9 nine times from 81 to reach 0.",
+      "difficulty": 2,
+      "hints": [
+        "Subtract 9 from 81 repeatedly: 81 → 72 → 63 → 54 → 45 → 36 → 27 → 18 → 9 → 0.",
+        "Count: 9 subtractions. So 81 ÷ 9 = 9."
+      ],
+      "feedback": {
+        "correct": "Correct! 81 − 9 nine times = 0, so 81 ÷ 9 = 9.",
+        "incorrect": "Subtract 9 from 81 repeatedly: 81→72→63→...→0. Count 9 steps."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "Which number can be divided by 6 exactly 5 times using repeated subtraction?",
+      "choices": [
+        "30",
+        "36",
+        "24",
+        "42"
+      ],
+      "answer": "A",
+      "explanation": "30 ÷ 6 = 5. Subtract 6 five times from 30 to reach 0.",
+      "difficulty": 2,
+      "hints": [
+        "If you subtract 6 five times, you remove 6 × 5 = 30 in total.",
+        "The starting number must be 30. Check: 30−6−6−6−6−6=0 (5 times)."
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 5 = 30. Subtracting 6 five times from 30 reaches 0.",
+        "incorrect": "5 subtractions of 6 = 6 × 5 = 30. Start at 30: 30→24→18→12→6→0."
       }
     }
   ],
@@ -463,12 +722,12 @@
       "explanation": "45 ÷ 5 = 9 students total. 9 − 4 = 5 more.",
       "difficulty": 3,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: how many students total? 45 ÷ 5 = ? (subtract 5 from 45 repeatedly).",
+        "Step 2: 4 already got books. 9 − 4 = 5 more students can get workbooks."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how relate subtraction and division works."
+        "correct": "Correct! 45÷5=9 total students, then 9−4=5 more.",
+        "incorrect": "Step 1: subtract 5 from 45 nine times → 9 students. Step 2: 9−4=5 more."
       }
     },
     {
@@ -485,12 +744,12 @@
       "explanation": "42 − (5 × 6) = 42 − 30 = 12.",
       "difficulty": 3,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Each jump subtracts 6. After 5 jumps: 42 − 5 × 6 = 42 − 30.",
+        "42 − 30 = 12. You land on 12 after 5 jumps of 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how relate subtraction and division works."
+        "correct": "Right! 5 jumps of 6 = 5 × 6 = 30. 42 − 30 = 12.",
+        "incorrect": "5 jumps back of 6 = 30. 42 − 30 = 12."
       }
     },
     {
@@ -507,12 +766,50 @@
       "explanation": "8 + (4 × 7) = 8 + 28 = 36.",
       "difficulty": 3,
       "hints": [
-        "Think about what relate subtraction and division means.",
-        "Try drawing a picture or using a number line."
+        "Work backwards: he ended at 8 after subtracting 7 four times.",
+        "Add back the subtractions: 8 + (4 × 7) = 8 + 28 = 36."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how relate subtraction and division works."
+        "correct": "Correct! 8 + 4×7 = 8 + 28 = 36.",
+        "incorrect": "Work backward: end at 8, add 4 × 7 = 28. So 8 + 28 = 36."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "A tank holds 72 liters. Every day, 8 liters are removed. After how many days will the tank be empty?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "72 ÷ 8 = 9. Subtract 8 nine times from 72 to reach 0.",
+      "difficulty": 3,
+      "hints": [
+        "Each day subtracts 8 liters. Subtract 8 from 72 repeatedly until you reach 0.",
+        "72→64→56→48→40→32→24→16→8→0. Count: 9 days."
+      ],
+      "feedback": {
+        "correct": "Correct! 72 − 8 nine times = 0, so the tank empties in 9 days.",
+        "incorrect": "Subtract 8 from 72 daily: 72→64→56→...→0. Count 9 steps = 9 days."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "Tom subtracts 4 from 32 repeatedly until he reaches 0. How many subtractions does he make?",
+      "answer": "8",
+      "explanation": "32 ÷ 4 = 8. Subtract 4 eight times from 32 to reach 0.",
+      "difficulty": 3,
+      "hints": [
+        "Subtract 4 from 32 again and again: 32 → 28 → 24 → 20 → 16 → 12 → 8 → 4 → 0.",
+        "Count the subtractions: 8. So 32 ÷ 4 = 8."
+      ],
+      "feedback": {
+        "correct": "Correct! 32 − 4 eight times = 0, so 8 subtractions.",
+        "incorrect": "Subtract 4 from 32 repeatedly: 32→28→24→20→16→12→8→4→0. Count 8 steps."
       }
     }
   ],

@@ -107,7 +107,7 @@
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
+          "rows": 2,
           "cols": 4
         }
       }
@@ -122,8 +122,8 @@
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "rows": 5,
+          "cols": 7
         }
       }
     },
@@ -137,8 +137,43 @@
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
+          "rows": 6,
           "cols": 4
+        }
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Number Line for Bigger Facts",
+      "content": "You can use a number line for any multiple of 10. For 4 × 30: start at 0 and jump 30 four times: 0 → 30 → 60 → 90 → 120. Count the jumps and you land on 120. So 4 × 30 = 120.",
+      "cpa_phase": "pictorial",
+      "visual_type": "number_line",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "start": 0,
+          "end": 120,
+          "jump_size": 30,
+          "num_jumps": 4
+        }
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "The Rule Always Works",
+      "content": "For any multiplication with a multiple of 10: A × (B × 10) = (A × B) × 10. Examples: 5 × 40 = (5 × 4) × 10 = 20 × 10 = 200. 9 × 60 = (9 × 6) × 10 = 54 × 10 = 540. Step 1: find the basic fact. Step 2: multiply by 10 (add a zero).",
+      "cpa_phase": "abstract",
+      "visual_type": "equation",
+      "visual_data": {
+        "tool": "equation_display",
+        "config": {
+          "equations": [
+            "A × (B × 10) = (A × B) × 10",
+            "5 × 40 = (5 × 4) × 10 = 200",
+            "9 × 60 = (9 × 6) × 10 = 540"
+          ]
         }
       }
     }
@@ -158,12 +193,12 @@
       "explanation": "4 × 3 tens = 12 tens = 120.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 30 as 3 tens. What is 4 × 3?",
+        "4 × 3 = 12, so 4 × 3 tens = 12 tens = 120."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Correct! 4 × 3 = 12, and 12 tens = 120.",
+        "incorrect": "Try the basic fact first: 4 × 3 = 12. Then 4 × 30 = 12 tens = 120."
       },
       "solution_steps": []
     },
@@ -181,12 +216,69 @@
       "explanation": "5 × 50 = 250 gallons.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Write the equation: 5 groups × 50 gallons each.",
+        "Basic fact: 5 × 5 = 25, so 5 × 50 = 25 tens = 250."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Great! 5 × 5 = 25, so 5 × 50 = 250 gallons.",
+        "incorrect": "Use the basic fact: 5 × 5 = 25, then 5 × 50 = 25 tens = 250."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "3 × 60 = ?",
+      "answer": "180",
+      "explanation": "3 × 6 tens = 18 tens = 180.",
+      "difficulty": 1,
+      "hints": [
+        "Find the basic fact: 3 × 6 = ?",
+        "3 × 6 = 18, so 3 × 6 tens = 18 tens = 180."
+      ],
+      "feedback": {
+        "correct": "That's right! 3 × 6 = 18, so 3 × 60 = 180.",
+        "incorrect": "Try the basic fact: 3 × 6 = 18. Then add a zero: 3 × 60 = 180."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "7 × 40 = ?",
+      "answer": "280",
+      "explanation": "7 × 4 tens = 28 tens = 280.",
+      "difficulty": 1,
+      "hints": [
+        "Find the basic fact: 7 × 4 = ?",
+        "7 × 4 = 28, so 7 × 4 tens = 28 tens = 280."
+      ],
+      "feedback": {
+        "correct": "Excellent! 7 × 4 = 28, so 7 × 40 = 280.",
+        "incorrect": "Use the basic fact: 7 × 4 = 28. Then 7 × 40 = 28 tens = 280."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "Which strategy correctly finds 5 × 80?",
+      "choices": [
+        "5 × 8 = 40, so 5 × 80 = 400",
+        "5 + 8 = 13, so 5 × 80 = 130",
+        "5 × 8 = 40, so 5 × 80 = 40",
+        "5 × 80 = 5 + 80 = 85"
+      ],
+      "answer": "A",
+      "explanation": "5 × 8 = 40, and 40 tens = 400. So 5 × 80 = 400.",
+      "difficulty": 2,
+      "hints": [
+        "First compute the basic fact (drop the zero), then place the zero back.",
+        "A × (B × 10) = (A × B) × 10. Which choice follows this rule?"
+      ],
+      "feedback": {
+        "correct": "Correct! The basic fact 5 × 8 = 40, then 5 × 80 = 40 tens = 400.",
+        "incorrect": "Remember: find the basic fact first (5 × 8 = 40), then the zero makes it 40 tens = 400."
       },
       "solution_steps": []
     }
@@ -206,12 +298,12 @@
       "explanation": "6 tens × 4 = 24 tens = 240.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Find the basic fact: 6 × 4 = ?",
+        "6 × 4 = 24, so 60 × 4 = 24 tens = 240."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Correct! 6 × 4 = 24, so 60 × 4 = 240.",
+        "incorrect": "Use the basic fact: 6 × 4 = 24. Then 60 × 4 = 24 tens = 240."
       }
     },
     {
@@ -228,12 +320,12 @@
       "explanation": "7 × 3 tens = 21 tens = 210.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Find the basic fact: 7 × 3 = ?",
+        "7 × 3 = 21, so 7 × 3 tens = 21 tens = 210."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Right! 7 × 3 = 21, so 7 × 30 = 210.",
+        "incorrect": "Use the basic fact: 7 × 3 = 21. Then 7 × 30 = 21 tens = 210."
       }
     },
     {
@@ -250,12 +342,12 @@
       "explanation": "3 × 8 tens = 24 tens = 240.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Find the basic fact: 3 × 8 = ?",
+        "3 × 8 = 24, so 3 × 8 tens = 24 tens = 240."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Correct! 3 × 8 = 24, so 3 × 80 = 240.",
+        "incorrect": "Use the basic fact: 3 × 8 = 24. Then 3 × 80 = 24 tens = 240."
       }
     },
     {
@@ -272,56 +364,44 @@
       "explanation": "7 × 40 = 280.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Write the equation: 7 tanks × 40 fish each.",
+        "Basic fact: 7 × 4 = 28, so 7 × 40 = 28 tens = 280."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Great! 7 × 4 = 28, so 7 × 40 = 280 fish.",
+        "incorrect": "Use the basic fact: 7 × 4 = 28. Then 7 × 40 = 28 tens = 280."
       }
     },
     {
       "id": "R1_05",
-      "type": "MC",
-      "stem": "The third graders collected 754 cans. The fourth graders collected 592 cans. Best estimate of the difference?",
-      "choices": [
-        "50",
-        "100",
-        "200",
-        "300"
-      ],
-      "answer": "C",
-      "explanation": "754 ≈ 800, 592 ≈ 600. 800 − 600 = 200.",
-      "difficulty": 2,
+      "type": "input",
+      "stem": "2 × 90 = ?",
+      "answer": "180",
+      "explanation": "2 × 9 tens = 18 tens = 180.",
+      "difficulty": 1,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Find the basic fact: 2 × 9 = ?",
+        "2 × 9 = 18, so 2 × 9 tens = 18 tens = 180."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Correct! 2 × 9 = 18, so 2 × 90 = 180.",
+        "incorrect": "Use the basic fact: 2 × 9 = 18. Then add a zero: 2 × 90 = 180."
       }
     },
     {
       "id": "R1_06",
-      "type": "MC",
-      "stem": "Alan collected 154 cans. Betty collected 215 cans. How many in all?",
-      "choices": [
-        "369",
-        "379",
-        "469",
-        "479"
-      ],
-      "answer": "A",
-      "explanation": "154 + 215 = 369.",
+      "type": "input",
+      "stem": "6 × 80 = ?",
+      "answer": "480",
+      "explanation": "6 × 8 tens = 48 tens = 480.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Find the basic fact: 6 × 8 = ?",
+        "6 × 8 = 48, so 6 × 8 tens = 48 tens = 480."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Excellent! 6 × 8 = 48, so 6 × 80 = 480.",
+        "incorrect": "Use the basic fact: 6 × 8 = 48. Then add a zero: 6 × 80 = 480."
       }
     },
     {
@@ -338,12 +418,72 @@
       "explanation": "9 × 5 tens = 45 tens = 450.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Find the basic fact: 9 × 5 = ?",
+        "9 × 5 = 45, so 9 × 5 tens = 45 tens = 450."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Right! 9 × 5 = 45, so 9 × 50 = 450.",
+        "incorrect": "Use the basic fact: 9 × 5 = 45. Then 9 × 50 = 45 tens = 450."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "MC",
+      "stem": "5 × 60 = ?",
+      "choices": [
+        "250",
+        "280",
+        "300",
+        "320"
+      ],
+      "answer": "C",
+      "explanation": "5 × 6 tens = 30 tens = 300.",
+      "difficulty": 1,
+      "hints": [
+        "Find the basic fact: 5 × 6 = ?",
+        "5 × 6 = 30, so 5 × 6 tens = 30 tens = 300."
+      ],
+      "feedback": {
+        "correct": "Correct! 5 × 6 = 30, so 5 × 60 = 300.",
+        "incorrect": "Use the basic fact: 5 × 6 = 30. Then 5 × 60 = 30 tens = 300."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "stem": "4 × 90 = ?",
+      "answer": "360",
+      "explanation": "4 × 9 tens = 36 tens = 360.",
+      "difficulty": 1,
+      "hints": [
+        "Find the basic fact: 4 × 9 = ?",
+        "4 × 9 = 36, so 4 × 9 tens = 36 tens = 360."
+      ],
+      "feedback": {
+        "correct": "Great! 4 × 9 = 36, so 4 × 90 = 360.",
+        "incorrect": "Use the basic fact: 4 × 9 = 36. Then add a zero: 4 × 90 = 360."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "MC",
+      "stem": "A store receives 3 shipments. Each shipment has 70 boxes. How many boxes in all?",
+      "choices": [
+        "180",
+        "200",
+        "210",
+        "240"
+      ],
+      "answer": "C",
+      "explanation": "3 × 70 = 210. Basic fact: 3 × 7 = 21, so 3 × 70 = 21 tens = 210.",
+      "difficulty": 1,
+      "hints": [
+        "Write the equation: 3 shipments × 70 boxes each.",
+        "Basic fact: 3 × 7 = 21, so 3 × 70 = 21 tens = 210."
+      ],
+      "feedback": {
+        "correct": "Correct! 3 × 7 = 21, so 3 × 70 = 210 boxes.",
+        "incorrect": "Use the basic fact: 3 × 7 = 21. Then 3 × 70 = 21 tens = 210."
       }
     }
   ],
@@ -362,12 +502,12 @@
       "explanation": "6 × 30 = 180 and 3 × 60 = 180.",
       "difficulty": 2,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Calculate 6 × 30 using the basic fact: 6 × 3 = 18, so 6 × 30 = 180.",
+        "Now check each choice: which one also equals 180?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Right! Both 6 × 30 and 3 × 60 equal 180.",
+        "incorrect": "6 × 30 = 180. Check each choice: 3 × 60 = 3 × 6 tens = 18 tens = 180. That matches!"
       }
     },
     {
@@ -384,12 +524,12 @@
       "explanation": "8 × 5 tens = 40 tens = 400.",
       "difficulty": 2,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Find the basic fact: 8 × 5 = ?",
+        "8 × 5 = 40, so 8 × 5 tens = 40 tens = 400."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Correct! 8 × 5 = 40, so 8 × 50 = 400.",
+        "incorrect": "Use the basic fact: 8 × 5 = 40. Then 8 × 50 = 40 tens = 400."
       }
     },
     {
@@ -406,12 +546,12 @@
       "explanation": "6 × 70 = 420 parts.",
       "difficulty": 2,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Write the equation: 6 machines × 70 parts each.",
+        "Basic fact: 6 × 7 = 42, so 6 × 70 = 42 tens = 420."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Right! 6 × 7 = 42, so 6 × 70 = 420 parts.",
+        "incorrect": "Use the basic fact: 6 × 7 = 42. Then 6 × 70 = 42 tens = 420."
       }
     },
     {
@@ -428,12 +568,126 @@
       "explanation": "7 × 9 tens = 63 tens = 630.",
       "difficulty": 2,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Find the basic fact: 7 × 9 = ?",
+        "7 × 9 = 63, so 7 × 9 tens = 63 tens = 630."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Excellent! 7 × 9 = 63, so 7 × 90 = 630.",
+        "incorrect": "Use the basic fact: 7 × 9 = 63. Then 7 × 90 = 63 tens = 630."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "3 × 90 = ?",
+      "answer": "270",
+      "explanation": "3 × 9 tens = 27 tens = 270.",
+      "difficulty": 2,
+      "hints": [
+        "Find the basic fact: 3 × 9 = ?",
+        "3 × 9 = 27, so 3 × 9 tens = 27 tens = 270."
+      ],
+      "feedback": {
+        "correct": "Great! 3 × 9 = 27, so 3 × 90 = 270.",
+        "incorrect": "Use the basic fact: 3 × 9 = 27. Then add a zero: 3 × 90 = 270."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "Which expression equals 420?",
+      "choices": [
+        "6 × 70",
+        "7 × 50",
+        "4 × 80",
+        "3 × 90"
+      ],
+      "answer": "A",
+      "explanation": "6 × 70 = 420. Others: 7 × 50 = 350, 4 × 80 = 320, 3 × 90 = 270.",
+      "difficulty": 2,
+      "hints": [
+        "Calculate each choice using basic facts: A × (B × 10) = (A × B) × 10.",
+        "6 × 7 = 42, so 6 × 70 = 420. Check the others to confirm only one matches."
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 7 = 42, so 6 × 70 = 420.",
+        "incorrect": "Use basic facts: 6 × 7 = 42 → 6 × 70 = 420. The others give 350, 320, and 270."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "8 × 60 = ?",
+      "answer": "480",
+      "explanation": "8 × 6 tens = 48 tens = 480.",
+      "difficulty": 2,
+      "hints": [
+        "Find the basic fact: 8 × 6 = ?",
+        "8 × 6 = 48, so 8 × 6 tens = 48 tens = 480."
+      ],
+      "feedback": {
+        "correct": "Right! 8 × 6 = 48, so 8 × 60 = 480.",
+        "incorrect": "Use the basic fact: 8 × 6 = 48. Then add a zero: 8 × 60 = 480."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "A zoo has 8 sections. Each section holds 40 animals. How many animals in all?",
+      "choices": [
+        "280",
+        "300",
+        "320",
+        "360"
+      ],
+      "answer": "C",
+      "explanation": "8 × 40 = 320. Basic fact: 8 × 4 = 32, so 8 × 40 = 32 tens = 320.",
+      "difficulty": 2,
+      "hints": [
+        "Write the equation: 8 sections × 40 animals each.",
+        "Basic fact: 8 × 4 = 32, so 8 × 40 = 32 tens = 320."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 4 = 32, so 8 × 40 = 320 animals.",
+        "incorrect": "Use the basic fact: 8 × 4 = 32. Then 8 × 40 = 32 tens = 320."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "9 × 70 = ?",
+      "answer": "630",
+      "explanation": "9 × 7 tens = 63 tens = 630.",
+      "difficulty": 2,
+      "hints": [
+        "Find the basic fact: 9 × 7 = ?",
+        "9 × 7 = 63, so 9 × 7 tens = 63 tens = 630."
+      ],
+      "feedback": {
+        "correct": "Excellent! 9 × 7 = 63, so 9 × 70 = 630.",
+        "incorrect": "Use the basic fact: 9 × 7 = 63. Then add a zero: 9 × 70 = 630."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "Which expression does NOT equal 360?",
+      "choices": [
+        "4 × 90",
+        "6 × 60",
+        "9 × 40",
+        "8 × 50"
+      ],
+      "answer": "D",
+      "explanation": "4 × 90 = 360, 6 × 60 = 360, 9 × 40 = 360, but 8 × 50 = 400 ≠ 360.",
+      "difficulty": 2,
+      "hints": [
+        "Calculate each choice using basic facts. Which one gives a different product?",
+        "8 × 5 = 40, so 8 × 50 = 400, not 360. That's the odd one out."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 50 = 400, not 360. The others all equal 360.",
+        "incorrect": "Check each: 4×90=360, 6×60=360, 9×40=360, but 8×50=400. So D does NOT equal 360."
       }
     }
   ],
@@ -452,12 +706,12 @@
       "explanation": "5 × 170 = 5 × (80 + 90) = 400 + 450 = 850.",
       "difficulty": 3,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 170 as 80 + 90. Then use the Distributive Property.",
+        "5 × 170 = 5 × (80 + 90) = (5 × 80) + (5 × 90) = 400 + 450 = 850."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Excellent! 5 × (80 + 90) = 400 + 450 = 850.",
+        "incorrect": "Split 170 into 80 + 90. Then 5 × 80 = 400 and 5 × 90 = 450. Add: 400 + 450 = 850."
       }
     },
     {
@@ -474,12 +728,12 @@
       "explanation": "9 × 60 = 540 total. 540 − 287 = 253 empty.",
       "difficulty": 3,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: find the total spaces using 9 × 60 (basic fact: 9 × 6 = 54).",
+        "Step 2: subtract taken spaces from total: 540 − 287 = 253."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Well done! 9 × 60 = 540, and 540 − 287 = 253 empty spaces.",
+        "incorrect": "First find total: 9 × 6 = 54, so 9 × 60 = 540. Then 540 − 287 = 253."
       }
     },
     {
@@ -496,12 +750,50 @@
       "explanation": "8×30=240, 6×40=240, 3×80=240, 4×50=200. 4 × 50 ≠ 240.",
       "difficulty": 3,
       "hints": [
-        "Think about what multiplication strategies multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Calculate each expression: multiply the non-zero digits, then place the zero.",
+        "4 × 5 = 20, so 4 × 50 = 200, not 240. That's the odd one out."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how multiplication strategies multiples of 10 works."
+        "correct": "Correct! 4 × 50 = 200, not 240. The others all equal 240.",
+        "incorrect": "Check D: 4 × 5 = 20, so 4 × 50 = 200 ≠ 240. The others (8×30, 6×40, 3×80) all equal 240."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "Jake knows 4 × 50 = 200 and 3 × 50 = 150. He says 7 × 50 = 350. Is Jake correct, and why?",
+      "choices": [
+        "Yes, because 4 + 3 = 7 and 200 + 150 = 350",
+        "No, because you cannot add partial products",
+        "Yes, but only because 7 × 5 = 35",
+        "No, because 7 × 50 = 7 × 5 + 10 = 45"
+      ],
+      "answer": "A",
+      "explanation": "7 × 50 = (4 + 3) × 50 = (4 × 50) + (3 × 50) = 200 + 150 = 350. Jake is correct.",
+      "difficulty": 3,
+      "hints": [
+        "7 = 4 + 3. So 7 × 50 = (4 × 50) + (3 × 50) by the Distributive Property.",
+        "200 + 150 = 350. Also check: basic fact 7 × 5 = 35, so 7 × 50 = 350. Jake is correct."
+      ],
+      "feedback": {
+        "correct": "Excellent! Jake used the Distributive Property: (4 + 3) × 50 = 200 + 150 = 350.",
+        "incorrect": "Jake is correct. 7 = 4 + 3, so 7 × 50 = (4 × 50) + (3 × 50) = 200 + 150 = 350."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "A library has 9 shelves. Each shelf holds 80 books. How many books are there in all?",
+      "answer": "720",
+      "explanation": "9 × 80 = 720. Basic fact: 9 × 8 = 72, so 9 × 80 = 72 tens = 720.",
+      "difficulty": 3,
+      "hints": [
+        "Write the equation: 9 shelves × 80 books each. Find the basic fact first.",
+        "9 × 8 = 72, so 9 × 80 = 72 tens = 720."
+      ],
+      "feedback": {
+        "correct": "Great! 9 × 8 = 72, so 9 × 80 = 720 books.",
+        "incorrect": "Use the basic fact: 9 × 8 = 72. Then 9 × 80 = 72 tens = 720."
       }
     }
   ],

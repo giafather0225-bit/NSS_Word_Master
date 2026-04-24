@@ -107,8 +107,8 @@
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "rows": 4,
+          "cols": 7
         }
       }
     },
@@ -116,14 +116,14 @@
       "id": "LN_02",
       "type": "concept_card",
       "title": "Using Counters",
-      "content": "Put out 7 circles. Deal 28 counters one at a time into each circle. Each circle gets 4 counters.",
+      "content": "Put out 7 circles. Deal 28 counters one at a time into each circle. Keep going until all 28 are placed. Count how many in each circle: 4. So 28 ÷ 7 = 4.",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "rows": 4,
+          "cols": 7
         }
       }
     },
@@ -131,14 +131,55 @@
       "id": "LN_03",
       "type": "concept_card",
       "title": "Check with Multiplication",
-      "content": "If 28 ÷ 7 = 4, check: 7 × 4 = 28. ✓",
+      "content": "If 28 ÷ 7 = 4, check: 7 × 4 = 28. ✓ Always verify: groups × size = total.",
       "cpa_phase": "pictorial",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "rows": 4,
+          "cols": 7
+        }
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Bar Model for Group Size",
+      "content": "Draw a bar for the total (28). Mark 7 equal parts — one for each group. The unknown size is 28 ÷ 7 = 4 in each part. Bar models help you see: total ÷ groups = each.",
+      "cpa_phase": "pictorial",
+      "visual_type": "bar_model",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "total": 28,
+          "parts": [
+            {"label": "?", "value": 4},
+            {"label": "?", "value": 4},
+            {"label": "?", "value": 4},
+            {"label": "?", "value": 4},
+            {"label": "?", "value": 4},
+            {"label": "?", "value": 4},
+            {"label": "?", "value": 4}
+          ]
+        }
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "The Division Equation",
+      "content": "When you know the total and number of groups, write: Total ÷ Groups = Each. Example: 28 total ÷ 7 groups = 4 each. The answer (quotient) tells you the size of each group. Check: 7 × 4 = 28. ✓",
+      "cpa_phase": "abstract",
+      "visual_type": "equation",
+      "visual_data": {
+        "tool": "equation_display",
+        "config": {
+          "equations": [
+            "Total ÷ Groups = Each",
+            "28 ÷ 7 = 4",
+            "Check: 7 × 4 = 28 ✓"
+          ]
         }
       }
     }
@@ -158,12 +199,12 @@
       "explanation": "32 ÷ 4 = 8.",
       "difficulty": 1,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "You know the total (32) and the number of groups (4). Write: 32 ÷ 4 = ?",
+        "Think: 4 × ? = 32. Since 4 × 8 = 32, each group has 8."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how size of equal groups works."
+        "correct": "Correct! 4 × 8 = 32, so 32 ÷ 4 = 8.",
+        "incorrect": "Deal 32 counters into 4 groups. Use the related fact: 4 × 8 = 32."
       },
       "solution_steps": []
     },
@@ -181,12 +222,69 @@
       "explanation": "27 ÷ 3 = 9.",
       "difficulty": 1,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (27) ÷ groups (3) = how many each. Write: 27 ÷ 3 = ?",
+        "Think: 3 × ? = 27. Since 3 × 9 = 27, each person gets 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how size of equal groups works."
+        "correct": "Great! 3 × 9 = 27, so 27 ÷ 3 = 9 flowers each.",
+        "incorrect": "Use the related fact: 3 × 9 = 27, so 27 ÷ 3 = 9."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "40 counters in 8 equal groups. How many in each group?",
+      "answer": "5",
+      "explanation": "40 ÷ 8 = 5.",
+      "difficulty": 1,
+      "hints": [
+        "Total (40) ÷ groups (8) = size of each group. Write: 40 ÷ 8 = ?",
+        "Think: 8 × ? = 40. Since 8 × 5 = 40, each group has 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 5 = 40, so 40 ÷ 8 = 5.",
+        "incorrect": "Use the related fact: 8 × 5 = 40, so 40 ÷ 8 = 5."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "36 counters in 6 equal groups. How many in each group?",
+      "answer": "6",
+      "explanation": "36 ÷ 6 = 6.",
+      "difficulty": 1,
+      "hints": [
+        "Total (36) ÷ groups (6) = size of each group. Write: 36 ÷ 6 = ?",
+        "Think: 6 × ? = 36. Since 6 × 6 = 36, each group has 6."
+      ],
+      "feedback": {
+        "correct": "Right! 6 × 6 = 36, so 36 ÷ 6 = 6.",
+        "incorrect": "Use the related fact: 6 × 6 = 36, so 36 ÷ 6 = 6."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "Mr. Chen has 56 stamps to place equally on 8 scrapbook pages. How many stamps per page?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "C",
+      "explanation": "56 ÷ 8 = 7 stamps per page.",
+      "difficulty": 1,
+      "hints": [
+        "Total (56) ÷ groups (8 pages) = stamps per page. Write: 56 ÷ 8 = ?",
+        "Think: 8 × ? = 56. Since 8 × 7 = 56, each page gets 7 stamps."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 7 = 56, so 56 ÷ 8 = 7 stamps per page.",
+        "incorrect": "Use the related fact: 8 × 7 = 56, so 56 ÷ 8 = 7."
       },
       "solution_steps": []
     }
@@ -206,12 +304,12 @@
       "explanation": "9 ÷ 3 = 3.",
       "difficulty": 1,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (9) ÷ groups (3) = each group. Write: 9 ÷ 3 = ?",
+        "Think: 3 × ? = 9. Since 3 × 3 = 9, each group has 3."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how size of equal groups works."
+        "correct": "Correct! 3 × 3 = 9, so 9 ÷ 3 = 3.",
+        "incorrect": "Use the related fact: 3 × 3 = 9, so 9 ÷ 3 = 3."
       }
     },
     {
@@ -228,12 +326,12 @@
       "explanation": "18 ÷ 3 = 6.",
       "difficulty": 1,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (18) ÷ groups (3) = each group. Write: 18 ÷ 3 = ?",
+        "Think: 3 × ? = 18. Since 3 × 6 = 18, each group has 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how size of equal groups works."
+        "correct": "Right! 3 × 6 = 18, so 18 ÷ 3 = 6.",
+        "incorrect": "Use the related fact: 3 × 6 = 18, so 18 ÷ 3 = 6."
       }
     },
     {
@@ -250,12 +348,12 @@
       "explanation": "20 ÷ 5 = 4.",
       "difficulty": 1,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (20) ÷ groups (5) = each group. Write: 20 ÷ 5 = ?",
+        "Think: 5 × ? = 20. Since 5 × 4 = 20, each group has 4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how size of equal groups works."
+        "correct": "Correct! 5 × 4 = 20, so 20 ÷ 5 = 4.",
+        "incorrect": "Use the related fact: 5 × 4 = 20, so 20 ÷ 5 = 4."
       }
     },
     {
@@ -272,12 +370,12 @@
       "explanation": "16 ÷ 8 = 2.",
       "difficulty": 1,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (16) ÷ groups (8) = each group. Write: 16 ÷ 8 = ?",
+        "Think: 8 × ? = 16. Since 8 × 2 = 16, each group has 2."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how size of equal groups works."
+        "correct": "Correct! 8 × 2 = 16, so 16 ÷ 8 = 2.",
+        "incorrect": "Use the related fact: 8 × 2 = 16, so 16 ÷ 8 = 2."
       }
     },
     {
@@ -294,12 +392,12 @@
       "explanation": "35 ÷ 5 = 7.",
       "difficulty": 1,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (35) ÷ groups (5) = each group. Write: 35 ÷ 5 = ?",
+        "Think: 5 × ? = 35. Since 5 × 7 = 35, each group has 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how size of equal groups works."
+        "correct": "Right! 5 × 7 = 35, so 35 ÷ 5 = 7.",
+        "incorrect": "Use the related fact: 5 × 7 = 35, so 35 ÷ 5 = 7."
       }
     },
     {
@@ -316,12 +414,12 @@
       "explanation": "24 ÷ 3 = 8.",
       "difficulty": 1,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (24) ÷ groups (3) = each group. Write: 24 ÷ 3 = ?",
+        "Think: 3 × ? = 24. Since 3 × 8 = 24, each group has 8."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how size of equal groups works."
+        "correct": "Correct! 3 × 8 = 24, so 24 ÷ 3 = 8.",
+        "incorrect": "Use the related fact: 3 × 8 = 24, so 24 ÷ 3 = 8."
       }
     },
     {
@@ -338,12 +436,66 @@
       "explanation": "30 ÷ 6 = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (30) ÷ groups (6 students) = each student. Write: 30 ÷ 6 = ?",
+        "Think: 6 × ? = 30. Since 6 × 5 = 30, each student gets 5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how size of equal groups works."
+        "correct": "Great! 6 × 5 = 30, so 30 ÷ 6 = 5 markers each.",
+        "incorrect": "Use the related fact: 6 × 5 = 30, so 30 ÷ 6 = 5."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "stem": "36 counters in 4 equal groups. How many in each group?",
+      "answer": "9",
+      "explanation": "36 ÷ 4 = 9.",
+      "difficulty": 1,
+      "hints": [
+        "Total (36) ÷ groups (4) = each group. Write: 36 ÷ 4 = ?",
+        "Think: 4 × ? = 36. Since 4 × 9 = 36, each group has 9."
+      ],
+      "feedback": {
+        "correct": "Correct! 4 × 9 = 36, so 36 ÷ 4 = 9.",
+        "incorrect": "Use the related fact: 4 × 9 = 36, so 36 ÷ 4 = 9."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "stem": "A coach divides 42 balls equally among 6 teams. How many balls does each team get?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "C",
+      "explanation": "42 ÷ 6 = 7 balls per team.",
+      "difficulty": 1,
+      "hints": [
+        "Total (42) ÷ groups (6 teams) = each team. Write: 42 ÷ 6 = ?",
+        "Think: 6 × ? = 42. Since 6 × 7 = 42, each team gets 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 7 = 42, so 42 ÷ 6 = 7 balls per team.",
+        "incorrect": "Use the related fact: 6 × 7 = 42, so 42 ÷ 6 = 7."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "stem": "48 counters in 8 equal groups. How many in each group?",
+      "answer": "6",
+      "explanation": "48 ÷ 8 = 6.",
+      "difficulty": 1,
+      "hints": [
+        "Total (48) ÷ groups (8) = each group. Write: 48 ÷ 8 = ?",
+        "Think: 8 × ? = 48. Since 8 × 6 = 48, each group has 6."
+      ],
+      "feedback": {
+        "correct": "Right! 8 × 6 = 48, so 48 ÷ 8 = 6.",
+        "incorrect": "Use the related fact: 8 × 6 = 48, so 48 ÷ 8 = 6."
       }
     }
   ],
@@ -362,12 +514,12 @@
       "explanation": "42 ÷ 7 = 6.",
       "difficulty": 2,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (42) ÷ groups (7) = each group. Write: 42 ÷ 7 = ?",
+        "Think: 7 × ? = 42. Since 7 × 6 = 42, each group has 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how size of equal groups works."
+        "correct": "Correct! 7 × 6 = 42, so 42 ÷ 7 = 6.",
+        "incorrect": "Use the related fact: 7 × 6 = 42, so 42 ÷ 7 = 6."
       }
     },
     {
@@ -384,12 +536,12 @@
       "explanation": "54 ÷ 9 = 6.",
       "difficulty": 2,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (54) ÷ groups (9 teams) = each team. Write: 54 ÷ 9 = ?",
+        "Think: 9 × ? = 54. Since 9 × 6 = 54, each team has 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how size of equal groups works."
+        "correct": "Right! 9 × 6 = 54, so 54 ÷ 9 = 6 campers per team.",
+        "incorrect": "Use the related fact: 9 × 6 = 54, so 54 ÷ 9 = 6."
       }
     },
     {
@@ -406,34 +558,142 @@
       "explanation": "64 ÷ 8 = 8.",
       "difficulty": 2,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Draw 8 equal groups. Share 64 counters equally.",
+        "Think: 8 × ? = 64. Since 8 × 8 = 64, the quotient is 8."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how size of equal groups works."
+        "correct": "Correct! 8 × 8 = 64, so 64 ÷ 8 = 8.",
+        "incorrect": "Use the related fact: 8 × 8 = 64, so 64 ÷ 8 = 8."
       }
     },
     {
       "id": "R2_04",
-      "type": "MC",
-      "stem": "Tina has 3 stacks of 5 CDs on each of 3 shelves. How many CDs total?",
-      "choices": [
-        "14",
-        "30",
-        "35",
-        "45"
-      ],
-      "answer": "D",
-      "explanation": "3 stacks × 5 CDs × 3 shelves = 45 CDs.",
+      "type": "input",
+      "stem": "63 counters in 7 equal groups. How many in each group?",
+      "answer": "9",
+      "explanation": "63 ÷ 7 = 9.",
       "difficulty": 2,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (63) ÷ groups (7) = each group. Write: 63 ÷ 7 = ?",
+        "Think: 7 × ? = 63. Since 7 × 9 = 63, each group has 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how size of equal groups works."
+        "correct": "Correct! 7 × 9 = 63, so 63 ÷ 7 = 9.",
+        "incorrect": "Use the related fact: 7 × 9 = 63, so 63 ÷ 7 = 9."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "32 counters in 8 equal groups. How many in each group?",
+      "answer": "4",
+      "explanation": "32 ÷ 8 = 4.",
+      "difficulty": 2,
+      "hints": [
+        "Total (32) ÷ groups (8) = each group. Write: 32 ÷ 8 = ?",
+        "Think: 8 × ? = 32. Since 8 × 4 = 32, each group has 4."
+      ],
+      "feedback": {
+        "correct": "Right! 8 × 4 = 32, so 32 ÷ 8 = 4.",
+        "incorrect": "Use the related fact: 8 × 4 = 32, so 32 ÷ 8 = 4."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "A library places 72 books equally on 9 shelves. How many books per shelf?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "72 ÷ 9 = 8 books per shelf.",
+      "difficulty": 2,
+      "hints": [
+        "Total (72) ÷ groups (9 shelves) = each shelf. Write: 72 ÷ 9 = ?",
+        "Think: 9 × ? = 72. Since 9 × 8 = 72, each shelf has 8 books."
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 8 = 72, so 72 ÷ 9 = 8 books per shelf.",
+        "incorrect": "Use the related fact: 9 × 8 = 72, so 72 ÷ 9 = 8."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "36 counters in 9 equal groups. How many in each group?",
+      "answer": "4",
+      "explanation": "36 ÷ 9 = 4.",
+      "difficulty": 2,
+      "hints": [
+        "Total (36) ÷ groups (9) = each group. Write: 36 ÷ 9 = ?",
+        "Think: 9 × ? = 36. Since 9 × 4 = 36, each group has 4."
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 4 = 36, so 36 ÷ 9 = 4.",
+        "incorrect": "Use the related fact: 9 × 4 = 36, so 36 ÷ 9 = 4."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "A bag of 49 candies is split equally among 7 friends. How many candies does each friend get?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "C",
+      "explanation": "49 ÷ 7 = 7 candies each.",
+      "difficulty": 2,
+      "hints": [
+        "Total (49) ÷ groups (7 friends) = each friend. Write: 49 ÷ 7 = ?",
+        "Think: 7 × ? = 49. Since 7 × 7 = 49, each friend gets 7."
+      ],
+      "feedback": {
+        "correct": "Great! 7 × 7 = 49, so 49 ÷ 7 = 7 candies each.",
+        "incorrect": "Use the related fact: 7 × 7 = 49, so 49 ÷ 7 = 7."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "28 counters in 4 equal groups. How many in each group?",
+      "answer": "7",
+      "explanation": "28 ÷ 4 = 7.",
+      "difficulty": 2,
+      "hints": [
+        "Total (28) ÷ groups (4) = each group. Write: 28 ÷ 4 = ?",
+        "Think: 4 × ? = 28. Since 4 × 7 = 28, each group has 7."
+      ],
+      "feedback": {
+        "correct": "Right! 4 × 7 = 28, so 28 ÷ 4 = 7.",
+        "incorrect": "Use the related fact: 4 × 7 = 28, so 28 ÷ 4 = 7."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "Sam plants 81 seeds equally in 9 pots. How many seeds per pot?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "81 ÷ 9 = 9 seeds per pot.",
+      "difficulty": 2,
+      "hints": [
+        "Total (81) ÷ groups (9 pots) = each pot. Write: 81 ÷ 9 = ?",
+        "Think: 9 × ? = 81. Since 9 × 9 = 81, each pot gets 9 seeds."
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 9 = 81, so 81 ÷ 9 = 9 seeds per pot.",
+        "incorrect": "Use the related fact: 9 × 9 = 81, so 81 ÷ 9 = 9."
       }
     }
   ],
@@ -452,12 +712,12 @@
       "explanation": "72 ÷ 8 = 9 bouquets. 9 × $5 = $45.",
       "difficulty": 3,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: how many bouquets? 72 ÷ 8 = ? (think: 8 × ? = 72).",
+        "Step 2: multiply bouquets × price: 9 × $5 = $45."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how size of equal groups works."
+        "correct": "Excellent! 72÷8=9 bouquets, then 9×$5=$45.",
+        "incorrect": "First: 8×9=72, so 9 bouquets. Then: 9×$5=$45."
       }
     },
     {
@@ -474,12 +734,12 @@
       "explanation": "36 − 2 = 34 cupcakes left.",
       "difficulty": 3,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "The cupcakes start as 36 total. Then 2 are eaten.",
+        "36 − 2 = 34. (The 6-per-plate detail describes the groups, but the key is subtracting 2 eaten.)"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how size of equal groups works."
+        "correct": "Correct! 36 − 2 = 34 cupcakes left.",
+        "incorrect": "Start with 36 cupcakes and subtract 2 that were eaten: 36 − 2 = 34."
       }
     },
     {
@@ -496,12 +756,50 @@
       "explanation": "48 ÷ 6 = 8 tables.",
       "difficulty": 2,
       "hints": [
-        "Think about what size of equal groups means.",
-        "Try drawing a picture or using a number line."
+        "Total (48) ÷ size of each group (6) = number of groups (tables).",
+        "Think: 6 × ? = 48. Since 6 × 8 = 48, there are 8 full tables."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how size of equal groups works."
+        "correct": "Right! 6 × 8 = 48, so 48 ÷ 6 = 8 tables.",
+        "incorrect": "Use the related fact: 6 × 8 = 48, so 48 ÷ 6 = 8 tables."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "Mrs. Lee bakes 60 muffins and puts 6 in each box. She gives 4 boxes to neighbors. How many muffins does she give away?",
+      "choices": [
+        "18",
+        "20",
+        "24",
+        "30"
+      ],
+      "answer": "C",
+      "explanation": "60 ÷ 6 = 10 boxes. She gives 4 boxes: 4 × 6 = 24 muffins.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: find how many boxes — 60 ÷ 6 = ? (think: 6 × ? = 60).",
+        "Step 2: she gives away 4 boxes × 6 muffins each = 4 × 6 = 24 muffins."
+      ],
+      "feedback": {
+        "correct": "Great! 60÷6=10 boxes, and 4 boxes × 6 muffins = 24 muffins given away.",
+        "incorrect": "Step 1: 6×10=60, so 10 boxes. Step 2: 4 boxes × 6 muffins = 24 muffins."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "A gym class has 45 students divided equally into 9 exercise groups. How many students are in each group?",
+      "answer": "5",
+      "explanation": "45 ÷ 9 = 5 students per group.",
+      "difficulty": 3,
+      "hints": [
+        "Total (45) ÷ groups (9) = size of each group. Write: 45 ÷ 9 = ?",
+        "Think: 9 × ? = 45. Since 9 × 5 = 45, each group has 5 students."
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 5 = 45, so 45 ÷ 9 = 5 students per group.",
+        "incorrect": "Use the related fact: 9 × 5 = 45, so 45 ÷ 9 = 5."
       }
     }
   ],

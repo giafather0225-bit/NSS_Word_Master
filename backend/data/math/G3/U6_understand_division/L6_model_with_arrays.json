@@ -107,8 +107,8 @@
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "rows": 4,
+          "cols": 6
         }
       }
     },
@@ -116,30 +116,59 @@
       "id": "LN_02",
       "type": "concept_card",
       "title": "Building an Array",
-      "content": "To solve 18 ÷ 3: make 3 rows with 18 tiles. Keep adding tiles evenly to each row. Each row gets 6 tiles.",
+      "content": "To solve 18 ÷ 3: make 3 rows with 18 tiles. Keep adding tiles evenly to each row. Each row gets 6 tiles. So 18 ÷ 3 = 6.",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "array_grid",
         "config": {
           "rows": 3,
-          "cols": 4
+          "cols": 6
         }
       }
     },
     {
       "id": "LN_03",
       "type": "concept_card",
-      "title": "Multiplication and Division",
-      "content": "The same array shows both: 4 × 6 = 24 and 24 ÷ 4 = 6. They are related facts.",
+      "title": "One Array, Two Equations",
+      "content": "The same array shows both multiplication and division: 4 × 6 = 24 and 24 ÷ 4 = 6. Flip it: 6 × 4 = 24 and 24 ÷ 6 = 4. They are related facts.",
       "cpa_phase": "pictorial",
-      "visual_type": "manipulative",
+      "visual_type": "diagram",
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "rows": 4,
+          "cols": 6,
+          "label": "4 × 6 = 24  →  24 ÷ 4 = 6"
         }
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Reading Division from an Array Diagram",
+      "content": "Look at a 5 × 7 array (5 rows, 7 columns = 35 tiles). You can read two division facts: 35 ÷ 5 = 7 (find columns) and 35 ÷ 7 = 5 (find rows). The array picture makes both facts visible at once.",
+      "cpa_phase": "pictorial",
+      "visual_type": "diagram",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 5,
+          "cols": 7,
+          "label": "35 ÷ 5 = 7  |  35 ÷ 7 = 5"
+        }
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "Division from Arrays: The Rule",
+      "content": "For any array: rows × columns = total. So: total ÷ rows = columns, and total ÷ columns = rows. To find a missing side, divide the total by the side you know. Example: 6 × ? = 54 → 54 ÷ 6 = 9.",
+      "cpa_phase": "abstract",
+      "visual_type": "formula",
+      "visual_data": {
+        "formula": "rows × cols = total  →  total ÷ rows = cols",
+        "example": "54 ÷ 6 = 9"
       }
     }
   ],
@@ -158,12 +187,12 @@
       "explanation": "20 ÷ 5 = 4.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Draw 5 rows. Share 20 tiles equally across them.",
+        "Think: 5 × ? = 20. That missing number is the answer."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Correct! 20 ÷ 5 = 4 tiles in each row.",
+        "incorrect": "Not quite. Draw 5 rows and place tiles one by one — each row gets 4."
       },
       "solution_steps": []
     },
@@ -181,12 +210,69 @@
       "explanation": "6 × 7 = 42.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Rows × columns = total. Multiply 6 × 7.",
+        "Count by 7s six times: 7, 14, 21, 28, 35, 42."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Great! 6 × 7 = 42 tiles in the array.",
+        "incorrect": "Not quite. Multiply rows × columns: 6 × 7 = 42."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "An array has 4 rows and 9 columns. What is 36 ÷ 4?",
+      "answer": "9",
+      "explanation": "36 ÷ 4 = 9. The array has 4 rows, so each row has 36 ÷ 4 = 9 tiles.",
+      "difficulty": 1,
+      "hints": [
+        "The array is 4 rows × 9 columns = 36 tiles. Divide by the number of rows.",
+        "Think: 4 × ? = 36. Count by 4s: 4, 8, 12, 16, 20, 24, 28, 32, 36 — that's 9 steps."
+      ],
+      "feedback": {
+        "correct": "Yes! 36 ÷ 4 = 9. Each of the 4 rows has 9 tiles.",
+        "incorrect": "Try again. 4 × 9 = 36, so 36 ÷ 4 = 9."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "Build an array with 5 rows of 8 tiles each. What is 40 ÷ 5?",
+      "answer": "8",
+      "explanation": "5 × 8 = 40, so 40 ÷ 5 = 8 tiles per row.",
+      "difficulty": 1,
+      "hints": [
+        "Make 5 rows. Place 8 tiles in each row: total = 5 × 8 = 40.",
+        "Think: 5 × ? = 40. The missing number is 40 ÷ 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 40 ÷ 5 = 8 tiles in each row.",
+        "incorrect": "Not quite. 5 rows × 8 tiles = 40 tiles total, so 40 ÷ 5 = 8."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "A school bulletin board has 63 pins arranged in 9 rows. How many columns of pins are there?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "B",
+      "explanation": "63 ÷ 9 = 7 columns.",
+      "difficulty": 2,
+      "hints": [
+        "Think of the board as an array: 9 rows, ? columns, 63 pins total.",
+        "Divide total by rows: 63 ÷ 9 = ?. Think: 9 × 7 = 63."
+      ],
+      "feedback": {
+        "correct": "Great! 63 ÷ 9 = 7 columns of pins.",
+        "incorrect": "Not quite. 63 ÷ 9 = 7. Check: 9 × 7 = 63 ✓"
       },
       "solution_steps": []
     }
@@ -206,12 +292,12 @@
       "explanation": "30 ÷ 5 = 6.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Draw 5 rows. Share 30 tiles evenly: 30 ÷ 5 = ?",
+        "Think: 5 × ? = 30. Count by 5s to 30."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Correct! 30 ÷ 5 = 6 tiles per row.",
+        "incorrect": "Not quite. 30 ÷ 5 = 6. Check: 5 × 6 = 30 ✓"
       }
     },
     {
@@ -228,12 +314,12 @@
       "explanation": "16 ÷ 4 = 4.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Draw 4 rows. Share 16 tiles: 16 ÷ 4 = ?",
+        "Think: 4 × ? = 16."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Correct! 16 ÷ 4 = 4 tiles per row.",
+        "incorrect": "Not quite. 16 ÷ 4 = 4. Check: 4 × 4 = 16 ✓"
       }
     },
     {
@@ -250,12 +336,12 @@
       "explanation": "27 ÷ 9 = 3.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Each row has 9 tiles. Divide total by row size: 27 ÷ 9 = ?",
+        "Think: 9 × ? = 27. Count by 9s: 9, 18, 27 — that's 3."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Correct! 27 ÷ 9 = 3 rows.",
+        "incorrect": "Not quite. 27 ÷ 9 = 3. Check: 9 × 3 = 27 ✓"
       }
     },
     {
@@ -272,12 +358,12 @@
       "explanation": "40 ÷ 8 = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Draw 8 rows. Share 40 tiles: 40 ÷ 8 = ?",
+        "Think: 8 × ? = 40. Count by 8s: 8, 16, 24, 32, 40 — that's 5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Correct! 40 ÷ 8 = 5 tiles per row.",
+        "incorrect": "Not quite. 40 ÷ 8 = 5. Check: 8 × 5 = 40 ✓"
       }
     },
     {
@@ -294,12 +380,12 @@
       "explanation": "49 ÷ 7 = 7.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Divide total by rows: 49 ÷ 7 = columns.",
+        "Think: 7 × ? = 49. That's 7 × 7 = 49."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Correct! 49 ÷ 7 = 7 columns.",
+        "incorrect": "Not quite. 49 ÷ 7 = 7. Check: 7 × 7 = 49 ✓"
       }
     },
     {
@@ -316,12 +402,12 @@
       "explanation": "54 ÷ 6 = 9.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Divide total by rows: 54 ÷ 6 = ?",
+        "Think: 6 × ? = 54. Count by 6s to 54."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Correct! 54 ÷ 6 = 9 tiles per row.",
+        "incorrect": "Not quite. 54 ÷ 6 = 9. Check: 6 × 9 = 54 ✓"
       }
     },
     {
@@ -338,13 +424,69 @@
       "explanation": "3 rows × 8 columns = 24 tiles → 24 ÷ 3 = 8.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "3 rows × 8 columns = 24 tiles total. Divide total by rows.",
+        "24 ÷ 3 = ?, or 24 ÷ 8 = ? — which matches the array dimensions?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how model with arrays works."
+        "correct": "Correct! A 3 × 8 array shows 24 ÷ 3 = 8.",
+        "incorrect": "Not quite. 3 × 8 = 24, so 24 ÷ 3 = 8 (or 24 ÷ 8 = 3)."
       }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "stem": "An array has 7 rows and 8 columns. What is 56 ÷ 7?",
+      "answer": "8",
+      "explanation": "7 × 8 = 56, so 56 ÷ 7 = 8 columns.",
+      "difficulty": 1,
+      "hints": [
+        "The array is 7 rows × 8 columns = 56 tiles. Divide by rows.",
+        "Think: 7 × ? = 56. Count by 7s: 7, 14, 21, 28, 35, 42, 49, 56 — that's 8."
+      ],
+      "feedback": {
+        "correct": "Correct! 56 ÷ 7 = 8. The array has 8 columns.",
+        "incorrect": "Not quite. 7 × 8 = 56, so 56 ÷ 7 = 8."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "stem": "Which equation correctly describes a 6 × 8 array?",
+      "choices": [
+        "48 ÷ 6 = 8",
+        "48 ÷ 8 = 7",
+        "6 × 8 = 42",
+        "48 ÷ 4 = 12"
+      ],
+      "answer": "A",
+      "explanation": "6 × 8 = 48, so 48 ÷ 6 = 8.",
+      "difficulty": 1,
+      "hints": [
+        "First find the total: 6 × 8 = 48. Then write a division using those dimensions.",
+        "48 ÷ 6 = ?, or 48 ÷ 8 = ? — which matches the answer choices?"
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 8 = 48, so 48 ÷ 6 = 8.",
+        "incorrect": "Not quite. 6 × 8 = 48 → 48 ÷ 6 = 8 is the correct division."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "stem": "An array has 9 rows and 7 columns. What is 63 ÷ 9?",
+      "answer": "7",
+      "explanation": "9 × 7 = 63, so 63 ÷ 9 = 7 columns.",
+      "difficulty": 1,
+      "hints": [
+        "The array is 9 rows × 7 columns = 63 tiles. Divide total by rows.",
+        "Think: 9 × ? = 63. Count by 9s: 9, 18, 27, 36, 45, 54, 63 — that's 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 63 ÷ 9 = 7. The array has 7 columns.",
+        "incorrect": "Not quite. 9 × 7 = 63, so 63 ÷ 9 = 7."
+      },
+      "solution_steps": []
     }
   ],
   "practice_r2": [
@@ -362,12 +504,12 @@
       "explanation": "32 ÷ 4 = 8.",
       "difficulty": 2,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Think of the classroom as an array: 4 rows, ? desks each, 32 total.",
+        "Divide: 32 ÷ 4 = ?. Think: 4 × 8 = 32."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Correct! 32 ÷ 4 = 8 desks per row.",
+        "incorrect": "Not quite. 32 ÷ 4 = 8. Check: 4 × 8 = 32 ✓"
       }
     },
     {
@@ -384,12 +526,12 @@
       "explanation": "9 × 6 = 54 and 54 ÷ 9 = 6 are related facts for this array.",
       "difficulty": 2,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Find the total first: 9 × 6 = ?. Then write the matching division.",
+        "For a 9 × 6 array: total = 54. Division uses 54 ÷ 9 or 54 ÷ 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how model with arrays works."
+        "correct": "Correct! 9 × 6 = 54 and 54 ÷ 9 = 6 match this array.",
+        "incorrect": "Not quite. 9 × 6 = 54 → 54 ÷ 9 = 6 is the related pair."
       }
     },
     {
@@ -406,12 +548,12 @@
       "explanation": "48 ÷ 8 = 6.",
       "difficulty": 2,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Total ÷ known side = missing side. 48 ÷ 8 = ?",
+        "Think: 8 × ? = 48. Count by 8s: 8, 16, 24, 32, 40, 48 — that's 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Correct! 48 ÷ 8 = 6. The other dimension is 6.",
+        "incorrect": "Not quite. 48 ÷ 8 = 6. Check: 8 × 6 = 48 ✓"
       }
     },
     {
@@ -428,12 +570,129 @@
       "explanation": "5 × 7 = 35, not 36.",
       "difficulty": 2,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Multiply each pair: 4 × 9 = ?, 6 × 6 = ?, 3 × 12 = ?, 5 × 7 = ?",
+        "Which product is NOT 36? Check 5 × 7 last."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how model with arrays works."
+        "correct": "Correct! 5 × 7 = 35, not 36.",
+        "incorrect": "Not quite. 4 × 9 = 36, 6 × 6 = 36, 3 × 12 = 36, but 5 × 7 = 35."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "A garden has 5 rows of tomato plants with 8 plants in each row. What is 40 ÷ 5?",
+      "answer": "8",
+      "explanation": "5 × 8 = 40, so 40 ÷ 5 = 8 plants per row.",
+      "difficulty": 2,
+      "hints": [
+        "Picture the garden as a 5 × 8 array with 40 plants total.",
+        "Divide total by rows: 40 ÷ 5 = ?. Think: 5 × 8 = 40."
+      ],
+      "feedback": {
+        "correct": "Correct! 40 ÷ 5 = 8 plants in each row.",
+        "incorrect": "Not quite. 5 rows × 8 plants = 40 total, so 40 ÷ 5 = 8."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "Mrs. Kim arranges 72 chairs in rows of 9. How many columns of chairs are there?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "B",
+      "explanation": "72 ÷ 9 = 8 columns.",
+      "difficulty": 2,
+      "hints": [
+        "Think of the chairs as a rectangular array: 9 rows, ? columns, 72 total.",
+        "Divide: 72 ÷ 9 = ?. Think: 9 × 8 = 72."
+      ],
+      "feedback": {
+        "correct": "Correct! 72 ÷ 9 = 8 columns of chairs.",
+        "incorrect": "Not quite. 72 ÷ 9 = 8. Check: 9 × 8 = 72 ✓"
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "An array has 6 rows and some columns. Total = 54 tiles. What is 54 ÷ 6?",
+      "answer": "9",
+      "explanation": "54 ÷ 6 = 9 columns.",
+      "difficulty": 2,
+      "hints": [
+        "Divide total by known rows: 54 ÷ 6 = ?",
+        "Think: 6 × ? = 54. Count by 6s: 6, 12, 18, 24, 30, 36, 42, 48, 54 — that's 9."
+      ],
+      "feedback": {
+        "correct": "Correct! 54 ÷ 6 = 9. The array has 9 columns.",
+        "incorrect": "Not quite. 6 × 9 = 54, so 54 ÷ 6 = 9."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "Which array shows the division 35 ÷ 7 = 5?",
+      "choices": [
+        "5 rows × 8 columns",
+        "7 rows × 5 columns",
+        "7 rows × 7 columns",
+        "5 rows × 6 columns"
+      ],
+      "answer": "B",
+      "explanation": "7 rows × 5 columns = 35 tiles → 35 ÷ 7 = 5.",
+      "difficulty": 2,
+      "hints": [
+        "35 ÷ 7 = 5 means: 7 is one dimension, 5 is the other.",
+        "Look for the array where rows = 7 and columns = 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 5 = 35, so 35 ÷ 7 = 5 matches a 7 × 5 array.",
+        "incorrect": "Not quite. 35 ÷ 7 = 5 → look for 7 rows × 5 columns."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "Build a 9-row array with 4 tiles in each row. What is 36 ÷ 9?",
+      "answer": "4",
+      "explanation": "9 × 4 = 36, so 36 ÷ 9 = 4 tiles per row.",
+      "difficulty": 2,
+      "hints": [
+        "Picture 9 rows × 4 columns = 36 tiles total.",
+        "Divide total by rows: 36 ÷ 9 = ?. Think: 9 × 4 = 36."
+      ],
+      "feedback": {
+        "correct": "Correct! 36 ÷ 9 = 4 tiles in each row.",
+        "incorrect": "Not quite. 9 × 4 = 36, so 36 ÷ 9 = 4."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "Sam builds an array with 64 tiles and says '64 ÷ 8 = 8, so my array is 8 rows × 8 columns.' Is Sam correct?",
+      "choices": [
+        "Yes — 8 × 8 = 64",
+        "No — 8 × 8 = 72",
+        "No — 8 × 8 = 56",
+        "No — the array must have 6 rows"
+      ],
+      "answer": "A",
+      "explanation": "8 × 8 = 64, so Sam is correct.",
+      "difficulty": 2,
+      "hints": [
+        "Check Sam's claim: does 8 × 8 = 64?",
+        "8 × 8 = 64 ✓ — so the array IS 8 rows × 8 columns."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 8 = 64, so Sam's array is right.",
+        "incorrect": "Not quite. Check: 8 × 8 = 64. Sam is correct!"
       }
     }
   ],
@@ -452,12 +711,12 @@
       "explanation": "56 ÷ 7 = 8 columns. New: 7 × (8 + 2) = 7 × 10 = 70.",
       "difficulty": 3,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Find original columns: 56 ÷ 7 = ?. Then add 2 columns and multiply by rows.",
+        "Step 1: 56 ÷ 7 = 8. Step 2: new columns = 8 + 2 = 10. Step 3: 7 × 10 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Correct! 56 ÷ 7 = 8, then 7 × 10 = 70 stickers.",
+        "incorrect": "Not quite. 56 ÷ 7 = 8 columns → add 2 → 10 columns → 7 × 10 = 70."
       }
     },
     {
@@ -474,12 +733,12 @@
       "explanation": "9 × 9 = 81.",
       "difficulty": 3,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "A square array has rows = columns. Find a number × itself = 81.",
+        "Try 7 × 7 = 49, 8 × 8 = 64, 9 × 9 = 81 ✓"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with arrays works."
+        "correct": "Correct! 9 × 9 = 81, so the array has 9 rows.",
+        "incorrect": "Not quite. 9 × 9 = 81. The array is a 9 × 9 square."
       }
     },
     {
@@ -496,13 +755,52 @@
       "explanation": "6 rows: 48 ÷ 6 = 8 per row. 8 rows: 48 ÷ 8 = 6 per row. 8 − 6 = 2 more.",
       "difficulty": 3,
       "hints": [
-        "Think about what model with arrays means.",
-        "Try drawing a picture or using a number line."
+        "Find tiles per row for each case: 48 ÷ 6 = ? and 48 ÷ 8 = ?",
+        "Subtract: (48 ÷ 6) − (48 ÷ 8) = 8 − 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with arrays works."
+        "correct": "Correct! 48 ÷ 6 = 8 and 48 ÷ 8 = 6, so 2 more tiles per row.",
+        "incorrect": "Not quite. 48 ÷ 6 = 8, and 48 ÷ 8 = 6. Difference = 8 − 6 = 2."
       }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "A farmer plants 48 seeds in an array with 6 seeds per row. She then adds 2 more rows of the same size. How many total seeds are in the new array?",
+      "choices": [
+        "50",
+        "54",
+        "60",
+        "66"
+      ],
+      "answer": "C",
+      "explanation": "48 ÷ 6 = 8 rows originally. 2 extra rows × 6 = 12 more seeds. 48 + 12 = 60.",
+      "difficulty": 3,
+      "hints": [
+        "Find original rows: 48 ÷ 6 = 8 rows. Add 2 rows of 6 each.",
+        "New total rows = 8 + 2 = 10. Multiply: 10 × 6 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 48 ÷ 6 = 8 rows, then 10 × 6 = 60 seeds total.",
+        "incorrect": "Not quite. 48 ÷ 6 = 8 rows → +2 rows → 10 rows × 6 = 60."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "An array has 7 rows and 8 columns. One row is removed. How many tiles are left?",
+      "answer": "48",
+      "explanation": "7 × 8 = 56 tiles total. Remove 1 row of 8: 56 − 8 = 48.",
+      "difficulty": 3,
+      "hints": [
+        "Find total first: 7 × 8 = 56. Removing 1 row removes 8 tiles.",
+        "Subtract 1 row: 56 − 8 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 8 = 56, then 56 − 8 = 48 tiles remain.",
+        "incorrect": "Not quite. 7 × 8 = 56 total. Removing 1 row (8 tiles): 56 − 8 = 48."
+      },
+      "solution_steps": []
     }
   ],
   "concept": "model_with_arrays"

@@ -107,8 +107,8 @@
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "rows": 4,
+          "cols": 5
         }
       }
     },
@@ -127,6 +127,39 @@
       "content": "You can also write it vertically:\n  30\n× 8\n---\n240\nMultiply 3 × 8 = 24, then write the zero: 240.",
       "cpa_phase": "pictorial",
       "visual_type": "none"
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Drawing Base-Ten Rods",
+      "content": "Draw rods to find 3 × 50. Draw 3 groups of 5 rods (each rod = 10). Count all rods: 15 rods. 15 rods = 15 tens = 150. Drawing pictures helps you see why the basic fact works: 3 × 5 = 15 rods = 150.",
+      "cpa_phase": "pictorial",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 5
+        }
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "Check with Estimation",
+      "content": "After you multiply, check your answer makes sense. 7 × 80 = 560. Check: 7 × 80 is about 7 × 80. Since 7 × 8 = 56, the answer 56 tens = 560 makes sense. The product of a 1-digit number and a 2-digit multiple of 10 always ends in zero.",
+      "cpa_phase": "abstract",
+      "visual_type": "equation",
+      "visual_data": {
+        "tool": "equation_display",
+        "config": {
+          "equations": [
+            "7 × 80 → basic fact: 7 × 8 = 56",
+            "56 tens = 560",
+            "Check: answer always ends in 0 ✓"
+          ]
+        }
+      }
     }
   ],
   "try": [
@@ -144,12 +177,12 @@
       "explanation": "6 tens × 5 = 30 tens = 300.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 60 as 6 tens. Use base-ten rods: 5 groups of 6 rods.",
+        "Basic fact: 6 × 5 = 30. So 60 × 5 = 30 tens = 300."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Correct! 6 × 5 = 30, so 60 × 5 = 300.",
+        "incorrect": "Use the basic fact: 6 × 5 = 30. Then 60 × 5 = 30 tens = 300."
       },
       "solution_steps": []
     },
@@ -167,12 +200,69 @@
       "explanation": "4 × 30 = $120.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Write the equation: 30 cars × $4 each. Think of 30 as 3 tens.",
+        "Basic fact: 4 × 3 = 12. So 4 × 30 = 12 tens = 120."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Right! 4 × 3 = 12, so 4 × 30 = $120.",
+        "incorrect": "Use the basic fact: 4 × 3 = 12. Then 4 × 30 = 12 tens = $120."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "5 × 40 = ?",
+      "answer": "200",
+      "explanation": "5 × 4 tens = 20 tens = 200.",
+      "difficulty": 1,
+      "hints": [
+        "Think of 40 as 4 tens. What is 5 × 4?",
+        "5 × 4 = 20, so 5 × 4 tens = 20 tens = 200."
+      ],
+      "feedback": {
+        "correct": "Great! 5 × 4 = 20, so 5 × 40 = 200.",
+        "incorrect": "Use the basic fact: 5 × 4 = 20. Then add a zero: 5 × 40 = 200."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "8 × 70 = ?",
+      "answer": "560",
+      "explanation": "8 × 7 tens = 56 tens = 560.",
+      "difficulty": 1,
+      "hints": [
+        "Think of 70 as 7 tens. What is 8 × 7?",
+        "8 × 7 = 56, so 8 × 7 tens = 56 tens = 560."
+      ],
+      "feedback": {
+        "correct": "Excellent! 8 × 7 = 56, so 8 × 70 = 560.",
+        "incorrect": "Use the basic fact: 8 × 7 = 56. Then add a zero: 8 × 70 = 560."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "A pet store has 9 tanks. Each tank holds 30 fish. How many fish are there in all?",
+      "choices": [
+        "240",
+        "260",
+        "270",
+        "300"
+      ],
+      "answer": "C",
+      "explanation": "9 × 30 = 270. Basic fact: 9 × 3 = 27, so 9 × 30 = 27 tens = 270.",
+      "difficulty": 1,
+      "hints": [
+        "Write the equation: 9 tanks × 30 fish each. Think of 30 as 3 tens.",
+        "Basic fact: 9 × 3 = 27. So 9 × 30 = 27 tens = 270."
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 3 = 27, so 9 × 30 = 270 fish.",
+        "incorrect": "Use the basic fact: 9 × 3 = 27. Then 9 × 30 = 27 tens = 270."
       },
       "solution_steps": []
     }
@@ -192,12 +282,12 @@
       "explanation": "3 tens × 8 = 24 tens = 240.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 30 as 3 tens. What is 3 × 8?",
+        "3 × 8 = 24, so 3 tens × 8 = 24 tens = 240."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Correct! 3 × 8 = 24, so 30 × 8 = 240.",
+        "incorrect": "Use the basic fact: 3 × 8 = 24. Then 30 × 8 = 24 tens = 240."
       }
     },
     {
@@ -214,12 +304,12 @@
       "explanation": "5 tens × 2 = 10 tens = 100.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 50 as 5 tens. What is 5 × 2?",
+        "5 × 2 = 10, so 5 tens × 2 = 10 tens = 100."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Right! 5 × 2 = 10, so 50 × 2 = 100.",
+        "incorrect": "Use the basic fact: 5 × 2 = 10. Then 50 × 2 = 10 tens = 100."
       }
     },
     {
@@ -236,12 +326,12 @@
       "explanation": "6 tens × 7 = 42 tens = 420.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 60 as 6 tens. What is 6 × 7?",
+        "6 × 7 = 42, so 6 tens × 7 = 42 tens = 420."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Correct! 6 × 7 = 42, so 60 × 7 = 420.",
+        "incorrect": "Use the basic fact: 6 × 7 = 42. Then 60 × 7 = 42 tens = 420."
       }
     },
     {
@@ -258,12 +348,12 @@
       "explanation": "7 tens × 4 = 28 tens = 280.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 70 as 7 tens. What is 7 × 4?",
+        "7 × 4 = 28, so 7 tens × 4 = 28 tens = 280."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Right! 7 × 4 = 28, so 70 × 4 = 280.",
+        "incorrect": "Use the basic fact: 7 × 4 = 28. Then 70 × 4 = 28 tens = 280."
       }
     },
     {
@@ -280,12 +370,12 @@
       "explanation": "6 × 9 tens = 54 tens = 540.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 90 as 9 tens. What is 6 × 9?",
+        "6 × 9 = 54, so 6 × 9 tens = 54 tens = 540."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Correct! 6 × 9 = 54, so 6 × 90 = 540.",
+        "incorrect": "Use the basic fact: 6 × 9 = 54. Then 6 × 90 = 54 tens = 540."
       }
     },
     {
@@ -302,12 +392,12 @@
       "explanation": "9 × 7 tens = 63 tens = 630.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 70 as 7 tens. What is 9 × 7?",
+        "9 × 7 = 63, so 9 × 7 tens = 63 tens = 630."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Right! 9 × 7 = 63, so 9 × 70 = 630.",
+        "incorrect": "Use the basic fact: 9 × 7 = 63. Then 9 × 70 = 63 tens = 630."
       }
     },
     {
@@ -324,12 +414,12 @@
       "explanation": "8 × 9 tens = 72 tens = 720.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 90 as 9 tens. What is 8 × 9?",
+        "8 × 9 = 72, so 8 × 9 tens = 72 tens = 720."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Correct! 8 × 9 = 72, so 8 × 90 = 720.",
+        "incorrect": "Use the basic fact: 8 × 9 = 72. Then 8 × 90 = 72 tens = 720."
       }
     },
     {
@@ -346,12 +436,12 @@
       "explanation": "6 × 8 tens = 48 tens = 480.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 80 as 8 tens. What is 6 × 8?",
+        "6 × 8 = 48, so 6 × 8 tens = 48 tens = 480."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Right! 6 × 8 = 48, so 6 × 80 = 480.",
+        "incorrect": "Use the basic fact: 6 × 8 = 48. Then 6 × 80 = 48 tens = 480."
       }
     },
     {
@@ -368,36 +458,46 @@
       "explanation": "7 × 50 = 350 minutes.",
       "difficulty": 1,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Write the equation: 7 days × 50 minutes each. Think of 50 as 5 tens.",
+        "Basic fact: 7 × 5 = 35. So 7 × 50 = 35 tens = 350."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Great! 7 × 5 = 35, so 7 × 50 = 350 minutes.",
+        "incorrect": "Use the basic fact: 7 × 5 = 35. Then 7 × 50 = 35 tens = 350."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "stem": "2 × 80 = ?",
+      "answer": "160",
+      "explanation": "2 × 8 tens = 16 tens = 160.",
+      "difficulty": 1,
+      "hints": [
+        "Think of 80 as 8 tens. What is 2 × 8?",
+        "2 × 8 = 16, so 2 × 8 tens = 16 tens = 160."
+      ],
+      "feedback": {
+        "correct": "Correct! 2 × 8 = 16, so 2 × 80 = 160.",
+        "incorrect": "Use the basic fact: 2 × 8 = 16. Then add a zero: 2 × 80 = 160."
       }
     }
   ],
   "practice_r2": [
     {
       "id": "R2_01",
-      "type": "MC",
-      "stem": "Which is an example of the Commutative Property of Multiplication?",
-      "choices": [
-        "3 + 4 = 4 + 3",
-        "5 × 0 = 0",
-        "1 × 7 = 7",
-        "3 × 4 = 4 × 3"
-      ],
-      "answer": "D",
-      "explanation": "Commutative Property of Multiplication: 3 × 4 = 4 × 3.",
+      "type": "input",
+      "stem": "3 × 70 = ?",
+      "answer": "210",
+      "explanation": "3 × 7 tens = 21 tens = 210.",
       "difficulty": 2,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think of 70 as 7 tens. What is 3 × 7?",
+        "3 × 7 = 21, so 3 × 7 tens = 21 tens = 210."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Correct! 3 × 7 = 21, so 3 × 70 = 210.",
+        "incorrect": "Use the basic fact: 3 × 7 = 21. Then add a zero: 3 × 70 = 210."
       }
     },
     {
@@ -414,12 +514,12 @@
       "explanation": "7 × 80 = 560 and 8 × 70 = 560. They are equal.",
       "difficulty": 2,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Calculate each side: think of 80 as 8 tens and 70 as 7 tens.",
+        "7 × 8 = 56 → 7 × 80 = 560. 8 × 7 = 56 → 8 × 70 = 560. They are equal."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Correct! Both equal 560, so 7 × 80 = 8 × 70.",
+        "incorrect": "Calculate each: 7 × 80 = 560 and 8 × 70 = 560. They are equal (=)."
       }
     },
     {
@@ -436,12 +536,12 @@
       "explanation": "4×90=360 ✓, 6×60=360 ✓, 9×40=360 ✓, 5×70=350 ✗.",
       "difficulty": 2,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Calculate each using basic facts: 4×9=36→360, 6×6=36→360, 9×4=36→360, 5×7=35→350.",
+        "5 × 70 = 350, not 360. The other three all equal 360."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Excellent! 4×90=360, 6×60=360, 9×40=360, but 5×70=350.",
+        "incorrect": "Check each: 4×9=36→360 ✓, 6×6=36→360 ✓, 9×4=36→360 ✓, 5×7=35→350 ✗."
       }
     },
     {
@@ -458,12 +558,126 @@
       "explanation": "50 × 3 = $150.",
       "difficulty": 2,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Write the equation: 50 boxes × $3 each. Think of 50 as 5 tens.",
+        "Basic fact: 5 × 3 = 15. So 50 × 3 = 15 tens = 150."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Right! 5 × 3 = 15, so 50 × 3 = $150.",
+        "incorrect": "Use the basic fact: 5 × 3 = 15. Then 50 × 3 = 15 tens = $150."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "4 × 60 = ?",
+      "answer": "240",
+      "explanation": "4 × 6 tens = 24 tens = 240.",
+      "difficulty": 2,
+      "hints": [
+        "Think of 60 as 6 tens. What is 4 × 6?",
+        "4 × 6 = 24, so 4 × 6 tens = 24 tens = 240."
+      ],
+      "feedback": {
+        "correct": "Correct! 4 × 6 = 24, so 4 × 60 = 240.",
+        "incorrect": "Use the basic fact: 4 × 6 = 24. Then add a zero: 4 × 60 = 240."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "Which expression gives the largest product?",
+      "choices": [
+        "7 × 80",
+        "6 × 90",
+        "8 × 60",
+        "9 × 50"
+      ],
+      "answer": "A",
+      "explanation": "7×80=560, 6×90=540, 8×60=480, 9×50=450. The largest is 7 × 80 = 560.",
+      "difficulty": 2,
+      "hints": [
+        "Calculate each using basic facts: multiply the non-zero digits, then place the zero.",
+        "7×8=56→560, 6×9=54→540, 8×6=48→480, 9×5=45→450. Which is biggest?"
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 80 = 560 is the largest.",
+        "incorrect": "Calculate all four: 560, 540, 480, 450. The largest is 7 × 80 = 560."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "5 × 90 = ?",
+      "answer": "450",
+      "explanation": "5 × 9 tens = 45 tens = 450.",
+      "difficulty": 2,
+      "hints": [
+        "Think of 90 as 9 tens. What is 5 × 9?",
+        "5 × 9 = 45, so 5 × 9 tens = 45 tens = 450."
+      ],
+      "feedback": {
+        "correct": "Great! 5 × 9 = 45, so 5 × 90 = 450.",
+        "incorrect": "Use the basic fact: 5 × 9 = 45. Then add a zero: 5 × 90 = 450."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "A train has 7 cars. Each car has 60 seats. How many seats in all?",
+      "choices": [
+        "380",
+        "400",
+        "420",
+        "460"
+      ],
+      "answer": "C",
+      "explanation": "7 × 60 = 420. Basic fact: 7 × 6 = 42, so 7 × 60 = 42 tens = 420.",
+      "difficulty": 2,
+      "hints": [
+        "Write the equation: 7 cars × 60 seats each. Think of 60 as 6 tens.",
+        "Basic fact: 7 × 6 = 42. So 7 × 60 = 42 tens = 420."
+      ],
+      "feedback": {
+        "correct": "Right! 7 × 6 = 42, so 7 × 60 = 420 seats.",
+        "incorrect": "Use the basic fact: 7 × 6 = 42. Then 7 × 60 = 42 tens = 420."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "9 × 60 = ?",
+      "answer": "540",
+      "explanation": "9 × 6 tens = 54 tens = 540.",
+      "difficulty": 2,
+      "hints": [
+        "Think of 60 as 6 tens. What is 9 × 6?",
+        "9 × 6 = 54, so 9 × 6 tens = 54 tens = 540."
+      ],
+      "feedback": {
+        "correct": "Excellent! 9 × 6 = 54, so 9 × 60 = 540.",
+        "incorrect": "Use the basic fact: 9 × 6 = 54. Then add a zero: 9 × 60 = 540."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "True or False: 5 × 80 = 8 × 50.",
+      "choices": [
+        "True — both equal 400",
+        "False — 5 × 80 is bigger",
+        "False — 8 × 50 is bigger",
+        "Cannot tell without a calculator"
+      ],
+      "answer": "A",
+      "explanation": "5 × 80 = 5 × 8 tens = 40 tens = 400. 8 × 50 = 8 × 5 tens = 40 tens = 400. They are equal.",
+      "difficulty": 2,
+      "hints": [
+        "Calculate each side using basic facts: 5 × 8 = ? and 8 × 5 = ?",
+        "5 × 8 = 40 → 5 × 80 = 400. 8 × 5 = 40 → 8 × 50 = 400. They are the same."
+      ],
+      "feedback": {
+        "correct": "Correct! Both 5 × 80 and 8 × 50 equal 400.",
+        "incorrect": "Calculate both: 5 × 80 = 400 and 8 × 50 = 400. They are equal — True."
       }
     }
   ],
@@ -482,12 +696,12 @@
       "explanation": "Notebooks: 8 × 40 = 320. Folders: 5 × 60 = 300. 320 − 300 = 20 more notebooks.",
       "difficulty": 3,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: find total notebooks (8 × 40) and total folders (5 × 60) using basic facts.",
+        "8 × 4 = 32 → 320 notebooks. 5 × 6 = 30 → 300 folders. 320 − 300 = 20 more notebooks."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Well done! 8×40=320 and 5×60=300. 320−300=20, so 20 more notebooks.",
+        "incorrect": "Find each total: 8×40=320 notebooks, 5×60=300 folders. 320−300=20 more notebooks."
       }
     },
     {
@@ -504,12 +718,12 @@
       "explanation": "3 × 90 = 270. 270 − 80 = 190.",
       "difficulty": 3,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: find 3 × 90. Basic fact: 3 × 9 = 27, so 3 × 90 = 270.",
+        "Step 2: subtract: 270 − 80 = 190."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Correct! 3 × 90 = 270, and 270 − 80 = 190.",
+        "incorrect": "First: 3 × 9 = 27, so 3 × 90 = 270. Then subtract: 270 − 80 = 190."
       }
     },
     {
@@ -526,12 +740,50 @@
       "explanation": "? × 70 = 490. Think: ? × 7 = 49. 7 × 7 = 49, so the answer is 7.",
       "difficulty": 3,
       "hints": [
-        "Think about what multiply 1digit by multiples of 10 means.",
-        "Try drawing a picture or using a number line."
+        "Drop the zero: ? × 7 = 49. What basic fact gives a product of 49?",
+        "7 × 7 = 49, so ? × 70 = 490. The unknown number is 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how multiply 1digit by multiples of 10 works."
+        "correct": "Excellent! 7 × 7 = 49, so 7 × 70 = 490.",
+        "incorrect": "Drop the zero: ? × 7 = 49. Since 7 × 7 = 49, the missing number is 7."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "A baker makes 9 batches of cookies. Each batch has 40 cookies. She gives away 150 cookies. How many does she have left?",
+      "choices": [
+        "190",
+        "200",
+        "210",
+        "220"
+      ],
+      "answer": "C",
+      "explanation": "Step 1: 9 × 40 = 360 cookies total. Step 2: 360 − 150 = 210 left.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: find the total cookies. Basic fact: 9 × 4 = 36, so 9 × 40 = 360.",
+        "Step 2: subtract what she gave away: 360 − 150 = 210."
+      ],
+      "feedback": {
+        "correct": "Well done! 9 × 40 = 360, and 360 − 150 = 210 cookies left.",
+        "incorrect": "First: 9 × 4 = 36, so 9 × 40 = 360. Then 360 − 150 = 210."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "A stadium has 5 sections. Each section has 80 seats. How many seats are there in all?",
+      "answer": "400",
+      "explanation": "5 × 80 = 400. Basic fact: 5 × 8 = 40, so 5 × 80 = 40 tens = 400.",
+      "difficulty": 3,
+      "hints": [
+        "Write the equation: 5 sections × 80 seats each. What is the basic fact?",
+        "5 × 8 = 40, so 5 × 80 = 40 tens = 400 seats."
+      ],
+      "feedback": {
+        "correct": "Correct! 5 × 8 = 40, so 5 × 80 = 400 seats.",
+        "incorrect": "Use the basic fact: 5 × 8 = 40. Then 5 × 80 = 40 tens = 400."
       }
     }
   ],

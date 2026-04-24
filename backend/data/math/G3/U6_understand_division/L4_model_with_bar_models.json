@@ -101,17 +101,18 @@
       "id": "LN_01",
       "type": "concept_card",
       "title": "What Is a Bar Model?",
-      "content": "A bar model is a rectangle that represents the total. You divide it into equal sections to show division. The total goes on top, the equal parts go below.",
+      "content": "A bar model is a rectangle that represents the total. You divide it into equal sections to show division. The total goes on top, the equal parts go below. Each part shows the value of one group.",
       "cpa_phase": "concrete",
-      "visual_type": "manipulative",
+      "visual_type": "bar_model",
       "visual_data": {
         "tool": "bar_model",
         "config": {
+          "total": 24,
           "parts": [
-            {
-              "label": "Group 1",
-              "value": 0
-            }
+            {"label": "?", "value": 6},
+            {"label": "?", "value": 6},
+            {"label": "?", "value": 6},
+            {"label": "?", "value": 6}
           ]
         }
       }
@@ -120,22 +121,80 @@
       "id": "LN_02",
       "type": "concept_card",
       "title": "Drawing a Bar Model",
-      "content": "To solve 24 ÷ 4: draw a long bar labeled 24. Split it into 4 equal parts. Each part = 24 ÷ 4 = 6.",
+      "content": "To solve 24 ÷ 4: Step 1 — draw a long bar labeled 24. Step 2 — split it into 4 equal parts. Step 3 — write ? in each part. Step 4 — compute: 24 ÷ 4 = 6. Write 6 in each part.",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "bar_model",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "total": 24,
+          "parts": [
+            {"label": "6", "value": 6},
+            {"label": "6", "value": 6},
+            {"label": "6", "value": 6},
+            {"label": "6", "value": 6}
+          ]
+        }
+      }
     },
     {
       "id": "LN_03",
       "type": "concept_card",
       "title": "Two Types of Division",
-      "content": "Bar models show both: (1) 'How many in each group?' — you know the number of groups. (2) 'How many groups?' — you know the size of each group.",
+      "content": "Bar models show both types: (1) 'How many in each group?' — you know the number of groups. Draw that many parts, find each part's value. (2) 'How many groups?' — you know each part's size. Count how many parts fit.",
       "cpa_phase": "pictorial",
-      "visual_type": "manipulative",
+      "visual_type": "bar_model",
       "visual_data": {
-        "tool": "array_grid",
+        "tool": "bar_model",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "total": 36,
+          "parts": [
+            {"label": "?", "value": 9},
+            {"label": "?", "value": 9},
+            {"label": "?", "value": 9},
+            {"label": "?", "value": 9}
+          ]
+        }
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Reading a Bar Model",
+      "content": "A bar model has three key parts: (1) The total (the whole bar). (2) The number of equal parts (the divisor). (3) The value of each part (the quotient). If the bar shows 42 split into 7 parts, the equation is 42 ÷ 7 = 6.",
+      "cpa_phase": "pictorial",
+      "visual_type": "bar_model",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "total": 42,
+          "parts": [
+            {"label": "6", "value": 6},
+            {"label": "6", "value": 6},
+            {"label": "6", "value": 6},
+            {"label": "6", "value": 6},
+            {"label": "6", "value": 6},
+            {"label": "6", "value": 6},
+            {"label": "6", "value": 6}
+          ]
+        }
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "Bar Model and the Equation",
+      "content": "Every bar model maps directly to a division equation: Total ÷ Parts = Each. Example: bar labeled 56, split into 7 parts → 56 ÷ 7 = 8. Check: 7 × 8 = 56. ✓ Always verify your bar model with multiplication.",
+      "cpa_phase": "abstract",
+      "visual_type": "equation",
+      "visual_data": {
+        "tool": "equation_display",
+        "config": {
+          "equations": [
+            "Total ÷ Parts = Each",
+            "56 ÷ 7 = 8",
+            "Check: 7 × 8 = 56 ✓"
+          ]
         }
       }
     }
@@ -155,12 +214,12 @@
       "explanation": "42 ÷ 7 = 6.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Draw a bar labeled 42, split into 7 equal parts. Each part = 42 ÷ 7.",
+        "Think: 7 × ? = 42. Since 7 × 6 = 42, each part is 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with bar models works."
+        "correct": "Correct! 7 × 6 = 42, so 42 ÷ 7 = 6.",
+        "incorrect": "Draw the bar model: 42 total, 7 parts. 7 × 6 = 42, so each part = 6."
       },
       "solution_steps": []
     },
@@ -178,12 +237,69 @@
       "explanation": "18 ÷ 3 = 6.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Draw a bar labeled 18, split into 3 equal parts. Each part = 18 ÷ 3.",
+        "Think: 3 × ? = 18. Since 3 × 6 = 18, each part is 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with bar models works."
+        "correct": "Right! 3 × 6 = 18, so 18 ÷ 3 = 6.",
+        "incorrect": "Draw the bar: 18 total, 3 parts. 3 × 6 = 18, so each part = 6."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "A bar model shows 27 split into 9 equal parts. What is each part?",
+      "answer": "3",
+      "explanation": "27 ÷ 9 = 3.",
+      "difficulty": 1,
+      "hints": [
+        "Draw a bar labeled 27, split into 9 equal parts. Each part = 27 ÷ 9.",
+        "Think: 9 × ? = 27. Since 9 × 3 = 27, each part is 3."
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 3 = 27, so 27 ÷ 9 = 3.",
+        "incorrect": "Draw the bar: 27 total, 9 parts. 9 × 3 = 27, so each part = 3."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "A bar model shows 48 split into 6 equal parts. What is each part?",
+      "answer": "8",
+      "explanation": "48 ÷ 6 = 8.",
+      "difficulty": 1,
+      "hints": [
+        "Draw a bar labeled 48, split into 6 equal parts. Each part = 48 ÷ 6.",
+        "Think: 6 × ? = 48. Since 6 × 8 = 48, each part is 8."
+      ],
+      "feedback": {
+        "correct": "Right! 6 × 8 = 48, so 48 ÷ 6 = 8.",
+        "incorrect": "Draw the bar: 48 total, 6 parts. 6 × 8 = 48, so each part = 8."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "A bar model shows $64 split equally among 8 children. How much does each child get?",
+      "choices": [
+        "$6",
+        "$7",
+        "$8",
+        "$9"
+      ],
+      "answer": "C",
+      "explanation": "64 ÷ 8 = $8 each.",
+      "difficulty": 1,
+      "hints": [
+        "Draw a bar labeled 64, split into 8 equal parts. Each part = 64 ÷ 8.",
+        "Think: 8 × ? = 64. Since 8 × 8 = 64, each child gets $8."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 8 = 64, so 64 ÷ 8 = $8 each.",
+        "incorrect": "Draw the bar: 64 total, 8 parts. 8 × 8 = 64, so each part = $8."
       },
       "solution_steps": []
     }
@@ -203,12 +319,12 @@
       "explanation": "36 ÷ 6 = 6.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Bar model: 36 total, 6 parts. Each part = 36 ÷ 6.",
+        "Think: 6 × ? = 36. Since 6 × 6 = 36, each part is 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with bar models works."
+        "correct": "Correct! 6 × 6 = 36, so 36 ÷ 6 = 6.",
+        "incorrect": "Draw the bar: 36 total, 6 parts. 6 × 6 = 36, so each part = 6."
       }
     },
     {
@@ -225,12 +341,12 @@
       "explanation": "20 ÷ 4 = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Draw a bar labeled 20, split into 4 parts. Each = 20 ÷ 4.",
+        "Think: 4 × ? = 20. Since 4 × 5 = 20, the answer is 5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with bar models works."
+        "correct": "Right! 4 × 5 = 20, so 20 ÷ 4 = 5.",
+        "incorrect": "Draw the bar: 20 total, 4 parts. 4 × 5 = 20, so each part = 5."
       }
     },
     {
@@ -247,12 +363,12 @@
       "explanation": "28 ÷ 7 = 4.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Draw a bar labeled 28, split into 7 parts (one per student). Each = 28 ÷ 7.",
+        "Think: 7 × ? = 28. Since 7 × 4 = 28, each student gets 4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with bar models works."
+        "correct": "Correct! 7 × 4 = 28, so 28 ÷ 7 = 4 books each.",
+        "incorrect": "Draw the bar: 28 total, 7 parts. 7 × 4 = 28, so each part = 4."
       }
     },
     {
@@ -269,12 +385,12 @@
       "explanation": "45 ÷ 5 = 9.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Draw a bar labeled 45, split into 5 parts. Each = 45 ÷ 5.",
+        "Think: 5 × ? = 45. Since 5 × 9 = 45, the answer is 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with bar models works."
+        "correct": "Right! 5 × 9 = 45, so 45 ÷ 5 = 9.",
+        "incorrect": "Draw the bar: 45 total, 5 parts. 5 × 9 = 45, so each part = 9."
       }
     },
     {
@@ -291,12 +407,12 @@
       "explanation": "32 ÷ 8 = 4.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Bar model: 32 total, 8 parts. Each = 32 ÷ 8.",
+        "Think: 8 × ? = 32. Since 8 × 4 = 32, each part is 4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with bar models works."
+        "correct": "Correct! 8 × 4 = 32, so 32 ÷ 8 = 4.",
+        "incorrect": "Draw the bar: 32 total, 8 parts. 8 × 4 = 32, so each part = 4."
       }
     },
     {
@@ -313,12 +429,12 @@
       "explanation": "63 ÷ 9 = 7.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Draw a bar labeled 63, split into 9 parts. Each = 63 ÷ 9.",
+        "Think: 9 × ? = 63. Since 9 × 7 = 63, the answer is 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with bar models works."
+        "correct": "Right! 9 × 7 = 63, so 63 ÷ 9 = 7.",
+        "incorrect": "Draw the bar: 63 total, 9 parts. 9 × 7 = 63, so each part = 7."
       }
     },
     {
@@ -335,12 +451,66 @@
       "explanation": "40 ÷ 8 = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Draw a bar labeled 40. Each part holds 8. How many parts fit?",
+        "Think: 8 × ? = 40. Since 8 × 5 = 40, there are 5 groups."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with bar models works."
+        "correct": "Correct! 8 × 5 = 40, so 40 ÷ 8 = 5 groups.",
+        "incorrect": "Draw the bar: 40 total, each part = 8. 8 × 5 = 40, so 5 groups."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "stem": "A bar model shows 49 split into 7 equal parts. What is each part?",
+      "answer": "7",
+      "explanation": "49 ÷ 7 = 7.",
+      "difficulty": 1,
+      "hints": [
+        "Bar model: 49 total, 7 parts. Each = 49 ÷ 7.",
+        "Think: 7 × ? = 49. Since 7 × 7 = 49, each part is 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 7 = 49, so 49 ÷ 7 = 7.",
+        "incorrect": "Draw the bar: 49 total, 7 parts. 7 × 7 = 49, so each part = 7."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "stem": "A bar model shows 81 split into 9 equal parts. What is each part?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "81 ÷ 9 = 9.",
+      "difficulty": 1,
+      "hints": [
+        "Bar model: 81 total, 9 parts. Each = 81 ÷ 9.",
+        "Think: 9 × ? = 81. Since 9 × 9 = 81, each part is 9."
+      ],
+      "feedback": {
+        "correct": "Right! 9 × 9 = 81, so 81 ÷ 9 = 9.",
+        "incorrect": "Draw the bar: 81 total, 9 parts. 9 × 9 = 81, so each part = 9."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "stem": "A bar model shows 16 split into 4 equal parts. What is each part?",
+      "answer": "4",
+      "explanation": "16 ÷ 4 = 4.",
+      "difficulty": 1,
+      "hints": [
+        "Bar model: 16 total, 4 parts. Each = 16 ÷ 4.",
+        "Think: 4 × ? = 16. Since 4 × 4 = 16, each part is 4."
+      ],
+      "feedback": {
+        "correct": "Correct! 4 × 4 = 16, so 16 ÷ 4 = 4.",
+        "incorrect": "Draw the bar: 16 total, 4 parts. 4 × 4 = 16, so each part = 4."
       }
     }
   ],
@@ -359,12 +529,12 @@
       "explanation": "72 ÷ 9 = 8.",
       "difficulty": 2,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Draw a bar labeled 72, split into 9 parts. Each = 72 ÷ 9.",
+        "Think: 9 × ? = 72. Since 9 × 8 = 72, each bag has 8."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with bar models works."
+        "correct": "Correct! 9 × 8 = 72, so 72 ÷ 9 = 8 balls per bag.",
+        "incorrect": "Draw the bar: 72 total, 9 parts. 9 × 8 = 72, so each part = 8."
       }
     },
     {
@@ -381,12 +551,12 @@
       "explanation": "56 ÷ 7 = $8.",
       "difficulty": 2,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Draw a bar labeled 56, split into 7 parts (one per day). Each = 56 ÷ 7.",
+        "Think: 7 × ? = 56. Since 7 × 8 = 56, she earns $8 per day."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with bar models works."
+        "correct": "Right! 7 × 8 = 56, so 56 ÷ 7 = $8 per day.",
+        "incorrect": "Draw the bar: 56 total, 7 parts. 7 × 8 = 56, so each part = $8."
       }
     },
     {
@@ -403,12 +573,12 @@
       "explanation": "48 ÷ 8 = 6.",
       "difficulty": 2,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "The bar total is 48 and each part is 6. How many parts of 6 fit into 48?",
+        "Think: 6 × ? = 48. Since 6 × 8 = 48, the divisor is 8."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with bar models works."
+        "correct": "Correct! 6 × 8 = 48, so 48 ÷ 8 = 6. The divisor is 8.",
+        "incorrect": "Ask: 6 × ? = 48. Since 6 × 8 = 48, the missing divisor is 8."
       }
     },
     {
@@ -425,12 +595,126 @@
       "explanation": "36 split into 4 parts → 36 ÷ 4 = 9.",
       "difficulty": 2,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "The bar shows the total (36) and number of parts (4). Write: 36 ÷ 4 = ?",
+        "Think: 4 × ? = 36. Since 4 × 9 = 36, the equation is 36 ÷ 4 = 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with bar models works."
+        "correct": "Correct! Total 36, split into 4 parts → 36 ÷ 4 = 9.",
+        "incorrect": "The bar shows 36 total split into 4 parts: 36 ÷ 4 = 9."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "A bar model shows 25 split into 5 equal parts. What is each part?",
+      "answer": "5",
+      "explanation": "25 ÷ 5 = 5.",
+      "difficulty": 2,
+      "hints": [
+        "Bar model: 25 total, 5 parts. Each = 25 ÷ 5.",
+        "Think: 5 × ? = 25. Since 5 × 5 = 25, each part is 5."
+      ],
+      "feedback": {
+        "correct": "Right! 5 × 5 = 25, so 25 ÷ 5 = 5.",
+        "incorrect": "Draw the bar: 25 total, 5 parts. 5 × 5 = 25, so each part = 5."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "A bar model shows 28 split into 4 equal parts. Which equation does this represent?",
+      "choices": [
+        "28 ÷ 7 = 4",
+        "28 ÷ 4 = 7",
+        "4 × 28 = 112",
+        "28 − 4 = 24"
+      ],
+      "answer": "B",
+      "explanation": "28 total split into 4 parts → 28 ÷ 4 = 7.",
+      "difficulty": 2,
+      "hints": [
+        "The bar shows the total (28) split into a number of parts (4). Write: 28 ÷ 4 = ?",
+        "Think: 4 × ? = 28. Since 4 × 7 = 28, the equation is 28 ÷ 4 = 7."
+      ],
+      "feedback": {
+        "correct": "Correct! Bar total = 28, parts = 4, so 28 ÷ 4 = 7.",
+        "incorrect": "The bar shows 28 total split into 4 equal parts: 28 ÷ 4 = 7."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "A bar model shows 36 split into 9 equal parts. What is each part?",
+      "answer": "4",
+      "explanation": "36 ÷ 9 = 4.",
+      "difficulty": 2,
+      "hints": [
+        "Bar model: 36 total, 9 parts. Each = 36 ÷ 9.",
+        "Think: 9 × ? = 36. Since 9 × 4 = 36, each part is 4."
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 4 = 36, so 36 ÷ 9 = 4.",
+        "incorrect": "Draw the bar: 36 total, 9 parts. 9 × 4 = 36, so each part = 4."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "A farm packs 63 eggs equally into 7 cartons. How many eggs per carton?",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "C",
+      "explanation": "63 ÷ 7 = 9 eggs per carton.",
+      "difficulty": 2,
+      "hints": [
+        "Draw a bar labeled 63, split into 7 parts. Each = 63 ÷ 7.",
+        "Think: 7 × ? = 63. Since 7 × 9 = 63, each carton has 9 eggs."
+      ],
+      "feedback": {
+        "correct": "Right! 7 × 9 = 63, so 63 ÷ 7 = 9 eggs per carton.",
+        "incorrect": "Draw the bar: 63 total, 7 parts. 7 × 9 = 63, so each part = 9."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "A bar model shows 35 split into 7 equal parts. What is each part?",
+      "answer": "5",
+      "explanation": "35 ÷ 7 = 5.",
+      "difficulty": 2,
+      "hints": [
+        "Bar model: 35 total, 7 parts. Each = 35 ÷ 7.",
+        "Think: 7 × ? = 35. Since 7 × 5 = 35, each part is 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 5 = 35, so 35 ÷ 7 = 5.",
+        "incorrect": "Draw the bar: 35 total, 7 parts. 7 × 5 = 35, so each part = 5."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "A bar model shows 56 ÷ ? = 7. What is the missing divisor?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "56 ÷ 8 = 7, so the divisor is 8.",
+      "difficulty": 2,
+      "hints": [
+        "The bar total is 56 and each part is 7. How many parts of 7 fit into 56?",
+        "Think: 7 × ? = 56. Since 7 × 8 = 56, the divisor is 8."
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 8 = 56, so 56 ÷ 8 = 7. The divisor is 8.",
+        "incorrect": "Ask: 7 × ? = 56. Since 7 × 8 = 56, the missing divisor is 8."
       }
     }
   ],
@@ -449,12 +733,12 @@
       "explanation": "54 ÷ 6 = 9 bags. 9 × $3 = $27.",
       "difficulty": 3,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: draw a bar labeled 54, split into parts of 6. How many bags? 54 ÷ 6 = ?",
+        "Step 2: multiply bags × price. 9 × $3 = $27."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with bar models works."
+        "correct": "Excellent! 54÷6=9 bags, then 9×$3=$27.",
+        "incorrect": "Step 1: 6×9=54 → 9 bags. Step 2: 9×$3=$27."
       }
     },
     {
@@ -471,12 +755,12 @@
       "explanation": "64 + 16 = 80 cards. 80 ÷ 8 = 10 pages.",
       "difficulty": 3,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: find total cards: 64 + 16 = 80.",
+        "Step 2: draw a bar labeled 80, split into groups of 8. 80 ÷ 8 = ? pages."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how model with bar models works."
+        "correct": "Great! 64+16=80 total cards. 80÷8=10 pages.",
+        "incorrect": "Step 1: 64+16=80. Step 2: 8×10=80, so 80÷8=10 pages."
       }
     },
     {
@@ -493,12 +777,50 @@
       "explanation": "42 ÷ 2 = 21 each. 21 − 7 = 14.",
       "difficulty": 3,
       "hints": [
-        "Think about what model with bar models means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: draw a bar labeled 42, split into 2 parts. 42 ÷ 2 = ? each.",
+        "Step 2: one friend gives 7 away: 21 − 7 = 14 marbles left."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how model with bar models works."
+        "correct": "Correct! 42÷2=21 each. 21−7=14 marbles.",
+        "incorrect": "Step 1: 42÷2=21 each. Step 2: 21−7=14."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "A shop has 48 chairs arranged in 6 equal rows. Workers remove 3 chairs from each row. How many chairs remain?",
+      "choices": [
+        "24",
+        "27",
+        "30",
+        "33"
+      ],
+      "answer": "C",
+      "explanation": "48 ÷ 6 = 8 chairs per row. 8 − 3 = 5 remain per row. 5 × 6 = 30 chairs total.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: find chairs per row — draw a bar: 48 ÷ 6 = ? per row.",
+        "Step 2: 8 − 3 = 5 per row. Step 3: 5 × 6 = 30 chairs remain."
+      ],
+      "feedback": {
+        "correct": "Excellent! 48÷6=8 per row. 8−3=5. 5×6=30 chairs remain.",
+        "incorrect": "Step 1: 48÷6=8 per row. Step 2: 8−3=5. Step 3: 5×6=30."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "A bar model shows 42 split into 6 equal parts. What is each part?",
+      "answer": "7",
+      "explanation": "42 ÷ 6 = 7.",
+      "difficulty": 3,
+      "hints": [
+        "Bar model: 42 total, 6 parts. Each = 42 ÷ 6.",
+        "Think: 6 × ? = 42. Since 6 × 7 = 42, each part is 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 7 = 42, so 42 ÷ 6 = 7.",
+        "incorrect": "Draw the bar: 42 total, 6 parts. 6 × 7 = 42, so each part = 7."
       }
     }
   ],

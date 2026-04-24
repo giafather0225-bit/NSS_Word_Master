@@ -102,22 +102,22 @@
       "id": "LN_01",
       "type": "concept_card",
       "title": "What Is an Unknown Factor?",
-      "content": "In the equation n × 3 = 12, the unknown factor is n. You need to find what number times 3 equals 12.",
+      "content": "In the equation n × 3 = 12, the unknown factor is n. You need to find what number times 3 equals 12. The letter (n, m, x, etc.) is a placeholder for the missing factor.",
       "cpa_phase": "concrete",
       "visual_type": "none"
     },
     {
       "id": "LN_02",
       "type": "concept_card",
-      "title": "Strategy: Think Multiplication",
-      "content": "To find n in n × 5 = 30, think: 'What number times 5 equals 30?' Count by 5s: 5, 10, 15, 20, 25, 30 → that's 6 jumps. So n = 6.",
+      "title": "Strategy: Skip Count to Find It",
+      "content": "To find n in n × 5 = 30, skip count by 5s: 5, 10, 15, 20, 25, 30 — that is 6 jumps. So n = 6. Or use a known fact: 6 × 5 = 30.",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "rows": 6,
+          "cols": 5
         }
       }
     },
@@ -125,16 +125,32 @@
       "id": "LN_03",
       "type": "concept_card",
       "title": "Strategy: Use an Array",
-      "content": "For 3 × □ = 24, draw 3 rows. Keep adding columns until you reach 24 tiles total. You'll get 8 columns. So □ = 8.",
+      "content": "For 3 × □ = 24, draw 3 rows. Keep adding columns until you reach 24 dots total — you will get 8 columns. So □ = 8. Arrays make the unknown factor visible.",
       "cpa_phase": "pictorial",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "array_grid",
         "config": {
           "rows": 3,
-          "cols": 4
+          "cols": 8
         }
       }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Division Is the Reverse",
+      "content": "Finding an unknown factor is the same as dividing. If n × 6 = 42, then n = 42 ÷ 6 = 7. Division 'undoes' multiplication. You can always use this shortcut to solve quickly.",
+      "cpa_phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "Always Check Your Answer",
+      "content": "After finding the unknown factor, substitute it back: if n = 7, check n × 6 = 7 × 6 = 42 ✓. If it matches the product, your answer is correct. This works for any unknown factor equation.",
+      "cpa_phase": "abstract",
+      "visual_type": "none"
     }
   ],
   "try": [
@@ -152,12 +168,12 @@
       "explanation": "7 × 3 = 21, so n = 3.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '7 × ? = 21'. Which fact do you know?",
+        "Skip count by 7: 7, 14, 21 — how many jumps?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how find unknown factors works."
+        "correct": "Correct! 7 × 3 = 21, so n = 3.",
+        "incorrect": "Not quite. Ask: 7 × ? = 21. Count by 7s: 7, 14, 21 — that is 3 jumps, so n = 3."
       },
       "solution_steps": []
     },
@@ -175,12 +191,12 @@
       "explanation": "9 × 2 = 18, so y = 9.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '? × 2 = 18'. Which fact do you know?",
+        "Use division: 18 ÷ 2 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how find unknown factors works."
+        "correct": "Correct! 9 × 2 = 18, so y = 9.",
+        "incorrect": "Not quite. 18 ÷ 2 = 9, so y = 9. Check: 9 × 2 = 18 ✓"
       },
       "solution_steps": []
     },
@@ -198,12 +214,46 @@
       "explanation": "5 × 2 = 10, so p = 2.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '5 × ? = 10'. Skip count by 5: 5, 10 — how many jumps?",
+        "Or use division: 10 ÷ 5 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how find unknown factors works."
+        "correct": "Correct! 5 × 2 = 10, so p = 2.",
+        "incorrect": "Not quite. 10 ÷ 5 = 2, so p = 2. Check: 5 × 2 = 10 ✓"
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "4 × n = 32. What is n? Enter the number.",
+      "answer": "8",
+      "explanation": "4 × 8 = 32, so n = 8.",
+      "difficulty": 1,
+      "hints": [
+        "Ask: '4 × ? = 32'. Use division: 32 ÷ 4 = ?",
+        "Skip count by 4: 4, 8, 12, 16, 20, 24, 28, 32 — how many jumps?"
+      ],
+      "feedback": {
+        "correct": "Correct! 4 × 8 = 32, so n = 8.",
+        "incorrect": "Not quite. 32 ÷ 4 = 8. Check: 4 × 8 = 32 ✓, so n = 8."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "stem": "n × 9 = 45. What is n? Enter the number.",
+      "answer": "5",
+      "explanation": "5 × 9 = 45, so n = 5.",
+      "difficulty": 1,
+      "hints": [
+        "Ask: '? × 9 = 45'. Use division: 45 ÷ 9 = ?",
+        "Skip count by 9: 9, 18, 27, 36, 45 — how many jumps?"
+      ],
+      "feedback": {
+        "correct": "Correct! 5 × 9 = 45, so n = 5.",
+        "incorrect": "Not quite. 45 ÷ 9 = 5. Check: 5 × 9 = 45 ✓, so n = 5."
       },
       "solution_steps": []
     }
@@ -223,12 +273,12 @@
       "explanation": "8 × 7 = 56, so t = 7.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '8 × ? = 56'. Which multiplication fact fits?",
+        "Use division: 56 ÷ 8 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how find unknown factors works."
+        "correct": "Correct! 8 × 7 = 56, so t = 7.",
+        "incorrect": "Not quite. 56 ÷ 8 = 7. Check: 8 × 7 = 56 ✓"
       }
     },
     {
@@ -245,12 +295,12 @@
       "explanation": "7 × 4 = 28, so m = 7.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '? × 4 = 28'. Which multiplication fact fits?",
+        "Use division: 28 ÷ 4 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how find unknown factors works."
+        "correct": "Correct! 7 × 4 = 28, so m = 7.",
+        "incorrect": "Not quite. 28 ÷ 4 = 7. Check: 7 × 4 = 28 ✓"
       }
     },
     {
@@ -267,12 +317,12 @@
       "explanation": "9 × 1 = 9, so ★ = 9.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Any number times 1 equals itself — that is the Identity Property.",
+        "So ★ × 1 = ★ = 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how find unknown factors works."
+        "correct": "Correct! ★ × 1 = ★, so ★ = 9.",
+        "incorrect": "Not quite. Any number × 1 = that number, so ★ = 9."
       }
     },
     {
@@ -289,12 +339,12 @@
       "explanation": "6 × 3 = 18, so r = 3.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '6 × ? = 18'. Which multiplication fact fits?",
+        "Use division: 18 ÷ 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how find unknown factors works."
+        "correct": "Correct! 6 × 3 = 18, so r = 3.",
+        "incorrect": "Not quite. 18 ÷ 6 = 3. Check: 6 × 3 = 18 ✓"
       }
     },
     {
@@ -311,12 +361,12 @@
       "explanation": "6 × 5 = 30, so u = 6.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '? × 5 = 30'. Skip count by 5: 5, 10, 15, 20, 25, 30.",
+        "Use division: 30 ÷ 5 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how find unknown factors works."
+        "correct": "Correct! 6 × 5 = 30, so u = 6.",
+        "incorrect": "Not quite. 30 ÷ 5 = 6. Check: 6 × 5 = 30 ✓"
       }
     },
     {
@@ -333,12 +383,12 @@
       "explanation": "4 × 6 = 24, so ■ = 6.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '4 × ? = 24'. Which multiplication fact fits?",
+        "Use division: 24 ÷ 4 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how find unknown factors works."
+        "correct": "Correct! 4 × 6 = 24, so ■ = 6.",
+        "incorrect": "Not quite. 24 ÷ 4 = 6. Check: 4 × 6 = 24 ✓"
       }
     },
     {
@@ -355,12 +405,12 @@
       "explanation": "5 × 7 = 35, so w = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '? × 7 = 35'. Skip count by 7: 7, 14, 21, 28, 35.",
+        "Use division: 35 ÷ 7 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how find unknown factors works."
+        "correct": "Correct! 5 × 7 = 35, so w = 5.",
+        "incorrect": "Not quite. 35 ÷ 7 = 5. Check: 5 × 7 = 35 ✓"
       }
     },
     {
@@ -377,12 +427,12 @@
       "explanation": "9 × 6 = 54, so b = 9.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '? × 6 = 54'. Which multiplication fact fits?",
+        "Use division: 54 ÷ 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how find unknown factors works."
+        "correct": "Correct! 9 × 6 = 54, so b = 9.",
+        "incorrect": "Not quite. 54 ÷ 6 = 9. Check: 9 × 6 = 54 ✓"
       }
     },
     {
@@ -399,12 +449,12 @@
       "explanation": "5 × 8 = 40, so ▲ = 8.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '5 × ? = 40'. Skip count by 5: 5, 10, 15, 20, 25, 30, 35, 40.",
+        "Use division: 40 ÷ 5 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how find unknown factors works."
+        "correct": "Correct! 5 × 8 = 40, so ▲ = 8.",
+        "incorrect": "Not quite. 40 ÷ 5 = 8. Check: 5 × 8 = 40 ✓"
       }
     },
     {
@@ -421,12 +471,12 @@
       "explanation": "10 × 3 = 30, so d = 10.",
       "difficulty": 1,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '? × 3 = 30'. Skip count by 3 or use division.",
+        "Use division: 30 ÷ 3 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how find unknown factors works."
+        "correct": "Correct! 10 × 3 = 30, so d = 10.",
+        "incorrect": "Not quite. 30 ÷ 3 = 10. Check: 10 × 3 = 30 ✓"
       }
     }
   ],
@@ -445,12 +495,12 @@
       "explanation": "7 × 6 = 42, so k = 6.",
       "difficulty": 2,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '7 × ? = 42'. Which fact do you know?",
+        "Use division: 42 ÷ 7 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how find unknown factors works."
+        "correct": "Correct! 7 × 6 = 42, so k = 6.",
+        "incorrect": "Not quite. 42 ÷ 7 = 6. Check: 7 × 6 = 42 ✓"
       }
     },
     {
@@ -467,78 +517,170 @@
       "explanation": "3 × 8 = 24, so 8 columns.",
       "difficulty": 2,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Rows × columns = total. So 3 × ? = 24.",
+        "Use division: 24 ÷ 3 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how find unknown factors works."
+        "correct": "Correct! 3 × 8 = 24 — the array has 8 columns.",
+        "incorrect": "Not quite. 24 ÷ 3 = 8. The array has 8 columns."
       }
     },
     {
       "id": "R2_03",
       "type": "MC",
-      "stem": "Which is an example of the Commutative Property of Multiplication?",
+      "stem": "A bag holds 7 oranges. Rita fills n bags and has 56 oranges in all. What is n?",
       "choices": [
-        "6 + 4 = 4 + 6",
-        "4 × 6 = 6 × 4",
-        "4 × 3 = 4 + 8",
-        "3 × 6 = 9 × 2"
+        "6",
+        "7",
+        "8",
+        "9"
       ],
-      "answer": "B",
-      "explanation": "The Commutative Property says you can multiply in any order: 4 × 6 = 6 × 4.",
+      "answer": "C",
+      "explanation": "n × 7 = 56. 56 ÷ 7 = 8, so n = 8.",
       "difficulty": 2,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Set up the equation: n × 7 = 56.",
+        "Use division to solve: 56 ÷ 7 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how find unknown factors works."
+        "correct": "Correct! n × 7 = 56 → 56 ÷ 7 = 8, so n = 8.",
+        "incorrect": "Not quite. Set up: n × 7 = 56. Then 56 ÷ 7 = 8."
       }
     },
     {
       "id": "R2_04",
       "type": "MC",
-      "stem": "Find the product: 5 × (4 × 2)",
+      "stem": "63 = 9 × v. What is v?",
       "choices": [
-        "13",
-        "22",
-        "40",
-        "80"
+        "6",
+        "7",
+        "8",
+        "9"
       ],
-      "answer": "C",
-      "explanation": "First: 4 × 2 = 8. Then: 5 × 8 = 40.",
+      "answer": "B",
+      "explanation": "9 × 7 = 63, so v = 7.",
       "difficulty": 2,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '9 × ? = 63'. Which multiplication fact fits?",
+        "Use division: 63 ÷ 9 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how find unknown factors works."
+        "correct": "Correct! 9 × 7 = 63, so v = 7.",
+        "incorrect": "Not quite. 63 ÷ 9 = 7. Check: 9 × 7 = 63 ✓"
       }
     },
     {
       "id": "R2_05",
-      "type": "MC",
-      "stem": "Which number sentence is an example of the Distributive Property?",
-      "choices": [
-        "4 × 7 = (4 × 3) + (4 × 4)",
-        "4 × 7 = 7 × 4",
-        "4 × 7 = 28",
-        "7 × 4 = 15 + 13"
-      ],
-      "answer": "A",
-      "explanation": "Distributive Property: 4 × 7 = 4 × (3 + 4) = (4 × 3) + (4 × 4) = 12 + 16 = 28.",
+      "type": "input",
+      "stem": "z × 8 = 48. What is z? Enter the number.",
+      "answer": "6",
+      "explanation": "6 × 8 = 48, so z = 6.",
       "difficulty": 2,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Ask: '? × 8 = 48'. Use division: 48 ÷ 8 = ?",
+        "Skip count by 8: 8, 16, 24, 32, 40, 48 — how many jumps?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how find unknown factors works."
+        "correct": "Correct! 6 × 8 = 48, so z = 6.",
+        "incorrect": "Not quite. 48 ÷ 8 = 6. Check: 6 × 8 = 48 ✓"
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "A teacher has 36 stickers. She gives an equal number to each of her 9 students. How many stickers does each student get?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "9 × n = 36. 36 ÷ 9 = 4, so each student gets 4 stickers.",
+      "difficulty": 2,
+      "hints": [
+        "Set up the equation: 9 × n = 36.",
+        "Use division: 36 ÷ 9 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × n = 36 → n = 36 ÷ 9 = 4.",
+        "incorrect": "Not quite. 9 × n = 36. Solve: 36 ÷ 9 = 4 stickers each."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "n × 4 = 36. What is n? Enter the number.",
+      "answer": "9",
+      "explanation": "9 × 4 = 36, so n = 9.",
+      "difficulty": 2,
+      "hints": [
+        "Ask: '? × 4 = 36'. Use division: 36 ÷ 4 = ?",
+        "Skip count by 4: 4, 8, 12, 16, 20, 24, 28, 32, 36 — how many jumps?"
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 4 = 36, so n = 9.",
+        "incorrect": "Not quite. 36 ÷ 4 = 9. Check: 9 × 4 = 36 ✓"
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "Amy puts 42 flowers into vases with 6 flowers each. Which equation shows the unknown number of vases, n?",
+      "choices": [
+        "n + 6 = 42",
+        "n × 6 = 42",
+        "6 × 42 = n",
+        "n × 42 = 6"
+      ],
+      "answer": "B",
+      "explanation": "n vases × 6 flowers each = 42 total flowers → n × 6 = 42.",
+      "difficulty": 2,
+      "hints": [
+        "Think: (number of vases) × (flowers per vase) = total flowers.",
+        "n × 6 = 42 — which choice matches this?"
+      ],
+      "feedback": {
+        "correct": "Correct! n × 6 = 42 represents the situation. n = 42 ÷ 6 = 7.",
+        "incorrect": "Not quite. (vases) × 6 flowers each = 42 total → n × 6 = 42."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "8 × n = 72. What is n? Enter the number.",
+      "answer": "9",
+      "explanation": "8 × 9 = 72, so n = 9.",
+      "difficulty": 2,
+      "hints": [
+        "Ask: '8 × ? = 72'. Use division: 72 ÷ 8 = ?",
+        "Check: 8 × 9 = 72 ✓"
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 9 = 72, so n = 9.",
+        "incorrect": "Not quite. 72 ÷ 8 = 9. Check: 8 × 9 = 72 ✓"
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "Carlos has 35 trading cards. He puts them into stacks of 7. How many stacks does he make?",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "B",
+      "explanation": "n × 7 = 35. 35 ÷ 7 = 5, so Carlos makes 5 stacks.",
+      "difficulty": 2,
+      "hints": [
+        "Set up: n × 7 = 35. How many groups of 7 fit into 35?",
+        "Use division: 35 ÷ 7 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! n × 7 = 35 → 35 ÷ 7 = 5 stacks.",
+        "incorrect": "Not quite. n × 7 = 35 → 35 ÷ 7 = 5 stacks."
       }
     }
   ],
@@ -554,37 +696,37 @@
         "5 teams of 9"
       ],
       "answer": "A",
-      "explanation": "? × 8 = 48 → 6 teams. (6 is between 5 and 9 students check fails — rethink: 6 teams × 8 students = 48, and 8 students per team is between 5 and 9.) ✓",
+      "explanation": "n × 8 = 48 → n = 6 teams. 8 students per team is between 5 and 9. ✓",
       "difficulty": 3,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Find a factor of 48 that is between 5 and 9 — that is the team size.",
+        "Try: 48 ÷ 8 = 6 teams, 8 per team. Is 8 between 5 and 9?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how find unknown factors works."
+        "correct": "Correct! 6 × 8 = 48 and 8 students per team is between 5 and 9.",
+        "incorrect": "Not quite. Try 48 ÷ 8 = 6 teams with 8 per team. 8 is between 5 and 9 ✓."
       }
     },
     {
       "id": "R3_02",
       "type": "MC",
-      "stem": "In a group of 10 boys, each boy had 2 hats. How many hats did they have in all?",
+      "stem": "Sarah buys n boxes of markers. Each box has 8 markers. She has 64 markers in all. Which equation and solution is correct?",
       "choices": [
-        "5",
-        "12",
-        "20",
-        "40"
+        "n × 8 = 64; n = 7",
+        "n × 8 = 64; n = 8",
+        "n + 8 = 64; n = 56",
+        "8 × n = 64; n = 9"
       ],
-      "answer": "C",
-      "explanation": "10 × 2 = 20 hats.",
-      "difficulty": 2,
+      "answer": "B",
+      "explanation": "n × 8 = 64. 64 ÷ 8 = 8, so n = 8. Check: 8 × 8 = 64 ✓",
+      "difficulty": 3,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Set up the equation: n boxes × 8 markers each = 64 markers total.",
+        "Solve: 64 ÷ 8 = ? and then check your answer."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how find unknown factors works."
+        "correct": "Correct! n × 8 = 64 → 64 ÷ 8 = 8. Check: 8 × 8 = 64 ✓",
+        "incorrect": "Not quite. Set up: n × 8 = 64. Solve: 64 ÷ 8 = 8, so n = 8."
       }
     },
     {
@@ -601,12 +743,50 @@
       "explanation": "7 × 6 = 42 ✓. Her method and answer are both correct.",
       "difficulty": 3,
       "hints": [
-        "Think about what find unknown factors means.",
-        "Try drawing a picture or using a number line."
+        "Check Tina's answer: does 7 × 6 = 42?",
+        "Substituting n = 7 back: 7 × 6 = 42. Does it match?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how find unknown factors works."
+        "correct": "Correct! 7 × 6 = 42 ✓. Tina's method of checking by substituting is right.",
+        "incorrect": "Not quite. Check: 7 × 6 = 42 ✓. Tina's answer and method are both correct."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "Two friends each have the same number of baseball cards. Together they have 56 cards. How many cards does each friend have?",
+      "choices": [
+        "24",
+        "26",
+        "28",
+        "30"
+      ],
+      "answer": "C",
+      "explanation": "n × 2 = 56. 56 ÷ 2 = 28. Each friend has 28 cards.",
+      "difficulty": 3,
+      "hints": [
+        "Set up the equation: n × 2 = 56 (same amount for each of 2 friends).",
+        "Use division: 56 ÷ 2 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! n × 2 = 56 → 56 ÷ 2 = 28 cards each.",
+        "incorrect": "Not quite. n × 2 = 56 → 56 ÷ 2 = 28 cards per friend."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "A box holds n layers of oranges. Each layer has 9 oranges. There are 63 oranges in all. What is n? Enter the number.",
+      "answer": "7",
+      "explanation": "n × 9 = 63. 63 ÷ 9 = 7, so n = 7 layers.",
+      "difficulty": 3,
+      "hints": [
+        "Set up: n × 9 = 63. Use division to find n.",
+        "63 ÷ 9 = ? Then check: 7 × 9 = 63 ✓"
+      ],
+      "feedback": {
+        "correct": "Correct! n × 9 = 63 → 63 ÷ 9 = 7. There are 7 layers.",
+        "incorrect": "Not quite. n × 9 = 63. Solve: 63 ÷ 9 = 7, so n = 7 layers."
       }
     }
   ],

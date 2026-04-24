@@ -102,7 +102,7 @@
       "id": "LN_01",
       "type": "concept_card",
       "title": "What Is a Pattern in a Table?",
-      "content": "A pattern in a table shows a rule that connects the input and output. For example, if each pan holds 6 muffins, the rule is 'Multiply by 6'. You add 6 muffins for each additional pan.",
+      "content": "A pattern in a table shows a rule that connects the input and output. For example, if each pan holds 6 muffins, the rule is 'Multiply by 6'. For every additional pan (input), you get 6 more muffins (output).",
       "cpa_phase": "concrete",
       "visual_type": "none"
     },
@@ -110,7 +110,7 @@
       "id": "LN_02",
       "type": "concept_card",
       "title": "Finding the Rule",
-      "content": "Look at a pair: input 2 → output 14. Ask: 2 times what equals 14? 2 × 7 = 14. Check with another pair: 4 → 28, and 4 × 7 = 28. The rule is 'Multiply by 7'.",
+      "content": "Look at a known pair: input 2 → output 14. Ask: 2 times what equals 14? 2 × 7 = 14. Check with another pair: input 4 → output 28, and 4 × 7 = 28. The rule is 'Multiply by 7'.",
       "cpa_phase": "concrete",
       "visual_type": "none"
     },
@@ -118,8 +118,24 @@
       "id": "LN_03",
       "type": "concept_card",
       "title": "Completing a Table",
-      "content": "Once you know the rule, use it to fill in blanks. If the rule is × 7 and the input is 5, then 5 × 7 = 35. Always check: does the rule work for every row?",
+      "content": "Once you know the rule, use it to fill in blanks. If the rule is × 7 and the input is 5, then 5 × 7 = 35. Always verify: does the same rule work for every row?",
       "cpa_phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Patterns Go Both Ways",
+      "content": "In a multiplication table, as the input goes up by 1, the output goes up by the rule number. Rule ×8: input 3 → 24, input 4 → 32 (up by 8). If the input doubles, the output doubles too: input 2 → 16, input 4 → 32.",
+      "cpa_phase": "abstract",
+      "visual_type": "none"
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "Using Patterns to Predict",
+      "content": "Tables let you predict unknown values instantly. If rule is ×7 and you see input 5 → output 35, you know input 6 → output 42 (just add 7). To find a missing input, reverse the rule: output ÷ rule = input. 63 ÷ 7 = 9.",
+      "cpa_phase": "abstract",
       "visual_type": "none"
     }
   ],
@@ -138,12 +154,12 @@
       "explanation": "The rule is multiply by 6. 5 × 6 = 30.",
       "difficulty": 1,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "Check one pair: 1 bag → 6 apples. 1 × ? = 6.",
+        "The rule is ×6. Apply it to input 5: 5 × 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how describe patterns works."
+        "correct": "Correct! The rule is ×6, so 5 × 6 = 30.",
+        "incorrect": "Not quite. The rule is ×6. 5 × 6 = 30."
       },
       "solution_steps": []
     },
@@ -161,12 +177,75 @@
       "explanation": "4 × 6 = 24 pencils.",
       "difficulty": 1,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "This is 4 groups of 6 — write it as a multiplication: 4 × 6.",
+        "4 × 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how describe patterns works."
+        "correct": "Correct! 4 packages × 6 pencils each = 24 pencils.",
+        "incorrect": "Not quite. 4 packages × 6 pencils each = 24 pencils."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "The rule for a pattern table is Multiply by 9. The input is 6. What is the output? Enter the number.",
+      "answer": "54",
+      "explanation": "6 × 9 = 54.",
+      "difficulty": 1,
+      "hints": [
+        "Multiply the input by the rule number: 6 × 9.",
+        "6 × 9: think 6 × 10 = 60, then subtract 6 to get 54."
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 9 = 54.",
+        "incorrect": "Not quite. 6 × 9 = 54."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "MC",
+      "stem": "| Tables | 1 | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|---|\n| Legs | 4 | 8 | 12 | ? | 20 |\n\nWhat number is missing?",
+      "choices": [
+        "14",
+        "16",
+        "18",
+        "20"
+      ],
+      "answer": "B",
+      "explanation": "The rule is multiply by 4. 4 × 4 = 16.",
+      "difficulty": 1,
+      "hints": [
+        "Find the rule: 1 table → 4 legs. 1 × ? = 4.",
+        "The rule is ×4. Apply it to input 4: 4 × 4 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! The rule is ×4, so 4 × 4 = 16.",
+        "incorrect": "Not quite. The rule is ×4. 4 × 4 = 16."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "Which rule matches this table?\n\n| Hours | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|\n| Miles | 12 | 18 | 24 | 30 |",
+      "choices": [
+        "Multiply by 8",
+        "Multiply by 6",
+        "Multiply by 7",
+        "Multiply by 5"
+      ],
+      "answer": "B",
+      "explanation": "2 × 6 = 12, 3 × 6 = 18, 4 × 6 = 24, 5 × 6 = 30. The rule is Multiply by 6.",
+      "difficulty": 1,
+      "hints": [
+        "Check one pair: 2 hours → 12 miles. 2 × ? = 12.",
+        "Test your answer with a second pair: 3 × 6 = 18 ✓"
+      ],
+      "feedback": {
+        "correct": "Correct! 2 × 6 = 12 and 3 × 6 = 18 — the rule is Multiply by 6.",
+        "incorrect": "Not quite. Check: 2 × 6 = 12 ✓. The rule is Multiply by 6."
       },
       "solution_steps": []
     }
@@ -186,12 +265,12 @@
       "explanation": "Each spider has 8 legs. 2 × 8 = 16, 4 × 8 = 32.",
       "difficulty": 1,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "Each spider has 8 legs — the rule is ×8.",
+        "Apply: 2 × 8 = ? and 4 × 8 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how describe patterns works."
+        "correct": "Correct! 2 × 8 = 16 and 4 × 8 = 32.",
+        "incorrect": "Not quite. The rule is ×8. 2 × 8 = 16 and 4 × 8 = 32."
       }
     },
     {
@@ -208,12 +287,12 @@
       "explanation": "1 × 5 = 5, 2 × 5 = 10, etc. The rule is multiply by 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "Check one pair: 1 row → 5 seats. 1 × ? = 5.",
+        "Confirm with another pair: 2 rows → 10 seats. Does ×5 work?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how describe patterns works."
+        "correct": "Correct! 1 × 5 = 5, 2 × 5 = 10 — the rule is Multiply by 5.",
+        "incorrect": "Not quite. Check: 1 × 5 = 5, 2 × 5 = 10 — the rule is Multiply by 5."
       }
     },
     {
@@ -230,12 +309,12 @@
       "explanation": "The rule is × 3. 4 × 3 = 12.",
       "difficulty": 1,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "Find the rule: 1 pack → 3 juice boxes. 1 × ? = 3.",
+        "Apply the rule to input 4: 4 × 3 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how describe patterns works."
+        "correct": "Correct! The rule is ×3, and 4 × 3 = 12.",
+        "incorrect": "Not quite. The rule is ×3. 4 × 3 = 12."
       }
     },
     {
@@ -252,12 +331,12 @@
       "explanation": "The rule is × 9. 5 × 9 = 45.",
       "difficulty": 2,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "Find the rule: 2 teams → 18 players. 2 × ? = 18.",
+        "The rule is ×9. Apply it: 5 × 9 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how describe patterns works."
+        "correct": "Correct! The rule is ×9. 5 × 9 = 45.",
+        "incorrect": "Not quite. The rule is ×9. 5 × 9 = 45."
       }
     },
     {
@@ -274,12 +353,12 @@
       "explanation": "7 × 6 = 42.",
       "difficulty": 1,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "7 packs, 6 crayons each — this is a multiplication problem.",
+        "7 × 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how describe patterns works."
+        "correct": "Correct! 7 × 6 = 42 crayons.",
+        "incorrect": "Not quite. 7 packs × 6 crayons each = 42 crayons."
       }
     },
     {
@@ -296,12 +375,12 @@
       "explanation": "5 × 5 = 25.",
       "difficulty": 1,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "5 books, 5 tickets each — multiply.",
+        "5 × 5 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how describe patterns works."
+        "correct": "Correct! 5 × 5 = 25 tickets.",
+        "incorrect": "Not quite. 5 books × 5 tickets each = 25 tickets."
       }
     },
     {
@@ -318,12 +397,12 @@
       "explanation": "2 × 9 = 18.",
       "difficulty": 1,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "2 walks per day for 9 days — multiply.",
+        "2 × 9 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how describe patterns works."
+        "correct": "Correct! 2 × 9 = 18 walks.",
+        "incorrect": "Not quite. 2 walks/day × 9 days = 18 walks."
       }
     },
     {
@@ -340,12 +419,50 @@
       "explanation": "4 × 8 = 32.",
       "difficulty": 1,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "8 groups, 4 trees per group — multiply.",
+        "4 × 8 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how describe patterns works."
+        "correct": "Correct! 4 × 8 = 32 pear trees.",
+        "incorrect": "Not quite. 4 trees/group × 8 groups = 32 pear trees."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "stem": "There are 7 vases. Each vase has 5 flowers. How many flowers are there in all? Enter the number.",
+      "answer": "35",
+      "explanation": "7 × 5 = 35.",
+      "difficulty": 1,
+      "hints": [
+        "7 groups of 5 flowers — write it as 7 × 5.",
+        "7 × 5 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 5 = 35 flowers.",
+        "incorrect": "Not quite. 7 vases × 5 flowers each = 35 flowers."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "MC",
+      "stem": "| Boxes | 4 | 5 | 6 | 7 |\n|---|---|---|---|---|\n| Cans | 24 | 30 | ? | 42 |\n\nWhat is the missing number?",
+      "choices": [
+        "32",
+        "34",
+        "36",
+        "38"
+      ],
+      "answer": "C",
+      "explanation": "The rule is × 6. 6 × 6 = 36.",
+      "difficulty": 2,
+      "hints": [
+        "Find the rule: 4 boxes → 24 cans. 4 × ? = 24.",
+        "The rule is ×6. Apply it to input 6: 6 × 6 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! The rule is ×6. 6 × 6 = 36.",
+        "incorrect": "Not quite. The rule is ×6. 6 × 6 = 36."
       }
     }
   ],
@@ -364,12 +481,12 @@
       "explanation": "The rule is × 7. 6 × 7 = 42, 7 × 7 = 49.",
       "difficulty": 2,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "Find the rule: 3 shelves → 21 books. 3 × ? = 21.",
+        "The rule is ×7. Apply it to inputs 6 and 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how describe patterns works."
+        "correct": "Correct! The rule is ×7. 6 × 7 = 42 and 7 × 7 = 49.",
+        "incorrect": "Not quite. The rule is ×7. 6 × 7 = 42 and 7 × 7 = 49."
       }
     },
     {
@@ -386,12 +503,12 @@
       "explanation": "8 × 9 = 72.",
       "difficulty": 2,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "8 rows, 9 stalks each — multiply.",
+        "8 × 9 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how describe patterns works."
+        "correct": "Correct! 8 × 9 = 72 stalks.",
+        "incorrect": "Not quite. 8 rows × 9 stalks each = 72 stalks."
       }
     },
     {
@@ -408,12 +525,12 @@
       "explanation": "7 × 6 = 42.",
       "difficulty": 2,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "Multiply the input by the rule: 7 × 6 = ?",
+        "6 × 7 and 7 × 6 are the same product (Commutative Property)."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how describe patterns works."
+        "correct": "Correct! 7 × 6 = 42.",
+        "incorrect": "Not quite. Multiply the input by the rule: 7 × 6 = 42."
       }
     },
     {
@@ -430,12 +547,130 @@
       "explanation": "The pattern shows × 6. 24 ÷ 6 = 4, so the missing input is 4.",
       "difficulty": 2,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "The output is 24 and the rule is ×6. What input × 6 = 24?",
+        "Reverse the rule: 24 ÷ 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how describe patterns works."
+        "correct": "Correct! 24 ÷ 6 = 4 — the missing input is 4.",
+        "incorrect": "Not quite. Reverse the rule: 24 ÷ 6 = 4, so the missing input is 4."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "The rule for a pattern table is Multiply by 8. The input is 9. What is the output? Enter the number.",
+      "answer": "72",
+      "explanation": "9 × 8 = 72.",
+      "difficulty": 2,
+      "hints": [
+        "Multiply the input by the rule: 9 × 8 = ?",
+        "9 × 8: think 9 × 10 = 90, then subtract 18 to get 72."
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 8 = 72.",
+        "incorrect": "Not quite. 9 × 8 = 72."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "| Days | 1 | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|---|\n| Hours of Practice | 3 | 6 | 9 | 12 | ? |\n\nWhat number is missing?",
+      "choices": [
+        "13",
+        "14",
+        "15",
+        "18"
+      ],
+      "answer": "C",
+      "explanation": "The rule is × 3. 5 × 3 = 15.",
+      "difficulty": 2,
+      "hints": [
+        "Find the rule: 1 day → 3 hours. 1 × ? = 3.",
+        "Apply the rule to input 5: 5 × 3 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! The rule is ×3. 5 × 3 = 15.",
+        "incorrect": "Not quite. The rule is ×3. 5 × 3 = 15."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "MC",
+      "stem": "True or False: If the rule is Multiply by 4 and the input is 0, the output is 0.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "answer": "A",
+      "explanation": "0 × 4 = 0. The Zero Property says any number times 0 equals 0.",
+      "difficulty": 2,
+      "hints": [
+        "Multiply: 0 × 4 = ?",
+        "Zero multiplied by any number always equals zero."
+      ],
+      "feedback": {
+        "correct": "Correct! 0 × 4 = 0 — the Zero Property.",
+        "incorrect": "Not quite. 0 × 4 = 0, so the output is 0. True."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "A table has the rule Multiply by 7. When the input is 4, the output is 28. When the input changes to 8, what is the output?",
+      "choices": [
+        "42",
+        "49",
+        "56",
+        "63"
+      ],
+      "answer": "C",
+      "explanation": "8 × 7 = 56. Also note: the input doubled (4→8) so the output also doubled (28→56).",
+      "difficulty": 2,
+      "hints": [
+        "Apply the rule to the new input: 8 × 7 = ?",
+        "If the input doubles (4→8), the output also doubles (28→?)."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 7 = 56. Notice the input doubled and so did the output.",
+        "incorrect": "Not quite. Apply the rule: 8 × 7 = 56."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "A table has the rule Multiply by 9. The input is 7. What is the output? Enter the number.",
+      "answer": "63",
+      "explanation": "7 × 9 = 63.",
+      "difficulty": 2,
+      "hints": [
+        "Multiply: 7 × 9 = ?",
+        "7 × 9: think 7 × 10 = 70, then subtract 7 to get 63."
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 9 = 63.",
+        "incorrect": "Not quite. 7 × 9 = 63."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "| Bags | 5 | 6 | 7 | 8 |\n|---|---|---|---|---|\n| Oranges | 30 | 36 | ? | 48 |\n\nWhat is the missing number?",
+      "choices": [
+        "38",
+        "40",
+        "42",
+        "44"
+      ],
+      "answer": "C",
+      "explanation": "The rule is × 6. 7 × 6 = 42.",
+      "difficulty": 2,
+      "hints": [
+        "Find the rule: 5 bags → 30 oranges. 5 × ? = 30.",
+        "The rule is ×6. Apply it to input 7: 7 × 6 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! The rule is ×6. 7 × 6 = 42.",
+        "incorrect": "Not quite. The rule is ×6. 7 × 6 = 42."
       }
     }
   ],
@@ -454,12 +689,12 @@
       "explanation": "Doubling one factor doubles the product. 2 × 5 = 10, 4 × 5 = 20 (10 doubled is 20). Correct!",
       "difficulty": 3,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "Does doubling the input also double the output? Check: 2×5=10, 4×5=?",
+        "Which pair shows: input doubled (2→4) AND output doubled (10→20)?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how describe patterns works."
+        "correct": "Correct! When one factor doubles, the product doubles. 2×5=10 and 4×5=20.",
+        "incorrect": "Not quite. Check choice B: 2×5=10 and 4×5=20 — input doubled (2→4) and output doubled (10→20)."
       }
     },
     {
@@ -473,15 +708,15 @@
         "7 and 10; multiply minutes by 10"
       ],
       "answer": "C",
-      "explanation": "40 ÷ 5 = 8, 50 ÷ 5 = 10. Or think: every 10 min = 2 laps → every 5 min = 1 lap → laps = minutes ÷ 5.",
+      "explanation": "40 ÷ 5 = 8, 50 ÷ 5 = 10. Every 10 minutes = 2 laps → every 5 minutes = 1 lap → laps = minutes ÷ 5.",
       "difficulty": 3,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "Find the pattern: 10 min→2 laps, 20 min→4 laps. What operation on minutes gives laps?",
+        "Try dividing: 10 ÷ 5 = 2 ✓, 20 ÷ 5 = 4 ✓. The rule is ÷5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how describe patterns works."
+        "correct": "Correct! Laps = minutes ÷ 5. 40÷5=8 and 50÷5=10.",
+        "incorrect": "Not quite. The rule is divide minutes by 5. 40÷5=8 and 50÷5=10."
       }
     },
     {
@@ -498,12 +733,50 @@
       "explanation": "The rule is × 8. 3×8=24 ✓, 4×8=32 ✓, 5×8=40 ≠ 42 ✗, 6×8=48 ✓.",
       "difficulty": 3,
       "hints": [
-        "Think about what describe patterns means.",
-        "Try drawing a picture or using a number line."
+        "Find the rule using the first two entries: 3 sheets → 24 stickers. 3 × ? = 24.",
+        "The rule is ×8. Check every row — which output doesn't match?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how describe patterns works."
+        "correct": "Correct! The rule is ×8. 5 × 8 = 40, not 42.",
+        "incorrect": "Not quite. The rule is ×8. Check: 5 × 8 = 40 ≠ 42, so the row '5 sheets – 42' is wrong."
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "A table shows the rule Multiply by 7:\n\n| Input | 2 | 4 | 6 | 8 |\n|---|---|---|---|---|\n| Output | 14 | 28 | 42 | ? |\n\nWhat is the missing output?",
+      "choices": [
+        "48",
+        "52",
+        "54",
+        "56"
+      ],
+      "answer": "D",
+      "explanation": "8 × 7 = 56.",
+      "difficulty": 3,
+      "hints": [
+        "Apply the rule: input × 7 = output. What is 8 × 7?",
+        "Check the pattern: 2×7=14 ✓, 4×7=28 ✓, 6×7=42 ✓, 8×7=?"
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 7 = 56.",
+        "incorrect": "Not quite. Apply the rule: 8 × 7 = 56."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "A pattern table has the rule Multiply by 7. The output is 63. What is the input? Enter the number.",
+      "answer": "9",
+      "explanation": "To find the input, reverse the rule: 63 ÷ 7 = 9.",
+      "difficulty": 3,
+      "hints": [
+        "To find a missing input, reverse the rule: output ÷ rule = input.",
+        "63 ÷ 7 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 63 ÷ 7 = 9 — the input is 9.",
+        "incorrect": "Not quite. Reverse the rule: 63 ÷ 7 = 9."
       }
     }
   ],
