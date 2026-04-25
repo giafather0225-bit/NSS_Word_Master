@@ -20,7 +20,6 @@ from typing import Optional
 # @tag MATH @tag ACADEMY
 MATH_UNIT_TEST_PASS_RATIO = 0.9
 
-
 # @tag MATH @tag ACADEMY
 def _normalize_math_answer(s: str) -> str:
     """Normalize a raw answer string for tolerant comparison.
@@ -33,7 +32,6 @@ def _normalize_math_answer(s: str) -> str:
     s = s.replace(",", "")
     s = re.sub(r"\s+", " ", s)
     return s
-
 
 # @tag MATH @tag ACADEMY
 def _to_number(s: str) -> Optional[float]:
@@ -51,7 +49,6 @@ def _to_number(s: str) -> Optional[float]:
             return None
     return None
 
-
 # @tag MATH @tag ACADEMY
 def _answers_equivalent(user: str, correct: str) -> bool:
     """Compare answers tolerantly: numeric equality first, else string equality."""
@@ -65,7 +62,8 @@ def _answers_equivalent(user: str, correct: str) -> bool:
     return False
 
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from sqlalchemy import func
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 try:
@@ -83,7 +81,6 @@ logger = logging.getLogger(__name__)
 # ── Data directory for Math problem JSON files ──
 _DATA_DIR = Path(__file__).parent.parent / "data" / "math"
 
-
 # ── Pydantic schemas ─────────────────────────────────────────
 
 class SubmitAnswerIn(BaseModel):
@@ -100,7 +97,6 @@ class SubmitAnswerIn(BaseModel):
         self.user_answer = self.user_answer.strip()[:200]
         return self
 
-
 # ── Helpers ──────────────────────────────────────────────────
 
 # @tag MATH @tag ACADEMY
@@ -108,7 +104,6 @@ class SubmitAnswerIn(BaseModel):
 def _read_json_cached(path_str: str, mtime: float) -> dict:
     """Parse JSON keyed by (path, mtime) — file edits auto-invalidate."""
     return json.loads(Path(path_str).read_text("utf-8"))
-
 
 # @tag MATH @tag ACADEMY
 def _load_lesson_json(grade: str, unit: str, lesson: str) -> dict:
@@ -118,12 +113,10 @@ def _load_lesson_json(grade: str, unit: str, lesson: str) -> dict:
         return {}
     return _read_json_cached(str(path), path.stat().st_mtime)
 
-
 # @tag MATH @tag ACADEMY
 def clear_caches() -> None:
     """Drop cached lesson JSON (call from admin/reload endpoints if added)."""
     _read_json_cached.cache_clear()
-
 
 # @tag MATH @tag ACADEMY
 def _normalize_item(item: dict) -> dict:
@@ -141,7 +134,6 @@ def _normalize_item(item: dict) -> dict:
     if isinstance(t, str):
         out["type"] = t.upper() if t.lower() in {"mc", "card"} else t
     return out
-
 
 # @tag MATH @tag ACADEMY
 def _stage_problems(data: dict, stage: str) -> list:
@@ -161,7 +153,6 @@ def _stage_problems(data: dict, stage: str) -> list:
         return [_normalize_item(it) for it in items if it.get("section") == stage]
     return []
 
-
 # @tag MATH @tag ACADEMY
 def _list_dirs(parent: Path) -> list[str]:
     """List sorted subdirectory names under parent."""
@@ -171,7 +162,6 @@ def _list_dirs(parent: Path) -> list[str]:
         d.name for d in parent.iterdir()
         if d.is_dir() and not d.name.startswith(".")
     )
-
 
 # @tag MATH @tag ACADEMY
 def _list_json_files(parent: Path) -> list[str]:
@@ -183,7 +173,6 @@ def _list_json_files(parent: Path) -> list[str]:
         if f.suffix == ".json" and not f.name.startswith(".")
     )
 
-
 # ── Endpoints ────────────────────────────────────────────────
 
 # @tag MATH @tag ACADEMY
@@ -193,14 +182,12 @@ def get_grades() -> dict:
     grades = [g for g in _list_dirs(_DATA_DIR) if g.startswith("G")]
     return {"grades": grades}
 
-
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/{grade}/units")
 def get_units(grade: str) -> dict:
     """Return available units for a grade."""
     units = _list_dirs(_DATA_DIR / grade)
     return {"grade": grade, "units": units}
-
 
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/{grade}/{unit}/lessons")
@@ -243,7 +230,6 @@ def get_lessons(grade: str, unit: str, db: Session = Depends(get_db)) -> dict:
         "unit_test_unlocked": all_done and has_unit_test,
     }
 
-
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/{grade}/{unit}/{lesson}/{stage}")
 def get_stage_problems(grade: str, unit: str, lesson: str, stage: str) -> dict:
@@ -269,7 +255,6 @@ def get_stage_problems(grade: str, unit: str, lesson: str, stage: str) -> dict:
         "count": len(problems),
     }
 
-
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/{grade}/{unit}/unit-test")
 def get_unit_test(grade: str, unit: str) -> dict:
@@ -280,7 +265,6 @@ def get_unit_test(grade: str, unit: str) -> dict:
     data = _read_json_cached(str(path), path.stat().st_mtime)
     problems = data.get("problems", data if isinstance(data, list) else [])
     return {"grade": grade, "unit": unit, "problems": problems, "count": len(problems)}
-
 
 # @tag MATH @tag ACADEMY
 @router.post("/api/math/academy/submit-answer")
@@ -406,62 +390,6 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
         "solution_steps": problem.get("solution_steps", []),
     }
 
-
-# @tag MATH @tag ACADEMY
-@router.post("/api/math/academy/unit-test/submit")
-def submit_unit_test(
-    grade: str, unit: str, score: int, total: int,
-    db: Session = Depends(get_db),
-):
-    """Submit unit test results."""
-    passed = total > 0 and (score / total) >= MATH_UNIT_TEST_PASS_RATIO
-
-    # Update all lesson progress for this unit with unit test info
-    progs = db.query(MathProgress).filter_by(grade=grade, unit=unit).all()
-    for p in progs:
-        p.unit_test_score = score
-        p.unit_test_passed = passed
-
-    if passed:
-        try:
-            xp_engine.award_xp(db, "math_unit_test_pass", 15, f"Math {grade}/{unit}")
-        except Exception as e:
-            logger.warning("XP award failed: %s", e)
-        try:
-            streak_engine.mark_math_done(db)
-        except Exception as e:
-            logger.warning("Streak math mark failed: %s", e)
-
-    db.commit()
-
-    # Find weak lesson if failed
-    weak_lesson = None
-    if not passed:
-        # Count wrong attempts per lesson in this unit
-        from sqlalchemy import func
-        wrong_counts = (
-            db.query(MathAttempt.lesson, func.count(MathAttempt.id))
-            .filter(
-                MathAttempt.grade == grade,
-                MathAttempt.unit == unit,
-                MathAttempt.is_correct == False,
-            )
-            .group_by(MathAttempt.lesson)
-            .order_by(func.count(MathAttempt.id).desc())
-            .first()
-        )
-        if wrong_counts:
-            weak_lesson = wrong_counts[0]
-
-    return {
-        "passed": passed,
-        "score": score,
-        "total": total,
-        "percentage": round(score / total * 100, 1) if total else 0,
-        "weak_lesson": weak_lesson,
-    }
-
-
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/progress/{grade}")
 def get_grade_progress(grade: str, db: Session = Depends(get_db)):
@@ -480,10 +408,6 @@ def get_grade_progress(grade: str, db: Session = Depends(get_db)):
             "unit_test_passed": p.unit_test_passed,
         }
     return {"grade": grade, "progress": result}
-
-
-# ═══ PHASE-0 FIX: P0 complete-lesson ═══════════════════════════
-from pydantic import Field as _Field
 
 class CompleteLessonIn(BaseModel):
     """Mark a lesson as completed."""
@@ -508,22 +432,16 @@ async def complete_lesson(req: CompleteLessonIn, db: Session = Depends(get_db)):
         prog.is_completed = True
         prog.stage = "complete"
     try:
-        from services.xp_engine import award_xp
-        award_xp(db, action="math_lesson_complete",
-                 detail=f"{req.grade}/{req.unit}/{req.lesson}")
-    except Exception:
-        pass
+        xp_engine.award_xp(db, "math_lesson_complete", 10, f"{req.grade}/{req.unit}/{req.lesson}")
+    except Exception as e:
+        logger.warning("XP award failed: %s", e)
     try:
-        from services.streak_engine import mark_math_done
-        mark_math_done(db)
-    except Exception:
-        pass
+        streak_engine.mark_math_done(db)
+    except Exception as e:
+        logger.warning("Streak math mark failed: %s", e)
     db.commit()
     return {"status": "ok", "is_completed": True}
-# ═══ END P0 ════════════════════════════════════════════════════
 
-
-# ═══ PHASE-0 FIX: P3 unit-test body schema ═════════════════════
 class SubmitUnitTestIn(BaseModel):
     """Unit test result via JSON body."""
     grade: str
@@ -531,10 +449,10 @@ class SubmitUnitTestIn(BaseModel):
     score: int
     total: int
 
-@router.post("/api/math/academy/unit-test/submit-v2")
-async def submit_unit_test_v2(req: SubmitUnitTestIn, db: Session = Depends(get_db)):
+@router.post("/api/math/academy/unit-test/submit")
+async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get_db)):
     pct = (req.score / req.total * 100) if req.total else 0
-    passed = pct >= 70
+    passed = pct >= 90
     rows = (
         db.query(MathProgress)
         .filter_by(grade=req.grade, unit=req.unit)
@@ -544,16 +462,13 @@ async def submit_unit_test_v2(req: SubmitUnitTestIn, db: Session = Depends(get_d
         row.unit_test_score = req.score
     if passed:
         try:
-            from services.xp_engine import award_xp
-            award_xp(db, action="math_unit_test_pass",
-                     detail=f"{req.grade}/{req.unit}")
-        except Exception:
-            pass
+            xp_engine.award_xp(db, "math_unit_test_pass", 15, f"{req.grade}/{req.unit}")
+        except Exception as e:
+            logger.warning("XP award failed: %s", e)
         try:
-            from services.streak_engine import mark_math_done
-            mark_math_done(db)
-        except Exception:
-            pass
+            streak_engine.mark_math_done(db)
+        except Exception as e:
+            logger.warning("Streak math mark failed: %s", e)
     db.commit()
     result = {
         "status": "ok", "passed": passed,
@@ -562,8 +477,7 @@ async def submit_unit_test_v2(req: SubmitUnitTestIn, db: Session = Depends(get_d
     }
     if not passed:
         try:
-            from sqlalchemy import func
-            weak = (
+                weak = (
                 db.query(MathAttempt.lesson, func.count(MathAttempt.id).label("cnt"))
                 .filter_by(grade=req.grade, unit=req.unit, is_correct=False)
                 .group_by(MathAttempt.lesson)
@@ -575,4 +489,3 @@ async def submit_unit_test_v2(req: SubmitUnitTestIn, db: Session = Depends(get_d
         except Exception:
             pass
     return result
-# ═══ END P3 ════════════════════════════════════════════════════
