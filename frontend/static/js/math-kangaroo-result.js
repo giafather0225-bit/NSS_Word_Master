@@ -22,7 +22,7 @@ function showKangarooResult(data) {
     const xp = data.xp_earned || 0;
     const secRows = (data.sections || []).map(s => `
         <tr>
-            <td>${_kangEsc(s.name)}</td>
+            <td>${_mathEsc(s.name)}</td>
             <td>${s.correct}/${s.total}</td>
             <td>${s.points_earned}</td>
             <td>${s.max_points}</td>
@@ -30,7 +30,7 @@ function showKangarooResult(data) {
     `).join('');
     const topicRows = (data.topic_breakdown || []).map(t => `
         <tr>
-            <td>${_kangEsc(t.topic)}</td>
+            <td>${_mathEsc(t.topic)}</td>
             <td>${t.correct}</td>
             <td>${t.total}</td>
             <td>${t.rate.toFixed(1)}%</td>
@@ -43,10 +43,10 @@ function showKangarooResult(data) {
                 <div class="kang-result-score">
                     <div class="kang-score-big">${data.score} / ${data.max_score}</div>
                     <div class="kang-score-bar"><div class="kang-score-fill ${_resPctClass(pct)}" style="width:${pct}%"></div></div>
-                    <div class="kang-grade-label">${_kangEsc(data.grade_label || '')}</div>
+                    <div class="kang-grade-label">${_mathEsc(data.grade_label || '')}</div>
                 </div>
                 <div class="kang-result-meta">
-                    <div class="kang-result-time">⏱ ${_kangEsc(data.time_spent_formatted || '00:00')}</div>
+                    <div class="kang-result-time">⏱ ${_mathEsc(data.time_spent_formatted || '00:00')}</div>
                     <div class="kang-result-xp">⭐ +${xp} XP</div>
                     ${data.perfect ? `<div class="kang-result-perfect">🏆 Perfect!</div>` : ''}
                 </div>
@@ -121,23 +121,23 @@ function _resReviewCard(q) {
             let cls = '';
             if (isCorrect) cls = 'is-correct';
             else if (isStudent) cls = 'is-wrong';
-            return `<li class="kang-rv-opt ${cls}"><strong>(${k})</strong> ${_kangEsc(v)}</li>`;
+            return `<li class="kang-rv-opt ${cls}"><strong>(${k})</strong> ${_mathEsc(v)}</li>`;
         }).join('');
     const imgHtml = imageOnly
-        ? `<div class="kang-img kang-img-full"><img src="${q.image}" alt="${_kangEsc(q.image_description || q.question_text || '')}" loading="lazy"></div>`
+        ? `<div class="kang-img kang-img-full"><img src="${q.image}" alt="${_mathEsc(q.image_description || q.question_text || '')}" loading="lazy"></div>`
         : q.image
-            ? `<div class="kang-img"><img src="${q.image}" alt="${_kangEsc(q.image_description || '')}" loading="lazy"></div>`
+            ? `<div class="kang-img"><img src="${q.image}" alt="${_mathEsc(q.image_description || '')}" loading="lazy"></div>`
             : q.image_description
-                ? `<div class="kang-img kang-img-desc">${_kangEsc(q.image_description)}</div>`
+                ? `<div class="kang-img kang-img-desc">${_mathEsc(q.image_description)}</div>`
                 : '';
-    const qTextHtml = imageOnly ? '' : `<div class="kang-rv-q">${_kangEsc(q.question_text)}</div>`;
+    const qTextHtml = imageOnly ? '' : `<div class="kang-rv-q">${_mathEsc(q.question_text)}</div>`;
     const studentLine = q.student_answer
-        ? `<p>Your answer: <strong>(${_kangEsc(q.student_answer)})</strong></p>`
+        ? `<p>Your answer: <strong>(${_mathEsc(q.student_answer)})</strong></p>`
         : `<p><em>Unanswered</em></p>`;
     return `
         <article class="kang-review-card">
             <header class="kang-review-card-head">
-                <div>${icon} <strong>Q${q.number}</strong> · ${q.points} pts · ${_kangEsc(q.topic)}</div>
+                <div>${icon} <strong>Q${q.number}</strong> · ${q.points} pts · ${_mathEsc(q.topic)}</div>
                 <span class="kang-review-toggle">▾</span>
             </header>
             <div class="kang-review-card-body">
@@ -145,8 +145,8 @@ function _resReviewCard(q) {
                 ${imgHtml}
                 <ul class="kang-rv-opts ${imageOnly ? 'kang-rv-opts-compact' : ''}">${opts}</ul>
                 ${studentLine}
-                <p>Correct answer: <strong>(${_kangEsc(q.correct_answer)})</strong></p>
-                ${q.solution ? `<div class="kang-rv-sol"><strong>Solution:</strong> ${_kangEsc(q.solution)}</div>` : ''}
+                <p>Correct answer: <strong>(${_mathEsc(q.correct_answer)})</strong></p>
+                ${q.solution ? `<div class="kang-rv-sol"><strong>Solution:</strong> ${_mathEsc(q.solution)}</div>` : ''}
             </div>
         </article>
     `;
@@ -167,7 +167,7 @@ function showKangarooPdfResult(data, setInfo) {
 
     const secRows = (data.section_breakdown || []).map(s => `
         <tr>
-            <td>${_kangEsc(s.name)}</td>
+            <td>${_mathEsc(s.name)}</td>
             <td>${s.correct}/${s.total}</td>
             <td>${s.score}/${s.max} pts</td>
         </tr>
@@ -180,9 +180,9 @@ function showKangarooPdfResult(data, setInfo) {
         const you = d.student || '—';
         return `
             <tr class="kang-detail-${cls}">
-                <td>${/^[A-Za-z]/.test(String(d.question)) ? _kangEsc(d.question) : 'Q' + _kangEsc(d.question)}</td>
-                <td>${_kangEsc(you)}</td>
-                <td>${_kangEsc(d.correct)}</td>
+                <td>${/^[A-Za-z]/.test(String(d.question)) ? _mathEsc(d.question) : 'Q' + _mathEsc(d.question)}</td>
+                <td>${_mathEsc(you)}</td>
+                <td>${_mathEsc(d.correct)}</td>
                 <td>${icon}</td>
                 <td>${d.points} pts</td>
             </tr>`;
@@ -197,13 +197,13 @@ function showKangarooPdfResult(data, setInfo) {
     stage.innerHTML = `
         <div class="kang-wrap kang-result kang-pp-result">
             <header class="kang-result-head">
-                <h1>${_kangEsc(title)} — Results</h1>
+                <h1>${_mathEsc(title)} — Results</h1>
                 <div class="kang-result-score ${pctClass}">
                     <div class="kang-score-big">${data.score} / ${data.max_score}</div>
                     <div class="kang-score-pct">${pct}%</div>
                 </div>
                 <div class="kang-result-meta">
-                    ${timeStr ? `<span>Time: ${_kangEsc(timeStr)}</span>` : ''}
+                    ${timeStr ? `<span>Time: ${_mathEsc(timeStr)}</span>` : ''}
                     ${xp > 0 ? `<span class="kang-xp-badge">XP earned: +${xp}</span>` : ''}
                     ${data.is_new_best ? `<span class="kang-newbest">New Best!</span>` : ''}
                 </div>
@@ -231,7 +231,7 @@ function showKangarooPdfResult(data, setInfo) {
             </section>
 
             <div class="kang-result-actions">
-                ${pdfFile ? `<a class="kang-btn kang-btn-secondary" href="${_kangEsc(pdfFile)}" target="_blank" rel="noopener">View PDF</a>` : ''}
+                ${pdfFile ? `<a class="kang-btn kang-btn-secondary" href="${_mathEsc(pdfFile)}" target="_blank" rel="noopener">View PDF</a>` : ''}
                 <button class="kang-btn kang-btn-primary" id="kang-pp-retry">Try Again</button>
                 <button class="kang-btn kang-btn-secondary" id="kang-pp-back">Back to List</button>
             </div>
