@@ -1,7 +1,7 @@
 /* ================================================================
    math-placement.js — Math Placement Test UI
    Section: Math
-   Dependencies: core.js
+   Dependencies: core.js, math-placement-results.js (_renderPlacementResults)
    API endpoints: /api/math/placement/status, /api/math/placement/start,
                   /api/math/placement/next, /api/math/placement/check,
                   /api/math/placement/save, /api/math/placement/results

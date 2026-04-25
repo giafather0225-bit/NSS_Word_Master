@@ -7,6 +7,7 @@ API: GET /api/math/placement/status, GET /api/math/placement/start,
 """
 
 import json
+import random as _r
 import logging
 from datetime import datetime
 from functools import lru_cache
@@ -253,7 +254,6 @@ def placement_next(req: AdaptiveNextIn):
         by_grade.setdefault(q.get("grade", ""), []).append(q)
 
     # Walk outward from target grade.
-    import random as _r
     for offset in range(len(_GRADE_ORDER)):
         for i in (target_idx - offset, target_idx + offset):
             if 0 <= i < len(_GRADE_ORDER):
