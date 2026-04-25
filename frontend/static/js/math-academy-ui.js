@@ -189,11 +189,13 @@ function showMathStageFeedback(passed, pct) {
             <div class="math-feedback-icon">${passed ? '\u2713' : '\u2717'}</div>
             <h2>${passed ? 'Stage Passed!' : 'Not Yet \u2014 Let\u2019s Try Again!'}</h2>
             <p>Score: ${pct}% ${passed ? '' : '(Need 80% to pass)'}</p>
-            <button class="math-btn-primary" onclick="retryMathStage()">
+            <button class="math-btn-primary" id="math-stage-feedback-btn">
                 ${passed ? 'Continue' : 'Try Again'}
             </button>
         </div>
     `;
+    document.getElementById('math-stage-feedback-btn')
+        .addEventListener('click', () => retryMathStage());
 }
 
 /** @tag MATH @tag ACADEMY */
@@ -250,10 +252,12 @@ async function renderMathComplete() {
                 </div>
             </div>
             <div class="math-complete-actions">
-                <button class="math-btn-primary" onclick="exitMathLesson()">Back to Math</button>
+                <button class="math-btn-primary" id="math-complete-back-btn">Back to Math</button>
             </div>
         </div>
     `;
+    document.getElementById('math-complete-back-btn')
+        .addEventListener('click', () => exitMathLesson());
 }
 
 /** @tag MATH @tag ACADEMY */
