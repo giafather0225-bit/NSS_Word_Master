@@ -1,7 +1,7 @@
 /* ================================================================
    math-problem-types.js — Per-type problem body renderers
    Section: Math
-   Dependencies: core.js, math-problem-ui.js (_submitProblemAnswer, _escP, _escAttr)
+   Dependencies: core.js, math-katex-utils.js (_mathEsc, _mathEscAttr), math-problem-ui.js (_submitProblemAnswer)
    API endpoints: none
    Dispatcher: math-problem-ui.js (renderMathProblem)
 
@@ -12,7 +12,7 @@
      _renderDragSort  — drag-and-drop ordering (M4 schema)
    ================================================================ */
 
-/* global _submitProblemAnswer, _escP, _escAttr */
+/* global _submitProblemAnswer, _mathEsc, _mathEscAttr */
 
 // ── Drag-sort (M4) ─────────────────────────────────────────
 
@@ -34,9 +34,9 @@ function _renderDragSort(body, problem, onSubmit) {
             ${items.map(it => {
                 const id = typeof it === 'string' ? it : it.id;
                 const label = typeof it === 'string' ? it : (it.label || it.id);
-                return `<li class="math-drag-item" draggable="true" data-id="${_escAttr(id)}">
+                return `<li class="math-drag-item" draggable="true" data-id="${_mathEscAttr(id)}">
                           <span class="math-drag-handle">\u2630</span>
-                          <span class="math-drag-label">${_escP(label)}</span>
+                          <span class="math-drag-label">${_mathEsc(label)}</span>
                         </li>`;
             }).join('')}
         </ul>
@@ -97,9 +97,9 @@ function _renderMC(body, problem, onSubmit) {
     body.innerHTML = `
         <div class="math-mc-grid">
             ${opts.map((o, i) => `
-                <button class="math-mc-btn" data-val="${_escAttr(o)}" data-idx="${i}">
+                <button class="math-mc-btn" data-val="${_mathEscAttr(o)}" data-idx="${i}">
                     <span class="math-mc-letter">${String.fromCharCode(65 + i)}</span>
-                    <span class="math-mc-text">${_escP(o)}</span>
+                    <span class="math-mc-text">${_mathEsc(o)}</span>
                 </button>
             `).join('')}
         </div>
