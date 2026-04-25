@@ -160,7 +160,20 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
     if not problem:
         return {"error": "Original problem not found"}
 
-    correct_answer = str(problem.get("answer", "")).strip()
+    # answer 필드명 통일: "answer" 또는 "correct_answer" 모두 처리
+    correct_answer = str(
+        problem.get("answer") or problem.get("correct_answer") or ""
+    ).strip()
+    # choices list/dict일 때 answer 키→값 변환
+    choices = problem.get("choices")
+    if correct_answer and len(correct_answer) == 1 and correct_answer.upper() in "ABCDEFGH":
+        if isinstance(choices, dict):
+            correct_answer = str(choices.get(correct_answer.upper(), correct_answer)).strip()
+        elif isinstance(choices, list):
+            idx_c = ord(correct_answer.upper()) - 65
+            if 0 <= idx_c < len(choices):
+                c = str(choices[idx_c])
+                correct_answer = c[2:].strip() if len(c) > 2 and c[1] in ".)" else c
     is_correct = req.user_answer.strip().lower() == correct_answer.lower()
 
     row.times_reviewed += 1
@@ -181,5 +194,11 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
         "correct_answer": correct_answer,
         "is_mastered": row.is_mastered,
         "next_review_date": row.next_review_date if not row.is_mastered else None,
-        "feedback": problem.get("feedback_correct" if is_correct else "feedback_wrong", ""),
+        "feedback": (lambda fb: (
+            fb.get("correct", "") if is_correct else fb.get("incorrect", fb.get("wrong", ""))
+        ) if isinstance(fb, dict) else str(fb or ""))(
+            problem.get("feedback") or (
+                problem.get("feedback_correct" if is_correct else "feedback_wrong") or ""
+            )
+        ),
     }
