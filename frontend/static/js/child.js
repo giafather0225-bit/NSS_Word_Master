@@ -282,41 +282,6 @@ function advanceToNextStage() {
             </div>
         `;
 
-        if (!document.getElementById('sc-btn-style')) {
-            const sty = document.createElement('style');
-            sty.id = 'sc-btn-style';
-            sty.textContent = `
-                @keyframes sc-draw{from{stroke-dashoffset:151}to{stroke-dashoffset:0}}
-                @keyframes sc-tick{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
-                @keyframes sc-fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-                .sc-card{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:24px;max-width:680px;margin:24px auto;padding:32px 28px;background:var(--bg-card);border:1px solid var(--border-card);border-radius:var(--radius-lg)}
-                .sc-hero{display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;animation:sc-fade 0.4s 0.2s ease forwards}
-                .sc-svg{width:64px;height:64px;margin-bottom:4px}
-                .sc-circle{fill:none;stroke:var(--color-success);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:151;stroke-dashoffset:151;animation:sc-draw 0.7s ease forwards}
-                .sc-tick{fill:none;stroke:var(--color-success);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:sc-tick 0.35s 0.55s ease forwards}
-                .sc-eyebrow{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-secondary);margin:0}
-                .sc-title{font-size:22px;font-weight:700;color:var(--text-primary);letter-spacing:-0.01em;margin:0}
-                .sc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px;background:var(--bg-surface);border-radius:var(--radius-md);opacity:0;animation:sc-fade 0.4s 0.5s ease forwards}
-                .sc-stat{display:flex;flex-direction:column;align-items:center;gap:2px}
-                .sc-stat-val{font-size:24px;font-weight:700;color:var(--color-primary);line-height:1.1}
-                .sc-stat-val-miss{color:var(--color-warning)}
-                .sc-stat-lbl{font-size:11px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-secondary)}
-                .sc-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-height:160px;overflow-y:auto;padding:4px 0;opacity:0;animation:sc-fade 0.4s 0.7s ease forwards}
-                .sc-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--radius-full);font-size:13px;font-weight:500;border:1px solid var(--border-default);background:var(--bg-card);color:var(--text-primary)}
-                .sc-chip-ok{border-color:var(--color-success);color:var(--color-success);background:var(--color-success-light)}
-                .sc-chip-miss{border-color:var(--color-warning);color:var(--color-warning);background:var(--color-warning-light)}
-                .sc-chip-mark{font-weight:700;font-size:12px}
-                .sc-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0;animation:sc-fade 0.4s 0.9s ease forwards}
-                .sc-btn{padding:12px 28px;border-radius:var(--radius-md);font-size:15px;font-weight:600;cursor:pointer;transition:background 0.15s ease,transform 0.12s ease,border-color 0.15s ease;border:1px solid transparent;min-height:44px}
-                .sc-btn-primary{background:var(--color-primary);border-color:var(--color-primary);color:var(--text-on-primary)}
-                .sc-btn-primary:hover{background:var(--color-primary-hover);border-color:var(--color-primary-hover)}
-                .sc-btn-ghost{background:transparent;border-color:var(--border-default);color:var(--text-primary)}
-                .sc-btn-ghost:hover{background:var(--bg-surface);border-color:var(--border-strong)}
-                .sc-btn:active{transform:scale(0.98);opacity:0.9}
-                @media (max-width:520px){.sc-card{padding:24px 18px;gap:18px}.sc-title{font-size:20px}.sc-stat-val{font-size:20px}}
-            `;
-            document.head.appendChild(sty);
-        }
     }
 
     const _savedNextKey = allDone ? null : nextStageToStart();
