@@ -80,11 +80,57 @@ def _collect_practice_problems() -> list[dict]:
                     for p in data.get(key) or []:
                         if not isinstance(p, dict) or "answer" not in p:
                             continue
+                        if not str(p.get("question", "")).strip():
+                            continue  # skip problems with empty question text
+                        # choices → options 통합 (list 형식 + dict 형식 모두 처리)
+                        opts = p.get("options") or []
+                        if not opts:
+                            raw = p.get("choices") or []
+                            if isinstance(raw, dict):
+                                # {"A": "175", "B": "185", ...} → ["175", "185", ...]
+                                opts = list(raw.values())
+                            elif isinstance(raw, list):
+                                # ["A) 175", "B) 185", ...] → ["175", "185", ...]
+                                opts = [
+                                    c[3:].strip() if len(c) > 2 and c[1] in ".)" else c
+                                    for c in raw
+                                ]
+                        # choices → answer 키→값 변환 (dict형 + list형 모두 처리)
+                        raw_choices = p.get("choices")
+                        ans_val = str(p.get("answer", "")).strip()
+                        if raw_choices and ans_val:
+                            if isinstance(raw_choices, dict):
+                                # {"A": "175", "B": "185"} 형식
+                                ans_key = ans_val.upper()
+                                if ans_key in raw_choices:
+                                    p = dict(p)
+                                    p["answer"] = raw_choices[ans_key]
+                            elif isinstance(raw_choices, list):
+                                # ["A. 188", "B. 198"] 또는 ["A) 188", "B) 198"] 형식
+                                # answer가 단일 레이블("B")이면 해당 항목 값으로 변환
+                                if len(ans_val) == 1 and ans_val.upper() in "ABCDEFGH":
+                                    label = ans_val.upper()
+                                    for c in raw_choices:
+                                        c_str = str(c)
+                                        if len(c_str) > 2 and c_str[0].upper() == label and c_str[1] in ".)":
+                                            p = dict(p)
+                                            p["answer"] = c_str[2:].strip()
+                                            break
+                        # type 정규화
+                        _TYPE_MAP = {
+                            "MC": "mc", "multiple_choice": "mc",
+                            "TRUE_FALSE": "tf", "true_false": "tf",
+                            "INPUT": "input", "fill_in": "input",
+                            "DRAG_SORT": "drag_sort",
+                            "word_problem": "input", "open_response": "input",
+                            "compare": "mc", "ordering": "drag_sort",
+                        }
+                        ptype = _TYPE_MAP.get(p.get("type", "mc"), p.get("type", "mc")).lower()
                         pool.append({
                             "id": f"{grade_dir.name}/{unit_dir.name}/{lesson_file.stem}#{p.get('id','?')}",
-                            "type": p.get("type", "mc"),
+                            "type": ptype,
                             "question": p.get("question", ""),
-                            "options": p.get("options", []),
+                            "options": opts,
                             "answer": p.get("answer", ""),
                             "concept": p.get("concept", ""),
                             "feedback_correct": p.get("feedback_correct", "Correct!"),
@@ -205,8 +251,26 @@ def _pick_daily_problems(date_str: str, db: Session | None = None) -> list[dict]
 
     # Backfill any shortfall from the full pool so the challenge always
     # has _DAILY_COUNT problems even when buckets are empty (new users).
+    # Grade-filter backfill: prefer problems at or below the user's current grade.
     if len(picked) < n:
-        picked.extend(_take(pool, n - len(picked)))
+        grade_filter = None
+        if db is not None:
+            try:
+                latest_prog = (
+                    db.query(MathProgress)
+                    .order_by(MathProgress.last_accessed.desc().nullslast())
+                    .first()
+                )
+                if latest_prog and latest_prog.grade:
+                    grade_filter = latest_prog.grade
+            except Exception:
+                pass
+        if grade_filter:
+            grade_pool = [p for p in pool if _parse_problem_id(p["id"])[0] == grade_filter]
+            picked.extend(_take(grade_pool, n - len(picked)))
+        # Final fallback: unrestricted pool (new user with zero progress)
+        if len(picked) < n:
+            picked.extend(_take(pool, n - len(picked)))
 
     # Strip answer before sending to client
     return [{
@@ -287,7 +351,23 @@ def daily_submit_answer(req: DailyAnswerIn, db: Session = Depends(get_db)):
     if not full:
         raise HTTPException(status_code=404, detail="Problem not found")
 
-    is_correct = str(req.answer).strip().lower() == str(full["answer"]).strip().lower()
+    def _norm(s: str) -> str:
+        """정답 비교용 정규화: 공백 제거, 소문자, 분수 단순화."""
+        s = str(s).strip().lower().replace(" ", "")
+        # "3/6" vs "3" 등 분수 분자만 입력한 경우 대비
+        return s
+
+    user_ans = _norm(req.answer)
+    correct_ans = _norm(full["answer"])
+    # 분수: 분자만 입력 허용 (예: "3/6" 정답에 "3" 입력)
+    is_correct = user_ans == correct_ans
+    if not is_correct and "/" in correct_ans:
+        try:
+            num, den = correct_ans.split("/", 1)
+            if user_ans == num.strip():
+                is_correct = True
+        except Exception:
+            pass
     return {
         "is_correct": is_correct,
         "correct_answer": full["answer"],
