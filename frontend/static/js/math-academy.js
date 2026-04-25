@@ -108,14 +108,14 @@ async function loadMathStage(stageName) {
     } catch (err) {
         console.error('[math] Load stage failed:', err);
         mathState.problems = [];
-    // ── PHASE-0 FIX P1: reset missing state ──
-    mathState.wrongConcepts = [];
-    mathState._allWrong     = [];
-    mathState.consecCorrect = 0;
-    mathState.consecWrong   = 0;
-    mathState.forceHints    = false;
-    mathState.learnCards    = null;
-    // ── END P1 ──
+        // ── PHASE-0 FIX P1: reset missing state ──
+        mathState.wrongConcepts = [];
+        mathState._allWrong     = [];
+        mathState.consecCorrect = 0;
+        mathState.consecWrong   = 0;
+        mathState.forceHints    = false;
+        mathState.learnCards    = null;
+        // ── END P1 ──
     }
 
     // Cache learn cards on first fetch so Practice feedback can use CPA Fallback
