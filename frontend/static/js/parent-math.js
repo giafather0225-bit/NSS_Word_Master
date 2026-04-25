@@ -104,7 +104,7 @@ function _ppMathDailyChart(daily) {
         const pct = Math.round((score / maxScore) * 100);
         const dayLabel = (d.date || "").slice(5);
         const done = d.completed ? "pp-bar-fill pp-math-bar-done" : "pp-bar-fill pp-math-bar-partial";
-        return `<div class="pp-bar-col">
+        return `<div class="pp-bar-col" style="min-width:32px">
             <div class="pp-bar-value">${score}/${total}</div>
             <div class="pp-bar-track"><div class="${done}" style="height:${pct}%"></div></div>
             <div class="pp-bar-label">${dayLabel}</div>
