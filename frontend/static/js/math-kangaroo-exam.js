@@ -65,7 +65,8 @@ async function startKangarooExam(setId, mode) {
         stage.innerHTML = `
             <div class="kang-wrap">
                 <p class="kang-error">Couldn't load the set.</p>
-                <button class="kang-btn kang-btn-primary" onclick="startMathKangaroo()">← Back</button>
+                <button class="kang-btn kang-btn-primary" id="kang-back-btn-67">← Back</button>
+            document.getElementById("kang-back-btn-67").addEventListener("click", () => startMathKangaroo());
             </div>`;
     }
 }
@@ -79,7 +80,7 @@ function _examStartTimer() {
         if (examState.remainingSec <= 0) {
             clearInterval(examState.timerHandle);
             examState.timerHandle = null;
-            alert("Time's up! Your answers have been submitted automatically.");
+            _examShowTimeUpBanner();
             _examSubmit(true);
         }
     }, 1000);
@@ -102,7 +103,7 @@ function _examRender() {
     stage.innerHTML = `
         <div class="kang-wrap kang-exam">
             <header class="kang-exam-top">
-                <div class="kang-exam-title">${_kangEsc(examState.title)}</div>
+                <div class="kang-exam-title">${_mathEsc(examState.title)}</div>
                 <div class="kang-exam-timer ${examState.mode==='practice'?'is-hidden':''}">
                     <span id="kang-timer" class="kang-timer">${_examFmt(examState.remainingSec)}</span>
                 </div>
@@ -189,19 +190,19 @@ function _examRenderQuestion() {
         : Object.entries(q.options || {}).map(([k, v]) => `
             <button class="kang-opt ${selected === k ? 'is-selected' : ''}" data-opt="${k}">
                 <span class="kang-opt-letter">(${k})</span>
-                <span class="kang-opt-text">${_kangEsc(v)}</span>
+                <span class="kang-opt-text">${_mathEsc(v)}</span>
             </button>
         `).join('');
     const imgHtml = imageOnly
-        ? `<div class="kang-img kang-img-full"><img src="${q.image}" alt="${_kangEsc(q.image_description || q.question_text || '')}" loading="lazy"></div>`
+        ? `<div class="kang-img kang-img-full"><img src="${q.image}" alt="${_mathEsc(q.image_description || q.question_text || '')}" loading="lazy"></div>`
         : q.image
-            ? `<div class="kang-img"><img src="${q.image}" alt="${_kangEsc(q.image_description || '')}" loading="lazy"></div>`
+            ? `<div class="kang-img"><img src="${q.image}" alt="${_mathEsc(q.image_description || '')}" loading="lazy"></div>`
             : q.image_description
-                ? `<div class="kang-img kang-img-desc">${_kangEsc(q.image_description)}</div>`
+                ? `<div class="kang-img kang-img-desc">${_mathEsc(q.image_description)}</div>`
                 : '';
     const qTextHtml = imageOnly
         ? ''
-        : `<div class="kang-q-text">${_kangEsc(q.question_text)}</div>`;
+        : `<div class="kang-q-text">${_mathEsc(q.question_text)}</div>`;
     const checkHtml = examState.mode === 'practice'
         ? `<div class="kang-practice">
              <button class="kang-btn kang-btn-secondary" id="kang-check-btn">Check Answer</button>
@@ -209,10 +210,10 @@ function _examRenderQuestion() {
            </div>`
         : '';
     host.innerHTML = `
-        <div class="kang-section-label ${sectionTint}">${_kangEsc(q._section)}</div>
+        <div class="kang-section-label ${sectionTint}">${_mathEsc(q._section)}</div>
         <div class="kang-q-head">
             <div class="kang-q-id">Q${q.number} · ${pts} pts</div>
-            <div class="kang-q-topic">${_kangEsc(q.topic || '')}</div>
+            <div class="kang-q-topic">${_mathEsc(q.topic || '')}</div>
             <button class="kang-flag ${flagged ? 'is-on' : ''}" id="kang-flag-btn">⚑ Flag</button>
         </div>
         ${qTextHtml}
@@ -270,11 +271,11 @@ function _examShowFeedback(data) {
     const fb = document.getElementById('kang-feedback');
     if (!fb) return;
     const cls = data.is_correct ? 'kang-fb-ok' : 'kang-fb-no';
-    const head = data.is_correct ? '✓ Correct!' : `✗ Not quite — correct answer is (${_kangEsc(data.correct_answer)})`;
+    const head = data.is_correct ? '✓ Correct!' : `✗ Not quite — correct answer is (${_mathEsc(data.correct_answer)})`;
     fb.innerHTML = `
         <div class="kang-fb ${cls}">
             <div class="kang-fb-head">${head}</div>
-            ${data.solution ? `<div class="kang-fb-sol">${_kangEsc(data.solution)}</div>` : ''}
+            ${data.solution ? `<div class="kang-fb-sol">${_mathEsc(data.solution)}</div>` : ''}
         </div>
     `;
 }
@@ -350,9 +351,21 @@ async function _examSubmit(autoSubmit) {
         if (stage) stage.innerHTML = `
             <div class="kang-wrap">
                 <p class="kang-error">Submission failed. Please try again.</p>
-                <button class="kang-btn kang-btn-primary" onclick="startMathKangaroo()">← Back</button>
+                <button class="kang-btn kang-btn-primary" id="kang-back-btn-353">← Back</button>
+            document.getElementById("kang-back-btn-353").addEventListener("click", () => startMathKangaroo());
             </div>`;
     }
+}
+
+/** @tag MATH @tag KANGAROO */
+function _examShowTimeUpBanner() {
+    const stage = document.getElementById('stage');
+    if (!stage) return;
+    const banner = document.createElement('div');
+    banner.className = 'kang-timeup-banner';
+    banner.textContent = "Time’s up! Your answers have been submitted automatically.";
+    stage.prepend(banner);
+    setTimeout(() => banner.remove(), 3000);
 }
 
 window.startKangarooExam = startKangarooExam;
