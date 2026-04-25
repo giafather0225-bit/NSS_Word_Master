@@ -1,11 +1,11 @@
 /* ================================================================
    math-academy-feedback.js — Answer feedback overlay (Try/Practice)
    Section: Math
-   Dependencies: math-academy.js (mathState), math-academy-ui.js (_escS/_escAttrS)
+   Dependencies: math-academy.js (mathState), math-katex-utils.js (_mathEsc/_mathEscAttr)
    API endpoints: none (client-only rendering)
    ================================================================ */
 
-/* global mathState, _escS, _escAttrS */
+/* global mathState, _mathEsc, _mathEscAttr */
 
 // ── Feedback overlay ────────────────────────────────────────
 
@@ -55,9 +55,9 @@ function showMathFeedback(result, problem, onNext) {
         let cpaVisual = '';
         if (vtype === 'svg' || vtype === 'png') {
             const src = vdata.src || vdata.url || '';
-            if (src) cpaVisual = `<div class="math-cpa-fallback-visual"><img src="${_escS(src)}" alt="${_escS(vdata.alt || c.title || '')}" /></div>`;
+            if (src) cpaVisual = `<div class="math-cpa-fallback-visual"><img src="${_mathEsc(src)}" alt="${_mathEsc(vdata.alt || c.title || '')}" /></div>`;
         } else if (vtype && vtype !== 'none' && typeof vdata.description === 'string' && vdata.description) {
-            cpaVisual = `<div class="math-cpa-fallback-visual">${_escS(vdata.description)}</div>`;
+            cpaVisual = `<div class="math-cpa-fallback-visual">${_mathEsc(vdata.description)}</div>`;
         }
         if (vtype === 'manipulative' || vtype === 'addition_table' || vtype === 'bar_model') {
             cpaVisual = '<div class="math-cpa-manip-slot" id="math-cpa-manip-slot"></div>';
@@ -65,7 +65,7 @@ function showMathFeedback(result, problem, onNext) {
         cpaHtml = `
             <div class="math-cpa-fallback">
                 <div class="math-cpa-fallback-label">\u{1F4A1} Remember the picture:</div>
-                <div class="math-cpa-fallback-title">${_escS(c.title || '')}</div>
+                <div class="math-cpa-fallback-title">${_mathEsc(c.title || '')}</div>
                 ${cpaVisual}
             </div>
         `;
@@ -77,14 +77,14 @@ function showMathFeedback(result, problem, onNext) {
             <ol class="math-isteps-list">
                 ${iSteps.map((s, si) => `
                     <li class="math-istep" data-si="${si}">
-                        <div class="math-istep-prompt">${_escS(s.prompt || '')}</div>
+                        <div class="math-istep-prompt">${_mathEsc(s.prompt || '')}</div>
                         <div class="math-istep-inputs">
                             ${(s.inputs || []).map((inp, ii) => `
                                 <label class="math-istep-input">
-                                    <span class="math-istep-label">${_escS(inp.label || '')}</span>
+                                    <span class="math-istep-label">${_mathEsc(inp.label || '')}</span>
                                     <input type="text" class="math-input-field math-istep-field"
                                            data-si="${si}" data-ii="${ii}"
-                                           data-correct="${_escAttrS(String(inp.correct))}"
+                                           data-correct="${_mathEscAttr(String(inp.correct))}"
                                            autocomplete="off">
                                     <span class="math-istep-mark" data-mark="${si}-${ii}"></span>
                                 </label>
@@ -121,7 +121,7 @@ function showMathFeedback(result, problem, onNext) {
         <div class="math-feedback-card">
             <div class="math-feedback-result" id="${titleId}">${result.is_correct ? '\u2713 Correct!' : '\u2717 Not quite'}</div>
             ${!result.is_correct ? `<div class="math-feedback-answer">Answer: ${result.correct_answer}</div>` : ''}
-            ${result.feedback ? `<div class="math-feedback-text">${_escS(result.feedback)}</div>` : ''}
+            ${result.feedback ? `<div class="math-feedback-text">${_mathEsc(result.feedback)}</div>` : ''}
             ${interactiveHtml}
             ${stepsHtml}
             ${cpaHtml}
