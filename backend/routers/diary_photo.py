@@ -138,6 +138,42 @@ async def upload_diary_photo(
 
 
 # @tag DIARY @tag JOURNAL
+@router.post("/api/diary/photo/multi", status_code=201)
+async def upload_diary_photo_multi(
+    entry_date: str = Form(...),
+    file:       UploadFile = File(...),
+):
+    """
+    Save a single photo for the multi-photo Decorated diary.
+
+    Unlike `POST /api/diary/photo`, this endpoint does NOT touch
+    DiaryEntry.photo_path — the canonical store for multi-photo entries
+    is `photos_json` (set on Save in routers/diary.py). Returns the URL
+    so the client can include it in the snapshot.
+
+    Files use a deterministic name (date + epoch ms + 4-char rand + ext)
+    so concurrent uploads from the same date don't clash.
+    """
+    if not _DATE_RE.match(entry_date.strip()):
+        raise HTTPException(status_code=400, detail="entry_date must be YYYY-MM-DD")
+
+    ext = Path(file.filename or "upload.jpg").suffix.lower()
+    if ext not in _PHOTO_EXTS:
+        raise HTTPException(status_code=400, detail=f"File type '{ext}' not allowed")
+
+    import secrets
+    rand = secrets.token_hex(2)
+    fname = f"{entry_date.strip()}_{int(_time.time() * 1000)}_{rand}{ext}"
+    fpath = _PHOTO_DIR / fname
+    await _stream_save_photo(file, fpath)
+
+    return {
+        "filename":  fname,
+        "photo_url": f"/api/diary/photo/{fname}",
+    }
+
+
+# @tag DIARY @tag JOURNAL
 @router.delete("/api/diary/photo/{filename}")
 def delete_diary_photo(filename: str, db: Session = Depends(get_db)):
     """Remove a diary photo file and clear its DB reference."""

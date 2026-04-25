@@ -23,16 +23,32 @@ function openDiarySection(section) {
         btn.classList.remove("active");
     });
 
+    // Home + Write + Entry + Calendar are hub-level (no sidebar); others keep it.
+    const isHubLevel = !section || section === "today" || section === "journal"
+        || section === "freewriting" || section === "entry" || section === "calendar";
+    document.body.classList.toggle("dh-fullscreen", isHubLevel);
+
+    // Reset Write/Entry/Calendar screen markers when navigating elsewhere.
+    if (section !== "journal" && section !== "freewriting") {
+        view.classList.remove("dw-active");
+    }
+    if (section !== "entry") {
+        view.classList.remove("de-active");
+    }
+    if (section !== "calendar") {
+        view.classList.remove("dc-active");
+    }
+
     switch (section) {
-        case "today":       _renderDiaryToday();   break;
-        case "journal":     _renderJournal();      break;
-        case "freewriting": _renderFreeWriting();  break;
+        case "today":       _renderDiaryHome();    break;
+        case "journal":     (typeof _renderDiaryWrite === "function") ? _renderDiaryWrite("journal") : _renderJournal();      break;
+        case "freewriting": (typeof _renderDiaryWrite === "function") ? _renderDiaryWrite("free")    : _renderFreeWriting();  break;
         case "timeline":    _renderTimeline();     break;
         case "dayoff":      _renderDayOff();       break;
         case "sentences":   _renderSentences();    break;
-        case "calendar":    renderCalendar();      break;
+        case "calendar":    (typeof _renderDiaryCalendar === "function") ? _renderDiaryCalendar() : renderCalendar(); break;
         case "worlds":      _renderWorlds();       break;
-        default:            _renderDiaryToday();
+        default:            _renderDiaryHome();
     }
 }
 
@@ -51,186 +67,544 @@ function _fmtDate(d) {
     return d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 }
 
-// ─── Today Dashboard ─────────────────────────────────────────
+// ─── Diary Home (Decorated, Pinterest stationery) ───────────────
+// Spec: handoff/02b-diary-spec.md — Screen 1 (Diary Home)
+// Layout: 2×2 grid · Mode CTAs · Prompt card · Week mood + Polaroids · Stats 2×2
 
-/**
- * Render the Diary Today dashboard (stats, week, recent sentences, milestones).
- * @tag DIARY
- */
-async function _renderDiaryToday() {
-    const view = document.getElementById("diary-view");
-    const today = new Date();
-    const todayStr = today.toISOString().slice(0, 10);
-    const greeting = today.getHours() < 12 ? "Good morning" : today.getHours() < 17 ? "Good afternoon" : "Good evening";
-    const dateLabel = today.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+/** Mood palette — sync with handoff/reference/DiaryScreens.jsx MOODS. @tag DIARY */
+const _DH_MOODS = {
+    great:   { label: "great",   dot: "#E09AAE" },
+    happy:   { label: "happy",   dot: "#EEC770" },
+    calm:    { label: "calm",    dot: "#8AC4A8" },
+    curious: { label: "curious", dot: "#7FA8CC" },
+    tired:   { label: "tired",   dot: "#B8A4DC" },
+    sad:     { label: "sad",     dot: "#EBA98C" },
+};
+// Expose for diary-write.js (vanilla, no modules → cross-file via window).
+window._DH_MOODS = _DH_MOODS;
 
-    view.innerHTML = `
-        <div class="diary-section-header">
-            <div class="diary-section-date">${escapeHtml(dateLabel)}</div>
-            <div class="diary-section-title">${greeting}, Gia.</div>
-        </div>
-        <div class="diary-today" id="diary-today-body">
-            <div class="diary-stats-row" id="diary-stats-row">
-                <div class="diary-stat"><div class="diary-stat-label">Entries</div><div class="diary-stat-value" id="dst-entries">—</div><div class="diary-stat-unit">total</div></div>
-                <div class="diary-stat"><div class="diary-stat-label">Words</div><div class="diary-stat-value" id="dst-words">—</div><div class="diary-stat-unit">written</div></div>
-                <div class="diary-stat"><div class="diary-stat-label">Streak</div><div class="diary-stat-value streak" id="dst-streak">—</div><div class="diary-stat-unit">days</div></div>
-                <div class="diary-stat"><div class="diary-stat-label">Sentences</div><div class="diary-stat-value" id="dst-sentences">—</div><div class="diary-stat-unit">collected</div></div>
-            </div>
-            <div class="diary-week-section">
-                <div class="diary-week-label">This Week</div>
-                <div class="diary-week-row" id="diary-week-row"></div>
-            </div>
-            <div class="diary-today-section" id="diary-recent-section">
-                <div class="diary-today-section-head">
-                    <div class="diary-today-section-label">Recent Sentences</div>
-                    <button class="diary-today-view-all" onclick="openDiarySection('sentences')">View all →</button>
-                </div>
-                <div id="diary-recent-sentences"><p class="diary-state-msg compact">Loading…</p></div>
-            </div>
-            <div class="diary-today-section" id="diary-milestones-section">
-                <div class="diary-today-section-head">
-                    <div class="diary-today-section-label">Growth Milestones</div>
-                </div>
-                <div class="diary-milestones-row" id="diary-milestones-row">
-                    <p class="diary-state-msg compact">Loading…</p>
-                </div>
-            </div>
-        </div>`;
-
-    _loadTodayStats(todayStr);
-    _loadWeekCalendar(today);
-    _loadRecentSentences();
-    _loadMilestones();
+/** Lucide icon helper. Inline SVG via data attribute, hydrated by lucide.createIcons(). */
+function _dhIcon(name, size) {
+    const px = size || 16;
+    return `<i data-lucide="${name}" width="${px}" height="${px}"></i>`;
 }
 
-/** Load entry count, word count, streak, sentence count. @tag DIARY */
-async function _loadTodayStats(todayStr) {
+/** Hydrate Lucide icons inside the Diary Home root after innerHTML insertion. */
+function _dhRefreshIcons() {
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+        window.lucide.createIcons();
+    }
+}
+
+/**
+ * Render the Diary Home screen (Decorated 2×2 layout).
+ * @tag DIARY HOME
+ */
+async function _renderDiaryHome() {
+    const view = document.getElementById("diary-view");
+    if (!view) return;
+
+    view.innerHTML = `
+        <div class="dh-root" id="dh-root">
+            <header class="dh-chrome">
+                <div class="dh-chrome-left">
+                    <span class="dh-chrome-eyebrow">Diary · Today</span>
+                    <div class="dh-chrome-title">A little page for today</div>
+                    <div class="dh-chrome-sub">Write what you feel, or free-write for fun.</div>
+                </div>
+                <div>
+                    <button class="dh-cta-write" type="button" onclick="_dhStartWrite('journal')">
+                        ${_dhIcon("pen-tool", 14)} Start writing
+                    </button>
+                </div>
+            </header>
+
+            <div class="dh-grid">
+                <!-- Top-left: Mode CTAs -->
+                <div class="dh-modes">
+                    <button class="dh-mode" type="button" onclick="_dhStartWrite('journal')">
+                        <span class="dh-washi" style="top:-8px;left:20px;width:70px;background:var(--diary-soft);transform:rotate(-8deg);"></span>
+                        <div class="dh-mode-icon">${_dhIcon("book-open", 17)}</div>
+                        <div class="dh-mode-title">Journal</div>
+                        <div class="dh-mode-copy">Pick your mood, answer a prompt, add photos.</div>
+                        <div class="dh-mode-cta">Begin ${_dhIcon("chevron-right", 11)}</div>
+                    </button>
+                    <button class="dh-mode dh-mode--free" type="button" onclick="_dhStartWrite('free')">
+                        <span class="dh-washi" style="top:-8px;right:20px;width:70px;background:var(--english-soft);transform:rotate(6deg);"></span>
+                        <div class="dh-mode-icon">${_dhIcon("sparkles", 17)}</div>
+                        <div class="dh-mode-title">Free Write</div>
+                        <div class="dh-mode-copy">Write anything. AI gives gentle feedback.</div>
+                        <div class="dh-mode-cta">Begin ${_dhIcon("chevron-right", 11)}</div>
+                    </button>
+                </div>
+
+                <!-- Top-right: Prompt card -->
+                <div class="dh-prompt">
+                    <span class="dh-washi" style="top:-8px;left:32px;width:74px;background:var(--arcade-soft);transform:rotate(-4deg);"></span>
+                    <div class="dh-prompt-eyebrow">Today's prompt</div>
+                    <div class="dh-prompt-q" id="dh-prompt-q">What made you smile today?</div>
+                    <div class="dh-prompt-tip">Try using <i>three new words</i> from today's lesson.</div>
+                    <button class="dh-prompt-btn" type="button" onclick="_dhStartPrompt()">Start in Journal</button>
+                </div>
+
+                <!-- Bottom-left: Week mood + Recent polaroids -->
+                <div class="dh-bl">
+                    <div class="dh-week">
+                        <span class="dh-washi" style="top:-9px;left:28px;width:90px;background:var(--diary-soft);transform:rotate(-4deg);"></span>
+                        <div class="dh-week-head">
+                            <div>
+                                <div class="dh-week-title">This week's mood</div>
+                                <div class="dh-week-sub">Tap a day to open that entry.</div>
+                            </div>
+                            <button class="dh-week-link" type="button" onclick="openDiarySection('calendar')">
+                                Month view ${_dhIcon("chevron-right", 11)}
+                            </button>
+                        </div>
+                        <div class="dh-week-grid" id="dh-week-grid"></div>
+                    </div>
+
+                    <div class="dh-recent">
+                        <div class="dh-recent-head">
+                            <div class="dh-recent-title">Recent pages</div>
+                            <button class="dh-recent-link" type="button" onclick="openDiarySection('calendar')">See all</button>
+                        </div>
+                        <div class="dh-recent-grid" id="dh-recent-grid">
+                            <p class="diary-state-msg compact">Loading…</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom-right: Stats 2×2 + Day off CTA -->
+                <div class="dh-stats">
+                    <span class="dh-washi" style="top:-9px;left:28px;width:80px;background:var(--math-soft);transform:rotate(5deg);"></span>
+                    <div class="dh-stats-head">
+                        <div>
+                            <div class="dh-stats-title">This month</div>
+                            <div class="dh-stats-sub">Your writing life so far.</div>
+                        </div>
+                        <div class="dh-stats-month" id="dh-stats-month">—</div>
+                    </div>
+                    <div class="dh-stats-grid" id="dh-stats-grid">
+                        ${_dhTileSkeleton("Entries", "diary",   "notebook")}
+                        ${_dhTileSkeleton("Words",   "english", "edit-3")}
+                        ${_dhTileSkeleton("Streak",  "arcade",  "flame")}
+                        ${_dhTileSkeleton("Day off", "rewards", "coffee")}
+                    </div>
+                    <button class="dh-dayoff-cta" id="dh-dayoff-cta" type="button" onclick="_dhOpenDayOffModal()">
+                        ${_dhIcon("coffee", 13)} Request a day off
+                    </button>
+                </div>
+            </div>
+            ${_dhDayOffModalHTML()}
+        </div>`;
+
+    _dhRefreshIcons();
+    _dhFillStaticBits();
+    _dhLoadHomeData();
+}
+
+/** Render an empty stat tile placeholder. */
+function _dhTileSkeleton(label, color, icon) {
+    return `
+        <div class="dh-tile" data-tile="${label.toLowerCase().replace(/\s+/g,'-')}">
+            <div class="dh-tile-icon dh-tile-icon--${color}">${_dhIcon(icon, 17)}</div>
+            <div>
+                <div class="dh-tile-value" data-role="value">—</div>
+                <div class="dh-tile-label">${escapeHtml(label)}</div>
+                <div class="dh-tile-sub" data-role="sub">&nbsp;</div>
+            </div>
+        </div>`;
+}
+
+/** Fill bits that don't need an API call (current month label). */
+function _dhFillStaticBits() {
+    const month = new Date().toLocaleDateString("en-US", { month: "long" });
+    const el = document.getElementById("dh-stats-month");
+    if (el) el.textContent = month;
+}
+
+/** "Start writing" CTAs — Step 2 (Write screen) is not yet implemented in this PR. */
+function _dhStartWrite(mode) {
+    try { localStorage.setItem("nss.diary.seed.mode", mode || "journal"); } catch (_) {}
+    // Until /diary/write is built, fall back to existing Daily Journal section.
+    openDiarySection(mode === "free" ? "freewriting" : "journal");
+}
+
+/** "Start in Journal" — seeds prompt + mode then routes to Journal sub-section. */
+function _dhStartPrompt() {
+    const q = document.getElementById("dh-prompt-q");
+    const prompt = q ? q.textContent.trim() : "";
     try {
-        const [entriesRes, streakRes, sentencesRes] = await Promise.allSettled([
+        localStorage.setItem("nss.diary.seed.mode", "journal");
+        if (prompt) localStorage.setItem("nss.diary.seed.prompt", prompt);
+    } catch (_) {}
+    openDiarySection("journal");
+}
+
+/**
+ * Load entries + streak in parallel, then paint week strip / polaroids / stats.
+ * Falls back to placeholder content if the endpoints are unavailable.
+ * @tag DIARY HOME
+ */
+async function _dhLoadHomeData() {
+    let entries = [];
+    let streakDays = 0;
+    let dayOffs = [];
+
+    try {
+        const [entriesRes, streakRes, dayOffRes] = await Promise.allSettled([
             fetch(`/api/diary/entries?limit=100`),
             fetch(`/api/streak/status`),
-            fetch(`/api/diary/${encodeURIComponent(typeof currentSubject !== "undefined" ? currentSubject : "English")}/${encodeURIComponent(typeof currentTextbook !== "undefined" ? currentTextbook : "")}`),
+            fetch(`/api/day-off/requests`),
         ]);
 
         if (entriesRes.status === "fulfilled" && entriesRes.value.ok) {
             const d = await entriesRes.value.json();
-            const entries = d.entries || [];
-            const totalWords = entries.reduce((sum, e) => sum + (e.content || "").split(/\s+/).filter(Boolean).length, 0);
-            const el = document.getElementById("dst-entries");
-            const wEl = document.getElementById("dst-words");
-            if (el) el.textContent = entries.length;
-            if (wEl) wEl.textContent = totalWords.toLocaleString();
+            entries = Array.isArray(d.entries) ? d.entries : [];
         }
-
         if (streakRes.status === "fulfilled" && streakRes.value.ok) {
             const d = await streakRes.value.json();
-            const el = document.getElementById("dst-streak");
-            if (el) el.textContent = d.streak_days ?? d.current_streak ?? "0";
+            streakDays = d.streak_days ?? d.current_streak ?? 0;
         }
+        if (dayOffRes.status === "fulfilled" && dayOffRes.value.ok) {
+            const d = await dayOffRes.value.json();
+            dayOffs = Array.isArray(d.requests) ? d.requests : [];
+        }
+    } catch (_) { /* network error → keep placeholders */ }
 
-        if (sentencesRes.status === "fulfilled" && sentencesRes.value.ok) {
-            const d = await sentencesRes.value.json();
-            const el = document.getElementById("dst-sentences");
-            if (el) el.textContent = d.total_sentences ?? 0;
-        }
-    } catch (_) {}
+    _dhState.dayOffs = dayOffs;
+    _dhPaintWeek(entries);
+    _dhPaintRecent(entries);
+    _dhPaintStats(entries, streakDays, dayOffs);
 }
 
-/** Render the Mon–Sun week row with entry status. @tag DIARY */
-async function _loadWeekCalendar(today) {
-    const row = document.getElementById("diary-week-row");
-    if (!row) return;
+/** Render the 7-day week mood strip (Mon..Sun), filling cells that have entries. */
+function _dhPaintWeek(entries) {
+    const grid = document.getElementById("dh-week-grid");
+    if (!grid) return;
 
-    const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const todayStr  = today.toISOString().slice(0, 10);
+    const today = new Date();
+    const dow = today.getDay(); // 0=Sun..6=Sat
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - ((dow + 6) % 7)); // back up to Monday
 
-    // Build Mon–Sun for the current week
-    const dayOfWeek = today.getDay(); // 0=Sun
-    const monday    = new Date(today);
-    monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7));
+    const byDate = {};
+    for (const e of entries) {
+        const iso = (e.entry_date || e.date || "").slice(0, 10);
+        if (iso) byDate[iso] = e;
+    }
 
-    const days = Array.from({ length: 7 }, (_, i) => {
+    const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    let html = "";
+    for (let i = 0; i < 7; i++) {
         const d = new Date(monday);
         d.setDate(monday.getDate() + i);
-        return d;
-    });
-
-    // Fetch entries for this week range
-    const from = days[0].toISOString().slice(0, 10);
-    const to   = days[6].toISOString().slice(0, 10);
-    let entryDates = new Set();
-    try {
-        const res = await fetch(`/api/diary/entries?from=${from}&to=${to}`);
-        if (res.ok) {
-            const data = await res.json();
-            (data.entries || []).forEach(e => entryDates.add((e.entry_date || "").slice(0, 10)));
-        }
-    } catch (_) {}
-
-    row.innerHTML = days.map(d => {
-        const ds = d.toISOString().slice(0, 10);
-        const isToday    = ds === todayStr;
-        const hasEntry   = entryDates.has(ds);
-        const isFuture   = ds > todayStr;
-        let cls = "diary-week-day-box";
-        if (isToday)  cls += " today";
-        else if (hasEntry) cls += " has-entry";
-        return `<div class="diary-week-day">
-            <div class="diary-week-day-name">${DAY_NAMES[d.getDay()]}</div>
-            <div class="${cls}">${isFuture ? "" : (hasEntry || isToday ? "✓" : d.getDate())}</div>
-        </div>`;
-    }).join("");
+        const iso = d.toISOString().slice(0, 10);
+        const entry = byDate[iso];
+        const mood = entry?.mood || null;
+        const moodMeta = mood && _DH_MOODS[mood] ? _DH_MOODS[mood] : null;
+        const empty = !mood;
+        html += `
+            <button class="dh-week-cell ${empty ? "is-empty" : ""}" type="button"
+                ${empty ? "" : `aria-label="${escapeHtml(d.toDateString())}, ${escapeHtml(mood)} mood"`}
+                ${empty ? "disabled" : ""}>
+                <div class="dh-week-day">${labels[i]}</div>
+                <div class="dh-week-dot" style="${moodMeta ? `background:${moodMeta.dot};` : ""}"></div>
+            </button>`;
+    }
+    grid.innerHTML = html;
 }
 
-/** Load 3 most recent sentences. @tag DIARY */
-async function _loadRecentSentences() {
-    const el = document.getElementById("diary-recent-sentences");
-    if (!el) return;
-    try {
-        const subject  = typeof currentSubject  !== "undefined" ? currentSubject  : "English";
-        const textbook = typeof currentTextbook !== "undefined" ? currentTextbook : "";
-        const res = await fetch(`/api/diary/${encodeURIComponent(subject)}/${encodeURIComponent(textbook)}`);
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        const all = (data.lessons || []).flatMap(l => l.sentences || []).slice(0, 3);
-        if (!all.length) {
-            el.innerHTML = `<p class="diary-state-msg compact">No sentences yet. Complete Step 5!</p>`;
-            return;
-        }
-        el.innerHTML = all.map(s => `
-            <div class="diary-recent-sentence">
-                <div class="diary-recent-sentence-word">${escapeHtml(s.word || "")}</div>
-                <div class="diary-recent-sentence-text">${escapeHtml(s.sentence || "")}</div>
-            </div>`).join("");
-    } catch (_) {
-        el.innerHTML = `<p class="diary-state-msg compact">—</p>`;
+/** Render up to 3 polaroids of the most recent entries. */
+function _dhPaintRecent(entries) {
+    const grid = document.getElementById("dh-recent-grid");
+    if (!grid) return;
+
+    const sorted = [...entries].sort((a, b) => {
+        const da = (a.entry_date || a.date || "");
+        const db = (b.entry_date || b.date || "");
+        return db.localeCompare(da);
+    });
+    const recent = sorted.slice(0, 3);
+
+    if (recent.length === 0) {
+        grid.innerHTML = `<div class="dh-poly-empty">No pages yet. Start your first one →</div>`;
+        return;
+    }
+
+    const tiltClass = (i) => i === 0 ? "dh-poly--tilt-l" : i === 1 ? "" : "dh-poly--tilt-r";
+    grid.innerHTML = recent.map((e, i) => _dhPolaroid(e, tiltClass(i))).join("");
+}
+
+/** Single polaroid card markup. */
+function _dhPolaroid(entry, tiltClass) {
+    const mood = entry.mood && _DH_MOODS[entry.mood] ? _DH_MOODS[entry.mood] : null;
+    const photoBg = mood
+        ? `background:linear-gradient(135deg, ${mood.dot}, var(--diary-light));`
+        : "";
+    const photos = Array.isArray(entry.photos) ? entry.photos.slice(0, 3) : [];
+    const type = entry.type === "free" || entry.entry_type === "free" ? "Free Write" : "Journal";
+
+    let mosaic = "";
+    if (photos.length > 0) {
+        const cls = `dh-poly-mosaic--${photos.length}`;
+        mosaic = `<div class="dh-poly-mosaic ${cls}">` +
+            photos.map(p => {
+                const url = p.url || p.path || "";
+                const tone = p.tone || "var(--diary-soft)";
+                const bg = url
+                    ? `background-image:url('${url}');`
+                    : `background:linear-gradient(135deg, ${tone}, #fff);`;
+                return `<div class="dh-poly-tile" style="${bg}"></div>`;
+            }).join("") + `</div>`;
+    }
+
+    const countBadge = photos.length > 1
+        ? `<div class="dh-poly-count">${_dhIcon("grid", 10)} ${photos.length}</div>`
+        : "";
+
+    const title = entry.title || (entry.content || "").split(/[.!?]/)[0].slice(0, 40) || "Untitled";
+    const text  = (entry.content || entry.body || "").trim();
+    const dateLong = _dhFmtDateShort(entry.entry_date || entry.date || "");
+
+    const onClick = entry.id != null
+        ? `onclick="_dhOpenEntry(${Number(entry.id)})"`
+        : "";
+
+    return `
+        <button class="dh-poly ${tiltClass}" type="button" ${onClick}>
+            <div class="dh-poly-photo" style="${photoBg}">
+                ${mosaic}
+                <div class="dh-poly-pill">${type}</div>
+                ${countBadge}
+            </div>
+            <div class="dh-poly-body">
+                <div class="dh-poly-title">${escapeHtml(title)}</div>
+                <div class="dh-poly-text">${escapeHtml(text)}</div>
+                <div class="dh-poly-date">${escapeHtml(dateLong)}</div>
+            </div>
+        </button>`;
+}
+
+/** Open Entry screen for a given entry id. */
+function _dhOpenEntry(id) {
+    if (typeof _renderDiaryEntry === "function") {
+        // Mark the entry view active, then call the renderer directly so
+        // openDiarySection's cleanup logic doesn't fight us.
+        const view = document.getElementById("diary-view");
+        if (view) view.classList.add("de-active");
+        document.body.classList.add("dh-fullscreen");
+        _renderDiaryEntry(id);
+    } else {
+        openDiarySection("today");
     }
 }
 
-/** Load recent growth milestones. @tag DIARY */
-async function _loadMilestones() {
-    const row = document.getElementById("diary-milestones-row");
-    if (!row) return;
+/** Format ISO date as e.g. "APR 23". */
+function _dhFmtDateShort(iso) {
+    if (!iso) return "";
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return "";
+    return d.toLocaleDateString("en-US", { month: "short", day: "2-digit" }).toUpperCase();
+}
+
+/** Paint the 4 stat tiles (Entries / Words / Streak / Day off). */
+function _dhPaintStats(entries, streakDays, dayOffs) {
+    const monthIso = new Date().toISOString().slice(0, 7);
+    const monthEntries = entries.filter(e => (e.entry_date || e.date || "").startsWith(monthIso));
+    const totalWords = monthEntries.reduce(
+        (sum, e) => sum + ((e.content || e.body || "").split(/\s+/).filter(Boolean).length),
+        0
+    );
+
+    const used = (dayOffs || [])
+        .filter(r => (r.request_date || "").startsWith(monthIso))
+        .filter(r => {
+            const s = (r.status || "").toLowerCase();
+            return s === "approved" || s === "pending";
+        }).length;
+    const left = Math.max(_DH_DAYOFF_MAX - used, 0);
+
+    const set = (label, value, sub) => {
+        const tile = document.querySelector(`.dh-tile[data-tile="${label}"]`);
+        if (!tile) return;
+        const v = tile.querySelector('[data-role="value"]');
+        const s = tile.querySelector('[data-role="sub"]');
+        if (v) v.textContent = value;
+        if (s) s.textContent = sub || "";
+    };
+
+    set("entries", String(monthEntries.length), "this month");
+    set("words",   totalWords.toLocaleString(),  "kept writing");
+    set("streak",  `${streakDays}d`,             streakDays > 0 ? "keep it going" : "start today");
+    set("day-off", `${used}/${_DH_DAYOFF_MAX}`,  left > 0 ? `${left} left` : "all used");
+
+    // Reflect remaining quota on the CTA button.
+    const cta = document.getElementById("dh-dayoff-cta");
+    if (cta) {
+        if (left <= 0) {
+            cta.disabled = true;
+            cta.setAttribute("aria-disabled", "true");
+            cta.innerHTML = `${_dhIcon("coffee", 13)} No day offs left this month`;
+        } else {
+            cta.disabled = false;
+            cta.removeAttribute("aria-disabled");
+            cta.innerHTML = `${_dhIcon("coffee", 13)} Request a day off`;
+        }
+    }
+    _dhRefreshIcons();
+}
+
+/* ── Day Off Request modal (Home) ──────────────────────────────── */
+
+const _DH_DAYOFF_MAX = 2;
+const _dhState = { dayOffs: [], modal: { open: false } };
+
+/** Modal markup — hidden by default. */
+function _dhDayOffModalHTML() {
+    return `
+        <div class="dh-modal-backdrop is-hidden" id="dh-dayoff-modal" role="dialog"
+             aria-modal="true" aria-label="Request a day off"
+             onclick="_dhCloseDayOffModalIfBackdrop(event)">
+            <div class="dh-modal" onclick="event.stopPropagation()">
+                <span class="dh-washi" style="top:-9px;left:32px;width:90px;background:var(--arcade-soft);transform:rotate(-4deg);"></span>
+                <div class="dh-modal-head">
+                    <div class="dh-modal-icon">${_dhIcon("coffee", 17)}</div>
+                    <div>
+                        <div class="dh-modal-title">Take a day off?</div>
+                        <div class="dh-modal-sub" id="dh-dayoff-sub">— left this month</div>
+                    </div>
+                </div>
+                <div class="dh-modal-field">
+                    <label class="dh-modal-label" for="dh-dayoff-date">Which day?</label>
+                    <input class="dh-modal-input" type="date" id="dh-dayoff-date" min=""/>
+                    <div class="dh-modal-help">Future days only.</div>
+                </div>
+                <div class="dh-modal-field">
+                    <label class="dh-modal-label" for="dh-dayoff-reason">
+                        Why? <span class="dh-modal-label-hint">(optional)</span>
+                    </label>
+                    <input class="dh-modal-input" type="text" id="dh-dayoff-reason"
+                           maxlength="60" placeholder="e.g. Family trip, feeling sick"/>
+                </div>
+                <div class="dh-modal-note">
+                    ${_dhIcon("heart", 13)}
+                    Mom or Dad will see your request and say OK.
+                </div>
+                <div class="dh-modal-error" id="dh-dayoff-error"></div>
+                <div class="dh-modal-actions">
+                    <button class="dh-modal-cancel" type="button" onclick="_dhCloseDayOffModal()">Cancel</button>
+                    <button class="dh-modal-submit" id="dh-dayoff-submit" type="button"
+                            onclick="_dhSubmitDayOff()" disabled aria-disabled="true">
+                        ${_dhIcon("check", 12)} Send request
+                    </button>
+                </div>
+            </div>
+        </div>`;
+}
+
+function _dhOpenDayOffModal() {
+    const monthIso = new Date().toISOString().slice(0, 7);
+    const used = (_dhState.dayOffs || [])
+        .filter(r => (r.request_date || "").startsWith(monthIso))
+        .filter(r => {
+            const s = (r.status || "").toLowerCase();
+            return s === "approved" || s === "pending";
+        }).length;
+    const left = Math.max(_DH_DAYOFF_MAX - used, 0);
+    if (left <= 0) return;
+
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const minDate = tomorrow.toISOString().slice(0, 10);
+
+    const modal = document.getElementById("dh-dayoff-modal");
+    const dateEl = document.getElementById("dh-dayoff-date");
+    const reasonEl = document.getElementById("dh-dayoff-reason");
+    const subEl = document.getElementById("dh-dayoff-sub");
+    const errEl = document.getElementById("dh-dayoff-error");
+    const submitEl = document.getElementById("dh-dayoff-submit");
+    if (!modal) return;
+
+    if (dateEl) {
+        dateEl.value = "";
+        dateEl.min = minDate;
+        dateEl.removeEventListener("input", _dhDayOffValidate);
+        dateEl.addEventListener("input", _dhDayOffValidate);
+    }
+    if (reasonEl) reasonEl.value = "";
+    if (subEl) subEl.textContent = `${left} / ${_DH_DAYOFF_MAX} left this month`;
+    if (errEl) errEl.textContent = "";
+    if (submitEl) {
+        submitEl.disabled = true;
+        submitEl.setAttribute("aria-disabled", "true");
+    }
+
+    modal.classList.remove("is-hidden");
+    _dhState.modal.open = true;
+    document.addEventListener("keydown", _dhDayOffKey);
+    setTimeout(() => dateEl && dateEl.focus(), 30);
+}
+
+function _dhDayOffValidate() {
+    const dateEl = document.getElementById("dh-dayoff-date");
+    const submitEl = document.getElementById("dh-dayoff-submit");
+    if (!submitEl) return;
+    const ok = !!(dateEl && dateEl.value);
+    submitEl.disabled = !ok;
+    submitEl.setAttribute("aria-disabled", String(!ok));
+}
+
+function _dhCloseDayOffModal() {
+    const modal = document.getElementById("dh-dayoff-modal");
+    if (modal) modal.classList.add("is-hidden");
+    _dhState.modal.open = false;
+    document.removeEventListener("keydown", _dhDayOffKey);
+}
+
+function _dhCloseDayOffModalIfBackdrop(e) {
+    if (e.target && e.target.id === "dh-dayoff-modal") _dhCloseDayOffModal();
+}
+
+function _dhDayOffKey(e) {
+    if (e.key === "Escape" && _dhState.modal.open) _dhCloseDayOffModal();
+}
+
+async function _dhSubmitDayOff() {
+    const dateEl = document.getElementById("dh-dayoff-date");
+    const reasonEl = document.getElementById("dh-dayoff-reason");
+    const errEl = document.getElementById("dh-dayoff-error");
+    const submitEl = document.getElementById("dh-dayoff-submit");
+    if (!dateEl || !dateEl.value) return;
+    const date = dateEl.value;
+    // Backend requires non-empty reason; provide a polite default if blank.
+    const reason = (reasonEl && reasonEl.value.trim()) || "Personal day";
+
+    if (errEl) errEl.textContent = "";
+    if (submitEl) submitEl.disabled = true;
+
     try {
-        const res = await fetch("/api/growth/timeline");
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        const events = (data.events || []).slice(0, 4);
-        if (!events.length) {
-            row.innerHTML = `<p class="diary-state-msg compact">Keep learning to unlock milestones!</p>`;
+        const res = await fetch("/api/day-off/request", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ request_date: date, reason }),
+        });
+        if (!res.ok) {
+            let msg = "Couldn't send the request.";
+            try {
+                const d = await res.json();
+                if (d && d.detail) msg = d.detail;
+            } catch (_) {}
+            if (errEl) errEl.textContent = msg;
+            if (submitEl) submitEl.disabled = false;
             return;
         }
-        const DOT_CLASS = { streak_7: "streak", lesson_pass: "", milestone_100: "success", theme_complete: "lilac" };
-        row.innerHTML = events.map(e => `
-            <div class="diary-milestone">
-                <div class="diary-milestone-dot ${DOT_CLASS[e.event_type] || ""}"></div>
-                <div>
-                    <div class="diary-milestone-text">${escapeHtml(e.title)}</div>
-                    <div class="diary-milestone-date">${escapeHtml(e.event_date || "")}</div>
-                </div>
-            </div>`).join("");
-    } catch (_) {
-        if (row) row.innerHTML = "";
+        _dhCloseDayOffModal();
+        // Refresh stats so the new pending request shows up immediately.
+        _dhLoadHomeData();
+    } catch (err) {
+        if (errEl) errEl.textContent = "Network error. Try again.";
+        if (submitEl) submitEl.disabled = false;
     }
 }
 

@@ -1,0 +1,709 @@
+/* ================================================================
+   diary-home.css — GIA's Diary · Home (Decorated, Pinterest stationery)
+   Section: Diary
+   Dependencies: theme.css
+   Spec: handoff/02b-diary-spec.md (Screen 1)
+   ================================================================ */
+
+/* ── Hub-level: hide app sidebar (and its toggle) while Diary Home is active. */
+/* Scoped to data-view="diary" so leaving Diary always restores the sidebar,
+   even if dh-fullscreen class lingers. */
+body[data-view="diary"].dh-fullscreen .sidebar,
+body[data-view="diary"].dh-fullscreen #sidebar,
+body[data-view="diary"].dh-fullscreen #sidebar-toggle,
+body[data-view="diary"].dh-fullscreen .sidebar-toggle {
+  display: none !important;
+}
+
+/* ── Decorated Home root ───────────────────────────────────────── */
+.dh-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--bg-page);
+  font-family: var(--font-family);
+}
+
+/* When Diary Home is active, allow the stage area to scroll vertically.
+   Without this the surrounding .app-shell `overflow: hidden` clips content
+   in narrow PWA windows (smaller than the 1280×900 design baseline). */
+body[data-view="diary"].dh-fullscreen #diary-view {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* ── Chrome (top header) ────────────────────────────────────────── */
+.dh-chrome {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 32px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-page);
+  flex-shrink: 0;
+}
+.dh-chrome-left { min-width: 0; }
+.dh-chrome-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--diary-soft);
+  color: var(--diary-ink);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.dh-chrome-title {
+  font-family: var(--font-family-display);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--diary-ink);
+  margin-top: 8px;
+  line-height: 1.1;
+}
+.dh-chrome-sub {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.dh-cta-write {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  background: var(--diary-primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(224, 154, 174, 0.32);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+.dh-cta-write:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(224, 154, 174, 0.40);
+}
+
+/* ── 2×2 grid ──────────────────────────────────────────────────── */
+/* Rows = auto so each card sizes to its content (no stretch overflow). */
+.dh-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  grid-template-rows: auto auto;
+  align-items: start;
+  gap: 18px;
+  padding: 20px 32px 24px;
+}
+
+/* ── Washi tape decoration ─────────────────────────────────────── */
+.dh-washi {
+  position: absolute;
+  height: 18px;
+  opacity: 0.85;
+  background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.3) 0 6px, transparent 6px 12px);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  pointer-events: none;
+}
+
+/* ── Mode CTAs (top-left) ──────────────────────────────────────── */
+.dh-modes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.dh-mode {
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid var(--diary-soft);
+  background: linear-gradient(160deg, var(--diary-light), #fff);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+.dh-mode:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(120, 90, 60, 0.10);
+}
+.dh-mode--free {
+  border-color: var(--english-soft);
+  background: linear-gradient(160deg, var(--english-light), #fff);
+}
+.dh-mode-icon {
+  width: 38px; height: 38px;
+  border-radius: 12px;
+  background: var(--diary-primary);
+  color: #fff;
+  display: grid; place-items: center;
+  margin-bottom: 12px;
+}
+.dh-mode--free .dh-mode-icon { background: var(--english-primary); }
+.dh-mode-title {
+  font-family: var(--font-family-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--diary-ink);
+}
+.dh-mode--free .dh-mode-title { color: var(--english-ink); }
+.dh-mode-copy {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  line-height: 1.45;
+}
+.dh-mode-cta {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--diary-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.dh-mode--free .dh-mode-cta { color: var(--english-primary); }
+
+/* ── Prompt card (top-right) ───────────────────────────────────── */
+.dh-prompt {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid var(--border-subtle);
+  background: linear-gradient(180deg, var(--diary-light), #fff);
+}
+.dh-prompt-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--diary-ink);
+}
+.dh-prompt-q {
+  font-family: 'Caveat', cursive;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--diary-ink);
+  margin-top: 4px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.dh-prompt-tip {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  flex: 1;
+}
+.dh-prompt-tip i { color: var(--diary-ink); }
+.dh-prompt-btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  background: var(--diary-primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter var(--transition-fast);
+}
+.dh-prompt-btn:hover { filter: brightness(1.05); }
+
+/* ── Bottom-left column (week mood + recent) ───────────────────── */
+.dh-bl {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+/* Week mood strip */
+.dh-week {
+  position: relative;
+  flex-shrink: 0;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-soft);
+}
+.dh-week-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+.dh-week-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.dh-week-sub {
+  font-size: 11px;
+  color: var(--text-hint);
+  margin-top: 1px;
+}
+.dh-week-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--diary-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.dh-week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.dh-week-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+.dh-week-cell.is-empty {
+  background: var(--bg-surface);
+  cursor: default;
+}
+.dh-week-cell:hover:not(.is-empty) { transform: translateY(-1px); }
+.dh-week-day {
+  font-size: 10px;
+  color: var(--text-hint);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.dh-week-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(120, 90, 60, 0.08);
+}
+.dh-week-cell.is-empty .dh-week-dot {
+  border: 1.5px dashed var(--border-subtle);
+  background: var(--bg-surface);
+  box-shadow: none;
+  opacity: 0.5;
+}
+
+/* Recent polaroids */
+.dh-recent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+.dh-recent-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.dh-recent-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.dh-recent-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--diary-primary);
+}
+.dh-recent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 12px;
+}
+.dh-poly {
+  text-align: left;
+  background: #fff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 8px 18px rgba(120, 90, 60, 0.10),
+              0 1px 2px rgba(120, 90, 60, 0.06);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.dh-poly--tilt-l { transform: rotate(-1.5deg); }
+.dh-poly--tilt-r { transform: rotate(1.5deg); }
+.dh-poly:hover { transform: rotate(0deg) translateY(-2px); }
+.dh-poly-photo {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--diary-soft), var(--diary-light));
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+}
+.dh-poly-mosaic {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 2px;
+}
+.dh-poly-mosaic--1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+.dh-poly-mosaic--2 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+.dh-poly-mosaic--3 { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
+.dh-poly-mosaic--3 > :first-child { grid-row: span 2; }
+.dh-poly-tile {
+  background: linear-gradient(135deg, var(--diary-soft), #fff);
+  background-size: cover;
+  background-position: center;
+}
+.dh-poly-pill {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--diary-ink);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.dh-poly-count {
+  position: absolute;
+  top: 8px; right: 8px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.dh-poly-body { padding: 10px 4px 4px; }
+.dh-poly-title {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--diary-ink);
+  line-height: 1.1;
+}
+.dh-poly-text {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dh-poly-date {
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--text-hint);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.dh-poly-empty {
+  grid-column: 1 / -1;
+  padding: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-hint);
+  border: 1px dashed var(--border-subtle);
+  border-radius: 12px;
+  background: var(--bg-card);
+}
+
+/* ── Stats (bottom-right) ──────────────────────────────────────── */
+.dh-stats {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-soft);
+}
+.dh-stats-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-shrink: 0;
+}
+.dh-stats-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.dh-stats-sub {
+  font-size: 11px;
+  color: var(--text-hint);
+  margin-top: 1px;
+}
+.dh-stats-month {
+  font-size: 11px;
+  color: var(--text-hint);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.dh-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.dh-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-page);
+  overflow: hidden;
+  min-width: 0;
+}
+.dh-tile > div:last-child { min-width: 0; }
+.dh-tile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.dh-tile-icon--diary   { background: var(--diary-primary); }
+.dh-tile-icon--english { background: var(--english-primary); }
+.dh-tile-icon--arcade  { background: var(--arcade-primary); }
+.dh-tile-icon--rewards { background: var(--rewards-primary); }
+.dh-tile-value {
+  font-family: var(--font-family-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.dh-tile-label {
+  font-size: 10px;
+  color: var(--text-hint);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.dh-tile-sub {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.dh-dayoff-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--arcade-soft);
+  background: var(--arcade-light);
+  color: var(--arcade-ink);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.dh-dayoff-cta:hover { background: var(--arcade-soft); }
+.dh-dayoff-cta:disabled,
+.dh-dayoff-cta[aria-disabled="true"] {
+  background: var(--bg-page);
+  color: var(--text-hint);
+  border-color: var(--border-subtle);
+  cursor: not-allowed;
+}
+
+/* ── Lucide icon stroke override (16px default) ────────────────── */
+.dh-root [data-lucide] {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.75;
+}
+.dh-root .dh-mode-icon [data-lucide],
+.dh-root .dh-tile-icon [data-lucide] { width: 17px; height: 17px; }
+
+/* ── Day Off Request modal ─────────────────────────────────────── */
+.dh-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(60, 40, 20, 0.28);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.dh-modal-backdrop.is-hidden { display: none; }
+.dh-modal {
+  position: relative;
+  width: 420px;
+  max-width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: var(--shadow-modal);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.dh-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dh-modal-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--arcade-primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.dh-modal-title {
+  font-family: var(--font-family-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--diary-ink);
+  line-height: 1.1;
+}
+.dh-modal-sub {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.dh-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dh-modal-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-hint);
+}
+.dh-modal-label-hint {
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-hint);
+}
+.dh-modal-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-page);
+  font-size: 13px;
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+.dh-modal-input:focus { border-color: var(--diary-primary); }
+.dh-modal-help {
+  font-size: 10.5px;
+  color: var(--text-hint);
+}
+.dh-modal-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--diary-light);
+  border: 1px solid var(--diary-soft);
+  color: var(--diary-ink);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+.dh-modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.dh-modal-cancel,
+.dh-modal-submit {
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.dh-modal-cancel {
+  background: var(--bg-page);
+  color: var(--text-primary);
+}
+.dh-modal-cancel:hover { background: var(--bg-surface); }
+.dh-modal-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--arcade-primary);
+  color: #fff;
+  border-color: var(--arcade-primary);
+  box-shadow: 0 3px 10px rgba(238, 199, 112, 0.32);
+}
+.dh-modal-submit:hover { filter: brightness(1.05); }
+.dh-modal-submit:disabled,
+.dh-modal-submit[aria-disabled="true"] {
+  background: var(--border-subtle);
+  color: var(--text-hint);
+  border-color: var(--border-subtle);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.dh-modal-error {
+  font-size: 11.5px;
+  color: var(--color-error, #c44e4e);
+}

@@ -1,0 +1,741 @@
+/* ================================================================
+   diary-write.css — GIA's Diary · Write screen (Decorated)
+   Section: Diary
+   Dependencies: theme.css, diary-home.css (chrome eyebrow / washi base)
+   Spec: handoff/02b-diary-spec.md (Screen 2)
+   ================================================================ */
+
+/* ── Root: 2-column layout (paper + 360px aside) ───────────────── */
+.dw-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--bg-page);
+  font-family: var(--font-family);
+}
+
+/* Use Diary Home scroll behavior — scoped via dh-fullscreen on <body>. */
+body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* ── Chrome (top header) ────────────────────────────────────────── */
+.dw-chrome {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 32px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+.dw-chrome-left { min-width: 0; }
+.dw-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px 6px 6px;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 8px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.dw-back:hover { background: var(--bg-card); color: var(--text-primary); }
+
+.dw-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--diary-soft);
+  color: var(--diary-ink);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.dw-title {
+  font-family: var(--font-family-display);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--diary-ink);
+  margin-top: 6px;
+  line-height: 1.1;
+}
+.dw-sub {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+/* Right slot: mode segmented · overflow · save */
+.dw-chrome-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Mode segmented control */
+.dw-segmented {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+.dw-seg {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.dw-seg.is-active {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: 0 1px 3px rgba(120, 90, 60, 0.12);
+}
+
+.dw-overflow {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.dw-overflow:hover { background: var(--bg-surface); }
+
+.dw-save {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--diary-primary);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(224, 154, 174, 0.32);
+  transition: filter var(--transition-fast), opacity var(--transition-fast);
+}
+.dw-save:hover { filter: brightness(1.05); }
+.dw-save:disabled,
+.dw-save[aria-disabled="true"] {
+  background: var(--border-subtle);
+  color: var(--text-hint);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+/* ── Body grid: paper + aside ───────────────────────────────────── */
+.dw-body {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 20px;
+  padding: 20px 32px 24px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Paper (left column) ────────────────────────────────────────── */
+.dw-paper {
+  position: relative;
+  border-radius: 18px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  padding: 22px 26px 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+  /* default paper background (Decorated, ruled) — overwritten inline by JS */
+  background:
+    repeating-linear-gradient(180deg, #FFFFFF 0 31px, var(--diary-light) 31px 32px);
+}
+
+/* Photos inline strip */
+.dw-photos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--border-subtle);
+  margin-bottom: 14px;
+}
+.dw-photo {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  background: var(--bg-surface) center / cover no-repeat;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 10px rgba(120, 90, 60, 0.08);
+  transform: rotate(-1.5deg);
+  flex-shrink: 0;
+}
+.dw-photo:nth-child(2n) { transform: rotate(1.5deg); }
+.dw-photo-x {
+  position: absolute;
+  top: -6px; right: -6px;
+  width: 18px; height: 18px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+.dw-photo-add {
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  border: 1.5px dashed var(--border-subtle);
+  background: transparent;
+  color: var(--text-hint);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.dw-photo-add:hover { border-color: var(--diary-primary); color: var(--diary-ink); }
+.dw-photo-input { display: none; }
+.dw-photos-count {
+  margin-left: auto;
+  font-size: 10.5px;
+  color: var(--text-hint);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Title input — Caveat large */
+.dw-title-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: 'Caveat', cursive;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--diary-ink);
+  line-height: 1.15;
+  padding: 0;
+  margin-bottom: 6px;
+}
+.dw-title-input::placeholder { color: var(--text-hint); }
+
+/* Prompt quote */
+.dw-prompt-quote {
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  padding-left: 10px;
+  border-left: 3px solid var(--diary-soft);
+}
+.dw-prompt-quote:empty { display: none; }
+
+/* Body textarea — font/size/color/lineHeight set inline by JS */
+.dw-body-input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  resize: none;
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  line-height: 34px;
+  color: var(--text-primary);
+  padding: 0;
+}
+.dw-body-input::placeholder { color: var(--text-hint); opacity: 0.85; }
+
+/* Paper footer (mood pill + word count + speak/listen) */
+.dw-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+  margin-top: 12px;
+  border-top: 1px dashed var(--border-subtle);
+  flex-shrink: 0;
+}
+.dw-mood-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+.dw-mood-pill:hover { border-color: var(--diary-primary); }
+.dw-mood-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--border-subtle);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(120, 90, 60, 0.12);
+}
+.dw-mood-popover {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 10px;
+  border-radius: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-modal);
+  width: 220px;
+}
+.dw-mood-popover.is-hidden { display: none; }
+.dw-mood-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 6px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: var(--bg-page);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.dw-mood-opt:hover { background: var(--bg-surface); }
+.dw-mood-opt.is-active {
+  border-color: var(--diary-primary);
+  background: var(--diary-light);
+}
+.dw-mood-opt-dot {
+  width: 18px; height: 18px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(120, 90, 60, 0.10);
+}
+.dw-mood-opt-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.dw-progress {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--text-hint);
+}
+.dw-progress b { color: var(--text-primary); font-weight: 700; }
+.dw-progress.is-met b { color: var(--math-primary); }
+.dw-progress-bar {
+  width: 80px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+.dw-progress-fill {
+  height: 100%;
+  background: var(--diary-primary);
+  transition: width 0.18s ease, background 0.18s ease;
+}
+.dw-progress.is-met .dw-progress-fill { background: var(--math-primary); }
+.dw-voice-btn {
+  width: 30px; height: 30px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  cursor: pointer;
+  font-size: 14px;
+  display: grid;
+  place-items: center;
+  transition: background var(--transition-fast);
+}
+.dw-voice-btn:hover { background: var(--bg-surface); }
+
+/* ── Aside (right column) ───────────────────────────────────────── */
+.dw-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* Generic aside card frame */
+.dw-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.dw-card-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-hint);
+}
+.dw-row-label {
+  font-size: 10.5px;
+  color: var(--text-hint);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Prompt bank (Journal) */
+.dw-prompts { display: flex; flex-direction: column; gap: 5px; }
+.dw-prompt-item {
+  text-align: left;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: var(--diary-light);
+  color: var(--diary-ink);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-family-display);
+  font-size: 11.5px;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: filter var(--transition-fast);
+}
+.dw-prompt-item:hover { filter: brightness(0.98); }
+.dw-prompt-item.is-active {
+  background: var(--diary-primary);
+  color: #fff;
+  border-color: var(--diary-primary);
+  font-weight: 600;
+}
+
+/* Writing tips (Free Write) */
+.dw-tips {
+  background: linear-gradient(160deg, var(--english-light), #fff);
+  border-color: var(--english-soft);
+}
+.dw-tips-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dw-tips-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.dw-tips-icon span:first-child {
+  width: 22px; height: 22px;
+  border-radius: 7px;
+  background: var(--english-primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.dw-tips-icon b {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--english-ink);
+}
+.dw-tips-next {
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--english-soft);
+  color: var(--english-ink);
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.dw-tips-key {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--english-ink);
+  line-height: 1.25;
+}
+.dw-tips-text {
+  font-size: 11.5px;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+.dw-tips-dots { display: flex; gap: 4px; }
+.dw-tips-dots div {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--english-soft);
+  width: 6px;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+.dw-tips-dots div.is-active { width: 18px; background: var(--english-primary); }
+
+/* Style tools */
+.dw-row-grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.dw-font-btn {
+  padding: 8px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-page);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.dw-font-btn:hover { background: var(--bg-surface); }
+.dw-font-btn.is-active {
+  border-color: var(--diary-primary);
+  background: var(--diary-light);
+}
+.dw-font-sample {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text-primary);
+}
+.dw-font-name {
+  font-size: 10px;
+  color: var(--text-hint);
+  font-weight: 600;
+}
+
+.dw-size-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.dw-size-btn {
+  padding: 8px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-page);
+  cursor: pointer;
+  font-family: var(--font-family-display);
+  color: var(--text-primary);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.dw-size-btn:hover { background: var(--bg-surface); }
+.dw-size-btn.is-active {
+  border-color: var(--diary-primary);
+  background: var(--diary-light);
+}
+.dw-size-btn[data-size="s"] { font-size: 13px; }
+.dw-size-btn[data-size="m"] { font-size: 16px; }
+.dw-size-btn[data-size="l"] { font-size: 20px; }
+
+.dw-color-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.dw-color-btn {
+  width: 28px; height: 28px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  transition: transform var(--transition-fast);
+}
+.dw-color-btn:hover { transform: scale(1.06); }
+.dw-color-btn.is-active {
+  border: 2px solid var(--diary-primary);
+  box-shadow: 0 0 0 2px var(--diary-light);
+}
+
+/* Decor tools — sticker tray + page color */
+.dw-stk-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.dw-stk-tab {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--bg-page);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.dw-stk-tab.is-active {
+  background: var(--diary-primary);
+  color: #fff;
+  border-color: var(--diary-primary);
+}
+.dw-stk-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 8px;
+}
+.dw-stk-btn {
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.dw-stk-btn:hover {
+  background: var(--bg-card);
+  transform: scale(1.1);
+}
+
+.dw-bg-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.dw-bg-btn {
+  width: 32px; height: 32px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  transition: transform var(--transition-fast);
+}
+.dw-bg-btn:hover { transform: scale(1.05); }
+.dw-bg-btn.is-active {
+  border: 2px solid var(--diary-primary);
+  box-shadow: 0 2px 6px rgba(120, 90, 60, 0.15);
+}
+.dw-bg-btn-x {
+  font-size: 11px;
+  color: var(--text-hint);
+  line-height: 1;
+}
+
+/* Save toast (lightweight) */
+.dw-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--text-primary);
+  color: var(--bg-card);
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: var(--shadow-modal);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.dw-toast.is-show { opacity: 1; transform: translateX(-50%) translateY(-2px); }
+.dw-toast.is-error { background: var(--color-error, #c44e4e); }
+
+/* ── Title row + Suggest pill ──────────────────────────────────── */
+.dw-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.dw-title-row .dw-title-input { margin-bottom: 0; }
+.dw-suggest-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--diary-soft);
+  background: var(--diary-light);
+  color: var(--diary-ink);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: filter var(--transition-fast);
+}
+.dw-suggest-pill:hover { filter: brightness(0.97); }
+.dw-suggest-pill.is-hidden { display: none; }
+.dw-suggest-pill[disabled],
+.dw-suggest-pill[aria-disabled="true"] {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+/* ── Overflow dropdown ─────────────────────────────────────────── */
+.dw-overflow-wrap { position: relative; }
+.dw-overflow-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 60;
+  min-width: 180px;
+  padding: 6px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-modal);
+  display: flex;
+  flex-direction: column;
+}
+.dw-overflow-menu.is-hidden { display: none; }
+.dw-overflow-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.dw-overflow-item:hover { background: var(--bg-surface); }
+.dw-overflow-item.danger { color: var(--review-ink); }
+.dw-overflow-item.danger:hover { background: var(--review-light); }
+
+/* Lucide tweak */
+.dw-root [data-lucide] { width: 14px; height: 14px; stroke-width: 1.75; }

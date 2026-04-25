@@ -18,6 +18,14 @@ class DiaryEntry(Base):
     photo_path = Column(String, nullable=True)
     ai_feedback = Column(String, nullable=True)
     created_at = Column(String)
+    # Decorated-diary metadata (migration 013). All nullable so legacy rows
+    # keep loading; the frontend falls back when these are missing.
+    title       = Column(String, nullable=True)
+    mode        = Column(String, nullable=True)   # 'journal' | 'free'
+    mood        = Column(String, nullable=True)   # 'great' | 'happy' | 'calm' | …
+    prompt      = Column(String, nullable=True)
+    style_json  = Column(String, nullable=True)   # JSON: {font, textSize, textColor, bgMood}
+    photos_json = Column(String, nullable=True)   # JSON: [{id, name, url}]
 
 
 class FreeWriting(Base):

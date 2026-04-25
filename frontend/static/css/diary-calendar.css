@@ -1,0 +1,363 @@
+/* ================================================================
+   diary-calendar.css — GIA's Diary · Calendar (monthly)
+   Section: Diary
+   Dependencies: theme.css, diary-home.css (chrome eyebrow / washi)
+   Spec: handoff/02b-diary-spec.md (Screen 4)
+   ================================================================ */
+
+/* ── Root ───────────────────────────────────────────────────────── */
+.dc-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--bg-page);
+  font-family: var(--font-family);
+}
+body[data-view="diary"].dh-fullscreen #diary-view.dc-active {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* ── Chrome ────────────────────────────────────────────────────── */
+.dc-chrome {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 32px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+.dc-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px 6px 6px;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 8px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.dc-back:hover { background: var(--bg-card); color: var(--text-primary); }
+
+.dc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--diary-soft);
+  color: var(--diary-ink);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.dc-title {
+  font-family: var(--font-family-display);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--diary-ink);
+  margin-top: 6px;
+  line-height: 1.1;
+}
+.dc-sub {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+/* Month nav */
+.dc-monthnav {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+}
+.dc-monthnav button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 8px;
+  display: grid;
+  place-items: center;
+  color: var(--text-secondary);
+  border-radius: 7px;
+  transition: background var(--transition-fast);
+}
+.dc-monthnav button:hover { background: var(--bg-surface); color: var(--text-primary); }
+.dc-monthnav-label {
+  padding: 6px 12px;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 56px;
+  text-align: center;
+  cursor: default !important;
+}
+
+/* ── Body grid ─────────────────────────────────────────────────── */
+.dc-body {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 16px;
+  padding: 14px 28px 18px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Calendar card ─────────────────────────────────────────────── */
+.dc-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.dc-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.dc-weekday {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-hint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 2px;
+}
+.dc-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 6px;
+  flex: 1;
+  min-height: 240px;
+}
+.dc-cell {
+  position: relative;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: default;
+  transition: transform var(--transition-fast);
+  min-height: 0;
+  font-family: inherit;
+  text-align: left;
+}
+.dc-cell.is-clickable { cursor: pointer; }
+.dc-cell.is-clickable:hover { transform: translateY(-1px); }
+.dc-cell.is-empty { background: transparent; border-color: transparent; }
+.dc-cell.is-future { opacity: 0.4; cursor: default; }
+.dc-cell.is-today {
+  border: 2px solid var(--diary-primary);
+  background: var(--bg-page);
+}
+.dc-cell.is-missed {
+  border: 1px dashed var(--border-subtle);
+  background: var(--bg-page);
+  opacity: 0.65;
+}
+.dc-cell.is-dayoff-approved {
+  background: var(--arcade-light);
+  border: 1px solid var(--arcade-soft);
+}
+.dc-cell.is-dayoff-pending {
+  background: var(--bg-page);
+  border: 1px dashed var(--arcade-primary);
+  opacity: 0.75;
+}
+
+.dc-cell-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.dc-cell.is-today .dc-cell-num { color: var(--diary-primary); font-weight: 700; }
+.dc-cell.is-missed .dc-cell-num,
+.dc-cell.is-dayoff-pending .dc-cell-num { color: var(--text-hint); }
+.dc-cell.is-dayoff-approved .dc-cell-num { color: var(--arcade-ink); }
+
+.dc-cell-mood {
+  align-self: flex-end;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1.5px solid #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+.dc-cell-coffee {
+  align-self: flex-end;
+  display: grid;
+  place-items: center;
+  color: var(--arcade-primary);
+}
+.dc-cell.is-dayoff-pending .dc-cell-coffee {
+  color: var(--text-hint);
+  opacity: 0.6;
+}
+.dc-cell-missed-dot {
+  align-self: flex-end;
+  width: 4px; height: 4px;
+  border-radius: 999px;
+  background: var(--text-hint);
+  opacity: 0.5;
+}
+
+/* ── Aside ─────────────────────────────────────────────────────── */
+.dc-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+/* Legend */
+.dc-legend {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+.dc-legend-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-hint);
+  margin-bottom: 8px;
+}
+.dc-legend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 10px;
+}
+.dc-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dc-legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  border: 1.5px solid #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+.dc-legend-label {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+.dc-legend-count {
+  margin-left: auto;
+  font-size: 10.5px;
+  color: var(--text-hint);
+  font-weight: 600;
+}
+
+.dc-legend-dayoff {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dc-legend-tile {
+  width: 14px; height: 14px;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+}
+.dc-legend-tile.approved {
+  background: var(--arcade-light);
+  border: 1px solid var(--arcade-soft);
+  color: var(--arcade-primary);
+}
+.dc-legend-tile.pending {
+  background: var(--bg-page);
+  border: 1px dashed var(--arcade-primary);
+  color: var(--text-hint);
+  opacity: 0.7;
+}
+
+/* Summary */
+.dc-summary {
+  position: relative;
+  background: linear-gradient(160deg, var(--diary-light), #fff);
+  border: 1px solid var(--diary-soft);
+  border-radius: 14px;
+  padding: 12px 14px;
+  flex: 1;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+}
+.dc-summary-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--diary-ink);
+}
+.dc-summary-quote {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--diary-ink);
+  margin-top: 4px;
+  line-height: 1.2;
+}
+.dc-summary-stats {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding-top: 12px;
+}
+.dc-mini {
+  background: #fff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 6px 4px;
+  text-align: center;
+}
+.dc-mini-value {
+  font-family: var(--font-family-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--diary-ink);
+  line-height: 1;
+}
+.dc-mini-label {
+  font-size: 9.5px;
+  color: var(--text-hint);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* Lucide tweak */
+.dc-root [data-lucide] { width: 12px; height: 12px; stroke-width: 1.75; }
+.dc-monthnav [data-lucide] { width: 13px; height: 13px; }
