@@ -167,7 +167,7 @@ function renderMathProblem() {
         // Productive-struggle gate: unlock the hint after a short delay.
         // Clear any prior countdown so re-renders don't leak intervals.
         const countdownEl = document.getElementById('math-hint-countdown');
-        if (window._mathHintTimer) { clearInterval(window._mathHintTimer); window._mathHintTimer = null; }
+        if (mathState.hintTimer) { clearInterval(mathState.hintTimer); mathState.hintTimer = null; }
         const forceNow = (typeof mathState !== 'undefined' && mathState.forceHints);
         if (forceNow) {
             // 3 consecutive wrong → unlock immediately and auto-show first hint.
@@ -176,12 +176,12 @@ function renderMathProblem() {
             showNextHint();
         } else {
             let remaining = 30;
-            window._mathHintTimer = setInterval(() => {
+            mathState.hintTimer = setInterval(() => {
                 remaining -= 1;
                 if (countdownEl) countdownEl.textContent = `(${remaining}s)`;
                 if (remaining <= 0) {
-                    clearInterval(window._mathHintTimer);
-                    window._mathHintTimer = null;
+                    clearInterval(mathState.hintTimer);
+                    mathState.hintTimer = null;
                     hintBtn.disabled = false;
                     if (countdownEl) countdownEl.remove();
                 }

@@ -28,6 +28,7 @@ const mathState = {
     consecCorrect: 0,    // current consecutive correct (resets on wrong)
     consecWrong: 0,      // current consecutive wrong (resets on correct)
     forceHints: false,   // auto-expand hints after 3 consecutive wrong
+    hintTimer: null,     // hint countdown interval (cleared on stage transition)
     learnCards: [],      // cached learn cards (for CPA Fallback feedback)
 };
 
@@ -94,6 +95,7 @@ async function loadMathStage(stageName) {
     mathState.consecCorrect = 0;
     mathState.consecWrong = 0;
     mathState.forceHints = false;
+    if (mathState.hintTimer) { clearInterval(mathState.hintTimer); mathState.hintTimer = null; }
     if (stageName === 'pretest') { mathState._allWrong = []; mathState.learnCards = null; }
 
     if (stageName === 'complete') { renderMathComplete(); return; }
