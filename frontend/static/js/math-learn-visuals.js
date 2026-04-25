@@ -43,11 +43,7 @@ function renderLearnStaticVisual(vtype, vdata, card) {
 
 // ── Small helpers ──────────────────────────────────────────
 
-/** @tag MATH @tag VISUAL */
-function _lvEsc(s) {
-    return String(s == null ? '' : s).replace(/[&<>"']/g,
-        c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
+// escape → _mathEsc / _mathEscAttr (math-katex-utils.js)
 
 function _lvWrap(body, cls) {
     const c = cls ? ` ${cls}` : '';
@@ -60,7 +56,7 @@ function _lvWrap(body, cls) {
 function _lvEquation(d) {
     const eq = d.equation || d.text || '';
     if (!eq) return '';
-    return _lvWrap(`<div class="math-lv-eq">${_lvEsc(eq)}</div>`);
+    return _lvWrap(`<div class="math-lv-eq">${_mathEsc(eq)}</div>`);
 }
 
 /** @tag MATH @tag VISUAL */
@@ -70,11 +66,11 @@ function _lvEquationPair(d) {
     if (!L && !R) return '';
     return _lvWrap(`
         <div class="math-lv-eq-pair">
-            <div class="math-lv-eq">${_lvEsc(L)}</div>
+            <div class="math-lv-eq">${_mathEsc(L)}</div>
             <div class="math-lv-eq-sep">${prop ? '⇄' : ''}</div>
-            <div class="math-lv-eq">${_lvEsc(R)}</div>
+            <div class="math-lv-eq">${_mathEsc(R)}</div>
         </div>
-        ${prop ? `<div class="math-lv-caption">${_lvEsc(prop)} property</div>` : ''}
+        ${prop ? `<div class="math-lv-caption">${_mathEsc(prop)} property</div>` : ''}
     `);
 }
 
@@ -85,7 +81,7 @@ function _lvStepByStep(d) {
     const items = steps.map((s, i) => `
         <li>
             <span class="math-lv-step-num">${i + 1}</span>
-            <span class="math-lv-step-text">${_lvEsc(s)}</span>
+            <span class="math-lv-step-text">${_mathEsc(s)}</span>
         </li>`).join('');
     return _lvWrap(`<ol class="math-lv-steps">${items}</ol>`);
 }
@@ -98,11 +94,11 @@ function _lvNumberLine(d) {
     if (!nums.length) return '';
     const rows = nums.map((n, i) => {
         const r = rounded[i];
-        const arrow = (r != null) ? `<span class="math-lv-arr">→</span><span class="math-lv-nl-rounded">${_lvEsc(r)}</span>` : '';
-        return `<div class="math-lv-nl-row"><span class="math-lv-nl-orig">${_lvEsc(n)}</span>${arrow}</div>`;
+        const arrow = (r != null) ? `<span class="math-lv-arr">→</span><span class="math-lv-nl-rounded">${_mathEsc(r)}</span>` : '';
+        return `<div class="math-lv-nl-row"><span class="math-lv-nl-orig">${_mathEsc(n)}</span>${arrow}</div>`;
     }).join('');
-    const caption = d.place ? `rounded to nearest ${_lvEsc(d.place)}` : '';
-    const sum = (d.sum != null) ? `<div class="math-lv-nl-sum">Estimated sum: <b>${_lvEsc(d.sum)}</b></div>` : '';
+    const caption = d.place ? `rounded to nearest ${_mathEsc(d.place)}` : '';
+    const sum = (d.sum != null) ? `<div class="math-lv-nl-sum">Estimated sum: <b>${_mathEsc(d.sum)}</b></div>` : '';
     return _lvWrap(`
         <div class="math-lv-nl">
             ${rows}
@@ -121,10 +117,10 @@ function _lvColumnAddition(d) {
     const width = Math.max(...parts.map(p => p.length));
     const pad = (s) => String(s).padStart(width, ' ').replace(/ /g, '&nbsp;');
     const meta = [];
-    if (d.step) meta.push(`Step: <b>${_lvEsc(d.step)}</b>`);
-    if (d.sum != null) meta.push(`Sum: <b>${_lvEsc(d.sum)}</b>`);
-    if (d.write != null) meta.push(`Write: <b>${_lvEsc(d.write)}</b>`);
-    if (d.carry != null) meta.push(`Carry: <b>${_lvEsc(d.carry)}</b>`);
+    if (d.step) meta.push(`Step: <b>${_mathEsc(d.step)}</b>`);
+    if (d.sum != null) meta.push(`Sum: <b>${_mathEsc(d.sum)}</b>`);
+    if (d.write != null) meta.push(`Write: <b>${_mathEsc(d.write)}</b>`);
+    if (d.carry != null) meta.push(`Carry: <b>${_mathEsc(d.carry)}</b>`);
     return _lvWrap(`
         <div class="math-lv-col">
             <pre class="math-lv-col-num">  ${pad(parts[0])}
@@ -143,10 +139,10 @@ function _lvComparisonTable(d) {
     if (!methods.length) return '';
     const rows = methods.map((m, i) => `
         <tr>
-            <td>${_lvEsc(m)}</td>
-            <td>${_lvEsc(estimates[i] != null ? estimates[i] : '—')}</td>
+            <td>${_mathEsc(m)}</td>
+            <td>${_mathEsc(estimates[i] != null ? estimates[i] : '—')}</td>
         </tr>`).join('');
-    const exact = (d.exact != null) ? `<tr class="math-lv-exact"><td>Exact</td><td>${_lvEsc(d.exact)}</td></tr>` : '';
+    const exact = (d.exact != null) ? `<tr class="math-lv-exact"><td>Exact</td><td>${_mathEsc(d.exact)}</td></tr>` : '';
     return _lvWrap(`
         <table class="math-lv-cmp">
             <thead><tr><th>Method</th><th>Estimate</th></tr></thead>
@@ -162,7 +158,7 @@ function _lvIllustration(d) {
     return _lvWrap(`
         <div class="math-lv-illus">
             <span class="math-lv-illus-icon">🎨</span>
-            <span class="math-lv-illus-text">${_lvEsc(desc)}</span>
+            <span class="math-lv-illus-text">${_mathEsc(desc)}</span>
         </div>
     `);
 }
@@ -175,11 +171,11 @@ function _lvHighlight(d) {
     if (!nums.length) return '';
     const chips = nums.map(n => {
         const on = pair.has(String(n));
-        return `<span class="math-lv-chip${on ? ' math-lv-chip-hi' : ''}">${_lvEsc(n)}</span>`;
+        return `<span class="math-lv-chip${on ? ' math-lv-chip-hi' : ''}">${_mathEsc(n)}</span>`;
     }).join('');
     const meta = [];
-    if (d.pair_sum != null) meta.push(`Friendly pair → ${_lvEsc(d.pair_sum)}`);
-    if (d.total != null) meta.push(`Total: <b>${_lvEsc(d.total)}</b>`);
+    if (d.pair_sum != null) meta.push(`Friendly pair → ${_mathEsc(d.pair_sum)}`);
+    if (d.total != null) meta.push(`Total: <b>${_mathEsc(d.total)}</b>`);
     return _lvWrap(`
         <div class="math-lv-hi">
             <div class="math-lv-chips">${chips}</div>
@@ -198,12 +194,12 @@ function _lvDiagram(d) {
         const c = comp[i];
         return `
             <div class="math-lv-dia-row">
-                <span class="math-lv-nl-orig">${_lvEsc(n)}</span>
+                <span class="math-lv-nl-orig">${_mathEsc(n)}</span>
                 <span class="math-lv-arr">→</span>
-                <span class="math-lv-nl-rounded">${_lvEsc(c != null ? c : '?')}</span>
+                <span class="math-lv-nl-rounded">${_mathEsc(c != null ? c : '?')}</span>
             </div>`;
     }).join('');
-    const sum = (d.sum != null) ? `<div class="math-lv-nl-sum">Sum: <b>${_lvEsc(d.sum)}</b></div>` : '';
+    const sum = (d.sum != null) ? `<div class="math-lv-nl-sum">Sum: <b>${_mathEsc(d.sum)}</b></div>` : '';
     return _lvWrap(`<div class="math-lv-dia">${rows}${sum}</div>`);
 }
 
@@ -214,7 +210,7 @@ function _lvPlaceValueChart(d) {
     if (cells && typeof cells === 'object') {
         const cols = ['hundreds', 'tens', 'ones', 'thousands'].filter(k => cells[k] != null);
         const head = cols.map(c => `<th>${c[0].toUpperCase() + c.slice(1)}</th>`).join('');
-        const body = cols.map(c => `<td>${_lvEsc(cells[c])}</td>`).join('');
+        const body = cols.map(c => `<td>${_mathEsc(cells[c])}</td>`).join('');
         return _lvWrap(`<table class="math-lv-pvc"><thead><tr>${head}</tr></thead><tbody><tr>${body}</tr></tbody></table>`);
     }
     if (d.description) return _lvTextBlock(d, '🔢');
@@ -238,7 +234,7 @@ function _lvSummaryCard(d, card) {
     return _lvWrap(`
         <div class="math-lv-summary">
             <div class="math-lv-summary-icon">⭐</div>
-            <div class="math-lv-summary-text">${_lvEsc(body)}</div>
+            <div class="math-lv-summary-text">${_mathEsc(body)}</div>
         </div>
     `);
 }
@@ -248,8 +244,8 @@ function _lvKeywordTable(d) {
     const rows = Array.isArray(d.rows) ? d.rows : [];
     if (rows.length && rows[0] && typeof rows[0] === 'object') {
         const keys = Object.keys(rows[0]);
-        const head = keys.map(k => `<th>${_lvEsc(k)}</th>`).join('');
-        const body = rows.map(r => `<tr>${keys.map(k => `<td>${_lvEsc(r[k])}</td>`).join('')}</tr>`).join('');
+        const head = keys.map(k => `<th>${_mathEsc(k)}</th>`).join('');
+        const body = rows.map(r => `<tr>${keys.map(k => `<td>${_mathEsc(r[k])}</td>`).join('')}</tr>`).join('');
         return _lvWrap(`<table class="math-lv-cmp"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`);
     }
     if (d.description) return _lvTextBlock(d, '🔑');
@@ -264,7 +260,7 @@ function _lvTextBlock(d, icon, extraCls) {
     return _lvWrap(`
         <div class="math-lv-text-icon${cls}">
             <span class="math-lv-illus-icon">${icon}</span>
-            <span class="math-lv-illus-text">${_lvEsc(body)}</span>
+            <span class="math-lv-illus-text">${_mathEsc(body)}</span>
         </div>
     `);
 }
@@ -276,7 +272,7 @@ function _lvWordProblem(d) {
     return _lvWrap(`
         <div class="math-lv-wp">
             <div class="math-lv-wp-label">Context</div>
-            <div class="math-lv-wp-body">${_lvEsc(ctx)}</div>
+            <div class="math-lv-wp-body">${_mathEsc(ctx)}</div>
         </div>
     `);
 }

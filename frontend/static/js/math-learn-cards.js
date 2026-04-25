@@ -65,7 +65,7 @@ function _renderCurrentLearnCard() {
             </div>
 
             <div class="math-learn-card ${cpa.cls}">
-                <h2 class="math-learn-title">${_esc(card.title || '')}</h2>
+                <h2 class="math-learn-title">${_mathEsc(card.title || '')}</h2>
                 <div class="math-learn-content">${_formatLearnContent(card.content || '')}</div>
                 ${_renderLearnVisual(card)}
                 ${card.interaction === 'quiz_mini' ? _renderMiniQuiz(card) : ''}
@@ -164,7 +164,7 @@ function _renderLearnVisual(card) {
         const src = vdata.src || vdata.url || '';
         const alt = vdata.alt || card.title || '';
         if (!src) return '';
-        return `<div class="math-learn-visual"><img src="${_esc(src)}" alt="${_esc(alt)}" /></div>`;
+        return `<div class="math-learn-visual"><img src="${_mathEsc(src)}" alt="${_mathEsc(alt)}" /></div>`;
     }
     if (vtype === 'manipulative' || vtype === 'addition_table') {
         // Slot hydrated post-render
@@ -177,7 +177,7 @@ function _renderLearnVisual(card) {
     }
     // Last-resort text fallback
     if (typeof vdata.description === 'string') {
-        return `<div class="math-learn-visual">${_esc(vdata.description)}</div>`;
+        return `<div class="math-learn-visual">${_mathEsc(vdata.description)}</div>`;
     }
     return '';
 }
@@ -225,12 +225,7 @@ function _renderMiniQuiz(card) {
     `;
 }
 
-// ── Escape helper ──────────────────────────────────────────
-function _esc(str) {
-    const d = document.createElement('div');
-    d.textContent = str;
-    return d.innerHTML;
-}
+// escape → _mathEsc / _mathEscAttr (math-katex-utils.js)
 
 /**
  * Format Learn-card body: escape first, then decorate math expressions,
@@ -240,7 +235,7 @@ function _esc(str) {
  */
 function _formatLearnContent(text) {
     if (!text) return '';
-    var safe = _esc(text);
+    var safe = _mathEsc(text);
     return safe
         .replace(/(For example:|Example:|Remember:|Rule:|Tip:)/gi, '<strong class="math-learn-highlight">$1</strong>')
         .replace(/(\d+\s*[\+\-\×\÷\*\/]\s*\d+\s*=\s*\d+)/g, '<code class="math-expr">$1</code>')

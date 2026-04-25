@@ -62,7 +62,7 @@ function _renderGlossaryList(data) {
     const catBtns = `
         <button class="math-gloss-cat ${!catFilter ? 'active' : ''}" data-cat="">All</button>
         ${glossaryState.categories.map(c =>
-            `<button class="math-gloss-cat ${catFilter === c.name ? 'active' : ''}" data-cat="${_escAttrG(c.name)}">${_escG(c.name.replace(/_/g, ' '))}</button>`
+            `<button class="math-gloss-cat ${catFilter === c.name ? 'active' : ''}" data-cat="${_mathEscAttr(c.name)}">${_mathEsc(c.name.replace(/_/g, ' '))}</button>`
         ).join('')}`;
 
     const sections = glossaryState.categories
@@ -76,12 +76,12 @@ function _renderGlossaryList(data) {
             if (!matches.length) return '';
             return `
                 <section class="math-gloss-section">
-                    <h3 class="math-gloss-section-title">${_escG(c.name.replace(/_/g, ' '))}</h3>
+                    <h3 class="math-gloss-section-title">${_mathEsc(c.name.replace(/_/g, ' '))}</h3>
                     <div class="math-gloss-grid">
                         ${matches.map(t => `
-                            <button class="math-gloss-item" data-id="${_escAttrG(t.id)}">
-                                <div class="math-gloss-term">${_escG(t.term)}</div>
-                                <div class="math-gloss-kid">${_escG(t.kid_friendly || '')}</div>
+                            <button class="math-gloss-item" data-id="${_mathEscAttr(t.id)}">
+                                <div class="math-gloss-term">${_mathEsc(t.term)}</div>
+                                <div class="math-gloss-kid">${_mathEsc(t.kid_friendly || '')}</div>
                             </button>
                         `).join('')}
                     </div>
@@ -91,9 +91,9 @@ function _renderGlossaryList(data) {
     stage.innerHTML = `
         <div class="math-gloss">
             <div class="math-gloss-header">
-                <h2 class="math-gloss-title">📖 ${_escG(data.title || 'Glossary')}</h2>
+                <h2 class="math-gloss-title">📖 ${_mathEsc(data.title || 'Glossary')}</h2>
                 <input type="search" class="math-gloss-search" id="math-gloss-search"
-                       placeholder="Search terms…" value="${_escAttrG(glossaryState.filter)}">
+                       placeholder="Search terms…" value="${_mathEscAttr(glossaryState.filter)}">
             </div>
             <div class="math-gloss-cats">${catBtns}</div>
             <div class="math-gloss-body">${sections || '<p class="empty">No matches.</p>'}</div>
@@ -146,15 +146,15 @@ async function _showGlossaryTerm(termId) {
         const body = overlay.querySelector('.math-gloss-modal-body');
         body.innerHTML = `
             <div class="math-gloss-modal-head">
-                <h2 class="math-gloss-modal-title">${_escG(t.term)}</h2>
+                <h2 class="math-gloss-modal-title">${_mathEsc(t.term)}</h2>
                 <button class="math-btn-ghost math-gloss-tts" id="math-gloss-tts">🔊 Listen</button>
             </div>
-            <div class="math-gloss-modal-kid">${_escG(t.kid_friendly || '')}</div>
+            <div class="math-gloss-modal-kid">${_mathEsc(t.kid_friendly || '')}</div>
             <div class="math-gloss-modal-def">
-                <strong>Definition:</strong> ${_escG(t.definition || '')}
+                <strong>Definition:</strong> ${_mathEsc(t.definition || '')}
             </div>
-            ${t.example ? `<div class="math-gloss-modal-ex"><strong>Example:</strong> ${_escG(t.example)}</div>` : ''}
-            ${t.visual_hint ? `<div class="math-gloss-modal-vis">${_escG(t.visual_hint)}</div>` : ''}
+            ${t.example ? `<div class="math-gloss-modal-ex"><strong>Example:</strong> ${_mathEsc(t.example)}</div>` : ''}
+            ${t.visual_hint ? `<div class="math-gloss-modal-vis">${_mathEsc(t.visual_hint)}</div>` : ''}
         `;
         const ttsBtn = document.getElementById('math-gloss-tts');
         if (ttsBtn) ttsBtn.addEventListener('click', () => _playGlossaryTTS(t));
@@ -190,13 +190,4 @@ async function _playGlossaryTTS(term) {
     }
 }
 
-// ── Escape helpers ─────────────────────────────────────────
-
-function _escG(s) {
-    const d = document.createElement('div');
-    d.textContent = s == null ? '' : String(s);
-    return d.innerHTML;
-}
-function _escAttrG(s) {
-    return _escG(s).replace(/"/g, '&quot;');
-}
+// escape → _mathEsc / _mathEscAttr (math-katex-utils.js)
