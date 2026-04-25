@@ -2,7 +2,7 @@
 
 ## Overview
 - **Product**: Math learning section within GIA Learning App — CPA-based instruction, adaptive placement, massive practice, spaced repetition, and integrated gamification.
-- **Status**: Planning Phase — not yet in development.
+- **Status**: In Development — Phases M1~M9 partially complete (2026-04-25).
 - **Target User**: GIA (currently G2, MAP Math RIT 205 / 94th percentile, Math Kangaroo 82%)
 - **Grade Range**: G3 -> G6 (expandable)
 - **Curriculum Base**: Go Math (Houghton Mifflin Harcourt), aligned with Common Core State Standards
@@ -827,69 +827,160 @@ Added as a tab/filter within existing Parent Dashboard (`/api/parent/*`):
 
 ## File Structure
 
-```
+> **Sync Note**: This section reflects the **actual current state** of the codebase (2026-04-25).
+> `[SPEC]` = planned but not yet created. `[ADDED]` = created during implementation, not in original spec.
+
+\`\`\`
 NSS_Word_Master/
 ├── MATH_SPEC.md
 ├── backend/
 │   ├── routers/
-│   │   ├── math_academy.py       # /api/math/academy/*
-│   │   ├── math_practice.py      # /api/math/practice/*
-│   │   ├── math_placement.py     # /api/math/placement/*
-│   │   ├── math_fluency.py       # /api/math/fluency/*
-│   │   ├── math_daily.py         # /api/math/daily/*
-│   │   ├── math_kangaroo.py      # /api/math/kangaroo/*
-│   │   └── math_problems.py      # /api/math/my-problems/*
+│   │   ├── math_academy.py        # /api/math/academy/* — lesson flow, pretest, unit test
+│   │   ├── math_placement.py      # /api/math/placement/*
+│   │   ├── math_fluency.py        # /api/math/fluency/*
+│   │   ├── math_daily.py          # /api/math/daily/*
+│   │   ├── math_kangaroo.py       # /api/math/kangaroo/*
+│   │   ├── math_problems.py       # /api/math/my-problems/* (wrong review + spaced rep)
+│   │   ├── math_glossary.py       # /api/math/glossary/*
+│   │   ├── parent_math.py         # /api/parent/math/* (parent dashboard math tab)
+│   │   # [SPEC] math_practice.py  → merged into math_academy.py
 │   ├── services/
-│   │   ├── math_engine.py        # Problem generation, template engine, auto-gen
-│   │   ├── math_adaptive.py      # Placement test CAT logic, difficulty adjustment
-│   │   └── math_spaced.py        # Spaced repetition for wrong items
-│   ├── data/
-│   │   └── math/
-│   │       ├── G3/
-│   │       │   ├── U1_add_sub_1000/
-│   │       │   │   ├── L1_rounding_estimation.json
-│   │       │   │   ├── L2_addition_strategies.json
-│   │       │   │   ├── L3_subtraction_strategies.json
-│   │       │   │   ├── L4_word_problems.json
-│   │       │   │   └── unit_test.json
-│   │       │   ├── U2_data_graphs/
-│   │       │   └── ...
-│   │       ├── G4/
-│   │       ├── G5/
-│   │       ├── G6/
-│   │       ├── fact_fluency/
-│   │       ├── kangaroo/
-│   │       └── placement/
+│   │   # [SPEC] math_engine.py    — problem generation, template engine
+│   │   # [SPEC] math_adaptive.py  — placement test CAT logic
+│   │   # [SPEC] math_spaced.py    — spaced repetition (currently in math_problems.py)
+│   ├── data/math/
+│   │   ├── G3/
+│   │   │   ├── U1_add_sub_1000/
+│   │   │   │   ├── L1_rounding_estimation.json
+│   │   │   │   ├── L2_addition_strategies.json
+│   │   │   │   ├── L3_subtraction_strategies.json
+│   │   │   │   ├── L4_word_problems.json
+│   │   │   │   └── unit_test.json
+│   │   │   └── U2~U12/ ...
+│   │   ├── G4/, G5/, G6/
+│   │   ├── fact_fluency/
+│   │   ├── kangaroo/
+│   │   └── placement/
 │   └── migrations/
 │       └── 002_add_math_tables.py
-├── frontend/
-│   └── static/
-│       ├── css/
-│       │   ├── math-academy-sidebar.css
-│       │   ├── math-academy-stages.css
-│       │   ├── math-academy-fluency.css
-│       │   ├── math-academy-modes.css
-│       │   ├── math-academy-content.css
-│       │   ├── math-academy-anim.css
-│       │   └── math-learn-visuals.css
-│       └── js/
-│           ├── math-navigation.js     # Math sidebar, grade/unit/lesson dropdowns
-│           ├── math-academy.js        # Core lesson flow (state, load, advance, submit)
-│           ├── math-academy-ui.js     # Roadmap, round summary, complete/wrong-review
-│           ├── math-academy-feedback.js # Answer feedback overlay + step-by-step
-│           ├── math-learn-cards.js    # CPA card renderer with static SVG + TTS
-│           ├── math-problem-ui.js     # Problem type renderers (MC, input, TF, drag)
-│           ├── math-step-solver.js    # Step-by-step solution UI (Try stage only)
-│           ├── math-manipulatives.js  # Virtual manipulatives (all 5 types, Learn+Try only)
-│           ├── math-fluency.js        # Fact Fluency timer + rounds
-│           ├── math-kangaroo.js       # Kangaroo Practice UI
-│           ├── math-problems.js       # My Problems (wrong review)
-│           ├── math-daily.js          # Daily Challenge
-│           └── math-glossary.js       # Math term popup definitions
-```
+│
+├── frontend/static/
+│   ├── css/  (math-related only)
+│   │   ├── math-academy-sidebar.css    # sidebar accordion, grade/unit/lesson dropdowns
+│   │   ├── math-academy-stages.css     # stage progress bar, stage headers
+│   │   ├── math-academy-content.css    # learn card, try, practice content area
+│   │   ├── math-academy-fluency.css    # fact fluency timer UI
+│   │   ├── math-academy-modes.css      # mode-specific overrides (pretest, review, etc.)
+│   │   ├── math-academy-anim.css       # CPA transition animations
+│   │   ├── math-academy-learn.css      # [ADDED] learn card specific styles
+│   │   ├── math-academy-problems.css   # [ADDED] problem rendering styles
+│   │   ├── math-academy-results.css    # [ADDED] lesson complete / unit test result screen
+│   │   ├── math-academy-shell.css      # [ADDED] outer shell/container layout
+│   │   ├── math-academy-daily.css      # [ADDED] daily challenge styles
+│   │   ├── math-academy-glossary.css   # [ADDED] glossary popup styles
+│   │   ├── math-academy-kangaroo.css   # [ADDED] kangaroo practice styles
+│   │   ├── math-academy-manip.css      # [ADDED] manipulative panel styles
+│   │   ├── math-academy-responsive.css # [ADDED] responsive breakpoints for math UI
+│   │   ├── math-learn-visuals.css      # SVG/visual asset styles (CPA pictorial phase)
+│   │   ├── math-kangaroo.css           # [ADDED] kangaroo exam/result page styles
+│   │   └── (spec listed: math-learn-visuals.css ✓ already exists)
+│   │
+│   └── js/  (math-related only)
+│       │
+│       ├── ── Academy Core ──
+│       ├── math-academy-shell.js       # [ADDED] outer container, subject-mode toggle
+│       │                               #   → owns: renderMathStage(), setSubject('math')
+│       │                               #   → NOTE: stage machine is split here + math-academy.js
+│       ├── math-academy.js             # core lesson flow — state, load, advance, submit
+│       │                               #   → owns: loadStage(), submitAnswer(), advanceStage()
+│       ├── math-academy-ui.js          # roadmap, round summary, lesson complete, wrong-review UI
+│       ├── math-academy-feedback.js    # answer feedback overlay (correct/wrong + CPA fallback)
+│       │
+│       ├── ── Problem Rendering ──
+│       ├── math-problem-ui.js          # problem type renderers: MC, input, TF, drag-sort
+│       ├── math-problem-types.js       # [ADDED] extended type logic (open_pair, open_triple)
+│       │                               #   → TODO: clarify overlap with math-problem-ui.js
+│       │
+│       ├── ── CPA / Learn ──
+│       ├── math-learn-cards.js         # CPA card renderer — static SVG + TTS + interaction
+│       ├── math-learn-visuals.js       # [ADDED] SVG visual asset renderer (pictorial phase)
+│       ├── math-manipulatives.js       # virtual manipulatives — 5 types (Learn + Try only)
+│       ├── math-manipulatives-2.js     # [ADDED] ⚠️ DUPLICATE RISK — role unclear
+│       │                               #   → TODO: merge into math-manipulatives.js or document split
+│       │
+│       ├── ── Try Stage ──
+│       ├── math-3read.js               # [ADDED] 3-Read Strategy overlay (word problems)
+│       │
+│       ├── ── Other Modules ──
+│       ├── math-fluency.js             # Fact Fluency — timer, phases A/B/C, rounds
+│       ├── math-daily.js               # Daily Challenge UI
+│       ├── math-review.js              # [ADDED] wrong review UI (My Problems)
+│       ├── math-glossary.js            # math term popup definitions
+│       ├── math-navigation.js          # math sidebar, grade/unit/lesson dropdowns
+│       ├── math-katex-utils.js         # [ADDED] KaTeX rendering helpers
+│       │
+│       ├── ── Placement ──
+│       ├── math-placement.js           # placement test UI + adaptive question flow
+│       ├── math-placement-results.js   # [ADDED] placement results screen
+│       │
+│       └── ── Kangaroo ──
+│           ├── math-kangaroo.js        # kangaroo practice — entry, set list
+│           ├── math-kangaroo-exam.js   # [ADDED] kangaroo exam session UI
+│           ├── math-kangaroo-pdf-exam.js # [ADDED] PDF-based kangaroo exam renderer
+│           └── math-kangaroo-result.js # [ADDED] kangaroo result screen
+\`\`\`
 
----
+### Script Loading Order (child.html — actual current order)
 
+\`\`\`html
+<!-- Math modules (load after English scripts) -->
+<script src="/static/js/math-navigation.js?v=1"></script>
+<script src="/static/js/math-katex-utils.js?v=1"></script>
+<script src="/static/js/math-learn-visuals.js?v=1"></script>
+<script src="/static/js/math-learn-cards.js?v=1"></script>
+<script src="/static/js/math-manipulatives.js?v=1"></script>
+<script src="/static/js/math-manipulatives-2.js?v=1"></script>
+<script src="/static/js/math-problem-types.js?v=1"></script>
+<script src="/static/js/math-problem-ui.js?v=1"></script>
+<script src="/static/js/math-3read.js?v=1"></script>
+<script src="/static/js/math-academy-feedback.js?v=1"></script>
+<script src="/static/js/math-academy-ui.js?v=1"></script>
+<script src="/static/js/math-academy.js?v=1"></script>
+<script src="/static/js/math-academy-shell.js?v=1"></script>
+<script src="/static/js/math-fluency.js?v=1"></script>
+<script src="/static/js/math-daily.js?v=1"></script>
+<script src="/static/js/math-review.js?v=1"></script>
+<script src="/static/js/math-glossary.js?v=1"></script>
+<script src="/static/js/math-placement.js?v=1"></script>
+<script src="/static/js/math-placement-results.js?v=1"></script>
+<script src="/static/js/math-kangaroo.js?v=1"></script>
+<script src="/static/js/math-kangaroo-exam.js?v=1"></script>
+<script src="/static/js/math-kangaroo-pdf-exam.js?v=1"></script>
+<script src="/static/js/math-kangaroo-result.js?v=1"></script>
+\`\`\`
+
+### CSS Loading Order (child.html — actual current order)
+
+\`\`\`html
+<!-- Math CSS -->
+<link rel="stylesheet" href="/static/css/math-academy-shell.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-sidebar.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-stages.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-content.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-learn.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-problems.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-manip.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-fluency.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-daily.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-glossary.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-kangaroo.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-modes.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-anim.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-results.css?v=1">
+<link rel="stylesheet" href="/static/css/math-academy-responsive.css?v=1">
+<link rel="stylesheet" href="/static/css/math-learn-visuals.css?v=1">
+<link rel="stylesheet" href="/static/css/math-kangaroo.css?v=1">
+\`\`\`
 ## Problem Count Estimates (Per Grade)
 
 | Category | Per Unit | G3 (12 units) | Method |
