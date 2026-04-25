@@ -514,7 +514,8 @@ All 5 types are interactive with drag-and-drop (mouse/trackpad compatible).
 | Fact Fluency personal best | +2 | per occurrence |
 | Fact set mastered (Phase C 95%+) | +5 | once/fact set |
 | Kangaroo set complete | +5 | once/set |
-| Kangaroo set all correct | +5 | once/set |
+| Kangaroo set score >= 80% | +5 | once/set |
+| Kangaroo set perfect (100%) | +10 | once/set |
 
 No XP for: Pretest, Learn cards, failed tests (retry pass = full XP)
 

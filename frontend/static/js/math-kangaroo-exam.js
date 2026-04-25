@@ -23,13 +23,6 @@ const examState = {
 };
 
 /** @tag MATH @tag KANGAROO */
-function _examEsc(s) {
-    return String(s ?? '').replace(/[&<>"']/g, ch => (
-        { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]
-    ));
-}
-
-/** @tag MATH @tag KANGAROO */
 function _examFmt(sec) {
     const s = Math.max(0, Math.floor(sec));
     return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
@@ -109,7 +102,7 @@ function _examRender() {
     stage.innerHTML = `
         <div class="kang-wrap kang-exam">
             <header class="kang-exam-top">
-                <div class="kang-exam-title">${_examEsc(examState.title)}</div>
+                <div class="kang-exam-title">${_kangEsc(examState.title)}</div>
                 <div class="kang-exam-timer ${examState.mode==='practice'?'is-hidden':''}">
                     <span id="kang-timer" class="kang-timer">${_examFmt(examState.remainingSec)}</span>
                 </div>
@@ -196,19 +189,19 @@ function _examRenderQuestion() {
         : Object.entries(q.options || {}).map(([k, v]) => `
             <button class="kang-opt ${selected === k ? 'is-selected' : ''}" data-opt="${k}">
                 <span class="kang-opt-letter">(${k})</span>
-                <span class="kang-opt-text">${_examEsc(v)}</span>
+                <span class="kang-opt-text">${_kangEsc(v)}</span>
             </button>
         `).join('');
     const imgHtml = imageOnly
-        ? `<div class="kang-img kang-img-full"><img src="${q.image}" alt="${_examEsc(q.image_description || q.question_text || '')}" loading="lazy"></div>`
+        ? `<div class="kang-img kang-img-full"><img src="${q.image}" alt="${_kangEsc(q.image_description || q.question_text || '')}" loading="lazy"></div>`
         : q.image
-            ? `<div class="kang-img"><img src="${q.image}" alt="${_examEsc(q.image_description || '')}" loading="lazy"></div>`
+            ? `<div class="kang-img"><img src="${q.image}" alt="${_kangEsc(q.image_description || '')}" loading="lazy"></div>`
             : q.image_description
-                ? `<div class="kang-img kang-img-desc">${_examEsc(q.image_description)}</div>`
+                ? `<div class="kang-img kang-img-desc">${_kangEsc(q.image_description)}</div>`
                 : '';
     const qTextHtml = imageOnly
         ? ''
-        : `<div class="kang-q-text">${_examEsc(q.question_text)}</div>`;
+        : `<div class="kang-q-text">${_kangEsc(q.question_text)}</div>`;
     const checkHtml = examState.mode === 'practice'
         ? `<div class="kang-practice">
              <button class="kang-btn kang-btn-secondary" id="kang-check-btn">Check Answer</button>
@@ -216,10 +209,10 @@ function _examRenderQuestion() {
            </div>`
         : '';
     host.innerHTML = `
-        <div class="kang-section-label ${sectionTint}">${_examEsc(q._section)}</div>
+        <div class="kang-section-label ${sectionTint}">${_kangEsc(q._section)}</div>
         <div class="kang-q-head">
             <div class="kang-q-id">Q${q.number} · ${pts} pts</div>
-            <div class="kang-q-topic">${_examEsc(q.topic || '')}</div>
+            <div class="kang-q-topic">${_kangEsc(q.topic || '')}</div>
             <button class="kang-flag ${flagged ? 'is-on' : ''}" id="kang-flag-btn">⚑ Flag</button>
         </div>
         ${qTextHtml}
@@ -277,11 +270,11 @@ function _examShowFeedback(data) {
     const fb = document.getElementById('kang-feedback');
     if (!fb) return;
     const cls = data.is_correct ? 'kang-fb-ok' : 'kang-fb-no';
-    const head = data.is_correct ? '✓ Correct!' : `✗ Not quite — correct answer is (${_examEsc(data.correct_answer)})`;
+    const head = data.is_correct ? '✓ Correct!' : `✗ Not quite — correct answer is (${_kangEsc(data.correct_answer)})`;
     fb.innerHTML = `
         <div class="kang-fb ${cls}">
             <div class="kang-fb-head">${head}</div>
-            ${data.solution ? `<div class="kang-fb-sol">${_examEsc(data.solution)}</div>` : ''}
+            ${data.solution ? `<div class="kang-fb-sol">${_kangEsc(data.solution)}</div>` : ''}
         </div>
     `;
 }

@@ -53,6 +53,11 @@ function _kangEsc(s) {
 
 /** @tag MATH @tag KANGAROO */
 async function startMathKangaroo() {
+    // Clear any running exam timer before entering the set picker
+    if (typeof examState !== 'undefined' && examState.timerHandle) {
+        clearInterval(examState.timerHandle);
+        examState.timerHandle = null;
+    }
     _kangShowStage();
     const stage = document.getElementById('stage');
     if (!stage) return;
