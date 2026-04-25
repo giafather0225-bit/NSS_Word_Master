@@ -22,7 +22,8 @@
  *   problem.answer: ordered array of item ids (or labels) representing correct sequence
  * @tag MATH @tag PROBLEM @tag DRAG_SORT
  */
-function _renderDragSort(body, problem) {
+function _renderDragSort(body, problem, onSubmit) {
+    const _doSubmit = onSubmit || _submitProblemAnswer;
     const items = (problem.items || []).slice();
     // Ensure shuffled display order
     items.sort(() => Math.random() - 0.5);
@@ -71,7 +72,7 @@ function _renderDragSort(body, problem) {
 
     document.getElementById('math-drag-submit').addEventListener('click', () => {
         const order = Array.from(listEl.querySelectorAll('.math-drag-item')).map(el => el.dataset.id);
-        _submitProblemAnswer(problem, order.join('|'));
+        _doSubmit(problem, order.join('|'));
     });
 }
 
@@ -90,7 +91,8 @@ function _getDragAfterElement(container, y) {
 // ── Multiple Choice ────────────────────────────────────────
 
 /** @tag MATH @tag PROBLEM @tag MC */
-function _renderMC(body, problem) {
+function _renderMC(body, problem, onSubmit) {
+    const _doSubmit = onSubmit || _submitProblemAnswer;
     const opts = problem.options || [];
     body.innerHTML = `
         <div class="math-mc-grid">
@@ -104,7 +106,7 @@ function _renderMC(body, problem) {
     `;
 
     body.querySelectorAll('.math-mc-btn').forEach(btn => {
-        btn.addEventListener('click', () => _submitProblemAnswer(problem, btn.dataset.val));
+        btn.addEventListener('click', () => _doSubmit(problem, btn.dataset.val));
     });
 
     // KaTeX on option labels
@@ -116,7 +118,7 @@ function _renderMC(body, problem) {
         const idx = key.charCodeAt(0) - 65;
         if (idx >= 0 && idx < opts.length) {
             document.removeEventListener('keydown', handler);
-            _submitProblemAnswer(problem, opts[idx]);
+            _doSubmit(problem, opts[idx]);
         }
     };
     document.addEventListener('keydown', handler);
@@ -125,7 +127,8 @@ function _renderMC(body, problem) {
 // ── True/False ─────────────────────────────────────────────
 
 /** @tag MATH @tag PROBLEM @tag TF */
-function _renderTF(body, problem) {
+function _renderTF(body, problem, onSubmit) {
+    const _doSubmit = onSubmit || _submitProblemAnswer;
     body.innerHTML = `
         <div class="math-tf-grid">
             <button class="math-tf-btn math-tf-true" data-val="true">
@@ -140,14 +143,15 @@ function _renderTF(body, problem) {
     `;
 
     body.querySelectorAll('.math-tf-btn').forEach(btn => {
-        btn.addEventListener('click', () => _submitProblemAnswer(problem, btn.dataset.val));
+        btn.addEventListener('click', () => _doSubmit(problem, btn.dataset.val));
     });
 }
 
 // ── Input (free text) ──────────────────────────────────────
 
 /** @tag MATH @tag PROBLEM @tag INPUT */
-function _renderInput(body, problem) {
+function _renderInput(body, problem, onSubmit) {
+    const _doSubmit = onSubmit || _submitProblemAnswer;
     let _inputSubmitted = false; // PHASE-0 FIX P3: prevent double submit
     body.innerHTML = `
         <div class="math-input-group">
@@ -167,7 +171,7 @@ function _renderInput(body, problem) {
         const val = input.value.trim();
         if (!val) { input.focus(); return; }
         _inputSubmitted = true; // P3 lock
-        _submitProblemAnswer(problem, val);
+        _doSubmit(problem, val);
     });
 
     input.addEventListener('keydown', (e) => {
@@ -176,7 +180,7 @@ function _renderInput(body, problem) {
             const val = input.value.trim();
             if (!val) return;
             _inputSubmitted = true; // P3 lock
-            _submitProblemAnswer(problem, val);
+            _doSubmit(problem, val);
         }
     });
 

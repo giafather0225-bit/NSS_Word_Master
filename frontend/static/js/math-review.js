@@ -113,24 +113,18 @@ function _renderReviewProblem() {
     `;
 
     const body = document.getElementById('math-problem-body');
-    // Wrap submit so we capture the user answer and route to review API
-    const patched = Object.assign({}, p, { id: p.id });
-    // Temporarily override _submitProblemAnswer's target by hooking our own handler.
-    // Since renderers in problem-ui call _submitProblemAnswer(p, val), we monkey-patch.
-    const origSubmit = window._submitProblemAnswer;
-    window._submitProblemAnswer = async function (_problem, answer) {
-        window._submitProblemAnswer = origSubmit; // restore immediately
+    const onSubmit = async function (_problem, answer) {
         const bodyEl = document.getElementById('math-problem-body');
         if (bodyEl) bodyEl.querySelectorAll('button, input').forEach(el => { el.disabled = true; });
         await _submitReviewAnswer(item, answer);
     };
 
     switch (p.type) {
-        case 'mc':        _renderMC(body, patched); break;
-        case 'tf':        _renderTF(body, patched); break;
-        case 'drag_sort': _renderDragSort(body, patched); break;
+        case 'mc':        _renderMC(body, p, onSubmit); break;
+        case 'tf':        _renderTF(body, p, onSubmit); break;
+        case 'drag_sort': _renderDragSort(body, p, onSubmit); break;
         case 'input':
-        default:          _renderInput(body, patched); break;
+        default:          _renderInput(body, p, onSubmit); break;
     }
 }
 
