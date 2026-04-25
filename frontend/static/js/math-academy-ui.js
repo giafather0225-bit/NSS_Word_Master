@@ -173,17 +173,6 @@ function _topWeakConcepts(concepts) {
         .map(([c]) => c);
 }
 
-// ── Escape helpers (shared with math-academy-feedback.js) ──
-
-function _mathEsc(s) {
-    const d = document.createElement('div');
-    d.textContent = s;
-    return d.innerHTML;
-}
-
-function _mathEscAttr(s) {
-    return String(s == null ? '' : s).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
 
 // ── Stage feedback (pass/fail) ──────────────────────────────
 

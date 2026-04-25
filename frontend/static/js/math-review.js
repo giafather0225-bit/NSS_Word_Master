@@ -236,10 +236,3 @@ function _renderReviewSummary() {
     });
 })();
 
-// ── Escape helper ──────────────────────────────────────────
-
-function _mathEsc(str) {
-    const d = document.createElement('div');
-    d.textContent = str == null ? '' : String(str);
-    return d.innerHTML;
-}

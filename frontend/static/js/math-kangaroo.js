@@ -42,13 +42,6 @@ function _kangShowStage() {
     if (sidebar) { sidebar.classList.add('collapsed'); localStorage.setItem('sb_collapsed', '1'); }
 }
 
-/** @tag MATH @tag KANGAROO */
-function _kangEsc(s) {
-    return String(s ?? '').replace(/[&<>"']/g, ch => (
-        { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]
-    ));
-}
-
 // ── Entry ──────────────────────────────────────────────────
 
 /** @tag MATH @tag KANGAROO */
@@ -87,7 +80,7 @@ function _kangRenderPicker() {
     const levels = (kangState.tab === 'past_paper') ? KANG_PP_FILTERS : KANG_LEVELS;
     const levelTabs = levels.map(lv => `
         <button class="kang-tab ${lv.key === kangState.level ? 'is-active' : ''}"
-                data-level="${lv.key}">${_kangEsc(lv.label)}</button>
+                data-level="${lv.key}">${_mathEsc(lv.label)}</button>
     `).join('');
     const subTabs = `
         <button class="kang-subtab ${kangState.tab === 'full_test' ? 'is-active' : ''}" data-tab="full_test">Full Tests</button>
@@ -173,17 +166,17 @@ function _kangCardHtml(s) {
         ? `<div class="kang-card-best">Best: ${s.best_score}/${maxPts}${pct != null ? ` (${pct}%)` : ''}</div>`
         : '';
     const topic = s.drill_topic
-        ? `<div class="kang-card-topic">Focus: ${_kangEsc(s.drill_topic.replace(/_/g, ' '))}</div>` : '';
+        ? `<div class="kang-card-topic">Focus: ${_mathEsc(s.drill_topic.replace(/_/g, ' '))}</div>` : '';
     const country = isPp && s.source_country
-        ? _kangEsc(s.source_country === 'International' ? 'IKMC' : s.source_country)
+        ? _mathEsc(s.source_country === 'International' ? 'IKMC' : s.source_country)
         : '';
     const yearBadge = (isPp && s.source_year)
-        ? `<span class="kang-card-year">${_kangEsc(s.source_year)}${country ? ` · ${country}` : ''}</span>`
-        : (s.source_year ? `<span class="kang-card-year">${_kangEsc(s.source_year)}</span>` : '');
+        ? `<span class="kang-card-year">${_mathEsc(s.source_year)}${country ? ` · ${country}` : ''}</span>`
+        : (s.source_year ? `<span class="kang-card-year">${_mathEsc(s.source_year)}</span>` : '');
     const contest = (!isPp && s.source_contest)
-        ? `<div class="kang-card-contest">${_kangEsc(s.source_contest)}</div>` : '';
+        ? `<div class="kang-card-contest">${_mathEsc(s.source_contest)}</div>` : '';
     const levelLine = isPp
-        ? `<div class="kang-card-contest">${_kangEsc(s.level_label || '')}${s.grade_range ? ` (Grades ${_kangEsc(s.grade_range)})` : ''}</div>`
+        ? `<div class="kang-card-contest">${_mathEsc(s.level_label || '')}${s.grade_range ? ` (Grades ${_mathEsc(s.grade_range)})` : ''}</div>`
         : '';
 
     let actions = '';
@@ -199,24 +192,24 @@ function _kangCardHtml(s) {
         }
         actions = `
             <button class="kang-btn kang-btn-primary" data-action="test" data-kind="past_paper"
-                data-set-id="${_kangEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Test Mode</button>
+                data-set-id="${_mathEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Test Mode</button>
             <button class="kang-btn kang-btn-secondary" data-action="practice" data-kind="past_paper"
-                data-set-id="${_kangEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Practice</button>
+                data-set-id="${_mathEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Practice</button>
         `;
     } else {
         actions = `
-            <button class="kang-btn kang-btn-primary" data-action="test" data-set-id="${_kangEsc(s.set_id)}">Test Mode</button>
-            <button class="kang-btn kang-btn-secondary" data-action="practice" data-set-id="${_kangEsc(s.set_id)}">Practice Mode</button>
+            <button class="kang-btn kang-btn-primary" data-action="test" data-set-id="${_mathEsc(s.set_id)}">Test Mode</button>
+            <button class="kang-btn kang-btn-secondary" data-action="practice" data-set-id="${_mathEsc(s.set_id)}">Practice Mode</button>
         `;
     }
 
     return `
         <article class="kang-card">
             ${yearBadge}
-            <h3 class="kang-card-title">${_kangEsc(s.title)}</h3>
+            <h3 class="kang-card-title">${_mathEsc(s.title)}</h3>
             ${contest}
             ${levelLine}
-            <div class="kang-card-meta">${_kangEsc(meta)}${!isPp ? ' · ' + maxPts + ' pts max' : ''}</div>
+            <div class="kang-card-meta">${_mathEsc(meta)}${!isPp ? ' · ' + maxPts + ' pts max' : ''}</div>
             ${topic}
             ${best}
             ${warning}

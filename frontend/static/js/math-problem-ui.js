@@ -324,14 +324,3 @@ function _wireMathToolsPanel(problem) {
     });
 }
 
-// ── Escape helpers ─────────────────────────────────────────
-
-function _mathEsc(str) {
-    const d = document.createElement('div');
-    d.textContent = str;
-    return d.innerHTML;
-}
-
-function _mathEscAttr(str) {
-    return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
