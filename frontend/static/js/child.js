@@ -513,27 +513,23 @@ async function finishPerfectChallenge() {
     const stageEl  = $("stage");
     const perfect  = magicFailCount === 0;
     if (stageEl) {
-        const bgStyle = perfect
-            ? "background:linear-gradient(135deg,#f6d365 0%,#fda085 100%);border-radius:16px;padding:32px;"
-            : "padding:32px;";
+        const bgStyle = perfect ? "exam-result--perfect" : "exam-result--done";
         const bodyLines = perfect
-            ? `<div style="font-size:4rem;line-height:1;">🏆</div>
-               <div style="font-size:2.2rem;font-weight:900;margin:14px 0 8px;color:#7d4600;">PERFECT!</div>
-               <div style="font-size:1.2rem;font-weight:700;color:#7d4600;">No mistakes — incredible!</div>`
-            : `<div style="line-height:1;"><span class="check-dot check-dot--lg"></span></div>
-               <div style="font-size:1.8rem;font-weight:800;margin:14px 0 8px;color:#2c3e50;">Final Test Done!</div>
-               <div style="font-size:1.1rem;color:#555;">Finished with ${magicFailCount} reset(s).</div>
-               <div style="font-size:1rem;color:#7f8c8d;margin-top:4px;">Keep practicing!</div>`;
+            ? `<div class="exam-result-trophy">🏆</div>
+               <div class="exam-result-title exam-result-title--perfect">PERFECT!</div>
+               <div class="exam-result-sub exam-result-sub--perfect">No mistakes — incredible!</div>`
+            : `<div class="exam-result-check"><span class="check-dot check-dot--lg"></span></div>
+               <div class="exam-result-title">Final Test Done!</div>
+               <div class="exam-result-sub">Finished with ${magicFailCount} reset(s).</div>
+               <div class="exam-result-hint">Keep practicing!</div>`;
         stageEl.innerHTML = `
-            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;${bgStyle}">
+            <div class="exam-result-wrap ${bgStyle}">
                 ${bodyLines}
                 <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-                    <button type="button" class="exam-retry-btn" id="exam-retry-btn"
-                        style="padding:10px 22px;font-size:1rem;font-weight:700;border:none;border-radius:10px;cursor:pointer;background:#3498db;color:#fff;">
+                    <button type="button" class="exam-retry-btn" id="exam-retry-btn">
                         Take Final Test Again
                     </button>
-                    <button type="button" class="exam-menu-btn" id="exam-menu-btn"
-                        style="padding:10px 22px;font-size:1rem;font-weight:700;border:none;border-radius:10px;cursor:pointer;background:#ecf0f1;color:#2c3e50;">
+                    <button type="button" class="exam-menu-btn" id="exam-menu-btn">
                         Back to Menu
                     </button>
                 </div>
