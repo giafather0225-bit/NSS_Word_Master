@@ -29,6 +29,12 @@ body[data-view="diary"].dh-fullscreen #diary-view.de-active {
   border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
+.de-chrome > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
 .de-back {
   display: inline-flex;
   align-items: center;
@@ -179,12 +185,12 @@ body[data-view="diary"].dh-fullscreen #diary-view.de-active {
   border-bottom: 1px dashed var(--border-subtle);
 }
 .de-photo {
-  width: 72px;
-  height: 72px;
-  border-radius: 10px;
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;
   background: var(--bg-surface) center / cover no-repeat;
   border: 1px solid var(--border-subtle);
-  box-shadow: 0 4px 10px rgba(120, 90, 60, 0.08);
+  box-shadow: 0 6px 14px rgba(120, 90, 60, 0.10);
   transform: rotate(-1.5deg);
   flex-shrink: 0;
 }

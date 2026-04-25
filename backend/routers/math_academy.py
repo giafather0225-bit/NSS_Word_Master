@@ -477,7 +477,7 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
     }
     if not passed:
         try:
-                weak = (
+            weak = (
                 db.query(MathAttempt.lesson, func.count(MathAttempt.id).label("cnt"))
                 .filter_by(grade=req.grade, unit=req.unit, is_correct=False)
                 .group_by(MathAttempt.lesson)

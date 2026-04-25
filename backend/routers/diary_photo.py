@@ -21,6 +21,22 @@ from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
+# Pillow + HEIC support — used after upload to (a) normalize EXIF rotation
+# and (b) emit a 256×256 thumbnail next to the original. Imported lazily so
+# a missing optional dep doesn't break the module-level import.
+try:
+    from PIL import Image, ImageOps
+    try:
+        import pillow_heif
+        pillow_heif.register_heif_opener()
+    except ImportError:
+        pass
+    _PIL_AVAILABLE = True
+except ImportError:
+    Image = None  # type: ignore
+    ImageOps = None  # type: ignore
+    _PIL_AVAILABLE = False
+
 try:
     from ..database import get_db, LEARNING_ROOT
     from ..models import DiaryEntry
@@ -38,6 +54,65 @@ _PHOTO_MAX_BYTES  = 10_000_000  # 10 MB
 _CHUNK_SIZE       = 1_048_576   # 1 MB
 _PHOTO_NAME_RE    = _re.compile(r"^[A-Za-z0-9._-]+$")
 _DATE_RE          = _re.compile(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$')
+
+
+def _normalize_and_thumbnail(src: Path) -> Path | None:
+    """
+    Apply EXIF orientation + write a 256×256 thumbnail next to ``src``.
+
+    Returns the thumbnail path on success, or None on any failure
+    (PIL missing, format unsupported, decode error). Idempotent — calling
+    twice on the same file just regenerates the thumb.
+
+    Original file is rewritten in-place in JPEG/PNG/WebP. HEIC inputs are
+    re-encoded to JPEG (HEIC isn't browser-friendly) and the source is
+    replaced; the returned thumbnail uses the same final extension.
+    """
+    if not _PIL_AVAILABLE:
+        return None
+    try:
+        with Image.open(src) as im:
+            im = ImageOps.exif_transpose(im)
+
+            ext = src.suffix.lower()
+            target_path = src
+            save_format = None
+            if ext in {".heic", ".heif"}:
+                # Re-encode HEIC to JPEG so browsers can render it.
+                target_path = src.with_suffix(".jpg")
+                save_format = "JPEG"
+                if im.mode in ("RGBA", "P"):
+                    im = im.convert("RGB")
+            elif ext in {".jpg", ".jpeg"}:
+                save_format = "JPEG"
+                if im.mode in ("RGBA", "P"):
+                    im = im.convert("RGB")
+            elif ext == ".png":
+                save_format = "PNG"
+            elif ext == ".webp":
+                save_format = "WEBP"
+            elif ext == ".gif":
+                save_format = "GIF"
+
+            if save_format:
+                # Strip EXIF (which we already applied) so we don't keep stale
+                # rotation hints + reduce metadata footprint.
+                im.save(target_path, format=save_format, optimize=True)
+                if target_path != src and src.exists():
+                    src.unlink(missing_ok=True)
+
+            # Thumbnail (256×256, contained, sharing target_path's extension).
+            thumb_path = target_path.with_name(target_path.stem + "_thumb" + target_path.suffix)
+            with Image.open(target_path) as t:
+                t = ImageOps.exif_transpose(t)
+                if t.mode in ("RGBA", "P") and target_path.suffix.lower() in {".jpg", ".jpeg"}:
+                    t = t.convert("RGB")
+                t.thumbnail((256, 256), Image.LANCZOS)
+                t.save(thumb_path, format=save_format, optimize=True)
+            return thumb_path
+    except Exception as exc:  # noqa: BLE001 — best-effort post-processing
+        logger.warning("Photo normalize/thumbnail failed for %s: %s", src, exc)
+        return None
 
 
 async def _stream_save_photo(file: UploadFile, dest: Path) -> int:
@@ -101,6 +176,11 @@ async def upload_diary_photo(
     # Stream to disk — _stream_save_photo enforces size + empty-file checks
     # and cleans up the partial file on any failure.
     await _stream_save_photo(file, fpath)
+
+    # Normalize EXIF rotation + 256×256 thumbnail. HEIC is re-encoded to JPEG.
+    _normalize_and_thumbnail(fpath)
+    if ext in {".heic", ".heif"}:
+        fname = Path(fname).with_suffix(".jpg").name
 
     now_iso = datetime.now(timezone.utc).isoformat()
     entry = (
@@ -167,9 +247,20 @@ async def upload_diary_photo_multi(
     fpath = _PHOTO_DIR / fname
     await _stream_save_photo(file, fpath)
 
+    # EXIF rotate + 256×256 thumbnail. HEIC is re-encoded to JPEG so the
+    # final filename may differ from what we wrote during streaming.
+    thumb_path = _normalize_and_thumbnail(fpath)
+    final_name = fname
+    if ext in {".heic", ".heif"}:
+        # _normalize_and_thumbnail rewrote the file as .jpg and removed the
+        # original; surface the new filename to the client.
+        final_name = Path(fname).with_suffix(".jpg").name
+    thumb_name = thumb_path.name if thumb_path else None
+
     return {
-        "filename":  fname,
-        "photo_url": f"/api/diary/photo/{fname}",
+        "filename":  final_name,
+        "photo_url": f"/api/diary/photo/{final_name}",
+        "thumb_url": f"/api/diary/photo/{thumb_name}" if thumb_name else None,
     }
 
 
@@ -185,6 +276,14 @@ def delete_diary_photo(filename: str, db: Session = Depends(get_db)):
             fpath.unlink()
         except OSError as exc:
             logger.warning("Failed to delete diary photo %s: %s", fpath, exc)
+
+    # Companion thumbnail next to the original (named …_thumb.<ext>).
+    thumb = fpath.with_name(fpath.stem + "_thumb" + fpath.suffix)
+    if thumb.exists() and thumb.parent == _PHOTO_DIR:
+        try:
+            thumb.unlink()
+        except OSError as exc:
+            logger.warning("Failed to delete diary thumb %s: %s", thumb, exc)
 
     entry = db.query(DiaryEntry).filter(DiaryEntry.photo_path == filename).first()
     if entry:

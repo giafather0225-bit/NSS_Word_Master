@@ -23,12 +23,11 @@ function openDiarySection(section) {
         btn.classList.remove("active");
     });
 
-    // Home + Write + Entry + Calendar are hub-level (no sidebar); others keep it.
-    const isHubLevel = !section || section === "today" || section === "journal"
-        || section === "freewriting" || section === "entry" || section === "calendar";
-    document.body.classList.toggle("dh-fullscreen", isHubLevel);
+    // All Diary screens are hub-level now (no sidebar). Sub-sections render
+    // inside #diary-view and get class markers so per-screen scroll rules fire.
+    document.body.classList.add("dh-fullscreen");
 
-    // Reset Write/Entry/Calendar screen markers when navigating elsewhere.
+    // Reset every per-screen marker so we don't double-apply CSS.
     if (section !== "journal" && section !== "freewriting") {
         view.classList.remove("dw-active");
     }
@@ -37,6 +36,9 @@ function openDiarySection(section) {
     }
     if (section !== "calendar") {
         view.classList.remove("dc-active");
+    }
+    if (!["sentences", "worlds", "timeline", "dayoff"].includes(section)) {
+        view.classList.remove("ds-active");
     }
 
     switch (section) {
@@ -108,14 +110,36 @@ async function _renderDiaryHome() {
         <div class="dh-root" id="dh-root">
             <header class="dh-chrome">
                 <div class="dh-chrome-left">
+                    <button class="dh-back-home" type="button"
+                            onclick="switchView('home')" aria-label="Back to home">
+                        ${_dhIcon("chevron-left", 14)} Home
+                    </button>
                     <span class="dh-chrome-eyebrow">Diary · Today</span>
                     <div class="dh-chrome-title">A little page for today</div>
                     <div class="dh-chrome-sub">Write what you feel, or free-write for fun.</div>
                 </div>
-                <div>
+                <div class="dh-chrome-actions">
                     <button class="dh-cta-write" type="button" onclick="_dhStartWrite('journal')">
                         ${_dhIcon("pen-tool", 14)} Start writing
                     </button>
+                    <button class="dh-more-btn" type="button" aria-label="More diary sections"
+                            aria-haspopup="menu" onclick="_dhToggleMore(event)">
+                        ${_dhIcon("more-horizontal", 18)}
+                    </button>
+                    <div class="dh-more-menu is-hidden" id="dh-more-menu" role="menu">
+                        <button class="dh-more-item" type="button" role="menuitem" onclick="_dhMoreOpen('sentences')">
+                            ${_dhIcon("message-square", 14)} My Sentences
+                        </button>
+                        <button class="dh-more-item" type="button" role="menuitem" onclick="_dhMoreOpen('worlds')">
+                            ${_dhIcon("globe", 14)} My Worlds
+                        </button>
+                        <button class="dh-more-item" type="button" role="menuitem" onclick="_dhMoreOpen('timeline')">
+                            ${_dhIcon("trending-up", 14)} Growth Timeline
+                        </button>
+                        <button class="dh-more-item" type="button" role="menuitem" onclick="_dhMoreOpen('dayoff')">
+                            ${_dhIcon("umbrella", 14)} Day off · all requests
+                        </button>
+                    </div>
                 </div>
             </header>
 
@@ -350,7 +374,9 @@ function _dhPolaroid(entry, tiltClass) {
         const cls = `dh-poly-mosaic--${photos.length}`;
         mosaic = `<div class="dh-poly-mosaic ${cls}">` +
             photos.map(p => {
-                const url = p.url || p.path || "";
+                // Prefer the 256-px thumbnail in the polaroid (~96-128 px tile)
+                // and fall back to the full-size URL for legacy snapshots.
+                const url  = p.thumb_url || p.url || p.path || "";
                 const tone = p.tone || "var(--diary-soft)";
                 const bg = url
                     ? `background-image:url('${url}');`
@@ -384,6 +410,27 @@ function _dhPolaroid(entry, tiltClass) {
                 <div class="dh-poly-date">${escapeHtml(dateLong)}</div>
             </div>
         </button>`;
+}
+
+/** Toggle Home chrome ⋯ More dropdown (sentences / worlds / timeline / dayoff). */
+function _dhToggleMore(evt) {
+    if (evt) evt.stopPropagation();
+    const m = document.getElementById("dh-more-menu");
+    if (!m) return;
+    const willOpen = m.classList.contains("is-hidden");
+    m.classList.toggle("is-hidden", !willOpen);
+    if (willOpen) {
+        document.addEventListener("click", _dhCloseMoreOnDocClick, { once: true });
+    }
+}
+function _dhCloseMoreOnDocClick() {
+    const m = document.getElementById("dh-more-menu");
+    if (m) m.classList.add("is-hidden");
+}
+/** Route to a non-hub-level Diary sub-section (sidebar reappears there). */
+function _dhMoreOpen(section) {
+    _dhCloseMoreOnDocClick();
+    if (typeof openDiarySection === "function") openDiarySection(section);
 }
 
 /** Open Entry screen for a given entry id. */
@@ -466,7 +513,7 @@ function _dhDayOffModalHTML() {
         <div class="dh-modal-backdrop is-hidden" id="dh-dayoff-modal" role="dialog"
              aria-modal="true" aria-label="Request a day off"
              onclick="_dhCloseDayOffModalIfBackdrop(event)">
-            <div class="dh-modal" onclick="event.stopPropagation()">
+            <div class="dh-modal" onclick="event.stopPropagation()" lang="en">
                 <span class="dh-washi" style="top:-9px;left:32px;width:90px;background:var(--arcade-soft);transform:rotate(-4deg);"></span>
                 <div class="dh-modal-head">
                     <div class="dh-modal-icon">${_dhIcon("coffee", 17)}</div>
@@ -476,9 +523,14 @@ function _dhDayOffModalHTML() {
                     </div>
                 </div>
                 <div class="dh-modal-field">
-                    <label class="dh-modal-label" for="dh-dayoff-date">Which day?</label>
-                    <input class="dh-modal-input" type="date" id="dh-dayoff-date" min=""/>
-                    <div class="dh-modal-help">Future days only.</div>
+                    <label class="dh-modal-label" for="dh-dayoff-start">Single day or range?</label>
+                    <div class="dh-modal-range">
+                        <input class="dh-modal-input" type="date" id="dh-dayoff-start" min="" lang="en"/>
+                        <span class="dh-modal-range-sep">→</span>
+                        <input class="dh-modal-input" type="date" id="dh-dayoff-end" min="" lang="en"
+                               placeholder="optional"/>
+                    </div>
+                    <div class="dh-modal-help">Leave the second date empty for a single day.</div>
                 </div>
                 <div class="dh-modal-field">
                     <label class="dh-modal-label" for="dh-dayoff-reason">
@@ -519,40 +571,103 @@ function _dhOpenDayOffModal() {
     const minDate = tomorrow.toISOString().slice(0, 10);
 
     const modal = document.getElementById("dh-dayoff-modal");
-    const dateEl = document.getElementById("dh-dayoff-date");
+    const startEl = document.getElementById("dh-dayoff-start");
+    const endEl = document.getElementById("dh-dayoff-end");
     const reasonEl = document.getElementById("dh-dayoff-reason");
     const subEl = document.getElementById("dh-dayoff-sub");
     const errEl = document.getElementById("dh-dayoff-error");
     const submitEl = document.getElementById("dh-dayoff-submit");
     if (!modal) return;
 
-    if (dateEl) {
-        dateEl.value = "";
-        dateEl.min = minDate;
-        dateEl.removeEventListener("input", _dhDayOffValidate);
-        dateEl.addEventListener("input", _dhDayOffValidate);
-    }
+    [startEl, endEl].forEach(el => {
+        if (!el) return;
+        el.value = "";
+        el.min = minDate;
+        el.removeEventListener("input", _dhDayOffValidate);
+        el.addEventListener("input", _dhDayOffValidate);
+    });
     if (reasonEl) reasonEl.value = "";
     if (subEl) subEl.textContent = `${left} / ${_DH_DAYOFF_MAX} left this month`;
     if (errEl) errEl.textContent = "";
     if (submitEl) {
         submitEl.disabled = true;
         submitEl.setAttribute("aria-disabled", "true");
+        submitEl.innerHTML = `${_dhIcon("check", 12)} Send request`;
     }
 
     modal.classList.remove("is-hidden");
     _dhState.modal.open = true;
     document.addEventListener("keydown", _dhDayOffKey);
-    setTimeout(() => dateEl && dateEl.focus(), 30);
+    _dhRefreshIcons();
+    setTimeout(() => startEl && startEl.focus(), 30);
 }
 
 function _dhDayOffValidate() {
-    const dateEl = document.getElementById("dh-dayoff-date");
+    const startEl = document.getElementById("dh-dayoff-start");
+    const endEl   = document.getElementById("dh-dayoff-end");
     const submitEl = document.getElementById("dh-dayoff-submit");
+    const errEl   = document.getElementById("dh-dayoff-error");
     if (!submitEl) return;
-    const ok = !!(dateEl && dateEl.value);
+    const start = startEl && startEl.value;
+    const end   = endEl   && endEl.value;
+    let ok = !!start;
+    let err = "";
+    if (start && end && end < start) {
+        ok = false;
+        err = "End date must be on/after the start.";
+    }
+    // Range size limit: don't let one request blow past the monthly quota.
+    if (ok && start && end) {
+        const days = _dhDayCount(start, end);
+        if (days > _DH_DAYOFF_MAX) {
+            ok = false;
+            err = `Range too long — max ${_DH_DAYOFF_MAX} days.`;
+        }
+    }
+    if (errEl) errEl.textContent = err;
     submitEl.disabled = !ok;
     submitEl.setAttribute("aria-disabled", String(!ok));
+}
+
+/** Inclusive day count between two ISO yyyy-mm-dd strings. */
+function _dhDayCount(start, end) {
+    const a = new Date(start + "T00:00:00");
+    const b = new Date(end   + "T00:00:00");
+    const ms = b - a;
+    if (Number.isNaN(ms) || ms < 0) return 0;
+    return Math.round(ms / 86400000) + 1;
+}
+
+/** Build ISO yyyy-mm-dd strings from start..end inclusive. */
+function _dhExpandRange(start, end) {
+    const out = [];
+    const a = new Date(start + "T00:00:00");
+    const b = new Date((end || start) + "T00:00:00");
+    if (Number.isNaN(a.getTime()) || Number.isNaN(b.getTime())) return out;
+    for (let d = new Date(a); d <= b; d.setDate(d.getDate() + 1)) {
+        out.push(d.toISOString().slice(0, 10));
+    }
+    return out;
+}
+
+/** Render a compact history list inside the modal. */
+function _dhRenderDayOffHistory() {
+    const wrap = document.getElementById("dh-dayoff-history");
+    if (!wrap) return;
+    const rows = (_dhState.dayOffs || []).slice(0, 5);
+    if (!rows.length) { wrap.innerHTML = ""; return; }
+    const LABEL = { pending: "Pending", approved: "Approved", denied: "Denied" };
+    wrap.innerHTML = `
+        <div class="dh-modal-history-label">Recent requests</div>
+        <div class="dh-modal-history-list">
+            ${rows.map(r => {
+                const s = (r.status || "pending").toLowerCase();
+                return `<div class="dh-modal-history-row">
+                    <span class="dh-modal-history-date">${escapeHtml(r.request_date || "")}</span>
+                    <span class="dh-modal-history-status ${s}">${LABEL[s] || s}</span>
+                </div>`;
+            }).join("")}
+        </div>`;
 }
 
 function _dhCloseDayOffModal() {
@@ -571,41 +686,62 @@ function _dhDayOffKey(e) {
 }
 
 async function _dhSubmitDayOff() {
-    const dateEl = document.getElementById("dh-dayoff-date");
+    const startEl  = document.getElementById("dh-dayoff-start");
+    const endEl    = document.getElementById("dh-dayoff-end");
     const reasonEl = document.getElementById("dh-dayoff-reason");
-    const errEl = document.getElementById("dh-dayoff-error");
+    const errEl    = document.getElementById("dh-dayoff-error");
     const submitEl = document.getElementById("dh-dayoff-submit");
-    if (!dateEl || !dateEl.value) return;
-    const date = dateEl.value;
+    if (!startEl || !startEl.value) return;
+    const start  = startEl.value;
+    const end    = (endEl && endEl.value) || start;
+    const dates  = _dhExpandRange(start, end);
+    if (!dates.length) return;
     // Backend requires non-empty reason; provide a polite default if blank.
     const reason = (reasonEl && reasonEl.value.trim()) || "Personal day";
 
     if (errEl) errEl.textContent = "";
-    if (submitEl) submitEl.disabled = true;
-
-    try {
-        const res = await fetch("/api/day-off/request", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ request_date: date, reason }),
-        });
-        if (!res.ok) {
-            let msg = "Couldn't send the request.";
-            try {
-                const d = await res.json();
-                if (d && d.detail) msg = d.detail;
-            } catch (_) {}
-            if (errEl) errEl.textContent = msg;
-            if (submitEl) submitEl.disabled = false;
-            return;
-        }
-        _dhCloseDayOffModal();
-        // Refresh stats so the new pending request shows up immediately.
-        _dhLoadHomeData();
-    } catch (err) {
-        if (errEl) errEl.textContent = "Network error. Try again.";
-        if (submitEl) submitEl.disabled = false;
+    if (submitEl) {
+        submitEl.disabled = true;
+        submitEl.innerHTML = `${_dhIcon("check", 12)} Sending…`;
+        _dhRefreshIcons();
     }
+
+    // Submit each day separately — the existing backend stores one row per
+    // date and rejects duplicates with 409. We stop on the first hard
+    // failure (other than 409) so the user can fix and retry.
+    const failed = [];
+    for (const d of dates) {
+        try {
+            const res = await fetch("/api/day-off/request", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ request_date: d, reason }),
+            });
+            if (!res.ok && res.status !== 409) {
+                let msg = `Couldn't send ${d}.`;
+                try {
+                    const j = await res.json();
+                    if (j && j.detail) msg = j.detail;
+                } catch (_) {}
+                failed.push({ d, msg });
+                break;
+            }
+        } catch (_) {
+            failed.push({ d, msg: `Network error on ${d}.` });
+            break;
+        }
+    }
+    if (failed.length) {
+        if (errEl) errEl.textContent = failed[0].msg;
+        if (submitEl) {
+            submitEl.disabled = false;
+            submitEl.innerHTML = `${_dhIcon("check", 12)} Send request`;
+            _dhRefreshIcons();
+        }
+        return;
+    }
+    _dhCloseDayOffModal();
+    _dhLoadHomeData();
 }
 
 // ─── Daily Journal ────────────────────────────────────────────
@@ -838,30 +974,77 @@ async function _deleteFreeWrite(id) {
 // ─── Growth Timeline ──────────────────────────────────────────
 
 /** @tag DIARY GROWTH_TIMELINE */
-async function _renderTimeline() {
+/* Shared chrome HTML for Decorated sub-sections (My Sentences / My Worlds /
+   Growth Timeline / Day Off). Always returns to Diary Home. */
+function _dsubChrome(eyebrow, title, sub, rightSlot) {
+    return `
+        <header class="ds-chrome">
+            <div>
+                <button class="ds-back" type="button" onclick="openDiarySection('today')">
+                    ${_dhIcon("chevron-left", 14)} Diary
+                </button>
+                <span class="ds-eyebrow">${escapeHtml(eyebrow)}</span>
+                <div class="ds-title">${escapeHtml(title)}</div>
+                ${sub ? `<div class="ds-sub">${escapeHtml(sub)}</div>` : ""}
+            </div>
+            ${rightSlot ? `<div>${rightSlot}</div>` : ""}
+        </header>`;
+}
+
+/* Mark Diary view as a Decorated sub-section so global CSS can scroll it. */
+function _dsubPrep() {
     const view = document.getElementById("diary-view");
+    if (!view) return null;
+    view.style.display = "flex";
+    view.classList.add("ds-active");
+    document.body.classList.add("dh-fullscreen");
+    return view;
+}
+
+async function _renderTimeline() {
+    const view = _dsubPrep();
+    if (!view) return;
     view.innerHTML = `
-        ${_diaryHeader("Growth Timeline", "", "Your learning milestones")}
-        <div class="diary-body" id="timeline-body"><p class="diary-state-msg">Loading…</p></div>`;
+        <div class="ds-root">
+            ${_dsubChrome("Diary · Growth", "Growth Timeline", "Your learning milestones over time")}
+            <div class="ds-body" id="ds-tl-body">
+                <p class="ds-loading">Loading…</p>
+            </div>
+        </div>`;
+    _dhRefreshIcons();
     try {
         const res  = await fetch("/api/growth/timeline");
         if (!res.ok) throw new Error();
         const data = await res.json();
-        const body = document.getElementById("timeline-body");
-        if (!data.events || data.events.length === 0) {
-            body.innerHTML = `<p class="diary-state-msg">No events yet. Keep learning!</p>`;
+        const body = document.getElementById("ds-tl-body");
+        const events = data.events || [];
+        if (!events.length) {
+            body.innerHTML = `<div class="ds-empty">
+                <span class="ds-empty-icon">🌱</span>
+                Keep learning to unlock milestones!
+            </div>`;
             return;
         }
-        body.innerHTML = `<div class="timeline-list">${data.events.map(e => `
-            <div class="timeline-item">
-                <div class="timeline-info">
-                    <div class="timeline-title">${escapeHtml(e.title)}</div>
-                    <div class="timeline-date">${escapeHtml(e.event_date || "")}</div>
-                </div>
-            </div>`).join("")}</div>`;
+        const KIND = {
+            lesson_pass:   "lesson",
+            unit_pass:     "lesson",
+            weekly_pass:   "lesson",
+            streak_7:      "streak",
+            streak_30:     "streak",
+            theme_complete:"theme",
+            milestone_100: "word",
+        };
+        body.innerHTML = `<div class="ds-timeline">${events.map(e => {
+            const kind = KIND[e.event_type] || "default";
+            return `<div class="ds-tl-row" data-kind="${kind}">
+                <div class="ds-tl-title">${escapeHtml(e.title || "")}</div>
+                ${e.detail ? `<div class="ds-tl-detail">${escapeHtml(e.detail)}</div>` : ""}
+                <div class="ds-tl-date">${escapeHtml(e.event_date || "")}</div>
+            </div>`;
+        }).join("")}</div>`;
     } catch (_) {
-        const body = document.getElementById("timeline-body");
-        if (body) body.innerHTML = `<p class="diary-state-msg error">Failed to load.</p>`;
+        const body = document.getElementById("ds-tl-body");
+        if (body) body.innerHTML = `<p class="ds-error">Failed to load.</p>`;
     }
 }
 
@@ -869,35 +1052,38 @@ async function _renderTimeline() {
 
 /** @tag DIARY DAY_OFF */
 async function _renderDayOff() {
-    const view = document.getElementById("diary-view");
-    const today = new Date().toISOString().slice(0, 10);
-    const REASON_CHIPS = ["Feeling sick", "Family event", "School trip", "Too tired"];
-
+    const view = _dsubPrep();
+    if (!view) return;
     view.innerHTML = `
-        ${_diaryHeader("Need a break day?", "", "Send a request to your parent.")}
-        <div class="diary-dayoff-layout">
-            <form class="dayoff-form" onsubmit="_submitDayOff(event)">
-                <div class="dayoff-field">
-                    <label class="dayoff-label">Date</label>
-                    <input class="dayoff-input" type="date" id="dayoff-date" value="${today}" required />
-                </div>
-                <div class="dayoff-field">
-                    <label class="dayoff-label">Reason</label>
-                    <div class="dayoff-chips">
-                        ${REASON_CHIPS.map(r =>
-                            `<button type="button" class="dayoff-chip" onclick="_selectDayOffChip(this, '${escapeHtml(r)}')">${escapeHtml(r)}</button>`
-                        ).join("")}
+        <div class="ds-root">
+            ${_dsubChrome("Diary · Day Off", "Day off requests", "Past requests + how to send a new one")}
+            <div class="ds-body">
+                <div class="ds-do-cta-row">
+                    <span class="dh-washi" style="top:-9px;left:24px;width:80px;background:var(--arcade-soft);transform:rotate(-4deg);"></span>
+                    <div class="ds-do-cta-text">
+                        <div class="ds-do-cta-title">Need a break day?</div>
+                        <div class="ds-do-cta-sub">Send a request from Diary Home (max 2 per month).</div>
                     </div>
-                    <textarea class="dayoff-textarea" id="dayoff-reason" placeholder="Tell your parent why…" required></textarea>
+                    <button class="ds-do-cta-btn" type="button" onclick="_dsubGoHomeAndOpenDayOff()">
+                        ${_dhIcon("coffee", 13)} Open request form
+                    </button>
                 </div>
-                <button type="submit" class="journal-submit-btn" id="dayoff-btn">Send request</button>
-            </form>
-            <div class="dayoff-history">
-                <div class="dayoff-history-label">Past requests</div>
-                <div id="dayoff-status"></div>
+                <div id="ds-do-list">
+                    <p class="ds-loading">Loading past requests…</p>
+                </div>
             </div>
         </div>`;
+    _dhRefreshIcons();
     _loadDayOffStatus();
+}
+
+/** Bounce back to Home and pop the modal. Keeps a single source of truth
+ *  for new-request UX rather than duplicating the form here. */
+function _dsubGoHomeAndOpenDayOff() {
+    openDiarySection("today");
+    setTimeout(() => {
+        if (typeof _dhOpenDayOffModal === "function") _dhOpenDayOffModal();
+    }, 80);
 }
 
 /** Fill reason textarea from chip selection. @tag DIARY DAY_OFF */
@@ -939,23 +1125,29 @@ async function _submitDayOff(e) {
 
 /** Load past day-off requests. @tag DIARY DAY_OFF */
 async function _loadDayOffStatus() {
-    const el = document.getElementById("dayoff-status");
+    const el = document.getElementById("ds-do-list");
     if (!el) return;
     try {
         const res  = await fetch("/api/day-off/requests");
         if (!res.ok) return;
         const data = await res.json();
         const rows = data.requests || [];
-        if (!rows.length) { el.innerHTML = `<p class="diary-state-msg compact">No previous requests.</p>`; return; }
+        if (!rows.length) {
+            el.innerHTML = `<div class="ds-empty">
+                <span class="ds-empty-icon">☕</span>
+                No requests yet.
+            </div>`;
+            return;
+        }
         const LABEL = { pending: "Pending", approved: "Approved", denied: "Denied" };
-        el.innerHTML = `<div class="dayoff-status-list">${rows.map(r => {
+        el.innerHTML = `<div class="ds-do-list">${rows.map(r => {
             const s = (r.status || "pending").toLowerCase();
-            return `<div class="dayoff-status-row">
-                <div class="dayoff-status-info">
-                    <div class="dayoff-status-date">${escapeHtml(r.request_date)}</div>
-                    <div class="dayoff-status-reason">${escapeHtml(r.reason || "")}</div>
+            return `<div class="ds-do-row">
+                <div class="ds-do-info">
+                    <div class="ds-do-date">${escapeHtml(r.request_date)}</div>
+                    <div class="ds-do-reason">${escapeHtml(r.reason || "")}</div>
                 </div>
-                <span class="status-badge ${s}">${LABEL[s] || s}</span>
+                <span class="ds-do-status ${s}">${LABEL[s] || s}</span>
             </div>`;
         }).join("")}</div>`;
     } catch (_) {}
@@ -972,42 +1164,52 @@ function _sentenceAgeDays(iso, now) {
 
 /** @tag DIARY MY_SENTENCES */
 async function _renderSentences() {
-    const view = document.getElementById("diary-view");
+    const view = _dsubPrep();
+    if (!view) return;
     view.innerHTML = `
-        ${_diaryHeader("My Sentences", "", "Sentences I created in Step 5")}
-        <div class="diary-body" id="sentences-body"><p class="diary-state-msg">Loading…</p></div>`;
+        <div class="ds-root">
+            ${_dsubChrome("Diary · Sentences", "My Sentences", "Sentences I created in Step 5 — older than 2 weeks ask for a rewrite")}
+            <div class="ds-body" id="ds-sent-body">
+                <p class="ds-loading">Loading…</p>
+            </div>
+        </div>`;
+    _dhRefreshIcons();
 
     const subject  = (typeof currentSubject  !== "undefined" && currentSubject)  ? currentSubject  : "English";
-    const textbook = (typeof currentTextbook !== "undefined" && currentTextbook) ? currentTextbook : "";
+    // "all" sentinel — empty path segment 404s on FastAPI.
+    const textbook = (typeof currentTextbook !== "undefined" && currentTextbook) ? currentTextbook : "all";
     try {
         const res = await fetch(`/api/diary/${encodeURIComponent(subject)}/${encodeURIComponent(textbook)}`);
         if (!res.ok) throw new Error();
         const data    = await res.json();
-        const body    = document.getElementById("sentences-body");
+        const body    = document.getElementById("ds-sent-body");
         const lessons = data.lessons || [];
         if (!lessons.length || data.total_sentences === 0) {
-            body.innerHTML = `<p class="diary-state-msg">No sentences yet. Complete Step 5!</p>`;
+            body.innerHTML = `<div class="ds-empty">
+                <span class="ds-empty-icon">📝</span>
+                No sentences yet. Finish Step 5 of a lesson to start collecting them.
+            </div>`;
             return;
         }
         const now   = Date.now();
         const STALE = 14;
         const cards = lessons.flatMap(lesson =>
-            lesson.sentences.map(s => {
+            (lesson.sentences || []).map(s => {
                 const age   = _sentenceAgeDays(s.created_at, now);
                 const stale = age !== null && age >= STALE;
-                return `<div class="sentence-card${stale ? " stale" : ""}">
-                    <div class="sentence-card-head">
-                        <div class="sentence-word">${escapeHtml(s.word || lesson.lesson || "")}</div>
-                        ${stale ? `<span class="sentence-rewrite-badge" title="${age} days ago">Rewrite</span>` : ""}
+                return `<div class="ds-sent-card ${stale ? "is-stale" : ""}">
+                    <div class="ds-sent-head">
+                        <div class="ds-sent-word">${escapeHtml(s.word || lesson.lesson || "")}</div>
+                        ${stale ? `<span class="ds-sent-stale" title="${age} days ago">Rewrite</span>` : ""}
                     </div>
-                    <div class="sentence-text">${escapeHtml(s.sentence || "")}</div>
+                    <div class="ds-sent-text">${escapeHtml(s.sentence || "")}</div>
                 </div>`;
             })
         ).join("");
-        body.innerHTML = `<div class="sentences-list">${cards}</div>`;
+        body.innerHTML = `<div class="ds-sent-grid">${cards}</div>`;
     } catch (_) {
-        const body = document.getElementById("sentences-body");
-        if (body) body.innerHTML = `<p class="diary-state-msg error">Failed to load.</p>`;
+        const body = document.getElementById("ds-sent-body");
+        if (body) body.innerHTML = `<p class="ds-error">Failed to load.</p>`;
     }
 }
 
@@ -1015,32 +1217,40 @@ async function _renderSentences() {
 
 /** @tag DIARY MY_WORLDS GROWTH_THEME */
 async function _renderWorlds() {
-    const view = document.getElementById("diary-view");
+    const view = _dsubPrep();
+    if (!view) return;
     view.innerHTML = `
-        ${_diaryHeader("My Worlds", "", "Completed growth themes")}
-        <div class="diary-body" id="worlds-body"><p class="diary-state-msg">Loading…</p></div>`;
+        <div class="ds-root">
+            ${_dsubChrome("Diary · Worlds", "My Worlds", "Growth themes you've completed")}
+            <div class="ds-body" id="ds-worlds-body">
+                <p class="ds-loading">Loading…</p>
+            </div>
+        </div>`;
+    _dhRefreshIcons();
     try {
         const res  = await fetch("/api/growth/theme/all");
         if (!res.ok) throw new Error();
         const data = await res.json();
         const done = (data.themes || []).filter(t => t.is_completed);
-        const body = document.getElementById("worlds-body");
+        const body = document.getElementById("ds-worlds-body");
         if (!done.length) {
-            body.innerHTML = `<div class="worlds-empty">
-                <div class="worlds-empty-icon">🌱</div>
-                <p class="worlds-empty-text">Complete a Growth Theme to add your first world!</p>
+            body.innerHTML = `<div class="ds-empty">
+                <span class="ds-empty-icon">🌱</span>
+                Finish a Growth Theme to plant your first world here.
             </div>`;
             return;
         }
-        body.innerHTML = `<div class="worlds-grid">${done.map(t => `
-            <div class="worlds-card">
-                <img class="worlds-card-img" src="${t.img_url}" alt="${escapeHtml(t.label || t.theme)}" onerror="this.classList.add('broken')">
-                <div class="worlds-card-title">${escapeHtml(t.label || t.theme)}</div>
-                <div class="worlds-card-status"><span class="check-dot"></span> Completed</div>
+        body.innerHTML = `<div class="ds-worlds-grid">${done.map(t => `
+            <div class="ds-world-card">
+                <img class="ds-world-img" src="${t.img_url}"
+                     alt="${escapeHtml(t.label || t.theme)}"
+                     onerror="this.classList.add('broken')">
+                <div class="ds-world-title">${escapeHtml(t.label || t.theme)}</div>
+                <div class="ds-world-status"><span class="ds-world-dot"></span> Completed</div>
             </div>`).join("")}</div>`;
     } catch (_) {
-        const body = document.getElementById("worlds-body");
-        if (body) body.innerHTML = `<p class="diary-state-msg error">Failed to load.</p>`;
+        const body = document.getElementById("ds-worlds-body");
+        if (body) body.innerHTML = `<p class="ds-error">Failed to load.</p>`;
     }
 }
 

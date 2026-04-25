@@ -21,6 +21,7 @@ from sqlalchemy.orm import Session
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import StudyItem, Progress
 from backend.schemas_common import Str30, Str50, Str100
+from backend.utils import validate_lesson as _validate_lesson
 from backend.voca_sync import load_lesson_json, sync_lesson_to_db
 from backend.services import academy_session as academy_sess
 
@@ -28,19 +29,7 @@ router = APIRouter()
 
 _DB_PATH = str(LEARNING_ROOT / "database" / "voca.db")
 
-_SAFE_LESSON_RE = _re.compile(r'^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$')
-
-
-def _validate_lesson(lesson: str) -> str:
-    """Validate lesson name — blocks path traversal and dangerous chars."""
-    key = lesson.strip()
-    if not key:
-        raise HTTPException(status_code=400, detail="lesson name required")
-    if key.isdigit():
-        key = f"Lesson_{int(key):02d}"
-    if not _SAFE_LESSON_RE.match(key):
-        raise HTTPException(status_code=400, detail="Invalid lesson name")
-    return key
+# _validate_lesson → backend/utils.py
 
 
 def serialize_item(row: StudyItem) -> dict:

@@ -33,29 +33,11 @@ from sqlalchemy.orm import Session
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import Lesson, StudyItem, Word, GrowthEvent
 from backend.schemas_common import Str20, Str100, Str500
+from backend.utils import validate_lesson as _validate_lesson
 from backend.services import xp_engine
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
-
-_SAFE_LESSON_RE = _re.compile(r'^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$')
-_OLLAMA_URL = os.getenv("OLLAMA_HOST", "http://localhost:11434")
-_OLLAMA_EVAL_MODEL = os.getenv("OLLAMA_EVAL_MODEL", "gemma2:2b")
-
-
-# ── Validators ─────────────────────────────────────────────
-
-def _validate_lesson(lesson: str) -> str:
-    """Validate lesson name — blocks path traversal and dangerous chars."""
-    key = lesson.strip()
-    if not key:
-        raise HTTPException(status_code=400, detail="lesson name required")
-    if key.isdigit():
-        key = f"Lesson_{int(key):02d}"
-    if not _SAFE_LESSON_RE.match(key):
-        raise HTTPException(status_code=400, detail="Invalid lesson name")
-    return key
-
 
 # ── Pydantic Schemas ───────────────────────────────────────
 

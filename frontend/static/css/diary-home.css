@@ -43,7 +43,28 @@ body[data-view="diary"].dh-fullscreen #diary-view {
   background: var(--bg-page);
   flex-shrink: 0;
 }
-.dh-chrome-left { min-width: 0; }
+.dh-chrome-left {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.dh-back-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px 6px 6px;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 8px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.dh-back-home:hover { background: var(--bg-card); color: var(--text-primary); }
 .dh-chrome-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -71,6 +92,12 @@ body[data-view="diary"].dh-fullscreen #diary-view {
   font-size: 13px;
   color: var(--text-secondary);
 }
+.dh-chrome-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
 .dh-cta-write {
   display: inline-flex;
   align-items: center;
@@ -90,6 +117,51 @@ body[data-view="diary"].dh-fullscreen #diary-view {
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(224, 154, 174, 0.40);
 }
+.dh-more-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.dh-more-btn:hover { background: var(--bg-surface); color: var(--text-primary); }
+.dh-more-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 60;
+  min-width: 200px;
+  padding: 6px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-modal);
+  display: flex;
+  flex-direction: column;
+}
+.dh-more-menu.is-hidden { display: none; }
+.dh-more-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.dh-more-item:hover { background: var(--bg-surface); }
+.dh-more-item [data-lucide] { color: var(--diary-primary); }
 
 /* ── 2×2 grid ──────────────────────────────────────────────────── */
 /* Rows = auto so each card sizes to its content (no stretch overflow). */
@@ -707,3 +779,56 @@ body[data-view="diary"].dh-fullscreen #diary-view {
   font-size: 11.5px;
   color: var(--color-error, #c44e4e);
 }
+.dh-modal-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dh-modal-range .dh-modal-input { flex: 1; }
+.dh-modal-range-sep {
+  color: var(--text-hint);
+  font-size: 13px;
+}
+
+.dh-modal-history {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 12px;
+  margin-top: 4px;
+}
+.dh-modal-history:empty { display: none; }
+.dh-modal-history-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-hint);
+  margin-bottom: 6px;
+}
+.dh-modal-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.dh-modal-history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 12px;
+}
+.dh-modal-history-date {
+  font-family: var(--font-family-display);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.dh-modal-history-status {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.dh-modal-history-status.pending  { background: var(--arcade-light); color: var(--arcade-ink); }
+.dh-modal-history-status.approved { background: var(--math-light);   color: var(--math-ink); }
+.dh-modal-history-status.denied   { background: var(--review-light); color: var(--review-ink); }

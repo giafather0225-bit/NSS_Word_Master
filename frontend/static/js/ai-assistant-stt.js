@@ -1,77 +1,80 @@
-if (typeof window.ShadowSTT === 'undefined') { if (typeof window.ShadowSTT === 'undefined') {
-if (typeof ShadowSTT === 'undefined') {
-/* ai-assistant-stt.js — Speech Recognition (Shadow STT) */
+/* ================================================================
+   ai-assistant-stt.js — Speech Recognition (Shadow STT)
+   Section: AI Assistant
+   Exports: window.ShadowSTT (class)
+     new ShadowSTT(onResult, onError, onEnd)
+       .startListening()  → Promise<boolean>
+       .stopListening()
+       .isRecording
+   ================================================================ */
 
-class {
-    constructor(onResult, onError, onEnd) {
-        this.onResult = onResult;
-        this.onError = onError;
-        this.onEnd = onEnd;
-        this.recognition = null;
-        this.isRecording = false;
+(function () {
+    if (typeof window.ShadowSTT !== "undefined") return;
 
-        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRec) {
-            this.recognition = new SpeechRec();
-            this.recognition.lang = 'en-US';
-            this.recognition.continuous = false;
-            this.recognition.interimResults = false;
+    class ShadowSTT {
+        constructor(onResult, onError, onEnd) {
+            this.onResult = onResult;
+            this.onError  = onError;
+            this.onEnd    = onEnd;
+            this.recognition = null;
+            this.isRecording = false;
 
-            this.recognition.onresult = (e) => {
+            const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRec) return;
+
+            const r = new SpeechRec();
+            r.lang = "en-US";
+            r.continuous = false;
+            r.interimResults = false;
+
+            r.onresult = (e) => {
                 const text = e.results[0][0].transcript;
                 if (this.onResult) this.onResult(text);
             };
-
-            this.recognition.onerror = (e) => {
-                if (this.onError) this.onError(e.error);
+            r.onerror = (e) => {
                 this.isRecording = false;
+                if (this.onError) this.onError(e.error);
             };
-
-            this.recognition.onend = () => {
+            r.onend = () => {
                 this.isRecording = false;
                 if (this.onEnd) this.onEnd();
             };
-        }
-    }
-
-    async startListening() {
-        if (!this.recognition) {
-            this.fallbackToText();
-            return false;
+            this.recognition = r;
         }
 
-        try {
-            // Check permissions explicitly for iOS Safari PWA
-            if (navigator.permissions && navigator.permissions.query) {
-                const status = await navigator.permissions.query({ name: 'microphone' }).catch(() => null);
-                if (status && status.state === 'denied') {
-                    if (this.onError) this.onError("not-allowed");
-                    return false;
-                }
+        async startListening() {
+            if (!this.recognition) {
+                if (this.onError) this.onError("not-supported");
+                return false;
             }
+            // iOS Safari PWA: explicit permission probe to surface a clear error.
+            try {
+                if (navigator.permissions && navigator.permissions.query) {
+                    const status = await navigator.permissions
+                        .query({ name: "microphone" })
+                        .catch(() => null);
+                    if (status && status.state === "denied") {
+                        if (this.onError) this.onError("not-allowed");
+                        return false;
+                    }
+                }
+                this.isRecording = true;
+                this.recognition.start();
+                return true;
+            } catch (err) {
+                this.isRecording = false;
+                if (this.onError) this.onError("not-allowed");
+                return false;
+            }
+        }
 
-            this.isRecording = true;
-            this.recognition.start();
-            return true;
-        } catch (err) {
-            this.isRecording = false;
-            if (this.onError) this.onError("not-allowed");
-            return false;
+        stopListening() {
+            if (this.isRecording && this.recognition) {
+                try { this.recognition.stop(); } catch (_) {}
+                this.isRecording = false;
+            }
         }
     }
 
-    stopListening() {
-        if (this.isRecording && this.recognition) {
-            this.recognition.stop();
-            this.isRecording = false;
-        }
-    }
-
-    fallbackToText() {
-        if (this.onError) this.onError("not-supported");
-    }
-}
-
-window.ShadowSTT = ShadowSTT;
-}
-} }
+    window.ShadowSTT = ShadowSTT;
+})();

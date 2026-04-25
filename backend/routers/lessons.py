@@ -25,6 +25,7 @@ from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import Lesson, StudyItem
+from backend.utils import validate_lesson as _validate_lesson, validate_name as _validate_name
 
 router = APIRouter()
 
@@ -35,32 +36,7 @@ VOCA_ROOT = LEARNING_ROOT / "English" / "Voca_8000"
 # backup/storage/app dirs, so filesystem listing alone is not authoritative.
 SUBJECTS = ("English", "Math")
 
-_SAFE_LESSON_RE = _re.compile(r'^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$')
-_SAFE_NAME_RE   = _re.compile(r'^[A-Za-z0-9][A-Za-z0-9_\- ]{0,49}$')
-
-
-# ── Validators ─────────────────────────────────────────────
-
-def _validate_name(name: str, field: str) -> str:
-    """Validate subject/textbook names — blocks path traversal and dangerous chars."""
-    n = name.strip()
-    if not n:
-        raise HTTPException(status_code=400, detail=f"{field} required")
-    if not _SAFE_NAME_RE.match(n):
-        raise HTTPException(status_code=400, detail=f"Invalid {field} name")
-    return n
-
-
-def _validate_lesson(lesson: str) -> str:
-    """Validate lesson name — blocks path traversal and dangerous chars."""
-    key = lesson.strip()
-    if not key:
-        raise HTTPException(status_code=400, detail="lesson name required")
-    if key.isdigit():
-        key = f"Lesson_{int(key):02d}"
-    if not _SAFE_LESSON_RE.match(key):
-        raise HTTPException(status_code=400, detail="Invalid lesson name")
-    return key
+# _validate_lesson, _validate_name → backend/utils.py
 
 
 # ── Routes ─────────────────────────────────────────────────

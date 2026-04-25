@@ -1,10 +1,40 @@
 """
-utils.py — shared helpers for parsing LLM / OCR output.
+utils.py — shared helpers (LLM/OCR parsing + path-safety validators).
 """
 from __future__ import annotations
 
 import json
 import re
+
+from fastapi import HTTPException
+
+
+# ── Path-safety validators (used by routers/lessons.py et al.) ────────
+
+_SAFE_LESSON_RE = re.compile(r'^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$')
+_SAFE_NAME_RE   = re.compile(r'^[A-Za-z0-9][A-Za-z0-9_\- ]{0,49}$')
+
+
+def validate_name(name: str, field: str) -> str:
+    """Validate subject/textbook names — blocks path traversal and dangerous chars."""
+    n = (name or "").strip()
+    if not n:
+        raise HTTPException(status_code=400, detail=f"{field} required")
+    if not _SAFE_NAME_RE.match(n):
+        raise HTTPException(status_code=400, detail=f"Invalid {field} name")
+    return n
+
+
+def validate_lesson(lesson: str) -> str:
+    """Validate lesson name — blocks path traversal, normalizes numeric input."""
+    key = (lesson or "").strip()
+    if not key:
+        raise HTTPException(status_code=400, detail="lesson name required")
+    if key.isdigit():
+        key = f"Lesson_{int(key):02d}"
+    if not _SAFE_LESSON_RE.match(key):
+        raise HTTPException(status_code=400, detail="Invalid lesson name")
+    return key
 
 
 def strip_json_fences(text: str) -> str:

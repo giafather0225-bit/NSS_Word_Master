@@ -172,9 +172,13 @@ function _dePaperHTML() {
 
     const photosHTML = hasPhotos ? `
         <div class="de-photos">
-            ${photos.map(p => p.url
-                ? `<div class="de-photo" style="background-image:url('${p.url}');"></div>`
-                : `<div class="de-photo"></div>`).join("")}
+            ${photos.map(p => {
+                // 72×72 read-only strip — same thumb-first rule as Write.
+                const u = p.thumb_url || p.url;
+                return u
+                    ? `<div class="de-photo" style="background-image:url('${u}');"></div>`
+                    : `<div class="de-photo"></div>`;
+            }).join("")}
             <span class="de-photos-count">${photos.length} photo${photos.length === 1 ? "" : "s"}</span>
         </div>` : "";
 

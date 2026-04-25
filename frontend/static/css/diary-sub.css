@@ -1,0 +1,369 @@
+/* ================================================================
+   diary-sub.css — Decorated styling shared by Diary sub-sections
+   (My Sentences / My Worlds / Growth Timeline / Day Off).
+   Section: Diary
+   Dependencies: theme.css, diary-home.css (chrome eyebrow tokens)
+   ================================================================ */
+
+.ds-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: var(--bg-page);
+  font-family: var(--font-family);
+}
+body[data-view="diary"].dh-fullscreen #diary-view.ds-active {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* ── Chrome ────────────────────────────────────────────────────── */
+.ds-chrome {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 32px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+.ds-chrome > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+.ds-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px 6px 6px;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 8px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.ds-back:hover { background: var(--bg-card); color: var(--text-primary); }
+.ds-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--diary-soft);
+  color: var(--diary-ink);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ds-title {
+  font-family: var(--font-family-display);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--diary-ink);
+  margin-top: 6px;
+  line-height: 1.1;
+}
+.ds-sub {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+/* ── Body ──────────────────────────────────────────────────────── */
+.ds-body {
+  padding: 20px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+.ds-empty {
+  padding: 48px 24px;
+  text-align: center;
+  border: 1px dashed var(--border-subtle);
+  border-radius: 16px;
+  color: var(--text-hint);
+  font-size: 13px;
+  background: var(--bg-card);
+}
+.ds-empty-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+  display: block;
+}
+.ds-loading,
+.ds-error {
+  padding: 60px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-hint);
+}
+.ds-error { color: var(--color-error, #c44e4e); }
+
+/* ── My Sentences ──────────────────────────────────────────────── */
+.ds-sent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.ds-sent-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform var(--transition-fast);
+}
+.ds-sent-card:hover { transform: translateY(-1px); }
+.ds-sent-card.is-stale { background: var(--review-light); border-color: var(--review-soft); }
+.ds-sent-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.ds-sent-word {
+  font-family: var(--font-family-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--diary-ink);
+  letter-spacing: -0.01em;
+}
+.ds-sent-stale {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--review-primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ds-sent-text {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+/* ── My Worlds ─────────────────────────────────────────────────── */
+.ds-worlds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+.ds-world-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform var(--transition-fast);
+}
+.ds-world-card:hover { transform: translateY(-2px); }
+.ds-world-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--diary-soft), var(--diary-light));
+  object-fit: cover;
+}
+.ds-world-img.broken {
+  background: var(--bg-page);
+  border: 1px dashed var(--border-subtle);
+}
+.ds-world-title {
+  font-family: var(--font-family-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.ds-world-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--math-ink);
+  font-weight: 600;
+}
+.ds-world-dot {
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  background: var(--math-primary);
+}
+
+/* ── Growth Timeline ───────────────────────────────────────────── */
+.ds-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 16px;
+}
+.ds-timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border-subtle);
+}
+.ds-tl-row {
+  position: relative;
+  padding: 12px 16px 12px 14px;
+  margin-bottom: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+}
+.ds-tl-row::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 18px;
+  width: 12px; height: 12px;
+  border-radius: 999px;
+  background: var(--diary-primary);
+  border: 2px solid var(--bg-page);
+}
+.ds-tl-row[data-kind="lesson"]::before  { background: var(--english-primary); }
+.ds-tl-row[data-kind="streak"]::before  { background: var(--arcade-primary); }
+.ds-tl-row[data-kind="theme"]::before   { background: var(--rewards-primary); }
+.ds-tl-row[data-kind="word"]::before    { background: var(--math-primary); }
+.ds-tl-title {
+  font-family: var(--font-family-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.ds-tl-detail {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.ds-tl-date {
+  font-size: 10.5px;
+  color: var(--text-hint);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* ── Day Off (history viewer) ──────────────────────────────────── */
+.ds-do-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: linear-gradient(160deg, var(--arcade-light), #fff);
+  border: 1px solid var(--arcade-soft);
+  position: relative;
+}
+.ds-do-cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ds-do-cta-title {
+  font-family: var(--font-family-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--arcade-ink);
+}
+.ds-do-cta-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.ds-do-cta-btn {
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--arcade-primary);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 3px 10px rgba(238, 199, 112, 0.32);
+}
+.ds-do-cta-btn:hover { filter: brightness(1.05); }
+.ds-do-cta-btn:disabled {
+  background: var(--border-subtle);
+  color: var(--text-hint);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.ds-do-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ds-do-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+}
+.ds-do-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.ds-do-date {
+  font-family: var(--font-family-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.ds-do-reason {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 480px;
+}
+.ds-do-status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.ds-do-status.pending  { background: var(--arcade-light); color: var(--arcade-ink); border: 1px dashed var(--arcade-primary); }
+.ds-do-status.approved { background: var(--math-light);   color: var(--math-ink);   border: 1px solid var(--math-soft); }
+.ds-do-status.denied   { background: var(--review-light); color: var(--review-ink); border: 1px solid var(--review-soft); }
+
+/* Lucide tweak */
+.ds-root [data-lucide] { width: 14px; height: 14px; stroke-width: 1.75; }

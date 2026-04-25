@@ -7,6 +7,7 @@
     <title>GIA Learning</title>
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="GIA">
@@ -43,10 +44,11 @@
     <link rel="stylesheet" href="/static/css/reward-shop.css?v=3">
     <link rel="stylesheet" href="/static/css/parent.css?v=6">
     <link rel="stylesheet" href="/static/css/diary.css?v=3">
-    <link rel="stylesheet" href="/static/css/diary-home.css?v=6">
-    <link rel="stylesheet" href="/static/css/diary-write.css?v=2">
-    <link rel="stylesheet" href="/static/css/diary-entry.css?v=1">
-    <link rel="stylesheet" href="/static/css/diary-calendar.css?v=1">
+    <link rel="stylesheet" href="/static/css/diary-home.css?v=10">
+    <link rel="stylesheet" href="/static/css/diary-write.css?v=5">
+    <link rel="stylesheet" href="/static/css/diary-entry.css?v=3">
+    <link rel="stylesheet" href="/static/css/diary-calendar.css?v=2">
+    <link rel="stylesheet" href="/static/css/diary-sub.css?v=2">
     <link rel="stylesheet" href="/static/css/calendar.css?v=3">
     <link rel="stylesheet" href="/static/css/xp.css">
     <link rel="stylesheet" href="/static/css/collocation.css">
@@ -324,50 +326,18 @@
                         <span class="sb-card-chevron">›</span>
                     </button>
                 </div>
-                <div class="sb-div"></div>
-                <div class="sb-section">
-                    <div class="sb-section-label">WRITING</div>
-                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('journal')">
-                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="pencil" width="16" height="16"></i></span>
-                        <span class="sb-card-label">Daily Journal</span>
-                        <span class="sb-card-chevron">›</span>
-                    </button>
-                    <button type="button" class="sb-sidebar-card sb-card-disabled">
-                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="pen-line" width="16" height="16"></i></span>
-                        <span class="sb-card-label">Free Writing</span>
-                        <span class="sb-card-badge">Soon</span>
-                    </button>
-                </div>
-                <div class="sb-div"></div>
-                <div class="sb-section">
-                    <div class="sb-section-label">MY GROWTH</div>
-                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('sentences')">
-                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="message-square" width="16" height="16"></i></span>
-                        <span class="sb-card-label">My Sentences</span>
-                        <span class="sb-card-chevron">›</span>
-                    </button>
-                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('worlds')">
-                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="globe" width="16" height="16"></i></span>
-                        <span class="sb-card-label">My Worlds</span>
-                        <span class="sb-card-chevron">›</span>
-                    </button>
-                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('timeline')">
-                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="trending-up" width="16" height="16"></i></span>
-                        <span class="sb-card-label">Growth Timeline</span>
-                        <span class="sb-card-chevron">›</span>
-                    </button>
-                </div>
+                <!-- Diary is fully hub-level now. The sidebar is hidden whenever
+                     a Diary screen is active (see diary-home.css). The remaining
+                     entries here exist only for the brief moment the user
+                     transitions from Home → Diary. Calendar is kept as a
+                     convenience shortcut; everything else lives behind Diary
+                     Home's chrome ⋯ menu. -->
                 <div class="sb-div"></div>
                 <div class="sb-section">
                     <div class="sb-section-label">MY PLAN</div>
                     <button type="button" class="sb-sidebar-card" onclick="openDiarySection('calendar')">
                         <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="calendar" width="16" height="16"></i></span>
                         <span class="sb-card-label">Calendar</span>
-                        <span class="sb-card-chevron">›</span>
-                    </button>
-                    <button type="button" class="sb-sidebar-card" onclick="openDiarySection('dayoff')">
-                        <span class="sb-card-icon icon-wrap icon-wrap--diary"><i data-lucide="umbrella" width="16" height="16"></i></span>
-                        <span class="sb-card-label">Day Off</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
                 </div>
@@ -844,9 +814,9 @@
 <script src="/static/js/parent-shadow.js?v=1"></script>
 <script src="/static/js/reward-shop.js?v=5"></script>
 <script src="/static/js/reward-shop-use.js?v=1"></script>
-<script src="/static/js/diary.js?v=10"></script>
-<script src="/static/js/diary-write.js?v=5"></script>
-<script src="/static/js/diary-entry.js?v=2"></script>
+<script src="/static/js/diary.js?v=17"></script>
+<script src="/static/js/diary-write.js?v=11"></script>
+<script src="/static/js/diary-entry.js?v=3"></script>
 <script src="/static/js/diary-calendar.js?v=1"></script>
 <script src="/static/js/free-writing.js?v=1"></script>
 <script src="/static/js/calendar.js?v=3"></script>
@@ -1129,8 +1099,8 @@
       .catch(err => console.log('SW registration failed:', err));
   }
 </script>
-<script src="/static/js/ai-assistant-stt.js?v=4"></script>
-<script src="/static/js/ai-assistant-tts.js?v=4"></script>
+<script src="/static/js/ai-assistant-stt.js?v=5"></script>
+<script src="/static/js/ai-assistant-tts.js?v=5"></script>
 <script src="/static/js/ai-assistant.js?v=9"></script>
 </body>
 </html>

@@ -28,6 +28,12 @@ body[data-view="diary"].dh-fullscreen #diary-view.dc-active {
   border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
+.dc-chrome > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
 .dc-back {
   display: inline-flex;
   align-items: center;

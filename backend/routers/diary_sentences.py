@@ -42,7 +42,10 @@ def get_diary_sentences(subject: str, textbook: str, db: Session = Depends(get_d
         db.query(UserPracticeSentence)
         .filter(UserPracticeSentence.subject == subject)
     )
-    if textbook:
+    # Frontend may pass "all" (or empty) as a sentinel meaning "no textbook
+    # filter" — needed because FastAPI path params can't match an empty
+    # segment, so the URL would 404 if we required a real textbook.
+    if textbook and textbook != "all":
         query = query.filter(UserPracticeSentence.textbook == textbook)
 
     rows = query.order_by(

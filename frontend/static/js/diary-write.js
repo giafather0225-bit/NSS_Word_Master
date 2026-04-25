@@ -64,7 +64,10 @@ const _DW_TIPS = [
     { k: "Use your senses",  t: "What did you hear, smell, or touch? Your story comes alive." },
 ];
 
-const _DW_MIN_WORDS = 15;
+// 1 = "any non-empty body". Lowered from 15 (spec) → 5 → 1 because the
+// 5-word threshold still tripped short journal lines (and Korean entries
+// where word count is harder to predict).
+const _DW_MIN_WORDS = 1;
 
 /* ── Module state ──────────────────────────────────────────────── */
 
@@ -114,8 +117,20 @@ function _renderDiaryWrite(mode) {
     const view = document.getElementById("diary-view");
     if (!view) return;
 
-    // Initialize state, honor any seed left by Home → "Start in Journal".
-    _dwState.mode = mode === "free" ? "free" : "journal";
+    // Reset state on every entry — Journal and Free Write are separate
+    // entries, and we don't want stale text from a previous session leaking
+    // into a new page.
+    _dwState.mode      = mode === "free" ? "free" : "journal";
+    _dwState.mood      = "happy";
+    _dwState.title     = "";
+    _dwState.body      = "";
+    _dwState.photos    = [];
+    _dwState.prompt    = "";
+    _dwState.style     = { font: "caveat", textSize: "m", textColor: "default", bgMood: "default" };
+    _dwState.stkCat    = 0;
+    _dwState.tipIdx    = 0;
+    _dwState.moodOpen  = false;
+
     try {
         const seedMode = localStorage.getItem("nss.diary.seed.mode");
         const seedPrompt = localStorage.getItem("nss.diary.seed.prompt");
@@ -138,18 +153,15 @@ function _renderDiaryWrite(mode) {
             <div class="dw-body">
                 <div class="dw-paper" id="dw-paper">
                     ${_dwPhotosHTML()}
-                    <div class="dw-title-row">
-                        <input class="dw-title-input" id="dw-title"
-                               placeholder="Give this page a title…"
-                               maxlength="80" autocomplete="off"/>
-                        <button class="dw-suggest-pill is-hidden" id="dw-suggest-pill"
-                                type="button" onclick="_dwSuggestTitle()">
-                            ✨ Suggest
-                        </button>
-                    </div>
+                    ${_dwMoodTopHTML()}
+                    <input class="dw-title-input" id="dw-title"
+                           placeholder="Give this page a title…"
+                           maxlength="80" autocomplete="off"
+                           oninput="_dwOnTitleInput()"/>
                     <div class="dw-prompt-quote" id="dw-prompt-quote"></div>
                     <textarea class="dw-body-input" id="dw-body"
-                              placeholder="Start writing here…"></textarea>
+                              placeholder="Start writing here…"
+                              oninput="_dwUpdateProgress()"></textarea>
                     ${_dwFooterHTML()}
                 </div>
                 <aside class="dw-aside">
@@ -194,12 +206,6 @@ function _dwChromeHTML() {
                 <div class="dw-sub">${escapeHtml(sub)}</div>
             </div>
             <div class="dw-chrome-right">
-                <div class="dw-segmented" role="tablist" aria-label="Mode">
-                    <button class="dw-seg ${m === 'journal' ? 'is-active' : ''}" role="tab"
-                            type="button" onclick="_dwSetMode('journal')">Journal</button>
-                    <button class="dw-seg ${m === 'free' ? 'is-active' : ''}" role="tab"
-                            type="button" onclick="_dwSetMode('free')">Free Write</button>
-                </div>
                 <span class="dw-overflow-wrap">
                     <button class="dw-overflow" type="button" aria-label="More options"
                             aria-haspopup="menu" onclick="_dwToggleOverflow(event)">
@@ -225,11 +231,15 @@ function _dwChromeHTML() {
 
 function _dwPhotosHTML() {
     const photos = _dwState.photos;
-    const tiles = photos.map(p => `
-        <div class="dw-photo" style="background-image:url('${p.url}');" data-pid="${escapeHtml(p.id)}">
+    const tiles = photos.map(p => {
+        // 72×72 strip — use the 256 thumbnail when available, full URL otherwise.
+        const tileUrl = p.thumb_url || p.url;
+        return `
+        <div class="dw-photo" style="background-image:url('${tileUrl}');" data-pid="${escapeHtml(p.id)}">
             <button class="dw-photo-x" type="button" aria-label="Remove photo"
                     onclick="_dwRemovePhoto('${escapeHtml(p.id)}')">×</button>
-        </div>`).join("");
+        </div>`;
+    }).join("");
     const addBtn = photos.length < 3
         ? `<label class="dw-photo-add" tabindex="0">
               + Add
@@ -244,7 +254,8 @@ function _dwPhotosHTML() {
         </div>`;
 }
 
-function _dwFooterHTML() {
+/** Mood pill row — top of paper (above title). Tapping opens picker. */
+function _dwMoodTopHTML() {
     const moodMeta = (window._DH_MOODS && window._DH_MOODS[_dwState.mood]) || null;
     const dot = moodMeta ? moodMeta.dot : "var(--border-subtle)";
     const opts = ["great", "happy", "calm", "curious", "tired", "sad"].map(id => {
@@ -259,16 +270,23 @@ function _dwFooterHTML() {
     }).join("");
 
     return `
-        <div class="dw-footer">
-            <div data-mood-picker style="position:relative;">
-                <button class="dw-mood-pill" type="button" onclick="_dwToggleMood()" aria-haspopup="dialog" aria-expanded="false">
-                    <span class="dw-mood-dot" id="dw-mood-dot" style="background:${dot};"></span>
-                    <span id="dw-mood-label">${escapeHtml(_dwState.mood)}</span>
-                </button>
-                <div class="dw-mood-popover is-hidden" id="dw-mood-popover" role="dialog" aria-label="Pick a mood">
-                    ${opts}
-                </div>
+        <div class="dw-mood-top" data-mood-picker>
+            <span class="dw-mood-top-label">Mood</span>
+            <button class="dw-mood-pill" type="button" onclick="_dwToggleMood()"
+                    aria-haspopup="dialog" aria-expanded="false">
+                <span class="dw-mood-dot" id="dw-mood-dot" style="background:${dot};"></span>
+                <span id="dw-mood-label">${escapeHtml(_dwState.mood)}</span>
+            </button>
+            <div class="dw-mood-popover is-top is-hidden" id="dw-mood-popover"
+                 role="dialog" aria-label="Pick a mood">
+                ${opts}
             </div>
+        </div>`;
+}
+
+function _dwFooterHTML() {
+    return `
+        <div class="dw-footer">
             <div class="dw-progress" id="dw-progress">
                 <div class="dw-progress-bar"><div class="dw-progress-fill" id="dw-progress-fill" style="width:0%;"></div></div>
                 <span><b id="dw-wc">0</b> / ${_DW_MIN_WORDS}</span>
@@ -410,6 +428,14 @@ function _dwBindEvents() {
     document.addEventListener("keydown", _dwGlobalKeyHandler);
 }
 
+/** Title input handler — wired via oninline so dynamic re-renders keep working. */
+function _dwOnTitleInput() {
+    const t = document.getElementById("dw-title");
+    if (!t) return;
+    _dwState.title = t.value;
+    _dwUpdateProgress();
+}
+
 function _dwGlobalKeyHandler(e) {
     if (e.key === "Escape" && _dwState.moodOpen) {
         _dwState.moodOpen = false;
@@ -549,6 +575,7 @@ async function _dwOnPhotoPick(e) {
     }));
     _dwState.photos.push(...placeholders);
     _dwReRenderPhotos();
+    _dwUpdateProgress();    // disable Save while uploads are in-flight
 
     // Upload sequentially — small N (≤3), and avoids race on filename uniqueness.
     for (let i = 0; i < picked.length; i++) {
@@ -561,7 +588,8 @@ async function _dwOnPhotoPick(e) {
             const res = await fetch("/api/diary/photo/multi", { method: "POST", body: fd });
             if (!res.ok) throw new Error("upload failed: " + res.status);
             const data = await res.json();
-            ph.filename = data.filename || null;
+            ph.filename  = data.filename  || null;
+            ph.thumb_url = data.thumb_url || null;
             // Swap the blob URL for the server URL so it survives reload.
             try { URL.revokeObjectURL(ph.url); } catch (_) {}
             ph.url = data.photo_url || ph.url;
@@ -573,6 +601,7 @@ async function _dwOnPhotoPick(e) {
         }
     }
     _dwReRenderPhotos();
+    _dwUpdateProgress();    // re-enable Save once uploads settle
 }
 
 async function _dwRemovePhoto(id) {
@@ -598,8 +627,13 @@ function _dwReRenderPhotos() {
 /* ── Word count + Save activation ──────────────────────────────── */
 
 function _dwUpdateProgress() {
+    // Read directly from the live textarea so a missed `input` event
+    // can't leave Save permanently disabled.
+    const ta = document.getElementById("dw-body");
+    if (ta) _dwState.body = ta.value;
     const text = (_dwState.body || "").trim();
     const count = text ? text.split(/\s+/).filter(Boolean).length : 0;
+    if (window.__DW_DEBUG__) console.log("[dw] words=", count, "min=", _DW_MIN_WORDS);
     const wcEl = document.getElementById("dw-wc");
     const fillEl = document.getElementById("dw-progress-fill");
     const progress = document.getElementById("dw-progress");
@@ -612,18 +646,16 @@ function _dwUpdateProgress() {
 
     const save = document.getElementById("dw-save");
     if (save) {
-        const enable = count >= _DW_MIN_WORDS;
+        // Block Save while any photo is mid-upload — otherwise we'd persist
+        // a transient blob: URL into the backend snapshot and the image
+        // would 404 on next reload.
+        const uploading = _dwState.photos.some(p => p.uploading);
+        const enable = count >= _DW_MIN_WORDS && !uploading;
         save.disabled = !enable;
         save.setAttribute("aria-disabled", String(!enable));
+        save.title = uploading ? "Uploading photos…" : "";
     }
 
-    // Suggest pill: visible only when body has 20+ words AND title is empty.
-    const pill = document.getElementById("dw-suggest-pill");
-    if (pill) {
-        const titleEmpty = !((_dwState.title || "").trim());
-        const showPill = count >= 20 && titleEmpty;
-        pill.classList.toggle("is-hidden", !showPill);
-    }
 }
 
 /* ── Overflow / Back / Save ────────────────────────────────────── */
@@ -761,7 +793,12 @@ async function _dwSave() {
         title,
         prompt: _dwState.prompt || "",
         style:  _dwState.style,
-        photos: _dwState.photos.map(p => ({ id: p.id, name: p.name, url: p.url })),
+        photos: _dwState.photos.map(p => ({
+            id: p.id,
+            name: p.name,
+            url: p.url,
+            thumb_url: p.thumb_url || null,
+        })),
     };
 
     try {

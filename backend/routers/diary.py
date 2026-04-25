@@ -28,10 +28,12 @@ try:
     from ..database import get_db
     from ..models import DiaryEntry, GrowthEvent
     from ..schemas_common import Str30, Str5000
+    from ..services.xp_engine import award_xp
 except ImportError:
     from database import get_db
     from models import DiaryEntry, GrowthEvent
     from schemas_common import Str30, Str5000
+    from services.xp_engine import award_xp
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -201,11 +203,13 @@ async def create_or_update_diary_entry(
 
     now_iso = datetime.now(timezone.utc).isoformat()
 
-    existing = (
-        db.query(DiaryEntry)
-        .filter(DiaryEntry.entry_date == req.entry_date)
-        .first()
-    )
+    # Match by (entry_date + mode) so Journal and Free Write are separate
+    # entries on the same day. mode=None matches legacy rows that pre-date
+    # the metadata columns added in migration 013.
+    existing_q = db.query(DiaryEntry).filter(DiaryEntry.entry_date == req.entry_date)
+    if req.mode is not None:
+        existing_q = existing_q.filter(DiaryEntry.mode == req.mode)
+    existing = existing_q.first()
 
     feedback = await _get_grammar_feedback(req.content)
 
@@ -242,6 +246,13 @@ async def create_or_update_diary_entry(
         db.add(entry)
         db.commit()
         db.refresh(entry)
+
+    # Award XP (deduped by date — same day = one award even across mode/edit).
+    # Failures here must not break the save, so swallow exceptions.
+    try:
+        award_xp(db, "journal_complete", detail=f"entry_{entry.id}", earned_date=req.entry_date)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Diary XP award failed: %s", exc)
 
     return _entry_to_dict(entry)
 
