@@ -123,7 +123,7 @@ function _renderRoundSummary({ stageLabel, correct, total, pct, passed, weakConc
     const weakHtml = weakConcepts.length > 0
         ? `<div class="math-summary-weak">
               <div class="math-summary-weak-label">\u{1F4CD} Focus areas</div>
-              <div class="math-summary-weak-list">${weakConcepts.map(c => `<div class="math-summary-weak-row"><span>${_escS(c)}</span></div>`).join('')}</div>
+              <div class="math-summary-weak-list">${weakConcepts.map(c => `<div class="math-summary-weak-row"><span>${_mathEsc(c)}</span></div>`).join('')}</div>
            </div>`
         : '';
 
@@ -175,13 +175,13 @@ function _topWeakConcepts(concepts) {
 
 // ── Escape helpers (shared with math-academy-feedback.js) ──
 
-function _escS(s) {
+function _mathEsc(s) {
     const d = document.createElement('div');
     d.textContent = s;
     return d.innerHTML;
 }
 
-function _escAttrS(s) {
+function _mathEscAttr(s) {
     return String(s == null ? '' : s).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
@@ -241,7 +241,7 @@ async function renderMathComplete() {
             <div class="math-complete-hero">
                 <div class="math-complete-icon">\u{1F389}</div>
                 <h2>Lesson Complete!</h2>
-                <p>${_escS(lessonName)}</p>
+                <p>${_mathEsc(lessonName)}</p>
                 <div class="math-complete-stats">
                     <div class="math-complete-stat">
                         <div class="math-complete-stat-label">Pretest</div>

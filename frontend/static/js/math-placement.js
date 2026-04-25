@@ -77,7 +77,7 @@ function _renderPlacementIntro() {
                 <div class="math-summary-weak-label">Domains</div>
                 <div class="math-summary-weak-list">
                     ${placementState.domains.map(d =>
-                        `<span class="math-summary-chip">${_escPl(d.label)}</span>`
+                        `<span class="math-summary-chip">${_mathEsc(d.label)}</span>`
                     ).join('')}
                 </div>
             </div>
@@ -143,9 +143,9 @@ function _renderAdaptiveQ(d, q, targetGrade) {
     const body = q.type === 'mc'
         ? `<div class="math-mc-grid">
                ${(q.options || []).map((o, i) => `
-                   <button class="math-mc-btn" data-val="${_escAttrPl(o)}">
+                   <button class="math-mc-btn" data-val="${_mathEscAttr(o)}">
                        <span class="math-mc-letter">${String.fromCharCode(65 + i)}</span>
-                       <span class="math-mc-text">${_escPl(o)}</span>
+                       <span class="math-mc-text">${_mathEsc(o)}</span>
                    </button>
                `).join('')}
            </div>`
@@ -158,14 +158,14 @@ function _renderAdaptiveQ(d, q, targetGrade) {
     stage.innerHTML = `
         <div class="math-problem-wrap">
             <div class="math-problem-header">
-                <span class="math-problem-stage">🎯 Placement · ${_escPl(d.label)}</span>
+                <span class="math-problem-stage">🎯 Placement · ${_mathEsc(d.label)}</span>
                 <span class="math-problem-counter">
                     D${placementState.dIdx + 1}/${totalDomains} · Q${askedInDomain}
                 </span>
             </div>
             <div class="math-problem-card">
-                <div class="math-review-origin">Grade ${_escPl(q.grade)}${targetGrade ? ` · Target ${_escPl(targetGrade)}` : ''}</div>
-                <div class="math-problem-question">${_escPl(q.question)}</div>
+                <div class="math-review-origin">Grade ${_mathEsc(q.grade)}${targetGrade ? ` · Target ${_mathEsc(targetGrade)}` : ''}</div>
+                <div class="math-problem-question">${_mathEsc(q.question)}</div>
                 <div class="math-problem-body">${body}</div>
                 <div class="math-fluency-actions" style="justify-content:space-between;">
                     <button class="math-btn-ghost" id="math-placement-skip">Skip</button>
@@ -264,19 +264,4 @@ async function _submitPlacement() {
     });
 })();
 
-// ── Escape helpers (exposed on window for math-placement-results.js) ──
-
-function _escPl(str) {
-    const d = document.createElement('div');
-    d.textContent = str == null ? '' : String(str);
-    return d.innerHTML;
-}
-
-function _escAttrPl(str) {
-    return String(str == null ? '' : str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
-
-if (typeof window !== 'undefined') {
-    window._escPl = _escPl;
-    window._escAttrPl = _escAttrPl;
-}
+// escape → _mathEsc / _mathEscAttr (math-katex-utils.js)

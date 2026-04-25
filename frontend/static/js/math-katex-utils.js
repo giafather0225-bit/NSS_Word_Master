@@ -124,3 +124,32 @@ function _renderDelimsToString(s) {
 window.mathRenderIn = mathRenderIn;
 window.mathRenderText = mathRenderText;
 window.mathAutoMathify = mathAutoMathify;
+
+
+// ── Shared escape helpers ──────────────────────────────────
+/**
+ * HTML-escape a value for safe innerHTML insertion.
+ * Replaces all per-module _escF / _escD / _escR / _escPl / _escP / _escS duplicates.
+ * @tag MATH @tag UTILS
+ */
+function _mathEsc(str) {
+    const d = document.createElement('div');
+    d.textContent = str == null ? '' : String(str);
+    return d.innerHTML;
+}
+
+/**
+ * Escape a value for use in HTML attribute values (e.g. data-val="...").
+ * @tag MATH @tag UTILS
+ */
+function _mathEscAttr(str) {
+    return String(str == null ? '' : str)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+window._mathEsc     = _mathEsc;
+window._mathEscAttr = _mathEscAttr;

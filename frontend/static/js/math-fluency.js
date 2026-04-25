@@ -64,11 +64,11 @@ function _renderFluencyPicker(factSets) {
             <p class="math-fluency-sub">Pick a fact set — 60 seconds, 10 questions.</p>
             <div class="math-fluency-grid">
                 ${factSets.map(fs => `
-                    <button class="math-fluency-card" data-set="${_escF(fs.fact_set)}">
-                        <div class="math-fluency-card-op">${_escF(fs.op)}</div>
-                        <div class="math-fluency-card-label">${_escF(fs.label)}</div>
+                    <button class="math-fluency-card" data-set="${_mathEsc(fs.fact_set)}">
+                        <div class="math-fluency-card-op">${_mathEsc(fs.op)}</div>
+                        <div class="math-fluency-card-label">${_mathEsc(fs.label)}</div>
                         <div class="math-fluency-card-meta">
-                            <span class="math-fluency-phase">Phase ${_escF(fs.current_phase)}</span>
+                            <span class="math-fluency-phase">Phase ${_mathEsc(fs.current_phase)}</span>
                             <span>${fs.total_rounds} rounds</span>
                             <span>Best ${fs.best_score}/10</span>
                         </div>
@@ -117,7 +117,7 @@ function _renderRoundFrame(label) {
     stage.innerHTML = `
         <div class="math-fluency-round">
             <div class="math-fluency-header">
-                <span class="math-fluency-label">${_escF(label)}</span>
+                <span class="math-fluency-label">${_mathEsc(label)}</span>
                 <span class="math-fluency-timer" id="math-fluency-timer">${fluencyState.untimed ? '∞' : fluencyState.timeLimit + 's'}</span>
             </div>
             <div class="math-fluency-bar" ${fluencyState.untimed ? 'style="visibility:hidden"' : ''}>
@@ -142,7 +142,7 @@ function _renderCurrentQuestion() {
     const q = fluencyState.questions[fluencyState.idx];
     if (!q) { _finishRound(false); return; }
     card.innerHTML = `
-        <div class="math-fluency-question">${_escF(q.question)} = ?</div>
+        <div class="math-fluency-question">${_mathEsc(q.question)} = ?</div>
         <input type="tel" inputmode="numeric" pattern="-?[0-9]*"
                class="math-fluency-input" id="math-fluency-input"
                placeholder="?" autocomplete="off">
@@ -264,7 +264,7 @@ function _renderFluencySummary({ score, total, elapsed, aborted, submitData }) {
             <div class="math-summary-icon">${aborted ? '🛑' : (passed ? '⚡' : '🔁')}</div>
             <h2 class="math-summary-title">${aborted ? 'Round Stopped' : 'Round Complete'}</h2>
             <div class="math-summary-score">${score} / ${total}</div>
-            <div class="math-summary-pct">${pct}% · ${elapsed}s${phase ? ' · ' + _escF(phase) : ''}</div>
+            <div class="math-summary-pct">${pct}% · ${elapsed}s${phase ? ' · ' + _mathEsc(phase) : ''}</div>
             <div class="math-summary-bar">
                 <div class="math-summary-bar-fill ${passed ? 'pass' : 'fail'}" style="width:${pct}%"></div>
             </div>
@@ -302,10 +302,4 @@ function _renderFluencySummary({ score, total, elapsed, aborted, submitData }) {
     });
 })();
 
-// ── Escape helper ──────────────────────────────────────────
-
-function _escF(str) {
-    const d = document.createElement('div');
-    d.textContent = str == null ? '' : String(str);
-    return d.innerHTML;
-}
+// escape → _mathEsc / _mathEscAttr (math-katex-utils.js)

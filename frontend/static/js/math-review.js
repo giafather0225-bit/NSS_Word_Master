@@ -104,9 +104,9 @@ function _renderReviewProblem() {
             </div>
             <div class="math-problem-card">
                 <div class="math-review-origin">
-                    ${_escR(item.grade)} · ${_escR((item.unit || '').replace(/_/g, ' '))} · ${_escR((item.lesson || '').replace(/_/g, ' '))}
+                    ${_mathEsc(item.grade)} · ${_mathEsc((item.unit || '').replace(/_/g, ' '))} · ${_mathEsc((item.lesson || '').replace(/_/g, ' '))}
                 </div>
-                <div class="math-problem-question">${_escR(p.question)}</div>
+                <div class="math-problem-question">${_mathEsc(p.question)}</div>
                 <div class="math-problem-body" id="math-problem-body"></div>
             </div>
         </div>
@@ -166,7 +166,7 @@ function _showReviewFeedback(data, onContinue) {
         : '❌ Try again next time';
     const sub = data.is_correct
         ? (data.is_mastered ? 'Removed from review list.' : 'Nice — keep it up.')
-        : `Answer: ${_escR(data.correct_answer || '')}`;
+        : `Answer: ${_mathEsc(data.correct_answer || '')}`;
 
     const overlay = document.createElement('div');
     overlay.className = `math-feedback-overlay ${klass}`;
@@ -174,7 +174,7 @@ function _showReviewFeedback(data, onContinue) {
         <div class="math-feedback-card">
             <div class="math-feedback-result">${label}</div>
             <div class="math-feedback-answer">${sub}</div>
-            ${data.feedback ? `<div class="math-feedback-text">${_escR(data.feedback)}</div>` : ''}
+            ${data.feedback ? `<div class="math-feedback-text">${_mathEsc(data.feedback)}</div>` : ''}
             <button class="math-btn-primary" id="math-review-continue">Continue</button>
         </div>
     `;
@@ -238,7 +238,7 @@ function _renderReviewSummary() {
 
 // ── Escape helper ──────────────────────────────────────────
 
-function _escR(str) {
+function _mathEsc(str) {
     const d = document.createElement('div');
     d.textContent = str == null ? '' : String(str);
     return d.innerHTML;

@@ -107,7 +107,7 @@ function renderMathProblem() {
 
             <div class="math-problem-card">
                 <div class="math-problem-question">
-                    ${_escP(p.question)}
+                    ${_mathEsc(p.question)}
                     ${threeReadHtml}
                 </div>
                 <div class="math-problem-body" id="math-problem-body"></div>
@@ -156,7 +156,7 @@ function renderMathProblem() {
             if (!box) return;
             if (hintIdx < p.hints.length) {
                 box.classList.remove('hidden');
-                box.innerHTML += `<p class="math-hint-item">💡 ${_escP(p.hints[hintIdx])}</p>`;
+                box.innerHTML += `<p class="math-hint-item">💡 ${_mathEsc(p.hints[hintIdx])}</p>`;
                 if (typeof window.mathRenderIn === 'function') window.mathRenderIn(box);
                 hintIdx++;
             }
@@ -326,12 +326,12 @@ function _wireMathToolsPanel(problem) {
 
 // ── Escape helpers ─────────────────────────────────────────
 
-function _escP(str) {
+function _mathEsc(str) {
     const d = document.createElement('div');
     d.textContent = str;
     return d.innerHTML;
 }
 
-function _escAttr(str) {
+function _mathEscAttr(str) {
     return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }

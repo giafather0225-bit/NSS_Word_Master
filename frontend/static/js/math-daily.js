@@ -78,7 +78,7 @@ function _renderDailyIntro() {
     stage.innerHTML = `
         <div class="math-daily math-daily-intro">
             <h2 class="math-daily-title">🌞 Daily Challenge</h2>
-            <p class="math-daily-sub">${_escD(dailyState.date)}</p>
+            <p class="math-daily-sub">${_mathEsc(dailyState.date)}</p>
             <p class="math-daily-desc">
                 ${dailyState.problems.length} quick problems.<br>
                 Complete all = <strong>+5 XP</strong>, perfect = <strong>+3 XP bonus</strong>.
@@ -110,7 +110,7 @@ function _renderDailyProblem() {
     if (p.type === 'mc' && Array.isArray(p.options) && p.options.length) {
         body = `
             <div class="math-daily-options">
-                ${p.options.map(o => `<button class="math-daily-opt" data-val="${_escAttrD(o)}">${_escD(o)}</button>`).join('')}
+                ${p.options.map(o => `<button class="math-daily-opt" data-val="${_mathEscAttr(o)}">${_mathEsc(o)}</button>`).join('')}
             </div>`;
     } else {
         body = `
@@ -124,9 +124,9 @@ function _renderDailyProblem() {
         <div class="math-daily math-daily-problem">
             <div class="math-daily-header">
                 <span class="math-daily-counter">${counter}</span>
-                <span class="math-daily-concept">${_escD(p.concept || '')}</span>
+                <span class="math-daily-concept">${_mathEsc(p.concept || '')}</span>
             </div>
-            <div class="math-daily-q">${_escD(p.question || '')}</div>
+            <div class="math-daily-q">${_mathEsc(p.question || '')}</div>
             ${body}
             <div class="math-daily-feedback" id="math-daily-feedback"></div>
         </div>`;
@@ -185,8 +185,8 @@ async function _submitDailyAnswer(answer) {
     if (fb) {
         fb.className = `math-daily-feedback ${result.is_correct ? 'math-fb-ok' : 'math-fb-no'}`;
         fb.innerHTML = `
-            <div class="math-fb-line">${result.is_correct ? '✓ Correct!' : `✗ Answer: <strong>${_escD(result.correct_answer)}</strong>`}</div>
-            ${result.feedback ? `<div class="math-fb-hint">${_escD(result.feedback)}</div>` : ''}
+            <div class="math-fb-line">${result.is_correct ? '✓ Correct!' : `✗ Answer: <strong>${_mathEsc(result.correct_answer)}</strong>`}</div>
+            ${result.feedback ? `<div class="math-fb-hint">${_mathEsc(result.feedback)}</div>` : ''}
             <button class="math-btn-primary math-daily-next" id="math-daily-next">Next →</button>`;
         const nextBtn = document.getElementById('math-daily-next');
         if (nextBtn) {
@@ -237,13 +237,4 @@ function _renderDailySummary({ alreadyDone }) {
         </div>`;
 }
 
-// ── Escape helpers ─────────────────────────────────────────
-
-function _escD(s) {
-    const d = document.createElement('div');
-    d.textContent = s == null ? '' : String(s);
-    return d.innerHTML;
-}
-function _escAttrD(s) {
-    return _escD(s).replace(/"/g, '&quot;');
-}
+// escape → _mathEsc / _mathEscAttr (math-katex-utils.js)
