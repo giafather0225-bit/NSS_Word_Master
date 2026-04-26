@@ -59,8 +59,6 @@ from backend.routers import rewards as rewards_router
 from backend.routers import schedules as schedules_router
 from backend.routers import dashboard as dashboard_router
 from backend.routers import tutor_sentence as tutor_sentence_router
-from backend.routers import ai_assistant as ai_assistant_router
-from backend.routers import ai_assistant_log as ai_assistant_log_router
 from backend.routers import us_academy as us_academy_router
 from backend.routers import ckla as ckla_router
 from backend.routers import ckla_review as ckla_review_router
@@ -136,27 +134,6 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"],
 )
-
-# ── Memory Rate Limiting Middleware (5 req/s) ────────────────
-import time
-_IP_TRACKER = {}
-
-@app.middleware("http")
-async def rate_limit_middleware(request: Request, call_next):
-    if request.url.path.startswith("/api/assistant/chat"):
-        client_ip = request.client.host if request.client else "0.0.0.0"
-        now = time.time()
-        reqs = _IP_TRACKER.get(client_ip, [])
-        # Filter requests within the last 1 second
-        reqs = [t for t in reqs if now - t < 1.0]
-        if len(reqs) >= 5:
-            return JSONResponse(status_code=429, content={"message": "Too Many Requests. Rate limited to 5 req/s."})
-        reqs.append(now)
-        if reqs:
-            _IP_TRACKER[client_ip] = reqs
-        else:
-            _IP_TRACKER.pop(client_ip, None)
-    return await call_next(request)
 
 # ── Validation error → child-friendly 422 JSON ───────────────
 # Replaces the old silent ``.strip()[:N]`` pattern. When a payload field is
@@ -257,8 +234,6 @@ app.include_router(rewards_router.router)
 app.include_router(schedules_router.router)
 app.include_router(dashboard_router.router)
 app.include_router(tutor_sentence_router.router)
-app.include_router(ai_assistant_router.router)
-app.include_router(ai_assistant_log_router.router)
 app.include_router(us_academy_router.router)
 app.include_router(ckla_router.router)
 app.include_router(ckla_review_router.router)

@@ -24,7 +24,6 @@ cat \
   $JS/parent-streak.js \
   $JS/parent-xp.js \
   $JS/parent-settings.js \
-  $JS/parent-shadow.js \
   $JS/reward-shop.js \
   $JS/reward-shop-use.js \
   $JS/diary.js \
@@ -76,7 +75,7 @@ cat \
   | npx esbuild --minify --legal-comments=none --loader=js > $OUT/bundle-b.min.js
 echo "  bundle-b.min.js done ($(wc -c < $OUT/bundle-b.min.js) bytes)"
 
-# Bundle C: word-manager + arcade + ai-assistant
+# Bundle C: word-manager + arcade
 cat \
   $JS/word-manager.js \
   $JS/arcade-sfx.js \
@@ -88,9 +87,6 @@ cat \
   $JS/arcade-math-invaders.js \
   $JS/arcade-sudoku.js \
   $JS/arcade-make24.js \
-  $JS/ai-assistant-stt.js \
-  $JS/ai-assistant-tts.js \
-  $JS/ai-assistant.js \
   | npx esbuild --minify --legal-comments=none --loader=js > $OUT/bundle-c.min.js
 echo "  bundle-c.min.js done ($(wc -c < $OUT/bundle-c.min.js) bytes)"
 

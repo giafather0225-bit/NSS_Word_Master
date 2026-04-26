@@ -861,8 +861,6 @@ function _dwToast(msg, isError) {
 }
 
 /* ── Speak (STT) / Listen (TTS) — Web Speech API ───────────────── */
-// Self-contained implementation using window.SpeechRecognition + SpeechSynthesis
-// because the legacy ai-assistant-stt.js / -tts.js files are syntax-broken.
 
 let _dwRec = null;       // SpeechRecognition instance
 let _dwListening = false;
