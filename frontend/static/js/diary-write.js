@@ -233,11 +233,14 @@ function _dwPhotosHTML() {
     const photos = _dwState.photos;
     const tiles = photos.map(p => {
         // 72×72 strip — use the 256 thumbnail when available, full URL otherwise.
-        const tileUrl = p.thumb_url || p.url;
+        // URL 검증 — /api/ 경로만 허용해 임의 외부 URL 삽입 방지
+        const rawUrl  = p.thumb_url || p.url || "";
+        const tileUrl = (rawUrl && /^\/api\//.test(rawUrl)) ? encodeURI(rawUrl) : "";
+        const bg = tileUrl ? `background-image:url('${tileUrl}');` : "";
         return `
-        <div class="dw-photo" style="background-image:url('${tileUrl}');" data-pid="${escapeHtml(p.id)}">
+        <div class="dw-photo" style="${bg}" data-pid="${escapeHtml(p.id)}">
             <button class="dw-photo-x" type="button" aria-label="Remove photo"
-                    onclick="_dwRemovePhoto('${escapeHtml(p.id)}')">×</button>
+                    data-remove-pid="${escapeHtml(p.id)}">×</button>
         </div>`;
     }).join("");
     const addBtn = photos.length < 3
@@ -621,7 +624,13 @@ function _dwReRenderPhotos() {
     if (!wrap) return;
     const tmp = document.createElement("div");
     tmp.innerHTML = _dwPhotosHTML();
-    wrap.replaceWith(tmp.firstElementChild);
+    const newWrap = tmp.firstElementChild;
+    // data-remove-pid 방식으로 XSS 방지 — onclick 인라인 핸들러 대신 이벤트 위임
+    newWrap.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-remove-pid]");
+        if (btn) _dwRemovePhoto(btn.dataset.removePid);
+    });
+    wrap.replaceWith(newWrap);
 }
 
 /* ── Word count + Save activation ──────────────────────────────── */
@@ -779,8 +788,9 @@ async function _dwSave() {
     const body  = (_dwState.body  || "").trim();
     if (!body) return;
 
-    // Combine title + body for the existing schema (content + entry_date).
-    const content = title ? `# ${title}\n\n${body}` : body;
+    // title은 별도 필드로 전송 — "# title\n\nbody" 합치기 제거.
+    // _deSplitTitleBody 파싱 의존성 제거 + title에 # 포함 시 파싱 오류 방지.
+    const content = body;
 
     const save = document.getElementById("dw-save");
     if (save) save.disabled = true;

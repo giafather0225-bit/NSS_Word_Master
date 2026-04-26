@@ -174,9 +174,11 @@ function _dePaperHTML() {
         <div class="de-photos">
             ${photos.map(p => {
                 // 72×72 read-only strip — same thumb-first rule as Write.
-                const u = p.thumb_url || p.url;
-                return u
-                    ? `<div class="de-photo" style="background-image:url('${u}');"></div>`
+                // URL 검증 — /api/ 경로만 허용해 임의 외부 URL 삽입 방지
+                const raw  = p.thumb_url || p.url || "";
+                const safeU = (raw && /^\/api\//.test(raw)) ? encodeURI(raw) : "";
+                return safeU
+                    ? `<div class="de-photo" style="background-image:url('${safeU}');"></div>`
                     : `<div class="de-photo"></div>`;
             }).join("")}
             <span class="de-photos-count">${photos.length} photo${photos.length === 1 ? "" : "s"}</span>
