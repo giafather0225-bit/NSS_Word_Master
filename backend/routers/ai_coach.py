@@ -101,7 +101,7 @@ async def ai_coach_today(db: Session = Depends(get_db)) -> dict:
         try:
             gemini_url = (
                 "https://generativelanguage.googleapis.com/v1/models/"
-                "gemini-1.5-flash:generateContent"
+                "gemini-2.0-flash:generateContent"
             )
             async with httpx.AsyncClient(timeout=8.0) as client:
                 resp = await client.post(

@@ -72,7 +72,6 @@ Base.metadata.create_all(bind=engine)
 # ── Constants ──────────────────────────────────────────────
 VOCA_ROOT = LEARNING_ROOT / "English" / "Voca_8000"
 
-_executor = ThreadPoolExecutor(max_workers=8)
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")

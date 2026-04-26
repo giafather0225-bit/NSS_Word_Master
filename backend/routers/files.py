@@ -33,6 +33,7 @@ from sqlalchemy.orm import Session
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import Lesson, StudyItem
 from backend.file_storage import save_lesson_file, list_lesson_files, delete_lesson_file
+from backend.utils import validate_name as _validate_name_u, validate_lesson as _validate_lesson_u
 from backend.ocr_pipeline import run_ocr_pipeline
 from backend.ocr_vision import extract_vocab_from_bytes, extract_vocab_from_image
 from backend.ai_tutor import ollama_enrich_vocab
@@ -43,8 +44,6 @@ logger = logging.getLogger(__name__)
 
 VOCA_ROOT = LEARNING_ROOT / "English" / "Voca_8000"
 
-_SAFE_LESSON_RE    = _re.compile(r'^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$')
-_SAFE_NAME_RE      = _re.compile(r'^[A-Za-z0-9][A-Za-z0-9_\- ]{0,49}$')
 _SAFE_FILENAME_RE  = _re.compile(r'^[A-Za-z0-9][A-Za-z0-9_\-. ]{0,99}\.[a-z]{2,5}$')
 ALLOWED_UPLOAD_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".heic", ".heif", ".bmp", ".pdf"}
 MAX_UPLOAD_BYTES   = 20_000_000  # 20 MB
@@ -53,25 +52,11 @@ MAX_UPLOAD_BYTES   = 20_000_000  # 20 MB
 # ── Validators ─────────────────────────────────────────────
 
 def _validate_name(name: str, field: str) -> str:
-    """Validate subject/textbook names — blocks path traversal and dangerous chars."""
-    n = name.strip()
-    if not n:
-        raise HTTPException(status_code=400, detail=f"{field} required")
-    if not _SAFE_NAME_RE.match(n):
-        raise HTTPException(status_code=400, detail=f"Invalid {field} name")
-    return n
+    return _validate_name_u(name, field)
 
 
 def _validate_lesson(lesson: str) -> str:
-    """Validate lesson name — blocks path traversal and dangerous chars."""
-    key = lesson.strip()
-    if not key:
-        raise HTTPException(status_code=400, detail="lesson name required")
-    if key.isdigit():
-        key = f"Lesson_{int(key):02d}"
-    if not _SAFE_LESSON_RE.match(key):
-        raise HTTPException(status_code=400, detail="Invalid lesson name")
-    return key
+    return _validate_lesson_u(lesson)
 
 
 def _validate_lang(lang: str) -> str:

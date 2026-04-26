@@ -33,7 +33,7 @@ from sqlalchemy.orm import Session
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import Lesson, StudyItem, Word, GrowthEvent
 from backend.schemas_common import Str20, Str100, Str500
-from backend.utils import validate_lesson as _validate_lesson
+from backend.utils import validate_lesson as _validate_lesson, parse_json_array as _parse_json_array
 from backend.services import xp_engine
 
 router = APIRouter()
@@ -443,13 +443,53 @@ Reply in this exact JSON format only:
             })
             if r.status_code == 200:
                 text = r.json().get("response", "")
-                m = _re.search(r'\{[^}]+\}', text)
-                if m:
-                    result = json.loads(m.group())
-                    result["provider"] = "ollama"
-                    return result
+                result = _parse_json_array(text)
+                if result and isinstance(result, list) and result[0]:
+                    result[0]["provider"] = "ollama"
+                    return result[0]
+                # single-object fallback
+                import json as _json2
+                try:
+                    obj = _json2.loads(text.strip())
+                    if isinstance(obj, dict) and obj.get("definition"):
+                        obj["provider"] = "ollama"
+                        return obj
+                except Exception:
+                    pass
     except Exception as e:
         logger.warning("Ollama failed: %s", e)
+
+    # Gemini 폴백
+    gemini_key = os.environ.get("GEMINI_API_KEY", "")
+    if gemini_key:
+        try:
+            gemini_url = (
+                "https://generativelanguage.googleapis.com/v1/models/"
+                "gemini-2.0-flash:generateContent"
+            )
+            async with httpx.AsyncClient(timeout=15) as client:
+                r = await client.post(
+                    gemini_url,
+                    json={"contents": [{"parts": [{"text": prompt}]}],
+                          "generationConfig": {"temperature": 0.3, "maxOutputTokens": 256}},
+                    headers={"x-goog-api-key": gemini_key},
+                )
+                if r.status_code == 200:
+                    text = r.json()["candidates"][0]["content"]["parts"][0]["text"].strip()
+                    import json as _json2
+                    result = _parse_json_array(text)
+                    if result and isinstance(result, list) and result[0]:
+                        result[0]["provider"] = "gemini"
+                        return result[0]
+                    try:
+                        obj = _json2.loads(text)
+                        if isinstance(obj, dict) and obj.get("definition"):
+                            obj["provider"] = "gemini"
+                            return obj
+                    except Exception:
+                        pass
+        except Exception as e:
+            logger.warning("Gemini fallback failed: %s", e)
 
     return {
         "definition": "",
