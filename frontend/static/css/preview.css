@@ -14,15 +14,15 @@
     color: var(--english-ink);
 }
 
-.pm-listen-btn { background: var(--english-primary); color: #fff; border-color: var(--english-primary); }
-.pm-listen-btn:hover    { background: var(--english-hover); border-color: var(--english-hover); color: #fff; }
-.pm-listen-btn.playing  { background: var(--english-hover); border-color: var(--english-hover); color: #fff; }
-.pm-listen-btn.done     { background: var(--color-success); border-color: var(--color-success); color: #fff; }
+.pm-listen-btn { background: var(--english-primary); color: var(--text-on-primary); border-color: var(--english-primary); }
+.pm-listen-btn:hover    { background: var(--english-hover); border-color: var(--english-hover); color: var(--text-on-primary); }
+.pm-listen-btn.playing  { background: var(--english-hover); border-color: var(--english-hover); color: var(--text-on-primary); }
+.pm-listen-btn.done     { background: var(--color-success); border-color: var(--color-success); color: var(--text-on-primary); }
 
-.pm-chk-btn        { background: var(--english-primary); color: #fff; }
+.pm-chk-btn        { background: var(--english-primary); color: var(--text-on-primary); }
 .pm-chk-btn:hover  { background: var(--english-hover); }
 
-.pm-next-btn       { background: var(--english-primary); color: #fff; }
+.pm-next-btn       { background: var(--english-primary); color: var(--text-on-primary); }
 .pm-next-btn:hover { background: var(--english-hover); }
 
 .pm-typing-input:focus {
@@ -47,7 +47,7 @@
 /* Preview progress pill (top of stage) */
 .preview-prog-pill {
     background: var(--english-primary);
-    color: #fff;
+    color: var(--text-on-primary);
     font-weight: 700;
 }
 
@@ -67,14 +67,14 @@
 .pm-mic-btn.done {
     background: var(--color-success);
     border-color: var(--color-success);
-    color: #fff;
+    color: var(--text-on-primary);
 }
 
 /* ── Shadow Auto-Pass (Butter) ── */
 .pm-mic-btn.auto-passed {
     background: var(--color-warning);
     border-color: var(--color-warning);
-    color: #fff;
+    color: var(--text-on-primary);
     cursor: default;
 }
 .pm-shadow-row.auto-passed {
@@ -99,7 +99,7 @@
 .pm-mic-btn.recording {
     background: var(--rewards-primary);
     border-color: var(--rewards-primary);
-    color: #fff;
+    color: var(--text-on-primary);
     animation: mic-pulse-lavender 1.2s ease-in-out infinite;
 }
 
@@ -170,10 +170,10 @@
 .stepbar .step.active {
     background: var(--english-primary);
     border-color: var(--english-primary);
-    color: #fff;
+    color: var(--text-on-primary);
 }
 .stepbar .step.active .step-num {
-    background: #fff;
+    background: var(--bg-card);
     color: var(--english-ink);
 }
 
@@ -186,7 +186,7 @@
 }
 .stepbar .step.done .step-num {
     background: var(--color-success);
-    color: #fff;
+    color: var(--text-on-primary);
 }
 .stepbar .step.done:hover {
     border-color: var(--english-primary);

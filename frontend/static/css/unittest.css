@@ -60,7 +60,7 @@
     color: var(--color-primary, var(--color-primary));
     font-variant-numeric: tabular-nums;
 }
-.ut-timer-warn { color: #EF4444; animation: ut-pulse 1s infinite; }
+.ut-timer-warn { color: var(--color-error); animation: ut-pulse 1s infinite; }
 @keyframes ut-pulse { 50% { opacity: 0.5; } }
 .ut-progress {
     font-size: 14px;
@@ -149,7 +149,7 @@
     border: none;
     border-radius: 14px;
     background: var(--color-primary, var(--color-primary));
-    color: #fff;
+    color: var(--text-on-primary);
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
@@ -199,7 +199,7 @@
     font-weight: 600;
     color: var(--text-primary);
     line-height: 1.5;
-    background: #fff;
+    background: var(--bg-card);
     border-radius: 16px;
     padding: 24px 32px;
     border: 1px solid var(--border-default);
@@ -217,7 +217,7 @@
     padding: 14px 16px 14px 44px;
     border: 1.5px solid var(--border-default);
     border-radius: 12px;
-    background: #fff;
+    background: var(--bg-card);
     font-size: 15px;
     font-weight: 600;
     color: var(--text-primary);
@@ -246,14 +246,14 @@
     background: var(--color-primary-light, #FFFFFF);
 }
 .ut-mc-correct {
-    background: #D1FAE5 !important;
-    border-color: #10B981 !important;
-    color: #065F46 !important;
+    background: var(--color-success-light) !important;
+    border-color: var(--color-success) !important;
+    color: var(--color-success-ink) !important;
 }
 .ut-mc-wrong {
-    background: #FEE2E2 !important;
-    border-color: #EF4444 !important;
-    color: #991B1B !important;
+    background: var(--color-error-light) !important;
+    border-color: var(--color-error) !important;
+    color: var(--color-error-ink) !important;
 }
 
 /* ── Results ─────────────────────────────────────────────── */
@@ -266,8 +266,8 @@
     font-size: 48px;
     font-weight: 800;
 }
-.ut-result-pass .ut-result-score { color: #10B981; }
-.ut-result-fail .ut-result-score { color: #EF4444; }
+.ut-result-pass .ut-result-score { color: var(--color-success); }
+.ut-result-fail .ut-result-score { color: var(--color-error); }
 .ut-result-detail {
     font-size: 16px;
     color: var(--text-secondary);
@@ -283,8 +283,8 @@
     font-weight: 700;
     margin-bottom: 24px;
 }
-.ut-result-pass .ut-result-status { color: #10B981; }
-.ut-result-fail .ut-result-status { color: #EF4444; }
+.ut-result-pass .ut-result-status { color: var(--color-success); }
+.ut-result-fail .ut-result-status { color: var(--color-error); }
 
 .ut-result-btns {
     display: flex;
@@ -307,11 +307,11 @@
 .ut-retry-btn:hover { transform: translateY(-1px); }
 .ut-retry-all {
     background: var(--color-primary, var(--color-primary));
-    color: #fff;
+    color: var(--text-on-primary);
 }
 .ut-retry-wrong {
-    background: #FEF3C7;
-    color: #92400E;
+    background: var(--color-warning-light);
+    color: var(--color-warning-ink);
 }
 .ut-retry-close {
     background: var(--bg-surface);
@@ -339,12 +339,12 @@
 }
 .ut-wrong-def { color: var(--text-secondary); }
 .ut-wrong-user {
-    color: #EF4444;
+    color: var(--color-error);
     text-decoration: line-through;
     font-weight: 600;
 }
 .ut-wrong-correct {
-    color: #10B981;
+    color: var(--color-success);
     font-weight: 700;
 }
 
@@ -403,7 +403,7 @@
     max-width: 600px;
 }
 .ut-q-card {
-    background: #fff;
+    background: var(--bg-card);
     border: 1.5px solid var(--border-default);
     border-radius: 16px;
     padding: 20px;
@@ -421,7 +421,7 @@
 .ut-q-badge {
     font-size: 12px;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-on-primary);
     background: var(--color-primary, var(--color-primary));
     border-radius: 6px;
     padding: 2px 8px;

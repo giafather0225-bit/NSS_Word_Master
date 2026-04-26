@@ -86,7 +86,7 @@
 .pp-toggle input:checked + .pp-toggle-track { background: var(--color-primary); }
 .pp-toggle-track::after {
   content: ""; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px;
-  background: #fff; border-radius: 50%; transition: transform 0.2s;
+  background: var(--bg-card); border-radius: 50%; transition: transform 0.2s;
 }
 .pp-toggle input:checked + .pp-toggle-track::after { transform: translateX(18px); }
 
