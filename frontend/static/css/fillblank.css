@@ -132,7 +132,7 @@
 .fb-hint strong {
   font-family: var(--font-family-display);
   font-size: 16px;
-  background: #fff;
+  background: var(--bg-card);
   padding: 1px 8px;
   border-radius: 5px;
   color: var(--color-warning-ink);
@@ -241,13 +241,13 @@
   user-select: none;
 }
 .fb-chip:hover:not(.fb-used):not(.fb-selected) {
-  background: #fff;
+  background: var(--bg-card);
   border-color: var(--section-primary);
   transform: translateY(-1px);
   box-shadow: var(--shadow-soft);
 }
 .fb-chip.fb-selected {
-  background: #fff;
+  background: var(--bg-card);
   border-color: var(--section-primary);
   border-width: 2px;
   padding: 7px 15px;
