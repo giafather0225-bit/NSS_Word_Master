@@ -356,6 +356,20 @@ async def suggest_diary_title(req: _TitleSuggestRequest):
 
 
 # @tag DIARY @tag JOURNAL
+@router.get("/api/diary/entries/{entry_id}")
+def get_diary_entry(entry_id: int, db: Session = Depends(get_db)):
+    """Return a single DiaryEntry row by id. 404 if missing.
+
+    Added to support diary-entry.js single-entry fetch —
+    replaces the previous limit=500 full-list load.
+    """
+    entry = db.query(DiaryEntry).filter(DiaryEntry.id == entry_id).first()
+    if not entry:
+        raise HTTPException(status_code=404, detail="entry not found")
+    return _entry_to_dict(entry)
+
+
+# @tag DIARY @tag JOURNAL
 @router.delete("/api/diary/entries/{entry_id}", status_code=204)
 def delete_diary_entry(entry_id: int, db: Session = Depends(get_db)):
     """Delete a single DiaryEntry row by id. 404 if missing."""
