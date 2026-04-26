@@ -44,7 +44,7 @@ function openDiarySection(section) {
     switch (section) {
         case "today":       _renderDiaryHome();    break;
         case "journal":     (typeof _renderDiaryWrite === "function") ? _renderDiaryWrite("journal") : _renderJournal();      break;
-        case "freewriting": (typeof _renderDiaryWrite === "function") ? _renderDiaryWrite("free")    : _renderFreeWriting();  break;
+        case "freewriting": _renderDiaryWrite("free"); break;
         case "timeline":    _renderTimeline();     break;
         case "dayoff":      _renderDayOff();       break;
         case "sentences":   _renderSentences();    break;
@@ -225,77 +225,10 @@ function _showFeedback(text) {
     if (typeof lucide !== "undefined") lucide.createIcons();
 }
 
-// ─── Free Writing ─────────────────────────────────────────────
-
-/** Render the Free Writing section. @tag DIARY */
-async function _renderFreeWriting() {
-    const view = document.getElementById("diary-view");
-    view.innerHTML = `
-        ${_diaryHeader("Free Writing", "", "Write anything on your mind.")}
-        <div class="diary-body" style="max-width:640px">
-            <div class="freewrite-area">
-                <div class="freewrite-composer">
-                    <input class="freewrite-title-input" id="fw-title" type="text" placeholder="Title (optional)" />
-                    <textarea class="freewrite-textarea" id="fw-body" placeholder="Write freely…"></textarea>
-                    <button class="journal-submit-btn" style="align-self:flex-end" onclick="_submitFreeWrite()">Save</button>
-                </div>
-                <div class="freewrite-section-title">Previous</div>
-                <div class="freewrite-list" id="fw-list"><p class="diary-state-msg compact">Loading…</p></div>
-            </div>
-        </div>`;
-    _loadFreeWrites();
-}
-
-/** Load saved free writes. @tag DIARY */
-async function _loadFreeWrites() {
-    const el = document.getElementById("fw-list");
-    if (!el) return;
-    try {
-        const res = await fetch("/api/diary/freewrites");
-        if (!res.ok) { el.innerHTML = `<p class="diary-state-msg">—</p>`; return; }
-        const data = await res.json();
-        const items = data.entries || [];
-        if (!items.length) { el.innerHTML = `<p class="diary-state-msg compact">Nothing yet.</p>`; return; }
-        el.innerHTML = items.map(fw => `
-            <div class="freewrite-card">
-                <div class="freewrite-card-head">
-                    <div class="freewrite-card-title">${escapeHtml(fw.title || "Untitled")}</div>
-                    <div class="freewrite-card-date">${escapeHtml(fw.entry_date || "")}</div>
-                </div>
-                <div class="freewrite-card-body">${escapeHtml(fw.content || "")}</div>
-                <button class="freewrite-delete-btn" onclick="_deleteFreeWrite(${fw.id})">Delete</button>
-            </div>`).join("");
-    } catch (_) { el.innerHTML = `<p class="diary-state-msg compact">—</p>`; }
-}
-
-/** POST a new free write entry. @tag DIARY */
-async function _submitFreeWrite() {
-    const title   = document.getElementById("fw-title")?.value?.trim();
-    const content = document.getElementById("fw-body")?.value?.trim();
-    if (!content) return;
-    try {
-        const res = await fetch("/api/diary/freewrites", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ title: title || "Untitled", content, entry_date: new Date().toISOString().slice(0, 10) }),
-        });
-        if (res.ok) {
-            const inp = document.getElementById("fw-title");
-            const ta  = document.getElementById("fw-body");
-            if (inp) inp.value = "";
-            if (ta)  ta.value  = "";
-            _loadFreeWrites();
-        }
-    } catch (_) {}
-}
-
-/** DELETE a free write entry. @tag DIARY */
-async function _deleteFreeWrite(id) {
-    try {
-        await fetch(`/api/diary/freewrites/${id}`, { method: "DELETE" });
-        _loadFreeWrites();
-    } catch (_) {}
-}
+// ─── Free Writing ───────────────────────────────────────────
+// Removed: legacy _renderFreeWriting / _loadFreeWrites / _submitFreeWrite / _deleteFreeWrite
+// Free Write UI is fully handled by diary-write.js (_renderDiaryWrite('free')).
+// Entries are saved via POST /api/diary/entries (mode='free').
 
 
 // ─── Diary Overlay (top-bar button — compat) ──────────────────
