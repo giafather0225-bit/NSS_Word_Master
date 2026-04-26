@@ -39,6 +39,9 @@ from backend.services import xp_engine
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
+_OLLAMA_URL        = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
+_OLLAMA_EVAL_MODEL = os.environ.get("OLLAMA_EVAL_MODEL", "gemma2:2b")
+
 # ── Pydantic Schemas ───────────────────────────────────────
 
 class ManualWordCreate(BaseModel):
@@ -440,8 +443,7 @@ Reply in this exact JSON format only:
             })
             if r.status_code == 200:
                 text = r.json().get("response", "")
-                import re as _re2
-                m = _re2.search(r'\{[^}]+\}', text)
+                m = _re.search(r'\{[^}]+\}', text)
                 if m:
                     result = json.loads(m.group())
                     result["provider"] = "ollama"
@@ -541,7 +543,7 @@ def mywords_weekly_test_result(
     if passed:
         xp_awarded = xp_engine.award_xp(db, "mywords_weekly_test_pass", "my_words")
         if xp_awarded > 0:
-            now_iso = datetime.now().isoformat(timespec="seconds")
+            now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
             today_iso = date.today().isoformat()
             db.add(GrowthEvent(
                 event_type="weekly_test_pass",
