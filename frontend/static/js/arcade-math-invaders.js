@@ -203,6 +203,7 @@ function _miSpawn() {
 function _miLoop(ts) {
   if (!_mi || !_mi.running) return;
   if (document.hidden) { requestAnimationFrame(_miLoop); return; }
+  if (ts - _mi.lastTs < 1000 / 30) { requestAnimationFrame(_miLoop); return; } // 30fps cap
   const dt = Math.min(100, ts - _mi.lastTs) / 1000;
   _mi.lastTs = ts;
   const elapsedSec = (ts - _mi.startedAt) / 1000;
