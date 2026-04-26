@@ -152,9 +152,56 @@ function bindTopRightMenu() {
 }
 
 /** Placeholder entry point — wired in Phase 3. */
+function openSettingsModal() {
+  document.getElementById("gia-settings-modal")?.remove();
+
+  const saved = localStorage.getItem("gia-theme") || "light";
+  const isDark = saved === "dark";
+
+  const modal = document.createElement("div");
+  modal.id = "gia-settings-modal";
+  modal.style.cssText = "position:fixed;inset:0;background:var(--overlay-scrim);z-index:900;display:flex;align-items:center;justify-content:center";
+  modal.innerHTML = `
+    <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:24px;width:320px;box-shadow:var(--shadow-modal)">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+        <span style="font-size:17px;font-weight:700;color:var(--text-primary)">⚙️ Settings</span>
+        <button onclick="document.getElementById('gia-settings-modal').remove()"
+                style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-hint)">✕</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border-subtle)">
+        <div>
+          <div style="font-size:15px;font-weight:600;color:var(--text-primary)">🌙 Dark Mode</div>
+          <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">Switch to dark theme</div>
+        </div>
+        <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
+          <input type="checkbox" id="gia-dark-toggle" ${isDark ? "checked" : ""}
+                 onchange="_giaToggleDark(this.checked)"
+                 style="opacity:0;width:0;height:0">
+          <span id="gia-toggle-track" style="
+            position:absolute;inset:0;border-radius:12px;transition:background 0.2s;
+            background:${isDark ? "var(--color-primary)" : "var(--border-default)"}"></span>
+          <span id="gia-toggle-thumb" style="
+            position:absolute;top:3px;left:${isDark ? '23px' : '3px'};
+            width:18px;height:18px;border-radius:50%;background:#fff;
+            transition:left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2)"></span>
+        </label>
+      </div>
+    </div>`;
+  modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+  document.body.appendChild(modal);
+}
+
+function _giaToggleDark(isDark) {
+  document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+  localStorage.setItem("gia-theme", isDark ? "dark" : "light");
+  const track = document.getElementById("gia-toggle-track");
+  const thumb = document.getElementById("gia-toggle-thumb");
+  if (track) track.style.background = isDark ? "var(--color-primary)" : "var(--border-default)";
+  if (thumb) thumb.style.left = isDark ? "23px" : "3px";
+}
+
 function openSettings() {
-  if (typeof openSettingsModal === 'function') return openSettingsModal();
-  console.info('[home] Settings — coming soon');
+  openSettingsModal();
 }
 
 /**

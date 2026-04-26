@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+<script>
+  // 테마 깜빡임 방지 — DOM 파싱 전 즉시 적용
+  (function() {
+    const t = localStorage.getItem("gia-theme");
+    if (t === "dark") document.documentElement.setAttribute("data-theme", "dark");
+  })();
+</script>
     <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIA Learning</title>
