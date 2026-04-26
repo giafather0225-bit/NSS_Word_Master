@@ -12,17 +12,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FFFFFF;
+  background: var(--splash-day-0);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-#splash-screen[data-day="0"] { background: #FFFFFF; }
-#splash-screen[data-day="1"] { background: #EAF4F4; }
-#splash-screen[data-day="2"] { background: #E8F8EF; }
-#splash-screen[data-day="3"] { background: #FFFFFF; }
-#splash-screen[data-day="4"] { background: #F3EEFF; }
-#splash-screen[data-day="5"] { background: #FFF4E5; }
-#splash-screen[data-day="6"] { background: #E8F3FA; }
+#splash-screen[data-day="0"] { background: var(--splash-day-0); }
+#splash-screen[data-day="1"] { background: var(--splash-day-1); }
+#splash-screen[data-day="2"] { background: var(--splash-day-2); }
+#splash-screen[data-day="3"] { background: var(--splash-day-3); }
+#splash-screen[data-day="4"] { background: var(--splash-day-4); }
+#splash-screen[data-day="5"] { background: var(--splash-day-5); }
+#splash-screen[data-day="6"] { background: var(--splash-day-6); }
 
 #splash-screen.splash-exit {
   opacity: 0;
