@@ -373,6 +373,7 @@ function _wiSpawn() {
 
 function _wiLoop(ts) {
   if (!_wi || !_wi.running) return;
+  if (document.hidden) { requestAnimationFrame(_wiLoop); return; }
   const dt = Math.min(100, ts - _wi.lastTs) / 1000;
   _wi.lastTs = ts;
   const elapsedSec = (ts - _wi.startedAt) / 1000;

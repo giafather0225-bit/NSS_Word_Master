@@ -311,6 +311,27 @@
         }
     }
 
+    /* ── XP Award ───────────────────────────────────────────────── */
+    async function awardUnitTestXP(lessonsStr) {
+        try {
+            var res = await fetch('/api/xp/award', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'unit_test_pass', detail: lessonsStr })
+            });
+            if (res.ok) {
+                var data = await res.json();
+                if (typeof _updateTopBarXP === 'function') _updateTopBarXP(data);
+                if (data.xp_awarded > 0 && typeof _showXPToast === 'function') {
+                    _showXPToast('+' + data.xp_awarded + ' XP');
+                }
+                if (data.bonus_xp > 0 && typeof _showXPToast === 'function') {
+                    _showXPToast('Streak bonus +' + data.bonus_xp + ' XP!');
+                }
+            }
+        } catch (_) {}
+    }
+
     /* ── Results ─────────────────────────────────────────────── */
     function showResults() {
         stopTimer();
@@ -325,6 +346,8 @@
         var body = $id('ut-body');
         if (!body) return;
         var lessonsStr = selectedLessons.join(', ');
+
+        if (passed) awardUnitTestXP(lessonsStr);
 
         var html = '<div class="ut-result-wrap">' +
             '<div class="ut-result ' + (passed ? 'ut-result-pass' : 'ut-result-fail') + '">' +

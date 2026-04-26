@@ -93,6 +93,7 @@ function _dmKeydown(e) {
 
 function _dmTick() {
   if (!_dm || !_dm.running) return;
+  if (document.hidden) { requestAnimationFrame(_dmTick); return; }
   const elapsed = performance.now() - _dm.startedAt;
   const remain = Math.max(0, DM_CFG.roundMs - elapsed);
   const el = document.getElementById('dm-time');

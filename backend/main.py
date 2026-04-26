@@ -94,15 +94,7 @@ async def lifespan(application: FastAPI):
     except Exception as e:
         logger.warning("[backup] startup backup failed: %s", e)
 
-    # Phase 10: ensure Ollama daemon + eval model are ready (non-blocking on failure)
-    try:
-        status = ollama_manager.ensure_ollama()
-        logger.info(
-            "[ollama] running=%s model_ready=%s started_by_app=%s",
-            status.get("running"), status.get("model_ready"), status.get("started_by_app"),
-        )
-    except Exception as e:
-        logger.warning("[ollama] startup ensure failed: %s", e)
+    # Ollama starts lazily on first AI request (see ollama_manager.ensure_ollama_once)
 
     yield
 

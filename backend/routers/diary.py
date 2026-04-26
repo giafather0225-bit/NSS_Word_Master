@@ -13,6 +13,7 @@ Sister modules (split from this file to honor the 300-line ceiling):
                                  _get_grammar_feedback from this module)
 """
 
+import asyncio
 import json
 import logging
 import os
@@ -29,11 +30,13 @@ try:
     from ..models import DiaryEntry, GrowthEvent
     from ..schemas_common import Str30, Str5000
     from ..services.xp_engine import award_xp
+    from ..services import ollama_manager
 except ImportError:
     from database import get_db
     from models import DiaryEntry, GrowthEvent
     from schemas_common import Str30, Str5000
     from services.xp_engine import award_xp
+    from services import ollama_manager
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -86,6 +89,7 @@ def _build_feedback_prompt(content: str) -> str:
 # @tag DIARY @tag AI @tag OLLAMA
 async def _feedback_ollama(content: str) -> str:
     """Request grammar feedback from Ollama gemma2:2b. Timeout: 5 s."""
+    await asyncio.to_thread(ollama_manager.ensure_ollama_once)
     prompt = _build_feedback_prompt(content)
     async with httpx.AsyncClient(timeout=5.0) as client:
         resp = await client.post(
@@ -283,6 +287,7 @@ def _build_title_prompt(content: str) -> str:
 
 # @tag DIARY @tag AI @tag OLLAMA
 async def _suggest_title_ollama(content: str) -> str:
+    await asyncio.to_thread(ollama_manager.ensure_ollama_once)
     prompt = _build_title_prompt(content)
     async with httpx.AsyncClient(timeout=5.0) as client:
         resp = await client.post(

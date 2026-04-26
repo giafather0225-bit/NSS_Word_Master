@@ -117,6 +117,7 @@ function mkStop() {
 
 function _mkTick() {
   if (!_mk || !_mk.running) return;
+  if (document.hidden) { requestAnimationFrame(_mkTick); return; }
   const remain = Math.max(0, MK_CFG.roundMs - (performance.now() - _mk.startedAt));
   const el = document.getElementById('mk-time');
   if (el) el.textContent = String(Math.ceil(remain / 1000));

@@ -202,6 +202,7 @@ function _miSpawn() {
 
 function _miLoop(ts) {
   if (!_mi || !_mi.running) return;
+  if (document.hidden) { requestAnimationFrame(_miLoop); return; }
   const dt = Math.min(100, ts - _mi.lastTs) / 1000;
   _mi.lastTs = ts;
   const elapsedSec = (ts - _mi.startedAt) / 1000;
