@@ -324,9 +324,11 @@ function _dhPolaroid(entry, tiltClass) {
                 // and fall back to the full-size URL for legacy snapshots.
                 const url  = p.thumb_url || p.url || p.path || "";
                 const tone = p.tone || "var(--diary-soft)";
-                const bg = url
-                    ? `background-image:url('${url}');`
-                    : `background:linear-gradient(135deg, ${tone}, #fff);`;
+                // URL 검증 — /api/ 경로만 허용해 임의 외부 URL 삽입 방지
+                const safeUrl = (url && /^\/api\//.test(url)) ? encodeURI(url) : "";
+                const bg = safeUrl
+                    ? `background-image:url('${safeUrl}');`
+                    : `background:linear-gradient(135deg, ${tone}, var(--bg-card));`;
                 return `<div class="dh-poly-tile" style="${bg}"></div>`;
             }).join("") + `</div>`;
     }
