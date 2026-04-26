@@ -83,7 +83,7 @@
     font-size: 16px; padding: 4px; border-radius: 6px;
     transition: background 0.15s; line-height: 1;
 }
-.top-diary-btn:hover { background: rgba(0,0,0,0.06); }
+.top-diary-btn:hover { background: var(--bg-surface); }
 #stars-count {
     font-size: 13px;
     font-weight: 600;
@@ -137,7 +137,7 @@
     border-radius: var(--radius-full, 9999px);
     background: var(--bg-card, #FFFFFF);
     border: 1px solid var(--border-default, var(--border-default));
-    box-shadow: var(--shadow-card, 0 2px 12px rgba(0,0,0,0.06));
+    box-shadow: var(--shadow-card, 0 2px 12px var(--bg-surface));
     color: var(--text-primary);
     cursor: pointer;
     transition: left 0.3s ease, background 0.15s;

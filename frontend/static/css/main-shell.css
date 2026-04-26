@@ -148,7 +148,7 @@ body {
 
 .sb-subject-tab:not(.active):hover {
     color: var(--text-primary, var(--text-primary));
-    background: rgba(0, 0, 0, 0.04);
+    background: var(--bg-surface);
 }
 
 /* ── Stars ────────────────────────────── */
@@ -298,7 +298,7 @@ body {
 }
 
 .sb-tree-prefix {
-    font-size: 11px; color: #C7C7CC;
+    font-size: 11px; color: var(--text-hint);
     font-family: monospace; flex-shrink: 0;
     width: 12px; text-align: center;
 }
@@ -325,8 +325,8 @@ body {
 }
 
 .sb-tree-test-btn:hover { opacity: 0.7; }
-.sb-tree-item.sb-tree-locked { color: #C7C7CC; cursor: not-allowed; pointer-events: none; }
-.sb-tree-item.sb-tree-locked .sb-tree-label { color: #C7C7CC; }
+.sb-tree-item.sb-tree-locked { color: var(--text-hint); cursor: not-allowed; pointer-events: none; }
+.sb-tree-item.sb-tree-locked .sb-tree-label { color: var(--text-hint); }
 
 .tab-dot {
     display: inline-block; width: 5px; height: 5px;
