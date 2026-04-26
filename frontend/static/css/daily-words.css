@@ -357,12 +357,12 @@
 
 .dw-week-pill.done {
   background: var(--color-success);
-  color: #fff;
+  color: var(--text-on-primary);
 }
 
 .dw-week-pill.today {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--text-on-primary);
 }
 
 /* ─── Study card steps (Listen / Shadow / Spell) ──────────── */
@@ -381,15 +381,15 @@
 }
 .dw-step.locked { opacity: 0.45; pointer-events: none; }
 .dw-step.active { border-color: var(--color-primary); }
-.dw-step.done   { border-color: var(--color-success); background: #F5FDF7; }
+.dw-step.done   { border-color: var(--color-success); background: var(--color-success-light); }
 .dw-step-hint {
   color: var(--text-secondary);
   font-size: 13px;
   flex: 1;
 }
 .dw-mic-btn { min-width: 140px; }
-.dw-mic-btn.recording { background: var(--color-error); color: #fff; }
-.dw-mic-btn.done { background: var(--color-success); color: #fff; }
+.dw-mic-btn.recording { background: var(--color-error); color: var(--text-on-primary); }
+.dw-mic-btn.done { background: var(--color-success); color: var(--text-on-primary); }
 .dw-spell-input {
   flex: 1;
   min-width: 0;
@@ -397,7 +397,7 @@
   font-size: 15px;
   border: 1px solid var(--border-default, var(--border-default));
   border-radius: var(--radius-sm);
-  background: #fff;
+  background: var(--bg-card);
   color: var(--text-primary);
 }
 .dw-spell-input:focus { outline: none; border-color: var(--color-primary); }
@@ -407,7 +407,7 @@
 
 /* Clickable study card (opens Academy Preview modal) */
 .dw-card-clickable { cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
-.dw-card-clickable:hover { transform: translateY(-2px); box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+.dw-card-clickable:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
 .dw-card-cta {
   margin-top: 14px;
   color: var(--color-primary);

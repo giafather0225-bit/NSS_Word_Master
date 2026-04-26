@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 24px;
-  background: var(--surface, #fff);
+  background: var(--bg-card);
   border-bottom: 1px solid var(--border, var(--border-default));
   flex-shrink: 0;
 }
@@ -52,7 +52,7 @@
   color: var(--text-secondary, var(--text-secondary));
   transition: background 0.15s;
 }
-.wm-close-btn:hover { background: #D1D1D6; }
+.wm-close-btn:hover { background: var(--border-strong); }
 
 /* ── Body ──────────────────────────────────────────────── */
 .wm-body {
@@ -85,7 +85,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 14px 18px;
-  background: var(--surface, #fff);
+  background: var(--bg-card);
   border-radius: 12px;
   border: 1px solid var(--border, var(--border-default));
   cursor: pointer;
@@ -118,7 +118,7 @@
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }
-.wm-lesson-del:hover { background: #FFE5E5; color: var(--color-error); }
+.wm-lesson-del:hover { background: var(--color-error-light); color: var(--color-error); }
 
 .wm-create-row {
   display: flex;
@@ -130,7 +130,7 @@
   border: 1px solid var(--border, var(--border-default));
   border-radius: 10px;
   font-size: 15px;
-  background: var(--surface, #fff);
+  background: var(--bg-card);
   color: var(--text-primary, var(--text-primary));
   outline: none;
   transition: border-color 0.15s;
@@ -141,7 +141,7 @@
 .wm-btn-primary {
   padding: 10px 20px;
   background: var(--primary, var(--color-info));
-  color: #fff;
+  color: var(--text-on-primary);
   border: none;
   border-radius: 10px;
   font-size: 15px;
@@ -206,7 +206,7 @@
   transition: background 0.2s, color 0.2s;
 }
 .wm-mode-btn.active {
-  background: var(--surface, #fff);
+  background: var(--bg-card);
   color: var(--text-primary, var(--text-primary));
   box-shadow: none;
 }
@@ -229,7 +229,7 @@
 .wm-btn-ai {
   padding: 12px 20px;
   background: var(--color-primary);
-  color: #fff;
+  color: var(--text-on-primary);
   border: none;
   border-radius: 10px;
   font-size: 15px;
@@ -241,7 +241,7 @@
 .wm-btn-ai:disabled { opacity: 0.5; cursor: default; }
 
 .wm-ai-card {
-  background: var(--surface, #fff);
+  background: var(--bg-card);
   border: 1px solid var(--border, var(--border-default));
   border-radius: 12px;
   padding: 16px;
@@ -281,7 +281,7 @@
 }
 .wm-word-count {
   background: var(--primary, var(--color-info));
-  color: #fff;
+  color: var(--text-on-primary);
   font-size: 12px;
   font-weight: 700;
   padding: 2px 8px;
@@ -297,7 +297,7 @@
   align-items: flex-start;
   gap: 12px;
   padding: 12px 16px;
-  background: var(--surface, #fff);
+  background: var(--bg-card);
   border-radius: 10px;
   border: 1px solid var(--border, var(--border-default));
 }
@@ -333,7 +333,7 @@
 }
 .wm-word-ex {
   font-size: 13px;
-  color: #8E8E93;
+  color: var(--text-hint);
   margin-top: 2px;
   font-style: italic;
 }
@@ -342,14 +342,14 @@
   border-radius: 50%;
   border: none;
   background: transparent;
-  color: #C7C7CC;
+  color: var(--text-hint);
   font-size: 13px;
   cursor: pointer;
   flex-shrink: 0;
   margin-top: 4px;
   transition: background 0.15s, color 0.15s;
 }
-.wm-word-del:hover { background: #FFE5E5; color: var(--color-error); }
+.wm-word-del:hover { background: var(--color-error-light); color: var(--color-error); }
 
 .hidden { display: none !important; }
 
@@ -390,7 +390,7 @@
   cursor: pointer;
   transition: background 0.15s;
 }
-.wm-lesson-rename:hover { background: #E8E8ED; }
+.wm-lesson-rename:hover { background: var(--bg-surface); }
 
 /* ── Learn Button (My Words 학습 진입) ───────────────────── */
 .wm-lesson-learn {
@@ -398,7 +398,7 @@
   padding: 0 10px;
   border-radius: 14px;
   border: 1px solid var(--color-secondary);
-  background: #fff;
+  background: var(--bg-card);
   color: var(--color-secondary);
   font-size: 12px;
   font-weight: 600;
@@ -407,7 +407,7 @@
 }
 .wm-lesson-learn:hover:not(:disabled) {
   background: var(--color-secondary);
-  color: #fff;
+  color: var(--text-on-primary);
 }
 .wm-lesson-learn:disabled {
   opacity: 0.4;
@@ -435,11 +435,11 @@
   padding: 14px 18px;
   border-radius: 12px;
   border: 1px solid var(--border, var(--border-default));
-  background: var(--surface, #fff);
+  background: var(--bg-card);
 }
 .wm-wt-bar.ready {
   border-color: var(--color-secondary);
-  background: #F5FAFA;
+  background: var(--color-secondary-light, #F5FAFA);
 }
 .wm-wt-bar.locked { opacity: 0.85; }
 .wm-wt-info { display: flex; flex-direction: column; gap: 2px; }
@@ -459,7 +459,7 @@
   font-weight: 600;
   color: var(--text-primary, var(--text-primary));
   padding: 16px;
-  background: var(--surface, #fff);
+  background: var(--bg-card);
   border: 1px solid var(--border, var(--border-default));
   border-radius: 12px;
   margin-bottom: 8px;

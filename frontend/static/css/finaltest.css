@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: #FFFFFF;
+  background: var(--bg-card);
   border-bottom: 1px solid var(--border, var(--border-default));
   gap: 16px;
 }
@@ -203,7 +203,7 @@
 .eo-mc-def-card {
   max-width: 640px;
   width: 100%;
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1.5px solid var(--border, var(--border-default));
   border-radius: 20px;
   padding: 32px 40px;
@@ -230,7 +230,7 @@
   align-items: center;
   gap: 12px;
   padding: 14px 20px;
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1.5px solid var(--border, var(--border-default));
   border-radius: 14px;
   font-size: 14px;
@@ -264,22 +264,22 @@
 /* Correct / wrong states */
 .eo-mc-opt.eo-mc-correct {
   border-color: var(--success, var(--color-success)) !important;
-  background: #F0FBF4 !important;
+  background: var(--color-success-light) !important;
   color: var(--success, var(--color-success)) !important;
 }
 .eo-mc-opt.eo-mc-correct .eo-mc-num {
   background: var(--success, var(--color-success));
-  color: #FFFFFF;
+  color: var(--text-on-primary);
 }
 .eo-mc-opt.eo-mc-wrong {
   border-color: var(--danger, var(--color-error)) !important;
-  background: #FFF5F5 !important;
+  background: var(--color-error-light) !important;
   color: var(--danger, var(--color-error)) !important;
   animation: eo-shake 0.35s ease;
 }
 .eo-mc-opt.eo-mc-wrong .eo-mc-num {
   background: var(--danger, var(--color-error));
-  color: #FFFFFF;
+  color: var(--text-on-primary);
 }
 @keyframes eo-shake {
   0%,100% { transform: translateX(0); }
@@ -320,7 +320,7 @@
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1.5px solid var(--border, var(--border-default));
   border-radius: 14px;
   padding: 16px 20px;
@@ -374,7 +374,7 @@
   box-sizing: border-box;
 }
 .eo-fill-inp:focus {
-  background: #FFFFFF;
+  background: var(--bg-card);
   border-color: var(--primary, var(--color-primary));
 }
 .eo-fill-inp::placeholder { color: var(--text-secondary, var(--text-secondary)); font-weight: 400; }
@@ -436,7 +436,7 @@
 .eo-res-breakdown {
   width: 100%;
   max-width: 400px;
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1.5px solid var(--border, var(--border-default));
   border-radius: 16px;
   overflow: hidden;
@@ -477,7 +477,7 @@
   height: 48px;
   padding: 0 28px;
   background: var(--primary, var(--color-primary));
-  color: #FFFFFF;
+  color: var(--text-on-primary);
   border: none;
   border-radius: 12px;
   font-size: 14px;
@@ -489,12 +489,12 @@
 .eo-btn-primary:hover { background: var(--primary-hover, #3A8B7E); transform: translateY(-1px); }
 .eo-btn-primary:active { transform: translateY(0); }
 .eo-btn-primary.eo-btn-danger { background: var(--danger, var(--color-error)); }
-.eo-btn-primary.eo-btn-danger:hover { background: #D93026; }
+.eo-btn-primary.eo-btn-danger:hover { background: var(--color-error); }
 
 .eo-btn-secondary {
   height: 48px;
   padding: 0 24px;
-  background: #FFFFFF;
+  background: var(--bg-card);
   color: var(--text-primary, var(--text-primary));
   border: 1.5px solid var(--border, var(--border-default));
   border-radius: 12px;
