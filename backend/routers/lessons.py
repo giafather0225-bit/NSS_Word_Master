@@ -16,6 +16,7 @@ API:
 
 import json as _json
 import re as _re
+import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -232,7 +233,6 @@ def voca_folder_detail(lesson: str, textbook: str = "Voca_8000"):
 @router.delete("/api/voca/folder/{lesson}")
 def delete_voca_folder(lesson: str, textbook: str = "Voca_8000", db: Session = Depends(get_db)):
     """Delete a lesson folder and its DB records."""
-    import shutil
     lesson_key = _validate_lesson(lesson)
     lesson_dir = LEARNING_ROOT / "English" / textbook / lesson_key
     if not lesson_dir.is_dir():
