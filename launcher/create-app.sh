@@ -5,10 +5,10 @@
 # Result: ~/Desktop/GIA.app
 # ═══════════════════════════════════════════
 
-APP_DIR="$HOME/NSS_Learning/NSS_Word_Master"
+APP_DIR="$HOME/Documents/GitHub/NSS_Word_Master"
 APP_NAME="GIA"
 APP_PATH="$HOME/Desktop/$APP_NAME.app"
-ICON_SOURCE="$APP_DIR/frontend/static/img/GIA_Logo.png"
+ICON_SOURCE="$APP_DIR/frontend/static/img/GIA_512.png"
 
 echo "🔨 Creating $APP_NAME.app..."
 
