@@ -137,7 +137,12 @@ function _showJournalPhoto(filename) {
     const safe = encodeURIComponent(filename);
     el.innerHTML = `
         <img class="journal-photo-img" src="/api/diary/photo/${safe}" alt="Journal photo" />
-        <button type="button" class="journal-photo-remove" onclick="_removeJournalPhoto('${escapeHtml(filename)}')">Remove photo</button>`;
+        <button type="button" class="journal-photo-remove"
+                data-filename="${escapeHtml(filename)}">Remove photo</button>`;
+    // data-filename 방식으로 XSS 방지 — onclick 인라인 핸들러 제거
+    el.querySelector(".journal-photo-remove").addEventListener("click", function() {
+        _removeJournalPhoto(this.dataset.filename);
+    });
 }
 
 /** Upload a journal photo. @tag DIARY JOURNAL */
