@@ -833,3 +833,27 @@
         gap: 18px;
     }
 }
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px 16px 40px;
+    }
+    .col-right { display: none; }
+}
+
+@media (max-width: 480px) {
+    .dashboard-grid {
+        gap: 12px;
+        padding: 12px 12px 32px;
+    }
+    .section-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .greeting-hello { font-size: var(--font-size-xl); }
+    .weekly-strip { padding: 14px; }
+    .ws-bars { gap: 4px; }
+    .today-checklist { padding: 14px; }
+}
+
