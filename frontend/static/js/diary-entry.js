@@ -337,5 +337,14 @@ async function _deDelete() {
 
 function _deShare() {
     // Stub — backend hook for parent share is tracked separately.
-    alert("Share with parent — coming next.");
+    const t = document.getElementById("dw-toast");
+    if (t) {
+        t.textContent = "Share with parent — coming soon!";
+        t.classList.remove("is-error");
+        t.classList.add("is-show");
+        clearTimeout(_deShare._h);
+        _deShare._h = setTimeout(() => t.classList.remove("is-show"), 2200);
+    } else if (window.toast) {
+        window.toast("Share with parent — coming soon!", "info");
+    }
 }
