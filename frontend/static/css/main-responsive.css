@@ -25,7 +25,7 @@ body.math-mode {
 #lesson-section-display { position: relative; }
 #sb-lesson-dropdown {
     display: none; position: absolute; left: 0; right: 0; top: calc(100% + 4px);
-    background: #FFFFFF; border: 1px solid var(--border-default); border-radius: 8px;
+    background: var(--bg-card); border: 1px solid var(--border-default); border-radius: 8px;
     padding: 4px 0; z-index: 30;
     box-shadow: none; max-height: 200px; overflow-y: auto;
 }
@@ -233,14 +233,14 @@ body.math-mode {
 
 .sb-cal-day.studied {
     background: var(--color-primary, var(--color-primary));
-    color: #fff;
+    color: var(--text-on-primary);
     font-weight: 700;
     box-shadow: none;
 }
 
 .sb-cal-day.studied.today {
     background: var(--color-primary, var(--color-primary));
-    color: #fff;
+    color: var(--text-on-primary);
     border-color: var(--color-primary, var(--color-primary));
     box-shadow: none;
 }
