@@ -11,11 +11,11 @@ API:
 
 import json
 import re as _re
-import sqlite3 as _sqlite3
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from sqlalchemy import text as _text
 from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
@@ -27,7 +27,6 @@ from backend.services import academy_session as academy_sess
 
 router = APIRouter()
 
-_DB_PATH = str(LEARNING_ROOT / "database" / "voca.db")
 
 # _validate_lesson → backend/utils.py
 
@@ -104,7 +103,9 @@ class WordAttemptsBatch(BaseModel):
 @router.get("/api/study/{subject}/{textbook}/{lesson}")
 def get_study_data(subject: str, textbook: str, lesson: str, db: Session = Depends(get_db)):
     """Return study items and progress for a lesson; auto-syncs from data.json if DB is empty."""
-    lesson = _validate_lesson(lesson)
+    from backend.utils import validate_name as _validate_name
+    subject = _validate_name(subject, "subject")
+    lesson  = _validate_lesson(lesson)
     rows = (
         db.query(StudyItem)
         .filter(
@@ -168,15 +169,27 @@ def get_study_data(subject: str, textbook: str, lesson: str, db: Session = Depen
 def save_learning_log(body: LearningLogCreate, db: Session = Depends(get_db)):
     """Save a stage completion log entry to the learning_logs table."""
     body.clean()
-    with _sqlite3.connect(_DB_PATH) as conn:
-        conn.execute(
-            "INSERT INTO learning_logs (textbook, lesson, stage, word_count, correct_count, wrong_words_json, started_at, completed_at, duration_sec) VALUES (?,?,?,?,?,?,?,?,?)",
-            (body.textbook, body.lesson, body.stage,
-             body.word_count, body.correct_count,
-             json.dumps(body.wrong_words),
-             body.started_at, body.completed_at,
-             body.duration_sec),
-        )
+    db.execute(
+        _text(
+            "INSERT INTO learning_logs "
+            "(textbook, lesson, stage, word_count, correct_count, "
+            " wrong_words_json, started_at, completed_at, duration_sec) "
+            "VALUES (:textbook, :lesson, :stage, :word_count, :correct_count, "
+            " :wrong_words, :started_at, :completed_at, :duration_sec)"
+        ),
+        {
+            "textbook":      body.textbook,
+            "lesson":        body.lesson,
+            "stage":         body.stage,
+            "word_count":    body.word_count,
+            "correct_count": body.correct_count,
+            "wrong_words":   json.dumps(body.wrong_words),
+            "started_at":    body.started_at,
+            "completed_at":  body.completed_at,
+            "duration_sec":  body.duration_sec,
+        },
+    )
+    db.commit()
     if body.textbook and body.lesson:
         academy_sess.touch_session(db, body.textbook, body.lesson, body.stage)
     return {"ok": True}
@@ -184,34 +197,56 @@ def save_learning_log(body: LearningLogCreate, db: Session = Depends(get_db)):
 
 # @tag STUDY @tag ANALYTICS
 @router.post("/api/learning/word-attempt")
-def save_word_attempt(body: WordAttemptCreate):
+def save_word_attempt(body: WordAttemptCreate, db: Session = Depends(get_db)):
     """Save a single word attempt (correct or wrong) to the word_attempts table."""
     body.clean()
-    with _sqlite3.connect(_DB_PATH) as conn:
-        conn.execute(
-            "INSERT INTO word_attempts (study_item_id, textbook, lesson, word, stage, is_correct, user_answer, attempted_at) VALUES (?,?,?,?,?,?,?,?)",
-            (body.study_item_id, body.textbook, body.lesson,
-             body.word, body.stage,
-             1 if body.is_correct else 0,
-             body.user_answer, body.attempted_at),
-        )
+    db.execute(
+        _text(
+            "INSERT INTO word_attempts "
+            "(study_item_id, textbook, lesson, word, stage, is_correct, user_answer, attempted_at) "
+            "VALUES (:study_item_id, :textbook, :lesson, :word, :stage, :is_correct, :user_answer, :attempted_at)"
+        ),
+        {
+            "study_item_id": body.study_item_id,
+            "textbook":      body.textbook,
+            "lesson":        body.lesson,
+            "word":          body.word,
+            "stage":         body.stage,
+            "is_correct":    1 if body.is_correct else 0,
+            "user_answer":   body.user_answer,
+            "attempted_at":  body.attempted_at,
+        },
+    )
+    db.commit()
     return {"ok": True}
 
 
 # @tag STUDY @tag ANALYTICS
 @router.post("/api/learning/word-attempts-batch")
-def save_word_attempts_batch(body: WordAttemptsBatch):
+def save_word_attempts_batch(body: WordAttemptsBatch, db: Session = Depends(get_db)):
     """Save multiple word attempts in a single batch insert."""
     body.clean()
     if not body.attempts:
         return {"ok": True, "count": 0}
-    with _sqlite3.connect(_DB_PATH) as conn:
-        conn.executemany(
-            "INSERT INTO word_attempts (study_item_id, textbook, lesson, word, stage, is_correct, user_answer, attempted_at) VALUES (?,?,?,?,?,?,?,?)",
-            [(a.study_item_id, a.textbook, a.lesson,
-              a.word, a.stage,
-              1 if a.is_correct else 0,
-              a.user_answer, a.attempted_at)
-             for a in body.attempts],
-        )
+    db.execute(
+        _text(
+            "INSERT INTO word_attempts "
+            "(study_item_id, textbook, lesson, word, stage, is_correct, user_answer, attempted_at) "
+            "VALUES (:study_item_id, :textbook, :lesson, :word, :stage, :is_correct, :user_answer, :attempted_at)"
+        ),
+        [
+            {
+                "study_item_id": a.study_item_id,
+                "textbook":      a.textbook,
+                "lesson":        a.lesson,
+                "word":          a.word,
+                "stage":         a.stage,
+                "is_correct":    1 if a.is_correct else 0,
+                "user_answer":   a.user_answer,
+                "attempted_at":  a.attempted_at,
+            }
+            for a in body.attempts
+        ],
+    )
+    db.commit()
     return {"ok": True, "count": len(body.attempts)}
