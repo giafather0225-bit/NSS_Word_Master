@@ -5,6 +5,7 @@ Mounts static files, registers all API routers, and serves HTML page routes.
 
 import logging
 import os
+import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
@@ -95,6 +96,18 @@ async def lifespan(application: FastAPI):
         logger.warning("[backup] startup backup failed: %s", e)
 
     # Ollama starts lazily on first AI request (see ollama_manager.ensure_ollama_once)
+
+    # Auto-rebuild JS bundles so JS edits take effect on server restart
+    _build_sh = Path(__file__).parent.parent / "build.sh"
+    if _build_sh.exists():
+        try:
+            r = subprocess.run(["bash", str(_build_sh)], capture_output=True, timeout=30, cwd=str(_build_sh.parent))
+            if r.returncode == 0:
+                logger.info("[build] JS bundles rebuilt")
+            else:
+                logger.warning("[build] bundle rebuild failed (using existing): %s", r.stderr.decode()[:200])
+        except Exception as e:
+            logger.warning("[build] bundle rebuild skipped: %s", e)
 
     yield
 
