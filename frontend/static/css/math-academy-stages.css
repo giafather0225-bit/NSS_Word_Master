@@ -21,8 +21,8 @@
     backdrop-filter: blur(2px);
 }
 
-.math-feedback-correct { background: rgba(52, 199, 89, 0.06); }
-.math-feedback-wrong   { background: rgba(255, 149, 0, 0.04); }
+.math-feedback-correct { background: rgba(var(--color-success-rgb, 143,191,135), 0.06); }
+.math-feedback-wrong   { background: var(--color-warning-light); opacity: 0.3; }
 
 .math-feedback-card {
     background: var(--bg-card);
@@ -35,13 +35,13 @@
 }
 
 .math-feedback-correct .math-feedback-card {
-    background: linear-gradient(180deg, rgba(52, 199, 89, 0.10) 0%, rgba(52, 199, 89, 0.02) 100%);
-    border-color: rgba(52, 199, 89, 0.25);
+    background: linear-gradient(180deg, var(--color-success-light) 0%, transparent 100%);
+    border-color: var(--color-success);
 }
 
 .math-feedback-wrong .math-feedback-card {
-    background: #FFF8ED;
-    border-color: rgba(245, 158, 11, 0.25);
+    background: var(--color-warning-light);
+    border-color: var(--color-warning);
 }
 
 .math-feedback-result {
@@ -54,7 +54,7 @@
 }
 
 .math-feedback-correct .math-feedback-result { color: var(--math-pass); }
-.math-feedback-wrong   .math-feedback-result { color: #9A6B0A; }
+.math-feedback-wrong   .math-feedback-result { color: var(--color-warning-ink, var(--color-warning)); }
 
 .math-feedback-answer {
     display: inline-flex;
@@ -234,4 +234,12 @@
 .math-istep-mark {
     font-weight: 700;
     min-width: 14px;
+}
+
+/* ── Accessibility: reduced motion ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .math-feedback-overlay {
+        animation: none;
+        backdrop-filter: none;
+    }
 }

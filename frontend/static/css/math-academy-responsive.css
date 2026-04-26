@@ -22,8 +22,8 @@
 .math-spinner {
     width: 28px;
     height: 28px;
-    border: 3px solid var(--color-primary-light);
-    border-top-color: var(--color-primary);
+    border: 3px solid var(--math-primary-light);
+    border-top-color: var(--math-primary);
     border-radius: 50%;
     animation: math-spin 0.9s linear infinite;
 }
@@ -180,6 +180,11 @@
    MOBILE (≤ 480px)
    ================================================================ */
 @media (max-width: 480px) {
+    /* Shell layout: hide rail → full width body */
+    #stage-card.math-mode {
+        flex-direction: column;
+    }
+
     /* Hide the side rail; convert to bottom tab bar (optional pattern).
        Keep content flowing full width. Shell layout must accept this. */
     .math-rail {
@@ -230,7 +235,7 @@
     }
 
     .math-tf-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: 10px;
     }
     .math-tf-btn {

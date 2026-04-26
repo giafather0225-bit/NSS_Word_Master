@@ -182,7 +182,7 @@
 .math-mc-text {
     color: var(--text-primary);
     font-weight: 600;
-    font-size: 17px;
+    /* font-size inherited from .math-mc-btn */
 }
 
 /* ── TF buttons ────────────────────────────────────────────── */
@@ -240,7 +240,7 @@
 .math-input-field:focus-visible {
     outline: none;
     border-color: var(--math-primary);
-    box-shadow: 0 0 0 3px var(--color-primary-glow);
+    box-shadow: 0 0 0 3px var(--math-primary-glow);
 }
 
 .math-submit-btn { flex-shrink: 0; }
