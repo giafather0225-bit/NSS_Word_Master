@@ -10,7 +10,6 @@ so the literal `/api/diary/photo/...` route wins matching.
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-
 try:
     from ..database import get_db
     from ..models import UserPracticeSentence, StudyItem
@@ -38,8 +37,11 @@ def get_diary_sentences(subject: str, textbook: str, db: Session = Depends(get_d
     Returns:
         Dict with lessons (list of {lesson, sentences}) and total_sentences.
     """
+    # JOIN으로 N+1 쿼리 제거 — item_cache 루프 방식 대비 DB 왕복 횟수를
+    # rows 수에서 1회로 줄임. StudyItem이 없는 문장은 word="" 로 처리.
     query = (
-        db.query(UserPracticeSentence)
+        db.query(UserPracticeSentence, StudyItem.answer)
+        .outerjoin(StudyItem, StudyItem.id == UserPracticeSentence.item_id)
         .filter(UserPracticeSentence.subject == subject)
     )
     # Frontend may pass "all" (or empty) as a sentinel meaning "no textbook
@@ -53,15 +55,10 @@ def get_diary_sentences(subject: str, textbook: str, db: Session = Depends(get_d
         UserPracticeSentence.id.desc(),
     ).all()
 
-    item_cache: dict[int, str] = {}
     lessons_map: dict[str, list] = {}
-    for r in rows:
-        if r.item_id not in item_cache:
-            si = db.query(StudyItem.answer).filter(StudyItem.id == r.item_id).first()
-            item_cache[r.item_id] = si.answer if si else ""
-        word = item_cache[r.item_id]
+    for r, word in rows:
         lessons_map.setdefault(r.lesson, []).append({
-            "word": word,
+            "word": word or "",
             "sentence": r.sentence,
             "created_at": getattr(r, "created_at", "") or "",
         })
