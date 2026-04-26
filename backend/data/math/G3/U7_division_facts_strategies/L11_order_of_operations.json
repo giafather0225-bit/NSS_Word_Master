@@ -30,12 +30,7 @@
       "id": "PT_01",
       "type": "MC",
       "stem": "3 + 2 × 4 = ?",
-      "choices": [
-        "11",
-        "14",
-        "20",
-        "24"
-      ],
+      "choices": ["11", "14", "20", "24"],
       "answer": "A",
       "explanation": "Multiply first: 2 × 4 = 8. Then add: 3 + 8 = 11.",
       "difficulty": 2
@@ -44,12 +39,7 @@
       "id": "PT_02",
       "type": "MC",
       "stem": "(3 + 2) × 4 = ?",
-      "choices": [
-        "11",
-        "14",
-        "20",
-        "24"
-      ],
+      "choices": ["11", "14", "20", "24"],
       "answer": "C",
       "explanation": "Parentheses first: 3 + 2 = 5. Then 5 × 4 = 20.",
       "difficulty": 2
@@ -58,12 +48,7 @@
       "id": "PT_03",
       "type": "MC",
       "stem": "20 − 12 ÷ 4 = ?",
-      "choices": [
-        "2",
-        "4",
-        "8",
-        "17"
-      ],
+      "choices": ["2", "4", "8", "17"],
       "answer": "D",
       "explanation": "Divide first: 12 ÷ 4 = 3. Then 20 − 3 = 17.",
       "difficulty": 2
@@ -72,12 +57,7 @@
       "id": "PT_04",
       "type": "MC",
       "stem": "5 × (6 − 2) = ?",
-      "choices": [
-        "13",
-        "16",
-        "20",
-        "28"
-      ],
+      "choices": ["13", "16", "20", "28"],
       "answer": "C",
       "explanation": "Parentheses: 6 − 2 = 4. Then 5 × 4 = 20.",
       "difficulty": 2
@@ -86,12 +66,7 @@
       "id": "PT_05",
       "type": "MC",
       "stem": "4 + 5 × 2 − 3 = ?",
-      "choices": [
-        "8",
-        "11",
-        "15",
-        "18"
-      ],
+      "choices": ["8", "11", "15", "18"],
       "answer": "B",
       "explanation": "5 × 2 = 10. Then 4 + 10 − 3 = 11.",
       "difficulty": 2
@@ -102,24 +77,66 @@
       "id": "LN_01",
       "type": "concept_card",
       "title": "What Is the Order of Operations?",
-      "content": "It's a set of rules that tells you which operation to do first when there is more than one in an expression. Without these rules, you could get different answers.",
+      "content": "When an expression has more than one operation, you need rules to know which to do first. Without rules, different people get different answers! The order of operations gives everyone the same result.",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "rules_list",
+      "visual_data": {
+        "steps": [
+          "1. Parentheses — solve what is inside ( ) first",
+          "2. Multiply and Divide — left to right",
+          "3. Add and Subtract — left to right"
+        ]
+      }
     },
     {
       "id": "LN_02",
       "type": "concept_card",
-      "title": "The Rules",
-      "content": "1. Parentheses first. 2. Multiply and divide (left to right). 3. Add and subtract (left to right).",
+      "title": "Multiply Before You Add",
+      "content": "Look at 3 + 4 × 2. If you add first: 3 + 4 = 7, then 7 × 2 = 14 (wrong!). If you multiply first: 4 × 2 = 8, then 3 + 8 = 11 (correct!). Always multiply or divide before you add or subtract.",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "two_path_diagram",
+      "visual_data": {
+        "expression": "3 + 4 × 2",
+        "wrong_path": { "label": "Wrong: add first", "steps": ["3 + 4 = 7", "7 × 2 = 14"] },
+        "correct_path": { "label": "Correct: multiply first", "steps": ["4 × 2 = 8", "3 + 8 = 11"] }
+      }
     },
     {
       "id": "LN_03",
       "type": "concept_card",
-      "title": "Example",
-      "content": "Solve: 4 + 3 × 5. Step 1: 3 × 5 = 15. Step 2: 4 + 15 = 19.",
+      "title": "Parentheses Change the Answer",
+      "content": "Adding parentheses can change the result completely. Compare: 2 + 3 × 4 = 2 + 12 = 14 (no parentheses — multiply first). But (2 + 3) × 4 = 5 × 4 = 20 (parentheses first — different answer!).",
       "cpa_phase": "pictorial",
+      "visual_type": "comparison_table",
+      "visual_data": {
+        "rows": [
+          { "expression": "2 + 3 × 4", "step1": "3 × 4 = 12", "step2": "2 + 12 = 14", "result": "14" },
+          { "expression": "(2 + 3) × 4", "step1": "2 + 3 = 5", "step2": "5 × 4 = 20", "result": "20" }
+        ]
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Division Before Subtraction",
+      "content": "Division also comes before addition and subtraction. In 20 − 15 ÷ 3: divide first → 15 ÷ 3 = 5. Then subtract → 20 − 5 = 15. If you subtract first you get the wrong answer.",
+      "cpa_phase": "pictorial",
+      "visual_type": "step_diagram",
+      "visual_data": {
+        "expression": "20 − 15 ÷ 3",
+        "steps": [
+          { "step": "Step 1 — Divide", "work": "15 ÷ 3 = 5" },
+          { "step": "Step 2 — Subtract", "work": "20 − 5 = 15" }
+        ],
+        "result": "15"
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "Label Each Step",
+      "content": "When an expression is complex, label every step: Step 1 — Parentheses, Step 2 — × or ÷, Step 3 — + or −. Example: 2 + 3 × (8 − 2). Step 1: 8 − 2 = 6. Step 2: 3 × 6 = 18. Step 3: 2 + 18 = 20.",
+      "cpa_phase": "abstract",
       "visual_type": "none"
     }
   ],
@@ -128,47 +145,89 @@
       "id": "TRY_01",
       "type": "MC",
       "stem": "2 × 3 + 4 = ?",
-      "choices": [
-        "10",
-        "14",
-        "18",
-        "24"
-      ],
+      "choices": ["10", "14", "18", "24"],
       "answer": "A",
       "explanation": "2 × 3 = 6. 6 + 4 = 10.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "There is multiplication here — do it before adding.",
+        "2 × 3 = 6. Now what is 6 + 4?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+        "correct": "Exactly! 2 × 3 = 6, then 6 + 4 = 10.",
+        "incorrect": "Multiply first: 2 × 3 = 6, then add 4. The answer is 10."
       },
-      "solution_steps": []
+      "solution_steps": ["2 × 3 = 6", "6 + 4 = 10"]
     },
     {
       "id": "TRY_02",
       "type": "MC",
       "stem": "(8 − 3) × 2 = ?",
-      "choices": [
-        "7",
-        "10",
-        "13",
-        "16"
-      ],
+      "choices": ["7", "10", "13", "16"],
       "answer": "B",
       "explanation": "8 − 3 = 5. 5 × 2 = 10.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Start with the operation inside the parentheses.",
+        "What is 8 − 3? Then multiply that result by 2."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how order of operations works."
+        "correct": "Yes! Parentheses first: 8 − 3 = 5, then 5 × 2 = 10.",
+        "incorrect": "Start with the parentheses: 8 − 3 = 5. Then 5 × 2 = 10."
       },
-      "solution_steps": []
+      "solution_steps": ["8 − 3 = 5", "5 × 2 = 10"]
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "16 ÷ 4 + 3 = ?",
+      "answer": "7",
+      "explanation": "Division first: 16 ÷ 4 = 4. Then 4 + 3 = 7.",
+      "difficulty": 2,
+      "hints": [
+        "Division comes before addition — do 16 ÷ 4 first.",
+        "16 ÷ 4 = 4. Now what is 4 + 3?"
+      ],
+      "feedback": {
+        "correct": "Right! Division first: 16 ÷ 4 = 4, then 4 + 3 = 7.",
+        "incorrect": "Divide first: 16 ÷ 4 = 4. Then add 3 to get 7."
+      },
+      "solution_steps": ["16 ÷ 4 = 4", "4 + 3 = 7"]
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "3 × (5 + 2) = ?",
+      "answer": "21",
+      "explanation": "Parentheses first: 5 + 2 = 7. Then 3 × 7 = 21.",
+      "difficulty": 2,
+      "hints": [
+        "Parentheses first — what is 5 + 2?",
+        "Once you have the sum inside ( ), multiply: 3 × that number."
+      ],
+      "feedback": {
+        "correct": "Great! Parentheses: 5 + 2 = 7, then 3 × 7 = 21.",
+        "incorrect": "Solve the parentheses first: 5 + 2 = 7, then multiply: 3 × 7 = 21."
+      },
+      "solution_steps": ["5 + 2 = 7", "3 × 7 = 21"]
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "9 − 12 ÷ 3 = ?",
+      "choices": ["5", "2", "8", "7"],
+      "answer": "A",
+      "explanation": "Divide first: 12 ÷ 3 = 4. Then 9 − 4 = 5.",
+      "difficulty": 2,
+      "hints": [
+        "Division comes before subtraction — divide first.",
+        "12 ÷ 3 = 4. Now what is 9 − 4?"
+      ],
+      "feedback": {
+        "correct": "Correct! 12 ÷ 3 = 4 first, then 9 − 4 = 5.",
+        "incorrect": "Divide first: 12 ÷ 3 = 4. Then subtract: 9 − 4 = 5."
+      },
+      "solution_steps": ["12 ÷ 3 = 4", "9 − 4 = 5"]
     }
   ],
   "practice_r1": [
@@ -176,154 +235,170 @@
       "id": "R1_01",
       "type": "MC",
       "stem": "6 + 3 × 2 = ?",
-      "choices": [
-        "12",
-        "15",
-        "18",
-        "21"
-      ],
+      "choices": ["12", "15", "18", "21"],
       "answer": "A",
       "explanation": "3 × 2 = 6. 6 + 6 = 12.",
       "difficulty": 1,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Multiplication comes before addition.",
+        "3 × 2 = 6. Now add that to 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+        "correct": "Right! 3 × 2 = 6, then 6 + 6 = 12.",
+        "incorrect": "Multiply first: 3 × 2 = 6, then 6 + 6 = 12."
       }
     },
     {
       "id": "R1_02",
       "type": "MC",
       "stem": "10 − 2 × 3 = ?",
-      "choices": [
-        "4",
-        "14",
-        "24",
-        "16"
-      ],
+      "choices": ["4", "14", "24", "16"],
       "answer": "A",
       "explanation": "2 × 3 = 6. 10 − 6 = 4.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Multiply first, then subtract.",
+        "2 × 3 = 6. What is 10 − 6?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+        "correct": "Yes! 2 × 3 = 6, then 10 − 6 = 4.",
+        "incorrect": "Multiply first: 2 × 3 = 6. Then 10 − 6 = 4."
       }
     },
     {
       "id": "R1_03",
       "type": "MC",
       "stem": "(4 + 6) × 3 = ?",
-      "choices": [
-        "18",
-        "22",
-        "30",
-        "36"
-      ],
+      "choices": ["18", "22", "30", "36"],
       "answer": "C",
       "explanation": "4 + 6 = 10. 10 × 3 = 30.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Solve inside the parentheses first.",
+        "4 + 6 = 10. Then multiply by 3."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how order of operations works."
+        "correct": "Great! 4 + 6 = 10, then 10 × 3 = 30.",
+        "incorrect": "Parentheses first: 4 + 6 = 10. Then 10 × 3 = 30."
       }
     },
     {
       "id": "R1_04",
       "type": "MC",
       "stem": "18 ÷ 3 + 5 = ?",
-      "choices": [
-        "8",
-        "9",
-        "10",
-        "11"
-      ],
+      "choices": ["8", "9", "10", "11"],
       "answer": "D",
       "explanation": "18 ÷ 3 = 6. 6 + 5 = 11.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Division comes before addition.",
+        "18 ÷ 3 = 6. Now what is 6 + 5?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how order of operations works."
+        "correct": "Correct! 18 ÷ 3 = 6, then 6 + 5 = 11.",
+        "incorrect": "Divide first: 18 ÷ 3 = 6. Then 6 + 5 = 11."
       }
     },
     {
       "id": "R1_05",
       "type": "MC",
       "stem": "7 × 2 − 5 = ?",
-      "choices": [
-        "7",
-        "9",
-        "11",
-        "14"
-      ],
+      "choices": ["7", "9", "11", "14"],
       "answer": "B",
       "explanation": "7 × 2 = 14. 14 − 5 = 9.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Multiply first, then subtract.",
+        "7 × 2 = 14. Now subtract 5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how order of operations works."
+        "correct": "Right! 7 × 2 = 14, then 14 − 5 = 9.",
+        "incorrect": "Multiply first: 7 × 2 = 14. Then 14 − 5 = 9."
       }
     },
     {
       "id": "R1_06",
       "type": "MC",
       "stem": "(12 − 4) ÷ 2 = ?",
-      "choices": [
-        "2",
-        "4",
-        "6",
-        "10"
-      ],
+      "choices": ["2", "4", "6", "10"],
       "answer": "B",
       "explanation": "12 − 4 = 8. 8 ÷ 2 = 4.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Solve what is inside the parentheses first.",
+        "12 − 4 = 8. Then divide 8 by 2."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how order of operations works."
+        "correct": "Yes! 12 − 4 = 8, then 8 ÷ 2 = 4.",
+        "incorrect": "Parentheses first: 12 − 4 = 8. Then 8 ÷ 2 = 4."
       }
     },
     {
       "id": "R1_07",
       "type": "MC",
-      "stem": "Danny buys a marker for $4 and 5 pens for $2 each. Which expression shows the total?",
-      "choices": [
-        "4 + 5 + 2",
-        "4 + 5 × 2",
-        "(4 + 5) × 2",
-        "4 × 5 + 2"
-      ],
+      "stem": "Danny buys a marker for $4 and 5 pens for $2 each. Which expression shows the total cost?",
+      "choices": ["4 + 5 + 2", "4 + 5 × 2", "(4 + 5) × 2", "4 × 5 + 2"],
       "answer": "B",
       "explanation": "$4 + (5 × $2) = $4 + $10 = $14.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "The pens cost $2 each and there are 5 of them — that is a multiplication.",
+        "5 pens × $2 = $10. Then add the $4 marker."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how order of operations works."
+        "correct": "Correct! 5 × $2 = $10, then $4 + $10 = $14 total.",
+        "incorrect": "The 5 pens need to be multiplied: 5 × $2 = $10. Then add the $4 marker → $14."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "stem": "(3 + 4) × 5 = ?",
+      "answer": "35",
+      "explanation": "Parentheses: 3 + 4 = 7. Then 7 × 5 = 35.",
+      "difficulty": 2,
+      "hints": [
+        "Solve the addition inside the parentheses first.",
+        "3 + 4 = 7. What is 7 × 5?"
+      ],
+      "feedback": {
+        "correct": "Great! 3 + 4 = 7, then 7 × 5 = 35.",
+        "incorrect": "Parentheses first: 3 + 4 = 7. Then 7 × 5 = 35."
+      },
+      "solution_steps": ["3 + 4 = 7", "7 × 5 = 35"]
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "stem": "24 ÷ 6 − 2 = ?",
+      "answer": "2",
+      "explanation": "Division first: 24 ÷ 6 = 4. Then 4 − 2 = 2.",
+      "difficulty": 2,
+      "hints": [
+        "Division before subtraction — divide first.",
+        "24 ÷ 6 = 4. Now subtract 2."
+      ],
+      "feedback": {
+        "correct": "Yes! 24 ÷ 6 = 4, then 4 − 2 = 2.",
+        "incorrect": "Divide first: 24 ÷ 6 = 4. Then 4 − 2 = 2."
+      },
+      "solution_steps": ["24 ÷ 6 = 4", "4 − 2 = 2"]
+    },
+    {
+      "id": "R1_10",
+      "type": "MC",
+      "stem": "5 + 4 × 3 = ?",
+      "choices": ["17", "27", "12", "32"],
+      "answer": "A",
+      "explanation": "4 × 3 = 12. Then 5 + 12 = 17.",
+      "difficulty": 1,
+      "hints": [
+        "Which operation goes first — the × or the +?",
+        "4 × 3 = 12. Then add 5 to get your answer."
+      ],
+      "feedback": {
+        "correct": "Right! 4 × 3 = 12, then 5 + 12 = 17.",
+        "incorrect": "Multiply first: 4 × 3 = 12. Then 5 + 12 = 17."
       }
     }
   ],
@@ -332,88 +407,170 @@
       "id": "R2_01",
       "type": "MC",
       "stem": "3 × (4 + 5) − 7 = ?",
-      "choices": [
-        "14",
-        "18",
-        "20",
-        "22"
-      ],
+      "choices": ["14", "18", "20", "22"],
       "answer": "C",
       "explanation": "4 + 5 = 9. 3 × 9 = 27. 27 − 7 = 20.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Start with the parentheses: 4 + 5 = ?",
+        "3 × 9 = 27. Then subtract 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how order of operations works."
+        "correct": "Excellent! 4+5=9, 3×9=27, 27−7=20.",
+        "incorrect": "Parentheses first: 4+5=9. Then 3×9=27. Then 27−7=20."
       }
     },
     {
       "id": "R2_02",
       "type": "MC",
       "stem": "24 ÷ (8 − 2) = ?",
-      "choices": [
-        "2",
-        "3",
-        "4",
-        "6"
-      ],
+      "choices": ["2", "3", "4", "6"],
       "answer": "C",
       "explanation": "8 − 2 = 6. 24 ÷ 6 = 4.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Subtract inside the parentheses first.",
+        "8 − 2 = 6. Then 24 ÷ 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how order of operations works."
+        "correct": "Right! 8 − 2 = 6, then 24 ÷ 6 = 4.",
+        "incorrect": "Parentheses first: 8 − 2 = 6. Then 24 ÷ 6 = 4."
       }
     },
     {
       "id": "R2_03",
       "type": "MC",
       "stem": "Which expression equals 15?",
-      "choices": [
-        "3 + 4 × 3",
-        "(3 + 4) × 3",
-        "3 × 3 + 4",
-        "4 × 4 − 3"
-      ],
+      "choices": ["3 + 4 × 3", "(3 + 4) × 3", "3 × 3 + 4", "4 × 4 − 3"],
       "answer": "A",
       "explanation": "3 + 4 × 3 = 3 + 12 = 15. ✓",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Apply order of operations to each choice — do × before +.",
+        "For choice A: 4 × 3 = 12, then 3 + 12 = 15."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+        "correct": "Yes! 3 + 4×3 = 3 + 12 = 15.",
+        "incorrect": "Check choice A: 4 × 3 = 12 first, then 3 + 12 = 15. That equals 15!"
       }
     },
     {
       "id": "R2_04",
       "type": "MC",
       "stem": "8 + 16 ÷ 4 − 2 = ?",
-      "choices": [
-        "4",
-        "8",
-        "10",
-        "12"
-      ],
+      "choices": ["4", "8", "10", "12"],
       "answer": "C",
       "explanation": "16 ÷ 4 = 4. 8 + 4 − 2 = 10.",
       "difficulty": 2,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Division goes first — find 16 ÷ 4.",
+        "16 ÷ 4 = 4. Now compute 8 + 4 − 2 left to right."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how order of operations works."
+        "correct": "Correct! 16÷4=4, then 8+4−2=10.",
+        "incorrect": "Divide first: 16÷4=4. Then 8+4−2=10."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "4 × 7 − 6 = ?",
+      "answer": "22",
+      "explanation": "4 × 7 = 28. 28 − 6 = 22.",
+      "difficulty": 2,
+      "hints": [
+        "Multiply first, then subtract.",
+        "4 × 7 = 28. What is 28 − 6?"
+      ],
+      "feedback": {
+        "correct": "Great! 4 × 7 = 28, then 28 − 6 = 22.",
+        "incorrect": "Multiply first: 4 × 7 = 28. Then 28 − 6 = 22."
+      },
+      "solution_steps": ["4 × 7 = 28", "28 − 6 = 22"]
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "stem": "(6 + 3) × 4 = ?",
+      "answer": "36",
+      "explanation": "Parentheses: 6 + 3 = 9. Then 9 × 4 = 36.",
+      "difficulty": 2,
+      "hints": [
+        "Start with what is inside the parentheses.",
+        "6 + 3 = 9. What is 9 × 4?"
+      ],
+      "feedback": {
+        "correct": "Right! 6 + 3 = 9, then 9 × 4 = 36.",
+        "incorrect": "Parentheses first: 6 + 3 = 9. Then 9 × 4 = 36."
+      },
+      "solution_steps": ["6 + 3 = 9", "9 × 4 = 36"]
+    },
+    {
+      "id": "R2_07",
+      "type": "MC",
+      "stem": "Which expression does NOT equal 20?",
+      "choices": ["(2 + 3) × 4", "4 × 6 − 4", "2 × 3 + 4", "18 ÷ 9 + 18"],
+      "answer": "C",
+      "explanation": "A: 5×4=20 ✓. B: 24−4=20 ✓. C: 2×3+4=6+4=10 ✗. D: 2+18=20 ✓. Choice C does NOT equal 20.",
+      "difficulty": 3,
+      "hints": [
+        "Evaluate each choice using order of operations.",
+        "For choice C: 2 × 3 = 6, then 6 + 4 = 10 — not 20."
+      ],
+      "feedback": {
+        "correct": "Correct! C: 2×3+4 = 6+4 = 10, which is not 20.",
+        "incorrect": "Check choice C: 2×3=6, then 6+4=10 — that is not 20. The others all equal 20."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "stem": "2 × (7 + 3) = ?",
+      "answer": "20",
+      "explanation": "Parentheses: 7 + 3 = 10. Then 2 × 10 = 20.",
+      "difficulty": 2,
+      "hints": [
+        "Add inside the parentheses first: 7 + 3 = ?",
+        "Now multiply 2 by that sum."
+      ],
+      "feedback": {
+        "correct": "Yes! 7 + 3 = 10, then 2 × 10 = 20.",
+        "incorrect": "Parentheses first: 7 + 3 = 10. Then 2 × 10 = 20."
+      },
+      "solution_steps": ["7 + 3 = 10", "2 × 10 = 20"]
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "45 ÷ 9 + 6 = ?",
+      "answer": "11",
+      "explanation": "Division first: 45 ÷ 9 = 5. Then 5 + 6 = 11.",
+      "difficulty": 2,
+      "hints": [
+        "Division before addition — 45 ÷ 9 first.",
+        "45 ÷ 9 = 5. What is 5 + 6?"
+      ],
+      "feedback": {
+        "correct": "Right! 45 ÷ 9 = 5, then 5 + 6 = 11.",
+        "incorrect": "Divide first: 45 ÷ 9 = 5. Then 5 + 6 = 11."
+      },
+      "solution_steps": ["45 ÷ 9 = 5", "5 + 6 = 11"]
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "A baker makes 4 trays of cookies with 8 cookies on each tray. She eats 3 cookies. Which expression shows how many cookies are left?",
+      "choices": ["(4 + 8) × 3", "4 × 8 − 3", "4 × (8 − 3)", "4 + 8 − 3"],
+      "answer": "B",
+      "explanation": "4 trays × 8 cookies = 32 total. 32 − 3 = 29 left. Expression: 4 × 8 − 3.",
+      "difficulty": 2,
+      "hints": [
+        "Multiplying trays by cookies per tray gives the total before eating.",
+        "4 × 8 = 32 cookies total. Then subtract the 3 she ate."
+      ],
+      "feedback": {
+        "correct": "Correct! 4 × 8 = 32, then 32 − 3 = 29 cookies left.",
+        "incorrect": "First find total: 4 × 8 = 32. Then subtract 3 eaten: 32 − 3. That is 4 × 8 − 3."
       }
     }
   ],
@@ -422,67 +579,86 @@
       "id": "R3_01",
       "type": "MC",
       "stem": "Add parentheses to make this true: 2 + 3 × 6 = 30",
-      "choices": [
-        "(2 + 3) × 6",
-        "2 + (3 × 6)",
-        "2 + 3 × (6)",
-        "No parentheses needed"
-      ],
+      "choices": ["(2 + 3) × 6", "2 + (3 × 6)", "2 + 3 × (6)", "No parentheses needed"],
       "answer": "A",
       "explanation": "(2 + 3) × 6 = 5 × 6 = 30. ✓",
       "difficulty": 3,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Without parentheses: 2 + 3 × 6 = 2 + 18 = 20 — not 30.",
+        "Try grouping 2 + 3 in parentheses: (2 + 3) × 6 = 5 × 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+        "correct": "Great! (2+3)×6 = 5×6 = 30. ✓",
+        "incorrect": "The parentheses need to group the addition: (2+3)×6 = 5×6 = 30."
       }
     },
     {
       "id": "R3_02",
       "type": "MC",
       "stem": "Sara says 5 + 3 × 2 = 16. Leo says it equals 11. Who is correct?",
-      "choices": [
-        "Sara",
-        "Leo",
-        "Both",
-        "Neither"
-      ],
+      "choices": ["Sara", "Leo", "Both", "Neither"],
       "answer": "B",
       "explanation": "Multiply first: 3 × 2 = 6. Then 5 + 6 = 11. Leo is correct.",
       "difficulty": 3,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Apply order of operations: what operation comes before adding?",
+        "3 × 2 = 6 first. Then 5 + 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how order of operations works."
+        "correct": "Correct! 3 × 2 = 6 first, then 5 + 6 = 11. Leo is right.",
+        "incorrect": "Multiply first: 3 × 2 = 6. Then 5 + 6 = 11. Leo is correct, not Sara."
       }
     },
     {
       "id": "R3_03",
       "type": "MC",
       "stem": "Which has the greatest value?",
-      "choices": [
-        "(2 + 4) × 5",
-        "2 + 4 × 5",
-        "2 × (4 + 5)",
-        "2 × 4 + 5"
-      ],
+      "choices": ["(2 + 4) × 5", "2 + 4 × 5", "2 × (4 + 5)", "2 × 4 + 5"],
       "answer": "A",
       "explanation": "A: 6×5=30. B: 2+20=22. C: 2×9=18. D: 8+5=13. Greatest is 30.",
       "difficulty": 3,
       "hints": [
-        "Think about what order of operations means.",
-        "Try drawing a picture or using a number line."
+        "Evaluate all four choices using order of operations.",
+        "A: (2+4)×5 = 6×5 = 30. Compare to B: 2+4×5 = 2+20 = 22."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how order of operations works."
+        "correct": "Right! A = 30 is the greatest. B=22, C=18, D=13.",
+        "incorrect": "Calculate each: A=(2+4)×5=30, B=2+4×5=22, C=2×9=18, D=8+5=13. A is greatest."
       }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "Add parentheses to 8 + 4 ÷ 2 to make it equal 6.",
+      "choices": ["(8 + 4) ÷ 2", "8 + (4 ÷ 2)", "(8 ÷ 4) + 2", "No parentheses needed"],
+      "answer": "A",
+      "explanation": "(8 + 4) ÷ 2 = 12 ÷ 2 = 6. ✓",
+      "difficulty": 3,
+      "hints": [
+        "Without parentheses: 8 + 4 ÷ 2 = 8 + 2 = 10 — not 6.",
+        "Try (8 + 4) ÷ 2: that is 12 ÷ 2 = ?"
+      ],
+      "feedback": {
+        "correct": "Yes! (8+4)÷2 = 12÷2 = 6. ✓",
+        "incorrect": "Group (8+4) first: (8+4)÷2 = 12÷2 = 6."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "Sam solves (4 + 2) × 3 = 18 with parentheses. What is the value of the same expression WITHOUT parentheses: 4 + 2 × 3 = ?",
+      "answer": "10",
+      "explanation": "Without parentheses, multiply first: 2 × 3 = 6. Then 4 + 6 = 10.",
+      "difficulty": 3,
+      "hints": [
+        "When there are no parentheses, do × before +.",
+        "2 × 3 = 6. Then 4 + 6 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 2×3=6 first, then 4+6=10 — different from Sam's parentheses version!",
+        "incorrect": "Without parentheses: multiply first → 2×3=6, then add → 4+6=10."
+      },
+      "solution_steps": ["2 × 3 = 6", "4 + 6 = 10"]
     }
   ],
   "concept": "order_of_operations"

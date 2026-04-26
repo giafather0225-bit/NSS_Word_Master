@@ -10,6 +10,7 @@ API:
   GET  /api/assistant/logs
 """
 
+import asyncio
 import os
 import logging
 from typing import Optional, List
@@ -37,6 +38,7 @@ except ImportError:
     from ..models.system import AppConfig
 
 from backend.models.assistant import AssistantLog
+from backend.services import ollama_manager
 
 from .ai_assistant_safety import (
     SYSTEM_PROMPT_INJECTION_DEFENSE,
@@ -123,6 +125,7 @@ def _build_system_prompt(db: Session | None = None) -> str:
 
 async def _call_ollama(messages: list) -> str | None:
     """Call local Ollama. Returns reply text or None on failure."""
+    await asyncio.to_thread(ollama_manager.ensure_ollama_once)
     try:
         async with httpx.AsyncClient(timeout=15.0) as client:
             resp = await client.post(

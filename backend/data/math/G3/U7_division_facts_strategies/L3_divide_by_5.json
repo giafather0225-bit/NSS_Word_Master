@@ -26,308 +26,393 @@
   ],
   "pretest": [
     {
+      "id": "PT_01",
       "type": "MC",
       "stem": "15 ÷ 5 = ?",
-      "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
+      "choices": ["2", "3", "4", "5"],
       "answer": "B",
       "explanation": "15 ÷ 5 = 3.",
-      "difficulty": 1,
-      "id": "PT_01"
+      "difficulty": 1
     },
     {
+      "id": "PT_02",
       "type": "MC",
       "stem": "25 ÷ 5 = ?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
       "explanation": "25 ÷ 5 = 5.",
-      "difficulty": 1,
-      "id": "PT_02"
+      "difficulty": 1
     },
     {
+      "id": "PT_03",
       "type": "MC",
       "stem": "35 ÷ 5 = ?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "C",
       "explanation": "35 ÷ 5 = 7.",
-      "difficulty": 1,
-      "id": "PT_03"
+      "difficulty": 1
     },
     {
+      "id": "PT_04",
       "type": "MC",
       "stem": "40 ÷ 5 = ?",
-      "choices": [
-        "6",
-        "7",
-        "8",
-        "9"
-      ],
+      "choices": ["6", "7", "8", "9"],
       "answer": "C",
       "explanation": "40 ÷ 5 = 8.",
-      "difficulty": 1,
-      "id": "PT_04"
+      "difficulty": 1
     },
     {
+      "id": "PT_05",
       "type": "MC",
-      "stem": "30 fingers are on 5 hands? No — 5 fingers per hand. How many people have 30 fingers total?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "stem": "5 fingers per hand. How many hands make 30 fingers?",
+      "choices": ["4", "5", "6", "7"],
       "answer": "C",
-      "explanation": "30 ÷ 5 = 6 hands = 6 people (one hand each shown).",
-      "difficulty": 1,
-      "id": "PT_05"
+      "explanation": "30 ÷ 5 = 6 hands.",
+      "difficulty": 1
     }
   ],
   "learn": [
     {
+      "id": "LN_01",
       "type": "concept_card",
       "title": "Dividing by 5",
-      "content": "Count by 5s to find the quotient. 35 ÷ 5: count 5,10,15,20,25,30,35 — 7 counts. So 35 ÷ 5 = 7.",
-      "id": "LN_01",
+      "content": "Count by 5s to find the quotient. For 35 ÷ 5: count 5, 10, 15, 20, 25, 30, 35 — that's 7 counts. So 35 ÷ 5 = 7.",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "counter_groups",
+        "config": {
+          "total": 35,
+          "groups": 7,
+          "label": "35 ÷ 5 = 7"
+        }
+      }
     },
     {
+      "id": "LN_02",
       "type": "concept_card",
       "title": "Use ×5 Facts",
-      "content": "If 5 × 8 = 40, then 40 ÷ 5 = 8.",
-      "id": "LN_02",
+      "content": "If 5 × 8 = 40, then 40 ÷ 5 = 8. Use your multiplication table of 5 in reverse. Think: 5 × ? = 40 → ? = 8.",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 5,
+          "cols": 8,
+          "label": "5 × 8 = 40  →  40 ÷ 5 = 8"
+        }
+      }
     },
     {
+      "id": "LN_03",
       "type": "concept_card",
       "title": "Think of Nickels",
-      "content": "Each nickel is 5¢. 25¢ ÷ 5¢ = 5 nickels.",
-      "id": "LN_03",
+      "content": "Each nickel is 5¢. 25¢ ÷ 5¢ = 5 nickels. To find how many nickels make 45¢: count by 5s to 45 → 5, 10, 15, 20, 25, 30, 35, 40, 45 → 9 counts. 45 ÷ 5 = 9 nickels.",
       "cpa_phase": "pictorial",
-      "visual_type": "none"
+      "visual_type": "diagram",
+      "visual_data": {
+        "tool": "nickel_count",
+        "config": {
+          "total_cents": 45,
+          "nickel_value": 5,
+          "label": "45¢ ÷ 5¢ = 9 nickels"
+        }
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Number Line: Divide by 5",
+      "content": "For 45 ÷ 5: start at 45, jump back by 5 until you reach 0. Count: 45→40→35→30→25→20→15→10→5→0 — 9 jumps. So 45 ÷ 5 = 9.",
+      "cpa_phase": "pictorial",
+      "visual_type": "number_line",
+      "visual_data": {
+        "start": 45,
+        "jump": 5,
+        "end": 0,
+        "count": 9,
+        "label": "45 ÷ 5 = 9 (9 jumps of 5)"
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "The ÷5 Pattern",
+      "content": "All ÷5 quotients: 5÷5=1, 10÷5=2, 15÷5=3, 20÷5=4, 25÷5=5, 30÷5=6, 35÷5=7, 40÷5=8, 45÷5=9, 50÷5=10. Notice: each dividend ends in 0 or 5, and each quotient increases by 1.",
+      "cpa_phase": "abstract",
+      "visual_type": "formula",
+      "visual_data": {
+        "formula": "5 × n = 5n  →  5n ÷ 5 = n",
+        "examples": ["20 ÷ 5 = 4", "35 ÷ 5 = 7", "50 ÷ 5 = 10"]
+      }
     }
   ],
   "try": [
     {
+      "id": "TRY_01",
       "type": "MC",
       "stem": "20 ÷ 5 = ?",
-      "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
+      "choices": ["2", "3", "4", "5"],
       "answer": "C",
       "explanation": "20 ÷ 5 = 4.",
       "difficulty": 1,
-      "id": "TRY_01",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Skip count by 5s to 20: 5, 10, 15, 20 — 4 counts.",
+        "Think: 5 × ? = 20 → ? = 4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 5 works."
+        "correct": "Correct! 20 ÷ 5 = 4.",
+        "incorrect": "Not quite. Count by 5s to 20: 5, 10, 15, 20 — that's 4 steps, so 20 ÷ 5 = 4."
       },
       "solution_steps": []
     },
     {
+      "id": "TRY_02",
       "type": "MC",
       "stem": "A teacher gives 5 stars to each student. She used 30 stars. How many students?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "B",
-      "explanation": "30 ÷ 5 = 6.",
+      "explanation": "30 ÷ 5 = 6 students.",
       "difficulty": 1,
-      "id": "TRY_02",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "30 stars ÷ 5 per student = ? students.",
+        "Skip count by 5s to 30: 5,10,15,20,25,30 — 6 counts."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 5 works."
+        "correct": "Correct! 30 ÷ 5 = 6 students.",
+        "incorrect": "Not quite. 30 ÷ 5 = 6. Count by 5s to 30: 5,10,15,20,25,30 — 6 steps."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "15 ÷ 5 = ?",
+      "answer": "3",
+      "explanation": "15 ÷ 5 = 3.",
+      "difficulty": 1,
+      "hints": [
+        "Count by 5s to 15: 5, 10, 15 — 3 counts.",
+        "Think: 5 × ? = 15 → ? = 3."
+      ],
+      "feedback": {
+        "correct": "Correct! 15 ÷ 5 = 3.",
+        "incorrect": "Not quite. 5 × 3 = 15, so 15 ÷ 5 = 3."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "40 ÷ 5 = ?",
+      "answer": "8",
+      "explanation": "40 ÷ 5 = 8.",
+      "difficulty": 1,
+      "hints": [
+        "Count by 5s to 40: 5,10,15,20,25,30,35,40 — 8 counts.",
+        "Think: 5 × ? = 40 → ? = 8."
+      ],
+      "feedback": {
+        "correct": "Correct! 40 ÷ 5 = 8.",
+        "incorrect": "Not quite. 5 × 8 = 40, so 40 ÷ 5 = 8."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "Anna has 45 marbles. She puts them in bags of 5. How many bags?",
+      "choices": ["7", "8", "9", "10"],
+      "answer": "C",
+      "explanation": "45 ÷ 5 = 9 bags.",
+      "difficulty": 1,
+      "hints": [
+        "45 marbles ÷ 5 per bag = ? bags.",
+        "Count by 5s to 45: 5,10,…,45 — 9 counts."
+      ],
+      "feedback": {
+        "correct": "Correct! 45 ÷ 5 = 9 bags.",
+        "incorrect": "Not quite. 45 ÷ 5 = 9. Count by 5s to 45 — that's 9 steps."
       },
       "solution_steps": []
     }
   ],
   "practice_r1": [
     {
+      "id": "R1_01",
       "type": "MC",
       "stem": "10 ÷ 5 = ?",
-      "choices": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
+      "choices": ["1", "2", "3", "4"],
       "answer": "B",
       "explanation": "10 ÷ 5 = 2.",
       "difficulty": 1,
-      "id": "R1_01",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Count by 5s to 10: 5, 10 — 2 counts.",
+        "5 × 2 = 10, so 10 ÷ 5 = 2."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 5 works."
+        "correct": "Correct! 10 ÷ 5 = 2.",
+        "incorrect": "Not quite. 5 × 2 = 10, so 10 ÷ 5 = 2."
       }
     },
     {
+      "id": "R1_02",
       "type": "MC",
       "stem": "5 ÷ 5 = ?",
-      "choices": [
-        "0",
-        "1",
-        "5",
-        "10"
-      ],
+      "choices": ["0", "1", "5", "10"],
       "answer": "B",
       "explanation": "5 ÷ 5 = 1.",
       "difficulty": 1,
-      "id": "R1_02",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Any number ÷ itself = 1.",
+        "5 × 1 = 5, so 5 ÷ 5 = 1."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 5 works."
+        "correct": "Correct! 5 ÷ 5 = 1.",
+        "incorrect": "Not quite. Any number ÷ itself = 1. So 5 ÷ 5 = 1."
       }
     },
     {
+      "id": "R1_03",
       "type": "MC",
       "stem": "30 ÷ 5 = ?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "B",
       "explanation": "30 ÷ 5 = 6.",
       "difficulty": 1,
-      "id": "R1_03",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Count by 5s to 30: 5,10,15,20,25,30 — 6 counts.",
+        "5 × 6 = 30, so 30 ÷ 5 = 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 5 works."
+        "correct": "Correct! 30 ÷ 5 = 6.",
+        "incorrect": "Not quite. 5 × 6 = 30, so 30 ÷ 5 = 6."
       }
     },
     {
+      "id": "R1_04",
       "type": "MC",
       "stem": "45 ÷ 5 = ?",
-      "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
-      ],
+      "choices": ["7", "8", "9", "10"],
       "answer": "C",
       "explanation": "45 ÷ 5 = 9.",
       "difficulty": 1,
-      "id": "R1_04",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Count by 5s to 45: …40, 45 — 9 counts.",
+        "5 × 9 = 45, so 45 ÷ 5 = 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 5 works."
+        "correct": "Correct! 45 ÷ 5 = 9.",
+        "incorrect": "Not quite. 5 × 9 = 45, so 45 ÷ 5 = 9."
       }
     },
     {
+      "id": "R1_05",
       "type": "MC",
       "stem": "A runner runs 5 miles per day for some days and runs 25 miles total. How many days?",
-      "choices": [
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
+      "choices": ["3", "4", "5", "6"],
       "answer": "C",
-      "explanation": "25 ÷ 5 = 5.",
+      "explanation": "25 ÷ 5 = 5 days.",
       "difficulty": 1,
-      "id": "R1_05",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "25 total ÷ 5 per day = ? days.",
+        "5 × 5 = 25, so 25 ÷ 5 = 5 days."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 5 works."
+        "correct": "Correct! 25 ÷ 5 = 5 days.",
+        "incorrect": "Not quite. 25 ÷ 5 = 5. The runner runs for 5 days."
       }
     },
     {
+      "id": "R1_06",
       "type": "MC",
       "stem": "Each bag has 5 apples. There are 35 apples total. How many bags?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "C",
-      "explanation": "35 ÷ 5 = 7.",
+      "explanation": "35 ÷ 5 = 7 bags.",
       "difficulty": 1,
-      "id": "R1_06",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "35 apples ÷ 5 per bag = ? bags.",
+        "5 × 7 = 35, so 35 ÷ 5 = 7 bags."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 5 works."
+        "correct": "Correct! 35 ÷ 5 = 7 bags.",
+        "incorrect": "Not quite. 35 ÷ 5 = 7. There are 7 bags."
       }
     },
     {
+      "id": "R1_07",
       "type": "MC",
       "stem": "If 5 × 4 = 20, then 20 ÷ 5 = ?",
-      "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
+      "choices": ["2", "3", "4", "5"],
       "answer": "C",
       "explanation": "20 ÷ 5 = 4.",
       "difficulty": 1,
-      "id": "R1_07",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Use the inverse: 5 × 4 = 20 → 20 ÷ 5 = ?",
+        "The quotient is the other factor: 20 ÷ 5 = 4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 5 works."
+        "correct": "Correct! 5 × 4 = 20 → 20 ÷ 5 = 4.",
+        "incorrect": "Not quite. 5 × 4 = 20, so 20 ÷ 5 = 4."
       }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "stem": "25 ÷ 5 = ?",
+      "answer": "5",
+      "explanation": "25 ÷ 5 = 5.",
+      "difficulty": 1,
+      "hints": [
+        "Count by 5s to 25: 5,10,15,20,25 — 5 counts.",
+        "5 × 5 = 25, so 25 ÷ 5 = 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 25 ÷ 5 = 5.",
+        "incorrect": "Not quite. 5 × 5 = 25, so 25 ÷ 5 = 5."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "stem": "35 ÷ 5 = ?",
+      "choices": ["6", "7", "8", "9"],
+      "answer": "B",
+      "explanation": "35 ÷ 5 = 7.",
+      "difficulty": 1,
+      "hints": [
+        "Count by 5s to 35: 5,10,15,20,25,30,35 — 7 counts.",
+        "5 × 7 = 35, so 35 ÷ 5 = 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 35 ÷ 5 = 7.",
+        "incorrect": "Not quite. 5 × 7 = 35, so 35 ÷ 5 = 7."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "stem": "50 ÷ 5 = ?",
+      "answer": "10",
+      "explanation": "50 ÷ 5 = 10.",
+      "difficulty": 1,
+      "hints": [
+        "Count by 5s to 50: 5,10,…,50 — 10 counts.",
+        "5 × 10 = 50, so 50 ÷ 5 = 10."
+      ],
+      "feedback": {
+        "correct": "Correct! 50 ÷ 5 = 10.",
+        "incorrect": "Not quite. 5 × 10 = 50, so 50 ÷ 5 = 10."
+      },
+      "solution_steps": []
     }
   ],
   "practice_r2": [
     {
+      "id": "R2_01",
       "type": "MC",
       "stem": "Which fact helps you solve 35 ÷ 5?",
       "choices": [
@@ -337,151 +422,266 @@
         "5 × 9 = 45"
       ],
       "answer": "B",
-      "explanation": "5 × 7 = 35.",
+      "explanation": "5 × 7 = 35, so 35 ÷ 5 = 7.",
       "difficulty": 2,
-      "id": "R2_01",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Think: 5 × ? = 35. Which fact gives 35?",
+        "5 × 7 = 35 → 35 ÷ 5 = 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 5 works."
+        "correct": "Correct! 5 × 7 = 35 → 35 ÷ 5 = 7.",
+        "incorrect": "Not quite. 5 × 7 = 35 is the fact that helps."
       }
     },
     {
-      "type": "MC",
-      "stem": "? ÷ 5 = 8. What is the number?",
-      "choices": [
-        "35",
-        "40",
-        "45",
-        "50"
-      ],
-      "answer": "B",
-      "explanation": "40 ÷ 5 = 8.",
-      "difficulty": 2,
       "id": "R2_02",
+      "type": "MC",
+      "stem": "? ÷ 5 = 8. What is the mystery number?",
+      "choices": ["35", "40", "45", "50"],
+      "answer": "B",
+      "explanation": "40 ÷ 5 = 8. Work backwards: 5 × 8 = 40.",
+      "difficulty": 2,
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Work backwards: ? ÷ 5 = 8 → ? = 5 × 8.",
+        "5 × 8 = 40. The mystery number is 40."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 5 works."
+        "correct": "Correct! 5 × 8 = 40, so 40 ÷ 5 = 8.",
+        "incorrect": "Not quite. ? ÷ 5 = 8 → ? = 5 × 8 = 40."
       }
     },
     {
+      "id": "R2_03",
       "type": "MC",
       "stem": "Which quotient is LEAST?",
-      "choices": [
-        "15 ÷ 5",
-        "25 ÷ 5",
-        "40 ÷ 5",
-        "10 ÷ 5"
-      ],
+      "choices": ["15 ÷ 5", "25 ÷ 5", "40 ÷ 5", "10 ÷ 5"],
       "answer": "D",
-      "explanation": "10 ÷ 5 = 2 (least).",
+      "explanation": "10 ÷ 5 = 2 (least). Others: 3, 5, 8.",
       "difficulty": 2,
-      "id": "R2_03",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Compute each: 15÷5=3, 25÷5=5, 40÷5=8, 10÷5=?",
+        "10 ÷ 5 = 2 is the smallest quotient."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how divide by 5 works."
+        "correct": "Correct! 10 ÷ 5 = 2 is the least quotient.",
+        "incorrect": "Not quite. 10÷5=2 (least). Others: 15÷5=3, 25÷5=5, 40÷5=8."
       }
     },
     {
+      "id": "R2_04",
       "type": "MC",
       "stem": "Grandma has 45¢ in nickels. How many nickels?",
-      "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
-      ],
+      "choices": ["7", "8", "9", "10"],
       "answer": "C",
       "explanation": "45 ÷ 5 = 9 nickels.",
       "difficulty": 2,
-      "id": "R2_04",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Each nickel = 5¢. 45¢ ÷ 5¢ = ? nickels.",
+        "5 × 9 = 45, so 45 ÷ 5 = 9 nickels."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 5 works."
+        "correct": "Correct! 45 ÷ 5 = 9 nickels.",
+        "incorrect": "Not quite. 45¢ ÷ 5¢ per nickel = 9 nickels."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "5 × ? = 45, so 45 ÷ 5 = ?",
+      "answer": "9",
+      "explanation": "5 × 9 = 45, so 45 ÷ 5 = 9.",
+      "difficulty": 2,
+      "hints": [
+        "Find the missing factor: 5 × ? = 45.",
+        "5 × 9 = 45 → 45 ÷ 5 = 9."
+      ],
+      "feedback": {
+        "correct": "Correct! 5 × 9 = 45 → 45 ÷ 5 = 9.",
+        "incorrect": "Not quite. 5 × 9 = 45, so 45 ÷ 5 = 9."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "Which is NOT a correct ÷5 fact?",
+      "choices": [
+        "5 ÷ 5 = 1",
+        "20 ÷ 5 = 4",
+        "50 ÷ 5 = 9",
+        "45 ÷ 5 = 9"
+      ],
+      "answer": "C",
+      "explanation": "50 ÷ 5 = 10, not 9. Choice C is wrong.",
+      "difficulty": 2,
+      "hints": [
+        "Check each fact: 5÷5=1 ✓, 20÷5=4 ✓, 50÷5=?, 45÷5=9 ✓",
+        "50 ÷ 5 = 10 (not 9). So choice C has the wrong answer."
+      ],
+      "feedback": {
+        "correct": "Correct! 50 ÷ 5 = 10, not 9. Choice C is wrong.",
+        "incorrect": "Not quite. Check C: 50 ÷ 5 = 10 (not 9). C is the wrong fact."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "? ÷ 5 = 6. What is the mystery number?",
+      "answer": "30",
+      "explanation": "5 × 6 = 30, so 30 ÷ 5 = 6.",
+      "difficulty": 2,
+      "hints": [
+        "Work backwards: ? ÷ 5 = 6 → ? = 5 × 6.",
+        "5 × 6 = 30. The mystery number is 30."
+      ],
+      "feedback": {
+        "correct": "Correct! 5 × 6 = 30, so 30 ÷ 5 = 6.",
+        "incorrect": "Not quite. ? ÷ 5 = 6 → ? = 5 × 6 = 30."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "A store sells stickers in packs of 5. Maria needs 40 stickers. How many packs?",
+      "choices": ["7", "8", "9", "10"],
+      "answer": "B",
+      "explanation": "40 ÷ 5 = 8 packs.",
+      "difficulty": 2,
+      "hints": [
+        "40 stickers ÷ 5 per pack = ? packs.",
+        "5 × 8 = 40, so 40 ÷ 5 = 8 packs."
+      ],
+      "feedback": {
+        "correct": "Correct! 40 ÷ 5 = 8 packs.",
+        "incorrect": "Not quite. 40 ÷ 5 = 8. Maria needs 8 packs."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "5 × 7 = 35, so 35 ÷ 5 = ?",
+      "answer": "7",
+      "explanation": "35 ÷ 5 = 7.",
+      "difficulty": 2,
+      "hints": [
+        "Use the inverse: 5 × 7 = 35 → 35 ÷ 5 = ?",
+        "The quotient is the other factor: 35 ÷ 5 = 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 5 × 7 = 35 → 35 ÷ 5 = 7.",
+        "incorrect": "Not quite. If 5 × 7 = 35, then 35 ÷ 5 = 7."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "Jake runs 5 km per day. How many days to run 30 km?",
+      "choices": ["5", "6", "7", "8"],
+      "answer": "B",
+      "explanation": "30 ÷ 5 = 6 days.",
+      "difficulty": 2,
+      "hints": [
+        "30 km total ÷ 5 km per day = ? days.",
+        "5 × 6 = 30, so 30 ÷ 5 = 6 days."
+      ],
+      "feedback": {
+        "correct": "Correct! 30 ÷ 5 = 6. It takes 6 days.",
+        "incorrect": "Not quite. 30 ÷ 5 = 6 days."
       }
     }
   ],
   "practice_r3": [
     {
+      "id": "R3_01",
       "type": "MC",
-      "stem": "A store sells 5-packs of gum for $2. Jill has $10. How many 5-packs can she buy, and how many pieces of gum total?",
+      "stem": "A store sells 5-packs of gum for $2 each. Jill has $10. How many 5-packs can she buy, and how many pieces of gum total?",
       "choices": [
-        "5 packs, 25 gum",
-        "4 packs, 20 gum",
-        "5 packs, 10 gum",
-        "4 packs, 25 gum"
+        "5 packs, 25 pieces",
+        "4 packs, 20 pieces",
+        "5 packs, 10 pieces",
+        "4 packs, 25 pieces"
       ],
       "answer": "A",
       "explanation": "10 ÷ 2 = 5 packs. 5 × 5 = 25 pieces.",
       "difficulty": 3,
-      "id": "R3_01",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: $10 ÷ $2 per pack = ? packs. Step 2: packs × 5 pieces = total.",
+        "10 ÷ 2 = 5 packs. Then 5 × 5 = 25 pieces."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how divide by 5 works."
+        "correct": "Correct! 10 ÷ 2 = 5 packs, then 5 × 5 = 25 pieces.",
+        "incorrect": "Not quite. 10 ÷ 2 = 5 packs; 5 × 5 = 25 pieces total."
       }
     },
     {
-      "type": "MC",
-      "stem": "Clock: there are 60 minutes in an hour. Each 5-minute mark is one 'hand jump.' How many jumps in one hour?",
-      "choices": [
-        "10",
-        "11",
-        "12",
-        "13"
-      ],
-      "answer": "C",
-      "explanation": "60 ÷ 5 = 12.",
-      "difficulty": 3,
       "id": "R3_02",
+      "type": "MC",
+      "stem": "A clock has 60 minutes per hour. The minute hand jumps 5 minutes each 'mark.' How many marks per hour?",
+      "choices": ["10", "11", "12", "13"],
+      "answer": "C",
+      "explanation": "60 ÷ 5 = 12 marks.",
+      "difficulty": 3,
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "60 minutes ÷ 5 minutes per mark = ? marks.",
+        "Count by 5s to 60: …,55,60 — 12 counts."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 5 works."
+        "correct": "Correct! 60 ÷ 5 = 12 marks on the clock.",
+        "incorrect": "Not quite. 60 ÷ 5 = 12. There are 12 marks per hour."
       }
     },
     {
+      "id": "R3_03",
       "type": "MC",
-      "stem": "A number ÷ 5 = 7. What is the number + 10?",
-      "choices": [
-        "35",
-        "40",
-        "45",
-        "50"
-      ],
+      "stem": "A mystery number ÷ 5 = 7. What is the mystery number + 10?",
+      "choices": ["35", "40", "45", "50"],
       "answer": "C",
       "explanation": "Number = 5 × 7 = 35. 35 + 10 = 45.",
       "difficulty": 3,
-      "id": "R3_03",
       "hints": [
-        "Think about what divide by 5 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: find the mystery number. ? ÷ 5 = 7 → ? = 5 × 7.",
+        "5 × 7 = 35. Then 35 + 10 = 45."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 5 works."
+        "correct": "Correct! 5 × 7 = 35, then 35 + 10 = 45.",
+        "incorrect": "Not quite. ? ÷ 5 = 7 → ? = 5 × 7 = 35. Then 35 + 10 = 45."
       }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "50 students are divided into teams of 5. Then 2 teams combine into 1. How many teams are there now?",
+      "choices": ["7", "8", "9", "10"],
+      "answer": "C",
+      "explanation": "50 ÷ 5 = 10 teams. Two teams merge into 1: 10 − 1 = 9 teams.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: 50 ÷ 5 = ? teams. Step 2: two become one → subtract 1.",
+        "50 ÷ 5 = 10 teams. Then 10 − 1 = 9 teams after the merge."
+      ],
+      "feedback": {
+        "correct": "Correct! 50 ÷ 5 = 10, then 10 − 1 = 9 teams.",
+        "incorrect": "Not quite. 50 ÷ 5 = 10 teams. Two merge into one → 10 − 1 = 9."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "A mystery number divided by 5 equals 8. What is the mystery number?",
+      "answer": "40",
+      "explanation": "? ÷ 5 = 8 → ? = 5 × 8 = 40.",
+      "difficulty": 3,
+      "hints": [
+        "Work backwards: ? ÷ 5 = 8 → ? = 5 × 8.",
+        "5 × 8 = 40. The mystery number is 40."
+      ],
+      "feedback": {
+        "correct": "Correct! 5 × 8 = 40, so 40 ÷ 5 = 8.",
+        "incorrect": "Not quite. ? ÷ 5 = 8 → ? = 5 × 8 = 40."
+      },
+      "solution_steps": []
     }
   ],
   "concept": "divide_by_5"

@@ -70,7 +70,7 @@
     <link rel="stylesheet" href="/static/css/math-academy-anim.css?v=3">
     <link rel="stylesheet" href="/static/css/math-learn-visuals.css?v=1">
     <link rel="stylesheet" href="/static/css/math-academy-responsive.css?v=1">
-    <link rel="stylesheet" href="/static/css/arcade.css?v=8">
+    <link rel="stylesheet" href="/static/css/arcade.css?v=9">
     <link rel="stylesheet" href="/static/css/ckla.css?v=1">
     <link rel="stylesheet" href="/static/css/ai-assistant.css?v=5">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -790,6 +790,7 @@
 </div>
 
 <!-- ─── App logic ────────────────────────────────────────────── -->
+<!-- Core (sync): must run before first paint -->
 <script src="/static/js/splash.js?v=3"></script>
 <script src="/static/js/offline-indicator.js?v=1"></script>
 <script src="/static/js/toast.js?v=2"></script>
@@ -797,85 +798,20 @@
 <script src="/static/js/tts-client.js?v=3"></script>
 <script src="/static/js/analytics.js?v=2"></script>
 <script src="/static/js/navigation.js?v=5"></script>
-<script src="/static/js/preview.js?v=5"></script>
-<script src="/static/js/wordmatch.js?v=3"></script>
-<script src="/static/js/fillblank.js?v=2"></script>
-<script src="/static/js/spelling.js?v=4"></script>
-<script src="/static/js/sentence.js?v=2"></script>
-<script src="/static/js/home.js?v=6"></script>
-<script src="/static/js/growth-theme.js?v=2"></script>
-<script src="/static/js/parent-panel.js?v=10"></script>
-<script src="/static/js/parent-overview.js?v=1"></script>
-<script src="/static/js/parent-textbooks.js?v=1"></script>
-<script src="/static/js/parent-math.js?v=3"></script>
-<script src="/static/js/parent-streak.js?v=1"></script>
-<script src="/static/js/parent-xp.js?v=1"></script>
-<script src="/static/js/parent-settings.js?v=3"></script>
-<script src="/static/js/parent-shadow.js?v=1"></script>
-<script src="/static/js/reward-shop.js?v=5"></script>
-<script src="/static/js/reward-shop-use.js?v=1"></script>
-<script src="/static/js/diary.js?v=18"></script>
-<script src="/static/js/diary-home.js?v=1"></script>
-<script src="/static/js/diary-write.js?v=11"></script>
-<script src="/static/js/diary-entry.js?v=3"></script>
-<script src="/static/js/diary-calendar.js?v=1"></script>
-<script src="/static/js/free-writing.js?v=1"></script>
-<script src="/static/js/calendar.js?v=3"></script>
-<script src="/static/js/daily-words.js?v=7"></script>
-<script src="/static/js/daily-words-weekly.js?v=1"></script>
-<script src="/static/js/ckla.js?v=1"></script>
-<script src="/static/js/ckla-lesson.js?v=1"></script>
-<script src="/static/js/ckla-review.js"></script>
-<script src="/static/js/child.js?v=38"></script>
-<script src="/static/js/sentence_ai.js?v=2"></script>
-<script src="/static/js/collocation.js?v=1"></script>
-<script src="/static/js/finaltest.js?v=13"></script>
-<script src="/static/js/unittest.js?v=5"></script>
-<script src="/static/js/review.js?v=5"></script>
+<!-- Feature modules (defer): 3 bundles instead of 71 individual files -->
+<script defer src="/static/js/bundle-a.min.js?v=2"></script>
 
 <!-- KaTeX (math equation rendering) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
-<script src="/static/js/math-katex-utils.js?v=1"></script>
-
-<script src="/static/js/math-manipulatives.js?v=2"></script>
-<script src="/static/js/math-manipulatives-2.js?v=1"></script>
-<script src="/static/js/math-3read.js?v=2"></script>
-<script src="/static/js/math-problem-types.js?v=2"></script>
-<script src="/static/js/math-problem-ui.js?v=8"></script>
-<script src="/static/js/math-learn-visuals.js?v=1"></script>
-<script src="/static/js/math-learn-cards.js?v=6"></script>
-<script src="/static/js/math-academy-ui.js?v=3"></script>
-<script src="/static/js/math-academy-shell.js?v=1"></script>
-<script src="/static/js/math-academy-feedback.js?v=3"></script>
-<script src="/static/js/math-academy.js?v=7"></script>
-<script src="/static/js/math-review.js?v=1"></script>
-<script src="/static/js/math-fluency.js?v=1"></script>
-<script src="/static/js/math-placement.js?v=1"></script>
-<script src="/static/js/math-placement-results.js?v=1"></script>
-<script src="/static/js/math-daily.js?v=1"></script>
-<script src="/static/js/math-kangaroo.js?v=4"></script>
-<script src="/static/js/math-kangaroo-exam.js?v=1"></script>
-<script src="/static/js/math-kangaroo-pdf-exam.js?v=2"></script>
-<script src="/static/js/math-kangaroo-result.js?v=3"></script>
-<script src="/static/js/math-glossary.js?v=2"></script>
-<script src="/static/js/math-navigation.js?v=5"></script>
-<script src="/static/js/word-manager.js?v=16"></script>
-<script src="/static/js/arcade-sfx.js?v=1"></script>
-<script src="/static/js/arcade.js?v=10"></script>
-<script src="/static/js/arcade-word-invaders.js?v=8"></script>
-<script src="/static/js/arcade-definition-match.js?v=4"></script>
-<script src="/static/js/arcade-spell-rush.js?v=3"></script>
-<script src="/static/js/arcade-crossword.js?v=2"></script>
-<script src="/static/js/arcade-math-invaders.js?v=2"></script>
-<script src="/static/js/arcade-sudoku.js?v=2"></script>
-<script src="/static/js/arcade-make24.js?v=3"></script>
+<script defer src="/static/js/bundle-b.min.js?v=1"></script>
+<script defer src="/static/js/bundle-c.min.js?v=1"></script>
 
 <!-- Arcade Full-screen Overlay -->
 <div id="arcade-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Arcade">
   <div class="arcade-header">
-    <div class="arcade-header-title">🕹️ Arcade</div>
+    <div class="arcade-header-title">Arcade</div>
     <div style="display:flex; gap:8px;">
       <button class="arcade-close-btn" id="arcade-mute" onclick="toggleArcadeMute()" title="Toggle sound">🔊</button>
       <button class="arcade-close-btn" id="arcade-close" onclick="closeArcade()">✕</button>
@@ -1100,8 +1036,5 @@
       .catch(err => console.log('SW registration failed:', err));
   }
 </script>
-<script src="/static/js/ai-assistant-stt.js?v=5"></script>
-<script src="/static/js/ai-assistant-tts.js?v=5"></script>
-<script src="/static/js/ai-assistant.js?v=9"></script>
 </body>
 </html>

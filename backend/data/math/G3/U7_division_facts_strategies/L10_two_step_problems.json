@@ -29,12 +29,7 @@
       "id": "PT_01",
       "type": "MC",
       "stem": "Kim has 24 stickers. She gives 6 away, then splits the rest equally among 3 friends. How many does each friend get?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "8"
-      ],
+      "choices": ["4", "5", "6", "8"],
       "answer": "C",
       "explanation": "24 − 6 = 18. 18 ÷ 3 = 6.",
       "difficulty": 2
@@ -43,12 +38,7 @@
       "id": "PT_02",
       "type": "MC",
       "stem": "A store has 5 boxes of 8 water bottles. A customer buys 10 bottles. How many are left?",
-      "choices": [
-        "20",
-        "25",
-        "30",
-        "35"
-      ],
+      "choices": ["20", "25", "30", "35"],
       "answer": "C",
       "explanation": "5 × 8 = 40. 40 − 10 = 30.",
       "difficulty": 2
@@ -57,12 +47,7 @@
       "id": "PT_03",
       "type": "MC",
       "stem": "Tom earns $7 a day for 4 days. He spends $13. How much does he have?",
-      "choices": [
-        "$12",
-        "$15",
-        "$18",
-        "$21"
-      ],
+      "choices": ["$12", "$15", "$18", "$21"],
       "answer": "B",
       "explanation": "7 × 4 = 28. 28 − 13 = 15.",
       "difficulty": 2
@@ -71,12 +56,7 @@
       "id": "PT_04",
       "type": "MC",
       "stem": "There are 36 students in 4 equal groups. Then 2 students from each group leave. How many are left in each group?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "C",
       "explanation": "36 ÷ 4 = 9 per group. 9 − 2 = 7 left.",
       "difficulty": 2
@@ -85,12 +65,7 @@
       "id": "PT_05",
       "type": "MC",
       "stem": "Ella buys 3 packs of markers for $6 each. She also buys a notebook for $4. How much did she spend?",
-      "choices": [
-        "$18",
-        "$20",
-        "$22",
-        "$24"
-      ],
+      "choices": ["$18", "$20", "$22", "$24"],
       "answer": "C",
       "explanation": "3 × 6 = 18. 18 + 4 = 22.",
       "difficulty": 2
@@ -101,386 +76,606 @@
       "id": "LN_01",
       "type": "concept_card",
       "title": "What Is a Two-Step Problem?",
-      "content": "A two-step problem requires two operations to solve. Read carefully to find what happens first and second.",
+      "content": "A two-step problem requires two operations to solve. You must complete Step 1 first, then use that result for Step 2. The operations can be: +, −, ×, or ÷ in any combination.\n\nExample: 'Jake has 5 bags of 6 apples. He eats 3. How many left?'\nStep 1: 5 × 6 = 30 (find total)\nStep 2: 30 − 3 = 27 (subtract eaten)",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "diagram",
+      "visual_data": {
+        "tool": "two_step_flow",
+        "config": {
+          "step1": "5 × 6 = 30",
+          "step2": "30 − 3 = 27"
+        }
+      }
     },
     {
       "id": "LN_02",
       "type": "concept_card",
-      "title": "Example",
-      "content": "Jake has 5 bags of 6 apples. He eats 3. How many left? Step 1: 5 × 6 = 30. Step 2: 30 − 3 = 27.",
+      "title": "Bar Model for Two Steps",
+      "content": "Draw a bar model to organize a two-step problem. Example: 'Amy has 24 beads. She buys 12 more, then shares them equally among 6 friends.'\nBar 1: 24 + 12 = 36 (total beads)\nBar 2: 36 ÷ 6 = 6 (each friend gets)\nThe bar model shows what you know and what you need to find.",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "diagram",
+      "visual_data": {
+        "tool": "bar_model",
+        "config": {
+          "step1_label": "24 + 12 = 36",
+          "step2_label": "36 ÷ 6 = 6"
+        }
+      }
     },
     {
       "id": "LN_03",
       "type": "concept_card",
-      "title": "Write an Equation",
-      "content": "You can write: (5 × 6) − 3 = n. Solve inside the parentheses first: 30 − 3 = 27.",
+      "title": "Write One Equation for Two Steps",
+      "content": "You can write both steps as one equation using parentheses:\n'(5 × 6) − 3 = n'\nSolve inside parentheses first: 5 × 6 = 30\nThen: 30 − 3 = 27, so n = 27.\n\nParentheses tell you which operation to do FIRST.",
       "cpa_phase": "pictorial",
+      "visual_type": "diagram",
+      "visual_data": {
+        "tool": "equation_builder",
+        "config": {
+          "equation": "(5 × 6) − 3 = n",
+          "step1": "30",
+          "answer": "27"
+        }
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Identify the Operations",
+      "content": "To solve any two-step problem, ask:\n1. What do I need to find?\n2. What information do I have?\n3. What happens FIRST? (Step 1 operation)\n4. What happens SECOND? (Step 2 operation)\n\nCommon patterns:\n× then − (find total, then remove)\n÷ then + (split into groups, then add)\n+ then ÷ (combine, then share)\n× then + (multiply, then add extra)",
+      "cpa_phase": "pictorial",
+      "visual_type": "none"
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "Check Your Answer",
+      "content": "After solving a two-step problem, always check:\n1. Did I complete BOTH steps?\n2. Does my answer make sense with the story?\n3. Did I use the right operations?\n\nExample check: 'Kim gets 6 stickers each. Does 6 make sense if she started with 24 and gave 6 away?' → 24−6=18, 18÷3=6 ✓",
+      "cpa_phase": "abstract",
       "visual_type": "none"
     }
   ],
   "try": [
     {
       "id": "TRY_01",
+      "problem_id": "TRY_01",
       "type": "MC",
-      "stem": "A class has 28 pencils. The teacher buys 12 more, then divides them equally among 8 students. How many each?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "stem": "A class has 28 pencils. The teacher buys 12 more, then divides them equally among 8 students. How many pencils does each student get?",
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
-      "explanation": "28 + 12 = 40. 40 ÷ 8 = 5.",
+      "explanation": "Step 1: 28 + 12 = 40 pencils total. Step 2: 40 ÷ 8 = 5 per student.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: add the pencils together first. Step 2: divide the total by 8 students.",
+        "What happens first? Adding! Then dividing."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how two step problems works."
+        "correct": "Correct! 28+12=40, then 40÷8=5 pencils each.",
+        "incorrect": "Step 1: 28+12=40. Step 2: 40÷8=5. Each student gets 5 pencils."
       },
-      "solution_steps": []
+      "solution_steps": ["28 + 12 = 40", "40 ÷ 8 = 5"]
     },
     {
       "id": "TRY_02",
+      "problem_id": "TRY_02",
       "type": "MC",
-      "stem": "Maya has $20. She buys 2 books for $6 each. How much is left?",
-      "choices": [
-        "$6",
-        "$8",
-        "$10",
-        "$14"
-      ],
+      "stem": "Maya has $20. She buys 2 books for $6 each. How much money is left?",
+      "choices": ["$6", "$8", "$10", "$14"],
       "answer": "B",
-      "explanation": "2 × 6 = 12. 20 − 12 = 8.",
+      "explanation": "Step 1: 2 × 6 = $12 spent. Step 2: 20 − 12 = $8 left.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: find the total cost of the books: 2 × $6 = ?",
+        "Step 2: subtract that cost from $20."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how two step problems works."
+        "correct": "Right! 2×6=$12, then 20−12=$8 left.",
+        "incorrect": "Step 1: 2×6=12. Step 2: 20−12=8. Maya has $8 left."
       },
-      "solution_steps": []
+      "solution_steps": ["2 × 6 = 12", "20 − 12 = 8"]
+    },
+    {
+      "id": "TRY_03",
+      "problem_id": "TRY_03",
+      "type": "input",
+      "stem": "You buy 4 bags of apples with 6 apples in each bag. Then you eat 3 apples. How many apples remain?",
+      "answer": "21",
+      "explanation": "Step 1: 4 × 6 = 24 apples total. Step 2: 24 − 3 = 21 remain.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: multiply to find total apples: 4 × 6 = ?",
+        "Step 2: subtract the 3 apples you ate."
+      ],
+      "feedback": {
+        "correct": "Correct! 4×6=24, then 24−3=21 apples remain.",
+        "incorrect": "Step 1: 4×6=24 apples. Step 2: 24−3=21 remain."
+      },
+      "solution_steps": ["4 × 6 = 24", "24 − 3 = 21"]
+    },
+    {
+      "id": "TRY_04",
+      "problem_id": "TRY_04",
+      "type": "input",
+      "stem": "56 cards are dealt equally to 7 players. Then each player receives 2 more bonus cards. How many cards does each player have now?",
+      "answer": "10",
+      "explanation": "Step 1: 56 ÷ 7 = 8 cards each. Step 2: 8 + 2 = 10 cards each.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: divide to find how many each player starts with: 56 ÷ 7 = ?",
+        "Step 2: add the 2 bonus cards to each player's total."
+      ],
+      "feedback": {
+        "correct": "Great! 56÷7=8, then 8+2=10 cards each.",
+        "incorrect": "Step 1: 56÷7=8 per player. Step 2: 8+2=10 cards each."
+      },
+      "solution_steps": ["56 ÷ 7 = 8", "8 + 2 = 10"]
+    },
+    {
+      "id": "TRY_05",
+      "problem_id": "TRY_05",
+      "type": "MC",
+      "stem": "A store has 3 boxes of 9 oranges each. They sell 6 oranges. How many oranges are left?",
+      "choices": ["19", "21", "23", "25"],
+      "answer": "B",
+      "explanation": "Step 1: 3 × 9 = 27 oranges total. Step 2: 27 − 6 = 21 left.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: multiply to find total oranges: 3 × 9 = ?",
+        "Step 2: subtract the 6 oranges sold."
+      ],
+      "feedback": {
+        "correct": "Yes! 3×9=27, then 27−6=21 oranges left.",
+        "incorrect": "Step 1: 3×9=27. Step 2: 27−6=21 oranges left."
+      },
+      "solution_steps": ["3 × 9 = 27", "27 − 6 = 21"]
     }
   ],
   "practice_r1": [
     {
       "id": "R1_01",
+      "problem_id": "R1_01",
       "type": "MC",
-      "stem": "6 × 3 = 18 crayons. You give away 6. How many left?",
-      "choices": [
-        "10",
-        "11",
-        "12",
-        "13"
-      ],
+      "stem": "6 × 3 = 18 crayons. You give away 6. How many crayons are left?",
+      "choices": ["10", "11", "12", "13"],
       "answer": "C",
-      "explanation": "18 − 6 = 12.",
+      "explanation": "6 × 3 = 18. 18 − 6 = 12.",
       "difficulty": 1,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1 is already done: 6 × 3 = 18. Step 2: subtract 6 from 18.",
+        "18 − 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Correct! 6×3=18, then 18−6=12 crayons left.",
+        "incorrect": "6×3=18 crayons. Then 18−6=12 remain."
       }
     },
     {
       "id": "R1_02",
+      "problem_id": "R1_02",
       "type": "MC",
-      "stem": "A farmer has 40 eggs. He sells 16 and puts the rest in cartons of 4. How many cartons?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "stem": "A farmer has 40 eggs. He sells 16 and puts the rest in cartons of 4. How many cartons does he fill?",
+      "choices": ["4", "5", "6", "7"],
       "answer": "C",
-      "explanation": "40 − 16 = 24. 24 ÷ 4 = 6.",
+      "explanation": "40 − 16 = 24 eggs left. 24 ÷ 4 = 6 cartons.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: subtract the sold eggs: 40 − 16 = ?",
+        "Step 2: divide remaining eggs by 4 (per carton)."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Right! 40−16=24, then 24÷4=6 cartons.",
+        "incorrect": "Step 1: 40−16=24. Step 2: 24÷4=6 cartons."
       }
     },
     {
       "id": "R1_03",
+      "problem_id": "R1_03",
       "type": "MC",
-      "stem": "Lena earns $5 per chore. She does 6 chores and buys a $12 toy. How much left?",
-      "choices": [
-        "$15",
-        "$16",
-        "$18",
-        "$20"
-      ],
+      "stem": "Lena earns $5 per chore. She does 6 chores and then buys a $12 toy. How much money does she have left?",
+      "choices": ["$15", "$16", "$18", "$20"],
       "answer": "C",
-      "explanation": "5 × 6 = 30. 30 − 12 = 18.",
+      "explanation": "5 × 6 = $30 earned. 30 − 12 = $18 left.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: multiply to find total earnings: 5 × 6 = ?",
+        "Step 2: subtract the toy's cost from the total."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Yes! 5×6=$30, then 30−12=$18 left.",
+        "incorrect": "Step 1: 5×6=30. Step 2: 30−12=18. She has $18 left."
       }
     },
     {
       "id": "R1_04",
+      "problem_id": "R1_04",
       "type": "MC",
-      "stem": "A bakery makes 9 cakes. Each needs 4 eggs. They had 50 eggs. How many are left?",
-      "choices": [
-        "12",
-        "14",
-        "16",
-        "18"
-      ],
+      "stem": "A bakery makes 9 cakes. Each needs 4 eggs. They started with 50 eggs. How many eggs are left?",
+      "choices": ["12", "14", "16", "18"],
       "answer": "B",
-      "explanation": "9 × 4 = 36. 50 − 36 = 14.",
+      "explanation": "9 × 4 = 36 eggs used. 50 − 36 = 14 left.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: find how many eggs are used: 9 × 4 = ?",
+        "Step 2: subtract eggs used from 50."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how two step problems works."
+        "correct": "Correct! 9×4=36, then 50−36=14 eggs left.",
+        "incorrect": "Step 1: 9×4=36 eggs used. Step 2: 50−36=14 left."
       }
     },
     {
       "id": "R1_05",
+      "problem_id": "R1_05",
       "type": "MC",
-      "stem": "There are 45 books on 5 shelves equally. 3 books fall off one shelf. How many on that shelf now?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "stem": "45 books are on 5 shelves equally. 3 books fall off one shelf. How many books are on that shelf now?",
+      "choices": ["4", "5", "6", "7"],
       "answer": "C",
-      "explanation": "45 ÷ 5 = 9. 9 − 3 = 6.",
+      "explanation": "45 ÷ 5 = 9 per shelf. 9 − 3 = 6 on that shelf now.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: divide to find books per shelf: 45 ÷ 5 = ?",
+        "Step 2: subtract the 3 books that fell off."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Right! 45÷5=9, then 9−3=6 books on that shelf.",
+        "incorrect": "Step 1: 45÷5=9 per shelf. Step 2: 9−3=6 on that shelf."
       }
     },
     {
       "id": "R1_06",
+      "problem_id": "R1_06",
       "type": "MC",
-      "stem": "Dan buys 4 packs of cards with 8 cards each, then trades 5 cards. How many does he have?",
-      "choices": [
-        "25",
-        "27",
-        "29",
-        "31"
-      ],
+      "stem": "Dan buys 4 packs of cards with 8 cards each, then trades away 5 cards. How many cards does he have now?",
+      "choices": ["25", "27", "29", "31"],
       "answer": "B",
-      "explanation": "4 × 8 = 32. 32 − 5 = 27.",
+      "explanation": "4 × 8 = 32 cards total. 32 − 5 = 27 cards left.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: multiply to find total cards: 4 × 8 = ?",
+        "Step 2: subtract the 5 cards he traded away."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how two step problems works."
+        "correct": "Yes! 4×8=32, then 32−5=27 cards.",
+        "incorrect": "Step 1: 4×8=32 cards. Step 2: 32−5=27 cards left."
       }
     },
     {
       "id": "R1_07",
+      "problem_id": "R1_07",
       "type": "MC",
-      "stem": "A zoo has 21 fish in 3 equal tanks. A keeper adds 4 fish to each tank. How many in each tank now?",
-      "choices": [
-        "9",
-        "10",
-        "11",
-        "12"
-      ],
+      "stem": "A zoo has 21 fish in 3 equal tanks. A keeper adds 4 fish to each tank. How many fish are in each tank now?",
+      "choices": ["9", "10", "11", "12"],
       "answer": "C",
-      "explanation": "21 ÷ 3 = 7. 7 + 4 = 11.",
+      "explanation": "21 ÷ 3 = 7 per tank. 7 + 4 = 11 per tank now.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: divide to find fish per tank: 21 ÷ 3 = ?",
+        "Step 2: add the 4 new fish to each tank."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Correct! 21÷3=7, then 7+4=11 fish per tank.",
+        "incorrect": "Step 1: 21÷3=7 per tank. Step 2: 7+4=11 fish per tank."
+      }
+    },
+    {
+      "id": "R1_08",
+      "problem_id": "R1_08",
+      "type": "input",
+      "stem": "32 students are split into 4 equal groups. Each group gets 3 more students. How many students are in each group now?",
+      "answer": "11",
+      "explanation": "32 ÷ 4 = 8 per group. 8 + 3 = 11 per group.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: divide to find original group size: 32 ÷ 4 = ?",
+        "Step 2: add the 3 new students to each group."
+      ],
+      "feedback": {
+        "correct": "Correct! 32÷4=8, then 8+3=11 per group.",
+        "incorrect": "Step 1: 32÷4=8 per group. Step 2: 8+3=11 per group."
+      }
+    },
+    {
+      "id": "R1_09",
+      "problem_id": "R1_09",
+      "type": "input",
+      "stem": "5 rows of 7 chairs = 35 chairs. Then 5 chairs are removed. How many chairs remain?",
+      "answer": "30",
+      "explanation": "5 × 7 = 35 chairs. 35 − 5 = 30 chairs remain.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1 is done: 5 × 7 = 35 total chairs.",
+        "Step 2: subtract the 5 removed chairs: 35 − 5 = ?"
+      ],
+      "feedback": {
+        "correct": "Right! 5×7=35, then 35−5=30 chairs.",
+        "incorrect": "5×7=35 total chairs. 35−5=30 chairs remain."
+      }
+    },
+    {
+      "id": "R1_10",
+      "problem_id": "R1_10",
+      "type": "MC",
+      "stem": "63 students are seated at 9 equal tables. Each table needs 2 cups of water. How many cups are needed in total?",
+      "choices": ["12", "14", "16", "18"],
+      "answer": "B",
+      "explanation": "63 ÷ 9 = 7 tables. 7 × 2 = 14 cups total.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: find how many tables: 63 ÷ 9 = ?",
+        "Step 2: multiply tables × 2 cups per table."
+      ],
+      "feedback": {
+        "correct": "Yes! 63÷9=7 tables. 7×2=14 cups.",
+        "incorrect": "Step 1: 63÷9=7 tables. Step 2: 7×2=14 cups needed."
       }
     }
   ],
   "practice_r2": [
     {
       "id": "R2_01",
+      "problem_id": "R2_01",
       "type": "MC",
-      "stem": "Mr. Lee buys 8 boxes of 6 pencils. He gives 3 pencils to each of 10 students. How many are left?",
-      "choices": [
-        "12",
-        "16",
-        "18",
-        "20"
-      ],
+      "stem": "Mr. Lee buys 8 boxes of 6 pencils. He gives 3 pencils to each of 10 students. How many pencils are left?",
+      "choices": ["12", "16", "18", "20"],
       "answer": "C",
-      "explanation": "8 × 6 = 48. 10 × 3 = 30. 48 − 30 = 18.",
+      "explanation": "8 × 6 = 48 pencils. 10 × 3 = 30 given away. 48 − 30 = 18 left.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: total pencils = 8 × 6 = ? Step 2: total given = 10 × 3 = ?",
+        "Subtract the amount given from the total."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Right! 8×6=48, 10×3=30, 48−30=18 left.",
+        "incorrect": "8×6=48 total. 10×3=30 given. 48−30=18 pencils left."
       }
     },
     {
       "id": "R2_02",
+      "problem_id": "R2_02",
       "type": "MC",
-      "stem": "A garden has 7 rows of 5 flowers plus 9 extra flowers. How many total?",
-      "choices": [
-        "42",
-        "44",
-        "46",
-        "48"
-      ],
+      "stem": "A garden has 7 rows of 5 flowers plus 9 extra flowers. How many flowers total?",
+      "choices": ["42", "44", "46", "48"],
       "answer": "B",
-      "explanation": "7 × 5 = 35. 35 + 9 = 44.",
+      "explanation": "7 × 5 = 35. 35 + 9 = 44 flowers.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: multiply rows × flowers per row: 7 × 5 = ?",
+        "Step 2: add the 9 extra flowers."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how two step problems works."
+        "correct": "Correct! 7×5=35, then 35+9=44 flowers.",
+        "incorrect": "Step 1: 7×5=35. Step 2: 35+9=44 flowers total."
       }
     },
     {
       "id": "R2_03",
+      "problem_id": "R2_03",
       "type": "MC",
       "stem": "72 ÷ 8 = 9. Then 9 × 3 = ? What is the final answer?",
-      "choices": [
-        "21",
-        "24",
-        "27",
-        "30"
-      ],
+      "choices": ["21", "24", "27", "30"],
       "answer": "C",
-      "explanation": "9 × 3 = 27.",
+      "explanation": "72 ÷ 8 = 9. Then 9 × 3 = 27.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1 is already done: 72 ÷ 8 = 9.",
+        "Step 2: multiply that result by 3: 9 × 3 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Yes! 72÷8=9, then 9×3=27.",
+        "incorrect": "72÷8=9. Then 9×3=27."
       }
     },
     {
       "id": "R2_04",
+      "problem_id": "R2_04",
       "type": "MC",
-      "stem": "A school buys 6 balls for $7 each and 4 bats for $9 each. Total cost?",
-      "choices": [
-        "$68",
-        "$72",
-        "$78",
-        "$82"
-      ],
+      "stem": "A school buys 6 balls for $7 each and 4 bats for $9 each. What is the total cost?",
+      "choices": ["$68", "$72", "$78", "$82"],
       "answer": "C",
-      "explanation": "6×7=42, 4×9=36. 42+36=78.",
+      "explanation": "6 × $7 = $42. 4 × $9 = $36. $42 + $36 = $78.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: cost of balls = 6 × $7 = ? Cost of bats = 4 × $9 = ?",
+        "Step 2: add both costs together."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Correct! 6×7=42, 4×9=36, 42+36=78.",
+        "incorrect": "6×7=$42 for balls. 4×9=$36 for bats. $42+$36=$78 total."
+      }
+    },
+    {
+      "id": "R2_05",
+      "problem_id": "R2_05",
+      "type": "input",
+      "stem": "You have 8 boxes with $5 in each box. You spend $8 on a pen. How much money remains?",
+      "answer": "32",
+      "explanation": "8 × 5 = $40 total. 40 − 8 = $32 left.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: total money = 8 × $5 = ?",
+        "Step 2: subtract the $8 spent on the pen."
+      ],
+      "feedback": {
+        "correct": "Correct! 8×5=40, then 40−8=32.",
+        "incorrect": "Step 1: 8×5=40. Step 2: 40−8=32. You have $32 left."
+      }
+    },
+    {
+      "id": "R2_06",
+      "problem_id": "R2_06",
+      "type": "input",
+      "stem": "48 books are split equally onto 6 shelves. Then 2 more books are added to each shelf. How many books are on each shelf now?",
+      "answer": "10",
+      "explanation": "48 ÷ 6 = 8 per shelf. 8 + 2 = 10 per shelf now.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: divide to find books per shelf: 48 ÷ 6 = ?",
+        "Step 2: add the 2 new books to each shelf."
+      ],
+      "feedback": {
+        "correct": "Right! 48÷6=8, then 8+2=10 per shelf.",
+        "incorrect": "Step 1: 48÷6=8 per shelf. Step 2: 8+2=10 per shelf."
+      }
+    },
+    {
+      "id": "R2_07",
+      "problem_id": "R2_07",
+      "type": "MC",
+      "stem": "7 × 4 = 28 stickers. The stickers are shared equally among 4 friends. How many stickers does each friend get?",
+      "choices": ["6", "7", "8", "9"],
+      "answer": "B",
+      "explanation": "7 × 4 = 28 stickers. 28 ÷ 4 = 7 per friend.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1 is done: 7 × 4 = 28 total stickers.",
+        "Step 2: divide 28 equally among 4 friends: 28 ÷ 4 = ?"
+      ],
+      "feedback": {
+        "correct": "Yes! 7×4=28, then 28÷4=7 per friend.",
+        "incorrect": "28 stickers ÷ 4 friends = 7 each."
+      }
+    },
+    {
+      "id": "R2_08",
+      "problem_id": "R2_08",
+      "type": "input",
+      "stem": "A player earns 9 × 5 = 45 points in the first round, then earns 9 more points. How many points total?",
+      "answer": "54",
+      "explanation": "9 × 5 = 45. 45 + 9 = 54 total points.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1 is done: 9 × 5 = 45 points.",
+        "Step 2: add 9 more points to 45."
+      ],
+      "feedback": {
+        "correct": "Correct! 9×5=45, then 45+9=54 points.",
+        "incorrect": "9×5=45 points. Then 45+9=54 total points."
+      }
+    },
+    {
+      "id": "R2_09",
+      "problem_id": "R2_09",
+      "type": "input",
+      "stem": "36 apples are divided equally into 9 baskets. Then 3 more apples are added to each basket. How many apples are in each basket now?",
+      "answer": "7",
+      "explanation": "36 ÷ 9 = 4 per basket. 4 + 3 = 7 per basket now.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: divide to find apples per basket: 36 ÷ 9 = ?",
+        "Step 2: add the 3 extra apples to each basket."
+      ],
+      "feedback": {
+        "correct": "Right! 36÷9=4, then 4+3=7 per basket.",
+        "incorrect": "Step 1: 36÷9=4 per basket. Step 2: 4+3=7 per basket."
+      }
+    },
+    {
+      "id": "R2_10",
+      "problem_id": "R2_10",
+      "type": "MC",
+      "stem": "A teacher buys 6 packs of 8 crayons each, then shares all crayons equally among 6 students. How many crayons does each student get?",
+      "choices": ["7", "8", "9", "10"],
+      "answer": "B",
+      "explanation": "6 × 8 = 48 crayons. 48 ÷ 6 = 8 per student.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: total crayons = 6 × 8 = ?",
+        "Step 2: divide total crayons equally among 6 students."
+      ],
+      "feedback": {
+        "correct": "Yes! 6×8=48, then 48÷6=8 per student.",
+        "incorrect": "Step 1: 6×8=48. Step 2: 48÷6=8 crayons per student."
       }
     }
   ],
   "practice_r3": [
     {
       "id": "R3_01",
+      "problem_id": "R3_01",
       "type": "MC",
-      "stem": "A toy store has 54 dolls. On Monday they sell 18. On Tuesday they get 12 more. They put the rest on 8 shelves equally. How many per shelf?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "stem": "A toy store has 54 dolls. On Monday they sell 18. On Tuesday they receive 12 more. They put all remaining dolls equally on 8 shelves. How many dolls per shelf?",
+      "choices": ["4", "5", "6", "7"],
       "answer": "C",
       "explanation": "54 − 18 = 36. 36 + 12 = 48. 48 ÷ 8 = 6.",
       "difficulty": 3,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: 54 − 18 = ? (dolls after Monday). Step 2: add 12. Step 3: divide by 8.",
+        "After Monday: 36 dolls. After Tuesday: 36+12=48. Then 48÷8=?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Right! 54−18=36, 36+12=48, 48÷8=6 per shelf.",
+        "incorrect": "54−18=36, then 36+12=48, then 48÷8=6 dolls per shelf."
       }
     },
     {
       "id": "R3_02",
+      "problem_id": "R3_02",
       "type": "MC",
-      "stem": "Amy picks 8 × 5 = 40 apples. She gives 4 apples to each of 7 friends. How many does she keep?",
-      "choices": [
-        "8",
-        "10",
-        "12",
-        "14"
-      ],
+      "stem": "Amy picks 8 × 5 = 40 apples. She gives 4 apples to each of 7 friends. How many apples does she keep?",
+      "choices": ["8", "10", "12", "14"],
       "answer": "C",
-      "explanation": "7 × 4 = 28 given. 40 − 28 = 12.",
+      "explanation": "8 × 5 = 40 total. Given away: 7 × 4 = 28. Kept: 40 − 28 = 12.",
       "difficulty": 3,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: total apples = 8 × 5 = 40. Given away = 7 × 4 = ?",
+        "Step 2: subtract given away from total."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Yes! 40 total, 7×4=28 given, 40−28=12 kept.",
+        "incorrect": "Total: 8×5=40. Given: 7×4=28. Kept: 40−28=12."
       }
     },
     {
       "id": "R3_03",
+      "problem_id": "R3_03",
       "type": "MC",
-      "stem": "Danny buys a marker for $4 and 5 pens for $2 each. How much does he spend?",
-      "choices": [
-        "$10",
-        "$12",
-        "$14",
-        "$16"
-      ],
+      "stem": "Danny buys a marker for $4 and 5 pens for $2 each. How much does he spend in total?",
+      "choices": ["$10", "$12", "$14", "$16"],
       "answer": "C",
       "explanation": "Marker: $4. Pens: 5 × $2 = $10. Total: $4 + $10 = $14.",
       "difficulty": 2,
       "hints": [
-        "Think about what two step problems means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: cost of pens = 5 × $2 = ?",
+        "Step 2: add the marker cost ($4) to the pens cost."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how two step problems works."
+        "correct": "Correct! 5×2=$10 for pens, then $10+$4=$14 total.",
+        "incorrect": "5×$2=$10 for pens. $10+$4=$14 total spent."
+      }
+    },
+    {
+      "id": "R3_04",
+      "problem_id": "R3_04",
+      "type": "MC",
+      "stem": "Sam earns $9 a day for 6 days. He buys 3 items that cost $8 each. How much money does Sam have left?",
+      "choices": ["$26", "$28", "$30", "$32"],
+      "answer": "C",
+      "explanation": "Earnings: 9 × 6 = $54. Spent: 3 × $8 = $24. Left: 54 − 24 = $30.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: total earnings = 9 × 6 = ? Step 2: total spent = 3 × 8 = ?",
+        "Step 3: subtract spent from earnings."
+      ],
+      "feedback": {
+        "correct": "Yes! 9×6=$54, 3×8=$24, 54−24=$30 left.",
+        "incorrect": "Earnings: 9×6=54. Spent: 3×8=24. Left: 54−24=30."
+      }
+    },
+    {
+      "id": "R3_05",
+      "problem_id": "R3_05",
+      "type": "input",
+      "stem": "72 students form 8 equal teams. Then 4 students leave each team. How many students remain in total?",
+      "answer": "40",
+      "explanation": "72 ÷ 8 = 9 per team. 9 − 4 = 5 remain per team. 5 × 8 = 40 total students remain.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: find students per team: 72 ÷ 8 = ?",
+        "Step 2: subtract 4 from each team, then multiply by 8 teams for the total."
+      ],
+      "feedback": {
+        "correct": "Correct! 72÷8=9, 9−4=5 per team, 5×8=40 total remain.",
+        "incorrect": "72÷8=9 per team. 9−4=5 per team remain. 5×8=40 total students."
       }
     }
   ],

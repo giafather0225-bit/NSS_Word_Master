@@ -2,12 +2,13 @@
 services/ollama_manager.py — Ollama auto-start, health check, model pull
 Section: System
 Dependencies: httpx, subprocess
-API: ensure_ollama(), get_status(), shutdown_ollama()
+API: ensure_ollama(), ensure_ollama_once(), get_status(), shutdown_ollama()
 """
 
 import os
 import shutil
 import subprocess
+import threading
 import time
 from typing import Optional
 
@@ -23,6 +24,8 @@ PULL_TIMEOUT = 600.0    # 10 minutes for first-time model download
 # Module-level state
 _proc: Optional[subprocess.Popen] = None
 _started_by_us: bool = False
+_init_lock = threading.Lock()
+_initialized: bool = False
 _status: dict = {
     "running": False,
     "model_ready": False,
@@ -156,3 +159,16 @@ def shutdown_ollama() -> None:
     _started_by_us = False
     _status["running"] = False
     _status["model_ready"] = False
+
+
+# @tag OLLAMA SYSTEM
+def ensure_ollama_once() -> None:
+    """Lazy init: ensure Ollama is running. Thread-safe; no-op after first successful call."""
+    global _initialized
+    if _initialized:
+        return
+    with _init_lock:
+        if _initialized:
+            return
+        ensure_ollama()
+        _initialized = True

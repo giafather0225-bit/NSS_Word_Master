@@ -28,12 +28,7 @@
     {
       "type": "MC",
       "stem": "18 ÷ 6 = ?",
-      "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
+      "choices": ["2", "3", "4", "5"],
       "answer": "B",
       "explanation": "18 ÷ 6 = 3.",
       "difficulty": 1,
@@ -42,12 +37,7 @@
     {
       "type": "MC",
       "stem": "30 ÷ 6 = ?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
       "explanation": "30 ÷ 6 = 5.",
       "difficulty": 1,
@@ -56,12 +46,7 @@
     {
       "type": "MC",
       "stem": "42 ÷ 6 = ?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "C",
       "explanation": "42 ÷ 6 = 7.",
       "difficulty": 1,
@@ -70,12 +55,7 @@
     {
       "type": "MC",
       "stem": "48 ÷ 6 = ?",
-      "choices": [
-        "6",
-        "7",
-        "8",
-        "9"
-      ],
+      "choices": ["6", "7", "8", "9"],
       "answer": "C",
       "explanation": "48 ÷ 6 = 8.",
       "difficulty": 1,
@@ -84,12 +64,7 @@
     {
       "type": "MC",
       "stem": "36 eggs are packed 6 per carton. How many cartons?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "B",
       "explanation": "36 ÷ 6 = 6.",
       "difficulty": 1,
@@ -99,395 +74,626 @@
   "learn": [
     {
       "type": "concept_card",
-      "title": "Dividing by 6",
-      "content": "Share into 6 equal groups. 36 ÷ 6 = 6.",
+      "title": "Sharing Into 6 Equal Groups",
+      "content": "When you divide by 6, you share a total equally among 6 groups. Example: 36 counters shared into 6 groups → each group gets 6. So 36 ÷ 6 = 6.",
       "id": "LN_01",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
-        "tool": "array_grid",
+        "tool": "counter_groups",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "total": 36,
+          "groups": 6,
+          "per_group": 6
         }
       }
     },
     {
       "type": "concept_card",
-      "title": "Use ×6 Facts",
-      "content": "If 6 × 8 = 48, then 48 ÷ 6 = 8.",
+      "title": "Array: 6 Rows",
+      "content": "A 6×8 array has 48 tiles arranged in 6 rows of 8. Reading it as division: 48 tiles in 6 rows means 48 ÷ 6 = 8 tiles per row. The ×6 fact 6×8=48 gives the ÷6 fact 48÷6=8.",
       "id": "LN_02",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 6,
+          "cols": 8
+        }
+      }
     },
     {
       "type": "concept_card",
-      "title": "Break it Down",
-      "content": "To divide by 6: divide by 2 then by 3. 24 ÷ 6: 24 ÷ 2 = 12, then 12 ÷ 3 = 4.",
+      "title": "Break ÷6 Into ÷2 Then ÷3",
+      "content": "Since 6 = 2 × 3, dividing by 6 is the same as dividing by 2 and then by 3. Example: 24 ÷ 6\nStep 1: 24 ÷ 2 = 12\nStep 2: 12 ÷ 3 = 4\nResult: 24 ÷ 6 = 4. Check: 6 × 4 = 24 ✓",
       "id": "LN_03",
       "cpa_phase": "pictorial",
-      "visual_type": "none"
+      "visual_type": "diagram",
+      "visual_data": {
+        "tool": "two_step_divide",
+        "config": {
+          "start": 24,
+          "step1_divisor": 2,
+          "step1_result": 12,
+          "step2_divisor": 3,
+          "step2_result": 4
+        }
+      }
+    },
+    {
+      "type": "concept_card",
+      "title": "Number Line: Backward Jumps of 6",
+      "content": "To find 48 ÷ 6, start at 48 on a number line and hop backward by 6 each time: 48 → 42 → 36 → 30 → 24 → 18 → 12 → 6 → 0. Count the hops: 8 hops. So 48 ÷ 6 = 8.",
+      "id": "LN_04",
+      "cpa_phase": "pictorial",
+      "visual_type": "number_line",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "start": 48,
+          "end": 0,
+          "jump": -6,
+          "label": "48 ÷ 6 = 8 hops"
+        }
+      }
+    },
+    {
+      "type": "concept_card",
+      "title": "The ÷6 Pattern: Reverse the ×6 Fact",
+      "content": "Every ×6 fact gives you a ÷6 fact:\n6×1=6 → 6÷6=1\n6×2=12 → 12÷6=2\n6×3=18 → 18÷6=3\n6×4=24 → 24÷6=4\n6×5=30 → 30÷6=5\n6×6=36 → 36÷6=6\n6×7=42 → 42÷6=7\n6×8=48 → 48÷6=8\n6×9=54 → 54÷6=9\n6×10=60 → 60÷6=10\nStrategy: think '6 × ? = dividend' to find the quotient.",
+      "id": "LN_05",
+      "cpa_phase": "abstract",
+      "visual_type": "table",
+      "visual_data": {
+        "tool": "fact_table",
+        "config": {
+          "divisor": 6,
+          "range": [1, 10]
+        }
+      }
     }
   ],
   "try": [
     {
       "type": "MC",
+      "problem_id": "TRY_01",
       "stem": "12 ÷ 6 = ?",
-      "choices": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
+      "choices": ["1", "2", "3", "4"],
       "answer": "B",
-      "explanation": "12 ÷ 6 = 2.",
+      "explanation": "12 ÷ 6 = 2. Think: 6 × 2 = 12.",
       "difficulty": 1,
       "id": "TRY_01",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 6× fact: 6 × ? = 12. Think: 12 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 12 ÷ 2 = 6, then 6 ÷ 3 = 2."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 6 works."
+        "correct": "Nice! 6 × 2 = 12, so 12 ÷ 6 = 2.",
+        "incorrect": "Divide by 2 then by 3: 12÷2=6, then 6÷3=2. So 12 ÷ 6 = 2."
       },
-      "solution_steps": []
+      "solution_steps": ["6 × 2 = 12", "So 12 ÷ 6 = 2"]
     },
     {
       "type": "MC",
-      "stem": "A box has 6 crayons. There are 54 crayons total. How many boxes?",
-      "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
-      ],
+      "problem_id": "TRY_02",
+      "stem": "A box holds 6 crayons. There are 54 crayons total. How many boxes?",
+      "choices": ["7", "8", "9", "10"],
       "answer": "C",
-      "explanation": "54 ÷ 6 = 9.",
+      "explanation": "54 ÷ 6 = 9 boxes. Think: 6 × 9 = 54.",
       "difficulty": 1,
       "id": "TRY_02",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 6× fact: 6 × ? = 54. Think: 54 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 54 ÷ 2 = 27, then 27 ÷ 3 = 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 6 works."
+        "correct": "Yes! 6 × 9 = 54, so there are 9 boxes.",
+        "incorrect": "Divide 54 by 2 then by 3: 54÷2=27, 27÷3=9. So 54 ÷ 6 = 9 boxes."
       },
-      "solution_steps": []
+      "solution_steps": ["6 × 9 = 54", "So 54 ÷ 6 = 9 boxes"]
+    },
+    {
+      "type": "input",
+      "problem_id": "TRY_03",
+      "stem": "18 ÷ 6 = ___",
+      "answer": "3",
+      "explanation": "18 ÷ 6 = 3. Think: 6 × 3 = 18.",
+      "difficulty": 1,
+      "id": "TRY_03",
+      "hints": [
+        "Use the 6× fact: 6 × ? = 18. Think: 18 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 18 ÷ 2 = 9, then 9 ÷ 3 = 3."
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 3 = 18, so 18 ÷ 6 = 3.",
+        "incorrect": "Divide 18 by 2 then by 3: 18÷2=9, 9÷3=3. So 18 ÷ 6 = 3."
+      },
+      "solution_steps": ["6 × 3 = 18", "So 18 ÷ 6 = 3"]
+    },
+    {
+      "type": "input",
+      "problem_id": "TRY_04",
+      "stem": "42 ÷ 6 = ___",
+      "answer": "7",
+      "explanation": "42 ÷ 6 = 7. Think: 6 × 7 = 42.",
+      "difficulty": 1,
+      "id": "TRY_04",
+      "hints": [
+        "Use the 6× fact: 6 × ? = 42. Think: 42 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 42 ÷ 2 = 21, then 21 ÷ 3 = 7."
+      ],
+      "feedback": {
+        "correct": "Great! 6 × 7 = 42, so 42 ÷ 6 = 7.",
+        "incorrect": "Divide 42 by 2 then by 3: 42÷2=21, 21÷3=7. So 42 ÷ 6 = 7."
+      },
+      "solution_steps": ["6 × 7 = 42", "So 42 ÷ 6 = 7"]
+    },
+    {
+      "type": "MC",
+      "problem_id": "TRY_05",
+      "stem": "A parking lot has 60 cars arranged in 6 equal rows. How many cars per row?",
+      "choices": ["8", "9", "10", "11"],
+      "answer": "C",
+      "explanation": "60 ÷ 6 = 10. Think: 6 × 10 = 60.",
+      "difficulty": 1,
+      "id": "TRY_05",
+      "hints": [
+        "Use the 6× fact: 6 × ? = 60. Think: 60 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 60 ÷ 2 = 30, then 30 ÷ 3 = 10."
+      ],
+      "feedback": {
+        "correct": "Yes! 6 × 10 = 60, so each row has 10 cars.",
+        "incorrect": "Divide 60 by 2 then by 3: 60÷2=30, 30÷3=10. So 60 ÷ 6 = 10 cars per row."
+      },
+      "solution_steps": ["6 × 10 = 60", "So 60 ÷ 6 = 10 cars per row"]
     }
   ],
   "practice_r1": [
     {
       "type": "MC",
+      "problem_id": "R1_01",
       "stem": "6 ÷ 6 = ?",
-      "choices": [
-        "0",
-        "1",
-        "6",
-        "12"
-      ],
+      "choices": ["0", "1", "6", "12"],
       "answer": "B",
-      "explanation": "6 ÷ 6 = 1.",
+      "explanation": "6 ÷ 6 = 1. Any number divided by itself is 1.",
       "difficulty": 1,
       "id": "R1_01",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 6× fact: 6 × ? = 6. Only 6 × 1 = 6.",
+        "How many groups of 6 fit inside 6? Just one."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 6 works."
+        "correct": "Right! 6 ÷ 6 = 1.",
+        "incorrect": "6 ÷ 6 means how many groups of 6 in 6. Just one: 6 ÷ 6 = 1."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_02",
       "stem": "12 ÷ 6 = ?",
-      "choices": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
+      "choices": ["1", "2", "3", "4"],
       "answer": "B",
-      "explanation": "12 ÷ 6 = 2.",
+      "explanation": "12 ÷ 6 = 2. Think: 6 × 2 = 12.",
       "difficulty": 1,
       "id": "R1_02",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 6× fact: 6 × ? = 12. Think: 12 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 12÷2=6, then 6÷3=2."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 6 works."
+        "correct": "Correct! 6 × 2 = 12, so 12 ÷ 6 = 2.",
+        "incorrect": "Divide 12 by 2 then by 3: 12÷2=6, 6÷3=2. So 12 ÷ 6 = 2."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_03",
       "stem": "24 ÷ 6 = ?",
-      "choices": [
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
+      "choices": ["3", "4", "5", "6"],
       "answer": "B",
-      "explanation": "24 ÷ 6 = 4.",
+      "explanation": "24 ÷ 6 = 4. Think: 6 × 4 = 24.",
       "difficulty": 1,
       "id": "R1_03",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 6× fact: 6 × ? = 24. Think: 24 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 24÷2=12, then 12÷3=4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 6 works."
+        "correct": "Yes! 6 × 4 = 24, so 24 ÷ 6 = 4.",
+        "incorrect": "Divide 24 by 2 then by 3: 24÷2=12, 12÷3=4. So 24 ÷ 6 = 4."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_04",
       "stem": "36 ÷ 6 = ?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "B",
-      "explanation": "36 ÷ 6 = 6.",
+      "explanation": "36 ÷ 6 = 6. Think: 6 × 6 = 36.",
       "difficulty": 1,
       "id": "R1_04",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 6× fact: 6 × ? = 36. Think: 36 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 36÷2=18, then 18÷3=6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 6 works."
+        "correct": "Excellent! 6 × 6 = 36, so 36 ÷ 6 = 6.",
+        "incorrect": "Divide 36 by 2 then by 3: 36÷2=18, 18÷3=6. So 36 ÷ 6 = 6."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_05",
       "stem": "54 ÷ 6 = ?",
-      "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
-      ],
+      "choices": ["7", "8", "9", "10"],
       "answer": "C",
-      "explanation": "54 ÷ 6 = 9.",
+      "explanation": "54 ÷ 6 = 9. Think: 6 × 9 = 54.",
       "difficulty": 1,
       "id": "R1_05",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 6× fact: 6 × ? = 54. Think: 54 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 54÷2=27, then 27÷3=9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 6 works."
+        "correct": "Great! 6 × 9 = 54, so 54 ÷ 6 = 9.",
+        "incorrect": "Divide 54 by 2 then by 3: 54÷2=27, 27÷3=9. So 54 ÷ 6 = 9."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_06",
       "stem": "A team has 24 players in groups of 6. How many groups?",
-      "choices": [
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
+      "choices": ["3", "4", "5", "6"],
       "answer": "B",
-      "explanation": "24 ÷ 6 = 4.",
+      "explanation": "24 ÷ 6 = 4 groups. Think: 6 × 4 = 24.",
       "difficulty": 1,
       "id": "R1_06",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "How many groups of 6 make 24? Use the 6× fact: 6 × ? = 24.",
+        "Try ÷2 then ÷3: 24÷2=12, then 12÷3=4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 6 works."
+        "correct": "Right! 6 × 4 = 24, so there are 4 groups.",
+        "incorrect": "Divide 24 by 2 then by 3: 24÷2=12, 12÷3=4. So 24 ÷ 6 = 4 groups."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_07",
       "stem": "If 6 × 7 = 42, then 42 ÷ 6 = ?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "C",
-      "explanation": "42 ÷ 6 = 7.",
+      "explanation": "42 ÷ 6 = 7. Division reverses multiplication.",
       "difficulty": 1,
       "id": "R1_07",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Multiplication and division are opposites: if 6 × 7 = 42, reverse it.",
+        "6 × 7 = 42 means 42 shared into 6 groups gives 7 each. So 42 ÷ 6 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 6 works."
+        "correct": "Exactly! 6 × 7 = 42 tells you 42 ÷ 6 = 7.",
+        "incorrect": "Division reverses multiplication. 6 × 7 = 42, so 42 ÷ 6 = 7."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R1_08",
+      "stem": "48 ÷ 6 = ___",
+      "answer": "8",
+      "explanation": "48 ÷ 6 = 8. Think: 6 × 8 = 48.",
+      "difficulty": 1,
+      "id": "R1_08",
+      "hints": [
+        "Use the 6× fact: 6 × ? = 48. Think: 48 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 48÷2=24, then 24÷3=8."
+      ],
+      "feedback": {
+        "correct": "Yes! 6 × 8 = 48, so 48 ÷ 6 = 8.",
+        "incorrect": "Divide 48 by 2 then by 3: 48÷2=24, 24÷3=8. So 48 ÷ 6 = 8."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R1_09",
+      "stem": "30 ÷ 6 = ___",
+      "answer": "5",
+      "explanation": "30 ÷ 6 = 5. Think: 6 × 5 = 30.",
+      "difficulty": 1,
+      "id": "R1_09",
+      "hints": [
+        "Use the 6× fact: 6 × ? = 30. Think: 30 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 30÷2=15, then 15÷3=5."
+      ],
+      "feedback": {
+        "correct": "Great! 6 × 5 = 30, so 30 ÷ 6 = 5.",
+        "incorrect": "Divide 30 by 2 then by 3: 30÷2=15, 15÷3=5. So 30 ÷ 6 = 5."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R1_10",
+      "stem": "60 ÷ 6 = ___",
+      "answer": "10",
+      "explanation": "60 ÷ 6 = 10. Think: 6 × 10 = 60.",
+      "difficulty": 1,
+      "id": "R1_10",
+      "hints": [
+        "Use the 6× fact: 6 × ? = 60. Think: 60 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 60÷2=30, then 30÷3=10."
+      ],
+      "feedback": {
+        "correct": "Perfect! 6 × 10 = 60, so 60 ÷ 6 = 10.",
+        "incorrect": "Divide 60 by 2 then by 3: 60÷2=30, 30÷3=10. So 60 ÷ 6 = 10."
       }
     }
   ],
   "practice_r2": [
     {
       "type": "MC",
-      "stem": "Which fact helps you solve 48 ÷ 6?",
-      "choices": [
-        "6 × 7 = 42",
-        "6 × 8 = 48",
-        "6 × 9 = 54",
-        "6 × 6 = 36"
-      ],
+      "problem_id": "R2_01",
+      "stem": "Which multiplication fact helps you solve 48 ÷ 6?",
+      "choices": ["6 × 7 = 42", "6 × 8 = 48", "6 × 9 = 54", "6 × 6 = 36"],
       "answer": "B",
-      "explanation": "6 × 8 = 48.",
+      "explanation": "6 × 8 = 48, so 48 ÷ 6 = 8.",
       "difficulty": 2,
       "id": "R2_01",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "To divide 48 by 6, think: which 6× fact has 48 as the product?",
+        "Check each: 6×7=42, 6×8=48 ← that's it!"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 6 works."
+        "correct": "Right! 6 × 8 = 48, so 48 ÷ 6 = 8.",
+        "incorrect": "Find the 6× fact where the product is 48. 6 × 8 = 48, so 48 ÷ 6 = 8."
       }
     },
     {
       "type": "MC",
-      "stem": "? ÷ 6 = 9. What is the number?",
-      "choices": [
-        "48",
-        "54",
-        "60",
-        "66"
-      ],
+      "problem_id": "R2_02",
+      "stem": "? ÷ 6 = 9. What is the missing number?",
+      "choices": ["48", "54", "60", "66"],
       "answer": "B",
-      "explanation": "54 ÷ 6 = 9.",
+      "explanation": "6 × 9 = 54, so 54 ÷ 6 = 9.",
       "difficulty": 2,
       "id": "R2_02",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "The quotient is 9 and the divisor is 6. Multiply back: 6 × 9 = ?",
+        "Think: ? = 6 × 9 = 54. Check: 54 ÷ 6 = 9 ✓"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 6 works."
+        "correct": "Correct! 6 × 9 = 54, so the missing number is 54.",
+        "incorrect": "Work backwards: ? ÷ 6 = 9 means ? = 6 × 9 = 54."
       }
     },
     {
       "type": "MC",
-      "stem": "Which quotient is LEAST?",
-      "choices": [
-        "18 ÷ 6",
-        "30 ÷ 6",
-        "42 ÷ 6",
-        "12 ÷ 6"
-      ],
+      "problem_id": "R2_03",
+      "stem": "Which division has the LEAST quotient?",
+      "choices": ["18 ÷ 6", "30 ÷ 6", "42 ÷ 6", "12 ÷ 6"],
       "answer": "D",
-      "explanation": "12 ÷ 6 = 2 (least).",
+      "explanation": "18÷6=3, 30÷6=5, 42÷6=7, 12÷6=2. Least quotient is 2.",
       "difficulty": 2,
       "id": "R2_03",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Solve each: 18÷6=?, 30÷6=?, 42÷6=?, 12÷6=?",
+        "The smallest dividend gives the smallest quotient when dividing by 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how divide by 6 works."
+        "correct": "Yes! 12÷6=2 is the least quotient.",
+        "incorrect": "18÷6=3, 30÷6=5, 42÷6=7, 12÷6=2. The least is 2, from 12÷6."
       }
     },
     {
       "type": "MC",
-      "stem": "A bakery has 30 donuts in half-dozens. How many half-dozens?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "problem_id": "R2_04",
+      "stem": "A bakery has 30 donuts packed in groups of 6 (half-dozens). How many groups?",
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
-      "explanation": "30 ÷ 6 = 5.",
+      "explanation": "30 ÷ 6 = 5 groups. Think: 6 × 5 = 30.",
       "difficulty": 2,
       "id": "R2_04",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "How many groups of 6 make 30? Use the 6× fact: 6 × ? = 30.",
+        "Try ÷2 then ÷3: 30÷2=15, then 15÷3=5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 6 works."
+        "correct": "Correct! 6 × 5 = 30, so there are 5 half-dozen groups.",
+        "incorrect": "Divide 30 by 2 then by 3: 30÷2=15, 15÷3=5. So 30 ÷ 6 = 5 groups."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_05",
+      "stem": "6 ÷ 6 = ___",
+      "answer": "1",
+      "explanation": "6 ÷ 6 = 1. Any number divided by itself is 1.",
+      "difficulty": 2,
+      "id": "R2_05",
+      "hints": [
+        "Use the 6× fact: 6 × ? = 6. Only 6 × 1 = 6.",
+        "How many groups of 6 fit inside 6? Just one."
+      ],
+      "feedback": {
+        "correct": "Correct! 6 ÷ 6 = 1.",
+        "incorrect": "6 ÷ 6 means how many groups of 6 in 6. Just one: 6 ÷ 6 = 1."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_06",
+      "stem": "? ÷ 6 = 4. What is the missing dividend?",
+      "answer": "24",
+      "explanation": "6 × 4 = 24, so 24 ÷ 6 = 4.",
+      "difficulty": 2,
+      "id": "R2_06",
+      "hints": [
+        "The quotient is 4 and the divisor is 6. Multiply back: 6 × 4 = ?",
+        "Think: ? = 6 × 4 = 24. Check: 24 ÷ 6 = 4 ✓"
+      ],
+      "feedback": {
+        "correct": "Right! 6 × 4 = 24, so the missing number is 24.",
+        "incorrect": "Work backwards: ? ÷ 6 = 4 means ? = 6 × 4 = 24."
+      }
+    },
+    {
+      "type": "MC",
+      "problem_id": "R2_07",
+      "stem": "Which is NOT a correct ÷6 fact?",
+      "choices": ["12 ÷ 6 = 2", "36 ÷ 6 = 7", "48 ÷ 6 = 8", "54 ÷ 6 = 9"],
+      "answer": "B",
+      "explanation": "36 ÷ 6 = 6, not 7. All other facts are correct.",
+      "difficulty": 2,
+      "id": "R2_07",
+      "hints": [
+        "Check each fact: does it match a 6× multiplication fact?",
+        "For 36 ÷ 6: ÷2 then ÷3 — 36÷2=18, 18÷3=6. So 36 ÷ 6 = 6, not 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 36 ÷ 6 = 6, not 7. Divide by 2 then 3: 36÷2=18, 18÷3=6.",
+        "incorrect": "Check 36 ÷ 6: 6×6=36, so 36÷6=6. The claim of 7 is wrong."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_08",
+      "stem": "54 ÷ 6 = ___",
+      "answer": "9",
+      "explanation": "54 ÷ 6 = 9. Think: 6 × 9 = 54.",
+      "difficulty": 2,
+      "id": "R2_08",
+      "hints": [
+        "Use the 6× fact: 6 × ? = 54. Think: 54 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 54÷2=27, then 27÷3=9."
+      ],
+      "feedback": {
+        "correct": "Yes! 6 × 9 = 54, so 54 ÷ 6 = 9.",
+        "incorrect": "Divide 54 by 2 then by 3: 54÷2=27, 27÷3=9. So 54 ÷ 6 = 9."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_09",
+      "stem": "36 ÷ 6 = ___",
+      "answer": "6",
+      "explanation": "36 ÷ 6 = 6. Think: 6 × 6 = 36.",
+      "difficulty": 2,
+      "id": "R2_09",
+      "hints": [
+        "Use the 6× fact: 6 × ? = 36. Think: 36 ÷ 6 = ?",
+        "Try ÷2 then ÷3: 36÷2=18, then 18÷3=6."
+      ],
+      "feedback": {
+        "correct": "Great! 6 × 6 = 36, so 36 ÷ 6 = 6.",
+        "incorrect": "Divide 36 by 2 then by 3: 36÷2=18, 18÷3=6. So 36 ÷ 6 = 6."
+      }
+    },
+    {
+      "type": "MC",
+      "problem_id": "R2_10",
+      "stem": "(12 ÷ 6) + (30 ÷ 6) = ?",
+      "choices": ["5", "6", "7", "8"],
+      "answer": "C",
+      "explanation": "12÷6=2, 30÷6=5. 2+5=7.",
+      "difficulty": 2,
+      "id": "R2_10",
+      "hints": [
+        "Solve inside the parentheses first: 12÷6=? and 30÷6=?",
+        "After dividing: 12÷6=2, 30÷6=5. Now add those two quotients."
+      ],
+      "feedback": {
+        "correct": "Yes! 12÷6=2, 30÷6=5, and 2+5=7.",
+        "incorrect": "Step 1: 12÷6=2. Step 2: 30÷6=5. Step 3: 2+5=7."
       }
     }
   ],
   "practice_r3": [
     {
       "type": "MC",
-      "stem": "A school has 60 students in 6 equal classes. Each class needs 4 books per student. How many books total?",
-      "choices": [
-        "180",
-        "200",
-        "240",
-        "260"
-      ],
+      "problem_id": "R3_01",
+      "stem": "A school has 60 students split into 6 equal classes. Each student needs 4 colored pencils. How many colored pencils are needed in total?",
+      "choices": ["180", "200", "240", "260"],
       "answer": "C",
-      "explanation": "60 ÷ 6 = 10 per class. 10 × 4 = 40 per class. 40 × 6 = 240. Or 60 × 4 = 240.",
+      "explanation": "60 ÷ 6 = 10 students per class. 10 × 4 = 40 pencils per class. 40 × 6 = 240. Or simply: 60 × 4 = 240.",
       "difficulty": 3,
       "id": "R3_01",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Find students per class: 60 ÷ 6 = ?. Then multiply by 4 pencils each.",
+        "Or use a shortcut: total students × pencils each = 60 × 4 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 6 works."
+        "correct": "Correct! 60 ÷ 6 = 10 per class. 10 × 4 = 40. 40 × 6 = 240 pencils.",
+        "incorrect": "60 ÷ 6 = 10 per class × 4 = 40 per class × 6 = 240. Or 60 × 4 = 240."
       }
     },
     {
       "type": "MC",
-      "stem": "A number ÷ 6 = 8. What is the number ÷ 2?",
-      "choices": [
-        "16",
-        "20",
-        "24",
-        "28"
-      ],
-      "answer": "D",
-      "explanation": "Number = 6 × 8 = 48. 48 ÷ 2 = 24.",
+      "problem_id": "R3_02",
+      "stem": "A mystery number ÷ 6 = 8. What is the mystery number ÷ 2?",
+      "choices": ["16", "20", "24", "28"],
+      "answer": "C",
+      "explanation": "Mystery number = 6 × 8 = 48. 48 ÷ 2 = 24.",
       "difficulty": 3,
       "id": "R3_02",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: if ? ÷ 6 = 8, multiply back: 6 × 8 = ? to find the mystery number.",
+        "Step 2: once you know the mystery number, divide it by 2."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how divide by 6 works."
+        "correct": "Correct! 6×8=48 is the mystery number, and 48÷2=24.",
+        "incorrect": "? ÷ 6 = 8 → ? = 6×8 = 48. Then 48÷2 = 24."
       }
     },
     {
       "type": "MC",
-      "stem": "Jan baked 42 cookies. She puts 6 on each plate. She eats 1 plate's worth. How many cookies left?",
-      "choices": [
-        "30",
-        "34",
-        "36",
-        "40"
-      ],
-      "answer": "D",
-      "explanation": "42 ÷ 6 = 7 plates. 7 − 1 = 6 plates. 6 × 6 = 36.",
+      "problem_id": "R3_03",
+      "stem": "Jan baked 42 cookies and put 6 on each plate. She eats one full plate. How many cookies are left?",
+      "choices": ["30", "34", "36", "40"],
+      "answer": "C",
+      "explanation": "42 ÷ 6 = 7 plates. 7 − 1 = 6 plates remain. 6 × 6 = 36 cookies left.",
       "difficulty": 3,
       "id": "R3_03",
       "hints": [
-        "Think about what divide by 6 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: how many plates? 42 ÷ 6 = ?",
+        "Step 2: she eats 1 plate, so plates remaining = 7 − 1. Multiply remaining plates × 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how divide by 6 works."
+        "correct": "Yes! 42÷6=7 plates. 7−1=6 plates remain. 6×6=36 cookies left.",
+        "incorrect": "42÷6=7 plates, then 7−1=6 plates remain. 6 plates × 6 cookies = 36."
+      }
+    },
+    {
+      "type": "MC",
+      "problem_id": "R3_04",
+      "stem": "48 oranges are arranged equally in 6 baskets. Then 2 baskets are given away. How many oranges remain?",
+      "choices": ["24", "28", "30", "32"],
+      "answer": "D",
+      "explanation": "48 ÷ 6 = 8 oranges per basket. 6 − 2 = 4 baskets remain. 4 × 8 = 32 oranges.",
+      "difficulty": 3,
+      "id": "R3_04",
+      "hints": [
+        "Step 1: find oranges per basket: 48 ÷ 6 = ?",
+        "Step 2: 2 baskets are given away, so 6−2=4 remain. Multiply remaining baskets × oranges each."
+      ],
+      "feedback": {
+        "correct": "Right! 48÷6=8 per basket. 4 baskets remain. 4×8=32 oranges.",
+        "incorrect": "48÷6=8 per basket. 6−2=4 baskets remain. 4×8=32 oranges remain."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R3_05",
+      "stem": "? ÷ 6 = 8. What is the missing dividend?",
+      "answer": "48",
+      "explanation": "6 × 8 = 48, so 48 ÷ 6 = 8.",
+      "difficulty": 3,
+      "id": "R3_05",
+      "hints": [
+        "The quotient is 8 and the divisor is 6. Multiply back: 6 × 8 = ?",
+        "Think: ? = 6 × 8 = 48. Check: 48 ÷ 6 = 8 ✓"
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 8 = 48, so the missing number is 48.",
+        "incorrect": "Work backwards: ? ÷ 6 = 8 means ? = 6 × 8 = 48."
       }
     }
   ],

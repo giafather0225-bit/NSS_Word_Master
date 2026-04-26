@@ -7,9 +7,9 @@
 
 /** @tag ARCADE */
 const MI_LEVELS = {
-  easy:   { label: 'Easy',   icon: '🐢', ops: ['+','-'],            max: 10, fall: 22, spawnMin: 3200, spawnMax: 5000, ramp: 0.10, maxActive: 3 },
-  normal: { label: 'Normal', icon: '🚀', ops: ['+','-','×'],        max: 10, fall: 30, spawnMin: 2400, spawnMax: 3800, ramp: 0.25, maxActive: 4 },
-  hard:   { label: 'Hard',   icon: '🔥', ops: ['+','-','×','÷'],    max: 12, fall: 42, spawnMin: 1700, spawnMax: 2800, ramp: 0.40, maxActive: 5 },
+  easy:   { label: 'Easy',   ops: ['+','-'],            max: 10, fall: 22, spawnMin: 3200, spawnMax: 5000, ramp: 0.10, maxActive: 3 },
+  normal: { label: 'Normal', ops: ['+','-','×'],        max: 10, fall: 30, spawnMin: 2400, spawnMax: 3800, ramp: 0.25, maxActive: 4 },
+  hard:   { label: 'Hard',   ops: ['+','-','×','÷'],    max: 12, fall: 42, spawnMin: 1700, spawnMax: 2800, ramp: 0.40, maxActive: 5 },
 };
 const MI_CFG = { maxLives: 3 };
 let _mi = null;
@@ -36,10 +36,10 @@ async function miShowLevelPicker() {
   if (!list) return;
   list.innerHTML = Object.entries(MI_LEVELS).map(([key, cfg], i) => `
     <div class="wi-level-card" onclick="miStart('${key}')">
-      <div class="wi-level-icon">${cfg.icon}</div>
+      <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
       <div class="wi-level-name">${cfg.label}</div>
       <div class="wi-level-spec">${cfg.ops.join(' ')} · max ${cfg.max}</div>
-      <div class="wi-level-pb">🏆 ${bests[i].score || 0}</div>
+      <div class="wi-level-pb">Best: ${bests[i].score || 0}</div>
     </div>`).join('');
 }
 
@@ -57,7 +57,7 @@ function miStart(level = 'normal') {
       <div class="wi-hud">
         <div class="wi-hud-item"><span class="wi-hud-label">SCORE</span><b id="mi-score">0</b></div>
         <div class="wi-hud-item"><span class="wi-hud-label">COMBO</span><b id="mi-streak">0</b>x</div>
-        <div class="wi-hud-item wi-hud-lives" id="mi-lives">❤️❤️❤️</div>
+        <div class="wi-hud-item wi-hud-lives" id="mi-lives"><span class="wi-life"></span><span class="wi-life"></span><span class="wi-life"></span></div>
         <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit">✕</button>
       </div>
       <div class="wi-canvas-wrap">
@@ -158,7 +158,7 @@ function _miUpdateHUD() {
   const l = document.getElementById('mi-lives');
   const st = document.getElementById('mi-streak');
   if (s) s.textContent = String(_mi.score);
-  if (l) l.textContent = '❤️'.repeat(Math.max(0, _mi.lives)) + '🖤'.repeat(Math.max(0, MI_CFG.maxLives - _mi.lives));
+  if (l) { l.innerHTML = Array.from({ length: MI_CFG.maxLives }, (_, i) => `<span class="wi-life${i >= _mi.lives ? ' wi-life--lost' : ''}"></span>`).join(''); }
   if (st) st.textContent = String(_mi.streak);
 }
 
@@ -202,6 +202,8 @@ function _miSpawn() {
 
 function _miLoop(ts) {
   if (!_mi || !_mi.running) return;
+  if (document.hidden) { requestAnimationFrame(_miLoop); return; }
+  if (ts - _mi.lastTs < 1000 / 30) { requestAnimationFrame(_miLoop); return; } // 30fps cap
   const dt = Math.min(100, ts - _mi.lastTs) / 1000;
   _mi.lastTs = ts;
   const elapsedSec = (ts - _mi.startedAt) / 1000;

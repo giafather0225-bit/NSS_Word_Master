@@ -27,12 +27,7 @@
     {
       "type": "MC",
       "stem": "16 ÷ 8 = ?",
-      "choices": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
+      "choices": ["1", "2", "3", "4"],
       "answer": "B",
       "explanation": "16 ÷ 8 = 2.",
       "difficulty": 1,
@@ -41,12 +36,7 @@
     {
       "type": "MC",
       "stem": "32 ÷ 8 = ?",
-      "choices": [
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
+      "choices": ["3", "4", "5", "6"],
       "answer": "B",
       "explanation": "32 ÷ 8 = 4.",
       "difficulty": 1,
@@ -55,12 +45,7 @@
     {
       "type": "MC",
       "stem": "40 ÷ 8 = ?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
       "explanation": "40 ÷ 8 = 5.",
       "difficulty": 1,
@@ -69,12 +54,7 @@
     {
       "type": "MC",
       "stem": "56 ÷ 8 = ?",
-      "choices": [
-        "6",
-        "7",
-        "8",
-        "9"
-      ],
+      "choices": ["6", "7", "8", "9"],
       "answer": "B",
       "explanation": "56 ÷ 8 = 7.",
       "difficulty": 1,
@@ -83,12 +63,7 @@
     {
       "type": "MC",
       "stem": "64 crayons are packed in boxes of 8. How many boxes?",
-      "choices": [
-        "6",
-        "7",
-        "8",
-        "9"
-      ],
+      "choices": ["6", "7", "8", "9"],
       "answer": "C",
       "explanation": "64 ÷ 8 = 8.",
       "difficulty": 1,
@@ -98,395 +73,625 @@
   "learn": [
     {
       "type": "concept_card",
-      "title": "Dividing by 8",
-      "content": "Share into 8 equal groups. 48 ÷ 8 = 6.",
+      "title": "Sharing Into 8 Equal Groups",
+      "content": "When you divide by 8, you share a total equally among 8 groups. Example: 48 counters shared into 8 groups → each group gets 6. So 48 ÷ 8 = 6.",
       "id": "LN_01",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
-        "tool": "array_grid",
+        "tool": "counter_groups",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "total": 48,
+          "groups": 8,
+          "per_group": 6
         }
       }
     },
     {
       "type": "concept_card",
-      "title": "Halve Three Times",
-      "content": "To divide by 8: halve three times. 24 ÷ 8: 24 ÷ 2 = 12, 12 ÷ 2 = 6, 6 ÷ 2 = 3.",
+      "title": "Halve Three Times Strategy",
+      "content": "Dividing by 8 is the same as halving three times (because 8 = 2×2×2). Example: 24 ÷ 8\nStep 1: 24 ÷ 2 = 12\nStep 2: 12 ÷ 2 = 6\nStep 3: 6 ÷ 2 = 3\nResult: 24 ÷ 8 = 3. Check: 8 × 3 = 24 ✓",
       "id": "LN_02",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "diagram",
+      "visual_data": {
+        "tool": "three_step_halve",
+        "config": {
+          "start": 24,
+          "step1": 12,
+          "step2": 6,
+          "step3": 3
+        }
+      }
     },
     {
       "type": "concept_card",
-      "title": "Use ×8 Facts",
-      "content": "If 8 × 9 = 72, then 72 ÷ 8 = 9.",
+      "title": "Array: 8 Rows",
+      "content": "A 8×9 array has 72 tiles arranged in 8 rows of 9. Reading it as division: 72 tiles in 8 rows means 72 ÷ 8 = 9 tiles per row. The ×8 fact 8×9=72 gives the ÷8 fact 72÷8=9.",
       "id": "LN_03",
       "cpa_phase": "pictorial",
-      "visual_type": "none"
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 8,
+          "cols": 9
+        }
+      }
+    },
+    {
+      "type": "concept_card",
+      "title": "Number Line: Backward Jumps of 8",
+      "content": "To find 72 ÷ 8, start at 72 on a number line and hop backward by 8 each time: 72 → 64 → 56 → 48 → 40 → 32 → 24 → 16 → 8 → 0. Count the hops: 9 hops. So 72 ÷ 8 = 9.",
+      "id": "LN_04",
+      "cpa_phase": "pictorial",
+      "visual_type": "number_line",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "start": 72,
+          "end": 0,
+          "jump": -8,
+          "label": "72 ÷ 8 = 9 hops"
+        }
+      }
+    },
+    {
+      "type": "concept_card",
+      "title": "The ÷8 Pattern: Reverse the ×8 Fact",
+      "content": "Every ×8 fact gives you a ÷8 fact:\n8×1=8 → 8÷8=1\n8×2=16 → 16÷8=2\n8×3=24 → 24÷8=3\n8×4=32 → 32÷8=4\n8×5=40 → 40÷8=5\n8×6=48 → 48÷8=6\n8×7=56 → 56÷8=7\n8×8=64 → 64÷8=8\n8×9=72 → 72÷8=9\n8×10=80 → 80÷8=10\nStrategy: think '8 × ? = dividend' to find the quotient.",
+      "id": "LN_05",
+      "cpa_phase": "abstract",
+      "visual_type": "table",
+      "visual_data": {
+        "tool": "fact_table",
+        "config": {
+          "divisor": 8,
+          "range": [1, 10]
+        }
+      }
     }
   ],
   "try": [
     {
       "type": "MC",
+      "problem_id": "TRY_01",
       "stem": "8 ÷ 8 = ?",
-      "choices": [
-        "0",
-        "1",
-        "8",
-        "16"
-      ],
+      "choices": ["0", "1", "8", "16"],
       "answer": "B",
-      "explanation": "8 ÷ 8 = 1.",
+      "explanation": "8 ÷ 8 = 1. Any number divided by itself is 1.",
       "difficulty": 1,
       "id": "TRY_01",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 8× fact: 8 × ? = 8. Only 8 × 1 = 8.",
+        "How many groups of 8 fit inside 8? Just one."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 8 works."
+        "correct": "Right! 8 ÷ 8 = 1.",
+        "incorrect": "8 ÷ 8 means how many groups of 8 in 8. Just one: 8 ÷ 8 = 1."
       },
-      "solution_steps": []
+      "solution_steps": ["8 × 1 = 8", "So 8 ÷ 8 = 1"]
     },
     {
       "type": "MC",
-      "stem": "An octopus has 8 arms. 48 arms total belong to how many octopuses?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "problem_id": "TRY_02",
+      "stem": "An octopus has 8 arms. If 48 arms belong to a group of octopuses, how many octopuses are there?",
+      "choices": ["5", "6", "7", "8"],
       "answer": "B",
-      "explanation": "48 ÷ 8 = 6.",
+      "explanation": "48 ÷ 8 = 6 octopuses. Think: 8 × 6 = 48.",
       "difficulty": 1,
       "id": "TRY_02",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 8× fact: 8 × ? = 48. Think: 48 ÷ 8 = ?",
+        "Try halving three times: 48÷2=24, 24÷2=12, 12÷2=6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 8 works."
+        "correct": "Yes! 8 × 6 = 48, so there are 6 octopuses.",
+        "incorrect": "Halve 48 three times: 48÷2=24, 24÷2=12, 12÷2=6. So 48 ÷ 8 = 6 octopuses."
       },
-      "solution_steps": []
+      "solution_steps": ["8 × 6 = 48", "So 48 ÷ 8 = 6 octopuses"]
+    },
+    {
+      "type": "input",
+      "problem_id": "TRY_03",
+      "stem": "24 ÷ 8 = ___",
+      "answer": "3",
+      "explanation": "24 ÷ 8 = 3. Think: 8 × 3 = 24.",
+      "difficulty": 1,
+      "id": "TRY_03",
+      "hints": [
+        "Use the 8× fact: 8 × ? = 24. Think: 24 ÷ 8 = ?",
+        "Try halving three times: 24÷2=12, 12÷2=6, 6÷2=3."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 3 = 24, so 24 ÷ 8 = 3.",
+        "incorrect": "Halve 24 three times: 24÷2=12, 12÷2=6, 6÷2=3. So 24 ÷ 8 = 3."
+      },
+      "solution_steps": ["8 × 3 = 24", "So 24 ÷ 8 = 3"]
+    },
+    {
+      "type": "input",
+      "problem_id": "TRY_04",
+      "stem": "64 ÷ 8 = ___",
+      "answer": "8",
+      "explanation": "64 ÷ 8 = 8. Think: 8 × 8 = 64.",
+      "difficulty": 1,
+      "id": "TRY_04",
+      "hints": [
+        "Use the 8× fact: 8 × ? = 64. Think: 64 ÷ 8 = ?",
+        "Try halving three times: 64÷2=32, 32÷2=16, 16÷2=8."
+      ],
+      "feedback": {
+        "correct": "Great! 8 × 8 = 64, so 64 ÷ 8 = 8.",
+        "incorrect": "Halve 64 three times: 64÷2=32, 32÷2=16, 16÷2=8. So 64 ÷ 8 = 8."
+      },
+      "solution_steps": ["8 × 8 = 64", "So 64 ÷ 8 = 8"]
+    },
+    {
+      "type": "MC",
+      "problem_id": "TRY_05",
+      "stem": "80 trading cards are shared equally among 8 friends. How many cards per friend?",
+      "choices": ["8", "9", "10", "11"],
+      "answer": "C",
+      "explanation": "80 ÷ 8 = 10. Think: 8 × 10 = 80.",
+      "difficulty": 1,
+      "id": "TRY_05",
+      "hints": [
+        "Use the 8× fact: 8 × ? = 80. Think: 80 ÷ 8 = ?",
+        "Try halving three times: 80÷2=40, 40÷2=20, 20÷2=10."
+      ],
+      "feedback": {
+        "correct": "Yes! 8 × 10 = 80, so each friend gets 10 cards.",
+        "incorrect": "Halve 80 three times: 80÷2=40, 40÷2=20, 20÷2=10. So 80 ÷ 8 = 10."
+      },
+      "solution_steps": ["8 × 10 = 80", "So 80 ÷ 8 = 10 cards per friend"]
     }
   ],
   "practice_r1": [
     {
       "type": "MC",
+      "problem_id": "R1_01",
       "stem": "8 ÷ 8 = ?",
-      "choices": [
-        "0",
-        "1",
-        "8",
-        "16"
-      ],
+      "choices": ["0", "1", "8", "16"],
       "answer": "B",
       "explanation": "8 ÷ 8 = 1.",
       "difficulty": 1,
       "id": "R1_01",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 8× fact: 8 × ? = 8. Only 8 × 1 = 8.",
+        "How many groups of 8 fit inside 8? Just one."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 8 works."
+        "correct": "Right! 8 ÷ 8 = 1.",
+        "incorrect": "Any number divided by itself is 1. So 8 ÷ 8 = 1."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_02",
       "stem": "24 ÷ 8 = ?",
-      "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
+      "choices": ["2", "3", "4", "5"],
       "answer": "B",
-      "explanation": "24 ÷ 8 = 3.",
+      "explanation": "24 ÷ 8 = 3. Think: 8 × 3 = 24.",
       "difficulty": 1,
       "id": "R1_02",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 8× fact: 8 × ? = 24. Think: 24 ÷ 8 = ?",
+        "Try halving three times: 24÷2=12, 12÷2=6, 6÷2=3."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 8 works."
+        "correct": "Correct! 8 × 3 = 24, so 24 ÷ 8 = 3.",
+        "incorrect": "Halve 24 three times: 24÷2=12, 12÷2=6, 6÷2=3. So 24 ÷ 8 = 3."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_03",
       "stem": "48 ÷ 8 = ?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "B",
-      "explanation": "48 ÷ 8 = 6.",
+      "explanation": "48 ÷ 8 = 6. Think: 8 × 6 = 48.",
       "difficulty": 1,
       "id": "R1_03",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 8× fact: 8 × ? = 48. Think: 48 ÷ 8 = ?",
+        "Try halving three times: 48÷2=24, 24÷2=12, 12÷2=6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 8 works."
+        "correct": "Yes! 8 × 6 = 48, so 48 ÷ 8 = 6.",
+        "incorrect": "Halve 48 three times: 48÷2=24, 24÷2=12, 12÷2=6. So 48 ÷ 8 = 6."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_04",
       "stem": "72 ÷ 8 = ?",
-      "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
-      ],
+      "choices": ["7", "8", "9", "10"],
       "answer": "C",
-      "explanation": "72 ÷ 8 = 9.",
+      "explanation": "72 ÷ 8 = 9. Think: 8 × 9 = 72.",
       "difficulty": 1,
       "id": "R1_04",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 8× fact: 8 × ? = 72. Think: 72 ÷ 8 = ?",
+        "Try halving three times: 72÷2=36, 36÷2=18, 18÷2=9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 8 works."
+        "correct": "Excellent! 8 × 9 = 72, so 72 ÷ 8 = 9.",
+        "incorrect": "Halve 72 three times: 72÷2=36, 36÷2=18, 18÷2=9. So 72 ÷ 8 = 9."
       }
     },
     {
       "type": "MC",
-      "stem": "A class has 32 pencils in 8 cups. How many per cup?",
-      "choices": [
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
+      "problem_id": "R1_05",
+      "stem": "A class has 32 pencils distributed equally into 8 cups. How many pencils per cup?",
+      "choices": ["3", "4", "5", "6"],
       "answer": "B",
-      "explanation": "32 ÷ 8 = 4.",
+      "explanation": "32 ÷ 8 = 4. Think: 8 × 4 = 32.",
       "difficulty": 1,
       "id": "R1_05",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 8× fact: 8 × ? = 32. Think: 32 ÷ 8 = ?",
+        "Try halving three times: 32÷2=16, 16÷2=8, 8÷2=4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 8 works."
+        "correct": "Right! 8 × 4 = 32, so each cup has 4 pencils.",
+        "incorrect": "Halve 32 three times: 32÷2=16, 16÷2=8, 8÷2=4. So 32 ÷ 8 = 4 per cup."
       }
     },
     {
       "type": "MC",
-      "stem": "A case holds 8 cans. 40 cans fill how many cases?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "problem_id": "R1_06",
+      "stem": "A case holds 8 cans. How many cases do 40 cans fill?",
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
-      "explanation": "40 ÷ 8 = 5.",
+      "explanation": "40 ÷ 8 = 5 cases. Think: 8 × 5 = 40.",
       "difficulty": 1,
       "id": "R1_06",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 8× fact: 8 × ? = 40. Think: 40 ÷ 8 = ?",
+        "Try halving three times: 40÷2=20, 20÷2=10, 10÷2=5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 8 works."
+        "correct": "Right! 8 × 5 = 40, so 40 cans fill 5 cases.",
+        "incorrect": "Halve 40 three times: 40÷2=20, 20÷2=10, 10÷2=5. So 40 ÷ 8 = 5 cases."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_07",
       "stem": "If 8 × 7 = 56, then 56 ÷ 8 = ?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "C",
-      "explanation": "56 ÷ 8 = 7.",
+      "explanation": "56 ÷ 8 = 7. Division reverses multiplication.",
       "difficulty": 1,
       "id": "R1_07",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Multiplication and division are opposites: if 8 × 7 = 56, reverse it.",
+        "8 × 7 = 56 means 56 shared into 8 groups gives 7 each. So 56 ÷ 8 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 8 works."
+        "correct": "Exactly! 8 × 7 = 56 tells you 56 ÷ 8 = 7.",
+        "incorrect": "Division reverses multiplication. 8 × 7 = 56, so 56 ÷ 8 = 7."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R1_08",
+      "stem": "16 ÷ 8 = ___",
+      "answer": "2",
+      "explanation": "16 ÷ 8 = 2. Think: 8 × 2 = 16.",
+      "difficulty": 1,
+      "id": "R1_08",
+      "hints": [
+        "Use the 8× fact: 8 × ? = 16. Think: 16 ÷ 8 = ?",
+        "Try halving three times: 16÷2=8, 8÷2=4, 4÷2=2."
+      ],
+      "feedback": {
+        "correct": "Yes! 8 × 2 = 16, so 16 ÷ 8 = 2.",
+        "incorrect": "Halve 16 three times: 16÷2=8, 8÷2=4, 4÷2=2. So 16 ÷ 8 = 2."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R1_09",
+      "stem": "80 ÷ 8 = ___",
+      "answer": "10",
+      "explanation": "80 ÷ 8 = 10. Think: 8 × 10 = 80.",
+      "difficulty": 1,
+      "id": "R1_09",
+      "hints": [
+        "Use the 8× fact: 8 × ? = 80. Think: 80 ÷ 8 = ?",
+        "Try halving three times: 80÷2=40, 40÷2=20, 20÷2=10."
+      ],
+      "feedback": {
+        "correct": "Perfect! 8 × 10 = 80, so 80 ÷ 8 = 10.",
+        "incorrect": "Halve 80 three times: 80÷2=40, 40÷2=20, 20÷2=10. So 80 ÷ 8 = 10."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R1_10",
+      "stem": "72 ÷ 8 = ___",
+      "answer": "9",
+      "explanation": "72 ÷ 8 = 9. Think: 8 × 9 = 72.",
+      "difficulty": 1,
+      "id": "R1_10",
+      "hints": [
+        "Use the 8× fact: 8 × ? = 72. Think: 72 ÷ 8 = ?",
+        "Try halving three times: 72÷2=36, 36÷2=18, 18÷2=9."
+      ],
+      "feedback": {
+        "correct": "Great! 8 × 9 = 72, so 72 ÷ 8 = 9.",
+        "incorrect": "Halve 72 three times: 72÷2=36, 36÷2=18, 18÷2=9. So 72 ÷ 8 = 9."
       }
     }
   ],
   "practice_r2": [
     {
       "type": "MC",
-      "stem": "Which fact helps you solve 72 ÷ 8?",
-      "choices": [
-        "8 × 7 = 56",
-        "8 × 8 = 64",
-        "8 × 9 = 72",
-        "8 × 10 = 80"
-      ],
+      "problem_id": "R2_01",
+      "stem": "Which multiplication fact helps you solve 72 ÷ 8?",
+      "choices": ["8 × 7 = 56", "8 × 8 = 64", "8 × 9 = 72", "8 × 10 = 80"],
       "answer": "C",
-      "explanation": "8 × 9 = 72.",
+      "explanation": "8 × 9 = 72, so 72 ÷ 8 = 9.",
       "difficulty": 2,
       "id": "R2_01",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "To divide 72 by 8, think: which 8× fact has 72 as the product?",
+        "Check each: 8×7=56, 8×8=64, 8×9=72 ← that's it!"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 8 works."
+        "correct": "Right! 8 × 9 = 72, so 72 ÷ 8 = 9.",
+        "incorrect": "Find the 8× fact where the product is 72. 8 × 9 = 72, so 72 ÷ 8 = 9."
       }
     },
     {
       "type": "MC",
-      "stem": "? ÷ 8 = 5. What is the number?",
-      "choices": [
-        "32",
-        "40",
-        "48",
-        "56"
-      ],
+      "problem_id": "R2_02",
+      "stem": "? ÷ 8 = 5. What is the missing number?",
+      "choices": ["32", "40", "48", "56"],
       "answer": "B",
-      "explanation": "40 ÷ 8 = 5.",
+      "explanation": "8 × 5 = 40, so 40 ÷ 8 = 5.",
       "difficulty": 2,
       "id": "R2_02",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "The quotient is 5 and the divisor is 8. Multiply back: 8 × 5 = ?",
+        "Think: ? = 8 × 5 = 40. Check: 40 ÷ 8 = 5 ✓"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 8 works."
+        "correct": "Correct! 8 × 5 = 40, so the missing number is 40.",
+        "incorrect": "Work backwards: ? ÷ 8 = 5 means ? = 8 × 5 = 40."
       }
     },
     {
       "type": "MC",
-      "stem": "Which quotient is least?",
-      "choices": [
-        "16 ÷ 8",
-        "32 ÷ 8",
-        "48 ÷ 8",
-        "64 ÷ 8"
-      ],
+      "problem_id": "R2_03",
+      "stem": "Which division has the LEAST quotient?",
+      "choices": ["16 ÷ 8", "32 ÷ 8", "48 ÷ 8", "64 ÷ 8"],
       "answer": "A",
-      "explanation": "16 ÷ 8 = 2 (least).",
+      "explanation": "16÷8=2, 32÷8=4, 48÷8=6, 64÷8=8. Least quotient is 2.",
       "difficulty": 2,
       "id": "R2_03",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Solve each: 16÷8=?, 32÷8=?, 48÷8=?, 64÷8=?",
+        "The smallest dividend gives the smallest quotient when dividing by 8."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how divide by 8 works."
+        "correct": "Yes! 16÷8=2 is the least quotient.",
+        "incorrect": "16÷8=2, 32÷8=4, 48÷8=6, 64÷8=8. The least is 2, from 16÷8."
       }
     },
     {
       "type": "MC",
-      "stem": "A spider has 8 legs. 56 legs = how many spiders?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "problem_id": "R2_04",
+      "stem": "A spider has 8 legs. How many spiders have 56 legs in total?",
+      "choices": ["5", "6", "7", "8"],
       "answer": "C",
-      "explanation": "56 ÷ 8 = 7 spiders.",
+      "explanation": "56 ÷ 8 = 7 spiders. Think: 8 × 7 = 56.",
       "difficulty": 2,
       "id": "R2_04",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 8× fact: 8 × ? = 56. Think: 56 ÷ 8 = ?",
+        "Try halving three times: 56÷2=28, 28÷2=14, 14÷2=7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 8 works."
+        "correct": "Correct! 8 × 7 = 56, so there are 7 spiders.",
+        "incorrect": "Halve 56 three times: 56÷2=28, 28÷2=14, 14÷2=7. So 56 ÷ 8 = 7 spiders."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_05",
+      "stem": "8 ÷ 8 = ___",
+      "answer": "1",
+      "explanation": "8 ÷ 8 = 1. Any number divided by itself is 1.",
+      "difficulty": 2,
+      "id": "R2_05",
+      "hints": [
+        "Use the 8× fact: 8 × ? = 8. Only 8 × 1 = 8.",
+        "How many groups of 8 fit inside 8? Just one."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 ÷ 8 = 1.",
+        "incorrect": "8 ÷ 8 means how many groups of 8 in 8. Just one: 8 ÷ 8 = 1."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_06",
+      "stem": "? ÷ 8 = 6. What is the missing dividend?",
+      "answer": "48",
+      "explanation": "8 × 6 = 48, so 48 ÷ 8 = 6.",
+      "difficulty": 2,
+      "id": "R2_06",
+      "hints": [
+        "The quotient is 6 and the divisor is 8. Multiply back: 8 × 6 = ?",
+        "Think: ? = 8 × 6 = 48. Check: 48 ÷ 8 = 6 ✓"
+      ],
+      "feedback": {
+        "correct": "Right! 8 × 6 = 48, so the missing number is 48.",
+        "incorrect": "Work backwards: ? ÷ 8 = 6 means ? = 8 × 6 = 48."
+      }
+    },
+    {
+      "type": "MC",
+      "problem_id": "R2_07",
+      "stem": "Which is NOT a correct ÷8 fact?",
+      "choices": ["16 ÷ 8 = 2", "40 ÷ 8 = 5", "64 ÷ 8 = 7", "80 ÷ 8 = 10"],
+      "answer": "C",
+      "explanation": "64 ÷ 8 = 8, not 7. All other facts are correct.",
+      "difficulty": 2,
+      "id": "R2_07",
+      "hints": [
+        "Check each fact: does it match an 8× multiplication fact?",
+        "For 64 ÷ 8: halve three times — 64÷2=32, 32÷2=16, 16÷2=8. So 64 ÷ 8 = 8, not 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 64 ÷ 8 = 8, not 7. Halve three times: 64÷2=32, 32÷2=16, 16÷2=8.",
+        "incorrect": "Check 64 ÷ 8: 8×8=64, so 64÷8=8. The claim of 7 is wrong."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_08",
+      "stem": "56 ÷ 8 = ___",
+      "answer": "7",
+      "explanation": "56 ÷ 8 = 7. Think: 8 × 7 = 56.",
+      "difficulty": 2,
+      "id": "R2_08",
+      "hints": [
+        "Use the 8× fact: 8 × ? = 56. Think: 56 ÷ 8 = ?",
+        "Try halving three times: 56÷2=28, 28÷2=14, 14÷2=7."
+      ],
+      "feedback": {
+        "correct": "Yes! 8 × 7 = 56, so 56 ÷ 8 = 7.",
+        "incorrect": "Halve 56 three times: 56÷2=28, 28÷2=14, 14÷2=7. So 56 ÷ 8 = 7."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_09",
+      "stem": "32 ÷ 8 = ___",
+      "answer": "4",
+      "explanation": "32 ÷ 8 = 4. Think: 8 × 4 = 32.",
+      "difficulty": 2,
+      "id": "R2_09",
+      "hints": [
+        "Use the 8× fact: 8 × ? = 32. Think: 32 ÷ 8 = ?",
+        "Try halving three times: 32÷2=16, 16÷2=8, 8÷2=4."
+      ],
+      "feedback": {
+        "correct": "Great! 8 × 4 = 32, so 32 ÷ 8 = 4.",
+        "incorrect": "Halve 32 three times: 32÷2=16, 16÷2=8, 8÷2=4. So 32 ÷ 8 = 4."
+      }
+    },
+    {
+      "type": "MC",
+      "problem_id": "R2_10",
+      "stem": "(16 ÷ 8) × (24 ÷ 8) = ?",
+      "choices": ["4", "5", "6", "7"],
+      "answer": "C",
+      "explanation": "16÷8=2, 24÷8=3. 2×3=6.",
+      "difficulty": 2,
+      "id": "R2_10",
+      "hints": [
+        "Solve inside the parentheses first: 16÷8=? and 24÷8=?",
+        "After dividing: 16÷8=2, 24÷8=3. Now multiply those two quotients."
+      ],
+      "feedback": {
+        "correct": "Yes! 16÷8=2, 24÷8=3, and 2×3=6.",
+        "incorrect": "Step 1: 16÷8=2. Step 2: 24÷8=3. Step 3: 2×3=6."
       }
     }
   ],
   "practice_r3": [
     {
       "type": "MC",
-      "stem": "A farmer has 72 apples. He puts 8 in each bag and sells each bag for $3. How much money if he sells all?",
-      "choices": [
-        "21",
-        "24",
-        "27",
-        "30"
-      ],
+      "problem_id": "R3_01",
+      "stem": "A farmer has 72 apples. He puts 8 in each bag and sells each bag for $3. How much money does he earn if he sells all the bags?",
+      "choices": ["21", "24", "27", "30"],
       "answer": "C",
       "explanation": "72 ÷ 8 = 9 bags. 9 × $3 = $27.",
       "difficulty": 3,
       "id": "R3_01",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: how many bags? 72 ÷ 8 = ?",
+        "Step 2: multiply number of bags × $3 per bag."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 8 works."
+        "correct": "Right! 72÷8=9 bags. 9×$3=$27.",
+        "incorrect": "72÷8=9 bags. Then 9×$3=$27 total earnings."
       }
     },
     {
       "type": "MC",
-      "stem": "A number ÷ 8 = 7. What is the number − 10?",
-      "choices": [
-        "40",
-        "46",
-        "48",
-        "52"
-      ],
+      "problem_id": "R3_02",
+      "stem": "A mystery number ÷ 8 = 7. What is the mystery number − 10?",
+      "choices": ["40", "46", "48", "52"],
       "answer": "B",
-      "explanation": "Number = 8 × 7 = 56. 56 − 10 = 46. Option B.",
+      "explanation": "Mystery number = 8 × 7 = 56. 56 − 10 = 46.",
       "difficulty": 3,
       "id": "R3_02",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: if ? ÷ 8 = 7, multiply back: 8 × 7 = ? to find the mystery number.",
+        "Step 2: once you know the mystery number (56), subtract 10 from it."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 8 works."
+        "correct": "Correct! 8×7=56 is the mystery number, and 56−10=46.",
+        "incorrect": "? ÷ 8 = 7 → ? = 8×7 = 56. Then 56−10 = 46."
       }
     },
     {
       "type": "MC",
-      "stem": "Anna has 64 beads. She makes bracelets of 8 beads each. She gives 3 bracelets to friends. How many bracelets does she keep?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "problem_id": "R3_03",
+      "stem": "Anna has 64 beads. She makes bracelets of 8 beads each, then gives 3 bracelets to friends. How many bracelets does she keep?",
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
-      "explanation": "64 ÷ 8 = 8 bracelets. 8 − 3 = 5.",
+      "explanation": "64 ÷ 8 = 8 bracelets total. 8 − 3 = 5 bracelets kept.",
       "difficulty": 3,
       "id": "R3_03",
       "hints": [
-        "Think about what divide by 8 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: how many bracelets can she make? 64 ÷ 8 = ?",
+        "Step 2: she gives 3 away. How many does she keep?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 8 works."
+        "correct": "Yes! 64÷8=8 bracelets. 8−3=5 bracelets she keeps.",
+        "incorrect": "64÷8=8 bracelets total. 8−3=5 bracelets she keeps."
+      }
+    },
+    {
+      "type": "MC",
+      "problem_id": "R3_04",
+      "stem": "72 apples are arranged equally in 8 baskets. Then 3 baskets are given to neighbors. How many apples remain?",
+      "choices": ["40", "43", "45", "48"],
+      "answer": "C",
+      "explanation": "72 ÷ 8 = 9 per basket. 8 − 3 = 5 baskets remain. 5 × 9 = 45 apples.",
+      "difficulty": 3,
+      "id": "R3_04",
+      "hints": [
+        "Step 1: find apples per basket: 72 ÷ 8 = ?",
+        "Step 2: 3 baskets are given away, so 8−3=5 remain. Multiply baskets × apples per basket."
+      ],
+      "feedback": {
+        "correct": "Right! 72÷8=9 per basket. 5 baskets remain. 5×9=45 apples.",
+        "incorrect": "72÷8=9 per basket. 8−3=5 baskets remain. 5×9=45 apples remain."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R3_05",
+      "stem": "? ÷ 8 = 9. What is the missing dividend?",
+      "answer": "72",
+      "explanation": "8 × 9 = 72, so 72 ÷ 8 = 9.",
+      "difficulty": 3,
+      "id": "R3_05",
+      "hints": [
+        "The quotient is 9 and the divisor is 8. Multiply back: 8 × 9 = ?",
+        "Think: ? = 8 × 9 = 72. Check: 72 ÷ 8 = 9 ✓"
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 9 = 72, so the missing number is 72.",
+        "incorrect": "Work backwards: ? ÷ 8 = 9 means ? = 8 × 9 = 72."
       }
     }
   ],

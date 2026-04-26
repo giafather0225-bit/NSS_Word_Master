@@ -91,6 +91,7 @@ function srStop() {
 
 function _srTick() {
   if (!_sr || !_sr.running) return;
+  if (document.hidden) { requestAnimationFrame(_srTick); return; }
   const elapsed = performance.now() - _sr.startedAt;
   const remain = Math.max(0, SR_CFG.roundMs - elapsed);
   const el = document.getElementById('sr-time');
