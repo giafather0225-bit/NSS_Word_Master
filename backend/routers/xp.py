@@ -92,7 +92,6 @@ def xp_summary(db: Session = Depends(get_db)) -> dict:
     return {
         "total_xp": total,
         "today_xp": today_xp,
-        "xp_today": today_xp,
         "level": total // 100 + 1,
         "streak_days": streak,
         "streak_best": best,

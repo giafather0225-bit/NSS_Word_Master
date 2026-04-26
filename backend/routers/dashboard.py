@@ -13,12 +13,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy import func, text
 from sqlalchemy.orm import Session
 
-try:
-    from ..database import LEARNING_ROOT, get_db
-    from ..models import Progress, StudyItem
-except ImportError:
-    from database import LEARNING_ROOT, get_db
-    from models import Progress, StudyItem
+from backend.database import LEARNING_ROOT, get_db
+from backend.models import Progress, StudyItem
 
 router = APIRouter()
 

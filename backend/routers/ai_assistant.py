@@ -144,7 +144,7 @@ async def _call_gemini(history_payload: list) -> str | None:
     if not GEMINI_API_KEY:
         return None
     try:
-        gemini_url = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent"
+        gemini_url = "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent"
         payload = {
             "system_instruction": {"parts": [{"text": _build_system_prompt()}]},
             "contents": history_payload,

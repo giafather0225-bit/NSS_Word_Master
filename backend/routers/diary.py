@@ -25,18 +25,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-try:
-    from ..database import get_db
-    from ..models import DiaryEntry, GrowthEvent
-    from ..schemas_common import Str30, Str5000
-    from ..services.xp_engine import award_xp
-    from ..services import ollama_manager
-except ImportError:
-    from database import get_db
-    from models import DiaryEntry, GrowthEvent
-    from schemas_common import Str30, Str5000
-    from services.xp_engine import award_xp
-    from services import ollama_manager
+from backend.database import get_db
+from backend.models import DiaryEntry, GrowthEvent
+from backend.schemas_common import Str30, Str5000
+from backend.services.xp_engine import award_xp
+from backend.services import ollama_manager
 
 router = APIRouter()
 logger = logging.getLogger(__name__)

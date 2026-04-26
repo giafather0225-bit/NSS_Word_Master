@@ -129,8 +129,14 @@ async def _evaluate_with_gemini(word: str, sentence: str) -> dict:
         )
         resp.raise_for_status()
     raw = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
-    m = _re.search(r"\{[\s\S]*\}", raw)
-    return json.loads(m.group(0) if m else raw)
+    clean = strip_json_fences(raw)
+    try:
+        return json.loads(clean)
+    except Exception:
+        m = _re.search(r"\{[\s\S]*\}", clean)
+        if m:
+            return json.loads(m.group(0))
+        raise ValueError(f"Could not parse Gemini evaluate response: {raw[:200]}")
 
 
 # ── Routes ─────────────────────────────────────────────────
