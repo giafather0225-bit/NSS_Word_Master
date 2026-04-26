@@ -71,20 +71,25 @@ async function _renderDiaryEntry(entryId) {
 
     _deState.entryId = entryId;
 
-    // Fetch all entries once and pick the target + neighbors. Cheap for the
-    // expected dataset size (one user, hundreds of entries max).
-    let all = [];
+    // 1) 단건 조회 — limit=500 전체 로드 대신 id로 직접 fetch
+    // 2) 인접 항목(prev/next)은 별도로 전체 목록에서 경량 조회
+    let entry = null;
+    let all   = [];
     try {
-        const res = await fetch("/api/diary/entries?limit=500");
-        if (res.ok) {
-            const d = await res.json();
+        const [entryRes, allRes] = await Promise.allSettled([
+            fetch(`/api/diary/entries/${encodeURIComponent(entryId)}`),
+            fetch("/api/diary/entries?limit=500"),
+        ]);
+        if (entryRes.status === "fulfilled" && entryRes.value.ok) {
+            entry = await entryRes.value.json();
+        }
+        if (allRes.status === "fulfilled" && allRes.value.ok) {
+            const d = await allRes.value.json();
             all = Array.isArray(d.entries) ? d.entries : [];
         }
     } catch (_) {}
 
-    all.sort((a, b) => (a.entry_date || "").localeCompare(b.entry_date || ""));
-    const idx = all.findIndex(e => String(e.id) === String(entryId));
-    if (idx < 0) {
+    if (!entry) {
         view.innerHTML = `
             <div class="de-root">
                 <p class="diary-state-msg" style="padding:60px;">Entry not found.</p>
@@ -95,10 +100,13 @@ async function _renderDiaryEntry(entryId) {
         return;
     }
 
-    _deState.entry = all[idx];
+    all.sort((a, b) => (a.entry_date || "").localeCompare(b.entry_date || ""));
+    const idx = all.findIndex(e => String(e.id) === String(entryId));
+
+    _deState.entry = entry;
     _deState.neighbors = {
         prev: idx > 0 ? all[idx - 1] : null,
-        next: idx < all.length - 1 ? all[idx + 1] : null,
+        next: idx > -1 && idx < all.length - 1 ? all[idx + 1] : null,
     };
     _deState.snap = _deLoadSnap(_deState.entry) || {};
     _deState.deleteOpen = false;
