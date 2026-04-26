@@ -13,6 +13,7 @@ before routers/diary_sentences.py in main.py.
 
 import logging
 import re as _re
+import secrets
 import time as _time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -241,7 +242,6 @@ async def upload_diary_photo_multi(
     if ext not in _PHOTO_EXTS:
         raise HTTPException(status_code=400, detail=f"File type '{ext}' not allowed")
 
-    import secrets
     rand = secrets.token_hex(2)
     fname = f"{entry_date.strip()}_{int(_time.time() * 1000)}_{rand}{ext}"
     fpath = _PHOTO_DIR / fname
