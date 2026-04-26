@@ -145,7 +145,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.de-active {
 .de-keep:hover { background: var(--bg-surface); }
 .de-confirm {
   background: var(--review-primary);
-  color: #fff;
+  color: var(--text-on-primary);
   border-color: var(--review-primary);
 }
 .de-confirm:hover { filter: brightness(1.05); }
@@ -190,7 +190,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.de-active {
   border-radius: 12px;
   background: var(--bg-surface) center / cover no-repeat;
   border: 1px solid var(--border-subtle);
-  box-shadow: 0 6px 14px rgba(120, 90, 60, 0.10);
+  box-shadow: var(--shadow-card);
   transform: rotate(-1.5deg);
   flex-shrink: 0;
 }
@@ -213,8 +213,8 @@ body[data-view="diary"].dh-fullscreen #diary-view.de-active {
 .de-mood-square {
   width: 32px; height: 32px;
   border-radius: 8px;
-  border: 2.5px solid #fff;
-  box-shadow: 0 2px 6px rgba(120, 90, 60, 0.10);
+  border: 2.5px solid var(--bg-card);
+  box-shadow: var(--shadow-card);
 }
 .de-meta-text {
   display: flex;
@@ -313,11 +313,11 @@ body[data-view="diary"].dh-fullscreen #diary-view.de-active {
   border-radius: 10px;
   border: none;
   background: var(--diary-primary);
-  color: #fff;
+  color: var(--text-on-primary);
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 3px 10px rgba(224, 154, 174, 0.32);
+  box-shadow: var(--shadow-primary-glow, 0 3px 10px rgba(224,154,174,0.32));
 }
 .de-share:hover { filter: brightness(1.05); }
 

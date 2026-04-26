@@ -110,7 +110,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
 .dw-seg.is-active {
   background: var(--bg-card);
   color: var(--text-primary);
-  box-shadow: 0 1px 3px rgba(120, 90, 60, 0.12);
+  box-shadow: var(--shadow-card);
 }
 
 .dw-overflow {
@@ -134,7 +134,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
   border-radius: 10px;
   border: none;
   background: var(--diary-primary);
-  color: #fff;
+  color: var(--text-on-primary);
   font-size: 12.5px;
   font-weight: 600;
   cursor: pointer;
@@ -205,7 +205,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
   width: 18px; height: 18px;
   border-radius: 999px;
   border: none;
-  background: rgba(0, 0, 0, 0.55);
+  background: var(--overlay-scrim);
   color: #fff;
   font-size: 11px;
   font-weight: 700;
@@ -315,7 +315,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
   border-radius: 999px;
   background: var(--border-subtle);
   border: 2px solid #fff;
-  box-shadow: 0 1px 3px rgba(120, 90, 60, 0.12);
+  box-shadow: var(--shadow-card);
 }
 /* Mood top row (above title) */
 .dw-mood-top {
@@ -471,7 +471,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
 .dw-prompt-item:hover { filter: brightness(0.98); }
 .dw-prompt-item.is-active {
   background: var(--diary-primary);
-  color: #fff;
+  color: var(--text-on-primary);
   border-color: var(--diary-primary);
   font-weight: 600;
 }
@@ -495,7 +495,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
   width: 22px; height: 22px;
   border-radius: 7px;
   background: var(--english-primary);
-  color: #fff;
+  color: var(--text-on-primary);
   display: grid;
   place-items: center;
 }
@@ -628,7 +628,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
 }
 .dw-stk-tab.is-active {
   background: var(--diary-primary);
-  color: #fff;
+  color: var(--text-on-primary);
   border-color: var(--diary-primary);
 }
 .dw-stk-grid {
@@ -669,7 +669,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
 .dw-bg-btn:hover { transform: scale(1.05); }
 .dw-bg-btn.is-active {
   border: 2px solid var(--diary-primary);
-  box-shadow: 0 2px 6px rgba(120, 90, 60, 0.15);
+  box-shadow: var(--shadow-card);
 }
 .dw-bg-btn-x {
   font-size: 11px;
