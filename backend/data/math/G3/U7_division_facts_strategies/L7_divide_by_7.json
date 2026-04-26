@@ -28,12 +28,7 @@
     {
       "type": "MC",
       "stem": "14 ÷ 7 = ?",
-      "choices": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
+      "choices": ["1", "2", "3", "4"],
       "answer": "B",
       "explanation": "14 ÷ 7 = 2.",
       "difficulty": 1,
@@ -42,12 +37,7 @@
     {
       "type": "MC",
       "stem": "28 ÷ 7 = ?",
-      "choices": [
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
+      "choices": ["3", "4", "5", "6"],
       "answer": "B",
       "explanation": "28 ÷ 7 = 4.",
       "difficulty": 1,
@@ -56,12 +46,7 @@
     {
       "type": "MC",
       "stem": "35 ÷ 7 = ?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
       "explanation": "35 ÷ 7 = 5.",
       "difficulty": 1,
@@ -70,12 +55,7 @@
     {
       "type": "MC",
       "stem": "49 ÷ 7 = ?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "C",
       "explanation": "49 ÷ 7 = 7.",
       "difficulty": 1,
@@ -84,12 +64,7 @@
     {
       "type": "MC",
       "stem": "42 stickers are shared equally among 7 friends. How many each?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "B",
       "explanation": "42 ÷ 7 = 6.",
       "difficulty": 1,
@@ -99,395 +74,623 @@
   "learn": [
     {
       "type": "concept_card",
-      "title": "Dividing by 7",
-      "content": "Share into 7 equal groups. 21 ÷ 7 = 3.",
+      "title": "Sharing Into 7 Equal Groups",
+      "content": "When you divide by 7, you share a total equally among 7 groups. Example: 21 counters shared into 7 groups → each group gets 3. So 21 ÷ 7 = 3.",
       "id": "LN_01",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
-        "tool": "array_grid",
+        "tool": "counter_groups",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "total": 21,
+          "groups": 7,
+          "per_group": 3
         }
       }
     },
     {
       "type": "concept_card",
-      "title": "Use ×7 Facts",
-      "content": "If 7 × 8 = 56, then 56 ÷ 7 = 8.",
+      "title": "Array: 7 Rows",
+      "content": "A 7×8 array has 56 tiles arranged in 7 rows of 8. Reading it as division: 56 tiles in 7 rows means 56 ÷ 7 = 8 tiles per row. The ×7 fact 7×8=56 gives the ÷7 fact 56÷7=8.",
       "id": "LN_02",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 7,
+          "cols": 8
+        }
+      }
     },
     {
       "type": "concept_card",
-      "title": "Think Days",
-      "content": "7 days = 1 week. 21 days = 21 ÷ 7 = 3 weeks.",
+      "title": "Days and Weeks",
+      "content": "There are 7 days in a week. So dividing a number of days by 7 gives the number of weeks. Examples:\n7 days = 7÷7 = 1 week\n14 days = 14÷7 = 2 weeks\n21 days = 21÷7 = 3 weeks\n35 days = 35÷7 = 5 weeks\nThis real-world context helps you remember ÷7 facts.",
       "id": "LN_03",
       "cpa_phase": "pictorial",
-      "visual_type": "none"
+      "visual_type": "diagram",
+      "visual_data": {
+        "tool": "calendar_weeks",
+        "config": {
+          "total_days": 21,
+          "weeks": 3
+        }
+      }
+    },
+    {
+      "type": "concept_card",
+      "title": "Number Line: Backward Jumps of 7",
+      "content": "To find 63 ÷ 7, start at 63 on a number line and hop backward by 7 each time: 63 → 56 → 49 → 42 → 35 → 28 → 21 → 14 → 7 → 0. Count the hops: 9 hops. So 63 ÷ 7 = 9.",
+      "id": "LN_04",
+      "cpa_phase": "pictorial",
+      "visual_type": "number_line",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "start": 63,
+          "end": 0,
+          "jump": -7,
+          "label": "63 ÷ 7 = 9 hops"
+        }
+      }
+    },
+    {
+      "type": "concept_card",
+      "title": "The ÷7 Pattern: Reverse the ×7 Fact",
+      "content": "Every ×7 fact gives you a ÷7 fact:\n7×1=7 → 7÷7=1\n7×2=14 → 14÷7=2\n7×3=21 → 21÷7=3\n7×4=28 → 28÷7=4\n7×5=35 → 35÷7=5\n7×6=42 → 42÷7=6\n7×7=49 → 49÷7=7\n7×8=56 → 56÷7=8\n7×9=63 → 63÷7=9\n7×10=70 → 70÷7=10\nStrategy: think '7 × ? = dividend' to find the quotient.",
+      "id": "LN_05",
+      "cpa_phase": "abstract",
+      "visual_type": "table",
+      "visual_data": {
+        "tool": "fact_table",
+        "config": {
+          "divisor": 7,
+          "range": [1, 10]
+        }
+      }
     }
   ],
   "try": [
     {
       "type": "MC",
+      "problem_id": "TRY_01",
       "stem": "7 ÷ 7 = ?",
-      "choices": [
-        "0",
-        "1",
-        "7",
-        "14"
-      ],
+      "choices": ["0", "1", "7", "14"],
       "answer": "B",
-      "explanation": "7 ÷ 7 = 1.",
+      "explanation": "7 ÷ 7 = 1. Any number divided by itself is 1.",
       "difficulty": 1,
       "id": "TRY_01",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 7× fact: 7 × ? = 7. Only 7 × 1 = 7.",
+        "How many groups of 7 fit inside 7? Just one."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 7 works."
+        "correct": "Right! 7 ÷ 7 = 1.",
+        "incorrect": "7 ÷ 7 means how many groups of 7 are in 7. Just one: 7 ÷ 7 = 1."
       },
-      "solution_steps": []
+      "solution_steps": ["7 × 1 = 7", "So 7 ÷ 7 = 1"]
     },
     {
       "type": "MC",
-      "stem": "A library has 21 books in stacks of 7. How many stacks?",
-      "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
+      "problem_id": "TRY_02",
+      "stem": "A library has 21 books arranged in stacks of 7. How many stacks?",
+      "choices": ["2", "3", "4", "5"],
       "answer": "B",
-      "explanation": "21 ÷ 7 = 3.",
+      "explanation": "21 ÷ 7 = 3 stacks. Think: 7 × 3 = 21.",
       "difficulty": 1,
       "id": "TRY_02",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 7× fact: 7 × ? = 21. Think: 21 ÷ 7 = ?",
+        "Think weeks: 21 days ÷ 7 = 3 weeks. Same idea for stacks!"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 7 works."
+        "correct": "Yes! 7 × 3 = 21, so there are 3 stacks.",
+        "incorrect": "7 × 3 = 21, so 21 ÷ 7 = 3 stacks."
       },
-      "solution_steps": []
+      "solution_steps": ["7 × 3 = 21", "So 21 ÷ 7 = 3 stacks"]
+    },
+    {
+      "type": "input",
+      "problem_id": "TRY_03",
+      "stem": "14 ÷ 7 = ___",
+      "answer": "2",
+      "explanation": "14 ÷ 7 = 2. Think: 7 × 2 = 14.",
+      "difficulty": 1,
+      "id": "TRY_03",
+      "hints": [
+        "Use the 7× fact: 7 × ? = 14. Think: 14 ÷ 7 = ?",
+        "Skip count by 7s: 7 (1st), 14 (2nd). Two counts means 14 ÷ 7 = 2."
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 2 = 14, so 14 ÷ 7 = 2.",
+        "incorrect": "Count by 7s to 14: 7 (one), 14 (two). So 14 ÷ 7 = 2."
+      },
+      "solution_steps": ["7 × 2 = 14", "So 14 ÷ 7 = 2"]
+    },
+    {
+      "type": "input",
+      "problem_id": "TRY_04",
+      "stem": "56 ÷ 7 = ___",
+      "answer": "8",
+      "explanation": "56 ÷ 7 = 8. Think: 7 × 8 = 56.",
+      "difficulty": 1,
+      "id": "TRY_04",
+      "hints": [
+        "Use the 7× fact: 7 × ? = 56. Think: 56 ÷ 7 = ?",
+        "Skip count by 7s until you reach 56: 7,14,21,28,35,42,49,56. How many counts?"
+      ],
+      "feedback": {
+        "correct": "Great! 7 × 8 = 56, so 56 ÷ 7 = 8.",
+        "incorrect": "Count by 7s to 56 — that takes 8 counts. So 56 ÷ 7 = 8."
+      },
+      "solution_steps": ["7 × 8 = 56", "So 56 ÷ 7 = 8"]
+    },
+    {
+      "type": "MC",
+      "problem_id": "TRY_05",
+      "stem": "A farmer planted 70 seeds in 7 equal rows. How many seeds per row?",
+      "choices": ["8", "9", "10", "11"],
+      "answer": "C",
+      "explanation": "70 ÷ 7 = 10. Think: 7 × 10 = 70.",
+      "difficulty": 1,
+      "id": "TRY_05",
+      "hints": [
+        "Use the 7× fact: 7 × ? = 70. Think: 70 ÷ 7 = ?",
+        "Skip count by 7s to 70: 7,14,21,...,70. How many counts of 7 make 70?"
+      ],
+      "feedback": {
+        "correct": "Yes! 7 × 10 = 70, so each row has 10 seeds.",
+        "incorrect": "7 × 10 = 70, so 70 ÷ 7 = 10 seeds per row."
+      },
+      "solution_steps": ["7 × 10 = 70", "So 70 ÷ 7 = 10 seeds per row"]
     }
   ],
   "practice_r1": [
     {
       "type": "MC",
+      "problem_id": "R1_01",
       "stem": "7 ÷ 7 = ?",
-      "choices": [
-        "0",
-        "1",
-        "7",
-        "14"
-      ],
+      "choices": ["0", "1", "7", "14"],
       "answer": "B",
       "explanation": "7 ÷ 7 = 1.",
       "difficulty": 1,
       "id": "R1_01",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 7× fact: 7 × ? = 7. Only 7 × 1 = 7.",
+        "How many groups of 7 fit inside 7? Just one."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 7 works."
+        "correct": "Right! 7 ÷ 7 = 1.",
+        "incorrect": "Any number divided by itself is 1. So 7 ÷ 7 = 1."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_02",
       "stem": "21 ÷ 7 = ?",
-      "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
+      "choices": ["2", "3", "4", "5"],
       "answer": "B",
-      "explanation": "21 ÷ 7 = 3.",
+      "explanation": "21 ÷ 7 = 3. Think: 7 × 3 = 21.",
       "difficulty": 1,
       "id": "R1_02",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 7× fact: 7 × ? = 21. Think: 21 ÷ 7 = ?",
+        "Skip count by 7s: 7, 14, 21. How many counts?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 7 works."
+        "correct": "Correct! 7 × 3 = 21, so 21 ÷ 7 = 3.",
+        "incorrect": "Count by 7s to 21: 7 (1), 14 (2), 21 (3). So 21 ÷ 7 = 3."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_03",
       "stem": "42 ÷ 7 = ?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "B",
-      "explanation": "42 ÷ 7 = 6.",
+      "explanation": "42 ÷ 7 = 6. Think: 7 × 6 = 42.",
       "difficulty": 1,
       "id": "R1_03",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 7× fact: 7 × ? = 42. Think: 42 ÷ 7 = ?",
+        "Skip count by 7s to 42: 7,14,21,28,35,42. How many counts?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 7 works."
+        "correct": "Yes! 7 × 6 = 42, so 42 ÷ 7 = 6.",
+        "incorrect": "Count by 7s to 42 — that takes 6 counts. So 42 ÷ 7 = 6."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_04",
       "stem": "56 ÷ 7 = ?",
-      "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
-      ],
+      "choices": ["7", "8", "9", "10"],
       "answer": "B",
-      "explanation": "56 ÷ 7 = 8.",
+      "explanation": "56 ÷ 7 = 8. Think: 7 × 8 = 56.",
       "difficulty": 1,
       "id": "R1_04",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 7× fact: 7 × ? = 56. Think: 56 ÷ 7 = ?",
+        "Skip count by 7s to 56: 7,14,21,28,35,42,49,56. How many counts?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 7 works."
+        "correct": "Excellent! 7 × 8 = 56, so 56 ÷ 7 = 8.",
+        "incorrect": "Count by 7s to 56 — that takes 8 counts. So 56 ÷ 7 = 8."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_05",
       "stem": "63 ÷ 7 = ?",
-      "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
-      ],
+      "choices": ["7", "8", "9", "10"],
       "answer": "C",
-      "explanation": "63 ÷ 7 = 9.",
+      "explanation": "63 ÷ 7 = 9. Think: 7 × 9 = 63.",
       "difficulty": 1,
       "id": "R1_05",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 7× fact: 7 × ? = 63. Think: 63 ÷ 7 = ?",
+        "Skip count by 7s to 63: 7,14,21,28,35,42,49,56,63. How many counts?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 7 works."
+        "correct": "Great! 7 × 9 = 63, so 63 ÷ 7 = 9.",
+        "incorrect": "Count by 7s to 63 — that takes 9 counts. So 63 ÷ 7 = 9."
       }
     },
     {
       "type": "MC",
-      "stem": "A puzzle has 35 pieces in 7 equal rows. How many per row?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "problem_id": "R1_06",
+      "stem": "A puzzle has 35 pieces arranged in 7 equal rows. How many pieces per row?",
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
-      "explanation": "35 ÷ 7 = 5.",
+      "explanation": "35 ÷ 7 = 5 pieces per row. Think: 7 × 5 = 35.",
       "difficulty": 1,
       "id": "R1_06",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Use the 7× fact: 7 × ? = 35. Think: 35 ÷ 7 = ?",
+        "Skip count by 7s: 7,14,21,28,35. How many counts?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 7 works."
+        "correct": "Right! 7 × 5 = 35, so each row has 5 pieces.",
+        "incorrect": "Count by 7s to 35 — that takes 5 counts. So 35 ÷ 7 = 5 per row."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R1_07",
       "stem": "If 7 × 4 = 28, then 28 ÷ 7 = ?",
-      "choices": [
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
+      "choices": ["3", "4", "5", "6"],
       "answer": "B",
-      "explanation": "28 ÷ 7 = 4.",
+      "explanation": "28 ÷ 7 = 4. Division reverses multiplication.",
       "difficulty": 1,
       "id": "R1_07",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Multiplication and division are opposites: if 7 × 4 = 28, reverse it.",
+        "7 × 4 = 28 means 28 shared into 7 groups gives 4 each. So 28 ÷ 7 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 7 works."
+        "correct": "Exactly! 7 × 4 = 28 tells you 28 ÷ 7 = 4.",
+        "incorrect": "Division reverses multiplication. 7 × 4 = 28, so 28 ÷ 7 = 4."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R1_08",
+      "stem": "49 ÷ 7 = ___",
+      "answer": "7",
+      "explanation": "49 ÷ 7 = 7. Think: 7 × 7 = 49.",
+      "difficulty": 1,
+      "id": "R1_08",
+      "hints": [
+        "Use the 7× fact: 7 × ? = 49. Think: 49 ÷ 7 = ?",
+        "Skip count by 7s to 49: 7,14,21,28,35,42,49. How many counts?"
+      ],
+      "feedback": {
+        "correct": "Yes! 7 × 7 = 49, so 49 ÷ 7 = 7.",
+        "incorrect": "Count by 7s to 49 — that takes 7 counts. So 49 ÷ 7 = 7."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R1_09",
+      "stem": "70 ÷ 7 = ___",
+      "answer": "10",
+      "explanation": "70 ÷ 7 = 10. Think: 7 × 10 = 70.",
+      "difficulty": 1,
+      "id": "R1_09",
+      "hints": [
+        "Use the 7× fact: 7 × ? = 70. Think: 70 ÷ 7 = ?",
+        "Skip count by 7s ten times: 7,14,...,70. Ten counts of 7 make 70."
+      ],
+      "feedback": {
+        "correct": "Perfect! 7 × 10 = 70, so 70 ÷ 7 = 10.",
+        "incorrect": "7 × 10 = 70, so 70 ÷ 7 = 10."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R1_10",
+      "stem": "63 ÷ 7 = ___",
+      "answer": "9",
+      "explanation": "63 ÷ 7 = 9. Think: 7 × 9 = 63.",
+      "difficulty": 1,
+      "id": "R1_10",
+      "hints": [
+        "Use the 7× fact: 7 × ? = 63. Think: 63 ÷ 7 = ?",
+        "Skip count by 7s to 63: 7,14,21,28,35,42,49,56,63. How many counts?"
+      ],
+      "feedback": {
+        "correct": "Great! 7 × 9 = 63, so 63 ÷ 7 = 9.",
+        "incorrect": "Count by 7s to 63 — that takes 9 counts. So 63 ÷ 7 = 9."
       }
     }
   ],
   "practice_r2": [
     {
       "type": "MC",
-      "stem": "Which fact helps you solve 63 ÷ 7?",
-      "choices": [
-        "7 × 7 = 49",
-        "7 × 8 = 56",
-        "7 × 9 = 63",
-        "7 × 10 = 70"
-      ],
+      "problem_id": "R2_01",
+      "stem": "Which multiplication fact helps you solve 63 ÷ 7?",
+      "choices": ["7 × 7 = 49", "7 × 8 = 56", "7 × 9 = 63", "7 × 10 = 70"],
       "answer": "C",
-      "explanation": "7 × 9 = 63.",
+      "explanation": "7 × 9 = 63, so 63 ÷ 7 = 9.",
       "difficulty": 2,
       "id": "R2_01",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "To divide 63 by 7, think: which 7× fact has 63 as the product?",
+        "Check each: 7×7=49, 7×8=56, 7×9=63 ← that's it!"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 7 works."
+        "correct": "Right! 7 × 9 = 63, so 63 ÷ 7 = 9.",
+        "incorrect": "Find the 7× fact where the product is 63. 7 × 9 = 63, so 63 ÷ 7 = 9."
       }
     },
     {
       "type": "MC",
-      "stem": "? ÷ 7 = 6. What is the number?",
-      "choices": [
-        "35",
-        "42",
-        "49",
-        "56"
-      ],
+      "problem_id": "R2_02",
+      "stem": "? ÷ 7 = 6. What is the missing number?",
+      "choices": ["35", "42", "49", "56"],
       "answer": "B",
-      "explanation": "42 ÷ 7 = 6.",
+      "explanation": "7 × 6 = 42, so 42 ÷ 7 = 6.",
       "difficulty": 2,
       "id": "R2_02",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "The quotient is 6 and the divisor is 7. Multiply back: 7 × 6 = ?",
+        "Think: ? = 7 × 6 = 42. Check: 42 ÷ 7 = 6 ✓"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 7 works."
+        "correct": "Correct! 7 × 6 = 42, so the missing number is 42.",
+        "incorrect": "Work backwards: ? ÷ 7 = 6 means ? = 7 × 6 = 42."
       }
     },
     {
       "type": "MC",
-      "stem": "Which quotient is greatest?",
-      "choices": [
-        "14 ÷ 7",
-        "35 ÷ 7",
-        "49 ÷ 7",
-        "28 ÷ 7"
-      ],
+      "problem_id": "R2_03",
+      "stem": "Which division has the GREATEST quotient?",
+      "choices": ["14 ÷ 7", "35 ÷ 7", "49 ÷ 7", "28 ÷ 7"],
       "answer": "C",
-      "explanation": "49 ÷ 7 = 7 (greatest).",
+      "explanation": "14÷7=2, 35÷7=5, 49÷7=7, 28÷7=4. Greatest quotient is 7.",
       "difficulty": 2,
       "id": "R2_03",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Solve each: 14÷7=?, 35÷7=?, 49÷7=?, 28÷7=?",
+        "The largest dividend gives the largest quotient when dividing by 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 7 works."
+        "correct": "Yes! 49÷7=7 is the greatest quotient.",
+        "incorrect": "14÷7=2, 35÷7=5, 49÷7=7, 28÷7=4. The greatest is 7, from 49÷7."
       }
     },
     {
       "type": "MC",
+      "problem_id": "R2_04",
       "stem": "35 days = how many weeks?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
-      "explanation": "35 ÷ 7 = 5 weeks.",
+      "explanation": "35 ÷ 7 = 5 weeks. There are 7 days in a week.",
       "difficulty": 2,
       "id": "R2_04",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "There are 7 days in a week. Divide the total days by 7.",
+        "Use the 7× fact: 7 × ? = 35. Think: 35 ÷ 7 = ?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 7 works."
+        "correct": "Correct! 35 ÷ 7 = 5 weeks.",
+        "incorrect": "7 days = 1 week. 35 ÷ 7 = 5, so 35 days = 5 weeks."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_05",
+      "stem": "7 ÷ 7 = ___",
+      "answer": "1",
+      "explanation": "7 ÷ 7 = 1. Any number divided by itself is 1.",
+      "difficulty": 2,
+      "id": "R2_05",
+      "hints": [
+        "Use the 7× fact: 7 × ? = 7. Only 7 × 1 = 7.",
+        "How many groups of 7 fit inside 7? Just one."
+      ],
+      "feedback": {
+        "correct": "Correct! 7 ÷ 7 = 1.",
+        "incorrect": "7 ÷ 7 means how many groups of 7 in 7. Just one: 7 ÷ 7 = 1."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_06",
+      "stem": "? ÷ 7 = 8. What is the missing dividend?",
+      "answer": "56",
+      "explanation": "7 × 8 = 56, so 56 ÷ 7 = 8.",
+      "difficulty": 2,
+      "id": "R2_06",
+      "hints": [
+        "The quotient is 8 and the divisor is 7. Multiply back: 7 × 8 = ?",
+        "Think: ? = 7 × 8 = 56. Check: 56 ÷ 7 = 8 ✓"
+      ],
+      "feedback": {
+        "correct": "Right! 7 × 8 = 56, so the missing number is 56.",
+        "incorrect": "Work backwards: ? ÷ 7 = 8 means ? = 7 × 8 = 56."
+      }
+    },
+    {
+      "type": "MC",
+      "problem_id": "R2_07",
+      "stem": "Which is NOT a correct ÷7 fact?",
+      "choices": ["14 ÷ 7 = 2", "42 ÷ 7 = 6", "56 ÷ 7 = 9", "70 ÷ 7 = 10"],
+      "answer": "C",
+      "explanation": "56 ÷ 7 = 8, not 9. All other facts are correct.",
+      "difficulty": 2,
+      "id": "R2_07",
+      "hints": [
+        "Check each fact: does it match a 7× multiplication fact?",
+        "For 56 ÷ 7: count by 7s to 56 — 7,14,21,28,35,42,49,56. How many counts?"
+      ],
+      "feedback": {
+        "correct": "Correct! 56 ÷ 7 = 8, not 9. Count by 7s to 56 — that's 8 counts.",
+        "incorrect": "Check 56 ÷ 7: 7×8=56, so 56÷7=8. The claim of 9 is wrong."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_08",
+      "stem": "28 ÷ 7 = ___",
+      "answer": "4",
+      "explanation": "28 ÷ 7 = 4. Think: 7 × 4 = 28.",
+      "difficulty": 2,
+      "id": "R2_08",
+      "hints": [
+        "Use the 7× fact: 7 × ? = 28. Think: 28 ÷ 7 = ?",
+        "Skip count by 7s: 7, 14, 21, 28. How many counts?"
+      ],
+      "feedback": {
+        "correct": "Yes! 7 × 4 = 28, so 28 ÷ 7 = 4.",
+        "incorrect": "Count by 7s to 28: 7(1), 14(2), 21(3), 28(4). So 28 ÷ 7 = 4."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R2_09",
+      "stem": "42 ÷ 7 = ___",
+      "answer": "6",
+      "explanation": "42 ÷ 7 = 6. Think: 7 × 6 = 42.",
+      "difficulty": 2,
+      "id": "R2_09",
+      "hints": [
+        "Use the 7× fact: 7 × ? = 42. Think: 42 ÷ 7 = ?",
+        "Skip count by 7s to 42: 7,14,21,28,35,42. How many counts?"
+      ],
+      "feedback": {
+        "correct": "Great! 7 × 6 = 42, so 42 ÷ 7 = 6.",
+        "incorrect": "Count by 7s to 42 — that takes 6 counts. So 42 ÷ 7 = 6."
+      }
+    },
+    {
+      "type": "MC",
+      "problem_id": "R2_10",
+      "stem": "(14 ÷ 7) + (21 ÷ 7) = ?",
+      "choices": ["4", "5", "6", "7"],
+      "answer": "B",
+      "explanation": "14÷7=2, 21÷7=3. 2+3=5.",
+      "difficulty": 2,
+      "id": "R2_10",
+      "hints": [
+        "Solve inside the parentheses first: 14÷7=? and 21÷7=?",
+        "After dividing: 14÷7=2, 21÷7=3. Now add those two quotients."
+      ],
+      "feedback": {
+        "correct": "Yes! 14÷7=2, 21÷7=3, and 2+3=5.",
+        "incorrect": "Step 1: 14÷7=2. Step 2: 21÷7=3. Step 3: 2+3=5."
       }
     }
   ],
   "practice_r3": [
     {
       "type": "MC",
-      "stem": "A camp lasts 49 days. Campers rotate activities every 7 days. How many activities?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "problem_id": "R3_01",
+      "stem": "A camp lasts 49 days. Campers rotate a new activity every 7 days. How many activities do they rotate through?",
+      "choices": ["5", "6", "7", "8"],
       "answer": "C",
-      "explanation": "49 ÷ 7 = 7 activities.",
+      "explanation": "49 ÷ 7 = 7 activity periods.",
       "difficulty": 3,
       "id": "R3_01",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "How many groups of 7 days fit in 49 days? Use the 7× fact: 7 × ? = 49.",
+        "Skip count by 7s to 49: 7,14,21,28,35,42,49. How many counts?"
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 7 works."
+        "correct": "Right! 7 × 7 = 49, so 49 ÷ 7 = 7 activity periods.",
+        "incorrect": "7 × 7 = 49, so 49 ÷ 7 = 7 activity periods."
       }
     },
     {
       "type": "MC",
-      "stem": "A number ÷ 7 = 6. What is the number + 8?",
-      "choices": [
-        "42",
-        "48",
-        "50",
-        "56"
-      ],
+      "problem_id": "R3_02",
+      "stem": "A mystery number ÷ 7 = 6. What is the mystery number + 8?",
+      "choices": ["42", "48", "50", "56"],
       "answer": "C",
-      "explanation": "Number = 7 × 6 = 42. 42 + 8 = 50.",
-      "difficulty": 2,
+      "explanation": "Mystery number = 7 × 6 = 42. 42 + 8 = 50.",
+      "difficulty": 3,
       "id": "R3_02",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: if ? ÷ 7 = 6, multiply back: 7 × 6 = ? to find the mystery number.",
+        "Step 2: once you know the mystery number (42), add 8 to it."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 7 works."
+        "correct": "Correct! 7×6=42 is the mystery number, and 42+8=50.",
+        "incorrect": "? ÷ 7 = 6 → ? = 7×6 = 42. Then 42+8 = 50."
       }
     },
     {
       "type": "MC",
-      "stem": "Jim has 56 coins. He splits them into 7 equal piles, then removes 1 coin from each pile. How many coins total remain?",
-      "choices": [
-        "42",
-        "48",
-        "49",
-        "50"
-      ],
+      "problem_id": "R3_03",
+      "stem": "Jim has 56 coins. He splits them equally into 7 piles, then removes 1 coin from each pile. How many coins remain in total?",
+      "choices": ["42", "48", "49", "50"],
       "answer": "C",
-      "explanation": "56 ÷ 7 = 8 per pile. 8 − 1 = 7. 7 × 7 = 49.",
+      "explanation": "56 ÷ 7 = 8 per pile. 8 − 1 = 7 per pile. 7 × 7 = 49 coins total.",
       "difficulty": 3,
       "id": "R3_03",
       "hints": [
-        "Think about what divide by 7 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: split 56 into 7 equal piles — how many coins per pile? 56 ÷ 7 = ?",
+        "Step 2: remove 1 from each pile, then multiply by 7 piles."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 7 works."
+        "correct": "Yes! 56÷7=8, then 8−1=7 per pile, and 7×7=49 total coins.",
+        "incorrect": "56÷7=8 per pile. 8−1=7 per pile. 7×7=49 total coins remain."
+      }
+    },
+    {
+      "type": "MC",
+      "problem_id": "R3_04",
+      "stem": "63 stickers are shared equally into 7 bags. Then 2 bags are lost. How many stickers remain?",
+      "choices": ["40", "42", "45", "48"],
+      "answer": "C",
+      "explanation": "63 ÷ 7 = 9 per bag. 7 − 2 = 5 bags remain. 5 × 9 = 45 stickers.",
+      "difficulty": 3,
+      "id": "R3_04",
+      "hints": [
+        "Step 1: find stickers per bag: 63 ÷ 7 = ?",
+        "Step 2: 2 bags are lost, so 7−2=5 bags remain. Multiply bags × stickers per bag."
+      ],
+      "feedback": {
+        "correct": "Right! 63÷7=9 per bag. 5 bags remain. 5×9=45 stickers.",
+        "incorrect": "63÷7=9 per bag. 7−2=5 bags remain. 5×9=45 stickers remain."
+      }
+    },
+    {
+      "type": "input",
+      "problem_id": "R3_05",
+      "stem": "? ÷ 7 = 9. What is the missing dividend?",
+      "answer": "63",
+      "explanation": "7 × 9 = 63, so 63 ÷ 7 = 9.",
+      "difficulty": 3,
+      "id": "R3_05",
+      "hints": [
+        "The quotient is 9 and the divisor is 7. Multiply back: 7 × 9 = ?",
+        "Think: ? = 7 × 9 = 63. Check: 63 ÷ 7 = 9 ✓"
+      ],
+      "feedback": {
+        "correct": "Correct! 7 × 9 = 63, so the missing number is 63.",
+        "incorrect": "Work backwards: ? ÷ 7 = 9 means ? = 7 × 9 = 63."
       }
     }
   ],

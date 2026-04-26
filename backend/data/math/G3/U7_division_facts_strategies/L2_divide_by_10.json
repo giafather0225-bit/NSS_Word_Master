@@ -26,315 +26,391 @@
   ],
   "pretest": [
     {
+      "id": "PT_01",
       "type": "MC",
       "stem": "30 ÷ 10 = ?",
-      "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
+      "choices": ["2", "3", "4", "5"],
       "answer": "B",
       "explanation": "30 ÷ 10 = 3.",
-      "difficulty": 1,
-      "id": "PT_01"
+      "difficulty": 1
     },
     {
+      "id": "PT_02",
       "type": "MC",
       "stem": "50 ÷ 10 = ?",
-      "choices": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "choices": ["4", "5", "6", "7"],
       "answer": "B",
       "explanation": "50 ÷ 10 = 5.",
-      "difficulty": 1,
-      "id": "PT_02"
+      "difficulty": 1
     },
     {
+      "id": "PT_03",
       "type": "MC",
       "stem": "80 ÷ 10 = ?",
-      "choices": [
-        "6",
-        "7",
-        "8",
-        "9"
-      ],
+      "choices": ["6", "7", "8", "9"],
       "answer": "C",
       "explanation": "80 ÷ 10 = 8.",
-      "difficulty": 1,
-      "id": "PT_03"
+      "difficulty": 1
     },
     {
+      "id": "PT_04",
       "type": "MC",
       "stem": "100 ÷ 10 = ?",
-      "choices": [
-        "8",
-        "9",
-        "10",
-        "11"
-      ],
+      "choices": ["8", "9", "10", "11"],
       "answer": "C",
       "explanation": "100 ÷ 10 = 10.",
-      "difficulty": 1,
-      "id": "PT_04"
+      "difficulty": 1
     },
     {
+      "id": "PT_05",
       "type": "MC",
       "stem": "40 stickers are shared equally among 10 friends. How many each?",
-      "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
-      ],
+      "choices": ["2", "3", "4", "5"],
       "answer": "C",
       "explanation": "40 ÷ 10 = 4.",
-      "difficulty": 1,
-      "id": "PT_05"
+      "difficulty": 1
     }
   ],
   "learn": [
     {
+      "id": "LN_01",
       "type": "concept_card",
       "title": "Dividing by 10",
-      "content": "When you divide by 10, drop the zero from the total. 70 ÷ 10 = 7.",
-      "id": "LN_01",
+      "content": "When you divide a multiple of 10 by 10, just drop the zero. 70 ÷ 10 = 7. Think: 10 groups of 7 = 70, so 70 ÷ 10 = 7.",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "base_ten",
+        "config": {
+          "rods": 7,
+          "label": "70 ÷ 10 = 7  (7 tens)"
+        }
+      }
     },
     {
+      "id": "LN_02",
       "type": "concept_card",
       "title": "Use ×10 Facts",
-      "content": "If 10 × 6 = 60, then 60 ÷ 10 = 6. Multiplication helps you divide.",
-      "id": "LN_02",
+      "content": "If 10 × 6 = 60, then 60 ÷ 10 = 6. Use your multiplication table of 10 in reverse. Think: 10 × ? = 60 → ? = 6.",
       "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "array_grid",
         "config": {
-          "rows": 3,
-          "cols": 4
+          "rows": 10,
+          "cols": 6,
+          "label": "10 × 6 = 60  →  60 ÷ 10 = 6"
         }
       }
     },
     {
-      "type": "concept_card",
-      "title": "Skip Count Back",
-      "content": "Count back by 10s from 50: 50, 40, 30, 20, 10, 0 — 5 jumps. So 50 ÷ 10 = 5.",
       "id": "LN_03",
+      "type": "concept_card",
+      "title": "Skip Count Back by 10",
+      "content": "Count back by 10s from 50: 50, 40, 30, 20, 10, 0 — 5 jumps. So 50 ÷ 10 = 5. Each jump back represents one group of 10.",
       "cpa_phase": "pictorial",
-      "visual_type": "none"
+      "visual_type": "number_line",
+      "visual_data": {
+        "start": 50,
+        "jump": 10,
+        "end": 0,
+        "count": 5,
+        "label": "50 ÷ 10 = 5 (5 jumps of 10)"
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Number Line: Divide by 10",
+      "content": "For 40 ÷ 10: start at 40, make jumps of 10 back to 0. Count: 40→30→20→10→0 — that's 4 jumps. So 40 ÷ 10 = 4. Each jump = one group of 10.",
+      "cpa_phase": "pictorial",
+      "visual_type": "number_line",
+      "visual_data": {
+        "start": 40,
+        "jump": 10,
+        "end": 0,
+        "count": 4,
+        "label": "40 ÷ 10 = 4"
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "The Drop-the-Zero Rule",
+      "content": "For any multiple of 10: n×10 ÷ 10 = n. Just remove the trailing zero. 10÷10=1, 20÷10=2, 30÷10=3, ... 90÷10=9, 100÷10=10. This works because 10 groups of n = 10n, so 10n÷10 = n.",
+      "cpa_phase": "abstract",
+      "visual_type": "formula",
+      "visual_data": {
+        "formula": "(n × 10) ÷ 10 = n",
+        "examples": ["30 ÷ 10 = 3", "70 ÷ 10 = 7", "100 ÷ 10 = 10"]
+      }
     }
   ],
   "try": [
     {
+      "id": "TRY_01",
       "type": "MC",
       "stem": "20 ÷ 10 = ?",
-      "choices": [
-        "1",
-        "2",
-        "3",
-        "4"
-      ],
+      "choices": ["1", "2", "3", "4"],
       "answer": "B",
       "explanation": "20 ÷ 10 = 2.",
       "difficulty": 1,
-      "id": "TRY_01",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Drop the zero from 20: 20 ÷ 10 = 2.",
+        "Think: 10 × ? = 20 → ? = 2."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 10 works."
+        "correct": "Correct! 20 ÷ 10 = 2.",
+        "incorrect": "Not quite. Drop the zero: 20 ÷ 10 = 2."
       },
       "solution_steps": []
     },
     {
+      "id": "TRY_02",
       "type": "MC",
-      "stem": "A bookshelf has 60 books arranged in 10 rows. How many per row?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "stem": "A bookshelf has 60 books arranged in 10 equal rows. How many per row?",
+      "choices": ["5", "6", "7", "8"],
       "answer": "B",
       "explanation": "60 ÷ 10 = 6.",
       "difficulty": 1,
-      "id": "TRY_02",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "60 books ÷ 10 rows: drop the zero. 60 ÷ 10 = ?",
+        "10 × 6 = 60, so 60 ÷ 10 = 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 10 works."
+        "correct": "Correct! 60 ÷ 10 = 6 books per row.",
+        "incorrect": "Not quite. 60 ÷ 10 = 6. Drop the zero: 60 → 6."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "30 ÷ 10 = ?",
+      "answer": "3",
+      "explanation": "30 ÷ 10 = 3. Drop the zero from 30.",
+      "difficulty": 1,
+      "hints": [
+        "Drop the zero: 30 ÷ 10 = 3.",
+        "10 × 3 = 30, so 30 ÷ 10 = 3."
+      ],
+      "feedback": {
+        "correct": "Correct! 30 ÷ 10 = 3.",
+        "incorrect": "Not quite. 10 × 3 = 30, so 30 ÷ 10 = 3."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "70 ÷ 10 = ?",
+      "answer": "7",
+      "explanation": "70 ÷ 10 = 7. Drop the zero from 70.",
+      "difficulty": 1,
+      "hints": [
+        "Drop the zero: 70 ÷ 10 = 7.",
+        "10 × 7 = 70, so 70 ÷ 10 = 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 70 ÷ 10 = 7.",
+        "incorrect": "Not quite. 10 × 7 = 70, so 70 ÷ 10 = 7."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "A school buys 50 pencils for 10 classrooms equally. How many per classroom?",
+      "choices": ["4", "5", "6", "7"],
+      "answer": "B",
+      "explanation": "50 ÷ 10 = 5.",
+      "difficulty": 1,
+      "hints": [
+        "50 pencils ÷ 10 classrooms = ? per classroom.",
+        "Drop the zero: 50 ÷ 10 = 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 50 ÷ 10 = 5 pencils per classroom.",
+        "incorrect": "Not quite. 50 ÷ 10 = 5. Drop the zero: 50 → 5."
       },
       "solution_steps": []
     }
   ],
   "practice_r1": [
     {
+      "id": "R1_01",
       "type": "MC",
       "stem": "10 ÷ 10 = ?",
-      "choices": [
-        "0",
-        "1",
-        "10",
-        "100"
-      ],
+      "choices": ["0", "1", "10", "100"],
       "answer": "B",
       "explanation": "10 ÷ 10 = 1.",
       "difficulty": 1,
-      "id": "R1_01",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Any number ÷ itself = 1.",
+        "10 × 1 = 10, so 10 ÷ 10 = 1."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 10 works."
+        "correct": "Correct! 10 ÷ 10 = 1.",
+        "incorrect": "Not quite. 10 ÷ 10 = 1 (any number ÷ itself = 1)."
       }
     },
     {
+      "id": "R1_02",
       "type": "MC",
       "stem": "40 ÷ 10 = ?",
-      "choices": [
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
+      "choices": ["3", "4", "5", "6"],
       "answer": "B",
       "explanation": "40 ÷ 10 = 4.",
       "difficulty": 1,
-      "id": "R1_02",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Drop the zero from 40: 40 ÷ 10 = 4.",
+        "10 × 4 = 40, so 40 ÷ 10 = 4."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 10 works."
+        "correct": "Correct! 40 ÷ 10 = 4.",
+        "incorrect": "Not quite. Drop the zero: 40 ÷ 10 = 4."
       }
     },
     {
+      "id": "R1_03",
       "type": "MC",
       "stem": "60 ÷ 10 = ?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "B",
       "explanation": "60 ÷ 10 = 6.",
       "difficulty": 1,
-      "id": "R1_03",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Drop the zero from 60: 60 ÷ 10 = 6.",
+        "10 × 6 = 60, so 60 ÷ 10 = 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 10 works."
+        "correct": "Correct! 60 ÷ 10 = 6.",
+        "incorrect": "Not quite. Drop the zero: 60 ÷ 10 = 6."
       }
     },
     {
+      "id": "R1_04",
       "type": "MC",
       "stem": "70 ÷ 10 = ?",
-      "choices": [
-        "6",
-        "7",
-        "8",
-        "9"
-      ],
+      "choices": ["6", "7", "8", "9"],
       "answer": "B",
       "explanation": "70 ÷ 10 = 7.",
       "difficulty": 1,
-      "id": "R1_04",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Drop the zero from 70: 70 ÷ 10 = 7.",
+        "10 × 7 = 70, so 70 ÷ 10 = 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 10 works."
+        "correct": "Correct! 70 ÷ 10 = 7.",
+        "incorrect": "Not quite. Drop the zero: 70 ÷ 10 = 7."
       }
     },
     {
+      "id": "R1_05",
       "type": "MC",
       "stem": "90 ÷ 10 = ?",
-      "choices": [
-        "8",
-        "9",
-        "10",
-        "11"
-      ],
+      "choices": ["8", "9", "10", "11"],
       "answer": "B",
       "explanation": "90 ÷ 10 = 9.",
       "difficulty": 1,
-      "id": "R1_05",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Drop the zero from 90: 90 ÷ 10 = 9.",
+        "10 × 9 = 90, so 90 ÷ 10 = 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 10 works."
+        "correct": "Correct! 90 ÷ 10 = 9.",
+        "incorrect": "Not quite. Drop the zero: 90 ÷ 10 = 9."
       }
     },
     {
-      "type": "MC",
-      "stem": "A book has 80 pages. You read 10 pages per day. How many days?",
-      "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
-      ],
-      "answer": "B",
-      "explanation": "80 ÷ 10 = 8.",
-      "difficulty": 1,
       "id": "R1_06",
+      "type": "MC",
+      "stem": "A book has 80 pages. You read 10 pages per day. How many days to finish?",
+      "choices": ["7", "8", "9", "10"],
+      "answer": "B",
+      "explanation": "80 ÷ 10 = 8 days.",
+      "difficulty": 1,
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "80 pages ÷ 10 per day = ? days.",
+        "Drop the zero: 80 ÷ 10 = 8 days."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 10 works."
+        "correct": "Correct! 80 ÷ 10 = 8 days.",
+        "incorrect": "Not quite. 80 ÷ 10 = 8 days. Drop the zero: 80 → 8."
       }
     },
     {
+      "id": "R1_07",
       "type": "MC",
       "stem": "If 10 × 5 = 50, then 50 ÷ 10 = ?",
-      "choices": [
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
+      "choices": ["3", "4", "5", "6"],
       "answer": "C",
       "explanation": "50 ÷ 10 = 5.",
       "difficulty": 1,
-      "id": "R1_07",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Use the inverse: 10 × 5 = 50 → 50 ÷ 10 = 5.",
+        "The quotient is the other factor: 50 ÷ 10 = 5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 10 works."
+        "correct": "Correct! 10 × 5 = 50 → 50 ÷ 10 = 5.",
+        "incorrect": "Not quite. 10 × 5 = 50 → 50 ÷ 10 = 5."
       }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "stem": "50 ÷ 10 = ?",
+      "answer": "5",
+      "explanation": "50 ÷ 10 = 5.",
+      "difficulty": 1,
+      "hints": [
+        "Drop the zero from 50: 50 ÷ 10 = 5.",
+        "10 × 5 = 50, so 50 ÷ 10 = 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 50 ÷ 10 = 5.",
+        "incorrect": "Not quite. 10 × 5 = 50, so 50 ÷ 10 = 5."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "stem": "100 ÷ 10 = ?",
+      "choices": ["8", "9", "10", "11"],
+      "answer": "C",
+      "explanation": "100 ÷ 10 = 10.",
+      "difficulty": 1,
+      "hints": [
+        "100 = 10 groups of 10. So 100 ÷ 10 = 10.",
+        "10 × 10 = 100, so 100 ÷ 10 = 10."
+      ],
+      "feedback": {
+        "correct": "Correct! 100 ÷ 10 = 10.",
+        "incorrect": "Not quite. 10 × 10 = 100, so 100 ÷ 10 = 10."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "stem": "80 ÷ 10 = ?",
+      "answer": "8",
+      "explanation": "80 ÷ 10 = 8.",
+      "difficulty": 1,
+      "hints": [
+        "Drop the zero from 80: 80 ÷ 10 = 8.",
+        "10 × 8 = 80, so 80 ÷ 10 = 8."
+      ],
+      "feedback": {
+        "correct": "Correct! 80 ÷ 10 = 8.",
+        "incorrect": "Not quite. 10 × 8 = 80, so 80 ÷ 10 = 8."
+      },
+      "solution_steps": []
     }
   ],
   "practice_r2": [
     {
+      "id": "R2_01",
       "type": "MC",
       "stem": "Which fact helps you solve 60 ÷ 10?",
       "choices": [
@@ -344,151 +420,261 @@
         "10 × 8 = 80"
       ],
       "answer": "B",
-      "explanation": "10 × 6 = 60.",
+      "explanation": "10 × 6 = 60, so 60 ÷ 10 = 6.",
       "difficulty": 2,
-      "id": "R2_01",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Think: 10 × ? = 60. Which multiplication fact gives 60?",
+        "10 × 6 = 60 → 60 ÷ 10 = 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 10 works."
+        "correct": "Correct! 10 × 6 = 60 → 60 ÷ 10 = 6.",
+        "incorrect": "Not quite. 10 × 6 = 60 helps you solve 60 ÷ 10 = 6."
       }
     },
     {
+      "id": "R2_02",
       "type": "MC",
       "stem": "? ÷ 10 = 7. What is the number?",
-      "choices": [
-        "60",
-        "70",
-        "80",
-        "90"
-      ],
+      "choices": ["60", "70", "80", "90"],
       "answer": "B",
-      "explanation": "70 ÷ 10 = 7.",
+      "explanation": "70 ÷ 10 = 7. Work backwards: 10 × 7 = 70.",
       "difficulty": 2,
-      "id": "R2_02",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Work backwards: if ? ÷ 10 = 7, then ? = 10 × 7.",
+        "10 × 7 = 70. So 70 ÷ 10 = 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 10 works."
+        "correct": "Correct! 10 × 7 = 70, so 70 ÷ 10 = 7.",
+        "incorrect": "Not quite. ? ÷ 10 = 7 → ? = 10 × 7 = 70."
       }
     },
     {
+      "id": "R2_03",
       "type": "MC",
       "stem": "Which has the greatest quotient?",
-      "choices": [
-        "20 ÷ 10",
-        "50 ÷ 10",
-        "80 ÷ 10",
-        "40 ÷ 10"
-      ],
+      "choices": ["20 ÷ 10", "50 ÷ 10", "80 ÷ 10", "40 ÷ 10"],
       "answer": "C",
-      "explanation": "80 ÷ 10 = 8 (greatest).",
+      "explanation": "80 ÷ 10 = 8 (greatest). Others: 2, 5, 4.",
       "difficulty": 2,
-      "id": "R2_03",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Drop the zero from each: 20→2, 50→5, 80→?, 40→4.",
+        "The larger the dividend, the larger the quotient. 80 ÷ 10 = 8 is greatest."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 10 works."
+        "correct": "Correct! 80 ÷ 10 = 8 is the greatest.",
+        "incorrect": "Not quite. 80 ÷ 10 = 8 — the others give 2, 5, and 4."
       }
     },
     {
+      "id": "R2_04",
       "type": "MC",
       "stem": "A store has $90 and spends $10 per item. How many items can they buy?",
-      "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
-      ],
+      "choices": ["7", "8", "9", "10"],
       "answer": "C",
-      "explanation": "90 ÷ 10 = 9.",
+      "explanation": "90 ÷ 10 = 9 items.",
       "difficulty": 2,
-      "id": "R2_04",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "$90 ÷ $10 per item = ? items.",
+        "Drop the zero: 90 ÷ 10 = 9 items."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 10 works."
+        "correct": "Correct! 90 ÷ 10 = 9 items.",
+        "incorrect": "Not quite. 90 ÷ 10 = 9. Drop the zero: 90 → 9."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "10 × ? = 30, so 30 ÷ 10 = ?",
+      "answer": "3",
+      "explanation": "10 × 3 = 30, so 30 ÷ 10 = 3.",
+      "difficulty": 2,
+      "hints": [
+        "Find the missing factor: 10 × ? = 30.",
+        "10 × 3 = 30 → 30 ÷ 10 = 3."
+      ],
+      "feedback": {
+        "correct": "Correct! 10 × 3 = 30 → 30 ÷ 10 = 3.",
+        "incorrect": "Not quite. 10 × 3 = 30, so 30 ÷ 10 = 3."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "A pack of 100 crayons is divided equally into 10 bags. How many per bag?",
+      "choices": ["8", "9", "10", "11"],
+      "answer": "C",
+      "explanation": "100 ÷ 10 = 10 crayons per bag.",
+      "difficulty": 2,
+      "hints": [
+        "100 crayons ÷ 10 bags = ? per bag.",
+        "10 × 10 = 100, so 100 ÷ 10 = 10."
+      ],
+      "feedback": {
+        "correct": "Correct! 100 ÷ 10 = 10 crayons per bag.",
+        "incorrect": "Not quite. 100 ÷ 10 = 10. Each bag gets 10 crayons."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "? ÷ 10 = 4. What is the mystery number?",
+      "answer": "40",
+      "explanation": "10 × 4 = 40, so 40 ÷ 10 = 4.",
+      "difficulty": 2,
+      "hints": [
+        "Work backwards: ? ÷ 10 = 4 → ? = 10 × 4.",
+        "10 × 4 = 40. The mystery number is 40."
+      ],
+      "feedback": {
+        "correct": "Correct! 10 × 4 = 40, so 40 ÷ 10 = 4.",
+        "incorrect": "Not quite. ? ÷ 10 = 4 → ? = 10 × 4 = 40."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "Which expression equals 10?",
+      "choices": [
+        "100 ÷ 10",
+        "90 ÷ 10",
+        "80 ÷ 10",
+        "70 ÷ 10"
+      ],
+      "answer": "A",
+      "explanation": "100 ÷ 10 = 10. Others: 9, 8, 7.",
+      "difficulty": 2,
+      "hints": [
+        "Drop the zero from each: 100→10, 90→9, 80→8, 70→7.",
+        "Only 100 ÷ 10 = 10."
+      ],
+      "feedback": {
+        "correct": "Correct! 100 ÷ 10 = 10.",
+        "incorrect": "Not quite. 100÷10=10, 90÷10=9, 80÷10=8, 70÷10=7."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "10 × 6 = 60, so 60 ÷ 10 = ?",
+      "answer": "6",
+      "explanation": "60 ÷ 10 = 6.",
+      "difficulty": 2,
+      "hints": [
+        "Use the inverse: 10 × 6 = 60 → 60 ÷ 10 = ?",
+        "The quotient is the other factor: 60 ÷ 10 = 6."
+      ],
+      "feedback": {
+        "correct": "Correct! 10 × 6 = 60 → 60 ÷ 10 = 6.",
+        "incorrect": "Not quite. If 10 × 6 = 60, then 60 ÷ 10 = 6."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "Lily saves $10 per week. After how many weeks will she have $70?",
+      "choices": ["6", "7", "8", "9"],
+      "answer": "B",
+      "explanation": "70 ÷ 10 = 7 weeks.",
+      "difficulty": 2,
+      "hints": [
+        "$70 total ÷ $10 per week = ? weeks.",
+        "Drop the zero: 70 ÷ 10 = 7 weeks."
+      ],
+      "feedback": {
+        "correct": "Correct! 70 ÷ 10 = 7. It takes 7 weeks.",
+        "incorrect": "Not quite. 70 ÷ 10 = 7 weeks."
       }
     }
   ],
   "practice_r3": [
     {
+      "id": "R3_01",
       "type": "MC",
       "stem": "A class has 100 markers. They give 30 away, then split the rest into 10 equal boxes. How many per box?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "C",
       "explanation": "100 − 30 = 70. 70 ÷ 10 = 7.",
       "difficulty": 3,
-      "id": "R3_01",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: 100 − 30 = ?. Step 2: divide by 10.",
+        "100 − 30 = 70. Then 70 ÷ 10 = 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 10 works."
+        "correct": "Correct! 100 − 30 = 70, then 70 ÷ 10 = 7.",
+        "incorrect": "Not quite. 100 − 30 = 70, then 70 ÷ 10 = 7."
       }
     },
     {
+      "id": "R3_02",
       "type": "MC",
-      "stem": "Pattern: 10 ÷ 10 = 1, 20 ÷ 10 = 2, 30 ÷ 10 = 3... What is 90 ÷ 10?",
-      "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
-      ],
+      "stem": "Pattern: 10 ÷ 10 = 1, 20 ÷ 10 = 2, 30 ÷ 10 = 3 … What is 90 ÷ 10?",
+      "choices": ["7", "8", "9", "10"],
       "answer": "C",
       "explanation": "Pattern: drop the zero. 90 ÷ 10 = 9.",
       "difficulty": 2,
-      "id": "R3_02",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "The pattern: divide a multiple of 10 by 10 → drop the zero.",
+        "90 has a zero → drop it → 9. So 90 ÷ 10 = 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 10 works."
+        "correct": "Correct! 90 ÷ 10 = 9. The drop-the-zero pattern works!",
+        "incorrect": "Not quite. Drop the zero from 90: 90 ÷ 10 = 9."
       }
     },
     {
+      "id": "R3_03",
       "type": "MC",
       "stem": "Ten friends share $80 equally. Then each friend spends $3. How much does each have left?",
-      "choices": [
-        "5",
-        "6",
-        "7",
-        "8"
-      ],
+      "choices": ["5", "6", "7", "8"],
       "answer": "A",
-      "explanation": "80 ÷ 10 = $8. $8 − $3 = $5.",
+      "explanation": "80 ÷ 10 = $8 each. $8 − $3 = $5.",
       "difficulty": 3,
-      "id": "R3_03",
       "hints": [
-        "Think about what divide by 10 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: share $80 among 10. Step 2: subtract $3.",
+        "80 ÷ 10 = $8. Then $8 − $3 = $5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is A. Remember how divide by 10 works."
+        "correct": "Correct! 80 ÷ 10 = $8, then $8 − $3 = $5.",
+        "incorrect": "Not quite. 80 ÷ 10 = $8 each, then $8 − $3 = $5."
       }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "A farmer has 100 apples. He sells 20, then packs the rest equally into 10 boxes. How many per box?",
+      "choices": ["6", "7", "8", "9"],
+      "answer": "C",
+      "explanation": "100 − 20 = 80. 80 ÷ 10 = 8 per box.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: 100 − 20 = ?. Step 2: divide by 10.",
+        "100 − 20 = 80. Then 80 ÷ 10 = 8."
+      ],
+      "feedback": {
+        "correct": "Correct! 100 − 20 = 80, then 80 ÷ 10 = 8.",
+        "incorrect": "Not quite. 100 − 20 = 80, then 80 ÷ 10 = 8 per box."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "A mystery number divided by 10 equals 8. What is the mystery number?",
+      "answer": "80",
+      "explanation": "? ÷ 10 = 8 → ? = 10 × 8 = 80.",
+      "difficulty": 3,
+      "hints": [
+        "Work backwards: ? ÷ 10 = 8 → ? = 10 × 8.",
+        "10 × 8 = 80. The mystery number is 80."
+      ],
+      "feedback": {
+        "correct": "Correct! 10 × 8 = 80, so 80 ÷ 10 = 8.",
+        "incorrect": "Not quite. ? ÷ 10 = 8 → ? = 10 × 8 = 80."
+      },
+      "solution_steps": []
     }
   ],
   "concept": "divide_by_10"

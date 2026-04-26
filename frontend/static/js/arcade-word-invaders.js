@@ -7,9 +7,9 @@
 
 /** @tag ARCADE */
 const WI_LEVELS = {
-  easy:   { label: 'Easy',   icon: '🐢', fallPxPerSec: 20, spawnMinMs: 3500, spawnMaxMs: 5500, speedRampPerSec: 0.10, maxActive: 3 },
-  normal: { label: 'Normal', icon: '🚀', fallPxPerSec: 28, spawnMinMs: 2600, spawnMaxMs: 4200, speedRampPerSec: 0.25, maxActive: 4 },
-  hard:   { label: 'Hard',   icon: '🔥', fallPxPerSec: 40, spawnMinMs: 1800, spawnMaxMs: 3000, speedRampPerSec: 0.40, maxActive: 5 },
+  easy:   { label: 'Easy',   fallPxPerSec: 20, spawnMinMs: 3500, spawnMaxMs: 5500, speedRampPerSec: 0.10, maxActive: 3 },
+  normal: { label: 'Normal', fallPxPerSec: 28, spawnMinMs: 2600, spawnMaxMs: 4200, speedRampPerSec: 0.25, maxActive: 4 },
+  hard:   { label: 'Hard',   fallPxPerSec: 40, spawnMinMs: 1800, spawnMaxMs: 3000, speedRampPerSec: 0.40, maxActive: 5 },
 };
 
 /** @tag ARCADE */
@@ -52,9 +52,9 @@ const WI_COLORS = {
 
 /** @tag ARCADE */
 const WI_POWERUPS = {
-  ice:    { label: 'ICE',    icon: '🧊', color: WI_COLORS.ice },
-  bomb:   { label: 'BOMB',   icon: '💣', color: WI_COLORS.bombRed },
-  shield: { label: 'SHIELD', icon: '🛡️', color: WI_COLORS.success },
+  ice:    { label: 'ICE',    color: WI_COLORS.ice },
+  bomb:   { label: 'BOMB',   color: WI_COLORS.bombRed },
+  shield: { label: 'SHIELD', color: WI_COLORS.success },
 };
 
 let _wi = null; // state container
@@ -89,10 +89,10 @@ async function wiShowLevelPicker() {
       const pb = bests[i].score || 0;
       return `
         <div class="wi-level-card" onclick="wiStart('${key}')">
-          <div class="wi-level-icon">${cfg.icon}</div>
+          <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
           <div class="wi-level-name">${cfg.label}</div>
           <div class="wi-level-spec">Speed ${cfg.fallPxPerSec} · Max ${cfg.maxActive}</div>
-          <div class="wi-level-pb">🏆 ${pb}</div>
+          <div class="wi-level-pb">Best: ${pb}</div>
         </div>`;
     })
     .join('');
@@ -114,8 +114,8 @@ async function wiStart(level = 'normal') {
         <div class="wi-hud-item"><span class="wi-hud-label">SCORE</span><b id="wi-score">0</b></div>
         <div class="wi-hud-item"><span class="wi-hud-label">WAVE</span><b id="wi-wave">1</b></div>
         <div class="wi-hud-item"><span class="wi-hud-label">COMBO</span><b id="wi-streak">0</b>x</div>
-        <div class="wi-hud-item" id="wi-shield-slot">🛡️<b id="wi-shield">0</b></div>
-        <div class="wi-hud-item wi-hud-lives" id="wi-lives">❤️❤️❤️</div>
+        <div class="wi-hud-item" id="wi-shield-slot"><span class="wi-hud-label">SHIELD</span><b id="wi-shield">0</b></div>
+        <div class="wi-hud-item wi-hud-lives" id="wi-lives"><span class="wi-life"></span><span class="wi-life"></span><span class="wi-life"></span></div>
         <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit">✕</button>
       </div>
       <div class="wi-canvas-wrap">
@@ -307,7 +307,7 @@ function _wiActivatePowerup(type, x, y) {
     _wi.active.forEach((en) => _wiBurst(en.x, en.y + 18, WI_COLORS.bombRed));
     _wi.score += count * 15;
     _wi.active = [];
-    _wi.banner = { text: `💥 BOOM  +${count * 15}`, until: performance.now() + 1000 };
+    _wi.banner = { text: `BOOM! +${count * 15}`, until: performance.now() + 1000 };
   } else if (type === 'shield') {
     _wi.shieldCharges += 1;
   }
@@ -336,7 +336,7 @@ function _wiUpdateHUD() {
   const wv = document.getElementById('wi-wave');
   const sh = document.getElementById('wi-shield');
   if (s) s.textContent = String(_wi.score);
-  if (l) l.textContent = '❤️'.repeat(Math.max(0, _wi.lives)) + '🖤'.repeat(Math.max(0, WI_CFG.maxLives - _wi.lives));
+  if (l) { l.innerHTML = Array.from({ length: WI_CFG.maxLives }, (_, i) => `<span class="wi-life${i >= _wi.lives ? ' wi-life--lost' : ''}"></span>`).join(''); }
   if (st) st.textContent = String(_wi.streak);
   if (wv) wv.textContent = String(_wi.wave);
   if (sh) sh.textContent = String(_wi.shieldCharges);
@@ -405,7 +405,7 @@ function _wiLoop(ts) {
       if (_wi.shieldCharges > 0) {
         _wi.shieldCharges -= 1;
         _wiBurst(en.x, floorY, WI_COLORS.success);
-        _wi.banner = { text: '🛡️ SHIELD', until: ts + 900 };
+        _wi.banner = { text: 'SHIELD ACTIVE', until: ts + 900 };
         if (typeof sfxCombo === 'function') sfxCombo();
       } else {
         _wiBurst(en.x, floorY, WI_COLORS.error);
@@ -541,7 +541,7 @@ function _wiDraw(ts) {
     ctx.fill();
     ctx.shadowBlur = 0;
     ctx.fillStyle = WI_COLORS.bgBot;
-    ctx.fillText(`${cfg.icon} ${cfg.label}`, x + w / 2, y + float + h / 2 + 1);
+    ctx.fillText(cfg.label, x + w / 2, y + float + h / 2 + 1);
   });
 
   // Particles

@@ -7,9 +7,9 @@
 
 /** @tag ARCADE */
 const SU_LEVELS = {
-  easy:    { label: '4×4',  icon: '🟢', N: 4, br: 2, bc: 2, holes: 6,  baseScore: 500,  timeBonus: 4 },
-  medium:  { label: '6×6',  icon: '🟡', N: 6, br: 2, bc: 3, holes: 18, baseScore: 800,  timeBonus: 3 },
-  hard:    { label: '9×9',  icon: '🔴', N: 9, br: 3, bc: 3, holes: 40, baseScore: 1500, timeBonus: 2 },
+  easy:    { label: '4×4', N: 4, br: 2, bc: 2, holes: 6,  baseScore: 500,  timeBonus: 4 },
+  medium:  { label: '6×6', N: 6, br: 2, bc: 3, holes: 18, baseScore: 800,  timeBonus: 3 },
+  hard:    { label: '9×9', N: 9, br: 3, bc: 3, holes: 40, baseScore: 1500, timeBonus: 2 },
 };
 
 let _su = null;
@@ -36,10 +36,10 @@ async function suShowLevelPicker() {
   if (!list) return;
   list.innerHTML = Object.entries(SU_LEVELS).map(([key, cfg], i) => `
     <div class="wi-level-card" onclick="suStart('${key}')">
-      <div class="wi-level-icon">${cfg.icon}</div>
+      <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
       <div class="wi-level-name">${cfg.label}</div>
       <div class="wi-level-spec">${cfg.holes} blanks</div>
-      <div class="wi-level-pb">🏆 ${bests[i].score || 0}</div>
+      <div class="wi-level-pb">Best: ${bests[i].score || 0}</div>
     </div>`).join('');
 }
 
@@ -267,7 +267,7 @@ async function _suFinish() {
   const body = document.getElementById('arcade-body');
   const msg = `
     <div class="su-finish">
-      <h2>✨ Solved!</h2>
+      <h2>Solved!</h2>
       <div class="stat">Time: <b>${seconds}s</b></div>
       <div class="stat">Mistakes: <b>${state.mistakes}</b></div>
     </div>`;

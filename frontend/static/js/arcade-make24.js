@@ -17,8 +17,8 @@ const MK_CFG = {
 
 /** @tag ARCADE */
 const MK_LEVELS = {
-  easy:   { label: 'Easy',   icon: '➕', ops: ['+', '-'],             target: 20, numbersMin: 1, numbersMax: 9 },
-  normal: { label: 'Normal', icon: '✖️', ops: ['+', '-', '*', '/'],   target: 24, numbersMin: 1, numbersMax: 9 },
+  easy:   { label: 'Easy',   ops: ['+', '-'],             target: 20, numbersMin: 1, numbersMax: 9 },
+  normal: { label: 'Normal', ops: ['+', '-', '*', '/'],   target: 24, numbersMin: 1, numbersMax: 9 },
 };
 
 let _mk = null;
@@ -45,10 +45,10 @@ async function mkShowLevelPicker() {
   if (!list) return;
   list.innerHTML = Object.entries(MK_LEVELS).map(([key, cfg], i) => `
     <div class="wi-level-card" onclick="mkStart('${key}')">
-      <div class="wi-level-icon">${cfg.icon}</div>
+      <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
       <div class="wi-level-name">${cfg.label}</div>
       <div class="wi-level-spec">${cfg.ops.join(' ')} · target ${cfg.target}</div>
-      <div class="wi-level-pb">🏆 ${bests[i].score || 0}</div>
+      <div class="wi-level-pb">Best: ${bests[i].score || 0}</div>
     </div>`).join('');
 }
 
@@ -57,7 +57,6 @@ function mkStart(level = 'normal') {
   mkStop();
   _mkLevel = MK_LEVELS[level] ? level : 'normal';
   const lv = MK_LEVELS[_mkLevel];
-  mkStop();
   const body = document.getElementById('arcade-body');
   if (!body) return;
 

@@ -101,25 +101,76 @@
       "id": "LN_01",
       "type": "concept_card",
       "title": "Dividing by 2",
-      "content": "Dividing by 2 is the same as finding half. 10 ÷ 2 = 5 because half of 10 is 5.",
+      "content": "Dividing by 2 is the same as finding half. 10 ÷ 2 = 5 because half of 10 is 5. You split one group into exactly 2 equal parts.",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "counter_groups",
+        "config": {
+          "total": 10,
+          "groups": 2,
+          "label": "10 ÷ 2 = 5"
+        }
+      }
     },
     {
       "id": "LN_02",
       "type": "concept_card",
       "title": "Use Doubles",
-      "content": "If you know 2 × 8 = 16, then 16 ÷ 2 = 8. Doubles facts help you divide by 2 quickly.",
+      "content": "If you know 2 × 8 = 16, then 16 ÷ 2 = 8. Doubles facts help you divide by 2 quickly. Think: 2 × ? = 16 → ? = 8.",
       "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 2,
+          "cols": 8,
+          "label": "2 × 8 = 16  →  16 ÷ 2 = 8"
+        }
+      }
     },
     {
       "id": "LN_03",
       "type": "concept_card",
-      "title": "Model It",
-      "content": "To find 14 ÷ 2: draw 2 circles. Deal 14 counters evenly. Each circle gets 7.",
+      "title": "Model It with Two Groups",
+      "content": "To find 14 ÷ 2: draw 2 circles. Deal 14 counters one by one, alternating circles. Each circle gets 7. So 14 ÷ 2 = 7.",
       "cpa_phase": "pictorial",
-      "visual_type": "none"
+      "visual_type": "diagram",
+      "visual_data": {
+        "tool": "counter_groups",
+        "config": {
+          "total": 14,
+          "groups": 2,
+          "label": "14 ÷ 2 = 7"
+        }
+      }
+    },
+    {
+      "id": "LN_04",
+      "type": "concept_card",
+      "title": "Halving on a Number Line",
+      "content": "On a number line, 12 ÷ 2 = 6 means: start at 12, make jumps of 2 going back. Count: 12→10→8→6→4→2→0 — that's 6 jumps. So 12 ÷ 2 = 6.",
+      "cpa_phase": "pictorial",
+      "visual_type": "number_line",
+      "visual_data": {
+        "start": 12,
+        "jump": 2,
+        "end": 0,
+        "count": 6,
+        "label": "12 ÷ 2 = 6 (6 jumps of 2)"
+      }
+    },
+    {
+      "id": "LN_05",
+      "type": "concept_card",
+      "title": "The Halving Rule",
+      "content": "Dividing by 2 always gives you half the number. Half of 18 = 9, so 18 ÷ 2 = 9. You can also think of it as: 2 × quotient = dividend. This works for ALL even numbers.",
+      "cpa_phase": "abstract",
+      "visual_type": "formula",
+      "visual_data": {
+        "formula": "n ÷ 2 = half of n",
+        "examples": ["18 ÷ 2 = 9", "16 ÷ 2 = 8", "14 ÷ 2 = 7"]
+      }
     }
   ],
   "try": [
@@ -134,15 +185,15 @@
         "6"
       ],
       "answer": "B",
-      "explanation": "6 ÷ 2 = 3.",
+      "explanation": "6 ÷ 2 = 3. Half of 6 is 3.",
       "difficulty": 1,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Dividing by 2 means finding half. What is half of 6?",
+        "Think: 2 × ? = 6. That missing number is the quotient."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+        "correct": "Correct! 6 ÷ 2 = 3. Half of 6 is 3.",
+        "incorrect": "Not quite. Half of 6 is 3: 6 ÷ 2 = 3."
       },
       "solution_steps": []
     },
@@ -160,12 +211,69 @@
       "explanation": "10 ÷ 2 = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "10 stickers, 2 friends: 10 ÷ 2 = ?",
+        "Think: half of 10. Or: 2 × ? = 10."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+        "correct": "Correct! 10 ÷ 2 = 5. Each friend gets 5 stickers.",
+        "incorrect": "Not quite. 10 ÷ 2 = 5. Half of 10 is 5."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "stem": "12 ÷ 2 = ?",
+      "answer": "6",
+      "explanation": "12 ÷ 2 = 6. Half of 12 is 6.",
+      "difficulty": 1,
+      "hints": [
+        "Dividing by 2 means finding half. What is half of 12?",
+        "Think: 2 × ? = 12. Count by 2s: 2, 4, 6, 8, 10, 12 — that's 6 steps."
+      ],
+      "feedback": {
+        "correct": "Correct! 12 ÷ 2 = 6. Half of 12 is 6.",
+        "incorrect": "Not quite. 2 × 6 = 12, so 12 ÷ 2 = 6."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "stem": "18 ÷ 2 = ?",
+      "answer": "9",
+      "explanation": "18 ÷ 2 = 9. Half of 18 is 9.",
+      "difficulty": 1,
+      "hints": [
+        "Dividing by 2 means finding half. What is half of 18?",
+        "Think: 2 × ? = 18. Count by 2s to 18 — that's 9 steps."
+      ],
+      "feedback": {
+        "correct": "Correct! 18 ÷ 2 = 9. Half of 18 is 9.",
+        "incorrect": "Not quite. 2 × 9 = 18, so 18 ÷ 2 = 9."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "stem": "A baker has 14 muffins. She puts them equally into 2 boxes. How many per box?",
+      "choices": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "C",
+      "explanation": "14 ÷ 2 = 7. Half of 14 is 7.",
+      "difficulty": 1,
+      "hints": [
+        "14 muffins, 2 boxes: 14 ÷ 2 = ?",
+        "Think: half of 14. Or: 2 × 7 = 14."
+      ],
+      "feedback": {
+        "correct": "Correct! 14 ÷ 2 = 7. Each box gets 7 muffins.",
+        "incorrect": "Not quite. 14 ÷ 2 = 7. Half of 14 is 7."
       },
       "solution_steps": []
     }
@@ -185,12 +293,12 @@
       "explanation": "4 ÷ 2 = 2.",
       "difficulty": 1,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Dividing by 2 means finding half. Half of 4 = ?",
+        "2 × ? = 4 → 2 × 2 = 4 → 4 ÷ 2 = 2."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+        "correct": "Correct! 4 ÷ 2 = 2.",
+        "incorrect": "Not quite. Half of 4 is 2: 4 ÷ 2 = 2."
       }
     },
     {
@@ -207,12 +315,12 @@
       "explanation": "10 ÷ 2 = 5.",
       "difficulty": 1,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Half of 10 = ?",
+        "2 × 5 = 10, so 10 ÷ 2 = 5."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+        "correct": "Correct! 10 ÷ 2 = 5.",
+        "incorrect": "Not quite. Half of 10 is 5: 10 ÷ 2 = 5."
       }
     },
     {
@@ -229,12 +337,12 @@
       "explanation": "20 ÷ 2 = 10.",
       "difficulty": 1,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Half of 20 = ?",
+        "2 × 10 = 20, so 20 ÷ 2 = 10."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+        "correct": "Correct! 20 ÷ 2 = 10.",
+        "incorrect": "Not quite. Half of 20 is 10: 20 ÷ 2 = 10."
       }
     },
     {
@@ -251,12 +359,12 @@
       "explanation": "16 ÷ 2 = 8.",
       "difficulty": 1,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Half of 16 = ?",
+        "2 × 8 = 16, so 16 ÷ 2 = 8."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+        "correct": "Correct! 16 ÷ 2 = 8.",
+        "incorrect": "Not quite. Half of 16 is 8: 16 ÷ 2 = 8."
       }
     },
     {
@@ -273,18 +381,18 @@
       "explanation": "2 ÷ 2 = 1.",
       "difficulty": 1,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Any number ÷ itself = 1.",
+        "2 × 1 = 2, so 2 ÷ 2 = 1."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+        "correct": "Correct! 2 ÷ 2 = 1.",
+        "incorrect": "Not quite. 2 ÷ 2 = 1 (any number ÷ itself = 1)."
       }
     },
     {
       "id": "R1_06",
       "type": "MC",
-      "stem": "A box has 12 cookies. You share them with 1 friend. How many each?",
+      "stem": "A box has 12 cookies. You share them with 1 friend (2 people total). How many each?",
       "choices": [
         "4",
         "5",
@@ -295,12 +403,12 @@
       "explanation": "12 ÷ 2 = 6.",
       "difficulty": 1,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "12 cookies shared by 2 people: 12 ÷ 2 = ?",
+        "Half of 12 is 6: 12 ÷ 2 = 6."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+        "correct": "Correct! 12 ÷ 2 = 6. Each person gets 6 cookies.",
+        "incorrect": "Not quite. 12 ÷ 2 = 6. Half of 12 is 6."
       }
     },
     {
@@ -317,13 +425,69 @@
       "explanation": "18 ÷ 2 = 9.",
       "difficulty": 1,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Use the related multiplication: 2 × 9 = 18 → 18 ÷ 2 = ?",
+        "The inverse of 2 × 9 = 18 is 18 ÷ 2 = 9."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+        "correct": "Correct! 2 × 9 = 18 → 18 ÷ 2 = 9.",
+        "incorrect": "Not quite. 2 × 9 = 18 → 18 ÷ 2 = 9."
       }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "stem": "14 ÷ 2 = ?",
+      "answer": "7",
+      "explanation": "14 ÷ 2 = 7. Half of 14 is 7.",
+      "difficulty": 1,
+      "hints": [
+        "Half of 14 = ?",
+        "2 × 7 = 14, so 14 ÷ 2 = 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 14 ÷ 2 = 7.",
+        "incorrect": "Not quite. 2 × 7 = 14, so 14 ÷ 2 = 7."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "stem": "8 ÷ 2 = ?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "B",
+      "explanation": "8 ÷ 2 = 4. Half of 8 is 4.",
+      "difficulty": 1,
+      "hints": [
+        "Half of 8 = ?",
+        "2 × 4 = 8, so 8 ÷ 2 = 4."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 ÷ 2 = 4.",
+        "incorrect": "Not quite. Half of 8 is 4: 8 ÷ 2 = 4."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "stem": "6 ÷ 2 = ?",
+      "answer": "3",
+      "explanation": "6 ÷ 2 = 3. Half of 6 is 3.",
+      "difficulty": 1,
+      "hints": [
+        "Half of 6 = ?",
+        "2 × 3 = 6, so 6 ÷ 2 = 3."
+      ],
+      "feedback": {
+        "correct": "Correct! 6 ÷ 2 = 3.",
+        "incorrect": "Not quite. 2 × 3 = 6, so 6 ÷ 2 = 3."
+      },
+      "solution_steps": []
     }
   ],
   "practice_r2": [
@@ -341,12 +505,12 @@
       "explanation": "2 × 7 = 14, so 14 ÷ 2 = 7.",
       "difficulty": 2,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Think: 2 × ? = 14. Which fact gives 14 as the product?",
+        "2 × 7 = 14 → 14 ÷ 2 = 7."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+        "correct": "Correct! 2 × 7 = 14 → 14 ÷ 2 = 7.",
+        "incorrect": "Not quite. 2 × 7 = 14 helps you solve 14 ÷ 2 = 7."
       }
     },
     {
@@ -363,12 +527,12 @@
       "explanation": "2 × 8 = 16.",
       "difficulty": 2,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "He splits into 2 piles of 8: work backwards — multiply. 2 × 8 = ?",
+        "2 groups of 8 = 16 total. So Tom started with 16 coins."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how divide by 2 works."
+        "correct": "Correct! 2 × 8 = 16. Tom started with 16 coins.",
+        "incorrect": "Not quite. 2 piles × 8 each = 2 × 8 = 16 coins total."
       }
     },
     {
@@ -382,15 +546,15 @@
         "12 ÷ 2"
       ],
       "answer": "C",
-      "explanation": "18 ÷ 2 = 9 (greatest).",
+      "explanation": "18 ÷ 2 = 9 (greatest). Others: 5, 7, 6.",
       "difficulty": 2,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Halve each: 10÷2=5, 14÷2=7, 18÷2=?, 12÷2=6.",
+        "The larger the dividend, the larger the quotient when dividing by 2."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+        "correct": "Correct! 18 ÷ 2 = 9 is the greatest quotient.",
+        "incorrect": "Not quite. 18 ÷ 2 = 9 — the others give 5, 7, and 6."
       }
     },
     {
@@ -407,12 +571,129 @@
       "explanation": "16 ÷ 2 = 8 students.",
       "difficulty": 2,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Total pencils ÷ pencils per student = number of students. 16 ÷ 2 = ?",
+        "Half of 16 is 8: 16 ÷ 2 = 8 students."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+        "correct": "Correct! 16 ÷ 2 = 8 students.",
+        "incorrect": "Not quite. 16 ÷ 2 = 8. There are 8 students."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "stem": "There are 18 children forming 2 equal teams. How many children on each team?",
+      "answer": "9",
+      "explanation": "18 ÷ 2 = 9. Half of 18 is 9.",
+      "difficulty": 2,
+      "hints": [
+        "18 children, 2 teams: 18 ÷ 2 = ?",
+        "Half of 18 = 9. Think: 2 × 9 = 18."
+      ],
+      "feedback": {
+        "correct": "Correct! 18 ÷ 2 = 9. Each team has 9 children.",
+        "incorrect": "Not quite. 18 ÷ 2 = 9. Half of 18 is 9."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "stem": "A rope is 20 cm long. It is cut in half. How long is each piece?",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "answer": "C",
+      "explanation": "20 ÷ 2 = 10 cm each.",
+      "difficulty": 2,
+      "hints": [
+        "'Cut in half' means ÷ 2. 20 ÷ 2 = ?",
+        "Half of 20 is 10: 20 ÷ 2 = 10 cm."
+      ],
+      "feedback": {
+        "correct": "Correct! 20 ÷ 2 = 10. Each piece is 10 cm.",
+        "incorrect": "Not quite. 20 ÷ 2 = 10. Each half is 10 cm."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "stem": "2 × ? = 14. What is 14 ÷ 2?",
+      "answer": "7",
+      "explanation": "2 × 7 = 14, so 14 ÷ 2 = 7.",
+      "difficulty": 2,
+      "hints": [
+        "Find the missing factor: 2 × ? = 14.",
+        "2 × 7 = 14 → 14 ÷ 2 = 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 2 × 7 = 14 → 14 ÷ 2 = 7.",
+        "incorrect": "Not quite. 2 × 7 = 14, so 14 ÷ 2 = 7."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "stem": "Which does NOT equal half of 16?",
+      "choices": [
+        "16 ÷ 2",
+        "8",
+        "2 × 4",
+        "16 ÷ 4"
+      ],
+      "answer": "D",
+      "explanation": "16 ÷ 4 = 4, not 8. The others all equal 8 (half of 16).",
+      "difficulty": 2,
+      "hints": [
+        "Half of 16 = 8. Check each option: which one does NOT equal 8?",
+        "16÷2=8 ✓, 8=8 ✓, 2×4=8 ✓, 16÷4=4 ✗"
+      ],
+      "feedback": {
+        "correct": "Correct! 16 ÷ 4 = 4, not 8. So it does NOT equal half of 16.",
+        "incorrect": "Not quite. 16÷2=8, 8=8, 2×4=8, but 16÷4=4 (not 8)."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "stem": "A garden is 16 m long. It's divided into 2 equal sections. How long is each section?",
+      "answer": "8",
+      "explanation": "16 ÷ 2 = 8 m.",
+      "difficulty": 2,
+      "hints": [
+        "16 meters ÷ 2 sections = ? meters each.",
+        "Half of 16 = 8. So each section is 8 m."
+      ],
+      "feedback": {
+        "correct": "Correct! 16 ÷ 2 = 8. Each section is 8 m.",
+        "incorrect": "Not quite. 16 ÷ 2 = 8. Half of 16 is 8."
+      },
+      "solution_steps": []
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "stem": "Sara and her brother share 18 cookies equally. Sara gives 2 of hers to their mom. How many does Sara have now?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "B",
+      "explanation": "18 ÷ 2 = 9 each. Sara gives 2 away: 9 − 2 = 7.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: share 18 equally by 2. Step 2: subtract 2 from Sara's share.",
+        "18 ÷ 2 = 9. Then 9 − 2 = 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 18 ÷ 2 = 9, then 9 − 2 = 7 cookies.",
+        "incorrect": "Not quite. 18 ÷ 2 = 9 for Sara. Then 9 − 2 = 7."
       }
     }
   ],
@@ -431,12 +712,12 @@
       "explanation": "Half: 18 ÷ 2 = 9. Then 9 ÷ 3 = 3 each.",
       "difficulty": 3,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: half of 18 = 18 ÷ 2 = ?. Step 2: divide that by 3.",
+        "18 ÷ 2 = 9 stickers left. Then 9 ÷ 3 = 3 per friend."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how divide by 2 works."
+        "correct": "Correct! 18 ÷ 2 = 9, then 9 ÷ 3 = 3 each.",
+        "incorrect": "Not quite. 18 ÷ 2 = 9, then 9 ÷ 3 = 3 per friend."
       }
     },
     {
@@ -453,12 +734,12 @@
       "explanation": "Number = 2 × 8 = 16. 16 × 3 = 48.",
       "difficulty": 3,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Step 1: if ? ÷ 2 = 8, work backwards: ? = 2 × 8 = 16.",
+        "Step 2: multiply the number by 3: 16 × 3 = 48."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is C. Remember how divide by 2 works."
+        "correct": "Correct! 2 × 8 = 16. Then 16 × 3 = 48.",
+        "incorrect": "Not quite. ? ÷ 2 = 8 → ? = 2 × 8 = 16. Then 16 × 3 = 48."
       }
     },
     {
@@ -475,13 +756,52 @@
       "explanation": "A=7, B=7, C=7, D=8. A, B, C all equal 7.",
       "difficulty": 3,
       "hints": [
-        "Think about what divide by 2 means.",
-        "Try drawing a picture or using a number line."
+        "Compute each: A) 14÷2=?, B) 21÷3=?, C) 28÷4=?, D) 16÷2=?",
+        "14÷2=7, 21÷3=7, 28÷4=7, 16÷2=8. Three equal 7: A, B, C."
       ],
       "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is D. Remember how divide by 2 works."
+        "correct": "Correct! A=7, B=7, C=7, D=8. A, B, and C all equal 7.",
+        "incorrect": "Not quite. 14÷2=7, 21÷3=7, 28÷4=7, but 16÷2=8. So A, B, C all equal 7."
       }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "stem": "Jake has 16 toy cars. He gives half to his friend. Then Jake buys 4 more. How many cars does Jake have now?",
+      "choices": [
+        "8",
+        "10",
+        "12",
+        "14"
+      ],
+      "answer": "C",
+      "explanation": "16 ÷ 2 = 8. Then 8 + 4 = 12.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: half of 16 = 16 ÷ 2 = ?. Step 2: add 4 more.",
+        "16 ÷ 2 = 8 cars left. Then 8 + 4 = 12 cars."
+      ],
+      "feedback": {
+        "correct": "Correct! 16 ÷ 2 = 8, then 8 + 4 = 12 cars.",
+        "incorrect": "Not quite. 16 ÷ 2 = 8, then 8 + 4 = 12."
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "stem": "A mystery number divided by 2 equals 7. What is the mystery number?",
+      "answer": "14",
+      "explanation": "? ÷ 2 = 7 → ? = 2 × 7 = 14.",
+      "difficulty": 3,
+      "hints": [
+        "Work backwards: if ? ÷ 2 = 7, then ? = 2 × 7.",
+        "2 × 7 = 14. The mystery number is 14."
+      ],
+      "feedback": {
+        "correct": "Correct! ? ÷ 2 = 7 → ? = 2 × 7 = 14.",
+        "incorrect": "Not quite. If ? ÷ 2 = 7, then ? = 2 × 7 = 14."
+      },
+      "solution_steps": []
     }
   ],
   "concept": "divide_by_2"
