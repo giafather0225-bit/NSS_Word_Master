@@ -111,7 +111,7 @@
 
 .shop-cat.active {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--text-on-primary);
   border-color: var(--color-primary);
 }
 
@@ -194,7 +194,7 @@
   top: 8px;
   right: 8px;
   background: var(--color-error);
-  color: #fff;
+  color: var(--text-on-primary);
   font-size: 10px;
   font-weight: 700;
   padding: 2px 6px;
@@ -234,7 +234,7 @@
   border: none;
   border-radius: var(--radius-full);
   background: var(--color-primary);
-  color: #fff;
+  color: var(--text-on-primary);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -256,14 +256,14 @@
 }
 .my-reward-equip-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
 .my-reward-equip-btn.equipped {
-  background: var(--color-primary); color: #fff; border-color: var(--color-primary);
+  background: var(--color-primary); color: var(--text-on-primary); border-color: var(--color-primary);
 }
 
 /* ─── Confirm Popup ───────────────────────────────────────────── */
 .shop-popup-bg {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: var(--overlay-scrim);
   z-index: 950;
   display: flex;
   align-items: center;
@@ -297,7 +297,7 @@
   transition: background 0.15s;
 }
 
-.shop-popup-btn.primary { background: var(--color-primary); color: #fff; }
+.shop-popup-btn.primary { background: var(--color-primary); color: var(--text-on-primary); }
 .shop-popup-btn.primary:hover { background: var(--color-primary-hover); }
 .shop-popup-btn.secondary { background: var(--color-primary-light); color: var(--color-primary); }
 
