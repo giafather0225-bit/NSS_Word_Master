@@ -128,17 +128,34 @@ def lesson_lookup(
     )
 
     if not row:
-        row = Lesson(
-            subject=subject_key,
-            textbook=textbook_key,
-            lesson_name=lesson_key,
-            source_type="manual",
-            description="",
-            created_at=datetime.now(timezone.utc).isoformat(),
-        )
-        db.add(row)
-        db.commit()
-        db.refresh(row)
+        # INSERT OR IGNORE 패턴 — 동시 요청 race condition 방지.
+        # 두 요청이 동시에 first()=None을 보고 insert를 시도할 때
+        # 두 번째 insert가 IntegrityError를 내면 기존 row를 반환한다.
+        try:
+            row = Lesson(
+                subject=subject_key,
+                textbook=textbook_key,
+                lesson_name=lesson_key,
+                source_type="manual",
+                description="",
+                created_at=datetime.now(timezone.utc).isoformat(),
+            )
+            db.add(row)
+            db.commit()
+            db.refresh(row)
+        except Exception:
+            db.rollback()
+            row = (
+                db.query(Lesson)
+                .filter(
+                    Lesson.subject     == subject_key,
+                    Lesson.textbook    == textbook_key,
+                    Lesson.lesson_name == lesson_key,
+                )
+                .first()
+            )
+            if not row:
+                raise HTTPException(status_code=500, detail="lesson_lookup: insert conflict")
 
     return {
         "id":          row.id,

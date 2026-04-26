@@ -315,38 +315,3 @@ async def extract_vocab_from_bytes(
         return await extract_vocab_from_image(tmp_path)
     finally:
         tmp_path.unlink(missing_ok=True)
-
-
-async def extract_text(image_path: Path) -> str:
-    """Legacy: macOS Vision OCR raw text extraction.
-    Kept for backward compatibility with main.py imports.
-    """
-    tools_dir = Path(__file__).resolve().parent.parent / "tools"
-    ocr_bin = tools_dir / "nss_ocr"
-    if not ocr_bin.exists():
-        raise FileNotFoundError(f"OCR binary not found: {ocr_bin}")
-    jpeg = await _convert_to_jpeg(image_path)
-    proc = await asyncio.create_subprocess_exec(
-        str(ocr_bin), str(jpeg),
-        stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE,
-    )
-    stdout, stderr = await proc.communicate()
-    if proc.returncode != 0:
-        raise RuntimeError(f"OCR failed: {stderr.decode()}")
-    return stdout.decode("utf-8").strip()
-
-
-def _regex_parse_vocab(ocr_text: str) -> list[dict]:
-    """Legacy regex parser. Kept for backward compatibility."""
-    # Minimal implementation — just try to find word(pos) patterns
-    results = []
-    pattern = re.compile(
-        r'^([a-zA-Z][a-zA-Z\s\'-]*?)\s*[\(\[](n|v|adj|adv|conj|prep|pron)\.?[\)\]]',
-        re.IGNORECASE | re.MULTILINE
-    )
-    for m in pattern.finditer(ocr_text):
-        w = m.group(1).strip().lower()
-        p = m.group(2).strip().lower()
-        if w and w not in {e["word"] for e in results}:
-            results.append({"word": w, "pos": p, "definition": "", "example": ""})
-    return results

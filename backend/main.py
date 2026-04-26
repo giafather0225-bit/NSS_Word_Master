@@ -153,7 +153,10 @@ async def rate_limit_middleware(request: Request, call_next):
         if len(reqs) >= 5:
             return JSONResponse(status_code=429, content={"message": "Too Many Requests. Rate limited to 5 req/s."})
         reqs.append(now)
-        _IP_TRACKER[client_ip] = reqs
+        if reqs:
+            _IP_TRACKER[client_ip] = reqs
+        else:
+            _IP_TRACKER.pop(client_ip, None)
     return await call_next(request)
 
 # ── Validation error → child-friendly 422 JSON ───────────────

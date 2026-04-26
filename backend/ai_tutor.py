@@ -98,37 +98,6 @@ async def get_tutor_feedback(word: str, sentence: str) -> str:
     )
 
 
-async def claude_vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
-    """Claude API로 이미지에서 어휘 추출. ANTHROPIC_API_KEY 필요."""
-    import anthropic
-
-    media_type = "image/jpeg"
-    b64 = base64.standard_b64encode(image_bytes).decode("ascii")
-
-    client = anthropic.AsyncAnthropic(api_key=ANTHROPIC_API_KEY)
-    message = await client.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=4096,
-        messages=[
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image",
-                        "source": {
-                            "type": "base64",
-                            "media_type": media_type,
-                            "data": b64,
-                        },
-                    },
-                    {"type": "text", "text": prompt},
-                ],
-            }
-        ],
-    )
-    return message.content[0].text.strip()
-
-
 async def vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
     """Gemini 우선, 없으면 Ollama qwen2.5vl:3b 사용."""
     if GEMINI_API_KEY:
@@ -218,10 +187,12 @@ Input JSON: {payload_json}
             # If a specific enrich model is not available, fall back to tutor model.
             if e.response is not None and e.response.status_code == 404:
                 payload["model"] = OLLAMA_TUTOR_MODEL
-                response = await client.post(url, json=payload)
-                response.raise_for_status()
             else:
                 raise
+
+    async with httpx.AsyncClient(timeout=90.0) as client:
+        response = await client.post(url, json=payload)
+        response.raise_for_status()
         data = response.json()
         msg = data.get("message", {})
         text = (msg.get("content") or "").strip()

@@ -38,7 +38,7 @@ log = logging.getLogger(__name__)
 OLLAMA_HOST      = os.environ.get("OLLAMA_HOST",      "http://127.0.0.1:11434")
 OLLAMA_OCR_MODEL = os.environ.get("OLLAMA_OCR_MODEL", "gemma2:2b")
 GEMINI_API_KEY   = os.environ.get("GEMINI_API_KEY",   "")
-GEMINI_MODEL     = "gemini-1.5-flash"
+GEMINI_MODEL     = "gemini-2.0-flash"
 GEMINI_ENDPOINT  = (
     "https://generativelanguage.googleapis.com/v1/models/"
     f"{GEMINI_MODEL}:generateContent"
