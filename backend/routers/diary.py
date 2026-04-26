@@ -169,20 +169,32 @@ def _entry_to_dict(e: DiaryEntry) -> dict:
 
 # @tag DIARY @tag JOURNAL
 @router.get("/api/diary/entries")
-def list_diary_entries(date: str | None = None, db: Session = Depends(get_db)):
+def list_diary_entries(
+    date:   str | None = None,
+    limit:  int = 100,
+    offset: int = 0,
+    db:     Session = Depends(get_db),
+):
     """
-    Return all DiaryEntry rows ordered by entry_date DESC.
+    Return DiaryEntry rows ordered by entry_date DESC.
 
-    Optional query param ?date=YYYY-MM-DD filters to a single date.
+    Optional query params:
+      ?date=YYYY-MM-DD  — filter to a single date
+      ?limit=N          — page size (default 100)
+      ?offset=N         — skip N rows (default 0)
     """
     query = db.query(DiaryEntry)
     if date:
         if not _DATE_RE.match(date.strip()):
             raise HTTPException(status_code=400, detail="date must be YYYY-MM-DD")
         query = query.filter(DiaryEntry.entry_date == date.strip())
-    entries = query.order_by(DiaryEntry.entry_date.desc()).all()
+    total   = query.count()
+    entries = query.order_by(DiaryEntry.entry_date.desc()).offset(offset).limit(limit).all()
     return {
-        "count": len(entries),
+        "total":   total,
+        "count":   len(entries),
+        "offset":  offset,
+        "limit":   limit,
         "entries": [_entry_to_dict(e) for e in entries],
     }
 
@@ -250,7 +262,7 @@ async def create_or_update_diary_entry(
     # Award XP (deduped by date — same day = one award even across mode/edit).
     # Failures here must not break the save, so swallow exceptions.
     try:
-        award_xp(db, "journal_complete", detail=f"entry_{entry.id}", earned_date=req.entry_date)
+        award_xp(db, "journal_complete", detail=f"diary_{req.entry_date}", earned_date=req.entry_date)
     except Exception as exc:  # noqa: BLE001
         logger.warning("Diary XP award failed: %s", exc)
 
