@@ -61,20 +61,26 @@ function _renderFluencyPicker(factSets) {
     if (!stage) return;
     stage.innerHTML = `
         <div class="math-fluency-picker">
-            <h2 class="math-fluency-title">Fact Fluency</h2>
-            <p class="math-fluency-sub">Pick a fact set — 60 seconds, 10 questions.</p>
+            <div class="math-fluency-picker-header">
+                <h2 class="math-fluency-title">Fact Fluency</h2>
+                <p class="math-fluency-sub">Pick a fact set and practice for speed.</p>
+            </div>
             <div class="math-fluency-grid">
-                ${factSets.map(fs => `
-                    <button class="math-fluency-card" data-set="${_mathEsc(fs.fact_set)}">
+                ${factSets.map(fs => {
+                    const bestPct = fs.best_score != null ? Math.round(fs.best_score / 10 * 100) : 0;
+                    return `
+                    <button class="math-fluency-card" data-set="${_mathEscAttr(fs.fact_set)}">
                         <div class="math-fluency-card-op">${_mathEsc(fs.op)}</div>
                         <div class="math-fluency-card-label">${_mathEsc(fs.label)}</div>
+                        <div class="math-fluency-card-bar-wrap">
+                            <div class="math-fluency-card-bar" style="width:${bestPct}%"></div>
+                        </div>
                         <div class="math-fluency-card-meta">
                             <span class="math-fluency-phase">Phase ${_mathEsc(fs.current_phase)}</span>
-                            <span>${fs.total_rounds} rounds</span>
-                            <span>Best ${fs.best_score}/10</span>
+                            <span class="math-fluency-card-meta-right">Best ${fs.best_score}/10</span>
                         </div>
                     </button>
-                `).join('')}
+                `}).join('')}
             </div>
         </div>
     `;
@@ -111,28 +117,47 @@ async function _startRound(factSet) {
     }
 }
 
+// SVG ring constants: r=36 → circumference ≈ 226.2px
+const _FL_CIRC = 2 * Math.PI * 36;
+
 /** @tag MATH @tag FLUENCY */
 function _renderRoundFrame(label) {
     const stage = document.getElementById('stage');
     if (!stage) return;
+    const untimed = fluencyState.untimed;
     stage.innerHTML = `
         <div class="math-fluency-round">
-            <div class="math-fluency-header">
-                <span class="math-fluency-label">${_mathEsc(label)}</span>
-                <span class="math-fluency-timer" id="math-fluency-timer">${fluencyState.untimed ? '∞' : fluencyState.timeLimit + 's'}</span>
-            </div>
-            <div class="math-fluency-bar" ${fluencyState.untimed ? 'style="visibility:hidden"' : ''}>
-                <div class="math-fluency-bar-fill" id="math-fluency-bar-fill" style="width:100%"></div>
+            <div class="math-fluency-round-top">
+                <div class="math-fluency-score-pill">
+                    <span id="math-fluency-correct">0</span>
+                    <span class="math-fluency-score-sep">/</span>
+                    <span>${fluencyState.questions.length}</span>
+                </div>
+                ${untimed
+                    ? `<div class="math-fluency-timer-ring untimed">
+                           <span class="math-fluency-timer-text">∞</span>
+                       </div>`
+                    : `<div class="math-fluency-timer-ring" id="math-fluency-ring-wrap">
+                           <svg class="math-fluency-ring-svg" viewBox="0 0 80 80">
+                               <circle class="math-fluency-ring-track" cx="40" cy="40" r="36"/>
+                               <circle class="math-fluency-ring-fill" id="math-fluency-ring-fill"
+                                       cx="40" cy="40" r="36"
+                                       stroke-dasharray="${_FL_CIRC}"
+                                       stroke-dashoffset="0"/>
+                           </svg>
+                           <span class="math-fluency-timer-text" id="math-fluency-timer">${fluencyState.timeLimit}</span>
+                       </div>`
+                }
+                <span class="math-fluency-round-label">${_mathEsc(label)}</span>
             </div>
             <div class="math-fluency-card-big" id="math-fluency-card"></div>
-            <div class="math-fluency-score">
-                ✓ <span id="math-fluency-correct">0</span>
-                &nbsp;·&nbsp;
-                <span id="math-fluency-answered">0</span> / ${fluencyState.questions.length}
-            </div>
-            <button class="math-btn-ghost" id="math-fluency-quit">Stop</button>
+            <button class="math-btn-ghost math-fluency-stop-btn" id="math-fluency-quit">
+                <i data-lucide="square" style="width:12px;height:12px;vertical-align:-1px;stroke-width:2;fill:currentColor"></i>
+                Stop
+            </button>
         </div>
     `;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     document.getElementById('math-fluency-quit').addEventListener('click', () => _finishRound(true));
 }
 
@@ -195,9 +220,7 @@ function _submitCurrent() {
 /** @tag MATH @tag FLUENCY */
 function _updateScoreDisplay() {
     const c = document.getElementById('math-fluency-correct');
-    const a = document.getElementById('math-fluency-answered');
     if (c) c.textContent = String(fluencyState.correct);
-    if (a) a.textContent = String(fluencyState.answered);
 }
 
 // ── Timer ──────────────────────────────────────────────────

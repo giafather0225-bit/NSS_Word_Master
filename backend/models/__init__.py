@@ -84,3 +84,4 @@ __all__ = [
     "CKLADomain", "CKLALesson", "CKLAQuestion",
     "CKLAWordLesson", "CKLALessonProgress", "CKLAQuestionResponse",
 ]
+from backend.models.goals import WeeklyGoal
