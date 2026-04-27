@@ -75,6 +75,9 @@ window.switchView = function (view) {
         updateSidebarMode('math');
         loadMathGrades();
         loadMathSidebarStatus();
+
+        // Show math home screen
+        if (typeof showMathHome === 'function') showMathHome();
         return;
     }
 

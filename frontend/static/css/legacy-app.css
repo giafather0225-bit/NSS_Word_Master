@@ -63,7 +63,7 @@
 .chip-source.hidden { display: none !important; }
 .card-hero { font-size: clamp(2rem, 6vw, 4rem) !important; margin-bottom: 10px !important; }
 .card-meaning { font-size: clamp(1.2rem, 3.5vw, 2rem); color: var(--text-primary); margin-bottom: 10px; }
-.card-example { font-size: clamp(1rem, 2.8vw, 1.5rem); font-style: italic; color: #555; }
+.card-example { font-size: clamp(1rem, 2.8vw, 1.5rem); font-style: italic; color: var(--text-secondary); }
 .input-row-study { display: flex; gap: 15px; width: 100%; flex-wrap: wrap; }
 
 .card-image-wrap {
@@ -87,16 +87,16 @@
 .hero-text { font-size: 6rem; color: var(--text-primary); margin-bottom: 20px; font-weight: 800; letter-spacing: -2px;}
 .pos-badge { font-size: 1.4rem; font-weight: 800; color: white; background: var(--text-primary); padding: 8px 20px; border-radius: 20px; display: inline-block;}
 
-.card-label { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 3px; color: #888; margin-bottom: 15px; font-weight: 800;}
-.definition { font-size: 2.5rem; font-weight: 600; color: #222; }
-.example { font-size: 1.8rem; font-style: italic; color: #555;}
+.card-label { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-hint); margin-bottom: 15px; font-weight: 800;}
+.definition { font-size: 2.5rem; font-weight: 600; color: var(--text-primary); }
+.example { font-size: 1.8rem; font-style: italic; color: var(--text-secondary);}
 .input-area { display: flex; gap: 20px; margin-top: auto;}
 
 /* Magic Penalty Overlay */
 #sparta-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-primary); z-index: 999; display: flex; align-items: center; justify-content: center;}
 .hidden { display: none !important; }
 .sparta-content { text-align: center; color: white;}
-.sparta-content h1 { font-size: 6rem; color: #feca57; margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+.sparta-content h1 { font-size: 6rem; color: var(--arcade-primary); margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.5);}
 .sparta-content p { font-size: 2.5rem; font-weight: 800; line-height: 1.4;}
 
 @keyframes zap { 0% { transform: scale(1) translateY(0); } 25% { transform: scale(1.1) translateY(-15px); } 50% { transform: scale(1.2) translateY(10px); } 75% { transform: scale(1.1) translateY(-5px); } 100% { transform: scale(1) translateY(0); } }
@@ -157,7 +157,7 @@
 .tutor-feedback-body {
     font-size: 1.15rem;
     line-height: 1.55;
-    color: #333;
+    color: var(--text-primary);
     text-align: left;
     margin: 16px 0 20px;
     max-height: 45vh;
@@ -165,11 +165,11 @@
 }
 .tutor-modal-inner { border: 4px solid var(--color-primary); text-align: center; padding: 28px 24px 24px; }
 
-.reward-burst { border: 4px solid #f1c40f; padding: 28px; animation: fadeIn 0.5s ease; }
+.reward-burst { border: 4px solid var(--color-warning); padding: 28px; animation: fadeIn 0.5s ease; }
 .burst-emoji { font-size: 3rem; }
 
 .sparta-msg { font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 800; line-height: 1.45; }
-.penalty-inline { font-size: 1.15rem; color: #feca57; }
+.penalty-inline { font-size: 1.15rem; color: var(--arcade-primary); }
 
 .mt-3 { margin-top: 18px; }
 
@@ -443,7 +443,7 @@
     font-size: 0.95rem;
 }
 .dad-ingest-card { padding: 22px; }
-.ingest-help { color: #555; font-size: 0.95rem; line-height: 1.5; margin-bottom: 12px; }
+.ingest-help { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; margin-bottom: 12px; }
 .ingest-help code { font-size: 0.88rem; background: rgba(255,255,255,0.7); padding: 2px 6px; border-radius: 6px; }
 .ingest-status { font-weight: 700; color: var(--color-primary); }
 .big-cta { display: inline-block; text-decoration: none; font-size: 1.45rem !important; padding: 20px !important; }
@@ -451,11 +451,11 @@
 .gold-stamp-bar {
     font-size: 0.9rem;
     font-weight: 800;
-    color: #b8860b;
-    background: #fff9e6;
+    color: var(--arcade-ink);
+    background: var(--arcade-light);
     padding: 8px 14px;
     border-radius: 999px;
-    border: 2px solid #f1c40f;
+    border: 2px solid var(--color-warning);
 }
 .lesson-route-hint { text-align: center; color: var(--text-gray); font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
 
@@ -476,7 +476,7 @@
     box-shadow: none;
 }
 .lesson-tile-word { font-weight: 800; color: var(--color-primary); font-size: 1rem; margin-bottom: 6px; }
-.lesson-tile-def { color: #555; line-height: 1.25; max-height: 3.2em; overflow: hidden; }
+.lesson-tile-def { color: var(--text-secondary); line-height: 1.25; max-height: 3.2em; overflow: hidden; }
 .lesson-tile-emoji { font-size: 2.2rem; margin-top: 8px; }
 .lesson-tile-img img { max-width: 100%; max-height: 56px; object-fit: cover; border-radius: 8px; margin-top: 6px; }
 
@@ -495,7 +495,7 @@
     font-weight: 800;
     font-size: 1.05rem;
     cursor: pointer;
-    background: white;
+    background: var(--bg-card);
     color: var(--text-dark);
     box-shadow: none;
     border: 1px solid var(--border-card);
@@ -540,23 +540,23 @@
     background: rgba(255,255,255,0.85);
 }
 .spell-feedback.hidden { display: none !important; }
-.spell-ok { color: #27ae60; }
-.spell-bad { color: #e74c3c; text-decoration: underline wavy; }
-.spell-extra { color: #e67e22; }
-.spell-gap { color: #95a5a6; }
+.spell-ok { color: var(--color-success-ink); }
+.spell-bad { color: var(--color-error); text-decoration: underline wavy; }
+.spell-extra { color: var(--review-primary); }
+.spell-gap { color: var(--text-hint); }
 
 .visual-fallback { text-align: center; padding: 16px; }
 .visual-fallback.hidden { display: none !important; }
 .visual-emoji { font-size: 4.5rem; display: block; margin-bottom: 10px; }
-.visual-hint { font-weight: 700; color: #444; font-size: 1.1rem; }
+.visual-hint { font-weight: 700; color: var(--text-secondary); font-size: 1.1rem; }
 
 .chip-final {
     display: inline-block;
     margin: 0 auto 10px;
     font-size: 0.9rem;
     font-weight: 800;
-    color: #fff;
-    background: #e74c3c;
+    color: var(--text-on-primary);
+    background: var(--color-error);
     padding: 6px 14px;
     border-radius: 999px;
 }
@@ -582,7 +582,7 @@
     100% { transform: scale(1) rotate(0); opacity: 1; }
 }
 .reward-burst-title { color: var(--color-primary); margin: 16px 0; }
-.reward-burst-desc { font-size: 1.2rem; color: #444; }
+.reward-burst-desc { font-size: 1.2rem; color: var(--text-secondary); }
 
 /* ── Gia Edition 2.0 ── */
 
@@ -597,10 +597,10 @@
     margin-bottom: 6px;
     opacity: 0.92;
 }
-.pos-noun   { background: rgba(59,130,246,0.15); color: var(--color-info); }
-.pos-verb   { background: rgba(239,68,68,0.15);  color: #EF4444; }
-.pos-adj    { background: rgba(16,185,129,0.15); color: #10B981; }
-.pos-other  { background: rgba(100,100,100,0.1); color: #888; }
+.pos-noun   { background: var(--english-light);         color: var(--english-ink); }
+.pos-verb   { background: var(--color-error-light);     color: var(--color-error-ink); }
+.pos-adj    { background: var(--color-success-light);   color: var(--color-success-ink); }
+.pos-other  { background: var(--bg-surface);            color: var(--text-hint); }
 
 /* Chunk-highlighted word */
 .chunk-word { display: inline-flex; gap: 0; align-items: baseline; }
@@ -611,13 +611,13 @@
     transition: background 0.18s, color 0.18s, transform 0.15s;
 }
 .chunk-word .chunk.chunk-lit-a {
-    background: rgba(59,130,246,0.25);
-    color: #1d4ed8;
+    background: var(--english-soft);
+    color: var(--english-ink);
     transform: translateY(-3px) scale(1.08);
 }
 .chunk-word .chunk.chunk-lit-b {
-    background: rgba(99,179,237,0.22);
-    color: #0369a1;
+    background: var(--english-light);
+    color: var(--english-primary);
     transform: translateY(-3px) scale(1.08);
 }
 
@@ -646,13 +646,13 @@
 /* Sentence Sandwich story relay panel */
 .story-relay {
     margin-top: 14px;
-    background: rgba(99,102,241,0.08);
-    border-left: 4px solid #6366f1;
+    background: var(--rewards-light);
+    border-left: 4px solid var(--rewards-primary);
     border-radius: 0 12px 12px 0;
     padding: 12px 16px;
     font-size: 1rem;
     line-height: 1.65;
-    color: #2d3748;
+    color: var(--text-primary);
 }
 
 /* ── Late-wins keyframes (override earlier duplicates) ── */
@@ -704,7 +704,7 @@
 .road-pill.current {
     background: var(--color-primary);
     box-shadow: none;
-    color: #FFFFFF; font-weight: 600;
+    color: var(--text-on-primary); font-weight: 600;
 }
 .road-pill.current .step-count,
 .road-pill.current .step-suffix,

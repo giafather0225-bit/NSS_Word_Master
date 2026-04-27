@@ -1,0 +1,369 @@
+/* ================================================================
+   math-home.css — Math entry home screen
+   Section: Math
+   Dependencies: theme.css
+   ================================================================ */
+
+#math-home {
+    flex: 1;
+    overflow-y: auto;
+    background: var(--bg-page);
+    display: flex;
+    flex-direction: column;
+}
+
+.mh-wrap {
+    max-width: 760px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px 32px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* ── Loading state ──────────────────────────────────────────── */
+
+.mh-loading {
+    padding: 64px;
+    text-align: center;
+    color: var(--text-hint);
+    font-size: var(--font-size-sm);
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+
+.mh-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.mh-section-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--math-ink);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--math-light);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.mh-title {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin: 0 0 4px;
+}
+
+.mh-date {
+    font-size: var(--font-size-sm);
+    color: var(--text-hint);
+    margin: 0;
+}
+
+/* ── Stats chips ─────────────────────────────────────────────── */
+
+.mh-header-stats {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    align-items: center;
+    padding-top: 4px;
+}
+
+.mh-stat-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 8px 14px;
+    min-width: 64px;
+}
+
+.mh-stat-val {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--math-ink);
+    font-family: var(--font-family-display);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+}
+
+.mh-stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-hint);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+    white-space: nowrap;
+}
+
+/* ── Section ─────────────────────────────────────────────────── */
+
+.mh-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mh-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.mh-section-title {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+/* ── Wins badge ─────────────────────────────────────────────── */
+
+.mh-wins-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-hint);
+    background: var(--bg-surface);
+    border-radius: var(--radius-full);
+    padding: 3px 10px;
+}
+
+.mh-wins-badge.all-done {
+    color: var(--math-ink);
+    background: var(--math-light);
+}
+
+/* ── Three small wins grid ──────────────────────────────────── */
+
+.mh-wins-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+/* ── Win card ───────────────────────────────────────────────── */
+
+.mh-win-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 18px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.mh-win-card:hover {
+    border-color: var(--math-primary);
+    box-shadow: var(--shadow-soft);
+}
+
+.mh-win-card.done {
+    background: var(--math-light);
+    border-color: var(--math-primary);
+}
+
+.mh-win-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.mh-win-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--math-ink);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.mh-win-check {
+    color: var(--math-primary);
+    display: flex;
+    align-items: center;
+}
+
+.mh-win-title {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-family-display);
+    line-height: 1.25;
+}
+
+.mh-win-subtitle {
+    font-size: var(--font-size-xs);
+    color: var(--text-hint);
+    flex: 1;
+}
+
+.mh-win-btn {
+    margin-top: 8px;
+    padding: 7px 14px;
+    background: var(--math-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+    align-self: flex-start;
+    letter-spacing: 0.01em;
+}
+
+.mh-win-btn:hover:not(:disabled) {
+    background: var(--math-ink);
+}
+
+.mh-win-btn:disabled {
+    background: var(--border-default);
+    color: var(--text-hint);
+    cursor: default;
+}
+
+/* ── Continue card ──────────────────────────────────────────── */
+
+.mh-continue-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.mh-continue-card:hover {
+    border-color: var(--math-primary);
+    box-shadow: var(--shadow-soft);
+}
+
+.mh-continue-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-hint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+}
+
+.mh-continue-title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-family-display);
+}
+
+.mh-continue-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: var(--math-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 700;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: background var(--transition-fast), box-shadow var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.mh-continue-btn:hover {
+    background: var(--math-ink);
+    box-shadow: 0 2px 8px rgba(58, 106, 84, 0.2);
+}
+
+/* ── Start hint ─────────────────────────────────────────────── */
+
+.mh-start-hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 20px;
+    background: var(--math-light);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    color: var(--math-ink);
+    font-weight: 500;
+}
+
+/* ── Quick access grid ──────────────────────────────────────── */
+
+.mh-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.mh-quick-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 12px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.mh-quick-btn svg {
+    color: var(--math-primary);
+    flex-shrink: 0;
+}
+
+.mh-quick-btn:hover {
+    background: var(--math-light);
+    border-color: var(--math-primary);
+    color: var(--math-ink);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 780px) {
+    .mh-wins-grid {
+        grid-template-columns: 1fr;
+    }
+    .mh-quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .mh-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .mh-header-stats {
+        width: 100%;
+    }
+    .mh-stat-chip {
+        flex: 1;
+    }
+}

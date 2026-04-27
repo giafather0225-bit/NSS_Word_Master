@@ -67,6 +67,7 @@ async function startMathLesson(grade, unit, lesson) {
     const homeDash = document.getElementById('home-dashboard');
     const topBar = document.querySelector('.top-bar');
 
+    if (typeof hideMathHome === 'function') hideMathHome();
     if (homeDash) homeDash.style.display = 'none';
     if (idleWrap) idleWrap.style.display = 'none';
     if (stageCard) { stageCard.classList.remove('hidden'); stageCard.style.display = ''; }
@@ -75,6 +76,7 @@ async function startMathLesson(grade, unit, lesson) {
     const sidebar = document.getElementById('sidebar');
     if (sidebar) { sidebar.classList.add('collapsed'); localStorage.setItem('sb_collapsed', '1'); }
 
+    if (typeof mathHomeSaveLesson === 'function') mathHomeSaveLesson(grade, unit, lesson);
     if (typeof mountMathShell === 'function') mountMathShell();
     renderMathRoadmap();
     await loadMathStage('pretest');
