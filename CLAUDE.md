@@ -108,6 +108,74 @@
 - 헤드라인(`.h1` ~ `.h3`)은 Quicksand 자동 적용 + `letter-spacing: -0.02em`
 - UPPERCASE 라벨은 `letter-spacing: 0.08em`, weight 700, 10.5~11px
 - 카드 기본: `bg-card + border-subtle + radius-xl(20px) + shadow-soft`
+- 아이콘: Lucide (`<i data-lucide="아이콘명" width="16" height="16">`) — 이모지 절대 금지
+- 아이콘 초기화: JS에서 `lucide.createIcons()` 호출 필요
+
+### Email HTML Palette (CSS variables 불가 환경용 — hex 직접 사용)
+
+> 이메일 클라이언트는 CSS variables 미지원 → 아래 hex 값을 직접 사용.
+> theme.css 전체 토큰의 이메일용 완전 매핑.
+
+#### 배경 / 레이아웃
+| 토큰 | hex | 용도 |
+|------|-----|------|
+| `--bg-page` | `#FAF6EF` | 이메일 전체 배경 (warm cream) |
+| `--bg-card` | `#FFFFFF` | 카드 / 섹션 박스 배경 |
+| `--bg-surface` | `#EFE8DB` | 구분선 배경, 인용 박스 |
+| `--bg-sidebar` | `#F4EEE4` | 사이드 컬럼, 서브 섹션 배경 |
+
+#### 텍스트
+| 토큰 | hex | 용도 |
+|------|-----|------|
+| `--text-primary` | `#2B2722` | 본문 메인 텍스트 |
+| `--text-secondary` | `#706659` | 보조 설명, 라벨 |
+| `--text-hint` | `#A79A89` | 날짜, 캡션, 힌트 텍스트 |
+| `--text-on-primary` | `#FFFFFF` | 색상 배경 위 텍스트 (버튼 등) |
+
+#### 보더
+| 토큰 | hex | 용도 |
+|------|-----|------|
+| `--border-default` | `#DCD2C2` | 카드 테두리, 구분선 |
+| `--border-subtle` | `#EBE3D5` | 연한 구분선 |
+
+#### 섹션 팔레트 (6 sections)
+| 섹션 | primary | light (배경) | soft (중간) | ink (진한 텍스트) |
+|------|---------|-------------|------------|-----------------|
+| English (Baby Blue) | `#7FA8CC` | `#EEF4FA` | `#CFE0EE` | `#345A80` |
+| Math (Fresh Mint) | `#8AC4A8` | `#EEF7F2` | `#CFE6D9` | `#3A6A54` |
+| Diary (Sweet Pink) | `#E09AAE` | `#FBEEF2` | `#F3D2DC` | `#84425A` |
+| Arcade (Butter) | `#EEC770` | `#FBF3DE` | `#F1DCA5` | `#7A5A1E` |
+| Rewards (Lavender) | `#B8A4DC` | `#F2ECFA` | `#DCCFEE` | `#5A4883` |
+| Review (Peach) | `#EBA98C` | `#FBEBE0` | `#F4D2BE` | `#844A30` |
+
+#### 상태 색상
+| 토큰 | hex | 용도 |
+|------|-----|------|
+| `--color-success` | `#8FBF87` | 정답, 완료, 달성 |
+| `--color-success-light` | `#E8F5E4` | 성공 배경 tint |
+| `--color-success-ink` | `#4E7A46` | 성공 텍스트 |
+| `--color-error` | `#D97A7A` | 오답, 경고, 실패 |
+| `--color-error-light` | `#FAEAEA` | 오류 배경 tint |
+| `--color-error-ink` | `#8A4538` | 오류 텍스트 |
+| `--color-warning` | `#EEC770` | 주의, 취약 단어 |
+| `--color-warning-light` | `#FBF3DE` | 경고 배경 tint |
+| `--color-info` | `#7FA8CC` | 정보 (= English primary) |
+| `--color-info-light` | `#EEF4FA` | 정보 배경 tint |
+
+#### 브랜드 / 앱 앵커
+| 토큰 | hex | 용도 |
+|------|-----|------|
+| `--color-primary` (Diary Pink) | `#E09AAE` | 앱 브랜드 컬러, CTA 버튼 |
+| `--color-secondary` (Arcade Butter) | `#EEC770` | XP, 게이미피케이션 강조 |
+| `--color-accent` (Lavender) | `#B8A4DC` | Shop, 프리미엄 강조 |
+
+#### 이메일 전용 스타일 가이드
+- **섀도우**: `box-shadow: 0 2px 8px rgba(120, 90, 60, 0.08)` (--shadow-soft 대체)
+- **카드 보더**: `border: 1px solid #DCD2C2; border-radius: 16px`
+- **섹션 구분**: 왼쪽 4px 컬러 바 사용 (English=`#7FA8CC`, Math=`#8AC4A8` 등)
+- **폰트**: `font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif`
+- **이모지 금지**: 섹션 아이콘 대신 컬러 바 또는 컬러 도트(●) 사용
+- **최대 너비**: 600px (이메일 클라이언트 표준)
 
 ---
 
