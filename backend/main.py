@@ -43,6 +43,7 @@ from backend.routers import parent_math as parent_math_router
 from backend.routers import parent_streak as parent_streak_router
 from backend.routers import parent_xp as parent_xp_router
 from backend.routers import parent_report as parent_report_router
+from backend.routers import starred as starred_router
 from backend.routers import growth_theme as growth_theme_router
 from backend.routers import system as system_router
 from backend.routers import reminder as reminder_router
@@ -219,6 +220,7 @@ app.include_router(parent_math_router.router)
 app.include_router(parent_streak_router.router)
 app.include_router(parent_xp_router.router)
 app.include_router(parent_report_router.router)
+app.include_router(starred_router.router)
 app.include_router(growth_theme_router.router)
 app.include_router(system_router.router)
 app.include_router(reminder_router.router)
