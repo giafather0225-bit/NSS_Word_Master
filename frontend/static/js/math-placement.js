@@ -46,6 +46,7 @@ async function startPlacementTest() {
 
 /** @tag MATH @tag PLACEMENT */
 function _showMathStageP() {
+    if (typeof hideMathHome === 'function') hideMathHome();
     const stageCard = document.getElementById('stage-card');
     const idleWrap = document.getElementById('idle-wrapper');
     const homeDash = document.getElementById('home-dashboard');
@@ -64,26 +65,27 @@ function _showMathStageP() {
 function _renderPlacementIntro() {
     const stage = document.getElementById('stage');
     if (!stage) return;
-    // Adaptive mode: length varies per domain (up to _CAT_MAX_PER_DOMAIN on server).
     stage.innerHTML = `
-        <div class="math-round-summary">
-            <div class="math-summary-icon">🎯</div>
-            <h2 class="math-summary-title">Placement Test</h2>
-            <p class="math-fluency-sub">
-                ${placementState.domains.length} domains · adaptive questions.<br>
-                The test changes based on your answers — skip if unsure.
-            </p>
-            <div class="math-summary-weak">
-                <div class="math-summary-weak-label">Domains</div>
-                <div class="math-summary-weak-list">
-                    ${placementState.domains.map(d =>
-                        `<span class="math-summary-chip">${_mathEsc(d.label)}</span>`
-                    ).join('')}
-                </div>
+        <div class="math-placement-intro">
+            <div class="math-placement-intro-icon">
+                <i data-lucide="map-pin" style="width:32px;height:32px;stroke-width:1.5"></i>
             </div>
-            <button class="math-btn-primary math-summary-cta" id="math-placement-begin">Begin</button>
+            <h2 class="math-placement-intro-title">Let's find out where you are</h2>
+            <p class="math-placement-intro-sub">
+                ${placementState.domains.length} topics · adaptive questions.<br>
+                The test adjusts to your answers — skip anything you're not sure about.
+            </p>
+            <div class="math-placement-domains">
+                ${placementState.domains.map(d =>
+                    `<span class="math-placement-domain-chip">${_mathEsc(d.label)}</span>`
+                ).join('')}
+            </div>
+            <button class="math-btn-primary math-placement-begin-btn" id="math-placement-begin">
+                Start Placement
+            </button>
         </div>
     `;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     document.getElementById('math-placement-begin').addEventListener('click', () => _fetchNextPlacementQ());
 }
 
@@ -139,45 +141,59 @@ function _renderAdaptiveQ(d, q, targetGrade) {
 
     const totalDomains = placementState.domains.length;
     const askedInDomain = (placementState.history[d.domain] || []).length + 1;
+    const qText = q.question || '';
+    const isShort = qText.length <= 20;
+    const qClass = `math-problem-question${isShort ? ' is-short' : ''}`;
 
     const body = q.type === 'mc'
         ? `<div class="math-mc-grid">
-               ${(q.options || []).map((o, i) => `
+               ${(q.options || []).map(o => `
                    <button class="math-mc-btn" data-val="${_mathEscAttr(o)}">
-                       <span class="math-mc-letter">${String.fromCharCode(65 + i)}</span>
-                       <span class="math-mc-text">${_mathEsc(o)}</span>
+                       ${_mathEsc(o)}
                    </button>
                `).join('')}
            </div>`
         : `<div class="math-input-group">
                <input type="text" class="math-input-field" id="math-placement-input"
-                      placeholder="Type your answer (or skip)…" autocomplete="off">
+                      placeholder="Type your answer…" autocomplete="off">
                <button class="math-btn-primary" id="math-placement-submit">Next</button>
            </div>`;
 
     stage.innerHTML = `
         <div class="math-problem-wrap">
             <div class="math-problem-header">
-                <span class="math-problem-stage">🎯 Placement · ${_mathEsc(d.label)}</span>
+                <span class="math-problem-stage">${_mathEsc(d.label)}</span>
                 <span class="math-problem-counter">
-                    D${placementState.dIdx + 1}/${totalDomains} · Q${askedInDomain}
+                    ${placementState.dIdx + 1}/${totalDomains} · Q${askedInDomain}
                 </span>
             </div>
             <div class="math-problem-card">
-                <div class="math-review-origin">Grade ${_mathEsc(q.grade)}${targetGrade ? ` · Target ${_mathEsc(targetGrade)}` : ''}</div>
-                <div class="math-problem-question">${_mathEsc(q.question)}</div>
+                <div class="${qClass}">${_mathEsc(qText)}</div>
                 <div class="math-problem-body">${body}</div>
-                <div class="math-fluency-actions" style="justify-content:space-between;">
-                    <button class="math-btn-ghost" id="math-placement-skip">Skip</button>
-                </div>
+            </div>
+            <div class="math-placement-skip-row">
+                <button class="math-btn-ghost" id="math-placement-skip">
+                    <i data-lucide="skip-forward" style="width:13px;height:13px;vertical-align:-2px;stroke-width:1.5"></i>
+                    Skip this question
+                </button>
             </div>
         </div>
     `;
+
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+    if (typeof window.mathRenderIn === 'function') {
+        const qEl = stage.querySelector('.math-problem-question');
+        if (qEl) window.mathRenderIn(qEl);
+    }
 
     if (q.type === 'mc') {
         stage.querySelectorAll('.math-mc-btn').forEach(btn => {
             btn.addEventListener('click', () => _submitAdaptiveAnswer(d, q, btn.dataset.val));
         });
+        if (typeof window.mathRenderIn === 'function') {
+            const grid = stage.querySelector('.math-mc-grid');
+            if (grid) window.mathRenderIn(grid);
+        }
     } else {
         const input = document.getElementById('math-placement-input');
         const submit = document.getElementById('math-placement-submit');

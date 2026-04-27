@@ -63,157 +63,144 @@
 .math-btn-ghost:hover    { background: var(--bg-surface); color: var(--text-primary); }
 .math-btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* ── Problem wrap (stage body already provides padding) ────── */
+/* ── Problem wrap ──────────────────────────────────────────── */
 
 .math-problem-wrap {
-    max-width: 720px;
+    max-width: 640px;
     margin: 0 auto;
+    padding: 0 4px;
 }
 
-/* ── Stage chip + counter row (top of problem) ─────────────── */
+/* ── Stage chip + counter row ──────────────────────────────── */
 
 .math-problem-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     gap: 10px;
 }
 
 .math-problem-stage {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 4px 10px;
-    background: var(--math-primary-light);
-    color: var(--math-primary);
+    padding: 3px 10px;
+    background: var(--math-light);
+    color: var(--math-ink);
     border-radius: var(--radius-full);
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Pretest pill uses the accent tint to signal diagnostic mode. */
-.math-mode [data-stage="pretest"] .math-problem-stage,
-.math-problem-stage.is-pretest {
-    background: var(--color-accent-light);
-    color: var(--color-accent);
+    letter-spacing: 0.06em;
 }
 
 .math-problem-counter {
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 600;
     color: var(--text-hint);
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
+    font-variant-numeric: tabular-nums;
+    background: var(--bg-surface);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
 }
 
 /* ── Hero question card ────────────────────────────────────── */
 
 .math-problem-card {
     background: var(--bg-card);
-    border-radius: var(--radius-lg);
-    padding: 20px 22px;
-    border: 1px solid var(--border-card);
-    margin-bottom: 12px;
+    border-radius: var(--radius-xl);
+    padding: 28px 28px 24px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 16px;
 }
 
 .math-problem-question {
-    font-size: 19px;
-    font-weight: 600;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: var(--font-family-display);
     color: var(--text-primary);
-    line-height: 1.45;
+    line-height: 1.35;
     word-break: break-word;
     overflow-wrap: break-word;
+    text-align: center;
     margin-bottom: 0;
+    letter-spacing: -0.01em;
+}
+
+/* Short arithmetic equations get even larger */
+.math-problem-question.is-short {
+    font-size: 40px;
+    line-height: 1.2;
 }
 
 .math-problem-body {
-    margin-top: 12px;
+    margin-top: 20px;
 }
 
-/* ── MC buttons — 2×2 grid, letter chip square ─────────────── */
+/* ── MC buttons — 2×2 grid, large centered cards ───────────── */
 
 .math-mc-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 10px;
 }
 
 .math-mc-btn {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
     width: 100%;
-    padding: 14px 14px;
+    min-height: 72px;
+    padding: 16px 12px;
     background: var(--bg-card);
-    border: 1.5px solid var(--border-strong);
-    border-radius: var(--radius-md);
+    border: 2px solid var(--border-default);
+    border-radius: var(--radius-lg);
     cursor: pointer;
-    transition: border-color var(--transition-fast), background var(--transition-fast), transform 0.1s;
-    text-align: left;
-    font-family: inherit;
-    font-size: 17px;
+    transition: border-color var(--transition-fast), background var(--transition-fast), transform 0.1s, box-shadow var(--transition-fast);
+    text-align: center;
+    font-family: var(--font-family-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 .math-mc-btn:hover {
     border-color: var(--math-primary);
-    background: var(--math-primary-light);
+    background: var(--math-light);
+    box-shadow: 0 0 0 3px rgba(138, 196, 168, 0.18);
 }
 
-.math-mc-btn:active { transform: scale(0.99); }
+.math-mc-btn:active { transform: scale(0.985); }
 .math-mc-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-.math-mc-letter {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-    background: var(--bg-surface);
-    color: var(--text-secondary);
-    font-weight: 700;
-    font-size: 11px;
-    flex-shrink: 0;
-}
-
-.math-mc-text {
-    color: var(--text-primary);
-    font-weight: 600;
-    /* font-size inherited from .math-mc-btn */
-}
-
-/* ── TF buttons ────────────────────────────────────────────── */
+/* ── TF buttons — two large side-by-side cards ─────────────── */
 
 .math-tf-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
 
 .math-tf-btn {
-    flex: 1;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    min-height: 72px;
     padding: 20px 16px;
     background: var(--bg-card);
-    border: 1.5px solid var(--border-strong);
+    border: 2px solid var(--border-default);
     border-radius: var(--radius-lg);
     cursor: pointer;
-    transition: border-color var(--transition-fast), background var(--transition-fast);
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 600;
+    transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+    font-family: var(--font-family-display);
+    font-size: 20px;
+    font-weight: 700;
     color: var(--text-primary);
 }
 
-.math-tf-btn:hover { border-color: var(--math-primary); background: var(--math-primary-light); }
+.math-tf-btn:hover { border-color: var(--math-primary); background: var(--math-light); box-shadow: 0 0 0 3px rgba(138, 196, 168, 0.18); }
 .math-tf-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-.math-tf-icon { font-size: 28px; }
 
 /* ── Input field ───────────────────────────────────────────── */
 
@@ -276,15 +263,20 @@
 
 .math-hint-item:last-child { margin-bottom: 0; }
 
-/* ── 3-Read button (inline inside question) ────────────────── */
+/* ── 3-Read action row (below question) ────────────────────── */
+
+.math-problem-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
 
 .math-3read-btn {
-    margin-top: 10px;
     font-size: 12px;
-    padding: 5px 10px;
+    padding: 5px 12px;
     background: var(--bg-surface);
     color: var(--text-secondary);
-    border: none;
+    border: 1px solid var(--border-subtle);
     border-radius: var(--radius-full);
     font-weight: 600;
     cursor: pointer;
@@ -292,7 +284,7 @@
     transition: background var(--transition-fast), color var(--transition-fast);
 }
 
-.math-3read-btn:hover { background: var(--math-primary-light); color: var(--math-primary); }
+.math-3read-btn:hover { background: var(--math-light); color: var(--math-ink); }
 
 /* Stage container needs relative for overlay positioning. */
 #stage { position: relative; }

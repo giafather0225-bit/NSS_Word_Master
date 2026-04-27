@@ -98,6 +98,10 @@ function renderMathProblem() {
     // Tools panel (Try stage only — optional scaffolding)
     const toolsHtml = (mathState.stage === 'try') ? _renderMathToolsPanel() : '';
 
+    const qText = p.question || '';
+    const isShort = qText.length <= 20;
+    const qClass = `math-problem-question${isShort ? ' is-short' : ''}`;
+
     stage.innerHTML = `
         <div class="math-problem-wrap">
             <div class="math-problem-header">
@@ -106,10 +110,10 @@ function renderMathProblem() {
             </div>
 
             <div class="math-problem-card">
-                <div class="math-problem-question">
-                    ${_mathEsc(p.question)}
-                    ${threeReadHtml}
+                <div class="${qClass}">
+                    ${_mathEsc(qText)}
                 </div>
+                ${threeReadHtml ? `<div class="math-problem-actions">${threeReadHtml}</div>` : ''}
                 <div class="math-problem-body" id="math-problem-body"></div>
                 ${hintsHtml}
             </div>

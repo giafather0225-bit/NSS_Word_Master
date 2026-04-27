@@ -16,30 +16,41 @@ function _renderPlacementResults(data) {
     const suggested = data.suggested_grade || 'G3';
     const rows = (data.results || []).map(r => {
         const pct = r.total_questions ? Math.round((r.raw_score / r.total_questions) * 100) : 0;
+        const barColor = pct >= 70 ? 'pass' : pct >= 40 ? 'mid' : 'fail';
         return `
-            <div class="math-placement-row">
-                <div class="math-placement-row-label">${_escPl(r.label)}</div>
-                <div class="math-placement-row-meta">
-                    <span class="math-summary-chip">${_escPl(r.estimated_grade)}</span>
-                    <span class="math-placement-row-score">${r.raw_score}/${r.total_questions} · ${pct}%</span>
+            <div class="math-placement-result-row">
+                <div class="math-placement-result-top">
+                    <span class="math-placement-result-label">${_escPl(r.label)}</span>
+                    <span class="math-placement-result-grade">${_escPl(r.estimated_grade)}</span>
                 </div>
+                <div class="math-placement-result-bar-wrap">
+                    <div class="math-placement-result-bar ${barColor}" style="width:${pct}%"></div>
+                </div>
+                <div class="math-placement-result-meta">${r.raw_score}/${r.total_questions} · ${pct}%</div>
             </div>
         `;
     }).join('');
 
     stage.innerHTML = `
-        <div class="math-round-summary">
-            <div class="math-summary-icon">🎯</div>
-            <h2 class="math-summary-title">Placement Complete</h2>
-            <div class="math-summary-score">${_escPl(suggested)}</div>
-            <div class="math-summary-pct">Suggested starting grade</div>
-            <div class="math-placement-results">${rows}</div>
-            <div class="math-fluency-actions">
+        <div class="math-placement-results-wrap">
+            <div class="math-placement-results-icon">
+                <i data-lucide="check-circle-2" style="width:36px;height:36px;stroke-width:1.5;color:var(--math-primary)"></i>
+            </div>
+            <h2 class="math-placement-results-title">Placement Complete</h2>
+            <div class="math-placement-suggested-grade">${_escPl(suggested)}</div>
+            <div class="math-placement-suggested-label">Suggested starting grade</div>
+            <div class="math-placement-domain-results">${rows}</div>
+            <div class="math-placement-result-actions">
                 <button class="math-btn-ghost" id="math-placement-back">Back</button>
-                <button class="math-btn-primary" id="math-placement-go">Go to ${_escPl(suggested)} Academy</button>
+                <button class="math-btn-primary" id="math-placement-go">
+                    Start ${_escPl(suggested)} Academy
+                    <i data-lucide="arrow-right" style="width:14px;height:14px;vertical-align:-2px;stroke-width:2"></i>
+                </button>
             </div>
         </div>
     `;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
     document.getElementById('math-placement-back').addEventListener('click', () => {
         if (typeof switchView === 'function') switchView('math');
         const stageCard = document.getElementById('stage-card');

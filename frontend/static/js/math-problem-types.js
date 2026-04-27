@@ -98,8 +98,7 @@ function _renderMC(body, problem, onSubmit) {
         <div class="math-mc-grid">
             ${opts.map((o, i) => `
                 <button class="math-mc-btn" data-val="${_mathEscAttr(o)}" data-idx="${i}">
-                    <span class="math-mc-letter">${String.fromCharCode(65 + i)}</span>
-                    <span class="math-mc-text">${_mathEsc(o)}</span>
+                    ${_mathEsc(o)}
                 </button>
             `).join('')}
         </div>
@@ -131,14 +130,8 @@ function _renderTF(body, problem, onSubmit) {
     const _doSubmit = onSubmit || _submitProblemAnswer;
     body.innerHTML = `
         <div class="math-tf-grid">
-            <button class="math-tf-btn math-tf-true" data-val="true">
-                <span class="math-tf-icon">⭕</span>
-                <span>True</span>
-            </button>
-            <button class="math-tf-btn math-tf-false" data-val="false">
-                <span class="math-tf-icon">❌</span>
-                <span>False</span>
-            </button>
+            <button class="math-tf-btn math-tf-true" data-val="true">True</button>
+            <button class="math-tf-btn math-tf-false" data-val="false">False</button>
         </div>
     `;
 
