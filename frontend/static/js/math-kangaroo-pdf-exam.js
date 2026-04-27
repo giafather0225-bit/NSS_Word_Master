@@ -36,6 +36,43 @@ function _ppFmt(sec) {
          + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
 }
 
+// ── In-page modal helpers ──────────────────────────────────
+
+/** Show a confirm modal; returns a Promise<boolean>. @tag MATH @tag KANGAROO */
+function _ppConfirm(title, body, okLabel = 'OK', cancelLabel = 'Cancel') {
+    return new Promise(resolve => {
+        const scrim = document.createElement('div');
+        scrim.className = 'kang-modal-scrim';
+        scrim.innerHTML = `
+            <div class="kang-modal" role="dialog" aria-modal="true">
+                <h3>${_ppEsc(title)}</h3>
+                <p style="margin:0 0 8px;color:var(--text-secondary);font-size:var(--font-size-sm)">${_ppEsc(body)}</p>
+                <div class="kang-modal-actions">
+                    <button class="kang-btn kang-btn-ghost" id="pp-modal-cancel">${_ppEsc(cancelLabel)}</button>
+                    <button class="kang-btn kang-btn-primary" id="pp-modal-ok">${_ppEsc(okLabel)}</button>
+                </div>
+            </div>`;
+        document.body.appendChild(scrim);
+        scrim.querySelector('#pp-modal-ok').addEventListener('click', () => { scrim.remove(); resolve(true); });
+        scrim.querySelector('#pp-modal-cancel').addEventListener('click', () => { scrim.remove(); resolve(false); });
+    });
+}
+
+/** Show a brief inline notice in the answer panel. @tag MATH @tag KANGAROO */
+function _ppNotice(msg, isError = false) {
+    const bar = document.getElementById('kang-progress-bar');
+    if (!bar) return;
+    const prev = bar.querySelector('.kang-pp-notice');
+    if (prev) prev.remove();
+    const el = document.createElement('div');
+    el.className = `kang-pp-notice ${isError ? 'kang-fb-no' : 'kang-fb-ok'}`;
+    el.textContent = msg;
+    bar.after(el);
+    setTimeout(() => el.remove(), 2400);
+}
+
+// ── Entry ──────────────────────────────────────────────────
+
 /** @tag MATH @tag KANGAROO @tag PP */
 async function startKangarooPdfExam(setId, mode) {
     kangPdfState.mode = (mode === 'practice') ? 'practice' : 'test';
@@ -90,7 +127,6 @@ function _ppRenderUnavailable(data) {
 function _ppRenderExam() {
     const s = kangPdfState.set;
     const stage = document.getElementById('stage');
-    const totalQ = s.total_questions || 0;
     const timerHtml = (kangPdfState.mode === 'test')
         ? `<span class="kang-timer" id="kang-pdf-timer">--:--</span>` : '';
     const modeBadge = `<span class="kang-mode-badge kang-mode-${kangPdfState.mode}">${
@@ -114,7 +150,7 @@ function _ppRenderExam() {
                         title="Exam PDF"></iframe>
                     <a class="kang-pdf-open-btn" id="kang-pdf-open-fallback"
                        href="${_ppEsc(pdfSrc)}" target="_blank" rel="noopener"
-                       style="display:none">📄 Open Exam PDF in New Tab</a>
+                       style="display:none">Open Exam PDF in New Tab</a>
                 </div>
                 <aside class="kang-answer-panel" id="kang-answer-panel">
                     ${_ppBuildPanelHtml(s)}
@@ -122,18 +158,15 @@ function _ppRenderExam() {
             </div>
         </div>`;
 
-    // Detect iOS / broken iframe → fall back to open-in-new-tab link
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     if (isIOS) {
         document.getElementById('kang-pdf-iframe').style.display = 'none';
         document.getElementById('kang-pdf-open-fallback').style.display = 'flex';
     }
 
-    // Wire answer clicks
-    document.getElementById('kang-answer-panel')
-        .addEventListener('click', _ppPanelClick);
+    document.getElementById('kang-answer-panel').addEventListener('click', _ppPanelClick);
     document.getElementById('kang-pdf-quit').addEventListener('click', _ppQuit);
-    document.getElementById('kang-pdf-submit-top').addEventListener('click', _ppSubmit);
+    document.getElementById('kang-pdf-submit-top').addEventListener('click', () => _ppSubmit());
 
     if (kangPdfState.mode === 'test') {
         kangPdfState.remainingSec = (s.time_limit_minutes || 0) * 60;
@@ -147,10 +180,10 @@ function _ppRenderExam() {
 
 /** @tag MATH @tag KANGAROO @tag PP */
 function _ppBuildPanelHtml(s) {
-    const meta = s.sections_meta || [];
+    const meta      = s.sections_meta || [];
     const isPractice = (kangPdfState.mode === 'practice');
-    const style = s.numbering_style || 'sequential';
-    const sections = meta.map(sec => {
+    const style     = s.numbering_style || 'sequential';
+    const sections  = meta.map(sec => {
         const rows = (sec.questions || []).map(lbl => _ppRowHtml(lbl, sec.points, isPractice, style)).join('');
         return `
             <div class="kang-section-block">
@@ -189,7 +222,7 @@ function _ppPanelClick(e) {
     if (btn) {
         const q = btn.dataset.q;
         const letter = btn.dataset.letter;
-        if (kangPdfState.checked[q]) return; // locked after check (practice)
+        if (kangPdfState.checked[q]) return;
         if (kangPdfState.answers[q] === letter) {
             delete kangPdfState.answers[q];
         } else {
@@ -230,7 +263,7 @@ function _ppRefreshRow(q) {
 function _ppUpdateProgress() {
     const bar = document.getElementById('kang-progress-bar');
     if (!bar) return;
-    const total = kangPdfState.set.total_questions || 0;
+    const total    = kangPdfState.set.total_questions || 0;
     const answered = Object.keys(kangPdfState.answers).length;
     bar.textContent = `Progress: ${answered}/${total} answered`;
 }
@@ -238,7 +271,7 @@ function _ppUpdateProgress() {
 /** @tag MATH @tag KANGAROO @tag PP */
 async function _ppCheckOne(q) {
     const ans = kangPdfState.answers[q];
-    if (!ans) { alert('Please select an answer first.'); return; }
+    if (!ans) { _ppNotice('Select an answer first.', true); return; }
     try {
         const res = await fetch('/api/math/kangaroo/submit-answer', {
             method: 'POST',
@@ -255,7 +288,7 @@ async function _ppCheckOne(q) {
         _ppRefreshRow(q);
     } catch (err) {
         console.warn('[kangaroo pdf] check failed', err);
-        alert('Could not check the answer.');
+        _ppNotice('Could not check — please try again.', true);
     }
 }
 
@@ -285,7 +318,6 @@ function _ppTick() {
     el.classList.toggle('warning', left > 0 && left <= 300);
     if (left <= 0) {
         _ppClearTimer();
-        alert("Time's up! Submitting your answers.");
         _ppSubmit(true);
         return;
     }
@@ -296,10 +328,14 @@ function _ppTick() {
 
 /** @tag MATH @tag KANGAROO @tag PP */
 async function _ppSubmit(auto = false) {
-    const total = kangPdfState.set.total_questions || 0;
+    const total    = kangPdfState.set.total_questions || 0;
     const answered = Object.keys(kangPdfState.answers).length;
     if (!auto) {
-        const ok = confirm(`You answered ${answered}/${total}. Submit?`);
+        const ok = await _ppConfirm(
+            'Submit Exam',
+            `You answered ${answered} out of ${total} questions. Submit now?`,
+            'Submit', 'Keep going'
+        );
         if (!ok) return;
     }
     _ppClearTimer();
@@ -324,13 +360,17 @@ async function _ppSubmit(auto = false) {
         }
     } catch (err) {
         console.warn('[kangaroo pdf] submit failed', err);
-        alert('Submission failed. Please try again.');
+        _ppNotice('Submission failed — please try again.', true);
     }
 }
 
 /** @tag MATH @tag KANGAROO @tag PP */
-function _ppQuit() {
-    const ok = confirm('Your progress will be lost. Are you sure you want to quit?');
+async function _ppQuit() {
+    const ok = await _ppConfirm(
+        'Quit Exam',
+        'Your progress will not be saved. Are you sure?',
+        'Quit', 'Stay'
+    );
     if (!ok) return;
     _ppClearTimer();
     _ppDetachBeforeUnload();

@@ -70,6 +70,9 @@ async function startMathLesson(grade, unit, lesson) {
     if (typeof hideMathHome === 'function') hideMathHome();
     if (homeDash) homeDash.style.display = 'none';
     if (idleWrap) idleWrap.style.display = 'none';
+    // Clear English pills before showing topBar to avoid flash
+    const rm = document.getElementById('roadmap');
+    if (rm) rm.innerHTML = '';
     if (stageCard) { stageCard.classList.remove('hidden'); stageCard.style.display = ''; }
     if (topBar) topBar.style.display = '';
 
