@@ -24,7 +24,7 @@ async function startMathGlossary(grade) {
     glossaryState.grade = grade || glossaryState.grade || 'G3';
     const stage = document.getElementById('stage');
     if (!stage) return;
-    stage.innerHTML = `<div class="math-gloss"><p>Loading glossary…</p></div>`;
+    stage.innerHTML = `<div class="math-gloss-loading"><p>Loading glossary…</p></div>`;
     try {
         const res = await fetch(`/api/math/glossary/${encodeURIComponent(glossaryState.grade)}`);
         if (!res.ok) throw new Error('bad response');
@@ -33,13 +33,18 @@ async function startMathGlossary(grade) {
         _renderGlossaryList(data);
     } catch (err) {
         console.warn('[math] glossary load failed', err);
-        stage.innerHTML = `<div class="math-gloss"><p class="math-err">Hmm, that didn't load. Let's try again!</p><button class="math-btn-primary" onclick="startMathGlossary()">↻ Try Again</button></div>`;
+        stage.innerHTML = `<div class="math-gloss-loading">
+            <p class="math-err">Hmm, that didn't load. Let's try again!</p>
+            <button class="math-btn-primary" onclick="startMathGlossary()">Try Again</button>
+        </div>`;
     }
 }
 
 // ── Stage helper ───────────────────────────────────────────
 
+/** @tag MATH @tag GLOSSARY */
 function _showGlossaryStage() {
+    if (typeof hideMathHome === 'function') hideMathHome();
     const stageCard = document.getElementById('stage-card');
     const idleWrap = document.getElementById('idle-wrapper');
     const homeDash = document.getElementById('home-dashboard');
@@ -48,6 +53,8 @@ function _showGlossaryStage() {
     if (idleWrap) idleWrap.style.display = 'none';
     if (stageCard) { stageCard.classList.remove('hidden'); stageCard.style.display = ''; }
     if (topBar) topBar.style.display = '';
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) { sidebar.classList.add('collapsed'); localStorage.setItem('sb_collapsed', '1'); }
 }
 
 // ── List render ────────────────────────────────────────────
@@ -91,13 +98,29 @@ function _renderGlossaryList(data) {
     stage.innerHTML = `
         <div class="math-gloss">
             <div class="math-gloss-header">
-                <h2 class="math-gloss-title">📖 ${_mathEsc(data.title || 'Glossary')}</h2>
+                <div class="math-gloss-header-left">
+                    <div class="math-gloss-icon">
+                        <i data-lucide="book-open" style="width:22px;height:22px;stroke-width:1.5"></i>
+                    </div>
+                    <div>
+                        <h2 class="math-gloss-title">${_mathEsc(data.title || 'Glossary')}</h2>
+                        <p class="math-gloss-subtitle">${_mathEsc(glossaryState.grade)} · ${glossaryState.categories.reduce((n, c) => n + (c.terms || []).length, 0)} terms</p>
+                    </div>
+                </div>
                 <input type="search" class="math-gloss-search" id="math-gloss-search"
                        placeholder="Search terms…" value="${_mathEscAttr(glossaryState.filter)}">
             </div>
             <div class="math-gloss-cats">${catBtns}</div>
-            <div class="math-gloss-body">${sections || '<p class="empty">No matches.</p>'}</div>
+            <div class="math-gloss-body">${sections || '<p class="math-gloss-empty">No matches found.</p>'}</div>
+            <div class="math-gloss-footer">
+                <button class="math-btn-ghost math-gloss-back-btn" id="math-gloss-back">
+                    <i data-lucide="chevron-left" style="width:14px;height:14px;vertical-align:-2px;stroke-width:2"></i>
+                    Back
+                </button>
+            </div>
         </div>`;
+
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     // Wire
     const search = document.getElementById('math-gloss-search');
@@ -105,7 +128,6 @@ function _renderGlossaryList(data) {
         search.addEventListener('input', (e) => {
             glossaryState.filter = e.target.value;
             _renderGlossaryList(data);
-            // Keep focus
             const s2 = document.getElementById('math-gloss-search');
             if (s2) { s2.focus(); s2.setSelectionRange(s2.value.length, s2.value.length); }
         });
@@ -119,6 +141,13 @@ function _renderGlossaryList(data) {
     stage.querySelectorAll('.math-gloss-item').forEach(btn => {
         btn.addEventListener('click', () => _showGlossaryTerm(btn.dataset.id));
     });
+    document.getElementById('math-gloss-back')?.addEventListener('click', () => {
+        if (typeof switchView === 'function') switchView('math');
+        const stageCard = document.getElementById('stage-card');
+        if (stageCard) stageCard.style.display = 'none';
+        const idleWrap = document.getElementById('idle-wrapper');
+        if (idleWrap) idleWrap.style.display = '';
+    });
 }
 
 // ── Term detail ────────────────────────────────────────────
@@ -129,12 +158,15 @@ async function _showGlossaryTerm(termId) {
     overlay.className = 'math-gloss-modal';
     overlay.innerHTML = `
         <div class="math-gloss-modal-card">
-            <button class="math-gloss-close" aria-label="Close">×</button>
+            <button class="math-gloss-close" aria-label="Close">
+                <i data-lucide="x" style="width:18px;height:18px;stroke-width:2"></i>
+            </button>
             <div class="math-gloss-modal-body"><p>Loading…</p></div>
         </div>`;
     document.body.appendChild(overlay);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     overlay.addEventListener('click', (e) => {
-        if (e.target === overlay || e.target.classList.contains('math-gloss-close')) {
+        if (e.target === overlay || e.target.classList.contains('math-gloss-close') || e.target.closest('.math-gloss-close')) {
             overlay.remove();
         }
     });
@@ -147,7 +179,10 @@ async function _showGlossaryTerm(termId) {
         body.innerHTML = `
             <div class="math-gloss-modal-head">
                 <h2 class="math-gloss-modal-title">${_mathEsc(t.term)}</h2>
-                <button class="math-btn-ghost math-gloss-tts" id="math-gloss-tts">🔊 Listen</button>
+                <button class="math-btn-ghost math-gloss-tts" id="math-gloss-tts">
+                    <i data-lucide="volume-2" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i>
+                    Listen
+                </button>
             </div>
             <div class="math-gloss-modal-kid">${_mathEsc(t.kid_friendly || '')}</div>
             <div class="math-gloss-modal-def">
@@ -156,9 +191,9 @@ async function _showGlossaryTerm(termId) {
             ${t.example ? `<div class="math-gloss-modal-ex"><strong>Example:</strong> ${_mathEsc(t.example)}</div>` : ''}
             ${t.visual_hint ? `<div class="math-gloss-modal-vis">${_mathEsc(t.visual_hint)}</div>` : ''}
         `;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
         const ttsBtn = document.getElementById('math-gloss-tts');
         if (ttsBtn) ttsBtn.addEventListener('click', () => _playGlossaryTTS(t));
-        // Autoplay
         _playGlossaryTTS(t);
     } catch (err) {
         overlay.querySelector('.math-gloss-modal-body').innerHTML =
@@ -168,6 +203,7 @@ async function _showGlossaryTerm(termId) {
 
 // ── TTS ────────────────────────────────────────────────────
 
+/** @tag MATH @tag GLOSSARY */
 async function _playGlossaryTTS(term) {
     const text = `${term.term}. ${term.kid_friendly || term.definition || ''}. For example, ${term.example || ''}`;
     if (!text) return;

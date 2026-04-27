@@ -1,105 +1,163 @@
 /* ================================================================
-   math-academy-glossary.css — Glossary list, categories, modal
+   math-academy-glossary.css — Glossary list, categories, modal (v2)
    Section: Math
    Dependencies: theme.css
-   Split from: math-academy-content.css
    ================================================================ */
 
-/* ── Glossary ──────────────────────────────────────────────── */
+/* ── Glossary wrapper ──────────────────────────────────────── */
 
 .math-gloss {
     max-width: 860px;
     margin: 0 auto;
-    padding: 24px;
-    background: var(--bg-card);
-    border-radius: var(--radius-lg);
-    box-shadow: none;
-    border: 1px solid var(--border-card);
+    padding: 0 16px 32px;
 }
+
+.math-gloss-loading {
+    max-width: 480px;
+    margin: 40px auto;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* ── Header ───────────────────────────────────────────────── */
 
 .math-gloss-header {
     display: flex;
     align-items: center;
     gap: 16px;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+}
+
+.math-gloss-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.math-gloss-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--math-light);
+    border-radius: var(--radius-md);
+    color: var(--math-ink);
+    flex-shrink: 0;
 }
 
 .math-gloss-title {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
-    color: var(--math-primary);
+    font-family: var(--font-family-display);
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin: 0 0 2px;
+}
+
+.math-gloss-subtitle {
+    font-size: 12px;
+    color: var(--text-hint);
+    font-weight: 600;
     margin: 0;
-    flex: 1 1 auto;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .math-gloss-search {
-    flex: 1 1 220px;
-    min-width: 180px;
-    padding: 10px 12px;
+    flex: 0 0 220px;
+    padding: 9px 12px;
     font-size: 14px;
-    border: 2px solid var(--math-primary-light);
+    font-family: var(--font-family);
+    border: 1.5px solid var(--border-default);
     border-radius: var(--radius-md);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    transition: border-color var(--transition-fast);
 }
 
 .math-gloss-search:focus-visible {
     outline: none;
     border-color: var(--math-primary);
+    box-shadow: 0 0 0 3px rgba(138, 196, 168, 0.18);
 }
+
+/* ── Category pills ───────────────────────────────────────── */
 
 .math-gloss-cats {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 18px;
+    gap: 6px;
+    margin-bottom: 20px;
 }
 
 .math-gloss-cat {
-    padding: 6px 12px;
+    padding: 5px 14px;
     font-size: 13px;
     font-weight: 600;
-    color: var(--math-primary);
+    color: var(--text-secondary);
     background: var(--bg-card);
-    border: 1px solid var(--math-primary-light);
+    border: 1.5px solid var(--border-default);
     border-radius: var(--radius-full);
     cursor: pointer;
     text-transform: capitalize;
+    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.math-gloss-cat:hover {
+    border-color: var(--math-primary);
+    color: var(--math-ink);
 }
 
 .math-gloss-cat.active {
     background: var(--math-primary);
-    color: var(--text-on-primary);
+    color: var(--math-ink);
     border-color: var(--math-primary);
 }
 
-.math-gloss-section-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    margin: 20px 0 10px 0;
+/* ── Section ──────────────────────────────────────────────── */
+
+.math-gloss-section {
+    margin-bottom: 24px;
 }
+
+.math-gloss-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-hint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-subtle);
+    text-transform: capitalize;
+}
+
+/* ── Term grid ────────────────────────────────────────────── */
 
 .math-gloss-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
 }
 
 .math-gloss-item {
-    padding: 14px;
-    background: var(--math-hint-bg);
-    border: 2px solid var(--math-primary-light);
-    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
     text-align: left;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: border-color var(--transition-fast), background var(--transition-fast), transform 0.1s;
 }
 
 .math-gloss-item:hover {
     border-color: var(--math-primary);
-    transform: translateY(-2px);
+    background: var(--math-light);
+    transform: translateY(-1px);
 }
 
 .math-gloss-term {
@@ -116,12 +174,43 @@
     font-size: 12px;
     color: var(--text-secondary);
     line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
+
+.math-gloss-empty {
+    text-align: center;
+    color: var(--text-hint);
+    font-size: 15px;
+    padding: 32px 0;
+}
+
+/* ── Footer back button ───────────────────────────────────── */
+
+.math-gloss-footer {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.math-gloss-back-btn {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ── Modal overlay ────────────────────────────────────────── */
 
 .math-gloss-modal {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(43, 39, 34, 0.45);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,44 +224,49 @@
     max-width: 560px;
     width: 100%;
     background: var(--bg-card);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     padding: 28px 28px 24px;
-    box-shadow: none;
-    border: 1px solid var(--border-card);
+    box-shadow: var(--shadow-modal);
+    border: 1px solid var(--border-subtle);
 }
 
 .math-gloss-close {
     position: absolute;
-    top: 4px;
-    right: 6px;
-    width: 44px;
-    height: 44px;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
+    background: var(--bg-surface);
     border: 0;
-    border-radius: 50%;
-    font-size: 28px;
+    border-radius: var(--radius-full);
     color: var(--text-secondary);
     cursor: pointer;
-    line-height: 1;
-    transition: background 0.15s;
+    transition: background var(--transition-fast);
 }
-.math-gloss-close:hover { background: var(--math-primary-light); }
+
+.math-gloss-close:hover {
+    background: var(--math-light);
+    color: var(--math-ink);
+}
 
 .math-gloss-modal-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    padding-right: 36px;
 }
 
 .math-gloss-modal-title {
     font-size: 24px;
     font-weight: 700;
-    color: var(--math-primary);
+    font-family: var(--font-family-display);
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
     margin: 0;
     text-transform: capitalize;
 }
@@ -180,31 +274,40 @@
 .math-gloss-tts {
     font-size: 13px;
     padding: 6px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .math-gloss-modal-kid {
-    font-size: 15px;
-    color: var(--text-primary);
+    font-size: 16px;
+    color: var(--math-ink);
     font-style: italic;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
+    padding: 10px 14px;
+    background: var(--math-light);
+    border-radius: var(--radius-md);
+    line-height: 1.5;
 }
 
 .math-gloss-modal-def,
 .math-gloss-modal-ex {
     font-size: 14px;
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: 8px;
 }
 
 .math-gloss-modal-vis {
-    margin-top: 12px;
-    padding: 12px;
+    margin-top: 14px;
+    padding: 14px;
     text-align: center;
-    background: var(--math-hint-bg);
+    background: var(--math-light);
     border-radius: var(--radius-md);
     font-size: 18px;
     font-weight: 600;
-    color: var(--math-primary);
+    color: var(--math-ink);
     letter-spacing: 1px;
 }

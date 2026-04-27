@@ -539,6 +539,8 @@ function updateChallengeMeta() {}
  * @tag SYSTEM
  */
 function _playTone(freq, dur, type) {
+    // legacy shim — kept for backward compat; new code uses SoundFX directly
+    if (window.SoundFX) return;
     try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
         const osc = ctx.createOscillator();
@@ -564,8 +566,10 @@ function stageFxCorrect() {
     s.classList.remove("fx-wrong");
     s.classList.add("fx-correct");
     setTimeout(() => s.classList.remove("fx-correct"), 650);
-    _playTone(523, 0.12, "sine");
-    setTimeout(() => _playTone(784, 0.18, "sine"), 120);
+    if (window.SoundFX) { SoundFX.correct(); } else {
+        _playTone(523, 0.12, "sine");
+        setTimeout(() => _playTone(784, 0.18, "sine"), 120);
+    }
 }
 
 /**
@@ -580,7 +584,9 @@ function stageFxWrong() {
     void s.offsetWidth;
     s.classList.add("fx-wrong");
     setTimeout(() => s.classList.remove("fx-wrong"), 350);
-    _playTone(200, 0.25, "square");
+    if (window.SoundFX) { SoundFX.wrong(); } else {
+        _playTone(200, 0.25, "square");
+    }
     if (navigator.vibrate) navigator.vibrate(150);
 }
 

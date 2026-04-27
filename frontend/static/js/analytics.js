@@ -129,9 +129,20 @@ async function _awardStageXP(completedStage) {
                 renderSummaryBar();
             }
             // Always update the top bar XP display
+            const prevLevel = window._currentLevel ?? 0;
             if (typeof _updateTopBarXP === 'function') {
                 _updateTopBarXP(data);
             }
+            // Level-up sound
+            const newLevel = data.level ?? (Math.floor((data.total_xp ?? 0) / 100) + 1);
+            if (window.SoundFX) {
+                if (newLevel > prevLevel && prevLevel > 0) {
+                    SoundFX.levelUp();
+                } else if (data.xp_awarded > 0) {
+                    SoundFX.xpGain();
+                }
+            }
+            window._currentLevel = newLevel;
             // Show XP toast if we earned XP
             if (data.xp_awarded > 0) _showXPToast(`+${data.xp_awarded} XP`);
             if (data.bonus_xp > 0) _showXPToast(`Streak bonus +${data.bonus_xp} XP!`);

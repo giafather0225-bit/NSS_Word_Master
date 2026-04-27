@@ -24,6 +24,8 @@ const KANG_PP_FILTERS = [
     { key: 'ecolier',     label: 'Écolier' },
     { key: 'benjamin',    label: 'Benjamin' },
     { key: 'cadet',       label: 'Cadet' },
+    { key: 'junior',      label: 'Junior' },
+    { key: 'student',     label: 'Student' },
 ];
 
 // ── Stage helper ───────────────────────────────────────────

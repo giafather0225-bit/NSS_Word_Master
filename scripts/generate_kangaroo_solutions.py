@@ -210,7 +210,7 @@ def main():
     parser = argparse.ArgumentParser(description="Generate Math Kangaroo solutions via Gemini")
     parser.add_argument("--api-key", required=True, help="Gemini API key")
     parser.add_argument("--set-id", help="Process single set (e.g. intl_2023_benjamin)")
-    parser.add_argument("--level", choices=["ecolier","benjamin","cadet","pre_ecolier"],
+    parser.add_argument("--level", choices=["ecolier","benjamin","cadet","pre_ecolier","junior","student"],
                         help="Filter by level name")
     parser.add_argument("--year-from", type=int, default=2009, help="Start year (default 2009)")
     parser.add_argument("--year-to",   type=int, default=2025, help="End year (default 2025)")
@@ -233,7 +233,7 @@ def main():
                 d = json.load(f)
             if d.get("source_type") != "official_past_paper":
                 continue
-            year = d.get("source_year", 0)
+            year = d.get("source_year") or 0
             if not (args.year_from <= year <= args.year_to):
                 continue
             # check PDF exists

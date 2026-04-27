@@ -163,7 +163,7 @@ async function loadMathLessons(grade, unit) {
                 if (badge) badge.textContent = '→';
             } else {
                 utBtn.disabled = true;
-                if (badge) badge.textContent = '🔒';
+                if (badge) { badge.innerHTML = '<i data-lucide="lock" style="width:12px;height:12px;stroke-width:1.5"></i>'; if (typeof lucide !== "undefined") lucide.createIcons(); }
             }
         }
     } catch (err) {

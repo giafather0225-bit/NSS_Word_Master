@@ -269,13 +269,14 @@ async function openDiaryOverlay() {
                             <span class="diary-sentence-word">${escapeHtml(s.word || "")}</span>
                             <span class="diary-sentence-text">${safe}</span>
                             <button class="diary-tts-btn" type="button" title="Listen"
-                                    onclick="_diaryPlayTTS('${safe.replace(/'/g, "\\'")}')">🔊</button>
+                                    onclick="_diaryPlayTTS('${safe.replace(/'/g, "\\'")}')"><i data-lucide="volume-2" style="width:14px;height:14px;stroke-width:1.5"></i></button>
                         </div>`;
                     }).join("")}
                 </div>
             </div>`;
         });
         body.innerHTML = html;
+        if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (_) {
         body.innerHTML = `<div class="diary-empty error">Failed to load sentences.</div>`;
     }

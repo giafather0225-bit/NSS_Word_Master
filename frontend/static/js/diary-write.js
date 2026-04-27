@@ -296,10 +296,10 @@ function _dwFooterHTML() {
             </div>
             <button class="dw-voice-btn" id="dw-speak-btn" type="button"
                     title="Speak — dictate into the page" aria-label="Speak"
-                    onclick="_dwToggleSpeak()">🎤</button>
+                    onclick="_dwToggleSpeak()"><i data-lucide="mic" style="width:16px;height:16px;stroke-width:1.5"></i></button>
             <button class="dw-voice-btn" id="dw-listen-btn" type="button"
                     title="Listen — read this page aloud" aria-label="Listen"
-                    onclick="_dwToggleListen()">🔊</button>
+                    onclick="_dwToggleListen()"><i data-lucide="volume-2" style="width:16px;height:16px;stroke-width:1.5"></i></button>
         </div>`;
 }
 
@@ -738,7 +738,7 @@ async function _dwSuggestTitle() {
     if (pill) {
         pill.disabled = true;
         pill.setAttribute("aria-disabled", "true");
-        pill.textContent = "✨ Thinking…";
+        pill.textContent = "Thinking…";
     }
     try {
         const res = await fetch("/api/diary/suggest-title", {
@@ -761,7 +761,7 @@ async function _dwSuggestTitle() {
         if (pill) {
             pill.disabled = false;
             pill.removeAttribute("aria-disabled");
-            pill.textContent = "✨ Suggest";
+            pill.textContent = "Suggest";
         }
     }
 }
@@ -906,14 +906,20 @@ function _dwGetRec() {
 function _dwReflectSpeakBtn() {
     const btn = document.getElementById("dw-speak-btn");
     if (!btn) return;
-    btn.textContent = _dwListening ? "⏺" : "🎤";
+    btn.innerHTML = _dwListening
+        ? '<i data-lucide="circle-stop" style="width:16px;height:16px;stroke-width:1.5"></i>'
+        : '<i data-lucide="mic" style="width:16px;height:16px;stroke-width:1.5"></i>';
     btn.title = _dwListening ? "Stop dictation" : "Speak — dictate into the page";
+    if (typeof lucide !== "undefined") lucide.createIcons();
 }
 function _dwReflectListenBtn() {
     const btn = document.getElementById("dw-listen-btn");
     if (!btn) return;
-    btn.textContent = _dwSpeaking ? "⏸" : "🔊";
+    btn.innerHTML = _dwSpeaking
+        ? '<i data-lucide="pause" style="width:16px;height:16px;stroke-width:1.5"></i>'
+        : '<i data-lucide="volume-2" style="width:16px;height:16px;stroke-width:1.5"></i>';
     btn.title = _dwSpeaking ? "Stop reading" : "Listen — read this page aloud";
+    if (typeof lucide !== "undefined") lucide.createIcons();
 }
 
 function _dwToggleSpeak() {

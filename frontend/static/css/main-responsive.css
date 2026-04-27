@@ -4,11 +4,11 @@
    Dependencies: theme.css
    ================================================================ */
 
-/* ─── Math mode: purple theme ────────────────────────── */
+/* ─── Math mode: mint theme ──────────────────────────── */
 body.math-mode {
-    --color-primary: #8B5CF6;
-    --primary-glow: rgba(139, 92, 246, 0.32);
-    --primary-tint: rgba(139, 92, 246, 0.08);
+    --color-primary: var(--math-primary);
+    --primary-glow: var(--math-primary-glow);
+    --primary-tint: var(--math-light);
 }
 
 /* ─── Responsive: narrow window / Split View ─────────── */
@@ -33,10 +33,10 @@ body.math-mode {
 
 /* ── Preview Modal: Shadow mic states ──────────────────── */
 .pm-mic-btn.done {
-    border-color: var(--color-success); background: #F0FBF4; color: var(--color-success); cursor: default;
+    border-color: var(--color-success); background: var(--color-success-light); color: var(--color-success); cursor: default;
 }
 .pm-mic-btn.recording {
-    border-color: var(--color-error); background: rgba(255,59,48,0.08); color: var(--color-error);
+    border-color: var(--color-error); background: var(--color-error-light); color: var(--color-error);
     animation: mic-pulse 0.8s ease-in-out infinite;
 }
 @keyframes mic-pulse {

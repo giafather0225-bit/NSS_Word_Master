@@ -228,6 +228,7 @@ function renderRoadmapComplete() {
 function advanceToNextStage() {
     if (stage) _trackStageComplete(stage);
     if (stage) markStageComplete(stage);
+    if (window.SoundFX) SoundFX.stageComplete();
 
     const _stageAtComplete      = stage;
     const completedStageLabel   = ROADMAP_LABELS[ROADMAP_STAGES.indexOf(_stageAtComplete)] || "Step";

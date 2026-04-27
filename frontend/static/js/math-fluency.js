@@ -228,15 +228,25 @@ function _updateScoreDisplay() {
 /** @tag MATH @tag FLUENCY */
 function _startTimer() {
     _clearTimer();
-    if (fluencyState.untimed) return;  // Phase A: no countdown
+    if (fluencyState.untimed) return;
     fluencyState.timerId = setInterval(() => {
-        const left = Math.max(0, Math.round((fluencyState.endsAt - Date.now()) / 1000));
+        const left = Math.max(0, (fluencyState.endsAt - Date.now()) / 1000);
+        const leftRounded = Math.ceil(left);
+        const pctLeft = left / fluencyState.timeLimit;
+
         const tEl = document.getElementById('math-fluency-timer');
-        const barEl = document.getElementById('math-fluency-bar-fill');
-        if (tEl) tEl.textContent = `${left}s`;
-        if (barEl) barEl.style.width = `${(left / fluencyState.timeLimit) * 100}%`;
+        if (tEl) tEl.textContent = String(leftRounded);
+
+        // Drive SVG ring: offset goes from 0 (full) to _FL_CIRC (empty)
+        const ringEl = document.getElementById('math-fluency-ring-fill');
+        if (ringEl) ringEl.style.strokeDashoffset = String(_FL_CIRC * (1 - pctLeft));
+
+        // Color ring red in last 10 seconds
+        const wrap = document.getElementById('math-fluency-ring-wrap');
+        if (wrap) wrap.classList.toggle('urgent', left <= 10);
+
         if (left <= 0) _finishRound(false);
-    }, 200);
+    }, 100);
 }
 
 /** @tag MATH @tag FLUENCY */
@@ -283,26 +293,29 @@ function _renderFluencySummary({ score, total, elapsed, aborted, submitData }) {
     const phase = submitData?.current_phase ? `Phase ${submitData.current_phase}` : '';
     const newBest = submitData?.new_best;
     const mastered = submitData?.mastered;
+
+    const iconName = aborted ? 'circle-x' : passed ? 'zap' : 'refresh-cw';
+    const titleText = aborted ? 'Round Stopped' : passed ? 'Nice work!' : 'Keep going!';
+
     stage.innerHTML = `
-        <div class="math-round-summary">
-            <div class="math-summary-icon">${aborted ? '<i data-lucide="circle-x" style="width:32px;height:32px;stroke-width:1.5"></i>' : (passed ? '<i data-lucide="zap" style="width:32px;height:32px;stroke-width:1.5"></i>' : '<i data-lucide="refresh-cw" style="width:32px;height:32px;stroke-width:1.5"></i>')}</div>
-            <h2 class="math-summary-title">${aborted ? 'Round Stopped' : 'Round Complete'}</h2>
-            <div class="math-summary-score">${score} / ${total}</div>
-            <div class="math-summary-pct">${pct}% · ${elapsed}s${phase ? ' · ' + _mathEsc(phase) : ''}</div>
-            <div class="math-summary-bar">
-                <div class="math-summary-bar-fill ${passed ? 'pass' : 'fail'}" style="width:${pct}%"></div>
+        <div class="math-fluency-summary">
+            <div class="math-fluency-summary-icon ${passed && !aborted ? 'pass' : aborted ? 'stopped' : 'retry'}">
+                <i data-lucide="${iconName}" style="width:28px;height:28px;stroke-width:1.5"></i>
+            </div>
+            <h2 class="math-fluency-summary-title">${titleText}</h2>
+            <div class="math-fluency-summary-score">${score}<span class="math-fluency-summary-total"> / ${total}</span></div>
+            <div class="math-fluency-summary-meta">${pct}%${elapsed ? ' · ' + elapsed + 's' : ''}${phase ? ' · ' + _mathEsc(phase) : ''}</div>
+            <div class="math-fluency-summary-bar-wrap">
+                <div class="math-fluency-summary-bar ${passed ? 'pass' : 'fail'}" style="width:${pct}%"></div>
             </div>
             ${(newBest || mastered) ? `
-                <div class="math-summary-weak">
-                    <div class="math-summary-weak-label">Milestones</div>
-                    <div class="math-summary-weak-list">
-                        ${newBest ? '<span class="math-summary-chip"><i data-lucide="trophy" style="width:13px;height:13px;vertical-align:-2px;stroke-width:1.5"></i> Personal Best</span>' : ''}
-                        ${mastered ? '<span class="math-summary-chip"><i data-lucide="graduation-cap" style="width:13px;height:13px;vertical-align:-2px;stroke-width:1.5"></i> Mastered</span>' : ''}
-                    </div>
+                <div class="math-fluency-milestones">
+                    ${newBest ? `<span class="math-fluency-milestone-chip"><i data-lucide="trophy" style="width:12px;height:12px;vertical-align:-1px;stroke-width:1.5"></i> Personal Best</span>` : ''}
+                    ${mastered ? `<span class="math-fluency-milestone-chip"><i data-lucide="graduation-cap" style="width:12px;height:12px;vertical-align:-1px;stroke-width:1.5"></i> Mastered</span>` : ''}
                 </div>` : ''}
-            <div class="math-fluency-actions">
+            <div class="math-fluency-summary-actions">
                 <button class="math-btn-ghost" id="math-fluency-back">Back</button>
-                <button class="math-btn-primary" id="math-fluency-again">Try Another</button>
+                <button class="math-btn-primary" id="math-fluency-again">Try Again</button>
             </div>
         </div>
     `;
