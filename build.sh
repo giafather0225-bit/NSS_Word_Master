@@ -71,7 +71,9 @@ cat \
   $JS/math-kangaroo-pdf-exam.js \
   $JS/math-kangaroo-result.js \
   $JS/math-glossary.js \
+  $JS/math-home-wins.js \
   $JS/math-home.js \
+  $JS/math-preferences.js \
   $JS/math-navigation.js \
   | npx esbuild --minify --legal-comments=none --loader=js > $OUT/bundle-b.min.js
 echo "  bundle-b.min.js done ($(wc -c < $OUT/bundle-b.min.js) bytes)"

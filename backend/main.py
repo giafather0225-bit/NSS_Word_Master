@@ -50,12 +50,15 @@ from backend.routers import system as system_router
 from backend.routers import reminder as reminder_router
 from backend.routers import collocation as collocation_router
 from backend.routers import math_academy as math_academy_router
+from backend.routers import math_academy_stats as math_academy_stats_router
+from backend.routers import math_academy_submit as math_academy_submit_router
 from backend.routers import math_placement as math_placement_router
 from backend.routers import math_fluency as math_fluency_router
 from backend.routers import math_daily as math_daily_router
 from backend.routers import math_kangaroo as math_kangaroo_router
 from backend.routers import math_glossary as math_glossary_router
 from backend.routers import math_problems as math_problems_router
+from backend.routers import math_preferences as math_preferences_router
 from backend.routers import speech as speech_router
 from backend.routers import arcade as arcade_router
 from backend.routers import rewards as rewards_router
@@ -228,12 +231,15 @@ app.include_router(system_router.router)
 app.include_router(reminder_router.router)
 app.include_router(collocation_router.router)
 app.include_router(math_academy_router.router)
+app.include_router(math_academy_stats_router.router)
+app.include_router(math_academy_submit_router.router)
 app.include_router(math_placement_router.router)
 app.include_router(math_fluency_router.router)
 app.include_router(math_daily_router.router)
 app.include_router(math_kangaroo_router.router)
 app.include_router(math_glossary_router.router)
 app.include_router(math_problems_router.router)
+app.include_router(math_preferences_router.router)
 app.include_router(speech_router.router)
 app.include_router(arcade_router.router)
 app.include_router(rewards_router.router)

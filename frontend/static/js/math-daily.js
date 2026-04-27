@@ -31,9 +31,10 @@ async function startMathDaily() {
         if (!data.exists || !data.problems || !data.problems.length) {
             stage.innerHTML = `
                 <div class="math-daily math-daily-empty">
-                    <h2 class="math-daily-title">🌞 Daily Challenge</h2>
+                    <h2 class="math-daily-title"><i data-lucide="sun" style="width:20px;height:20px;stroke-width:1.5;vertical-align:-3px"></i> Daily Challenge</h2>
                     <p>No problems available yet. Add more lessons to enable daily challenges.</p>
                 </div>`;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             return;
         }
         dailyState.date = data.date;
@@ -77,7 +78,7 @@ function _renderDailyIntro() {
     if (!stage) return;
     stage.innerHTML = `
         <div class="math-daily math-daily-intro">
-            <h2 class="math-daily-title">🌞 Daily Challenge</h2>
+            <h2 class="math-daily-title"><i data-lucide="sun" style="width:20px;height:20px;stroke-width:1.5;vertical-align:-3px"></i> Daily Challenge</h2>
             <p class="math-daily-sub">${_mathEsc(dailyState.date)}</p>
             <p class="math-daily-desc">
                 ${dailyState.problems.length} quick problems.<br>
@@ -85,6 +86,7 @@ function _renderDailyIntro() {
             </p>
             <button class="math-btn-primary" id="math-daily-go">Start</button>
         </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     document.getElementById('math-daily-go').addEventListener('click', () => {
         dailyState.idx = 0;
         dailyState.correct = 0;
@@ -185,9 +187,13 @@ async function _submitDailyAnswer(answer) {
     if (fb) {
         fb.className = `math-daily-feedback ${result.is_correct ? 'math-fb-ok' : 'math-fb-no'}`;
         fb.innerHTML = `
-            <div class="math-fb-line">${result.is_correct ? '✓ Correct!' : `✗ Answer: <strong>${_mathEsc(result.correct_answer)}</strong>`}</div>
+            <div class="math-fb-line">${result.is_correct
+                ? `<i data-lucide="check" style="width:14px;height:14px;stroke-width:2.5;vertical-align:-2px"></i> Correct!`
+                : `<i data-lucide="x" style="width:14px;height:14px;stroke-width:2.5;vertical-align:-2px"></i> Answer: <strong>${_mathEsc(result.correct_answer)}</strong>`
+            }</div>
             ${result.feedback ? `<div class="math-fb-hint">${_mathEsc(result.feedback)}</div>` : ''}
             <button class="math-btn-primary math-daily-next" id="math-daily-next">Next →</button>`;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
         const nextBtn = document.getElementById('math-daily-next');
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
@@ -226,7 +232,7 @@ function _renderDailySummary({ alreadyDone }) {
 
     stage.innerHTML = `
         <div class="math-daily math-daily-summary">
-            <h2 class="math-daily-title">🌞 Daily Challenge — Done</h2>
+            <h2 class="math-daily-title"><i data-lucide="sun" style="width:20px;height:20px;stroke-width:1.5;vertical-align:-3px"></i> Daily Challenge — Done</h2>
             <div class="math-daily-score">${correct} / ${total}</div>
             <div class="math-daily-pct">${pct}%</div>
             <div class="math-daily-chips">
@@ -235,6 +241,7 @@ function _renderDailySummary({ alreadyDone }) {
             </div>
             <p class="math-daily-sub">Come back tomorrow for a new set!</p>
         </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 // escape → _mathEsc / _mathEscAttr (math-katex-utils.js)

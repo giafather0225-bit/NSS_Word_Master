@@ -17,11 +17,11 @@ from sqlalchemy.orm import Session
 
 try:
     from ..database import get_db
-    from ..models import MathFactFluency
+    from ..models import MathFactFluency, AppConfig
     from ..services import xp_engine, streak_engine
 except ImportError:
     from database import get_db
-    from models import MathFactFluency
+    from models import MathFactFluency, AppConfig
     from services import xp_engine, streak_engine
 
 router = APIRouter()
@@ -241,9 +241,11 @@ def fluency_summary(db: Session = Depends(get_db)):
         1 for r in rows
         if r.last_played and r.last_played.startswith(today)
     )
+    cfg = db.query(AppConfig).filter(AppConfig.key == "math_fluency_daily_target").first()
+    daily_target = int(cfg.value) if cfg and cfg.value else 3
     return {
         "total_sets": total_sets,
         "mastered_sets": total_mastered,
         "today_rounds": today_rounds,
-        "daily_target": 3,
+        "daily_target": daily_target,
     }

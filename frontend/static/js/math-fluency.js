@@ -30,6 +30,7 @@ async function startMathFluency() {
     stage.innerHTML = `<div class="math-wrong-review"><p>Loading fact sets…</p></div>`;
     try {
         const res = await fetch('/api/math/fluency/catalog');
+        if (!res.ok) throw new Error('bad response');
         const data = await res.json();
         _renderFluencyPicker(data.fact_sets || []);
     } catch (err) {
@@ -95,6 +96,7 @@ function _renderFluencyPicker(factSets) {
 async function _startRound(factSet) {
     try {
         const res = await fetch(`/api/math/fluency/start-round?fact_set=${encodeURIComponent(factSet)}&count=10`);
+        if (!res.ok) throw new Error('bad response');
         const data = await res.json();
         fluencyState.factSet = factSet;
         fluencyState.questions = data.questions || [];

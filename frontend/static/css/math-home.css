@@ -68,14 +68,44 @@
     margin: 0;
 }
 
+/* ── Header right column ─────────────────────────────────────── */
+
+.mh-header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
 /* ── Stats chips ─────────────────────────────────────────────── */
 
 .mh-header-stats {
     display: flex;
     gap: 10px;
-    flex-shrink: 0;
     align-items: center;
-    padding-top: 4px;
+}
+
+/* ── Settings button ─────────────────────────────────────────── */
+
+.mh-settings-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--border-default);
+    border-radius: var(--radius-full);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
+}
+
+.mh-settings-btn:hover {
+    border-color: var(--math-primary);
+    color: var(--math-ink);
+    background: var(--math-light);
 }
 
 .mh-stat-chip {
@@ -130,114 +160,6 @@
     color: var(--text-primary);
     margin: 0;
     letter-spacing: -0.01em;
-}
-
-/* ── Wins badge ─────────────────────────────────────────────── */
-
-.mh-wins-badge {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-hint);
-    background: var(--bg-surface);
-    border-radius: var(--radius-full);
-    padding: 3px 10px;
-}
-
-.mh-wins-badge.all-done {
-    color: var(--math-ink);
-    background: var(--math-light);
-}
-
-/* ── Three small wins grid ──────────────────────────────────── */
-
-.mh-wins-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-}
-
-/* ── Win card ───────────────────────────────────────────────── */
-
-.mh-win-card {
-    background: var(--bg-card);
-    border: 1.5px solid var(--border-subtle);
-    border-radius: var(--radius-xl);
-    padding: 18px 16px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.mh-win-card:hover {
-    border-color: var(--math-primary);
-    box-shadow: var(--shadow-soft);
-}
-
-.mh-win-card.done {
-    background: var(--math-light);
-    border-color: var(--math-primary);
-}
-
-.mh-win-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2px;
-}
-
-.mh-win-tag {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--math-ink);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-}
-
-.mh-win-check {
-    color: var(--math-primary);
-    display: flex;
-    align-items: center;
-}
-
-.mh-win-title {
-    font-size: var(--font-size-md);
-    font-weight: 700;
-    color: var(--text-primary);
-    font-family: var(--font-family-display);
-    line-height: 1.25;
-}
-
-.mh-win-subtitle {
-    font-size: var(--font-size-xs);
-    color: var(--text-hint);
-    flex: 1;
-}
-
-.mh-win-btn {
-    margin-top: 8px;
-    padding: 7px 14px;
-    background: var(--math-primary);
-    color: var(--text-on-primary);
-    border: none;
-    border-radius: var(--radius-full);
-    font-size: 12px;
-    font-weight: 700;
-    font-family: var(--font-family);
-    cursor: pointer;
-    transition: background var(--transition-fast);
-    align-self: flex-start;
-    letter-spacing: 0.01em;
-}
-
-.mh-win-btn:hover:not(:disabled) {
-    background: var(--math-ink);
-}
-
-.mh-win-btn:disabled {
-    background: var(--border-default);
-    color: var(--text-hint);
-    cursor: default;
 }
 
 /* ── Continue card ──────────────────────────────────────────── */
@@ -350,9 +272,6 @@
 /* ── Responsive ─────────────────────────────────────────────── */
 
 @media (max-width: 780px) {
-    .mh-wins-grid {
-        grid-template-columns: 1fr;
-    }
     .mh-quick-grid {
         grid-template-columns: repeat(2, 1fr);
     }

@@ -143,5 +143,37 @@
         ]
       }
     ]
+  },
+  "solutions": {
+    "1": "Evaluating the expression (involving powers of 0.1) gives 0.01.",
+    "2": "Four of the five squares are each cut into two congruent pieces; only option E produces two pieces with different shapes.",
+    "3": "On a standard die, opposite faces sum to 7: 1 opp 6, 2 opp 5, 3 opp 4. Vertex P meets faces {1,2,3}. The three vertices adjacent to P meet faces {1,2,4}=7, {1,3,5}=9, {2,3,6}=11. The maximum vertex sum among Q, R, S is 11.",
+    "4": "The hopping pattern L,B,R,B repeats every 4 squares. In 48 squares there are 12 L-steps and 24 B-steps. Left foot touches the ground on every L-step and every B-step: 12+24 = 36 times.",
+    "5": "A figure can be traced without lifting the pencil if it has 0 or 2 odd-degree vertices. By counting vertex degrees and adding the minimum repeated edges for odd-degree vertices, the shortest possible drawing distance is 15 cm.",
+    "6": "With each circle of radius r, the square has side 4r. The four circles cover area 4*pi*r^2. Comparing the uncovered corner-and-centre region (black) to the circular area (grey), the ratio is 1:3.",
+    "7": "The 6-cube cross (structure 2) has 21 visible faces. To cover every visible face by adding cubes with minimum additions, the optimal placement requires 13 new cubes.",
+    "8": "A three-digit palindrome aba is divisible by 6 iff a is even (divisible by 2) and 2a+b is divisible by 3. Trying a=8: 16+b divisible by 3 gives b=8. The largest such palindrome is 888, with digit sum 8+8+8 = 24.",
+    "9": "The center O is at distance s*sqrt(2)/2 from each vertex. The hexagon has side OC. The angle alpha = interior angle of hexagon (120 deg) minus the 15 deg offset between the square diagonal and adjacent side direction, giving alpha = 105 degrees.",
+    "10": "Perimeter = 2(l+w) = 40, so l+w = 20. Both sides must be prime. Prime pairs summing to 20: (3,17) and (7,13). Maximum area = 7 x 13 = 91 square meters.",
+    "11": "Area of equilateral triangle with side 4 = 4*sqrt(3). Each of the 3 equal regions has area 4*sqrt(3), so rectangle area = 12*sqrt(3). Solving the trapezoid dimensions, the shorter parallel side = sqrt(3).",
+    "12": "In the 2x4 grid with three 2x2 constraints (columns 1-2, 2-3, 3-4) each containing all four letters, row 1 can be any of 4! = 24 arrangements and row 2 is then uniquely determined. Total = 24 ways.",
+    "13": "In figure 1 the visible black area is 7 times the white circle area. After separating the circles to be mutually tangent, the ratio of visible black areas between figure 2 and figure 1 gives answer D.",
+    "14": "In two years the product = 2024 = 2 x 11 x 23. Granddaughter is 2. So (daughter+2)(Mariam+2) = 1012 = 22 x 46. Both current ages are even: daughter = 20 now, Mariam = 44 now.",
+    "15": "For any interior point P in an equilateral triangle, the three segments parallel to the sides sum to the side length: 2+3+6 = 11 m. Perimeter = 3 x 11 = 33 m.",
+    "16": "Each circle value appears in the product of each square it borders. Taking the product of all four square values and dividing strategically, the product of the 8 grey circles = 40.",
+    "17": "Let vase counts be (a,b,c,d). Testing (0,2,0,2): 0 vases have 1 sweet, 2 vases have 2 sweets (vases 2 and 4), 0 vases have 3 sweets, 2 vases have 0 sweets (vases 1 and 3). All conditions satisfied. Total = 4 sweets.",
+    "18": "Large cube has n cubed small cubes. Face-painted cubes = 6(n-2)^2. Interior cubes = (n-2)^3. Setting equal: 6 = n-2, so n = 8.",
+    "19": "For adjacent pairs to sum to a multiple of 3, each vertex pairs with a complementary residue mod 3. Numbers equal to 0 mod 3 pair only with each other; 1s and 2s alternate. An 8-vertex octagon uses four numbers each from the mod-1 and mod-2 classes, leaving out all four multiples of 3: {3,6,9,12}.",
+    "20": "The net folds into a shape where A and B are vertices separated by a space diagonal. With unit edge length, the distance between A and B is sqrt(2).",
+    "21": "The prime factorisation has primes 2,3,5,7,11,13,17,... in increasing order with some exponents hidden. From the visible constraints and the structure of the factorisation, the exponent of 17 is 3.",
+    "22": "Statement C says 2024 is divisible by 11, which is always true (2024 = 8 x 11 x 23). On a lying day Kamal can only say false things, so he cannot say this true statement. It is the one statement he could not have made that day.",
+    "23": "If N ends in k nines with no further carry, S(N+1) = S(N) - 9k + 1. Setting S(N) = 3*S(N+1) gives S(N) = (27k-3)/2. The smallest integer solution is k=1, giving minimum digit sum S(N) = 12.",
+    "24": "Surface of 3x3x3 cube = 54 unit faces; each color needs 18. Minimum black cubes: 6 corners (3 faces each = 18). Maximum: 6 face-centres (1 face each) + 6 edge-cubes (2 faces each) = 12 cubes. B - A = 12 - 6 = 6.",
+    "25": "Minimum count(1) = 5 (since filling 24 rolls with count(1) > all others requires 6k-5 >= 24, so k >= 5). With 5 ones and remaining 19 rolls optimally filled (four 6s, four 5s, four 4s, four 3s, three 2s), maximum total = 5+24+20+16+12+6 = 83.",
+    "26": "Let T = total time, D = total distance. Time at 2 km/h: T/2; distance = T. Distance at 3 km/h: D/2; time = D/6. Remaining time at 4 km/h. The equation T/2 + D/6 + (D/2-T)/4 = T gives D = 18T/7. Time at 4 = (D/2-T)/4 = T/14. Fraction = 1/14.",
+    "27": "Product 1 through 25 has odd prime-exponents for 7, 13, 17, 19, 23. Each of 13,17,19,23 appears only once in range (as itself), so each must be removed (4 removals). One more removal fixes the odd exponent of 7 (remove 7 or 14 or 21). Minimum removals = 5.",
+    "28": "In a regular 20-gon on a circle of radius R, a chord spanning k steps has length 2R*sin(k*pi/20). Chord > R when k >= 4; chord < diameter when k <= 9. Each k from 4 to 9 gives exactly 20 chords. Total = 6 x 20 = 120.",
+    "29": "Line L3 (intersects 11 of n lines) is alone in its parallel class (size 1); L2 in class of 3; L1 in class of 7; one extra line in its own class. Total = 1+3+7+1 = 12. Check: L1 intersects 12-7=5, L2 intersects 12-3=9, L3 intersects 12-1=11. Minimum n = 12.",
+    "30": "Triangle with vertices O=(0,0), A=(m,n), B=(n,m). Area = (n^2 - m^2)/2 = 2024, so (n-m)(n+m) = 4048 = 2^4 * 11 * 23. Factor pairs (a,b) with a*b=4048, a<b, same parity: (2,2024),(4,1012),(8,506),(22,184),(44,92),(46,88). Exactly 6 valid pairs."
   }
 }

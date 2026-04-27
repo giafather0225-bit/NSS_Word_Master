@@ -51,6 +51,16 @@ function switchView(view) {
     show(topBar);                  // roadmap tabs visible during lesson flow
     sidebar.dataset.mode = 'english';
     updateSidebarMode('english');
+  } else if (view === 'math') {
+    hide(homeDash);
+    hide(idleWrap);
+    hide(stageCard);
+    hide(dailyView);
+    hide(diaryView);
+    hide(topBar);                  // English roadmap bar not relevant in Math
+    sidebar.dataset.mode = 'math';
+    updateSidebarMode('math');
+    if (typeof showMathHome === 'function') showMathHome();
   } else if (view === 'diary') {
     hide(homeDash);
     hide(idleWrap);

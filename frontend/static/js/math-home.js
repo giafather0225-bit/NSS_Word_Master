@@ -1,11 +1,10 @@
 /* ================================================================
    math-home.js — Math entry home screen (Three small wins + overview)
    Section: Math
-   Dependencies: math-navigation.js, math-academy.js, math-fluency.js,
-                 math-daily.js, math-glossary.js
+   Dependencies: math-home-wins.js, math-navigation.js, math-academy.js,
+                 math-fluency.js, math-daily.js, math-glossary.js
    API endpoints: /api/math/fluency/summary, /api/math/daily/today,
-                  /api/math/academy/grades, /api/math/academy/{g}/units,
-                  /api/math/academy/{g}/{u}/lessons
+                  /api/math/academy/weekly-stats
    ================================================================ */
 
 /* global mathState, startMathLesson, startMathFluency, startMathDaily,
@@ -69,13 +68,14 @@ const _mathHome = (() => {
         el.innerHTML = `<div class="mh-loading">Loading...</div>`;
 
         // Parallel data fetch
-        const [fluency, daily, lastLesson] = await Promise.all([
+        const [fluency, daily, lastLesson, weekly] = await Promise.all([
             _fetchJSON('/api/math/fluency/summary').catch(() => null),
             _fetchJSON('/api/math/daily/today').catch(() => null),
             Promise.resolve(_loadLastLesson()),
+            _fetchJSON('/api/math/academy/weekly-stats').catch(() => null),
         ]);
 
-        const wins = _buildWins(fluency, daily, lastLesson);
+        const wins = mathHomeBuildWins(fluency, daily, lastLesson);
         const doneCount = wins.filter(w => w.done).length;
 
         el.innerHTML = `
@@ -88,19 +88,24 @@ const _mathHome = (() => {
                         <h1 class="mh-title">Good ${_timeOfDay()}, Gia!</h1>
                         <p class="mh-date">${_todayLabel()}</p>
                     </div>
-                    <div class="mh-header-stats" id="mh-stats-row">
-                        <div class="mh-stat-chip" id="mh-stat-time">
-                            <span class="mh-stat-val">—</span>
-                            <span class="mh-stat-label">min today</span>
+                    <div class="mh-header-right">
+                        <div class="mh-header-stats" id="mh-stats-row">
+                            <div class="mh-stat-chip" id="mh-stat-time">
+                                <span class="mh-stat-val">—</span>
+                                <span class="mh-stat-label">min today</span>
+                            </div>
+                            <div class="mh-stat-chip" id="mh-stat-probs">
+                                <span class="mh-stat-val">—</span>
+                                <span class="mh-stat-label">problems</span>
+                            </div>
+                            <div class="mh-stat-chip" id="mh-stat-xp">
+                                <span class="mh-stat-val">—</span>
+                                <span class="mh-stat-label">XP earned</span>
+                            </div>
                         </div>
-                        <div class="mh-stat-chip" id="mh-stat-probs">
-                            <span class="mh-stat-val">—</span>
-                            <span class="mh-stat-label">problems</span>
-                        </div>
-                        <div class="mh-stat-chip" id="mh-stat-xp">
-                            <span class="mh-stat-val">—</span>
-                            <span class="mh-stat-label">XP earned</span>
-                        </div>
+                        <button class="mh-settings-btn" id="mh-settings-btn" aria-label="Math settings">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        </button>
                     </div>
                 </div>
 
@@ -111,12 +116,12 @@ const _mathHome = (() => {
                         <span class="mh-wins-badge ${doneCount === 3 ? 'all-done' : ''}">${doneCount}/3 done</span>
                     </div>
                     <div class="mh-wins-grid">
-                        ${wins.map((w, i) => _winCard(w, i)).join('')}
+                        ${wins.map((w, i) => mathHomeWinCard(w, i)).join('')}
                     </div>
                 </section>
 
                 <!-- Continue / Start lesson -->
-                ${lastLesson ? _continueSection(lastLesson) : _startSection()}
+                ${lastLesson ? mathHomeContinueSection(lastLesson) : mathHomeStartSection()}
 
                 <!-- Quick access -->
                 <section class="mh-section">
@@ -141,108 +146,14 @@ const _mathHome = (() => {
                     </div>
                 </section>
 
+                <!-- This Week -->
+                ${weekly ? mathHomeWeeklySection(weekly) : ''}
+
             </div>
         `;
 
         _bindEvents(el, wins, lastLesson);
         _loadTodayStats();
-    }
-
-    // ── Win cards ────────────────────────────────────────────
-
-    function _buildWins(fluency, daily, lastLesson) {
-        const wins = [];
-
-        // Win 1: Fluency
-        const fluencyDone = fluency && fluency.today_rounds >= fluency.daily_target;
-        wins.push({
-            type: 'fluency',
-            tag: 'Fact Fluency',
-            title: fluencyDone
-                ? `${fluency.today_rounds} rounds complete`
-                : `${fluency ? fluency.today_rounds : 0}/${fluency ? fluency.daily_target : 3} rounds done`,
-            subtitle: fluencyDone ? 'Great work!' : 'Build your math speed',
-            done: fluencyDone,
-            cta: fluencyDone ? 'Done' : 'Go',
-        });
-
-        // Win 2: Lesson
-        const hasLesson = !!lastLesson;
-        wins.push({
-            type: 'lesson',
-            tag: 'Academy',
-            title: hasLesson
-                ? lastLesson.lesson.replace(/_/g, ' ')
-                : 'Start a new lesson',
-            subtitle: hasLesson
-                ? `${lastLesson.unit.replace(/_/g, ' ')}`
-                : 'Pick a lesson from the sidebar',
-            done: false,
-            cta: hasLesson ? 'Continue' : 'Choose',
-            data: lastLesson,
-        });
-
-        // Win 3: Daily Challenge
-        const dailyDone = daily && daily.completed;
-        wins.push({
-            type: 'daily',
-            tag: 'Daily Challenge',
-            title: dailyDone
-                ? `Score: ${daily.score}/${daily.total}`
-                : (daily && daily.exists ? `${daily.total} problems` : 'Not available today'),
-            subtitle: dailyDone ? 'Challenge complete!' : 'One problem set',
-            done: dailyDone,
-            cta: (daily && daily.exists && !dailyDone) ? 'Start' : (dailyDone ? 'Done' : '—'),
-        });
-
-        return wins;
-    }
-
-    function _winCard(win, i) {
-        const doneClass = win.done ? 'done' : '';
-        const disabledAttr = (win.cta === '—' || win.done) ? 'disabled' : '';
-        return `
-            <div class="mh-win-card ${doneClass}">
-                <div class="mh-win-top">
-                    <span class="mh-win-tag">${_esc(win.tag)}</span>
-                    ${win.done ? `<span class="mh-win-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>` : ''}
-                </div>
-                <div class="mh-win-title">${_esc(win.title)}</div>
-                <div class="mh-win-subtitle">${_esc(win.subtitle)}</div>
-                <button class="mh-win-btn" data-win="${i}" ${disabledAttr}>${_esc(win.cta)}</button>
-            </div>
-        `;
-    }
-
-    // ── Continue / start section ─────────────────────────────
-
-    function _continueSection(last) {
-        return `
-            <section class="mh-section">
-                <h2 class="mh-section-title">Continue learning</h2>
-                <div class="mh-continue-card">
-                    <div class="mh-continue-info">
-                        <div class="mh-continue-eyebrow">${_esc(last.unit.replace(/_/g, ' '))}</div>
-                        <div class="mh-continue-title">${_esc(last.lesson.replace(/_/g, ' '))}</div>
-                    </div>
-                    <button class="mh-continue-btn" id="mh-continue-btn">
-                        Continue
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </button>
-                </div>
-            </section>
-        `;
-    }
-
-    function _startSection() {
-        return `
-            <section class="mh-section">
-                <div class="mh-start-hint">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                    Select a grade, unit, and lesson from the sidebar to start learning.
-                </div>
-            </section>
-        `;
     }
 
     // ── Bind events ──────────────────────────────────────────
@@ -265,6 +176,11 @@ const _mathHome = (() => {
                 _launchLesson(lastLesson.grade, lastLesson.unit, lastLesson.lesson);
             });
         }
+
+        // Settings
+        el.querySelector('#mh-settings-btn')?.addEventListener('click', () => {
+            if (typeof openMathPreferences === 'function') openMathPreferences();
+        });
 
         // Quick access
         el.querySelector('#mh-q-fluency')?.addEventListener('click', () => {
@@ -327,12 +243,6 @@ const _mathHome = (() => {
         if (h < 12) return 'morning';
         if (h < 17) return 'afternoon';
         return 'evening';
-    }
-
-    function _esc(s) {
-        const d = document.createElement('div');
-        d.textContent = s == null ? '' : String(s);
-        return d.innerHTML;
     }
 
     return { show, hide, saveLastLesson: _saveLastLesson };
