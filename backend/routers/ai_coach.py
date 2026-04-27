@@ -64,7 +64,7 @@ async def ai_coach_today(db: Session = Depends(get_db)) -> dict:
 
     Resolution order:
     1. Ollama (gemma2:2b) — 5 s timeout
-    2. Google Gemini (gemini-1.5-flash) — 8 s timeout, requires GEMINI_API_KEY env var
+    2. Google Gemini (gemini-2.0-flash) — 8 s timeout, requires GEMINI_API_KEY env var
     3. Random canned message
 
     Prompt injection defence: student stats are wrapped in [STATS] tags and
