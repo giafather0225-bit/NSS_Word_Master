@@ -16,11 +16,15 @@ via fetch → Blob → HTMLAudioElement. This lets the child study on any device
 """
 
 import asyncio
+import logging
 from concurrent.futures import ThreadPoolExecutor
 
 from fastapi import APIRouter
 from fastapi.responses import Response
+from fastapi import HTTPException
 from pydantic import BaseModel
+
+logger = logging.getLogger(__name__)
 
 from backend.tts_edge import (
     preview_sequence_bytes,
@@ -100,13 +104,23 @@ async def _run(fn, *args):
     return await loop.run_in_executor(_executor, lambda: fn(*args))
 
 
+def _tts_response(audio: bytes) -> Response:
+    if not audio:
+        raise HTTPException(status_code=503, detail="TTS returned empty audio")
+    return Response(content=audio, media_type="audio/mpeg")
+
+
 # @tag TTS @tag PREVIEW
 @router.post("/api/tts/preview_sequence")
 async def tts_preview_sequence(req: PreviewTTSRequest):
     """Return MP3 bytes for the preview sequence: word → meaning → example."""
     req.clean()
-    audio = await _run(preview_sequence_bytes, req.word, req.meaning, req.example)
-    return Response(content=audio, media_type="audio/mpeg")
+    try:
+        audio = await _run(preview_sequence_bytes, req.word, req.meaning, req.example)
+        return _tts_response(audio)
+    except Exception as e:
+        logger.error("TTS preview_sequence failed: %s", e)
+        raise HTTPException(status_code=503, detail="TTS service unavailable")
 
 
 # @tag TTS @tag PREVIEW
@@ -114,8 +128,12 @@ async def tts_preview_sequence(req: PreviewTTSRequest):
 async def tts_preview_word_meaning(req: WordMeaningTTSRequest):
     """Return MP3 bytes for word (normal speed) → meaning (slow); call 3× for repetition."""
     req.clean()
-    audio = await _run(preview_word_meaning_bytes, req.word, req.meaning, req.rep)
-    return Response(content=audio, media_type="audio/mpeg")
+    try:
+        audio = await _run(preview_word_meaning_bytes, req.word, req.meaning, req.rep)
+        return _tts_response(audio)
+    except Exception as e:
+        logger.error("TTS preview_word_meaning failed: %s", e)
+        raise HTTPException(status_code=503, detail="TTS service unavailable")
 
 
 # @tag TTS
@@ -123,8 +141,12 @@ async def tts_preview_word_meaning(req: WordMeaningTTSRequest):
 async def tts_word_meaning(req: WordMeaningTTSRequest):
     """Return MP3 bytes for word then meaning."""
     req.clean()
-    audio = await _run(word_meaning_bytes, req.word, req.meaning)
-    return Response(content=audio, media_type="audio/mpeg")
+    try:
+        audio = await _run(word_meaning_bytes, req.word, req.meaning)
+        return _tts_response(audio)
+    except Exception as e:
+        logger.error("TTS word_meaning failed: %s", e)
+        raise HTTPException(status_code=503, detail="TTS service unavailable")
 
 
 # @tag TTS
@@ -132,8 +154,12 @@ async def tts_word_meaning(req: WordMeaningTTSRequest):
 async def tts_word_only(req: TTSWordOnlyRequest):
     """Return MP3 bytes for a single word spoken aloud."""
     req.clean()
-    audio = await _run(word_only_bytes, req.word)
-    return Response(content=audio, media_type="audio/mpeg")
+    try:
+        audio = await _run(word_only_bytes, req.word)
+        return _tts_response(audio)
+    except Exception as e:
+        logger.error("TTS word_only failed: %s", e)
+        raise HTTPException(status_code=503, detail="TTS service unavailable")
 
 
 # @tag TTS
@@ -141,8 +167,12 @@ async def tts_word_only(req: TTSWordOnlyRequest):
 async def tts_example_full(req: TTSExampleFullRequest):
     """Return MP3 bytes for a full example sentence."""
     req.clean()
-    audio = await _run(example_full_bytes, req.sentence)
-    return Response(content=audio, media_type="audio/mpeg")
+    try:
+        audio = await _run(example_full_bytes, req.sentence)
+        return _tts_response(audio)
+    except Exception as e:
+        logger.error("TTS example_full failed: %s", e)
+        raise HTTPException(status_code=503, detail="TTS service unavailable")
 
 
 # @tag TTS
@@ -150,5 +180,9 @@ async def tts_example_full(req: TTSExampleFullRequest):
 async def play_tts_line(req: TTSLineRequest):
     """Return MP3 bytes for a single line of narration."""
     req.clean()
-    audio = await _run(line_bytes, req.text)
-    return Response(content=audio, media_type="audio/mpeg")
+    try:
+        audio = await _run(line_bytes, req.text)
+        return _tts_response(audio)
+    except Exception as e:
+        logger.error("TTS line failed: %s", e)
+        raise HTTPException(status_code=503, detail="TTS service unavailable")

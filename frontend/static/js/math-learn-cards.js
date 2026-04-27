@@ -14,9 +14,9 @@ let _learnKeyHandler = null;
 
 // ── CPA phase colours ──────────────────────────────────────
 const CPA_META = {
-    concrete:  { label: 'Concrete',  icon: '🧱', cls: 'cpa-concrete'  },
-    pictorial: { label: 'Pictorial', icon: '🖼️', cls: 'cpa-pictorial' },
-    abstract:  { label: 'Abstract',  icon: '🔢', cls: 'cpa-abstract'  },
+    concrete:  { label: 'Concrete',  icon: 'blocks', cls: 'cpa-concrete'  },
+    pictorial: { label: 'Pictorial', icon: 'image',  cls: 'cpa-pictorial' },
+    abstract:  { label: 'Abstract',  icon: 'hash',   cls: 'cpa-abstract'  },
 };
 
 // ── Render learn card carousel ─────────────────────────────
@@ -61,7 +61,7 @@ function _renderCurrentLearnCard() {
         <div class="math-learn-wrap">
             <div class="math-learn-header">
                 <span class="math-learn-counter">${num} / ${total}</span>
-                <span class="math-learn-cpa ${cpa.cls}">${cpa.icon} ${cpa.label}</span>
+                <span class="math-learn-cpa ${cpa.cls}"><i data-lucide="${cpa.icon}" style="width:13px;height:13px;vertical-align:-2px;stroke-width:1.5"></i> ${cpa.label}</span>
             </div>
 
             <div class="math-learn-card ${cpa.cls}">
@@ -73,7 +73,7 @@ function _renderCurrentLearnCard() {
 
             <div class="math-learn-actions">
                 <button class="math-btn-secondary" id="math-learn-tts" title="Listen">
-                    🔊 Listen
+                    <i data-lucide="volume-2" style="width:15px;height:15px;vertical-align:-3px;stroke-width:1.5"></i> Listen
                 </button>
                 <div class="math-learn-nav">
                     <button class="math-btn-ghost" id="math-learn-prev" ${_learnIdx === 0 ? 'disabled' : ''}>
@@ -96,6 +96,7 @@ function _renderCurrentLearnCard() {
         const cardEl = stage.querySelector('.math-learn-card');
         if (cardEl) window.mathRenderIn(cardEl);
     }
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     // Wire buttons
     document.getElementById('math-learn-tts').addEventListener('click', () => _playLearnTTS(card));
@@ -190,7 +191,7 @@ async function _playLearnTTS(card) {
     if (!text) return;
 
     const btn = document.getElementById('math-learn-tts');
-    if (btn) { btn.disabled = true; btn.textContent = '🔊 ...'; }
+    if (btn) { btn.disabled = true; btn.textContent = '...'; }
 
     try {
         const res = await fetch('/api/tts', {
@@ -209,7 +210,7 @@ async function _playLearnTTS(card) {
     } catch (err) {
         console.warn('[math] TTS failed:', err);
     } finally {
-        if (btn) { btn.disabled = false; btn.textContent = '🔊 Listen'; }
+        if (btn) { btn.disabled = false; btn.innerHTML = '<i data-lucide="volume-2" style="width:15px;height:15px;vertical-align:-3px;stroke-width:1.5"></i> Listen'; if (typeof lucide !== "undefined") lucide.createIcons(); }
     }
 }
 
@@ -220,7 +221,7 @@ function _renderMiniQuiz(card) {
     // Placeholder for interactive quiz_mini cards — Phase M5 will add full interaction
     return `
         <div class="math-learn-mini-quiz">
-            <p class="math-mini-label">💡 Think about it, then tap Next to continue.</p>
+            <p class="math-mini-label">Think about it, then tap Next to continue.</p>
         </div>
     `;
 }

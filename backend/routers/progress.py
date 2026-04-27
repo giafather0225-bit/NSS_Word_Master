@@ -8,11 +8,15 @@ API:
   POST /api/progress/verify
 """
 
+import logging
 import re as _re
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
+
+logger = logging.getLogger(__name__)
 
 from backend.database import get_db
 from backend.models import StudyItem, Progress
@@ -56,10 +60,15 @@ def sparta_reset_progress(req: SubjectLesson, db: Session = Depends(get_db)):
         )
         .first()
     )
-    if progress:
-        progress.current_index = 0
-        db.commit()
-    return {"status": "reset"}
+    try:
+        if progress:
+            progress.current_index = 0
+            db.commit()
+        return {"status": "reset"}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("sparta_reset_progress failed: %s", e)
+        raise HTTPException(status_code=500, detail="Failed to reset progress")
 
 
 # @tag PROGRESS @tag CHALLENGE
@@ -84,19 +93,24 @@ def challenge_perfect_complete(req: SubjectLesson, db: Session = Depends(get_db)
         )
         .count()
     )
-    if not progress:
-        progress = Progress(
-            subject=req.subject, textbook=req.textbook, lesson=req.lesson,
-            current_index=0, best_streak=0,
-        )
-        db.add(progress)
+    try:
+        if not progress:
+            progress = Progress(
+                subject=req.subject, textbook=req.textbook, lesson=req.lesson,
+                current_index=0, best_streak=0,
+            )
+            db.add(progress)
+            db.commit()
+            db.refresh(progress)
+        progress.best_streak = max(progress.best_streak or 0, n)
+        progress.current_index = 0
         db.commit()
         db.refresh(progress)
-    progress.best_streak = max(progress.best_streak or 0, n)
-    progress.current_index = 0
-    db.commit()
-    db.refresh(progress)
-    return {"best_streak": progress.best_streak}
+        return {"best_streak": progress.best_streak}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("challenge_perfect_complete failed: %s", e)
+        raise HTTPException(status_code=500, detail="Failed to update challenge progress")
 
 
 # @tag PROGRESS @tag VERIFY
@@ -120,19 +134,23 @@ def verify_answer(req: VerifyRequest, db: Session = Depends(get_db)):
 
     is_correct = req.user_input.strip().lower() == item.answer.strip().lower()
 
-    if is_correct:
-        progress.current_index += 1
-        if progress.current_index > progress.best_streak:
-            progress.best_streak = progress.current_index
-    else:
-        progress.current_index = 0
+    try:
+        if is_correct:
+            progress.current_index += 1
+            if progress.current_index > progress.best_streak:
+                progress.best_streak = progress.current_index
+        else:
+            progress.current_index = 0
 
-    db.commit()
-    db.refresh(progress)
-
-    return {
-        "is_correct": is_correct,
-        "correct_answer": item.answer,
-        "current_index": progress.current_index,
-        "best_streak": progress.best_streak,
-    }
+        db.commit()
+        db.refresh(progress)
+        return {
+            "is_correct":     is_correct,
+            "correct_answer": item.answer,
+            "current_index":  progress.current_index,
+            "best_streak":    progress.best_streak,
+        }
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("verify_answer failed for item_id=%s: %s", req.item_id, e)
+        raise HTTPException(status_code=500, detail="Failed to save answer result")

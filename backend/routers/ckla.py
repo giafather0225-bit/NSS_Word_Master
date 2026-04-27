@@ -15,11 +15,15 @@ SM-2 복습: routers/ckla_review.py
 """
 
 import json
+import logging
 from datetime import date as _date, datetime, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
+
+logger = logging.getLogger(__name__)
 
 from backend.database import get_db
 from backend.models.ckla import (
@@ -231,57 +235,64 @@ def update_lesson_progress(
     if not db.query(CKLALesson).filter_by(id=lesson_id).first():
         raise HTTPException(status_code=404, detail="Lesson not found")
 
-    prog = _get_or_create_progress(db, lesson_id)
-    now  = NOW()
+    try:
+        prog = _get_or_create_progress(db, lesson_id)
+        now  = NOW()
 
-    if req.reading_done is True and not prog.reading_done:
-        prog.reading_done    = True
-        prog.reading_done_at = now
-        award_xp(db, "ckla_reading_done", detail=str(lesson_id))
+        if req.reading_done is True and not prog.reading_done:
+            prog.reading_done    = True
+            prog.reading_done_at = now
+            award_xp(db, "ckla_reading_done", detail=str(lesson_id))
 
-    if req.vocab_done is True and not prog.vocab_done:
-        prog.vocab_done = True
-        award_xp(db, "ckla_vocab_done", detail=str(lesson_id))
-        # ── SM-2 연동: 레슨 단어 전체를 내일 복습 대상으로 등록 ──
-        word_links = db.query(CKLAWordLesson).filter_by(lesson_id=lesson_id).all()
-        word_ids   = [wl.word_id for wl in word_links]
-        tomorrow   = (_date.today() + timedelta(days=1)).isoformat()
-        today_str  = _date.today().isoformat()
+        if req.vocab_done is True and not prog.vocab_done:
+            prog.vocab_done = True
+            award_xp(db, "ckla_vocab_done", detail=str(lesson_id))
+            # ── SM-2 연동: 레슨 단어 전체를 내일 복습 대상으로 등록 ──
+            word_links = db.query(CKLAWordLesson).filter_by(lesson_id=lesson_id).all()
+            word_ids   = [wl.word_id for wl in word_links]
+            tomorrow   = (_date.today() + timedelta(days=1)).isoformat()
+            today_str  = _date.today().isoformat()
 
-        # 이미 progress 있는 word_id 제외
-        existing_ids = {
-            p.word_id for p in
-            db.query(USAcademyWordProgress)
-            .filter(USAcademyWordProgress.word_id.in_(word_ids))
-            .all()
-        }
-        word_map = {
-            w.id: w for w in
-            db.query(USAcademyWord).filter(USAcademyWord.id.in_(word_ids)).all()
-        }
-        for wid in word_ids:
-            if wid not in existing_ids and wid in word_map:
-                db.add(USAcademyWordProgress(
-                    word_id=wid,
-                    word=word_map[wid].word,
-                    next_review=tomorrow,
-                    last_studied=today_str,
-                ))
+            # 이미 progress 있는 word_id 제외
+            existing_ids = {
+                p.word_id for p in
+                db.query(USAcademyWordProgress)
+                .filter(USAcademyWordProgress.word_id.in_(word_ids))
+                .all()
+            }
+            word_map = {
+                w.id: w for w in
+                db.query(USAcademyWord).filter(USAcademyWord.id.in_(word_ids)).all()
+            }
+            for wid in word_ids:
+                if wid not in existing_ids and wid in word_map:
+                    db.add(USAcademyWordProgress(
+                        word_id=wid,
+                        word=word_map[wid].word,
+                        next_review=tomorrow,
+                        last_studied=today_str,
+                    ))
 
-    if req.word_work_done is True and not prog.word_work_done:
-        prog.word_work_done = True
+        if req.word_work_done is True and not prog.word_work_done:
+            prog.word_work_done = True
 
-    prog.last_active = now
+        prog.last_active = now
 
-    # 전체 완료 체크
-    if (prog.reading_done and prog.vocab_done and prog.word_work_done
-            and not prog.completed):
-        prog.completed    = True
-        prog.completed_at = now
-        award_xp(db, "ckla_lesson_complete", detail=str(lesson_id))
+        # 전체 완료 체크
+        if (prog.reading_done and prog.vocab_done and prog.word_work_done
+                and not prog.completed):
+            prog.completed    = True
+            prog.completed_at = now
+            award_xp(db, "ckla_lesson_complete", detail=str(lesson_id))
 
-    db.commit()
-    return _progress_dict(prog)
+        db.commit()
+        return _progress_dict(prog)
+    except HTTPException:
+        raise
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("update_lesson_progress failed for lesson_id=%s: %s", lesson_id, e)
+        raise HTTPException(status_code=500, detail="Failed to update lesson progress")
 
 
 @router.post("/questions/{question_id}/answer")
@@ -302,43 +313,52 @@ async def submit_answer(
     lesson = db.query(CKLALesson).filter_by(id=question.lesson_id).first()
     passage = lesson.passage if lesson else ""
 
-    # AI 채점
-    result = await grade_answer(
-        question_text=question.question_text,
-        kind=question.kind,
-        model_answer=question.model_answer or "",
-        passage=passage,
-        user_answer=req.user_answer,
-    )
+    try:
+        # AI 채점
+        result = await grade_answer(
+            question_text=question.question_text,
+            kind=question.kind,
+            model_answer=question.model_answer or "",
+            passage=passage,
+            user_answer=req.user_answer,
+        )
+    except Exception as e:
+        logger.error("CKLA grade_answer failed for question_id=%s: %s", question_id, e)
+        raise HTTPException(status_code=503, detail="Grading service unavailable")
 
-    # 진행 상태 업데이트
-    prog = _get_or_create_progress(db, question.lesson_id)
+    try:
+        # 진행 상태 업데이트
+        prog = _get_or_create_progress(db, question.lesson_id)
 
-    response = CKLAQuestionResponse(
-        question_id=question_id,
-        lesson_progress_id=prog.id,
-        user_answer=req.user_answer,
-        ai_score=result.score,
-        ai_feedback=result.feedback,
-        needs_parent_review=result.needs_parent_review,
-        created_at=NOW(),
-    )
-    db.add(response)
+        response = CKLAQuestionResponse(
+            question_id=question_id,
+            lesson_progress_id=prog.id,
+            user_answer=req.user_answer,
+            ai_score=result.score,
+            ai_feedback=result.feedback,
+            needs_parent_review=result.needs_parent_review,
+            created_at=NOW(),
+        )
+        db.add(response)
 
-    prog.questions_attempted = (prog.questions_attempted or 0) + 1
-    if result.score == 2:
-        prog.questions_correct = (prog.questions_correct or 0) + 1
-    prog.last_active = NOW()
+        prog.questions_attempted = (prog.questions_attempted or 0) + 1
+        if result.score == 2:
+            prog.questions_correct = (prog.questions_correct or 0) + 1
+        prog.last_active = NOW()
 
-    db.commit()
-    db.refresh(response)
-    return {
-        "id":                  response.id,
-        "ai_score":            response.ai_score,
-        "ai_feedback":         response.ai_feedback or "",
-        "needs_parent_review": bool(response.needs_parent_review),
-        "provider":            result.provider,
-    }
+        db.commit()
+        db.refresh(response)
+        return {
+            "id":                  response.id,
+            "ai_score":            response.ai_score,
+            "ai_feedback":         response.ai_feedback or "",
+            "needs_parent_review": bool(response.needs_parent_review),
+            "provider":            result.provider,
+        }
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("submit_answer DB save failed for question_id=%s: %s", question_id, e)
+        raise HTTPException(status_code=500, detail="Failed to save answer")
 
 
 @router.get("/words/{word_id}")

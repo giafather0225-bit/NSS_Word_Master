@@ -10,13 +10,17 @@ API:
 """
 
 import json
+import logging
 import re as _re
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy import text as _text
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
+
+logger = logging.getLogger(__name__)
 
 from backend.database import get_db, LEARNING_ROOT
 from backend.models import StudyItem, Progress
@@ -169,30 +173,35 @@ def get_study_data(subject: str, textbook: str, lesson: str, db: Session = Depen
 def save_learning_log(body: LearningLogCreate, db: Session = Depends(get_db)):
     """Save a stage completion log entry to the learning_logs table."""
     body.clean()
-    db.execute(
-        _text(
-            "INSERT INTO learning_logs "
-            "(textbook, lesson, stage, word_count, correct_count, "
-            " wrong_words_json, started_at, completed_at, duration_sec) "
-            "VALUES (:textbook, :lesson, :stage, :word_count, :correct_count, "
-            " :wrong_words, :started_at, :completed_at, :duration_sec)"
-        ),
-        {
-            "textbook":      body.textbook,
-            "lesson":        body.lesson,
-            "stage":         body.stage,
-            "word_count":    body.word_count,
-            "correct_count": body.correct_count,
-            "wrong_words":   json.dumps(body.wrong_words),
-            "started_at":    body.started_at,
-            "completed_at":  body.completed_at,
-            "duration_sec":  body.duration_sec,
-        },
-    )
-    db.commit()
-    if body.textbook and body.lesson:
-        academy_sess.touch_session(db, body.textbook, body.lesson, body.stage)
-    return {"ok": True}
+    try:
+        db.execute(
+            _text(
+                "INSERT INTO learning_logs "
+                "(textbook, lesson, stage, word_count, correct_count, "
+                " wrong_words_json, started_at, completed_at, duration_sec) "
+                "VALUES (:textbook, :lesson, :stage, :word_count, :correct_count, "
+                " :wrong_words, :started_at, :completed_at, :duration_sec)"
+            ),
+            {
+                "textbook":      body.textbook,
+                "lesson":        body.lesson,
+                "stage":         body.stage,
+                "word_count":    body.word_count,
+                "correct_count": body.correct_count,
+                "wrong_words":   json.dumps(body.wrong_words),
+                "started_at":    body.started_at,
+                "completed_at":  body.completed_at,
+                "duration_sec":  body.duration_sec,
+            },
+        )
+        db.commit()
+        if body.textbook and body.lesson:
+            academy_sess.touch_session(db, body.textbook, body.lesson, body.stage)
+        return {"ok": True}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("save_learning_log failed: %s", e)
+        raise HTTPException(status_code=500, detail="Failed to save learning log")
 
 
 # @tag STUDY @tag ANALYTICS
@@ -200,25 +209,30 @@ def save_learning_log(body: LearningLogCreate, db: Session = Depends(get_db)):
 def save_word_attempt(body: WordAttemptCreate, db: Session = Depends(get_db)):
     """Save a single word attempt (correct or wrong) to the word_attempts table."""
     body.clean()
-    db.execute(
-        _text(
-            "INSERT INTO word_attempts "
-            "(study_item_id, textbook, lesson, word, stage, is_correct, user_answer, attempted_at) "
-            "VALUES (:study_item_id, :textbook, :lesson, :word, :stage, :is_correct, :user_answer, :attempted_at)"
-        ),
-        {
-            "study_item_id": body.study_item_id,
-            "textbook":      body.textbook,
-            "lesson":        body.lesson,
-            "word":          body.word,
-            "stage":         body.stage,
-            "is_correct":    1 if body.is_correct else 0,
-            "user_answer":   body.user_answer,
-            "attempted_at":  body.attempted_at,
-        },
-    )
-    db.commit()
-    return {"ok": True}
+    try:
+        db.execute(
+            _text(
+                "INSERT INTO word_attempts "
+                "(study_item_id, textbook, lesson, word, stage, is_correct, user_answer, attempted_at) "
+                "VALUES (:study_item_id, :textbook, :lesson, :word, :stage, :is_correct, :user_answer, :attempted_at)"
+            ),
+            {
+                "study_item_id": body.study_item_id,
+                "textbook":      body.textbook,
+                "lesson":        body.lesson,
+                "word":          body.word,
+                "stage":         body.stage,
+                "is_correct":    1 if body.is_correct else 0,
+                "user_answer":   body.user_answer,
+                "attempted_at":  body.attempted_at,
+            },
+        )
+        db.commit()
+        return {"ok": True}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("save_word_attempt failed: %s", e)
+        raise HTTPException(status_code=500, detail="Failed to save word attempt")
 
 
 # @tag STUDY @tag ANALYTICS
@@ -228,25 +242,30 @@ def save_word_attempts_batch(body: WordAttemptsBatch, db: Session = Depends(get_
     body.clean()
     if not body.attempts:
         return {"ok": True, "count": 0}
-    db.execute(
-        _text(
-            "INSERT INTO word_attempts "
-            "(study_item_id, textbook, lesson, word, stage, is_correct, user_answer, attempted_at) "
-            "VALUES (:study_item_id, :textbook, :lesson, :word, :stage, :is_correct, :user_answer, :attempted_at)"
-        ),
-        [
-            {
-                "study_item_id": a.study_item_id,
-                "textbook":      a.textbook,
-                "lesson":        a.lesson,
-                "word":          a.word,
-                "stage":         a.stage,
-                "is_correct":    1 if a.is_correct else 0,
-                "user_answer":   a.user_answer,
-                "attempted_at":  a.attempted_at,
-            }
-            for a in body.attempts
-        ],
-    )
-    db.commit()
-    return {"ok": True, "count": len(body.attempts)}
+    try:
+        db.execute(
+            _text(
+                "INSERT INTO word_attempts "
+                "(study_item_id, textbook, lesson, word, stage, is_correct, user_answer, attempted_at) "
+                "VALUES (:study_item_id, :textbook, :lesson, :word, :stage, :is_correct, :user_answer, :attempted_at)"
+            ),
+            [
+                {
+                    "study_item_id": a.study_item_id,
+                    "textbook":      a.textbook,
+                    "lesson":        a.lesson,
+                    "word":          a.word,
+                    "stage":         a.stage,
+                    "is_correct":    1 if a.is_correct else 0,
+                    "user_answer":   a.user_answer,
+                    "attempted_at":  a.attempted_at,
+                }
+                for a in body.attempts
+            ],
+        )
+        db.commit()
+        return {"ok": True, "count": len(body.attempts)}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("save_word_attempts_batch failed: %s", e)
+        raise HTTPException(status_code=500, detail="Failed to save word attempts")

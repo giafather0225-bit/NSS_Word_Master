@@ -16,11 +16,15 @@ API:
 """
 
 import json
+import logging
 from datetime import date as _date, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
+
+logger = logging.getLogger(__name__)
 
 from backend.database import get_db
 from backend.models import USAcademyWord, USAcademyWordProgress, USAcademyPassage, USAcademySession, USAcademyUnitResult
@@ -169,28 +173,33 @@ def get_session(db: Session = Depends(get_db)):
 # @tag ACADEMY
 def start_session(req: StartSessionRequest, db: Session = Depends(get_db)):
     """Start or resume a session for the given level/unit."""
-    existing = (
-        db.query(USAcademySession)
-        .filter_by(level=req.level, unit_number=req.unit_number, is_completed=False)
-        .first()
-    )
-    if existing:
-        existing.last_active = TODAY()
-        db.commit()
-        return {"session_id": existing.id, "resumed": True}
+    try:
+        existing = (
+            db.query(USAcademySession)
+            .filter_by(level=req.level, unit_number=req.unit_number, is_completed=False)
+            .first()
+        )
+        if existing:
+            existing.last_active = TODAY()
+            db.commit()
+            return {"session_id": existing.id, "resumed": True}
 
-    session = USAcademySession(
-        level=req.level,
-        unit_number=req.unit_number,
-        word_index=0,
-        current_step="MEET_IT",
-        started_date=TODAY(),
-        last_active=TODAY(),
-    )
-    db.add(session)
-    db.commit()
-    db.refresh(session)
-    return {"session_id": session.id, "resumed": False}
+        session = USAcademySession(
+            level=req.level,
+            unit_number=req.unit_number,
+            word_index=0,
+            current_step="MEET_IT",
+            started_date=TODAY(),
+            last_active=TODAY(),
+        )
+        db.add(session)
+        db.commit()
+        db.refresh(session)
+        return {"session_id": session.id, "resumed": False}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("start_session failed: %s", e)
+        raise HTTPException(status_code=500, detail="Failed to start session")
 
 
 @router.post("/api/us-academy/step/complete")
@@ -201,36 +210,41 @@ def complete_step(req: StepCompleteRequest, db: Session = Depends(get_db)):
     if not word:
         raise HTTPException(status_code=404, detail="Word not found")
 
-    prog = _get_or_create_progress(db, req.word_id, word.word)
+    try:
+        prog = _get_or_create_progress(db, req.word_id, word.word)
 
-    step_map = {
-        "MEET_IT": "step_meet_it",
-        "SEE_IT":  "step_see_it",
-        "USE_IT":  "step_use_it",
-        "KNOW_IT": "step_know_it",
-        "OWN_IT":  "step_own_it",
-    }
-    col = step_map.get(req.step)
-    if col:
-        setattr(prog, col, True)
+        step_map = {
+            "MEET_IT": "step_meet_it",
+            "SEE_IT":  "step_see_it",
+            "USE_IT":  "step_use_it",
+            "KNOW_IT": "step_know_it",
+            "OWN_IT":  "step_own_it",
+        }
+        col = step_map.get(req.step)
+        if col:
+            setattr(prog, col, True)
 
-    if req.is_correct:
-        prog.correct_count += 1
-    else:
-        prog.wrong_count += 1
+        if req.is_correct:
+            prog.correct_count += 1
+        else:
+            prog.wrong_count += 1
 
-    prog.steps_completed = sum([
-        bool(prog.step_meet_it), bool(prog.step_see_it),
-        bool(prog.step_use_it), bool(prog.step_know_it), bool(prog.step_own_it),
-    ])
-    prog.last_studied = TODAY()
+        prog.steps_completed = sum([
+            bool(prog.step_meet_it), bool(prog.step_see_it),
+            bool(prog.step_use_it), bool(prog.step_know_it), bool(prog.step_own_it),
+        ])
+        prog.last_studied = TODAY()
 
-    # Register SM-2 queue when all 5 steps complete
-    if prog.steps_completed == 5 and not prog.next_review:
-        prog.next_review = (_date.today() + timedelta(days=1)).isoformat()
+        # Register SM-2 queue when all 5 steps complete
+        if prog.steps_completed == 5 and not prog.next_review:
+            prog.next_review = (_date.today() + timedelta(days=1)).isoformat()
 
-    db.commit()
-    return {"steps_completed": prog.steps_completed, "word": word.word}
+        db.commit()
+        return {"steps_completed": prog.steps_completed, "word": word.word}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("complete_step failed for word_id=%s: %s", req.word_id, e)
+        raise HTTPException(status_code=500, detail="Failed to save step progress")
 
 
 @router.post("/api/us-academy/quiz/result")
@@ -238,30 +252,34 @@ def complete_step(req: StepCompleteRequest, db: Session = Depends(get_db)):
 def save_quiz_result(req: QuizResultRequest, db: Session = Depends(get_db)):
     """Save mini quiz / unit test / reading result."""
     passed = req.total > 0 and (req.score / req.total) >= 0.8
+    try:
+        result = USAcademyUnitResult(
+            level=req.level,
+            unit_number=req.unit_number,
+            result_type=req.result_type,
+            score=req.score,
+            total=req.total,
+            passed=passed,
+            wrong_words_json=json.dumps(req.wrong_word_ids),
+            completed_at=TODAY(),
+        )
+        db.add(result)
 
-    result = USAcademyUnitResult(
-        level=req.level,
-        unit_number=req.unit_number,
-        result_type=req.result_type,
-        score=req.score,
-        total=req.total,
-        passed=passed,
-        wrong_words_json=json.dumps(req.wrong_word_ids),
-        completed_at=TODAY(),
-    )
-    db.add(result)
+        # Register wrong words in SM-2 queue with closer review date
+        for wid in req.wrong_word_ids:
+            w = db.query(USAcademyWord).filter_by(id=wid).first()
+            if not w:
+                continue
+            prog = _get_or_create_progress(db, wid, w.word)
+            prog.wrong_count += 1
+            prog.next_review = TODAY()  # review tomorrow for wrong answers
 
-    # Register wrong words in SM-2 queue with closer review date
-    for wid in req.wrong_word_ids:
-        w = db.query(USAcademyWord).filter_by(id=wid).first()
-        if not w:
-            continue
-        prog = _get_or_create_progress(db, wid, w.word)
-        prog.wrong_count += 1
-        prog.next_review = TODAY()  # review tomorrow for wrong answers
-
-    db.commit()
-    return {"passed": passed, "score": req.score, "total": req.total}
+        db.commit()
+        return {"passed": passed, "score": req.score, "total": req.total}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("save_quiz_result failed: %s", e)
+        raise HTTPException(status_code=500, detail="Failed to save quiz result")
 
 
 @router.get("/api/us-academy/review/due")
@@ -303,18 +321,24 @@ def save_review_result(req: ReviewResultRequest, db: Session = Depends(get_db)):
     new_interval, new_easiness, new_reps = sm2_calculate(
         quality, prog.sm2_repetitions, prog.sm2_easiness, prog.sm2_interval
     )
-    prog.sm2_interval    = new_interval
-    prog.sm2_easiness    = new_easiness
-    prog.sm2_repetitions = new_reps
-    prog.next_review     = (_date.today() + timedelta(days=new_interval)).isoformat()
 
-    if req.is_correct:
-        prog.correct_count += 1
-    else:
-        prog.wrong_count += 1
+    try:
+        prog.sm2_interval    = new_interval
+        prog.sm2_easiness    = new_easiness
+        prog.sm2_repetitions = new_reps
+        prog.next_review     = (_date.today() + timedelta(days=new_interval)).isoformat()
 
-    db.commit()
-    return {"next_review": prog.next_review, "interval_days": new_interval}
+        if req.is_correct:
+            prog.correct_count += 1
+        else:
+            prog.wrong_count += 1
+
+        db.commit()
+        return {"next_review": prog.next_review, "interval_days": new_interval}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("us_academy save_review_result failed for word_id=%s: %s", req.word_id, e)
+        raise HTTPException(status_code=500, detail="Failed to save review result")
 
 
 @router.get("/api/us-academy/passage/{passage_id}")

@@ -8,12 +8,16 @@ API:
 """
 
 import json
+import logging
 from datetime import date as _date, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy import text
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
+
+logger = logging.getLogger(__name__)
 
 from backend.database import get_db
 from backend.models.us_academy import USAcademyWord, USAcademyWordProgress
@@ -98,15 +102,21 @@ def save_review_result(req: ReviewResult, db: Session = Depends(get_db)):
     new_interval, new_easiness, new_reps = sm2_calculate(
         quality, prog.sm2_repetitions, prog.sm2_easiness, prog.sm2_interval
     )
-    prog.sm2_interval    = new_interval
-    prog.sm2_easiness    = new_easiness
-    prog.sm2_repetitions = new_reps
-    prog.next_review     = (_date.today() + timedelta(days=new_interval)).isoformat()
 
-    if req.is_correct:
-        prog.correct_count = (prog.correct_count or 0) + 1
-    else:
-        prog.wrong_count = (prog.wrong_count or 0) + 1
+    try:
+        prog.sm2_interval    = new_interval
+        prog.sm2_easiness    = new_easiness
+        prog.sm2_repetitions = new_reps
+        prog.next_review     = (_date.today() + timedelta(days=new_interval)).isoformat()
 
-    db.commit()
-    return {"next_review": prog.next_review, "interval_days": new_interval}
+        if req.is_correct:
+            prog.correct_count = (prog.correct_count or 0) + 1
+        else:
+            prog.wrong_count = (prog.wrong_count or 0) + 1
+
+        db.commit()
+        return {"next_review": prog.next_review, "interval_days": new_interval}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("ckla save_review_result failed for word_id=%s: %s", req.word_id, e)
+        raise HTTPException(status_code=500, detail="Failed to save review result")

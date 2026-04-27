@@ -85,14 +85,14 @@ function renderMathProblem() {
     // ~30s to encourage productive struggle. When the adaptive `forceHints`
     // flag is on (after 3 consecutive wrong), surface it immediately.
     const hintsHtml = (p.hints && p.hints.length > 0 && mathState.stage === 'try')
-        ? `<button class="math-btn-ghost math-hint-btn" id="math-hint-btn" disabled>💡 Hint <span class="math-hint-countdown" id="math-hint-countdown">(30s)</span></button>
+        ? `<button class="math-btn-ghost math-hint-btn" id="math-hint-btn" disabled><i data-lucide="lightbulb" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Hint <span class="math-hint-countdown" id="math-hint-countdown">(30s)</span></button>
            <div class="math-hint-box hidden" id="math-hint-box"></div>`
         : '';
 
     // 3-Read (word problem heuristic — Try & Practice stages)
     const isWord = (typeof isWordProblem === 'function') && isWordProblem(p.question || '');
     const threeReadHtml = (isWord && mathState.stage !== 'pretest')
-        ? `<button class="math-btn-ghost math-3read-btn" id="math-3read-btn" type="button">📖 3-Read</button>`
+        ? `<button class="math-btn-ghost math-3read-btn" id="math-3read-btn" type="button"><i data-lucide="book-open" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> 3-Read</button>`
         : '';
 
     // Tools panel (Try stage only — optional scaffolding)
@@ -119,6 +119,7 @@ function renderMathProblem() {
     `;
 
     if (toolsHtml) _wireMathToolsPanel(p);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     // KaTeX: render math in the question area (body is populated by per-type renderer below)
     if (typeof window.mathRenderIn === 'function') {
@@ -156,7 +157,7 @@ function renderMathProblem() {
             if (!box) return;
             if (hintIdx < p.hints.length) {
                 box.classList.remove('hidden');
-                box.innerHTML += `<p class="math-hint-item">💡 ${_mathEsc(p.hints[hintIdx])}</p>`;
+                box.innerHTML += `<p class="math-hint-item">${_mathEsc(p.hints[hintIdx])}</p>`;
                 if (typeof window.mathRenderIn === 'function') window.mathRenderIn(box);
                 hintIdx++;
             }
@@ -267,11 +268,11 @@ function _hideMathLoading() {
 /** @tag MATH @tag PROBLEM */
 function _mathStageLabel(stage) {
     const labels = {
-        pretest: '📋 Pretest',
-        try: '✏️ Try',
-        practice_r1: '🏋️ Practice R1',
-        practice_r2: '🏋️ Practice R2',
-        practice_r3: '🏋️ Practice R3',
+        pretest: 'Pretest',
+        try: 'Try',
+        practice_r1: 'Practice R1',
+        practice_r2: 'Practice R2',
+        practice_r3: 'Practice R3',
     };
     return labels[stage] || stage;
 }
@@ -279,9 +280,9 @@ function _mathStageLabel(stage) {
 // ── Try-stage Tools panel (optional manipulatives) ────────
 
 const _MATH_TOOL_DEFS = [
-    { tool: 'number_line',   label: '📏 Number Line',  defaults: { min: 0, max: 20, step: 1 } },
-    { tool: 'base10_blocks', label: '🧱 Base-10',      defaults: { start: 0, max: 999 } },
-    { tool: 'fraction_bar',  label: '🧩 Fraction Bar', defaults: { denominator: 4, numerator: 1 } },
+    { tool: 'number_line',   label: 'Number Line',  defaults: { min: 0, max: 20, step: 1 } },
+    { tool: 'base10_blocks', label: 'Base-10',      defaults: { start: 0, max: 999 } },
+    { tool: 'fraction_bar',  label: 'Fraction Bar', defaults: { denominator: 4, numerator: 1 } },
     { tool: 'array_grid',    label: '▦ Array',         defaults: { rows: 3, cols: 4 } },
     { tool: 'bar_model',     label: '▭ Bar Model',     defaults: { parts: [{ label: 'Part 1', value: 0 }, { label: 'Part 2', value: 0 }] } },
 ];
@@ -293,7 +294,7 @@ function _renderMathToolsPanel() {
         .join('');
     return `
         <details class="math-tools-panel" id="math-tools-panel">
-            <summary class="math-tools-summary">🧰 Tools <span class="math-tools-hint">— optional</span></summary>
+            <summary class="math-tools-summary"><i data-lucide="wrench" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Tools <span class="math-tools-hint">— optional</span></summary>
             <div class="math-tools-buttons">${btns}</div>
             <div class="math-tools-slot" id="math-tools-slot"></div>
         </details>

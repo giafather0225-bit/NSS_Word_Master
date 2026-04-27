@@ -203,6 +203,6 @@ async function apiTutorReply(word, sentence) {
         const d = await res.json();
         return d.feedback || "";
     } catch {
-        return `🪄 Great sentence using "${word}"! 💖\n✨ Ollama is sleeping — try again in a moment.`;
+        return `Great sentence using "${word}"!\nOllama is sleeping — try again in a moment.`;
     }
 }

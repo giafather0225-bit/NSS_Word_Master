@@ -1,11 +1,11 @@
 /* ================================================================
-   math-academy-sidebar.css — Math section sidebar styles
+   math-academy-sidebar.css — Math section sidebar (app-level nav)
    Section: Math
    Dependencies: theme.css
    API endpoints: none
    ================================================================ */
 
-/* ── Math sidebar accordion ─────────────────────────────── */
+/* ── Math sidebar accordion headers ────────────────────────── */
 
 #sb-math-section .sb-accordion {
     margin-bottom: 2px;
@@ -16,37 +16,56 @@
     align-items: center;
     gap: 8px;
     width: 100%;
-    padding: 10px 12px;
+    padding: 9px 12px;
     border: none;
     background: transparent;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     color: var(--text-primary);
     border-radius: var(--radius-sm);
-    transition: background 0.15s;
+    transition: background var(--transition-fast);
+    font-family: var(--font-family);
 }
 
 #sb-math-section .sb-accordion-header:hover {
-    background: var(--math-primary-light);
+    background: var(--math-light);
+}
+
+#sb-math-section .sb-accordion-header.math-acc-open {
+    color: var(--math-ink);
+    background: var(--math-light);
 }
 
 #sb-math-section .sb-accordion-arrow {
     margin-left: auto;
-    font-size: 10px;
-    color: var(--text-secondary);
-    transition: transform 0.2s;
+    color: var(--text-hint);
+    transition: transform 0.18s ease;
+    display: flex;
+    align-items: center;
 }
 
 #sb-math-section .sb-accordion-header.math-acc-open .sb-accordion-arrow {
     transform: rotate(0deg);
+    color: var(--math-ink);
 }
 
 #sb-math-section .sb-accordion-header:not(.math-acc-open) .sb-accordion-arrow {
     transform: rotate(-90deg);
 }
 
-/* ── Math sidebar fields ────────────────────────────────── */
+/* ── Section label (grade/unit grouping) ────────────────────── */
+
+.math-sb-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-hint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 12px 12px 4px;
+}
+
+/* ── Dropdown selects ───────────────────────────────────────── */
 
 #sb-math-section .sb-field {
     padding: 4px 12px;
@@ -54,75 +73,156 @@
 
 #sb-math-section .sb-field label {
     display: block;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-hint);
     margin-bottom: 4px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.06em;
 }
 
 #sb-math-section .sb-field select {
     width: 100%;
-    padding: 6px 8px;
-    border: 1px solid var(--border-input);
+    padding: 7px 10px;
+    border: 1.5px solid var(--border-default);
     border-radius: var(--radius-sm);
     background: var(--bg-card);
     font-size: 13px;
+    font-family: var(--font-family);
     color: var(--text-primary);
     cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A79A89' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 28px;
 }
 
 #sb-math-section .sb-field select:focus-visible {
     outline: none;
     border-color: var(--math-primary);
-    box-shadow: 0 0 0 3px var(--color-primary-glow);
+    box-shadow: 0 0 0 3px rgba(138, 196, 168, 0.2);
 }
 
-/* ── Math sidebar info rows ─────────────────────────────── */
+/* ── Info rows ──────────────────────────────────────────────── */
 
 #sb-math-section .sb-info-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 12px;
-    font-size: 13px;
+    padding: 5px 12px;
+    font-size: 12px;
     color: var(--text-secondary);
 }
 
 #sb-math-section .sb-info-row span:last-child {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
 }
 
-/* ── Math sidebar buttons ───────────────────────────────── */
+/* ── Action buttons ─────────────────────────────────────────── */
 
 #sb-math-section .sb-action-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
     width: calc(100% - 24px);
-    margin: 8px 12px;
-    padding: 8px 16px;
+    margin: 8px 12px 4px;
+    padding: 9px 16px;
     background: var(--math-primary);
-    color: var(--math-primary-on);
+    color: #fff;
     border: none;
     border-radius: var(--radius-full);
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
+    font-family: var(--font-family);
     cursor: pointer;
-    transition: background 0.15s;
+    transition: background var(--transition-fast), box-shadow var(--transition-fast);
+    letter-spacing: 0.01em;
 }
 
 #sb-math-section .sb-action-btn:hover {
-    background: var(--math-primary-hover);
+    background: var(--math-ink);
+    box-shadow: 0 2px 8px rgba(58, 106, 84, 0.2);
 }
 
 #sb-math-section .sb-action-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+    box-shadow: none;
 }
+
+/* ── Small card variant ─────────────────────────────────────── */
 
 #sb-math-section .sb-card-sm {
-    padding: 8px 12px;
-    font-size: 13px;
+    margin: 4px 12px;
+    padding: 8px 10px;
+    background: var(--math-light);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--math-ink);
 }
 
+/* ── Progress mini-bar in sidebar ───────────────────────────── */
+
+.math-sb-progress-wrap {
+    padding: 4px 12px 8px;
+}
+
+.math-sb-progress-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-hint);
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+}
+
+.math-sb-progress-bar {
+    height: 5px;
+    background: var(--border-subtle);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.math-sb-progress-fill {
+    height: 100%;
+    background: var(--math-primary);
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+}
+
+/* ── Fluency stats row ──────────────────────────────────────── */
+
+.math-sb-stat-row {
+    display: flex;
+    gap: 8px;
+    padding: 4px 12px 8px;
+}
+
+.math-sb-stat {
+    flex: 1;
+    background: var(--math-light);
+    border-radius: var(--radius-sm);
+    padding: 6px 8px;
+    text-align: center;
+}
+
+.math-sb-stat-val {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--math-ink);
+    font-family: var(--font-family-display);
+    font-variant-numeric: tabular-nums;
+}
+
+.math-sb-stat-label {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text-hint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 1px;
+}

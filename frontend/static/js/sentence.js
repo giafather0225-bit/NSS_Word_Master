@@ -32,9 +32,9 @@ async function evaluateSentence(word, sentence) {
  * @tag SENTENCE AI
  */
 function formatStructuredFeedback(result) {
-    const grammarIcon = result.grammar.correct ? "✅" : "⚠️";
-    const wordIcon    = result.wordUsage.correct ? "✅" : "⚠️";
-    const stars       = "⭐".repeat(Math.min(5, Math.max(1, result.creativity.score || 1)));
+    const grammarIcon = result.grammar.correct ? "[✓]" : "[!]";
+    const wordIcon    = result.wordUsage.correct ? "[✓]" : "[!]";
+    const stars       = "★".repeat(Math.min(5, Math.max(1, result.creativity.score || 1)));
     return grammarIcon + " Grammar: " + result.grammar.feedback + "\n"
          + wordIcon    + " Word Use: " + result.wordUsage.feedback + "\n"
          + stars       + " Creativity: " + result.creativity.feedback + "\n"
@@ -195,7 +195,7 @@ function renderSentenceScramble(el, item) {
         const correct = placed.every((idx, i) => idx === order[i]);
         if (correct) {
             stageFxCorrect();
-            fbEl.textContent = 'Great! Now write your own sentence. ✨';
+            fbEl.textContent = 'Great! Now write your own sentence.';
             fbEl.classList.add('correct');
             checkBtn.disabled = true;
             setTimeout(() => {
@@ -273,7 +273,7 @@ function renderSentenceItem(el, item) {
 
         if (inp) inp.disabled = true;
         si.disabled = true;
-        si.textContent = "AI checking… 🤔";
+        si.textContent = "AI checking…";
         setStatus("Asking AI tutor…");
 
         const loadingEl = el.querySelector("#sm-ai-loading");
@@ -316,7 +316,7 @@ function renderSentenceItem(el, item) {
                 }
                 const inputRow = el.querySelector("#sm-input-row");
                 if (inputRow) inputRow.remove();
-                setStatus(attempt >= 2 ? "Nice effort! Moving on. ✨" : "Great sentence! ⭐");
+                setStatus(attempt >= 2 ? "Nice effort! Moving on." : "Great sentence!");
             } else {
                 // Error on 1st attempt → show feedback, allow retry
                 smState.attempt[item.id] = 2;
@@ -327,7 +327,7 @@ function renderSentenceItem(el, item) {
                 if (inp) { inp.disabled = false; inp.value = ""; inp.focus(); }
                 si.disabled = false;
                 si.textContent = "Submit ✓ (2nd try)";
-                setStatus("Here's a hint — give it another try! 💡");
+                setStatus("Here's a hint — give it another try!");
             }
         } catch(e) {
             if (loadingEl) loadingEl.style.display = "none";

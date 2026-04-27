@@ -60,7 +60,7 @@ function _renderFluencyPicker(factSets) {
     if (!stage) return;
     stage.innerHTML = `
         <div class="math-fluency-picker">
-            <h2 class="math-fluency-title">🔢 Fact Fluency</h2>
+            <h2 class="math-fluency-title">Fact Fluency</h2>
             <p class="math-fluency-sub">Pick a fact set — 60 seconds, 10 questions.</p>
             <div class="math-fluency-grid">
                 ${factSets.map(fs => `
@@ -261,7 +261,7 @@ function _renderFluencySummary({ score, total, elapsed, aborted, submitData }) {
     const mastered = submitData?.mastered;
     stage.innerHTML = `
         <div class="math-round-summary">
-            <div class="math-summary-icon">${aborted ? '🛑' : (passed ? '⚡' : '🔁')}</div>
+            <div class="math-summary-icon">${aborted ? '<i data-lucide="circle-x" style="width:32px;height:32px;stroke-width:1.5"></i>' : (passed ? '<i data-lucide="zap" style="width:32px;height:32px;stroke-width:1.5"></i>' : '<i data-lucide="refresh-cw" style="width:32px;height:32px;stroke-width:1.5"></i>')}</div>
             <h2 class="math-summary-title">${aborted ? 'Round Stopped' : 'Round Complete'}</h2>
             <div class="math-summary-score">${score} / ${total}</div>
             <div class="math-summary-pct">${pct}% · ${elapsed}s${phase ? ' · ' + _mathEsc(phase) : ''}</div>
@@ -272,8 +272,8 @@ function _renderFluencySummary({ score, total, elapsed, aborted, submitData }) {
                 <div class="math-summary-weak">
                     <div class="math-summary-weak-label">Milestones</div>
                     <div class="math-summary-weak-list">
-                        ${newBest ? '<span class="math-summary-chip">🏆 Personal Best</span>' : ''}
-                        ${mastered ? '<span class="math-summary-chip">🎓 Mastered</span>' : ''}
+                        ${newBest ? '<span class="math-summary-chip"><i data-lucide="trophy" style="width:13px;height:13px;vertical-align:-2px;stroke-width:1.5"></i> Personal Best</span>' : ''}
+                        ${mastered ? '<span class="math-summary-chip"><i data-lucide="graduation-cap" style="width:13px;height:13px;vertical-align:-2px;stroke-width:1.5"></i> Mastered</span>' : ''}
                     </div>
                 </div>` : ''}
             <div class="math-fluency-actions">
@@ -282,6 +282,7 @@ function _renderFluencySummary({ score, total, elapsed, aborted, submitData }) {
             </div>
         </div>
     `;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     document.getElementById('math-fluency-again')?.addEventListener('click', () => startMathFluency());
     document.getElementById('math-fluency-back')?.addEventListener('click', () => {
         if (typeof switchView === 'function') switchView('math');

@@ -9,11 +9,15 @@ API:
   GET  /api/review/stats
 """
 
+import logging
 from datetime import date as _date, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
+
+logger = logging.getLogger(__name__)
 
 from backend.database import get_db
 from backend.models import StudyItem, WordReview
@@ -81,28 +85,33 @@ def register_lesson_for_review(
         .all()
     }
 
-    for item in study_items:
-        if item.id in existing_ids:
-            continue
-        wr = WordReview(
-            study_item_id=item.id,
-            word=item.answer or "",
-            subject=req.subject,
-            textbook=req.textbook,
-            lesson=req.lesson,
-            easiness="2.5",
-            interval=0,
-            repetitions=0,
-            next_review=tomorrow,
-            last_review="",
-            total_reviews=0,
-            total_correct=0,
-        )
-        db.add(wr)
-        registered += 1
+    try:
+        for item in study_items:
+            if item.id in existing_ids:
+                continue
+            wr = WordReview(
+                study_item_id=item.id,
+                word=item.answer or "",
+                subject=req.subject,
+                textbook=req.textbook,
+                lesson=req.lesson,
+                easiness="2.5",
+                interval=0,
+                repetitions=0,
+                next_review=tomorrow,
+                last_review="",
+                total_reviews=0,
+                total_correct=0,
+            )
+            db.add(wr)
+            registered += 1
 
-    db.commit()
-    return {"registered": registered, "total_items": len(study_items), "lesson": req.lesson}
+        db.commit()
+        return {"registered": registered, "total_items": len(study_items), "lesson": req.lesson}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("register_lesson_for_review failed: %s", e)
+        raise HTTPException(status_code=500, detail="Failed to register lesson for review")
 
 
 # @tag REVIEW @tag SM2
@@ -182,33 +191,38 @@ def register_words_for_review(req: RegisterWordsRequest, db: Session = Depends(g
         ).all()
     }
 
-    registered = 0
-    for w in req.words:
-        if not w.word or w.word in existing_words:
-            continue
-        wr = WordReview(
-            study_item_id=None,
-            word=w.word,
-            subject="English",
-            textbook="",
-            lesson="",
-            easiness="2.5",
-            interval=0,
-            repetitions=0,
-            next_review=tomorrow,
-            last_review="",
-            total_reviews=0,
-            total_correct=0,
-            source=req.source,
-            question=w.question or "",
-            hint=w.hint or "",
-            source_ref=req.source_ref or "",
-        )
-        db.add(wr)
-        registered += 1
+    try:
+        registered = 0
+        for w in req.words:
+            if not w.word or w.word in existing_words:
+                continue
+            wr = WordReview(
+                study_item_id=None,
+                word=w.word,
+                subject="English",
+                textbook="",
+                lesson="",
+                easiness="2.5",
+                interval=0,
+                repetitions=0,
+                next_review=tomorrow,
+                last_review="",
+                total_reviews=0,
+                total_correct=0,
+                source=req.source,
+                question=w.question or "",
+                hint=w.hint or "",
+                source_ref=req.source_ref or "",
+            )
+            db.add(wr)
+            registered += 1
 
-    db.commit()
-    return {"registered": registered, "source": req.source, "source_ref": req.source_ref}
+        db.commit()
+        return {"registered": registered, "source": req.source, "source_ref": req.source_ref}
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("register_words_for_review failed: %s", e)
+        raise HTTPException(status_code=500, detail="Failed to register words for review")
 
 
 # @tag REVIEW @tag SM2
@@ -228,27 +242,31 @@ def submit_review_result(req: ReviewResultRequest, db: Session = Depends(get_db)
         interval=wr.interval,
     )
 
-    wr.repetitions  = new_reps
-    wr.easiness     = str(round(new_ease, 2))
-    wr.interval     = new_interval
-    wr.next_review  = next_date.isoformat()
-    wr.last_review  = _date.today().isoformat()
-    wr.total_reviews = (wr.total_reviews or 0) + 1
-    if req.is_correct:
-        wr.total_correct = (wr.total_correct or 0) + 1
+    try:
+        wr.repetitions   = new_reps
+        wr.easiness      = str(round(new_ease, 2))
+        wr.interval      = new_interval
+        wr.next_review   = next_date.isoformat()
+        wr.last_review   = _date.today().isoformat()
+        wr.total_reviews = (wr.total_reviews or 0) + 1
+        if req.is_correct:
+            wr.total_correct = (wr.total_correct or 0) + 1
 
-    db.commit()
-    db.refresh(wr)
-
-    return {
-        "review_id":    wr.id,
-        "word":         wr.word,
-        "quality":      quality,
-        "new_easiness": float(wr.easiness),
-        "new_interval": wr.interval,
-        "next_review":  wr.next_review,
-        "repetitions":  wr.repetitions,
-    }
+        db.commit()
+        db.refresh(wr)
+        return {
+            "review_id":    wr.id,
+            "word":         wr.word,
+            "quality":      quality,
+            "new_easiness": float(wr.easiness),
+            "new_interval": wr.interval,
+            "next_review":  wr.next_review,
+            "repetitions":  wr.repetitions,
+        }
+    except SQLAlchemyError as e:
+        db.rollback()
+        logger.error("submit_review_result failed for review_id=%s: %s", req.review_id, e)
+        raise HTTPException(status_code=500, detail="Failed to save review result")
 
 
 # @tag REVIEW @tag SM2 @tag STATS
