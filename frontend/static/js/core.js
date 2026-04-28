@@ -473,8 +473,8 @@ function updateProgressPct() {
         const fill = document.getElementById("progress-ring-fill");
         if (!fill) return;
         if (pct < 30)       fill.style.stroke = "";
-        else if (pct < 70)  fill.style.stroke = "#22c55e";
-        else                fill.style.stroke = "#f59e0b";
+        else if (pct < 70)  fill.style.stroke = "var(--color-success)";
+        else                fill.style.stroke = "var(--color-warning)";
     }
 
     if (stage === STAGE.EXAM) {

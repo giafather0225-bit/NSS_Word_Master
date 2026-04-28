@@ -95,7 +95,7 @@ function openPreviewModal(item, onClose) {
             if (!done && !rec && listenDone) mic.addEventListener('click', () => startShadow(i));
             const icon = document.createElement('span'); icon.className = 'pm-row-icon';
             icon.textContent = done ? '✓' : '○';
-            icon.style.color = autoPassed ? 'var(--color-warning)' : passed ? 'var(--color-success)' : '#B0B0B5';
+            icon.style.color = autoPassed ? 'var(--color-warning)' : passed ? 'var(--color-success)' : 'var(--text-hint)';
             const scoreEl = document.createElement('span'); scoreEl.className = 'pm-score-text';
             scoreEl.textContent = autoPassed ? 'auto' : (score!==null ? score+'%' : '');
             if (autoPassed) scoreEl.style.color = 'var(--color-warning)';
@@ -176,7 +176,7 @@ function openPreviewModal(item, onClose) {
             if (result===true) inp.value=word;
             const icon=document.createElement('span'); icon.className='pm-row-icon';
             icon.textContent=result===true?'✓':result===false?'✗':'○';
-            icon.style.color=result===true?'#34C759':result===false?'#FF3B30':'#B0B0B5';
+            icon.style.color=result===true?'var(--color-success)':result===false?'var(--color-error)':'var(--text-hint)';
             const btn=document.createElement('button'); btn.type='button'; btn.className='pm-chk-btn'; btn.textContent='Check';
             btn.disabled=locked||result!==null;
             btn.addEventListener('click',()=>checkSpell(i));

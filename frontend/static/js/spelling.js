@@ -173,9 +173,9 @@ function renderSpellItem(el, item, isRetry) {
             // Correct
             lockInput();
             if (pass < CONF.SPELLING_PASSES) {
-                inp.style.borderColor = "#22c55e";
-                inp.style.boxShadow   = "0 0 0 4px rgba(34,197,94,0.18)";
-                feedback.style.color  = "#16a34a";
+                inp.style.borderColor = "var(--color-success)";
+                inp.style.boxShadow   = "0 0 0 4px var(--color-success-light)";
+                feedback.style.color  = "var(--color-success-ink)";
                 feedback.textContent  = "Pass " + pass + " \u2713";
                 spState.pass++;
                 setStatus("Pass " + pass + " done! Now pass " + spState.pass + "\u2026");
@@ -184,9 +184,9 @@ function renderSpellItem(el, item, isRetry) {
             } else {
                 // All passes correct — word complete
                 stageFxCorrect();
-                inp.style.borderColor = "#22c55e";
-                inp.style.boxShadow   = "0 0 0 4px rgba(34,197,94,0.18)";
-                feedback.style.color  = "#16a34a";
+                inp.style.borderColor = "var(--color-success)";
+                inp.style.boxShadow   = "0 0 0 4px var(--color-success-light)";
+                feedback.style.color  = "var(--color-success-ink)";
                 feedback.textContent  = "Perfect Spelling! \u2b50";
                 spState.pass = 1;
                 if (!spState.masks[stageIndex]) spState.masks[stageIndex] = {};

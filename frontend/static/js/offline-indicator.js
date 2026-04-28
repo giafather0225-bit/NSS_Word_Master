@@ -29,7 +29,7 @@
         el.style.cssText = [
             'position:fixed', 'left:50%', 'top:12px',
             'transform:translateX(-50%)',
-            'background:#FF9500', 'color:#fff',
+            'background:var(--color-warning)', 'color:var(--color-warning-ink)',
             'padding:6px 14px', 'border-radius:9999px',
             'font-size:13px', 'font-weight:600',
             'box-shadow:0 4px 16px rgba(0,0,0,0.18)',

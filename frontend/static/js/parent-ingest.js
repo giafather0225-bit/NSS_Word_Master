@@ -50,7 +50,7 @@
         var list = $("folder-list");
         list.innerHTML = "";
         if (!folders.length) {
-            list.innerHTML = "<li style='padding:16px;color:#999;font-size:13px;'>No lessons yet.</li>";
+            list.innerHTML = "<li style='padding:16px;color:var(--text-hint);font-size:13px;'>No lessons yet.</li>";
             return;
         }
         folders.forEach(function(f) {
@@ -432,7 +432,7 @@
                 currentLesson = null;
                 await loadTextbooks();
         await loadFolders();
-                document.getElementById("lesson-detail").innerHTML = "<p style='color:#888;text-align:center;margin-top:60px;'>Select a lesson</p>";
+                document.getElementById("lesson-detail").innerHTML = "<p style='color:var(--text-secondary);text-align:center;margin-top:60px;'>Select a lesson</p>";
             } catch(e) {
                 toast("Delete failed: " + e.message, "error");
             }
