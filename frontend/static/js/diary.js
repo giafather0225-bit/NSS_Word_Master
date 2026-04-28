@@ -127,7 +127,10 @@ async function _renderJournal() {
                 if (entry.photo_path)  _showJournalPhoto(entry.photo_path);
             }
         }
-    } catch (_) {}
+    } catch (e) {
+        console.warn("[diary] failed to load today's entry:", e);
+        if (window.toast) window.toast("Could not load today's entry — check connection.", "error");
+    }
 }
 
 /** Render the journal photo preview. @tag DIARY JOURNAL */
@@ -172,7 +175,11 @@ async function _uploadJournalPhoto(input) {
 
 /** Delete the journal photo. @tag DIARY JOURNAL */
 async function _removeJournalPhoto(filename) {
-    try { await fetch(`/api/diary/photo/${encodeURIComponent(filename)}`, { method: "DELETE" }); } catch (_) {}
+    try {
+        await fetch(`/api/diary/photo/${encodeURIComponent(filename)}`, { method: "DELETE" });
+    } catch (e) {
+        console.warn("[diary] photo DELETE failed:", filename, e);
+    }
     const el = document.getElementById("journal-photo-preview");
     if (el) el.innerHTML = "";
 }
@@ -301,8 +308,10 @@ async function _diaryPlayTTS(sentence) {
         const url   = URL.createObjectURL(blob);
         const audio = new Audio(url);
         audio.onended = () => URL.revokeObjectURL(url);
-        audio.play().catch(() => {});
-    } catch (_) {}
+        audio.play().catch((err) => console.warn("[diary] TTS playback failed:", err));
+    } catch (e) {
+        console.warn("[diary] TTS request failed:", e);
+    }
 }
 
 // Wire top-bar diary button

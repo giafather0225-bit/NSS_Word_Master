@@ -615,7 +615,9 @@ async function _dwRemovePhoto(id) {
     if (target && target.filename) {
         try {
             await fetch("/api/diary/photo/" + encodeURIComponent(target.filename), { method: "DELETE" });
-        } catch (_) {}
+        } catch (e) {
+            console.warn("[diary-write] photo DELETE failed:", target.filename, e);
+        }
     }
 }
 
