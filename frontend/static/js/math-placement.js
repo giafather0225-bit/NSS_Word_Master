@@ -47,6 +47,7 @@ async function startPlacementTest() {
 /** @tag MATH @tag PLACEMENT */
 function _showMathStageP() {
     if (typeof hideMathHome === 'function') hideMathHome();
+    if (typeof hideMathAcademyHome === 'function') hideMathAcademyHome();
     const stageCard = document.getElementById('stage-card');
     const idleWrap = document.getElementById('idle-wrapper');
     const homeDash = document.getElementById('home-dashboard');

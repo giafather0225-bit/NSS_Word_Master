@@ -68,6 +68,7 @@ async function startMathLesson(grade, unit, lesson) {
     const topBar = document.querySelector('.top-bar');
 
     if (typeof hideMathHome === 'function') hideMathHome();
+    if (typeof hideMathAcademyHome === 'function') hideMathAcademyHome();
     if (homeDash) homeDash.style.display = 'none';
     if (idleWrap) idleWrap.style.display = 'none';
     if (stageCard) { stageCard.classList.remove('hidden'); stageCard.style.display = ''; }

@@ -41,6 +41,7 @@ async function startMathFluency() {
 /** @tag MATH @tag FLUENCY */
 function _showMathStage() {
     if (typeof hideMathHome === 'function') hideMathHome();
+    if (typeof hideMathAcademyHome === 'function') hideMathAcademyHome();
     const stageCard = document.getElementById('stage-card');
     const idleWrap = document.getElementById('idle-wrapper');
     const homeDash = document.getElementById('home-dashboard');

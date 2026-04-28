@@ -45,6 +45,7 @@ async function startMathGlossary(grade) {
 /** @tag MATH @tag GLOSSARY */
 function _showGlossaryStage() {
     if (typeof hideMathHome === 'function') hideMathHome();
+    if (typeof hideMathAcademyHome === 'function') hideMathAcademyHome();
     const stageCard = document.getElementById('stage-card');
     const idleWrap = document.getElementById('idle-wrapper');
     const homeDash = document.getElementById('home-dashboard');
