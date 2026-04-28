@@ -147,18 +147,21 @@ function renderIdleStage() {
     const next      = isDone ? null : nextStageToStart();
     const nextLabel = next ? (ROADMAP_LABELS[ROADMAP_STAGES.indexOf(next)] || '') : '';
 
+    const lucideIcon = (name, size = 14) =>
+        `<i data-lucide="${name}" style="width:${size}px;height:${size}px;stroke-width:1.5"></i>`;
+
     let headline, ctaLabel, ctaTarget;
     if (isDone) {
-        headline  = 'All done! 🎉';
-        ctaLabel  = '📝 Take Final Test';
+        headline  = 'All done!';
+        ctaLabel  = `${lucideIcon('file-text', 16)} Take Final Test`;
         ctaTarget = 'exam';
     } else if (doneCount > 0) {
-        headline  = 'Keep going! 🔥';
-        ctaLabel  = `▶ Continue · ${nextLabel}`;
+        headline  = 'Keep going!';
+        ctaLabel  = `${lucideIcon('play', 16)} Continue · ${escapeHtml(nextLabel)}`;
         ctaTarget = next;
     } else {
         headline  = `Let's start Lesson ${lesson.replace(/^Lesson_?/, '')}!`;
-        ctaLabel  = `▶ Begin · ${nextLabel}`;
+        ctaLabel  = `${lucideIcon('play', 16)} Begin · ${escapeHtml(nextLabel)}`;
         ctaTarget = next;
     }
 
@@ -168,10 +171,10 @@ function renderIdleStage() {
         const isNext   = !done && s === next;
         const unlocked = done || isNext;
         const cls      = done ? 'done' : (isNext ? 'current' : 'locked');
-        const icon     = done ? '✓' : (isNext ? '●' : '🔒');
+        const iconName = done ? 'check' : (isNext ? 'circle-dot' : 'lock');
         const attrs    = unlocked ? `data-stage="${s}"` : 'disabled';
         return `<button type="button" class="hero-chip ${cls}" ${attrs}>
-            <span class="hero-chip-icon">${icon}</span>
+            <span class="hero-chip-icon">${lucideIcon(iconName)}</span>
             <span class="hero-chip-label">${escapeHtml(label)}</span>
         </button>`;
     }).join('');
@@ -184,10 +187,12 @@ function renderIdleStage() {
                 <div class="hero-progress-bar"><div class="hero-progress-fill" style="width:${pct}%"></div></div>
                 <div class="hero-progress-meta">${doneCount} / ${total} steps · ${pct}%</div>
             </div>
-            <button type="button" class="hero-cta" id="hero-cta" data-target="${ctaTarget}">${escapeHtml(ctaLabel)}</button>
+            <button type="button" class="hero-cta" id="hero-cta" data-target="${ctaTarget}">${ctaLabel}</button>
             <div class="hero-divider"><span>Or pick a step</span></div>
             <div class="hero-chips">${chipsHtml}</div>
         </div>`;
+
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     const cta = document.getElementById('hero-cta');
     if (cta) cta.addEventListener('click', () => {

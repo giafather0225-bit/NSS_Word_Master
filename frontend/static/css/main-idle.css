@@ -4,6 +4,84 @@
    Dependencies: theme.css
    ================================================================ */
 
+/* ─── View-scoped container visibility (single source of truth) ─────
+   Each primary container is owned by one or more views. CSS hides it
+   everywhere else, regardless of any inline JS style.display calls.
+   Adding a new view = add one rule HERE — do not duplicate in other
+   CSS files. (Was previously split between main-idle.css and
+   main-layout.css; consolidated 2026-04 to prevent drift.)
+
+   #stage-card and .top-bar are shared by english + math lessons. The
+   :not().:not() pattern hides them in non-lesson views; JS inline style
+   still controls in-view show/hide during a session.
+   ──────────────────────────────────────────────────────────────── */
+
+/* Single-owner containers */
+body:not([data-view="home"])    #home-dashboard    { display: none !important; }
+body:not([data-view="english"]) #idle-wrapper      { display: none !important; }
+body:not([data-view="math"])    #math-idle-wrapper { display: none !important; }
+body:not([data-view="math"])    #math-home         { display: none !important; }
+body:not([data-view="diary"])   #diary-view        { display: none !important; }
+
+/* Shared lesson chrome — visible only during english/math */
+body:not([data-view="english"]):not([data-view="math"]) #stage-card { display: none !important; }
+body:not([data-view="english"]):not([data-view="math"]) .top-bar    { display: none !important; }
+
+/* Sidebar hidden on home (section cards live in the dashboard) */
+body[data-view="home"] .sidebar,
+body[data-view="home"] .sidebar-toggle { display: none !important; }
+
+/* ─── Math Idle ──────────────────────────────────────── */
+#math-idle-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    min-height: 0;
+}
+
+.math-idle-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 48px 48px 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 300px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.math-idle-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    background: var(--math-light);
+    color: var(--math-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+.math-idle-title {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.math-idle-hint {
+    font-size: var(--font-size-sm);
+    color: var(--text-hint);
+    margin: 0;
+}
+
 /* ─── Idle Card ─────────────────────────────────────── */
 #idle-wrapper {
     flex: 1;

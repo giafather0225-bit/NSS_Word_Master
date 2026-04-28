@@ -96,10 +96,7 @@ function showKangarooResult(data) {
         stage.querySelectorAll('.kang-review-card').forEach(c => c.classList.remove('is-open'));
     });
     document.getElementById('kang-try-another').addEventListener('click', () => startMathKangaroo());
-    document.getElementById('kang-back-math').addEventListener('click', () => {
-        if (typeof showMathHome === 'function') showMathHome();
-        else startMathKangaroo();
-    });
+    document.getElementById('kang-back-math').addEventListener('click', () => startMathKangaroo());
 }
 
 /** @tag MATH @tag KANGAROO */

@@ -72,16 +72,17 @@ window.switchView = function (view) {
         if (topBar)    topBar.style.display = 'none';
         if (sidebar)   sidebar.dataset.mode = 'math';
 
+        const mathIdle = document.getElementById('math-idle-wrapper');
+        if (mathIdle) { mathIdle.style.display = ''; if (typeof lucide !== 'undefined') lucide.createIcons(); }
+
         updateSidebarMode('math');
         loadMathGrades();
         loadMathSidebarStatus();
-
-        // Show math home screen
-        if (typeof showMathHome === 'function') showMathHome();
         return;
     }
 
-    // For non-math views, delegate to original
+    // Non-math views: CSS rules in main-idle.css hide #math-idle-wrapper
+    // automatically based on body[data-view]. Just delegate.
     if (typeof _origSwitchView === 'function') {
         _origSwitchView(view);
     }
@@ -102,17 +103,10 @@ async function loadMathGrades() {
             opt.textContent = g;
             sel.appendChild(opt);
         });
-        // Auto-select if only one
-        if (data.grades && data.grades.length === 1) {
+        // Auto-select first grade and pre-load its units (no Learning Path auto-show)
+        if (data.grades && data.grades.length > 0) {
             sel.value = data.grades[0];
             await loadMathUnits(data.grades[0]);
-            if (typeof showMathAcademyHome === 'function') showMathAcademyHome(data.grades[0]);
-        } else if (data.grades && data.grades.length > 1) {
-            // Default to first grade for learning path
-            const defaultGrade = data.grades[0];
-            sel.value = defaultGrade;
-            await loadMathUnits(defaultGrade);
-            if (typeof showMathAcademyHome === 'function') showMathAcademyHome(defaultGrade);
         }
     } catch (err) {
         console.warn('[math] Failed to load grades:', err);
@@ -241,7 +235,6 @@ async function loadMathSidebarStatus() {
             gradeSel.addEventListener('change', () => {
                 const g = gradeSel.value;
                 loadMathUnits(g);
-                if (g && typeof showMathAcademyHome === 'function') showMathAcademyHome(g);
             });
         }
         if (unitSel) {

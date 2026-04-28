@@ -71,10 +71,10 @@ async function startMathLesson(grade, unit, lesson, stage = 'pretest') {
     const homeDash = document.getElementById('home-dashboard');
     const topBar = document.querySelector('.top-bar');
 
-    if (typeof hideMathHome === 'function') hideMathHome();
-    if (typeof hideMathAcademyHome === 'function') hideMathAcademyHome();
     if (homeDash) homeDash.style.display = 'none';
     if (idleWrap) idleWrap.style.display = 'none';
+    const mathIdle = document.getElementById('math-idle-wrapper');
+    if (mathIdle) mathIdle.style.display = 'none';
     if (stageCard) { stageCard.classList.remove('hidden'); stageCard.style.display = ''; }
     if (topBar) topBar.style.display = '';
 

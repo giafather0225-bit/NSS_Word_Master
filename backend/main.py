@@ -50,7 +50,6 @@ from backend.routers import system as system_router
 from backend.routers import reminder as reminder_router
 from backend.routers import collocation as collocation_router
 from backend.routers import math_academy as math_academy_router
-from backend.routers import math_academy_path as math_academy_path_router
 from backend.routers import math_placement as math_placement_router
 from backend.routers import math_fluency as math_fluency_router
 from backend.routers import math_daily as math_daily_router
@@ -229,7 +228,6 @@ app.include_router(system_router.router)
 app.include_router(reminder_router.router)
 app.include_router(collocation_router.router)
 app.include_router(math_academy_router.router)
-app.include_router(math_academy_path_router.router)
 app.include_router(math_placement_router.router)
 app.include_router(math_fluency_router.router)
 app.include_router(math_daily_router.router)

@@ -226,3 +226,20 @@
     letter-spacing: 0.06em;
     margin-top: 1px;
 }
+
+/* ── Accordion body: slide animation (missing from original) ── */
+#sb-math-section .sb-accordion-body {
+    overflow: hidden;
+    transition: max-height 0.28s ease, opacity 0.2s ease;
+    opacity: 1;
+}
+
+#sb-math-section .sb-accordion-body[style*="display:none"],
+#sb-math-section .sb-accordion-body[style*="display: none"] {
+    max-height: 0 !important;
+    opacity: 0;
+}
+
+#sb-math-section .sb-accordion-body:not([style*="display:none"]) {
+    max-height: 600px;
+}

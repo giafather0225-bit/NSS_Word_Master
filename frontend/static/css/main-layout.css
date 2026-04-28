@@ -187,28 +187,11 @@
   padding: 4px 8px;
 }
 
-/* ── View visibility (Phase 2 home dashboard refactor) ───────
- * `.stage-area` is the SHARED container for home-dashboard, idle-wrapper,
- * stage-card, daily-words-view, and diary-view. We keep it visible at all
- * times and hide individual children based on body[data-view].
- * The previous rules hid the parent on home/diary which also hid the
- * home-dashboard child even when JS tried to show it.
- */
-body[data-view="english"] #home-dashboard { display: none !important; }
-body[data-view="diary"]   #home-dashboard { display: none !important; }
-body[data-view="home"]    #idle-wrapper,
-body[data-view="diary"]   #idle-wrapper   { display: none !important; }
-body[data-view="home"]    #stage-card,
-body[data-view="diary"]   #stage-card     { display: none !important; }
-body[data-view="home"]    #diary-view,
-body[data-view="english"] #diary-view     { display: none !important; }
-body[data-view="home"]    .top-bar,
-body[data-view="diary"]   .top-bar        { display: none !important; }
-
-/* Hide sidebar entirely on home — section cards live in the main dashboard.
-   Also drop the toggle button since there's nothing to toggle. */
-body[data-view="home"] .sidebar       { display: none !important; }
-body[data-view="home"] .sidebar-toggle { display: none !important; }
+/* ── View-scoped container visibility ─────────────────────────────
+   Moved to main-idle.css (single source of truth). See the SSoT block
+   there for #home-dashboard, #idle-wrapper, #math-idle-wrapper,
+   #math-home, #diary-view, #stage-card, .top-bar, and .sidebar.
+   ──────────────────────────────────────────────────────────────── */
 
 /* ── Idle stage card (shown before a session starts) ───────────── */
 .idle-wrap {
@@ -299,16 +282,16 @@ body[data-view="home"] .sidebar-toggle { display: none !important; }
     margin-top: 4px;
 }
 .hero-progress-bar {
-    height: 6px;
+    height: 8px;
     border-radius: 999px;
     background: var(--border-default);
     overflow: hidden;
 }
 .hero-progress-fill {
     height: 100%;
-    background: var(--color-primary);
+    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover, var(--color-primary)));
     border-radius: 999px;
-    transition: width 0.3s ease;
+    transition: width 0.35s ease;
 }
 .hero-progress-meta {
     font-size: 12px;
@@ -325,7 +308,12 @@ body[data-view="home"] .sidebar-toggle { display: none !important; }
     margin-top: 6px;
     cursor: pointer;
     transition: background 0.15s ease, transform 0.08s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
+.hero-cta i[data-lucide] { flex-shrink: 0; }
 .hero-cta:hover { background: var(--color-primary-hover, var(--color-primary)); }
 .hero-cta:active { transform: scale(0.98); }
 .hero-divider {
@@ -365,7 +353,8 @@ body[data-view="home"] .sidebar-toggle { display: none !important; }
     text-align: left;
     transition: all 0.15s ease;
 }
-.hero-chip-icon { font-size: 14px; flex-shrink: 0; }
+.hero-chip-icon { font-size: 14px; flex-shrink: 0; display: inline-flex; align-items: center; }
+.hero-chip-icon i[data-lucide] { width: 14px; height: 14px; }
 .hero-chip.done { color: var(--color-success); border-color: var(--color-success-light); background: var(--color-success-light); }
 .hero-chip.done .hero-chip-icon { color: var(--color-success); }
 .hero-chip.current {

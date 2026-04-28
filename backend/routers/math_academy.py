@@ -285,6 +285,10 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
     user_raw = req.user_answer.strip()
     choices = problem.get("choices", [])
 
+    # Resolve a single-letter answer (e.g. "C") to the actual choice text
+    # (e.g. "25") so the client shows the value, not the index letter.
+    correct_display = correct_raw
+
     is_correct = False
 
     if correct_raw.upper() in "ABCDEFGH" and len(correct_raw) == 1 and choices:
@@ -292,6 +296,7 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
         if 0 <= correct_idx < len(choices):
             correct_text = choices[correct_idx]
             clean_correct = correct_text.split(")", 1)[-1].strip() if ")" in correct_text else correct_text.strip()
+            correct_display = clean_correct or correct_text.strip()
             is_correct = (
                 user_raw.lower() == correct_raw.lower()
                 or user_raw.lower() == clean_correct.lower()
@@ -381,11 +386,11 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
         feedback_text = problem.get("feedback_correct" if is_correct else "feedback_wrong", "")
 
     if not feedback_text:
-        feedback_text = "Great job!" if is_correct else f"The correct answer is {correct_raw}."
+        feedback_text = "Great job!" if is_correct else f"The correct answer is {correct_display}."
 
     return {
         "is_correct": is_correct,
-        "correct_answer": correct_raw,
+        "correct_answer": correct_display,
         "feedback": feedback_text,
         "solution_steps": problem.get("solution_steps", []),
     }

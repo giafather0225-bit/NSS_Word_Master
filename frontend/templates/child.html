@@ -61,7 +61,6 @@
     <link rel="stylesheet" href="/static/css/collocation.css">
     <link rel="stylesheet" href="/static/css/splash.css?v=2">
     <link rel="stylesheet" href="/static/css/math-home.css?v=1">
-    <link rel="stylesheet" href="/static/css/math-academy-home.css?v=2">
     <link rel="stylesheet" href="/static/css/math-academy-shell.css?v=2">
     <link rel="stylesheet" href="/static/css/math-academy-sidebar.css?v=3">
     <link rel="stylesheet" href="/static/css/math-academy-learn.css?v=2">
@@ -385,12 +384,12 @@
                     </div>
 
                     <div class="sb-accordion" data-group="math">
-                        <button type="button" class="sb-accordion-header math-acc-open" data-target="math-academy-body">
+                        <button type="button" class="sb-accordion-header" data-target="math-academy-body">
                             <span class="sb-card-icon icon-wrap icon-wrap--math"><i data-lucide="book-open" width="16" height="16"></i></span>
                             <span class="sb-card-label">Academy</span>
                             <span class="sb-accordion-arrow">▼</span>
                         </button>
-                        <div class="sb-accordion-body" id="math-academy-body">
+                        <div class="sb-accordion-body" id="math-academy-body" style="display:none">
                             <div class="sb-field">
                                 <label>Grade</label>
                                 <select id="math-grade-select">
@@ -717,6 +716,17 @@
 
             <!-- Math home screen (shown when switchView('math') is active) -->
             <div id="math-home" style="display:none"></div>
+
+            <!-- Math idle screen (shown when math view is active, no lesson running) -->
+            <div id="math-idle-wrapper" style="display:none">
+                <div class="math-idle-card">
+                    <div class="math-idle-icon">
+                        <i data-lucide="calculator" style="width:28px;height:28px;stroke-width:1.5"></i>
+                    </div>
+                    <p class="math-idle-title">Pick a grade, unit, and lesson on the left to start learning.</p>
+                    <p class="math-idle-hint">Or choose Fluency, Kangaroo, or Daily Challenge below.</p>
+                </div>
+            </div>
 
         </div>
 
