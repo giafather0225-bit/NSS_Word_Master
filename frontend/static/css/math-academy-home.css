@@ -1,0 +1,416 @@
+/* ================================================================
+   math-academy-home.css — Math Academy Learning Path overview
+   Section: Math
+   Dependencies: theme.css
+   ================================================================ */
+
+/* ── Container ──────────────────────────────────────────────── */
+
+#math-academy-home {
+    flex: 1;
+    overflow-y: auto;
+    background: var(--bg-page);
+    display: flex;
+    flex-direction: column;
+}
+
+.mah-wrap {
+    max-width: 760px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 28px 32px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.mah-loading,
+.mah-error {
+    padding: 64px;
+    text-align: center;
+    color: var(--text-hint);
+    font-size: var(--font-size-sm);
+}
+
+/* ── Breadcrumb ─────────────────────────────────────────────── */
+
+.mah-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.mah-bc-section { color: var(--math-ink); }
+.mah-bc-sep     { color: var(--text-hint); }
+.mah-bc-page    { color: var(--text-secondary); }
+.mah-bc-grade   { color: var(--math-primary); }
+
+/* ── Hero card ──────────────────────────────────────────────── */
+
+.mah-hero {
+    background: var(--math-light);
+    border: 1.5px solid var(--math-primary);
+    border-radius: var(--radius-xl);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.mah-hero-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mah-hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--math-ink);
+    opacity: 0.75;
+}
+
+.mah-hero-title {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--math-ink);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mah-hero-sub {
+    font-size: var(--font-size-sm);
+    color: var(--math-ink);
+    opacity: 0.7;
+    margin: 0;
+}
+
+.mah-hero-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    background: var(--math-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.mah-hero-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.mah-hero-btn:active { transform: translateY(0); }
+
+/* ── Start hint (no current lesson) ─────────────────────────── */
+
+.mah-start-hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.mah-start-hint svg { flex-shrink: 0; color: var(--math-primary); }
+
+/* ── Step strip ─────────────────────────────────────────────── */
+
+.mah-step-strip {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.mah-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.mah-step-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.mah-step.done .mah-step-dot {
+    background: var(--math-primary);
+    color: #fff;
+}
+
+.mah-step.current .mah-step-dot {
+    background: var(--math-ink);
+    color: #fff;
+    box-shadow: 0 0 0 3px rgba(138, 196, 168, 0.35);
+}
+
+.mah-step.locked .mah-step-dot {
+    background: var(--border-default);
+    color: var(--text-hint);
+}
+
+.mah-step-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.mah-step.done    .mah-step-label { color: var(--math-ink); }
+.mah-step.current .mah-step-label { color: var(--math-ink); }
+.mah-step.locked  .mah-step-label { color: var(--text-hint); }
+
+.mah-step-line {
+    flex: 1;
+    min-width: 14px;
+    max-width: 32px;
+    height: 2px;
+    background: var(--border-default);
+    margin-bottom: 18px;
+    flex-shrink: 0;
+}
+
+/* ── Stats row ───────────────────────────────────────────────── */
+
+.mah-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.mah-stat-chip {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mah-stat-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-hint);
+}
+
+.mah-stat-val {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.mah-stat-sub {
+    font-size: var(--font-size-xs);
+    color: var(--text-hint);
+}
+
+/* ── Unit section ─────────────────────────────────────────────  */
+
+.mah-unit-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.mah-unit-section-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-hint);
+}
+
+.mah-unit-count {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--math-ink);
+}
+
+.mah-unit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ── Unit card ───────────────────────────────────────────────── */
+
+.mah-unit-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.mah-unit-card:hover {
+    border-color: var(--math-primary);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-1px);
+}
+
+.mah-unit-card.mastered {
+    background: var(--math-light);
+    border-color: var(--math-primary);
+}
+
+.mah-unit-card.in-progress {
+    border-color: var(--border-default);
+}
+
+.mah-unit-num {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.mah-unit-card.mastered .mah-unit-num {
+    background: var(--math-primary);
+    color: #fff;
+}
+
+.mah-unit-card.in-progress .mah-unit-num {
+    background: var(--math-light);
+    color: var(--math-ink);
+}
+
+.mah-unit-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mah-unit-name {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mah-unit-lessons {
+    font-size: var(--font-size-xs);
+    color: var(--text-hint);
+}
+
+.mah-unit-bar {
+    height: 4px;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface);
+    overflow: hidden;
+    margin-top: 2px;
+}
+
+.mah-unit-bar-fill {
+    height: 100%;
+    background: var(--math-primary);
+    border-radius: var(--radius-full);
+    transition: width 0.4s ease;
+}
+
+/* ── Unit badge / chevron ────────────────────────────────────── */
+
+.mah-unit-badge {
+    flex-shrink: 0;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.mah-unit-badge.mastered {
+    background: var(--math-light);
+    color: var(--math-ink);
+    border: 1px solid var(--math-primary);
+}
+
+.mah-unit-badge.in-progress {
+    background: var(--arcade-light);
+    color: var(--arcade-ink);
+    border: 1px solid var(--arcade-primary);
+}
+
+.mah-unit-chevron {
+    flex-shrink: 0;
+    color: var(--text-hint);
+    display: flex;
+    align-items: center;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+    .mah-wrap {
+        padding: 20px 16px 40px;
+        gap: 20px;
+    }
+
+    .mah-hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mah-hero-btn { width: 100%; justify-content: center; }
+
+    .mah-stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mah-hero-title { font-size: var(--font-size-lg); }
+}

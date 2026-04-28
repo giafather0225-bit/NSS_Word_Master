@@ -106,6 +106,13 @@ async function loadMathGrades() {
         if (data.grades && data.grades.length === 1) {
             sel.value = data.grades[0];
             await loadMathUnits(data.grades[0]);
+            if (typeof showMathAcademyHome === 'function') showMathAcademyHome(data.grades[0]);
+        } else if (data.grades && data.grades.length > 1) {
+            // Default to first grade for learning path
+            const defaultGrade = data.grades[0];
+            sel.value = defaultGrade;
+            await loadMathUnits(defaultGrade);
+            if (typeof showMathAcademyHome === 'function') showMathAcademyHome(defaultGrade);
         }
     } catch (err) {
         console.warn('[math] Failed to load grades:', err);
@@ -231,7 +238,11 @@ async function loadMathSidebarStatus() {
         const startBtn = document.getElementById('math-btn-start');
 
         if (gradeSel) {
-            gradeSel.addEventListener('change', () => loadMathUnits(gradeSel.value));
+            gradeSel.addEventListener('change', () => {
+                const g = gradeSel.value;
+                loadMathUnits(g);
+                if (g && typeof showMathAcademyHome === 'function') showMathAcademyHome(g);
+            });
         }
         if (unitSel) {
             unitSel.addEventListener('change', () => loadMathLessons(mathGrade, unitSel.value));

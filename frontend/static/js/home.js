@@ -151,53 +151,52 @@ function bindTopRightMenu() {
   });
 }
 
-/** Placeholder entry point — wired in Phase 3. */
+/** @tag SETTINGS @tag THEME — Settings modal with dark mode toggle. */
 function openSettingsModal() {
   document.getElementById("gia-settings-modal")?.remove();
 
-  const saved = localStorage.getItem("gia-theme") || "light";
-  const isDark = saved === "dark";
+  const isDark = (localStorage.getItem("gia-theme") || "light") === "dark";
 
   const modal = document.createElement("div");
   modal.id = "gia-settings-modal";
-  modal.style.cssText = "position:fixed;inset:0;background:var(--overlay-scrim);z-index:900;display:flex;align-items:center;justify-content:center";
+  modal.className = "gs-modal";
   modal.innerHTML = `
-    <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:24px;width:320px;box-shadow:var(--shadow-modal)">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
-        <span style="font-size:17px;font-weight:700;color:var(--text-primary)">⚙️ Settings</span>
-        <button onclick="document.getElementById('gia-settings-modal').remove()"
-                style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-hint)">✕</button>
+    <div class="gs-card" role="dialog" aria-modal="true" aria-labelledby="gs-title">
+      <div class="gs-header">
+        <span class="gs-title" id="gs-title">
+          <i data-lucide="settings" width="18" height="18"></i>
+          Settings
+        </span>
+        <button type="button" class="gs-close" aria-label="Close settings"
+                onclick="document.getElementById('gia-settings-modal').remove()">
+          <i data-lucide="x" width="18" height="18"></i>
+        </button>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border-subtle)">
+      <div class="gs-row">
         <div>
-          <div style="font-size:15px;font-weight:600;color:var(--text-primary)">🌙 Dark Mode</div>
-          <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">Switch to dark theme</div>
+          <div class="gs-row-label">
+            <i data-lucide="moon" width="16" height="16"></i>
+            Dark Mode
+          </div>
+          <div class="gs-row-hint">Switch to dark theme</div>
         </div>
-        <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
+        <label class="gs-switch">
           <input type="checkbox" id="gia-dark-toggle" ${isDark ? "checked" : ""}
-                 onchange="_giaToggleDark(this.checked)"
-                 style="opacity:0;width:0;height:0">
-          <span id="gia-toggle-track" style="
-            position:absolute;inset:0;border-radius:12px;transition:background 0.2s;
-            background:${isDark ? "var(--color-primary)" : "var(--border-default)"}"></span>
-          <span id="gia-toggle-thumb" style="
-            position:absolute;top:3px;left:${isDark ? '23px' : '3px'};
-            width:18px;height:18px;border-radius:50%;background:#fff;
-            transition:left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2)"></span>
+                 onchange="_giaToggleDark(this.checked)" aria-label="Toggle dark mode">
+          <span class="gs-switch-track"></span>
+          <span class="gs-switch-thumb"></span>
         </label>
       </div>
     </div>`;
   modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
   document.body.appendChild(modal);
+  if (typeof lucide !== "undefined" && lucide.createIcons) lucide.createIcons();
 }
 
+/** @tag THEME — Apply dark/light theme + persist. CSS handles toggle visuals. */
 function _giaToggleDark(isDark) {
   document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
   localStorage.setItem("gia-theme", isDark ? "dark" : "light");
-  const track = document.getElementById("gia-toggle-track");
-  const thumb = document.getElementById("gia-toggle-thumb");
-  if (track) track.style.background = isDark ? "var(--color-primary)" : "var(--border-default)";
-  if (thumb) thumb.style.left = isDark ? "23px" : "3px";
 }
 
 function openSettings() {
@@ -468,10 +467,17 @@ function renderSectionCards() {
     };
   }
 
-  // Review card — placeholder until review hub is built.
+  // Review card → switch to english view, then trigger sidebar Review button.
   const reviewCard = document.getElementById('section-card-review');
   if (reviewCard) {
-    reviewCard.onclick = () => { /* coming soon */ };
+    reviewCard.disabled = false;
+    reviewCard.onclick = () => {
+      switchView('english');
+      setTimeout(() => {
+        const btn = document.getElementById('btn-review');
+        if (btn) btn.click();
+      }, 300);
+    };
   }
 
   // Ocean World card → open growth theme detail modal (growth-theme.js)

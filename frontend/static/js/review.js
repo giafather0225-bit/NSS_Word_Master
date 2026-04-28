@@ -131,14 +131,20 @@
     badgeInFlight = true;
     try {
       var words = await fetchDueWords();
-      var badge = document.getElementById("review-badge");
-      if (!badge) return;
-      if (words.length > 0) {
-        badge.textContent = words.length;
-        badge.style.display = "inline-block";
-      } else {
-        badge.style.display = "none";
-      }
+      var count = words.length;
+      var badges = [
+        document.getElementById("review-badge"),
+        document.getElementById("section-card-review-badge")
+      ];
+      badges.forEach(function (badge) {
+        if (!badge) return;
+        if (count > 0) {
+          badge.textContent = count;
+          badge.style.display = "inline-block";
+        } else {
+          badge.style.display = "none";
+        }
+      });
     } finally {
       badgeInFlight = false;
     }
