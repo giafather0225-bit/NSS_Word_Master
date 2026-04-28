@@ -263,8 +263,8 @@ def _pick_daily_problems(date_str: str, db: Session | None = None) -> list[dict]
                 )
                 if latest_prog and latest_prog.grade:
                     grade_filter = latest_prog.grade
-            except Exception:
-                pass
+            except Exception as exc:
+                logger.debug("MathProgress grade lookup failed, using unrestricted pool: %s", exc)
         if grade_filter:
             grade_pool = [p for p in pool if _parse_problem_id(p["id"])[0] == grade_filter]
             picked.extend(_take(grade_pool, n - len(picked)))
@@ -366,8 +366,8 @@ def daily_submit_answer(req: DailyAnswerIn, db: Session = Depends(get_db)):
             num, den = correct_ans.split("/", 1)
             if user_ans == num.strip():
                 is_correct = True
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.debug("Fraction split failed for correct_ans=%r: %s", correct_ans, exc)
     return {
         "is_correct": is_correct,
         "correct_answer": full["answer"],

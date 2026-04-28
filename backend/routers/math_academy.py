@@ -486,6 +486,6 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
             )
             if weak:
                 result["weak_lesson"] = weak.lesson
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.debug("Weak-lesson lookup failed for grade=%s unit=%s: %s", req.grade, req.unit, exc)
     return result

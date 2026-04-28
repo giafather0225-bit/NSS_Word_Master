@@ -7,6 +7,7 @@ API:
   GET /api/ai-coach/today
 """
 
+import logging
 import os
 import random
 
@@ -17,6 +18,7 @@ from backend.database import get_db
 from backend.services.xp_engine import get_total_xp, get_today_xp
 from backend.services.streak_engine import get_current_streak
 
+logger = logging.getLogger(__name__)
 router = APIRouter()
 
 OLLAMA_HOST = "http://127.0.0.1:11434"
@@ -92,8 +94,8 @@ async def ai_coach_today(db: Session = Depends(get_db)) -> dict:
                 text = resp.json().get("response", "").strip()
                 if text and len(text) < 200:
                     return {"message": text}
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.debug("Ollama coach request failed, falling back to Gemini: %s", exc)
 
     # ── 2. Try Gemini ──────────────────────────────────────────────
     gemini_key = os.environ.get("GEMINI_API_KEY", "")
@@ -116,8 +118,8 @@ async def ai_coach_today(db: Session = Depends(get_db)) -> dict:
                     )
                     if text:
                         return {"message": text[:200]}
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("Gemini coach request failed, falling back to canned message: %s", exc)
 
     # ── 3. Canned fallback ─────────────────────────────────────────
     return {"message": random.choice(CANNED)}

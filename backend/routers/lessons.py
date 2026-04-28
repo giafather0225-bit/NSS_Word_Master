@@ -15,6 +15,7 @@ API:
 """
 
 import json as _json
+import logging
 import re as _re
 import shutil
 from datetime import datetime, timezone
@@ -28,6 +29,7 @@ from backend.database import get_db, LEARNING_ROOT
 from backend.models import Lesson, StudyItem
 from backend.utils import validate_lesson as _validate_lesson, validate_name as _validate_name
 
+logger = logging.getLogger(__name__)
 router = APIRouter()
 
 # ── Constants ──────────────────────────────────────────────
@@ -195,8 +197,8 @@ def list_voca_folders(textbook: str = "Voca_8000"):
         if data_json.is_file():
             try:
                 word_count = len(_json.loads(data_json.read_text("utf-8")))
-            except Exception:
-                pass
+            except Exception as exc:
+                logger.warning("Failed to parse data.json in %s: %s", p, exc)
         folders.append({
             "name": p.name,
             "image_count": len(images),
@@ -233,8 +235,8 @@ def voca_folder_detail(lesson: str, textbook: str = "Voca_8000"):
     if data_json.is_file():
         try:
             words = _json.loads(data_json.read_text("utf-8"))
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("Failed to parse data.json for %s: %s", lesson_dir, exc)
 
     return {
         "lesson": lesson_key,
