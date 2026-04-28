@@ -24,12 +24,22 @@
     gap: 28px;
 }
 
-.mah-loading,
-.mah-error {
+.mah-loading {
     padding: 64px;
     text-align: center;
     color: var(--text-hint);
     font-size: var(--font-size-sm);
+}
+
+.mah-error {
+    padding: 64px 32px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
 }
 
 /* ── Breadcrumb ─────────────────────────────────────────────── */
@@ -202,6 +212,12 @@
     background: var(--border-default);
     margin-bottom: 18px;
     flex-shrink: 0;
+    transition: background 0.3s ease;
+}
+
+/* ✅ 완료된 스텝 연결선 색상 (기존 누락) */
+.mah-step-line.done {
+    background: var(--math-primary);
 }
 
 /* ── Stats row ───────────────────────────────────────────────── */

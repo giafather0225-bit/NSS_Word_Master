@@ -48,7 +48,10 @@ const _mathAcademyHome = (() => {
             const data = await _fetchJSON(`/api/math/academy/${encodeURIComponent(_currentGrade)}/learning-path`);
             _render(el, data);
         } catch (err) {
-            el.innerHTML = `<div class="mah-error">Could not load learning path.</div>`;
+            el.innerHTML = `<div class="mah-error">
+                <span>Could not load learning path.</span>
+                <button class="math-btn-ghost" onclick="showMathAcademyHome('${_currentGrade}')">Try Again</button>
+            </div>`;
             console.warn('[math-academy-home] fetch failed', err);
         }
     }
@@ -207,36 +210,34 @@ const _mathAcademyHome = (() => {
     // ── Events ───────────────────────────────────────────────
 
     function _bindEvents(el, data) {
-        // Continue button
+        // Continue button — resume from saved stage
         const continueBtn = el.querySelector('#mah-continue-btn');
         if (continueBtn) {
             continueBtn.addEventListener('click', () => {
-                const { unit, lesson } = continueBtn.dataset;
-                _launchLesson(unit, lesson);
+                const { unit, lesson, stage } = continueBtn.dataset;
+                _launchLesson(unit, lesson, stage || 'pretest');
             });
         }
 
-        // Unit card click → pick first incomplete lesson and launch
+        // Unit card click → resume current lesson, or start first lesson
         el.querySelectorAll('.mah-unit-card').forEach(card => {
             card.addEventListener('click', () => {
                 const unitName = card.dataset.unit;
                 const unitData = data.units.find(u => u.name === unitName);
-                if (!unitData) return;
-                if (unitData.current_lesson) {
-                    _launchLesson(unitName, unitData.current_lesson);
-                } else if (!unitData.is_mastered) {
-                    // No progress yet — show unit lessons via sidebar (fallback)
-                    _populateSidebarForUnit(unitName);
+                if (!unitData || unitData.is_mastered) return;
+                const target = unitData.current_lesson || unitData.first_lesson;
+                if (target) {
+                    _launchLesson(unitName, target);
                 }
             });
         });
     }
 
-    function _launchLesson(unit, lesson) {
+    function _launchLesson(unit, lesson, stage = 'pretest') {
         hide();
         if (typeof hideMathHome === 'function') hideMathHome();
         if (typeof startMathLesson === 'function') {
-            startMathLesson(_currentGrade, unit, lesson);
+            startMathLesson(_currentGrade, unit, lesson, stage);
         }
     }
 

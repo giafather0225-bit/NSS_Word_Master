@@ -47,14 +47,18 @@ const MATH_STAGE_LABELS = {
 // ── Start lesson ────────────────────────────────────────────
 
 /**
- * Start a math lesson from the beginning (pretest).
+ * Start (or resume) a math lesson.
+ * @param {string} grade
+ * @param {string} unit
+ * @param {string} lesson
+ * @param {string} [stage='pretest'] — stage to resume from
  * @tag MATH @tag ACADEMY
  */
-async function startMathLesson(grade, unit, lesson) {
+async function startMathLesson(grade, unit, lesson, stage = 'pretest') {
     mathState.grade = grade;
     mathState.unit = unit;
     mathState.lesson = lesson;
-    mathState.stage = 'pretest';
+    mathState.stage = stage;
     mathState.currentIdx = 0;
     mathState.correct = 0;
     mathState.wrong = [];
@@ -80,7 +84,7 @@ async function startMathLesson(grade, unit, lesson) {
     if (typeof mathHomeSaveLesson === 'function') mathHomeSaveLesson(grade, unit, lesson);
     if (typeof mountMathShell === 'function') mountMathShell();
     renderMathRoadmap();
-    await loadMathStage('pretest');
+    await loadMathStage(stage);
 }
 
 // ── Load stage data ─────────────────────────────────────────
@@ -131,10 +135,33 @@ async function loadMathStage(stageName) {
     renderMathRoadmap();
 
     if (stageName === 'learn') {
-        renderMathLearnCards(mathState.problems);
+        if (mathState.problems.length === 0) {
+            _showMathStageError(stageName);
+        } else {
+            renderMathLearnCards(mathState.problems);
+        }
     } else {
-        renderMathProblem();
+        if (mathState.problems.length === 0) {
+            _showMathStageError(stageName);
+        } else {
+            renderMathProblem();
+        }
     }
+}
+
+/** Show a visible error state in #stage when problems fail to load. @tag MATH @tag ACADEMY */
+function _showMathStageError(stageName) {
+    const stage = document.getElementById('stage');
+    if (!stage) return;
+    stage.innerHTML = `
+        <div class="math-stage-error">
+            <p>Could not load ${stageName} problems.</p>
+            <div class="math-stage-error-actions">
+                <button class="math-btn-ghost" onclick="loadMathStage('${stageName}')">Try Again</button>
+                <button class="math-btn-ghost" onclick="exitMathLesson()">Go Back</button>
+            </div>
+        </div>
+    `;
 }
 
 /** @tag MATH @tag CPA_FALLBACK */
