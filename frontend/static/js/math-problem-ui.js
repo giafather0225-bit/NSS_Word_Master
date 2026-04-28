@@ -28,13 +28,23 @@ function _normalizeProblem(p) {
         });
     }
 
-    // type 정규화
+    // type 정규화 — JSON 데이터에 다양한 표기가 섞여 있어 한 형식으로 모음.
+    // 변환 후 dispatcher (math-problem-ui.js switch)에서 'mc' / 'tf' / 'input'
+    // / 'drag_sort'만 분기하므로 모두 그 4종 중 하나로 매핑.
     var typeMap = {
-        'true_false': 'tf',
-        'TRUE_FALSE': 'tf',
-        'MC': 'mc',
-        'INPUT': 'input',
-        'DRAG_SORT': 'drag_sort'
+        'true_false':       'tf',
+        'TRUE_FALSE':       'tf',
+        'MC':               'mc',
+        'multiple_choice':  'mc',
+        'MULTIPLE_CHOICE':  'mc',
+        'INPUT':            'input',
+        'fill_in':          'input',
+        'FILL_IN':          'input',
+        'word_problem':     'input',
+        'open_response':    'input',
+        'compare':          'mc',
+        'ordering':         'drag_sort',
+        'DRAG_SORT':        'drag_sort'
     };
     if (p.type && typeMap[p.type]) {
         p.type = typeMap[p.type];

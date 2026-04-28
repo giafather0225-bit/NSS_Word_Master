@@ -1,209 +1,330 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-04 | 실제 현황 기준으로 전면 재작성
+> Last updated: 2026-04-29 — full rewrite based on actual codebase state
 
 ## Overview
-- **Product**: 9세 여아(Gia)를 위한 AI 학습 앱 — English vocabulary, Math Academy, Diary, Arcade
+- **Product**: 9세 여아(Gia)를 위한 AI 학습 앱 — English vocabulary, Math Academy, Diary, Arcade, US Academy, CKLA
 - **GitHub**: https://github.com/giafather0225-bit/NSS_Word_Master
 - **Working directory**: `/Users/markjhlee/Documents/GitHub/NSS_Word_Master`
 - **DB**: `~/NSS_Learning/database/voca.db` (SQLite WAL)
-- **Server**: `python3 app.py` → http://localhost:8000
+- **Server**: `python3 app.py` → http://localhost:8000 (uvicorn `backend.main:app`)
+- **Entry HTML**: `/`, `/child` → `child.html` · `/ingest` → `parent_ingest.html`
 
 ---
 
 ## Tech Stack
-- **Backend**: Python / FastAPI (`backend/routers/` — 40+ routers)
-- **Frontend**: HTML + CSS + Vanilla JS (no bundler, no framework)
-- **Database**: SQLite WAL
-- **AI**: Ollama (`gemma2:2b`, local) → Gemini fallback (`GEMINI_API_KEY`)
-- **TTS**: edge-tts → BytesIO in-memory (no temp files)
-- **Speech**: Web Speech API (browser)
-- **Icons**: Lucide (CDN, stroke-width 1.5) — emoji 사용 금지
+- **Backend**: Python / FastAPI — `backend/main.py` mounts **47 routers** (`backend/routers/`, ~204 endpoints).
+- **Frontend**: HTML + CSS + Vanilla JS (no framework). Pre-built into `bundle-{a,b,c}.min.js` via `build.sh` (esbuild). Auto-rebuilt at server startup.
+- **Database**: SQLite WAL · ORM: SQLAlchemy. Models split by domain in `backend/models/`.
+- **AI**: Ollama (`gemma2:2b`, local, lazy-start via `services/ollama_manager.py`) → Gemini fallback (`GEMINI_API_KEY`).
+- **TTS**: edge-tts → BytesIO in-memory (no temp files) — `backend/tts_edge.py`, `routers/tts.py`.
+- **Speech (STT)**: Web Speech API (browser) + server fallback `routers/speech.py`.
+- **OCR**: `backend/ocr_pipeline.py` + `ocr_vision.py` (Gemini Vision).
+- **Icons**: Lucide (CDN, stroke-width 1.5). 이모지 사용 금지.
+- **PWA**: `service-worker.js` + `manifest.json` (root scope).
 
 ---
 
 ## Work Principles (MUST FOLLOW)
 
 1. 수정 전 반드시 기존 코드 읽기. 기존 기능 절대 파괴 금지.
-2. 파일당 최대 300줄. 초과 시 모듈 분리.
-3. CSS: `theme.css` 변수만 사용. 하드코딩 hex 금지.
-4. 모든 API: 적절한 에러 핸들링 + HTTP 상태코드.
-5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 작성.
+2. 파일당 최대 ~300줄. 초과 시 모듈 분리 (예: `child.js` → `child-{calendar,exam,keyboard,text}.js`).
+3. CSS: `theme.css` 변수만 사용. 컴포넌트 CSS에 hex 직접 사용 금지.
+4. 모든 API: 적절한 에러 핸들링 + HTTP 상태코드. `RequestValidationError` 는 `main.py` 에서 child-friendly 422 JSON 으로 자동 변환됨.
+5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~016).
 6. Python: type hints + docstrings. JS: JSDoc `@tag` comments.
 7. async/await 일관성. N+1 쿼리 금지.
-8. 모든 사용자 입력 sanitize. SQL injection / XSS / prompt injection 방어.
-9. 변경 후 스모크 테스트: 5-Stage 학습, Review, Final Test, Unit Test, Word Manager.
-10. UI 텍스트: 영어만. 이모지 사용 금지 (Lucide 아이콘으로 대체).
-11. class/ID 변경 시 모든 참조 동시 업데이트.
-12. 응답 마지막에 수정된 파일 목록 기재.
+8. 모든 사용자 입력 sanitize. SQL injection / XSS / prompt injection 방어. Pydantic 길이 제한 = `schemas_common.py` (Str80/Str200/Str500).
+9. JS 변경 후 `build.sh` 가 lifespan startup 시 자동 재빌드. 수동 빌드: `bash build.sh`.
+10. 변경 후 스모크 테스트: 5-Stage 학습 / Review / Final Test / Unit Test / Word Manager / Diary / Math Academy.
+11. UI 텍스트: 영어만. 이모지 금지 — Lucide 아이콘 (`<i data-lucide="...">`) + JS 에서 `lucide.createIcons()`.
+12. class/ID 변경 시 모든 참조 동시 업데이트 (3 bundles 모두 영향).
+13. 응답 마지막에 수정된 파일 목록 기재.
+
+---
+
+## Repository Layout
+
+```
+NSS_Word_Master/
+├── app.py                       # uvicorn entry
+├── build.sh                     # esbuild → bundle-a/b/c
+├── update.sh                    # git pull + restart helper
+├── requirements.txt
+├── pytest.ini
+├── CLAUDE.md  PROJECT_SPEC.md  MATH_SPEC.md  API_INDEX.md  README.md
+├── backend/
+│   ├── main.py                  # FastAPI app, lifespan, validation handler
+│   ├── database.py              # engine, get_db, LEARNING_ROOT
+│   ├── ai_service.py            # Ollama → Gemini fallback wrapper
+│   ├── ai_tutor.py              # Tutor / sentence-eval prompts
+│   ├── ocr_pipeline.py / ocr_vision.py
+│   ├── tts_edge.py
+│   ├── sm2.py                   # SM-2 spaced repetition
+│   ├── voca_sync.py / file_storage.py / folder_watcher.py / utils.py
+│   ├── schemas_common.py        # Str80 / Str200 / Str500 etc.
+│   ├── models/                  # SQLAlchemy ORM (12 files, by domain)
+│   │   ├── _base.py  __init__.py
+│   │   ├── lessons.py  system.py  gamification.py  learning.py
+│   │   ├── diary.py    math.py   assistant.py
+│   │   ├── us_academy.py  ckla.py  goals.py
+│   ├── services/                # 12 engines / managers
+│   │   ├── xp_engine.py         # XP rules + award (config-overridable)
+│   │   ├── streak_engine.py     # 3-subject streak (english/math/game)
+│   │   ├── academy_session.py   # active session tracking
+│   │   ├── daily_words_engine.py
+│   │   ├── ckla_grader.py
+│   │   ├── report_engine.py     # parent weekly report (661 lines)
+│   │   ├── email_sender.py
+│   │   ├── pin_guard.py / pin_hash.py
+│   │   ├── ollama_manager.py    # auto-start, healthcheck
+│   │   └── backup_engine.py     # auto-snapshot (7-day rolling)
+│   ├── routers/                 # 47 FastAPI routers (see table below)
+│   ├── migrations/              # 016_weekly_goals.py latest
+│   ├── data/                    # static content (math/, daily_words/)
+│   │   └── math/{G3,G4,G5,G6,glossary,kangaroo,placement}/
+│   ├── DB_INDEX.md  API_INDEX.md
+│   └── tests/
+├── frontend/
+│   ├── templates/               # child.html, parent_ingest.html
+│   └── static/
+│       ├── css/                 # ~50 files (theme.css = single source of truth)
+│       └── js/                  # ~80 files + bundle-a/b/c.min.js
+├── handoff/  launcher/  scripts/  tools/  logs/
+├── data/                        # academy/, raw_json/ (parsed content)
+└── tests/  migrations/  English/
+```
+
+---
+
+## Backend Routers (47)
+
+> Order in `main.py` matters — `diary_photo` must be registered **before** `diary_sentences` so literal `/photo` wins over `/{subject}/{textbook}` matching.
+
+### Core English / Lessons
+| Router | Purpose | Key endpoints |
+|---|---|---|
+| `lessons` | Lesson catalog, ingest from disk | GET/POST `/api/lessons/*` |
+| `study` | Study items per lesson | GET `/api/study/{subject}/{textbook}/{lesson}` |
+| `progress` | Stage progress, sparta reset, challenge | POST `/api/progress/{verify,challenge_complete,sparta_reset}` |
+| `words` | My Words CRUD + AI enrich | POST `/api/words/lesson/{id}`, PATCH `/api/words/lesson/{id}/{word_id}` |
+| `files` | Per-lesson asset storage + OCR | `/api/storage/lessons/...`, `/api/files/upload`, `/api/ocr/vocab_image` |
+| `tts` | edge-tts variants | `/api/tts/{example_full,preview_sequence,word_meaning,...}` |
+| `speech` | Server STT helper | POST `/api/speech/recognize` |
+| `review` | SM-2 review queue | GET `/api/review/today`, POST `/api/review/{result,register-*}` |
+| `daily_words` | Daily 5-word routine + weekly test | `/api/daily-words/{today,status,complete,weekly-test,...}` |
+| `collocation` | Daily collocation bonus stage | GET/POST `/api/collocation/{today,submit}` |
+| `tutor_sentence` | AI tutor + sentence eval + practice store | `/api/{tutor,evaluate-sentence,practice/sentence}` |
+| `starred` | Star/favourite study items | PATCH `/api/study-items/{id}/star`, GET `/api/study-items/starred` |
+
+### Diary / Free Writing / Calendar
+| Router | Purpose |
+|---|---|
+| `diary` | Diary entry CRUD + AI title suggest |
+| `diary_photo` | Photo upload (multi) for diary |
+| `diary_sentences` | "My Sentences" — Step-5 sentences over time |
+| `free_writing` | Free writing entries |
+| `calendar_api` | Monthly calendar markers |
+| `day_off` | Day-off requests (pending → email parent → approved/denied) |
+| `growth_theme` | Growth Theme selection + advance |
+
+### Home / Gamification
+| Router | Purpose |
+|---|---|
+| `dashboard` | Home stats / analytics / textbook overview |
+| `ai_coach` | Daily motivational message (Ollama → canned fallback) |
+| `reminder` | Home banner reminders (review due, streak risk, etc.) |
+| `xp` | Award + summary + weekly XP |
+| `arcade` | Arcade score submit + best-score |
+| `rewards` | Legacy rewards (kept for back-compat) |
+| `reward_shop` | Items, my-rewards, buy/use/equip, PIN |
+| `schedules` | Weekly schedule CRUD |
+
+### Parent Dashboard
+| Router | Purpose |
+|---|---|
+| `parent` | Overview, summary, activity, task-settings, config, PIN verify |
+| `parent_stats` | Word stats, stage stats |
+| `parent_math` | Math summary |
+| `parent_streak` | Streak detail + recalc + rule |
+| `parent_xp` | XP rules edit/reset, XP report |
+| `parent_report` | Weekly email report (preview / send / schedule) |
+| `goals` | Weekly goals (PIN-gated edit) |
+| `system` | Backup CRUD, ollama restart |
+
+### Math
+| Router | Purpose |
+|---|---|
+| `math_academy` | G3-G6 lesson flow (CPA), unit tests, learning path |
+| `math_placement` | Placement test (start/check/next/save/results) |
+| `math_fluency` | Fact fluency rounds (catalog/start-round/submit/summary) |
+| `math_daily` | Daily challenge |
+| `math_kangaroo` | Math Kangaroo sets (100+, IKMC/KSF/USA) |
+| `math_glossary` | Math vocab per grade |
+| `math_problems` | "My Problems" wrong-review queue |
+
+### US Academy / CKLA
+| Router | Purpose |
+|---|---|
+| `us_academy` | Word-first SM-2 system, sessions, mini-quiz, unit tests, passages |
+| `ckla` | CKLA G3 reading curriculum (Read / Words / Q&A / Word Work) |
+| `ckla_review` | CKLA review queue |
+
+---
+
+## Frontend Modules
+
+### HTML
+- `child.html` — main learner shell (loads ~50 CSS files + 3 bundles)
+- `parent_ingest.html` — parent OCR upload UI
+
+### JS Bundles (`build.sh` → esbuild minify, ~80 source files)
+- **bundle-a.min.js** — feature modules (preview, wordmatch, fillblank, spelling, sentence, home, growth-theme, parent-*, reward-shop, diary*, free-writing, calendar, daily-words, ckla*, child + child-*, sentence_ai, collocation, finaltest, unittest, review)
+- **bundle-b.min.js** — math modules (depends on KaTeX CDN — manipulatives, 3read, problem-types/ui, learn-visuals/cards, academy-ui/shell/feedback/main, review, fluency, placement, daily, kangaroo*, glossary, navigation)
+- **bundle-c.min.js** — word-manager + arcade (sfx, word-invaders, definition-match, spell-rush, crossword, math-invaders, sudoku, make24)
+
+### Key JS modules (not exhaustive)
+| File(s) | Purpose |
+|---|---|
+| `child.js` (682) + `child-{calendar,exam,keyboard,text}.js` | Main learner shell, split by concern |
+| `home.js` | Home dashboard (today's tasks, AI coach, reminders) |
+| `navigation.js` | Top-level navigation + sidebar routing |
+| `core.js` | Shared utils, fetch wrapper, toast bridge |
+| `splash.js` | Splash screen (day-of-week bg color) |
+| `offline-indicator.js` | Online/offline pill |
+| `tts-client.js` / `sound.js` / `arcade-sfx.js` | Audio layer |
+| `analytics.js` | Local activity logging |
+| `parent-{panel,overview,settings,textbooks,math,streak,xp,ingest}.js` | Parent dashboard split |
+| `diary-{home,write,entry,calendar}.js` + `diary.js` | Diary section split |
+| `math-academy{,-shell,-ui,-feedback}.js` | Math academy split |
+
+### CSS files (~50)
+- `theme.css` — global tokens (single source of truth, 449 lines)
+- Layout: `main-shell`, `main-layout`, `main-stage`, `main-topbar`, `main-idle`, `main-responsive`, `base`, `layout`, `components`, `utilities`, `legacy-app`
+- Stage CSS: `preview`, `wordmatch`, `fillblank`, `spelling`, `sentence`, `finaltest`, `unittest`, `review`, `word-manager`
+- Home / sub: `home`, `daily-words`, `reward-shop`, `parent`, `parent-ingest`, `splash`, `xp`, `toast`
+- Diary: `diary`, `diary-home`, `diary-write`, `diary-entry`, `diary-calendar`, `diary-sub`, `calendar`
+- Math: `math-home` + `math-academy-{shell,sidebar,learn,problems,stages,results,fluency,manip,daily,modes,kangaroo,glossary,content,anim,responsive}` + `math-kangaroo`, `math-learn-visuals`
+- CKLA / Arcade: `ckla`, `arcade`, `collocation`
 
 ---
 
 ## Design System (theme.css — single source of truth)
 
-**현재 적용된 토큰 (2026-04 Pinterest Schoolgirl Diary — Palette B):**
+**Palette B — "Pinterest Schoolgirl Diary" (2026-04, current):**
 
-컨셉: warm cream page + milk-tea pastel 6-section palette. Stationery 느낌 (soft shadow, 둥근 radius, Nunito/Quicksand/Caveat 조합). Brand anchor = Diary Pink `#E09AAE`.
+Concept: warm cream page + milk-tea pastel 6-section palette. Stationery feel (soft shadow, generous radius, Nunito/Quicksand/Caveat trio). Brand anchor = Diary Pink `#E09AAE`.
 
 ```css
 :root {
-  /* ═══ Section palette (B — Pinterest Schoolgirl) ═══ */
-  /* 각 섹션 5-tone: primary · hover · light(배경) · soft(중간) · ink(짙은 텍스트) */
+  /* ═══ Section palette — 5 tones each: primary · hover · light · soft · ink ═══ */
+  --english-primary: #7FA8CC; --english-hover: #6994BC;
+  --english-light:   #EEF4FA; --english-soft:  #CFE0EE; --english-ink: #345A80;
 
-  --english-primary: #7FA8CC; --english-light: #EEF4FA; --english-ink: #345A80;  /* Baby Blue */
-  --math-primary:    #8AC4A8; --math-light:    #EEF7F2; --math-ink:    #3A6A54;  /* Fresh Mint */
-  --diary-primary:   #E09AAE; --diary-light:   #FBEEF2; --diary-ink:   #84425A;  /* Sweet Pink */
-  --arcade-primary:  #EEC770; --arcade-light:  #FBF3DE; --arcade-ink:  #7A5A1E;  /* Butter */
-  --rewards-primary: #B8A4DC; --rewards-light: #F2ECFA; --rewards-ink: #5A4883;  /* Lavender */
-  --review-primary:  #EBA98C; --review-light:  #FBEBE0; --review-ink:  #844A30;  /* Peach */
+  --math-primary:    #8AC4A8; --math-hover:    #73AE92;
+  --math-light:      #EEF7F2; --math-soft:     #CFE6D9; --math-ink:    #3A6A54;
 
-  /* Brand alias — Diary Pink */
-  --color-primary:       var(--diary-primary);
-  --color-primary-hover: var(--diary-hover);
-  --color-primary-light: var(--diary-light);
-  --color-primary-glow:  rgba(224, 154, 174, 0.22);
+  --diary-primary:   #E09AAE; --diary-hover:   #CB8199;
+  --diary-light:     #FBEEF2; --diary-soft:    #F3D2DC; --diary-ink:   #84425A;
+
+  --arcade-primary:  #EEC770; --arcade-hover:  #D8AE55;
+  --arcade-light:    #FBF3DE; --arcade-soft:   #F1DCA5; --arcade-ink:  #7A5A1E;
+
+  --rewards-primary: #B8A4DC; --rewards-hover: #9F8BC5;
+  --rewards-light:   #F2ECFA; --rewards-soft:  #DCCFEE; --rewards-ink: #5A4883;
+
+  --review-primary:  #EBA98C; --review-hover:  #D69074;
+  --review-light:    #FBEBE0; --review-soft:   #F4D2BE; --review-ink:  #844A30;
+
+  /* Brand aliases */
+  --color-primary:        var(--diary-primary);   /* app brand = Diary Pink */
+  --color-secondary:      var(--arcade-primary);  /* XP / gamification */
+  --color-accent:         var(--rewards-primary); /* shop / premium */
 
   /* Warm cream neutrals */
-  --bg-page:    #FAF6EF;
-  --bg-card:    #FFFFFF;
-  --bg-sidebar: #F4EEE4;
-  --bg-surface: #EFE8DB;
+  --bg-page:    #FAF6EF;  --bg-card:    #FFFFFF;
+  --bg-sidebar: #F4EEE4;  --bg-surface: #EFE8DB;
 
-  /* Text (warm dark) */
+  /* Text */
   --text-primary:   #2B2722;
   --text-secondary: #706659;
   --text-hint:      #A79A89;
+  --text-on-primary: #FFFFFF;
 
   /* Borders */
   --border-default: #DCD2C2;
+  --border-strong:  #C9BDA9;
   --border-subtle:  #EBE3D5;
   --border-card:    rgba(43, 39, 34, 0.06);
 
-  /* Shadows — soft stationery (border-only 규칙 폐기) */
-  --shadow-soft:  0 2px 10px rgba(120, 90, 60, 0.06);
-  --shadow-modal: 0 10px 30px rgba(90, 65, 40, 0.12);
+  /* Shadows — soft stationery */
+  --shadow-soft:        0 2px 10px rgba(120, 90, 60, 0.06);
+  --shadow-modal:       0 10px 30px rgba(90, 65, 40, 0.12);
+  --shadow-input-focus: 0 0 0 3px var(--color-primary-glow);
 
-  /* Radius — 넉넉한 둥글기 */
+  /* Radius — generous */
   --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
   --radius-xl: 20px; --radius-2xl: 28px; --radius-full: 9999px;
 
   /* Sidebar */
-  --sidebar-width: 232px;
+  --sidebar-width: 240px;
 
-  /* Fonts (Google Fonts 로드 필수) */
-  --font-family:         'Nunito', -apple-system, sans-serif;     /* body */
-  --font-family-display: 'Quicksand', 'Nunito', sans-serif;        /* 헤드라인/카드 타이틀 */
-  --font-family-hand:    'Caveat', cursive;                        /* 손글씨 액센트 */
+  /* Fonts (Google Fonts must be loaded) */
+  --font-family:         'Nunito', sans-serif;       /* body */
+  --font-family-display: 'Quicksand', sans-serif;    /* headlines / card titles */
+  --font-family-hand:    'Caveat', cursive;          /* handwritten accents */
 
   --font-size-xs: 12px; --font-size-sm: 14px; --font-size-md: 16px;
   --font-size-lg: 18px; --font-size-xl: 24px; --font-size-2xl: 32px; --font-size-3xl: 44px;
 
   /* Motion */
-  --transition-fast: 0.12s ease; --transition-normal: 0.18s ease; --transition-slow: 0.3s ease;
+  --transition-fast: 0.12s ease;
+  --transition-normal: 0.18s ease;
+  --transition-slow: 0.3s ease;
+  --ease-calm: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+
+  /* Z-index scale: sidebar 100 · topbar 200 · overlay 1000-1150 · modal 2000 · toast 5000 · splash 9999 */
 }
 ```
 
-**규칙**
-- 컴포넌트 CSS에서 hex 직접 금지 — `var(--token)`만 사용
-- 아이콘: Lucide (이모지 금지)
-- 헤드라인(`.h1` ~ `.h3`)은 Quicksand 자동 적용 + `letter-spacing: -0.02em`
-- UPPERCASE 라벨은 `letter-spacing: 0.08em`, weight 700, 10.5~11px
-- 카드 기본: `bg-card + border-subtle + radius-xl(20px) + shadow-soft`
-- 아이콘: Lucide (`<i data-lucide="아이콘명" width="16" height="16">`) — 이모지 절대 금지
-- 아이콘 초기화: JS에서 `lucide.createIcons()` 호출 필요
+**Rules**
+- Component CSS: `var(--token)` only — no hex.
+- Icons: Lucide (`<i data-lucide="...">`) — no emoji. JS init: `lucide.createIcons()`.
+- Headlines (`.h1` ~ `.h3`): Quicksand auto-applied + `letter-spacing: -0.02em`.
+- UPPERCASE labels: `letter-spacing: 0.08em`, weight 700, 10.5–11px.
+- Card baseline: `bg-card + border-subtle + radius-lg + shadow-soft`.
+- Splash: per-day-of-week bg colors via `--splash-day-{0..6}` tokens.
 
-### Email HTML Palette (CSS variables 불가 환경용 — hex 직접 사용)
+### Dark Mode (tokens ready, UI toggle not yet implemented)
 
-> 이메일 클라이언트는 CSS variables 미지원 → 아래 hex 값을 직접 사용.
-> theme.css 전체 토큰의 이메일용 완전 매핑.
+`[data-theme="dark"]` block in `theme.css` provides a warm dark variant (brown base + pastel accents) for all section tones, semantic states, and shadows. Theme is preserved via `localStorage["gia-theme"]` and applied pre-DOM in `child.html` to avoid flash.
 
-#### 배경 / 레이아웃
-| 토큰 | hex | 용도 |
-|------|-----|------|
-| `--bg-page` | `#FAF6EF` | 이메일 전체 배경 (warm cream) |
-| `--bg-card` | `#FFFFFF` | 카드 / 섹션 박스 배경 |
-| `--bg-surface` | `#EFE8DB` | 구분선 배경, 인용 박스 |
-| `--bg-sidebar` | `#F4EEE4` | 사이드 컬럼, 서브 섹션 배경 |
+### Email HTML Palette (CSS variables 미지원 — hex 직접 사용)
 
-#### 텍스트
-| 토큰 | hex | 용도 |
-|------|-----|------|
-| `--text-primary` | `#2B2722` | 본문 메인 텍스트 |
-| `--text-secondary` | `#706659` | 보조 설명, 라벨 |
-| `--text-hint` | `#A79A89` | 날짜, 캡션, 힌트 텍스트 |
-| `--text-on-primary` | `#FFFFFF` | 색상 배경 위 텍스트 (버튼 등) |
+| Token | hex | Use |
+|---|---|---|
+| `--bg-page` | `#FAF6EF` | Email body bg |
+| `--bg-card` | `#FFFFFF` | Card / section box |
+| `--bg-surface` | `#EFE8DB` | Quote / divider bg |
+| `--bg-sidebar` | `#F4EEE4` | Sub section bg |
+| `--text-primary` | `#2B2722` | Body text |
+| `--text-secondary` | `#706659` | Labels |
+| `--text-hint` | `#A79A89` | Captions |
+| `--border-default` | `#DCD2C2` | Card borders |
+| `--border-subtle` | `#EBE3D5` | Light dividers |
 
-#### 보더
-| 토큰 | hex | 용도 |
-|------|-----|------|
-| `--border-default` | `#DCD2C2` | 카드 테두리, 구분선 |
-| `--border-subtle` | `#EBE3D5` | 연한 구분선 |
+**Section colors (primary / light / soft / ink):**
+- English: `#7FA8CC` / `#EEF4FA` / `#CFE0EE` / `#345A80`
+- Math:    `#8AC4A8` / `#EEF7F2` / `#CFE6D9` / `#3A6A54`
+- Diary:   `#E09AAE` / `#FBEEF2` / `#F3D2DC` / `#84425A`
+- Arcade:  `#EEC770` / `#FBF3DE` / `#F1DCA5` / `#7A5A1E`
+- Rewards: `#B8A4DC` / `#F2ECFA` / `#DCCFEE` / `#5A4883`
+- Review:  `#EBA98C` / `#FBEBE0` / `#F4D2BE` / `#844A30`
 
-#### 섹션 팔레트 (6 sections)
-| 섹션 | primary | light (배경) | soft (중간) | ink (진한 텍스트) |
-|------|---------|-------------|------------|-----------------|
-| English (Baby Blue) | `#7FA8CC` | `#EEF4FA` | `#CFE0EE` | `#345A80` |
-| Math (Fresh Mint) | `#8AC4A8` | `#EEF7F2` | `#CFE6D9` | `#3A6A54` |
-| Diary (Sweet Pink) | `#E09AAE` | `#FBEEF2` | `#F3D2DC` | `#84425A` |
-| Arcade (Butter) | `#EEC770` | `#FBF3DE` | `#F1DCA5` | `#7A5A1E` |
-| Rewards (Lavender) | `#B8A4DC` | `#F2ECFA` | `#DCCFEE` | `#5A4883` |
-| Review (Peach) | `#EBA98C` | `#FBEBE0` | `#F4D2BE` | `#844A30` |
-
-#### 상태 색상
-| 토큰 | hex | 용도 |
-|------|-----|------|
-| `--color-success` | `#8FBF87` | 정답, 완료, 달성 |
-| `--color-success-light` | `#E8F5E4` | 성공 배경 tint |
-| `--color-success-ink` | `#4E7A46` | 성공 텍스트 |
-| `--color-error` | `#D97A7A` | 오답, 경고, 실패 |
-| `--color-error-light` | `#FAEAEA` | 오류 배경 tint |
-| `--color-error-ink` | `#8A4538` | 오류 텍스트 |
-| `--color-warning` | `#EEC770` | 주의, 취약 단어 |
-| `--color-warning-light` | `#FBF3DE` | 경고 배경 tint |
-| `--color-info` | `#7FA8CC` | 정보 (= English primary) |
-| `--color-info-light` | `#EEF4FA` | 정보 배경 tint |
-
-#### 브랜드 / 앱 앵커
-| 토큰 | hex | 용도 |
-|------|-----|------|
-| `--color-primary` (Diary Pink) | `#E09AAE` | 앱 브랜드 컬러, CTA 버튼 |
-| `--color-secondary` (Arcade Butter) | `#EEC770` | XP, 게이미피케이션 강조 |
-| `--color-accent` (Lavender) | `#B8A4DC` | Shop, 프리미엄 강조 |
-
-#### 이메일 전용 스타일 가이드
-- **섀도우**: `box-shadow: 0 2px 8px rgba(120, 90, 60, 0.08)` (--shadow-soft 대체)
-- **카드 보더**: `border: 1px solid #DCD2C2; border-radius: 16px`
-- **섹션 구분**: 왼쪽 4px 컬러 바 사용 (English=`#7FA8CC`, Math=`#8AC4A8` 등)
-- **폰트**: `font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif`
-- **이모지 금지**: 섹션 아이콘 대신 컬러 바 또는 컬러 도트(●) 사용
-- **최대 너비**: 600px (이메일 클라이언트 표준)
+**Email guide:** soft shadow `0 2px 8px rgba(120,90,60,0.08)`, border `1px solid #DCD2C2 / radius 16px`, left 4px section bar instead of icons, max width 600px, font `-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif`. No emoji.
 
 ---
 
-## Dark Mode 토큰 (준비됨 — UI 토글 미구현)
-
-Warm dark(브라운 베이스 + 파스텔 액센트). 동일 6-section 구조 유지.
-
-```css
-[data-theme="dark"] {
-  --bg-page: #201C18; --bg-card: #2C2822; --bg-sidebar: #25211C; --bg-surface: #352F28;
-  --text-primary: #F6F0E4; --text-secondary: #CABFAD; --text-hint: #8C8070;
-  --border-default: #3E362D; --border-subtle: #2F2A24; --border-card: rgba(255, 248, 232, 0.06);
-
-  /* 섹션 tone 다크 변형 */
-  --english-light: #1E2A36; --math-light:    #1F2E26; --diary-light:   #33212A;
-  --arcade-light:  #33291A; --rewards-light: #2A2436; --review-light:  #33261D;
-
-  --english-primary: #9AC1E0; --math-primary:    #A4D7BF; --diary-primary:   #EDB1C2;
-  --arcade-primary:  #F2D489; --rewards-primary: #CDBCE8; --review-primary:  #F2BFA4;
-
-  --color-success: #9BCF94; --color-error: #E48C8C; --color-warning: #F2D489;
-  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.3); --shadow-modal: 0 14px 34px rgba(0, 0, 0, 0.5);
-}
-```
-
----
-
-## Learning Flow
+## Learning Flow (English)
 
 ```
 Home Dashboard → English → Lesson Select
@@ -214,111 +335,145 @@ Home Dashboard → English → Lesson Select
 ### Step Specs
 
 **Step 1 — Preview**
-4×5 card grid. Click → popup modal.
-- POS pill → Word (32px 700) → Definition → Example (italic)
-- Listen (TTS) → Shadow ×2 (mic → Web Speech → ≥80%) → Spell ×2
-- Sentence Reading ×2 (TTS → mic → ≥90%)
+4×5 card grid → click → popup modal. Flow: POS pill → Word (32px 700) → Definition → Example (italic) → Listen (TTS) → Shadow ×2 (mic, Web Speech API, ≥80%) → Spell ×2 → Sentence Reading ×2 (TTS → mic ≥90%).
 
 **Step 2 — Word Match**
-7 words/round, 두 컬럼. word ↔ definition 매칭.
-- Selected: `--color-primary` border+bg
-- Matched: `--color-success` + opacity 0.6
-- Wrong: shake 0.3s
+7 words / round, two columns. word ↔ definition matching.
+Selected `--color-primary` border+bg / Matched `--color-success` opacity 0.6 / Wrong shake 0.3s.
 
 **Step 3 — Fill the Blank**
-문장 빈칸 + word tag pills. 정답 선택.
-- Correct: `--color-success` / Wrong: `--color-error` + shake
+Sentence + word-tag pills → pick correct word.
+Correct `--color-success` / Wrong `--color-error` + shake.
 
 **Step 4 — Spelling Master**
-Wordle 스타일 48×48px 박스. 3 passes (hint→첫글자→blank). Wrong → retryQueue (전부 클리어 후 진행).
+Wordle-style 48×48 boxes. 3 passes (hint → first letter → blank). Wrong → retryQueue (clear all before progressing).
 
 **Step 5 — Make a Sentence**
-Stage 1: drag-and-drop word scramble. Stage 2: free writing → AI 채점 (grammar+spelling, Ollama→Gemini fallback).
+Stage 1 drag-and-drop word scramble. Stage 2 free writing → AI grade (grammar+spelling, Ollama → Gemini fallback).
 
-**Final Test**
-MC 20 + Fill-in 20. 30분 타이머. 합격 = 90%. 합격 → XP +10 + GrowthEvent("lesson_pass"). 불합격 → 재학습 필요. 재시도 합격 → XP +10.
+**Final Test (Perfect Challenge)**
+MC 20 + Fill-in 20. 30-min timer. Pass = 90%. Pass → XP +10 + GrowthEvent("lesson_pass"). Fail → re-learn required. Retry pass = +10. Implementation: `child-exam.js` (extracted from `child.js`).
 
 ---
 
-## XP Rules
+## XP Rules (`services/xp_engine.py XP_RULES_DEFAULT`)
+
+> Parent can override any rule via `app_config` key `xp_rule_<action>`. Defaults below.
 
 | Action | XP | Limit |
-|---|---|---|
-| Word correct | +1 | per attempt |
-| Stage complete | +2 | once/stage/lesson |
-| Final Test pass | +10 | once; retry = +10 |
-| Unit Test pass | +5 | once |
-| Daily Words complete | +5 | once/day |
-| Weekly Test pass | +10 | once/week |
-| Review complete | +2 | once/day |
-| Daily Journal | +10 | once/day |
-| Must Do all | +5 | once/day |
-| All tasks complete | +15 | once/day |
-| 7-day streak | +30 | per occurrence |
-| 30-day streak | +200 | per occurrence |
-| Arcade round | +1/+2/+3 | 500/1000/2000점; daily cap +10 |
-| Math Kangaroo complete | +5 | per set |
-| Math Kangaroo ≥80% | +5 | per set |
-| Math Kangaroo perfect | +10 | per set |
+|---|---:|---|
+| `word_correct` | +1 | per attempt |
+| `stage_complete` | +2 | once / stage / lesson |
+| `final_test_pass` | +10 | once; retry pass = +10 |
+| `unit_test_pass` | +5 | once |
+| `daily_words_complete` | +5 | once / day |
+| `weekly_test_pass` | +10 | once / week |
+| `mywords_weekly_test_pass` | +10 | once / week |
+| `review_complete` | +2 | once / day |
+| `journal_complete` | +10 | once / day |
+| `must_do_bonus` | +5 | once / day (all must-do done) |
+| `all_complete_bonus` | +15 | once / day (all tasks done) |
+| `streak_7_bonus` | +30 | per occurrence |
+| `streak_30_bonus` | +200 | per occurrence |
+| `math_lesson_complete` | +10 | per lesson |
+| `math_unit_test_pass` | +25 | per unit test pass |
+| `math_kangaroo_complete` | +5 | per set |
+| `math_kangaroo_80` | +5 | per set ≥80% |
+| `math_kangaroo_perfect` | +10 | per set 100% |
+| `ckla_reading_done` | +2 | per lesson (dedup by lesson_id) |
+| `ckla_vocab_done` | +3 | per lesson |
+| `ckla_lesson_complete` | +5 | per lesson |
+| Arcade round | +1/+2/+3 | thresholds 500/1000/2000 score; daily cap = `arcade_daily_cap` (default 10) |
 
-No XP: 테스트 실패, 실패 후 재학습.
+Failed tests / re-learn after fail: 0 XP.
 
 ---
 
-## Streak Rules
-- Review 가능한 날: Review + Daily Words → streak 유지
-- Review 없는 날: Daily Words만 → streak 유지
-- 승인된 Day Off → streak 동결 (유지)
+## Streak Rules (`services/streak_engine.py`)
+
+- Tracks **3 subjects**: `english` / `math` / `game`. (Configurable via `app_config` keys `streak_subjects`, `streak_mode`.)
+- Mode `all` (default): every selected subject must show activity that day. Mode `any`: at least one suffices.
+- Approved Day-Off freezes streak (maintains count).
+- 7-day / 30-day milestones trigger XP bonuses (+30 / +200).
 
 ---
 
 ## Diary Sections
 
-| 섹션 | 설명 | 상태 |
+| Section | Description | File(s) |
 |---|---|---|
-| Today | 대시보드 (stats 4개 + week calendar + milestones) | ✅ 2026-04 신규 |
-| Daily Journal | 글쓰기 + AI feedback (2-column layout) | ✅ |
-| Free Writing | 자유 글쓰기 | ✅ |
-| My Sentences | Step 5 문장 모음, 2주 경과 → Rewrite 프롬프트 | ✅ |
-| My Worlds | 완료한 Growth Theme 컬렉션 | ✅ |
-| Growth Timeline | GrowthEvent 로그 (역순) | ✅ |
-| Calendar | 월간 뷰 (🔥⬜🏖️📝✅ 마커) | ✅ |
-| Day Off | 사유 폼 → 부모 이메일 → pending/approved/denied | ✅ |
+| Today | Dashboard (4 stats + week calendar + milestones) | `diary-home.js` |
+| Daily Journal | Writing + AI feedback (2-column) | `diary-write.js` |
+| Free Writing | Free-form journaling | `free-writing.js` |
+| My Sentences | Step-5 sentence collection; 2-week-old → Rewrite prompt | `diary-sentences` router |
+| My Worlds | Completed Growth Theme collection | `growth-theme.js` |
+| Growth Timeline | GrowthEvent log (reverse chrono) | in `diary-home.js` |
+| Calendar | Monthly view (streak / day-off / journal markers) | `diary-calendar.js` |
+| Day Off | Reason form → email parent → pending/approved/denied | `day_off` router |
+| Photo | Multi-photo upload bound to entries | `diary_photo` router |
 
 ---
 
 ## Reward Shop
-기본 아이템: YouTube 30분(300), Roblox 30분(300), Family Movie(500), Dinner Out(500), Custom Reward(300).
 
-구매 플로우: 카드 클릭 → 확인 팝업 → XP 차감 → PurchasedReward 생성.
-사용 플로우: My Rewards → [Use] → 4자리 PIN → is_used=True.
+Default items: YouTube 30min (300), Roblox 30min (300), Family Movie (500), Dinner Out (500), Custom Reward (300).
+
+- **Buy**: card click → confirm → XP debit → `PurchasedReward` row.
+- **Use**: My Rewards → [Use] → 4-digit PIN → `is_used=True`.
+- PIN flow: `/api/shop/{set-pin,pin-status}` + `/api/shop/use-reward/{purchase_id}`.
+- Files: `reward-shop.js` + `reward-shop-use.js` + `reward-shop.css`.
 
 ---
 
 ## Parent Dashboard
-접근: Home 배너 "···" → 4자리 PIN.
-섹션: Overview, Word Stats, Shop Management, Task Settings, Academy Schedule, Day Off Requests, Notifications, Change PIN, Add Textbook.
+
+Access: Home banner "···" → 4-digit PIN (`services/pin_guard.py`).
+
+Sections (split across `parent-*.js` modules):
+- **Overview** (`parent-overview.js`)
+- **Word Stats / Stage Stats** (`parent-stats` router)
+- **Math Summary** (`parent-math.js`)
+- **Streak detail + recalc** (`parent-streak.js`)
+- **XP rules edit + report** (`parent-xp.js`)
+- **Weekly Goals** (`goals` router, PIN-gated)
+- **Task Settings** (`parent.task-settings`)
+- **Academy Schedule**
+- **Day Off Requests**
+- **Notifications / Email Reports** (`parent_report` router → `report_engine.py`, 661 lines)
+- **Change PIN**
+- **Add Textbook** (`parent-textbooks.js` + `parent-ingest.js`)
 
 ---
 
 ## Math Module
 
 ### Math Academy
-- G4 완성, G3 일부 완성
-- CPA 방식 (Concrete → Pictorial → Abstract)
-- routers: `math_academy.py`, `math_daily.py`, `math_fluency.py`, `math_glossary.py`, `math_placement.py`, `math_problems.py`
+- **Grades**: G3, G4, G5, G6 (data in `backend/data/math/G{3..6}/`)
+- **Approach**: CPA (Concrete → Pictorial → Abstract)
+- **Learning Path view** (added 2026-04, commit `62be6da`): unit/lesson tree
+- **Visual error states** (commit `9b743ca`): no more blank cream screen on failure
+- Routers: `math_academy`, `math_daily`, `math_fluency`, `math_glossary`, `math_placement`, `math_problems`
+- JS: `math-academy.js` + `math-academy-{shell,ui,feedback}.js` + `math-manipulatives{,-2}.js` + `math-3read.js` + `math-learn-{cards,visuals}.js` + `math-problem-{types,ui}.js` + `math-katex-utils.js`
 
 ### Math Kangaroo
-- 100+ sets (IKMC 2012-2023, Lebanon, India KSF, USA 2003-2025)
-- 레벨: Pre-Ecolier(1-2), Ecolier(3-4), Benjamin(5-6)
-- 모드: Practice (즉시 채점) / Test (타이머 + 전체 채점)
+- 100+ sets: IKMC 2012-2023, KSF (Lebanon, India), USA 2003-2025
+- Levels: Pre-Ecolier (1-2), Ecolier (3-4), Benjamin (5-6), Cadet, Junior, Student
+- Modes: Practice (instant grade) / Test (timer + final grade)
 - XP: complete +5, ≥80% +5, perfect +10
+- Files: `math-kangaroo.js`, `-exam.js`, `-pdf-exam.js`, `-result.js`
+
+### Other Math
+- **Placement** (`math_placement`) — adaptive level finder
+- **Daily Challenge** (`math_daily`)
+- **Fluency** (`math_fluency`) — fact rounds with daily cap
+- **Glossary** (`math_glossary`) — per-grade vocab
+- **My Problems** (`math_problems`) — wrong-answer review queue
 
 ---
 
 ## Arcade
 
-| 게임 | 파일 |
+| Game | File |
 |---|---|
 | Word Invaders | `arcade-word-invaders.js` |
 | Spell Rush | `arcade-spell-rush.js` |
@@ -328,93 +483,139 @@ No XP: 테스트 실패, 실패 후 재학습.
 | Make 24 | `arcade-make24.js` |
 | Math Invaders | `arcade-math-invaders.js` |
 
-허브 화면은 calm (배경 = `bg-page`, 카드만 표시). 게임 진입 후 내부에서만 에너지 허용.
+Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only inside games. Daily XP cap configurable.
 
 ---
 
-## CKLA Academy
-- CKLA Grade 3 읽기 교재 기반
-- 탭: Read / Words / Q&A / Word Work
-- 아티클 텍스트: `_parsePassage()` 로 PDF 줄바꿈 처리 (산문 렌더링)
-- routers: `ckla.py`, `ckla_review.py`
-- frontend: `ckla.js`, `ckla-lesson.js`, `ckla.css`
+## US Academy (word-first SM-2)
+
+New module for US-school vocab prep.
+- Models: `USAcademyWord`, `USAcademyWordProgress`, `USAcademyPassage`, `USAcademySession`, `USAcademyUnitResult`
+- Flow: level select → word study (definition / example / synonym / etymology) → mini quiz → unit test → SM-2 review queue
+- Endpoints: `/api/us-academy/{words,session,step/complete,quiz/result,review/{due,result},passage/{id},stats}`
+- Migration: `010_us_academy_tables.py`
 
 ---
 
-## AI Assistant (Shadow)
-학습 중 실시간 도움 패널
-- STT: `ai-assistant-stt.js` (Web Speech API)
-- TTS: `ai-assistant-tts.js` (edge-tts)
-- routers: `ai_assistant.py`, `ai_assistant_log.py`, `ai_assistant_safety.py`
+## CKLA Academy (Grade 3 reading)
+
+- **Tabs**: Read / Words / Q&A / Word Work
+- Article rendering: `_parsePassage()` handles PDF line-break artefacts → prose
+- Models: `CKLADomain`, `CKLALesson`, `CKLAQuestion`, `CKLAWordLesson`, `CKLALessonProgress`, `CKLAQuestionResponse`
+- Routers: `ckla`, `ckla_review`
+- Service: `services/ckla_grader.py`
+- Frontend: `ckla.js`, `ckla-lesson.js`, `ckla-review.js`, `ckla.css`
+- Migration: `011_ckla_tables.py`
 
 ---
 
-## System
+## AI Coach (Home dashboard)
 
-| 기능 | 파일 | 상태 |
+`routers/ai_coach.py` provides `GET /api/ai-coach/today` — daily motivational message.
+- Builds prompt from XP totals + streak with **prompt-injection defence** (stats wrapped in `[STATS]` block prefixed with ignore instruction).
+- Tries Ollama (`gemma2:2b` at `127.0.0.1:11434`) → falls back to canned messages on failure.
+
+> ⚠️ Note: previous CLAUDE.md mentioned an "AI Assistant (Shadow)" panel with `ai-assistant-stt.js` / `-tts.js` / `ai_assistant_*.py`. Those files **do not currently exist** in the codebase. The Home AI Coach is the only AI-driven coaching surface today. Speech (mic) is handled per-stage via Web Speech API directly.
+
+---
+
+## System Services
+
+| Feature | File | Status |
 |---|---|---|
-| Ollama auto-start | `services/ollama_manager.py` | ✅ |
-| Auto-backup (7일) | `services/backup_engine.py` | ✅ |
+| Ollama lazy-start (auto-launch on first AI call) | `services/ollama_manager.py` | ✅ |
+| Auto-backup (rolling, 7-day) | `services/backup_engine.py` | ✅ |
+| Folder watcher (auto-ingest dropped images) | `backend/folder_watcher.py` | ✅ |
+| Voca disk sync | `backend/voca_sync.py` | ✅ |
 | Offline indicator | `offline-indicator.js` | ✅ |
-| Dark mode toggle | 미구현 | 🟡 |
-| macOS LaunchAgent | README 참조 | ✅ |
+| Service worker / PWA | `static/service-worker.js` + `manifest.json` | ✅ |
+| Splash screen (per-day-of-week colors) | `splash.js` + `splash.css` | ✅ |
+| JS bundle auto-rebuild on startup | `build.sh` (run from `lifespan`) | ✅ |
+| Dark mode toggle UI | tokens ready, no UI control | 🟡 |
+| macOS LaunchAgent | see `README.md` | ✅ |
 
 ---
 
-## Database Models
+## Database Models (`backend/models/`)
 
-### Phase 0 (수정 금지)
-Lesson, StudyItem, Progress, Reward, Schedule, UserPracticeSentence, Word, WordReview
+> Full schema reference: `backend/DB_INDEX.md`
 
-### Phase 1 (migration 001)
-AppConfig, XPLog, StreakLog, TaskSetting, RewardItem, PurchasedReward, DailyWordsProgress, DiaryEntry, GrowthEvent, DayOffRequest, AcademySession, LearningLog, WordAttempt, AcademySchedule, GrowthThemeProgress
+### `lessons.py`
+`Lesson`, `StudyItem`, `Progress`, `UserPracticeSentence`, `Word`, `WordReview`
 
-### Math (별도 migration)
-MathKangarooProgress, MathAcademySession 등
+### `system.py`
+`Reward` (legacy), `Schedule`, `AppConfig`
 
-전체 스키마: `backend/DB_INDEX.md`
+### `gamification.py`
+`XPLog`, `StreakLog`, `TaskSetting`, `RewardItem`, `PurchasedReward`, `GrowthThemeProgress`
+
+### `learning.py`
+`DailyWordsProgress`, `AcademySession`, `LearningLog`, `WordAttempt`, `AcademySchedule`
+
+### `diary.py`
+`DiaryEntry`, `FreeWriting`, `GrowthEvent`, `DayOffRequest`
+
+### `math.py`
+`MathPlacementResult`, `MathProblem`, `MathProgress`, `MathAttempt`, `MathWrongReview`, `MathFactFluency`, `MathDailyChallenge`, `MathKangarooProgress`
+
+### `assistant.py`
+`AssistantLog`
+
+### `us_academy.py`
+`USAcademyWord`, `USAcademyWordProgress`, `USAcademyPassage`, `USAcademySession`, `USAcademyUnitResult`
+
+### `ckla.py`
+`CKLADomain`, `CKLALesson`, `CKLAQuestion`, `CKLAWordLesson`, `CKLALessonProgress`, `CKLAQuestionResponse`
+
+### `goals.py`
+`WeeklyGoal`
+
+### Migrations (`backend/migrations/`)
+001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy · 011 ckla · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals.
 
 ---
 
 ## Code Annotation Rules
 
-### 파일 헤더 (모든 JS/CSS/Python 파일)
+### File header (all JS / CSS / Python files)
 
 ```
 /* ================================================================
-   [filename] — [한줄 설명]
-   Section: [Home / English / Math / Diary / Arcade / Shop / Parent / System]
-   Dependencies: [목록]
-   API endpoints: [목록 또는 "none"]
+   [filename] — [one-line description]
+   Section: [Home / English / Math / Diary / Arcade / Shop / Parent /
+             Academy / CKLA / System]
+   Dependencies: [list]
+   API endpoints: [list or "none"]
    ================================================================ */
 ```
 
-### 함수 태그
+### Function tag
 
 ```js
 /** @tag XP @tag AWARD */
 async function awardXP(action, detail) { ... }
 ```
 
-### 사용 가능한 태그
+### Available `@tag` values
 
 ```
-HOME_DASHBOARD  TODAY_TASKS   REMINDER      AI_COACH      AI_ASSISTANT
-SIDEBAR         ACCORDION     NAVIGATION
-ENGLISH         ACADEMY       DAILY_WORDS   MY_WORDS      READING
-CKLA            COLLOCATION   US_ACADEMY
-PREVIEW         SHADOW        SENTENCE_READ SPELL
-WORD_MATCH      FILL_BLANK    SPELLING      SENTENCE
-FINAL_TEST      UNIT_TEST     WEEKLY_TEST
-REVIEW          SM2           ACTIVE_RECALL
-DIARY           JOURNAL       FREE_WRITING  MY_SENTENCES
-MY_WORLDS       GROWTH_TIMELINE CALENDAR    DAY_OFF
-MATH            MATH_ACADEMY  MATH_DAILY    MATH_FLUENCY
-MATH_KANGAROO   MATH_GLOSSARY MATH_PLACEMENT MATH_PROBLEMS
+HOME_DASHBOARD  TODAY_TASKS    REMINDER     AI_COACH
+SIDEBAR         ACCORDION      NAVIGATION   PAGES
+ENGLISH         ACADEMY        DAILY_WORDS  MY_WORDS       READING
+CKLA            COLLOCATION    US_ACADEMY   STARRED
+PREVIEW         SHADOW         SENTENCE_READ  SPELL
+WORD_MATCH      FILL_BLANK     SPELLING     SENTENCE
+FINAL_TEST      UNIT_TEST      WEEKLY_TEST
+REVIEW          SM2            ACTIVE_RECALL
+DIARY           JOURNAL        FREE_WRITING MY_SENTENCES   PHOTO
+MY_WORLDS       GROWTH_TIMELINE  GROWTH_THEME  CALENDAR    DAY_OFF
+MATH            MATH_ACADEMY   MATH_DAILY   MATH_FLUENCY
+MATH_KANGAROO   MATH_GLOSSARY  MATH_PLACEMENT  MATH_PROBLEMS
 ARCADE
-XP              STREAK        AWARD         BONUS
-SHOP            REWARD        PURCHASE      PIN
-PARENT          SETTINGS      WORD_STATS    SCHEDULE      NOTIFICATION
-TTS             AI            OLLAMA        GEMINI        OCR
-BACKUP          SYSTEM        THEME
+XP              STREAK         AWARD        BONUS
+SHOP            REWARD         PURCHASE     PIN
+PARENT          SETTINGS       WORD_STATS   SCHEDULE       NOTIFICATION
+GOALS           REPORT
+TTS             AI             OLLAMA       GEMINI         OCR
+BACKUP          SYSTEM         THEME        BUILD
 ```
