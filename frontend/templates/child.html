@@ -26,12 +26,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Caveat:wght@400;600;700&family=Patrick+Hand&family=Shadows+Into+Light&family=Indie+Flower&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/theme.css?v=5">
     <link rel="stylesheet" href="/static/css/toast.css?v=1">
-    <link rel="stylesheet" href="/static/css/main-shell.css?v=1">
+    <link rel="stylesheet" href="/static/css/main-shell.css?v=2">
     <link rel="stylesheet" href="/static/css/main-idle.css?v=1">
     <link rel="stylesheet" href="/static/css/main-topbar.css?v=1">
-    <link rel="stylesheet" href="/static/css/main-stage.css?v=2">
+    <link rel="stylesheet" href="/static/css/main-stage.css?v=3">
     <link rel="stylesheet" href="/static/css/main-responsive.css?v=1">
-    <link rel="stylesheet" href="/static/css/main-layout.css?v=1">
+    <link rel="stylesheet" href="/static/css/main-layout.css?v=2">
     <link rel="stylesheet" href="/static/css/base.css?v=1">
     <link rel="stylesheet" href="/static/css/layout.css?v=1">
     <link rel="stylesheet" href="/static/css/components.css?v=1">
@@ -61,9 +61,9 @@
     <link rel="stylesheet" href="/static/css/collocation.css">
     <link rel="stylesheet" href="/static/css/splash.css?v=2">
     <link rel="stylesheet" href="/static/css/math-home.css?v=1">
-    <link rel="stylesheet" href="/static/css/math-academy-home.css?v=1">
+    <link rel="stylesheet" href="/static/css/math-academy-home.css?v=2">
     <link rel="stylesheet" href="/static/css/math-academy-shell.css?v=2">
-    <link rel="stylesheet" href="/static/css/math-academy-sidebar.css?v=2">
+    <link rel="stylesheet" href="/static/css/math-academy-sidebar.css?v=3">
     <link rel="stylesheet" href="/static/css/math-academy-learn.css?v=2">
     <link rel="stylesheet" href="/static/css/math-academy-problems.css?v=4">
     <link rel="stylesheet" href="/static/css/math-academy-stages.css?v=4">
@@ -81,6 +81,10 @@
     <link rel="stylesheet" href="/static/css/math-academy-responsive.css?v=1">
     <link rel="stylesheet" href="/static/css/arcade.css?v=9">
     <link rel="stylesheet" href="/static/css/ckla.css?v=1">
+        <!-- KaTeX: Math formula rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
@@ -102,12 +106,12 @@
 <div id="particle-layer" aria-hidden="true"></div>
 
 <!-- Perfect banner -->
-<div id="perfect-banner" aria-hidden="true" style="display:none">Perfect! ✨</div>
+<div id="perfect-banner" aria-hidden="true" style="display:none">Perfect!</div>
 
 <!-- Preview Card Modal -->
 <div id="preview-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="pm-word">
     <div class="pm-box">
-        <button class="pm-close" id="pm-close-btn" type="button" aria-label="Close">✕</button>
+        <button class="pm-close" id="pm-close-btn" type="button" aria-label="Close"><i data-lucide="x" width="18" height="18"></i></button>
         <div id="pm-content"></div>
     </div>
 </div>
@@ -305,8 +309,8 @@
                         <span class="sb-session-val" id="sb-info-wrong">0</span>
                     </div>
                     <div class="sb-session-btns">
-                        <button type="button" class="dock-btn sec" id="sb-btn-listen">🔊 Listen</button>
-                        <button type="button" class="dock-btn sec" id="sb-btn-skip">⏭ Skip</button>
+                        <button type="button" class="dock-btn sec" id="sb-btn-listen"><i data-lucide="volume-2" width="14" height="14"></i> Listen</button>
+                        <button type="button" class="dock-btn sec" id="sb-btn-skip"><i data-lucide="skip-forward" width="14" height="14"></i> Skip</button>
                     </div>
                 </div>
                 <div class="sb-hints" id="sb-hints-container">
@@ -736,8 +740,8 @@
 <div id="collocation-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Chunk Challenge">
     <div class="coll-container">
         <div class="coll-header">
-            <div class="coll-header-title">✦ Chunk Challenge</div>
-            <button class="coll-close-btn" id="coll-close-btn" type="button" aria-label="Close">✕</button>
+            <div class="coll-header-title"><i data-lucide="sparkles" width="16" height="16"></i> Chunk Challenge</div>
+            <button class="coll-close-btn" id="coll-close-btn" type="button" aria-label="Close"><i data-lucide="x" width="18" height="18"></i></button>
         </div>
         <div class="coll-phase-label" id="coll-phase-label"></div>
         <div class="coll-progress-track">
@@ -751,7 +755,7 @@
 <div id="diary-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="GIA's Diary">
     <div class="diary-overlay-header">
         <div class="diary-overlay-title">GIA's Diary</div>
-        <button class="diary-overlay-close" id="diary-close" type="button" aria-label="Close">✕</button>
+        <button class="diary-overlay-close" id="diary-close" type="button" aria-label="Close"><i data-lucide="x" width="20" height="20"></i></button>
     </div>
     <div class="diary-overlay-body" id="diary-overlay-body"></div>
 </div>
@@ -766,12 +770,12 @@
     <div class="eo-header">
         <span class="eo-crumb" id="eo-crumb">Final Test</span>
         <div class="eo-title">
-            <span>📝</span>
+            <i data-lucide="clipboard-pen" width="18" height="18"></i>
             <span id="eo-part-label">Final Test</span>
         </div>
         <div class="eo-header-right">
             <div class="eo-timer" id="eo-timer">30:00</div>
-            <button type="button" class="eo-close" id="eo-close" title="Close">✕</button>
+            <button type="button" class="eo-close" id="eo-close" title="Close" aria-label="Close"><i data-lucide="x" width="18" height="18"></i></button>
         </div>
     </div>
     <div class="eo-progress-track">
@@ -822,8 +826,8 @@
   <div class="arcade-header">
     <div class="arcade-header-title">Arcade</div>
     <div style="display:flex; gap:8px;">
-      <button class="arcade-close-btn" id="arcade-mute" onclick="toggleArcadeMute()" title="Toggle sound">🔊</button>
-      <button class="arcade-close-btn" id="arcade-close" onclick="closeArcade()">✕</button>
+      <button class="arcade-close-btn" id="arcade-mute" onclick="toggleArcadeMute()" title="Toggle sound" aria-label="Toggle sound"><i data-lucide="volume-2" width="18" height="18"></i></button>
+      <button class="arcade-close-btn" id="arcade-close" onclick="closeArcade()" aria-label="Close"><i data-lucide="x" width="18" height="18"></i></button>
     </div>
   </div>
   <div class="arcade-body" id="arcade-body"></div>
@@ -832,7 +836,7 @@
 <div id="wm-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Word Manager">
   <div class="wm-header">
     <div class="wm-header-title">Word Manager</div>
-    <button class="wm-close-btn" id="wm-close">✕</button>
+    <button class="wm-close-btn" id="wm-close" aria-label="Close"><i data-lucide="x" width="18" height="18"></i></button>
   </div>
   <div class="wm-body" id="wm-body"></div>
 </div>
