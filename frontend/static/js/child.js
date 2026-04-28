@@ -129,11 +129,14 @@ function renderIdleStage() {
 
     if (!lesson) {
         wrap.innerHTML = `
-            <div class="hero-card">
-                <div class="hero-empty">
-                    Pick a textbook and lesson on the left<br>to start learning.
+            <div class="english-idle-card">
+                <div class="english-idle-icon">
+                    <i data-lucide="book-open" style="width:28px;height:28px;stroke-width:1.5"></i>
                 </div>
+                <p class="english-idle-title">Pick a textbook and lesson on the left to start learning.</p>
+                <p class="english-idle-hint">Or open Daily Words, My Words, or Review from the sidebar.</p>
             </div>`;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
         showIdleCard();
         refreshStartLabel();
         return;

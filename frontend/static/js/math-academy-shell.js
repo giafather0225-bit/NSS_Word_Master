@@ -6,9 +6,58 @@
 
    Restructures #stage-card into a left sidebar rail (200px, stage progress)
    + right body (lesson header + #stage). Unmount restores DOM for English stages.
+
+   Also exports showLessonStage() / hideLessonStage() — the single entry
+   point all math sub-flows (academy, fluency, glossary, kangaroo, placement,
+   daily, review) use when entering / leaving the shared #stage-card chrome.
+   Cross-view container visibility is handled by CSS (see main-idle.css).
    ================================================================ */
 
 /* global mathState */
+
+// ── Shared stage chrome helpers ─────────────────────────────
+
+/**
+ * Show the shared lesson stage chrome (#stage-card + .top-bar) and hide
+ * the math-idle landing card. Cross-view hides (home-dashboard, idle-wrapper)
+ * are CSS-driven, so JS only manages the in-math sub-state here.
+ * Idempotent. Pair with hideLessonStage() on exit.
+ * @tag MATH @tag NAVIGATION
+ */
+function showLessonStage({ collapseSidebar = true } = {}) {
+    const stageCard = document.getElementById('stage-card');
+    const topBar    = document.querySelector('.top-bar');
+    const mathIdle  = document.getElementById('math-idle-wrapper');
+
+    if (mathIdle)  mathIdle.style.display = 'none';
+    if (stageCard) {
+        stageCard.classList.remove('hidden');
+        stageCard.style.display = '';
+    }
+    if (topBar) topBar.style.display = '';
+
+    if (collapseSidebar) {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar) {
+            sidebar.classList.add('collapsed');
+            localStorage.setItem('sb_collapsed', '1');
+        }
+    }
+}
+
+/**
+ * Hide the lesson stage chrome and restore the math-idle landing card.
+ * @tag MATH @tag NAVIGATION
+ */
+function hideLessonStage() {
+    const stageCard = document.getElementById('stage-card');
+    const mathIdle  = document.getElementById('math-idle-wrapper');
+    if (stageCard) {
+        stageCard.classList.add('hidden');
+        stageCard.style.display = 'none';
+    }
+    if (mathIdle) mathIdle.style.display = '';
+}
 
 /**
  * Restructure `#stage-card` for the math lesson layout.

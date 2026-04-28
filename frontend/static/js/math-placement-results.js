@@ -52,18 +52,12 @@ function _renderPlacementResults(data) {
     if (typeof lucide !== 'undefined') lucide.createIcons();
 
     document.getElementById('math-placement-back').addEventListener('click', () => {
+        if (typeof hideLessonStage === 'function') hideLessonStage();
         if (typeof switchView === 'function') switchView('math');
-        const stageCard = document.getElementById('stage-card');
-        if (stageCard) stageCard.style.display = 'none';
-        const idleWrap = document.getElementById('idle-wrapper');
-        if (idleWrap) idleWrap.style.display = '';
     });
     document.getElementById('math-placement-go').addEventListener('click', () => {
+        if (typeof hideLessonStage === 'function') hideLessonStage();
         if (typeof switchView === 'function') switchView('math');
-        const stageCard = document.getElementById('stage-card');
-        if (stageCard) stageCard.style.display = 'none';
-        const idleWrap = document.getElementById('idle-wrapper');
-        if (idleWrap) idleWrap.style.display = '';
         const sel = document.getElementById('math-grade-select');
         if (sel) {
             setTimeout(() => {

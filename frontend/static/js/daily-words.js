@@ -23,32 +23,47 @@ const dwState = {
 };
 
 // ─── View Entry / Exit ────────────────────────────────────────
-/** Show Daily Words view. @tag DAILY_WORDS NAVIGATION */
+/**
+ * Show Daily Words view.
+ *
+ * Toggles `.active` on #daily-words-view (CSS provides display:flex) and
+ * hides the English siblings (#idle-wrapper, #stage-card) inside #stage-area.
+ * Earlier code hid the parent #stage-area itself, which also hid this view
+ * (a child) — fixed 2026-04 to operate on siblings only.
+ *
+ * @tag DAILY_WORDS @tag NAVIGATION
+ */
 async function showDailyWordsView() {
     const view = document.getElementById("daily-words-view");
     if (!view) return;
-    // Clear inline display set by switchView() so the .active CSS rule wins.
     view.style.display = "";
     view.classList.add("active");
-    const sa = document.getElementById("stage-area");
-    if (sa) sa.style.display = "none";
-    // Auto-collapse sidebar on study entry (matches Academy behavior)
+
+    const idleWrap  = document.getElementById("idle-wrapper");
+    const stageCard = document.getElementById("stage-card");
+    if (idleWrap)  idleWrap.style.display = "none";
+    if (stageCard) stageCard.style.display = "none";
+
     const sidebar = document.getElementById("sidebar");
     if (sidebar) { sidebar.classList.add("collapsed"); localStorage.setItem("sb_collapsed", "1"); }
     await _dwLoadAndRender();
 }
 
-/** Hide Daily Words view and restore stage area. @tag DAILY_WORDS NAVIGATION */
+/** Hide Daily Words view and restore the English idle. @tag DAILY_WORDS @tag NAVIGATION */
 function hideDailyWordsView() {
     const view = document.getElementById("daily-words-view");
     if (view) {
         view.classList.remove("active");
         view.style.display = "none";
     }
-    const sa = document.getElementById("stage-area");
-    if (sa) sa.style.display = "";
-    // Re-open sidebar so the user can pick another activity instead of landing
-    // on the Academy empty state.
+
+    const idleWrap  = document.getElementById("idle-wrapper");
+    const stageCard = document.getElementById("stage-card");
+    if (idleWrap)  idleWrap.style.display = "";
+    // stage-card keeps its .hidden class, so clearing inline display
+    // lets the .hidden rule (and CSS view-scoping) take over.
+    if (stageCard) stageCard.style.display = "";
+
     const sidebar = document.getElementById("sidebar");
     if (sidebar) { sidebar.classList.remove("collapsed"); localStorage.removeItem("sb_collapsed"); }
 }

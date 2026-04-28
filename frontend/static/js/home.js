@@ -8,77 +8,65 @@
    ================================================================ */
 
 // Current view state
-let currentView = 'home'; // 'home' | 'english' | 'diary'
+let currentView = 'home'; // 'home' | 'english' | 'math' | 'diary'
 
 /**
  * Switch the app to the given view.
+ *
+ * Container visibility is owned by CSS (main-idle.css body:not([data-view])
+ * rules). This function only sets data-view, the sidebar mode, and runs
+ * each view's entry action. It clears any stale inline `display` on the
+ * incoming view's primary container so the CSS default applies.
+ *
  * @tag HOME_DASHBOARD @tag NAVIGATION
- * @param {'home'|'english'|'diary'} view
+ * @param {'home'|'english'|'math'|'diary'} view
  */
 function switchView(view) {
   currentView = view;
   document.body.dataset.view = view;
 
-  // Children that may live inside .stage-area — keep .stage-area itself visible
-  // (home-dashboard is INSIDE stage-area, so hiding the parent hides home too)
-  const homeDash    = document.getElementById('home-dashboard');
-  const idleWrap    = document.getElementById('idle-wrapper');
-  const stageCard   = document.getElementById('stage-card');
-  const dailyView   = document.getElementById('daily-words-view');
-  const diaryView   = document.getElementById('diary-view');
-  const topBar      = document.querySelector('.top-bar');
-  const sidebar     = document.getElementById('sidebar');
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar) sidebar.dataset.mode = view;
 
-  // Helper: set inline display, defaulting to '' (use stylesheet default)
-  const show = (el, mode = '') => { if (el) el.style.display = mode; };
-  const hide = (el) => { if (el) el.style.display = 'none'; };
+  // Force-close any active lesson stage on every view change, so stale
+  // math/english/daily-words content never bleeds across views even when
+  // the user navigates without using the explicit Exit/Back button.
+  if (typeof unmountMathShell === 'function') unmountMathShell();
+  if (typeof hideLessonStage === 'function') hideLessonStage();
+  const stageInner = document.getElementById('stage');
+  if (stageInner) stageInner.innerHTML = '';
+  const dwView = document.getElementById('daily-words-view');
+  if (dwView && dwView.classList.contains('active')) {
+    dwView.classList.remove('active');
+    dwView.style.display = 'none';
+  }
+
+  // Clear inline display on this view's primary container — CSS hides all
+  // other primaries via body:not([data-view="..."]) rules.
+  const primaryId = {
+    home:    'home-dashboard',
+    english: 'idle-wrapper',
+    math:    'math-idle-wrapper',
+    diary:   'diary-view',
+  }[view];
+  if (primaryId) {
+    const el = document.getElementById(primaryId);
+    if (el) el.style.display = '';
+  }
 
   if (view === 'home') {
-    show(homeDash, 'flex');
-    hide(idleWrap);
-    hide(stageCard);
-    hide(dailyView);
-    hide(diaryView);
-    hide(topBar);                  // roadmap tabs not relevant on home
-    sidebar.dataset.mode = 'home';
-    updateSidebarMode('home');
     renderHomeDashboard();
-  } else if (view === 'english') {
-    hide(homeDash);
-    show(idleWrap);                // Select a lesson card
-    hide(dailyView);
-    hide(diaryView);
-    show(topBar);                  // roadmap tabs visible during lesson flow
-    sidebar.dataset.mode = 'english';
-    updateSidebarMode('english');
+  } else if (view === 'math') {
+    if (typeof loadMathGrades === 'function') loadMathGrades();
+    if (typeof loadMathSidebarStatus === 'function') loadMathSidebarStatus();
+    if (typeof lucide !== 'undefined') lucide.createIcons();
   } else if (view === 'diary') {
-    hide(homeDash);
-    hide(idleWrap);
-    hide(stageCard);
-    hide(dailyView);
-    show(diaryView, 'flex');
-    hide(topBar);                  // roadmap tabs not relevant on diary
-    sidebar.dataset.mode = 'diary';
-    updateSidebarMode('diary');
     if (typeof openDiarySection === 'function') openDiarySection('today');
   }
 }
 
-/**
- * Toggle sidebar into the correct mode.
- * @tag SIDEBAR @tag NAVIGATION
- */
-function updateSidebarMode(mode) {
-  const engSection = document.getElementById('sb-english-section');
-  const homeSection = document.getElementById('sb-home-section');
-  const diarySection = document.getElementById('sb-diary-section');
-  const mathSection = document.getElementById('sb-math-section');
-
-  if (homeSection) homeSection.style.display = mode === 'home' ? '' : 'none';
-  if (engSection) engSection.style.display = mode === 'english' ? '' : 'none';
-  if (diarySection) diarySection.style.display = mode === 'diary' ? '' : 'none';
-  if (mathSection) mathSection.style.display = mode === 'math' ? '' : 'none';
-}
+// updateSidebarMode() removed in Phase 4 — sidebar section visibility is
+// now CSS-driven via body[data-view] rules in main-idle.css.
 
 /**
  * Render the Home Dashboard with stub data (real data fetched from API).

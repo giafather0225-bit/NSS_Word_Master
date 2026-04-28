@@ -263,8 +263,7 @@ async function renderMathComplete() {
 /** @tag MATH @tag ACADEMY */
 function exitMathLesson() {
     if (typeof unmountMathShell === 'function') unmountMathShell();
-    const stageCard = document.getElementById('stage-card');
-    if (stageCard) stageCard.classList.add('hidden');
+    if (typeof hideLessonStage === 'function') hideLessonStage();
     switchView('math');
 }
 

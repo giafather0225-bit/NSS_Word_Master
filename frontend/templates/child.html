@@ -86,7 +86,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
-<body>
+<body data-view="home">
 
 <!-- GIA Splash Screen -->
 <div id="splash-screen">
@@ -133,7 +133,7 @@
                 <div class="sb-section">
                     <div class="sb-section-label">SECTIONS</div>
                     <button type="button" class="sb-sidebar-card" onclick="switchView('english')">
-                        <span class="sb-dot sb-dot--english"></span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--english"><i data-lucide="book-open" width="16" height="16"></i></span>
                         <span class="sb-card-label">English</span>
                         <span class="sb-card-chevron">›</span>
                     </button>
@@ -151,7 +151,7 @@
             </div>
 
             <!-- ── ENGLISH MODE ──────────────────────────────── -->
-            <div id="sb-english-section" style="display:none">
+            <div id="sb-english-section">
                 <!-- Back to Home -->
                 <button type="button" class="sb-back-btn" onclick="switchView('home')">
                     ← Home
@@ -188,7 +188,7 @@
 
                     <!-- Academy accordion -->
                     <button type="button" class="sb-accordion-btn" data-key="academy" onclick="toggleAccordion('academy')">
-                        <span class="sb-dot sb-dot--academy"></span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--english"><i data-lucide="graduation-cap" width="16" height="16"></i></span>
                         <span class="sb-accordion-label">Academy</span>
                         <span class="sb-accordion-arrow">▾</span>
                     </button>
@@ -247,7 +247,7 @@
 
                     <!-- Daily Words accordion -->
                     <button type="button" class="sb-accordion-btn" data-key="daily-words" onclick="toggleAccordion('daily-words')">
-                        <span class="sb-dot sb-dot--daily"></span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--english"><i data-lucide="calendar-days" width="16" height="16"></i></span>
                         <span class="sb-accordion-label">Daily Words</span>
                         <span class="sb-accordion-arrow">▾</span>
                     </button>
@@ -263,7 +263,7 @@
 
                     <!-- My Words accordion -->
                     <button type="button" class="sb-accordion-btn" data-key="my-words" onclick="toggleAccordion('my-words')">
-                        <span class="sb-dot sb-dot--mywords"></span>
+                        <span class="sb-card-icon icon-wrap icon-wrap--english"><i data-lucide="bookmark" width="16" height="16"></i></span>
                         <span class="sb-accordion-label">My Words</span>
                         <span class="sb-accordion-arrow">▾</span>
                     </button>
@@ -322,7 +322,7 @@
             </div>
 
             <!-- ── DIARY MODE ─────────────────────────────────── -->
-            <div id="sb-diary-section" style="display:none">
+            <div id="sb-diary-section">
                 <button type="button" class="sb-back-btn" onclick="switchView('home')">
                     ← Home
                 </button>
@@ -352,7 +352,7 @@
             </div>
 
             <!-- ── MATH MODE ──────────────────────────────────── -->
-            <div id="sb-math-section" style="display:none">
+            <div id="sb-math-section">
                 <button type="button" class="sb-back-btn" onclick="switchView('home')">
                     ← Home
                 </button>

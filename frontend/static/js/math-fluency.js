@@ -40,18 +40,7 @@ async function startMathFluency() {
 
 /** @tag MATH @tag FLUENCY */
 function _showMathStage() {
-    const stageCard = document.getElementById('stage-card');
-    const idleWrap = document.getElementById('idle-wrapper');
-    const homeDash = document.getElementById('home-dashboard');
-    const topBar = document.querySelector('.top-bar');
-    if (homeDash) homeDash.style.display = 'none';
-    if (idleWrap) idleWrap.style.display = 'none';
-    const mathIdle = document.getElementById('math-idle-wrapper');
-    if (mathIdle) mathIdle.style.display = 'none';
-    if (stageCard) { stageCard.classList.remove('hidden'); stageCard.style.display = ''; }
-    if (topBar) topBar.style.display = '';
-    const sidebar = document.getElementById('sidebar');
-    if (sidebar) { sidebar.classList.add('collapsed'); localStorage.setItem('sb_collapsed', '1'); }
+    if (typeof showLessonStage === 'function') showLessonStage();
 }
 
 // ── Fact set picker ────────────────────────────────────────
@@ -323,11 +312,8 @@ function _renderFluencySummary({ score, total, elapsed, aborted, submitData }) {
     if (typeof lucide !== 'undefined') lucide.createIcons();
     document.getElementById('math-fluency-again')?.addEventListener('click', () => startMathFluency());
     document.getElementById('math-fluency-back')?.addEventListener('click', () => {
+        if (typeof hideLessonStage === 'function') hideLessonStage();
         if (typeof switchView === 'function') switchView('math');
-        const stageCard = document.getElementById('stage-card');
-        if (stageCard) stageCard.style.display = 'none';
-        const idleWrap = document.getElementById('idle-wrapper');
-        if (idleWrap) idleWrap.style.display = '';
     });
 }
 

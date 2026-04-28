@@ -31,6 +31,23 @@ body:not([data-view="english"]):not([data-view="math"]) .top-bar    { display: n
 body[data-view="home"] .sidebar,
 body[data-view="home"] .sidebar-toggle { display: none !important; }
 
+/* Sidebar mode sections — exactly one is visible per view. CSS-driven so
+   updateSidebarMode() is no longer required (Phase 4). */
+#sb-home-section,
+#sb-english-section,
+#sb-math-section,
+#sb-diary-section { display: none; }
+
+body[data-view="home"]    #sb-home-section,
+body[data-view="english"] #sb-english-section,
+body[data-view="math"]    #sb-math-section,
+body[data-view="diary"]   #sb-diary-section { display: block; }
+
+/* Stage chrome — the English roadmap (Preview / Word Match / ...) lives
+   inside #stage-card .stage-header. Math sub-flows reuse #stage-card but
+   must not show the English roadmap on top of their result/quiz UI. */
+body[data-view="math"] #stage-card .stage-header { display: none; }
+
 /* ─── Math Idle ──────────────────────────────────────── */
 #math-idle-wrapper {
     flex: 1;
@@ -77,6 +94,48 @@ body[data-view="home"] .sidebar-toggle { display: none !important; }
 }
 
 .math-idle-hint {
+    font-size: var(--font-size-sm);
+    color: var(--text-hint);
+    margin: 0;
+}
+
+/* ─── English Idle ─────────────────────────────────── */
+.english-idle-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 48px 48px 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 300px;
+    max-width: 600px;
+    text-align: center;
+    margin: auto;
+}
+
+.english-idle-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    background: var(--english-light);
+    color: var(--english-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+.english-idle-title {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+}
+
+.english-idle-hint {
     font-size: var(--font-size-sm);
     color: var(--text-hint);
     margin: 0;

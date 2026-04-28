@@ -46,47 +46,8 @@ let mathLesson = '';
     });
 })();
 
-// ── switchView integration ──────────────────────────────────
-
-/** @tag MATH @tag NAVIGATION */
-const _origSwitchView = window.switchView;
-window.switchView = function (view) {
-    if (view === 'math') {
-        currentView = 'math';
-        document.body.dataset.view = 'math';
-
-        // Hide main content areas (same pattern as home.js)
-        const homeDash  = document.getElementById('home-dashboard');
-        const idleWrap  = document.getElementById('idle-wrapper');
-        const stageCard = document.getElementById('stage-card');
-        const dailyView = document.getElementById('daily-words-view');
-        const diaryView = document.getElementById('diary-view');
-        const topBar    = document.querySelector('.top-bar');
-        const sidebar   = document.getElementById('sidebar');
-
-        if (homeDash)  homeDash.style.display = 'none';
-        if (idleWrap)  idleWrap.style.display = 'none';
-        if (stageCard) stageCard.style.display = 'none';
-        if (dailyView) dailyView.style.display = 'none';
-        if (diaryView) diaryView.style.display = 'none';
-        if (topBar)    topBar.style.display = 'none';
-        if (sidebar)   sidebar.dataset.mode = 'math';
-
-        const mathIdle = document.getElementById('math-idle-wrapper');
-        if (mathIdle) { mathIdle.style.display = ''; if (typeof lucide !== 'undefined') lucide.createIcons(); }
-
-        updateSidebarMode('math');
-        loadMathGrades();
-        loadMathSidebarStatus();
-        return;
-    }
-
-    // Non-math views: CSS rules in main-idle.css hide #math-idle-wrapper
-    // automatically based on body[data-view]. Just delegate.
-    if (typeof _origSwitchView === 'function') {
-        _origSwitchView(view);
-    }
-};
+// switchView('math') is now handled directly in home.js (Phase 2 — single
+// switchView). This file no longer wraps window.switchView.
 
 // ── Load grades ─────────────────────────────────────────────
 
