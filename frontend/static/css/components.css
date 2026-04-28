@@ -26,7 +26,6 @@
 }
 .nav-btn.active { background: var(--color-primary); color: white; }
 a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
-a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px solid var(--mint-dark); }
 .admin-btn { background: var(--color-warning-light); color: var(--color-error); border: 2px solid #ffeaa7;}
 .nav-btn:hover { transform: scale(1.05) translateY(-2px); box-shadow: none;}
 
@@ -59,14 +58,11 @@ a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px so
 .stat-value { font-size: 5rem; font-weight: 800; color: var(--color-primary); line-height: 1; margin: 15px 0;}
 
 .selection-group { display: flex; gap: 15px; margin-top: 15px;}
-.subject-btn, .mode-btn {
+.mode-btn {
     flex: 1; padding: 16px; background: white; border: 3px solid transparent; border-radius: 20px;
     font-weight: 800; font-size: 1.15rem; cursor: pointer; transition: all 0.2s;
     box-shadow: none; color: var(--text-gray);
 }
-.subject-btn.active { border-color: var(--color-primary); color: var(--color-primary); transform: translateY(-2px); box-shadow: none;}
-.mode-btn.learning { background: var(--mint); color: #204c35; }
-.mode-btn.sparta { background: var(--magic-pink); color: white; }
 .mode-btn:hover { transform: translateY(-4px) scale(1.02); box-shadow: none; }
 
 /* Lists (Schedule & Rewards) */
@@ -108,9 +104,6 @@ a.nav-btn.primary-link { background: var(--mint); color: #204c35; border: 2px so
 }
 .sch-item .sch-header { display: flex; align-items: center; gap: 10px; margin-bottom: 5px;}
 .sch-item strong { font-size: 1.3rem; color: var(--color-primary); }
-.badge-dday { font-size: 0.9rem; font-weight: 800; padding: 4px 10px; border-radius: 12px; background: var(--color-warning-light); color: var(--color-warning-ink); border: 1px solid #f39c12; }
-.badge-dday.today { background: var(--magic-pink); color: white; border-color: #fda7df; animation: pulse 1.5s infinite; }
-.badge-dday.past { background: var(--bg-surface); color: var(--text-hint); border-color: #ced6e0; }
 .sch-item span { color: var(--text-secondary); margin-top: 5px; font-size: 1.1rem; width: 85%;}
 .sch-item .del-btn { position: absolute; top: 18px; right: 15px; background: none; border: none; color: var(--color-error); cursor: pointer; font-size: 1.4rem;}
 

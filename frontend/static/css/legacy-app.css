@@ -12,7 +12,7 @@
 /* Study View (Flashcard Area) */
 .view { display: none; }
 .view.active { display: block; animation: fadeIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+/* @keyframes fadeIn defined later in this file */
 
 .flashcard-container { margin-top: 40px; perspective: 1500px; height: 500px; min-height: 380px; }
 .flashcard {
@@ -139,19 +139,6 @@
 .slideshow-bar.hidden { display: none !important; }
 .slideshow-label { font-weight: 800; color: var(--text-gray); }
 .slideshow-meta { font-weight: 700; color: var(--color-primary); margin-left: auto; }
-.preview-dots { display: flex; gap: 8px; flex-wrap: wrap; }
-.preview-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.12);
-    transition: transform 0.2s, background 0.2s;
-}
-.preview-dot.active { background: var(--color-primary); transform: scale(1.25); }
-.preview-dot.done { background: var(--mint-dark); }
-
-.preview-gate { padding: 22px; border: 2px dashed rgba(155, 137, 248, 0.5); }
-.preview-gate.hidden { display: none !important; }
 
 .tutor-emoji { font-size: 3.5rem; }
 .tutor-feedback-body {
@@ -383,13 +370,7 @@
     border-color: rgba(59, 130, 246, 0.65);
 }
 
-@keyframes fx-wrong-shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-4px); }
-    50% { transform: translateX(4px); }
-    75% { transform: translateX(-3px); }
-    100% { transform: translateX(0); }
-}
+/* @keyframes fx-wrong-shake defined in main-stage.css */
 
 #stage.fx-wrong {
     animation: fx-wrong-shake 320ms ease;
