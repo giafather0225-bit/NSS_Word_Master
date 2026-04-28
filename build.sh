@@ -39,6 +39,9 @@ cat \
   $JS/ckla-lesson.js \
   $JS/ckla-review.js \
   $JS/child.js \
+  $JS/child-calendar.js \
+  $JS/child-keyboard.js \
+  $JS/child-text.js \
   $JS/sentence_ai.js \
   $JS/collocation.js \
   $JS/finaltest.js \
