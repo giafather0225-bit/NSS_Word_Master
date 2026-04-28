@@ -237,10 +237,10 @@ function _cwRender() {
   }
 
   const acrossClues = _cw.placed.filter((p) => p.dir === 'H')
-    .map((p) => `<li data-idx="${p.idx}"><b>${p.num}.</b> ${_escape(p.def)} <span class="cw-len">(${p.len})</span></li>`)
+    .map((p) => `<li data-idx="${p.idx}"><b>${p.num}.</b> ${_cwEscape(p.def)} <span class="cw-len">(${p.len})</span></li>`)
     .join('');
   const downClues = _cw.placed.filter((p) => p.dir === 'V')
-    .map((p) => `<li data-idx="${p.idx}"><b>${p.num}.</b> ${_escape(p.def)} <span class="cw-len">(${p.len})</span></li>`)
+    .map((p) => `<li data-idx="${p.idx}"><b>${p.num}.</b> ${_cwEscape(p.def)} <span class="cw-len">(${p.len})</span></li>`)
     .join('');
 
   body.innerHTML = `
@@ -290,7 +290,7 @@ function _cwRender() {
   if (first) first.focus();
 }
 
-function _escape(s) {
+function _cwEscape(s) {
   return String(s).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 }
 
@@ -331,7 +331,7 @@ function _cwHighlight() {
   const clue = document.querySelector(`.cw-clues-list li[data-idx="${_cw.activeWord}"]`);
   if (clue) clue.classList.add('active');
   const bar = document.getElementById('cw-active');
-  if (bar) bar.innerHTML = `<b>${p.num} ${p.dir === 'H' ? 'Across' : 'Down'}:</b> ${_escape(p.def)} <span class="cw-len">(${p.len})</span>`;
+  if (bar) bar.innerHTML = `<b>${p.num} ${p.dir === 'H' ? 'Across' : 'Down'}:</b> ${_cwEscape(p.def)} <span class="cw-len">(${p.len})</span>`;
 }
 
 function _cwOnInput(e) {

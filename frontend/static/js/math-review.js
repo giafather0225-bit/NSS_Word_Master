@@ -52,7 +52,7 @@ async function startMathReview() {
         mathReviewState.advanced = 0;
 
         if (mathReviewState.items.length === 0) {
-            _renderReviewEmpty();
+            _mathRenderReviewEmpty();
             return;
         }
         _renderReviewProblem();
@@ -65,7 +65,7 @@ async function startMathReview() {
 // ── Empty state ────────────────────────────────────────────
 
 /** @tag MATH @tag MY_PROBLEMS */
-function _renderReviewEmpty() {
+function _mathRenderReviewEmpty() {
     const stage = document.getElementById('stage');
     if (!stage) return;
     stage.innerHTML = `
@@ -88,7 +88,7 @@ function _renderReviewProblem() {
     const items = mathReviewState.items;
     const idx = mathReviewState.idx;
     if (idx >= items.length) {
-        _renderReviewSummary();
+        _mathRenderReviewSummary();
         return;
     }
 
@@ -188,7 +188,7 @@ function _showReviewFeedback(data, onContinue) {
 // ── Summary ────────────────────────────────────────────────
 
 /** @tag MATH @tag MY_PROBLEMS */
-function _renderReviewSummary() {
+function _mathRenderReviewSummary() {
     const stage = document.getElementById('stage');
     if (!stage) return;
     const total = mathReviewState.items.length;

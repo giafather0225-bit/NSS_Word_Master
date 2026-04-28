@@ -51,7 +51,7 @@ async function showCKLAReview() {
     _cklaRevWords = data.words || [];
 
     if (_cklaRevWords.length === 0) {
-      _renderReviewEmpty(content);
+      _cklaRenderReviewEmpty(content);
     } else {
       _renderReviewShell(content);
       _renderReviewCard();
@@ -65,7 +65,7 @@ async function showCKLAReview() {
 /* ── Render shell ──────────────────────────────────────────────────────────── */
 
 /** @tag ACADEMY CKLA SM2 */
-function _renderReviewEmpty(container) {
+function _cklaRenderReviewEmpty(container) {
   container.innerHTML = `
     <div class="ckla-header">
       <button class="ckla-back-btn" onclick="hideCKLAView()">← Back</button>
@@ -98,7 +98,7 @@ function _renderReviewCard() {
 
   // Summary screen
   if (_cklaRevIdx >= _cklaRevWords.length) {
-    _renderReviewSummary(body);
+    _cklaRenderReviewSummary(body);
     return;
   }
 
@@ -298,7 +298,7 @@ function _cklaRevAudio(url) {
 /* ── Summary ───────────────────────────────────────────────────────────────── */
 
 /** @tag ACADEMY CKLA SM2 */
-function _renderReviewSummary(body) {
+function _cklaRenderReviewSummary(body) {
   const pct = _cklaRevTotal > 0 ? Math.round((_cklaRevCorrect / _cklaRevTotal) * 100) : 0;
   const emoji = pct >= 80 ? '🌟' : pct >= 50 ? '👍' : '💪';
   const msg = pct >= 80 ? 'Excellent work!' : pct >= 50 ? 'Good effort!' : 'Keep practicing!';

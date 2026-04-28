@@ -282,7 +282,7 @@ const _SECTION_LABELS = {
 
 const _SECTION_ORDER = ['english', 'math', 'diary', 'review', 'arcade'];
 
-function _escape(s) {
+function _homeEscape(s) {
   return String(s ?? '').replace(/[&<>"']/g, (c) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[c]));
@@ -324,14 +324,14 @@ async function renderTodayTasks() {
       const items = groups[sec];
       const done  = items.filter(t => t.is_done).length;
       const rows = items.map(t => {
-        const detail = t.detail ? ` (${_escape(t.detail)})` : '';
+        const detail = t.detail ? ` (${_homeEscape(t.detail)})` : '';
         const dueNow = !t.is_done && (t.due === 'now' || t.is_required);
         const pill   = dueNow ? `<span class="tc-now-pill">NOW</span>` : '';
         return `
           <div class="tc-row${t.is_done ? ' done' : ''}${dueNow ? ' is-due-now' : ''}"
-               data-key="${_escape(t.key)}" data-section="${sec}">
+               data-key="${_homeEscape(t.key)}" data-section="${sec}">
             <span class="tc-check" aria-hidden="true"></span>
-            <span class="tc-label">${_escape(t.label)}${detail}</span>
+            <span class="tc-label">${_homeEscape(t.label)}${detail}</span>
             ${pill}
             <span class="tc-xp-pill">+${Number(t.xp) || 0}</span>
           </div>
