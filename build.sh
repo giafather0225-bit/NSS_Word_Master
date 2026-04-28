@@ -42,6 +42,7 @@ cat \
   $JS/child-calendar.js \
   $JS/child-keyboard.js \
   $JS/child-text.js \
+  $JS/child-exam.js \
   $JS/sentence_ai.js \
   $JS/collocation.js \
   $JS/finaltest.js \
