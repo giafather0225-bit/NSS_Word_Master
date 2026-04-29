@@ -57,6 +57,9 @@ function hideLessonStage() {
         stageCard.style.display = 'none';
     }
     if (mathIdle) mathIdle.style.display = '';
+    // Math EXIT: restore sidebar
+    const _sb = document.getElementById('sidebar');
+    if (_sb) _sb.classList.remove('collapsed');
 }
 
 /**

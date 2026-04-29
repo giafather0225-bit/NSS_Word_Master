@@ -322,3 +322,20 @@ body[data-view="math"] #stage-card .stage-header { display: none; }
 }
 .sidebar-toggle:hover { background: rgba(0,0,0,0.06); color: var(--text-primary); }
 .sidebar-toggle svg { width: 15px; height: 15px; }
+
+/* ── sb-collapsed: 학습 중 사이드바 완전 숨김 ──────────────── */
+body.sb-collapsed .sidebar-toggle { display: none !important; }
+body.sb-collapsed .sidebar {
+    width: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    border: none !important;
+    padding: 0 !important;
+}
+body.sb-collapsed .main-content,
+body.sb-collapsed #stage-card,
+body.sb-collapsed #math-idle-wrapper,
+body.sb-collapsed #idle-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+}

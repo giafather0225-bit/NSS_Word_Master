@@ -684,6 +684,9 @@ function showIdleCard() {
     const sc = $("stage-card");
     if (iw) iw.classList.remove("hidden");
     if (sc) sc.classList.add("hidden");
+    // English EXIT: restore sidebar
+    const _sb = document.getElementById("sidebar");
+    if (_sb) _sb.classList.remove("collapsed");
 }
 
 /**

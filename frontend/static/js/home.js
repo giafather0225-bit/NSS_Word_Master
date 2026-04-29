@@ -624,7 +624,7 @@ async function refreshHomeStats() {
 // Initialize home view on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   switchView('home');
-  renderHomeDashboard();
+  // renderHomeDashboard() is already called inside switchView('home') — removed duplicate
   // Load Daily Words sidebar if function is available (daily-words.js)
   if (typeof loadDailyWordsSection === 'function') loadDailyWordsSection();
 });
