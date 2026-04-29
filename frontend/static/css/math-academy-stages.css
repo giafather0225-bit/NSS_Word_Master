@@ -6,50 +6,58 @@
    Styling: After (Math Academy redesign 2026-04) — tokens only.
    ================================================================ */
 
-/* ── Feedback overlay (per-problem) — inline banner aesthetic ── */
+/* ── Feedback overlay (per-problem) — modal card on opaque backdrop ── */
 
 .math-feedback-overlay {
     position: absolute;
     inset: 0;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     z-index: 50;
-    padding: 16px 20px;
+    padding: 24px;
     overflow: auto;
-    animation: math-fade-in 0.25s ease;
-    backdrop-filter: blur(2px);
+    animation: math-fade-in 0.2s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
-.math-feedback-correct { background: rgba(var(--color-success-rgb, 143,191,135), 0.06); }
-.math-feedback-wrong   { background: rgba(var(--color-warning-rgb, 238,199,112), 0.08); }
+/* Solid-ish backdrop so the underlying question/options don't bleed through. */
+.math-feedback-correct { background: rgba(255, 255, 255, 0.78); }
+.math-feedback-wrong   { background: rgba(255, 255, 255, 0.78); }
 
 .math-feedback-card {
     background: var(--bg-card);
-    border-radius: var(--radius-lg);
-    padding: 20px 22px;
-    max-width: 640px;
+    border-radius: var(--radius-xl);
+    padding: 28px 28px 24px;
+    max-width: 520px;
     width: 100%;
-    border: 1px solid var(--border-card);
-    text-align: left;
+    border: 1.5px solid var(--border-default);
+    box-shadow: var(--shadow-modal);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
 }
 
 .math-feedback-correct .math-feedback-card {
-    background: linear-gradient(180deg, var(--color-success-light) 0%, transparent 100%);
     border-color: var(--color-success);
+    background: linear-gradient(180deg, var(--color-success-light) 0%, var(--bg-card) 60%);
 }
 
 .math-feedback-wrong .math-feedback-card {
-    background: var(--color-warning-light);
     border-color: var(--color-warning);
+    background: linear-gradient(180deg, var(--color-warning-light) 0%, var(--bg-card) 60%);
 }
 
 .math-feedback-result {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -60,25 +68,26 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 4px 10px;
+    padding: 5px 12px;
     background: var(--color-success-light);
     color: var(--math-pass);
-    border-radius: var(--radius-sm);
-    font-size: 12px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin: 0 auto 4px;
 }
 
 .math-feedback-wrong .math-feedback-answer {
     background: var(--color-error-light);
-    color: var(--color-error);
+    color: var(--color-error-ink);
 }
 
 .math-feedback-text {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-primary);
-    line-height: 1.55;
-    margin-bottom: 14px;
+    line-height: 1.6;
+    margin: 4px 0 8px;
+    max-width: 420px;
 }
 
 .math-feedback-steps {
@@ -88,11 +97,17 @@
     font-size: 13px;
     color: var(--text-primary);
     line-height: 1.6;
+    align-self: stretch;
 }
 
 #math-feedback-next {
     width: 100%;
-    margin-top: 8px;
+    max-width: 320px;
+    margin-top: 14px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: var(--radius-full);
 }
 
 /* ── CPA Fallback card (wrong answer, Practice) ────────────── */

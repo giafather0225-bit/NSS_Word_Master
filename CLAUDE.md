@@ -67,7 +67,7 @@ NSS_Word_Master/
 │   │   ├── lessons.py  system.py  gamification.py  learning.py
 │   │   ├── diary.py    math.py   assistant.py
 │   │   ├── us_academy.py  ckla.py  goals.py
-│   ├── services/                # 12 engines / managers
+│   ├── services/                # 11 engines / managers
 │   │   ├── xp_engine.py         # XP rules + award (config-overridable)
 │   │   ├── streak_engine.py     # 3-subject streak (english/math/game)
 │   │   ├── academy_session.py   # active session tracking
@@ -89,9 +89,30 @@ NSS_Word_Master/
 │   └── static/
 │       ├── css/                 # ~50 files (theme.css = single source of truth)
 │       └── js/                  # ~80 files + bundle-a/b/c.min.js
-├── handoff/  launcher/  scripts/  tools/  logs/
+├── tests/                       # 14 test files (pytest)
+│   ├── conftest.py
+│   ├── test_ai_service.py  test_file_storage.py  test_manual_api.py
+│   ├── test_streak_engine.py  test_xp_engine.py
+│   └── test_math_{academy,daily,fluency,glossary,kangaroo,placement,problems}.py
+├── migrations/                  # root-level migration (separate from backend/migrations)
+│   └── 002_fix_learning_log_columns.py
+├── handoff/                     # design + spec docs
+│   ├── 01-design-system.md  02-dashboard-spec.md  02b-diary-spec.md
+│   ├── 03-data-contracts.md  04-implementation-guide.md
+│   ├── 05-claude-code-prompt.md  README.md  reference/
+├── launcher/                    # macOS app launchers
+│   ├── create-app.sh  gia-launch.sh  gia-stop.sh
+├── scripts/                     # CLI utilities
+│   ├── ckla_parser.py  ckla_view.py  import_ckla.py
+│   ├── enrich_missing.py  enrich_mw.py
+│   ├── generate_kangaroo_solutions.py  validate_kangaroo_phase1.py
+│   ├── setup_daughter_mac.sh  com.gia.learning.plist
+├── tools/nss_ocr/               # OCR helper tooling
+├── logs/                        # runtime logs
 ├── data/                        # academy/, raw_json/ (parsed content)
-└── tests/  migrations/  English/
+├── English/Voca_8000/           # source vocabulary content (Lesson_01 … per-lesson assets)
+├── SKILL.md                     # ⚠️ outdated — says Flask; ignore (FastAPI is canonical)
+└── project_core.txt             # concatenated specs snapshot
 ```
 
 ---
@@ -133,7 +154,7 @@ NSS_Word_Master/
 | `dashboard` | Home stats / analytics / textbook overview |
 | `ai_coach` | Daily motivational message (Ollama → canned fallback) |
 | `reminder` | Home banner reminders (review due, streak risk, etc.) |
-| `xp` | Award + summary + weekly XP |
+| `xp` | XP award + summary + weekly XP |
 | `arcade` | Arcade score submit + best-score |
 | `rewards` | Legacy rewards (kept for back-compat) |
 | `reward_shop` | Items, my-rewards, buy/use/equip, PIN |
