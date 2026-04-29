@@ -31,6 +31,14 @@ router = APIRouter()
 
 # ─── Overview ─────────────────────────────────────────────────
 
+def _subject_of_action(action: str) -> str:
+    """Map an XPLog action to a Home-tab subject bucket."""
+    a = (action or "").lower()
+    if a.startswith("math_"):                     return "math"
+    if a in ("journal_complete", "diary"):         return "diary"
+    return "english"
+
+
 @router.get("/api/parent/overview")
 def parent_overview(db: Session = Depends(get_db)):
     """Summary stats for the parent overview screen. @tag PARENT WORD_STATS"""
@@ -39,7 +47,24 @@ def parent_overview(db: Session = Depends(get_db)):
     streak    = streak_engine.get_current_streak(db)
     words_known = xp_engine.get_words_known(db)
 
+    today    = date.today().isoformat()
     week_ago = (date.today() - timedelta(days=7)).isoformat()
+
+    # Per-subject breakdown for today (XP from XPLog + sessions from LearningLog)
+    today_by_subject = {
+        "english": {"xp": 0, "count": 0},
+        "math":    {"xp": 0, "count": 0},
+        "diary":   {"xp": 0, "count": 0},
+    }
+    for action, xp in db.query(XPLog.action, XPLog.xp_amount).filter(XPLog.earned_date == today).all():
+        bucket = today_by_subject[_subject_of_action(action)]
+        bucket["xp"] += int(xp or 0)
+        bucket["count"] += 1
+    for (subj,) in db.query(LearningLog.subject).filter(LearningLog.completed_at >= today).all():
+        s = (subj or "english").lower()
+        if s in today_by_subject:
+            today_by_subject[s]["count"] += 1
+
     recent_logs = (
         db.query(LearningLog)
         .filter(LearningLog.completed_at >= week_ago)
@@ -49,12 +74,14 @@ def parent_overview(db: Session = Depends(get_db)):
     )
 
     return {
-        "total_xp":    total_xp,
-        "today_xp":    today_xp,
-        "streak":      streak,
-        "words_known": words_known,
+        "total_xp":         total_xp,
+        "today_xp":         today_xp,
+        "today_by_subject": today_by_subject,
+        "streak":           streak,
+        "words_known":      words_known,
         "recent_logs": [
             {
+                "subject":       (log.subject or "english").lower(),
                 "lesson":        log.lesson,
                 "stage":         log.stage,
                 "correct_count": log.correct_count,

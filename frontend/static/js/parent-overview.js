@@ -3,42 +3,45 @@
    Section: Parent
    Dependencies: core.js, parent-panel.js
    API endpoints: /api/parent/summary, /api/parent/overview,
-                  /api/parent/activity, /api/parent/day-off-requests
+                  /api/parent/activity, /api/parent/day-off-requests,
+                  /api/goals/weekly
    ================================================================ */
 
 /** Full Home tab: Hero + Today Progress + Week Calendar + vs Last Week + Alerts. @tag PARENT */
 async function _ppHome(body) {
     try {
-        const todayStr = new Date().toISOString().slice(0, 10);
-
-        const [sum, ov, act14, dayoffs] = await Promise.all([
+        const [sum, ov, act14, dayoffs, goals] = await Promise.all([
             apiFetchJSON("/api/parent/summary"),
             apiFetchJSON("/api/parent/overview"),
             apiFetchJSON("/api/parent/activity?days=14"),
             apiFetchJSON("/api/parent/day-off-requests").catch(() => ({ requests: [] })),
+            apiFetchJSON("/api/goals/weekly").catch(() => ({ goals: [] })),
         ]);
 
-        const logs       = ov.last_10_logs || [];
-        const todayLogs  = logs.filter(l => (l.created_at || l.date || "").startsWith(todayStr));
-        const todaySubjects = new Set(todayLogs.map(l => (l.subject || "").toLowerCase()));
+        const bySubject = ov.today_by_subject || {
+            english: { xp: 0, count: 0 },
+            math:    { xp: 0, count: 0 },
+            diary:   { xp: 0, count: 0 },
+        };
         const todayXP    = ov.today_xp || 0;
+        const activeCount = ["english", "math", "diary"]
+            .filter(k => (bySubject[k]?.count || 0) > 0).length;
 
         const daily    = act14.daily || [];
         const thisWeek = daily.slice(-7);
         const lastWeek = daily.slice(-14, -7);
 
         const pendingDayoffs = (dayoffs.requests || []).filter(r => r.status === "pending");
-
-        const weekMinutes = thisWeek.reduce((a, d) => a + (d.minutes || 0), 0);
+        const weekMinutes    = thisWeek.reduce((a, d) => a + (d.minutes || 0), 0);
 
         body.innerHTML =
-            _ppHomeHero(sum, todayXP, todaySubjects, weekMinutes) +
+            _ppHomeHero(sum, todayXP, activeCount, weekMinutes) +
             _ppHomeWeekCalendar(thisWeek, sum) +
             `<div class="pp-grid-2">
-                <div>${_ppHomeTodayProgress(todaySubjects, todayLogs)}</div>
+                <div>${_ppHomeTodayProgress(bySubject)}</div>
                 <div>${_ppHomeVsLastWeek(thisWeek, lastWeek)}</div>
              </div>` +
-            _ppHomeAlerts(pendingDayoffs, todayXP, todaySubjects, sum);
+            _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goals);
 
         if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
@@ -47,25 +50,31 @@ async function _ppHome(body) {
     }
 }
 
-/** Hero status banner with 3 quick-stat pills. @tag PARENT */
-function _ppHomeHero(sum, todayXP, todaySubjects, weekMinutes) {
-    let statusClass, statusMsg;
-    if (todaySubjects.size >= 2 || todayXP >= 20) {
+/** Hero status banner with status icon + 3 quick-stat pills. @tag PARENT */
+function _ppHomeHero(sum, todayXP, activeCount, weekMinutes) {
+    let statusClass, statusMsg, statusIcon;
+    if (activeCount >= 2 || todayXP >= 20) {
         statusClass = "pp-hero--green";
         statusMsg   = "Gia had a great day!";
-    } else if (todaySubjects.size >= 1 || todayXP > 0) {
+        statusIcon  = "sun";
+    } else if (activeCount >= 1 || todayXP > 0) {
         statusClass = "pp-hero--amber";
         statusMsg   = "Gia is making progress today.";
+        statusIcon  = "trending-up";
     } else {
         statusClass = "pp-hero--red";
         statusMsg   = "Gia hasn’t studied yet today.";
+        statusIcon  = "moon";
     }
 
     const streak = sum.current_streak || 0;
 
     return `
         <div class="pp-hero ${statusClass}">
-            <div class="pp-hero-msg">${statusMsg}</div>
+            <div class="pp-hero-head">
+                <i data-lucide="${statusIcon}" class="pp-hero-icon"></i>
+                <div class="pp-hero-msg">${statusMsg}</div>
+            </div>
             <div class="pp-hero-stats">
                 <div class="pp-hero-stat">
                     <span class="pp-hero-num">${streak}</span>
@@ -83,8 +92,8 @@ function _ppHomeHero(sum, todayXP, todaySubjects, weekMinutes) {
         </div>`;
 }
 
-/** Per-subject completion rows for today. @tag PARENT */
-function _ppHomeTodayProgress(todaySubjects, todayLogs) {
+/** Per-subject completion rows for today, with XP earned. @tag PARENT */
+function _ppHomeTodayProgress(bySubject) {
     const subjects = [
         { key: "english", label: "English", icon: "book-open" },
         { key: "math",    label: "Math",    icon: "calculator" },
@@ -92,8 +101,11 @@ function _ppHomeTodayProgress(todaySubjects, todayLogs) {
     ];
 
     const rows = subjects.map(s => {
-        const active = todaySubjects.has(s.key);
-        const count  = todayLogs.filter(l => (l.subject || "").toLowerCase() === s.key).length;
+        const data   = bySubject[s.key] || { xp: 0, count: 0 };
+        const active = (data.count || 0) > 0;
+        const badge  = active
+            ? `+${data.xp || 0} XP <span class="pp-today-sub">· ${data.count}×</span>`
+            : "Not started";
         return `
             <div class="pp-today-row${active ? " pp-today-row--active" : ""}">
                 <div class="pp-today-subject">
@@ -101,7 +113,7 @@ function _ppHomeTodayProgress(todaySubjects, todayLogs) {
                     ${s.label}
                 </div>
                 <span class="pp-today-badge${active ? " pp-today-badge--done" : " pp-today-badge--none"}">
-                    ${active ? `${count} stage${count !== 1 ? "s" : ""} done` : "Not started"}
+                    ${badge}
                 </span>
             </div>`;
     }).join("");
@@ -170,8 +182,8 @@ function _ppHomeVsLastWeek(thisWeek, lastWeek) {
         </div>`;
 }
 
-/** Alert banners (pending day-offs + streak risk). @tag PARENT */
-function _ppHomeAlerts(pendingDayoffs, todayXP, todaySubjects, sum) {
+/** Alert banners: pending day-offs, streak risk, goals at risk. @tag PARENT */
+function _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goalsResp) {
     const alerts = [];
 
     if (pendingDayoffs.length > 0) {
@@ -184,11 +196,24 @@ function _ppHomeAlerts(pendingDayoffs, todayXP, todaySubjects, sum) {
             </div>`);
     }
 
-    if ((sum.current_streak || 0) >= 3 && todayXP === 0 && todaySubjects.size === 0) {
+    if ((sum.current_streak || 0) >= 3 && todayXP === 0 && activeCount === 0) {
         alerts.push(`
             <div class="pp-alert pp-alert--info">
                 <i data-lucide="flame" style="width:16px;height:16px;flex-shrink:0"></i>
                 <span>Streak at risk — ${sum.current_streak}d streak, no activity yet today</span>
+            </div>`);
+    }
+
+    // Goals at risk: active goals < 50% complete in the back half of the week (Thu-Sat)
+    const dow = new Date().getDay(); // 0=Sun .. 6=Sat
+    const inBackHalf = dow >= 4 || dow === 0; // Thu/Fri/Sat/Sun
+    const lagging = (goalsResp?.goals || []).filter(g => g.is_active && (g.pct || 0) < 50 && !g.achieved);
+    if (inBackHalf && lagging.length > 0) {
+        alerts.push(`
+            <div class="pp-alert pp-alert--warn" onclick="_ppLoadTab('goals')" style="cursor:pointer">
+                <i data-lucide="target" style="width:16px;height:16px;flex-shrink:0"></i>
+                <span>${lagging.length} goal${lagging.length > 1 ? "s" : ""} lagging this week — under 50% with the weekend ahead</span>
+                <i data-lucide="chevron-right" style="width:14px;height:14px;margin-left:auto;opacity:0.5"></i>
             </div>`);
     }
 

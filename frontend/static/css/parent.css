@@ -286,7 +286,9 @@
 .pp-hero--green { background: var(--math-light);   border-color: var(--math-primary);   }
 .pp-hero--amber { background: var(--arcade-light);  border-color: var(--arcade-primary);  }
 .pp-hero--red   { background: var(--review-light);  border-color: var(--review-primary);  }
-.pp-hero-msg { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+.pp-hero-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.pp-hero-icon { width: 22px; height: 22px; flex-shrink: 0; opacity: 0.85; }
+.pp-hero-msg { font-size: 16px; font-weight: 700; color: var(--text-primary); }
 .pp-hero-stats { display: flex; gap: 16px; }
 .pp-hero-stat { display: flex; flex-direction: column; align-items: center; flex: 1; }
 .pp-hero-num   { font-size: 22px; font-weight: 800; color: var(--text-primary); line-height: 1; }
@@ -304,6 +306,7 @@
 .pp-today-badge { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: var(--radius-full); }
 .pp-today-badge--done { background: var(--math-soft); color: var(--math-ink); }
 .pp-today-badge--none { background: var(--bg-surface); color: var(--text-hint); }
+.pp-today-sub { opacity: 0.7; font-weight: 500; }
 
 /* ── Home Tab: Week Calendar ─────────────────────────────── */
 .pp-week-grid { display: flex; gap: 6px; margin-bottom: 16px; }
