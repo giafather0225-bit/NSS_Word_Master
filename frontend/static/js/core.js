@@ -714,8 +714,11 @@ function showStageCard() {
         sc.classList.remove("hidden");
         sc.style.display = "";
         sc.classList.remove("fx-swoosh");
+        // innerHTML 덮어쓰기 제거 — .stage-header(#roadmap) 보존
         if (!sc.querySelector("#stage")) {
-            sc.innerHTML = '<div id="stage"></div>';
+            const stageDiv = document.createElement('div');
+            stageDiv.id = 'stage';
+            sc.appendChild(stageDiv);
         }
     }
 }

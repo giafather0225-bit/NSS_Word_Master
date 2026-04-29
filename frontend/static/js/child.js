@@ -437,26 +437,7 @@ async function startLessonAt(stageKey) {
     const lesson = lessonSelected();
 
     showStageCard();
-  // ── 영어 레슨 EXIT 버튼 (.stage-header 우측) ───────────────────────────
-  (function _injectEnglishHeader() {
-    const existing = document.getElementById('english-lesson-header');
-    if (existing) existing.remove();
-    const stageHeader = document.querySelector('.stage-header');
-    const btn = document.createElement('button');
-    btn.id = 'english-lesson-header';
-    btn.className = 'eng-exit-btn';
-    btn.textContent = '✕ Exit';
-    btn.addEventListener('click', function() {
-      if (typeof exitEnglishLesson === 'function') exitEnglishLesson();
-      else if (typeof switchView === 'function') switchView('home');
-    });
-    if (stageHeader) {
-      stageHeader.appendChild(btn);
-    } else {
-      btn.style.cssText = 'position:fixed;top:12px;right:16px;z-index:9999;';
-      document.body.appendChild(btn);
-    }
-  })();
+
 
     const stageEl = $("stage");
     if (stageEl) {
@@ -492,6 +473,26 @@ async function startLessonAt(stageKey) {
     if (sidebar) sidebar.classList.add('collapsed');
     localStorage.setItem('sb_collapsed', '1');
     renderStage();
+  // ── 영어 레슨 EXIT 버튼 (.stage-header 우측) ───────────────────────────
+  (function _injectEnglishHeader() {
+    const existing = document.getElementById('english-lesson-header');
+    if (existing) existing.remove();
+    const stageHeader = document.querySelector('#stage-card .stage-header');
+    const btn = document.createElement('button');
+    btn.id = 'english-lesson-header';
+    btn.className = 'eng-exit-btn';
+    btn.textContent = '✕ Exit';
+    btn.addEventListener('click', function() {
+      if (typeof exitEnglishLesson === 'function') exitEnglishLesson();
+      else if (typeof switchView === 'function') switchView('home');
+    });
+    if (stageHeader) {
+      stageHeader.appendChild(btn);
+    } else {
+      btn.style.cssText = 'position:fixed;top:12px;right:16px;z-index:9999;';
+      document.body.appendChild(btn);
+    }
+  })();
     enterSessionSidebar();
     setStatus(`${stageTitle()} — start!`);
 
