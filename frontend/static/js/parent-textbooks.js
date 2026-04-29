@@ -27,7 +27,7 @@ async function _ppTextbooks(body) {
             <div style="border-bottom:1px solid var(--color-primary-light)">
                 <div style="display:flex;align-items:center;gap:12px;padding:14px 4px;cursor:pointer"
                      onclick="_ppTbToggle('ppTb${i}', '${escapeHtml(tb.name)}')">
-                    <span style="font-size:20px">📚</span>
+                    <i data-lucide="book-marked" style="width:18px;height:18px;color:var(--english-primary)"></i>
                     <div style="flex:1;min-width:0">
                         <div style="font-size:15px;font-weight:600;color:var(--text-primary)">${escapeHtml(tb.name)}</div>
                         <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">${tb.lessons||0} lessons · ${tb.words||0} words</div>
@@ -44,6 +44,7 @@ async function _ppTextbooks(body) {
                         onclick="window.open('/ingest','_blank')">+ Add Textbook</button>
             </div>`;
         body.innerHTML = summary + addBtn + `<div>${rows}</div>`;
+        if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
         console.error("[parent-textbooks] load failed:", err);
         body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`;

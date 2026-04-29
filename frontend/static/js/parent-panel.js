@@ -212,31 +212,40 @@ async function _ppHabits(body) {
 
 // ─── Tab: Settings ────────────────────────────────────────────
 
-/** Tasks + schedule + PIN/email + weekly report. @tag PARENT SETTINGS */
+/** Tasks + schedule + PIN/email + weekly report + textbooks. @tag PARENT SETTINGS */
 async function _ppSettings(body) {
     body.innerHTML = `
         <div class="pp-section-title">Task Settings</div>
         <div id="pp-settings-tasks"></div>
-        <div class="pp-section-divider"></div>
-        <div class="pp-section-title">Academy Schedule</div>
-        <div id="pp-settings-schedule"></div>
-        <div class="pp-section-divider"></div>
-        <div class="pp-section-title">Account</div>
-        <div id="pp-settings-pin"></div>
-        <div class="pp-section-divider"></div>
-        <div class="pp-section-title">Weekly Report</div>
-        <div id="pp-settings-report" class="pp-coming-soon">
-            <i data-lucide="mail" style="width:32px;height:32px;opacity:0.3"></i>
-            <p>Auto weekly email report — coming soon.</p>
-        </div>`;
 
-    const tasksEl    = document.getElementById("pp-settings-tasks");
-    const scheduleEl = document.getElementById("pp-settings-schedule");
-    const pinEl      = document.getElementById("pp-settings-pin");
+        <div class="pp-grid-2" style="margin-top:20px">
+            <div>
+                <div class="pp-section-title">Academy Schedule</div>
+                <div id="pp-settings-schedule"></div>
+            </div>
+            <div>
+                <div class="pp-section-title">Account</div>
+                <div id="pp-settings-pin"></div>
+            </div>
+        </div>
+
+        <div class="pp-section-title" style="margin-top:8px">Weekly Report</div>
+        <div id="pp-settings-report"></div>
+
+        <div class="pp-section-title" style="margin-top:24px">Textbooks</div>
+        <div id="pp-settings-textbooks"></div>`;
+
+    const tasksEl     = document.getElementById("pp-settings-tasks");
+    const scheduleEl  = document.getElementById("pp-settings-schedule");
+    const pinEl       = document.getElementById("pp-settings-pin");
+    const reportEl    = document.getElementById("pp-settings-report");
+    const textbooksEl = document.getElementById("pp-settings-textbooks");
 
     if (typeof ppRenderTasks    === "function") await ppRenderTasks(tasksEl);
     if (typeof ppRenderSchedule === "function") await ppRenderSchedule(scheduleEl);
     if (typeof ppRenderPin      === "function") ppRenderPin(pinEl);
+    if (typeof ppRenderReport   === "function") await ppRenderReport(reportEl);
+    if (typeof _ppTextbooks     === "function") await _ppTextbooks(textbooksEl);
 
     if (typeof lucide !== "undefined") lucide.createIcons();
 }

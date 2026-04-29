@@ -68,7 +68,7 @@ function _ppMathWeakAreas(weak) {
     return `
         <div class="pp-section-title">Weak Concepts</div>
         <table class="pp-log-table">
-            <thead><tr><th>Lesson</th><th style="text-align:right">❌ Wrong</th></tr></thead>
+            <thead><tr><th>Lesson</th><th style="text-align:right">Wrong</th></tr></thead>
             <tbody>${rows}</tbody>
         </table>`;
 }

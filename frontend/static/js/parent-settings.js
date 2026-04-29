@@ -113,7 +113,7 @@ async function _ppSaveSchedule() {
             body: JSON.stringify({ days }),
         });
         const msg = document.getElementById("pp-sched-msg");
-        if (msg) msg.textContent = res.ok ? "✓ Saved!" : "Failed to save.";
+        if (msg) msg.textContent = res.ok ? "Saved!" : "Failed to save.";
         if (msg) msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
     } catch (_) {}
 }
@@ -186,7 +186,7 @@ async function _ppSaveParentEmail() {
         });
         if (msg) {
             if (res.ok) {
-                msg.textContent = value ? "✓ Email saved." : "✓ Email cleared.";
+                msg.textContent = value ? "Email saved." : "Email cleared.";
                 msg.classList.add("success");
             } else {
                 const err = await res.json().catch(() => ({}));
@@ -226,7 +226,7 @@ async function _ppSavePin() {
         });
         // Update the in-memory verified PIN so subsequent calls keep working
         if (res.ok) window._ppVerifiedPin = newPin;
-        setMsg(res.ok ? "✓ PIN changed successfully!" : "Failed to save.", res.ok ? "success" : "error");
+        setMsg(res.ok ? "PIN changed successfully!" : "Failed to save.", res.ok ? "success" : "error");
         if (res.ok) {
             ["pp-new-pin", "pp-confirm-pin"].forEach(id => {
                 const i = document.getElementById(id);

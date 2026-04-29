@@ -25,6 +25,7 @@ cat \
   $JS/parent-streak.js \
   $JS/parent-xp.js \
   $JS/parent-settings.js \
+  $JS/parent-report.js \
   $JS/reward-shop.js \
   $JS/reward-shop-use.js \
   $JS/diary.js \

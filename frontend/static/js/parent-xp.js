@@ -147,7 +147,7 @@ async function _ppSaveXPRules() {
             body: JSON.stringify({ rules }),
         });
         if (msg) {
-            msg.textContent = res.ok ? "✓ Saved." : "Failed to save.";
+            msg.textContent = res.ok ? "Saved." : "Failed to save.";
             msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
         }
         if (res.ok) setTimeout(() => _ppLoadTab("xp"), 400);
@@ -164,7 +164,7 @@ async function _ppResetXPRules() {
     try {
         const res = await window._ppFetch("/api/parent/xp-rules/reset", { method: "POST" });
         if (msg) {
-            msg.textContent = res.ok ? "✓ Reset." : "Failed.";
+            msg.textContent = res.ok ? "Reset." : "Failed.";
             msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
         }
         if (res.ok) setTimeout(() => _ppLoadTab("xp"), 400);
@@ -189,7 +189,7 @@ async function _ppSaveArcadeCap() {
             body: JSON.stringify({ arcade_daily_cap: v }),
         });
         if (msg) {
-            msg.textContent = res.ok ? "✓ Saved." : "Failed to save.";
+            msg.textContent = res.ok ? "Saved." : "Failed to save.";
             msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
         }
     } catch (err) {
