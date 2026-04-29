@@ -233,7 +233,7 @@ function renderSentenceItem(el, item) {
         <div class="sm-word-chip">${escapeHtml(item.answer)}</div>
         ${hintHtml}
         <div id="sm-feedback-area"></div>
-        <div id="sm-ai-loading" class="sm-ai-loading" style="display:none;">AI가 문장을 읽고 있어요...</div>
+        <div id="sm-ai-loading" class="sm-ai-loading" style="display:none;">AI is reading your sentence…</div>
         <div class="st-input-row" id="sm-input-row">
             <textarea class="sm-textarea" id="sentence-input" rows="3"
                       autocomplete="off" spellcheck="false" placeholder="Your sentence…"></textarea>

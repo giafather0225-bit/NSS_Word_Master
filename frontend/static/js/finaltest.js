@@ -159,8 +159,10 @@
     }
     function onTimeUp() {
         if (phase === 'mc') {
-            // Fill remaining MC with null, jump to Part 2
-            while (mcAnswers.length < words.length) mcAnswers.push(null);
+            // Fill remaining MC with empty string for unanswered words
+            words.forEach(function(w) {
+                if (!mcAnswers[w.id]) mcAnswers[w.id] = '';
+            });
             mcIndex = words.length;
             showFill();
         } else if (phase === 'fill') {
@@ -278,7 +280,7 @@
         updateProgress();
         eo('part-label').textContent = 'Part 2 — Fill in the Blank';
 
-        words = shuffle(words);
+        // words order must stay fixed — fillAnswers is indexed by position
         var rows = words.map(function(w, i) {
             return '<div class="eo-fill-row">' +
                        '<div class="eo-fill-idx">' + (i + 1) + '</div>' +
