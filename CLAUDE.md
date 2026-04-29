@@ -644,3 +644,179 @@ GOALS           REPORT
 TTS             AI             OLLAMA       GEMINI         OCR
 BACKUP          SYSTEM         THEME        BUILD
 ```
+# CLAUDE.md — Island System Section
+> Add this entire section to the existing CLAUDE.md file
+> Insert after the existing system sections (after Math/English/Diary sections)
+
+---
+
+## 🏝️ ISLAND SYSTEM (Gia's Island)
+
+### Overview
+Tamagotchi + island-building + Pokémon collection hybrid. Replaces the legacy Growth Theme system entirely. Three pillars: **Raising** (central) + **Decorating** + **Collecting**.
+
+**Full spec:** See `ISLAND_SPEC.md` for complete details.
+
+---
+
+### Key Rules for Claude Code
+
+1. **Language:** All UI text, notifications, and messages in **English only**
+2. **No growth_theme references** — completely removed, replaced by island system
+3. **No 조개 (shell/clam) references** — replaced by Lumi currency
+4. **Config-first design** — all animation values, thresholds, UI text in config files
+5. **Performance:** decay and lumi production run as batch on app open, never background scheduler
+6. **Single-user app** — island_currency always id=1 (upsert pattern)
+
+---
+
+### Currency System
+
+| Currency | Earn | Spend |
+|---------|------|-------|
+| XP | Study | Real rewards (Reward Shop - existing) |
+| Lumi 💎 | Study + streak + completed char production | Evolution stones, food, decorations, exchange |
+| Legend Lumi ✨ | 100 Lumi = 1 Legend Lumi | Legend zone items only |
+
+**Lumi cannot go negative** → disable purchase buttons when insufficient.
+
+---
+
+### Zone Structure
+
+```
+        🚀 Space
+   🌳 Forest  ✨Legend  🌊 Ocean
+        🦁 Savanna
+```
+
+| Zone | Subject | Characters (5 each) |
+|------|---------|---------------------|
+| Forest | English | Sprout, Clover, Mossy, Fernlie, Blossie |
+| Ocean | Math | Axie, Finn, Delphi, Bubbles, Starla |
+| Savanna | Diary | Mane, Ellie, Leo, Zuri, Rhino |
+| Space | Review | Lumie, Twinkle, Orbee, Nova, Cosmo |
+| Legend | All | Dragon, Unicorn, Phoenix, Gumiho, Qilin |
+
+**Zone unlock chain:** Zone 1 (chosen at onboarding) → complete 1 char → Zone 2 → ... → all 4 zones each have 1 first-evolution → Legend Zone.
+
+---
+
+### Character Growth
+
+```
+baby (Lv1~5) → [1st Evo Stone A or B] → mid_a or mid_b (Lv6~10) → [2nd Evo Stone] → final_a or final_b
+```
+
+**Level XP:** 100 / 150 / 200 / 300 (baby) | 100 / 150 / 200 / 300 / 400 (mid)
+**Target:** ~3~4 weeks per character completion
+
+**XP multiplier by gauge:**
+- Normal (both 60+): 100%
+- One below 60: 80%
+- One below 20: 60%
+- Both below 20: 20%
+- Evolution blocked if any gauge < 20
+
+---
+
+### Care System
+
+- **Hunger decay:** -15 every midnight
+- **Happiness decay:** -20 if no study 2 consecutive days
+- **Completed characters:** No gauge needed — permanent residents
+- **Legend characters:** No hunger/happiness — uses consecutive_days instead
+
+---
+
+### Legend Characters
+
+- Unlock condition: 4 zones each have 1 character with 1st evolution complete
+- Evolution: 14 consecutive days + Legend Stone (1st) → 30 consecutive days + Legend Stone (2nd)
+- Streak breaks → reset to 0 + character sad animation + happiness -10
+- 4 subjects all completed in one day = +1 legend gauge
+
+---
+
+### Database (10 New Tables — migration 018)
+
+New tables:
+1. `island_characters` — catalog (30 chars)
+2. `island_character_progress` — Gia's raising progress
+3. `island_care_log` — gauge history (30-day auto-delete)
+4. `island_shop_items` — shop catalog (55 items)
+5. `island_inventory` — owned items
+6. `island_placed_items` — placed decorations
+7. `island_currency` — lumi balance (id=1 always)
+8. `island_lumi_log` — transactions (90-day auto-delete)
+9. `island_legend_progress` — legend streak tracking
+10. `island_zone_status` — unlock status (5 rows)
+
+**Tables DELETED in migration 018:** `rewards`, `schedules`, `growth_theme_progress`
+
+---
+
+### New Backend Files
+
+| File | Purpose |
+|------|---------|
+| `routers/island.py` | All island API (34 endpoints) |
+| `services/lumi_engine.py` | Lumi earn/spend/exchange |
+| `services/island_care_engine.py` | Decay + gauge logic |
+| `services/island_production_engine.py` | Daily lumi batch |
+| `services/island_service.py` | Evolution branch validation |
+
+### Modified Files
+
+| File | Change |
+|------|--------|
+| `services/xp_engine.py` | Add lumi award on study complete |
+| `services/streak_engine.py` | Add streak lumi award |
+| `backend/main.py` | App start: decay + lumi production batch |
+| `routers/diary.py` | Diary complete → island_care_engine |
+| `routers/study.py` | English complete → island_care_engine |
+| `routers/math_academy.py` | Math complete → island_care_engine |
+| `routers/review.py` | Review complete → island_care_engine |
+| `frontend/static/js/reward-shop.js` | Add Island tabs |
+| `frontend/static/js/parent-panel.js` | Remove growth_theme, add island toggle |
+
+### Deleted Files
+
+| File | Reason |
+|------|--------|
+| `routers/growth_theme.py` | Replaced by island |
+| `models/gamification.py` (growth_theme parts) | Removed |
+
+---
+
+### Frontend Config Files
+
+- `frontend/src/config/animations.config.js` — All animation timings (edit here, not in components)
+- `frontend/src/config/island.config.js` — Zone config, UI text, error messages, thresholds
+
+---
+
+### Shop Integration
+
+Reward Shop now has 5 tabs: **Rewards** (XP) | **Evolution** (Lumi) | **Food** (Lumi) | **Decor** (Lumi) | **Exchange**
+
+---
+
+### Phase 2 (Do Not Implement Now)
+
+Parent Dashboard Island widget, BGM, AI chat (Ollama), Arcade integration, Character accessories
+
+---
+
+### Entry Point
+
+Home screen → Right column → OceanWorldCard replaced with Island card → Island main screen
+
+---
+
+### app_config Keys
+
+```
+island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
+```
+(Full list in ISLAND_SPEC.md Section 11.3)
