@@ -192,6 +192,33 @@
 }
 .pp-stage-row strong { color: var(--text-primary); }
 
+/* ─── English Tab: stage list (right column) ─────────────── */
+.pp-stage-list { display: flex; flex-direction: column; gap: 8px; }
+.pp-stage-list .pp-stage-card { padding: 10px 14px; }
+.pp-stage-head {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+}
+.pp-stage-head .pp-stage-name { margin-bottom: 0; flex: 1; }
+.pp-stage-acc {
+  font-size: 12px; font-weight: 700; padding: 2px 8px;
+  border-radius: var(--radius-full); flex-shrink: 0;
+}
+.pp-stage-acc--good { background: var(--math-soft);   color: var(--math-ink);   }
+.pp-stage-acc--ok   { background: var(--arcade-soft); color: var(--arcade-ink); }
+.pp-stage-acc--low  { background: var(--review-soft); color: var(--review-ink); }
+
+/* ─── Table wrapper (scrollable on long lists) ───────────── */
+.pp-table-wrap {
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md); overflow: auto; max-height: 480px;
+}
+.pp-table-wrap .pp-log-table { margin: 0; }
+.pp-table-wrap .pp-log-table th {
+  position: sticky; top: 0; background: var(--bg-card); z-index: 1;
+}
+.pp-table-wrap .pp-log-table td,
+.pp-table-wrap .pp-log-table th { padding: 8px 14px; }
+
 /* ─── Math Section ───────────────────────────────────────── */
 .pp-math-stat {
   background: var(--bg-section-math);

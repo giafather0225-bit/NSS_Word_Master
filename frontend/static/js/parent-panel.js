@@ -158,7 +158,7 @@ async function _ppLoadTab(tab) {
 
 // ─── Tab: English ─────────────────────────────────────────────
 
-/** Word stats + stage performance. @tag PARENT WORD_STATS */
+/** Word stats + stage performance — 2-col layout. @tag PARENT WORD_STATS */
 async function _ppEnglish(body) {
     try {
         const [ws, stg] = await Promise.all([
@@ -166,27 +166,77 @@ async function _ppEnglish(body) {
             apiFetchJSON("/api/parent/stage-stats"),
         ]);
 
-        const topWrong = ws.top_wrong || [];
-        const wordRows = topWrong.length
-            ? topWrong.map(w =>
-                `<tr><td><strong>${escapeHtml(w.word)}</strong></td><td>${escapeHtml(w.lesson)}</td><td style="color:var(--color-error)">${w.wrong_count}</td><td>${Math.round(w.accuracy*100)}%</td></tr>`
+        const words = ws.top_wrong || [];
+        const totalAttempts = words.reduce((a, w) => a + (w.attempts || 0), 0);
+        const totalWrong    = words.reduce((a, w) => a + (w.wrong_count || 0), 0);
+        const overallAcc    = totalAttempts ? Math.round((1 - totalWrong / totalAttempts) * 100) : 0;
+        const stages        = stg.stages || {};
+        const totalStageDone = Object.values(stages).reduce((a, s) => a + (s.completions || 0), 0);
+
+        const summary = `
+            <div class="pp-stats" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px">
+                <div class="pp-stat"><div class="pp-stat-num">${words.length}</div><div class="pp-stat-label">Tracked Words</div></div>
+                <div class="pp-stat"><div class="pp-stat-num">${overallAcc}%</div><div class="pp-stat-label">Overall Accuracy</div></div>
+                <div class="pp-stat"><div class="pp-stat-num">${totalStageDone}</div><div class="pp-stat-label">Stage Completions</div></div>
+            </div>`;
+
+        const wordRows = words.length
+            ? words.map(w =>
+                `<tr><td><strong>${escapeHtml(w.word)}</strong></td><td>${escapeHtml(w.lesson)}</td><td style="color:var(--color-error);text-align:right">${w.wrong_count}</td><td style="text-align:right">${Math.round(w.accuracy*100)}%</td></tr>`
               ).join("")
             : `<tr><td colspan="4" style="text-align:center;color:var(--text-secondary);padding:20px">No data yet.</td></tr>`;
 
-        const STAGE_NAMES = { preview:"Preview", word_match:"Word Match", fill_blank:"Fill Blank", spelling:"Spelling", sentence:"Sentence", final_test:"Final Test" };
-        const stageCards = Object.entries(stg.stages || {}).map(([key, s]) =>
-            `<div class="pp-stage-card">
-                <div class="pp-stage-name">${STAGE_NAMES[key] || key}</div>
-                <div class="pp-stage-row"><span>Accuracy</span><strong>${s.avg_accuracy}%</strong></div>
-                <div class="pp-stage-row"><span>Avg Time</span><strong>${Math.round(s.avg_time_sec/60)}m</strong></div>
-                <div class="pp-stage-row"><span>Done</span><strong>${s.completions}x</strong></div>
-            </div>`
-        ).join("");
+        const STAGE_META = {
+            preview:    { name: "Preview",    icon: "eye"           },
+            word_match: { name: "Word Match", icon: "shuffle"       },
+            fill_blank: { name: "Fill Blank", icon: "type"          },
+            spelling:   { name: "Spelling",   icon: "spell-check"   },
+            sentence:   { name: "Sentence",   icon: "pen-line"      },
+            final_test: { name: "Final Test", icon: "graduation-cap"},
+        };
+        const STAGE_ORDER = ["preview", "word_match", "fill_blank", "spelling", "sentence", "final_test"];
+        const stageList = STAGE_ORDER
+            .filter(k => stages[k])
+            .map(k => {
+                const s = stages[k];
+                const meta = STAGE_META[k] || { name: k, icon: "circle" };
+                const acc = Math.round(s.avg_accuracy || 0);
+                const accClass = acc >= 90 ? "good" : acc >= 70 ? "ok" : "low";
+                return `
+                    <div class="pp-stage-card">
+                        <div class="pp-stage-head">
+                            <i data-lucide="${meta.icon}" style="width:16px;height:16px"></i>
+                            <span class="pp-stage-name">${meta.name}</span>
+                            <span class="pp-stage-acc pp-stage-acc--${accClass}">${acc}%</span>
+                        </div>
+                        <div class="pp-stage-row"><span>Avg Time</span><strong>${Math.round(s.avg_time_sec/60)}m</strong></div>
+                        <div class="pp-stage-row"><span>Completions</span><strong>${s.completions}x</strong></div>
+                    </div>`;
+            }).join("");
 
         body.innerHTML = `
-            <div class="pp-section-title">Most Missed Words</div>
-            <table class="pp-log-table"><thead><tr><th>Word</th><th>Lesson</th><th>Wrong</th><th>Accuracy</th></tr></thead><tbody>${wordRows}</tbody></table>
-            ${stageCards ? `<div class="pp-section-title" style="margin-top:24px">Stage Performance</div><div class="pp-stage-grid">${stageCards}</div>` : ""}`;
+            ${summary}
+            <div class="pp-grid-2">
+                <div>
+                    <div class="pp-section-title" style="margin-top:0">Most Missed Words</div>
+                    <div class="pp-table-wrap">
+                        <table class="pp-log-table">
+                            <thead><tr>
+                                <th>Word</th><th>Lesson</th>
+                                <th style="text-align:right">Wrong</th>
+                                <th style="text-align:right">Accuracy</th>
+                            </tr></thead>
+                            <tbody>${wordRows}</tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <div class="pp-section-title" style="margin-top:0">Stage Performance</div>
+                    <div class="pp-stage-list">${stageList || `<p style="color:var(--text-secondary);font-size:13px">No stages completed yet.</p>`}</div>
+                </div>
+            </div>`;
+
+        if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (_) { body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`; }
 }
 
