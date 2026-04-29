@@ -437,11 +437,11 @@ async function startLessonAt(stageKey) {
     const lesson = lessonSelected();
 
     showStageCard();
-  // ── 영어 레슨 EXIT 버튼 (top-bar 우측에 fixed) ──────────────────────────
+  // ── 영어 레슨 EXIT 버튼 (.stage-header 우측) ───────────────────────────
   (function _injectEnglishHeader() {
     const existing = document.getElementById('english-lesson-header');
     if (existing) existing.remove();
-    const topBar = document.querySelector('.top-bar') || document.querySelector('#top-bar');
+    const stageHeader = document.querySelector('.stage-header');
     const btn = document.createElement('button');
     btn.id = 'english-lesson-header';
     btn.className = 'eng-exit-btn';
@@ -450,8 +450,8 @@ async function startLessonAt(stageKey) {
       if (typeof exitEnglishLesson === 'function') exitEnglishLesson();
       else if (typeof switchView === 'function') switchView('home');
     });
-    if (topBar) {
-      topBar.appendChild(btn);
+    if (stageHeader) {
+      stageHeader.appendChild(btn);
     } else {
       btn.style.cssText = 'position:fixed;top:12px;right:16px;z-index:9999;';
       document.body.appendChild(btn);

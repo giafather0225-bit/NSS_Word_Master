@@ -1,3 +1,10 @@
+
+/* ── stage-header layout ── */
+.stage-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 /* ================================================================
    main-stage.css — App shell main layout — stage
    Section: System
@@ -613,20 +620,21 @@ body[data-view="math"]    .stage-area { background: var(--math-light); }
 
 
 
-/* ── English EXIT button (top-bar 우측) ── */
+/* ── English EXIT button (.stage-header 우측) ── */
 .eng-exit-btn {
   margin-left: auto;
-  padding: 5px 16px;
+  flex-shrink: 0;
+  padding: 6px 16px;
   border: none;
   border-radius: 6px;
-  background: var(--english-accent, #2196f3);
+  background: var(--color-primary, #2196f3);
   color: #fff;
   font-size: 0.82rem;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s;
   white-space: nowrap;
-  flex-shrink: 0;
+  align-self: center;
 }
 .eng-exit-btn:hover {
   background: var(--english-dark, #1565c0);
