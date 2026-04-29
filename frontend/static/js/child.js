@@ -437,28 +437,25 @@ async function startLessonAt(stageKey) {
     const lesson = lessonSelected();
 
     showStageCard();
-  // ── 영어 레슨 EXIT 버튼 헤더 주입 ──────────────────────────────────────
+  // ── 영어 레슨 EXIT 버튼 (top-bar 우측에 fixed) ──────────────────────────
   (function _injectEnglishHeader() {
     const existing = document.getElementById('english-lesson-header');
     if (existing) existing.remove();
-    const stageCard = document.getElementById('stage-card');
-    if (!stageCard) return;
-    const hdr = document.createElement('div');
-    hdr.id = 'english-lesson-header';
-    hdr.className = 'english-lesson-hdr';
-    const lessonLabel = (typeof selectedLesson !== 'undefined' && selectedLesson && selectedLesson.title)
-      ? selectedLesson.title
-      : 'Lesson';
-    hdr.innerHTML =
-      '<span class="eng-lh-title">' +
-      (typeof escapeHtml === 'function' ? escapeHtml(lessonLabel) : lessonLabel) +
-      '</span>' +
-      '<button id="eng-lh-exit-btn" class="eng-exit-btn">✕ Exit</button>';
-    stageCard.insertBefore(hdr, stageCard.firstChild);
-    document.getElementById('eng-lh-exit-btn').addEventListener('click', function() {
+    const topBar = document.querySelector('.top-bar') || document.querySelector('#top-bar');
+    const btn = document.createElement('button');
+    btn.id = 'english-lesson-header';
+    btn.className = 'eng-exit-btn';
+    btn.textContent = '✕ Exit';
+    btn.addEventListener('click', function() {
       if (typeof exitEnglishLesson === 'function') exitEnglishLesson();
       else if (typeof switchView === 'function') switchView('home');
     });
+    if (topBar) {
+      topBar.appendChild(btn);
+    } else {
+      btn.style.cssText = 'position:fixed;top:12px;right:16px;z-index:9999;';
+      document.body.appendChild(btn);
+    }
   })();
 
     const stageEl = $("stage");

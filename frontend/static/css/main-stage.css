@@ -611,40 +611,23 @@ body[data-view="math"]    .stage-area { background: var(--math-light); }
 }
 .exam-menu-btn:hover { background: var(--bg-card); transform: translateY(-1px); }
 
-/* ── English lesson header & EXIT button ── */
-.english-lesson-hdr {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 16px;
-  background: var(--english-soft, #e8f4fd);
-  border-bottom: 1px solid var(--english-border, #b3d9f5);
-  border-radius: 8px 8px 0 0;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-.eng-lh-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--english-dark, #1a5f8a);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 70%;
-}
+
+
+/* ── English EXIT button (top-bar 우측) ── */
 .eng-exit-btn {
-  flex-shrink: 0;
-  padding: 5px 14px;
+  margin-left: auto;
+  padding: 5px 16px;
   border: none;
   border-radius: 6px;
   background: var(--english-accent, #2196f3);
   color: #fff;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   cursor: pointer;
   transition: background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .eng-exit-btn:hover {
-  background: var(--english-dark, #1a5f8a);
+  background: var(--english-dark, #1565c0);
 }
