@@ -22,21 +22,33 @@ function _normalizeProblem(p) {
     if (!p) return p;
 
     // 질문 텍스트 필드 정규화 — 일부 JSON은 question 대신 stem / prompt 사용.
-    // 비어 있으면 가장 먼저 발견되는 다른 필드를 question으로 채움.
     if (!p.question) {
         p.question = p.stem || p.prompt || p.text || '';
     }
 
-    // choices → options 변환 (앞의 "A) " 레이블 제거)
+    // choices → options 변환.
+    //  - dict {"A": "...", "B": "..."} → list, 키 순서대로
+    //  - "A) ", "A. ", "A: ", "A " 같은 모든 접두어 제거
     if (!p.options && p.choices) {
-        p.options = p.choices.map(function(c) {
-            return typeof c === 'string' ? c.replace(/^[A-Z]\)\s*/, '') : c;
+        var rawChoices = p.choices;
+        var choicesList;
+        if (Array.isArray(rawChoices)) {
+            choicesList = rawChoices;
+        } else if (rawChoices && typeof rawChoices === 'object') {
+            // dict → list (sorted by key so A,B,C,D order)
+            choicesList = Object.keys(rawChoices).sort().map(function(k) { return rawChoices[k]; });
+        } else {
+            choicesList = [];
+        }
+        p.options = choicesList.map(function(c) {
+            if (typeof c !== 'string') return c;
+            // Strip leading "A)", "A.", "A:", "A " — case-insensitive single letter
+            return c.replace(/^[A-Za-z][\)\.\:]\s*/, '').replace(/^[A-Za-z]\s+/, '');
         });
     }
 
-    // type 정규화 — JSON 데이터에 다양한 표기가 섞여 있어 한 형식으로 모음.
-    // 변환 후 dispatcher (math-problem-ui.js switch)에서 'mc' / 'tf' / 'input'
-    // / 'drag_sort'만 분기하므로 모두 그 4종 중 하나로 매핑.
+    // type 정규화. JSON에 다양한 표기가 섞여 있고 일부는 type이 아예 없음.
+    // dispatcher가 'mc' / 'tf' / 'input' / 'drag_sort'만 분기하므로 그 4종으로 매핑.
     var typeMap = {
         'true_false':       'tf',
         'TRUE_FALSE':       'tf',
@@ -56,6 +68,21 @@ function _normalizeProblem(p) {
         p.type = typeMap[p.type];
     }
     if (p.type) p.type = p.type.toLowerCase();
+
+    // STRUCTURE-BASED INFERENCE — JSON 메타데이터가 없거나 input으로 잘못 분류돼도
+    // options 배열이 존재하면 사실상 MC. 답이 'true'/'false' 한쪽이면 TF.
+    // 데이터 1,399 problems with type=<missing> + 858 with type='input' but
+    // having options exist; this rescues all of them without per-file fixes.
+    var ans = String(p.correct_answer != null ? p.correct_answer
+                  : (p.answer != null ? p.answer : '')).trim();
+    var hasOptions = Array.isArray(p.options) && p.options.length > 0;
+    var isTFAnswer = ans.toLowerCase() === 'true' || ans.toLowerCase() === 'false';
+
+    if (!p.type) {
+        p.type = hasOptions ? 'mc' : (isTFAnswer ? 'tf' : 'input');
+    } else if (p.type === 'input' && hasOptions) {
+        p.type = 'mc';
+    }
 
     // hint(단수) → hints(배열)
     if (p.hint && !p.hints) {
