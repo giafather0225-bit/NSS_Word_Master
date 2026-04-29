@@ -7,10 +7,13 @@
    ================================================================ */
 
 const _PP_STREAK_SUBJECTS = [
-    ["english", "English", "📕"],
-    ["math",    "Math",    "📐"],
-    ["game",    "Game",    "🎮"],
+    ["english", "English", "book-open"],
+    ["math",    "Math",    "calculator"],
+    ["game",    "Game",    "gamepad-2"],
 ];
+
+const _ICON = (name, size = 16) =>
+    `<i data-lucide="${name}" style="width:${size}px;height:${size}px;vertical-align:-3px"></i>`;
 
 /** Render Streak tab: stats cards + rule config + 30-day calendar + milestones. @tag PARENT STREAK */
 async function _ppStreak(body) {
@@ -23,6 +26,8 @@ async function _ppStreak(body) {
             _ppStreakRule(data.rule) +
             _ppStreakCalendar(data.last_30d || []) +
             _ppStreakMilestones(data);
+
+        if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
         console.error("[parent-streak] load failed:", err);
         body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load streak.</p>`;
@@ -33,9 +38,9 @@ async function _ppStreak(body) {
 function _ppStreakCards(data) {
     return `
         <div class="pp-stats" style="grid-template-columns:repeat(3,1fr)">
-            <div class="pp-stat"><div class="pp-stat-num">🔥 ${data.current || 0}d</div><div class="pp-stat-label">Current Streak</div></div>
-            <div class="pp-stat"><div class="pp-stat-num">🏆 ${data.longest || 0}d</div><div class="pp-stat-label">Longest Ever</div></div>
-            <div class="pp-stat"><div class="pp-stat-num">🏖️ ${data.freeze_this_month || 0}</div><div class="pp-stat-label">Freezes This Month</div></div>
+            <div class="pp-stat"><div class="pp-stat-num">${_ICON("flame", 20)} ${data.current || 0}d</div><div class="pp-stat-label">Current Streak</div></div>
+            <div class="pp-stat"><div class="pp-stat-num">${_ICON("trophy", 20)} ${data.longest || 0}d</div><div class="pp-stat-label">Longest Ever</div></div>
+            <div class="pp-stat"><div class="pp-stat-num">${_ICON("umbrella", 20)} ${data.freeze_this_month || 0}</div><div class="pp-stat-label">Freezes This Month</div></div>
         </div>`;
 }
 
@@ -46,7 +51,7 @@ function _ppStreakRule(rule) {
     const checks = _PP_STREAK_SUBJECTS.map(([key, label, icon]) => `
         <label class="pp-streak-check">
             <input type="checkbox" value="${key}" ${active.has(key) ? "checked" : ""}>
-            <span>${icon} ${label}</span>
+            <span>${_ICON(icon)} ${label}</span>
         </label>`).join("");
     return `
         <div class="pp-section-title">Streak Rule</div>
@@ -78,10 +83,10 @@ function _ppStreakRule(rule) {
 function _ppStreakCalendar(days) {
     if (!days.length) return "";
     const cells = days.map(d => {
-        let icon = "❌";
+        let icon = "x";
         let cls = "broken";
-        if (d.day_off) { icon = "🏖️"; cls = "freeze"; }
-        else if (d.maintained) { icon = "🔥"; cls = "maintained"; }
+        if (d.day_off)         { icon = "umbrella"; cls = "freeze"; }
+        else if (d.maintained) { icon = "flame";    cls = "maintained"; }
         const mm_dd = (d.date || "").slice(5);
         const dots = [
             d.english ? '<span class="pp-streak-dot e" title="English"></span>' : '<span class="pp-streak-dot off"></span>',
@@ -89,8 +94,8 @@ function _ppStreakCalendar(days) {
             d.game    ? '<span class="pp-streak-dot g" title="Game"></span>'    : '<span class="pp-streak-dot off"></span>',
         ].join("");
         return `
-            <div class="pp-streak-cell ${cls}" title="${d.date} — E:${d.english?'✓':'·'} M:${d.math?'✓':'·'} G:${d.game?'✓':'·'}">
-                <div class="pp-streak-cell-icon">${icon}</div>
+            <div class="pp-streak-cell ${cls}" title="${d.date} — E:${d.english?'Y':'-'} M:${d.math?'Y':'-'} G:${d.game?'Y':'-'}">
+                <div class="pp-streak-cell-icon">${_ICON(icon, 14)}</div>
                 <div class="pp-streak-cell-dots">${dots}</div>
                 <div class="pp-streak-cell-date">${mm_dd}</div>
             </div>`;
@@ -144,7 +149,7 @@ async function _ppSaveStreakRule() {
             body: JSON.stringify({ subjects, mode }),
         });
         if (msg) {
-            msg.textContent = res.ok ? "✓ Saved." : "Failed to save.";
+            msg.textContent = res.ok ? "Saved." : "Failed to save.";
             msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
         }
     } catch (err) {
@@ -159,10 +164,10 @@ async function _ppRecalcStreak() {
     try {
         const res = await window._ppFetch("/api/parent/streak-recalc?days=7", { method: "POST" });
         if (msg) {
-            msg.textContent = res.ok ? "✓ Recalculated." : "Failed.";
+            msg.textContent = res.ok ? "Recalculated." : "Failed.";
             msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
         }
-        if (res.ok && typeof _ppLoadTab === "function") setTimeout(() => _ppLoadTab("streak"), 400);
+        if (res.ok && typeof _ppLoadTab === "function") setTimeout(() => _ppLoadTab("habits"), 400);
     } catch (err) {
         console.error("[parent-streak] recalc failed:", err);
     }

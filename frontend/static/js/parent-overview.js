@@ -33,9 +33,11 @@ async function _ppHome(body) {
 
         body.innerHTML =
             _ppHomeHero(sum, todayXP, todaySubjects, weekMinutes) +
-            _ppHomeTodayProgress(todaySubjects, todayLogs) +
             _ppHomeWeekCalendar(thisWeek, sum) +
-            _ppHomeVsLastWeek(thisWeek, lastWeek) +
+            `<div class="pp-grid-2">
+                <div>${_ppHomeTodayProgress(todaySubjects, todayLogs)}</div>
+                <div>${_ppHomeVsLastWeek(thisWeek, lastWeek)}</div>
+             </div>` +
             _ppHomeAlerts(pendingDayoffs, todayXP, todaySubjects, sum);
 
         if (typeof lucide !== "undefined") lucide.createIcons();

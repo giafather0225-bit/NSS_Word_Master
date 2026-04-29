@@ -22,7 +22,7 @@ async function _ppGoals(body) {
 
         body.innerHTML = `
             ${banner}
-            <div class="pp-goals-list">${cards}</div>
+            <div class="pp-goals-grid">${cards}</div>
             <button class="pp-btn secondary" style="margin-top:8px" onclick="_ppGoalsEditMode()">Edit Targets</button>
             <div id="pp-goals-edit-area"></div>`;
     } catch (err) {
