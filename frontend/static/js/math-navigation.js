@@ -238,13 +238,5 @@ async function loadMathSidebarStatus() {
                 if (typeof startMathKangaroo === 'function') startMathKangaroo();
             });
         }
-
-        const unitTestBtn = document.getElementById('math-btn-unit-test');
-        if (unitTestBtn) {
-            unitTestBtn.addEventListener('click', () => {
-                if (!mathGrade || !mathUnit) return;
-                if (typeof startMathUnitTest === 'function') startMathUnitTest(mathGrade, mathUnit);
-            });
-        }
     });
 })();

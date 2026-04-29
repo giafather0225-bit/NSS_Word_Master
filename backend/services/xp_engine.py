@@ -12,8 +12,8 @@ from backend.models import XPLog, WordReview, AppConfig
 # XP awarded per action — defaults. Parent can override via app_config
 # keys of the form `xp_rule_<action>`. See get_xp_rules().
 XP_RULES_DEFAULT: dict[str, int] = {
-    "word_correct":           0,
-    "stage_complete":         5,
+    "word_correct":           1,
+    "stage_complete":         2,
     "final_test_pass":       10,
     "unit_test_pass":         5,
     "daily_words_complete":   5,
@@ -25,10 +25,6 @@ XP_RULES_DEFAULT: dict[str, int] = {
     "all_complete_bonus":    15,
     "streak_7_bonus":        30,
     "streak_30_bonus":       200,
-
-    "math_daily_complete":      5,
-    "math_daily_perfect":       3,
-    "math_fluency_best":        2,
     "math_lesson_complete":     10,
     "math_unit_test_pass":      25,
     "math_kangaroo_complete":  5,
@@ -88,12 +84,12 @@ def award_xp(
     """Award XP for an action. Returns actual XP awarded (0 if already awarded today).
 
     Daily dedup: same action + same earned_date = skip.
-    For _DETAIL_DEDUP actions, detail differentiates items (e.g. lesson_id, word, stage).
+    For word_correct, detail should be the word string (allows multiple per day).
 
     Args:
         db: SQLAlchemy session.
         action: Key from XP_RULES (e.g. "stage_complete").
-        detail: Optional extra context used for dedup in _DETAIL_DEDUP actions.
+        detail: Optional extra context (word string for word_correct).
         earned_date: ISO date string override; defaults to today.
 
     Returns:
@@ -105,18 +101,17 @@ def award_xp(
         return 0
 
     # Dedup check
-    # - _DETAIL_DEDUP actions: dedup by action + date + detail (item별 1회)
-    # - all others: dedup by action + date only (하루 1회)
-    _DETAIL_DEDUP = {
-        "ckla_reading_done", "ckla_vocab_done", "ckla_lesson_complete",
-        "stage_complete", "unit_test_pass",
-        "math_lesson_complete", "math_unit_test_pass", "math_fluency_best",
-    }
-    filters = [XPLog.action == action, XPLog.earned_date == today]
-    if action in _DETAIL_DEDUP:
-        filters.append(XPLog.detail == detail)
-    if db.query(XPLog).filter(*filters).first():
-        return 0
+    # - word_correct: no dedup (multiple words per day)
+    # - ckla_* actions: dedup by action + date + detail (레슨별 1회)
+    # - all others:  dedup by action + date only
+    _NO_DEDUP  = {"word_correct"}
+    _DETAIL_DEDUP = {"ckla_reading_done", "ckla_vocab_done", "ckla_lesson_complete"}
+    if action not in _NO_DEDUP:
+        filters = [XPLog.action == action, XPLog.earned_date == today]
+        if action in _DETAIL_DEDUP:
+            filters.append(XPLog.detail == detail)
+        if db.query(XPLog).filter(*filters).first():
+            return 0
 
     log = XPLog(
         action=action,

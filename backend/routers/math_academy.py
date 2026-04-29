@@ -271,14 +271,7 @@ def get_unit_test(grade: str, unit: str) -> dict:
         raise HTTPException(status_code=404, detail="Unit test not found")
     data = _read_json_cached(str(path), path.stat().st_mtime)
     problems = data.get("problems", data if isinstance(data, list) else [])
-    return {
-        "grade": grade,
-        "unit": unit,
-        "problems": problems,
-        "count": len(problems),
-        "pass_threshold": data.get("pass_threshold", 0.8),
-        "time_limit_min": data.get("time_limit_min", 30),
-    }
+    return {"grade": grade, "unit": unit, "problems": problems, "count": len(problems)}
 
 # @tag MATH @tag ACADEMY
 @router.post("/api/math/academy/submit-answer")
@@ -358,7 +351,13 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
         # 마지막 라운드 정답이면 완료 가능성 체크 (advanceMathStage에서 처리)
         pass
 
-    if not is_correct:
+    # XP for correct answer
+    if is_correct:
+        try:
+            xp_engine.award_xp(db, "math_problem_correct", 1, f"Math {req.problem_id}")
+        except Exception as e:
+            logger.warning("XP award failed: %s", e)
+    else:
         # Register wrong answer for spaced-repetition review (skip pretest — diagnostic only)
         if req.stage != "pretest":
             existing = (
@@ -445,7 +444,7 @@ async def complete_lesson(req: CompleteLessonIn, db: Session = Depends(get_db)):
         prog.is_completed = True
         prog.stage = "complete"
     try:
-        xp_engine.award_xp(db, "math_lesson_complete", detail=f"{req.grade}/{req.unit}/{req.lesson}")
+        xp_engine.award_xp(db, "math_lesson_complete", 10, f"{req.grade}/{req.unit}/{req.lesson}")
     except Exception as e:
         logger.warning("XP award failed: %s", e)
     try:
@@ -465,16 +464,7 @@ class SubmitUnitTestIn(BaseModel):
 @router.post("/api/math/academy/unit-test/submit")
 async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get_db)):
     pct = (req.score / req.total * 100) if req.total else 0
-    # Read pass_threshold from data file (default 0.8 = 80%)
-    unit_path = _DATA_DIR / req.grade / req.unit / "unit_test.json"
-    threshold = 0.8
-    if unit_path.exists():
-        try:
-            unit_data = _read_json_cached(str(unit_path), unit_path.stat().st_mtime)
-            threshold = float(unit_data.get("pass_threshold", 0.8))
-        except Exception:
-            pass
-    passed = (pct / 100) >= threshold
+    passed = pct >= 90
     rows = (
         db.query(MathProgress)
         .filter_by(grade=req.grade, unit=req.unit)
@@ -482,11 +472,9 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
     )
     for row in rows:
         row.unit_test_score = req.score
-        if passed:
-            row.unit_test_passed = True
     if passed:
         try:
-            xp_engine.award_xp(db, "math_unit_test_pass", detail=f"{req.grade}/{req.unit}")
+            xp_engine.award_xp(db, "math_unit_test_pass", 15, f"{req.grade}/{req.unit}")
         except Exception as e:
             logger.warning("XP award failed: %s", e)
         try:
