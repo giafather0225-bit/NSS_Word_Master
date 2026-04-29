@@ -205,7 +205,7 @@ def submit_round(req: RoundResultIn, db: Session = Depends(get_db)):
     # XP for personal best
     if new_best:
         try:
-            xp_engine.award_xp(db, "math_fluency_best", 2, f"Fluency {req.fact_set}")
+            xp_engine.award_xp(db, "math_fluency_best", detail=f"Fluency {req.fact_set}")
         except Exception as e:
             logger.warning("XP award failed: %s", e)
 

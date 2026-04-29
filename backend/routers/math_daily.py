@@ -398,11 +398,9 @@ def daily_complete(req: DailyCompleteIn, db: Session = Depends(get_db)):
 
     awarded = 0
     try:
-        xp_engine.award_xp(db, "math_daily_complete", 5, f"Math Daily {today}")
-        awarded += 5
+        awarded += xp_engine.award_xp(db, "math_daily_complete", detail=today)
         if req.total > 0 and req.score == req.total:
-            xp_engine.award_xp(db, "math_daily_perfect", 3, f"Math Daily Perfect {today}")
-            awarded += 3
+            awarded += xp_engine.award_xp(db, "math_daily_perfect", detail=today)
     except Exception as e:
         logger.warning("XP award failed: %s", e)
     try:
