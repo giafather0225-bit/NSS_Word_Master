@@ -37,7 +37,7 @@ function renderContextFill(el) {
             fbState.retryMode  = true;
             fbState.retryIndex = 0;
             fbState.retryQueue.forEach(it => { fbState.mistakeCount[it.id] = 0; });
-            setStatus("Almost there! Let's retry the ones you missed. 💪");
+            setStatus("Almost there! Let's retry the ones you missed.");
             renderContextFill(el);
         } else {
             fbState.initialized = false;
@@ -66,7 +66,9 @@ function renderFillItem(el, item, isRetry) {
         [displayOrder[k], displayOrder[j]] = [displayOrder[j], displayOrder[k]];
     }
     const usedCount = isRetry ? 0 : stageIndex;
-    const leftCount = items.length - usedCount;
+    const leftCount = isRetry
+        ? (fbState.retryQueue.length - fbState.retryIndex)
+        : (items.length - stageIndex);
     const bankHtml = displayOrder.map(({ it, i }) => {
         const used = !isRetry && i < stageIndex;
         return `<span class="fb-chip${used ? " fb-used" : ""}">${escapeHtml(it.answer)}</span>`;
@@ -76,12 +78,12 @@ function renderFillItem(el, item, isRetry) {
     let hintHtml = "";
     if (mistakes >= 1) {
         const len = String(item.answer).length;
-        hintHtml = `<div class="fb-hint"><span>💡 ${len} letters</span></div>`;
+        hintHtml = `<div class="fb-hint"><span>${len} letters</span></div>`;
     }
     if (mistakes >= 2) {
         const first = String(item.answer).charAt(0).toUpperCase();
         const len = String(item.answer).length;
-        hintHtml = `<div class="fb-hint"><span>💡 Starts with <strong>${escapeHtml(first)}</strong> · ${len} letters</span></div>`;
+        hintHtml = `<div class="fb-hint"><span>Starts with <strong>${escapeHtml(first)}</strong> · ${len} letters</span></div>`;
     }
 
     // Sentence with inline blank input
@@ -102,7 +104,7 @@ function renderFillItem(el, item, isRetry) {
     const retryBanner = isRetry
         ? `<div class="fb-retry-banner">
              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-             Retry mode — ${fbState.retryQueue.length} word${fbState.retryQueue.length === 1 ? "" : "s"} to conquer 💪
+             Retry mode — ${fbState.retryQueue.length} word${fbState.retryQueue.length === 1 ? "" : "s"} to conquer
            </div>`
         : "";
 
@@ -133,7 +135,7 @@ function renderFillItem(el, item, isRetry) {
           <div class="fb-bank">
             <div class="fb-bank-header">
               <div class="fb-bank-title">Word bank</div>
-              <div class="fb-bank-count">${usedCount} used · ${leftCount} left</div>
+              <div class="fb-bank-count">${isRetry ? leftCount + ' words to go' : usedCount + ' used · ' + leftCount + ' left'}</div>
             </div>
             <div class="fb-bank-grid">${bankHtml}</div>
           </div>
@@ -223,7 +225,7 @@ function renderFillItem(el, item, isRetry) {
                     if (fbState.retryQueue.length > 0) {
                         fbState.retryMode  = true;
                         fbState.retryIndex = 0;
-                        setStatus("Good job! Now let's retry " + fbState.retryQueue.length + " missed word(s). 💪");
+                        setStatus("Good job! Now let's retry " + fbState.retryQueue.length + " missed word(s).");
                         await new Promise(r => setTimeout(r, 400));
                         renderContextFill(el);
                     } else {
@@ -234,7 +236,7 @@ function renderFillItem(el, item, isRetry) {
                         advanceToNextStage();
                     }
                 } else {
-                    setStatus("Correct! ✓");
+                    setStatus("Correct!");
                     await new Promise(r => setTimeout(r, 300));
                     renderContextFill(el);
                 }
@@ -254,7 +256,7 @@ function renderFillItem(el, item, isRetry) {
                 if (!fbState.retryQueue.find(it => it.id === item.id)) {
                     fbState.retryQueue.push(item);
                 }
-                setStatus("Tough one — we'll come back to it! ❌");
+                setStatus("Tough one — we'll come back to it!");
                 await new Promise(r => setTimeout(r, 700));
                 if (!isRetry) {
                     stageIndex++;
@@ -262,14 +264,14 @@ function renderFillItem(el, item, isRetry) {
                         fbState.retryMode  = true;
                         fbState.retryIndex = 0;
                         fbState.retryQueue.forEach(it => { fbState.mistakeCount[it.id] = 0; });
-                        setStatus("Let's retry the words you missed! 💪");
+                        setStatus("Let's retry the words you missed!");
                     }
                 } else {
                     fbState.retryIndex++;
                 }
                 renderContextFill(el);
             } else {
-                setStatus(mc === 1 ? "Not quite! Check the hint below. 💡" : "Try again — stronger hint! 💡💡");
+                setStatus(mc === 1 ? "Not quite! Check the hint below." : "Try again — stronger hint!");
                 await new Promise(r => setTimeout(r, 500));
                 renderFillItem(el, item, isRetry);
             }

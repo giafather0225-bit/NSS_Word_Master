@@ -72,7 +72,7 @@ function renderSpelling(el) {
             spState.retryIndex = 0;
             spState.pass       = 1;
             spState.masks      = {};
-            setStatus("Let's redo the tricky ones! 💪");
+            setStatus("Let's redo the tricky ones — you can do it!");
             renderSpelling(el);
         } else {
             spState.initialized = false;
@@ -121,7 +121,7 @@ function renderSpellItem(el, item, isRetry) {
 
     // Letter count — especially critical for Pass 2 (first+last only) and Pass 3 (all hidden).
     const letterCount = (item.answer.match(/[a-zA-Z]/g) || []).length;
-    const letterHint  = `<p class="sp-letter-hint">💡 ${letterCount} letter${letterCount === 1 ? '' : 's'}</p>`;
+    const letterHint  = `<p class="sp-letter-hint">${letterCount} letter${letterCount === 1 ? '' : 's'}</p>`;
 
     // Retry mode: soften the tone — the child already missed this once.
     const subText = isRetry
@@ -142,12 +142,13 @@ function renderSpellItem(el, item, isRetry) {
         <div class="st-input-row">
             <input class="st-input" id="answer-input" type="text" maxlength="${item.answer.length}"
                    autocomplete="off" spellcheck="false" placeholder="Type the word…"/>
-            <button type="button" class="st-btn ghost" id="btn-listen-word">🔊 Listen</button>
+            <button type="button" class="st-btn ghost" id="btn-listen-word"><i data-lucide="volume-2"></i> Listen</button>
             <button type="button" class="st-btn" id="spell-submit">Check</button>
         </div>
         <p id="sp-feedback" class="sp-feedback"></p>
         <p class="st-prog">${progLabel}</p>
     `;
+    requestAnimationFrame(() => { if (window.lucide) lucide.createIcons(); });
 
     const inp       = el.querySelector("#answer-input");
     const submitBtn = el.querySelector("#spell-submit");
@@ -187,7 +188,7 @@ function renderSpellItem(el, item, isRetry) {
                 inp.style.borderColor = "var(--color-success)";
                 inp.style.boxShadow   = "0 0 0 4px var(--color-success-light)";
                 feedback.style.color  = "var(--color-success-ink)";
-                feedback.textContent  = "Perfect Spelling! \u2b50";
+                feedback.textContent  = "Perfect Spelling!";
                 spState.pass = 1;
                 if (!spState.masks[stageIndex]) spState.masks[stageIndex] = {};
                 starCount++;
@@ -199,7 +200,7 @@ function renderSpellItem(el, item, isRetry) {
                 } else {
                     spState.retryIndex++;
                 }
-                setStatus("Spelling master! \u2713");
+                setStatus("Spelling master!");
                 await new Promise(r => setTimeout(r, 700));
                 renderSpelling(el);
             }
@@ -218,7 +219,7 @@ function renderSpellItem(el, item, isRetry) {
                 spState.retryQueue.push(item);
             }
 
-            setStatus("Not quite \u2014 moving on, we\u2019ll retry it! \u274c");
+            setStatus("Not quite \u2014 moving on, we\u2019ll retry it!");
             await new Promise(r => setTimeout(r, CONF.WRONG_ANSWER_DISPLAY));
 
             spState.pass = 1;
