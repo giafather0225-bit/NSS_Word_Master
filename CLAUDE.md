@@ -450,19 +450,23 @@ Default items: YouTube 30min (300), Roblox 30min (300), Family Movie (500), Dinn
 
 Access: Home banner "···" → 4-digit PIN (`services/pin_guard.py`).
 
-Sections (split across `parent-*.js` modules):
-- **Overview** (`parent-overview.js`)
-- **Word Stats / Stage Stats** (`parent-stats` router)
-- **Math Summary** (`parent-math.js`)
-- **Streak detail + recalc** (`parent-streak.js`)
-- **XP rules edit + report** (`parent-xp.js`)
-- **Weekly Goals** (`goals` router, PIN-gated)
-- **Task Settings** (`parent.task-settings`)
-- **Academy Schedule**
-- **Day Off Requests**
-- **Notifications / Email Reports** (`parent_report` router → `report_engine.py`, 661 lines)
-- **Change PIN**
-- **Add Textbook** (`parent-textbooks.js` + `parent-ingest.js`)
+**6-tab structure** (redesigned 2026-04-29) — `parent-panel.js` shell routes to one renderer per tab:
+
+| Tab | Renderer | Content |
+|---|---|---|
+| **Home** | `parent-overview.js _ppHome` | Hero status banner (green/amber/red) + Today's Progress (English/Math/Diary rows) + 7-day Week Calendar + vs Last Week (words/XP/days with ↑↓→ trends) + Alerts (pending day-offs, streak-at-risk) |
+| **English** | `parent-panel.js _ppEnglish` | Most Missed Words table + Stage Performance grid (uses `/api/parent/word-stats` + `/stage-stats`) |
+| **Math** | `parent-math.js _ppMathSummary` | Math summary stats |
+| **Habits** | `parent-panel.js _ppHabits` | Streak detail (`parent-streak.js`) + Day-Off approvals |
+| **Goals** | `parent-goals.js _ppGoals` | Weekly goals progress cards + inline Edit Targets form (PIN-gated PUT) |
+| **Settings** | `parent-panel.js _ppSettings` | Task Settings + Academy Schedule + PIN/Account + Weekly Report (placeholder) |
+
+**Removed standalone tabs** (functionality merged into the 6 above): Overview/Activity/Word-stats/Stage-stats/Streak/XP/Day-off/Tasks/Schedule/Pin — all consolidated.
+
+Auxiliary modules still bundled but not direct tabs:
+- `parent-xp.js` — XP rules edit (loaded inside Settings if needed)
+- `parent-textbooks.js` + `parent-ingest.js` — Add Textbook flow (separate ingest UI)
+- `parent_report` router → `report_engine.py` (661 lines) — weekly email report (UI is "coming soon" placeholder in Settings)
 
 ---
 

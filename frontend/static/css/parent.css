@@ -268,6 +268,108 @@
 }
 .pp-streak-ms-row strong { color: var(--color-primary); }
 
+/* ── Home Tab: Hero ──────────────────────────────────────── */
+.pp-hero {
+  border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px;
+  border-left: 4px solid transparent;
+}
+.pp-hero--green { background: var(--math-light);   border-color: var(--math-primary);   }
+.pp-hero--amber { background: var(--arcade-light);  border-color: var(--arcade-primary);  }
+.pp-hero--red   { background: var(--review-light);  border-color: var(--review-primary);  }
+.pp-hero-msg { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+.pp-hero-stats { display: flex; gap: 16px; }
+.pp-hero-stat { display: flex; flex-direction: column; align-items: center; flex: 1; }
+.pp-hero-num   { font-size: 22px; font-weight: 800; color: var(--text-primary); line-height: 1; }
+.pp-hero-label { font-size: 11px; color: var(--text-secondary); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ── Home Tab: Today's Progress ──────────────────────────── */
+.pp-today-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.pp-today-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+}
+.pp-today-row--active { border-color: var(--english-soft); background: var(--english-light); }
+.pp-today-subject { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.pp-today-badge { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: var(--radius-full); }
+.pp-today-badge--done { background: var(--math-soft); color: var(--math-ink); }
+.pp-today-badge--none { background: var(--bg-surface); color: var(--text-hint); }
+
+/* ── Home Tab: Week Calendar ─────────────────────────────── */
+.pp-week-grid { display: flex; gap: 6px; margin-bottom: 16px; }
+.pp-week-cell {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 8px 4px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+}
+.pp-week-cell--active { background: var(--english-light); border-color: var(--english-soft); }
+.pp-week-day { font-size: 11px; color: var(--text-secondary); font-weight: 700; text-transform: uppercase; }
+.pp-week-dot {
+  width: 10px; height: 10px; border-radius: var(--radius-full);
+  background: var(--bg-surface); border: 1px solid var(--border-default);
+}
+.pp-week-dot--active { background: var(--english-primary); border-color: var(--english-primary); }
+.pp-week-xp { font-size: 11px; color: var(--text-secondary); font-weight: 600; }
+
+/* ── Home Tab: vs Last Week ──────────────────────────────── */
+.pp-compare-grid { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.pp-compare-row {
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+}
+.pp-compare-label { flex: 1; font-size: 13px; color: var(--text-secondary); }
+.pp-compare-val   { font-size: 14px; font-weight: 700; color: var(--text-primary); min-width: 36px; text-align: right; }
+.pp-trend { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-full); min-width: 56px; text-align: center; }
+.pp-trend--up   { background: var(--math-soft);   color: var(--math-ink);   }
+.pp-trend--down { background: var(--review-soft);  color: var(--review-ink); }
+.pp-trend--same { background: var(--bg-surface);   color: var(--text-hint);  }
+
+/* ── Home Tab: Alerts ────────────────────────────────────── */
+.pp-alert-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.pp-alert {
+  display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+  border-radius: var(--radius-md); font-size: 13px; font-weight: 600;
+}
+.pp-alert--warn { background: var(--arcade-light); color: var(--arcade-ink); border: 1px solid var(--arcade-soft); }
+.pp-alert--info { background: var(--english-light); color: var(--english-ink); border: 1px solid var(--english-soft); }
+
+/* ── Goals Tab ───────────────────────────────────────────── */
+.pp-goals-summary {
+  background: var(--math-light); color: var(--math-ink);
+  border-radius: var(--radius-md); padding: 10px 14px;
+  font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 12px;
+}
+.pp-goals-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.pp-goal-card {
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md); padding: 14px 16px;
+}
+.pp-goal-card--done { border-color: var(--math-soft); background: var(--math-light); }
+.pp-goal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.pp-goal-label { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+.pp-goal-val   { font-size: 13px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.pp-goal-track {
+  height: 8px; background: var(--bg-surface); border-radius: var(--radius-full);
+  overflow: hidden; margin-bottom: 6px;
+}
+.pp-goal-fill { height: 100%; background: var(--english-primary); border-radius: var(--radius-full); transition: width var(--transition-slow); }
+.pp-goal-fill--done { background: var(--math-primary); }
+.pp-goal-footer { display: flex; justify-content: flex-end; }
+.pp-goal-pct      { font-size: 12px; color: var(--text-secondary); }
+.pp-goal-achieved { font-size: 12px; font-weight: 700; color: var(--math-ink); }
+.pp-goal-edit-box {
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md); padding: 16px; margin-top: 12px;
+}
+.pp-goal-edit-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+
+/* ── Settings: Coming Soon placeholder ───────────────────── */
+.pp-coming-soon {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 32px 16px; color: var(--text-hint); text-align: center;
+}
+.pp-coming-soon p { font-size: 13px; margin: 0; }
+
 /* ── XP Settings tab ─────────────────────────────────────── */
 .pp-xp-hint {
   font-size: 12px; color: var(--text-secondary);

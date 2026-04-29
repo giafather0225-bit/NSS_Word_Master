@@ -19,6 +19,7 @@ cat \
   $JS/growth-theme.js \
   $JS/parent-panel.js \
   $JS/parent-overview.js \
+  $JS/parent-goals.js \
   $JS/parent-textbooks.js \
   $JS/parent-math.js \
   $JS/parent-streak.js \
