@@ -57,9 +57,18 @@ function switchView(view) {
   if (view === 'home') {
     renderHomeDashboard();
   } else if (view === 'math') {
+    // Math idle 진입: 사이드바 항상 열기
+    const _mathSb = document.getElementById('sidebar');
+    if (_mathSb) _mathSb.classList.remove('collapsed');
+    localStorage.removeItem('sb_collapsed');
     if (typeof loadMathGrades === 'function') loadMathGrades();
     if (typeof loadMathSidebarStatus === 'function') loadMathSidebarStatus();
     if (typeof lucide !== 'undefined') lucide.createIcons();
+  } else if (view === 'english') {
+    // English idle 진입: 사이드바 항상 열기
+    const _engSb = document.getElementById('sidebar');
+    if (_engSb) _engSb.classList.remove('collapsed');
+    localStorage.removeItem('sb_collapsed');
   } else if (view === 'diary') {
     if (typeof openDiarySection === 'function') openDiarySection('today');
   }

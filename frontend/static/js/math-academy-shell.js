@@ -57,9 +57,10 @@ function hideLessonStage() {
         stageCard.style.display = 'none';
     }
     if (mathIdle) mathIdle.style.display = '';
-    // Math EXIT: restore sidebar
+    // Math EXIT: restore sidebar + clear persisted state
     const _sb = document.getElementById('sidebar');
     if (_sb) _sb.classList.remove('collapsed');
+    localStorage.removeItem('sb_collapsed');
 }
 
 /**
