@@ -154,24 +154,31 @@ def _stage_problems(data: dict, stage: str) -> list:
     return []
 
 # @tag MATH @tag ACADEMY
+def _natural_key(name: str) -> list:
+    """Natural sort key — splits digit runs so "U2" sorts before "U10"."""
+    return [int(t) if t.isdigit() else t.lower() for t in re.split(r"(\d+)", name)]
+
+# @tag MATH @tag ACADEMY
 def _list_dirs(parent: Path) -> list[str]:
-    """List sorted subdirectory names under parent."""
+    """List subdirectory names under parent in natural order (U1, U2, ..., U10)."""
     if not parent.is_dir():
         return []
-    return sorted(
+    names = [
         d.name for d in parent.iterdir()
         if d.is_dir() and not d.name.startswith(".")
-    )
+    ]
+    return sorted(names, key=_natural_key)
 
 # @tag MATH @tag ACADEMY
 def _list_json_files(parent: Path) -> list[str]:
-    """List sorted JSON filenames (without .json) under parent."""
+    """List JSON filenames (without .json) in natural order (L1, L2, ..., L10)."""
     if not parent.is_dir():
         return []
-    return sorted(
+    names = [
         f.stem for f in parent.iterdir()
         if f.suffix == ".json" and not f.name.startswith(".")
-    )
+    ]
+    return sorted(names, key=_natural_key)
 
 # ── Endpoints ────────────────────────────────────────────────
 
