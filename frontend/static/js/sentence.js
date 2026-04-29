@@ -32,9 +32,10 @@ async function evaluateSentence(word, sentence) {
  * @tag SENTENCE AI
  */
 function formatStructuredFeedback(result) {
-    const grammarIcon = result.grammar.correct ? "[✓]" : "[!]";
-    const wordIcon    = result.wordUsage.correct ? "[✓]" : "[!]";
-    const stars       = "★".repeat(Math.min(5, Math.max(1, result.creativity.score || 1)));
+    const grammarIcon = result.grammar.correct ? "[OK]" : "[!]";
+    const wordIcon    = result.wordUsage.correct ? "[OK]" : "[!]";
+    const score       = Math.min(5, Math.max(1, result.creativity.score || 1));
+    const stars       = `[${score}/5]`;
     return grammarIcon + " Grammar: " + result.grammar.feedback + "\n"
          + wordIcon    + " Word Use: " + result.wordUsage.feedback + "\n"
          + stars       + " Creativity: " + result.creativity.feedback + "\n"
@@ -136,7 +137,7 @@ function renderSentenceScramble(el, item) {
         <div class="sm-scramble-bank" id="sm-scr-bank" aria-label="Word bank"></div>
         <div class="st-input-row">
             <button type="button" class="st-btn ghost" id="sm-scr-reset">Reset</button>
-            <button type="button" class="st-btn" id="sm-scr-check" disabled>Check ✓</button>
+            <button type="button" class="st-btn" id="sm-scr-check" disabled>Check</button>
         </div>
         <p id="sm-scr-feedback" class="sm-scr-feedback"></p>
         <p class="st-prog">${current} / ${total} &nbsp;·&nbsp; Phase 1 / 2</p>
@@ -237,7 +238,7 @@ function renderSentenceItem(el, item) {
         <div class="st-input-row" id="sm-input-row">
             <textarea class="sm-textarea" id="sentence-input" rows="3"
                       autocomplete="off" spellcheck="false" placeholder="Your sentence…"></textarea>
-            <button type="button" class="st-btn" id="sent-submit">Submit ✓</button>
+            <button type="button" class="st-btn" id="sent-submit">Submit</button>
         </div>
         <p class="st-prog">${current} / ${total}</p>
     `;
@@ -294,7 +295,7 @@ function renderSentenceItem(el, item) {
             } else {
                 feedbackText = evalResult.data;
                 hasError = /correct(ed|ion)|grammar|mistake|should be|try:/i.test(feedbackText)
-                         && !/perfect sentence|correct ✅|great!/i.test(feedbackText.slice(0, 80));
+                         && !/perfect sentence|correct|great!/i.test(feedbackText.slice(0, 80));
             }
 
             if (!hasError || attempt >= 2) {
@@ -307,7 +308,8 @@ function renderSentenceItem(el, item) {
                 const feedbackEl = el.querySelector("#sm-feedback-area");
                 if (feedbackEl) {
                     feedbackEl.innerHTML = "<div class='sm-feedback'>" + escapeHtml(feedbackText).replace(/\n/g, "<br>") + "</div>"
-                        + "<button type='button' class='sm-next-btn' id='sm-next'>Next Word ▶</button>";
+                        + "<button type='button' class='sm-next-btn' id='sm-next'>Next Word <i data-lucide=\"chevron-right\"></i></button>";
+                    if (window.lucide) lucide.createIcons();
                     const nextBtn = feedbackEl.querySelector("#sm-next");
                     if (nextBtn) nextBtn.addEventListener("click", () => {
                         stageIndex++;
@@ -326,14 +328,14 @@ function renderSentenceItem(el, item) {
                 }
                 if (inp) { inp.disabled = false; inp.value = ""; inp.focus(); }
                 si.disabled = false;
-                si.textContent = "Submit ✓ (2nd try)";
+                si.textContent = "Submit (2nd try)";
                 setStatus("Here's a hint — give it another try!");
             }
         } catch(e) {
             if (loadingEl) loadingEl.style.display = "none";
             if (inp) inp.disabled = false;
             si.disabled = false;
-            si.textContent = "Submit ✓";
+            si.textContent = "Submit";
             setStatus("Tutor is sleeping — try again!");
         }
     });
