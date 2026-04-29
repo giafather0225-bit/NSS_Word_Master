@@ -12,7 +12,7 @@
 ---
 
 ## Tech Stack
-- **Backend**: Python / FastAPI — `backend/main.py` mounts **47 routers** (`backend/routers/`, ~204 endpoints).
+- **Backend**: Python / FastAPI — `backend/main.py` mounts **45 routers** (`backend/routers/`, ~204 endpoints).
 - **Frontend**: HTML + CSS + Vanilla JS (no framework). Pre-built into `bundle-{a,b,c}.min.js` via `build.sh` (esbuild). Auto-rebuilt at server startup.
 - **Database**: SQLite WAL · ORM: SQLAlchemy. Models split by domain in `backend/models/`.
 - **AI**: Ollama (`gemma2:2b`, local, lazy-start via `services/ollama_manager.py`) → Gemini fallback (`GEMINI_API_KEY`).
@@ -96,7 +96,7 @@ NSS_Word_Master/
 
 ---
 
-## Backend Routers (47)
+## Backend Routers (45)
 
 > Order in `main.py` matters — `diary_photo` must be registered **before** `diary_sentences` so literal `/photo` wins over `/{subject}/{textbook}` matching.
 

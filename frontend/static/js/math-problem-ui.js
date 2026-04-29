@@ -21,6 +21,12 @@
 function _normalizeProblem(p) {
     if (!p) return p;
 
+    // 질문 텍스트 필드 정규화 — 일부 JSON은 question 대신 stem / prompt 사용.
+    // 비어 있으면 가장 먼저 발견되는 다른 필드를 question으로 채움.
+    if (!p.question) {
+        p.question = p.stem || p.prompt || p.text || '';
+    }
+
     // choices → options 변환 (앞의 "A) " 레이블 제거)
     if (!p.options && p.choices) {
         p.options = p.choices.map(function(c) {
