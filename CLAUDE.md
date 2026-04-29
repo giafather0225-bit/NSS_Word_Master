@@ -13,7 +13,7 @@
 
 ## Tech Stack
 - **Backend**: Python / FastAPI — `backend/main.py` mounts **45 routers** (`backend/routers/`, ~204 endpoints).
-- **Frontend**: HTML + CSS + Vanilla JS (no framework). Pre-built into `bundle-{a,b,c}.min.js` via `build.sh` (esbuild). Auto-rebuilt at server startup.
+- **Frontend**: HTML + CSS + Vanilla JS (no framework). 83 JS source + 57 CSS files. Pre-built into `bundle-{a,b,c}.min.js` via `build.sh` (esbuild). Auto-rebuilt at server startup.
 - **Database**: SQLite WAL · ORM: SQLAlchemy. Models split by domain in `backend/models/`.
 - **AI**: Ollama (`gemma2:2b`, local, lazy-start via `services/ollama_manager.py`) → Gemini fallback (`GEMINI_API_KEY`).
 - **TTS**: edge-tts → BytesIO in-memory (no temp files) — `backend/tts_edge.py`, `routers/tts.py`.
@@ -62,7 +62,7 @@ NSS_Word_Master/
 │   ├── sm2.py                   # SM-2 spaced repetition
 │   ├── voca_sync.py / file_storage.py / folder_watcher.py / utils.py
 │   ├── schemas_common.py        # Str80 / Str200 / Str500 etc.
-│   ├── models/                  # SQLAlchemy ORM (12 files, by domain)
+│   ├── models/                  # SQLAlchemy ORM (11 files, by domain)
 │   │   ├── _base.py  __init__.py
 │   │   ├── lessons.py  system.py  gamification.py  learning.py
 │   │   ├── diary.py    math.py   assistant.py
@@ -87,8 +87,8 @@ NSS_Word_Master/
 ├── frontend/
 │   ├── templates/               # child.html, parent_ingest.html
 │   └── static/
-│       ├── css/                 # ~50 files (theme.css = single source of truth)
-│       └── js/                  # ~80 files + bundle-a/b/c.min.js
+│       ├── css/                 # 57 files (theme.css = single source of truth)
+│       └── js/                  # 83 source files + bundle-a/b/c.min.js
 ├── tests/                       # 14 test files (pytest)
 │   ├── conftest.py
 │   ├── test_ai_service.py  test_file_storage.py  test_manual_api.py
@@ -198,7 +198,7 @@ NSS_Word_Master/
 - `child.html` — main learner shell (loads ~50 CSS files + 3 bundles)
 - `parent_ingest.html` — parent OCR upload UI
 
-### JS Bundles (`build.sh` → esbuild minify, ~80 source files)
+### JS Bundles (`build.sh` → esbuild minify, 83 source files)
 - **bundle-a.min.js** — feature modules (preview, wordmatch, fillblank, spelling, sentence, home, growth-theme, parent-*, reward-shop, diary*, free-writing, calendar, daily-words, ckla*, child + child-*, sentence_ai, collocation, finaltest, unittest, review)
 - **bundle-b.min.js** — math modules (depends on KaTeX CDN — manipulatives, 3read, problem-types/ui, learn-visuals/cards, academy-ui/shell/feedback/main, review, fluency, placement, daily, kangaroo*, glossary, navigation)
 - **bundle-c.min.js** — word-manager + arcade (sfx, word-invaders, definition-match, spell-rush, crossword, math-invaders, sudoku, make24)
@@ -218,7 +218,7 @@ NSS_Word_Master/
 | `diary-{home,write,entry,calendar}.js` + `diary.js` | Diary section split |
 | `math-academy{,-shell,-ui,-feedback}.js` | Math academy split |
 
-### CSS files (~50)
+### CSS files (57)
 - `theme.css` — global tokens (single source of truth, 449 lines)
 - Layout: `main-shell`, `main-layout`, `main-stage`, `main-topbar`, `main-idle`, `main-responsive`, `base`, `layout`, `components`, `utilities`, `legacy-app`
 - Stage CSS: `preview`, `wordmatch`, `fillblank`, `spelling`, `sentence`, `finaltest`, `unittest`, `review`, `word-manager`
@@ -477,7 +477,7 @@ Sections (split across `parent-*.js` modules):
 - JS: `math-academy.js` + `math-academy-{shell,ui,feedback}.js` + `math-manipulatives{,-2}.js` + `math-3read.js` + `math-learn-{cards,visuals}.js` + `math-problem-{types,ui}.js` + `math-katex-utils.js`
 
 ### Math Kangaroo
-- 100+ sets: IKMC 2012-2023, KSF (Lebanon, India), USA 2003-2025
+- 103 sets in `backend/data/math/kangaroo/`: IKMC 2012-2023, KSF (Lebanon, India), USA 2003-2025
 - Levels: Pre-Ecolier (1-2), Ecolier (3-4), Benjamin (5-6), Cadet, Junior, Student
 - Modes: Practice (instant grade) / Test (timer + final grade)
 - XP: complete +5, ≥80% +5, perfect +10
