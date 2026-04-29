@@ -679,7 +679,19 @@ function addWordVault(word) {
  * Show the idle card, hide the stage card.
  * @tag NAVIGATION
  */
+
+// ── English EXIT ────────────────────────────────────────────────────────────
+function exitEnglishLesson() {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (typeof sessionActive !== 'undefined') { window.sessionActive = false; }
+  if (typeof showIdleCard === 'function') showIdleCard();
+  const hdr = document.getElementById('english-lesson-header');
+  if (hdr) hdr.remove();
+}
 function showIdleCard() {
+  const _engHdr = document.getElementById('english-lesson-header');
+  if (_engHdr) _engHdr.remove();
+
     const iw = $("idle-wrapper");
     const sc = $("stage-card");
     if (iw) iw.classList.remove("hidden");

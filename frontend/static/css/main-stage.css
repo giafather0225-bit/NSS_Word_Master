@@ -610,3 +610,41 @@ body[data-view="math"]    .stage-area { background: var(--math-light); }
     border: 1px solid var(--border-default);
 }
 .exam-menu-btn:hover { background: var(--bg-card); transform: translateY(-1px); }
+
+/* ── English lesson header & EXIT button ── */
+.english-lesson-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--english-soft, #e8f4fd);
+  border-bottom: 1px solid var(--english-border, #b3d9f5);
+  border-radius: 8px 8px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.eng-lh-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--english-dark, #1a5f8a);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 70%;
+}
+.eng-exit-btn {
+  flex-shrink: 0;
+  padding: 5px 14px;
+  border: none;
+  border-radius: 6px;
+  background: var(--english-accent, #2196f3);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.eng-exit-btn:hover {
+  background: var(--english-dark, #1a5f8a);
+}

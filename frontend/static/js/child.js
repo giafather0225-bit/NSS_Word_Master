@@ -437,6 +437,30 @@ async function startLessonAt(stageKey) {
     const lesson = lessonSelected();
 
     showStageCard();
+  // ── 영어 레슨 EXIT 버튼 헤더 주입 ──────────────────────────────────────
+  (function _injectEnglishHeader() {
+    const existing = document.getElementById('english-lesson-header');
+    if (existing) existing.remove();
+    const stageCard = document.getElementById('stage-card');
+    if (!stageCard) return;
+    const hdr = document.createElement('div');
+    hdr.id = 'english-lesson-header';
+    hdr.className = 'english-lesson-hdr';
+    const lessonLabel = (typeof selectedLesson !== 'undefined' && selectedLesson && selectedLesson.title)
+      ? selectedLesson.title
+      : 'Lesson';
+    hdr.innerHTML =
+      '<span class="eng-lh-title">' +
+      (typeof escapeHtml === 'function' ? escapeHtml(lessonLabel) : lessonLabel) +
+      '</span>' +
+      '<button id="eng-lh-exit-btn" class="eng-exit-btn">✕ Exit</button>';
+    stageCard.insertBefore(hdr, stageCard.firstChild);
+    document.getElementById('eng-lh-exit-btn').addEventListener('click', function() {
+      if (typeof exitEnglishLesson === 'function') exitEnglishLesson();
+      else if (typeof switchView === 'function') switchView('home');
+    });
+  })();
+
     const stageEl = $("stage");
     if (stageEl) {
         stageEl.innerHTML = `<p class="st-h1">Loading</p><p class="st-sub">${escapeHtml(lesson)}</p>`;
