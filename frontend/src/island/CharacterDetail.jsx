@@ -230,18 +230,24 @@ function _cdLegendSection(prog) {
 /** @tag SHOP */
 async function _cdFeed(progId) {
     try {
+        const inv = await apiFetchJSON('/api/island/inventory?category=food');
+        const food = (inv.items || []).find(i => i.quantity > 0);
+        if (!food) {
+            _showShopToast('No food in inventory. Visit the shop!', true);
+            return;
+        }
         const res = await fetch('/api/island/care/feed', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ character_progress_id: progId }),
+            body: JSON.stringify({ character_progress_id: progId, inventory_id: food.id }),
         });
         if (res.ok) {
-            _showShopToast('Fed! Hunger restored.');
+            _showShopToast('Fed! XP gained.');
             _cdBounce();
             openCharacterDetail(progId, _cdZone);
         } else {
             const err = await res.json().catch(() => ({}));
-            _showShopToast(err.detail || 'No food in inventory.', true);
+            _showShopToast(err.detail || 'Feed failed.', true);
         }
     } catch (_) { _showShopToast('Feed failed.', true); }
 }

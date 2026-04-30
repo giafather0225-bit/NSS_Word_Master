@@ -100,8 +100,9 @@
     gap: 10px;
     font-size: var(--font-size-sm);
     color: var(--text-hint);
-    cursor: default;
+    cursor: pointer;
 }
+.izd-char-visual--empty:hover { opacity: 0.85; background: rgba(255,255,255,0.45); }
 .izd-char-visual--empty i { width: 32px; height: 32px; color: var(--text-hint); }
 
 .izd-char-avatar {
@@ -786,3 +787,78 @@
     65%  { transform: translateY(-3px); }
     100% { transform: translateY(0); }
 }
+
+/* ── Adopt flow panel ───────────────────────────────────────────── */
+
+.izd-adopt-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px 16px;
+    height: 100%;
+}
+
+.izd-adopt-title {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.izd-adopt-hint {
+    font-size: var(--font-size-xs);
+    color: var(--text-hint);
+    margin-top: -8px;
+}
+
+.izd-adopt-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+}
+
+.izd-adopt-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+.izd-adopt-card:hover {
+    border-color: var(--rewards-primary);
+    transform: translateY(-1px);
+}
+
+.izd-adopt-emoji { font-size: 28px; line-height: 1; }
+
+.izd-adopt-name {
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+}
+
+.izd-adopt-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.izd-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    padding: 4px 0;
+}
+.izd-back-link:hover { color: var(--text-primary); }
+.izd-back-link i { width: 14px; height: 14px; }

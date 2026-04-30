@@ -43,14 +43,24 @@ function _closeZoneDetail() {
 /** @tag SHOP */
 async function _zdLoad(zone, el) {
     try {
-        const [activeData, silData] = await Promise.all([
+        const [activeData, completedData, silData] = await Promise.all([
             apiFetchJSON(`/api/island/character/active?zone=${zone}`),
-            apiFetchJSON(`/api/island/character/silhouette?zone=${zone}`),
+            apiFetchJSON('/api/island/character/completed'),
+            apiFetchJSON('/api/island/character/silhouette'),
         ]);
-        _zdProg      = activeData.active      || null;
-        _zdCompleted = activeData.completed   || [];
-        _zdLocked    = silData.locked         || [];
-        (activeData.catalog || []).forEach(c => { _zdCatalog[c.id] = c; });
+        _zdProg      = activeData.characters?.[0] || null;
+        _zdCompleted = (completedData.characters || []).filter(c => c.zone === zone);
+
+        // Build catalog from silhouette (character_id → {name, zone, adoptable, …})
+        _zdCatalog = {};
+        (silData.characters || []).forEach(c => { _zdCatalog[c.character_id] = c; });
+
+        // Locked = in this zone, not adoptable, not currently active or completed
+        const activeIds = new Set((activeData.characters || []).map(c => c.character_id));
+        const doneIds   = new Set(_zdCompleted.map(c => c.character_id));
+        _zdLocked = (silData.characters || []).filter(c =>
+            c.zone === zone && !c.adoptable && !activeIds.has(c.character_id) && !doneIds.has(c.character_id)
+        );
 
         _zdCareData = null;
         if (_zdProg) {
@@ -117,9 +127,10 @@ function _zdRender(el) {
 /** @tag SHOP */
 function _zdCharVisual(prog) {
     if (!prog) return `
-        <div class="izd-char-visual izd-char-visual--empty">
+        <div class="izd-char-visual izd-char-visual--empty"
+             onclick="_zdAdopt()" role="button" tabindex="0" title="Adopt a companion">
             <i data-lucide="plus-circle"></i>
-            <span>No active character</span>
+            <span>Adopt a companion</span>
         </div>`;
 
     const cat   = _zdCatalog[prog.character_id] || {};
@@ -250,17 +261,23 @@ function _zdGauge(label, val, cls) {
 /** @tag SHOP */
 async function _zdFeed(progId) {
     try {
+        const inv = await apiFetchJSON('/api/island/inventory?category=food');
+        const food = (inv.items || []).find(i => i.quantity > 0);
+        if (!food) {
+            _showShopToast('No food in inventory. Visit the shop!', true);
+            return;
+        }
         const res = await fetch('/api/island/care/feed', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ character_progress_id: progId }),
+            body: JSON.stringify({ character_progress_id: progId, inventory_id: food.id }),
         });
         if (res.ok) {
-            _showShopToast('Fed! Hunger restored.');
+            _showShopToast('Fed! XP gained.');
             openZoneDetail(_zdZone);
         } else {
             const err = await res.json().catch(() => ({}));
-            _showShopToast(err.detail || 'No food in inventory.', true);
+            _showShopToast(err.detail || 'Feed failed.', true);
         }
     } catch (_) { _showShopToast('Feed failed.', true); }
 }
@@ -272,6 +289,82 @@ function _zdOpenCharDetail(progId) { openCharacterDetail(progId, _zdZone); }
 function _zdOpenEvolution(progId) {
     const prog = _zdProg, cat = _zdCatalog[prog?.character_id] || {};
     openEvolutionModal(progId, prog?.stage, prog?.nickname || cat.name || 'Character');
+}
+
+// ─── Adopt flow ──────────────────────────────────────────────────
+
+/** Show adoptable character picker for this zone. @tag SHOP */
+function _zdAdopt() {
+    const adoptable = Object.values(_zdCatalog).filter(c => c.zone === _zdZone && c.adoptable);
+    if (!adoptable.length) {
+        _showShopToast('Complete a previous zone to unlock characters here.', true);
+        return;
+    }
+    const meta  = _ZONE_META[_zdZone] || {};
+    const cards = adoptable.map(c => `
+        <div class="izd-adopt-card" onclick="_zdAdoptStart(${c.character_id})"
+             role="button" tabindex="0">
+            <div class="izd-adopt-emoji">${meta.icon || '🌟'}</div>
+            <div class="izd-adopt-name">${escapeHtml(c.name)}</div>
+        </div>`).join('');
+    const left = document.querySelector('#izd-screen .izd-left');
+    if (!left) return;
+    left.innerHTML = `
+        <div class="izd-adopt-panel">
+            <div class="izd-adopt-title">Choose your companion</div>
+            <div class="izd-adopt-grid">${cards}</div>
+            <button class="izd-back-link" onclick="openZoneDetail('${_zdZone}')">
+                <i data-lucide="x"></i> Cancel
+            </button>
+        </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+/** Show nickname input for chosen character. @tag SHOP */
+function _zdAdoptStart(charId) {
+    const cat  = _zdCatalog[charId] || {};
+    const left = document.querySelector('#izd-screen .izd-left');
+    if (!left) return;
+    left.innerHTML = `
+        <div class="izd-adopt-panel">
+            <div class="izd-adopt-title">Name your companion</div>
+            <div class="izd-adopt-hint">Max 8 characters</div>
+            <input id="izd-adopt-input" class="iob-name-input"
+                   type="text" maxlength="8"
+                   placeholder="${escapeHtml(cat.name || 'Friend')}"
+                   autocomplete="off" spellcheck="false" />
+            <div class="izd-adopt-actions">
+                <button class="izd-btn izd-btn--feed" onclick="_zdAdoptConfirm(${charId})">
+                    <i data-lucide="check"></i> Adopt
+                </button>
+                <button class="izd-back-link" onclick="_zdAdopt()">
+                    <i data-lucide="arrow-left"></i> Back
+                </button>
+            </div>
+        </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+    document.getElementById('izd-adopt-input')?.focus();
+}
+
+/** POST adopt and reload zone detail. @tag SHOP */
+async function _zdAdoptConfirm(charId) {
+    const input    = document.getElementById('izd-adopt-input');
+    const cat      = _zdCatalog[charId] || {};
+    const nickname = (input?.value?.trim() || cat.name || 'Friend').substring(0, 8);
+    const btn      = document.querySelector('.izd-adopt-panel .izd-btn--feed');
+    if (btn) btn.disabled = true;
+    try {
+        await apiFetchJSON('/api/island/character/adopt', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ character_id: charId, nickname }),
+        });
+        _showShopToast(`${escapeHtml(nickname)} joined your island!`);
+        openZoneDetail(_zdZone);
+    } catch (_) {
+        if (btn) btn.disabled = false;
+        _showShopToast('Could not adopt. Please try again.', true);
+    }
 }
 
 /** @tag SHOP */

@@ -35,7 +35,7 @@ async function openIslandMain() {
     // Check onboarding first
     try {
         const ob = await apiFetchJSON('/api/island/onboarding/status');
-        if (ob.island_initialized === false) {
+        if (ob.initialized === false) {
             if (typeof openIslandOnboarding === 'function') openIslandOnboarding();
             return;
         }
