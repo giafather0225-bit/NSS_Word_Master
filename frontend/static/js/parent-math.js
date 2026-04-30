@@ -75,8 +75,8 @@ function _ppMathCards(data) {
 /** Weak concept list (top 5 by wrong count). @tag PARENT MATH */
 function _ppMathWeakAreas(weak) {
     if (!weak.length) {
-        return `${_ppMathTitle("alert-triangle", "Weak Concepts")}
-            <p style="color:var(--text-secondary);font-size:13px">No weak areas yet.</p>`;
+        return _ppMathTitle("alert-triangle", "Weak Concepts")
+            + _ppEmpty("check-circle", "No weak areas yet.", "Keep practicing to surface lessons that need review.");
     }
     const rows = weak.map(w => `
         <tr>
@@ -96,8 +96,8 @@ function _ppMathWeakAreas(weak) {
 /** Fact fluency list: one card per fact set with phase + accuracy chip. @tag PARENT MATH */
 function _ppMathFluency(fluency) {
     if (!fluency.length) {
-        return `${_ppMathTitle("zap", "Fact Fluency")}
-            <p style="color:var(--text-secondary);font-size:13px">No fluency rounds yet.</p>`;
+        return _ppMathTitle("zap", "Fact Fluency")
+            + _ppEmpty("zap-off", "No fluency rounds yet.", "Run a Math Fact Fluency round to populate this section.");
     }
     const cards = fluency.map(f => {
         const acc = Math.round(f.accuracy_pct || 0);

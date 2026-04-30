@@ -122,6 +122,21 @@ const PP_TABS = [
     ["settings", "Settings"],
 ];
 
+/**
+ * Standard empty-state markup used across all parent tabs.
+ * Pair the call site with lucide.createIcons() afterwards.
+ * @tag PARENT
+ */
+function _ppEmpty(icon, title, hint) {
+    return `
+        <div class="pp-empty">
+            <i data-lucide="${icon || "inbox"}" class="pp-empty-icon"></i>
+            <p class="pp-empty-title">${title || "Nothing here yet."}</p>
+            ${hint ? `<p class="pp-empty-hint">${hint}</p>` : ""}
+        </div>`;
+}
+window._ppEmpty = _ppEmpty;
+
 /** @tag PARENT */
 function _ppRenderShell() {
     const el = document.getElementById("parent-overlay");
@@ -186,7 +201,7 @@ async function _ppEnglish(body) {
             ? words.map(w =>
                 `<tr><td><strong>${escapeHtml(w.word)}</strong></td><td>${escapeHtml(w.lesson)}</td><td style="color:var(--color-error);text-align:right">${w.wrong_count}</td><td style="text-align:right">${Math.round(w.accuracy*100)}%</td></tr>`
               ).join("")
-            : `<tr><td colspan="4" style="text-align:center;color:var(--text-secondary);padding:20px">No data yet.</td></tr>`;
+            : `<tr><td colspan="4">${_ppEmpty("file-search-2", "No missed words tracked yet.", "Words start showing up after the child fails them in Word Match or Spelling.")}</td></tr>`;
 
         const STAGE_META = {
             preview:    { name: "Preview",    icon: "eye"           },
@@ -234,7 +249,7 @@ async function _ppEnglish(body) {
                 </div>
                 <div>
                     <div class="pp-section-title" style="margin-top:0">Stage Performance</div>
-                    <div class="pp-stage-list">${stageList || `<p style="color:var(--text-secondary);font-size:13px">No stages completed yet.</p>`}</div>
+                    <div class="pp-stage-list">${stageList || _ppEmpty("layers", "No stages completed yet.", "Each finished stage feeds these accuracy + time stats.")}</div>
                 </div>
             </div>`;
 
@@ -314,7 +329,9 @@ async function _ppDayOff(body) {
     try {
         const data = await apiFetchJSON("/api/parent/day-off-requests");
         if (!data.requests.length) {
-            body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:20px">No requests yet.</p>`; return;
+            body.innerHTML = _ppEmpty("calendar-check", "No day-off requests.", "Pending requests show up here for your approval.");
+            if (typeof lucide !== "undefined") lucide.createIcons();
+            return;
         }
         body.innerHTML = `<div class="pp-dayoff-list">${data.requests.map(r => {
             const btns = r.status === "pending"

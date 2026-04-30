@@ -463,6 +463,15 @@
 }
 .pp-coming-soon p { font-size: 13px; margin: 0; }
 
+/* ── Generic empty state ─────────────────────────────────── */
+.pp-empty {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; padding: 28px 16px; text-align: center;
+}
+.pp-empty-icon { width: 32px; height: 32px; color: var(--text-hint); opacity: 0.45; }
+.pp-empty-title { margin: 0; font-size: 14px; font-weight: 600; color: var(--text-secondary); }
+.pp-empty-hint  { margin: 0; font-size: 12px; color: var(--text-hint); }
+
 /* ── XP Settings tab ─────────────────────────────────────── */
 .pp-xp-hint {
   font-size: 12px; color: var(--text-secondary);

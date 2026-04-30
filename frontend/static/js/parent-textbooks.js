@@ -12,7 +12,8 @@ async function _ppTextbooks(body) {
         const tbs  = (data.textbooks || []).filter(tb => tb.name.toLowerCase() !== 'my_words');
 
         if (!tbs.length) {
-            body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px">No textbooks found.</p>`;
+            body.innerHTML = _ppEmpty("book-marked", "No textbooks found.", "Use Add Textbook to import a new one.");
+            if (typeof lucide !== "undefined") lucide.createIcons();
             return;
         }
 

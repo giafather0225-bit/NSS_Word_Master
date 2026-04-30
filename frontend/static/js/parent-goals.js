@@ -18,13 +18,14 @@ async function _ppGoals(body) {
 
         const cards = goals.length
             ? goals.map(g => _ppGoalCard(g)).join("")
-            : `<p style="text-align:center;color:var(--text-secondary);padding:24px">No active goals set yet.</p>`;
+            : _ppEmpty("target", "No active goals set yet.", "Click Edit Targets to add weekly goals.");
 
         body.innerHTML = `
             ${banner}
             <div class="pp-goals-grid">${cards}</div>
             <button class="pp-btn secondary" style="margin-top:8px" onclick="_ppGoalsEditMode()">Edit Targets</button>
             <div id="pp-goals-edit-area"></div>`;
+        if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
         console.error("[parent-goals] load failed:", err);
         body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load goals.</p>`;
