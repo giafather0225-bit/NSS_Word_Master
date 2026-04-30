@@ -242,7 +242,7 @@ function showKangarooPdfResult(data, setInfo) {
     const setId = (setInfo && setInfo.set_id) || data.set_id;
     document.getElementById('kang-pp-retry').addEventListener('click', () => {
         if (typeof startKangarooPdfExam === 'function' && setId) {
-            startKangarooPdfExam(setId, 'test');
+            startKangarooPdfExam(setId);
         }
     });
     document.getElementById('kang-pp-back').addEventListener('click', () => {

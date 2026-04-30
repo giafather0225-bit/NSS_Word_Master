@@ -189,7 +189,7 @@ async function _ishBuy(itemId) {
         const res = await fetch('/api/island/shop/buy', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ item_id: itemId }),
+            body: JSON.stringify({ shop_item_id: itemId }),
         });
         if (res.ok) {
             const d = await res.json();
@@ -259,7 +259,7 @@ async function _ishExchange() {
         const res = await fetch('/api/island/lumi/exchange', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ amount: _ishExchAmt }),
+            body: JSON.stringify({ lumi_amount: _ishExchAmt }),
         });
         if (res.ok) {
             const d = await res.json();

@@ -368,7 +368,7 @@ async function _ppSaveIslandToggle(checked) {
         const res = await window._ppFetch("/api/island/config/update", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ island_on: checked }),
+            body: JSON.stringify({ key: "island_on", value: checked ? "true" : "false" }),
         });
         if (res.ok) {
             window.toast && window.toast(`Island ${checked ? "enabled" : "disabled"}.`, "success");

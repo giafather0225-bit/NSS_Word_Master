@@ -6,8 +6,7 @@ Dependencies: models (MathKangarooProgress, XPLog), services/streak_engine
 API:
   GET  /api/math/kangaroo/sets
   GET  /api/math/kangaroo/set/{set_id}
-  POST /api/math/kangaroo/submit-answer    (Practice mode — single question)
-  POST /api/math/kangaroo/submit           (Test mode — entire set, weighted)
+  POST /api/math/kangaroo/submit           (Entire set, weighted scoring)
 """
 
 from __future__ import annotations
@@ -316,73 +315,7 @@ def kangaroo_set(set_id: str) -> dict[str, Any]:
     }
 
 
-# ── POST /submit-answer (Practice mode) ──────────────────────
-
-class KangarooAnswerIn(BaseModel):
-    set_id: str
-    question_id: str | None = None
-    question_number: int | None = None
-    answer: str
-
-
-def _points_for_question_label(data: dict[str, Any], label: str) -> int:
-    for sec in _past_paper_sections(data):
-        if label in sec["questions"]:
-            return sec["points"]
-    return 0
-
-
-# @tag MATH @tag KANGAROO
-@router.post("/api/math/kangaroo/submit-answer")
-def kangaroo_submit_answer(req: KangarooAnswerIn) -> dict[str, Any]:
-    """Grade a single question (Practice mode). Returns correctness + solution."""
-    data = _load_set(req.set_id)
-
-    if _is_past_paper(data):
-        # Accept label from question_id (preferred, supports "A1") or
-        # question_number (legacy integer).
-        label: str | None = None
-        if req.question_id is not None:
-            label = str(req.question_id).strip()
-        elif req.question_number is not None:
-            label = str(req.question_number)
-        if not label:
-            raise HTTPException(status_code=400, detail="question_id required")
-        if data.get("answers_pending"):
-            raise HTTPException(status_code=409, detail="Answer key pending for this set")
-        correct = str((data.get("answers") or {}).get(label, "")).strip().upper()
-        given = str(req.answer or "").strip().upper()
-        is_correct = bool(correct) and given == correct
-        pts = _points_for_question_label(data, label)
-        return {
-            "is_correct": is_correct,
-            "correct_answer": correct,
-            "solution": str((data.get("solutions") or {}).get(label, "")),
-            "points_earned": pts if is_correct else 0,
-            "points": pts,
-        }
-
-    target: dict[str, Any] | None = None
-    target_points = 0
-    for _, pts, q in _iter_questions(data):
-        if str(q.get("id")) == req.question_id:
-            target = q
-            target_points = pts
-            break
-    if not target:
-        raise HTTPException(status_code=404, detail="Question not found in set")
-    correct = str(target.get("answer", "")).strip().upper()
-    given = str(req.answer or "").strip().upper()
-    is_correct = bool(correct) and given == correct
-    return {
-        "is_correct": is_correct,
-        "correct_answer": correct,
-        "solution": target.get("solution", ""),
-        "points_earned": target_points if is_correct else 0,
-    }
-
-
-# ── POST /submit (Test mode) ─────────────────────────────────
+# ── POST /submit ─────────────────────────────────────────────
 
 class KangarooAnswerItem(BaseModel):
     question_id: str | None = None

@@ -41,6 +41,8 @@ async function openIslandMain() {
         }
     } catch (_) { /* proceed even if check fails */ }
 
+    const obEl = document.getElementById('isl-onboarding');
+    if (obEl) { obEl.classList.add('hidden'); obEl.innerHTML = ''; }
     el.classList.remove('hidden');
     _islandZoom = 1.0;
     _renderIslandLoading();

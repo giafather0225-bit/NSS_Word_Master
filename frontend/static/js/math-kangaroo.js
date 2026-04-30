@@ -108,15 +108,14 @@ function _kangRenderGrid() {
 
     grid.innerHTML = filtered.map(s => _kangCardHtml(s)).join('');
 
-    grid.querySelectorAll('[data-action]').forEach(btn => {
+    grid.querySelectorAll('[data-action="start"]').forEach(btn => {
         btn.addEventListener('click', () => {
             if (btn.disabled) return;
             const setId = btn.dataset.setId;
-            const mode = btn.dataset.action;
             if (typeof startKangarooPdfExam === 'function') {
-                startKangarooPdfExam(setId, mode);
+                startKangarooPdfExam(setId);
             } else if (typeof startKangarooExam === 'function') {
-                startKangarooExam(setId, mode);
+                startKangarooExam(setId);
             }
         });
     });
@@ -157,10 +156,8 @@ function _kangCardHtml(s) {
         : '';
 
     const actions = `
-        <button class="kang-btn kang-btn-secondary" data-action="practice"
-            data-set-id="${_mathEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Practice</button>
-        <button class="kang-btn kang-btn-primary" data-action="test"
-            data-set-id="${_mathEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Test</button>
+        <button class="kang-btn kang-btn-primary" data-action="start"
+            data-set-id="${_mathEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Start</button>
     `;
 
     return `
