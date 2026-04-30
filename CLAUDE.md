@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-04-29 — full rewrite based on actual codebase state
+> Last updated: 2026-04-30 — Parent Dashboard 6-tab redesign + Settings 4-section + Weekly Report wiring + Home today_by_subject + math UNIQUE migration 017
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI 학습 앱 — English vocabulary, Math Academy, Diary, Arcade, US Academy, CKLA
@@ -30,7 +30,7 @@
 2. 파일당 최대 ~300줄. 초과 시 모듈 분리 (예: `child.js` → `child-{calendar,exam,keyboard,text}.js`).
 3. CSS: `theme.css` 변수만 사용. 컴포넌트 CSS에 hex 직접 사용 금지.
 4. 모든 API: 적절한 에러 핸들링 + HTTP 상태코드. `RequestValidationError` 는 `main.py` 에서 child-friendly 422 JSON 으로 자동 변환됨.
-5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~016).
+5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~017).
 6. Python: type hints + docstrings. JS: JSDoc `@tag` comments.
 7. async/await 일관성. N+1 쿼리 금지.
 8. 모든 사용자 입력 sanitize. SQL injection / XSS / prompt injection 방어. Pydantic 길이 제한 = `schemas_common.py` (Str80/Str200/Str500).
@@ -164,7 +164,7 @@ NSS_Word_Master/
 | Router | Purpose |
 |---|---|
 | `parent` | Overview, summary, activity, task-settings, config, PIN verify |
-| `parent_stats` | Word stats, stage stats |
+| `parent_stats` | Overview (`today_by_subject`), summary, activity, word stats, stage stats |
 | `parent_math` | Math summary |
 | `parent_streak` | Streak detail + recalc + rule |
 | `parent_xp` | XP rules edit/reset, XP report |
@@ -450,23 +450,38 @@ Default items: YouTube 30min (300), Roblox 30min (300), Family Movie (500), Dinn
 
 Access: Home banner "···" → 4-digit PIN (`services/pin_guard.py`).
 
-**6-tab structure** (redesigned 2026-04-29) — `parent-panel.js` shell routes to one renderer per tab:
+**Layout**: `#pp-body` is centered with `max-width: 1080px` and `padding: 24px 32px`. The body uses a `.pp-grid-2` utility (1fr 1fr, collapses to 1-col under 720px) for two-column rows. All emoji icons have been replaced with Lucide.
+
+**6-tab structure** (redesigned 2026-04-29 → 30) — `parent-panel.js` shell routes to one renderer per tab:
 
 | Tab | Renderer | Content |
 |---|---|---|
-| **Home** | `parent-overview.js _ppHome` | Hero status banner (green/amber/red) + Today's Progress (English/Math/Diary rows) + 7-day Week Calendar + vs Last Week (words/XP/days with ↑↓→ trends) + Alerts (pending day-offs, streak-at-risk) |
-| **English** | `parent-panel.js _ppEnglish` | Most Missed Words table + Stage Performance grid (uses `/api/parent/word-stats` + `/stage-stats`) |
-| **Math** | `parent-math.js _ppMathSummary` | Math summary stats |
-| **Habits** | `parent-panel.js _ppHabits` | Streak detail (`parent-streak.js`) + Day-Off approvals |
-| **Goals** | `parent-goals.js _ppGoals` | Weekly goals progress cards + inline Edit Targets form (PIN-gated PUT) |
-| **Settings** | `parent-panel.js _ppSettings` | Task Settings + Academy Schedule + PIN/Account + Weekly Report (placeholder) |
+| **Home** | `parent-overview.js _ppHome` | Hero (status icon + 3 stats, color-coded green/amber/red) → Week Calendar (7 cells) → 2-col row: Today's Progress (per-subject XP from `today_by_subject`) \| vs Last Week (words/XP/days with ↑↓→ trends) → Alerts (pending day-offs, streak-at-risk, **goals lagging** when Thu-Sun & active goal pct < 50%). |
+| **English** | `parent-panel.js _ppEnglish` | Top 3-stat summary (Tracked Words / Overall Accuracy / Stage Completions) → 2-col: Most Missed Words (sticky-header table-wrap) \| Stage Performance (Lucide icon per stage + accuracy chip green/amber/red). |
+| **Math** | `parent-math.js _ppMathSummary` | 4-stat grid → 2-col: Weak Concepts (humanized lesson names) \| Fact Fluency (Phase pill + accuracy chip) → Daily Challenge bar chart (7d) → Kangaroo Sets table. Lucide section-title icons throughout (`calculator`/`alert-triangle`/`zap`/`calendar-days`/`award`). |
+| **Habits** | `parent-panel.js _ppHabits` | Streak detail (`parent-streak.js`: 3 stat cards + Streak Rule editor + Last 30 Days grid 15-col on desktop) + Day-Off approvals. Subjects render with Lucide (`book-open`/`calculator`/`gamepad-2`); calendar cells use `flame`/`umbrella`/`x`. |
+| **Goals** | `parent-goals.js _ppGoals` | Summary banner + 2x2 progress card grid + inline Edit Targets form (PIN-gated PUT). |
+| **Settings** | `parent-panel.js _ppSettings` | 4 sections: Task Settings (full, 2-col task list) → 2-col row: Academy Schedule \| Account (PIN + parent email) → Weekly Report (`parent-report.js` — enable toggle, day-of-week select, child-name, Save Schedule / Send Now / Preview Data; gracefully degraded when PIN not yet verified) → Textbooks (`parent-textbooks.js` accordion + Add Textbook entry point linking to `/ingest`). |
 
-**Removed standalone tabs** (functionality merged into the 6 above): Overview/Activity/Word-stats/Stage-stats/Streak/XP/Day-off/Tasks/Schedule/Pin — all consolidated.
+**Backend feed** (key endpoints):
+- `/api/parent/overview` returns `today_by_subject: {english,math,diary}→{xp,count}` (XPLog action prefix → subject) plus `recent_logs[].subject` and the original totals. Used by Home.
+- `/api/parent/summary`, `/api/parent/activity?days=14`, `/api/parent/word-stats`, `/api/parent/stage-stats`, `/api/parent/math-summary`, `/api/parent/streak`, `/api/parent/day-off-requests`, `/api/goals/weekly` — see `API_INDEX.md`.
+- `/api/parent/report/{schedule,send,preview}` — Weekly Report (PIN-gated).
+
+**Removed standalone tabs** (functionality merged into the 6 above): Overview/Activity/Word-stats/Stage-stats/Streak/XP/Day-off/Tasks/Schedule/Pin/Textbooks — all consolidated.
 
 Auxiliary modules still bundled but not direct tabs:
-- `parent-xp.js` — XP rules edit (loaded inside Settings if needed)
-- `parent-textbooks.js` + `parent-ingest.js` — Add Textbook flow (separate ingest UI)
-- `parent_report` router → `report_engine.py` (661 lines) — weekly email report (UI is "coming soon" placeholder in Settings)
+- `parent-xp.js` — XP rules edit (separate flow; can be invoked from Settings when surfaced).
+- `parent-textbooks.js` + `parent-ingest.js` — embedded inside Settings; Add Textbook still uses the standalone `/ingest` UI in a new tab.
+
+**CSS keys added for the redesign** (in `frontend/static/css/parent.css`):
+- Layout: `.pp-grid-2`
+- Home: `.pp-hero` (+ `--green/amber/red`, `-head`, `-icon`, `-msg`, `-stats`, `-stat`, `-num`, `-label`), `.pp-today-list/-row/-subject/-badge` (+ `--active/done/none/sub`), `.pp-week-grid/-cell/-day/-dot/-xp` (+ `--active`), `.pp-compare-grid/-row/-label/-val`, `.pp-trend` (+ `--up/down/same`), `.pp-alert-list/-alert` (+ `--warn/info`).
+- Goals: `.pp-goals-summary/-grid/-edit-box/-edit-row`, `.pp-goal-card/-header/-label/-val/-track/-fill/-footer/-pct/-achieved` (+ `--done`).
+- English/Math shared: `.pp-stage-list/-head/-acc` (+ `--good/ok/low`), `.pp-table-wrap` (sticky header), `.pp-section-title--icon`, `.pp-phase-pill`.
+- Settings: `.pp-form-row`, `.pp-toggle-row`, `.pp-rep-preview`.
+
+Cache busters in `child.html`: `parent.css?v=12`, `bundle-a.min.js?v=9` (bump on every parent-* / CSS change so service worker re-fetches).
 
 ---
 
@@ -596,7 +611,7 @@ New module for US-school vocab prep.
 `WeeklyGoal`
 
 ### Migrations (`backend/migrations/`)
-001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy · 011 ckla · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals.
+001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy · 011 ckla · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE(grade,unit,lesson).
 
 ---
 
