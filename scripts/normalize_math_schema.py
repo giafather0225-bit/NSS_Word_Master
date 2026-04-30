@@ -228,6 +228,48 @@ def _normalize_problem(p: dict, stats: dict) -> dict:
                         break
                 # If still not a single letter, leave it (will appear as warning)
 
+    # input: strip a single trailing unit and restate in question.
+    # Conservative: only act when answer is `<number> <one-or-two-word unit>`,
+    # OR `<number> <unit>. <explanation>` (explanation moves to feedback.incorrect).
+    if new_type == "input":
+        ans = str(p.get("correct_answer", "")).strip()
+        # Pattern: leading number(s) + unit phrase, optional trailing sentence(s)
+        m = re.match(
+            r"^([\d./,]+)\s+(sq\s+\w+|cubic\s+\w+|\w+)\s*\.?\s*(.*)$",
+            ans,
+        )
+        if m:
+            value = m.group(1).strip()
+            unit = m.group(2).strip().rstrip(".")
+            tail = m.group(3).strip()
+            # Don't strip if `unit` is actually another number/operator (false match)
+            if unit and any(c.isalpha() for c in unit) and unit.lower() not in {"and", "or", "the"}:
+                question = p.get("question", "")
+                q_lower = question.lower()
+                # Detect if the unit (or its singular form) already appears in the question
+                unit_words = unit.lower().split()
+                unit_already_in_q = any(
+                    re.search(rf"\b{re.escape(w.rstrip('s'))}s?\b", q_lower)
+                    for w in unit_words
+                )
+                if not unit_already_in_q:
+                    q_stripped = question.rstrip("?.! ")
+                    p["question"] = f"{q_stripped} (in {unit})?"
+                    stats["question_unit_clarified"] = stats.get("question_unit_clarified", 0) + 1
+                p["correct_answer"] = value
+                stats["input_unit_stripped"] = stats.get("input_unit_stripped", 0) + 1
+                # Tail (explanation after unit) → feedback.incorrect if helpful
+                if tail and len(tail) > 5:
+                    fb = p.get("feedback") or {}
+                    if not isinstance(fb, dict):
+                        fb = {}
+                    if not fb.get("incorrect"):
+                        fb["incorrect"] = tail
+                    if not fb.get("correct"):
+                        fb["correct"] = "Correct!"
+                    p["feedback"] = fb
+                    stats["input_tail_to_feedback"] = stats.get("input_tail_to_feedback", 0) + 1
+
     # tf: lowercase
     if new_type == "tf":
         ans = str(p.get("correct_answer", "")).strip().lower()

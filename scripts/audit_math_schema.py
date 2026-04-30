@@ -138,8 +138,11 @@ def _validate_problem(p: dict, prefix: str, errs: list, warns: list) -> None:
     elif ptype == "input":
         if not ans:
             errs.append(f"{prefix}: input has empty correct_answer")
-        if any(c.isalpha() for c in ans):
-            warns.append(f"{prefix}: input answer contains letters (units?) — restate unit in question: {ans!r}")
+        # Only warn when answer is `<number> <unit>` (e.g. "12 cm", "49 sq m").
+        # Categorical word answers like "even", "odd", "Yes" are valid input.
+        import re as _re
+        if _re.match(r"^[\d.,/]+\s+[a-zA-Z]", ans):
+            warns.append(f"{prefix}: input answer has number+unit — strip unit, restate in question: {ans!r}")
     elif ptype == "tf":
         if ans.lower() not in ("true", "false"):
             errs.append(f"{prefix}: tf correct_answer must be 'true' or 'false', got {ans!r}")
@@ -302,8 +305,8 @@ def run(grades: Iterable[str], strict: bool) -> int:
             cats["choices is dict"] += 1
         elif "mc correct_answer should be single letter" in w:
             cats["mc answer not letter"] += 1
-        elif "input answer contains letters" in w:
-            cats["input answer has units"] += 1
+        elif "input answer has number+unit" in w:
+            cats["input answer has number+unit"] += 1
         elif "missing lesson_ref" in w:
             cats["missing lesson_ref"] += 1
         elif "learn card" in w:
