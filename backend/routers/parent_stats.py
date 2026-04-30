@@ -31,11 +31,27 @@ router = APIRouter()
 
 # ─── Overview ─────────────────────────────────────────────────
 
-def _subject_of_action(action: str) -> str:
-    """Map an XPLog action to a Home-tab subject bucket."""
+def _subject_of_action(action: str) -> str | None:
+    """Map an XPLog action to a Home-tab subject bucket.
+
+    Returns one of {"english", "math", "diary"} or None for actions that
+    shouldn't count toward any per-subject total (cross-cutting bonuses,
+    arcade plays).
+    """
     a = (action or "").lower()
-    if a.startswith("math_"):                     return "math"
-    if a in ("journal_complete", "diary"):         return "diary"
+    if not a:                                                   return None
+    # Cross-cutting bonuses — daily/weekly rollups, not subject sessions.
+    if a in ("must_do_bonus", "all_complete_bonus"):            return None
+    if a.startswith("streak_") and a.endswith("_bonus"):        return None
+    # Arcade isn't an English/Math/Diary slot.
+    if a.startswith("arcade_"):                                 return None
+    # Math: explicit prefix.
+    if a.startswith("math_"):                                   return "math"
+    # Diary: journal + free writing + diary photos all roll up here.
+    if a in ("journal_complete", "diary") or a.startswith("free_writing") or a.startswith("diary_"):
+        return "diary"
+    # Everything else (English vocab stages, daily/weekly tests, review,
+    # CKLA reading) is English.
     return "english"
 
 
@@ -57,7 +73,10 @@ def parent_overview(db: Session = Depends(get_db)):
         "diary":   {"xp": 0, "count": 0},
     }
     for action, xp in db.query(XPLog.action, XPLog.xp_amount).filter(XPLog.earned_date == today).all():
-        bucket = today_by_subject[_subject_of_action(action)]
+        subj = _subject_of_action(action)
+        if subj is None:
+            continue
+        bucket = today_by_subject[subj]
         bucket["xp"] += int(xp or 0)
         bucket["count"] += 1
     for (subj,) in db.query(LearningLog.subject).filter(LearningLog.completed_at >= today).all():
