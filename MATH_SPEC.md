@@ -389,7 +389,7 @@ Cross-grade: if mastery shown in current grade domain -> offer next grade conten
 ```
 
 **Rules:**
-- Standard target: `pass_threshold: 0.8`, `time_limit_min: 30`, `count` ≥ 20
+- Standard target: `pass_threshold: 0.8`, `time_limit_min: 30`, `count` ≥ 15 (G3 typical 20, G4 typical 15)
 - `ccss` is an **array** at this level (covers multiple lessons in the unit)
 - `problems[]` follows the same Problem Schema above; `lesson_ref` is **required** here (drives weak-lesson detection on failure)
 - Backend `submit_unit_test` reads `pass_threshold` from this file; do not hardcode in routers

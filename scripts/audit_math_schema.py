@@ -237,8 +237,10 @@ def _validate_unit_test(path: Path, errs: list, warns: list) -> None:
     if d.get("time_limit_min") != 30:
         warns.append(f"{rel}: time_limit_min={d.get('time_limit_min')} (standard 30)")
     problems = d.get("problems") or []
-    if len(problems) < 20:
-        errs.append(f"{rel}: only {len(problems)} problems (target ≥20)")
+    if len(problems) < 15:
+        errs.append(f"{rel}: only {len(problems)} problems (minimum 15)")
+    elif len(problems) < 20:
+        warns.append(f"{rel}: only {len(problems)} problems (G3 typical 20, G4 typical 15)")
     if d.get("count") != len(problems):
         warns.append(f"{rel}: count={d.get('count')} but problems[]={len(problems)}")
     for i, p in enumerate(problems):

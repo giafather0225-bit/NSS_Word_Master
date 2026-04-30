@@ -372,16 +372,19 @@ def run(grades: list[str], dry_run: bool) -> int:
             else:
                 _normalize_lesson(d, file_stats)
 
-            new_text = json.dumps(d, indent=2, ensure_ascii=False) + "\n"
-            if new_text != original:
-                files_changed += 1
-                if dry_run:
-                    print(f"  diff {f.relative_to(ROOT)}: {file_stats}")
-                else:
-                    f.write_text(new_text, "utf-8")
-                    print(f"  ✓ {f.relative_to(ROOT)}: {file_stats}")
-                for k, v in file_stats.items():
-                    overall_stats[k] = overall_stats.get(k, 0) + v
+            # Only write when an actual transform fired. If file_stats is empty,
+            # any text diff is just JSON re-formatting — leave the original alone.
+            if file_stats:
+                new_text = json.dumps(d, indent=2, ensure_ascii=False) + "\n"
+                if new_text != original:
+                    files_changed += 1
+                    if dry_run:
+                        print(f"  diff {f.relative_to(ROOT)}: {file_stats}")
+                    else:
+                        f.write_text(new_text, "utf-8")
+                        print(f"  ✓ {f.relative_to(ROOT)}: {file_stats}")
+                    for k, v in file_stats.items():
+                        overall_stats[k] = overall_stats.get(k, 0) + v
 
     print()
     print(f"Files scanned: {files_total}")

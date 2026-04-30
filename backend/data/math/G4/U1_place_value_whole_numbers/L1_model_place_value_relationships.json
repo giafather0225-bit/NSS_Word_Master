@@ -1,119 +1,554 @@
 {
   "lesson_id": "L1_model_place_value_relationships",
   "title": "Model Place Value Relationships",
-  "ccss": ["4.NBT.A.1"],
+  "ccss": [
+    "4.NBT.A.1"
+  ],
   "grade": "G4",
   "unit": "U1_place_value_whole_numbers",
-  "go_math_ref": { "chapter": 1, "lesson": 1.1, "pages": "9-12" },
+  "go_math_ref": {
+    "chapter": 1,
+    "lesson": 1.1,
+    "pages": "9-12"
+  },
   "essential_question": "How can you describe the value of a digit in a multi-digit whole number?",
-  "key_vocabulary": ["place value", "digit", "period", "thousands", "ten thousands", "hundred thousands", "expanded form"],
-  "strategies": ["place_value_chart", "ten_times_rule"],
-
-  "pretest": [
-    { "id": "PT_01", "type": "multiple_choice",
-      "question": "In the number 4,572, what is the value of the digit 5?",
-      "choices": ["A. 5", "B. 50", "C. 500", "D. 5,000"], "answer": "C",
-      "solution_steps": ["4,572 → thousands:4, hundreds:5, tens:7, ones:2", "The 5 is in the hundreds place → 5 × 100 = 500"],
-      "hint": "Which place is the 5 sitting in?", "difficulty": 2,
-      "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "place_value_identify" },
-    { "id": "PT_02", "type": "multiple_choice",
-      "question": "The digit 7 in 7,000 is how many times the value of the 7 in 700?",
-      "choices": ["A. 1", "B. 10", "C. 100", "D. 1,000"], "answer": "B",
-      "solution_steps": ["7 in 7,000 = 7,000", "7 in 700 = 700", "7,000 ÷ 700 = 10"],
-      "hint": "A digit one place to the LEFT is 10 times as much.", "difficulty": 2,
-      "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "ten_times_rule" },
-    { "id": "PT_03", "type": "multiple_choice",
-      "question": "Which number has an 8 in the ten thousands place?",
-      "choices": ["A. 28,403", "B. 82,154", "C. 18,732", "D. 408,500"], "answer": "B",
-      "solution_steps": ["Ten thousands is the 5th digit from the right.", "82,154 → 8 ten thousands. Correct."],
-      "hint": "Count the places from the ones.", "difficulty": 2,
-      "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "place_value_identify" },
-    { "id": "PT_04", "type": "multiple_choice",
-      "question": "What is 30,000 written as expanded form of 3?",
-      "choices": ["A. 3 × 10", "B. 3 × 100", "C. 3 × 1,000", "D. 3 × 10,000"], "answer": "D",
-      "solution_steps": ["3 sits in the ten thousands place in 30,000.", "So 30,000 = 3 × 10,000."],
-      "hint": "Count the zeros.", "difficulty": 2,
-      "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "expanded_form" },
-    { "id": "PT_05", "type": "multiple_choice",
-      "question": "The 6 in 162,489 is how many times the 6 in 46,700?",
-      "choices": ["A. 10", "B. 100", "C. 1,000", "D. The same"], "answer": "A",
-      "solution_steps": ["162,489 → 6 is in ten thousands (60,000)", "46,700 → 6 is in thousands (6,000)", "60,000 ÷ 6,000 = 10"],
-      "hint": "Compare places, one step to the left.", "difficulty": 3,
-      "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "ten_times_rule" }
+  "key_vocabulary": [
+    "place value",
+    "digit",
+    "period",
+    "thousands",
+    "ten thousands",
+    "hundred thousands",
+    "expanded form"
   ],
-
+  "strategies": [
+    "place_value_chart",
+    "ten_times_rule"
+  ],
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "question": "In the number 4,572, what is the value of the digit 5?",
+      "choices": [
+        "A) 5",
+        "B) 50",
+        "C) 500",
+        "D) 5,000"
+      ],
+      "solution_steps": [
+        "4,572 → thousands:4, hundreds:5, tens:7, ones:2",
+        "The 5 is in the hundreds place → 5 × 100 = 500"
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "place_value_identify",
+      "correct_answer": "C",
+      "hints": [
+        "Which place is the 5 sitting in?"
+      ]
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "question": "The digit 7 in 7,000 is how many times the value of the 7 in 700?",
+      "choices": [
+        "A) 1",
+        "B) 10",
+        "C) 100",
+        "D) 1,000"
+      ],
+      "solution_steps": [
+        "7 in 7,000 = 7,000",
+        "7 in 700 = 700",
+        "7,000 ÷ 700 = 10"
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "ten_times_rule",
+      "correct_answer": "B",
+      "hints": [
+        "A digit one place to the LEFT is 10 times as much."
+      ]
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "question": "Which number has an 8 in the ten thousands place?",
+      "choices": [
+        "A) 28,403",
+        "B) 82,154",
+        "C) 18,732",
+        "D) 408,500"
+      ],
+      "solution_steps": [
+        "Ten thousands is the 5th digit from the right.",
+        "82,154 → 8 ten thousands. Correct."
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "place_value_identify",
+      "correct_answer": "B",
+      "hints": [
+        "Count the places from the ones."
+      ]
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "question": "What is 30,000 written as expanded form of 3?",
+      "choices": [
+        "A) 3 × 10",
+        "B) 3 × 100",
+        "C) 3 × 1,000",
+        "D) 3 × 10,000"
+      ],
+      "solution_steps": [
+        "3 sits in the ten thousands place in 30,000.",
+        "So 30,000 = 3 × 10,000."
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "expanded_form",
+      "correct_answer": "D",
+      "hints": [
+        "Count the zeros."
+      ]
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "question": "The 6 in 162,489 is how many times the 6 in 46,700?",
+      "choices": [
+        "A) 10",
+        "B) 100",
+        "C) 1,000",
+        "D) The same"
+      ],
+      "solution_steps": [
+        "162,489 → 6 is in ten thousands (60,000)",
+        "46,700 → 6 is in thousands (6,000)",
+        "60,000 ÷ 6,000 = 10"
+      ],
+      "difficulty": 3,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "ten_times_rule",
+      "correct_answer": "A",
+      "hints": [
+        "Compare places, one step to the left."
+      ]
+    }
+  ],
   "learn": [
-    { "id": "LEARN_01", "type": "concept_card",
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
       "title": "The Place Value Chart",
       "content": "Whole numbers are grouped into periods of three digits: ones, thousands, millions. Each period has hundreds, tens, and ones.",
-      "visual_type": "place_value_chart", "cpa_stage": "pictorial" },
-    { "id": "LEARN_02", "type": "concept_card",
+      "visual_type": "place_value_chart",
+      "cpa_stage": "pictorial"
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
       "title": "Same Digit, Different Value",
       "content": "The digit 4 in 4,000 is worth 4,000. The digit 4 in 400 is worth 400. Position is what matters — the digit name alone doesn't tell you the value.",
-      "visual_type": "comparison_table", "cpa_stage": "pictorial" },
-    { "id": "LEARN_03", "type": "concept_card",
+      "visual_type": "comparison_table",
+      "cpa_stage": "pictorial"
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
       "title": "The 10-Times Rule",
       "content": "A digit in any place is 10 times the value of the same digit one place to its right. Example: the 7 in 7,000 is 10 times the 7 in 700.",
-      "visual_type": "step_by_step", "cpa_stage": "abstract" },
-    { "id": "LEARN_04", "type": "concept_card",
+      "visual_type": "step_by_step",
+      "cpa_stage": "abstract"
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
       "title": "Expanded Form",
       "content": "Write a number as a sum of each digit's value. 2,413 = 2,000 + 400 + 10 + 3 = (2 × 1,000) + (4 × 100) + (1 × 10) + (3 × 1).",
-      "visual_type": "step_by_step", "cpa_stage": "abstract" },
-    { "id": "LEARN_05", "type": "concept_card",
+      "visual_type": "step_by_step",
+      "cpa_stage": "abstract"
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
       "title": "Common Mistake: Digit vs. Value",
       "content": "'The DIGIT 5 in 4,572' answers 5. 'The VALUE of the 5 in 4,572' answers 500. Read carefully!",
-      "visual_type": "error_highlight", "cpa_stage": "abstract" }
+      "visual_type": "error_highlight",
+      "cpa_stage": "abstract"
+    }
   ],
-
   "try": [
-    { "id": "TRY_01", "type": "multiple_choice",
+    {
+      "id": "TRY_01",
+      "type": "mc",
       "question": "What is the value of the digit 9 in 39,284?",
-      "choices": ["A. 9", "B. 90", "C. 900", "D. 9,000"], "answer": "D",
-      "solution_steps": ["39,284 → 3 ten thousands, 9 thousands, 2 hundreds, 8 tens, 4 ones", "9 is in the thousands place → 9 × 1,000 = 9,000"],
-      "interactive_steps": [
-        { "prompt": "Which place is the 9 in? Type: thousands, hundreds, tens, or ones.",
-          "inputs": [{ "label": "Place:", "correct": "thousands" }] },
-        { "prompt": "9 × ? = value",
-          "inputs": [{ "label": "Multiplier:", "correct": "1000" }, { "label": "Value:", "correct": "9000" }] }
+      "choices": [
+        "A) 9",
+        "B) 90",
+        "C) 900",
+        "D) 9,000"
       ],
-      "hint": "Find the 9 in the number, then name its place.", "difficulty": 2,
-      "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "place_value_identify" },
-    { "id": "TRY_02", "type": "multiple_choice",
+      "solution_steps": [
+        "39,284 → 3 ten thousands, 9 thousands, 2 hundreds, 8 tens, 4 ones",
+        "9 is in the thousands place → 9 × 1,000 = 9,000"
+      ],
+      "interactive_steps": [
+        {
+          "prompt": "Which place is the 9 in? Type: thousands, hundreds, tens, or ones.",
+          "inputs": [
+            {
+              "label": "Place:",
+              "correct": "thousands"
+            }
+          ]
+        },
+        {
+          "prompt": "9 × ? = value",
+          "inputs": [
+            {
+              "label": "Multiplier:",
+              "correct": "1000"
+            },
+            {
+              "label": "Value:",
+              "correct": "9000"
+            }
+          ]
+        }
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "place_value_identify",
+      "correct_answer": "D",
+      "hints": [
+        "Find the 9 in the number, then name its place."
+      ]
+    },
+    {
+      "id": "TRY_02",
+      "type": "mc",
       "question": "The 2 in 2,000 is how many times the 2 in 200?",
-      "choices": ["A. 2", "B. 10", "C. 100", "D. 1,000"], "answer": "B",
-      "solution_steps": ["2,000 ÷ 200 = 10", "One place to the left = 10 times."],
-      "hint": "Apply the 10-times rule.", "difficulty": 2,
-      "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "ten_times_rule" },
-    { "id": "TRY_03", "type": "multiple_choice",
+      "choices": [
+        "A) 2",
+        "B) 10",
+        "C) 100",
+        "D) 1,000"
+      ],
+      "solution_steps": [
+        "2,000 ÷ 200 = 10",
+        "One place to the left = 10 times."
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "ten_times_rule",
+      "correct_answer": "B",
+      "hints": [
+        "Apply the 10-times rule."
+      ]
+    },
+    {
+      "id": "TRY_03",
+      "type": "mc",
       "question": "Which choice shows 5,342 in expanded form?",
-      "choices": ["A. 5 + 3 + 4 + 2", "B. 500 + 30 + 40 + 2", "C. 5,000 + 300 + 40 + 2", "D. 5,000 + 3,000 + 400 + 20"], "answer": "C",
-      "solution_steps": ["5 thousands = 5,000", "3 hundreds = 300", "4 tens = 40", "2 ones = 2", "Sum: 5,000 + 300 + 40 + 2"],
-      "hint": "Multiply each digit by its place value.", "difficulty": 2,
-      "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "expanded_form" },
-    { "id": "TRY_04", "type": "multiple_choice",
+      "choices": [
+        "A) 5 + 3 + 4 + 2",
+        "B) 500 + 30 + 40 + 2",
+        "C) 5,000 + 300 + 40 + 2",
+        "D) 5,000 + 3,000 + 400 + 20"
+      ],
+      "solution_steps": [
+        "5 thousands = 5,000",
+        "3 hundreds = 300",
+        "4 tens = 40",
+        "2 ones = 2",
+        "Sum: 5,000 + 300 + 40 + 2"
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "expanded_form",
+      "correct_answer": "C",
+      "hints": [
+        "Multiply each digit by its place value."
+      ]
+    },
+    {
+      "id": "TRY_04",
+      "type": "mc",
       "question": "In 147,309, which digit is in the ten thousands place?",
-      "choices": ["A. 1", "B. 4", "C. 7", "D. 3"], "answer": "B",
-      "solution_steps": ["147,309 → ones:9, tens:0, hundreds:3, thousands:7, ten thousands:4, hundred thousands:1"],
-      "hint": "Count 5 places from the right.", "difficulty": 2,
-      "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "place_value_identify" },
-    { "id": "TRY_05", "type": "multiple_choice",
+      "choices": [
+        "A) 1",
+        "B) 4",
+        "C) 7",
+        "D) 3"
+      ],
+      "solution_steps": [
+        "147,309 → ones:9, tens:0, hundreds:3, thousands:7, ten thousands:4, hundred thousands:1"
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "place_value_identify",
+      "correct_answer": "B",
+      "hints": [
+        "Count 5 places from the right."
+      ]
+    },
+    {
+      "id": "TRY_05",
+      "type": "mc",
       "question": "The 6 in 60,000 is 10 times the 6 in which number?",
-      "choices": ["A. 600", "B. 6,000", "C. 60", "D. 600,000"], "answer": "B",
-      "solution_steps": ["60,000 ÷ 10 = 6,000", "So 6 in 60,000 is 10 times the 6 in 6,000."],
-      "hint": "Divide by 10.", "difficulty": 3,
-      "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "ten_times_rule" }
+      "choices": [
+        "A) 600",
+        "B) 6,000",
+        "C) 60",
+        "D) 600,000"
+      ],
+      "solution_steps": [
+        "60,000 ÷ 10 = 6,000",
+        "So 6 in 60,000 is 10 times the 6 in 6,000."
+      ],
+      "difficulty": 3,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "ten_times_rule",
+      "correct_answer": "B",
+      "hints": [
+        "Divide by 10."
+      ]
+    }
   ],
-
   "practice_r1": [
-    { "id": "R1_01", "type": "multiple_choice", "question": "Value of 8 in 48,123?", "choices": ["A. 8", "B. 80", "C. 800", "D. 8,000"], "answer": "D", "solution_steps": ["8 is in thousands → 8,000"], "hint": "Thousands place.", "difficulty": 2, "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "place_value_identify" },
-    { "id": "R1_02", "type": "multiple_choice", "question": "Value of 3 in 234,567?", "choices": ["A. 3,000", "B. 30,000", "C. 300,000", "D. 300"], "answer": "B", "solution_steps": ["3 is in ten thousands → 30,000"], "hint": "Ten thousands.", "difficulty": 2, "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "place_value_identify" },
-    { "id": "R1_03", "type": "multiple_choice", "question": "5,000 is how many times 500?", "choices": ["A. 5", "B. 10", "C. 100", "D. 1,000"], "answer": "B", "solution_steps": ["5,000 ÷ 500 = 10"], "hint": "Divide.", "difficulty": 2, "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "ten_times_rule" },
-    { "id": "R1_04", "type": "multiple_choice", "question": "Expanded form of 7,206:", "choices": ["A. 7,000 + 200 + 6", "B. 7,000 + 20 + 6", "C. 72 + 6", "D. 7,000 + 200 + 60"], "answer": "A", "solution_steps": ["7 thousands + 2 hundreds + 0 tens + 6 ones"], "hint": "Watch the 0 in tens.", "difficulty": 2, "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "expanded_form" },
-    { "id": "R1_05", "type": "multiple_choice", "question": "Which digit is in the hundred thousands place of 836,217?", "choices": ["A. 8", "B. 3", "C. 6", "D. 2"], "answer": "A", "solution_steps": ["Leftmost of a 6-digit number = hundred thousands"], "hint": "Count from the right.", "difficulty": 2, "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "place_value_identify" },
-    { "id": "R1_06", "type": "multiple_choice", "question": "Digit vs. value: the VALUE of 4 in 45,203?", "choices": ["A. 4", "B. 400", "C. 4,000", "D. 40,000"], "answer": "D", "solution_steps": ["4 is in ten thousands → 40,000"], "hint": "Value, not digit.", "difficulty": 3, "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "digit_vs_value" },
-    { "id": "R1_07", "type": "multiple_choice", "question": "The 9 in 9,100 is how many times the 9 in 910?", "choices": ["A. 10", "B. 100", "C. 1,000", "D. same"], "answer": "A", "solution_steps": ["9,000 vs 900 → 10 times"], "hint": "Compare the place of each 9.", "difficulty": 3, "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "ten_times_rule" },
-    { "id": "R1_08", "type": "multiple_choice", "question": "Expanded form of 40,305:", "choices": ["A. 40,000 + 300 + 5", "B. 4,000 + 300 + 5", "C. 40,000 + 30 + 5", "D. 40,000 + 300 + 50"], "answer": "A", "solution_steps": ["4 ten thousands + 0 thousands + 3 hundreds + 0 tens + 5 ones"], "hint": "Zeros contribute nothing.", "difficulty": 3, "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "expanded_form" },
-    { "id": "R1_09", "type": "multiple_choice", "question": "A stadium has 52,000 seats. What is the value of the 5?", "choices": ["A. 5,000", "B. 50,000", "C. 500", "D. 5"], "answer": "B", "solution_steps": ["5 is in ten thousands → 50,000"], "hint": "Ten thousands place.", "difficulty": 2, "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "place_value_word_problem" },
-    { "id": "R1_10", "type": "multiple_choice", "question": "Which is TRUE?", "choices": ["A. The 3 in 30 is 10× the 3 in 300", "B. The 3 in 300 is 10× the 3 in 30", "C. Both 3s are equal", "D. None"], "answer": "B", "solution_steps": ["Moving left = 10× bigger. 300 is left of 30."], "hint": "Which direction grows?", "difficulty": 3, "ccss": "4.NBT.A.1", "cpa_stage": "abstract", "skill_tag": "ten_times_rule" }
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "question": "Value of 8 in 48,123?",
+      "choices": [
+        "A) 8",
+        "B) 80",
+        "C) 800",
+        "D) 8,000"
+      ],
+      "solution_steps": [
+        "8 is in thousands → 8,000"
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "place_value_identify",
+      "correct_answer": "D",
+      "hints": [
+        "Thousands place."
+      ]
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "question": "Value of 3 in 234,567?",
+      "choices": [
+        "A) 3,000",
+        "B) 30,000",
+        "C) 300,000",
+        "D) 300"
+      ],
+      "solution_steps": [
+        "3 is in ten thousands → 30,000"
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "place_value_identify",
+      "correct_answer": "B",
+      "hints": [
+        "Ten thousands."
+      ]
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "question": "5,000 is how many times 500?",
+      "choices": [
+        "A) 5",
+        "B) 10",
+        "C) 100",
+        "D) 1,000"
+      ],
+      "solution_steps": [
+        "5,000 ÷ 500 = 10"
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "ten_times_rule",
+      "correct_answer": "B",
+      "hints": [
+        "Divide."
+      ]
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "question": "Expanded form of 7,206:",
+      "choices": [
+        "A) 7,000 + 200 + 6",
+        "B) 7,000 + 20 + 6",
+        "C) 72 + 6",
+        "D) 7,000 + 200 + 60"
+      ],
+      "solution_steps": [
+        "7 thousands + 2 hundreds + 0 tens + 6 ones"
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "expanded_form",
+      "correct_answer": "A",
+      "hints": [
+        "Watch the 0 in tens."
+      ]
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "question": "Which digit is in the hundred thousands place of 836,217?",
+      "choices": [
+        "A) 8",
+        "B) 3",
+        "C) 6",
+        "D) 2"
+      ],
+      "solution_steps": [
+        "Leftmost of a 6-digit number = hundred thousands"
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "place_value_identify",
+      "correct_answer": "A",
+      "hints": [
+        "Count from the right."
+      ]
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "question": "Digit vs. value: the VALUE of 4 in 45,203?",
+      "choices": [
+        "A) 4",
+        "B) 400",
+        "C) 4,000",
+        "D) 40,000"
+      ],
+      "solution_steps": [
+        "4 is in ten thousands → 40,000"
+      ],
+      "difficulty": 3,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "digit_vs_value",
+      "correct_answer": "D",
+      "hints": [
+        "Value, not digit."
+      ]
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "question": "The 9 in 9,100 is how many times the 9 in 910?",
+      "choices": [
+        "A) 10",
+        "B) 100",
+        "C) 1,000",
+        "D) same"
+      ],
+      "solution_steps": [
+        "9,000 vs 900 → 10 times"
+      ],
+      "difficulty": 3,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "ten_times_rule",
+      "correct_answer": "A",
+      "hints": [
+        "Compare the place of each 9."
+      ]
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "question": "Expanded form of 40,305:",
+      "choices": [
+        "A) 40,000 + 300 + 5",
+        "B) 4,000 + 300 + 5",
+        "C) 40,000 + 30 + 5",
+        "D) 40,000 + 300 + 50"
+      ],
+      "solution_steps": [
+        "4 ten thousands + 0 thousands + 3 hundreds + 0 tens + 5 ones"
+      ],
+      "difficulty": 3,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "expanded_form",
+      "correct_answer": "A",
+      "hints": [
+        "Zeros contribute nothing."
+      ]
+    },
+    {
+      "id": "R1_09",
+      "type": "mc",
+      "question": "A stadium has 52,000 seats. What is the value of the 5?",
+      "choices": [
+        "A) 5,000",
+        "B) 50,000",
+        "C) 500",
+        "D) 5"
+      ],
+      "solution_steps": [
+        "5 is in ten thousands → 50,000"
+      ],
+      "difficulty": 2,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "place_value_word_problem",
+      "correct_answer": "B",
+      "hints": [
+        "Ten thousands place."
+      ]
+    },
+    {
+      "id": "R1_10",
+      "type": "mc",
+      "question": "Which is TRUE?",
+      "choices": [
+        "A) The 3 in 30 is 10× the 3 in 300",
+        "B) The 3 in 300 is 10× the 3 in 30",
+        "C) Both 3s are equal",
+        "D) None"
+      ],
+      "solution_steps": [
+        "Moving left = 10× bigger. 300 is left of 30."
+      ],
+      "difficulty": 3,
+      "ccss": "4.NBT.A.1",
+      "cpa_stage": "abstract",
+      "skill_tag": "ten_times_rule",
+      "correct_answer": "B",
+      "hints": [
+        "Which direction grows?"
+      ]
+    }
   ]
 }
