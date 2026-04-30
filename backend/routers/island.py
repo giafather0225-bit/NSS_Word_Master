@@ -109,7 +109,11 @@ class AdoptBody(BaseModel):
 
 class EvolveBody(BaseModel):
     character_progress_id: int
-    stone_type: str
+    stone_type: str = ""
+
+class EvolveBranchBody(BaseModel):
+    character_progress_id: int
+    branch: str = ""  # 'a' or 'b'; optional for /evolve/validate
 
 class FeedBody(BaseModel):
     character_progress_id: int
@@ -319,9 +323,25 @@ def character_adopt(body: AdoptBody, db: Session = Depends(get_db)):
 
 # @tag ISLAND
 @router.post("/character/evolve")
-def character_evolve(body: EvolveBody, db: Session = Depends(get_db)):
+def character_evolve(body: EvolveBranchBody, db: Session = Depends(get_db)):
+    """Evolve a character by choosing branch 'a' or 'b'.
+    Derives stone_type from the character's current stage and branch selection.
+    """
+    prog = db.get(IslandCharacterProgress, body.character_progress_id)
+    if prog is None:
+        raise HTTPException(404, "Character progress not found.")
+    stage = prog.stage or "baby"
+    branch = (body.branch or "a").lower()
+    if prog.is_legend_type:
+        stone = "legend_first_a" if stage == "baby" and branch == "a" else \
+                "legend_first_b" if stage == "baby" and branch == "b" else \
+                "legend_second"
+    else:
+        stone = "first_a" if stage == "baby" and branch == "a" else \
+                "first_b" if stage == "baby" and branch == "b" else \
+                "second"
     try:
-        result = svc.execute_evolution(db, body.character_progress_id, body.stone_type)
+        result = svc.execute_evolution(db, body.character_progress_id, stone)
         db.commit()
         return result
     except EvolutionError as e:
@@ -330,11 +350,42 @@ def character_evolve(body: EvolveBody, db: Session = Depends(get_db)):
 
 # @tag ISLAND
 @router.post("/evolve/validate")
-def evolve_validate(body: EvolveBody, db: Session = Depends(get_db)):
-    try:
-        return svc.validate_evolution(db, body.character_progress_id, body.stone_type)
-    except EvolutionError as e:
-        return {"valid": False, "message": str(e)}
+def evolve_validate(body: EvolveBranchBody, db: Session = Depends(get_db)):
+    """Return both evolution branches for a character so the UI can present a choice."""
+    prog = db.get(IslandCharacterProgress, body.character_progress_id)
+    if prog is None:
+        return {"valid": False, "message": "Character progress not found."}
+    stage = prog.stage or "baby"
+    is_mid = stage in ("mid_a", "mid_b")
+    is_final = stage in ("final_a", "final_b")
+
+    if is_final or prog.is_completed:
+        return {"valid": False, "message": "Character is already fully evolved."}
+
+    if prog.is_legend_type:
+        stone_a = "legend_first_a" if not is_mid else "legend_second"
+        stone_b = "legend_first_b" if not is_mid else "legend_second"
+    else:
+        stone_a = "first_a" if not is_mid else "second"
+        stone_b = "first_b" if not is_mid else "second"
+
+    target_a = "mid_a" if not is_mid else "final_a"
+    target_b = "mid_b" if not is_mid else "final_b"
+
+    return {
+        "valid": True,
+        "stage": stage,
+        "branch_a": {
+            "stone": stone_a,
+            "target_stage": target_a,
+            "description": f"Evolve into {target_a} form.",
+        },
+        "branch_b": {
+            "stone": stone_b,
+            "target_stage": target_b,
+            "description": f"Evolve into {target_b} form.",
+        },
+    }
 
 
 # @tag ISLAND
