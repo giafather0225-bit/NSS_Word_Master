@@ -24,7 +24,7 @@ from fastapi.templating import Jinja2Templates
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from backend.database import Base, LEARNING_ROOT, engine
+from backend.database import Base, LEARNING_ROOT, SessionLocal, engine
 from backend.folder_watcher import start_watcher
 
 from backend.routers import lessons, study, progress, words, files, tts, review, ai_coach
@@ -65,7 +65,10 @@ from backend.routers import tutor_sentence as tutor_sentence_router
 from backend.routers import us_academy as us_academy_router
 from backend.routers import ckla as ckla_router
 from backend.routers import ckla_review as ckla_review_router
+from backend.routers import island as island_router
 from backend.services import ollama_manager, backup_engine
+from backend.services import island_care_engine as care
+from backend.services import island_production_engine as prod
 
 # ── DB init ────────────────────────────────────────────────
 Base.metadata.create_all(bind=engine)
@@ -108,6 +111,26 @@ async def lifespan(application: FastAPI):
                 logger.warning("[build] bundle rebuild failed (using existing): %s", r.stderr.decode()[:200])
         except Exception as e:
             logger.warning("[build] bundle rebuild skipped: %s", e)
+
+    # Island: daily gauge decay + completed-character Lumi production
+    try:
+        db = SessionLocal()
+        try:
+            decay_result = care.run_daily_batch(db)
+            prod_result = prod.run_daily_production(db)
+            db.commit()
+            logger.info(
+                "[island] decay processed=%d skipped=%d | lumi produced=%d characters=%d",
+                decay_result["processed"], decay_result["skipped"],
+                prod_result["produced"], prod_result["characters"],
+            )
+        except Exception as e:
+            db.rollback()
+            logger.warning("[island] startup batch failed: %s", e)
+        finally:
+            db.close()
+    except Exception as e:
+        logger.warning("[island] startup batch DB error: %s", e)
 
     yield
 
@@ -243,6 +266,7 @@ app.include_router(tutor_sentence_router.router)
 app.include_router(us_academy_router.router)
 app.include_router(ckla_router.router)
 app.include_router(ckla_review_router.router)
+app.include_router(island_router.router)
 
 
 # ── Static page routes ─────────────────────────────────────
