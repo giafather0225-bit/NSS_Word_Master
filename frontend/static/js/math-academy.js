@@ -42,6 +42,7 @@ const MATH_STAGE_LABELS = {
     practice_r3: 'Practice R3',
     wrong_review: 'Wrong Review',
     complete: 'Complete!',
+    unit_test: 'Unit Test',
 };
 
 // ── Start lesson ────────────────────────────────────────────
@@ -221,15 +222,54 @@ function advanceMathStage() {
     }
 
     if (s === 'wrong_review') { loadMathStage('complete'); return; }
+
+    if (s === 'unit_test') {
+        const threshold = mathState._unitTestPassThreshold || 0.8;
+        const passed = total > 0 && (mathState.correct / total) >= threshold;
+        // Fire-and-forget score submission
+        fetch('/api/math/academy/unit-test/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                grade: mathState.grade,
+                unit: mathState.unit,
+                score: mathState.correct,
+                total,
+            }),
+        }).catch(err => console.warn('[math] Unit test score submit failed:', err));
+
+        _renderRoundSummary({
+            stageLabel: 'Unit Test',
+            correct: mathState.correct,
+            total,
+            pct,
+            passed,
+            weakConcepts: _topWeakConcepts(mathState.wrongConcepts),
+            onContinue: () => {
+                if (!passed) {
+                    startMathUnitTest(mathState.grade, mathState.unit);
+                } else if (typeof exitMathLesson === 'function') {
+                    exitMathLesson();
+                } else if (typeof loadMathHome === 'function') {
+                    loadMathHome();
+                }
+            },
+        });
+        return;
+    }
 }
 
 // ── Submit answer ───────────────────────────────────────────
 
 /**
  * Submit a math answer to the API and handle result.
+ * For unit_test stage, answers are checked client-side (problems include correct_answer).
  * @tag MATH @tag ACADEMY
  */
 async function submitMathAnswer(problemId, userAnswer) {
+    if (mathState.stage === 'unit_test') {
+        return _checkUnitTestAnswer(problemId, userAnswer);
+    }
     try {
         const res = await fetch('/api/math/academy/submit-answer', {
             method: 'POST',
@@ -292,4 +332,111 @@ function handleMathAnswerResult(result, problem) {
             renderMathRoadmap();
         }
     });
+}
+
+// ── Unit Test ───────────────────────────────────────────────
+
+/**
+ * Start a unit test for the given grade + unit.
+ * Problems come from unit_test.json; answers are checked client-side.
+ * Final score is submitted to /api/math/academy/unit-test/submit.
+ * @param {string} grade  e.g. "G3"
+ * @param {string} unit   e.g. "U1_place_value"
+ * @tag MATH @tag ACADEMY
+ */
+async function startMathUnitTest(grade, unit) {
+    mathState.grade = grade;
+    mathState.unit = unit;
+    mathState.lesson = '';
+    mathState.stage = 'unit_test';
+    mathState.currentIdx = 0;
+    mathState.correct = 0;
+    mathState.wrong = [];
+    mathState.wrongConcepts = [];
+    mathState.consecCorrect = 0;
+    mathState.consecWrong = 0;
+    mathState.forceHints = false;
+    mathState._allWrong = [];
+    mathState._unitTestPassThreshold = 0.8;
+    mathState._unitTestTimeLimitMin = 30;
+    if (mathState.hintTimer) { clearInterval(mathState.hintTimer); mathState.hintTimer = null; }
+
+    if (typeof mountMathShell === 'function') mountMathShell();
+    renderMathRoadmap();
+
+    const stageEl = document.getElementById('stage');
+    if (stageEl && typeof _showMathLoading === 'function') _showMathLoading(stageEl);
+
+    try {
+        const url = `/api/math/academy/${encodeURIComponent(grade)}/${encodeURIComponent(unit)}/unit-test`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        mathState.problems = data.problems || [];
+        mathState._unitTestPassThreshold = data.pass_threshold || 0.8;
+        mathState._unitTestTimeLimitMin = data.time_limit_min || 30;
+    } catch (err) {
+        console.error('[math] Unit test load failed:', err);
+        mathState.problems = [];
+    }
+
+    if (typeof _hideMathLoading === 'function') _hideMathLoading();
+
+    if (mathState.problems.length === 0) {
+        _showMathStageError('unit_test');
+        return;
+    }
+
+    renderMathProblem();
+}
+
+/**
+ * Client-side answer check for unit test problems (correct_answer lives in problem JSON).
+ * @tag MATH @tag ACADEMY
+ */
+function _checkUnitTestAnswer(problemId, userAnswer) {
+    const problem = mathState.problems.find(p => p.id === problemId);
+    if (!problem) return { is_correct: false, correct_answer: '?', feedback: '' };
+
+    const correctRaw = String(
+        problem.correct_answer != null ? problem.correct_answer
+        : (problem.answer != null ? problem.answer : '')
+    ).trim();
+    const userRaw = String(userAnswer).trim();
+    const options = problem.options || [];
+
+    let isCorrect = false;
+    let correctDisplay = correctRaw;
+
+    if (/^[A-Ha-h]$/.test(correctRaw) && options.length > 0) {
+        const idx = correctRaw.toUpperCase().charCodeAt(0) - 65;
+        if (idx >= 0 && idx < options.length) {
+            const rawOpt = String(options[idx]);
+            const cleanOpt = rawOpt.replace(/^[A-Za-z][\)\.\:]\s*/, '').trim();
+            correctDisplay = cleanOpt || rawOpt;
+            isCorrect = userRaw.toLowerCase() === correctRaw.toLowerCase()
+                     || userRaw.toLowerCase() === cleanOpt.toLowerCase()
+                     || userRaw.toLowerCase() === rawOpt.toLowerCase();
+        } else {
+            isCorrect = userRaw.toLowerCase() === correctRaw.toLowerCase();
+        }
+    } else if (correctRaw.toLowerCase() === 'true' || correctRaw.toLowerCase() === 'false') {
+        isCorrect = userRaw.toLowerCase() === correctRaw.toLowerCase();
+    } else {
+        isCorrect = _mathAnswersEquivalent(userRaw, correctRaw);
+    }
+
+    const feedback = isCorrect
+        ? (problem.feedback_correct || '')
+        : (problem.feedback_wrong || '');
+    return { is_correct: isCorrect, correct_answer: correctDisplay, feedback };
+}
+
+/**
+ * Normalize numeric/text answers for loose comparison (strips whitespace, trailing zeros).
+ * @tag MATH @tag ACADEMY
+ */
+function _mathAnswersEquivalent(a, b) {
+    const norm = s => s.toLowerCase().replace(/\s+/g, '').replace(/,/g, '').replace(/\.?0+$/, '');
+    return norm(a) === norm(b);
 }

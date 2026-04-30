@@ -12,7 +12,7 @@
     {
       "id": "PT_01",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_no_regroup",
       "difficulty": 2,
@@ -31,7 +31,7 @@
     {
       "id": "PT_02",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
@@ -50,7 +50,7 @@
     {
       "id": "PT_03",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_tens",
       "difficulty": 3,
@@ -68,7 +68,7 @@
     {
       "id": "PT_04",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
@@ -86,7 +86,7 @@
     {
       "id": "PT_05",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 3,
@@ -109,7 +109,7 @@
       "id": "LEARN_01",
       "title": "The Place Value Algorithm",
       "content": "The place value method for addition means lining up numbers by their place values (ones, tens, hundreds) and adding each column from right to left. When a column adds to 10 or more, you regroup.",
-      "cpa_stage": "concrete",
+      "cpa_phase": "concrete",
       "visual_type": "illustration",
       "visual_data": {"description": "Base-ten blocks being combined, with regrouping shown as 10 ones being traded for 1 ten rod"},
       "verification": "Go Math p.29 introduction"
@@ -118,7 +118,7 @@
       "id": "LEARN_02",
       "title": "Step 1: Add the Ones",
       "content": "Line up the numbers vertically. Start with the ones column. Example: 356 + 218. Ones: 6+8=14. Since 14≥10, write 4 in the ones place and regroup 1 ten to the tens column.",
-      "cpa_stage": "pictorial",
+      "cpa_phase": "pictorial",
       "visual_type": "column_addition",
       "visual_data": {"problem": "356+218", "step": "ones", "sum": 14, "write": 4, "carry": 1},
       "verification": "Go Math p.29 Step 1"
@@ -127,7 +127,7 @@
       "id": "LEARN_03",
       "title": "Step 2: Add the Tens",
       "content": "Now add the tens column, including any regrouped ten. Example: 356 + 218. Tens: 5+1+1(carried)=7. Write 7 in the tens place. No regrouping needed here.",
-      "cpa_stage": "pictorial",
+      "cpa_phase": "pictorial",
       "visual_type": "column_addition",
       "visual_data": {"problem": "356+218", "step": "tens", "sum": 7, "write": 7, "carry": 0},
       "verification": "Go Math p.29 Step 2"
@@ -136,7 +136,7 @@
       "id": "LEARN_04",
       "title": "Step 3: Add the Hundreds",
       "content": "Finally add the hundreds column. Example: 356 + 218. Hundreds: 3+2=5. Write 5. The answer is 574. Check with estimate: 400+200=600. Is 574 close? Yes!",
-      "cpa_stage": "pictorial",
+      "cpa_phase": "pictorial",
       "visual_type": "column_addition",
       "visual_data": {"problem": "356+218", "step": "hundreds", "sum": 5, "answer": 574},
       "verification": "Go Math p.29-30 Step 3"
@@ -145,7 +145,7 @@
       "id": "LEARN_05",
       "title": "Regrouping Tens to Hundreds",
       "content": "Sometimes the tens add to 10 or more. Example: 472 + 361. Ones: 2+1=3. Tens: 7+6=13. Write 3 tens, regroup 1 hundred. Hundreds: 4+3+1=8. Answer: 833.",
-      "cpa_stage": "pictorial",
+      "cpa_phase": "pictorial",
       "visual_type": "column_addition",
       "visual_data": {"problem": "472+361", "tens_sum": 13, "carry_to_hundreds": 1, "answer": 833},
       "verification": "Go Math p.30 — regrouping tens"
@@ -154,7 +154,7 @@
       "id": "LEARN_06",
       "title": "Double Regrouping",
       "content": "Some problems need regrouping in both ones and tens! Example: 487 + 356. Ones: 7+6=13 → write 3, carry 1. Tens: 8+5+1=14 → write 4, carry 1. Hundreds: 4+3+1=8. Answer: 843.",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "visual_type": "column_addition",
       "visual_data": {"problem": "487+356", "ones_carry": 1, "tens_carry": 1, "answer": 843},
       "verification": "Go Math p.30 — double regrouping"
@@ -163,7 +163,7 @@
       "id": "LEARN_07",
       "title": "Adding Three Numbers",
       "content": "You can use the same steps with three addends. Example: 140 + 457 + 301. Ones: 0+7+1=8. Tens: 4+5+0=9. Hundreds: 1+4+3=8. Answer: 898. Estimate: 150+450+300=900. Close!",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "visual_type": "column_addition",
       "visual_data": {"problem": "140+457+301", "answer": 898, "estimate": 900},
       "verification": "Go Math p.30 — Model example with three addends"
@@ -172,7 +172,7 @@
       "id": "LEARN_08",
       "title": "Key Idea Summary",
       "content": "Use place value to add: 1) Estimate first. 2) Line up by place value. 3) Add ones — regroup if 10 or more. 4) Add tens — regroup if 10 or more. 5) Add hundreds. 6) Check: Is your answer close to the estimate?",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "visual_type": "summary_card",
       "visual_data": {},
       "verification": "Go Math pp.29-32 lesson summary"
@@ -183,7 +183,7 @@
     {
       "id": "TRY_01",
       "type": "mc",
-      "cpa_stage": "pictorial",
+      "cpa_phase": "pictorial",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_no_regroup",
       "difficulty": 2,
@@ -201,7 +201,7 @@
     {
       "id": "TRY_02",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
@@ -219,7 +219,7 @@
     {
       "id": "TRY_03",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
@@ -237,7 +237,7 @@
     {
       "id": "TRY_04",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 3,
@@ -255,7 +255,7 @@
     {
       "id": "TRY_05",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 3,
@@ -276,7 +276,7 @@
     {
       "id": "R1_01",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_no_regroup",
       "difficulty": 2,
@@ -294,7 +294,7 @@
     {
       "id": "R1_02",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
@@ -312,7 +312,7 @@
     {
       "id": "R1_03",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
@@ -330,7 +330,7 @@
     {
       "id": "R1_04",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_tens",
       "difficulty": 3,
@@ -348,7 +348,7 @@
     {
       "id": "R1_05",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
@@ -366,7 +366,7 @@
     {
       "id": "R1_06",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
@@ -384,7 +384,7 @@
     {
       "id": "R1_07",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 3,
@@ -402,7 +402,7 @@
     {
       "id": "R1_08",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 3,
@@ -420,7 +420,7 @@
     {
       "id": "R1_09",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 3,
@@ -438,7 +438,7 @@
     {
       "id": "R1_10",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_estimate_check",
       "difficulty": 3,
@@ -459,7 +459,7 @@
     {
       "id": "R2_01",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
@@ -477,7 +477,7 @@
     {
       "id": "R2_02",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
@@ -495,7 +495,7 @@
     {
       "id": "R2_03",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 4,
@@ -513,7 +513,7 @@
     {
       "id": "R2_04",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 4,
@@ -531,7 +531,7 @@
     {
       "id": "R2_05",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 4,
@@ -549,7 +549,7 @@
     {
       "id": "R2_06",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 4,
@@ -567,7 +567,7 @@
     {
       "id": "R2_07",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 4,
@@ -585,7 +585,7 @@
     {
       "id": "R2_08",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_error_check",
       "difficulty": 4,
@@ -603,7 +603,7 @@
     {
       "id": "R2_09",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 4,
@@ -621,7 +621,7 @@
     {
       "id": "R2_10",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 4,
@@ -642,7 +642,7 @@
     {
       "id": "R3_01",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_multi_step",
       "difficulty": 4,
@@ -660,7 +660,7 @@
     {
       "id": "R3_02",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_error_analysis",
       "difficulty": 5,
@@ -678,7 +678,7 @@
     {
       "id": "R3_03",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_reasoning",
       "difficulty": 5,
@@ -696,7 +696,7 @@
     {
       "id": "R3_04",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 5,
@@ -714,7 +714,7 @@
     {
       "id": "R3_05",
       "type": "mc",
-      "cpa_stage": "abstract",
+      "cpa_phase": "abstract",
       "ccss": "3.NBT.A.2",
       "skill_tag": "place_value_add_strategy_compare",
       "difficulty": 5,

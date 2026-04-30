@@ -4,7 +4,7 @@ Section: Math
 Dependencies: ._base.Base
 """
 
-from sqlalchemy import Column, Integer, Float, String, Boolean, Index
+from sqlalchemy import Column, Integer, Float, String, Boolean, Index, UniqueConstraint
 
 from ._base import Base
 
@@ -65,6 +65,7 @@ class MathProgress(Base):
 
     __table_args__ = (
         Index("ix_math_progress_grade_unit_lesson", "grade", "unit", "lesson"),
+        UniqueConstraint("grade", "unit", "lesson", name="ux_math_progress_grade_unit_lesson"),
     )
 
 

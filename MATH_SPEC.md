@@ -246,7 +246,7 @@ Cross-grade: if mastery shown in current grade domain -> offer next grade conten
 | Practice R3 (Advanced) | 5 | >= 80% (4/5) | multi-step, puzzle, Kangaroo-style |
 | Wrong Review | varies | 1 correct = mastered | new similar problems for each wrong item |
 
-**Unit Test**: 20 questions, pass >= 90%, random from all lessons in unit. Fail -> redirected to weak lesson (most errors by lesson tag).
+**Unit Test**: 20 questions, pass >= 80% (configurable per-test via `pass_threshold`), random from all lessons in unit. Time limit 30 min (`time_limit_min`). Fail -> redirected to weak lesson (most errors by lesson tag).
 
 ---
 
@@ -271,41 +271,131 @@ Cross-grade: if mastery shown in current grade domain -> offer next grade conten
 
 ---
 
-## Problem JSON Schema
+## JSON Schemas (Authoritative — matches actual implementation)
 
-### Standard Problem
+> Validated against G3 Phase 1 transformation (2026-04-29). All G3 unit tests
+> pass these schemas; G4/G5/G6 must be normalized to match.
+
+### Lesson File — `data/math/{grade}/{unit}/{lesson}.json`
+
 ```json
 {
-  "id": "u1L2_p1_01",
-  "unit": "u1_add_sub_1000",
-  "lesson": "L2_addition_strategies",
-  "stage": "practice_r1",
-  "type": "input | mc | tf | drag_sort | open_pair | open_triple",
-  "difficulty": 1-5,
-  "concept": "3-digit addition with regrouping",
-  "question": "467 + 258 = ?",
-  "visual": "description of visual aid or manipulative",
-  "options": ["615", "725", "715", "825"],
-  "answer": "725",
-  "answer_validation": "optional: formula or condition for open-ended",
-  "hints": ["hint_1 text", "hint_2 text"],
-  "feedback_correct": "Great job! 725 is close to your estimate of 700.",
-  "feedback_wrong": "Let's check the ones column: 7+8=15, not 5.",
-  "solution_steps": [
-    "Ones: 7+8=15, write 5 carry 1",
-    "Tens: 6+5+1=12, write 2 carry 1",
-    "Hundreds: 4+2+1=7"
-  ],
-  "tags": ["addition", "regrouping", "3-digit"],
-  "three_read": {
-    "read1": "optional — story summary",
-    "read2": "optional — what to find",
-    "read3": "optional — given data"
+  "lesson_id": "g3_u1_l2",
+  "grade": "G3",
+  "unit": "U1_add_sub_1000",
+  "title": "Round Nearest Ten/Hundred",
+  "concept": "Round 2- and 3-digit numbers using place-value rules.",
+  "ccss": "3.NBT.A.1",
+  "key_vocabulary": ["round", "nearest", "ten", "hundred"],
+  "essential_question": "How can rounding make numbers easier to use?",
+  "go_math_ref": "Chapter 1, Lesson 2",
+  "pretest":     [Problem, ...],
+  "learn":       [LearnCard, ...],
+  "try":         [Problem, ...],
+  "practice_r1": [Problem, ...],
+  "practice_r2": [Problem, ...],
+  "practice_r3": [Problem, ...]
+}
+```
+
+**Rules:**
+- `lesson_id`: lowercase `gN_uM_lK` (deterministic, kebab-of-numbers)
+- `ccss`: single string per lesson; per-problem `ccss` is optional
+- All 6 stages required; stages may be empty `[]` only for `pretest` if intentionally skipped
+- Korean text strictly forbidden — English only
+
+### Problem Schema (used in `pretest`, `try`, `practice_r1`, `practice_r2`, `practice_r3`, and Unit Test)
+
+```json
+{
+  "id": "p1",
+  "type": "mc | input | tf",
+  "question": "What is 48 rounded to the nearest ten?",
+  "choices": ["A) 40", "B) 45", "C) 50", "D) 60"],
+  "correct_answer": "C",
+  "lesson_ref": "L2",
+  "skill_tag": "round_nearest_ten",
+  "concept": "round_nearest_ten",
+  "difficulty": 1,
+  "cpa_phase": "abstract",
+  "ccss": "3.NBT.A.1",
+  "hint": "Look at the ones digit — is it 5 or more?",
+  "feedback": {
+    "correct": "Right! 48 is closer to 50.",
+    "incorrect": "48 is closer to 50 than to 40."
   }
 }
 ```
 
-### Template Problem (Auto-Gen)
+**Type-specific rules:**
+
+| `type`      | `choices` | `correct_answer` format | Notes |
+|-------------|-----------|-------------------------|-------|
+| `mc`        | required, length ≥ 2; each entry prefixed `"A) "`, `"B) "`, ... | single uppercase letter `"A"`, `"B"`, ... | Both letter and choice text accepted at runtime (server + client). |
+| `input`     | omitted   | direct value (string), single-value, no units in answer | Question must clarify expected unit (e.g. "in cm"). Loose match: trims whitespace/commas/trailing-zeros. |
+| `tf`        | omitted   | `"true"` or `"false"` (lowercase) | Normalized case-insensitive. |
+| `drag_sort` | required (`items[]`), each is a draggable label | array of correct order, e.g. `["1/8","1/4","1/2"]` | Used for ordering / sequencing. Renderer: `_renderDragSort`. |
+
+**Field rules:**
+- **Required**: `id`, `type`, `question`, `correct_answer`
+- **Recommended**: `lesson_ref` (e.g. `"L2"`), `skill_tag`, `difficulty` (1–3), `hint`, `feedback`
+- **Optional**: `concept`, `cpa_phase` (concrete|pictorial|abstract), `ccss`
+- **Compatibility aliases** (auto-normalized by frontend `_normalizeProblem`):
+  - `stem` → `question`
+  - `options` → `choices`
+  - `answer` → `correct_answer`
+  - `hint` (string) → `hints` (array)
+  - `feedback: {correct, incorrect}` → `feedback_correct` / `feedback_wrong`
+  - `type: "true_false" | "multiple_choice" | "fill_in" | "word_problem" | "open_response"` → canonical 3 types
+  - **New content should write the canonical form** above; aliases exist only to consume legacy files.
+
+### Learn Card Schema (`learn` stage only)
+
+```json
+{
+  "id": "c1",
+  "type": "concept_card",
+  "title": "Place Value to the Hundreds",
+  "content": "Each digit's value depends on its place: ones, tens, hundreds.",
+  "cpa_phase": "abstract",
+  "visual_type": "base10_blocks | number_line | array_grid | bar_model | fraction_bar | none",
+  "visual_data": {
+    "tool": "base10_blocks",
+    "config": { "start": 245, "max": 999 }
+  },
+  "tts": "Each digit means a different amount based on where it sits."
+}
+```
+
+**Rules:**
+- `type` is **always** `"concept_card"` (renderer dispatches on this)
+- `visual_type` ∈ the 5 manipulatives wired in `math-manipulatives.js`, or `"none"`
+- `visual_data.config` mirrors `_MATH_TOOL_DEFS[*].defaults` keys; the slot reuses the same renderer
+
+### Unit Test File — `data/math/{grade}/{unit}/unit_test.json`
+
+```json
+{
+  "unit_id": "G3_U1",
+  "title": "Unit 1 Test: Addition and Subtraction within 1,000",
+  "grade": "G3",
+  "unit": "U1_add_sub_1000",
+  "ccss": ["3.OA.D.9", "3.NBT.A.1", "3.NBT.A.2"],
+  "pass_threshold": 0.8,
+  "time_limit_min": 30,
+  "count": 20,
+  "problems": [Problem, ...]
+}
+```
+
+**Rules:**
+- Standard target: `pass_threshold: 0.8`, `time_limit_min: 30`, `count` ≥ 20
+- `ccss` is an **array** at this level (covers multiple lessons in the unit)
+- `problems[]` follows the same Problem Schema above; `lesson_ref` is **required** here (drives weak-lesson detection on failure)
+- Backend `submit_unit_test` reads `pass_threshold` from this file; do not hardcode in routers
+
+### Template Problem (Auto-Gen — for Fact Fluency / Daily / future tools)
+
 ```json
 {
   "id": "tpl_add_3digit_regroup",
@@ -320,21 +410,7 @@ Cross-grade: if mastery shown in current grade domain -> offer next grade conten
   "difficulty": 2
 }
 ```
-
-### Learn Card
-```json
-{
-  "id": "u1L2_learn_01",
-  "title": "What is Addition?",
-  "type": "concept | example | interactive",
-  "cpa_phase": "concrete | pictorial | abstract",
-  "content": "Addition means putting groups together...",
-  "visual": "animation: two groups of base-ten blocks sliding together",
-  "visual_type": "svg | png | manipulative",
-  "tts": "Addition means putting groups together to find the total.",
-  "interaction": "none | tap | drag | quiz_mini"
-}
-```
+> Templates expand to instances of the Problem Schema before reaching the renderer.
 
 ---
 
@@ -1081,5 +1157,58 @@ M16 requires M15
 
 ---
 
-*Document version: 2026-04-25 — In Development (synced with actual codebase)*
-*To be updated as implementation progresses.*
+## Schema Compliance Status (G3-G6 Audit)
+
+> Audit baseline: 2026-04-29. Re-run `python3 scripts/audit_math_schema.py` after edits.
+
+### G3 (96 files, 86 lessons + 10 unit tests)
+
+| Bucket | Count | Status |
+|--------|------:|--------|
+| **Unit Tests** | 10/10 | ✅ Standard (Phase 1 done — U9, U10 rebuilt 2026-04-29) |
+| Lessons — STD bucket (`pretest/learn/try/practice_r1~3` flat keys) | 53 | ✅ Compliant |
+| Lessons — ITEMS bucket (`items[].section`) | 24 | 🟡 Backend tolerates via `_stage_problems`, but should normalize |
+| Lessons — SECTIONS bucket (`sections.<stage>[]`, all U8) | 9 | 🟡 Backend tolerates, but should normalize |
+| Korean text in any G3 file | 0 | ✅ |
+| Invalid JSON | 0 | ✅ |
+
+**Phase 1 deliverables (2026-04-29):**
+- U9 / U10 unit_test rebuilt from broken `chapter`/`questions` schema → standard `problems` schema
+- All 40 new problems have skill_tag, hint, and pedagogical feedback
+- Backend `submit_unit_test_body` reads `pass_threshold` from data file (no longer hardcoded)
+- `unit_test_passed` field actually persists on pass
+
+### G4 / G5 / G6
+
+| Grade | Files | Korean | Schema Variants | Status |
+|-------|------:|------:|----------------:|--------|
+| G4    | 111  | 0     | TBD             | Not yet audited |
+| G5    | ~50  | **40** | TBD             | 🔴 Korean → English required |
+| G6    | ~80  | **80** | TBD             | 🔴 Korean → English required |
+
+### Migration Targets (post-Phase 1)
+
+1. **Phase 3** — `scripts/normalize_math_schema.py` (idempotent, runnable per-grade):
+   - ITEMS bucket → flat stage keys
+   - SECTIONS bucket → flat stage keys
+   - `lesson_id` → `g{N}_u{M}_l{K}` lowercase pattern
+   - Field aliases collapsed to canonical (`stem`→`question`, `answer`→`correct_answer`, etc.)
+   - mc problems: ensure choices have `"A) "` prefix, `correct_answer` is single letter
+   - Validate against schemas above; emit per-file diff report
+2. **G5/G6 translation pipeline** — Korean → English using Gemini (preserving math accuracy + JSON structure)
+3. **G6 hint coverage** — currently 8/80; target 100%
+
+### Ground Rules for New Content
+
+1. **English only.** Any Hangul (`[가-힯]`) in `data/math/**/*.json` is a bug.
+2. **Use canonical field names.** Aliases exist only for legacy intake; never write them in new files.
+3. **`mc` answers are letters**, not value text. Choices include `"A) ", "B) "` prefix.
+4. **`input` answers are single values without units.** Restate the unit in the question text.
+5. **Always include hint + feedback.{correct, incorrect}.** Productive struggle requires both.
+6. **`pass_threshold` lives in unit_test.json**, never in router code.
+7. **Every problem has `lesson_ref`** in unit tests (drives weak-lesson detection).
+
+---
+
+*Document version: 2026-04-30 — Phase 1 complete (G3 unit tests standardized)*
+*Schemas above are authoritative; routers and renderers must conform.*

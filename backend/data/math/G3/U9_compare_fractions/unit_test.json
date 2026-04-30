@@ -1,229 +1,397 @@
 {
-  "chapter": 9,
-  "chapter_title": "Compare Fractions",
-  "unit_test_title": "Chapter 9 Unit Test — Compare Fractions",
-  "objective": "Assess understanding of comparing fractions: same denominator, same numerator, equivalent fractions, ordering fractions",
-  "questions": [
+  "unit_id": "G3_U9",
+  "title": "Unit 9 Test: Compare Fractions",
+  "grade": "G3",
+  "unit": "U9_compare_fractions",
+  "ccss": [
+    "3.NF.A.3.A",
+    "3.NF.A.3.B",
+    "3.NF.A.3.D"
+  ],
+  "pass_threshold": 0.8,
+  "time_limit_min": 30,
+  "count": 20,
+  "problems": [
     {
-      "id": "c9_ut_01",
+      "id": "UT_01",
+      "type": "mc",
       "lesson_ref": "L2",
-      "type": "compare",
+      "skill_tag": "compare_same_denominator",
+      "difficulty": 1,
       "question": "Compare: 3/8 ○ 5/8",
-      "choices": [">", "<", "="],
-      "answer": "<",
+      "choices": [
+        "A) >",
+        "B) <",
+        "C) ="
+      ],
+      "correct_answer": "B",
       "hint": "Same denominator — compare numerators.",
-      "difficulty": 1
+      "feedback": {
+        "correct": "Right! Same denominator: 3 < 5, so 3/8 < 5/8.",
+        "incorrect": "Same denominator (8). Compare numerators: 3 < 5, so 3/8 < 5/8."
+      }
     },
     {
-      "id": "c9_ut_02",
+      "id": "UT_02",
+      "type": "mc",
       "lesson_ref": "L2",
-      "type": "multiple_choice",
+      "skill_tag": "equivalent_fractions_basic",
+      "difficulty": 1,
       "question": "Which fraction is greater: 4/6 or 2/6?",
-      "choices": ["4/6", "2/6", "They are equal"],
-      "answer": "4/6",
+      "choices": [
+        "A) 4/6",
+        "B) 2/6",
+        "C) They are equal"
+      ],
+      "correct_answer": "A",
       "hint": "Same denominator — larger numerator = greater fraction.",
-      "difficulty": 1
+      "feedback": {
+        "correct": "Yes — 2/3 = 4/6 (multiply top and bottom by 2).",
+        "incorrect": "To find equivalent: 2/3 × 2/2 = 4/6."
+      }
     },
     {
-      "id": "c9_ut_03",
+      "id": "UT_03",
+      "type": "mc",
       "lesson_ref": "L3",
-      "type": "compare",
+      "skill_tag": "compare_same_numerator",
+      "difficulty": 1,
       "question": "Compare: 1/3 ○ 1/6",
-      "choices": [">", "<", "="],
-      "answer": ">",
+      "choices": [
+        "A) >",
+        "B) <",
+        "C) ="
+      ],
+      "correct_answer": "A",
       "hint": "Same numerator — smaller denominator = greater fraction.",
-      "difficulty": 1
+      "feedback": {
+        "correct": "Right! Same numerator: smaller denominator → larger pieces, so 1/3 > 1/5.",
+        "incorrect": "Same numerator. Smaller denominator means bigger pieces: 1/3 > 1/5."
+      }
     },
     {
-      "id": "c9_ut_04",
+      "id": "UT_04",
+      "type": "mc",
       "lesson_ref": "L3",
-      "type": "multiple_choice",
+      "skill_tag": "compare_same_numerator",
+      "difficulty": 1,
       "question": "Which fraction is smaller: 1/4 or 1/2?",
-      "choices": ["1/4", "1/2", "They are equal"],
-      "answer": "1/4",
+      "choices": [
+        "A) 1/4",
+        "B) 1/2",
+        "C) They are equal"
+      ],
+      "correct_answer": "A",
       "hint": "Same numerator — larger denominator = smaller fraction.",
-      "difficulty": 1
+      "feedback": {
+        "correct": "Yes! Bigger pieces → 1/4 > 1/8.",
+        "incorrect": "Same numerator (1). Smaller denominator (4) → bigger piece: 1/4 > 1/8."
+      }
     },
     {
-      "id": "c9_ut_05",
+      "id": "UT_05",
+      "type": "mc",
       "lesson_ref": "L2",
-      "type": "multiple_choice",
+      "skill_tag": "compare_same_denominator_word",
+      "difficulty": 1,
       "question": "Tom ran 5/8 of a mile. Sara ran 3/8 of a mile. Who ran farther?",
-      "choices": ["Tom", "Sara", "They ran the same distance"],
-      "answer": "Tom",
+      "choices": [
+        "A) Tom",
+        "B) Sara",
+        "C) They ran the same distance"
+      ],
+      "correct_answer": "A",
       "hint": "Same denominator — compare numerators: 5 > 3.",
-      "difficulty": 1
+      "feedback": {
+        "correct": "Right — same denominator, larger numerator means more.",
+        "incorrect": "Same denominator (5). 3/5 > 2/5, so Tom ate more."
+      }
     },
     {
-      "id": "c9_ut_06",
+      "id": "UT_06",
+      "type": "mc",
       "lesson_ref": "L3",
-      "type": "compare",
+      "skill_tag": "compare_same_numerator",
+      "difficulty": 1,
       "question": "Compare: 1/2 ○ 1/8",
-      "choices": [">", "<", "="],
-      "answer": ">",
+      "choices": [
+        "A) >",
+        "B) <",
+        "C) ="
+      ],
+      "correct_answer": "A",
       "hint": "Same numerator — smaller denominator = bigger piece.",
-      "difficulty": 1
+      "feedback": {
+        "correct": "Correct! Larger pieces means greater value.",
+        "incorrect": "Same numerator (1). 1/2 > 1/4 because halves are bigger than fourths."
+      }
     },
     {
-      "id": "c9_ut_07",
+      "id": "UT_07",
+      "type": "mc",
       "lesson_ref": "L4",
-      "type": "compare",
+      "skill_tag": "compare_different_denom",
+      "difficulty": 2,
       "question": "Compare: 2/3 ○ 3/4",
-      "choices": [">", "<", "="],
-      "answer": "<",
+      "choices": [
+        "A) >",
+        "B) <",
+        "C) ="
+      ],
+      "correct_answer": "B",
       "hint": "Use a number line or benchmark 1/2 to compare.",
-      "difficulty": 2
+      "feedback": {
+        "correct": "Right! 1/3 < 1/2 — compare to the half benchmark.",
+        "incorrect": "Compare to 1/2: 1/3 is less than 1/2. So 1/3 < 1/2."
+      }
     },
     {
-      "id": "c9_ut_08",
+      "id": "UT_08",
+      "type": "mc",
       "lesson_ref": "L4",
-      "type": "multiple_choice",
+      "skill_tag": "compare_to_half_benchmark",
+      "difficulty": 2,
       "question": "Which fraction is greater: 3/4 or 2/3?",
-      "choices": ["3/4", "2/3", "They are equal"],
-      "answer": "3/4",
+      "choices": [
+        "A) 3/4",
+        "B) 2/3",
+        "C) They are equal"
+      ],
+      "correct_answer": "A",
       "hint": "3/4 is close to 1 whole. 2/3 is also close but not as close.",
-      "difficulty": 2
+      "feedback": {
+        "correct": "Yes! 3/4 is greater because 3/4 > 1/2 and 1/3 < 1/2.",
+        "incorrect": "Use 1/2 as a benchmark: 3/4 > 1/2 > 1/3, so 3/4 > 1/3."
+      }
     },
     {
-      "id": "c9_ut_09",
+      "id": "UT_09",
+      "type": "mc",
       "lesson_ref": "L5",
-      "type": "multiple_choice",
+      "skill_tag": "order_same_denominator",
+      "difficulty": 2,
       "question": "Order from least to greatest: 3/4, 1/4, 2/4",
       "choices": [
-        "1/4, 2/4, 3/4",
-        "3/4, 2/4, 1/4",
-        "2/4, 1/4, 3/4"
+        "A) 1/4, 2/4, 3/4",
+        "B) 3/4, 2/4, 1/4",
+        "C) 2/4, 1/4, 3/4"
       ],
-      "answer": "1/4, 2/4, 3/4",
+      "correct_answer": "A",
       "hint": "Same denominator — order by numerator.",
-      "difficulty": 2
+      "feedback": {
+        "correct": "Right — same denominator, just compare numerators.",
+        "incorrect": "Same denominator (4). Order numerators: 1 < 2 < 3."
+      }
     },
     {
-      "id": "c9_ut_10",
+      "id": "UT_10",
+      "type": "mc",
       "lesson_ref": "L5",
-      "type": "multiple_choice",
+      "skill_tag": "order_same_numerator",
+      "difficulty": 2,
       "question": "Order from greatest to least: 1/2, 1/6, 1/3",
       "choices": [
-        "1/2, 1/3, 1/6",
-        "1/6, 1/3, 1/2",
-        "1/3, 1/2, 1/6"
+        "A) 1/2, 1/3, 1/6",
+        "B) 1/6, 1/3, 1/2",
+        "C) 1/3, 1/2, 1/6"
       ],
-      "answer": "1/2, 1/3, 1/6",
+      "correct_answer": "A",
       "hint": "Same numerator — smaller denominator = greater fraction.",
-      "difficulty": 2
+      "feedback": {
+        "correct": "Yes — same numerator, larger denominator → smaller fraction.",
+        "incorrect": "Same numerator. Larger denominator means smaller piece: 1/2 > 1/3 > 1/6."
+      }
     },
     {
-      "id": "c9_ut_11",
+      "id": "UT_11",
+      "type": "mc",
       "lesson_ref": "L6",
-      "type": "multiple_choice",
+      "skill_tag": "model_equivalent",
+      "difficulty": 2,
       "question": "Which fraction is equivalent to 1/2?",
-      "choices": ["2/6", "2/4", "2/3"],
-      "answer": "2/4",
+      "choices": [
+        "A) 2/6",
+        "B) 2/4",
+        "C) 2/3"
+      ],
+      "correct_answer": "B",
       "hint": "Equivalent fractions name the same amount. 1/2 = ?/4",
-      "difficulty": 2
+      "feedback": {
+        "correct": "Correct! 1/2 = 2/4 — same shaded amount.",
+        "incorrect": "Two equal models: 1/2 = 2/4."
+      }
     },
     {
-      "id": "c9_ut_12",
+      "id": "UT_12",
+      "type": "mc",
       "lesson_ref": "L6",
-      "type": "multiple_choice",
+      "skill_tag": "identify_equivalent_pairs",
+      "difficulty": 2,
       "question": "Which pair shows equivalent fractions?",
-      "choices": ["1/3 and 2/6", "1/2 and 1/4", "2/3 and 3/4"],
-      "answer": "1/3 and 2/6",
+      "choices": [
+        "A) 1/3 and 2/6",
+        "B) 1/2 and 1/4",
+        "C) 2/3 and 3/4"
+      ],
+      "correct_answer": "A",
       "hint": "Equivalent fractions cover the same area of a whole.",
-      "difficulty": 2
+      "feedback": {
+        "correct": "Right! Multiply 1/3 by 2/2 to get 2/6.",
+        "incorrect": "1/3 = 2/6 (×2 top and bottom)."
+      }
     },
     {
-      "id": "c9_ut_13",
+      "id": "UT_13",
+      "type": "mc",
       "lesson_ref": "L7",
-      "type": "multiple_choice",
+      "skill_tag": "equivalent_fractions",
+      "difficulty": 2,
       "question": "Which fraction is equivalent to 2/4?",
-      "choices": ["1/2", "1/3", "3/4"],
-      "answer": "1/2",
+      "choices": [
+        "A) 1/2",
+        "B) 1/3",
+        "C) 3/4"
+      ],
+      "correct_answer": "A",
       "hint": "2/4 and 1/2 name the same point on a number line.",
-      "difficulty": 2
+      "feedback": {
+        "correct": "Yes! 2/4 = 1/2 (divide both by 2).",
+        "incorrect": "Simplify 2/4: divide top and bottom by 2 → 1/2."
+      }
     },
     {
-      "id": "c9_ut_14",
+      "id": "UT_14",
+      "type": "mc",
       "lesson_ref": "L7",
-      "type": "compare",
+      "skill_tag": "equivalent_compare",
+      "difficulty": 2,
       "question": "Compare: 2/4 ○ 1/2",
-      "choices": [">", "<", "="],
-      "answer": "=",
+      "choices": [
+        "A) >",
+        "B) <",
+        "C) ="
+      ],
+      "correct_answer": "C",
       "hint": "2/4 and 1/2 are equivalent fractions.",
-      "difficulty": 2
+      "feedback": {
+        "correct": "Correct! 3/6 = 1/2 (divide by 3).",
+        "incorrect": "3/6 simplifies to 1/2; both equal one half."
+      }
     },
     {
-      "id": "c9_ut_15",
+      "id": "UT_15",
+      "type": "mc",
       "lesson_ref": "L1",
-      "type": "multiple_choice",
+      "skill_tag": "compare_same_denom_word",
+      "difficulty": 2,
       "question": "Maya ate 3/6 of a granola bar. Leo ate 4/6 of the same size bar. Who ate more?",
-      "choices": ["Maya", "Leo", "They ate the same amount"],
-      "answer": "Leo",
+      "choices": [
+        "A) Maya",
+        "B) Leo",
+        "C) They ate the same amount"
+      ],
+      "correct_answer": "B",
       "hint": "Same denominator — compare numerators: 4 > 3.",
-      "difficulty": 2
+      "feedback": {
+        "correct": "Right! 4/5 > 3/5 (same denominator).",
+        "incorrect": "Same denominator (5). 4 > 3, so Leo had more."
+      }
     },
     {
-      "id": "c9_ut_16",
+      "id": "UT_16",
+      "type": "mc",
       "lesson_ref": "L3",
-      "type": "multiple_choice",
+      "skill_tag": "compare_same_numerator_word",
+      "difficulty": 2,
       "question": "Aiden drank 1/3 of a bottle of water. Emma drank 1/4 of the same size bottle. Who drank more?",
-      "choices": ["Aiden", "Emma", "They drank the same amount"],
-      "answer": "Aiden",
+      "choices": [
+        "A) Aiden",
+        "B) Emma",
+        "C) They drank the same amount"
+      ],
+      "correct_answer": "A",
       "hint": "Same numerator — 1/3 has a smaller denominator so each piece is bigger.",
-      "difficulty": 2
+      "feedback": {
+        "correct": "Yes — Aiden ate 1/4, biggest pieces with same numerator 1.",
+        "incorrect": "Same numerator (1). Smallest denominator wins: 1/4 > 1/6 > 1/8."
+      }
     },
     {
-      "id": "c9_ut_17",
+      "id": "UT_17",
+      "type": "mc",
       "lesson_ref": "L5",
-      "type": "multiple_choice",
+      "skill_tag": "order_unit_fractions",
+      "difficulty": 3,
       "question": "Order from least to greatest: 1/2, 1/8, 1/4, 1/3",
       "choices": [
-        "1/8, 1/4, 1/3, 1/2",
-        "1/2, 1/3, 1/4, 1/8",
-        "1/4, 1/8, 1/3, 1/2"
+        "A) 1/8, 1/4, 1/3, 1/2",
+        "B) 1/2, 1/3, 1/4, 1/8",
+        "C) 1/4, 1/8, 1/3, 1/2"
       ],
-      "answer": "1/8, 1/4, 1/3, 1/2",
+      "correct_answer": "A",
       "hint": "Same numerator — order by denominator from greatest to least denominator = least to greatest fraction.",
-      "difficulty": 3
+      "feedback": {
+        "correct": "Right — smallest piece has biggest denominator.",
+        "incorrect": "Same numerator (1). Order from smallest to biggest piece: 1/8 < 1/4 < 1/3 < 1/2."
+      }
     },
     {
-      "id": "c9_ut_18",
+      "id": "UT_18",
+      "type": "mc",
       "lesson_ref": "L6",
-      "type": "multiple_choice",
+      "skill_tag": "identify_equivalent_pairs",
+      "difficulty": 3,
       "question": "Which TWO fractions are equivalent to 1/2?",
       "choices": [
-        "2/4 and 3/6",
-        "2/4 and 2/6",
-        "3/6 and 3/4"
+        "A) 2/4 and 3/6",
+        "B) 2/4 and 2/6",
+        "C) 3/6 and 3/4"
       ],
-      "answer": "2/4 and 3/6",
+      "correct_answer": "A",
       "hint": "1/2 = 2/4 = 3/6. Each names the same amount.",
-      "difficulty": 3
+      "feedback": {
+        "correct": "Yes! Both pairs are equivalent.",
+        "incorrect": "Check: 2/4 = 1/2 and 3/6 = 1/2. Both pairs equivalent."
+      }
     },
     {
-      "id": "c9_ut_19",
+      "id": "UT_19",
+      "type": "mc",
       "lesson_ref": "L4",
-      "type": "multiple_choice",
+      "skill_tag": "compare_misconception",
+      "difficulty": 3,
       "question": "Jake says 3/4 > 5/6 because 4 < 6. Is Jake correct? Why?",
       "choices": [
-        "Yes — smaller denominator always means greater fraction",
-        "No — you cannot compare fractions with different numerators AND denominators this way",
-        "Yes — 3/4 is always greater than any fraction with 6 in the denominator",
-        "No — 5/6 is greater than 3/4"
+        "A) Yes — smaller denominator always means greater fraction",
+        "B) No — you cannot compare fractions with different numerators AND denominators this way",
+        "C) Yes — 3/4 is always greater than any fraction with 6 in the denominator",
+        "D) No — 5/6 is greater than 3/4"
       ],
-      "answer": "No — 5/6 is greater than 3/4",
+      "correct_answer": "D",
       "hint": "Jake's rule only works when numerators are the same. Use a number line to compare 3/4 and 5/6.",
-      "difficulty": 3
+      "feedback": {
+        "correct": "Correct — Jake's rule only works when numerators match. 5/6 > 3/4.",
+        "incorrect": "Compare 3/4 = 9/12 vs 5/6 = 10/12. So 5/6 > 3/4. Jake's rule is wrong."
+      }
     },
     {
-      "id": "c9_ut_20",
+      "id": "UT_20",
+      "type": "mc",
       "lesson_ref": "L1",
-      "type": "multiple_choice",
+      "skill_tag": "compare_three_fractions_benchmark",
+      "difficulty": 3,
       "question": "Three friends ran different distances: Ana ran 3/4 mile, Ben ran 2/3 mile, and Cara ran 5/6 mile. Who ran the farthest?",
-      "choices": ["Ana (3/4)", "Ben (2/3)", "Cara (5/6)"],
-      "answer": "Cara (5/6)",
+      "choices": [
+        "A) Ana (3/4)",
+        "B) Ben (2/3)",
+        "C) Cara (5/6)"
+      ],
+      "correct_answer": "C",
       "hint": "Compare each to the benchmark 1 whole: 5/6 is closest to 1.",
-      "difficulty": 3
+      "feedback": {
+        "correct": "Right! 5/6 is closest to 1 whole.",
+        "incorrect": "Compare to 1 whole: 5/6 closest, then 3/4, then 2/3. Cara ran the farthest."
+      }
     }
   ]
 }

@@ -1,191 +1,334 @@
 {
-  "chapter": 10,
-  "chapter_title": "Perimeter",
-  "unit_test_title": "Chapter 10 Unit Test — Perimeter",
-  "objective": "Assess understanding of perimeter concepts: modeling, finding, unknown sides, area vs perimeter, same perimeter/different areas, same area/different perimeters",
-  "questions": [
+  "unit_id": "G3_U10",
+  "title": "Unit 10 Test: Perimeter",
+  "grade": "G3",
+  "unit": "U10_perimeter",
+  "ccss": [
+    "3.MD.D.8"
+  ],
+  "pass_threshold": 0.8,
+  "time_limit_min": 30,
+  "count": 20,
+  "problems": [
     {
-      "id": "c10_ut_01",
+      "id": "UT_01",
+      "type": "mc",
       "lesson_ref": "L1",
-      "type": "multiple_choice",
+      "skill_tag": "perimeter_definition",
+      "difficulty": 1,
       "question": "What is the perimeter of a shape?",
       "choices": [
-        "The space inside the shape",
-        "The distance around the shape",
-        "The number of sides"
+        "A) The space inside the shape",
+        "B) The distance around the shape",
+        "C) The number of sides"
       ],
-      "answer": "The distance around the shape",
-      "difficulty": 1
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! Perimeter = distance around.",
+        "incorrect": "Perimeter is the distance around a shape, not inside it."
+      },
+      "hint": "Perimeter is the distance ALL the way around the outside."
     },
     {
-      "id": "c10_ut_02",
+      "id": "UT_02",
+      "type": "input",
       "lesson_ref": "L1",
-      "type": "fill_in",
-      "question": "A rectangle on a grid is 6 units long and 3 units wide. Count all sides. Perimeter = __ units.",
-      "answer": "18 units",
-      "accept": ["18", "18 units"],
-      "difficulty": 1
+      "skill_tag": "count_perimeter_grid",
+      "difficulty": 1,
+      "question": "A rectangle on a grid is 6 units long and 3 units wide. Count all sides. What is the perimeter (in units)?",
+      "correct_answer": "18",
+      "feedback": {
+        "correct": "Yes! 6+3+6+3 = 18.",
+        "incorrect": "Add all four sides: 6+3+6+3 = 18 units."
+      },
+      "hint": "Add up all the side lengths: 6+3+6+3."
     },
     {
-      "id": "c10_ut_03",
+      "id": "UT_03",
+      "type": "mc",
       "lesson_ref": "L2",
-      "type": "multiple_choice",
+      "skill_tag": "add_all_sides",
+      "difficulty": 1,
       "question": "A rectangle is 9 cm long and 4 cm wide. What is the perimeter?",
-      "choices": ["24 cm", "26 cm", "36 cm"],
-      "answer": "26 cm",
-      "difficulty": 1
+      "choices": [
+        "A) 24 cm",
+        "B) 26 cm",
+        "C) 36 cm"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! 8+5+8+5 = 26 cm.",
+        "incorrect": "Add all four sides: 8+5+8+5 = 26 cm."
+      },
+      "hint": "Add every side: 8+5+8+5 = ?"
     },
     {
-      "id": "c10_ut_04",
+      "id": "UT_04",
+      "type": "input",
       "lesson_ref": "L2",
-      "type": "fill_in",
-      "question": "A square has a side length of 7 m. Perimeter = __ m.",
-      "answer": "28 m",
-      "accept": ["28", "28 m", "28 meters"],
-      "difficulty": 1
+      "skill_tag": "square_perimeter",
+      "difficulty": 1,
+      "question": "A square has a side length of 7 m. What is the perimeter, in m?",
+      "correct_answer": "28",
+      "feedback": {
+        "correct": "Yes! 4 × 7 = 28 m.",
+        "incorrect": "A square has 4 sides of 7 m each: 4 × 7 = 28 m."
+      },
+      "hint": "A square has 4 equal sides: 7 × 4 = ?"
     },
     {
-      "id": "c10_ut_05",
+      "id": "UT_05",
+      "type": "mc",
       "lesson_ref": "L2",
-      "type": "multiple_choice",
+      "skill_tag": "perimeter_rectangle",
+      "difficulty": 1,
       "question": "A triangle has sides 5 ft, 8 ft, and 11 ft. What is the perimeter?",
-      "choices": ["22 ft", "24 ft", "26 ft"],
-      "answer": "24 ft",
-      "difficulty": 1
+      "choices": [
+        "A) 22 ft",
+        "B) 24 ft",
+        "C) 26 ft"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! 2×(8+4) = 24 ft.",
+        "incorrect": "P = 2 × (length + width) = 2 × 12 = 24 ft."
+      },
+      "hint": "Add length+width then double, or add all 4 sides."
     },
     {
-      "id": "c10_ut_06",
+      "id": "UT_06",
+      "type": "input",
       "lesson_ref": "L3",
-      "type": "fill_in",
-      "question": "A triangle has a perimeter of 25 cm. Two sides are 9 cm and 8 cm. Third side = __ cm.",
-      "answer": "8 cm",
-      "accept": ["8", "8 cm"],
-      "difficulty": 2
+      "skill_tag": "unknown_side_triangle",
+      "difficulty": 2,
+      "question": "A triangle has a perimeter of 25 cm. Two sides are 9 cm and 8 cm. What is the third side, in cm?",
+      "correct_answer": "8",
+      "feedback": {
+        "correct": "Yes! 25 − 9 − 8 = 8 cm.",
+        "incorrect": "25 − 9 − 8 = 8 cm for the third side."
+      },
+      "hint": "Total perimeter − known sides = unknown side."
     },
     {
-      "id": "c10_ut_07",
+      "id": "UT_07",
+      "type": "mc",
       "lesson_ref": "L3",
-      "type": "multiple_choice",
+      "skill_tag": "unknown_side_rectangle",
+      "difficulty": 2,
       "question": "A rectangle has a perimeter of 30 m and a length of 9 m. What is the width?",
-      "choices": ["5 m", "6 m", "7 m"],
-      "answer": "6 m",
-      "difficulty": 2
+      "choices": [
+        "A) 5 m",
+        "B) 6 m",
+        "C) 7 m"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! Length is 6 m.",
+        "incorrect": "P = 20, so L+W = 10. 10 − 4 = 6 m."
+      },
+      "hint": "P = 2(L+W). Find L+W first."
     },
     {
-      "id": "c10_ut_08",
+      "id": "UT_08",
+      "type": "input",
       "lesson_ref": "L3",
-      "type": "fill_in",
-      "question": "A square has a perimeter of 56 cm. Side length = __ cm.",
-      "answer": "14 cm",
-      "accept": ["14", "14 cm"],
-      "difficulty": 2
+      "skill_tag": "square_side_from_perimeter",
+      "difficulty": 2,
+      "question": "A square has a perimeter of 56 cm. What is the side length, in cm?",
+      "correct_answer": "14",
+      "feedback": {
+        "correct": "Yes! 56 ÷ 4 = 14 cm.",
+        "incorrect": "All 4 sides equal: 56 ÷ 4 = 14 cm."
+      },
+      "hint": "Square sides equal — divide perimeter by 4."
     },
     {
-      "id": "c10_ut_09",
+      "id": "UT_09",
+      "type": "mc",
       "lesson_ref": "L4",
-      "type": "multiple_choice",
+      "skill_tag": "area_units",
+      "difficulty": 1,
       "question": "Which unit measures area?",
-      "choices": ["meters", "square meters", "cubic meters"],
-      "answer": "square meters",
-      "difficulty": 1
+      "choices": [
+        "A) meters",
+        "B) square meters",
+        "C) cubic meters"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right — area is in square units.",
+        "incorrect": "Area is measured in square units like sq m or sq cm."
+      },
+      "hint": "Area uses square units (sq m, sq cm, sq ft)."
     },
     {
-      "id": "c10_ut_10",
+      "id": "UT_10",
+      "type": "input",
       "lesson_ref": "L4",
-      "type": "fill_in",
-      "question": "A rectangle is 8 cm long and 5 cm wide. Area = __ sq cm. Perimeter = __ cm.",
-      "answer": "40 sq cm and 26 cm",
-      "accept": ["40 and 26", "Area=40 P=26"],
-      "difficulty": 2
+      "skill_tag": "rectangle_perimeter_from_dim",
+      "difficulty": 2,
+      "question": "A rectangle is 8 cm long and 5 cm wide. What is the perimeter, in cm?",
+      "correct_answer": "26",
+      "feedback": {
+        "correct": "Yes! 2 × (8+5) = 26 cm.",
+        "incorrect": "Perimeter = 2 × (8 + 5) = 26 cm."
+      },
+      "hint": "P = 2 × (length + width)."
     },
     {
-      "id": "c10_ut_11",
+      "id": "UT_11",
+      "type": "mc",
       "lesson_ref": "L4",
-      "type": "multiple_choice",
+      "skill_tag": "same_perim_diff_area",
+      "difficulty": 2,
       "question": "Rectangle A is 7×2. Rectangle B is 5×4. Which statement is true?",
       "choices": [
-        "Same perimeter, same area",
-        "Same area, different perimeters",
-        "Different perimeters, different areas"
+        "A) Same perimeter, same area",
+        "B) Same area, different perimeters",
+        "C) Different perimeters, different areas"
       ],
-      "answer": "Different perimeters, different areas",
-      "difficulty": 2
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Different rectangles can have the same perimeter but different areas."
+      },
+      "hint": "Same perimeter doesn't always mean same area."
     },
     {
-      "id": "c10_ut_12",
+      "id": "UT_12",
+      "type": "mc",
       "lesson_ref": "L5",
-      "type": "multiple_choice",
+      "skill_tag": "max_area_for_perim",
+      "difficulty": 2,
       "question": "Three rectangles all have perimeter 20 cm: A(9×1), B(7×3), C(5×5). Which has the greatest area?",
-      "choices": ["A (9 sq cm)", "B (21 sq cm)", "C (25 sq cm)"],
-      "answer": "C (25 sq cm)",
-      "difficulty": 2
+      "choices": [
+        "A) A (9 sq cm)",
+        "B) B (21 sq cm)",
+        "C) C (25 sq cm)"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Yes! 5 × 5 = 25 sq cm.",
+        "incorrect": "A square 5×5 has the largest area for perimeter 20."
+      },
+      "hint": "A square gives the most area for a given perimeter."
     },
     {
-      "id": "c10_ut_13",
+      "id": "UT_13",
+      "type": "input",
       "lesson_ref": "L5",
-      "type": "fill_in",
-      "question": "Two rectangles have perimeter 24 cm: A(10×2) and B(6×6). B's area is __ sq cm more than A's.",
-      "answer": "16 sq cm",
-      "accept": ["16", "16 sq cm"],
-      "difficulty": 2
+      "skill_tag": "compare_two_areas",
+      "difficulty": 2,
+      "question": "Two rectangles have perimeter 24 cm: A is 10×2, B is 6×6. What is B's area, in sq cm?",
+      "correct_answer": "16",
+      "feedback": {
+        "correct": "Right! B is 16 sq cm more.",
+        "incorrect": "B = 36 sq cm, A = 20 sq cm. Difference = 16 sq cm."
+      },
+      "hint": "B is 6×6 = 36 sq cm. A is 10×2 = 20 sq cm. B has 16 more."
     },
     {
-      "id": "c10_ut_14",
+      "id": "UT_14",
+      "type": "mc",
       "lesson_ref": "L6",
-      "type": "multiple_choice",
+      "skill_tag": "min_perim_for_area",
+      "difficulty": 2,
       "question": "Three rectangles all have area 24 sq cm: A(24×1), B(8×3), C(6×4). Which has the smallest perimeter?",
-      "choices": ["A (50 cm)", "B (22 cm)", "C (20 cm)"],
-      "answer": "C (20 cm)",
-      "difficulty": 2
+      "choices": [
+        "A) A (50 cm)",
+        "B) B (22 cm)",
+        "C) C (20 cm)"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Yes! 5×5 has perimeter 20 cm.",
+        "incorrect": "A square 5×5 has the smallest perimeter for area 25."
+      },
+      "hint": "A square uses the least fence for a given area."
     },
     {
-      "id": "c10_ut_15",
+      "id": "UT_15",
+      "type": "input",
       "lesson_ref": "L6",
-      "type": "fill_in",
-      "question": "Two rectangles have area 36 sq cm: A(18×2) and B(6×6). A's perimeter is __ cm more than B's.",
-      "answer": "16 cm",
-      "accept": ["16", "16 cm"],
-      "difficulty": 2
+      "skill_tag": "compare_two_perimeters",
+      "difficulty": 2,
+      "question": "Two rectangles have area 36 sq cm: A is 18×2, B is 6×6. What is A's perimeter, in cm?",
+      "correct_answer": "16",
+      "feedback": {
+        "correct": "Right! A's perimeter is 16 cm more.",
+        "incorrect": "A: P=40 cm. B: P=24 cm. Difference = 16 cm."
+      },
+      "hint": "A is 18×2 (P=40). B is 6×6 (P=24). Diff = 16."
     },
     {
-      "id": "c10_ut_16",
+      "id": "UT_16",
+      "type": "input",
       "lesson_ref": "L2",
-      "type": "word_problem",
+      "skill_tag": "rect_perimeter_word",
+      "difficulty": 2,
       "question": "A rectangular playground is 15 m long and 8 m wide. How much fencing is needed to go around it?",
-      "answer": "46 m. P = (15+8)×2 = 23×2 = 46 m.",
-      "difficulty": 2
+      "correct_answer": "46",
+      "feedback": {
+        "correct": "Yes! 46 m of fencing.",
+        "incorrect": "P = 2 × (15+8) = 46 m."
+      },
+      "hint": "Add length+width and double: 2 × (15+8)."
     },
     {
-      "id": "c10_ut_17",
+      "id": "UT_17",
+      "type": "input",
       "lesson_ref": "L3",
-      "type": "word_problem",
+      "skill_tag": "unknown_length_word",
+      "difficulty": 2,
       "question": "A rectangular garden has a perimeter of 38 ft and a width of 7 ft. What is the length?",
-      "answer": "12 ft. 7+7=14. 38−14=24. Length = 24÷2 = 12 ft.",
-      "difficulty": 2
+      "correct_answer": "12",
+      "feedback": {
+        "correct": "Right! 12 ft.",
+        "incorrect": "38 − 2(7) = 24, then 24 ÷ 2 = 12 ft."
+      },
+      "hint": "Subtract two widths from the perimeter, then halve."
     },
     {
-      "id": "c10_ut_18",
+      "id": "UT_18",
+      "type": "input",
       "lesson_ref": "L5",
-      "type": "word_problem",
-      "question": "Tina has 28 m of fence to make a rectangular pen. She wants the greatest possible area. What dimensions should she use and what is the area?",
-      "answer": "7×7 = 49 sq m. A square gives the greatest area for a given perimeter.",
-      "difficulty": 3
+      "skill_tag": "max_area_word",
+      "difficulty": 3,
+      "question": "Tina has 28 m of fence for a rectangular pen with the greatest area. What is the area, in sq m?",
+      "correct_answer": "49",
+      "feedback": {
+        "correct": "Yes! 7×7 = 49 sq m.",
+        "incorrect": "Side = 28 ÷ 4 = 7 m. Area = 7 × 7 = 49 sq m."
+      },
+      "hint": "A square gives the most area: side = perim ÷ 4."
     },
     {
-      "id": "c10_ut_19",
+      "id": "UT_19",
+      "type": "input",
       "lesson_ref": "L6",
-      "type": "word_problem",
-      "question": "A farmer needs a field with area 40 sq m. Options: 40×1, 10×4, 8×5. Which uses the least fencing? How much fencing is needed?",
-      "answer": "8×5 uses least fencing. P=(8+5)×2=26 m.",
-      "difficulty": 3
+      "skill_tag": "min_perim_word",
+      "difficulty": 3,
+      "question": "A field needs area 40 sq m. Options: 40×1, 10×4, 8×5. Which option uses the least fencing? Give the perimeter, in m.",
+      "correct_answer": "26",
+      "feedback": {
+        "correct": "Right! 26 m.",
+        "incorrect": "8 × 5 has the smallest perimeter: P = 2(8+5) = 26 m."
+      },
+      "hint": "Compare perimeters: 40+1=41, 10+4=14, 8+5=13. Pick smallest."
     },
     {
-      "id": "c10_ut_20",
+      "id": "UT_20",
+      "type": "input",
       "lesson_ref": "L4",
-      "type": "open_response",
-      "question": "A rectangle has a perimeter of 22 cm and an area of 24 sq cm. What are the dimensions? Show your work.",
-      "answer": "l+w=11. Factor pairs of 24 that add to 11: 8+3=11, 8×3=24 ✓. Length=8 cm, Width=3 cm.",
-      "difficulty": 3
+      "skill_tag": "solve_dim_from_p_and_a",
+      "difficulty": 3,
+      "question": "A rectangle has perimeter 22 cm and area 24 sq cm. What is the longer side, in cm?",
+      "correct_answer": "8",
+      "feedback": {
+        "correct": "Yes! 8 cm.",
+        "incorrect": "8 + 3 = 11 and 8 × 3 = 24. The longer side is 8 cm."
+      },
+      "hint": "L+W = 11 and L×W = 24. Try pairs that multiply to 24."
     }
   ]
 }
