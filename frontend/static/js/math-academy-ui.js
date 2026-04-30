@@ -253,11 +253,15 @@ async function renderMathComplete() {
             </div>
             <div class="math-complete-actions">
                 <button class="math-btn-primary" id="math-complete-back-btn">Back to Math</button>
+                <div id="math-island-update"></div>
             </div>
         </div>
     `;
     document.getElementById('math-complete-back-btn')
         .addEventListener('click', () => exitMathLesson());
+    if (typeof _appendIslandUpdate === 'function') {
+        _appendIslandUpdate(document.getElementById('math-island-update'));
+    }
 }
 
 /** @tag MATH @tag ACADEMY */

@@ -288,9 +288,12 @@ function advanceToNextStage() {
                     ${retryBtnHtml}
                     ${nextBtnHtml}
                 </div>
+                <div class="sc-island-update" id="sc-island-update"></div>
             </div>
         `;
-
+        if (typeof _appendIslandUpdate === 'function') {
+            _appendIslandUpdate(stageEl.querySelector('#sc-island-update'));
+        }
     }
 
     const _savedNextKey = allDone ? null : nextStageToStart();

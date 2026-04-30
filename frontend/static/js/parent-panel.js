@@ -315,7 +315,10 @@ async function _ppSettings(body) {
         <div id="pp-settings-textbooks"></div>
 
         <div class="pp-section-title" style="margin-top:24px">XP Rules &amp; Report</div>
-        <div id="pp-settings-xp"></div>`;
+        <div id="pp-settings-xp"></div>
+
+        <div class="pp-section-title" style="margin-top:24px">Island System</div>
+        <div id="pp-settings-island"></div>`;
 
     const tasksEl     = document.getElementById("pp-settings-tasks");
     const scheduleEl  = document.getElementById("pp-settings-schedule");
@@ -323,6 +326,7 @@ async function _ppSettings(body) {
     const reportEl    = document.getElementById("pp-settings-report");
     const textbooksEl = document.getElementById("pp-settings-textbooks");
     const xpEl        = document.getElementById("pp-settings-xp");
+    const islandEl    = document.getElementById("pp-settings-island");
 
     if (typeof ppRenderTasks    === "function") await ppRenderTasks(tasksEl);
     if (typeof ppRenderSchedule === "function") await ppRenderSchedule(scheduleEl);
@@ -330,8 +334,52 @@ async function _ppSettings(body) {
     if (typeof ppRenderReport   === "function") await ppRenderReport(reportEl);
     if (typeof _ppTextbooks     === "function") await _ppTextbooks(textbooksEl);
     if (typeof _ppXP            === "function") await _ppXP(xpEl);
+    _ppIslandToggle(islandEl);
 
     if (typeof lucide !== "undefined") lucide.createIcons();
+}
+
+/** Render Island ON/OFF toggle card. @tag PARENT SETTINGS SHOP */
+async function _ppIslandToggle(el) {
+    if (!el) return;
+    try {
+        const cfg = await apiFetchJSON("/api/island/config");
+        const on  = cfg.island_on !== false;
+        el.innerHTML = `
+            <div class="pp-toggle-row">
+                <div>
+                    <div class="pp-toggle-label">Gia's Island</div>
+                    <div class="pp-toggle-hint">Character raising, Lumi economy, zone exploration</div>
+                </div>
+                <label class="pp-toggle-switch" title="Toggle Island">
+                    <input type="checkbox" id="pp-island-chk" ${on ? "checked" : ""}
+                           onchange="_ppSaveIslandToggle(this.checked)">
+                    <span class="pp-toggle-track"></span>
+                </label>
+            </div>`;
+    } catch (_) {
+        el.innerHTML = `<p style="color:var(--text-hint);font-size:13px;padding:8px 0">Island config unavailable.</p>`;
+    }
+}
+
+/** @tag PARENT SETTINGS SHOP */
+async function _ppSaveIslandToggle(checked) {
+    try {
+        const res = await window._ppFetch("/api/island/config/update", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ island_on: checked }),
+        });
+        if (res.ok) {
+            window.toast && window.toast(`Island ${checked ? "enabled" : "disabled"}.`, "success");
+        } else {
+            window.toast && window.toast("Could not save Island setting.", "error");
+            const chk = document.getElementById("pp-island-chk");
+            if (chk) chk.checked = !checked;
+        }
+    } catch (_) {
+        window.toast && window.toast("Network error.", "error");
+    }
 }
 
 // ─── Day Off Requests (shared helper) ────────────────────────

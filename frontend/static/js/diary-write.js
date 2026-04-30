@@ -840,6 +840,13 @@ async function _dwSave() {
             localStorage.setItem("nss.diary.last." + today, JSON.stringify(snap));
         } catch (_) {}
         _dwToast("Saved · +15 XP", false);
+        if (typeof _appendIslandUpdate === "function") {
+            const islandSlot = document.getElementById("dw-island-update") || document.createElement("div");
+            islandSlot.id = "dw-island-update";
+            const saveBtn = document.getElementById("dw-save");
+            if (saveBtn && saveBtn.parentElement) saveBtn.parentElement.appendChild(islandSlot);
+            _appendIslandUpdate(islandSlot);
+        }
         setTimeout(() => {
             _dwCleanupAndLeave();
             if (typeof openDiarySection === "function") openDiarySection("today");

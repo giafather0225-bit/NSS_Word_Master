@@ -552,3 +552,98 @@
 .ico-modal-status--done   { background: var(--math-light);   color: var(--math-ink); }
 .ico-modal-status--locked { background: var(--bg-surface);   color: var(--text-hint); }
 .ico-modal-desc { font-size: var(--font-size-sm); color: var(--text-secondary); margin-top: 12px; }
+
+/* ── Island Notifications popup ─────────────────────────────────── */
+.inp-popup {
+    position: absolute; top: 72px; right: 16px;
+    width: 280px; max-height: 420px;
+    background: var(--bg-card); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-modal);
+    z-index: 1200; display: flex; flex-direction: column;
+    overflow: hidden;
+}
+.inp-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 16px;
+    background: var(--rewards-light);
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+.inp-title {
+    flex: 1; display: flex; align-items: center; gap: 6px;
+    font-size: var(--font-size-sm); font-weight: 700;
+    color: var(--rewards-ink);
+}
+.inp-close-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-secondary); display: flex; align-items: center;
+    padding: 4px; border-radius: var(--radius-sm);
+}
+.inp-close-btn:hover { color: var(--text-primary); }
+.inp-body { flex: 1; overflow-y: auto; padding: 12px 16px; display: flex; flex-direction: column; gap: 12px; }
+.inp-lumi-row {
+    display: flex; align-items: center; gap: 8px;
+    font-size: var(--font-size-sm); font-weight: 700;
+    color: var(--rewards-ink);
+    background: var(--rewards-soft); border-radius: var(--radius-sm);
+    padding: 8px 12px;
+}
+.inp-section { display: flex; flex-direction: column; gap: 6px; }
+.inp-section-label {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    color: var(--text-hint); text-transform: uppercase;
+}
+.inp-char-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 8px; border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+}
+.inp-char-row--evo  { background: var(--rewards-light); }
+.inp-char-row--hungry { background: var(--review-light); }
+.inp-char-row--sad  { background: var(--diary-light); }
+.inp-char-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.inp-char-dot--evo  { background: var(--rewards-primary); }
+.inp-char-dot--warn { background: var(--review-primary); }
+.inp-char-info { flex: 1; display: flex; flex-direction: column; gap: 1px; }
+.inp-char-name { font-size: var(--font-size-sm); font-weight: 700; color: var(--text-primary); }
+.inp-char-tag  { font-size: 11px; color: var(--text-secondary); }
+.inp-char-icon--evo  { color: var(--rewards-primary); flex-shrink: 0; }
+.inp-char-icon--warn { color: var(--review-primary);  flex-shrink: 0; }
+.inp-footer { padding: 10px 16px; border-top: 1px solid var(--border-subtle); flex-shrink: 0; }
+.inp-btn { width: 100%; padding: 8px; border: none; border-radius: var(--radius-sm); cursor: pointer;
+           font-size: var(--font-size-sm); font-weight: 700; }
+.inp-btn--primary { background: var(--rewards-primary); color: var(--text-on-primary); }
+
+/* ── Parent Settings Island toggle ──────────────────────────────── */
+.pp-toggle-hint { font-size: var(--font-size-xs); color: var(--text-hint); margin-top: 2px; }
+
+/* ── Island Result card (study completion) ───────────────────────── */
+.ir-card {
+    margin-top: 16px; padding: 12px 14px;
+    background: var(--rewards-light); border: 1px solid var(--rewards-soft);
+    border-radius: var(--radius-md);
+}
+.ir-header {
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 8px;
+}
+.ir-gem-icon { color: var(--rewards-primary); }
+.ir-title {
+    font-size: var(--font-size-sm); font-weight: 700;
+    color: var(--rewards-ink); flex: 1;
+}
+.ir-char { font-size: 11px; color: var(--text-secondary); }
+.ir-rows { display: flex; flex-direction: column; gap: 4px; }
+.ir-row {
+    display: flex; align-items: center; gap: 6px;
+    font-size: var(--font-size-sm); color: var(--text-primary);
+}
+.ir-row--event { font-weight: 700; color: var(--rewards-ink); }
+.ir-row--gauge { gap: 6px; }
+.ir-bar { flex: 1; height: 6px; background: var(--bg-surface); border-radius: var(--radius-full); overflow: hidden; }
+.ir-bar-fill { height: 100%; border-radius: var(--radius-full); transition: width 0.4s ease; }
+.ir-bar-fill--low { background: var(--review-primary); }
+.ir-bar-fill--mid { background: var(--arcade-primary); }
+.ir-bar-fill--ok  { background: var(--math-primary); }
+.sc-island-update { margin-top: 4px; }

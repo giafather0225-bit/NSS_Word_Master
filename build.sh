@@ -37,6 +37,9 @@ cat \
   frontend/src/island/IslandShop.jsx \
   frontend/src/island/Inventory.jsx \
   frontend/src/island/Collection.jsx \
+  frontend/src/island/LumiLog.jsx \
+  frontend/src/island/IslandNotifications.jsx \
+  $JS/island-result.js \
   $JS/diary.js \
   $JS/diary-home.js \
   $JS/diary-write.js \

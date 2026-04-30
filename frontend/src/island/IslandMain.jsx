@@ -28,9 +28,19 @@ const _ZOOM_STEP  = 0.2;
 // ─── Open / Close ───────────────────────────────────────────────
 
 /** @tag SHOP */
-function openIslandMain() {
+async function openIslandMain() {
     const el = document.getElementById('island-overlay');
     if (!el) return;
+
+    // Check onboarding first
+    try {
+        const ob = await apiFetchJSON('/api/island/onboarding/status');
+        if (ob.island_initialized === false) {
+            if (typeof openIslandOnboarding === 'function') openIslandOnboarding();
+            return;
+        }
+    } catch (_) { /* proceed even if check fails */ }
+
     el.classList.remove('hidden');
     _islandZoom = 1.0;
     _renderIslandLoading();
@@ -42,6 +52,7 @@ function openIslandMain() {
         _islandStreak = xpData.streak_days ?? 0;
         _renderIslandScreen();
         if (typeof lucide !== 'undefined') lucide.createIcons();
+        if (typeof checkIslandNotifications === 'function') checkIslandNotifications();
     }).catch(() => _renderIslandError());
 }
 
@@ -237,7 +248,7 @@ function _attachWheelPinch(el) {
 function _isDay() { const h = new Date().getHours(); return h >= 6 && h < 18; }
 
 /** @tag SHOP */
-function _openLumiLog()          { /* Lumi log — future screen */ }
+function _openLumiLog()          { if (typeof openLumiLog === 'function') openLumiLog(); }
 function _openIslandInventory()  { if (typeof openInventory   === 'function') openInventory();   }
 function _openIslandCollection() { if (typeof openCollection  === 'function') openCollection();  }
 

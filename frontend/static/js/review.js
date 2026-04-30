@@ -268,6 +268,14 @@
     document.getElementById("review-done-summary").textContent =
       sessionCorrect + " / " + sessionTotal + " correct (" + pct + "%)";
     doneOverlay.classList.add("active");
+    var islandSlot = doneOverlay.querySelector("#rv-island-update");
+    if (!islandSlot) {
+      islandSlot = document.createElement("div");
+      islandSlot.id = "rv-island-update";
+      var content = doneOverlay.querySelector(".review-done-content");
+      if (content) content.appendChild(islandSlot);
+    }
+    if (typeof _appendIslandUpdate === "function") _appendIslandUpdate(islandSlot);
   }
 
   /* ── Init ── */
