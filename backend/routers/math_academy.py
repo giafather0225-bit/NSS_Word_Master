@@ -455,7 +455,13 @@ async def complete_lesson(req: CompleteLessonIn, db: Session = Depends(get_db)):
     except Exception as e:
         logger.warning("Streak math mark failed: %s", e)
     db.commit()
-    return {"status": "ok", "is_completed": True}
+    island = {"xp_multiplier": 1.0}
+    try:
+        from backend.services import island_care_engine as _care
+        island = _care.apply_subject_gain(db, "math", "math_lesson")
+    except Exception:
+        pass
+    return {"status": "ok", "is_completed": True, "island": island}
 
 class SubmitUnitTestIn(BaseModel):
     """Unit test result via JSON body."""
@@ -500,7 +506,14 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
         "status": "ok", "passed": passed,
         "score": req.score, "total": req.total,
         "pct": round(pct, 1),
+        "island": {"xp_multiplier": 1.0},
     }
+    if passed:
+        try:
+            from backend.services import island_care_engine as _care
+            result["island"] = _care.apply_subject_gain(db, "math", "math_unit_test")
+        except Exception:
+            pass
     if not passed:
         try:
             weak = (

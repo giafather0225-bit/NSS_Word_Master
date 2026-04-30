@@ -254,6 +254,17 @@ def submit_review_result(req: ReviewResultRequest, db: Session = Depends(get_db)
 
         db.commit()
         db.refresh(wr)
+
+        island = {"xp_multiplier": 1.0}
+        try:
+            from backend.services import island_care_engine as _care
+            today_str = _date.today().isoformat()
+            due_remaining = db.query(WordReview).filter(WordReview.next_review <= today_str).count()
+            if due_remaining == 0:
+                island = _care.apply_subject_gain(db, "review", "review")
+        except Exception:
+            pass
+
         return {
             "review_id":    wr.id,
             "word":         wr.word,
@@ -262,6 +273,7 @@ def submit_review_result(req: ReviewResultRequest, db: Session = Depends(get_db)
             "new_interval": wr.interval,
             "next_review":  wr.next_review,
             "repetitions":  wr.repetitions,
+            "island":       island,
         }
     except SQLAlchemyError as e:
         db.rollback()

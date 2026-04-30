@@ -197,7 +197,14 @@ def save_learning_log(body: LearningLogCreate, db: Session = Depends(get_db)):
         db.commit()
         if body.textbook and body.lesson:
             academy_sess.touch_session(db, body.textbook, body.lesson, body.stage)
-        return {"ok": True}
+        island = {"xp_multiplier": 1.0}
+        try:
+            from backend.services import island_care_engine as _care
+            _source = "english_final_test" if "final" in body.stage.lower() else "english_stage"
+            island = _care.apply_subject_gain(db, "english", _source)
+        except Exception:
+            pass
+        return {"ok": True, "island": island}
     except SQLAlchemyError as e:
         db.rollback()
         logger.error("save_learning_log failed: %s", e)

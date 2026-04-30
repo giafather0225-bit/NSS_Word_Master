@@ -10,7 +10,7 @@ from typing import Optional
 
 from sqlalchemy.orm import Session
 
-from backend.models.island import IslandCharacterProgress, IslandCareLog
+from backend.models.island import IslandCharacter, IslandCharacterProgress, IslandCareLog
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Study-gain table (ISLAND_SPEC §5.2)
@@ -301,3 +301,43 @@ def run_daily_batch(db: Session) -> dict:
 
     db.flush()
     return {"processed": processed, "skipped": skipped}
+
+
+# @tag ISLAND
+def apply_subject_gain(db: Session, subject: str, source: str) -> dict:
+    """
+    Apply study gain to all active characters matching the given subject.
+
+    Queries characters whose subject matches `subject` or is "all".
+    Returns the XP multiplier for the currently-raising (non-completed) character.
+
+    Returns:
+        {"xp_multiplier": float}
+    """
+    try:
+        subjects = [subject, "all"] if subject != "all" else ["all"]
+        active_progs = (
+            db.query(IslandCharacterProgress)
+            .join(IslandCharacter, IslandCharacterProgress.character_id == IslandCharacter.id)
+            .filter(
+                IslandCharacter.subject.in_(subjects),
+                IslandCharacterProgress.is_active == True,
+            )
+            .all()
+        )
+    except Exception:
+        return {"xp_multiplier": 1.0}
+
+    xp_multiplier = 1.0
+    for prog in active_progs:
+        try:
+            apply_study_gain(db, prog.id, source)
+        except Exception:
+            pass
+        if not prog.is_completed and not prog.is_legend_type:
+            try:
+                xp_multiplier = get_xp_multiplier(db, prog.id)
+            except Exception:
+                pass
+
+    return {"xp_multiplier": xp_multiplier}

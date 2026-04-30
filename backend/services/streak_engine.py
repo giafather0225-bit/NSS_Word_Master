@@ -102,6 +102,24 @@ def mark_game_done(db: Session, day: str | None = None) -> None:
     _evaluate_streak(db, log)
 
 
+# ─── Island lumi for streak ───────────────────────────────────
+
+def _award_streak_lumi(db: Session) -> None:
+    """Award Lumi when today's streak is first confirmed maintained. Silent on any error."""
+    try:
+        cfg = db.query(AppConfig).filter_by(key="lumi_rule_streak").first()
+        try:
+            amount = max(0, int(cfg.value)) if cfg else 5
+        except (TypeError, ValueError):
+            amount = 5
+        if amount <= 0:
+            return
+        from backend.services.lumi_engine import earn_lumi
+        earn_lumi(db, source="streak", amount=amount)
+    except Exception:
+        pass
+
+
 # ─── Subject evaluation ───────────────────────────────────────
 
 # @tag STREAK
@@ -136,6 +154,9 @@ def _evaluate_streak(db: Session, log: StreakLog) -> None:
       mode="all": every configured subject must be satisfied.
       mode="any": at least one configured subject must be satisfied.
     """
+    was_maintained = bool(log.streak_maintained)
+    today_str = date.today().isoformat()
+
     day_off = db.query(DayOffRequest).filter(
         DayOffRequest.request_date == log.date,
         DayOffRequest.status == "approved",
@@ -143,6 +164,8 @@ def _evaluate_streak(db: Session, log: StreakLog) -> None:
     if day_off:
         log.streak_maintained = True
         db.commit()
+        if not was_maintained and log.date == today_str:
+            _award_streak_lumi(db)
         return
 
     subjects, mode = get_streak_config(db)
@@ -159,6 +182,8 @@ def _evaluate_streak(db: Session, log: StreakLog) -> None:
     else:
         log.streak_maintained = all(required)
     db.commit()
+    if not was_maintained and log.streak_maintained and log.date == today_str:
+        _award_streak_lumi(db)
 
 
 # @tag STREAK

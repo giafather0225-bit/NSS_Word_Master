@@ -263,7 +263,16 @@ async def create_or_update_diary_entry(
     except Exception as exc:  # noqa: BLE001
         logger.warning("Diary XP award failed: %s", exc)
 
-    return _entry_to_dict(entry)
+    island = {"xp_multiplier": 1.0}
+    try:
+        from backend.services import island_care_engine as _care
+        island = _care.apply_subject_gain(db, "diary", "diary")
+    except Exception:
+        pass
+
+    response = _entry_to_dict(entry)
+    response["island"] = island
+    return response
 
 
 # @tag DIARY @tag AI

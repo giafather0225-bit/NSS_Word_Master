@@ -11,6 +11,45 @@ from backend.models import XPLog, WordReview, AppConfig
 
 # XP awarded per action — defaults. Parent can override via app_config
 # keys of the form `xp_rule_<action>`. See get_xp_rules().
+# Lumi awarded per XP action — config key → (app_config_key, earn_source)
+_LUMI_ACTION_MAP: dict[str, tuple[str, str]] = {
+    "stage_complete":       ("lumi_rule_english_stage", "english_stage"),
+    "final_test_pass":      ("lumi_rule_english_final", "english_final_test"),
+    "math_lesson_complete": ("lumi_rule_math_lesson",   "math_lesson"),
+    "math_unit_test_pass":  ("lumi_rule_math_unit",     "math_unit_test"),
+    "journal_complete":     ("lumi_rule_diary",          "diary"),
+    "review_complete":      ("lumi_rule_review",         "review"),
+}
+_LUMI_DEFAULTS: dict[str, int] = {
+    "lumi_rule_english_stage": 3,
+    "lumi_rule_english_final": 15,
+    "lumi_rule_math_lesson":   10,
+    "lumi_rule_math_unit":     20,
+    "lumi_rule_diary":          8,
+    "lumi_rule_review":         5,
+}
+
+
+def _award_lumi_for_action(db: Session, action: str) -> None:
+    """Award Lumi alongside XP for supported study actions. Silent on any error."""
+    entry = _LUMI_ACTION_MAP.get(action)
+    if entry is None:
+        return
+    cfg_key, earn_source = entry
+    try:
+        cfg = db.query(AppConfig).filter_by(key=cfg_key).first()
+        amount = max(0, int(cfg.value)) if cfg else _LUMI_DEFAULTS.get(cfg_key, 0)
+    except (TypeError, ValueError):
+        amount = _LUMI_DEFAULTS.get(cfg_key, 0)
+    if amount <= 0:
+        return
+    try:
+        from backend.services.lumi_engine import earn_lumi
+        earn_lumi(db, source=earn_source, amount=amount)
+    except Exception:
+        pass
+
+
 XP_RULES_DEFAULT: dict[str, int] = {
     "word_correct":           1,
     "stage_complete":         2,
@@ -123,6 +162,7 @@ def award_xp(
         created_at=datetime.now().isoformat(),
     )
     db.add(log)
+    _award_lumi_for_action(db, action)
     db.commit()
     return xp_amount
 
