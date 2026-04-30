@@ -8,14 +8,19 @@
     'use strict';
 
     /* ── Parse one feedback line ────────────────────────────── */
-    // child.js formatStructuredFeedback output (innerHTML, <br> separated):
-    //  "✅ Grammar: …<br>✅ Word Use: …<br>⭐⭐⭐ Creativity: …<br>🎉 …"
+    // sentence.js formatStructuredFeedback output (innerHTML, <br> separated):
+    //  "[OK] Grammar: …<br>[OK] Word Use: …<br>[3/5] Creativity: …<br><overall>"
+    //  (legacy ✅⚠️⭐🎉 markers also recognised for backwards compat)
+
+    var GRAMMAR_RE = /^(?:\[(OK|!)\]|[✅⚠️])\s*Grammar:/i;
+    var WORDUSE_RE = /^(?:\[(OK|!)\]|[✅⚠️])\s*Word Use:/i;
+    var CREATIV_RE = /^(?:\[(\d)\/5\]|⭐+)\s*Creativity:/i;
 
     function buildCard(lines) {
         var rows = '';
+        var sawTagged = false;
 
         lines.forEach(function (raw) {
-            // Decode HTML entities (child.js uses escapeHtml)
             var text = raw
                 .replace(/&amp;/g, '&').replace(/&lt;/g, '<')
                 .replace(/&gt;/g, '>').replace(/&quot;/g, '"')
@@ -23,42 +28,50 @@
 
             if (!text) return;
 
-            /* Grammar row — coaching tone on 1st-attempt errors */
-            if (/^[✅⚠️]\s*Grammar:/i.test(text)) {
-                var pass    = text.startsWith('✅');
-                var content = text.replace(/^[✅⚠️]\s*Grammar:\s*/i, '');
+            /* Grammar row */
+            var m = text.match(GRAMMAR_RE);
+            if (m) {
+                var pass = m[1] ? m[1].toUpperCase() === 'OK' : text.charAt(0) === '✅';
+                var content = text.replace(GRAMMAR_RE, '').trim();
                 rows += buildRow(pass ? 'Grammar' : 'Grammar Tip', content,
                                  pass ? 'pass' : 'fail',
-                                 pass ? '✓' : '💡');
+                                 pass ? '<i data-lucide="check"></i>' : '<i data-lucide="lightbulb"></i>');
+                sawTagged = true;
                 return;
             }
 
-            /* Word Use row — coaching tone on 1st-attempt errors */
-            if (/^[✅⚠️]\s*Word Use:/i.test(text)) {
-                var pass    = text.startsWith('✅');
-                var content = text.replace(/^[✅⚠️]\s*Word Use:\s*/i, '');
+            /* Word Use row */
+            m = text.match(WORDUSE_RE);
+            if (m) {
+                var pass = m[1] ? m[1].toUpperCase() === 'OK' : text.charAt(0) === '✅';
+                var content = text.replace(WORDUSE_RE, '').trim();
                 rows += buildRow(pass ? 'Word Use' : 'Word Use Tip', content,
                                  pass ? 'pass' : 'fail',
-                                 pass ? '✓' : '💡');
+                                 pass ? '<i data-lucide="check"></i>' : '<i data-lucide="lightbulb"></i>');
+                sawTagged = true;
                 return;
             }
 
             /* Creativity row */
-            if (/^⭐.*Creativity:/i.test(text)) {
-                var starCount = (text.match(/⭐/g) || []).length;
-                var content   = text.replace(/^⭐+\s*Creativity:\s*/i, '');
+            m = text.match(CREATIV_RE);
+            if (m) {
+                var starCount = m[1] ? parseInt(m[1], 10) : (text.match(/⭐/g) || []).length;
+                var content   = text.replace(CREATIV_RE, '').trim();
                 rows += buildCreativity(starCount, content);
+                sawTagged = true;
                 return;
             }
 
-            /* Overall / 🎉 row */
+            /* Overall — legacy 🎉 prefix or unprefixed trailing line */
             if (/^🎉/.test(text)) {
-                var content = text.replace(/^🎉\s*/, '');
-                rows += buildOverall(content);
+                rows += buildOverall(text.replace(/^🎉\s*/, ''));
+                return;
+            }
+            if (sawTagged) {
+                rows += buildOverall(text);
                 return;
             }
 
-            /* Unrecognised line → show as-is */
             rows += '<div class="sm-ai-other">' + esc(text) + '</div>';
         });
 
@@ -75,7 +88,7 @@
         }
 
         var fixHtml = fix
-            ? '<div class="sm-ai-fix"><span class="sm-ai-fix-label">✏️ Fix</span>' + esc(fix) + '</div>'
+            ? '<div class="sm-ai-fix"><span class="sm-ai-fix-label"><i data-lucide="edit-2"></i> Fix</span>' + esc(fix) + '</div>'
             : '';
 
         return '<div class="sm-ai-row sm-ai-' + state + '">' +
@@ -92,10 +105,11 @@
         var filled = Math.min(5, Math.max(1, count));
         var stars  = '';
         for (var i = 1; i <= 5; i++) {
-            stars += '<span class="sm-star ' + (i <= filled ? 'sm-star-on' : '') + '">★</span>';
+            stars += '<span class="sm-star ' + (i <= filled ? 'sm-star-on' : '') + '">' +
+                     '<i data-lucide="star"></i></span>';
         }
         return '<div class="sm-ai-row sm-ai-neutral">' +
-                   '<span class="sm-ai-icon">✦</span>' +
+                   '<span class="sm-ai-icon"><i data-lucide="sparkles"></i></span>' +
                    '<div class="sm-ai-row-body">' +
                        '<span class="sm-ai-label">Creativity</span>' +
                        '<div class="sm-ai-stars">' + stars + '</div>' +
@@ -115,7 +129,7 @@
 
         var fixHtml = fix
             ? '<div class="sm-ai-fix">' +
-                  '<span class="sm-ai-fix-label">✏️ Suggested</span>' +
+                  '<span class="sm-ai-fix-label"><i data-lucide="edit-2"></i> Suggested</span>' +
                   esc(fix) +
               '</div>'
             : '';
@@ -141,6 +155,7 @@
         if (result) {
             div.innerHTML = result;
             div.classList.add('sm-ai-transformed');
+            if (window.lucide) window.lucide.createIcons();
         }
     }
 

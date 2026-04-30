@@ -27,7 +27,7 @@ async function renderCalendar() {
         <div class="diary-header">
             <button class="back-btn" onclick="_renderDiaryHome()">←</button>
             <div class="diary-header-text">
-                <span class="diary-header-title">📅 Calendar</span>
+                <span class="diary-header-title"><i data-lucide="calendar"></i> Calendar</span>
             </div>
         </div>
         <div id="cal-container" style="width:100%;max-width:480px;margin:0 auto"></div>`;
@@ -98,12 +98,13 @@ async function _drawCalendar() {
             ${dayCells}
         </div>
         <div class="cal-legend">
-            <span class="cal-legend-item">✅ All done</span>
-            <span class="cal-legend-item">🔥 Streak</span>
-            <span class="cal-legend-item">📝 Journal</span>
-            <span class="cal-legend-item">🏖️ Day off</span>
-            <span class="cal-legend-item">⬜ Missed</span>
+            <span class="cal-legend-item"><i data-lucide="check-circle"></i> All done</span>
+            <span class="cal-legend-item"><i data-lucide="flame"></i> Streak</span>
+            <span class="cal-legend-item"><i data-lucide="edit-3"></i> Journal</span>
+            <span class="cal-legend-item"><i data-lucide="umbrella"></i> Day off</span>
+            <span class="cal-legend-item"><i data-lucide="square"></i> Missed</span>
         </div>`;
+    if (window.lucide) lucide.createIcons();
 }
 
 // ─── Day Detail Modal ────────────────────────────────────────
@@ -135,7 +136,7 @@ async function _openCalendarDay(dateStr) {
         const parts = [];
         if (dayOff) {
             parts.push(`<div class="cal-day-block">
-                <div class="cal-day-block-label">🏖️ Day Off — <span class="status-badge ${dayOff.status}">${dayOff.status}</span></div>
+                <div class="cal-day-block-label"><i data-lucide="umbrella"></i> Day Off — <span class="status-badge ${dayOff.status}">${dayOff.status}</span></div>
                 <div class="cal-day-block-text">${escapeHtml(dayOff.reason || "")}</div>
             </div>`);
         }
@@ -145,13 +146,13 @@ async function _openCalendarDay(dateStr) {
             }
             if (entry.content) {
                 parts.push(`<div class="cal-day-block">
-                    <div class="cal-day-block-label">📝 Daily Journal</div>
+                    <div class="cal-day-block-label"><i data-lucide="edit-3"></i> Daily Journal</div>
                     <div class="cal-day-block-text">${escapeHtml(entry.content)}</div>
                 </div>`);
             }
             if (entry.ai_feedback) {
                 parts.push(`<div class="ai-feedback-box">
-                    <div class="ai-feedback-label">✨ GIA says:</div>
+                    <div class="ai-feedback-label"><i data-lucide="sparkles"></i> GIA says:</div>
                     <div class="ai-feedback-text">${escapeHtml(entry.ai_feedback)}</div>
                 </div>`);
             }
@@ -160,6 +161,7 @@ async function _openCalendarDay(dateStr) {
             parts.push(`<p class="diary-state-msg">Nothing recorded for this day.</p>`);
         }
         body.innerHTML = parts.join("");
+        if (window.lucide) lucide.createIcons();
     } catch (_) {
         body.innerHTML = `<p class="diary-state-msg error">Failed to load.</p>`;
     }
@@ -176,7 +178,7 @@ function _ensureCalendarDayModal() {
         <div class="cal-day-modal-card" role="dialog" aria-modal="true">
             <div class="cal-day-modal-header">
                 <span class="cal-day-modal-title"></span>
-                <button type="button" class="cal-day-modal-close" aria-label="Close">✕</button>
+                <button type="button" class="cal-day-modal-close" aria-label="Close"><i data-lucide="x"></i></button>
             </div>
             <div class="cal-day-modal-body"></div>
         </div>`;
@@ -186,6 +188,7 @@ function _ensureCalendarDayModal() {
     overlay.querySelector(".cal-day-modal-close")
            .addEventListener("click", () => overlay.classList.add("hidden"));
     document.body.appendChild(overlay);
+    if (window.lucide) lucide.createIcons();
     return overlay;
 }
 

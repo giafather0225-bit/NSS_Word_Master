@@ -46,9 +46,9 @@ function showKangarooResult(data) {
                     <div class="kang-grade-label">${_mathEsc(data.grade_label || '')}</div>
                 </div>
                 <div class="kang-result-meta">
-                    <div class="kang-result-time">⏱ ${_mathEsc(data.time_spent_formatted || '00:00')}</div>
-                    <div class="kang-result-xp">⭐ +${xp} XP</div>
-                    ${data.perfect ? `<div class="kang-result-perfect">🏆 Perfect!</div>` : ''}
+                    <div class="kang-result-time"><i data-lucide="clock"></i> ${_mathEsc(data.time_spent_formatted || '00:00')}</div>
+                    <div class="kang-result-xp"><i data-lucide="zap"></i> +${xp} XP</div>
+                    ${data.perfect ? `<div class="kang-result-perfect"><i data-lucide="trophy"></i> Perfect!</div>` : ''}
                 </div>
             </header>
 
@@ -85,6 +85,7 @@ function showKangarooResult(data) {
             </footer>
         </div>
     `;
+    if (window.lucide) lucide.createIcons();
     stage.querySelectorAll('.kang-review-card').forEach(card => {
         const head = card.querySelector('.kang-review-card-head');
         head.addEventListener('click', () => card.classList.toggle('is-open'));
@@ -101,7 +102,9 @@ function showKangarooResult(data) {
 
 /** @tag MATH @tag KANGAROO */
 function _resReviewCard(q) {
-    const icon = q.is_correct ? '<span class="kang-rv-ok">✓</span>' : '<span class="kang-rv-no">✗</span>';
+    const icon = q.is_correct
+        ? '<span class="kang-rv-ok"><i data-lucide="check"></i></span>'
+        : '<span class="kang-rv-no"><i data-lucide="x"></i></span>';
     const imageOnly = !!(q.image_only && q.image);
     const opts = imageOnly
         ? ['A','B','C','D','E'].map(k => {
@@ -171,9 +174,9 @@ function showKangarooPdfResult(data, setInfo) {
     `).join('');
 
     const detailRows = (data.details || []).map(d => {
-        let icon = '⬜', cls = 'unanswered';
-        if (d.is_correct) { icon = '✅'; cls = 'correct'; }
-        else if (d.student) { icon = '❌'; cls = 'wrong'; }
+        let icon = '<i data-lucide="minus"></i>', cls = 'unanswered';
+        if (d.is_correct) { icon = '<i data-lucide="check"></i>'; cls = 'correct'; }
+        else if (d.student) { icon = '<i data-lucide="x"></i>'; cls = 'wrong'; }
         const you = d.student || '—';
         return `
             <tr class="kang-detail-${cls}">
@@ -205,9 +208,9 @@ function showKangarooPdfResult(data, setInfo) {
                     ${data.is_new_best ? `<span class="kang-newbest">New Best!</span>` : ''}
                 </div>
                 <div class="kang-result-counts">
-                    <span>✅ ${data.correct_count || 0} correct</span>
-                    <span>❌ ${data.wrong_count || 0} wrong</span>
-                    <span>⬜ ${data.unanswered_count || 0} unanswered</span>
+                    <span><i data-lucide="check"></i> ${data.correct_count || 0} correct</span>
+                    <span><i data-lucide="x"></i> ${data.wrong_count || 0} wrong</span>
+                    <span><i data-lucide="minus"></i> ${data.unanswered_count || 0} unanswered</span>
                 </div>
             </header>
 
@@ -234,6 +237,7 @@ function showKangarooPdfResult(data, setInfo) {
             </div>
         </div>
     `;
+    if (window.lucide) lucide.createIcons();
 
     const setId = (setInfo && setInfo.set_id) || data.set_id;
     document.getElementById('kang-pp-retry').addEventListener('click', () => {
