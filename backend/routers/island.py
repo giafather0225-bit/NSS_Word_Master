@@ -367,6 +367,32 @@ def care_status(character_progress_id: int, db: Session = Depends(get_db)):
     if prog is None:
         raise HTTPException(404, "Character progress not found.")
     char = db.get(IslandCharacter, prog.character_id)
+
+    # XP threshold — first evo uses evo_first_xp, second uses evo_second_xp
+    stage = prog.stage or "baby"
+    is_mid = stage in ("mid_a", "mid_b")
+    is_final = stage in ("final_a", "final_b")
+    xp_to_next = (char.evo_second_xp if is_mid else char.evo_first_xp) if char else 100
+    current_xp = prog.current_xp or 0
+
+    # Determine which stone is needed and whether evolution is possible
+    if is_final or prog.is_completed:
+        stone_needed = "None"
+        can_evolve = False
+    elif prog.is_legend_type:
+        stone_needed = "legend_first_a" if stage == "baby" else "legend_second"
+        can_evolve = current_xp >= xp_to_next and prog.hunger >= 20 and prog.happiness >= 20
+    else:
+        stone_needed = ("first_a" if stage == "baby" else "second")
+        can_evolve = current_xp >= xp_to_next and prog.hunger >= 20 and prog.happiness >= 20
+
+    # Legend streak
+    legend_prog = None
+    if prog.is_legend_type:
+        legend_prog = db.query(IslandLegendProgress).filter_by(
+            character_id=prog.character_id
+        ).first()
+
     return {
         "character_progress_id": character_progress_id,
         "hunger": prog.hunger, "happiness": prog.happiness,
@@ -374,6 +400,24 @@ def care_status(character_progress_id: int, db: Session = Depends(get_db)):
         "is_legend_type": prog.is_legend_type,
         "is_completed": prog.is_completed,
         "name": char.name if char else "",
+        "current_xp": current_xp,
+        "xp_to_next_level": xp_to_next,
+        "can_evolve": can_evolve,
+        "evolution_stone": stone_needed,
+        "progress": {
+            "id": prog.id,
+            "character_id": prog.character_id,
+            "character_name": char.name if char else "",
+            "nickname": prog.nickname,
+            "stage": stage,
+            "level": prog.level or 1,
+            "current_xp": current_xp,
+            "hunger": prog.hunger,
+            "happiness": prog.happiness,
+            "is_legend_type": prog.is_legend_type,
+            "is_completed": prog.is_completed,
+            "consecutive_days": legend_prog.consecutive_days if legend_prog else 0,
+        },
     }
 
 
