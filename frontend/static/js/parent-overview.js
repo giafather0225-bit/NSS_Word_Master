@@ -161,9 +161,10 @@ function _ppHomeVsLastWeek(thisWeek, lastWeek) {
 
     const trend = (a, b, unit = "") => {
         const d = a - b;
-        if (d > 0) return `<span class="pp-trend pp-trend--up">+${d}${unit} ↑</span>`;
-        if (d < 0) return `<span class="pp-trend pp-trend--down">${d}${unit} ↓</span>`;
-        return `<span class="pp-trend pp-trend--same">same →</span>`;
+        const ico = (name) => `<i data-lucide="${name}" style="width:12px;height:12px;vertical-align:-1px"></i>`;
+        if (d > 0) return `<span class="pp-trend pp-trend--up">+${d}${unit} ${ico("trending-up")}</span>`;
+        if (d < 0) return `<span class="pp-trend pp-trend--down">${d}${unit} ${ico("trending-down")}</span>`;
+        return `<span class="pp-trend pp-trend--same">same ${ico("minus")}</span>`;
     };
 
     const row = (label, val, tr) => `

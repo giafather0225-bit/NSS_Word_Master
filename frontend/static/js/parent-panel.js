@@ -45,14 +45,15 @@ function _ppShowPinModal() {
                     ${[1,2,3,4,5,6,7,8,9].map(n =>
                         `<button class="pin-key" onclick="_ppPinKey('${n}')">${n}</button>`
                     ).join("")}
-                    <button class="pin-key" onclick="_ppPinKey('clear')">✕</button>
+                    <button class="pin-key" aria-label="Clear" onclick="_ppPinKey('clear')"><i data-lucide="eraser" style="width:18px;height:18px"></i></button>
                     <button class="pin-key" onclick="_ppPinKey('0')">0</button>
-                    <button class="pin-key pin-key delete" onclick="_ppPinKey('del')">⌫</button>
+                    <button class="pin-key delete" aria-label="Backspace" onclick="_ppPinKey('del')"><i data-lucide="delete" style="width:18px;height:18px"></i></button>
                 </div>
                 <button class="pp-btn secondary" style="margin-top:14px;width:100%" onclick="closeParentPanel()">Cancel</button>
             </div>
         </div>`;
     window._ppDigits = "";
+    if (typeof lucide !== "undefined") lucide.createIcons();
 }
 
 /** @tag PARENT PIN */
@@ -130,11 +131,12 @@ function _ppRenderShell() {
     ).join("");
     el.innerHTML = `
         <div class="pp-header">
-            <button class="pp-close" onclick="closeParentPanel()">←</button>
+            <button class="pp-close" aria-label="Close" onclick="closeParentPanel()"><i data-lucide="arrow-left" style="width:20px;height:20px"></i></button>
             <span class="pp-title">Parent Dashboard</span>
         </div>
         <div class="pp-nav">${tabs}</div>
         <div id="pp-body"><p style="text-align:center;padding:40px;color:var(--text-secondary);">Loading…</p></div>`;
+    if (typeof lucide !== "undefined") lucide.createIcons();
 }
 
 /** @tag PARENT */

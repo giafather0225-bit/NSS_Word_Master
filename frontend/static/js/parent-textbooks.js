@@ -32,7 +32,7 @@ async function _ppTextbooks(body) {
                         <div style="font-size:15px;font-weight:600;color:var(--text-primary)">${escapeHtml(tb.name)}</div>
                         <div style="font-size:12px;color:var(--text-secondary);margin-top:2px">${tb.lessons||0} lessons · ${tb.words||0} words</div>
                     </div>
-                    <span id="ppTbArrow${i}" style="font-size:18px;color:var(--text-secondary);transition:transform 0.2s">›</span>
+                    <span id="ppTbArrow${i}" style="display:inline-flex;color:var(--text-secondary);transition:transform 0.2s"><i data-lucide="chevron-right" style="width:16px;height:16px"></i></span>
                 </div>
                 <div id="ppTb${i}" style="display:none;padding:0 0 8px 52px"></div>
             </div>`).join("");
