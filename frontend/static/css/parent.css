@@ -312,6 +312,28 @@
 .pp-grid-2 > div { min-width: 0; }
 @media (max-width: 720px) { .pp-grid-2 { grid-template-columns: 1fr; gap: 12px; } }
 
+/* ── Mobile (≤720px): tighter padding + 3-col stat overrides ── */
+@media (max-width: 720px) {
+  #pp-body { padding: 16px 14px; }
+  /* Tabs that inline-style 3-col stat grids fall back to 2-col on narrow viewports */
+  .pp-stats[style*="repeat(3"] { grid-template-columns: repeat(2, 1fr) !important; }
+  /* Hero stats: stack into 3 narrower pills with smaller numbers */
+  .pp-hero-stats { gap: 10px; }
+  .pp-hero-num { font-size: 18px; }
+  .pp-hero-label { font-size: 10px; }
+  /* Week calendar: smaller cells */
+  .pp-week-grid { gap: 4px; }
+  .pp-week-cell { padding: 6px 2px; }
+  .pp-week-day { font-size: 10px; }
+  /* Goals card: tighter spacing */
+  .pp-goal-card { padding: 12px; }
+}
+@media (max-width: 480px) {
+  /* Phone: collapse 4-stat math grid to 2x2 (already 2x2 by default but keep gap tight) */
+  .pp-math-stats { gap: 8px; }
+  .pp-stats[style*="repeat(3"] { grid-template-columns: 1fr !important; }
+}
+
 /* ── Home Tab: Hero ──────────────────────────────────────── */
 .pp-hero {
   border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px;
