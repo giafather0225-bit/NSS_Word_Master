@@ -1,5 +1,5 @@
 /* ================================================================
-   math-kangaroo.js — Math Kangaroo Practice (set picker)
+   math-kangaroo.js — Math Kangaroo Past Papers Picker
    Section: Math
    Dependencies: core.js, math-kangaroo-exam.js, math-kangaroo-result.js
    API endpoints: GET /api/math/kangaroo/sets
@@ -7,25 +7,17 @@
 
 const kangState = {
     sets: [],
-    level: 'ecolier',      // 'pre_ecolier' | 'ecolier' | 'benjamin' | 'cadet' | 'all'
-    tab: 'full_test',      // 'full_test' | 'drill' | 'past_paper'
+    level: 'ecolier',  // 'pre_ecolier' | 'ecolier' | 'benjamin' | 'cadet' | 'junior' | 'student'
 };
 
+// All 6 competition levels in order
 const KANG_LEVELS = [
-    { key: 'pre_ecolier', label: 'Pre-Écolier (Grades 1-2)' },
-    { key: 'ecolier',     label: 'Écolier (Grades 3-4)' },
-    { key: 'benjamin',    label: 'Benjamin (Grades 5-6)' },
-    { key: 'cadet',       label: 'Cadet (Grades 7-8)' },
-];
-
-const KANG_PP_FILTERS = [
-    { key: 'all',         label: 'All' },
-    { key: 'pre_ecolier', label: 'Pre-Écolier' },
-    { key: 'ecolier',     label: 'Écolier' },
-    { key: 'benjamin',    label: 'Benjamin' },
-    { key: 'cadet',       label: 'Cadet' },
-    { key: 'junior',      label: 'Junior' },
-    { key: 'student',     label: 'Student' },
+    { key: 'pre_ecolier', label: 'Pre-Écolier',  sub: 'Gr 1–2' },
+    { key: 'ecolier',     label: 'Écolier',       sub: 'Gr 3–4' },
+    { key: 'benjamin',    label: 'Benjamin',       sub: 'Gr 5–6' },
+    { key: 'cadet',       label: 'Cadet',          sub: 'Gr 7–8' },
+    { key: 'junior',      label: 'Junior',         sub: 'Gr 9–10' },
+    { key: 'student',     label: 'Student',        sub: 'Gr 11–12' },
 ];
 
 // ── Stage helper ───────────────────────────────────────────
@@ -70,42 +62,33 @@ async function startMathKangaroo() {
 function _kangRenderPicker() {
     const stage = document.getElementById('stage');
     if (!stage) return;
-    const levels = (kangState.tab === 'past_paper') ? KANG_PP_FILTERS : KANG_LEVELS;
-    const levelTabs = levels.map(lv => `
+
+    const levelTabs = KANG_LEVELS.map(lv => `
         <button class="kang-tab ${lv.key === kangState.level ? 'is-active' : ''}"
-                data-level="${lv.key}">${_mathEsc(lv.label)}</button>
+                data-level="${lv.key}">
+            ${_mathEsc(lv.label)}
+            <span class="kang-tab-sub">${_mathEsc(lv.sub)}</span>
+        </button>
     `).join('');
-    const subTabs = `
-        <button class="kang-subtab ${kangState.tab === 'full_test' ? 'is-active' : ''}" data-tab="full_test">Full Tests</button>
-        <button class="kang-subtab ${kangState.tab === 'drill' ? 'is-active' : ''}" data-tab="drill">Topic Drills</button>
-        <button class="kang-subtab ${kangState.tab === 'past_paper' ? 'is-active' : ''}" data-tab="past_paper">Past Papers</button>
-    `;
+
     stage.innerHTML = `
         <div class="kang-wrap kang-picker">
             <header class="kang-picker-head">
-                <h1 class="kang-title">Math Kangaroo Practice</h1>
-                <p class="kang-sub">Choose your level and pick a set.</p>
+                <h1 class="kang-title">Math Kangaroo</h1>
+                <p class="kang-sub">Past Papers — pick your level</p>
             </header>
             <nav class="kang-tabs" role="tablist">${levelTabs}</nav>
-            <nav class="kang-subtabs" role="tablist">${subTabs}</nav>
             <div class="kang-grid" id="kang-grid"></div>
         </div>
     `;
+
     stage.querySelectorAll('.kang-tab').forEach(btn => {
         btn.addEventListener('click', () => {
             kangState.level = btn.dataset.level;
             _kangRenderPicker();
         });
     });
-    stage.querySelectorAll('.kang-subtab').forEach(btn => {
-        btn.addEventListener('click', () => {
-            kangState.tab = btn.dataset.tab;
-            // When switching to past_paper, reset level to "all"; else default to ecolier
-            if (kangState.tab === 'past_paper') kangState.level = 'all';
-            else if (kangState.level === 'all') kangState.level = 'ecolier';
-            _kangRenderPicker();
-        });
-    });
+
     _kangRenderGrid();
 }
 
@@ -113,31 +96,24 @@ function _kangRenderPicker() {
 function _kangRenderGrid() {
     const grid = document.getElementById('kang-grid');
     if (!grid) return;
-    const filtered = kangState.sets.filter(s => {
-        const cat = s.category || 'full_test';
-        if (cat !== kangState.tab) return false;
-        if (kangState.tab === 'past_paper' && kangState.level === 'all') return true;
-        return s.level === kangState.level;
-    });
-    if (kangState.tab === 'past_paper') {
-        filtered.sort((a, b) => {
-            const yd = (b.source_year || 0) - (a.source_year || 0);
-            if (yd !== 0) return yd;
-            return String(a.level).localeCompare(String(b.level));
-        });
-    }
+
+    const filtered = kangState.sets
+        .filter(s => s.level === kangState.level)
+        .sort((a, b) => (b.source_year || 0) - (a.source_year || 0));
+
     if (!filtered.length) {
-        grid.innerHTML = `<p class="kang-empty">No sets available for this level yet.</p>`;
+        grid.innerHTML = `<p class="kang-empty">No past papers available for this level yet.</p>`;
         return;
     }
+
     grid.innerHTML = filtered.map(s => _kangCardHtml(s)).join('');
+
     grid.querySelectorAll('[data-action]').forEach(btn => {
         btn.addEventListener('click', () => {
             if (btn.disabled) return;
             const setId = btn.dataset.setId;
             const mode = btn.dataset.action;
-            const isPp = btn.dataset.kind === 'past_paper';
-            if (isPp && typeof startKangarooPdfExam === 'function') {
+            if (typeof startKangarooPdfExam === 'function') {
                 startKangarooPdfExam(setId, mode);
             } else if (typeof startKangarooExam === 'function') {
                 startKangarooExam(setId, mode);
@@ -148,62 +124,51 @@ function _kangRenderGrid() {
 
 /** @tag MATH @tag KANGAROO */
 function _kangCardHtml(s) {
-    const qs = s.total_questions || 0;
+    const qs   = s.total_questions || 0;
     const mins = s.time_limit_minutes || 0;
     const maxPts = s.max_score || 0;
-    const isPp = (s.category === 'past_paper');
-    const meta = `${qs} questions · ${mins} min`;
+
     const pct = (s.best_score != null && maxPts)
         ? Math.round(s.best_score * 100 / maxPts) : null;
     const best = (s.best_score != null)
         ? `<div class="kang-card-best">Best: ${s.best_score}/${maxPts}${pct != null ? ` (${pct}%)` : ''}</div>`
         : '';
-    const topic = s.drill_topic
-        ? `<div class="kang-card-topic">Focus: ${_mathEsc(s.drill_topic.replace(/_/g, ' '))}</div>` : '';
-    const country = isPp && s.source_country
-        ? _mathEsc(s.source_country === 'International' ? 'IKMC' : s.source_country)
-        : '';
-    const yearBadge = (isPp && s.source_year)
-        ? `<span class="kang-card-year">${_mathEsc(s.source_year)}${country ? ` · ${country}` : ''}</span>`
-        : (s.source_year ? `<span class="kang-card-year">${_mathEsc(s.source_year)}</span>` : '');
-    const contest = (!isPp && s.source_contest)
-        ? `<div class="kang-card-contest">${_mathEsc(s.source_contest)}</div>` : '';
-    const levelLine = isPp
-        ? `<div class="kang-card-contest">${_mathEsc(s.level_label || '')}${s.grade_range ? ` (Grades ${_mathEsc(s.grade_range)})` : ''}</div>`
+
+    const pdfMissing = (s.pdf_available === false);
+    const pending    = !!s.answers_pending;
+    const disabled   = pdfMissing || pending;
+
+    let warning = '';
+    if (pdfMissing) {
+        warning = `<div class="kang-card-warning">PDF not available on this device</div>`;
+    } else if (pending) {
+        warning = `<div class="kang-card-warning">Answer key coming soon</div>`;
+    }
+
+    // Badges row: year + competition
+    const yearBadge = s.source_year
+        ? `<span class="kang-card-year">${_mathEsc(s.source_year)}</span>` : '';
+    const compBadge = s.competition
+        ? `<span class="kang-card-competition">${_mathEsc(s.competition)}</span>` : '';
+
+    // Level label line
+    const levelLine = s.level_label
+        ? `<div class="kang-card-contest">${_mathEsc(s.level_label)}${s.grade_range ? ` · Gr ${_mathEsc(s.grade_range)}` : ''}</div>`
         : '';
 
-    let actions = '';
-    let warning = '';
-    if (isPp) {
-        const pdfMissing = (s.pdf_available === false);
-        const pending = !!s.answers_pending;
-        const disabled = pdfMissing || pending;
-        if (pdfMissing) {
-            warning = `<div class="kang-card-warning">PDF not available on this device</div>`;
-        } else if (pending) {
-            warning = `<div class="kang-card-warning">Answer key coming soon</div>`;
-        }
-        actions = `
-            <button class="kang-btn kang-btn-primary" data-action="test" data-kind="past_paper"
-                data-set-id="${_mathEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Test Mode</button>
-            <button class="kang-btn kang-btn-secondary" data-action="practice" data-kind="past_paper"
-                data-set-id="${_mathEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Practice</button>
-        `;
-    } else {
-        actions = `
-            <button class="kang-btn kang-btn-primary" data-action="test" data-set-id="${_mathEsc(s.set_id)}">Test Mode</button>
-            <button class="kang-btn kang-btn-secondary" data-action="practice" data-set-id="${_mathEsc(s.set_id)}">Practice Mode</button>
-        `;
-    }
+    const actions = `
+        <button class="kang-btn kang-btn-secondary" data-action="practice"
+            data-set-id="${_mathEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Practice</button>
+        <button class="kang-btn kang-btn-primary" data-action="test"
+            data-set-id="${_mathEsc(s.set_id)}"${disabled ? ' disabled' : ''}>Test</button>
+    `;
 
     return `
         <article class="kang-card">
-            ${yearBadge}
+            <div class="kang-card-badges">${yearBadge}${compBadge}</div>
             <h3 class="kang-card-title">${_mathEsc(s.title)}</h3>
-            ${contest}
             ${levelLine}
-            <div class="kang-card-meta">${_mathEsc(meta)}${!isPp ? ' · ' + maxPts + ' pts max' : ''}</div>
-            ${topic}
+            <div class="kang-card-meta">${qs} questions · ${mins} min · ${maxPts} pts</div>
             ${best}
             ${warning}
             <div class="kang-card-actions">${actions}</div>

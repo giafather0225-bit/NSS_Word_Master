@@ -38,6 +38,22 @@ logger = logging.getLogger(__name__)
 _KANGAROO_DIR = Path(__file__).parent.parent / "data" / "math" / "kangaroo"
 _PDF_DIR = Path(__file__).parent.parent.parent / "frontend" / "static" / "math" / "kangaroo" / "pdf"
 
+# Map set_id prefix → short competition label shown on cards
+_COMPETITION_LABELS: dict[str, str] = {
+    "ikmc":  "IKMC",
+    "cyp":   "CYP",
+    "usa":   "USA",
+    "ksf":   "KSF",
+    "leb":   "Lebanon",
+    "intl":  "International",
+    "india": "India",
+}
+
+
+def _competition_label(set_id: str) -> str:
+    prefix = set_id.split("_")[0].lower()
+    return _COMPETITION_LABELS.get(prefix, prefix.upper())
+
 
 def _is_past_paper(data: dict[str, Any]) -> bool:
     return data.get("source_type") == "official_past_paper" or bool(data.get("pdf_file"))
@@ -217,6 +233,7 @@ def kangaroo_sets(db: Session = Depends(get_db)) -> dict[str, Any]:
             "source_year": data.get("source_year"),
             "source_contest": data.get("source_contest"),
             "source_country": data.get("source_country"),
+            "competition": _competition_label(set_id),
             "best_score": prog.score if prog else None,
             "completed": bool(prog and prog.completed_at),
         }
@@ -340,7 +357,7 @@ def kangaroo_submit_answer(req: KangarooAnswerIn) -> dict[str, Any]:
         return {
             "is_correct": is_correct,
             "correct_answer": correct,
-            "solution": "",
+            "solution": str((data.get("solutions") or {}).get(label, "")),
             "points_earned": pts if is_correct else 0,
             "points": pts,
         }
