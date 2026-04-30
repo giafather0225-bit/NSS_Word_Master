@@ -261,20 +261,32 @@ async function _ppEnglish(body) {
 
 /** Streak + day-off approvals. @tag PARENT STREAK DAY_OFF */
 async function _ppHabits(body) {
-    body.innerHTML = `
-        <div class="pp-section-title">Streak</div>
-        <div id="pp-habits-streak"></div>
-        <div class="pp-section-divider"></div>
+    body.innerHTML = `<p style="color:var(--text-secondary);font-size:14px;padding:20px 0">Loading…</p>`;
+
+    let sd = null;
+    try { sd = await apiFetchJSON("/api/parent/streak"); } catch (_) {}
+
+    let streakHtml = "";
+    if (sd && typeof _ppStreakCards === "function") {
+        streakHtml =
+            _ppStreakCards(sd) +
+            `<div class="pp-grid-2" style="margin-top:4px;align-items:start">
+                <div>${_ppStreakRule(sd.rule)}</div>
+                <div>${_ppStreakMilestones(sd)}</div>
+            </div>` +
+            _ppStreakCalendar(sd.last_30d || []);
+    } else {
+        streakHtml = `<p style="color:var(--color-error);padding:12px 0">Failed to load streak data.</p>`;
+    }
+
+    body.innerHTML = streakHtml + `
+        <div class="pp-section-divider" style="margin:24px 0 16px"></div>
         <div class="pp-section-title">Day Off Requests</div>
         <div id="pp-habits-dayoff"></div>`;
 
-    const streakEl = document.getElementById("pp-habits-streak");
     const dayoffEl = document.getElementById("pp-habits-dayoff");
-
-    if (typeof _ppStreak === "function") await _ppStreak(streakEl);
-    else streakEl.innerHTML = `<p style="color:var(--text-secondary);font-size:14px;padding:12px 0">Streak module not loaded.</p>`;
-
-    await _ppDayOff(dayoffEl);
+    if (dayoffEl) await _ppDayOff(dayoffEl);
+    if (typeof lucide !== "undefined") lucide.createIcons();
 }
 
 // ─── Tab: Settings ────────────────────────────────────────────

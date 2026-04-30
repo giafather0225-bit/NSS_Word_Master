@@ -173,6 +173,10 @@ async function _ppRecalcStreak() {
     }
 }
 
-window._ppStreak          = _ppStreak;
-window._ppSaveStreakRule  = _ppSaveStreakRule;
-window._ppRecalcStreak    = _ppRecalcStreak;
+window._ppStreak           = _ppStreak;
+window._ppStreakCards      = _ppStreakCards;
+window._ppStreakRule       = _ppStreakRule;
+window._ppStreakMilestones = _ppStreakMilestones;
+window._ppStreakCalendar   = _ppStreakCalendar;
+window._ppSaveStreakRule   = _ppSaveStreakRule;
+window._ppRecalcStreak     = _ppRecalcStreak;
