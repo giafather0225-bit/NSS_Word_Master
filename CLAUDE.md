@@ -113,7 +113,6 @@ NSS_Word_Master/
 ├── logs/                        # runtime logs
 ├── data/                        # academy/, raw_json/ (parsed content)
 ├── English/Voca_8000/           # source vocabulary content (Lesson_01 … per-lesson assets)
-├── SKILL.md                     # ⚠️ outdated — says Flask; ignore (FastAPI is canonical)
 └── project_core.txt             # concatenated specs snapshot
 ```
 
