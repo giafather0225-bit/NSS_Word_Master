@@ -97,7 +97,7 @@ def _normalize_for_audit(p: dict) -> dict:
     return n
 
 
-def _validate_problem(p: dict, prefix: str, errs: list, warns: list) -> None:
+def _validate_problem(p: dict, prefix: str, errs: list, warns: list, *, stage: str = "") -> None:
     if not isinstance(p, dict):
         errs.append(f"{prefix}: not a dict")
         return
@@ -147,14 +147,24 @@ def _validate_problem(p: dict, prefix: str, errs: list, warns: list) -> None:
         if ans.lower() not in ("true", "false"):
             errs.append(f"{prefix}: tf correct_answer must be 'true' or 'false', got {ans!r}")
     # Canonical field is `hints` (array); `hint` (singular string) is a legacy alias.
+    # Functional impact: hints are ONLY shown in `try` stage (per math-problem-ui.js).
+    # Pretest/practice missing hint is an info-level note, not a quality bar.
     has_hints = isinstance(p.get("hints"), list) and len(p["hints"]) > 0
     has_hint_singular = bool(p.get("hint"))
     if not has_hints and not has_hint_singular:
-        warns.append(f"{prefix}: missing hints")
+        if stage == "try":
+            warns.append(f"{prefix}: missing hints (try stage — UI shows hint button)")
+        else:
+            warns.append(f"{prefix}: info: missing hints (not shown in {stage or 'this stage'} UI)")
     elif has_hint_singular and not has_hints:
         warns.append(f"{prefix}: uses legacy 'hint' (canonical: 'hints' array)")
     if not isinstance(p.get("feedback"), dict):
-        warns.append(f"{prefix}: missing feedback{{correct, incorrect}}")
+        # Feedback fallback exists ("Correct!" / "Answer: X") so this is info-level
+        # outside `try` stage. Try stage feedback shapes the productive-struggle UX.
+        if stage == "try":
+            warns.append(f"{prefix}: missing feedback{{correct, incorrect}} (try stage)")
+        else:
+            warns.append(f"{prefix}: info: missing feedback (fallback message used)")
 
 
 def _validate_lesson(path: Path, errs: list, warns: list) -> str:
@@ -183,14 +193,14 @@ def _validate_lesson(path: Path, errs: list, warns: list) -> str:
                 if stage == "learn":
                     _validate_learn_card(p, f"{rel}:learn[{i}]", warns)
                 else:
-                    _validate_problem(p, f"{rel}:{stage}[{i}]", errs, warns)
+                    _validate_problem(p, f"{rel}:{stage}[{i}]", errs, warns, stage=stage)
     elif bucket == "ITEMS":
         for i, it in enumerate(d.get("items", []) or []):
             section = it.get("section", "?")
             if section == "learn":
                 _validate_learn_card(it, f"{rel}:items[{i}](learn)", warns)
             else:
-                _validate_problem(it, f"{rel}:items[{i}]({section})", errs, warns)
+                _validate_problem(it, f"{rel}:items[{i}]({section})", errs, warns, stage=section)
     elif bucket == "SECTIONS":
         for stage, lst in (d.get("sections") or {}).items():
             if stage == "learn":
@@ -198,7 +208,7 @@ def _validate_lesson(path: Path, errs: list, warns: list) -> str:
                     _validate_learn_card(c, f"{rel}:sections.learn[{i}]", warns)
                 continue
             for i, p in enumerate(lst or []):
-                _validate_problem(p, f"{rel}:sections.{stage}[{i}]", errs, warns)
+                _validate_problem(p, f"{rel}:sections.{stage}[{i}]", errs, warns, stage=stage)
 
     return bucket
 
@@ -247,7 +257,8 @@ def _validate_unit_test(path: Path, errs: list, warns: list) -> None:
     if d.get("count") != len(problems):
         warns.append(f"{rel}: count={d.get('count')} but problems[]={len(problems)}")
     for i, p in enumerate(problems):
-        _validate_problem(p, f"{rel}:problems[{i}]", errs, warns)
+        # Unit test feedback IS shown to user → treat as functional (like 'try').
+        _validate_problem(p, f"{rel}:problems[{i}]", errs, warns, stage="try")
         if not p.get("lesson_ref"):
             warns.append(f"{rel}:problems[{i}]: missing lesson_ref (drives weak-lesson detection)")
 
@@ -295,10 +306,14 @@ def run(grades: Iterable[str], strict: bool) -> int:
             cats["legacy alias (stem/answer/options)"] += 1
         elif "uses legacy 'hint'" in w:
             cats["legacy 'hint' singular"] += 1
+        elif "info: missing hints" in w:
+            cats["info: missing hints (UI hidden)"] += 1
         elif "missing hints" in w:
-            cats["missing hints"] += 1
+            cats["missing hints (functional — try stage)"] += 1
+        elif "info: missing feedback" in w:
+            cats["info: missing feedback (fallback used)"] += 1
         elif "missing feedback" in w:
-            cats["missing feedback"] += 1
+            cats["missing feedback (functional — try stage)"] += 1
         elif "choice missing 'A)" in w:
             cats["choice missing letter prefix"] += 1
         elif "choices is dict" in w:
