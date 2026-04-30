@@ -126,7 +126,16 @@ async function _ppSaveSchedule() {
  * @tag PARENT PIN
  */
 function ppRenderPin(body) {
+    const themeIsDark = localStorage.getItem("gia-theme") === "dark";
     body.innerHTML = `
+        <div class="pp-section-title">Appearance</div>
+        <label class="pp-toggle-row" style="margin-bottom:12px">
+            <input id="pp-theme-toggle" type="checkbox" ${themeIsDark ? "checked" : ""} onchange="_ppToggleTheme(this.checked)">
+            <span><i data-lucide="moon" style="width:14px;height:14px;vertical-align:-2px"></i> Dark mode</span>
+        </label>
+
+        <div class="pp-section-divider"></div>
+
         <div class="pp-section-title">Parent Email</div>
         <div class="pp-form-stack">
             <div>
@@ -158,7 +167,20 @@ function ppRenderPin(body) {
         </div>`;
 
     _ppLoadParentEmail();
+    if (typeof lucide !== "undefined") lucide.createIcons();
 }
+
+/** Apply or clear the dark theme + persist via localStorage. @tag PARENT SETTINGS THEME */
+function _ppToggleTheme(enabled) {
+    if (enabled) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("gia-theme", "dark");
+    } else {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("gia-theme", "light");
+    }
+}
+window._ppToggleTheme = _ppToggleTheme;
 
 /** Load existing parent email into the input. @tag PARENT SETTINGS */
 async function _ppLoadParentEmail() {
