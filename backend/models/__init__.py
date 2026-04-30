@@ -83,5 +83,21 @@ __all__ = [
     # ckla (passage-centric)
     "CKLADomain", "CKLALesson", "CKLAQuestion",
     "CKLAWordLesson", "CKLALessonProgress", "CKLAQuestionResponse",
+    # island
+    "IslandCharacter", "IslandCharacterProgress", "IslandCareLog",
+    "IslandShopItem", "IslandInventory", "IslandPlacedItem",
+    "IslandCurrency", "IslandLumiLog", "IslandLegendProgress", "IslandZoneStatus",
 ]
 from backend.models.goals import WeeklyGoal
+from .island import (
+    IslandCharacter,
+    IslandCharacterProgress,
+    IslandCareLog,
+    IslandShopItem,
+    IslandInventory,
+    IslandPlacedItem,
+    IslandCurrency,
+    IslandLumiLog,
+    IslandLegendProgress,
+    IslandZoneStatus,
+)
