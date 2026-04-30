@@ -35,8 +35,10 @@
 7. async/await 일관성. N+1 쿼리 금지.
 8. 모든 사용자 입력 sanitize. SQL injection / XSS / prompt injection 방어. Pydantic 길이 제한 = `schemas_common.py` (Str80/Str200/Str500).
 9. JS 변경 후 `build.sh` 가 lifespan startup 시 자동 재빌드. 수동 빌드: `bash build.sh`.
+   → 테스트 전에 항상 `bash build.sh`를 수동 실행하여 bundle-a/b/c.min.js를 재생성할 것.
 10. 변경 후 스모크 테스트: 5-Stage 학습 / Review / Final Test / Unit Test / Word Manager / Diary / Math Academy.
 11. UI 텍스트: 영어만. 이모지 금지 — Lucide 아이콘 (`<i data-lucide="...">`) + JS 에서 `lucide.createIcons()`.
+    → Confirmed fixes applied 2026-04-30: spelling.js / sentence.js / fillblank.js 이모지 전체 제거, sentence.js 한국어 로딩 텍스트 영문화, fillblank.js retry 카운터 UX 개선.
 12. class/ID 변경 시 모든 참조 동시 업데이트 (3 bundles 모두 영향).
 13. 응답 마지막에 수정된 파일 목록 기재.
 
@@ -367,7 +369,13 @@ Sentence + word-tag pills → pick correct word.
 Correct `--color-success` / Wrong `--color-error` + shake.
 
 **Step 4 — Spelling Master**
-Wordle-style 48×48 boxes. 3 passes (hint → first letter → blank). Wrong → retryQueue (clear all before progressing).
+Wordle-style 48×48 boxes. 3 passes:
+  Pass 1: vowels hidden (e.g. "wound" → "w_ _nd")
+  Pass 2: first + last letter only (e.g. "wound" → "w___d")
+  Pass 3: all hidden — full recall from memory
+Wrong → retryQueue (all retries must clear before advancing to next stage).
+No emoji in UI — use plain text or Lucide icons only.
+Listen button uses `<i data-lucide="volume-2">` icon.
 
 **Step 5 — Make a Sentence**
 Stage 1 drag-and-drop word scramble. Stage 2 free writing → AI grade (grammar+spelling, Ollama → Gemini fallback).
