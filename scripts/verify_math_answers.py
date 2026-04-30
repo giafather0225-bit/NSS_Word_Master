@@ -185,6 +185,12 @@ def verify_problem(prob: dict) -> tuple[str, str, str] | None:
         "which has the", "which has greater", "which has greatest",
         "which has the least", "which has smallest",
         "write the product",  # "X+X+X=? (Write the product)" expects multiplication form
+        "order of operations", "which division fact", "which is not",
+        "digit", "digits", "even or odd", "odd or even",
+        "who is correct", "who got it right", "who is right",
+        "missing factor", "missing number",
+        "what rule", "the rule", "the pattern",
+        "how many times can you",
     )):
         return None
     # Skip questions with fill-in blanks (multi-step where stored answer fills a slot, not final)
@@ -194,6 +200,9 @@ def verify_problem(prob: dict) -> tuple[str, str, str] | None:
             return None
     actual_lower = str(actual).lower().strip()
     if actual_lower in ("true", "false"):
+        return None
+    # Skip non-numeric answers (e.g., "Odd", "Leo", "Both A and B")
+    if not re.fullmatch(r"[0-9.,/\s]+", str(actual).strip()):
         return None
     # If answer itself contains operators (e.g. "70 + 14"), skip — it's a form, not a value
     if re.search(r"\d\s*[+\-×÷*/]\s*\d", str(actual)):
@@ -205,6 +214,24 @@ def verify_problem(prob: dict) -> tuple[str, str, str] | None:
     # (rectangle_perimeter rule fires too eagerly when L×W appears in an area question)
     if "area" in q_lower and ("perimeter" in q_lower or "fence" in q_lower):
         # Multi-aspect question — different rules might apply per part. Skip.
+        return None
+    # Skip PEMDAS / mixed-operator expressions: question contains both
+    # additive (+/−) and multiplicative (×/÷) operators → order-of-operations
+    # context means the stored answer uses PEMDAS, not left-to-right.
+    qn_ops = re.sub(r"\d+/\d+", "", q)  # ignore fraction notation
+    has_additive = bool(re.search(r"[+\-−]", qn_ops))
+    has_mult_div = bool(re.search(r"[×÷*/]", qn_ops))
+    if has_additive and has_mult_div:
+        return None
+    # Skip 3-term multiplication (a × b × c) — verifier only handles 2-term
+    if re.search(r"\d+\s*[×*]\s*\d+\s*[×*]\s*\d+", q):
+        return None
+    # Skip multi-sentence questions: a completed arithmetic result (= N <words>)
+    # followed by ANY additional sentence. Catches "6×3=18 crayons. You give away 6."
+    if re.search(r"=\s*\d+[\s\w,]*\.\s+\S", q):
+        return None
+    # Skip questions with "not N" negation (e.g., "= 24, not 28") — comparison/analysis
+    if re.search(r",\s*not\s+\d+", q_lower):
         return None
 
     for name, fn in _VERIFIERS:
