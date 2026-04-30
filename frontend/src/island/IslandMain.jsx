@@ -238,8 +238,8 @@ function _isDay() { const h = new Date().getHours(); return h >= 6 && h < 18; }
 
 /** @tag SHOP */
 function _openLumiLog()          { /* Lumi log — future screen */ }
-function _openIslandInventory()  { /* Inventory — future screen */ }
-function _openIslandCollection() { /* Collection — future screen */ }
+function _openIslandInventory()  { if (typeof openInventory   === 'function') openInventory();   }
+function _openIslandCollection() { if (typeof openCollection  === 'function') openCollection();  }
 
 // ─── Home card loader ───────────────────────────────────────────
 

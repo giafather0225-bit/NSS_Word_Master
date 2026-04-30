@@ -202,7 +202,7 @@ function _zdRightPanel(prog, isLegend) {
                         ${canEvo ? '' : 'disabled title="Not ready yet"'}>
                     <i data-lucide="sparkles"></i> Evolve
                 </button>
-                <button class="izd-btn izd-btn--shop" onclick="openRewardShop()">
+                <button class="izd-btn izd-btn--shop" onclick="openIslandShop()">
                     <i data-lucide="shopping-bag"></i> Shop
                 </button>
             </div>

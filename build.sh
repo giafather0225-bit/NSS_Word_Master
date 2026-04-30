@@ -33,6 +33,10 @@ cat \
   frontend/src/island/ZoneDetail.jsx \
   frontend/src/island/CharacterDetail.jsx \
   frontend/src/island/EvolutionModal.jsx \
+  frontend/src/island/Onboarding.jsx \
+  frontend/src/island/IslandShop.jsx \
+  frontend/src/island/Inventory.jsx \
+  frontend/src/island/Collection.jsx \
   $JS/diary.js \
   $JS/diary-home.js \
   $JS/diary-write.js \
