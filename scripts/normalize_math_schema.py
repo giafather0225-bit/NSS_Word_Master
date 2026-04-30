@@ -130,6 +130,27 @@ def _normalize_choices(p: dict, stats: dict) -> None:
         p["choices"] = new_choices
 
 
+_SOCRATIC_HINT = re.compile(r'^([^.!?]*\?)\s*(.*)', re.DOTALL)
+
+
+def _hint_from_explanation(expl: str) -> str | None:
+    """Extract a Socratic-style hint from explanation: first sentence ending in '?'.
+
+    Returns None if no question-form opener is present (caller should not auto-fill;
+    explanation belongs in feedback.incorrect instead).
+    """
+    if not isinstance(expl, str) or not expl.strip():
+        return None
+    m = _SOCRATIC_HINT.match(expl.strip())
+    if not m:
+        return None
+    first = m.group(1).strip()
+    # Sanity: must be a real prompt, not a one-letter "?" question
+    if len(first) < 8 or len(first) > 120:
+        return None
+    return first
+
+
 def _normalize_problem(p: dict, stats: dict) -> dict:
     """In-place mutate p, returning it. Idempotent."""
     # Field aliases
@@ -206,6 +227,25 @@ def _normalize_problem(p: dict, stats: dict) -> dict:
         if ans in ("true", "false") and p["correct_answer"] != ans:
             p["correct_answer"] = ans
             stats["tf_ans_lowercased"] = stats.get("tf_ans_lowercased", 0) + 1
+
+    # hint (singular string) → hints (array). Canonical is plural array.
+    if "hint" in p:
+        existing = p.get("hints")
+        if not isinstance(existing, list) or not existing:
+            v = p["hint"]
+            if isinstance(v, str) and v.strip():
+                p["hints"] = [v.strip()]
+                stats["hint_to_hints"] = stats.get("hint_to_hints", 0) + 1
+        # Drop redundant singular field once captured
+        p.pop("hint", None)
+        stats["hint_singular_dropped"] = stats.get("hint_singular_dropped", 0) + 1
+
+    # Auto-fill hint from explanation IF Socratic-style first sentence available
+    if not (isinstance(p.get("hints"), list) and p["hints"]):
+        socratic = _hint_from_explanation(p.get("explanation", ""))
+        if socratic:
+            p["hints"] = [socratic]
+            stats["hint_socratic_extracted"] = stats.get("hint_socratic_extracted", 0) + 1
 
     return p
 

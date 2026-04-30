@@ -274,7 +274,6 @@
         "D) 70"
       ],
       "correct_answer": "C",
-      "hint": "Look at the ones digit. Is 6 less than 5, or 5 or greater?",
       "solution_steps": [
         "Step 1: 56 is between 50 and 60.",
         "Step 2: Ones digit = 6. Since 6 >= 5, round UP.",
@@ -298,7 +297,10 @@
         "correct": "56 has ones digit 6 which is 5 or greater, so round UP to 60!",
         "incorrect": "Look at the ones digit of 56. It is 6, which is 5 or greater, so round UP to 60."
       },
-      "verification": "56: ones=6>=5, round to 60. Wayground confirms."
+      "verification": "56: ones=6>=5, round to 60. Wayground confirms.",
+      "hints": [
+        "Look at the ones digit. Is 6 less than 5, or 5 or greater?"
+      ]
     },
     {
       "id": "TRY_02",
@@ -309,7 +311,6 @@
       "difficulty": 2,
       "question": "Round 202 to the nearest hundred.",
       "correct_answer": "200",
-      "hint": "202 is between 200 and 300. Look at the tens digit — is it less than 5?",
       "solution_steps": [
         "Step 1: 202 is between 200 and 300.",
         "Step 2: Tens digit = 0. Since 0 < 5, round DOWN.",
@@ -325,7 +326,10 @@
         "correct": "202 has tens digit 0 which is less than 5, so round DOWN to 200!",
         "incorrect": "The tens digit of 202 is 0. Since 0 < 5, round DOWN to 200."
       },
-      "verification": "202: tens=0<5, round to 200. Go Math p.10."
+      "verification": "202: tens=0<5, round to 200. Go Math p.10.",
+      "hints": [
+        "202 is between 200 and 300. Look at the tens digit — is it less than 5?"
+      ]
     },
     {
       "id": "TRY_03",
@@ -342,7 +346,6 @@
         "D) 19"
       ],
       "correct_answer": "B",
-      "hint": "19 is between 10 and 20. The ones digit is 9. Is 9 less than 5, or 5 or greater?",
       "solution_steps": [
         "Step 1: 19 is between 10 and 20.",
         "Step 2: Ones digit = 9. Since 9 >= 5, round UP.",
@@ -366,7 +369,10 @@
         "correct": "19 has ones digit 9, which is 5 or greater. Round UP to 20!",
         "incorrect": "The ones digit of 19 is 9, which is 5 or greater. Round UP to 20."
       },
-      "verification": "19: ones=9>=5, round to 20. Go Math p.10."
+      "verification": "19: ones=9>=5, round to 20. Go Math p.10.",
+      "hints": [
+        "19 is between 10 and 20. The ones digit is 9. Is 9 less than 5, or 5 or greater?"
+      ]
     },
     {
       "id": "TRY_04",
@@ -383,7 +389,6 @@
         "D) 650"
       ],
       "correct_answer": "C",
-      "hint": "658 is between 600 and 700. Look at the tens digit.",
       "solution_steps": [
         "Step 1: 658 is between 600 and 700.",
         "Step 2: Tens digit = 5. Since 5 >= 5, round UP.",
@@ -407,7 +412,10 @@
         "correct": "658 has tens digit 5, so we round UP to 700!",
         "incorrect": "The tens digit is 5. When the digit is exactly 5, we round UP. 658 rounds to 700."
       },
-      "verification": "658: tens=5>=5, round to 700. Go Math p.10."
+      "verification": "658: tens=5>=5, round to 700. Go Math p.10.",
+      "hints": [
+        "658 is between 600 and 700. Look at the tens digit."
+      ]
     },
     {
       "id": "TRY_05",
@@ -424,7 +432,6 @@
         "D) Nearest ten: 570, Nearest hundred: 500"
       ],
       "correct_answer": "A",
-      "hint": "For nearest ten, look at ones digit (6). For nearest hundred, look at tens digit (7).",
       "solution_steps": [
         "Step 1: Nearest ten — ones digit = 6, round UP to 580.",
         "Step 2: Nearest hundred — tens digit = 7, round UP to 600.",
@@ -448,7 +455,10 @@
         "correct": "576: nearest ten is 580 (ones=6, round up) and nearest hundred is 600 (tens=7, round up)!",
         "incorrect": "For 576: ones=6>=5 means round up to 580. Tens=7>=5 means round up to 600."
       },
-      "verification": "576: ones=6 to 580, tens=7 to 600."
+      "verification": "576: ones=6 to 580, tens=7 to 600.",
+      "hints": [
+        "For nearest ten, look at ones digit (6). For nearest hundred, look at tens digit (7)."
+      ]
     }
   ],
   "practice_r1": [
@@ -1033,7 +1043,6 @@
         "D) 449"
       ],
       "correct_answer": "B",
-      "hint": "The number must round to 460 (nearest ten) and 500 (nearest hundred).",
       "solution_steps": [
         "Step 1: Nearest ten = 460. So the number is between 455 and 464.",
         "Step 2: Nearest hundred = 500. So tens digit must be >= 5.",
@@ -1059,7 +1068,10 @@
         "incorrect": "The number needs nearest ten=460 (range 455-464) AND nearest hundred=500 (tens>=5). 458 fits."
       },
       "three_read_prompt": "Read 1: What two clues does Mia give? Read 2: What range rounds to 460? Read 3: Which also rounds to 500?",
-      "verification": "458: ones=8 to 460, tens=5 to 500. 453: ones=3 to 450 not 460. 449: ones=9 to 450 not 460."
+      "verification": "458: ones=8 to 460, tens=5 to 500. 453: ones=3 to 450 not 460. 449: ones=9 to 450 not 460.",
+      "hints": [
+        "The number must round to 460 (nearest ten) and 500 (nearest hundred)."
+      ]
     },
     {
       "id": "R3_02",
@@ -1070,7 +1082,6 @@
       "difficulty": 4,
       "question": "What is the GREATEST whole number that rounds to 800 when rounded to the nearest hundred?",
       "correct_answer": "849",
-      "hint": "What is the biggest number that still rounds DOWN to 800? What happens at 850?",
       "solution_steps": [
         "Step 1: Numbers that round to 800: from 750 to 849.",
         "Step 2: 850 has tens=5 and rounds UP to 900.",
@@ -1095,7 +1106,10 @@
         "incorrect": "850 has tens=5 and rounds UP to 900. The biggest number rounding to 800 is 849 (tens=4)."
       },
       "three_read_prompt": "Read 1: What does greatest mean? Read 2: What hundred does it round to? Read 3: What digit makes it switch?",
-      "verification": "849: tens=4 to 800. 850: tens=5 to 900. Greatest=849."
+      "verification": "849: tens=4 to 800. 850: tens=5 to 900. Greatest=849.",
+      "hints": [
+        "What is the biggest number that still rounds DOWN to 800? What happens at 850?"
+      ]
     },
     {
       "id": "R3_03",
@@ -1112,7 +1126,6 @@
         "D) She rounded to the nearest ten: 330 - 290 = 40"
       ],
       "correct_answer": "A",
-      "hint": "Susie got about 50. Try rounding both numbers to the nearest ten and subtracting.",
       "solution_steps": [
         "Step 1: 335 to nearest ten: ones=5, round up to 340.",
         "Step 2: 288 to nearest ten: ones=8, round up to 290.",
@@ -1137,7 +1150,10 @@
         "incorrect": "Round each to nearest ten: 335(ones=5) rounds to 340, 288(ones=8) rounds to 290. 340-290=50."
       },
       "three_read_prompt": "Read 1: What numbers are given? Read 2: How did Susie get 50? Read 3: Try rounding each number to the nearest ten.",
-      "verification": "335 to 340, 288 to 290. 340-290=50. Wayground confirms."
+      "verification": "335 to 340, 288 to 290. 340-290=50. Wayground confirms.",
+      "hints": [
+        "Susie got about 50. Try rounding both numbers to the nearest ten and subtracting."
+      ]
     },
     {
       "id": "R3_04",
@@ -1148,7 +1164,6 @@
       "difficulty": 5,
       "question": "How many 3-digit whole numbers round to 400 when rounded to the nearest hundred?",
       "correct_answer": "100",
-      "hint": "Which is the smallest number rounding to 400? Which is the largest?",
       "solution_steps": [
         "Step 1: Smallest: 350 (tens=5, round up to 400).",
         "Step 2: Largest: 449 (tens=4, round down to 400).",
@@ -1173,7 +1188,10 @@
         "incorrect": "350(tens=5) rounds to 400. 449(tens=4) rounds to 400. Count: 449-350+1=100."
       },
       "three_read_prompt": "Read 1: What does the question ask you to count? Read 2: What is the smallest number rounding to 400? Read 3: What is the largest?",
-      "verification": "349 rounds to 300. 350 rounds to 400. 449 rounds to 400. 450 rounds to 500. Range: 350-449 = 100."
+      "verification": "349 rounds to 300. 350 rounds to 400. 449 rounds to 400. 450 rounds to 500. Range: 350-449 = 100.",
+      "hints": [
+        "Which is the smallest number rounding to 400? Which is the largest?"
+      ]
     },
     {
       "id": "R3_05",
@@ -1190,7 +1208,6 @@
         "D) The answer is 350"
       ],
       "correct_answer": "C",
-      "hint": "What numbers round to 350 (nearest ten)? Try 347 and 352 — do they round to the same hundred?",
       "solution_steps": [
         "Step 1: Numbers rounding to 350 (nearest ten): 345 through 354.",
         "Step 2: Round 347 to nearest hundred: tens=4 < 5, round to 300.",
@@ -1216,7 +1233,10 @@
         "incorrect": "Try: 347 rounds to 350(ten) and 300(hundred). 352 rounds to 350(ten) and 400(hundred). So BOTH are possible."
       },
       "three_read_prompt": "Read 1: What two steps does Emma do? Read 2: What range rounds to 350? Read 3: Do they all round to the same hundred?",
-      "verification": "345-349: tens=4 to 300. 350-354: tens=5 to 400. Both possible so C."
+      "verification": "345-349: tens=4 to 300. 350-354: tens=5 to 400. Both possible so C.",
+      "hints": [
+        "What numbers round to 350 (nearest ten)? Try 347 and 352 — do they round to the same hundred?"
+      ]
     }
   ]
 }

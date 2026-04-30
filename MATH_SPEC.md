@@ -319,7 +319,7 @@ Cross-grade: if mastery shown in current grade domain -> offer next grade conten
   "difficulty": 1,
   "cpa_phase": "abstract",
   "ccss": "3.NBT.A.1",
-  "hint": "Look at the ones digit — is it 5 or more?",
+  "hints": ["Look at the ones digit — is it 5 or more?", "If 5 or more, round up; otherwise round down."],
   "feedback": {
     "correct": "Right! 48 is closer to 50.",
     "incorrect": "48 is closer to 50 than to 40."
@@ -338,13 +338,13 @@ Cross-grade: if mastery shown in current grade domain -> offer next grade conten
 
 **Field rules:**
 - **Required**: `id`, `type`, `question`, `correct_answer`
-- **Recommended**: `lesson_ref` (e.g. `"L2"`), `skill_tag`, `difficulty` (1–3), `hint`, `feedback`
+- **Recommended**: `lesson_ref` (e.g. `"L2"`), `skill_tag`, `difficulty` (1–3), `hints` (array of progressive hints), `feedback`
 - **Optional**: `concept`, `cpa_phase` (concrete|pictorial|abstract), `ccss`
 - **Compatibility aliases** (auto-normalized by frontend `_normalizeProblem`):
   - `stem` → `question`
   - `options` → `choices`
   - `answer` → `correct_answer`
-  - `hint` (string) → `hints` (array)
+  - `hint` (string) → `hints` (array of one)  *(canonical is `hints` plural)*
   - `feedback: {correct, incorrect}` → `feedback_correct` / `feedback_wrong`
   - `type: "true_false" | "multiple_choice" | "fill_in" | "word_problem" | "open_response"` → canonical 3 types
   - **New content should write the canonical form** above; aliases exist only to consume legacy files.

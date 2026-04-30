@@ -143,8 +143,13 @@ def _validate_problem(p: dict, prefix: str, errs: list, warns: list) -> None:
     elif ptype == "tf":
         if ans.lower() not in ("true", "false"):
             errs.append(f"{prefix}: tf correct_answer must be 'true' or 'false', got {ans!r}")
-    if not p.get("hint"):
-        warns.append(f"{prefix}: missing hint")
+    # Canonical field is `hints` (array); `hint` (singular string) is a legacy alias.
+    has_hints = isinstance(p.get("hints"), list) and len(p["hints"]) > 0
+    has_hint_singular = bool(p.get("hint"))
+    if not has_hints and not has_hint_singular:
+        warns.append(f"{prefix}: missing hints")
+    elif has_hint_singular and not has_hints:
+        warns.append(f"{prefix}: uses legacy 'hint' (canonical: 'hints' array)")
     if not isinstance(p.get("feedback"), dict):
         warns.append(f"{prefix}: missing feedback{{correct, incorrect}}")
 
@@ -283,8 +288,10 @@ def run(grades: Iterable[str], strict: bool) -> int:
     for w in warns:
         if "uses legacy 'stem'" in w or "uses legacy 'answer'" in w or "uses legacy 'options'" in w:
             cats["legacy alias (stem/answer/options)"] += 1
-        elif "missing hint" in w:
-            cats["missing hint"] += 1
+        elif "uses legacy 'hint'" in w:
+            cats["legacy 'hint' singular"] += 1
+        elif "missing hints" in w:
+            cats["missing hints"] += 1
         elif "missing feedback" in w:
             cats["missing feedback"] += 1
         elif "choice missing 'A)" in w:
