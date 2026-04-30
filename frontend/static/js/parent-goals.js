@@ -52,7 +52,7 @@ function _ppGoalCard(g) {
         </div>`;
 }
 
-/** Show inline edit form for goal targets. @tag PARENT GOALS */
+/** Show inline edit form for goal targets — including active toggle. @tag PARENT GOALS */
 async function _ppGoalsEditMode() {
     try {
         const data  = await apiFetchJSON("/api/goals/weekly");
@@ -61,9 +61,12 @@ async function _ppGoalsEditMode() {
         const editArea = document.getElementById("pp-goals-edit-area");
         if (!editArea) return;
 
-        const inputs = goals.map(g => `
-            <div class="pp-goal-edit-row">
-                <label class="pp-form-label" style="flex:1">${escapeHtml(g.label)}</label>
+        const rows = goals.map(g => `
+            <div class="pp-goal-edit-row" data-row-key="${g.key}">
+                <label class="pp-toggle-row" style="flex:1;cursor:pointer">
+                    <input type="checkbox" data-goal-active="${g.key}" ${g.is_active ? "checked" : ""}>
+                    <span>${escapeHtml(g.label)}</span>
+                </label>
                 <input class="pp-xp-input" type="number" min="0" max="10000"
                        data-goal-key="${g.key}" value="${g.target}"
                        style="width:100px;text-align:right">
@@ -72,7 +75,8 @@ async function _ppGoalsEditMode() {
         editArea.innerHTML = `
             <div class="pp-goal-edit-box">
                 <div class="pp-section-title" style="margin-top:16px">Edit Weekly Targets</div>
-                ${inputs}
+                <p class="pp-form-hint" style="margin:0 0 8px">Uncheck a row to deactivate the goal — it stays in the DB but stops counting toward the weekly summary.</p>
+                ${rows}
                 <div style="display:flex;gap:8px;margin-top:12px">
                     <button class="pp-btn primary" onclick="_ppGoalsSave()">Save</button>
                     <button class="pp-btn secondary" onclick="document.getElementById('pp-goals-edit-area').innerHTML=''">Cancel</button>
@@ -84,32 +88,47 @@ async function _ppGoalsEditMode() {
     }
 }
 
-/** Save all goal target edits. @tag PARENT GOALS */
+/** Save all goal target edits — highlight failed rows, report counts. @tag PARENT GOALS */
 async function _ppGoalsSave() {
     const msg = document.getElementById("pp-goals-msg");
     const inputs = document.querySelectorAll("[data-goal-key]");
     if (!inputs.length) return;
 
-    let allOk = true;
+    // Reset prior row states
+    document.querySelectorAll(".pp-goal-edit-row").forEach(r => r.classList.remove("error", "saved"));
+
+    let saved = 0, failed = 0, skipped = 0;
     for (const inp of inputs) {
         const key    = inp.dataset.goalKey;
         const target = parseInt(inp.value, 10);
-        if (isNaN(target) || target < 0 || target > 10000) continue;
+        const row    = document.querySelector(`[data-row-key="${key}"]`);
+        const active = !!document.querySelector(`[data-goal-active="${key}"]`)?.checked;
 
+        if (isNaN(target) || target < 0 || target > 10000) {
+            row?.classList.add("error");
+            skipped++;
+            continue;
+        }
         const res = await window._ppFetch(`/api/goals/weekly/${key}`, {
             method:  "PUT",
             headers: { "Content-Type": "application/json" },
-            body:    JSON.stringify({ target, is_active: true }),
+            body:    JSON.stringify({ target, is_active: active }),
         });
-        if (!res.ok) { allOk = false; }
+        if (res.ok) { saved++;  row?.classList.add("saved"); }
+        else        { failed++; row?.classList.add("error"); }
     }
 
     if (msg) {
-        msg.textContent  = allOk ? "Saved!" : "Some updates failed.";
-        msg.className    = `pp-form-msg ${allOk ? "success" : "error"}`;
+        const parts = [];
+        if (saved)   parts.push(`${saved} saved`);
+        if (failed)  parts.push(`${failed} failed`);
+        if (skipped) parts.push(`${skipped} skipped (out of range 0–10000)`);
+        msg.textContent = parts.join(" · ") || "No changes.";
+        msg.className   = `pp-form-msg ${failed || skipped ? "error" : "success"}`;
     }
 
-    if (allOk) setTimeout(() => _ppLoadTab("goals"), 800);
+    // Reload only when everything went through cleanly
+    if (saved && !failed && !skipped) setTimeout(() => _ppLoadTab("goals"), 800);
 }
 
 window._ppGoals = _ppGoals;
