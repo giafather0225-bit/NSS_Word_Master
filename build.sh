@@ -30,6 +30,9 @@ cat \
   $JS/reward-shop-use.js \
   $JS/reward-shop-island.js \
   frontend/src/island/IslandMain.jsx \
+  frontend/src/island/ZoneDetail.jsx \
+  frontend/src/island/CharacterDetail.jsx \
+  frontend/src/island/EvolutionModal.jsx \
   $JS/diary.js \
   $JS/diary-home.js \
   $JS/diary-write.js \

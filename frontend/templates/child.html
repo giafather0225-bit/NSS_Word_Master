@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="/static/css/daily-words.css?v=3">
     <link rel="stylesheet" href="/static/css/reward-shop.css?v=3">
     <link rel="stylesheet" href="/static/css/island-main.css?v=1">
+    <link rel="stylesheet" href="/static/css/island-zones.css?v=1">
     <link rel="stylesheet" href="/static/css/parent.css?v=16">
     <link rel="stylesheet" href="/static/css/diary.css?v=4">
     <link rel="stylesheet" href="/static/css/diary-home.css?v=10">
@@ -753,6 +754,12 @@
 <!-- Island main screen full-screen overlay -->
 <div id="island-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Gia's Island"></div>
 
+<!-- Island zone + character detail overlay (z-index 1150) -->
+<div id="isl-detail-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Zone detail"></div>
+
+<!-- Island evolution branch modal (z-index 2000) -->
+<div id="isl-evo-modal" class="hidden" role="dialog" aria-modal="true" aria-label="Choose evolution"></div>
+
 <!-- Parent Dashboard full-screen overlay -->
 <div id="parent-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Parent Dashboard"></div>
 
@@ -832,7 +839,7 @@
 <script src="/static/js/analytics.js?v=2"></script>
 <script src="/static/js/navigation.js?v=5"></script>
 <!-- Feature modules (defer): 3 bundles instead of 71 individual files -->
-<script defer src="/static/js/bundle-a.min.js?v=16"></script>
+<script defer src="/static/js/bundle-a.min.js?v=17"></script>
 
 <!-- KaTeX (math equation rendering) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">

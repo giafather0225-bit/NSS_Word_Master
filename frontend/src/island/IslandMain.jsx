@@ -203,11 +203,7 @@ function _charTokenHTML(char) {
 
 /** Navigate to zone detail. @tag SHOP */
 function _islandZoneClick(zone) {
-    // Zone detail screen — future implementation.
-    const label = _ZONE_META[zone]?.label || zone;
-    if (typeof _showShopToast === 'function') {
-        _showShopToast(`${label} zone — coming soon!`);
-    }
+    if (typeof openZoneDetail === 'function') openZoneDetail(zone);
 }
 
 // ─── Zoom ───────────────────────────────────────────────────────
