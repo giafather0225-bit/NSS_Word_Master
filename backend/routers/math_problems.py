@@ -161,20 +161,27 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
         return {"error": "Original problem not found"}
 
     # answer 필드명 통일: "answer" 또는 "correct_answer" 모두 처리
-    correct_answer = str(
+    correct_raw = str(
         problem.get("answer") or problem.get("correct_answer") or ""
     ).strip()
+    correct_letter = ""
+    correct_answer = correct_raw
     # choices list/dict일 때 answer 키→값 변환
     choices = problem.get("choices")
-    if correct_answer and len(correct_answer) == 1 and correct_answer.upper() in "ABCDEFGH":
+    if correct_raw and len(correct_raw) == 1 and correct_raw.upper() in "ABCDEFGH":
+        correct_letter = correct_raw.upper()
         if isinstance(choices, dict):
-            correct_answer = str(choices.get(correct_answer.upper(), correct_answer)).strip()
+            correct_answer = str(choices.get(correct_letter, correct_raw)).strip()
         elif isinstance(choices, list):
-            idx_c = ord(correct_answer.upper()) - 65
+            idx_c = ord(correct_letter) - 65
             if 0 <= idx_c < len(choices):
                 c = str(choices[idx_c])
                 correct_answer = c[2:].strip() if len(c) > 2 and c[1] in ".)" else c
-    is_correct = req.user_answer.strip().lower() == correct_answer.lower()
+    user_lower = req.user_answer.strip().lower()
+    is_correct = (
+        user_lower == correct_answer.lower()
+        or (correct_letter and user_lower == correct_letter.lower())
+    )
 
     row.times_reviewed += 1
 

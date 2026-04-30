@@ -27,6 +27,8 @@ XP_RULES_DEFAULT: dict[str, int] = {
     "streak_30_bonus":       200,
     "math_lesson_complete":     10,
     "math_unit_test_pass":      25,
+    "math_daily_complete":       5,
+    "math_daily_perfect":        3,
     "math_kangaroo_complete":  5,
     "math_kangaroo_80":        5,
     "math_kangaroo_perfect":  10,

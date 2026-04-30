@@ -112,12 +112,13 @@ def _submit(client, user_answer: str, problem_id: str = "PT_01"):
 
 
 def test_submit_answer_correct(client):
-    # PT_01 correct_answer = "B"
+    # PT_01: choice "B" → "4 + 5 = 5 + 4". Router resolves the letter to the
+    # actual choice text so the child sees the value, not the index letter.
     resp = _submit(client, "B")
     assert resp.status_code == 200
     body = resp.json()
     assert body["is_correct"] is True
-    assert body["correct_answer"] == "B"
+    assert body["correct_answer"] == "4 + 5 = 5 + 4"
 
 
 def test_submit_answer_wrong(client):
@@ -125,7 +126,7 @@ def test_submit_answer_wrong(client):
     assert resp.status_code == 200
     body = resp.json()
     assert body["is_correct"] is False
-    assert body["correct_answer"] == "B"
+    assert body["correct_answer"] == "4 + 5 = 5 + 4"
 
 
 def test_submit_answer_not_found(client):
@@ -160,7 +161,7 @@ def test_complete_lesson_progress_saved(client):
 
 def test_unit_test_submit_v2_pass(client):
     resp = client.post(
-        "/api/math/academy/unit-test/submit-v2",
+        "/api/math/academy/unit-test/submit",
         json={"grade": "G3", "unit": "U1_add_sub_1000", "score": 8, "total": 10},
     )
     assert resp.status_code == 200
@@ -185,7 +186,7 @@ def test_unit_test_submit_v2_fail(client):
         },
     )
     resp = client.post(
-        "/api/math/academy/unit-test/submit-v2",
+        "/api/math/academy/unit-test/submit",
         json={"grade": "G3", "unit": "U1_add_sub_1000", "score": 5, "total": 10},
     )
     assert resp.status_code == 200
