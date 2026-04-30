@@ -298,6 +298,54 @@ def _normalize_learn_card(c: dict, stats: dict) -> dict:
     return c
 
 
+def _normalize_lesson_meta(d: dict, path: Path, stats: dict) -> None:
+    """Fill missing top-level lesson metadata from path + legacy fields.
+
+    Infers `grade` (from path), `unit` (from parent folder), `title`
+    (from `lesson_title`), and `lesson_id` (`g{N}_u{M}_l{K}`) when these
+    canonical fields are absent. Idempotent.
+    """
+    parts = path.parts
+    # Find ".../math/{grade}/{unit}/{lesson}.json"
+    grade = unit = lesson_stem = None
+    for i, p in enumerate(parts):
+        if p == "math" and i + 2 < len(parts):
+            grade = parts[i + 1]
+            unit = parts[i + 2]
+            if i + 3 < len(parts):
+                lesson_stem = Path(parts[i + 3]).stem
+            break
+    if grade and not d.get("grade"):
+        d["grade"] = grade
+        stats["meta_grade_inferred"] = stats.get("meta_grade_inferred", 0) + 1
+    if unit and not d.get("unit"):
+        d["unit"] = unit
+        stats["meta_unit_inferred"] = stats.get("meta_unit_inferred", 0) + 1
+
+    # title: prefer canonical, fall back to lesson_title
+    if not d.get("title") and d.get("lesson_title"):
+        d["title"] = d["lesson_title"]
+        stats["meta_title_from_lesson_title"] = stats.get("meta_title_from_lesson_title", 0) + 1
+
+    # lesson_id: derive from chapter+lesson numbers, or from filename's L{K} pattern
+    if not d.get("lesson_id"):
+        chap = d.get("chapter")
+        less = d.get("lesson")
+        if isinstance(chap, int) and isinstance(less, int) and grade:
+            g_num = grade.lstrip("Gg")
+            d["lesson_id"] = f"g{g_num}_u{chap}_l{less}"
+            stats["meta_lesson_id_from_chapter_lesson"] = stats.get("meta_lesson_id_from_chapter_lesson", 0) + 1
+        elif lesson_stem and unit and grade:
+            # Parse U9 from "U9_compare_fractions" and L3 from "L3_..."
+            import re as _re
+            um = _re.match(r"U(\d+)", unit, _re.I)
+            lm = _re.match(r"L(\d+)", lesson_stem, _re.I)
+            if um and lm:
+                g_num = grade.lstrip("Gg")
+                d["lesson_id"] = f"g{g_num}_u{int(um.group(1))}_l{int(lm.group(1))}"
+                stats["meta_lesson_id_from_path"] = stats.get("meta_lesson_id_from_path", 0) + 1
+
+
 def _normalize_lesson(d: dict, stats: dict) -> dict:
     """Walk all problem-shaped objects in a lesson and normalize them."""
     # STD bucket: stages as top-level keys
@@ -370,6 +418,7 @@ def run(grades: list[str], dry_run: bool) -> int:
             if f.name == "unit_test.json":
                 _normalize_unit_test(d, file_stats)
             else:
+                _normalize_lesson_meta(d, f, file_stats)
                 _normalize_lesson(d, file_stats)
 
             # Only write when an actual transform fired. If file_stats is empty,
