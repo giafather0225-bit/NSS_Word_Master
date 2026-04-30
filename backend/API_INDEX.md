@@ -184,26 +184,61 @@
 
 ## Parent Dashboard (Phase 7) ✅
 
+> Frontend uses a 6-tab shell (`parent-panel.js`): Home / English / Math / Habits / Goals / Settings. Each tab renderer is bundled in `bundle-a.min.js`. Mutations are PIN-gated via the `X-Parent-Pin` header attached by `window._ppFetch`.
+
+### Read-only stats (no PIN)
+
+| Method | Path | Defined In | Called From | Notes |
+|--------|------|-----------|-------------|-------|
+| GET | /api/parent/overview | routers/parent_stats.py | parent-overview.js | Returns `today_xp`, `today_by_subject` (english/math/diary → {xp,count}), `streak`, `recent_logs[].subject`. |
+| GET | /api/parent/summary | routers/parent_stats.py | parent-overview.js | `current_streak`, `longest_streak`, totals. |
+| GET | /api/parent/activity?days=N | routers/parent_stats.py | parent-overview.js | `daily[]` for week-over-week chart. |
+| GET | /api/parent/word-stats | routers/parent_stats.py | parent-panel.js (English) | `top_wrong[]` + `words[]`. |
+| GET | /api/parent/stage-stats | routers/parent_stats.py | parent-panel.js (English) | Avg accuracy/time per English stage. |
+| GET | /api/parent/math-summary | routers/parent_math.py | parent-math.js | Academy progress, weak areas, fluency, daily, kangaroo. |
+| GET | /api/parent/streak | routers/parent_streak.py | parent-streak.js | Current/longest, last_30d, milestones. |
+| GET | /api/parent/day-off-requests | routers/day_off.py | parent-overview.js · parent-panel.js | Pending shows in Home alerts + Habits list. |
+| GET | /api/dashboard/stats | routers/dashboard.py | parent-textbooks.js | Totals + textbooks list for Settings → Textbooks accordion. |
+
+### PIN auth
+
 | Method | Path | Defined In | Called From |
 |--------|------|-----------|-------------|
 | POST | /api/parent/verify-pin | routers/parent.py | parent-panel.js |
-| GET | /api/parent/overview | routers/parent.py | parent-overview.js |
-| GET | /api/parent/summary | routers/parent.py | parent-overview.js |
-| GET | /api/parent/activity | routers/parent.py | parent-overview.js |
-| GET | /api/parent/stage-stats | routers/parent.py | parent-overview.js |
-| GET | /api/parent/math-summary | routers/parent.py | parent-math.js |
-| GET | /api/parent/word-stats | routers/parent.py | parent-overview.js |
+
+### Settings: tasks / schedule / config / streak rule (PIN)
+
+| Method | Path | Defined In | Called From |
+|--------|------|-----------|-------------|
 | GET | /api/parent/task-settings | routers/parent.py | parent-settings.js |
 | PUT | /api/parent/task-settings/{key} | routers/parent.py | parent-settings.js |
 | GET | /api/parent/academy-schedule | routers/parent.py | parent-settings.js |
 | POST | /api/parent/academy-schedule | routers/parent.py | parent-settings.js |
-| POST | /api/parent/config | routers/parent.py | parent-settings.js |
 | GET | /api/parent/config/{key} | routers/parent.py | parent-settings.js |
-| GET | /api/parent/day-off-requests | routers/parent.py | parent-panel.js |
-| PUT | /api/parent/day-off-requests/{req_id} | routers/parent.py | parent-panel.js |
-| GET | /api/parent/streak | routers/parent.py | parent-streak.js |
-| POST | /api/parent/streak-rule | routers/parent.py | parent-streak.js |
-| POST | /api/parent/streak-recalc | routers/parent.py | parent-streak.js |
+| POST | /api/parent/config | routers/parent.py | parent-settings.js |
+| PUT | /api/parent/day-off-requests/{req_id} | routers/day_off.py | parent-panel.js |
+| POST | /api/parent/streak-rule | routers/parent_streak.py | parent-streak.js |
+| POST | /api/parent/streak-recalc | routers/parent_streak.py | parent-streak.js |
+
+### XP rules + report (PIN — Settings)
+
+| Method | Path | Defined In | Called From |
+|--------|------|-----------|-------------|
+| GET | /api/parent/xp-rules | routers/parent_xp.py | parent-xp.js |
+| POST | /api/parent/xp-rules | routers/parent_xp.py | parent-xp.js |
+| POST | /api/parent/xp-rules/reset | routers/parent_xp.py | parent-xp.js |
+| GET | /api/parent/xp-report?days=N | routers/parent_xp.py | parent-xp.js |
+| GET | /api/parent/report/schedule | routers/parent_report.py | parent-report.js |
+| POST | /api/parent/report/schedule | routers/parent_report.py | parent-report.js |
+| POST | /api/parent/report/send | routers/parent_report.py | parent-report.js |
+| GET | /api/parent/report/preview | routers/parent_report.py | parent-report.js |
+
+### Weekly goals (Goals tab)
+
+| Method | Path | Defined In | Called From |
+|--------|------|-----------|-------------|
+| GET | /api/goals/weekly | routers/goals.py | parent-goals.js · parent-overview.js (Home alerts) |
+| PUT | /api/goals/weekly/{key} | routers/goals.py | parent-goals.js (PIN) |
 
 ## System (Phase 10) ✅
 
