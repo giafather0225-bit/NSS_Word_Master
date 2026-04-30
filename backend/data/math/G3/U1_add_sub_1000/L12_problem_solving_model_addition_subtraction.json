@@ -1,203 +1,960 @@
 {
   "lesson_id": "L12_problem_solving_model_addition_subtraction",
   "title": "Problem Solving: Model Addition and Subtraction",
-  "ccss": ["3.NBT.A.2", "3.OA.D.8"],
+  "ccss": [
+    "3.NBT.A.2",
+    "3.OA.D.8"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
-  "go_math_ref": { "chapter": 1, "lesson": 1.12, "pages": "51-54" },
+  "go_math_ref": {
+    "chapter": 1,
+    "lesson": 1.12,
+    "pages": "51-54"
+  },
   "essential_question": "How can you use the strategy draw a diagram to solve addition and subtraction problems?",
-  "key_vocabulary": ["bar model", "diagram", "two-step problem", "addition", "subtraction", "total", "difference"],
-  "strategies": ["draw_bar_model", "two_step_problem_solving", "identify_operation"],
-
+  "key_vocabulary": [
+    "bar model",
+    "diagram",
+    "two-step problem",
+    "addition",
+    "subtraction",
+    "total",
+    "difference"
+  ],
+  "strategies": [
+    "draw_bar_model",
+    "two_step_problem_solving",
+    "identify_operation"
+  ],
   "pretest": [
     {
-      "id": "PT_01", "type": "multiple_choice",
+      "id": "PT_01",
+      "type": "mc",
       "question": "Elena bowled 127 in game 1. She scored 16 more in game 2. What was her total score?",
-      "choices": ["A. 254", "B. 260", "C. 270", "D. 280"],
-      "answer": "C",
-      "solution_steps": ["Game 2: 127+16=143", "Total: 127+143=270"],
-      "hint": "First find game 2 score, then add both games.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_phase": "pictorial", "skill_tag": "two_step_addition",
-      "expected_errors": ["127+16=143 and stopping (only game 2, not total)"]
+      "choices": [
+        "A) 254",
+        "B) 260",
+        "C) 270",
+        "D) 280"
+      ],
+      "solution_steps": [
+        "Game 2: 127+16=143",
+        "Total: 127+143=270"
+      ],
+      "hint": "First find game 2 score, then add both games.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "pictorial",
+      "skill_tag": "two_step_addition",
+      "expected_errors": [
+        "127+16=143 and stopping (only game 2, not total)"
+      ],
+      "correct_answer": "C"
     },
     {
-      "id": "PT_02", "type": "multiple_choice",
+      "id": "PT_02",
+      "type": "mc",
       "question": "Mike's Music sold 287 CDs on day 1. Day 2 sold 96 MORE than day 1. How many CDs total?",
-      "choices": ["A. 574", "B. 670", "C. 383", "D. 191"],
-      "answer": "B",
-      "solution_steps": ["Day 2: 287+96=383", "Total: 287+383=670"],
-      "hint": "'96 more than day 1' means day 2 = 287+96.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_phase": "pictorial", "skill_tag": "two_step_addition",
-      "expected_errors": ["287+96=383 (only day 2, not total)"]
+      "choices": [
+        "A) 574",
+        "B) 670",
+        "C) 383",
+        "D) 191"
+      ],
+      "solution_steps": [
+        "Day 2: 287+96=383",
+        "Total: 287+383=670"
+      ],
+      "hint": "'96 more than day 1' means day 2 = 287+96.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "pictorial",
+      "skill_tag": "two_step_addition",
+      "expected_errors": [
+        "287+96=383 (only day 2, not total)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "PT_03", "type": "multiple_choice",
+      "id": "PT_03",
+      "type": "mc",
       "question": "A store had 543 books. Sold 287 on Monday. Received 125 new books Tuesday. How many now?",
-      "choices": ["A. 371", "B. 381", "C. 391", "D. 256"],
-      "answer": "B",
-      "solution_steps": ["After Monday: 543−287=256", "After Tuesday: 256+125=381"],
-      "hint": "Subtract what was sold, then add what arrived.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_mixed",
-      "expected_errors": ["543−287=256 (stopping after step 1)"]
+      "choices": [
+        "A) 371",
+        "B) 381",
+        "C) 391",
+        "D) 256"
+      ],
+      "solution_steps": [
+        "After Monday: 543−287=256",
+        "After Tuesday: 256+125=381"
+      ],
+      "hint": "Subtract what was sold, then add what arrived.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "543−287=256 (stopping after step 1)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "PT_04", "type": "multiple_choice",
+      "id": "PT_04",
+      "type": "mc",
       "question": "Which bar model shows '348 + 156 = ?'?",
-      "choices": ["A. One bar labeled ? with two parts: 348 and 156", "B. One bar labeled 348 with a part labeled 156 and part labeled ?", "C. Two separate bars: 348 and 156", "D. One bar labeled 348+156 with no parts"],
-      "answer": "A",
-      "solution_steps": ["We're adding 348 and 156 to find total", "Bar model: total (?) on top, two parts below"],
-      "hint": "Addition = total unknown. Parts are the two addends.", "difficulty": 2,
-      "ccss": "3.OA.D.8", "cpa_phase": "pictorial", "skill_tag": "bar_model_addition",
-      "expected_errors": ["Choosing B (that's for finding a missing part)"]
+      "choices": [
+        "A) One bar labeled ? with two parts: 348 and 156",
+        "B) One bar labeled 348 with a part labeled 156 and part labeled ?",
+        "C) Two separate bars: 348 and 156",
+        "D) One bar labeled 348+156 with no parts"
+      ],
+      "solution_steps": [
+        "We're adding 348 and 156 to find total",
+        "Bar model: total (?) on top, two parts below"
+      ],
+      "hint": "Addition = total unknown. Parts are the two addends.",
+      "difficulty": 2,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "pictorial",
+      "skill_tag": "bar_model_addition",
+      "expected_errors": [
+        "Choosing B (that's for finding a missing part)"
+      ],
+      "correct_answer": "A"
     },
     {
-      "id": "PT_05", "type": "multiple_choice",
+      "id": "PT_05",
+      "type": "mc",
       "question": "Tara has 450 stickers. She gives 178 to her friend and 135 to her sister. How many does she have left?",
-      "choices": ["A. 127", "B. 137", "C. 147", "D. 272"],
-      "answer": "B",
-      "solution_steps": ["Given away: 178+135=313", "Left: 450−313=137"],
-      "hint": "First find total given away, then subtract from 450.", "difficulty": 4,
-      "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_subtract",
-      "expected_errors": ["450−178=272 (forgetting the sister)"]
+      "choices": [
+        "A) 127",
+        "B) 137",
+        "C) 147",
+        "D) 272"
+      ],
+      "solution_steps": [
+        "Given away: 178+135=313",
+        "Left: 450−313=137"
+      ],
+      "hint": "First find total given away, then subtract from 450.",
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_subtract",
+      "expected_errors": [
+        "450−178=272 (forgetting the sister)"
+      ],
+      "correct_answer": "B"
     }
   ],
-
   "learn": [
     {
-      "id": "LEARN_01", "type": "concept_card",
+      "id": "LEARN_01",
+      "type": "concept_card",
       "title": "What Is a Bar Model?",
       "content": "A bar model is a drawing that helps you see the parts of a problem. It looks like a rectangle split into sections. The WHOLE bar is the total. The sections are the parts.",
-      "visual_type": "bar_model", "cpa_phase": "pictorial"
+      "visual_type": "bar_model",
+      "cpa_phase": "pictorial"
     },
     {
-      "id": "LEARN_02", "type": "concept_card",
+      "id": "LEARN_02",
+      "type": "concept_card",
       "title": "Bar Model for Addition",
       "content": "When you ADD, you know the parts and need the total. Draw a bar split into parts. Write the known numbers in the parts. The total (?) goes on top. Example: 287 + 383 = ? → bar with parts 287 and 383, total ? on top.",
-      "visual_type": "bar_model", "cpa_phase": "pictorial"
+      "visual_type": "bar_model",
+      "cpa_phase": "pictorial"
     },
     {
-      "id": "LEARN_03", "type": "concept_card",
+      "id": "LEARN_03",
+      "type": "concept_card",
       "title": "Bar Model for Subtraction",
       "content": "When you SUBTRACT, you know the total and one part. You need the other part. Draw a bar with the total on top. One part is known, the other is ?. Example: 543 − 287 = ? → total 543, one part 287, missing part ?.",
-      "visual_type": "bar_model", "cpa_phase": "pictorial"
+      "visual_type": "bar_model",
+      "cpa_phase": "pictorial"
     },
     {
-      "id": "LEARN_04", "type": "concept_card",
+      "id": "LEARN_04",
+      "type": "concept_card",
       "title": "Two-Step Problems",
       "content": "Some problems need TWO calculations. Read carefully! Example: Elena scored 127 in game 1 and 16 MORE in game 2. Total? Step 1: Game 2 = 127+16 = 143. Step 2: Total = 127+143 = 270.",
-      "visual_type": "step_by_step", "cpa_phase": "abstract"
+      "visual_type": "step_by_step",
+      "cpa_phase": "abstract"
     },
     {
-      "id": "LEARN_05", "type": "concept_card",
+      "id": "LEARN_05",
+      "type": "concept_card",
       "title": "Key Words to Watch For",
       "content": "'More than' often means add first, then maybe add again. 'In all' or 'total' means add. 'How many left' or 'how many more' means subtract. 'Then' or 'after' often signals a second step.",
-      "visual_type": "keyword_table", "cpa_phase": "abstract"
+      "visual_type": "keyword_table",
+      "cpa_phase": "abstract"
     },
     {
-      "id": "LEARN_06", "type": "concept_card",
+      "id": "LEARN_06",
+      "type": "concept_card",
       "title": "Example: Mike's Music",
       "content": "Day 1: 287 CDs. Day 2: 96 MORE than day 1. Total? Bar model: Total = Day1 + Day2. Day 2 = Day1 + 96 = 287+96 = 383. Total = 287+383 = 670.",
-      "visual_type": "bar_model", "cpa_phase": "pictorial",
-      "example": { "day1": 287, "day2": 383, "total": 670 }
+      "visual_type": "bar_model",
+      "cpa_phase": "pictorial",
+      "example": {
+        "day1": 287,
+        "day2": 383,
+        "total": 670
+      }
     },
     {
-      "id": "LEARN_07", "type": "concept_card",
+      "id": "LEARN_07",
+      "type": "concept_card",
       "title": "Check: Does My Answer Make Sense?",
       "content": "After solving, ask: Is my answer reasonable? Estimate first! 287+383 → about 300+400=700. Answer 670 is close to 700. Makes sense!",
-      "visual_type": "comparison_table", "cpa_phase": "abstract"
+      "visual_type": "comparison_table",
+      "cpa_phase": "abstract"
     },
     {
-      "id": "LEARN_08", "type": "concept_card",
+      "id": "LEARN_08",
+      "type": "concept_card",
       "title": "Drawing Your Own Bar Model",
       "content": "Step 1: Read the problem. Step 2: Ask 'What do I need to find?' Step 3: Draw a bar. Label the known parts. Put ? for the unknown. Step 4: Decide: add or subtract? Step 5: Solve and check.",
-      "visual_type": "step_by_step", "cpa_phase": "pictorial"
+      "visual_type": "step_by_step",
+      "cpa_phase": "pictorial"
     }
   ],
-
   "try": [
     {
-      "id": "TRY_01", "type": "multiple_choice",
+      "id": "TRY_01",
+      "type": "mc",
       "question": "A baker made 245 muffins Monday and 178 Tuesday. He sold 89 muffins Wednesday. How many muffins are left?",
-      "choices": ["A. 324", "B. 334", "C. 344", "D. 423"],
-      "answer": "B",
-      "solution_steps": ["Total baked: 245+178=423", "After selling: 423−89=334"],
-      "hint": "Step 1: Add to find total. Step 2: Subtract what was sold.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_mixed",
-      "expected_errors": ["245+178=423 (stopping at step 1)"]
+      "choices": [
+        "A) 324",
+        "B) 334",
+        "C) 344",
+        "D) 423"
+      ],
+      "solution_steps": [
+        "Total baked: 245+178=423",
+        "After selling: 423−89=334"
+      ],
+      "hint": "Step 1: Add to find total. Step 2: Subtract what was sold.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "245+178=423 (stopping at step 1)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "TRY_02", "type": "multiple_choice",
+      "id": "TRY_02",
+      "type": "mc",
       "question": "Lily collected 312 seashells. Her brother collected 145 fewer. How many do they have together?",
-      "choices": ["A. 469", "B. 479", "C. 489", "D. 167"],
-      "answer": "B",
-      "solution_steps": ["Brother: 312−145=167", "Together: 312+167=479"],
-      "hint": "'Fewer' means brother has LESS. Find his amount, then add both.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_mixed",
-      "expected_errors": ["312−145=167 (stopping, forgetting to add)"]
+      "choices": [
+        "A) 469",
+        "B) 479",
+        "C) 489",
+        "D) 167"
+      ],
+      "solution_steps": [
+        "Brother: 312−145=167",
+        "Together: 312+167=479"
+      ],
+      "hint": "'Fewer' means brother has LESS. Find his amount, then add both.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "312−145=167 (stopping, forgetting to add)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "TRY_03", "type": "multiple_choice",
+      "id": "TRY_03",
+      "type": "mc",
       "question": "A bus has 72 passengers. 28 get off. Then 35 get on. How many are on the bus now?",
-      "choices": ["A. 69", "B. 79", "C. 89", "D. 44"],
-      "answer": "B",
-      "solution_steps": ["After getting off: 72−28=44", "After getting on: 44+35=79"],
-      "hint": "First subtract passengers who leave, then add new ones.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_mixed",
-      "expected_errors": ["72−28=44 (stopping)"]
+      "choices": [
+        "A) 69",
+        "B) 79",
+        "C) 89",
+        "D) 44"
+      ],
+      "solution_steps": [
+        "After getting off: 72−28=44",
+        "After getting on: 44+35=79"
+      ],
+      "hint": "First subtract passengers who leave, then add new ones.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "72−28=44 (stopping)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "TRY_04", "type": "multiple_choice",
+      "id": "TRY_04",
+      "type": "mc",
       "question": "Which operation do you do FIRST? 'Sam had 500 points. He lost 175 and gained 230.'",
-      "choices": ["A. Add 175+230 first", "B. Subtract 500−175 first", "C. Add 500+230 first", "D. Subtract 500−230 first"],
-      "answer": "B",
-      "solution_steps": ["The events happen in order: lost first, then gained", "500−175=325, then 325+230=555"],
-      "hint": "Follow the order of events.", "difficulty": 2,
-      "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "identify_first_step",
-      "expected_errors": ["Choosing A (combining the changes first)"]
+      "choices": [
+        "A) Add 175+230 first",
+        "B) Subtract 500−175 first",
+        "C) Add 500+230 first",
+        "D) Subtract 500−230 first"
+      ],
+      "solution_steps": [
+        "The events happen in order: lost first, then gained",
+        "500−175=325, then 325+230=555"
+      ],
+      "hint": "Follow the order of events.",
+      "difficulty": 2,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "identify_first_step",
+      "expected_errors": [
+        "Choosing A (combining the changes first)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "TRY_05", "type": "multiple_choice",
+      "id": "TRY_05",
+      "type": "mc",
       "question": "A farm has 328 chickens and 195 ducks. 147 chickens are sold. How many birds are on the farm now?",
-      "choices": ["A. 366", "B. 376", "C. 386", "D. 523"],
-      "answer": "B",
-      "solution_steps": ["Chickens remaining: 328−147=181", "Total birds: 181+195=376"],
-      "hint": "Subtract sold chickens, then add remaining chickens + ducks.", "difficulty": 4,
-      "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_mixed",
-      "expected_errors": ["328+195=523 (forgetting sold chickens)"]
+      "choices": [
+        "A) 366",
+        "B) 376",
+        "C) 386",
+        "D) 523"
+      ],
+      "solution_steps": [
+        "Chickens remaining: 328−147=181",
+        "Total birds: 181+195=376"
+      ],
+      "hint": "Subtract sold chickens, then add remaining chickens + ducks.",
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "328+195=523 (forgetting sold chickens)"
+      ],
+      "correct_answer": "B"
     }
   ],
-
   "practice_r1": [
-    { "id": "R1_01", "type": "multiple_choice", "question": "Pedro read 134 pages Monday and 98 pages Tuesday. He has 268 pages left. How many pages is the book?", "choices": ["A. 490", "B. 500", "C. 510", "D. 366"], "answer": "B", "solution_steps": ["Pages read: 134+98=232", "Total: 232+268=500"], "hint": "Total book = pages read + pages left.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_addition", "expected_errors": ["134+98=232 (stopping)"] },
-    { "id": "R1_02", "type": "multiple_choice", "question": "A jar had 400 marbles. 156 red and 118 blue were removed. How many are left?", "choices": ["A. 116", "B. 126", "C. 136", "D. 274"], "answer": "B", "solution_steps": ["Removed: 156+118=274", "Left: 400−274=126"], "hint": "Add removed marbles, then subtract from total.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_subtract", "expected_errors": ["400−156=244 (forgetting blue)"] },
-    { "id": "R1_03", "type": "multiple_choice", "question": "Maya earned $275 in week 1 and $189 in week 2. She spent $200. How much does she have?", "choices": ["A. 254", "B. 264", "C. 274", "D. 464"], "answer": "B", "solution_steps": ["Earned: 275+189=464", "After spending: 464−200=264"], "hint": "Add earnings, then subtract spending.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_mixed", "expected_errors": ["275+189=464 (forgetting spending)"] },
-    { "id": "R1_04", "type": "multiple_choice", "question": "A train had 325 passengers. 198 got off. Then 147 got on. How many are on the train?", "choices": ["A. 264", "B. 274", "C. 284", "D. 127"], "answer": "B", "solution_steps": ["After off: 325−198=127", "After on: 127+147=274"], "hint": "Subtract first, then add.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_mixed", "expected_errors": ["325−198=127 (stopping)"] },
-    { "id": "R1_05", "type": "multiple_choice", "question": "Ryan scored 215 in game 1. He scored 47 MORE in game 2. What's his total?", "choices": ["A. 467", "B. 477", "C. 487", "D. 262"], "answer": "B", "solution_steps": ["Game 2: 215+47=262", "Total: 215+262=477"], "hint": "'47 more' means game 2 = 215+47.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_addition", "expected_errors": ["215+47=262 (just game 2, not total)"] },
-    { "id": "R1_06", "type": "multiple_choice", "question": "A garden has 260 flowers. 95 are red, 87 are yellow. The rest are white. How many white flowers?", "choices": ["A. 68", "B. 78", "C. 88", "D. 175"], "answer": "B", "solution_steps": ["Red+yellow: 95+87=182", "White: 260−182=78"], "hint": "Add known flowers, subtract from total.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_subtract", "expected_errors": ["260−95=165 (forgetting yellow)"] },
-    { "id": "R1_07", "type": "multiple_choice", "question": "Ava collected 189 stickers. Ben collected 156 fewer than Ava. How many do they have in all?", "choices": ["A. 212", "B. 222", "C. 232", "D. 33"], "answer": "B", "solution_steps": ["Ben: 189−156=33", "Total: 189+33=222"], "hint": "'Fewer' means subtract to find Ben's amount.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_mixed", "expected_errors": ["189−156=33 (just Ben's count)"] },
-    { "id": "R1_08", "type": "multiple_choice", "question": "A school has 412 students. 189 walk to school. 134 take the bus. The rest are driven. How many are driven?", "choices": ["A. 79", "B. 89", "C. 99", "D. 323"], "answer": "B", "solution_steps": ["Walk+bus: 189+134=323", "Driven: 412−323=89"], "hint": "Add walkers and bus riders, subtract from total.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_subtract", "expected_errors": ["412−189=223 (forgetting bus)"] },
-    { "id": "R1_09", "type": "multiple_choice", "question": "Carlos had 350 baseball cards. He gave away 125, then bought 78 more. How many now?", "choices": ["A. 293", "B. 303", "C. 313", "D. 225"], "answer": "B", "solution_steps": ["After giving: 350−125=225", "After buying: 225+78=303"], "hint": "Subtract given, add bought.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_mixed", "expected_errors": ["350−125=225 (stopping)"] },
-    { "id": "R1_10", "type": "multiple_choice", "question": "A bakery made 156 cookies in the morning and 237 in the afternoon. They put them equally into 3 display cases. How many total cookies?", "choices": ["A. 383", "B. 393", "C. 403", "D. 81"], "answer": "B", "solution_steps": ["Total: 156+237=393", "The question asks for total cookies (not per case)"], "hint": "Read carefully — it asks for TOTAL, not per case.", "difficulty": 2, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "addition_read_carefully", "expected_errors": ["Trying to divide by 3"] }
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "question": "Pedro read 134 pages Monday and 98 pages Tuesday. He has 268 pages left. How many pages is the book?",
+      "choices": [
+        "A) 490",
+        "B) 500",
+        "C) 510",
+        "D) 366"
+      ],
+      "solution_steps": [
+        "Pages read: 134+98=232",
+        "Total: 232+268=500"
+      ],
+      "hint": "Total book = pages read + pages left.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_addition",
+      "expected_errors": [
+        "134+98=232 (stopping)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "question": "A jar had 400 marbles. 156 red and 118 blue were removed. How many are left?",
+      "choices": [
+        "A) 116",
+        "B) 126",
+        "C) 136",
+        "D) 274"
+      ],
+      "solution_steps": [
+        "Removed: 156+118=274",
+        "Left: 400−274=126"
+      ],
+      "hint": "Add removed marbles, then subtract from total.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_subtract",
+      "expected_errors": [
+        "400−156=244 (forgetting blue)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "question": "Maya earned $275 in week 1 and $189 in week 2. She spent $200. How much does she have?",
+      "choices": [
+        "A) 254",
+        "B) 264",
+        "C) 274",
+        "D) 464"
+      ],
+      "solution_steps": [
+        "Earned: 275+189=464",
+        "After spending: 464−200=264"
+      ],
+      "hint": "Add earnings, then subtract spending.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "275+189=464 (forgetting spending)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "question": "A train had 325 passengers. 198 got off. Then 147 got on. How many are on the train?",
+      "choices": [
+        "A) 264",
+        "B) 274",
+        "C) 284",
+        "D) 127"
+      ],
+      "solution_steps": [
+        "After off: 325−198=127",
+        "After on: 127+147=274"
+      ],
+      "hint": "Subtract first, then add.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "325−198=127 (stopping)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "question": "Ryan scored 215 in game 1. He scored 47 MORE in game 2. What's his total?",
+      "choices": [
+        "A) 467",
+        "B) 477",
+        "C) 487",
+        "D) 262"
+      ],
+      "solution_steps": [
+        "Game 2: 215+47=262",
+        "Total: 215+262=477"
+      ],
+      "hint": "'47 more' means game 2 = 215+47.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_addition",
+      "expected_errors": [
+        "215+47=262 (just game 2, not total)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "question": "A garden has 260 flowers. 95 are red, 87 are yellow. The rest are white. How many white flowers?",
+      "choices": [
+        "A) 68",
+        "B) 78",
+        "C) 88",
+        "D) 175"
+      ],
+      "solution_steps": [
+        "Red+yellow: 95+87=182",
+        "White: 260−182=78"
+      ],
+      "hint": "Add known flowers, subtract from total.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_subtract",
+      "expected_errors": [
+        "260−95=165 (forgetting yellow)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "question": "Ava collected 189 stickers. Ben collected 156 fewer than Ava. How many do they have in all?",
+      "choices": [
+        "A) 212",
+        "B) 222",
+        "C) 232",
+        "D) 33"
+      ],
+      "solution_steps": [
+        "Ben: 189−156=33",
+        "Total: 189+33=222"
+      ],
+      "hint": "'Fewer' means subtract to find Ben's amount.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "189−156=33 (just Ben's count)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "question": "A school has 412 students. 189 walk to school. 134 take the bus. The rest are driven. How many are driven?",
+      "choices": [
+        "A) 79",
+        "B) 89",
+        "C) 99",
+        "D) 323"
+      ],
+      "solution_steps": [
+        "Walk+bus: 189+134=323",
+        "Driven: 412−323=89"
+      ],
+      "hint": "Add walkers and bus riders, subtract from total.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_subtract",
+      "expected_errors": [
+        "412−189=223 (forgetting bus)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_09",
+      "type": "mc",
+      "question": "Carlos had 350 baseball cards. He gave away 125, then bought 78 more. How many now?",
+      "choices": [
+        "A) 293",
+        "B) 303",
+        "C) 313",
+        "D) 225"
+      ],
+      "solution_steps": [
+        "After giving: 350−125=225",
+        "After buying: 225+78=303"
+      ],
+      "hint": "Subtract given, add bought.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "350−125=225 (stopping)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_10",
+      "type": "mc",
+      "question": "A bakery made 156 cookies in the morning and 237 in the afternoon. They put them equally into 3 display cases. How many total cookies?",
+      "choices": [
+        "A) 383",
+        "B) 393",
+        "C) 403",
+        "D) 81"
+      ],
+      "solution_steps": [
+        "Total: 156+237=393",
+        "The question asks for total cookies (not per case)"
+      ],
+      "hint": "Read carefully — it asks for TOTAL, not per case.",
+      "difficulty": 2,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "addition_read_carefully",
+      "expected_errors": [
+        "Trying to divide by 3"
+      ],
+      "correct_answer": "B"
+    }
   ],
-
   "practice_r2": [
-    { "id": "R2_01", "type": "multiple_choice", "question": "A zookeeper counted 345 birds, 278 reptiles, and 189 mammals. How many more birds than mammals?", "choices": ["A. 146", "B. 156", "C. 166", "D. 534"], "answer": "B", "solution_steps": ["Birds − mammals: 345−189=156", "Reptiles are extra info!"], "hint": "Watch out for extra information! Only compare birds and mammals.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "extra_information", "expected_errors": ["345+278+189=812 (using all numbers)"] },
-    { "id": "R2_02", "type": "multiple_choice", "question": "Jenna saved $218 in January and $175 in February. She spent $109 on a gift and $86 on books. How much is left?", "choices": ["A. 188", "B. 198", "C. 208", "D. 393"], "answer": "B", "solution_steps": ["Saved: 218+175=393", "Spent: 109+86=195", "Left: 393−195=198"], "hint": "Add savings, add spending, then subtract.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "multi_step_mixed", "expected_errors": ["393−109=284 (forgetting books)"] },
-    { "id": "R2_03", "type": "multiple_choice", "question": "Team A scored 246. Team B scored 189. Team C scored 73 more than Team B. Which team scored the most?", "choices": ["A. Team A (246)", "B. Team B (189)", "C. Team C (262)", "D. Teams A and C tied"], "answer": "C", "solution_steps": ["Team C: 189+73=262", "Compare: A=246, B=189, C=262", "C is highest"], "hint": "Find Team C's score first, then compare all three.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_compare", "expected_errors": ["Not calculating Team C's score"] },
-    { "id": "R2_04", "type": "multiple_choice", "question": "A library had 750 books. Monday: returned 143, borrowed 267. Tuesday: returned 98, borrowed 156. How many books now?", "choices": ["A. 558", "B. 568", "C. 578", "D. 750"], "answer": "B", "solution_steps": ["Monday: 750+143−267=626", "Tuesday: 626+98−156=568"], "hint": "Returned = add, Borrowed = subtract. Do each day in order.", "difficulty": 5, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "multi_step_sequential", "expected_errors": ["Adding all returns and subtracting all borrows at once (same result but might confuse)"] },
-    { "id": "R2_05", "type": "multiple_choice", "question": "Rosa has 500 beads. She uses 185 for a necklace and 137 for a bracelet. She buys 100 more. How many now?", "choices": ["A. 268", "B. 278", "C. 288", "D. 178"], "answer": "B", "solution_steps": ["Used: 185+137=322", "After using: 500−322=178", "After buying: 178+100=278"], "hint": "Subtract used beads, then add new ones.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "multi_step_mixed", "expected_errors": ["500−185=315 (forgetting bracelet)"] },
-    { "id": "R2_06", "type": "multiple_choice", "question": "Jake's class collected 412 cans. Emma's class collected 389 cans. Together they gave 215 cans to charity. How many are left for recycling?", "choices": ["A. 576", "B. 586", "C. 596", "D. 801"], "answer": "B", "solution_steps": ["Total: 412+389=801", "After charity: 801−215=586"], "hint": "Combine both classes, then subtract charity donation.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "two_step_mixed", "expected_errors": ["412+389=801 (not subtracting)"] },
-    { "id": "R2_07", "type": "multiple_choice", "question": "A theater sold 328 adult tickets and 256 child tickets. Adult tickets cost $8 each. How many tickets were sold in all?", "choices": ["A. 574", "B. 584", "C. 594", "D. 2624"], "answer": "B", "solution_steps": ["Total tickets: 328+256=584", "The price ($8) is extra information!"], "hint": "The question asks for NUMBER of tickets, not money.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "extra_information", "expected_errors": ["328×8=2624 (using irrelevant info)"] },
-    { "id": "R2_08", "type": "multiple_choice", "question": "Ella had some stickers. She gave 128 to Amy and 96 to Bella. Now she has 276 left. How many did she start with?", "choices": ["A. 490", "B. 500", "C. 510", "D. 276"], "answer": "B", "solution_steps": ["Given away: 128+96=224", "Started with: 276+224=500", "Working backwards!"], "hint": "Work backwards: add what she gave away to what's left.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "work_backwards", "expected_errors": ["276−128−96=52 (subtracting instead of adding back)"] },
-    { "id": "R2_09", "type": "multiple_choice", "question": "Which bar model fits: 'Tom had 450 cards. He gave some to friends. Now he has 283. How many did he give away?'", "choices": ["A. Total 450, parts: ? and 283", "B. Total ?, parts: 450 and 283", "C. Total 283, parts: 450 and ?", "D. Total 450, parts: 283 and 283"], "answer": "A", "solution_steps": ["Total is 450 (what he started with)", "Two parts: given away (?) and remaining (283)", "450 = ? + 283, so ? = 450−283 = 167"], "hint": "The total he started with splits into two parts.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "pictorial", "skill_tag": "bar_model_subtraction", "expected_errors": ["Choosing B"] },
-    { "id": "R2_10", "type": "multiple_choice", "question": "Pattie had 264 peppers. She sold some and had 112 left. Then she picked 89 more. How many does she have now?", "choices": ["A. 191", "B. 201", "C. 211", "D. 112"], "answer": "B", "solution_steps": ["After selling: 112 (given)", "After picking: 112+89=201", "Note: 264−?=112 is not needed to answer!"], "hint": "She has 112 left, then picks 89 more. Simple addition!", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "read_carefully", "expected_errors": ["264−112=152, then 152+89 (wrong approach)"] }
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "question": "A zookeeper counted 345 birds, 278 reptiles, and 189 mammals. How many more birds than mammals?",
+      "choices": [
+        "A) 146",
+        "B) 156",
+        "C) 166",
+        "D) 534"
+      ],
+      "solution_steps": [
+        "Birds − mammals: 345−189=156",
+        "Reptiles are extra info!"
+      ],
+      "hint": "Watch out for extra information! Only compare birds and mammals.",
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "extra_information",
+      "expected_errors": [
+        "345+278+189=812 (using all numbers)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_02",
+      "type": "mc",
+      "question": "Jenna saved $218 in January and $175 in February. She spent $109 on a gift and $86 on books. How much is left?",
+      "choices": [
+        "A) 188",
+        "B) 198",
+        "C) 208",
+        "D) 393"
+      ],
+      "solution_steps": [
+        "Saved: 218+175=393",
+        "Spent: 109+86=195",
+        "Left: 393−195=198"
+      ],
+      "hint": "Add savings, add spending, then subtract.",
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "multi_step_mixed",
+      "expected_errors": [
+        "393−109=284 (forgetting books)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "question": "Team A scored 246. Team B scored 189. Team C scored 73 more than Team B. Which team scored the most?",
+      "choices": [
+        "A) Team A (246)",
+        "B) Team B (189)",
+        "C) Team C (262)",
+        "D) Teams A and C tied"
+      ],
+      "solution_steps": [
+        "Team C: 189+73=262",
+        "Compare: A=246, B=189, C=262",
+        "C is highest"
+      ],
+      "hint": "Find Team C's score first, then compare all three.",
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_compare",
+      "expected_errors": [
+        "Not calculating Team C's score"
+      ],
+      "correct_answer": "C"
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "question": "A library had 750 books. Monday: returned 143, borrowed 267. Tuesday: returned 98, borrowed 156. How many books now?",
+      "choices": [
+        "A) 558",
+        "B) 568",
+        "C) 578",
+        "D) 750"
+      ],
+      "solution_steps": [
+        "Monday: 750+143−267=626",
+        "Tuesday: 626+98−156=568"
+      ],
+      "hint": "Returned = add, Borrowed = subtract. Do each day in order.",
+      "difficulty": 5,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "multi_step_sequential",
+      "expected_errors": [
+        "Adding all returns and subtracting all borrows at once (same result but might confuse)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_05",
+      "type": "mc",
+      "question": "Rosa has 500 beads. She uses 185 for a necklace and 137 for a bracelet. She buys 100 more. How many now?",
+      "choices": [
+        "A) 268",
+        "B) 278",
+        "C) 288",
+        "D) 178"
+      ],
+      "solution_steps": [
+        "Used: 185+137=322",
+        "After using: 500−322=178",
+        "After buying: 178+100=278"
+      ],
+      "hint": "Subtract used beads, then add new ones.",
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "multi_step_mixed",
+      "expected_errors": [
+        "500−185=315 (forgetting bracelet)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_06",
+      "type": "mc",
+      "question": "Jake's class collected 412 cans. Emma's class collected 389 cans. Together they gave 215 cans to charity. How many are left for recycling?",
+      "choices": [
+        "A) 576",
+        "B) 586",
+        "C) 596",
+        "D) 801"
+      ],
+      "solution_steps": [
+        "Total: 412+389=801",
+        "After charity: 801−215=586"
+      ],
+      "hint": "Combine both classes, then subtract charity donation.",
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "412+389=801 (not subtracting)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_07",
+      "type": "mc",
+      "question": "A theater sold 328 adult tickets and 256 child tickets. Adult tickets cost $8 each. How many tickets were sold in all?",
+      "choices": [
+        "A) 574",
+        "B) 584",
+        "C) 594",
+        "D) 2624"
+      ],
+      "solution_steps": [
+        "Total tickets: 328+256=584",
+        "The price ($8) is extra information!"
+      ],
+      "hint": "The question asks for NUMBER of tickets, not money.",
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "extra_information",
+      "expected_errors": [
+        "328×8=2624 (using irrelevant info)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_08",
+      "type": "mc",
+      "question": "Ella had some stickers. She gave 128 to Amy and 96 to Bella. Now she has 276 left. How many did she start with?",
+      "choices": [
+        "A) 490",
+        "B) 500",
+        "C) 510",
+        "D) 276"
+      ],
+      "solution_steps": [
+        "Given away: 128+96=224",
+        "Started with: 276+224=500",
+        "Working backwards!"
+      ],
+      "hint": "Work backwards: add what she gave away to what's left.",
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "work_backwards",
+      "expected_errors": [
+        "276−128−96=52 (subtracting instead of adding back)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_09",
+      "type": "mc",
+      "question": "Which bar model fits: 'Tom had 450 cards. He gave some to friends. Now he has 283. How many did he give away?'",
+      "choices": [
+        "A) Total 450, parts: ? and 283",
+        "B) Total ?, parts: 450 and 283",
+        "C) Total 283, parts: 450 and ?",
+        "D) Total 450, parts: 283 and 283"
+      ],
+      "solution_steps": [
+        "Total is 450 (what he started with)",
+        "Two parts: given away (?) and remaining (283)",
+        "450 = ? + 283, so ? = 450−283 = 167"
+      ],
+      "hint": "The total he started with splits into two parts.",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "pictorial",
+      "skill_tag": "bar_model_subtraction",
+      "expected_errors": [
+        "Choosing B"
+      ],
+      "correct_answer": "A"
+    },
+    {
+      "id": "R2_10",
+      "type": "mc",
+      "question": "Pattie had 264 peppers. She sold some and had 112 left. Then she picked 89 more. How many does she have now?",
+      "choices": [
+        "A) 191",
+        "B) 201",
+        "C) 211",
+        "D) 112"
+      ],
+      "solution_steps": [
+        "After selling: 112 (given)",
+        "After picking: 112+89=201",
+        "Note: 264−?=112 is not needed to answer!"
+      ],
+      "hint": "She has 112 left, then picks 89 more. Simple addition!",
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "read_carefully",
+      "expected_errors": [
+        "264−112=152, then 152+89 (wrong approach)"
+      ],
+      "correct_answer": "B"
+    }
   ],
-
   "practice_r3": [
-    { "id": "R3_01", "type": "multiple_choice", "question": "Draw a bar model: A school fair raised $347 from food, $285 from games, and $168 from crafts. They spent $436 on supplies. What was the profit? What is the first step?", "choices": ["A. Add all three earnings: 347+285+168", "B. Subtract 436 from 347", "C. Add 347+285, then subtract 168", "D. Subtract 436 from 285"], "answer": "A", "solution_steps": ["Step 1: Total earned = 347+285+168=800", "Step 2: Profit = 800−436=364", "First step is adding all earnings"], "hint": "Find total earnings before subtracting expenses.", "difficulty": 5, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "multi_step_identify_first", "expected_errors": ["Trying to subtract before adding all"] },
-    { "id": "R3_02", "type": "multiple_choice", "question": "From the problem above, what is the school fair's profit?", "choices": ["A. 354", "B. 364", "C. 374", "D. 800"], "answer": "B", "solution_steps": ["800−436=364"], "hint": "Total earnings (800) minus expenses (436).", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "multi_step_complete", "expected_errors": ["Stopping at total: 800"] },
-    { "id": "R3_03", "type": "multiple_choice", "question": "Sam had some coins. He found 46 more, then lost 29. Now he has 150. How many did he start with?", "choices": ["A. 123", "B. 133", "C. 143", "D. 167"], "answer": "B", "solution_steps": ["Work backwards: before losing 29 → 150+29=179", "Before finding 46 → 179−46=133", "Check: 133+46−29=150 ✓"], "hint": "Work backwards! Undo each step in reverse order.", "difficulty": 5, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "work_backwards", "expected_errors": ["150−46+29=133 (correct!) or 150+29−46=133 (also correct reasoning)"] },
-    { "id": "R3_04", "type": "multiple_choice", "question": "Three classes collected cans: Room A got 215, Room B got 178, Room C got 207. The goal was 650 cans. Did they reach the goal? By how much over or under?", "choices": ["A. Under by 40", "B. Under by 50", "C. Over by 50", "D. Exactly at goal"], "answer": "B", "solution_steps": ["Total: 215+178+207=600", "Goal: 650", "Under by: 650−600=50"], "hint": "Add all three rooms, then compare to 650.", "difficulty": 5, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "multi_step_compare_to_goal", "expected_errors": ["Adding wrong: 215+178+207=610"] },
-    { "id": "R3_05", "type": "multiple_choice", "question": "A toy store had 500 toys. Monday: sold 187. Tuesday: received 125, sold 93. Wednesday: received 200, sold 156. How many toys now?", "choices": ["A. 379", "B. 389", "C. 399", "D. 500"], "answer": "B", "solution_steps": ["Monday: 500−187=313", "Tuesday: 313+125−93=345", "Wednesday: 345+200−156=389"], "hint": "Process each day in order: add received, subtract sold.", "difficulty": 5, "ccss": "3.OA.D.8", "cpa_phase": "abstract", "skill_tag": "multi_step_sequential", "expected_errors": ["Missing a step or day"] }
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "question": "Draw a bar model: A school fair raised $347 from food, $285 from games, and $168 from crafts. They spent $436 on supplies. What was the profit? What is the first step?",
+      "choices": [
+        "A) Add all three earnings: 347+285+168",
+        "B) Subtract 436 from 347",
+        "C) Add 347+285, then subtract 168",
+        "D) Subtract 436 from 285"
+      ],
+      "solution_steps": [
+        "Step 1: Total earned = 347+285+168=800",
+        "Step 2: Profit = 800−436=364",
+        "First step is adding all earnings"
+      ],
+      "hint": "Find total earnings before subtracting expenses.",
+      "difficulty": 5,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "multi_step_identify_first",
+      "expected_errors": [
+        "Trying to subtract before adding all"
+      ],
+      "correct_answer": "A"
+    },
+    {
+      "id": "R3_02",
+      "type": "mc",
+      "question": "From the problem above, what is the school fair's profit?",
+      "choices": [
+        "A) 354",
+        "B) 364",
+        "C) 374",
+        "D) 800"
+      ],
+      "solution_steps": [
+        "800−436=364"
+      ],
+      "hint": "Total earnings (800) minus expenses (436).",
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "multi_step_complete",
+      "expected_errors": [
+        "Stopping at total: 800"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "question": "Sam had some coins. He found 46 more, then lost 29. Now he has 150. How many did he start with?",
+      "choices": [
+        "A) 123",
+        "B) 133",
+        "C) 143",
+        "D) 167"
+      ],
+      "solution_steps": [
+        "Work backwards: before losing 29 → 150+29=179",
+        "Before finding 46 → 179−46=133",
+        "Check: 133+46−29=150 ✓"
+      ],
+      "hint": "Work backwards! Undo each step in reverse order.",
+      "difficulty": 5,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "work_backwards",
+      "expected_errors": [
+        "150−46+29=133 (correct!) or 150+29−46=133 (also correct reasoning)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R3_04",
+      "type": "mc",
+      "question": "Three classes collected cans: Room A got 215, Room B got 178, Room C got 207. The goal was 650 cans. Did they reach the goal? By how much over or under?",
+      "choices": [
+        "A) Under by 40",
+        "B) Under by 50",
+        "C) Over by 50",
+        "D) Exactly at goal"
+      ],
+      "solution_steps": [
+        "Total: 215+178+207=600",
+        "Goal: 650",
+        "Under by: 650−600=50"
+      ],
+      "hint": "Add all three rooms, then compare to 650.",
+      "difficulty": 5,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "multi_step_compare_to_goal",
+      "expected_errors": [
+        "Adding wrong: 215+178+207=610"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R3_05",
+      "type": "mc",
+      "question": "A toy store had 500 toys. Monday: sold 187. Tuesday: received 125, sold 93. Wednesday: received 200, sold 156. How many toys now?",
+      "choices": [
+        "A) 379",
+        "B) 389",
+        "C) 399",
+        "D) 500"
+      ],
+      "solution_steps": [
+        "Monday: 500−187=313",
+        "Tuesday: 313+125−93=345",
+        "Wednesday: 345+200−156=389"
+      ],
+      "hint": "Process each day in order: add received, subtract sold.",
+      "difficulty": 5,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "multi_step_sequential",
+      "expected_errors": [
+        "Missing a step or day"
+      ],
+      "correct_answer": "B"
+    }
   ]
 }

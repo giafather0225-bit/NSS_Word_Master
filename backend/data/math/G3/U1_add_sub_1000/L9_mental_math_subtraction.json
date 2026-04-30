@@ -1,204 +1,943 @@
 {
   "lesson_id": "L9_mental_math_subtraction",
   "title": "Mental Math Strategies for Subtraction",
-  "ccss": ["3.NBT.A.2"],
+  "ccss": [
+    "3.NBT.A.2"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
-  "go_math_ref": { "chapter": 1, "lesson": 1.9, "pages": "39-42" },
+  "go_math_ref": {
+    "chapter": 1,
+    "lesson": 1.9,
+    "pages": "39-42"
+  },
   "essential_question": "What mental math strategies can you use to find differences?",
-  "key_vocabulary": ["difference", "count up", "count back", "friendly numbers", "number line"],
-  "strategies": ["count_up_tens_then_ones", "take_away_tens_and_ones", "use_friendly_numbers"],
-
+  "key_vocabulary": [
+    "difference",
+    "count up",
+    "count back",
+    "friendly numbers",
+    "number line"
+  ],
+  "strategies": [
+    "count_up_tens_then_ones",
+    "take_away_tens_and_ones",
+    "use_friendly_numbers"
+  ],
   "pretest": [
     {
-      "id": "PT_01", "type": "multiple_choice",
+      "id": "PT_01",
+      "type": "mc",
       "question": "Use mental math. 74 − 39 =",
-      "choices": ["A. 25", "B. 35", "C. 45", "D. 33"],
-      "answer": "B",
-      "solution_steps": ["Think: 74−40=34, then add back 1 → 35", "Or count up from 39: 39+1=40, 40+34=74 → 1+34=35"],
-      "hint": "Try subtracting 40 first, then adding back 1.", "difficulty": 2,
-      "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly",
-      "expected_errors": ["74−39=45 (adding instead)"]
+      "choices": [
+        "A) 25",
+        "B) 35",
+        "C) 45",
+        "D) 33"
+      ],
+      "solution_steps": [
+        "Think: 74−40=34, then add back 1 → 35",
+        "Or count up from 39: 39+1=40, 40+34=74 → 1+34=35"
+      ],
+      "hint": "Try subtracting 40 first, then adding back 1.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "74−39=45 (adding instead)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "PT_02", "type": "multiple_choice",
+      "id": "PT_02",
+      "type": "mc",
       "question": "Use mental math. 93 − 28 =",
-      "choices": ["A. 55", "B. 65", "C. 75", "D. 63"],
-      "answer": "B",
-      "solution_steps": ["93−30=63, then add back 2 → 65", "Or: 93−28 → 93−20=73, 73−8=65"],
-      "hint": "Subtract 30 first, then add back 2.", "difficulty": 2,
-      "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly",
-      "expected_errors": ["93−28=75 (subtracting only 20)"]
+      "choices": [
+        "A) 55",
+        "B) 65",
+        "C) 75",
+        "D) 63"
+      ],
+      "solution_steps": [
+        "93−30=63, then add back 2 → 65",
+        "Or: 93−28 → 93−20=73, 73−8=65"
+      ],
+      "hint": "Subtract 30 first, then add back 2.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "93−28=75 (subtracting only 20)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "PT_03", "type": "multiple_choice",
+      "id": "PT_03",
+      "type": "mc",
       "question": "Use mental math. 285 − 99 =",
-      "choices": ["A. 176", "B. 186", "C. 196", "D. 184"],
-      "answer": "B",
-      "solution_steps": ["285−100=185, then add back 1 → 186"],
-      "hint": "99 is close to 100. Subtract 100, then add 1 back.", "difficulty": 3,
-      "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly",
-      "expected_errors": ["285−99=176 (subtracting 100 but not adding back)"]
+      "choices": [
+        "A) 176",
+        "B) 186",
+        "C) 196",
+        "D) 184"
+      ],
+      "solution_steps": [
+        "285−100=185, then add back 1 → 186"
+      ],
+      "hint": "99 is close to 100. Subtract 100, then add 1 back.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "285−99=176 (subtracting 100 but not adding back)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "PT_04", "type": "multiple_choice",
+      "id": "PT_04",
+      "type": "mc",
       "question": "Ruby has 78 books. 31 are on shelves. How many are in boxes?",
-      "choices": ["A. 37", "B. 47", "C. 57", "D. 43"],
-      "answer": "B",
-      "solution_steps": ["78−31: subtract tens → 78−30=48, subtract ones → 48−1=47"],
-      "hint": "Break 31 into 30 and 1. Subtract each part.", "difficulty": 2,
-      "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_word_problem",
-      "expected_errors": ["78−31=37 (subtracting 40 and 1)"]
+      "choices": [
+        "A) 37",
+        "B) 47",
+        "C) 57",
+        "D) 43"
+      ],
+      "solution_steps": [
+        "78−31: subtract tens → 78−30=48, subtract ones → 48−1=47"
+      ],
+      "hint": "Break 31 into 30 and 1. Subtract each part.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_word_problem",
+      "expected_errors": [
+        "78−31=37 (subtracting 40 and 1)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "PT_05", "type": "multiple_choice",
+      "id": "PT_05",
+      "type": "mc",
       "question": "Use mental math. 130 − 76 =",
-      "choices": ["A. 44", "B. 54", "C. 64", "D. 56"],
-      "answer": "B",
-      "solution_steps": ["Count up from 76: 76+4=80, 80+50=130 → 4+50=54", "Or: 130−76 → 130−80=50, 50+4=54"],
-      "hint": "Count up from 76 to 130.", "difficulty": 3,
-      "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_count_up",
-      "expected_errors": ["130−76=64 (subtracting 70 then 6 incorrectly)"]
+      "choices": [
+        "A) 44",
+        "B) 54",
+        "C) 64",
+        "D) 56"
+      ],
+      "solution_steps": [
+        "Count up from 76: 76+4=80, 80+50=130 → 4+50=54",
+        "Or: 130−76 → 130−80=50, 50+4=54"
+      ],
+      "hint": "Count up from 76 to 130.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_count_up",
+      "expected_errors": [
+        "130−76=64 (subtracting 70 then 6 incorrectly)"
+      ],
+      "correct_answer": "B"
     }
   ],
-
   "learn": [
     {
-      "id": "LEARN_01", "type": "concept_card",
+      "id": "LEARN_01",
+      "type": "concept_card",
       "title": "Strategy 1: Count Up",
       "content": "Start at the smaller number. Count up by tens, then by ones, to reach the bigger number. Example: 62−39. Start at 39. Count up: 39→49→59 (that's +20), 59→60→61→62 (that's +3). So 62−39=23.",
-      "visual_type": "number_line", "cpa_phase": "pictorial"
+      "visual_type": "number_line",
+      "cpa_phase": "pictorial"
     },
     {
-      "id": "LEARN_02", "type": "concept_card",
+      "id": "LEARN_02",
+      "type": "concept_card",
       "title": "Strategy 2: Take Away Tens and Ones",
       "content": "Start at the bigger number. Subtract the tens, then the ones. Example: 62−39. Start at 62. Take away 30: 62→32. Take away 9: 32→23. So 62−39=23.",
-      "visual_type": "number_line", "cpa_phase": "pictorial"
+      "visual_type": "number_line",
+      "cpa_phase": "pictorial"
     },
     {
-      "id": "LEARN_03", "type": "concept_card",
+      "id": "LEARN_03",
+      "type": "concept_card",
       "title": "Strategy 3: Use Friendly Numbers",
       "content": "Change the number you're subtracting to a 'friendly' number (like a multiple of 10). Example: 74−39. Think: 39 is close to 40. 74−40=34. But you subtracted 1 too many, so add 1 back: 34+1=35.",
-      "visual_type": "step_by_step", "cpa_phase": "abstract"
+      "visual_type": "step_by_step",
+      "cpa_phase": "abstract"
     },
     {
-      "id": "LEARN_04", "type": "concept_card",
+      "id": "LEARN_04",
+      "type": "concept_card",
       "title": "When to Use Each Strategy",
       "content": "Count Up works best when the two numbers are close together (like 62−58). Take Away works well for any subtraction. Friendly Numbers work best when one number is close to a ten or hundred (like 99, 198, 301).",
-      "visual_type": "comparison_table", "cpa_phase": "abstract"
+      "visual_type": "comparison_table",
+      "cpa_phase": "abstract"
     },
     {
-      "id": "LEARN_05", "type": "concept_card",
+      "id": "LEARN_05",
+      "type": "concept_card",
       "title": "Example: 285 − 99",
       "content": "99 is close to 100. Use friendly numbers: 285−100=185. You subtracted 1 too many, so add back 1: 185+1=186. Answer: 285−99=186.",
-      "visual_type": "step_by_step", "cpa_phase": "abstract",
-      "example": { "problem": "285−99", "friendly": "285−100=185", "adjust": "+1", "answer": 186 }
+      "visual_type": "step_by_step",
+      "cpa_phase": "abstract",
+      "example": {
+        "problem": "285−99",
+        "friendly": "285−100=185",
+        "adjust": "+1",
+        "answer": 186
+      }
     },
     {
-      "id": "LEARN_06", "type": "concept_card",
+      "id": "LEARN_06",
+      "type": "concept_card",
       "title": "Example: 357 − 214",
       "content": "Take Away strategy: 357−200=157, 157−10=147, 147−4=143. Answer: 357−214=143.",
-      "visual_type": "step_by_step", "cpa_phase": "abstract",
-      "example": { "problem": "357−214", "steps": ["357−200=157", "157−10=147", "147−4=143"], "answer": 143 }
+      "visual_type": "step_by_step",
+      "cpa_phase": "abstract",
+      "example": {
+        "problem": "357−214",
+        "steps": [
+          "357−200=157",
+          "157−10=147",
+          "147−4=143"
+        ],
+        "answer": 143
+      }
     },
     {
-      "id": "LEARN_07", "type": "concept_card",
+      "id": "LEARN_07",
+      "type": "concept_card",
       "title": "Number Line Visual",
       "content": "A number line helps you see the jumps. For 74−39: Draw a line. Mark 39. Jump +1 to 40. Jump +30 to 70. Jump +4 to 74. Total jumps: 1+30+4=35.",
-      "visual_type": "number_line", "cpa_phase": "pictorial"
+      "visual_type": "number_line",
+      "cpa_phase": "pictorial"
     },
     {
-      "id": "LEARN_08", "type": "concept_card",
+      "id": "LEARN_08",
+      "type": "concept_card",
       "title": "Common Mistake Alert!",
       "content": "When using friendly numbers, remember to ADJUST! If you subtract more than needed, ADD back. If you subtract less than needed, SUBTRACT more. Example: 74−39. Subtract 40 (1 too many) → add 1 back.",
-      "visual_type": "error_highlight", "cpa_phase": "abstract"
+      "visual_type": "error_highlight",
+      "cpa_phase": "abstract"
     }
   ],
-
   "try": [
     {
-      "id": "TRY_01", "type": "multiple_choice",
+      "id": "TRY_01",
+      "type": "mc",
       "question": "Use mental math. 51 − 9 =",
-      "choices": ["A. 38", "B. 40", "C. 42", "D. 44"],
-      "answer": "C",
-      "solution_steps": ["51−10=41, add back 1 → 42"],
-      "hint": "9 is close to 10.", "difficulty": 2,
-      "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly",
-      "expected_errors": ["51−9=40 (not adjusting)"]
+      "choices": [
+        "A) 38",
+        "B) 40",
+        "C) 42",
+        "D) 44"
+      ],
+      "solution_steps": [
+        "51−10=41, add back 1 → 42"
+      ],
+      "hint": "9 is close to 10.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "51−9=40 (not adjusting)"
+      ],
+      "correct_answer": "C"
     },
     {
-      "id": "TRY_02", "type": "multiple_choice",
+      "id": "TRY_02",
+      "type": "mc",
       "question": "Use mental math. 76 − 23 =",
-      "choices": ["A. 43", "B. 53", "C. 63", "D. 49"],
-      "answer": "B",
-      "solution_steps": ["76−20=56, 56−3=53"],
-      "hint": "Break 23 into 20 and 3.", "difficulty": 2,
-      "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_take_away",
-      "expected_errors": ["76−23=43 (subtracting 30 then 3)"]
+      "choices": [
+        "A) 43",
+        "B) 53",
+        "C) 63",
+        "D) 49"
+      ],
+      "solution_steps": [
+        "76−20=56, 56−3=53"
+      ],
+      "hint": "Break 23 into 20 and 3.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_take_away",
+      "expected_errors": [
+        "76−23=43 (subtracting 30 then 3)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "TRY_03", "type": "multiple_choice",
+      "id": "TRY_03",
+      "type": "mc",
       "question": "Use mental math. 357 − 214 =",
-      "choices": ["A. 133", "B. 143", "C. 153", "D. 137"],
-      "answer": "B",
-      "solution_steps": ["357−200=157", "157−10=147", "147−4=143"],
-      "hint": "Subtract hundreds, then tens, then ones.", "difficulty": 3,
-      "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_take_away",
-      "expected_errors": ["357−214=133 (subtracting 224)"]
+      "choices": [
+        "A) 133",
+        "B) 143",
+        "C) 153",
+        "D) 137"
+      ],
+      "solution_steps": [
+        "357−200=157",
+        "157−10=147",
+        "147−4=143"
+      ],
+      "hint": "Subtract hundreds, then tens, then ones.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_take_away",
+      "expected_errors": [
+        "357−214=133 (subtracting 224)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "TRY_04", "type": "multiple_choice",
+      "id": "TRY_04",
+      "type": "mc",
       "question": "A baker made 54 pies. Only 9 were NOT sold. How many were sold?",
-      "choices": ["A. 43", "B. 45", "C. 47", "D. 63"],
-      "answer": "B",
-      "solution_steps": ["54−9: think 54−10=44, add back 1 → 45"],
-      "hint": "Subtract 10, add back 1.", "difficulty": 2,
-      "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_word_problem",
-      "expected_errors": ["54−9=43 (forgetting to adjust)"]
+      "choices": [
+        "A) 43",
+        "B) 45",
+        "C) 47",
+        "D) 63"
+      ],
+      "solution_steps": [
+        "54−9: think 54−10=44, add back 1 → 45"
+      ],
+      "hint": "Subtract 10, add back 1.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_word_problem",
+      "expected_errors": [
+        "54−9=43 (forgetting to adjust)"
+      ],
+      "correct_answer": "B"
     },
     {
-      "id": "TRY_05", "type": "multiple_choice",
+      "id": "TRY_05",
+      "type": "mc",
       "question": "George's father bought a 50-pound bag of bird seed. 36 pounds are left. How many pounds were used?",
-      "choices": ["A. 14", "B. 24", "C. 16", "D. 26"],
-      "answer": "A",
-      "solution_steps": ["50−36: count up from 36 → 36+4=40, 40+10=50 → 4+10=14"],
-      "hint": "Count up from 36 to 50.", "difficulty": 2,
-      "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_word_problem",
-      "expected_errors": ["50−36=24 (subtracting 30 then 6 wrong)"]
+      "choices": [
+        "A) 14",
+        "B) 24",
+        "C) 16",
+        "D) 26"
+      ],
+      "solution_steps": [
+        "50−36: count up from 36 → 36+4=40, 40+10=50 → 4+10=14"
+      ],
+      "hint": "Count up from 36 to 50.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_word_problem",
+      "expected_errors": [
+        "50−36=24 (subtracting 30 then 6 wrong)"
+      ],
+      "correct_answer": "A"
     }
   ],
-
   "practice_r1": [
-    { "id": "R1_01", "type": "multiple_choice", "question": "62 − 39 =", "choices": ["A. 13", "B. 23", "C. 33", "D. 27"], "answer": "B", "solution_steps": ["62−40=22, +1=23"], "hint": "Subtract 40, add back 1.", "difficulty": 2, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["62−39=33"] },
-    { "id": "R1_02", "type": "multiple_choice", "question": "85 − 47 =", "choices": ["A. 38", "B. 42", "C. 48", "D. 32"], "answer": "A", "solution_steps": ["85−50=35, +3=38, or 85−47: 85−40=45, 45−7=38"], "hint": "Try subtracting 50, then adjusting.", "difficulty": 2, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["85−47=42"] },
-    { "id": "R1_03", "type": "multiple_choice", "question": "146 − 98 =", "choices": ["A. 38", "B. 48", "C. 52", "D. 58"], "answer": "B", "solution_steps": ["146−100=46, +2=48"], "hint": "98 is close to 100.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["146−98=52"] },
-    { "id": "R1_04", "type": "multiple_choice", "question": "463 − 219 =", "choices": ["A. 234", "B. 244", "C. 254", "D. 242"], "answer": "B", "solution_steps": ["463−200=263, 263−19=244", "Or: 463−220=243, +1=244"], "hint": "Subtract 200 first, then 19.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_take_away", "expected_errors": ["463−219=254"] },
-    { "id": "R1_05", "type": "multiple_choice", "question": "500 − 136 =", "choices": ["A. 354", "B. 364", "C. 374", "D. 366"], "answer": "B", "solution_steps": ["500−100=400, 400−36=364", "Or: 500−136 → count up from 136: 136+4=140, 140+60=200, 200+300=500 → 4+60+300=364"], "hint": "Start from 500 and subtract 100, then 36.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_take_away", "expected_errors": ["500−136=374"] },
-    { "id": "R1_06", "type": "multiple_choice", "question": "81 − 56 =", "choices": ["A. 15", "B. 25", "C. 35", "D. 27"], "answer": "B", "solution_steps": ["81−56: count up from 56 → 56+4=60, 60+21=81 → 4+21=25"], "hint": "Count up from 56 to 81.", "difficulty": 2, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_count_up", "expected_errors": ["81−56=35"] },
-    { "id": "R1_07", "type": "multiple_choice", "question": "340 − 199 =", "choices": ["A. 131", "B. 141", "C. 151", "D. 139"], "answer": "B", "solution_steps": ["340−200=140, +1=141"], "hint": "199 is close to 200.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["340−199=131 (not adjusting)"] },
-    { "id": "R1_08", "type": "multiple_choice", "question": "72 − 48 =", "choices": ["A. 14", "B. 24", "C. 34", "D. 26"], "answer": "B", "solution_steps": ["72−50=22, +2=24"], "hint": "Subtract 50, add back 2.", "difficulty": 2, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["72−48=34"] },
-    { "id": "R1_09", "type": "multiple_choice", "question": "Kyle has 130 pins. 76 are on his wall. How many are in a drawer?", "choices": ["A. 44", "B. 54", "C. 64", "D. 56"], "answer": "B", "solution_steps": ["130−76: 130−80=50, +4=54"], "hint": "Subtract 80, then add back 4.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_word_problem", "expected_errors": ["130−76=64"] },
-    { "id": "R1_10", "type": "multiple_choice", "question": "253 − 118 =", "choices": ["A. 125", "B. 135", "C. 145", "D. 133"], "answer": "B", "solution_steps": ["253−120=133, +2=135", "Or: 253−100=153, 153−18=135"], "hint": "Subtract 120, add back 2.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["253−118=145"] }
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "question": "62 − 39 =",
+      "choices": [
+        "A) 13",
+        "B) 23",
+        "C) 33",
+        "D) 27"
+      ],
+      "solution_steps": [
+        "62−40=22, +1=23"
+      ],
+      "hint": "Subtract 40, add back 1.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "62−39=33"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "question": "85 − 47 =",
+      "choices": [
+        "A) 38",
+        "B) 42",
+        "C) 48",
+        "D) 32"
+      ],
+      "solution_steps": [
+        "85−50=35, +3=38, or 85−47: 85−40=45, 45−7=38"
+      ],
+      "hint": "Try subtracting 50, then adjusting.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "85−47=42"
+      ],
+      "correct_answer": "A"
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "question": "146 − 98 =",
+      "choices": [
+        "A) 38",
+        "B) 48",
+        "C) 52",
+        "D) 58"
+      ],
+      "solution_steps": [
+        "146−100=46, +2=48"
+      ],
+      "hint": "98 is close to 100.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "146−98=52"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "question": "463 − 219 =",
+      "choices": [
+        "A) 234",
+        "B) 244",
+        "C) 254",
+        "D) 242"
+      ],
+      "solution_steps": [
+        "463−200=263, 263−19=244",
+        "Or: 463−220=243, +1=244"
+      ],
+      "hint": "Subtract 200 first, then 19.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_take_away",
+      "expected_errors": [
+        "463−219=254"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "question": "500 − 136 =",
+      "choices": [
+        "A) 354",
+        "B) 364",
+        "C) 374",
+        "D) 366"
+      ],
+      "solution_steps": [
+        "500−100=400, 400−36=364",
+        "Or: 500−136 → count up from 136: 136+4=140, 140+60=200, 200+300=500 → 4+60+300=364"
+      ],
+      "hint": "Start from 500 and subtract 100, then 36.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_take_away",
+      "expected_errors": [
+        "500−136=374"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "question": "81 − 56 =",
+      "choices": [
+        "A) 15",
+        "B) 25",
+        "C) 35",
+        "D) 27"
+      ],
+      "solution_steps": [
+        "81−56: count up from 56 → 56+4=60, 60+21=81 → 4+21=25"
+      ],
+      "hint": "Count up from 56 to 81.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_count_up",
+      "expected_errors": [
+        "81−56=35"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "question": "340 − 199 =",
+      "choices": [
+        "A) 131",
+        "B) 141",
+        "C) 151",
+        "D) 139"
+      ],
+      "solution_steps": [
+        "340−200=140, +1=141"
+      ],
+      "hint": "199 is close to 200.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "340−199=131 (not adjusting)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "question": "72 − 48 =",
+      "choices": [
+        "A) 14",
+        "B) 24",
+        "C) 34",
+        "D) 26"
+      ],
+      "solution_steps": [
+        "72−50=22, +2=24"
+      ],
+      "hint": "Subtract 50, add back 2.",
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "72−48=34"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_09",
+      "type": "mc",
+      "question": "Kyle has 130 pins. 76 are on his wall. How many are in a drawer?",
+      "choices": [
+        "A) 44",
+        "B) 54",
+        "C) 64",
+        "D) 56"
+      ],
+      "solution_steps": [
+        "130−76: 130−80=50, +4=54"
+      ],
+      "hint": "Subtract 80, then add back 4.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_word_problem",
+      "expected_errors": [
+        "130−76=64"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R1_10",
+      "type": "mc",
+      "question": "253 − 118 =",
+      "choices": [
+        "A) 125",
+        "B) 135",
+        "C) 145",
+        "D) 133"
+      ],
+      "solution_steps": [
+        "253−120=133, +2=135",
+        "Or: 253−100=153, 153−18=135"
+      ],
+      "hint": "Subtract 120, add back 2.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "253−118=145"
+      ],
+      "correct_answer": "B"
+    }
   ],
-
   "practice_r2": [
-    { "id": "R2_01", "type": "multiple_choice", "question": "567 − 298 =", "choices": ["A. 259", "B. 269", "C. 279", "D. 271"], "answer": "B", "solution_steps": ["567−300=267, +2=269"], "hint": "298 is close to 300.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["567−298=279"] },
-    { "id": "R2_02", "type": "multiple_choice", "question": "804 − 397 =", "choices": ["A. 397", "B. 407", "C. 417", "D. 403"], "answer": "B", "solution_steps": ["804−400=404, +3=407"], "hint": "397 is close to 400.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["804−397=417"] },
-    { "id": "R2_03", "type": "multiple_choice", "question": "Which strategy is best for 601 − 598?", "choices": ["A. Take away tens and ones", "B. Friendly numbers", "C. Count up", "D. Break apart"], "answer": "C", "solution_steps": ["The numbers are very close (only 3 apart)", "Count up: 598→599→600→601 = 3"], "hint": "When numbers are very close, counting up is quickest.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_strategy_choice", "expected_errors": ["Choosing friendly numbers"] },
-    { "id": "R2_04", "type": "multiple_choice", "question": "423 − 156 =", "choices": ["A. 257", "B. 267", "C. 277", "D. 263"], "answer": "B", "solution_steps": ["423−160=263, +4=267", "Check: 267+156=423 ✓"], "hint": "Round 156 to 160, subtract, adjust.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["423−156=277"] },
-    { "id": "R2_05", "type": "multiple_choice", "question": "The flower shop had 568 flowers. By Tuesday, 159 were left. About how many were sold? (Use mental math for exact.)", "choices": ["A. 399", "B. 409", "C. 419", "D. 389"], "answer": "B", "solution_steps": ["568−159: think 568−160=408, +1=409"], "hint": "Round 159 to 160, then adjust.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_word_problem", "expected_errors": ["568−159=419 (subtracting 150)"] },
-    { "id": "R2_06", "type": "multiple_choice", "question": "750 − 475 =", "choices": ["A. 265", "B. 275", "C. 285", "D. 325"], "answer": "B", "solution_steps": ["Count up: 475+25=500, 500+250=750 → 25+250=275"], "hint": "Count up from 475 to 750.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_count_up", "expected_errors": ["750−475=325 (subtracting 400 then 75 wrong)"] },
-    { "id": "R2_07", "type": "multiple_choice", "question": "There are 383 books. 165 are fiction. How many are NOT fiction?", "choices": ["A. 208", "B. 218", "C. 228", "D. 212"], "answer": "B", "solution_steps": ["383−165: 383−170=213, +5=218", "Check: 218+165=383 ✓"], "hint": "Round 165 to 170, then adjust.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_word_problem", "expected_errors": ["383−165=208 (subtracting 175)"] },
-    { "id": "R2_08", "type": "multiple_choice", "question": "935 − 499 =", "choices": ["A. 426", "B. 436", "C. 446", "D. 434"], "answer": "B", "solution_steps": ["935−500=435, +1=436"], "hint": "499 is close to 500.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["935−499=446"] },
-    { "id": "R2_09", "type": "multiple_choice", "question": "Tom says 640−298=342. Is he correct?", "choices": ["A. Yes", "B. No, it should be 352", "C. No, it should be 332", "D. No, it should be 342"], "answer": "A", "solution_steps": ["640−300=340, +2=342", "Tom is correct! ✓"], "hint": "Check: 640−298. Subtract 300, add back 2.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_verify", "expected_errors": ["Thinking it should be 352"] },
-    { "id": "R2_10", "type": "multiple_choice", "question": "362 − 178 =", "choices": ["A. 174", "B. 184", "C. 194", "D. 186"], "answer": "B", "solution_steps": ["362−180=182, +2=184", "Check: 184+178=362 ✓"], "hint": "Round 178 to 180.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_friendly", "expected_errors": ["362−178=194"] }
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "question": "567 − 298 =",
+      "choices": [
+        "A) 259",
+        "B) 269",
+        "C) 279",
+        "D) 271"
+      ],
+      "solution_steps": [
+        "567−300=267, +2=269"
+      ],
+      "hint": "298 is close to 300.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "567−298=279"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_02",
+      "type": "mc",
+      "question": "804 − 397 =",
+      "choices": [
+        "A) 397",
+        "B) 407",
+        "C) 417",
+        "D) 403"
+      ],
+      "solution_steps": [
+        "804−400=404, +3=407"
+      ],
+      "hint": "397 is close to 400.",
+      "difficulty": 4,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "804−397=417"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "question": "Which strategy is best for 601 − 598?",
+      "choices": [
+        "A) Take away tens and ones",
+        "B) Friendly numbers",
+        "C) Count up",
+        "D) Break apart"
+      ],
+      "solution_steps": [
+        "The numbers are very close (only 3 apart)",
+        "Count up: 598→599→600→601 = 3"
+      ],
+      "hint": "When numbers are very close, counting up is quickest.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_strategy_choice",
+      "expected_errors": [
+        "Choosing friendly numbers"
+      ],
+      "correct_answer": "C"
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "question": "423 − 156 =",
+      "choices": [
+        "A) 257",
+        "B) 267",
+        "C) 277",
+        "D) 263"
+      ],
+      "solution_steps": [
+        "423−160=263, +4=267",
+        "Check: 267+156=423 ✓"
+      ],
+      "hint": "Round 156 to 160, subtract, adjust.",
+      "difficulty": 4,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "423−156=277"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_05",
+      "type": "mc",
+      "question": "The flower shop had 568 flowers. By Tuesday, 159 were left. About how many were sold? (Use mental math for exact.)",
+      "choices": [
+        "A) 399",
+        "B) 409",
+        "C) 419",
+        "D) 389"
+      ],
+      "solution_steps": [
+        "568−159: think 568−160=408, +1=409"
+      ],
+      "hint": "Round 159 to 160, then adjust.",
+      "difficulty": 4,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_word_problem",
+      "expected_errors": [
+        "568−159=419 (subtracting 150)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_06",
+      "type": "mc",
+      "question": "750 − 475 =",
+      "choices": [
+        "A) 265",
+        "B) 275",
+        "C) 285",
+        "D) 325"
+      ],
+      "solution_steps": [
+        "Count up: 475+25=500, 500+250=750 → 25+250=275"
+      ],
+      "hint": "Count up from 475 to 750.",
+      "difficulty": 4,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_count_up",
+      "expected_errors": [
+        "750−475=325 (subtracting 400 then 75 wrong)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_07",
+      "type": "mc",
+      "question": "There are 383 books. 165 are fiction. How many are NOT fiction?",
+      "choices": [
+        "A) 208",
+        "B) 218",
+        "C) 228",
+        "D) 212"
+      ],
+      "solution_steps": [
+        "383−165: 383−170=213, +5=218",
+        "Check: 218+165=383 ✓"
+      ],
+      "hint": "Round 165 to 170, then adjust.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_word_problem",
+      "expected_errors": [
+        "383−165=208 (subtracting 175)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_08",
+      "type": "mc",
+      "question": "935 − 499 =",
+      "choices": [
+        "A) 426",
+        "B) 436",
+        "C) 446",
+        "D) 434"
+      ],
+      "solution_steps": [
+        "935−500=435, +1=436"
+      ],
+      "hint": "499 is close to 500.",
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "935−499=446"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R2_09",
+      "type": "mc",
+      "question": "Tom says 640−298=342. Is he correct?",
+      "choices": [
+        "A) Yes",
+        "B) No, it should be 352",
+        "C) No, it should be 332",
+        "D) No, it should be 342"
+      ],
+      "solution_steps": [
+        "640−300=340, +2=342",
+        "Tom is correct! ✓"
+      ],
+      "hint": "Check: 640−298. Subtract 300, add back 2.",
+      "difficulty": 4,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_verify",
+      "expected_errors": [
+        "Thinking it should be 352"
+      ],
+      "correct_answer": "A"
+    },
+    {
+      "id": "R2_10",
+      "type": "mc",
+      "question": "362 − 178 =",
+      "choices": [
+        "A) 174",
+        "B) 184",
+        "C) 194",
+        "D) 186"
+      ],
+      "solution_steps": [
+        "362−180=182, +2=184",
+        "Check: 184+178=362 ✓"
+      ],
+      "hint": "Round 178 to 180.",
+      "difficulty": 4,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_friendly",
+      "expected_errors": [
+        "362−178=194"
+      ],
+      "correct_answer": "B"
+    }
   ],
-
   "practice_r3": [
-    { "id": "R3_01", "type": "multiple_choice", "question": "Amy used two strategies for 843−597. Strategy A: 843−600=243, 243+3=246. Strategy B: count up 597→600(+3), 600→843(+243)=246. Which is correct?", "choices": ["A. Only Strategy A", "B. Only Strategy B", "C. Both are correct", "D. Neither is correct"], "answer": "C", "solution_steps": ["A: 843−600=243, +3=246 ✓", "B: 3+243=246 ✓", "Both give 246"], "hint": "Check each strategy's answer.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_compare_strategies", "expected_errors": ["Thinking only one can be right"] },
-    { "id": "R3_02", "type": "multiple_choice", "question": "Shaun blew up 36 red, 28 white, and 24 blue balloons. He popped 19 by accident. How many are left? (Use mental math.)", "choices": ["A. 59", "B. 69", "C. 79", "D. 89"], "answer": "B", "solution_steps": ["Total: 36+28+24=88", "88−19: 88−20=68, +1=69"], "hint": "First add all balloons, then subtract 19.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_multi_step", "expected_errors": ["88−19=79 (subtracting only 10 and 9 wrong)"] },
-    { "id": "R3_03", "type": "multiple_choice", "question": "Tiffany read 115 pages. She has 152 left. She reads 48 more. How many pages are left now?", "choices": ["A. 94", "B. 104", "C. 114", "D. 96"], "answer": "B", "solution_steps": ["Pages left after more reading: 152−48", "152−50=102, +2=104"], "hint": "You only need 152−48. Round 48 to 50.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_multi_step", "expected_errors": ["Using 115 in the calculation"] },
-    { "id": "R3_04", "type": "multiple_choice", "question": "Which problem is EASIEST to solve with friendly numbers?", "choices": ["A. 456 − 123", "B. 703 − 698", "C. 850 − 399", "D. 524 − 261"], "answer": "C", "solution_steps": ["399 is very close to 400 → 850−400=450, +1=451", "This is the easiest friendly number problem"], "hint": "Which subtracted number is closest to a round number?", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_strategy_choice", "expected_errors": ["Choosing B (that's best for count up, not friendly numbers)"] },
-    { "id": "R3_05", "type": "multiple_choice", "question": "An airplane flew 617 miles in the morning and 385 in the afternoon. How many more miles in the morning? Use mental math.", "choices": ["A. 222", "B. 232", "C. 242", "D. 228"], "answer": "B", "solution_steps": ["617−385: 617−400=217, +15=232", "Or: 617−385 → 620−385=235, −3=232", "Check: 232+385=617 ✓"], "hint": "Round 385 to 400, subtract, adjust.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_phase": "abstract", "skill_tag": "mental_subtraction_word_problem", "expected_errors": ["617−385=242"] }
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "question": "Amy used two strategies for 843−597. Strategy A: 843−600=243, 243+3=246. Strategy B: count up 597→600(+3), 600→843(+243)=246. Which is correct?",
+      "choices": [
+        "A) Only Strategy A",
+        "B) Only Strategy B",
+        "C) Both are correct",
+        "D) Neither is correct"
+      ],
+      "solution_steps": [
+        "A: 843−600=243, +3=246 ✓",
+        "B: 3+243=246 ✓",
+        "Both give 246"
+      ],
+      "hint": "Check each strategy's answer.",
+      "difficulty": 5,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_compare_strategies",
+      "expected_errors": [
+        "Thinking only one can be right"
+      ],
+      "correct_answer": "C"
+    },
+    {
+      "id": "R3_02",
+      "type": "mc",
+      "question": "Shaun blew up 36 red, 28 white, and 24 blue balloons. He popped 19 by accident. How many are left? (Use mental math.)",
+      "choices": [
+        "A) 59",
+        "B) 69",
+        "C) 79",
+        "D) 89"
+      ],
+      "solution_steps": [
+        "Total: 36+28+24=88",
+        "88−19: 88−20=68, +1=69"
+      ],
+      "hint": "First add all balloons, then subtract 19.",
+      "difficulty": 5,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_multi_step",
+      "expected_errors": [
+        "88−19=79 (subtracting only 10 and 9 wrong)"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "question": "Tiffany read 115 pages. She has 152 left. She reads 48 more. How many pages are left now?",
+      "choices": [
+        "A) 94",
+        "B) 104",
+        "C) 114",
+        "D) 96"
+      ],
+      "solution_steps": [
+        "Pages left after more reading: 152−48",
+        "152−50=102, +2=104"
+      ],
+      "hint": "You only need 152−48. Round 48 to 50.",
+      "difficulty": 5,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_multi_step",
+      "expected_errors": [
+        "Using 115 in the calculation"
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "id": "R3_04",
+      "type": "mc",
+      "question": "Which problem is EASIEST to solve with friendly numbers?",
+      "choices": [
+        "A) 456 − 123",
+        "B) 703 − 698",
+        "C) 850 − 399",
+        "D) 524 − 261"
+      ],
+      "solution_steps": [
+        "399 is very close to 400 → 850−400=450, +1=451",
+        "This is the easiest friendly number problem"
+      ],
+      "hint": "Which subtracted number is closest to a round number?",
+      "difficulty": 4,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_strategy_choice",
+      "expected_errors": [
+        "Choosing B (that's best for count up, not friendly numbers)"
+      ],
+      "correct_answer": "C"
+    },
+    {
+      "id": "R3_05",
+      "type": "mc",
+      "question": "An airplane flew 617 miles in the morning and 385 in the afternoon. How many more miles in the morning? Use mental math.",
+      "choices": [
+        "A) 222",
+        "B) 232",
+        "C) 242",
+        "D) 228"
+      ],
+      "solution_steps": [
+        "617−385: 617−400=217, +15=232",
+        "Or: 617−385 → 620−385=235, −3=232",
+        "Check: 232+385=617 ✓"
+      ],
+      "hint": "Round 385 to 400, subtract, adjust.",
+      "difficulty": 5,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_word_problem",
+      "expected_errors": [
+        "617−385=242"
+      ],
+      "correct_answer": "B"
+    }
   ]
 }

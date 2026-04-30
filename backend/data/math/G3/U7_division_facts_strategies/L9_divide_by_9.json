@@ -26,49 +26,74 @@
   ],
   "pretest": [
     {
-      "type": "MC",
-      "stem": "18 ÷ 9 = ?",
-      "choices": ["1", "2", "3", "4"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 4"
+      ],
       "explanation": "18 ÷ 9 = 2.",
       "difficulty": 1,
-      "id": "PT_01"
+      "id": "PT_01",
+      "question": "18 ÷ 9 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
-      "stem": "36 ÷ 9 = ?",
-      "choices": ["3", "4", "5", "6"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
       "explanation": "36 ÷ 9 = 4.",
       "difficulty": 1,
-      "id": "PT_02"
+      "id": "PT_02",
+      "question": "36 ÷ 9 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
-      "stem": "45 ÷ 9 = ?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "45 ÷ 9 = 5.",
       "difficulty": 1,
-      "id": "PT_03"
+      "id": "PT_03",
+      "question": "45 ÷ 9 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
-      "stem": "63 ÷ 9 = ?",
-      "choices": ["6", "7", "8", "9"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
       "explanation": "63 ÷ 9 = 7.",
       "difficulty": 1,
-      "id": "PT_04"
+      "id": "PT_04",
+      "question": "63 ÷ 9 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
-      "stem": "81 beads are strung into 9 equal necklaces. How many beads each?",
-      "choices": ["7", "8", "9", "10"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
       "explanation": "81 ÷ 9 = 9.",
       "difficulty": 1,
-      "id": "PT_05"
+      "id": "PT_05",
+      "question": "81 beads are strung into 9 equal necklaces. How many beads each?",
+      "correct_answer": "C"
     }
   ],
   "learn": [
@@ -114,7 +139,10 @@
         "tool": "digit_sum_table",
         "config": {
           "divisor": 9,
-          "range": [1, 9]
+          "range": [
+            1,
+            9
+          ]
         }
       }
     },
@@ -146,18 +174,24 @@
         "tool": "fact_table",
         "config": {
           "divisor": 9,
-          "range": [1, 10]
+          "range": [
+            1,
+            10
+          ]
         }
       }
     }
   ],
   "try": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "TRY_01",
-      "stem": "9 ÷ 9 = ?",
-      "choices": ["0", "1", "9", "18"],
-      "answer": "B",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 9",
+        "D) 18"
+      ],
       "explanation": "9 ÷ 9 = 1. Any number divided by itself is 1.",
       "difficulty": 1,
       "id": "TRY_01",
@@ -169,14 +203,22 @@
         "correct": "Right! 9 ÷ 9 = 1.",
         "incorrect": "9 ÷ 9 means how many groups of 9 in 9. Just one: 9 ÷ 9 = 1."
       },
-      "solution_steps": ["9 × 1 = 9", "So 9 ÷ 9 = 1"]
+      "solution_steps": [
+        "9 × 1 = 9",
+        "So 9 ÷ 9 = 1"
+      ],
+      "question": "9 ÷ 9 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "TRY_02",
-      "stem": "A team has 27 players split into 9 equal groups. How many players per group?",
-      "choices": ["2", "3", "4", "5"],
-      "answer": "B",
+      "choices": [
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 5"
+      ],
       "explanation": "27 ÷ 9 = 3. Think: 9 × 3 = 27.",
       "difficulty": 1,
       "id": "TRY_02",
@@ -188,13 +230,16 @@
         "correct": "Yes! 9 × 3 = 27, so each group has 3 players.",
         "incorrect": "9 × 3 = 27, so 27 ÷ 9 = 3 players per group."
       },
-      "solution_steps": ["9 × 3 = 27", "So 27 ÷ 9 = 3"]
+      "solution_steps": [
+        "9 × 3 = 27",
+        "So 27 ÷ 9 = 3"
+      ],
+      "question": "A team has 27 players split into 9 equal groups. How many players per group?",
+      "correct_answer": "B"
     },
     {
       "type": "input",
       "problem_id": "TRY_03",
-      "stem": "18 ÷ 9 = ___",
-      "answer": "2",
       "explanation": "18 ÷ 9 = 2. Think: 9 × 2 = 18.",
       "difficulty": 1,
       "id": "TRY_03",
@@ -206,13 +251,16 @@
         "correct": "Correct! 9 × 2 = 18, so 18 ÷ 9 = 2.",
         "incorrect": "9 × 2 = 18, so 18 ÷ 9 = 2."
       },
-      "solution_steps": ["9 × 2 = 18", "So 18 ÷ 9 = 2"]
+      "solution_steps": [
+        "9 × 2 = 18",
+        "So 18 ÷ 9 = 2"
+      ],
+      "question": "18 ÷ 9 = ___",
+      "correct_answer": "2"
     },
     {
       "type": "input",
       "problem_id": "TRY_04",
-      "stem": "63 ÷ 9 = ___",
-      "answer": "7",
       "explanation": "63 ÷ 9 = 7. Think: 9 × 7 = 63.",
       "difficulty": 1,
       "id": "TRY_04",
@@ -224,14 +272,22 @@
         "correct": "Great! 9 × 7 = 63, so 63 ÷ 9 = 7.",
         "incorrect": "Count by 9s to 63: 9,18,27,36,45,54,63 — 7 counts. So 63 ÷ 9 = 7."
       },
-      "solution_steps": ["9 × 7 = 63", "So 63 ÷ 9 = 7"]
+      "solution_steps": [
+        "9 × 7 = 63",
+        "So 63 ÷ 9 = 7"
+      ],
+      "question": "63 ÷ 9 = ___",
+      "correct_answer": "7"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "TRY_05",
-      "stem": "A bookstore arranges 90 books equally on 9 shelves. How many books per shelf?",
-      "choices": ["8", "9", "10", "11"],
-      "answer": "C",
+      "choices": [
+        "A) 8",
+        "B) 9",
+        "C) 10",
+        "D) 11"
+      ],
       "explanation": "90 ÷ 9 = 10. Think: 9 × 10 = 90.",
       "difficulty": 1,
       "id": "TRY_05",
@@ -243,16 +299,24 @@
         "correct": "Yes! 9 × 10 = 90, so each shelf has 10 books.",
         "incorrect": "9 × 10 = 90, so 90 ÷ 9 = 10 books per shelf."
       },
-      "solution_steps": ["9 × 10 = 90", "So 90 ÷ 9 = 10 books per shelf"]
+      "solution_steps": [
+        "9 × 10 = 90",
+        "So 90 ÷ 9 = 10 books per shelf"
+      ],
+      "question": "A bookstore arranges 90 books equally on 9 shelves. How many books per shelf?",
+      "correct_answer": "C"
     }
   ],
   "practice_r1": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_01",
-      "stem": "9 ÷ 9 = ?",
-      "choices": ["0", "1", "9", "18"],
-      "answer": "B",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 9",
+        "D) 18"
+      ],
       "explanation": "9 ÷ 9 = 1.",
       "difficulty": 1,
       "id": "R1_01",
@@ -263,14 +327,19 @@
       "feedback": {
         "correct": "Right! 9 ÷ 9 = 1.",
         "incorrect": "Any number divided by itself is 1. So 9 ÷ 9 = 1."
-      }
+      },
+      "question": "9 ÷ 9 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_02",
-      "stem": "27 ÷ 9 = ?",
-      "choices": ["2", "3", "4", "5"],
-      "answer": "B",
+      "choices": [
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 5"
+      ],
       "explanation": "27 ÷ 9 = 3. Think: 9 × 3 = 27.",
       "difficulty": 1,
       "id": "R1_02",
@@ -281,14 +350,19 @@
       "feedback": {
         "correct": "Correct! 9 × 3 = 27, so 27 ÷ 9 = 3.",
         "incorrect": "Count by 9s to 27: 9(1), 18(2), 27(3). So 27 ÷ 9 = 3."
-      }
+      },
+      "question": "27 ÷ 9 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_03",
-      "stem": "54 ÷ 9 = ?",
-      "choices": ["5", "6", "7", "8"],
-      "answer": "B",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
       "explanation": "54 ÷ 9 = 6. Think: 9 × 6 = 54.",
       "difficulty": 1,
       "id": "R1_03",
@@ -299,14 +373,19 @@
       "feedback": {
         "correct": "Yes! 9 × 6 = 54, so 54 ÷ 9 = 6.",
         "incorrect": "Count by 9s to 54 — that takes 6 counts. So 54 ÷ 9 = 6."
-      }
+      },
+      "question": "54 ÷ 9 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_04",
-      "stem": "72 ÷ 9 = ?",
-      "choices": ["7", "8", "9", "10"],
-      "answer": "B",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
       "explanation": "72 ÷ 9 = 8. Think: 9 × 8 = 72.",
       "difficulty": 1,
       "id": "R1_04",
@@ -317,14 +396,19 @@
       "feedback": {
         "correct": "Excellent! 9 × 8 = 72, so 72 ÷ 9 = 8.",
         "incorrect": "Count by 9s to 72 — that takes 8 counts. So 72 ÷ 9 = 8."
-      }
+      },
+      "question": "72 ÷ 9 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_05",
-      "stem": "A box holds 9 markers. How many boxes do 36 markers fill?",
-      "choices": ["3", "4", "5", "6"],
-      "answer": "B",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
       "explanation": "36 ÷ 9 = 4 boxes. Think: 9 × 4 = 36.",
       "difficulty": 1,
       "id": "R1_05",
@@ -335,14 +419,19 @@
       "feedback": {
         "correct": "Right! 9 × 4 = 36, so 36 markers fill 4 boxes.",
         "incorrect": "Count by 9s to 36 — that takes 4 counts. So 36 ÷ 9 = 4 boxes."
-      }
+      },
+      "question": "A box holds 9 markers. How many boxes do 36 markers fill?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_06",
-      "stem": "A flag has 9 stripes. If there are 45 stripes in total, how many flags are there?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "B",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "45 ÷ 9 = 5 flags. Think: 9 × 5 = 45.",
       "difficulty": 1,
       "id": "R1_06",
@@ -353,14 +442,19 @@
       "feedback": {
         "correct": "Right! 9 × 5 = 45, so there are 5 flags.",
         "incorrect": "Count by 9s to 45 — that takes 5 counts. So 45 ÷ 9 = 5 flags."
-      }
+      },
+      "question": "A flag has 9 stripes. If there are 45 stripes in total, how many flags are there?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_07",
-      "stem": "If 9 × 7 = 63, then 63 ÷ 9 = ?",
-      "choices": ["6", "7", "8", "9"],
-      "answer": "B",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
       "explanation": "63 ÷ 9 = 7. Division reverses multiplication.",
       "difficulty": 1,
       "id": "R1_07",
@@ -371,13 +465,13 @@
       "feedback": {
         "correct": "Exactly! 9 × 7 = 63 tells you 63 ÷ 9 = 7.",
         "incorrect": "Division reverses multiplication. 9 × 7 = 63, so 63 ÷ 9 = 7."
-      }
+      },
+      "question": "If 9 × 7 = 63, then 63 ÷ 9 = ?",
+      "correct_answer": "B"
     },
     {
       "type": "input",
       "problem_id": "R1_08",
-      "stem": "81 ÷ 9 = ___",
-      "answer": "9",
       "explanation": "81 ÷ 9 = 9. Think: 9 × 9 = 81.",
       "difficulty": 1,
       "id": "R1_08",
@@ -388,13 +482,13 @@
       "feedback": {
         "correct": "Yes! 9 × 9 = 81, so 81 ÷ 9 = 9.",
         "incorrect": "Count by 9s to 81 — that takes 9 counts. So 81 ÷ 9 = 9."
-      }
+      },
+      "question": "81 ÷ 9 = ___",
+      "correct_answer": "9"
     },
     {
       "type": "input",
       "problem_id": "R1_09",
-      "stem": "90 ÷ 9 = ___",
-      "answer": "10",
       "explanation": "90 ÷ 9 = 10. Think: 9 × 10 = 90.",
       "difficulty": 1,
       "id": "R1_09",
@@ -405,13 +499,13 @@
       "feedback": {
         "correct": "Perfect! 9 × 10 = 90, so 90 ÷ 9 = 10.",
         "incorrect": "9 × 10 = 90, so 90 ÷ 9 = 10."
-      }
+      },
+      "question": "90 ÷ 9 = ___",
+      "correct_answer": "10"
     },
     {
       "type": "input",
       "problem_id": "R1_10",
-      "stem": "72 ÷ 9 = ___",
-      "answer": "8",
       "explanation": "72 ÷ 9 = 8. Think: 9 × 8 = 72.",
       "difficulty": 1,
       "id": "R1_10",
@@ -422,16 +516,21 @@
       "feedback": {
         "correct": "Great! 9 × 8 = 72, so 72 ÷ 9 = 8.",
         "incorrect": "Count by 9s to 72 — that takes 8 counts. So 72 ÷ 9 = 8."
-      }
+      },
+      "question": "72 ÷ 9 = ___",
+      "correct_answer": "8"
     }
   ],
   "practice_r2": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_01",
-      "stem": "Use the digit-sum test: 36 ÷ 9 = 4. What do the digits of 36 add up to?",
-      "choices": ["6", "8", "9", "10"],
-      "answer": "C",
+      "choices": [
+        "A) 6",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
       "explanation": "3 + 6 = 9. This confirms 36 is a multiple of 9.",
       "difficulty": 2,
       "id": "R2_01",
@@ -442,14 +541,19 @@
       "feedback": {
         "correct": "Correct! 3+6=9, confirming 36 is a multiple of 9.",
         "incorrect": "Add the digits of 36: 3+6=9. Every multiple of 9 has a digit sum of 9."
-      }
+      },
+      "question": "Use the digit-sum test: 36 ÷ 9 = 4. What do the digits of 36 add up to?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_02",
-      "stem": "Which multiplication fact helps you solve 72 ÷ 9?",
-      "choices": ["9 × 6 = 54", "9 × 7 = 63", "9 × 8 = 72", "9 × 9 = 81"],
-      "answer": "C",
+      "choices": [
+        "A) 9 × 6 = 54",
+        "B) 9 × 7 = 63",
+        "C) 9 × 8 = 72",
+        "D) 9 × 9 = 81"
+      ],
       "explanation": "9 × 8 = 72, so 72 ÷ 9 = 8.",
       "difficulty": 2,
       "id": "R2_02",
@@ -460,14 +564,19 @@
       "feedback": {
         "correct": "Right! 9 × 8 = 72, so 72 ÷ 9 = 8.",
         "incorrect": "Find the 9× fact where the product is 72. 9 × 8 = 72, so 72 ÷ 9 = 8."
-      }
+      },
+      "question": "Which multiplication fact helps you solve 72 ÷ 9?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_03",
-      "stem": "? ÷ 9 = 6. What is the missing number?",
-      "choices": ["45", "54", "63", "72"],
-      "answer": "B",
+      "choices": [
+        "A) 45",
+        "B) 54",
+        "C) 63",
+        "D) 72"
+      ],
       "explanation": "9 × 6 = 54, so 54 ÷ 9 = 6.",
       "difficulty": 2,
       "id": "R2_03",
@@ -478,14 +587,19 @@
       "feedback": {
         "correct": "Correct! 9 × 6 = 54, so the missing number is 54.",
         "incorrect": "Work backwards: ? ÷ 9 = 6 means ? = 9 × 6 = 54."
-      }
+      },
+      "question": "? ÷ 9 = 6. What is the missing number?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_04",
-      "stem": "Which division has the GREATEST quotient?",
-      "choices": ["18 ÷ 9", "45 ÷ 9", "63 ÷ 9", "81 ÷ 9"],
-      "answer": "D",
+      "choices": [
+        "A) 18 ÷ 9",
+        "B) 45 ÷ 9",
+        "C) 63 ÷ 9",
+        "D) 81 ÷ 9"
+      ],
       "explanation": "18÷9=2, 45÷9=5, 63÷9=7, 81÷9=9. Greatest quotient is 9.",
       "difficulty": 2,
       "id": "R2_04",
@@ -496,13 +610,13 @@
       "feedback": {
         "correct": "Yes! 81÷9=9 is the greatest quotient.",
         "incorrect": "18÷9=2, 45÷9=5, 63÷9=7, 81÷9=9. The greatest is 9, from 81÷9."
-      }
+      },
+      "question": "Which division has the GREATEST quotient?",
+      "correct_answer": "D"
     },
     {
       "type": "input",
       "problem_id": "R2_05",
-      "stem": "9 ÷ 9 = ___",
-      "answer": "1",
       "explanation": "9 ÷ 9 = 1. Any number divided by itself is 1.",
       "difficulty": 2,
       "id": "R2_05",
@@ -513,13 +627,13 @@
       "feedback": {
         "correct": "Correct! 9 ÷ 9 = 1.",
         "incorrect": "9 ÷ 9 means how many groups of 9 in 9. Just one: 9 ÷ 9 = 1."
-      }
+      },
+      "question": "9 ÷ 9 = ___",
+      "correct_answer": "1"
     },
     {
       "type": "input",
       "problem_id": "R2_06",
-      "stem": "? ÷ 9 = 8. What is the missing dividend?",
-      "answer": "72",
       "explanation": "9 × 8 = 72, so 72 ÷ 9 = 8.",
       "difficulty": 2,
       "id": "R2_06",
@@ -530,14 +644,19 @@
       "feedback": {
         "correct": "Right! 9 × 8 = 72, so the missing number is 72.",
         "incorrect": "Work backwards: ? ÷ 9 = 8 means ? = 9 × 8 = 72."
-      }
+      },
+      "question": "? ÷ 9 = 8. What is the missing dividend?",
+      "correct_answer": "72"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_07",
-      "stem": "Which is NOT a correct ÷9 fact?",
-      "choices": ["18 ÷ 9 = 2", "45 ÷ 9 = 5", "63 ÷ 9 = 8", "81 ÷ 9 = 9"],
-      "answer": "C",
+      "choices": [
+        "A) 18 ÷ 9 = 2",
+        "B) 45 ÷ 9 = 5",
+        "C) 63 ÷ 9 = 8",
+        "D) 81 ÷ 9 = 9"
+      ],
       "explanation": "63 ÷ 9 = 7, not 8. All other facts are correct.",
       "difficulty": 2,
       "id": "R2_07",
@@ -548,13 +667,13 @@
       "feedback": {
         "correct": "Correct! 63 ÷ 9 = 7, not 8. Count by 9s to 63 — 7 counts.",
         "incorrect": "Check 63 ÷ 9: 9×7=63, so 63÷9=7. The claim of 8 is wrong."
-      }
+      },
+      "question": "Which is NOT a correct ÷9 fact?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "R2_08",
-      "stem": "45 ÷ 9 = ___",
-      "answer": "5",
       "explanation": "45 ÷ 9 = 5. Think: 9 × 5 = 45.",
       "difficulty": 2,
       "id": "R2_08",
@@ -565,13 +684,13 @@
       "feedback": {
         "correct": "Yes! 9 × 5 = 45, so 45 ÷ 9 = 5.",
         "incorrect": "Count by 9s to 45 — that takes 5 counts. So 45 ÷ 9 = 5."
-      }
+      },
+      "question": "45 ÷ 9 = ___",
+      "correct_answer": "5"
     },
     {
       "type": "input",
       "problem_id": "R2_09",
-      "stem": "54 ÷ 9 = ___",
-      "answer": "6",
       "explanation": "54 ÷ 9 = 6. Think: 9 × 6 = 54.",
       "difficulty": 2,
       "id": "R2_09",
@@ -582,14 +701,19 @@
       "feedback": {
         "correct": "Great! 9 × 6 = 54, so 54 ÷ 9 = 6.",
         "incorrect": "Count by 9s to 54 — that takes 6 counts. So 54 ÷ 9 = 6."
-      }
+      },
+      "question": "54 ÷ 9 = ___",
+      "correct_answer": "6"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_10",
-      "stem": "(18 ÷ 9) + (27 ÷ 9) = ?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "B",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "18÷9=2, 27÷9=3. 2+3=5.",
       "difficulty": 2,
       "id": "R2_10",
@@ -600,16 +724,21 @@
       "feedback": {
         "correct": "Yes! 18÷9=2, 27÷9=3, and 2+3=5.",
         "incorrect": "Step 1: 18÷9=2. Step 2: 27÷9=3. Step 3: 2+3=5."
-      }
+      },
+      "question": "(18 ÷ 9) + (27 ÷ 9) = ?",
+      "correct_answer": "B"
     }
   ],
   "practice_r3": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_01",
-      "stem": "A class of 81 students is split into 9 equal groups. Each group makes 2 posters. How many posters in total?",
-      "choices": ["16", "18", "20", "24"],
-      "answer": "B",
+      "choices": [
+        "A) 16",
+        "B) 18",
+        "C) 20",
+        "D) 24"
+      ],
       "explanation": "81 ÷ 9 = 9 students per group. 9 groups × 2 posters = 18 posters.",
       "difficulty": 3,
       "id": "R3_01",
@@ -620,14 +749,19 @@
       "feedback": {
         "correct": "Right! 81÷9=9 per group. 9 groups × 2 = 18 posters.",
         "incorrect": "81÷9=9 per group. There are 9 groups, each making 2 posters: 9×2=18 total."
-      }
+      },
+      "question": "A class of 81 students is split into 9 equal groups. Each group makes 2 posters. How many posters in total?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_02",
-      "stem": "A mystery number ÷ 9 = 7. What do the digits of the mystery number add up to?",
-      "choices": ["6", "7", "8", "9"],
-      "answer": "D",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
       "explanation": "Mystery number = 9 × 7 = 63. Digit sum: 6 + 3 = 9.",
       "difficulty": 3,
       "id": "R3_02",
@@ -638,14 +772,19 @@
       "feedback": {
         "correct": "Correct! 9×7=63 is the mystery number, and 6+3=9.",
         "incorrect": "? ÷ 9 = 7 → ? = 9×7 = 63. Digit sum: 6+3=9."
-      }
+      },
+      "question": "A mystery number ÷ 9 = 7. What do the digits of the mystery number add up to?",
+      "correct_answer": "D"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_03",
-      "stem": "Tim has 54 stickers. He puts 9 on each page. Then he gets 27 more stickers and fills more pages. How many pages total does he fill?",
-      "choices": ["7", "8", "9", "10"],
-      "answer": "C",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
       "explanation": "54 + 27 = 81 total stickers. 81 ÷ 9 = 9 pages.",
       "difficulty": 3,
       "id": "R3_03",
@@ -656,14 +795,19 @@
       "feedback": {
         "correct": "Yes! 54+27=81 stickers. 81÷9=9 pages total.",
         "incorrect": "54+27=81 total stickers. 81÷9=9 pages."
-      }
+      },
+      "question": "Tim has 54 stickers. He puts 9 on each page. Then he gets 27 more stickers and fills more pages. How many pages total does he fill?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_04",
-      "stem": "81 marbles are shared equally into 9 bags. Then 4 bags fall and spill. How many marbles remain in the bags?",
-      "choices": ["40", "43", "45", "48"],
-      "answer": "C",
+      "choices": [
+        "A) 40",
+        "B) 43",
+        "C) 45",
+        "D) 48"
+      ],
       "explanation": "81 ÷ 9 = 9 per bag. 9 − 4 = 5 bags remain. 5 × 9 = 45 marbles.",
       "difficulty": 3,
       "id": "R3_04",
@@ -674,13 +818,13 @@
       "feedback": {
         "correct": "Right! 81÷9=9 per bag. 5 bags remain. 5×9=45 marbles.",
         "incorrect": "81÷9=9 per bag. 9−4=5 bags remain. 5×9=45 marbles remain."
-      }
+      },
+      "question": "81 marbles are shared equally into 9 bags. Then 4 bags fall and spill. How many marbles remain in the bags?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "R3_05",
-      "stem": "? ÷ 9 = 9. What is the missing dividend?",
-      "answer": "81",
       "explanation": "9 × 9 = 81, so 81 ÷ 9 = 9.",
       "difficulty": 3,
       "id": "R3_05",
@@ -691,7 +835,9 @@
       "feedback": {
         "correct": "Correct! 9 × 9 = 81, so the missing number is 81.",
         "incorrect": "Work backwards: ? ÷ 9 = 9 means ? = 9 × 9 = 81."
-      }
+      },
+      "question": "? ÷ 9 = 9. What is the missing dividend?",
+      "correct_answer": "81"
     }
   ],
   "concept": "divide_by_9"

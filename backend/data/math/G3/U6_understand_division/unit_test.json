@@ -3,91 +3,329 @@
   "title": "Unit 6 Test: Understand Division",
   "grade": "G3",
   "unit": "U6_understand_division",
-  "ccss": ["3.OA.A.2", "3.OA.A.3", "3.OA.B.6"],
+  "ccss": [
+    "3.OA.A.2",
+    "3.OA.A.3",
+    "3.OA.B.6"
+  ],
   "pass_threshold": 0.8,
   "time_limit_min": 30,
   "problems": [
-    {"id":"UT_01","type":"mc","lesson_ref":"L1","skill_tag":"model_division","difficulty":1,
-     "question":"12 ÷ 3 means:",
-     "choices":["A) 12 plus 3","B) 12 split into 3 equal groups","C) 12 − 3","D) 3 groups of 12"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right!","incorrect":"The answer is B."}},
-    {"id":"UT_02","type":"input","lesson_ref":"L1","skill_tag":"model_division","difficulty":1,
-     "question":"12 ÷ 3 = ___","correct_answer":"4",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 4."}},
-    {"id":"UT_03","type":"input","lesson_ref":"L2","skill_tag":"size_of_groups","difficulty":2,
-     "question":"20 cookies shared equally into 4 plates. Each plate gets ___ cookies.",
-     "correct_answer":"5",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 5."}},
-    {"id":"UT_04","type":"input","lesson_ref":"L3","skill_tag":"number_of_groups","difficulty":2,
-     "question":"24 apples, 6 per bag. How many bags?",
-     "correct_answer":"4","hint":"24 ÷ 6",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 4."}},
-    {"id":"UT_05","type":"mc","lesson_ref":"L4","skill_tag":"bar_model_division","difficulty":2,
-     "question":"A bar model splits 30 into 5 equal parts. Each part =",
-     "choices":["A) 5","B) 6","C) 25","D) 35"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! 30÷5=6.","incorrect":"The answer is B."}},
-    {"id":"UT_06","type":"input","lesson_ref":"L4","skill_tag":"bar_model_division","difficulty":2,
-     "question":"A bar of 18 divides into 3 equal parts. Each part = ___","correct_answer":"6",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 6."}},
-    {"id":"UT_07","type":"mc","lesson_ref":"L5","skill_tag":"repeated_subtraction","difficulty":2,
-     "question":"15 − 3 − 3 − 3 − 3 − 3 = 0. Which division fact?",
-     "choices":["A) 15 ÷ 3 = 5","B) 15 ÷ 5 = 3","C) Both A and B","D) 15 ÷ 15 = 1"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! Both are true.","incorrect":"The answer is C."}},
-    {"id":"UT_08","type":"input","lesson_ref":"L5","skill_tag":"repeated_subtraction","difficulty":2,
-     "question":"Count how many times you subtract 4 from 20 to reach 0: ___","correct_answer":"5",
-     "feedback":{"correct":"Right! 20÷4=5.","incorrect":"The answer is 5."}},
-    {"id":"UT_09","type":"mc","lesson_ref":"L6","skill_tag":"array_division","difficulty":2,
-     "question":"An array has 24 squares arranged in 4 rows. Columns = ?",
-     "choices":["A) 4","B) 6","C) 8","D) 20"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! 24÷4=6.","incorrect":"The answer is B."}},
-    {"id":"UT_10","type":"input","lesson_ref":"L6","skill_tag":"array_division","difficulty":2,
-     "question":"35 objects in 5 rows. Columns?","correct_answer":"7",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 7."}},
-    {"id":"UT_11","type":"mc","lesson_ref":"L7","skill_tag":"inverse_operations","difficulty":2,
-     "question":"If 6 × 4 = 24, then 24 ÷ 6 = ?",
-     "choices":["A) 3","B) 4","C) 5","D) 6"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! Division undoes multiplication.","incorrect":"The answer is B (4)."}},
-    {"id":"UT_12","type":"input","lesson_ref":"L7","skill_tag":"inverse_operations","difficulty":2,
-     "question":"If 9 × 7 = 63, then 63 ÷ 9 = ___","correct_answer":"7",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 7."}},
-    {"id":"UT_13","type":"mc","lesson_ref":"L8","skill_tag":"related_facts","difficulty":2,
-     "question":"Which is NOT in the same fact family as 4 × 7 = 28?",
-     "choices":["A) 7 × 4 = 28","B) 28 ÷ 4 = 7","C) 28 ÷ 7 = 4","D) 4 + 7 = 11"],
-     "correct_answer":"D",
-     "feedback":{"correct":"Right! Addition isn't in a × ÷ family.","incorrect":"The answer is D."}},
-    {"id":"UT_14","type":"input","lesson_ref":"L8","skill_tag":"related_facts","difficulty":2,
-     "question":"Fact family of 5, 6, 30: 5×6=30, 6×5=30, 30÷5=6, 30÷6=___","correct_answer":"5",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 5."}},
-    {"id":"UT_15","type":"mc","lesson_ref":"L9","skill_tag":"divide_by_1","difficulty":1,
-     "question":"7 ÷ 1 = ?",
-     "choices":["A) 0","B) 1","C) 7","D) 8"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! Any number ÷ 1 = itself.","incorrect":"The answer is C (7)."}},
-    {"id":"UT_16","type":"mc","lesson_ref":"L9","skill_tag":"divide_by_itself","difficulty":1,
-     "question":"8 ÷ 8 = ?",
-     "choices":["A) 0","B) 1","C) 8","D) 16"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! Any nonzero number ÷ itself = 1.","incorrect":"The answer is B (1)."}},
-    {"id":"UT_17","type":"mc","lesson_ref":"L9","skill_tag":"zero_divided","difficulty":1,
-     "question":"0 ÷ 5 = ?",
-     "choices":["A) 0","B) 1","C) 5","D) undefined"],
-     "correct_answer":"A",
-     "feedback":{"correct":"Right! 0 divided by any nonzero = 0.","incorrect":"The answer is A (0)."}},
-    {"id":"UT_18","type":"tf","lesson_ref":"L9","skill_tag":"divide_by_zero","difficulty":2,
-     "question":"You can divide any number by 0.",
-     "correct_answer":"false",
-     "feedback":{"correct":"Right! Division by 0 is undefined.","incorrect":"False. Dividing by 0 is not allowed."}},
-    {"id":"UT_19","type":"input","lesson_ref":"L1","skill_tag":"model_division","difficulty":3,
-     "question":"A teacher has 36 markers to share among 9 students equally. Each gets ___","correct_answer":"4",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 4."}},
-    {"id":"UT_20","type":"input","lesson_ref":"L3","skill_tag":"number_of_groups","difficulty":3,
-     "question":"Pat has 42 stickers. She puts 6 in each envelope. How many envelopes?","correct_answer":"7",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 7."}}
+    {
+      "id": "UT_01",
+      "type": "mc",
+      "lesson_ref": "L1",
+      "skill_tag": "model_division",
+      "difficulty": 1,
+      "question": "12 ÷ 3 means:",
+      "choices": [
+        "A) 12 plus 3",
+        "B) 12 split into 3 equal groups",
+        "C) 12 − 3",
+        "D) 3 groups of 12"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is B."
+      }
+    },
+    {
+      "id": "UT_02",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "model_division",
+      "difficulty": 1,
+      "question": "12 ÷ 3 = ___",
+      "correct_answer": "4",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 4."
+      }
+    },
+    {
+      "id": "UT_03",
+      "type": "input",
+      "lesson_ref": "L2",
+      "skill_tag": "size_of_groups",
+      "difficulty": 2,
+      "question": "20 cookies shared equally into 4 plates. Each plate gets ___ cookies.",
+      "correct_answer": "5",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 5."
+      }
+    },
+    {
+      "id": "UT_04",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "number_of_groups",
+      "difficulty": 2,
+      "question": "24 apples, 6 per bag. How many bags?",
+      "correct_answer": "4",
+      "hint": "24 ÷ 6",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 4."
+      }
+    },
+    {
+      "id": "UT_05",
+      "type": "mc",
+      "lesson_ref": "L4",
+      "skill_tag": "bar_model_division",
+      "difficulty": 2,
+      "question": "A bar model splits 30 into 5 equal parts. Each part =",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 25",
+        "D) 35"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! 30÷5=6.",
+        "incorrect": "The answer is B."
+      }
+    },
+    {
+      "id": "UT_06",
+      "type": "input",
+      "lesson_ref": "L4",
+      "skill_tag": "bar_model_division",
+      "difficulty": 2,
+      "question": "A bar of 18 divides into 3 equal parts. Each part = ___",
+      "correct_answer": "6",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 6."
+      }
+    },
+    {
+      "id": "UT_07",
+      "type": "mc",
+      "lesson_ref": "L5",
+      "skill_tag": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "15 − 3 − 3 − 3 − 3 − 3 = 0. Which division fact?",
+      "choices": [
+        "A) 15 ÷ 3 = 5",
+        "B) 15 ÷ 5 = 3",
+        "C) Both A and B",
+        "D) 15 ÷ 15 = 1"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! Both are true.",
+        "incorrect": "The answer is C."
+      }
+    },
+    {
+      "id": "UT_08",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "repeated_subtraction",
+      "difficulty": 2,
+      "question": "Count how many times you subtract 4 from 20 to reach 0: ___",
+      "correct_answer": "5",
+      "feedback": {
+        "correct": "Right! 20÷4=5.",
+        "incorrect": "The answer is 5."
+      }
+    },
+    {
+      "id": "UT_09",
+      "type": "mc",
+      "lesson_ref": "L6",
+      "skill_tag": "array_division",
+      "difficulty": 2,
+      "question": "An array has 24 squares arranged in 4 rows. Columns = ?",
+      "choices": [
+        "A) 4",
+        "B) 6",
+        "C) 8",
+        "D) 20"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! 24÷4=6.",
+        "incorrect": "The answer is B."
+      }
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "lesson_ref": "L6",
+      "skill_tag": "array_division",
+      "difficulty": 2,
+      "question": "35 objects in 5 rows. Columns?",
+      "correct_answer": "7",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 7."
+      }
+    },
+    {
+      "id": "UT_11",
+      "type": "mc",
+      "lesson_ref": "L7",
+      "skill_tag": "inverse_operations",
+      "difficulty": 2,
+      "question": "If 6 × 4 = 24, then 24 ÷ 6 = ?",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! Division undoes multiplication.",
+        "incorrect": "The answer is B (4)."
+      }
+    },
+    {
+      "id": "UT_12",
+      "type": "input",
+      "lesson_ref": "L7",
+      "skill_tag": "inverse_operations",
+      "difficulty": 2,
+      "question": "If 9 × 7 = 63, then 63 ÷ 9 = ___",
+      "correct_answer": "7",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 7."
+      }
+    },
+    {
+      "id": "UT_13",
+      "type": "mc",
+      "lesson_ref": "L8",
+      "skill_tag": "related_facts",
+      "difficulty": 2,
+      "question": "Which is NOT in the same fact family as 4 × 7 = 28?",
+      "choices": [
+        "A) 7 × 4 = 28",
+        "B) 28 ÷ 4 = 7",
+        "C) 28 ÷ 7 = 4",
+        "D) 4 + 7 = 11"
+      ],
+      "correct_answer": "D",
+      "feedback": {
+        "correct": "Right! Addition isn't in a × ÷ family.",
+        "incorrect": "The answer is D."
+      }
+    },
+    {
+      "id": "UT_14",
+      "type": "input",
+      "lesson_ref": "L8",
+      "skill_tag": "related_facts",
+      "difficulty": 2,
+      "question": "Fact family of 5, 6, 30: 5×6=30, 6×5=30, 30÷5=6, 30÷6=___",
+      "correct_answer": "5",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 5."
+      }
+    },
+    {
+      "id": "UT_15",
+      "type": "mc",
+      "lesson_ref": "L9",
+      "skill_tag": "divide_by_1",
+      "difficulty": 1,
+      "question": "7 ÷ 1 = ?",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 7",
+        "D) 8"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! Any number ÷ 1 = itself.",
+        "incorrect": "The answer is C (7)."
+      }
+    },
+    {
+      "id": "UT_16",
+      "type": "mc",
+      "lesson_ref": "L9",
+      "skill_tag": "divide_by_itself",
+      "difficulty": 1,
+      "question": "8 ÷ 8 = ?",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 8",
+        "D) 16"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! Any nonzero number ÷ itself = 1.",
+        "incorrect": "The answer is B (1)."
+      }
+    },
+    {
+      "id": "UT_17",
+      "type": "mc",
+      "lesson_ref": "L9",
+      "skill_tag": "zero_divided",
+      "difficulty": 1,
+      "question": "0 ÷ 5 = ?",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 5",
+        "D) undefined"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Right! 0 divided by any nonzero = 0.",
+        "incorrect": "The answer is A (0)."
+      }
+    },
+    {
+      "id": "UT_18",
+      "type": "tf",
+      "lesson_ref": "L9",
+      "skill_tag": "divide_by_zero",
+      "difficulty": 2,
+      "question": "You can divide any number by 0.",
+      "correct_answer": "false",
+      "feedback": {
+        "correct": "Right! Division by 0 is undefined.",
+        "incorrect": "False. Dividing by 0 is not allowed."
+      }
+    },
+    {
+      "id": "UT_19",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "model_division",
+      "difficulty": 3,
+      "question": "A teacher has 36 markers to share among 9 students equally. Each gets ___",
+      "correct_answer": "4",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 4."
+      }
+    },
+    {
+      "id": "UT_20",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "number_of_groups",
+      "difficulty": 3,
+      "question": "Pat has 42 stickers. She puts 6 in each envelope. How many envelopes?",
+      "correct_answer": "7",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 7."
+      }
+    }
   ],
   "count": 20
 }

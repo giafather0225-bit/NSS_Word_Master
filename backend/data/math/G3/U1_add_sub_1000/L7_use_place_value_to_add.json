@@ -1,13 +1,22 @@
 {
   "lesson_id": "L7_use_place_value_to_add",
   "title": "Use Place Value to Add",
-  "ccss": ["3.NBT.A.2"],
+  "ccss": [
+    "3.NBT.A.2"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
   "go_math_ref": "Chapter 1, Lesson 1.7, pp.29-32",
   "essential_question": "How can you use place value to add 3-digit numbers?",
-  "key_vocabulary": ["place value", "regroup", "ones", "tens", "hundreds", "algorithm", "column addition"],
-
+  "key_vocabulary": [
+    "place value",
+    "regroup",
+    "ones",
+    "tens",
+    "hundreds",
+    "algorithm",
+    "column addition"
+  ],
   "pretest": [
     {
       "id": "PT_01",
@@ -17,16 +26,35 @@
       "skill_tag": "place_value_add_no_regroup",
       "difficulty": 2,
       "question": "Add. 423 + 165 = ?",
-      "choices": {"A": "578", "B": "588", "C": "598", "D": "488"},
-      "answer": "B",
+      "choices": [
+        "A) 578",
+        "B) 588",
+        "C) 598",
+        "D) 488"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "3+5=8, 2+6=8, 4+1=5 → 588 not 578"},
-        "C": {"error_type": "careless", "note": "3+5=8, 2+6=8, 4+1=5 → 588 not 598"},
-        "D": {"error_type": "concept_gap", "note": "4+0+88=488"}
+        "A": {
+          "error_type": "careless",
+          "note": "3+5=8, 2+6=8, 4+1=5 → 588 not 578"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "3+5=8, 2+6=8, 4+1=5 → 588 not 598"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "4+0+88=488"
+        }
       },
-      "solution_steps": ["Ones: 3+5=8", "Tens: 2+6=8", "Hundreds: 4+1=5", "Answer: 588"],
+      "solution_steps": [
+        "Ones: 3+5=8",
+        "Tens: 2+6=8",
+        "Hundreds: 4+1=5",
+        "Answer: 588"
+      ],
       "hint": "Add ones, tens, hundreds from right to left.",
-      "verification": "Go Math p.29 — no regrouping example"
+      "verification": "Go Math p.29 — no regrouping example",
+      "correct_answer": "B"
     },
     {
       "id": "PT_02",
@@ -36,16 +64,35 @@
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
       "question": "Add. 356 + 218 = ?",
-      "choices": {"A": "564", "B": "574", "C": "584", "D": "474"},
-      "answer": "B",
+      "choices": [
+        "A) 564",
+        "B) 574",
+        "C) 584",
+        "D) 474"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "6+8=14, wrote 4 but forgot to carry 1 → 564"},
-        "C": {"error_type": "careless", "note": "6+8=14, carry 1, 5+1+1=7… 584?"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry"}
+        "A": {
+          "error_type": "careless",
+          "note": "6+8=14, wrote 4 but forgot to carry 1 → 564"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "6+8=14, carry 1, 5+1+1=7… 584?"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry"
+        }
       },
-      "solution_steps": ["Ones: 6+8=14 → write 4, regroup 1 ten", "Tens: 5+1+1=7", "Hundreds: 3+2=5", "Answer: 574"],
+      "solution_steps": [
+        "Ones: 6+8=14 → write 4, regroup 1 ten",
+        "Tens: 5+1+1=7",
+        "Hundreds: 3+2=5",
+        "Answer: 574"
+      ],
       "hint": "6+8=14. Write 4 ones, carry 1 ten.",
-      "verification": "Go Math p.29-30 — regroup ones"
+      "verification": "Go Math p.29-30 — regroup ones",
+      "correct_answer": "B"
     },
     {
       "id": "PT_03",
@@ -55,15 +102,34 @@
       "skill_tag": "place_value_add_regroup_tens",
       "difficulty": 3,
       "question": "Add. 472 + 361 = ?",
-      "choices": {"A": "733", "B": "833", "C": "843", "D": "823"},
-      "answer": "B",
+      "choices": [
+        "A) 733",
+        "B) 833",
+        "C) 843",
+        "D) 823"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "2+1=3, 7+6=13, carry 1, 4+3+1=8 → 833 not 733"},
-        "C": {"error_type": "careless", "note": "2+1=3, 7+6=13, carry 1, 4+3+1=8 → 833 not 843"},
-        "D": {"error_type": "careless", "note": "Incorrect regrouping"}
+        "A": {
+          "error_type": "careless",
+          "note": "2+1=3, 7+6=13, carry 1, 4+3+1=8 → 833 not 733"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "2+1=3, 7+6=13, carry 1, 4+3+1=8 → 833 not 843"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Incorrect regrouping"
+        }
       },
-      "solution_steps": ["Ones: 2+1=3", "Tens: 7+6=13 → write 3, regroup 1 hundred", "Hundreds: 4+3+1=8", "Answer: 833"],
-      "hint": "7+6=13. Write 3 tens, carry 1 hundred."
+      "solution_steps": [
+        "Ones: 2+1=3",
+        "Tens: 7+6=13 → write 3, regroup 1 hundred",
+        "Hundreds: 4+3+1=8",
+        "Answer: 833"
+      ],
+      "hint": "7+6=13. Write 3 tens, carry 1 hundred.",
+      "correct_answer": "B"
     },
     {
       "id": "PT_04",
@@ -73,15 +139,34 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 487 + 356 = ?",
-      "choices": {"A": "833", "B": "843", "C": "743", "D": "834"},
-      "answer": "B",
+      "choices": [
+        "A) 833",
+        "B) 843",
+        "C) 743",
+        "D) 834"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "7+6=13, carry 1, 8+5+1=14, carry 1, 4+3+1=8 → 843 not 833"},
-        "C": {"error_type": "concept_gap", "note": "Forgot to carry from tens → 743"},
-        "D": {"error_type": "careless", "note": "Swapped ones digit"}
+        "A": {
+          "error_type": "careless",
+          "note": "7+6=13, carry 1, 8+5+1=14, carry 1, 4+3+1=8 → 843 not 833"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry from tens → 743"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Swapped ones digit"
+        }
       },
-      "solution_steps": ["Ones: 7+6=13 → write 3, regroup 1", "Tens: 8+5+1=14 → write 4, regroup 1", "Hundreds: 4+3+1=8", "Answer: 843"],
-      "hint": "Regroup ones AND tens in this problem."
+      "solution_steps": [
+        "Ones: 7+6=13 → write 3, regroup 1",
+        "Tens: 8+5+1=14 → write 4, regroup 1",
+        "Hundreds: 4+3+1=8",
+        "Answer: 843"
+      ],
+      "hint": "Regroup ones AND tens in this problem.",
+      "correct_answer": "B"
     },
     {
       "id": "PT_05",
@@ -91,19 +176,37 @@
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 3,
       "question": "Add. 140 + 457 + 301 = ?",
-      "choices": {"A": "888", "B": "898", "C": "908", "D": "798"},
-      "answer": "B",
+      "choices": [
+        "A) 888",
+        "B) 898",
+        "C) 908",
+        "D) 798"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "0+7+1=8, 4+5+0=9, 1+4+3=8 → 898 not 888"},
-        "C": {"error_type": "careless", "note": "Added extra 10"},
-        "D": {"error_type": "concept_gap", "note": "Forgot the 100 from 140"}
+        "A": {
+          "error_type": "careless",
+          "note": "0+7+1=8, 4+5+0=9, 1+4+3=8 → 898 not 888"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra 10"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot the 100 from 140"
+        }
       },
-      "solution_steps": ["Ones: 0+7+1=8", "Tens: 4+5+0=9", "Hundreds: 1+4+3=8", "Answer: 898"],
+      "solution_steps": [
+        "Ones: 0+7+1=8",
+        "Tens: 4+5+0=9",
+        "Hundreds: 1+4+3=8",
+        "Answer: 898"
+      ],
       "hint": "Line up by place value, then add each column.",
-      "verification": "Go Math p.30 — Model example 140+457+301=898"
+      "verification": "Go Math p.30 — Model example 140+457+301=898",
+      "correct_answer": "B"
     }
   ],
-
   "learn": [
     {
       "id": "LEARN_01",
@@ -111,7 +214,9 @@
       "content": "The place value method for addition means lining up numbers by their place values (ones, tens, hundreds) and adding each column from right to left. When a column adds to 10 or more, you regroup.",
       "cpa_phase": "concrete",
       "visual_type": "illustration",
-      "visual_data": {"description": "Base-ten blocks being combined, with regrouping shown as 10 ones being traded for 1 ten rod"},
+      "visual_data": {
+        "description": "Base-ten blocks being combined, with regrouping shown as 10 ones being traded for 1 ten rod"
+      },
       "verification": "Go Math p.29 introduction"
     },
     {
@@ -120,7 +225,13 @@
       "content": "Line up the numbers vertically. Start with the ones column. Example: 356 + 218. Ones: 6+8=14. Since 14≥10, write 4 in the ones place and regroup 1 ten to the tens column.",
       "cpa_phase": "pictorial",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "356+218", "step": "ones", "sum": 14, "write": 4, "carry": 1},
+      "visual_data": {
+        "problem": "356+218",
+        "step": "ones",
+        "sum": 14,
+        "write": 4,
+        "carry": 1
+      },
       "verification": "Go Math p.29 Step 1"
     },
     {
@@ -129,7 +240,13 @@
       "content": "Now add the tens column, including any regrouped ten. Example: 356 + 218. Tens: 5+1+1(carried)=7. Write 7 in the tens place. No regrouping needed here.",
       "cpa_phase": "pictorial",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "356+218", "step": "tens", "sum": 7, "write": 7, "carry": 0},
+      "visual_data": {
+        "problem": "356+218",
+        "step": "tens",
+        "sum": 7,
+        "write": 7,
+        "carry": 0
+      },
       "verification": "Go Math p.29 Step 2"
     },
     {
@@ -138,7 +255,12 @@
       "content": "Finally add the hundreds column. Example: 356 + 218. Hundreds: 3+2=5. Write 5. The answer is 574. Check with estimate: 400+200=600. Is 574 close? Yes!",
       "cpa_phase": "pictorial",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "356+218", "step": "hundreds", "sum": 5, "answer": 574},
+      "visual_data": {
+        "problem": "356+218",
+        "step": "hundreds",
+        "sum": 5,
+        "answer": 574
+      },
       "verification": "Go Math p.29-30 Step 3"
     },
     {
@@ -147,7 +269,12 @@
       "content": "Sometimes the tens add to 10 or more. Example: 472 + 361. Ones: 2+1=3. Tens: 7+6=13. Write 3 tens, regroup 1 hundred. Hundreds: 4+3+1=8. Answer: 833.",
       "cpa_phase": "pictorial",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "472+361", "tens_sum": 13, "carry_to_hundreds": 1, "answer": 833},
+      "visual_data": {
+        "problem": "472+361",
+        "tens_sum": 13,
+        "carry_to_hundreds": 1,
+        "answer": 833
+      },
       "verification": "Go Math p.30 — regrouping tens"
     },
     {
@@ -156,7 +283,12 @@
       "content": "Some problems need regrouping in both ones and tens! Example: 487 + 356. Ones: 7+6=13 → write 3, carry 1. Tens: 8+5+1=14 → write 4, carry 1. Hundreds: 4+3+1=8. Answer: 843.",
       "cpa_phase": "abstract",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "487+356", "ones_carry": 1, "tens_carry": 1, "answer": 843},
+      "visual_data": {
+        "problem": "487+356",
+        "ones_carry": 1,
+        "tens_carry": 1,
+        "answer": 843
+      },
       "verification": "Go Math p.30 — double regrouping"
     },
     {
@@ -165,7 +297,11 @@
       "content": "You can use the same steps with three addends. Example: 140 + 457 + 301. Ones: 0+7+1=8. Tens: 4+5+0=9. Hundreds: 1+4+3=8. Answer: 898. Estimate: 150+450+300=900. Close!",
       "cpa_phase": "abstract",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "140+457+301", "answer": 898, "estimate": 900},
+      "visual_data": {
+        "problem": "140+457+301",
+        "answer": 898,
+        "estimate": 900
+      },
       "verification": "Go Math p.30 — Model example with three addends"
     },
     {
@@ -178,7 +314,6 @@
       "verification": "Go Math pp.29-32 lesson summary"
     }
   ],
-
   "try": [
     {
       "id": "TRY_01",
@@ -188,15 +323,34 @@
       "skill_tag": "place_value_add_no_regroup",
       "difficulty": 2,
       "question": "Add. 231 + 548 = ?",
-      "choices": {"A": "769", "B": "779", "C": "789", "D": "679"},
-      "answer": "B",
+      "choices": [
+        "A) 769",
+        "B) 779",
+        "C) 789",
+        "D) 679"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "1+8=9, 3+4=7, 2+5=7 → 779 not 769"},
-        "C": {"error_type": "careless", "note": "Added wrong column"},
-        "D": {"error_type": "concept_gap", "note": "Forgot a hundred"}
+        "A": {
+          "error_type": "careless",
+          "note": "1+8=9, 3+4=7, 2+5=7 → 779 not 769"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added wrong column"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot a hundred"
+        }
       },
-      "solution_steps": ["Ones: 1+8=9", "Tens: 3+4=7", "Hundreds: 2+5=7", "Answer: 779"],
-      "hint": "No regrouping needed here. Just add each column."
+      "solution_steps": [
+        "Ones: 1+8=9",
+        "Tens: 3+4=7",
+        "Hundreds: 2+5=7",
+        "Answer: 779"
+      ],
+      "hint": "No regrouping needed here. Just add each column.",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_02",
@@ -206,15 +360,34 @@
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
       "question": "Add. 248 + 327 = ?",
-      "choices": {"A": "565", "B": "575", "C": "585", "D": "475"},
-      "answer": "B",
+      "choices": [
+        "A) 565",
+        "B) 575",
+        "C) 585",
+        "D) 475"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "8+7=15, carry 1, 4+2+1=7, 2+3=5 → 575 not 565"},
-        "C": {"error_type": "careless", "note": "8+7=15, carry 1, 4+2+1=7, but 2+3=5, not 585"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry"}
+        "A": {
+          "error_type": "careless",
+          "note": "8+7=15, carry 1, 4+2+1=7, 2+3=5 → 575 not 565"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "8+7=15, carry 1, 4+2+1=7, but 2+3=5, not 585"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry"
+        }
       },
-      "solution_steps": ["Ones: 8+7=15 → write 5, carry 1", "Tens: 4+2+1=7", "Hundreds: 2+3=5", "Answer: 575"],
-      "hint": "8+7=15. Don't forget to carry the 1!"
+      "solution_steps": [
+        "Ones: 8+7=15 → write 5, carry 1",
+        "Tens: 4+2+1=7",
+        "Hundreds: 2+3=5",
+        "Answer: 575"
+      ],
+      "hint": "8+7=15. Don't forget to carry the 1!",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_03",
@@ -224,15 +397,34 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 567 + 285 = ?",
-      "choices": {"A": "842", "B": "852", "C": "862", "D": "752"},
-      "answer": "B",
+      "choices": [
+        "A) 842",
+        "B) 852",
+        "C) 862",
+        "D) 752"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "7+5=12, carry 1, 6+8+1=15, carry 1, 5+2+1=8 → 852 not 842"},
-        "C": {"error_type": "careless", "note": "Added extra to hundreds"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "7+5=12, carry 1, 6+8+1=15, carry 1, 5+2+1=8 → 852 not 842"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra to hundreds"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 7+5=12 → write 2, carry 1", "Tens: 6+8+1=15 → write 5, carry 1", "Hundreds: 5+2+1=8", "Answer: 852"],
-      "hint": "Both ones and tens need regrouping."
+      "solution_steps": [
+        "Ones: 7+5=12 → write 2, carry 1",
+        "Tens: 6+8+1=15 → write 5, carry 1",
+        "Hundreds: 5+2+1=8",
+        "Answer: 852"
+      ],
+      "hint": "Both ones and tens need regrouping.",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_04",
@@ -242,15 +434,34 @@
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 3,
       "question": "Add. 215 + 348 + 126 = ?",
-      "choices": {"A": "679", "B": "689", "C": "699", "D": "589"},
-      "answer": "B",
+      "choices": [
+        "A) 679",
+        "B) 689",
+        "C) 699",
+        "D) 589"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "5+8+6=19, carry 1, 1+4+2+1=8, 2+3+1=6 → 689 not 679"},
-        "C": {"error_type": "careless", "note": "Added 10 extra"},
-        "D": {"error_type": "concept_gap", "note": "Forgot a hundred"}
+        "A": {
+          "error_type": "careless",
+          "note": "5+8+6=19, carry 1, 1+4+2+1=8, 2+3+1=6 → 689 not 679"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added 10 extra"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot a hundred"
+        }
       },
-      "solution_steps": ["Ones: 5+8+6=19 → write 9, carry 1", "Tens: 1+4+2+1=8", "Hundreds: 2+3+1=6", "Answer: 689"],
-      "hint": "Three numbers — add each column carefully."
+      "solution_steps": [
+        "Ones: 5+8+6=19 → write 9, carry 1",
+        "Tens: 1+4+2+1=8",
+        "Hundreds: 2+3+1=6",
+        "Answer: 689"
+      ],
+      "hint": "Three numbers — add each column carefully.",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_05",
@@ -260,18 +471,36 @@
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 3,
       "question": "A school has 378 students in Building A and 465 students in Building B. How many students are there in all?",
-      "choices": {"A": "833", "B": "843", "C": "853", "D": "743"},
-      "answer": "B",
+      "choices": [
+        "A) 833",
+        "B) 843",
+        "C) 853",
+        "D) 743"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "8+5=13, carry 1, 7+6+1=14, carry 1, 3+4+1=8 → 843 not 833"},
-        "C": {"error_type": "careless", "note": "Added extra"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "8+5=13, carry 1, 7+6+1=14, carry 1, 3+4+1=8 → 843 not 833"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 8+5=13 → write 3, carry 1", "Tens: 7+6+1=14 → write 4, carry 1", "Hundreds: 3+4+1=8", "Answer: 843"],
-      "hint": "Line up 378 and 465, then add right to left."
+      "solution_steps": [
+        "Ones: 8+5=13 → write 3, carry 1",
+        "Tens: 7+6+1=14 → write 4, carry 1",
+        "Hundreds: 3+4+1=8",
+        "Answer: 843"
+      ],
+      "hint": "Line up 378 and 465, then add right to left.",
+      "correct_answer": "B"
     }
   ],
-
   "practice_r1": [
     {
       "id": "R1_01",
@@ -281,15 +510,34 @@
       "skill_tag": "place_value_add_no_regroup",
       "difficulty": 2,
       "question": "Add. 314 + 253 = ?",
-      "choices": {"A": "557", "B": "567", "C": "577", "D": "467"},
-      "answer": "B",
+      "choices": [
+        "A) 557",
+        "B) 567",
+        "C) 577",
+        "D) 467"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "4+3=7, 1+5=6, 3+2=5 → 567 not 557"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot a hundred"}
+        "A": {
+          "error_type": "careless",
+          "note": "4+3=7, 1+5=6, 3+2=5 → 567 not 557"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot a hundred"
+        }
       },
-      "solution_steps": ["Ones: 4+3=7", "Tens: 1+5=6", "Hundreds: 3+2=5", "Answer: 567"],
-      "hint": "No regrouping needed."
+      "solution_steps": [
+        "Ones: 4+3=7",
+        "Tens: 1+5=6",
+        "Hundreds: 3+2=5",
+        "Answer: 567"
+      ],
+      "hint": "No regrouping needed.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_02",
@@ -299,15 +547,34 @@
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
       "question": "Add. 435 + 327 = ?",
-      "choices": {"A": "752", "B": "762", "C": "772", "D": "662"},
-      "answer": "B",
+      "choices": [
+        "A) 752",
+        "B) 762",
+        "C) 772",
+        "D) 662"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "5+7=12, carry 1, 3+2+1=6, 4+3=7 → 762 not 752"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry"}
+        "A": {
+          "error_type": "careless",
+          "note": "5+7=12, carry 1, 3+2+1=6, 4+3=7 → 762 not 752"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry"
+        }
       },
-      "solution_steps": ["Ones: 5+7=12 → write 2, carry 1", "Tens: 3+2+1=6", "Hundreds: 4+3=7", "Answer: 762"],
-      "hint": "5+7=12. Carry the 1."
+      "solution_steps": [
+        "Ones: 5+7=12 → write 2, carry 1",
+        "Tens: 3+2+1=6",
+        "Hundreds: 4+3=7",
+        "Answer: 762"
+      ],
+      "hint": "5+7=12. Carry the 1.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_03",
@@ -317,15 +584,34 @@
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
       "question": "Add. 519 + 246 = ?",
-      "choices": {"A": "755", "B": "765", "C": "775", "D": "665"},
-      "answer": "B",
+      "choices": [
+        "A) 755",
+        "B) 765",
+        "C) 775",
+        "D) 665"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "9+6=15, carry 1, 1+4+1=6, 5+2=7 → 765 not 755"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry"}
+        "A": {
+          "error_type": "careless",
+          "note": "9+6=15, carry 1, 1+4+1=6, 5+2=7 → 765 not 755"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry"
+        }
       },
-      "solution_steps": ["Ones: 9+6=15 → write 5, carry 1", "Tens: 1+4+1=6", "Hundreds: 5+2=7", "Answer: 765"],
-      "hint": "9+6=15. Carry the 1 to tens."
+      "solution_steps": [
+        "Ones: 9+6=15 → write 5, carry 1",
+        "Tens: 1+4+1=6",
+        "Hundreds: 5+2=7",
+        "Answer: 765"
+      ],
+      "hint": "9+6=15. Carry the 1 to tens.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_04",
@@ -335,15 +621,34 @@
       "skill_tag": "place_value_add_regroup_tens",
       "difficulty": 3,
       "question": "Add. 361 + 453 = ?",
-      "choices": {"A": "804", "B": "814", "C": "824", "D": "714"},
-      "answer": "B",
+      "choices": [
+        "A) 804",
+        "B) 814",
+        "C) 824",
+        "D) 714"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "1+3=4, 6+5=11, carry 1, 3+4+1=8 → 814 not 804"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "1+3=4, 6+5=11, carry 1, 3+4+1=8 → 814 not 804"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 1+3=4", "Tens: 6+5=11 → write 1, carry 1", "Hundreds: 3+4+1=8", "Answer: 814"],
-      "hint": "6+5=11. Carry 1 to the hundreds."
+      "solution_steps": [
+        "Ones: 1+3=4",
+        "Tens: 6+5=11 → write 1, carry 1",
+        "Hundreds: 3+4+1=8",
+        "Answer: 814"
+      ],
+      "hint": "6+5=11. Carry 1 to the hundreds.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_05",
@@ -353,15 +658,34 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 578 + 264 = ?",
-      "choices": {"A": "832", "B": "842", "C": "852", "D": "742"},
-      "answer": "B",
+      "choices": [
+        "A) 832",
+        "B) 842",
+        "C) 852",
+        "D) 742"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "8+4=12, carry 1, 7+6+1=14, carry 1, 5+2+1=8 → 842 not 832"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "8+4=12, carry 1, 7+6+1=14, carry 1, 5+2+1=8 → 842 not 832"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 8+4=12 → write 2, carry 1", "Tens: 7+6+1=14 → write 4, carry 1", "Hundreds: 5+2+1=8", "Answer: 842"],
-      "hint": "Double regrouping!"
+      "solution_steps": [
+        "Ones: 8+4=12 → write 2, carry 1",
+        "Tens: 7+6+1=14 → write 4, carry 1",
+        "Hundreds: 5+2+1=8",
+        "Answer: 842"
+      ],
+      "hint": "Double regrouping!",
+      "correct_answer": "B"
     },
     {
       "id": "R1_06",
@@ -371,15 +695,34 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 695 + 247 = ?",
-      "choices": {"A": "932", "B": "942", "C": "952", "D": "842"},
-      "answer": "B",
+      "choices": [
+        "A) 932",
+        "B) 942",
+        "C) 952",
+        "D) 842"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "5+7=12, carry 1, 9+4+1=14, carry 1, 6+2+1=9 → 942 not 932"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "5+7=12, carry 1, 9+4+1=14, carry 1, 6+2+1=9 → 942 not 932"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 5+7=12 → write 2, carry 1", "Tens: 9+4+1=14 → write 4, carry 1", "Hundreds: 6+2+1=9", "Answer: 942"],
-      "hint": "Both ones and tens regroup."
+      "solution_steps": [
+        "Ones: 5+7=12 → write 2, carry 1",
+        "Tens: 9+4+1=14 → write 4, carry 1",
+        "Hundreds: 6+2+1=9",
+        "Answer: 942"
+      ],
+      "hint": "Both ones and tens regroup.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_07",
@@ -389,15 +732,34 @@
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 3,
       "question": "A park has 284 oak trees and 359 pine trees. How many trees in all?",
-      "choices": {"A": "633", "B": "643", "C": "653", "D": "543"},
-      "answer": "B",
+      "choices": [
+        "A) 633",
+        "B) 643",
+        "C) 653",
+        "D) 543"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "4+9=13, carry 1, 8+5+1=14, carry 1, 2+3+1=6 → 643 not 633"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "4+9=13, carry 1, 8+5+1=14, carry 1, 2+3+1=6 → 643 not 633"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 4+9=13 → write 3, carry 1", "Tens: 8+5+1=14 → write 4, carry 1", "Hundreds: 2+3+1=6", "Answer: 643"],
-      "hint": "Both columns need regrouping."
+      "solution_steps": [
+        "Ones: 4+9=13 → write 3, carry 1",
+        "Tens: 8+5+1=14 → write 4, carry 1",
+        "Hundreds: 2+3+1=6",
+        "Answer: 643"
+      ],
+      "hint": "Both columns need regrouping.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_08",
@@ -407,15 +769,34 @@
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 3,
       "question": "Add. 125 + 340 + 213 = ?",
-      "choices": {"A": "668", "B": "678", "C": "688", "D": "578"},
-      "answer": "B",
+      "choices": [
+        "A) 668",
+        "B) 678",
+        "C) 688",
+        "D) 578"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "5+0+3=8, 2+4+1=7, 1+3+2=6 → 678 not 668"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot a hundred"}
+        "A": {
+          "error_type": "careless",
+          "note": "5+0+3=8, 2+4+1=7, 1+3+2=6 → 678 not 668"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot a hundred"
+        }
       },
-      "solution_steps": ["Ones: 5+0+3=8", "Tens: 2+4+1=7", "Hundreds: 1+3+2=6", "Answer: 678"],
-      "hint": "Three addends, no regrouping."
+      "solution_steps": [
+        "Ones: 5+0+3=8",
+        "Tens: 2+4+1=7",
+        "Hundreds: 1+3+2=6",
+        "Answer: 678"
+      ],
+      "hint": "Three addends, no regrouping.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_09",
@@ -425,15 +806,34 @@
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 3,
       "question": "Add. 386 + 507 = ?",
-      "choices": {"A": "883", "B": "893", "C": "903", "D": "793"},
-      "answer": "B",
+      "choices": [
+        "A) 883",
+        "B) 893",
+        "C) 903",
+        "D) 793"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "6+7=13, carry 1, 8+0+1=9, 3+5=8 → 893 not 883"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry"}
+        "A": {
+          "error_type": "careless",
+          "note": "6+7=13, carry 1, 8+0+1=9, 3+5=8 → 893 not 883"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry"
+        }
       },
-      "solution_steps": ["Ones: 6+7=13 → write 3, carry 1", "Tens: 8+0+1=9", "Hundreds: 3+5=8", "Answer: 893"],
-      "hint": "6+7=13. The tens digit of the second number is 0."
+      "solution_steps": [
+        "Ones: 6+7=13 → write 3, carry 1",
+        "Tens: 8+0+1=9",
+        "Hundreds: 3+5=8",
+        "Answer: 893"
+      ],
+      "hint": "6+7=13. The tens digit of the second number is 0.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_10",
@@ -443,18 +843,38 @@
       "skill_tag": "place_value_add_estimate_check",
       "difficulty": 3,
       "question": "Add 463 + 278. Then check with an estimate. Which is correct?",
-      "choices": {"A": "Sum: 741, Estimate: about 700", "B": "Sum: 731, Estimate: about 700", "C": "Sum: 741, Estimate: about 800", "D": "Sum: 641, Estimate: about 700"},
-      "answer": "A",
+      "choices": [
+        "A) Sum: 741, Estimate: about 700",
+        "B) Sum: 731, Estimate: about 700",
+        "C) Sum: 741, Estimate: about 800",
+        "D) Sum: 641, Estimate: about 700"
+      ],
       "expected_errors": {
-        "B": {"error_type": "careless", "note": "3+8=11, carry 1, 6+7+1=14, carry 1, 4+2+1=7 → 741 not 731"},
-        "C": {"error_type": "careless", "note": "Sum correct but estimate: 500+300=800 is also valid. But 463→500 is wrong rounding (463→500? No, 463→500 rounds up). Actually 463→500, 278→300, est=800. Hmm."},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+        "B": {
+          "error_type": "careless",
+          "note": "3+8=11, carry 1, 6+7+1=14, carry 1, 4+2+1=7 → 741 not 731"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Sum correct but estimate: 500+300=800 is also valid. But 463→500 is wrong rounding (463→500? No, 463→500 rounds up). Actually 463→500, 278→300, est=800. Hmm."
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 3+8=11 → write 1, carry 1", "Tens: 6+7+1=14 → write 4, carry 1", "Hundreds: 4+2+1=7", "Sum: 741", "Estimate: 500+300=800 or 460+280=740", "741 is reasonable"],
-      "hint": "Find the exact sum, then estimate to check."
+      "solution_steps": [
+        "Ones: 3+8=11 → write 1, carry 1",
+        "Tens: 6+7+1=14 → write 4, carry 1",
+        "Hundreds: 4+2+1=7",
+        "Sum: 741",
+        "Estimate: 500+300=800 or 460+280=740",
+        "741 is reasonable"
+      ],
+      "hint": "Find the exact sum, then estimate to check.",
+      "correct_answer": "A"
     }
   ],
-
   "practice_r2": [
     {
       "id": "R2_01",
@@ -464,15 +884,34 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 398 + 467 = ?",
-      "choices": {"A": "855", "B": "865", "C": "875", "D": "765"},
-      "answer": "B",
+      "choices": [
+        "A) 855",
+        "B) 865",
+        "C) 875",
+        "D) 765"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "8+7=15, carry 1, 9+6+1=16, carry 1, 3+4+1=8 → 865 not 855"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "8+7=15, carry 1, 9+6+1=16, carry 1, 3+4+1=8 → 865 not 855"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 8+7=15 → write 5, carry 1", "Tens: 9+6+1=16 → write 6, carry 1", "Hundreds: 3+4+1=8", "Answer: 865"],
-      "hint": "Both ones and tens regroup."
+      "solution_steps": [
+        "Ones: 8+7=15 → write 5, carry 1",
+        "Tens: 9+6+1=16 → write 6, carry 1",
+        "Hundreds: 3+4+1=8",
+        "Answer: 865"
+      ],
+      "hint": "Both ones and tens regroup.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_02",
@@ -482,15 +921,34 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 546 + 389 = ?",
-      "choices": {"A": "925", "B": "935", "C": "945", "D": "835"},
-      "answer": "B",
+      "choices": [
+        "A) 925",
+        "B) 935",
+        "C) 945",
+        "D) 835"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "6+9=15, carry 1, 4+8+1=13, carry 1, 5+3+1=9 → 935 not 925"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "6+9=15, carry 1, 4+8+1=13, carry 1, 5+3+1=9 → 935 not 925"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 6+9=15 → write 5, carry 1", "Tens: 4+8+1=13 → write 3, carry 1", "Hundreds: 5+3+1=9", "Answer: 935"],
-      "hint": "Double regrouping needed."
+      "solution_steps": [
+        "Ones: 6+9=15 → write 5, carry 1",
+        "Tens: 4+8+1=13 → write 3, carry 1",
+        "Hundreds: 5+3+1=9",
+        "Answer: 935"
+      ],
+      "hint": "Double regrouping needed.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_03",
@@ -500,15 +958,34 @@
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 4,
       "question": "Add. 256 + 187 + 348 = ?",
-      "choices": {"A": "781", "B": "791", "C": "801", "D": "691"},
-      "answer": "B",
+      "choices": [
+        "A) 781",
+        "B) 791",
+        "C) 801",
+        "D) 691"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "6+7+8=21, carry 2, 5+8+4+2=19, carry 1, 2+1+3+1=7 → 791 not 781"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "6+7+8=21, carry 2, 5+8+4+2=19, carry 1, 2+1+3+1=7 → 791 not 781"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 6+7+8=21 → write 1, carry 2", "Tens: 5+8+4+2=19 → write 9, carry 1", "Hundreds: 2+1+3+1=7", "Answer: 791"],
-      "hint": "Three numbers with regrouping in ones AND tens."
+      "solution_steps": [
+        "Ones: 6+7+8=21 → write 1, carry 2",
+        "Tens: 5+8+4+2=19 → write 9, carry 1",
+        "Hundreds: 2+1+3+1=7",
+        "Answer: 791"
+      ],
+      "hint": "Three numbers with regrouping in ones AND tens.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_04",
@@ -518,15 +995,34 @@
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 4,
       "question": "A theater sold 457 tickets on Friday, 386 on Saturday. How many tickets sold in all?",
-      "choices": {"A": "833", "B": "843", "C": "853", "D": "743"},
-      "answer": "B",
+      "choices": [
+        "A) 833",
+        "B) 843",
+        "C) 853",
+        "D) 743"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "7+6=13, carry 1, 5+8+1=14, carry 1, 4+3+1=8 → 843 not 833"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "7+6=13, carry 1, 5+8+1=14, carry 1, 4+3+1=8 → 843 not 833"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 7+6=13 → write 3, carry 1", "Tens: 5+8+1=14 → write 4, carry 1", "Hundreds: 4+3+1=8", "Answer: 843"],
-      "hint": "Double regrouping in a word problem."
+      "solution_steps": [
+        "Ones: 7+6=13 → write 3, carry 1",
+        "Tens: 5+8+1=14 → write 4, carry 1",
+        "Hundreds: 4+3+1=8",
+        "Answer: 843"
+      ],
+      "hint": "Double regrouping in a word problem.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_05",
@@ -536,15 +1032,34 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 4,
       "question": "Add. 679 + 258 = ?",
-      "choices": {"A": "927", "B": "937", "C": "947", "D": "837"},
-      "answer": "B",
+      "choices": [
+        "A) 927",
+        "B) 937",
+        "C) 947",
+        "D) 837"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "9+8=17, carry 1, 7+5+1=13, carry 1, 6+2+1=9 → 937 not 927"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "9+8=17, carry 1, 7+5+1=13, carry 1, 6+2+1=9 → 937 not 927"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 9+8=17 → write 7, carry 1", "Tens: 7+5+1=13 → write 3, carry 1", "Hundreds: 6+2+1=9", "Answer: 937"],
-      "hint": "9+8=17! Carry 1 to tens."
+      "solution_steps": [
+        "Ones: 9+8=17 → write 7, carry 1",
+        "Tens: 7+5+1=13 → write 3, carry 1",
+        "Hundreds: 6+2+1=9",
+        "Answer: 937"
+      ],
+      "hint": "9+8=17! Carry 1 to tens.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_06",
@@ -554,15 +1069,34 @@
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 4,
       "question": "A baker made 385 cookies on Monday, 278 on Tuesday, and 146 on Wednesday. How many cookies total?",
-      "choices": {"A": "799", "B": "809", "C": "819", "D": "709"},
-      "answer": "B",
+      "choices": [
+        "A) 799",
+        "B) 809",
+        "C) 819",
+        "D) 709"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "5+8+6=19, carry 1, 8+7+4+1=20, carry 2, 3+2+1+2=8 → 809 not 799"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "5+8+6=19, carry 1, 8+7+4+1=20, carry 2, 3+2+1+2=8 → 809 not 799"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 5+8+6=19 → write 9, carry 1", "Tens: 8+7+4+1=20 → write 0, carry 2", "Hundreds: 3+2+1+2=8", "Answer: 809"],
-      "hint": "Three numbers. Tens add to 20 — carry 2!"
+      "solution_steps": [
+        "Ones: 5+8+6=19 → write 9, carry 1",
+        "Tens: 8+7+4+1=20 → write 0, carry 2",
+        "Hundreds: 3+2+1+2=8",
+        "Answer: 809"
+      ],
+      "hint": "Three numbers. Tens add to 20 — carry 2!",
+      "correct_answer": "B"
     },
     {
       "id": "R2_07",
@@ -572,15 +1106,34 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 4,
       "question": "Add. 758 + 194 = ?",
-      "choices": {"A": "942", "B": "952", "C": "962", "D": "852"},
-      "answer": "B",
+      "choices": [
+        "A) 942",
+        "B) 952",
+        "C) 962",
+        "D) 852"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "8+4=12, carry 1, 5+9+1=15, carry 1, 7+1+1=9 → 952 not 942"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "8+4=12, carry 1, 5+9+1=15, carry 1, 7+1+1=9 → 952 not 942"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 8+4=12 → write 2, carry 1", "Tens: 5+9+1=15 → write 5, carry 1", "Hundreds: 7+1+1=9", "Answer: 952"],
-      "hint": "Double regrouping."
+      "solution_steps": [
+        "Ones: 8+4=12 → write 2, carry 1",
+        "Tens: 5+9+1=15 → write 5, carry 1",
+        "Hundreds: 7+1+1=9",
+        "Answer: 952"
+      ],
+      "hint": "Double regrouping.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_08",
@@ -590,15 +1143,35 @@
       "skill_tag": "place_value_add_error_check",
       "difficulty": 4,
       "question": "Lily added 356 + 289 and got 635. Is she correct?",
-      "choices": {"A": "Yes, 635 is correct", "B": "No, the answer is 645", "C": "No, the answer is 655", "D": "No, the answer is 545"},
-      "answer": "B",
+      "choices": [
+        "A) Yes, 635 is correct",
+        "B) No, the answer is 645",
+        "C) No, the answer is 655",
+        "D) No, the answer is 545"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "6+9=15, carry 1, 5+8+1=14, carry 1, 3+2+1=6 → 645 not 635"},
-        "C": {"error_type": "careless", "note": "645, not 655"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "6+9=15, carry 1, 5+8+1=14, carry 1, 3+2+1=6 → 645 not 635"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "645, not 655"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 6+9=15 → write 5, carry 1", "Tens: 5+8+1=14 → write 4, carry 1", "Hundreds: 3+2+1=6", "Correct answer: 645", "Lily's error: she probably forgot to carry from tens (got 3 instead of 4 in tens)"],
-      "hint": "Redo the problem step by step."
+      "solution_steps": [
+        "Ones: 6+9=15 → write 5, carry 1",
+        "Tens: 5+8+1=14 → write 4, carry 1",
+        "Hundreds: 3+2+1=6",
+        "Correct answer: 645",
+        "Lily's error: she probably forgot to carry from tens (got 3 instead of 4 in tens)"
+      ],
+      "hint": "Redo the problem step by step.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_09",
@@ -608,15 +1181,34 @@
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 4,
       "question": "Add. 163 + 285 + 394 = ?",
-      "choices": {"A": "832", "B": "842", "C": "852", "D": "742"},
-      "answer": "B",
+      "choices": [
+        "A) 832",
+        "B) 842",
+        "C) 852",
+        "D) 742"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "3+5+4=12, carry 1, 6+8+9+1=24, carry 2, 1+2+3+2=8 → 842 not 832"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "3+5+4=12, carry 1, 6+8+9+1=24, carry 2, 1+2+3+2=8 → 842 not 832"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot to carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 3+5+4=12 → write 2, carry 1", "Tens: 6+8+9+1=24 → write 4, carry 2", "Hundreds: 1+2+3+2=8", "Answer: 842"],
-      "hint": "Tens column adds to 24 — carry 2!"
+      "solution_steps": [
+        "Ones: 3+5+4=12 → write 2, carry 1",
+        "Tens: 6+8+9+1=24 → write 4, carry 2",
+        "Hundreds: 1+2+3+2=8",
+        "Answer: 842"
+      ],
+      "hint": "Tens column adds to 24 — carry 2!",
+      "correct_answer": "B"
     },
     {
       "id": "R2_10",
@@ -626,18 +1218,36 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 4,
       "question": "Add. 487 + 365 = ?",
-      "choices": {"A": "842", "B": "852", "C": "862", "D": "752"},
-      "answer": "B",
+      "choices": [
+        "A) 842",
+        "B) 852",
+        "C) 862",
+        "D) 752"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "7+5=12, carry 1, 8+6+1=15, carry 1, 4+3+1=8 → 852 not 842"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "7+5=12, carry 1, 8+6+1=15, carry 1, 4+3+1=8 → 852 not 842"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 7+5=12 → write 2, carry 1", "Tens: 8+6+1=15 → write 5, carry 1", "Hundreds: 4+3+1=8", "Answer: 852"],
-      "hint": "Double regrouping."
+      "solution_steps": [
+        "Ones: 7+5=12 → write 2, carry 1",
+        "Tens: 8+6+1=15 → write 5, carry 1",
+        "Hundreds: 4+3+1=8",
+        "Answer: 852"
+      ],
+      "hint": "Double regrouping.",
+      "correct_answer": "B"
     }
   ],
-
   "practice_r3": [
     {
       "id": "R3_01",
@@ -647,15 +1257,34 @@
       "skill_tag": "place_value_add_multi_step",
       "difficulty": 4,
       "question": "A store sold 367 items in Week 1, 458 in Week 2, and 289 in Week 3. What is the total?",
-      "choices": {"A": "1,104", "B": "1,114", "C": "1,124", "D": "1,014"},
-      "answer": "B",
+      "choices": [
+        "A) 1,104",
+        "B) 1,114",
+        "C) 1,124",
+        "D) 1,014"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "7+8+9=24, carry 2, 6+5+8+2=21, carry 2, 3+4+2+2=11 → 1114 not 1104"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+        "A": {
+          "error_type": "careless",
+          "note": "7+8+9=24, carry 2, 6+5+8+2=21, carry 2, 3+4+2+2=11 → 1114 not 1104"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Added extra ten"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot carry from tens"
+        }
       },
-      "solution_steps": ["Ones: 7+8+9=24 → write 4, carry 2", "Tens: 6+5+8+2=21 → write 1, carry 2", "Hundreds: 3+4+2+2=11", "Answer: 1,114"],
-      "hint": "Three numbers with heavy regrouping. Sum exceeds 1,000!"
+      "solution_steps": [
+        "Ones: 7+8+9=24 → write 4, carry 2",
+        "Tens: 6+5+8+2=21 → write 1, carry 2",
+        "Hundreds: 3+4+2+2=11",
+        "Answer: 1,114"
+      ],
+      "hint": "Three numbers with heavy regrouping. Sum exceeds 1,000!",
+      "correct_answer": "B"
     },
     {
       "id": "R3_02",
@@ -665,15 +1294,36 @@
       "skill_tag": "place_value_add_error_analysis",
       "difficulty": 5,
       "question": "Jake added 478 + 356: 'Ones: 8+6=14, write 4 carry 1. Tens: 7+5=12, write 2 carry 1. Hundreds: 4+3+1=8. Answer: 824.' What mistake did Jake make?",
-      "choices": {"A": "He forgot to add the carried 1 in the tens column", "B": "His ones column is wrong", "C": "His hundreds column is wrong", "D": "He made no mistake — 824 is correct"},
-      "answer": "A",
+      "choices": [
+        "A) He forgot to add the carried 1 in the tens column",
+        "B) His ones column is wrong",
+        "C) His hundreds column is wrong",
+        "D) He made no mistake — 824 is correct"
+      ],
       "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "8+6=14 is correct"},
-        "C": {"error_type": "concept_gap", "note": "4+3+1=8 is correct IF tens carry is 1"},
-        "D": {"error_type": "careless", "note": "The correct answer is 834, not 824"}
+        "B": {
+          "error_type": "concept_gap",
+          "note": "8+6=14 is correct"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "4+3+1=8 is correct IF tens carry is 1"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "The correct answer is 834, not 824"
+        }
       },
-      "solution_steps": ["Ones: 8+6=14, write 4, carry 1 ✓", "Tens: 7+5+1(carried)=13, not 12!", "Jake forgot to add the carried 1", "Should be: write 3, carry 1", "Hundreds: 4+3+1=8", "Correct answer: 834, not 824"],
-      "hint": "Check whether Jake added the carried 1 in the tens."
+      "solution_steps": [
+        "Ones: 8+6=14, write 4, carry 1 ✓",
+        "Tens: 7+5+1(carried)=13, not 12!",
+        "Jake forgot to add the carried 1",
+        "Should be: write 3, carry 1",
+        "Hundreds: 4+3+1=8",
+        "Correct answer: 834, not 824"
+      ],
+      "hint": "Check whether Jake added the carried 1 in the tens.",
+      "correct_answer": "A"
     },
     {
       "id": "R3_03",
@@ -683,15 +1333,35 @@
       "skill_tag": "place_value_add_reasoning",
       "difficulty": 5,
       "question": "Without calculating, which sum is greater: 456 + 378 or 463 + 375?",
-      "choices": {"A": "456 + 378 is greater", "B": "463 + 375 is greater", "C": "They are equal", "D": "You can't tell without calculating"},
-      "answer": "A",
+      "choices": [
+        "A) 456 + 378 is greater",
+        "B) 463 + 375 is greater",
+        "C) They are equal",
+        "D) You can't tell without calculating"
+      ],
       "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "456+378=834, 463+375=838. Wait, let me recalculate. 456+378: 6+8=14, 5+7+1=13, 4+3+1=8 → 834. 463+375: 3+5=8, 6+7=13, 4+3+1=8 → 838. So B is actually correct!"},
-        "C": {"error_type": "concept_gap", "note": "456+378=834, 463+375=838 — not equal"},
-        "D": {"error_type": "concept_gap", "note": "You can reason about it"}
+        "B": {
+          "error_type": "concept_gap",
+          "note": "456+378=834, 463+375=838. Wait, let me recalculate. 456+378: 6+8=14, 5+7+1=13, 4+3+1=8 → 834. 463+375: 3+5=8, 6+7=13, 4+3+1=8 → 838. So B is actually correct!"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "456+378=834, 463+375=838 — not equal"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "You can reason about it"
+        }
       },
-      "solution_steps": ["456+378: ones 6+8=14, tens 5+7+1=13, hundreds 4+3+1=8 → 834", "463+375: ones 3+5=8, tens 6+7=13, hundreds 4+3+1=8 → 838", "838 > 834, so 463+375 is greater!", "Quick check: both have same hundreds total (4+3=7 plus carries)", "But 463+375 has a cleaner ones (8 vs 14), meaning less gets 'lost' to carrying"],
-      "hint": "Try estimating or think about how the digits change."
+      "solution_steps": [
+        "456+378: ones 6+8=14, tens 5+7+1=13, hundreds 4+3+1=8 → 834",
+        "463+375: ones 3+5=8, tens 6+7=13, hundreds 4+3+1=8 → 838",
+        "838 > 834, so 463+375 is greater!",
+        "Quick check: both have same hundreds total (4+3=7 plus carries)",
+        "But 463+375 has a cleaner ones (8 vs 14), meaning less gets 'lost' to carrying"
+      ],
+      "hint": "Try estimating or think about how the digits change.",
+      "correct_answer": "A"
     },
     {
       "id": "R3_04",
@@ -701,15 +1371,35 @@
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 5,
       "question": "A school has $575 in its fund. They earn $368 from a bake sale and $279 from a car wash. Do they have enough for a $1,200 field trip?",
-      "choices": {"A": "Yes — total is $1,222", "B": "No — total is $1,122", "C": "Yes — total is $1,322", "D": "No — total is $1,022"},
-      "answer": "A",
+      "choices": [
+        "A) Yes — total is $1,222",
+        "B) No — total is $1,122",
+        "C) Yes — total is $1,322",
+        "D) No — total is $1,022"
+      ],
       "expected_errors": {
-        "B": {"error_type": "careless", "note": "575+368+279: ones 5+8+9=22, carry 2, tens 7+6+7+2=22, carry 2, hundreds 5+3+2+2=12 → 1222 not 1122"},
-        "C": {"error_type": "careless", "note": "1222, not 1322"},
-        "D": {"error_type": "concept_gap", "note": "Incorrect calculation"}
+        "B": {
+          "error_type": "careless",
+          "note": "575+368+279: ones 5+8+9=22, carry 2, tens 7+6+7+2=22, carry 2, hundreds 5+3+2+2=12 → 1222 not 1122"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "1222, not 1322"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Incorrect calculation"
+        }
       },
-      "solution_steps": ["Ones: 5+8+9=22 → write 2, carry 2", "Tens: 7+6+7+2=22 → write 2, carry 2", "Hundreds: 5+3+2+2=12", "Total: $1,222", "$1,222 > $1,200 → Yes, they have enough!"],
-      "hint": "Add all three amounts, then compare to $1,200."
+      "solution_steps": [
+        "Ones: 5+8+9=22 → write 2, carry 2",
+        "Tens: 7+6+7+2=22 → write 2, carry 2",
+        "Hundreds: 5+3+2+2=12",
+        "Total: $1,222",
+        "$1,222 > $1,200 → Yes, they have enough!"
+      ],
+      "hint": "Add all three amounts, then compare to $1,200.",
+      "correct_answer": "A"
     },
     {
       "id": "R3_05",
@@ -719,15 +1409,35 @@
       "skill_tag": "place_value_add_strategy_compare",
       "difficulty": 5,
       "question": "Which is TRUE about the place value method and the break apart method?",
-      "choices": {"A": "They always give different answers", "B": "Place value works only without regrouping", "C": "They both use place value and always give the same answer", "D": "Break apart is faster for all problems"},
-      "answer": "C",
+      "choices": [
+        "A) They always give different answers",
+        "B) Place value works only without regrouping",
+        "C) They both use place value and always give the same answer",
+        "D) Break apart is faster for all problems"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "Both methods give the same correct answer"},
-        "B": {"error_type": "concept_gap", "note": "Place value works with regrouping too"},
-        "D": {"error_type": "concept_gap", "note": "Speed depends on the problem and the person"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Both methods give the same correct answer"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Place value works with regrouping too"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Speed depends on the problem and the person"
+        }
       },
-      "solution_steps": ["The place value method (column addition) adds ones, tens, hundreds vertically", "The break apart method separates into partial sums, then combines", "Both use place value understanding", "Both always give the same correct answer", "The methods are different approaches to the same concept"],
-      "hint": "Try both methods on the same problem. What do you notice?"
+      "solution_steps": [
+        "The place value method (column addition) adds ones, tens, hundreds vertically",
+        "The break apart method separates into partial sums, then combines",
+        "Both use place value understanding",
+        "Both always give the same correct answer",
+        "The methods are different approaches to the same concept"
+      ],
+      "hint": "Try both methods on the same problem. What do you notice?",
+      "correct_answer": "C"
     }
   ]
 }

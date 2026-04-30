@@ -1,13 +1,21 @@
 {
   "lesson_id": "L4_mental_math_addition",
   "title": "Mental Math Strategies for Addition",
-  "ccss": ["3.NBT.A.2"],
+  "ccss": [
+    "3.NBT.A.2"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
   "go_math_ref": "Chapter 1, Lesson 1.4, pp.17-20",
   "essential_question": "What mental math strategies can you use to find sums?",
-  "key_vocabulary": ["mental math", "count by tens", "friendly numbers", "compatible numbers", "break apart", "adjust"],
-
+  "key_vocabulary": [
+    "mental math",
+    "count by tens",
+    "friendly numbers",
+    "compatible numbers",
+    "break apart",
+    "adjust"
+  ],
   "pretest": [
     {
       "id": "PT_01",
@@ -17,16 +25,34 @@
       "skill_tag": "mental_math_count_tens",
       "difficulty": 2,
       "question": "Use mental math. 56 + 27 = ?",
-      "choices": {"A": "73", "B": "83", "C": "93", "D": "82"},
-      "answer": "B",
+      "choices": [
+        "A) 73",
+        "B) 83",
+        "C) 93",
+        "D) 82"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "56+20=76, then added only 7-4=3 more → 76-3=73"},
-        "C": {"error_type": "concept_gap", "note": "56+30+7=93 — added 37 instead of 27"},
-        "D": {"error_type": "careless", "note": "56+26=82 — miscounted ones"}
+        "A": {
+          "error_type": "careless",
+          "note": "56+20=76, then added only 7-4=3 more → 76-3=73"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "56+30+7=93 — added 37 instead of 27"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "56+26=82 — miscounted ones"
+        }
       },
-      "solution_steps": ["Start at 56", "Count by tens: 56 + 20 = 76", "Count by ones: 76 + 7 = 83"],
+      "solution_steps": [
+        "Start at 56",
+        "Count by tens: 56 + 20 = 76",
+        "Count by ones: 76 + 7 = 83"
+      ],
       "hint": "Start at 56, add 2 tens, then add 7 ones.",
-      "verification": "Go Math p.18 On Your Own Q5"
+      "verification": "Go Math p.18 On Your Own Q5",
+      "correct_answer": "B"
     },
     {
       "id": "PT_02",
@@ -36,16 +62,34 @@
       "skill_tag": "mental_math_friendly",
       "difficulty": 2,
       "question": "Use mental math. 28 + 35 = ?",
-      "choices": {"A": "53", "B": "63", "C": "73", "D": "62"},
-      "answer": "B",
+      "choices": [
+        "A) 53",
+        "B) 63",
+        "C) 73",
+        "D) 62"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "20+30=50, 8+5=13, but wrote 53 instead of 63"},
-        "C": {"error_type": "careless", "note": "30+35=65, forgot to subtract 2 → wrote 73"},
-        "D": {"error_type": "careless", "note": "28+34=62 — miscounted"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "20+30=50, 8+5=13, but wrote 53 instead of 63"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "30+35=65, forgot to subtract 2 → wrote 73"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "28+34=62 — miscounted"
+        }
       },
-      "solution_steps": ["Make a friendly number: 28 + 2 = 30", "30 + 35 = 65", "Adjust back: 65 - 2 = 63"],
+      "solution_steps": [
+        "Make a friendly number: 28 + 2 = 30",
+        "30 + 35 = 65",
+        "Adjust back: 65 - 2 = 63"
+      ],
       "hint": "Turn 28 into 30 first, then adjust.",
-      "verification": "Go Math p.18 On Your Own Q6"
+      "verification": "Go Math p.18 On Your Own Q6",
+      "correct_answer": "B"
     },
     {
       "id": "PT_03",
@@ -55,16 +99,36 @@
       "skill_tag": "mental_math_break_apart",
       "difficulty": 3,
       "question": "Use mental math. 116 + 203 = ?",
-      "choices": {"A": "319", "B": "309", "C": "329", "D": "219"},
-      "answer": "A",
+      "choices": [
+        "A) 319",
+        "B) 309",
+        "C) 329",
+        "D) 219"
+      ],
       "expected_errors": {
-        "B": {"error_type": "careless", "note": "100+200=300, 16+3=19, but wrote 309 instead of 319"},
-        "C": {"error_type": "careless", "note": "120+203=323… miscalculated to 329"},
-        "D": {"error_type": "concept_gap", "note": "Added only ones and hundreds wrong: 200+16+3=219"}
+        "B": {
+          "error_type": "careless",
+          "note": "100+200=300, 16+3=19, but wrote 309 instead of 319"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "120+203=323… miscalculated to 329"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Added only ones and hundreds wrong: 200+16+3=219"
+        }
       },
-      "solution_steps": ["Break apart: 116 = 100 + 16", "203 = 200 + 3", "100 + 200 = 300", "16 + 3 = 19", "300 + 19 = 319"],
+      "solution_steps": [
+        "Break apart: 116 = 100 + 16",
+        "203 = 200 + 3",
+        "100 + 200 = 300",
+        "16 + 3 = 19",
+        "300 + 19 = 319"
+      ],
       "hint": "Break each number into hundreds and the rest.",
-      "verification": "Go Math p.19 On Your Own Q7"
+      "verification": "Go Math p.19 On Your Own Q7",
+      "correct_answer": "A"
     },
     {
       "id": "PT_04",
@@ -74,16 +138,34 @@
       "skill_tag": "mental_math_friendly",
       "difficulty": 3,
       "question": "Use mental math. 18 + 57 = ?",
-      "choices": {"A": "65", "B": "75", "C": "85", "D": "74"},
-      "answer": "B",
+      "choices": [
+        "A) 65",
+        "B) 75",
+        "C) 85",
+        "D) 74"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "10+57=67, forgot to add 8 more, wrote 65"},
-        "C": {"error_type": "careless", "note": "20+57=77, then added 8 instead of subtracting 2 → 85"},
-        "D": {"error_type": "careless", "note": "18+56=74 — miscounted"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "10+57=67, forgot to add 8 more, wrote 65"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "20+57=77, then added 8 instead of subtracting 2 → 85"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "18+56=74 — miscounted"
+        }
       },
-      "solution_steps": ["Make a friendly number: 18 + 2 = 20", "20 + 57 = 77", "Adjust back: 77 - 2 = 75"],
+      "solution_steps": [
+        "Make a friendly number: 18 + 2 = 20",
+        "20 + 57 = 77",
+        "Adjust back: 77 - 2 = 75"
+      ],
       "hint": "Turn 18 into 20, add, then adjust.",
-      "verification": "Go Math p.19 On Your Own Q8"
+      "verification": "Go Math p.19 On Your Own Q8",
+      "correct_answer": "B"
     },
     {
       "id": "PT_05",
@@ -93,19 +175,37 @@
       "skill_tag": "mental_math_word_problem",
       "difficulty": 3,
       "question": "On Monday, 46 boys and 38 girls bought lunch at school. How many students bought lunch?",
-      "choices": {"A": "84", "B": "76", "C": "74", "D": "73"},
-      "answer": "A",
+      "choices": [
+        "A) 84",
+        "B) 76",
+        "C) 74",
+        "D) 73"
+      ],
       "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "40+38=78, subtracted 2 instead of adding 6"},
-        "C": {"error_type": "careless", "note": "46+38: miscounted ones 6+8=14, carried wrong → 74"},
-        "D": {"error_type": "careless", "note": "46+38: forgot to carry the ten → 73"}
+        "B": {
+          "error_type": "concept_gap",
+          "note": "40+38=78, subtracted 2 instead of adding 6"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "46+38: miscounted ones 6+8=14, carried wrong → 74"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "46+38: forgot to carry the ten → 73"
+        }
       },
-      "solution_steps": ["46 + 38", "Break apart: 40 + 30 = 70", "6 + 8 = 14", "70 + 14 = 84"],
+      "solution_steps": [
+        "46 + 38",
+        "Break apart: 40 + 30 = 70",
+        "6 + 8 = 14",
+        "70 + 14 = 84"
+      ],
       "hint": "Break apart tens and ones, then combine.",
-      "verification": "Go Math p.20 Test Prep Q12 — exact problem, answer 84"
+      "verification": "Go Math p.20 Test Prep Q12 — exact problem, answer 84",
+      "correct_answer": "A"
     }
   ],
-
   "learn": [
     {
       "id": "LEARN_01",
@@ -113,7 +213,9 @@
       "content": "Mental math means solving problems in your head — without paper, pencil, or a calculator. You use strategies that make numbers easier to work with. There are several strategies you can use for addition.",
       "cpa_phase": "concrete",
       "visual_type": "illustration",
-      "visual_data": {"description": "A child thinking with a thought bubble showing 28+35, with arrows showing the number changing to 30+33"},
+      "visual_data": {
+        "description": "A child thinking with a thought bubble showing 28+35, with arrows showing the number changing to 30+33"
+      },
       "verification": "Go Math p.17 introduction"
     },
     {
@@ -122,7 +224,21 @@
       "content": "Start with one number. Count on by tens for the tens digit of the other number. Then count on by ones. Example: 34 + 25. Start at 34. Count by tens: 44, 54. Count by ones: 55, 56, 57, 58, 59. So 34 + 25 = 59.",
       "cpa_phase": "pictorial",
       "visual_type": "number_line",
-      "visual_data": {"start": 34, "jumps_tens": [44, 54], "jumps_ones": [55, 56, 57, 58, 59], "result": 59},
+      "visual_data": {
+        "start": 34,
+        "jumps_tens": [
+          44,
+          54
+        ],
+        "jumps_ones": [
+          55,
+          56,
+          57,
+          58,
+          59
+        ],
+        "result": 59
+      },
       "verification": "Go Math p.17 — Count by tens and ones strategy"
     },
     {
@@ -131,7 +247,11 @@
       "content": "Change one number to a 'friendly' number (a number ending in 0). Add, then adjust. Example: 17 + 25. Change 17 to 20 (add 3). 20 + 25 = 45. Adjust: 45 - 3 = 42. So 17 + 25 = 42.",
       "cpa_phase": "pictorial",
       "visual_type": "diagram",
-      "visual_data": {"original": "17 + 25", "friendly": "20 + 25 = 45", "adjust": "45 - 3 = 42"},
+      "visual_data": {
+        "original": "17 + 25",
+        "friendly": "20 + 25 = 45",
+        "adjust": "45 - 3 = 42"
+      },
       "verification": "Go Math p.17 — Friendly numbers example with 17+25=42"
     },
     {
@@ -140,7 +260,15 @@
       "content": "Break each number into hundreds, tens, and ones. Add each place separately. Example: 116 + 203. Hundreds: 100 + 200 = 300. Tens and ones: 16 + 3 = 19. Total: 300 + 19 = 319.",
       "cpa_phase": "pictorial",
       "visual_type": "place_value_chart",
-      "visual_data": {"numbers": [116, 203], "hundreds": "100+200=300", "tens_ones": "16+3=19", "total": 319},
+      "visual_data": {
+        "numbers": [
+          116,
+          203
+        ],
+        "hundreds": "100+200=300",
+        "tens_ones": "16+3=19",
+        "total": 319
+      },
       "verification": "Go Math p.19 Q7 — break apart with 116+203"
     },
     {
@@ -149,7 +277,11 @@
       "content": "Move a small amount from one number to the other to make a ten. Example: 28 + 35. Take 2 from 35 and give it to 28: 30 + 33 = 63. Or: add 2 to 28 to make 30, then 30 + 35 = 65, then subtract 2: 65 - 2 = 63.",
       "cpa_phase": "abstract",
       "visual_type": "diagram",
-      "visual_data": {"original": "28 + 35", "method1": "30 + 33 = 63", "method2": "30 + 35 = 65, 65 - 2 = 63"},
+      "visual_data": {
+        "original": "28 + 35",
+        "method1": "30 + 33 = 63",
+        "method2": "30 + 35 = 65, 65 - 2 = 63"
+      },
       "verification": "Go Math p.18 Q6 — make a ten with 28+35"
     },
     {
@@ -158,7 +290,20 @@
       "content": "Different problems work best with different strategies. Count by tens and ones: good for small addends. Friendly numbers: good when one number is close to a ten. Break apart: good for 3-digit numbers. Make a ten: good when one number ends in 8 or 9.",
       "cpa_phase": "abstract",
       "visual_type": "comparison_table",
-      "visual_data": {"strategies": ["Count by tens/ones", "Friendly numbers", "Break apart", "Make a ten"], "best_for": ["small numbers", "near a ten", "3-digit", "ends in 8 or 9"]},
+      "visual_data": {
+        "strategies": [
+          "Count by tens/ones",
+          "Friendly numbers",
+          "Break apart",
+          "Make a ten"
+        ],
+        "best_for": [
+          "small numbers",
+          "near a ten",
+          "3-digit",
+          "ends in 8 or 9"
+        ]
+      },
       "verification": "Go Math p.17-19 strategy overview"
     },
     {
@@ -180,7 +325,6 @@
       "verification": "Go Math pp.17-20 lesson summary"
     }
   ],
-
   "try": [
     {
       "id": "TRY_01",
@@ -190,16 +334,35 @@
       "skill_tag": "mental_math_count_tens",
       "difficulty": 2,
       "question": "Count by tens and ones to find the sum. 43 + 32 = ?",
-      "choices": {"A": "65", "B": "75", "C": "85", "D": "74"},
-      "answer": "B",
+      "choices": [
+        "A) 65",
+        "B) 75",
+        "C) 85",
+        "D) 74"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "43+20=63, then added 2 instead of 12 → 65"},
-        "C": {"error_type": "concept_gap", "note": "43+40+2=85 — added 42"},
-        "D": {"error_type": "careless", "note": "43+31=74"}
+        "A": {
+          "error_type": "careless",
+          "note": "43+20=63, then added 2 instead of 12 → 65"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "43+40+2=85 — added 42"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "43+31=74"
+        }
       },
-      "solution_steps": ["Start at 43", "Count by tens: 43 → 53 → 63 → 73", "Count by ones: 73 → 74 → 75", "43 + 32 = 75"],
+      "solution_steps": [
+        "Start at 43",
+        "Count by tens: 43 → 53 → 63 → 73",
+        "Count by ones: 73 → 74 → 75",
+        "43 + 32 = 75"
+      ],
       "hint": "Start at 43, add 3 tens, then 2 ones.",
-      "verification": "Go Math p.17 count by tens style"
+      "verification": "Go Math p.17 count by tens style",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_02",
@@ -209,16 +372,34 @@
       "skill_tag": "mental_math_friendly",
       "difficulty": 2,
       "question": "Use friendly numbers. 19 + 44 = ?",
-      "choices": {"A": "53", "B": "63", "C": "73", "D": "64"},
-      "answer": "B",
+      "choices": [
+        "A) 53",
+        "B) 63",
+        "C) 73",
+        "D) 64"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "10+44=54, not adjusted correctly"},
-        "C": {"error_type": "careless", "note": "20+44=64, then added 9 more instead of subtracting 1"},
-        "D": {"error_type": "careless", "note": "20+44=64, forgot to subtract 1"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "10+44=54, not adjusted correctly"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "20+44=64, then added 9 more instead of subtracting 1"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "20+44=64, forgot to subtract 1"
+        }
       },
-      "solution_steps": ["Make friendly: 19 + 1 = 20", "20 + 44 = 64", "Adjust: 64 - 1 = 63"],
+      "solution_steps": [
+        "Make friendly: 19 + 1 = 20",
+        "20 + 44 = 64",
+        "Adjust: 64 - 1 = 63"
+      ],
       "hint": "Turn 19 into 20. What do you need to subtract at the end?",
-      "verification": "Go Math p.17 friendly numbers style"
+      "verification": "Go Math p.17 friendly numbers style",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_03",
@@ -228,16 +409,35 @@
       "skill_tag": "mental_math_break_apart",
       "difficulty": 3,
       "question": "Break apart to add. 234 + 152 = ?",
-      "choices": {"A": "376", "B": "386", "C": "396", "D": "286"},
-      "answer": "B",
+      "choices": [
+        "A) 376",
+        "B) 386",
+        "C) 396",
+        "D) 286"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "200+100=300, 34+52=86, but wrote 376 instead of 386"},
-        "C": {"error_type": "careless", "note": "200+100=300, 34+52=86, added to get 396"},
-        "D": {"error_type": "concept_gap", "note": "200+52+34=286 — forgot the 100"}
+        "A": {
+          "error_type": "careless",
+          "note": "200+100=300, 34+52=86, but wrote 376 instead of 386"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "200+100=300, 34+52=86, added to get 396"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "200+52+34=286 — forgot the 100"
+        }
       },
-      "solution_steps": ["Break apart: 200 + 100 = 300", "30 + 50 = 80", "4 + 2 = 6", "300 + 80 + 6 = 386"],
+      "solution_steps": [
+        "Break apart: 200 + 100 = 300",
+        "30 + 50 = 80",
+        "4 + 2 = 6",
+        "300 + 80 + 6 = 386"
+      ],
       "hint": "Add hundreds, then tens, then ones.",
-      "verification": "Go Math p.19 break apart style — 3-digit"
+      "verification": "Go Math p.19 break apart style — 3-digit",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_04",
@@ -247,16 +447,35 @@
       "skill_tag": "mental_math_make_ten",
       "difficulty": 3,
       "question": "Use mental math. 48 + 36 = ?",
-      "choices": {"A": "74", "B": "84", "C": "94", "D": "82"},
-      "answer": "B",
+      "choices": [
+        "A) 74",
+        "B) 84",
+        "C) 94",
+        "D) 82"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "40+36=76, subtracted 2 instead of adding 8"},
-        "C": {"error_type": "careless", "note": "50+36=86, added 8 more → 94"},
-        "D": {"error_type": "careless", "note": "48+34=82"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "40+36=76, subtracted 2 instead of adding 8"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "50+36=86, added 8 more → 94"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "48+34=82"
+        }
       },
-      "solution_steps": ["Make a ten: 48 + 2 = 50", "50 + 36 = 86", "Adjust: 86 - 2 = 84", "Or: 48 + 36 = 40 + 30 + 8 + 6 = 70 + 14 = 84"],
+      "solution_steps": [
+        "Make a ten: 48 + 2 = 50",
+        "50 + 36 = 86",
+        "Adjust: 86 - 2 = 84",
+        "Or: 48 + 36 = 40 + 30 + 8 + 6 = 70 + 14 = 84"
+      ],
       "hint": "Turn 48 into 50, add, then adjust.",
-      "verification": "Go Math p.18 make a ten style"
+      "verification": "Go Math p.18 make a ten style",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_05",
@@ -266,19 +485,36 @@
       "skill_tag": "mental_math_word_problem",
       "difficulty": 3,
       "question": "There are 14 more girls than boys in the school orchestra. There are 19 boys. How many students are in the orchestra?",
-      "choices": {"A": "33", "B": "42", "C": "52", "D": "38"},
-      "answer": "C",
+      "choices": [
+        "A) 33",
+        "B) 42",
+        "C) 52",
+        "D) 38"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "19+14=33 — found girls only, not total"},
-        "B": {"error_type": "careless", "note": "Got girls=33 but then subtracted 19-14+42? confused"},
-        "D": {"error_type": "concept_gap", "note": "19+19=38 — forgot the 14 more girls"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "19+14=33 — found girls only, not total"
+        },
+        "B": {
+          "error_type": "careless",
+          "note": "Got girls=33 but then subtracted 19-14+42? confused"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "19+19=38 — forgot the 14 more girls"
+        }
       },
-      "solution_steps": ["Boys = 19", "Girls = 19 + 14 = 33", "Total = 19 + 33 = 52"],
+      "solution_steps": [
+        "Boys = 19",
+        "Girls = 19 + 14 = 33",
+        "Total = 19 + 33 = 52"
+      ],
       "hint": "First find how many girls. Then add boys + girls.",
-      "verification": "Go Math p.20 Q11 — exact problem"
+      "verification": "Go Math p.20 Q11 — exact problem",
+      "correct_answer": "C"
     }
   ],
-
   "practice_r1": [
     {
       "id": "R1_01",
@@ -288,15 +524,33 @@
       "skill_tag": "mental_math_count_tens",
       "difficulty": 2,
       "question": "Count by tens and ones. 37 + 24 = ?",
-      "choices": {"A": "51", "B": "61", "C": "71", "D": "60"},
-      "answer": "B",
+      "choices": [
+        "A) 51",
+        "B) 61",
+        "C) 71",
+        "D) 60"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "37+14=51 — added only 14"},
-        "C": {"error_type": "careless", "note": "37+34=71 — added 34"},
-        "D": {"error_type": "careless", "note": "37+20=57, added 3 instead of 4 → 60"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "37+14=51 — added only 14"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "37+34=71 — added 34"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "37+20=57, added 3 instead of 4 → 60"
+        }
       },
-      "solution_steps": ["Start at 37", "37 + 20 = 57", "57 + 4 = 61"],
-      "hint": "Start at 37, count on 2 tens, then 4 ones."
+      "solution_steps": [
+        "Start at 37",
+        "37 + 20 = 57",
+        "57 + 4 = 61"
+      ],
+      "hint": "Start at 37, count on 2 tens, then 4 ones.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_02",
@@ -306,15 +560,33 @@
       "skill_tag": "mental_math_count_tens",
       "difficulty": 2,
       "question": "Count by tens and ones. 62 + 19 = ?",
-      "choices": {"A": "71", "B": "81", "C": "91", "D": "80"},
-      "answer": "B",
+      "choices": [
+        "A) 71",
+        "B) 81",
+        "C) 91",
+        "D) 80"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "62+9=71 — forgot the ten"},
-        "C": {"error_type": "careless", "note": "62+29=91"},
-        "D": {"error_type": "careless", "note": "62+18=80"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "62+9=71 — forgot the ten"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "62+29=91"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "62+18=80"
+        }
       },
-      "solution_steps": ["Start at 62", "62 + 10 = 72", "72 + 9 = 81"],
-      "hint": "Start at 62, count on 1 ten, then 9 ones."
+      "solution_steps": [
+        "Start at 62",
+        "62 + 10 = 72",
+        "72 + 9 = 81"
+      ],
+      "hint": "Start at 62, count on 1 ten, then 9 ones.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_03",
@@ -324,15 +596,33 @@
       "skill_tag": "mental_math_friendly",
       "difficulty": 2,
       "question": "Use friendly numbers. 29 + 53 = ?",
-      "choices": {"A": "72", "B": "82", "C": "92", "D": "81"},
-      "answer": "B",
+      "choices": [
+        "A) 72",
+        "B) 82",
+        "C) 92",
+        "D) 81"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "20+53=73, subtracted 1 instead → 72"},
-        "C": {"error_type": "careless", "note": "30+53=83, added 9 → 92"},
-        "D": {"error_type": "careless", "note": "30+53=83, subtracted 2 instead of 1 → 81"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "20+53=73, subtracted 1 instead → 72"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "30+53=83, added 9 → 92"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "30+53=83, subtracted 2 instead of 1 → 81"
+        }
       },
-      "solution_steps": ["29 + 1 = 30", "30 + 53 = 83", "83 - 1 = 82"],
-      "hint": "Turn 29 into 30, then adjust."
+      "solution_steps": [
+        "29 + 1 = 30",
+        "30 + 53 = 83",
+        "83 - 1 = 82"
+      ],
+      "hint": "Turn 29 into 30, then adjust.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_04",
@@ -342,15 +632,33 @@
       "skill_tag": "mental_math_friendly",
       "difficulty": 2,
       "question": "Use friendly numbers. 38 + 45 = ?",
-      "choices": {"A": "73", "B": "83", "C": "93", "D": "82"},
-      "answer": "B",
+      "choices": [
+        "A) 73",
+        "B) 83",
+        "C) 93",
+        "D) 82"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "30+45=75, subtracted 2 → 73"},
-        "C": {"error_type": "careless", "note": "40+45=85, added 8 → 93"},
-        "D": {"error_type": "careless", "note": "38+44=82"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "30+45=75, subtracted 2 → 73"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "40+45=85, added 8 → 93"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "38+44=82"
+        }
       },
-      "solution_steps": ["38 + 2 = 40", "40 + 45 = 85", "85 - 2 = 83"],
-      "hint": "Turn 38 into 40, then adjust."
+      "solution_steps": [
+        "38 + 2 = 40",
+        "40 + 45 = 85",
+        "85 - 2 = 83"
+      ],
+      "hint": "Turn 38 into 40, then adjust.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_05",
@@ -360,15 +668,34 @@
       "skill_tag": "mental_math_break_apart",
       "difficulty": 3,
       "question": "Break apart to add. 145 + 232 = ?",
-      "choices": {"A": "367", "B": "377", "C": "387", "D": "277"},
-      "answer": "B",
+      "choices": [
+        "A) 367",
+        "B) 377",
+        "C) 387",
+        "D) 277"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "100+200=300, 45+32=77, wrote 367"},
-        "C": {"error_type": "careless", "note": "100+200=300, 45+42=87, wrote 387"},
-        "D": {"error_type": "concept_gap", "note": "Forgot 100: 200+45+32=277"}
+        "A": {
+          "error_type": "careless",
+          "note": "100+200=300, 45+32=77, wrote 367"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "100+200=300, 45+42=87, wrote 387"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot 100: 200+45+32=277"
+        }
       },
-      "solution_steps": ["100 + 200 = 300", "40 + 30 = 70", "5 + 2 = 7", "300 + 70 + 7 = 377"],
-      "hint": "Add hundreds, tens, and ones separately."
+      "solution_steps": [
+        "100 + 200 = 300",
+        "40 + 30 = 70",
+        "5 + 2 = 7",
+        "300 + 70 + 7 = 377"
+      ],
+      "hint": "Add hundreds, tens, and ones separately.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_06",
@@ -378,15 +705,34 @@
       "skill_tag": "mental_math_break_apart",
       "difficulty": 3,
       "question": "Break apart to add. 321 + 456 = ?",
-      "choices": {"A": "677", "B": "777", "C": "877", "D": "767"},
-      "answer": "B",
+      "choices": [
+        "A) 677",
+        "B) 777",
+        "C) 877",
+        "D) 767"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "300+400=700, missed tens"},
-        "C": {"error_type": "careless", "note": "300+500+77=877"},
-        "D": {"error_type": "careless", "note": "300+400=700, 21+46=67 → 767"}
+        "A": {
+          "error_type": "careless",
+          "note": "300+400=700, missed tens"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "300+500+77=877"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "300+400=700, 21+46=67 → 767"
+        }
       },
-      "solution_steps": ["300 + 400 = 700", "20 + 50 = 70", "1 + 6 = 7", "700 + 70 + 7 = 777"],
-      "hint": "Add hundreds, tens, and ones separately."
+      "solution_steps": [
+        "300 + 400 = 700",
+        "20 + 50 = 70",
+        "1 + 6 = 7",
+        "700 + 70 + 7 = 777"
+      ],
+      "hint": "Add hundreds, tens, and ones separately.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_07",
@@ -396,15 +742,34 @@
       "skill_tag": "mental_math_make_ten",
       "difficulty": 3,
       "question": "Use mental math. 67 + 25 = ?",
-      "choices": {"A": "82", "B": "92", "C": "102", "D": "91"},
-      "answer": "B",
+      "choices": [
+        "A) 82",
+        "B) 92",
+        "C) 102",
+        "D) 91"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "67+15=82"},
-        "C": {"error_type": "careless", "note": "70+25=95, added 7 → 102"},
-        "D": {"error_type": "careless", "note": "67+24=91"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "67+15=82"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "70+25=95, added 7 → 102"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "67+24=91"
+        }
       },
-      "solution_steps": ["67 + 3 = 70", "70 + 25 = 95", "95 - 3 = 92", "Or: 60+20=80, 7+5=12, 80+12=92"],
-      "hint": "Turn 67 into 70, add, then subtract 3."
+      "solution_steps": [
+        "67 + 3 = 70",
+        "70 + 25 = 95",
+        "95 - 3 = 92",
+        "Or: 60+20=80, 7+5=12, 80+12=92"
+      ],
+      "hint": "Turn 67 into 70, add, then subtract 3.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_08",
@@ -414,15 +779,34 @@
       "skill_tag": "mental_math_word_problem",
       "difficulty": 3,
       "question": "A library has 158 fiction books and 231 nonfiction books. How many books in all?",
-      "choices": {"A": "379", "B": "389", "C": "399", "D": "289"},
-      "answer": "B",
+      "choices": [
+        "A) 379",
+        "B) 389",
+        "C) 399",
+        "D) 289"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "100+200=300, 58+31=89, but wrote 379"},
-        "C": {"error_type": "careless", "note": "100+200=300, 58+41=99, wrote 399"},
-        "D": {"error_type": "concept_gap", "note": "200+58+31=289"}
+        "A": {
+          "error_type": "careless",
+          "note": "100+200=300, 58+31=89, but wrote 379"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "100+200=300, 58+41=99, wrote 399"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "200+58+31=289"
+        }
       },
-      "solution_steps": ["Break apart: 100 + 200 = 300", "50 + 30 = 80", "8 + 1 = 9", "300 + 80 + 9 = 389"],
-      "hint": "Break apart into hundreds, tens, ones."
+      "solution_steps": [
+        "Break apart: 100 + 200 = 300",
+        "50 + 30 = 80",
+        "8 + 1 = 9",
+        "300 + 80 + 9 = 389"
+      ],
+      "hint": "Break apart into hundreds, tens, ones.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_09",
@@ -432,15 +816,33 @@
       "skill_tag": "mental_math_choose_strategy",
       "difficulty": 3,
       "question": "Use mental math. 49 + 26 = ?",
-      "choices": {"A": "65", "B": "75", "C": "85", "D": "74"},
-      "answer": "B",
+      "choices": [
+        "A) 65",
+        "B) 75",
+        "C) 85",
+        "D) 74"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "40+26=66, subtracted 1 → 65"},
-        "C": {"error_type": "careless", "note": "50+26=76, added 9 → 85"},
-        "D": {"error_type": "careless", "note": "49+25=74"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "40+26=66, subtracted 1 → 65"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "50+26=76, added 9 → 85"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "49+25=74"
+        }
       },
-      "solution_steps": ["49 + 1 = 50", "50 + 26 = 76", "76 - 1 = 75"],
-      "hint": "49 is close to 50 — use friendly numbers!"
+      "solution_steps": [
+        "49 + 1 = 50",
+        "50 + 26 = 76",
+        "76 - 1 = 75"
+      ],
+      "hint": "49 is close to 50 — use friendly numbers!",
+      "correct_answer": "B"
     },
     {
       "id": "R1_10",
@@ -450,18 +852,36 @@
       "skill_tag": "mental_math_word_problem",
       "difficulty": 3,
       "question": "Sam collected 47 seashells on Saturday and 38 on Sunday. How many seashells did he collect?",
-      "choices": {"A": "75", "B": "85", "C": "95", "D": "84"},
-      "answer": "B",
+      "choices": [
+        "A) 75",
+        "B) 85",
+        "C) 95",
+        "D) 84"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "40+38=78, subtracted 3 → 75"},
-        "C": {"error_type": "careless", "note": "50+38=88, added 7 → 95"},
-        "D": {"error_type": "careless", "note": "47+37=84"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "40+38=78, subtracted 3 → 75"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "50+38=88, added 7 → 95"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "47+37=84"
+        }
       },
-      "solution_steps": ["47 + 38", "40 + 30 = 70", "7 + 8 = 15", "70 + 15 = 85"],
-      "hint": "Break apart into tens and ones."
+      "solution_steps": [
+        "47 + 38",
+        "40 + 30 = 70",
+        "7 + 8 = 15",
+        "70 + 15 = 85"
+      ],
+      "hint": "Break apart into tens and ones.",
+      "correct_answer": "B"
     }
   ],
-
   "practice_r2": [
     {
       "id": "R2_01",
@@ -471,15 +891,33 @@
       "skill_tag": "mental_math_friendly",
       "difficulty": 3,
       "question": "Use friendly numbers. 78 + 45 = ?",
-      "choices": {"A": "113", "B": "123", "C": "133", "D": "122"},
-      "answer": "B",
+      "choices": [
+        "A) 113",
+        "B) 123",
+        "C) 133",
+        "D) 122"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "70+45=115, subtracted 2 → 113"},
-        "C": {"error_type": "careless", "note": "80+45=125, added 8 → 133"},
-        "D": {"error_type": "careless", "note": "78+44=122"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "70+45=115, subtracted 2 → 113"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "80+45=125, added 8 → 133"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "78+44=122"
+        }
       },
-      "solution_steps": ["78 + 2 = 80", "80 + 45 = 125", "125 - 2 = 123"],
-      "hint": "Turn 78 into 80, then adjust."
+      "solution_steps": [
+        "78 + 2 = 80",
+        "80 + 45 = 125",
+        "125 - 2 = 123"
+      ],
+      "hint": "Turn 78 into 80, then adjust.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_02",
@@ -489,15 +927,34 @@
       "skill_tag": "mental_math_break_apart",
       "difficulty": 3,
       "question": "Break apart to add. 463 + 325 = ?",
-      "choices": {"A": "778", "B": "788", "C": "798", "D": "688"},
-      "answer": "B",
+      "choices": [
+        "A) 778",
+        "B) 788",
+        "C) 798",
+        "D) 688"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "400+300=700, 63+25=88, wrote 778"},
-        "C": {"error_type": "careless", "note": "400+300=700, 63+35=98 → 798"},
-        "D": {"error_type": "concept_gap", "note": "400+200+88=688"}
+        "A": {
+          "error_type": "careless",
+          "note": "400+300=700, 63+25=88, wrote 778"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "400+300=700, 63+35=98 → 798"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "400+200+88=688"
+        }
       },
-      "solution_steps": ["400 + 300 = 700", "60 + 20 = 80", "3 + 5 = 8", "700 + 80 + 8 = 788"],
-      "hint": "Add hundreds, tens, and ones separately."
+      "solution_steps": [
+        "400 + 300 = 700",
+        "60 + 20 = 80",
+        "3 + 5 = 8",
+        "700 + 80 + 8 = 788"
+      ],
+      "hint": "Add hundreds, tens, and ones separately.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_03",
@@ -507,15 +964,34 @@
       "skill_tag": "mental_math_make_ten",
       "difficulty": 3,
       "question": "Use mental math. 57 + 36 = ?",
-      "choices": {"A": "83", "B": "93", "C": "103", "D": "92"},
-      "answer": "B",
+      "choices": [
+        "A) 83",
+        "B) 93",
+        "C) 103",
+        "D) 92"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "50+36=86, subtracted 3 → 83"},
-        "C": {"error_type": "careless", "note": "60+36=96, added 7 → 103"},
-        "D": {"error_type": "careless", "note": "57+35=92"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "50+36=86, subtracted 3 → 83"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "60+36=96, added 7 → 103"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "57+35=92"
+        }
       },
-      "solution_steps": ["57 + 3 = 60", "60 + 36 = 96", "96 - 3 = 93", "Or: 50+30=80, 7+6=13, 80+13=93"],
-      "hint": "Turn 57 into 60, add, adjust back."
+      "solution_steps": [
+        "57 + 3 = 60",
+        "60 + 36 = 96",
+        "96 - 3 = 93",
+        "Or: 50+30=80, 7+6=13, 80+13=93"
+      ],
+      "hint": "Turn 57 into 60, add, adjust back.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_04",
@@ -525,16 +1001,35 @@
       "skill_tag": "mental_math_break_apart",
       "difficulty": 4,
       "question": "Use mental math. 376 + 427 = ?",
-      "choices": {"A": "793", "B": "803", "C": "813", "D": "703"},
-      "answer": "B",
+      "choices": [
+        "A) 793",
+        "B) 803",
+        "C) 813",
+        "D) 703"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "300+400=700, 76+27=103 but wrote 793"},
-        "C": {"error_type": "careless", "note": "300+400=700, 76+37=113 → 813"},
-        "D": {"error_type": "concept_gap", "note": "300+400=700, forgot ones → 703"}
+        "A": {
+          "error_type": "careless",
+          "note": "300+400=700, 76+27=103 but wrote 793"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "300+400=700, 76+37=113 → 813"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "300+400=700, forgot ones → 703"
+        }
       },
-      "solution_steps": ["300 + 400 = 700", "76 + 27: 70+20=90, 6+7=13", "90 + 13 = 103", "700 + 103 = 803"],
+      "solution_steps": [
+        "300 + 400 = 700",
+        "76 + 27: 70+20=90, 6+7=13",
+        "90 + 13 = 103",
+        "700 + 103 = 803"
+      ],
       "hint": "Break apart hundreds first, then handle the rest.",
-      "verification": "Go Math p.19 Q9 — concert problem 376+427=803"
+      "verification": "Go Math p.19 Q9 — concert problem 376+427=803",
+      "correct_answer": "B"
     },
     {
       "id": "R2_05",
@@ -544,16 +1039,34 @@
       "skill_tag": "mental_math_word_problem",
       "difficulty": 4,
       "question": "On Friday, 376 people attended a school concert. On Saturday, 427 people attended. How many people attended in all?",
-      "choices": {"A": "793", "B": "803", "C": "813", "D": "703"},
-      "answer": "B",
+      "choices": [
+        "A) 793",
+        "B) 803",
+        "C) 813",
+        "D) 703"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "376+427: carried wrong → 793"},
-        "C": {"error_type": "careless", "note": "376+437=813"},
-        "D": {"error_type": "concept_gap", "note": "Forgot the tens and ones"}
+        "A": {
+          "error_type": "careless",
+          "note": "376+427: carried wrong → 793"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "376+437=813"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Forgot the tens and ones"
+        }
       },
-      "solution_steps": ["376 + 427", "Break apart: 300+400=700, 76+27=103", "700 + 103 = 803"],
+      "solution_steps": [
+        "376 + 427",
+        "Break apart: 300+400=700, 76+27=103",
+        "700 + 103 = 803"
+      ],
       "hint": "Use break apart strategy with hundreds.",
-      "verification": "Go Math p.19 Q9 — exact word problem"
+      "verification": "Go Math p.19 Q9 — exact word problem",
+      "correct_answer": "B"
     },
     {
       "id": "R2_06",
@@ -563,15 +1076,33 @@
       "skill_tag": "mental_math_friendly",
       "difficulty": 3,
       "question": "Use mental math. 99 + 47 = ?",
-      "choices": {"A": "136", "B": "146", "C": "156", "D": "145"},
-      "answer": "B",
+      "choices": [
+        "A) 136",
+        "B) 146",
+        "C) 156",
+        "D) 145"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "90+47=137, subtracted 1 → 136"},
-        "C": {"error_type": "careless", "note": "100+47=147, added 9 → 156"},
-        "D": {"error_type": "careless", "note": "100+47=147, subtracted 2 → 145"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "90+47=137, subtracted 1 → 136"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "100+47=147, added 9 → 156"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "100+47=147, subtracted 2 → 145"
+        }
       },
-      "solution_steps": ["99 + 1 = 100", "100 + 47 = 147", "147 - 1 = 146"],
-      "hint": "99 is very close to 100!"
+      "solution_steps": [
+        "99 + 1 = 100",
+        "100 + 47 = 147",
+        "147 - 1 = 146"
+      ],
+      "hint": "99 is very close to 100!",
+      "correct_answer": "B"
     },
     {
       "id": "R2_07",
@@ -581,15 +1112,34 @@
       "skill_tag": "mental_math_choose_strategy",
       "difficulty": 4,
       "question": "Which strategy is BEST for adding 198 + 245?",
-      "choices": {"A": "Count by tens and ones", "B": "Friendly numbers — change 198 to 200", "C": "Break apart into hundreds, tens, ones", "D": "Just add with paper and pencil"},
-      "answer": "B",
+      "choices": [
+        "A) Count by tens and ones",
+        "B) Friendly numbers — change 198 to 200",
+        "C) Break apart into hundreds, tens, ones",
+        "D) Just add with paper and pencil"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "Counting by tens from 198 is slow"},
-        "C": {"error_type": "careless", "note": "Works but less efficient for 198"},
-        "D": {"error_type": "concept_gap", "note": "Mental math is the goal of this lesson"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Counting by tens from 198 is slow"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Works but less efficient for 198"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Mental math is the goal of this lesson"
+        }
       },
-      "solution_steps": ["198 is very close to 200", "200 + 245 = 445", "445 - 2 = 443", "Friendly numbers is the easiest strategy here"],
-      "hint": "Look at 198 — what friendly number is it close to?"
+      "solution_steps": [
+        "198 is very close to 200",
+        "200 + 245 = 445",
+        "445 - 2 = 443",
+        "Friendly numbers is the easiest strategy here"
+      ],
+      "hint": "Look at 198 — what friendly number is it close to?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_08",
@@ -599,15 +1149,34 @@
       "skill_tag": "mental_math_break_apart",
       "difficulty": 4,
       "question": "Use mental math. 254 + 138 = ?",
-      "choices": {"A": "382", "B": "392", "C": "402", "D": "292"},
-      "answer": "B",
+      "choices": [
+        "A) 382",
+        "B) 392",
+        "C) 402",
+        "D) 292"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "200+100=300, 54+38=92, but wrote 382"},
-        "C": {"error_type": "careless", "note": "200+100=300, 54+48=102 → 402"},
-        "D": {"error_type": "concept_gap", "note": "200+54+38=292"}
+        "A": {
+          "error_type": "careless",
+          "note": "200+100=300, 54+38=92, but wrote 382"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "200+100=300, 54+48=102 → 402"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "200+54+38=292"
+        }
       },
-      "solution_steps": ["200 + 100 = 300", "50 + 30 = 80", "4 + 8 = 12", "300 + 80 + 12 = 392"],
-      "hint": "Break apart and add each place."
+      "solution_steps": [
+        "200 + 100 = 300",
+        "50 + 30 = 80",
+        "4 + 8 = 12",
+        "300 + 80 + 12 = 392"
+      ],
+      "hint": "Break apart and add each place.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_09",
@@ -617,15 +1186,34 @@
       "skill_tag": "mental_math_word_problem",
       "difficulty": 4,
       "question": "Emma has 167 stickers. Her friend gives her 89 more. How many stickers does Emma have now?",
-      "choices": {"A": "246", "B": "256", "C": "266", "D": "156"},
-      "answer": "B",
+      "choices": [
+        "A) 246",
+        "B) 256",
+        "C) 266",
+        "D) 156"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "167+79=246"},
-        "C": {"error_type": "careless", "note": "167+99=266"},
-        "D": {"error_type": "concept_gap", "note": "Subtracted: 167-11=156"}
+        "A": {
+          "error_type": "careless",
+          "note": "167+79=246"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "167+99=266"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Subtracted: 167-11=156"
+        }
       },
-      "solution_steps": ["89 + 1 = 90", "167 + 90 = 257", "257 - 1 = 256", "Or: 167+89 → 160+80=240, 7+9=16, 240+16=256"],
-      "hint": "89 is close to 90 — use friendly numbers!"
+      "solution_steps": [
+        "89 + 1 = 90",
+        "167 + 90 = 257",
+        "257 - 1 = 256",
+        "Or: 167+89 → 160+80=240, 7+9=16, 240+16=256"
+      ],
+      "hint": "89 is close to 90 — use friendly numbers!",
+      "correct_answer": "B"
     },
     {
       "id": "R2_10",
@@ -635,18 +1223,36 @@
       "skill_tag": "mental_math_make_ten",
       "difficulty": 4,
       "question": "Use mental math. 86 + 57 = ?",
-      "choices": {"A": "133", "B": "143", "C": "153", "D": "142"},
-      "answer": "B",
+      "choices": [
+        "A) 133",
+        "B) 143",
+        "C) 153",
+        "D) 142"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "80+57=137, subtracted 4 → 133"},
-        "C": {"error_type": "careless", "note": "90+57=147, added 6 → 153"},
-        "D": {"error_type": "careless", "note": "86+56=142"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "80+57=137, subtracted 4 → 133"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "90+57=147, added 6 → 153"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "86+56=142"
+        }
       },
-      "solution_steps": ["86 + 4 = 90", "90 + 57 = 147", "147 - 4 = 143", "Or: 80+50=130, 6+7=13, 130+13=143"],
-      "hint": "Turn 86 into 90, add, then adjust."
+      "solution_steps": [
+        "86 + 4 = 90",
+        "90 + 57 = 147",
+        "147 - 4 = 143",
+        "Or: 80+50=130, 6+7=13, 130+13=143"
+      ],
+      "hint": "Turn 86 into 90, add, then adjust.",
+      "correct_answer": "B"
     }
   ],
-
   "practice_r3": [
     {
       "id": "R3_01",
@@ -656,15 +1262,33 @@
       "skill_tag": "mental_math_multi_step",
       "difficulty": 4,
       "question": "A school has 186 students in 3rd grade, 212 in 4th grade, and 198 in 5th grade. How many students in all three grades?",
-      "choices": {"A": "586", "B": "596", "C": "606", "D": "496"},
-      "answer": "B",
+      "choices": [
+        "A) 586",
+        "B) 596",
+        "C) 606",
+        "D) 496"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "186+212=398, 398+198=586 — miscalculated"},
-        "C": {"error_type": "careless", "note": "200+200+200=600, 6 more → 606"},
-        "D": {"error_type": "concept_gap", "note": "Only added two grades"}
+        "A": {
+          "error_type": "careless",
+          "note": "186+212=398, 398+198=586 — miscalculated"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "200+200+200=600, 6 more → 606"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Only added two grades"
+        }
       },
-      "solution_steps": ["186 + 212: 100+200=300, 86+12=98, total=398", "398 + 198: friendly! 398+200=598, 598-2=596", "Or: 186+212+198 → 200+200+200=600, -14+12-2=-4, 600-4=596"],
-      "hint": "Add the first two, then add the third using friendly numbers."
+      "solution_steps": [
+        "186 + 212: 100+200=300, 86+12=98, total=398",
+        "398 + 198: friendly! 398+200=598, 598-2=596",
+        "Or: 186+212+198 → 200+200+200=600, -14+12-2=-4, 600-4=596"
+      ],
+      "hint": "Add the first two, then add the third using friendly numbers.",
+      "correct_answer": "B"
     },
     {
       "id": "R3_02",
@@ -674,15 +1298,34 @@
       "skill_tag": "mental_math_identify_strategy",
       "difficulty": 4,
       "question": "Jake solved 298 + 156 like this: '300 + 156 = 456, then 456 - 2 = 454.' What strategy did Jake use?",
-      "choices": {"A": "Count by tens and ones", "B": "Break apart", "C": "Friendly numbers (adjust)", "D": "Make a ten"},
-      "answer": "C",
+      "choices": [
+        "A) Count by tens and ones",
+        "B) Break apart",
+        "C) Friendly numbers (adjust)",
+        "D) Make a ten"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "Jake didn't count on a number line"},
-        "B": {"error_type": "concept_gap", "note": "Jake changed the number, not broke it apart"},
-        "D": {"error_type": "careless", "note": "Similar idea but 'friendly numbers' is the standard name for rounding to a ten/hundred and adjusting"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Jake didn't count on a number line"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Jake changed the number, not broke it apart"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Similar idea but 'friendly numbers' is the standard name for rounding to a ten/hundred and adjusting"
+        }
       },
-      "solution_steps": ["Jake changed 298 to 300 (a friendly number)", "Added: 300 + 156 = 456", "Adjusted back: 456 - 2 = 454", "This is the friendly numbers (adjust) strategy"],
-      "hint": "What did Jake do to 298 before adding?"
+      "solution_steps": [
+        "Jake changed 298 to 300 (a friendly number)",
+        "Added: 300 + 156 = 456",
+        "Adjusted back: 456 - 2 = 454",
+        "This is the friendly numbers (adjust) strategy"
+      ],
+      "hint": "What did Jake do to 298 before adding?",
+      "correct_answer": "C"
     },
     {
       "id": "R3_03",
@@ -692,15 +1335,36 @@
       "skill_tag": "mental_math_error_analysis",
       "difficulty": 5,
       "question": "Lily solved 47 + 36 using friendly numbers: '50 + 36 = 86. Then 86 + 3 = 89.' What mistake did Lily make?",
-      "choices": {"A": "She should have subtracted 3, not added 3", "B": "50 + 36 is wrong", "C": "She should have used break apart instead", "D": "She didn't make a mistake — 89 is correct"},
-      "answer": "A",
+      "choices": [
+        "A) She should have subtracted 3, not added 3",
+        "B) 50 + 36 is wrong",
+        "C) She should have used break apart instead",
+        "D) She didn't make a mistake — 89 is correct"
+      ],
       "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "50+36=86 is correct"},
-        "C": {"error_type": "concept_gap", "note": "Friendly numbers works fine, she just adjusted wrong"},
-        "D": {"error_type": "careless", "note": "47+36=83, not 89"}
+        "B": {
+          "error_type": "concept_gap",
+          "note": "50+36=86 is correct"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Friendly numbers works fine, she just adjusted wrong"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "47+36=83, not 89"
+        }
       },
-      "solution_steps": ["Lily changed 47 to 50 by adding 3", "50 + 36 = 86 ✓", "But she added 3 more instead of subtracting", "Since she added 3 to make 50, she needs to subtract 3 from the answer", "86 - 3 = 83", "47 + 36 = 83"],
-      "hint": "If you add to make a friendly number, what do you do at the end?"
+      "solution_steps": [
+        "Lily changed 47 to 50 by adding 3",
+        "50 + 36 = 86 ✓",
+        "But she added 3 more instead of subtracting",
+        "Since she added 3 to make 50, she needs to subtract 3 from the answer",
+        "86 - 3 = 83",
+        "47 + 36 = 83"
+      ],
+      "hint": "If you add to make a friendly number, what do you do at the end?",
+      "correct_answer": "A"
     },
     {
       "id": "R3_04",
@@ -710,15 +1374,33 @@
       "skill_tag": "mental_math_word_problem",
       "difficulty": 5,
       "question": "Marcus has 475 baseball cards. He buys 168 more at a shop and receives 97 as a gift. How many cards does he have now?",
-      "choices": {"A": "730", "B": "740", "C": "750", "D": "640"},
-      "answer": "B",
+      "choices": [
+        "A) 730",
+        "B) 740",
+        "C) 750",
+        "D) 640"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "475+168=643, 643+97=730 — miscalculated"},
-        "C": {"error_type": "careless", "note": "475+168=643, 643+107=750"},
-        "D": {"error_type": "concept_gap", "note": "475+168=643, forgot to add 97"}
+        "A": {
+          "error_type": "careless",
+          "note": "475+168=643, 643+97=730 — miscalculated"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "475+168=643, 643+107=750"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "475+168=643, forgot to add 97"
+        }
       },
-      "solution_steps": ["475 + 168: 400+100=500, 75+68=143, 500+143=643", "643 + 97: friendly! 643+100=743, 743-3=740", "Total: 740"],
-      "hint": "Add the first two, then use friendly numbers for +97."
+      "solution_steps": [
+        "475 + 168: 400+100=500, 75+68=143, 500+143=643",
+        "643 + 97: friendly! 643+100=743, 743-3=740",
+        "Total: 740"
+      ],
+      "hint": "Add the first two, then use friendly numbers for +97.",
+      "correct_answer": "B"
     },
     {
       "id": "R3_05",
@@ -728,15 +1410,34 @@
       "skill_tag": "mental_math_explain",
       "difficulty": 5,
       "question": "Show two different strategies to solve 199 + 364. Which gives the same answer?",
-      "choices": {"A": "Friendly: 200+364=564, 564-1=563. Break apart: 100+300=400, 99+64=163, 400+163=563. Both = 563.", "B": "Friendly: 200+364=564. Break apart: 100+300=400, 99+64=163, 400+163=563. Different answers.", "C": "Friendly: 200+364=564, 564+1=565. Break apart: 100+300=400, 99+64=163, 400+163=563.", "D": "Both strategies always give different answers."},
-      "answer": "A",
+      "choices": [
+        "A) Friendly: 200+364=564, 564-1=563. Break apart: 100+300=400, 99+64=163, 400+163=563. Both = 563.",
+        "B) Friendly: 200+364=564. Break apart: 100+300=400, 99+64=163, 400+163=563. Different answers.",
+        "C) Friendly: 200+364=564, 564+1=565. Break apart: 100+300=400, 99+64=163, 400+163=563.",
+        "D) Both strategies always give different answers."
+      ],
       "expected_errors": {
-        "B": {"error_type": "careless", "note": "Friendly method forgot to subtract 1"},
-        "C": {"error_type": "concept_gap", "note": "Added 1 instead of subtracting — wrong adjustment"},
-        "D": {"error_type": "concept_gap", "note": "All strategies should give the same correct answer"}
+        "B": {
+          "error_type": "careless",
+          "note": "Friendly method forgot to subtract 1"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Added 1 instead of subtracting — wrong adjustment"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "All strategies should give the same correct answer"
+        }
       },
-      "solution_steps": ["Friendly: 199+1=200, 200+364=564, 564-1=563", "Break apart: 100+300=400, 90+60=150, 9+4=13, 400+150+13=563", "Both give 563 ✓", "Different strategies, same answer!"],
-      "hint": "Try both strategies carefully. Do you get the same number?"
+      "solution_steps": [
+        "Friendly: 199+1=200, 200+364=564, 564-1=563",
+        "Break apart: 100+300=400, 90+60=150, 9+4=13, 400+150+13=563",
+        "Both give 563 ✓",
+        "Different strategies, same answer!"
+      ],
+      "hint": "Try both strategies carefully. Do you get the same number?",
+      "correct_answer": "A"
     }
   ]
 }

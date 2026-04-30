@@ -28,73 +28,73 @@
   "pretest": [
     {
       "id": "PT_01",
-      "type": "MC",
-      "stem": "8 ÷ 1 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "7",
-        "8"
+        "A) 0",
+        "B) 1",
+        "C) 7",
+        "D) 8"
       ],
-      "answer": "D",
       "explanation": "Any number ÷ 1 = itself. 8 ÷ 1 = 8.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "8 ÷ 1 = ?",
+      "correct_answer": "D"
     },
     {
       "id": "PT_02",
-      "type": "MC",
-      "stem": "6 ÷ 6 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "6",
-        "12"
+        "A) 0",
+        "B) 1",
+        "C) 6",
+        "D) 12"
       ],
-      "answer": "B",
       "explanation": "Any number ÷ itself = 1.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "6 ÷ 6 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "PT_03",
-      "type": "MC",
-      "stem": "0 ÷ 5 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "5",
-        "undefined"
+        "A) 0",
+        "B) 1",
+        "C) 5",
+        "D) undefined"
       ],
-      "answer": "A",
       "explanation": "0 ÷ any non-zero number = 0.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "0 ÷ 5 = ?",
+      "correct_answer": "A"
     },
     {
       "id": "PT_04",
-      "type": "MC",
-      "stem": "Which statement is true?",
+      "type": "mc",
       "choices": [
-        "5 ÷ 0 = 0",
-        "5 ÷ 0 = 5",
-        "0 ÷ 0 = 0",
-        "You cannot divide by 0"
+        "A) 5 ÷ 0 = 0",
+        "B) 5 ÷ 0 = 5",
+        "C) 0 ÷ 0 = 0",
+        "D) You cannot divide by 0"
       ],
-      "answer": "D",
       "explanation": "Division by 0 is not allowed.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "Which statement is true?",
+      "correct_answer": "D"
     },
     {
       "id": "PT_05",
-      "type": "MC",
-      "stem": "9 ÷ 1 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "8",
-        "9"
+        "A) 0",
+        "B) 1",
+        "C) 8",
+        "D) 9"
       ],
-      "answer": "D",
       "explanation": "9 ÷ 1 = 9.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "9 ÷ 1 = ?",
+      "correct_answer": "D"
     }
   ],
   "learn": [
@@ -155,9 +155,18 @@
       "visual_type": "number_line",
       "visual_data": {
         "examples": [
-          {"expression": "7 ÷ 1 = 7", "note": "1 group of 7"},
-          {"expression": "7 ÷ 7 = 1", "note": "7 groups of 1"},
-          {"expression": "0 ÷ 7 = 0", "note": "0 groups"}
+          {
+            "expression": "7 ÷ 1 = 7",
+            "note": "1 group of 7"
+          },
+          {
+            "expression": "7 ÷ 7 = 1",
+            "note": "7 groups of 1"
+          },
+          {
+            "expression": "0 ÷ 7 = 0",
+            "note": "0 groups"
+          }
         ]
       }
     },
@@ -175,22 +184,25 @@
           "0 ÷ n = 0",
           "n ÷ 0 = undefined"
         ],
-        "examples": ["9 ÷ 1 = 9", "9 ÷ 9 = 1", "0 ÷ 9 = 0", "9 ÷ 0 = ?"]
+        "examples": [
+          "9 ÷ 1 = 9",
+          "9 ÷ 9 = 1",
+          "0 ÷ 9 = 0",
+          "9 ÷ 0 = ?"
+        ]
       }
     }
   ],
   "try": [
     {
       "id": "TRY_01",
-      "type": "MC",
-      "stem": "4 ÷ 4 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "2",
-        "4"
+        "A) 0",
+        "B) 1",
+        "C) 2",
+        "D) 4"
       ],
-      "answer": "B",
       "explanation": "Any number ÷ itself = 1. 4 ÷ 4 = 1.",
       "difficulty": 1,
       "hints": [
@@ -201,19 +213,19 @@
         "correct": "Correct! 4 ÷ 4 = 1. Any number divided by itself equals 1.",
         "incorrect": "Not quite. Rule: n ÷ n = 1. So 4 ÷ 4 = 1."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "4 ÷ 4 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_02",
-      "type": "MC",
-      "stem": "0 ÷ 9 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "9",
-        "undefined"
+        "A) 0",
+        "B) 1",
+        "C) 9",
+        "D) undefined"
       ],
-      "answer": "A",
       "explanation": "0 ÷ any non-zero number = 0.",
       "difficulty": 1,
       "hints": [
@@ -224,13 +236,13 @@
         "correct": "Correct! 0 ÷ 9 = 0. Zero divided by anything is 0.",
         "incorrect": "Not quite. Rule: 0 ÷ n = 0. So 0 ÷ 9 = 0."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "0 ÷ 9 = ?",
+      "correct_answer": "A"
     },
     {
       "id": "TRY_03",
       "type": "input",
-      "stem": "12 ÷ 1 = ?",
-      "answer": "12",
       "explanation": "Any number ÷ 1 = itself. 12 ÷ 1 = 12.",
       "difficulty": 1,
       "hints": [
@@ -241,13 +253,13 @@
         "correct": "Correct! 12 ÷ 1 = 12. Any number divided by 1 stays the same.",
         "incorrect": "Not quite. Rule: n ÷ 1 = n. So 12 ÷ 1 = 12."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "12 ÷ 1 = ?",
+      "correct_answer": "12"
     },
     {
       "id": "TRY_04",
       "type": "input",
-      "stem": "0 ÷ 6 = ?",
-      "answer": "0",
       "explanation": "0 ÷ any non-zero number = 0.",
       "difficulty": 1,
       "hints": [
@@ -258,19 +270,19 @@
         "correct": "Correct! 0 ÷ 6 = 0. Zero divided by any number is 0.",
         "incorrect": "Not quite. Rule: 0 ÷ n = 0. So 0 ÷ 6 = 0."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "0 ÷ 6 = ?",
+      "correct_answer": "0"
     },
     {
       "id": "TRY_05",
-      "type": "MC",
-      "stem": "Which rule applies to 15 ÷ 15?",
+      "type": "mc",
       "choices": [
-        "n ÷ 1 = n",
-        "n ÷ n = 1",
-        "0 ÷ n = 0",
-        "n ÷ 0 = undefined"
+        "A) n ÷ 1 = n",
+        "B) n ÷ n = 1",
+        "C) 0 ÷ n = 0",
+        "D) n ÷ 0 = undefined"
       ],
-      "answer": "B",
       "explanation": "15 ÷ 15: dividend equals divisor → n ÷ n = 1.",
       "difficulty": 1,
       "hints": [
@@ -281,21 +293,21 @@
         "correct": "Correct! n ÷ n = 1 applies. 15 ÷ 15 = 1.",
         "incorrect": "Not quite. Both numbers are 15 → rule n ÷ n = 1 applies."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Which rule applies to 15 ÷ 15?",
+      "correct_answer": "B"
     }
   ],
   "practice_r1": [
     {
       "id": "R1_01",
-      "type": "MC",
-      "stem": "3 ÷ 1 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "3",
-        "4"
+        "A) 0",
+        "B) 1",
+        "C) 3",
+        "D) 4"
       ],
-      "answer": "C",
       "explanation": "3 ÷ 1 = 3.",
       "difficulty": 1,
       "hints": [
@@ -305,19 +317,19 @@
       "feedback": {
         "correct": "Correct! 3 ÷ 1 = 3. Any number ÷ 1 = itself.",
         "incorrect": "Not quite. Rule: n ÷ 1 = n → 3 ÷ 1 = 3."
-      }
+      },
+      "question": "3 ÷ 1 = ?",
+      "correct_answer": "C"
     },
     {
       "id": "R1_02",
-      "type": "MC",
-      "stem": "7 ÷ 7 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "7",
-        "14"
+        "A) 0",
+        "B) 1",
+        "C) 7",
+        "D) 14"
       ],
-      "answer": "B",
       "explanation": "7 ÷ 7 = 1.",
       "difficulty": 1,
       "hints": [
@@ -327,19 +339,19 @@
       "feedback": {
         "correct": "Correct! 7 ÷ 7 = 1. Any number ÷ itself = 1.",
         "incorrect": "Not quite. Rule: n ÷ n = 1 → 7 ÷ 7 = 1."
-      }
+      },
+      "question": "7 ÷ 7 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_03",
-      "type": "MC",
-      "stem": "0 ÷ 3 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "3",
-        "undefined"
+        "A) 0",
+        "B) 1",
+        "C) 3",
+        "D) undefined"
       ],
-      "answer": "A",
       "explanation": "0 ÷ 3 = 0.",
       "difficulty": 1,
       "hints": [
@@ -349,19 +361,19 @@
       "feedback": {
         "correct": "Correct! 0 ÷ 3 = 0. Zero ÷ any number = 0.",
         "incorrect": "Not quite. Rule: 0 ÷ n = 0 → 0 ÷ 3 = 0."
-      }
+      },
+      "question": "0 ÷ 3 = ?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_04",
-      "type": "MC",
-      "stem": "5 ÷ 1 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "4",
-        "5"
+        "A) 0",
+        "B) 1",
+        "C) 4",
+        "D) 5"
       ],
-      "answer": "D",
       "explanation": "5 ÷ 1 = 5.",
       "difficulty": 1,
       "hints": [
@@ -371,19 +383,19 @@
       "feedback": {
         "correct": "Correct! 5 ÷ 1 = 5. Any number ÷ 1 = itself.",
         "incorrect": "Not quite. Rule: n ÷ 1 = n → 5 ÷ 1 = 5."
-      }
+      },
+      "question": "5 ÷ 1 = ?",
+      "correct_answer": "D"
     },
     {
       "id": "R1_05",
-      "type": "MC",
-      "stem": "1 ÷ 1 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "2",
-        "11"
+        "A) 0",
+        "B) 1",
+        "C) 2",
+        "D) 11"
       ],
-      "answer": "B",
       "explanation": "1 ÷ 1 = 1 (both rules apply: ÷1 and ÷itself).",
       "difficulty": 1,
       "hints": [
@@ -393,19 +405,19 @@
       "feedback": {
         "correct": "Correct! 1 ÷ 1 = 1.",
         "incorrect": "Not quite. 1 ÷ 1 = 1 (both rules: n÷1=n and n÷n=1 agree)."
-      }
+      },
+      "question": "1 ÷ 1 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_06",
-      "type": "MC",
-      "stem": "0 ÷ 8 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "8",
-        "undefined"
+        "A) 0",
+        "B) 1",
+        "C) 8",
+        "D) undefined"
       ],
-      "answer": "A",
       "explanation": "0 ÷ 8 = 0.",
       "difficulty": 1,
       "hints": [
@@ -415,19 +427,19 @@
       "feedback": {
         "correct": "Correct! 0 ÷ 8 = 0. Zero ÷ any number = 0.",
         "incorrect": "Not quite. Rule: 0 ÷ n = 0 → 0 ÷ 8 = 0."
-      }
+      },
+      "question": "0 ÷ 8 = ?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_07",
-      "type": "MC",
-      "stem": "10 ÷ 10 = ?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "10",
-        "100"
+        "A) 0",
+        "B) 1",
+        "C) 10",
+        "D) 100"
       ],
-      "answer": "B",
       "explanation": "10 ÷ 10 = 1.",
       "difficulty": 1,
       "hints": [
@@ -437,13 +449,13 @@
       "feedback": {
         "correct": "Correct! 10 ÷ 10 = 1. Any number ÷ itself = 1.",
         "incorrect": "Not quite. Rule: n ÷ n = 1 → 10 ÷ 10 = 1."
-      }
+      },
+      "question": "10 ÷ 10 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_08",
       "type": "input",
-      "stem": "25 ÷ 1 = ?",
-      "answer": "25",
       "explanation": "Any number ÷ 1 = itself. 25 ÷ 1 = 25.",
       "difficulty": 1,
       "hints": [
@@ -454,19 +466,19 @@
         "correct": "Correct! 25 ÷ 1 = 25. Any number ÷ 1 = itself.",
         "incorrect": "Not quite. Rule: n ÷ 1 = n → 25 ÷ 1 = 25."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "25 ÷ 1 = ?",
+      "correct_answer": "25"
     },
     {
       "id": "R1_09",
-      "type": "MC",
-      "stem": "Which expression equals 0?",
+      "type": "mc",
       "choices": [
-        "9 ÷ 9",
-        "9 ÷ 1",
-        "0 ÷ 9",
-        "9 ÷ 0"
+        "A) 9 ÷ 9",
+        "B) 9 ÷ 1",
+        "C) 0 ÷ 9",
+        "D) 9 ÷ 0"
       ],
-      "answer": "C",
       "explanation": "0 ÷ 9 = 0. Choice A = 1, B = 9, D = undefined.",
       "difficulty": 1,
       "hints": [
@@ -476,13 +488,13 @@
       "feedback": {
         "correct": "Correct! 0 ÷ 9 = 0. Rule: 0 ÷ n = 0.",
         "incorrect": "Not quite. 0 ÷ 9 = 0 (dividend is 0). The others: 9÷9=1, 9÷1=9, 9÷0=undefined."
-      }
+      },
+      "question": "Which expression equals 0?",
+      "correct_answer": "C"
     },
     {
       "id": "R1_10",
       "type": "input",
-      "stem": "0 ÷ 7 = ?",
-      "answer": "0",
       "explanation": "0 ÷ any non-zero number = 0.",
       "difficulty": 1,
       "hints": [
@@ -493,21 +505,21 @@
         "correct": "Correct! 0 ÷ 7 = 0. Zero divided by any number is 0.",
         "incorrect": "Not quite. Rule: 0 ÷ n = 0 → 0 ÷ 7 = 0."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "0 ÷ 7 = ?",
+      "correct_answer": "0"
     }
   ],
   "practice_r2": [
     {
       "id": "R2_01",
-      "type": "MC",
-      "stem": "Which does NOT equal 1?",
+      "type": "mc",
       "choices": [
-        "9 ÷ 9",
-        "5 ÷ 5",
-        "8 ÷ 1",
-        "3 ÷ 3"
+        "A) 9 ÷ 9",
+        "B) 5 ÷ 5",
+        "C) 8 ÷ 1",
+        "D) 3 ÷ 3"
       ],
-      "answer": "C",
       "explanation": "8 ÷ 1 = 8, not 1. All others equal 1 (n ÷ n = 1).",
       "difficulty": 2,
       "hints": [
@@ -517,19 +529,19 @@
       "feedback": {
         "correct": "Correct! 8 ÷ 1 = 8, not 1. The others all use n÷n=1.",
         "incorrect": "Not quite. 8 ÷ 1 = 8 (not 1). The rule n÷1=n means the result is 8."
-      }
+      },
+      "question": "Which does NOT equal 1?",
+      "correct_answer": "C"
     },
     {
       "id": "R2_02",
-      "type": "MC",
-      "stem": "Mia says 0 ÷ 4 = 4. Is she correct?",
+      "type": "mc",
       "choices": [
-        "Yes",
-        "No — the answer is 0",
-        "No — the answer is 1",
-        "No — you can't divide 0"
+        "A) Yes",
+        "B) No — the answer is 0",
+        "C) No — the answer is 1",
+        "D) No — you can't divide 0"
       ],
-      "answer": "B",
       "explanation": "0 ÷ 4 = 0, not 4. Zero divided by any number is 0.",
       "difficulty": 2,
       "hints": [
@@ -539,19 +551,19 @@
       "feedback": {
         "correct": "Correct! Mia is wrong. 0 ÷ 4 = 0.",
         "incorrect": "Not quite. Rule: 0 ÷ n = 0. The answer is 0, not 4."
-      }
+      },
+      "question": "Mia says 0 ÷ 4 = 4. Is she correct?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_03",
-      "type": "MC",
-      "stem": "What is (6 ÷ 6) + (0 ÷ 7)?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "6",
-        "7"
+        "A) 0",
+        "B) 1",
+        "C) 6",
+        "D) 7"
       ],
-      "answer": "B",
       "explanation": "6÷6 = 1, 0÷7 = 0. 1 + 0 = 1.",
       "difficulty": 2,
       "hints": [
@@ -561,19 +573,19 @@
       "feedback": {
         "correct": "Correct! 6÷6=1 and 0÷7=0, so 1+0=1.",
         "incorrect": "Not quite. 6÷6=1 and 0÷7=0, then 1+0=1."
-      }
+      },
+      "question": "What is (6 ÷ 6) + (0 ÷ 7)?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_04",
-      "type": "MC",
-      "stem": "Which is true about 7 ÷ 0?",
+      "type": "mc",
       "choices": [
-        "It equals 0",
-        "It equals 7",
-        "It equals 1",
-        "It is not possible"
+        "A) It equals 0",
+        "B) It equals 7",
+        "C) It equals 1",
+        "D) It is not possible"
       ],
-      "answer": "D",
       "explanation": "You cannot divide by 0. It is undefined.",
       "difficulty": 2,
       "hints": [
@@ -583,13 +595,13 @@
       "feedback": {
         "correct": "Correct! 7 ÷ 0 is not possible (undefined).",
         "incorrect": "Not quite. You can never divide by 0. It is undefined."
-      }
+      },
+      "question": "Which is true about 7 ÷ 0?",
+      "correct_answer": "D"
     },
     {
       "id": "R2_05",
       "type": "input",
-      "stem": "100 ÷ 1 = ?",
-      "answer": "100",
       "explanation": "Any number ÷ 1 = itself. 100 ÷ 1 = 100.",
       "difficulty": 2,
       "hints": [
@@ -600,19 +612,19 @@
         "correct": "Correct! 100 ÷ 1 = 100. The rule works for any number.",
         "incorrect": "Not quite. Rule: n ÷ 1 = n → 100 ÷ 1 = 100."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "100 ÷ 1 = ?",
+      "correct_answer": "100"
     },
     {
       "id": "R2_06",
-      "type": "MC",
-      "stem": "Sam divides 0 cookies equally among 8 friends. How many cookies does each friend get?",
+      "type": "mc",
       "choices": [
-        "0",
-        "1",
-        "8",
-        "You can't divide 0"
+        "A) 0",
+        "B) 1",
+        "C) 8",
+        "D) You can't divide 0"
       ],
-      "answer": "A",
       "explanation": "0 ÷ 8 = 0. Zero cookies shared gives 0 each.",
       "difficulty": 2,
       "hints": [
@@ -622,13 +634,13 @@
       "feedback": {
         "correct": "Correct! 0 ÷ 8 = 0. Each friend gets 0 cookies.",
         "incorrect": "Not quite. 0 items shared = 0 per person. Rule: 0 ÷ n = 0."
-      }
+      },
+      "question": "Sam divides 0 cookies equally among 8 friends. How many cookies does each friend get?",
+      "correct_answer": "A"
     },
     {
       "id": "R2_07",
       "type": "input",
-      "stem": "50 ÷ 50 = ?",
-      "answer": "1",
       "explanation": "Any number ÷ itself = 1. 50 ÷ 50 = 1.",
       "difficulty": 2,
       "hints": [
@@ -639,19 +651,19 @@
         "correct": "Correct! 50 ÷ 50 = 1. Any number ÷ itself = 1.",
         "incorrect": "Not quite. Rule: n ÷ n = 1 → 50 ÷ 50 = 1."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "50 ÷ 50 = ?",
+      "correct_answer": "1"
     },
     {
       "id": "R2_08",
-      "type": "MC",
-      "stem": "Which expression is NOT possible?",
+      "type": "mc",
       "choices": [
-        "6 ÷ 1 = 6",
-        "0 ÷ 4 = 0",
-        "8 ÷ 8 = 1",
-        "3 ÷ 0 = 3"
+        "A) 6 ÷ 1 = 6",
+        "B) 0 ÷ 4 = 0",
+        "C) 8 ÷ 8 = 1",
+        "D) 3 ÷ 0 = 3"
       ],
-      "answer": "D",
       "explanation": "3 ÷ 0 is undefined. You cannot divide by 0.",
       "difficulty": 2,
       "hints": [
@@ -661,13 +673,13 @@
       "feedback": {
         "correct": "Correct! 3 ÷ 0 is impossible — you cannot divide by 0.",
         "incorrect": "Not quite. 3 ÷ 0 is not possible (undefined). Never divide by 0."
-      }
+      },
+      "question": "Which expression is NOT possible?",
+      "correct_answer": "D"
     },
     {
       "id": "R2_09",
       "type": "input",
-      "stem": "0 ÷ 100 = ?",
-      "answer": "0",
       "explanation": "0 ÷ any non-zero number = 0, even for large divisors.",
       "difficulty": 2,
       "hints": [
@@ -678,19 +690,19 @@
         "correct": "Correct! 0 ÷ 100 = 0. Zero divided by anything is 0.",
         "incorrect": "Not quite. Rule: 0 ÷ n = 0 → 0 ÷ 100 = 0."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "0 ÷ 100 = ?",
+      "correct_answer": "0"
     },
     {
       "id": "R2_10",
-      "type": "MC",
-      "stem": "What is (5 ÷ 5) + (0 ÷ 8) + (7 ÷ 1)?",
+      "type": "mc",
       "choices": [
-        "6",
-        "7",
-        "8",
-        "13"
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 13"
       ],
-      "answer": "C",
       "explanation": "5÷5=1, 0÷8=0, 7÷1=7. 1+0+7=8.",
       "difficulty": 2,
       "hints": [
@@ -700,21 +712,21 @@
       "feedback": {
         "correct": "Correct! 1+0+7=8.",
         "incorrect": "Not quite. 5÷5=1, 0÷8=0, 7÷1=7. Then 1+0+7=8."
-      }
+      },
+      "question": "What is (5 ÷ 5) + (0 ÷ 8) + (7 ÷ 1)?",
+      "correct_answer": "C"
     }
   ],
   "practice_r3": [
     {
       "id": "R3_01",
-      "type": "MC",
-      "stem": "What is (9 ÷ 1) × (4 ÷ 4)?",
+      "type": "mc",
       "choices": [
-        "1",
-        "4",
-        "9",
-        "36"
+        "A) 1",
+        "B) 4",
+        "C) 9",
+        "D) 36"
       ],
-      "answer": "C",
       "explanation": "9 ÷ 1 = 9. 4 ÷ 4 = 1. 9 × 1 = 9.",
       "difficulty": 3,
       "hints": [
@@ -724,19 +736,19 @@
       "feedback": {
         "correct": "Correct! (9÷1) × (4÷4) = 9 × 1 = 9.",
         "incorrect": "Not quite. 9÷1=9 and 4÷4=1. Then 9 × 1 = 9."
-      }
+      },
+      "question": "What is (9 ÷ 1) × (4 ÷ 4)?",
+      "correct_answer": "C"
     },
     {
       "id": "R3_02",
-      "type": "MC",
-      "stem": "Ben writes: 0 ÷ 6 = 0, so 0 ÷ 60 = 0, and 0 ÷ 600 = 0. Is his pattern correct?",
+      "type": "mc",
       "choices": [
-        "Yes — 0 divided by any non-zero number is always 0",
-        "No — 0 ÷ 600 = 600",
-        "No — it only works for single-digit numbers",
-        "Yes — but only if you use repeated subtraction"
+        "A) Yes — 0 divided by any non-zero number is always 0",
+        "B) No — 0 ÷ 600 = 600",
+        "C) No — it only works for single-digit numbers",
+        "D) Yes — but only if you use repeated subtraction"
       ],
-      "answer": "A",
       "explanation": "0 ÷ (any non-zero) = 0. The rule holds for all non-zero divisors.",
       "difficulty": 3,
       "hints": [
@@ -746,19 +758,19 @@
       "feedback": {
         "correct": "Correct! 0 ÷ n = 0 works for any non-zero n. Ben is right!",
         "incorrect": "Not quite. Rule 0 ÷ n = 0 holds for all non-zero divisors. Ben's pattern is correct."
-      }
+      },
+      "question": "Ben writes: 0 ÷ 6 = 0, so 0 ÷ 60 = 0, and 0 ÷ 600 = 0. Is his pattern correct?",
+      "correct_answer": "A"
     },
     {
       "id": "R3_03",
-      "type": "MC",
-      "stem": "What is (8 ÷ 8) + (7 ÷ 1) + (0 ÷ 5)?",
+      "type": "mc",
       "choices": [
-        "6",
-        "7",
-        "8",
-        "15"
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 15"
       ],
-      "answer": "C",
       "explanation": "8÷8=1, 7÷1=7, 0÷5=0. 1+7+0=8.",
       "difficulty": 3,
       "hints": [
@@ -768,19 +780,19 @@
       "feedback": {
         "correct": "Correct! 1+7+0=8.",
         "incorrect": "Not quite. 8÷8=1, 7÷1=7, 0÷5=0. Then 1+7+0=8."
-      }
+      },
+      "question": "What is (8 ÷ 8) + (7 ÷ 1) + (0 ÷ 5)?",
+      "correct_answer": "C"
     },
     {
       "id": "R3_04",
-      "type": "MC",
-      "stem": "What is (8 ÷ 1) − (0 ÷ 4) + (3 ÷ 3)?",
+      "type": "mc",
       "choices": [
-        "7",
-        "8",
-        "9",
-        "12"
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 12"
       ],
-      "answer": "C",
       "explanation": "8÷1=8, 0÷4=0, 3÷3=1. 8−0+1=9.",
       "difficulty": 3,
       "hints": [
@@ -790,13 +802,13 @@
       "feedback": {
         "correct": "Correct! 8−0+1=9.",
         "incorrect": "Not quite. 8÷1=8, 0÷4=0, 3÷3=1. Then 8−0+1=9."
-      }
+      },
+      "question": "What is (8 ÷ 1) − (0 ÷ 4) + (3 ÷ 3)?",
+      "correct_answer": "C"
     },
     {
       "id": "R3_05",
       "type": "input",
-      "stem": "A mystery number divided by 1 gives the same answer as 5 + 4. What is the mystery number?",
-      "answer": "9",
       "explanation": "5 + 4 = 9. Rule n÷1=n: the mystery number ÷ 1 = 9 → the number is 9.",
       "difficulty": 3,
       "hints": [
@@ -807,7 +819,9 @@
         "correct": "Correct! 5+4=9, and n÷1=n means the number is 9.",
         "incorrect": "Not quite. 5+4=9. Rule n÷1=n means the mystery number is 9."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "A mystery number divided by 1 gives the same answer as 5 + 4. What is the mystery number?",
+      "correct_answer": "9"
     }
   ],
   "concept": "division_rules_for_1_and_0"

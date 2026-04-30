@@ -27,48 +27,73 @@
   "pretest": [
     {
       "id": "PT_01",
-      "type": "MC",
-      "stem": "Kim has 24 stickers. She gives 6 away, then splits the rest equally among 3 friends. How many does each friend get?",
-      "choices": ["4", "5", "6", "8"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 8"
+      ],
       "explanation": "24 − 6 = 18. 18 ÷ 3 = 6.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "Kim has 24 stickers. She gives 6 away, then splits the rest equally among 3 friends. How many does each friend get?",
+      "correct_answer": "C"
     },
     {
       "id": "PT_02",
-      "type": "MC",
-      "stem": "A store has 5 boxes of 8 water bottles. A customer buys 10 bottles. How many are left?",
-      "choices": ["20", "25", "30", "35"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 20",
+        "B) 25",
+        "C) 30",
+        "D) 35"
+      ],
       "explanation": "5 × 8 = 40. 40 − 10 = 30.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "A store has 5 boxes of 8 water bottles. A customer buys 10 bottles. How many are left?",
+      "correct_answer": "C"
     },
     {
       "id": "PT_03",
-      "type": "MC",
-      "stem": "Tom earns $7 a day for 4 days. He spends $13. How much does he have?",
-      "choices": ["$12", "$15", "$18", "$21"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) $12",
+        "B) $15",
+        "C) $18",
+        "D) $21"
+      ],
       "explanation": "7 × 4 = 28. 28 − 13 = 15.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "Tom earns $7 a day for 4 days. He spends $13. How much does he have?",
+      "correct_answer": "B"
     },
     {
       "id": "PT_04",
-      "type": "MC",
-      "stem": "There are 36 students in 4 equal groups. Then 2 students from each group leave. How many are left in each group?",
-      "choices": ["5", "6", "7", "8"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
       "explanation": "36 ÷ 4 = 9 per group. 9 − 2 = 7 left.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "There are 36 students in 4 equal groups. Then 2 students from each group leave. How many are left in each group?",
+      "correct_answer": "C"
     },
     {
       "id": "PT_05",
-      "type": "MC",
-      "stem": "Ella buys 3 packs of markers for $6 each. She also buys a notebook for $4. How much did she spend?",
-      "choices": ["$18", "$20", "$22", "$24"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) $18",
+        "B) $20",
+        "C) $22",
+        "D) $24"
+      ],
       "explanation": "3 × 6 = 18. 18 + 4 = 22.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "Ella buys 3 packs of markers for $6 each. She also buys a notebook for $4. How much did she spend?",
+      "correct_answer": "C"
     }
   ],
   "learn": [
@@ -139,10 +164,13 @@
     {
       "id": "TRY_01",
       "problem_id": "TRY_01",
-      "type": "MC",
-      "stem": "A class has 28 pencils. The teacher buys 12 more, then divides them equally among 8 students. How many pencils does each student get?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "Step 1: 28 + 12 = 40 pencils total. Step 2: 40 ÷ 8 = 5 per student.",
       "difficulty": 2,
       "hints": [
@@ -153,15 +181,23 @@
         "correct": "Correct! 28+12=40, then 40÷8=5 pencils each.",
         "incorrect": "Step 1: 28+12=40. Step 2: 40÷8=5. Each student gets 5 pencils."
       },
-      "solution_steps": ["28 + 12 = 40", "40 ÷ 8 = 5"]
+      "solution_steps": [
+        "28 + 12 = 40",
+        "40 ÷ 8 = 5"
+      ],
+      "question": "A class has 28 pencils. The teacher buys 12 more, then divides them equally among 8 students. How many pencils does each student get?",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_02",
       "problem_id": "TRY_02",
-      "type": "MC",
-      "stem": "Maya has $20. She buys 2 books for $6 each. How much money is left?",
-      "choices": ["$6", "$8", "$10", "$14"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) $6",
+        "B) $8",
+        "C) $10",
+        "D) $14"
+      ],
       "explanation": "Step 1: 2 × 6 = $12 spent. Step 2: 20 − 12 = $8 left.",
       "difficulty": 2,
       "hints": [
@@ -172,14 +208,17 @@
         "correct": "Right! 2×6=$12, then 20−12=$8 left.",
         "incorrect": "Step 1: 2×6=12. Step 2: 20−12=8. Maya has $8 left."
       },
-      "solution_steps": ["2 × 6 = 12", "20 − 12 = 8"]
+      "solution_steps": [
+        "2 × 6 = 12",
+        "20 − 12 = 8"
+      ],
+      "question": "Maya has $20. She buys 2 books for $6 each. How much money is left?",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_03",
       "problem_id": "TRY_03",
       "type": "input",
-      "stem": "You buy 4 bags of apples with 6 apples in each bag. Then you eat 3 apples. How many apples remain?",
-      "answer": "21",
       "explanation": "Step 1: 4 × 6 = 24 apples total. Step 2: 24 − 3 = 21 remain.",
       "difficulty": 2,
       "hints": [
@@ -190,14 +229,17 @@
         "correct": "Correct! 4×6=24, then 24−3=21 apples remain.",
         "incorrect": "Step 1: 4×6=24 apples. Step 2: 24−3=21 remain."
       },
-      "solution_steps": ["4 × 6 = 24", "24 − 3 = 21"]
+      "solution_steps": [
+        "4 × 6 = 24",
+        "24 − 3 = 21"
+      ],
+      "question": "You buy 4 bags of apples with 6 apples in each bag. Then you eat 3 apples. How many apples remain?",
+      "correct_answer": "21"
     },
     {
       "id": "TRY_04",
       "problem_id": "TRY_04",
       "type": "input",
-      "stem": "56 cards are dealt equally to 7 players. Then each player receives 2 more bonus cards. How many cards does each player have now?",
-      "answer": "10",
       "explanation": "Step 1: 56 ÷ 7 = 8 cards each. Step 2: 8 + 2 = 10 cards each.",
       "difficulty": 2,
       "hints": [
@@ -208,15 +250,23 @@
         "correct": "Great! 56÷7=8, then 8+2=10 cards each.",
         "incorrect": "Step 1: 56÷7=8 per player. Step 2: 8+2=10 cards each."
       },
-      "solution_steps": ["56 ÷ 7 = 8", "8 + 2 = 10"]
+      "solution_steps": [
+        "56 ÷ 7 = 8",
+        "8 + 2 = 10"
+      ],
+      "question": "56 cards are dealt equally to 7 players. Then each player receives 2 more bonus cards. How many cards does each player have now?",
+      "correct_answer": "10"
     },
     {
       "id": "TRY_05",
       "problem_id": "TRY_05",
-      "type": "MC",
-      "stem": "A store has 3 boxes of 9 oranges each. They sell 6 oranges. How many oranges are left?",
-      "choices": ["19", "21", "23", "25"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 19",
+        "B) 21",
+        "C) 23",
+        "D) 25"
+      ],
       "explanation": "Step 1: 3 × 9 = 27 oranges total. Step 2: 27 − 6 = 21 left.",
       "difficulty": 2,
       "hints": [
@@ -227,17 +277,25 @@
         "correct": "Yes! 3×9=27, then 27−6=21 oranges left.",
         "incorrect": "Step 1: 3×9=27. Step 2: 27−6=21 oranges left."
       },
-      "solution_steps": ["3 × 9 = 27", "27 − 6 = 21"]
+      "solution_steps": [
+        "3 × 9 = 27",
+        "27 − 6 = 21"
+      ],
+      "question": "A store has 3 boxes of 9 oranges each. They sell 6 oranges. How many oranges are left?",
+      "correct_answer": "B"
     }
   ],
   "practice_r1": [
     {
       "id": "R1_01",
       "problem_id": "R1_01",
-      "type": "MC",
-      "stem": "6 × 3 = 18 crayons. You give away 6. How many crayons are left?",
-      "choices": ["10", "11", "12", "13"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 10",
+        "B) 11",
+        "C) 12",
+        "D) 13"
+      ],
       "explanation": "6 × 3 = 18. 18 − 6 = 12.",
       "difficulty": 1,
       "hints": [
@@ -247,15 +305,20 @@
       "feedback": {
         "correct": "Correct! 6×3=18, then 18−6=12 crayons left.",
         "incorrect": "6×3=18 crayons. Then 18−6=12 remain."
-      }
+      },
+      "question": "6 × 3 = 18 crayons. You give away 6. How many crayons are left?",
+      "correct_answer": "C"
     },
     {
       "id": "R1_02",
       "problem_id": "R1_02",
-      "type": "MC",
-      "stem": "A farmer has 40 eggs. He sells 16 and puts the rest in cartons of 4. How many cartons does he fill?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "40 − 16 = 24 eggs left. 24 ÷ 4 = 6 cartons.",
       "difficulty": 2,
       "hints": [
@@ -265,15 +328,20 @@
       "feedback": {
         "correct": "Right! 40−16=24, then 24÷4=6 cartons.",
         "incorrect": "Step 1: 40−16=24. Step 2: 24÷4=6 cartons."
-      }
+      },
+      "question": "A farmer has 40 eggs. He sells 16 and puts the rest in cartons of 4. How many cartons does he fill?",
+      "correct_answer": "C"
     },
     {
       "id": "R1_03",
       "problem_id": "R1_03",
-      "type": "MC",
-      "stem": "Lena earns $5 per chore. She does 6 chores and then buys a $12 toy. How much money does she have left?",
-      "choices": ["$15", "$16", "$18", "$20"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) $15",
+        "B) $16",
+        "C) $18",
+        "D) $20"
+      ],
       "explanation": "5 × 6 = $30 earned. 30 − 12 = $18 left.",
       "difficulty": 2,
       "hints": [
@@ -283,15 +351,20 @@
       "feedback": {
         "correct": "Yes! 5×6=$30, then 30−12=$18 left.",
         "incorrect": "Step 1: 5×6=30. Step 2: 30−12=18. She has $18 left."
-      }
+      },
+      "question": "Lena earns $5 per chore. She does 6 chores and then buys a $12 toy. How much money does she have left?",
+      "correct_answer": "C"
     },
     {
       "id": "R1_04",
       "problem_id": "R1_04",
-      "type": "MC",
-      "stem": "A bakery makes 9 cakes. Each needs 4 eggs. They started with 50 eggs. How many eggs are left?",
-      "choices": ["12", "14", "16", "18"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 12",
+        "B) 14",
+        "C) 16",
+        "D) 18"
+      ],
       "explanation": "9 × 4 = 36 eggs used. 50 − 36 = 14 left.",
       "difficulty": 2,
       "hints": [
@@ -301,15 +374,20 @@
       "feedback": {
         "correct": "Correct! 9×4=36, then 50−36=14 eggs left.",
         "incorrect": "Step 1: 9×4=36 eggs used. Step 2: 50−36=14 left."
-      }
+      },
+      "question": "A bakery makes 9 cakes. Each needs 4 eggs. They started with 50 eggs. How many eggs are left?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_05",
       "problem_id": "R1_05",
-      "type": "MC",
-      "stem": "45 books are on 5 shelves equally. 3 books fall off one shelf. How many books are on that shelf now?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "45 ÷ 5 = 9 per shelf. 9 − 3 = 6 on that shelf now.",
       "difficulty": 2,
       "hints": [
@@ -319,15 +397,20 @@
       "feedback": {
         "correct": "Right! 45÷5=9, then 9−3=6 books on that shelf.",
         "incorrect": "Step 1: 45÷5=9 per shelf. Step 2: 9−3=6 on that shelf."
-      }
+      },
+      "question": "45 books are on 5 shelves equally. 3 books fall off one shelf. How many books are on that shelf now?",
+      "correct_answer": "C"
     },
     {
       "id": "R1_06",
       "problem_id": "R1_06",
-      "type": "MC",
-      "stem": "Dan buys 4 packs of cards with 8 cards each, then trades away 5 cards. How many cards does he have now?",
-      "choices": ["25", "27", "29", "31"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 25",
+        "B) 27",
+        "C) 29",
+        "D) 31"
+      ],
       "explanation": "4 × 8 = 32 cards total. 32 − 5 = 27 cards left.",
       "difficulty": 2,
       "hints": [
@@ -337,15 +420,20 @@
       "feedback": {
         "correct": "Yes! 4×8=32, then 32−5=27 cards.",
         "incorrect": "Step 1: 4×8=32 cards. Step 2: 32−5=27 cards left."
-      }
+      },
+      "question": "Dan buys 4 packs of cards with 8 cards each, then trades away 5 cards. How many cards does he have now?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_07",
       "problem_id": "R1_07",
-      "type": "MC",
-      "stem": "A zoo has 21 fish in 3 equal tanks. A keeper adds 4 fish to each tank. How many fish are in each tank now?",
-      "choices": ["9", "10", "11", "12"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 9",
+        "B) 10",
+        "C) 11",
+        "D) 12"
+      ],
       "explanation": "21 ÷ 3 = 7 per tank. 7 + 4 = 11 per tank now.",
       "difficulty": 2,
       "hints": [
@@ -355,14 +443,14 @@
       "feedback": {
         "correct": "Correct! 21÷3=7, then 7+4=11 fish per tank.",
         "incorrect": "Step 1: 21÷3=7 per tank. Step 2: 7+4=11 fish per tank."
-      }
+      },
+      "question": "A zoo has 21 fish in 3 equal tanks. A keeper adds 4 fish to each tank. How many fish are in each tank now?",
+      "correct_answer": "C"
     },
     {
       "id": "R1_08",
       "problem_id": "R1_08",
       "type": "input",
-      "stem": "32 students are split into 4 equal groups. Each group gets 3 more students. How many students are in each group now?",
-      "answer": "11",
       "explanation": "32 ÷ 4 = 8 per group. 8 + 3 = 11 per group.",
       "difficulty": 2,
       "hints": [
@@ -372,14 +460,14 @@
       "feedback": {
         "correct": "Correct! 32÷4=8, then 8+3=11 per group.",
         "incorrect": "Step 1: 32÷4=8 per group. Step 2: 8+3=11 per group."
-      }
+      },
+      "question": "32 students are split into 4 equal groups. Each group gets 3 more students. How many students are in each group now?",
+      "correct_answer": "11"
     },
     {
       "id": "R1_09",
       "problem_id": "R1_09",
       "type": "input",
-      "stem": "5 rows of 7 chairs = 35 chairs. Then 5 chairs are removed. How many chairs remain?",
-      "answer": "30",
       "explanation": "5 × 7 = 35 chairs. 35 − 5 = 30 chairs remain.",
       "difficulty": 2,
       "hints": [
@@ -389,15 +477,20 @@
       "feedback": {
         "correct": "Right! 5×7=35, then 35−5=30 chairs.",
         "incorrect": "5×7=35 total chairs. 35−5=30 chairs remain."
-      }
+      },
+      "question": "5 rows of 7 chairs = 35 chairs. Then 5 chairs are removed. How many chairs remain?",
+      "correct_answer": "30"
     },
     {
       "id": "R1_10",
       "problem_id": "R1_10",
-      "type": "MC",
-      "stem": "63 students are seated at 9 equal tables. Each table needs 2 cups of water. How many cups are needed in total?",
-      "choices": ["12", "14", "16", "18"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 12",
+        "B) 14",
+        "C) 16",
+        "D) 18"
+      ],
       "explanation": "63 ÷ 9 = 7 tables. 7 × 2 = 14 cups total.",
       "difficulty": 2,
       "hints": [
@@ -407,17 +500,22 @@
       "feedback": {
         "correct": "Yes! 63÷9=7 tables. 7×2=14 cups.",
         "incorrect": "Step 1: 63÷9=7 tables. Step 2: 7×2=14 cups needed."
-      }
+      },
+      "question": "63 students are seated at 9 equal tables. Each table needs 2 cups of water. How many cups are needed in total?",
+      "correct_answer": "B"
     }
   ],
   "practice_r2": [
     {
       "id": "R2_01",
       "problem_id": "R2_01",
-      "type": "MC",
-      "stem": "Mr. Lee buys 8 boxes of 6 pencils. He gives 3 pencils to each of 10 students. How many pencils are left?",
-      "choices": ["12", "16", "18", "20"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 12",
+        "B) 16",
+        "C) 18",
+        "D) 20"
+      ],
       "explanation": "8 × 6 = 48 pencils. 10 × 3 = 30 given away. 48 − 30 = 18 left.",
       "difficulty": 2,
       "hints": [
@@ -427,15 +525,20 @@
       "feedback": {
         "correct": "Right! 8×6=48, 10×3=30, 48−30=18 left.",
         "incorrect": "8×6=48 total. 10×3=30 given. 48−30=18 pencils left."
-      }
+      },
+      "question": "Mr. Lee buys 8 boxes of 6 pencils. He gives 3 pencils to each of 10 students. How many pencils are left?",
+      "correct_answer": "C"
     },
     {
       "id": "R2_02",
       "problem_id": "R2_02",
-      "type": "MC",
-      "stem": "A garden has 7 rows of 5 flowers plus 9 extra flowers. How many flowers total?",
-      "choices": ["42", "44", "46", "48"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 42",
+        "B) 44",
+        "C) 46",
+        "D) 48"
+      ],
       "explanation": "7 × 5 = 35. 35 + 9 = 44 flowers.",
       "difficulty": 2,
       "hints": [
@@ -445,15 +548,20 @@
       "feedback": {
         "correct": "Correct! 7×5=35, then 35+9=44 flowers.",
         "incorrect": "Step 1: 7×5=35. Step 2: 35+9=44 flowers total."
-      }
+      },
+      "question": "A garden has 7 rows of 5 flowers plus 9 extra flowers. How many flowers total?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_03",
       "problem_id": "R2_03",
-      "type": "MC",
-      "stem": "72 ÷ 8 = 9. Then 9 × 3 = ? What is the final answer?",
-      "choices": ["21", "24", "27", "30"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 21",
+        "B) 24",
+        "C) 27",
+        "D) 30"
+      ],
       "explanation": "72 ÷ 8 = 9. Then 9 × 3 = 27.",
       "difficulty": 2,
       "hints": [
@@ -463,15 +571,20 @@
       "feedback": {
         "correct": "Yes! 72÷8=9, then 9×3=27.",
         "incorrect": "72÷8=9. Then 9×3=27."
-      }
+      },
+      "question": "72 ÷ 8 = 9. Then 9 × 3 = ? What is the final answer?",
+      "correct_answer": "C"
     },
     {
       "id": "R2_04",
       "problem_id": "R2_04",
-      "type": "MC",
-      "stem": "A school buys 6 balls for $7 each and 4 bats for $9 each. What is the total cost?",
-      "choices": ["$68", "$72", "$78", "$82"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) $68",
+        "B) $72",
+        "C) $78",
+        "D) $82"
+      ],
       "explanation": "6 × $7 = $42. 4 × $9 = $36. $42 + $36 = $78.",
       "difficulty": 2,
       "hints": [
@@ -481,14 +594,14 @@
       "feedback": {
         "correct": "Correct! 6×7=42, 4×9=36, 42+36=78.",
         "incorrect": "6×7=$42 for balls. 4×9=$36 for bats. $42+$36=$78 total."
-      }
+      },
+      "question": "A school buys 6 balls for $7 each and 4 bats for $9 each. What is the total cost?",
+      "correct_answer": "C"
     },
     {
       "id": "R2_05",
       "problem_id": "R2_05",
       "type": "input",
-      "stem": "You have 8 boxes with $5 in each box. You spend $8 on a pen. How much money remains?",
-      "answer": "32",
       "explanation": "8 × 5 = $40 total. 40 − 8 = $32 left.",
       "difficulty": 2,
       "hints": [
@@ -498,14 +611,14 @@
       "feedback": {
         "correct": "Correct! 8×5=40, then 40−8=32.",
         "incorrect": "Step 1: 8×5=40. Step 2: 40−8=32. You have $32 left."
-      }
+      },
+      "question": "You have 8 boxes with $5 in each box. You spend $8 on a pen. How much money remains?",
+      "correct_answer": "32"
     },
     {
       "id": "R2_06",
       "problem_id": "R2_06",
       "type": "input",
-      "stem": "48 books are split equally onto 6 shelves. Then 2 more books are added to each shelf. How many books are on each shelf now?",
-      "answer": "10",
       "explanation": "48 ÷ 6 = 8 per shelf. 8 + 2 = 10 per shelf now.",
       "difficulty": 2,
       "hints": [
@@ -515,15 +628,20 @@
       "feedback": {
         "correct": "Right! 48÷6=8, then 8+2=10 per shelf.",
         "incorrect": "Step 1: 48÷6=8 per shelf. Step 2: 8+2=10 per shelf."
-      }
+      },
+      "question": "48 books are split equally onto 6 shelves. Then 2 more books are added to each shelf. How many books are on each shelf now?",
+      "correct_answer": "10"
     },
     {
       "id": "R2_07",
       "problem_id": "R2_07",
-      "type": "MC",
-      "stem": "7 × 4 = 28 stickers. The stickers are shared equally among 4 friends. How many stickers does each friend get?",
-      "choices": ["6", "7", "8", "9"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
       "explanation": "7 × 4 = 28 stickers. 28 ÷ 4 = 7 per friend.",
       "difficulty": 2,
       "hints": [
@@ -533,14 +651,14 @@
       "feedback": {
         "correct": "Yes! 7×4=28, then 28÷4=7 per friend.",
         "incorrect": "28 stickers ÷ 4 friends = 7 each."
-      }
+      },
+      "question": "7 × 4 = 28 stickers. The stickers are shared equally among 4 friends. How many stickers does each friend get?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_08",
       "problem_id": "R2_08",
       "type": "input",
-      "stem": "A player earns 9 × 5 = 45 points in the first round, then earns 9 more points. How many points total?",
-      "answer": "54",
       "explanation": "9 × 5 = 45. 45 + 9 = 54 total points.",
       "difficulty": 2,
       "hints": [
@@ -550,14 +668,14 @@
       "feedback": {
         "correct": "Correct! 9×5=45, then 45+9=54 points.",
         "incorrect": "9×5=45 points. Then 45+9=54 total points."
-      }
+      },
+      "question": "A player earns 9 × 5 = 45 points in the first round, then earns 9 more points. How many points total?",
+      "correct_answer": "54"
     },
     {
       "id": "R2_09",
       "problem_id": "R2_09",
       "type": "input",
-      "stem": "36 apples are divided equally into 9 baskets. Then 3 more apples are added to each basket. How many apples are in each basket now?",
-      "answer": "7",
       "explanation": "36 ÷ 9 = 4 per basket. 4 + 3 = 7 per basket now.",
       "difficulty": 2,
       "hints": [
@@ -567,15 +685,20 @@
       "feedback": {
         "correct": "Right! 36÷9=4, then 4+3=7 per basket.",
         "incorrect": "Step 1: 36÷9=4 per basket. Step 2: 4+3=7 per basket."
-      }
+      },
+      "question": "36 apples are divided equally into 9 baskets. Then 3 more apples are added to each basket. How many apples are in each basket now?",
+      "correct_answer": "7"
     },
     {
       "id": "R2_10",
       "problem_id": "R2_10",
-      "type": "MC",
-      "stem": "A teacher buys 6 packs of 8 crayons each, then shares all crayons equally among 6 students. How many crayons does each student get?",
-      "choices": ["7", "8", "9", "10"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
       "explanation": "6 × 8 = 48 crayons. 48 ÷ 6 = 8 per student.",
       "difficulty": 2,
       "hints": [
@@ -585,17 +708,22 @@
       "feedback": {
         "correct": "Yes! 6×8=48, then 48÷6=8 per student.",
         "incorrect": "Step 1: 6×8=48. Step 2: 48÷6=8 crayons per student."
-      }
+      },
+      "question": "A teacher buys 6 packs of 8 crayons each, then shares all crayons equally among 6 students. How many crayons does each student get?",
+      "correct_answer": "B"
     }
   ],
   "practice_r3": [
     {
       "id": "R3_01",
       "problem_id": "R3_01",
-      "type": "MC",
-      "stem": "A toy store has 54 dolls. On Monday they sell 18. On Tuesday they receive 12 more. They put all remaining dolls equally on 8 shelves. How many dolls per shelf?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "54 − 18 = 36. 36 + 12 = 48. 48 ÷ 8 = 6.",
       "difficulty": 3,
       "hints": [
@@ -605,15 +733,20 @@
       "feedback": {
         "correct": "Right! 54−18=36, 36+12=48, 48÷8=6 per shelf.",
         "incorrect": "54−18=36, then 36+12=48, then 48÷8=6 dolls per shelf."
-      }
+      },
+      "question": "A toy store has 54 dolls. On Monday they sell 18. On Tuesday they receive 12 more. They put all remaining dolls equally on 8 shelves. How many dolls per shelf?",
+      "correct_answer": "C"
     },
     {
       "id": "R3_02",
       "problem_id": "R3_02",
-      "type": "MC",
-      "stem": "Amy picks 8 × 5 = 40 apples. She gives 4 apples to each of 7 friends. How many apples does she keep?",
-      "choices": ["8", "10", "12", "14"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 8",
+        "B) 10",
+        "C) 12",
+        "D) 14"
+      ],
       "explanation": "8 × 5 = 40 total. Given away: 7 × 4 = 28. Kept: 40 − 28 = 12.",
       "difficulty": 3,
       "hints": [
@@ -623,15 +756,20 @@
       "feedback": {
         "correct": "Yes! 40 total, 7×4=28 given, 40−28=12 kept.",
         "incorrect": "Total: 8×5=40. Given: 7×4=28. Kept: 40−28=12."
-      }
+      },
+      "question": "Amy picks 8 × 5 = 40 apples. She gives 4 apples to each of 7 friends. How many apples does she keep?",
+      "correct_answer": "C"
     },
     {
       "id": "R3_03",
       "problem_id": "R3_03",
-      "type": "MC",
-      "stem": "Danny buys a marker for $4 and 5 pens for $2 each. How much does he spend in total?",
-      "choices": ["$10", "$12", "$14", "$16"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) $10",
+        "B) $12",
+        "C) $14",
+        "D) $16"
+      ],
       "explanation": "Marker: $4. Pens: 5 × $2 = $10. Total: $4 + $10 = $14.",
       "difficulty": 2,
       "hints": [
@@ -641,15 +779,20 @@
       "feedback": {
         "correct": "Correct! 5×2=$10 for pens, then $10+$4=$14 total.",
         "incorrect": "5×$2=$10 for pens. $10+$4=$14 total spent."
-      }
+      },
+      "question": "Danny buys a marker for $4 and 5 pens for $2 each. How much does he spend in total?",
+      "correct_answer": "C"
     },
     {
       "id": "R3_04",
       "problem_id": "R3_04",
-      "type": "MC",
-      "stem": "Sam earns $9 a day for 6 days. He buys 3 items that cost $8 each. How much money does Sam have left?",
-      "choices": ["$26", "$28", "$30", "$32"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) $26",
+        "B) $28",
+        "C) $30",
+        "D) $32"
+      ],
       "explanation": "Earnings: 9 × 6 = $54. Spent: 3 × $8 = $24. Left: 54 − 24 = $30.",
       "difficulty": 3,
       "hints": [
@@ -659,14 +802,14 @@
       "feedback": {
         "correct": "Yes! 9×6=$54, 3×8=$24, 54−24=$30 left.",
         "incorrect": "Earnings: 9×6=54. Spent: 3×8=24. Left: 54−24=30."
-      }
+      },
+      "question": "Sam earns $9 a day for 6 days. He buys 3 items that cost $8 each. How much money does Sam have left?",
+      "correct_answer": "C"
     },
     {
       "id": "R3_05",
       "problem_id": "R3_05",
       "type": "input",
-      "stem": "72 students form 8 equal teams. Then 4 students leave each team. How many students remain in total?",
-      "answer": "40",
       "explanation": "72 ÷ 8 = 9 per team. 9 − 4 = 5 remain per team. 5 × 8 = 40 total students remain.",
       "difficulty": 3,
       "hints": [
@@ -676,7 +819,9 @@
       "feedback": {
         "correct": "Correct! 72÷8=9, 9−4=5 per team, 5×8=40 total remain.",
         "incorrect": "72÷8=9 per team. 9−4=5 per team remain. 5×8=40 total students."
-      }
+      },
+      "question": "72 students form 8 equal teams. Then 4 students leave each team. How many students remain in total?",
+      "correct_answer": "40"
     }
   ],
   "concept": "two_step_problems"

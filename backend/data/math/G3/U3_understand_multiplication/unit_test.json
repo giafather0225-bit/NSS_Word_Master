@@ -3,99 +3,333 @@
   "title": "Unit 3 Test: Understand Multiplication",
   "grade": "G3",
   "unit": "U3_understand_multiplication",
-  "ccss": ["3.OA.A.1", "3.OA.A.3", "3.OA.B.5"],
+  "ccss": [
+    "3.OA.A.1",
+    "3.OA.A.3",
+    "3.OA.B.5"
+  ],
   "pass_threshold": 0.8,
   "time_limit_min": 30,
   "problems": [
-    {"id":"UT_01","type":"mc","lesson_ref":"L1","skill_tag":"equal_groups","difficulty":1,
-     "question":"Which picture shows equal groups?",
-     "choices":["A) 2,3,4 objects","B) 3 groups of 4 each","C) 1,2,5 objects","D) 4,4,5 objects"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! Equal groups have the same count.","incorrect":"The answer is B. Each group must have the same number."}},
-    {"id":"UT_02","type":"input","lesson_ref":"L1","skill_tag":"count_equal_groups","difficulty":1,
-     "question":"There are 4 bags with 3 apples each. How many apples total?",
-     "correct_answer":"12","hint":"4 × 3 = ?",
-     "feedback":{"correct":"Right! 12 apples.","incorrect":"The answer is 12. 4 groups of 3 = 12."}},
-    {"id":"UT_03","type":"mc","lesson_ref":"L2","skill_tag":"repeated_addition","difficulty":1,
-     "question":"Which addition shows 3 × 5?",
-     "choices":["A) 3+3","B) 5+5+5","C) 3+5","D) 5+5+5+5+5"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! 3 groups of 5.","incorrect":"The answer is B. 3 × 5 means 5 added 3 times."}},
-    {"id":"UT_04","type":"input","lesson_ref":"L2","skill_tag":"repeated_addition","difficulty":1,
-     "question":"Write 6 × 2 as repeated addition equal to what sum?",
-     "correct_answer":"12","hint":"2+2+2+2+2+2",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 12."}},
-    {"id":"UT_05","type":"mc","lesson_ref":"L3","skill_tag":"skip_count","difficulty":2,
-     "question":"Skip count by 4: 0, 4, 8, ___, 16",
-     "choices":["A) 10","B) 12","C) 14","D) 16"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! 12.","incorrect":"The answer is B. Add 4 each time."}},
-    {"id":"UT_06","type":"input","lesson_ref":"L3","skill_tag":"number_line_multiply","difficulty":2,
-     "question":"On a number line, make 5 jumps of 3 starting at 0. Where do you land?",
-     "correct_answer":"15","hint":"5 × 3",
-     "feedback":{"correct":"Right! 15.","incorrect":"The answer is 15."}},
-    {"id":"UT_07","type":"mc","lesson_ref":"L4","skill_tag":"model_multiplication","difficulty":2,
-     "question":"3 × 4 means:",
-     "choices":["A) 3 + 4","B) 3 groups of 4","C) 3 minus 4","D) 4 divided by 3"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right!","incorrect":"The answer is B."}},
-    {"id":"UT_08","type":"input","lesson_ref":"L4","skill_tag":"model_multiplication","difficulty":2,
-     "question":"4 groups of 6 equals ___",
-     "correct_answer":"24",
-     "feedback":{"correct":"Right! 24.","incorrect":"The answer is 24."}},
-    {"id":"UT_09","type":"mc","lesson_ref":"L5","skill_tag":"array","difficulty":2,
-     "question":"An array with 3 rows and 5 columns represents:",
-     "choices":["A) 3 + 5","B) 3 × 5","C) 5 − 3","D) 5 × 5"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! 3 × 5 = 15.","incorrect":"The answer is B."}},
-    {"id":"UT_10","type":"input","lesson_ref":"L5","skill_tag":"array","difficulty":2,
-     "question":"An array has 4 rows and 7 columns. Total objects?",
-     "correct_answer":"28","hint":"4 × 7",
-     "feedback":{"correct":"Right! 28.","incorrect":"The answer is 28."}},
-    {"id":"UT_11","type":"mc","lesson_ref":"L6","skill_tag":"commutative","difficulty":2,
-     "question":"If 6 × 8 = 48, then 8 × 6 = ?",
-     "choices":["A) 14","B) 42","C) 48","D) 56"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! Order doesn't change the product.","incorrect":"The answer is C (48)."}},
-    {"id":"UT_12","type":"tf","lesson_ref":"L6","skill_tag":"commutative","difficulty":1,
-     "question":"The Commutative Property means 7 × 3 = 3 × 7.",
-     "correct_answer":"true",
-     "feedback":{"correct":"Correct!","incorrect":"True."}},
-    {"id":"UT_13","type":"mc","lesson_ref":"L7","skill_tag":"multiply_by_1","difficulty":1,
-     "question":"9 × 1 = ?",
-     "choices":["A) 0","B) 1","C) 9","D) 10"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! Any number × 1 = itself.","incorrect":"The answer is C (9)."}},
-    {"id":"UT_14","type":"mc","lesson_ref":"L7","skill_tag":"multiply_by_0","difficulty":1,
-     "question":"8 × 0 = ?",
-     "choices":["A) 0","B) 1","C) 8","D) 80"],
-     "correct_answer":"A",
-     "feedback":{"correct":"Right! Any number × 0 = 0.","incorrect":"The answer is A (0)."}},
-    {"id":"UT_15","type":"input","lesson_ref":"L7","skill_tag":"multiply_by_1","difficulty":1,
-     "question":"100 × 1 = ___",
-     "correct_answer":"100",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 100."}},
-    {"id":"UT_16","type":"input","lesson_ref":"L1","skill_tag":"equal_groups","difficulty":2,
-     "question":"5 plates each with 6 cookies. How many cookies?",
-     "correct_answer":"30","hint":"5 × 6",
-     "feedback":{"correct":"Right! 30.","incorrect":"The answer is 30."}},
-    {"id":"UT_17","type":"input","lesson_ref":"L3","skill_tag":"skip_count","difficulty":2,
-     "question":"Skip count by 5: 0, 5, 10, 15, ___, 25",
-     "correct_answer":"20",
-     "feedback":{"correct":"Right! 20.","incorrect":"The answer is 20."}},
-    {"id":"UT_18","type":"mc","lesson_ref":"L5","skill_tag":"array","difficulty":2,
-     "question":"Which array shows 2 × 6?",
-     "choices":["A) 2 rows of 6","B) 6 rows of 6","C) 3 rows of 4","D) 4 rows of 3"],
-     "correct_answer":"A",
-     "feedback":{"correct":"Right!","incorrect":"The answer is A."}},
-    {"id":"UT_19","type":"input","lesson_ref":"L2","skill_tag":"repeated_addition","difficulty":2,
-     "question":"7+7+7+7 equals 4 × ___",
-     "correct_answer":"7",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 7."}},
-    {"id":"UT_20","type":"tf","lesson_ref":"L4","skill_tag":"model_multiplication","difficulty":2,
-     "question":"3 × 5 and 5 × 3 give the same product.",
-     "correct_answer":"true",
-     "feedback":{"correct":"Correct!","incorrect":"True (both equal 15)."}}
+    {
+      "id": "UT_01",
+      "type": "mc",
+      "lesson_ref": "L1",
+      "skill_tag": "equal_groups",
+      "difficulty": 1,
+      "question": "Which picture shows equal groups?",
+      "choices": [
+        "A) 2,3,4 objects",
+        "B) 3 groups of 4 each",
+        "C) 1,2,5 objects",
+        "D) 4,4,5 objects"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! Equal groups have the same count.",
+        "incorrect": "The answer is B. Each group must have the same number."
+      }
+    },
+    {
+      "id": "UT_02",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "count_equal_groups",
+      "difficulty": 1,
+      "question": "There are 4 bags with 3 apples each. How many apples total?",
+      "correct_answer": "12",
+      "hint": "4 × 3 = ?",
+      "feedback": {
+        "correct": "Right! 12 apples.",
+        "incorrect": "The answer is 12. 4 groups of 3 = 12."
+      }
+    },
+    {
+      "id": "UT_03",
+      "type": "mc",
+      "lesson_ref": "L2",
+      "skill_tag": "repeated_addition",
+      "difficulty": 1,
+      "question": "Which addition shows 3 × 5?",
+      "choices": [
+        "A) 3+3",
+        "B) 5+5+5",
+        "C) 3+5",
+        "D) 5+5+5+5+5"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! 3 groups of 5.",
+        "incorrect": "The answer is B. 3 × 5 means 5 added 3 times."
+      }
+    },
+    {
+      "id": "UT_04",
+      "type": "input",
+      "lesson_ref": "L2",
+      "skill_tag": "repeated_addition",
+      "difficulty": 1,
+      "question": "Write 6 × 2 as repeated addition equal to what sum?",
+      "correct_answer": "12",
+      "hint": "2+2+2+2+2+2",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 12."
+      }
+    },
+    {
+      "id": "UT_05",
+      "type": "mc",
+      "lesson_ref": "L3",
+      "skill_tag": "skip_count",
+      "difficulty": 2,
+      "question": "Skip count by 4: 0, 4, 8, ___, 16",
+      "choices": [
+        "A) 10",
+        "B) 12",
+        "C) 14",
+        "D) 16"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! 12.",
+        "incorrect": "The answer is B. Add 4 each time."
+      }
+    },
+    {
+      "id": "UT_06",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "number_line_multiply",
+      "difficulty": 2,
+      "question": "On a number line, make 5 jumps of 3 starting at 0. Where do you land?",
+      "correct_answer": "15",
+      "hint": "5 × 3",
+      "feedback": {
+        "correct": "Right! 15.",
+        "incorrect": "The answer is 15."
+      }
+    },
+    {
+      "id": "UT_07",
+      "type": "mc",
+      "lesson_ref": "L4",
+      "skill_tag": "model_multiplication",
+      "difficulty": 2,
+      "question": "3 × 4 means:",
+      "choices": [
+        "A) 3 + 4",
+        "B) 3 groups of 4",
+        "C) 3 minus 4",
+        "D) 4 divided by 3"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is B."
+      }
+    },
+    {
+      "id": "UT_08",
+      "type": "input",
+      "lesson_ref": "L4",
+      "skill_tag": "model_multiplication",
+      "difficulty": 2,
+      "question": "4 groups of 6 equals ___",
+      "correct_answer": "24",
+      "feedback": {
+        "correct": "Right! 24.",
+        "incorrect": "The answer is 24."
+      }
+    },
+    {
+      "id": "UT_09",
+      "type": "mc",
+      "lesson_ref": "L5",
+      "skill_tag": "array",
+      "difficulty": 2,
+      "question": "An array with 3 rows and 5 columns represents:",
+      "choices": [
+        "A) 3 + 5",
+        "B) 3 × 5",
+        "C) 5 − 3",
+        "D) 5 × 5"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! 3 × 5 = 15.",
+        "incorrect": "The answer is B."
+      }
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "array",
+      "difficulty": 2,
+      "question": "An array has 4 rows and 7 columns. Total objects?",
+      "correct_answer": "28",
+      "hint": "4 × 7",
+      "feedback": {
+        "correct": "Right! 28.",
+        "incorrect": "The answer is 28."
+      }
+    },
+    {
+      "id": "UT_11",
+      "type": "mc",
+      "lesson_ref": "L6",
+      "skill_tag": "commutative",
+      "difficulty": 2,
+      "question": "If 6 × 8 = 48, then 8 × 6 = ?",
+      "choices": [
+        "A) 14",
+        "B) 42",
+        "C) 48",
+        "D) 56"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! Order doesn't change the product.",
+        "incorrect": "The answer is C (48)."
+      }
+    },
+    {
+      "id": "UT_12",
+      "type": "tf",
+      "lesson_ref": "L6",
+      "skill_tag": "commutative",
+      "difficulty": 1,
+      "question": "The Commutative Property means 7 × 3 = 3 × 7.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "True."
+      }
+    },
+    {
+      "id": "UT_13",
+      "type": "mc",
+      "lesson_ref": "L7",
+      "skill_tag": "multiply_by_1",
+      "difficulty": 1,
+      "question": "9 × 1 = ?",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 9",
+        "D) 10"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! Any number × 1 = itself.",
+        "incorrect": "The answer is C (9)."
+      }
+    },
+    {
+      "id": "UT_14",
+      "type": "mc",
+      "lesson_ref": "L7",
+      "skill_tag": "multiply_by_0",
+      "difficulty": 1,
+      "question": "8 × 0 = ?",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 8",
+        "D) 80"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Right! Any number × 0 = 0.",
+        "incorrect": "The answer is A (0)."
+      }
+    },
+    {
+      "id": "UT_15",
+      "type": "input",
+      "lesson_ref": "L7",
+      "skill_tag": "multiply_by_1",
+      "difficulty": 1,
+      "question": "100 × 1 = ___",
+      "correct_answer": "100",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 100."
+      }
+    },
+    {
+      "id": "UT_16",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "equal_groups",
+      "difficulty": 2,
+      "question": "5 plates each with 6 cookies. How many cookies?",
+      "correct_answer": "30",
+      "hint": "5 × 6",
+      "feedback": {
+        "correct": "Right! 30.",
+        "incorrect": "The answer is 30."
+      }
+    },
+    {
+      "id": "UT_17",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "skip_count",
+      "difficulty": 2,
+      "question": "Skip count by 5: 0, 5, 10, 15, ___, 25",
+      "correct_answer": "20",
+      "feedback": {
+        "correct": "Right! 20.",
+        "incorrect": "The answer is 20."
+      }
+    },
+    {
+      "id": "UT_18",
+      "type": "mc",
+      "lesson_ref": "L5",
+      "skill_tag": "array",
+      "difficulty": 2,
+      "question": "Which array shows 2 × 6?",
+      "choices": [
+        "A) 2 rows of 6",
+        "B) 6 rows of 6",
+        "C) 3 rows of 4",
+        "D) 4 rows of 3"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is A."
+      }
+    },
+    {
+      "id": "UT_19",
+      "type": "input",
+      "lesson_ref": "L2",
+      "skill_tag": "repeated_addition",
+      "difficulty": 2,
+      "question": "7+7+7+7 equals 4 × ___",
+      "correct_answer": "7",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 7."
+      }
+    },
+    {
+      "id": "UT_20",
+      "type": "tf",
+      "lesson_ref": "L4",
+      "skill_tag": "model_multiplication",
+      "difficulty": 2,
+      "question": "3 × 5 and 5 × 3 give the same product.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "True (both equal 15)."
+      }
+    }
   ],
   "count": 20
 }

@@ -25,49 +25,74 @@
   ],
   "pretest": [
     {
-      "type": "MC",
-      "stem": "9 ÷ 3 = ?",
-      "choices": ["2", "3", "4", "5"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 5"
+      ],
       "explanation": "9 ÷ 3 = 3.",
       "difficulty": 1,
-      "id": "PT_01"
+      "id": "PT_01",
+      "question": "9 ÷ 3 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
-      "stem": "15 ÷ 3 = ?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "15 ÷ 3 = 5.",
       "difficulty": 1,
-      "id": "PT_02"
+      "id": "PT_02",
+      "question": "15 ÷ 3 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
-      "stem": "21 ÷ 3 = ?",
-      "choices": ["6", "7", "8", "9"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
       "explanation": "21 ÷ 3 = 7.",
       "difficulty": 1,
-      "id": "PT_03"
+      "id": "PT_03",
+      "question": "21 ÷ 3 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
-      "stem": "24 ÷ 3 = ?",
-      "choices": ["6", "7", "8", "9"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
       "explanation": "24 ÷ 3 = 8.",
       "difficulty": 1,
-      "id": "PT_04"
+      "id": "PT_04",
+      "question": "24 ÷ 3 = ?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
-      "stem": "18 photos in a book with 3 per page. How many pages?",
-      "choices": ["5", "6", "7", "8"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
       "explanation": "18 ÷ 3 = 6.",
       "difficulty": 1,
-      "id": "PT_05"
+      "id": "PT_05",
+      "question": "18 photos in a book with 3 per page. How many pages?",
+      "correct_answer": "B"
     }
   ],
   "learn": [
@@ -146,18 +171,24 @@
         "tool": "fact_table",
         "config": {
           "divisor": 3,
-          "range": [1, 10]
+          "range": [
+            1,
+            10
+          ]
         }
       }
     }
   ],
   "try": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "TRY_01",
-      "stem": "6 ÷ 3 = ?",
-      "choices": ["1", "2", "3", "4"],
-      "answer": "B",
+      "choices": [
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 4"
+      ],
       "explanation": "6 ÷ 3 = 2. Think: 3 × 2 = 6.",
       "difficulty": 1,
       "id": "TRY_01",
@@ -169,14 +200,22 @@
         "correct": "Nice! 3 × 2 = 6, so 6 ÷ 3 = 2.",
         "incorrect": "Count by 3s to 6: 3 (one jump), 6 (two jumps). Two jumps means 6 ÷ 3 = 2."
       },
-      "solution_steps": ["3 × 2 = 6", "So 6 ÷ 3 = 2"]
+      "solution_steps": [
+        "3 × 2 = 6",
+        "So 6 ÷ 3 = 2"
+      ],
+      "question": "6 ÷ 3 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "TRY_02",
-      "stem": "A team has 27 players split into 3 equal groups. How many players per group?",
-      "choices": ["7", "8", "9", "10"],
-      "answer": "C",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
       "explanation": "27 ÷ 3 = 9. Think: 3 × 9 = 27.",
       "difficulty": 1,
       "id": "TRY_02",
@@ -188,13 +227,16 @@
         "correct": "Yes! 3 × 9 = 27, so each group gets 9 players.",
         "incorrect": "Count by 3s to 27 — that takes 9 jumps. So 27 ÷ 3 = 9 players per group."
       },
-      "solution_steps": ["3 × 9 = 27", "So 27 ÷ 3 = 9"]
+      "solution_steps": [
+        "3 × 9 = 27",
+        "So 27 ÷ 3 = 9"
+      ],
+      "question": "A team has 27 players split into 3 equal groups. How many players per group?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "TRY_03",
-      "stem": "9 ÷ 3 = ___",
-      "answer": "3",
       "explanation": "9 ÷ 3 = 3. Think: 3 × 3 = 9.",
       "difficulty": 1,
       "id": "TRY_03",
@@ -206,13 +248,16 @@
         "correct": "Correct! 3 × 3 = 9, so 9 ÷ 3 = 3.",
         "incorrect": "Count by 3s: 3 (1st), 6 (2nd), 9 (3rd). Three counts means 9 ÷ 3 = 3."
       },
-      "solution_steps": ["3 × 3 = 9", "So 9 ÷ 3 = 3"]
+      "solution_steps": [
+        "3 × 3 = 9",
+        "So 9 ÷ 3 = 3"
+      ],
+      "question": "9 ÷ 3 = ___",
+      "correct_answer": "3"
     },
     {
       "type": "input",
       "problem_id": "TRY_04",
-      "stem": "21 ÷ 3 = ___",
-      "answer": "7",
       "explanation": "21 ÷ 3 = 7. Think: 3 × 7 = 21.",
       "difficulty": 1,
       "id": "TRY_04",
@@ -224,14 +269,22 @@
         "correct": "Great! 3 × 7 = 21, so 21 ÷ 3 = 7.",
         "incorrect": "Count by 3s to 21 — that takes 7 jumps. So 21 ÷ 3 = 7."
       },
-      "solution_steps": ["3 × 7 = 21", "So 21 ÷ 3 = 7"]
+      "solution_steps": [
+        "3 × 7 = 21",
+        "So 21 ÷ 3 = 7"
+      ],
+      "question": "21 ÷ 3 = ___",
+      "correct_answer": "7"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "TRY_05",
-      "stem": "A shelf holds 30 books arranged in 3 equal rows. How many books are in each row?",
-      "choices": ["8", "9", "10", "11"],
-      "answer": "C",
+      "choices": [
+        "A) 8",
+        "B) 9",
+        "C) 10",
+        "D) 11"
+      ],
       "explanation": "30 ÷ 3 = 10. Think: 3 × 10 = 30.",
       "difficulty": 1,
       "id": "TRY_05",
@@ -243,16 +296,24 @@
         "correct": "Yes! 3 × 10 = 30, so each row has 10 books.",
         "incorrect": "Count by 3s to 30 — that takes 10 jumps. So each row has 30 ÷ 3 = 10 books."
       },
-      "solution_steps": ["3 × 10 = 30", "So 30 ÷ 3 = 10 books per row"]
+      "solution_steps": [
+        "3 × 10 = 30",
+        "So 30 ÷ 3 = 10 books per row"
+      ],
+      "question": "A shelf holds 30 books arranged in 3 equal rows. How many books are in each row?",
+      "correct_answer": "C"
     }
   ],
   "practice_r1": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_01",
-      "stem": "3 ÷ 3 = ?",
-      "choices": ["0", "1", "3", "6"],
-      "answer": "B",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 3",
+        "D) 6"
+      ],
       "explanation": "3 ÷ 3 = 1. Any number divided by itself is 1.",
       "difficulty": 1,
       "id": "R1_01",
@@ -263,14 +324,19 @@
       "feedback": {
         "correct": "Right! 3 × 1 = 3, so 3 ÷ 3 = 1.",
         "incorrect": "3 ÷ 3 means: how many 3s fit in 3? Just one! So 3 ÷ 3 = 1."
-      }
+      },
+      "question": "3 ÷ 3 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_02",
-      "stem": "6 ÷ 3 = ?",
-      "choices": ["1", "2", "3", "4"],
-      "answer": "B",
+      "choices": [
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 4"
+      ],
       "explanation": "6 ÷ 3 = 2. Think: 3 × 2 = 6.",
       "difficulty": 1,
       "id": "R1_02",
@@ -281,14 +347,19 @@
       "feedback": {
         "correct": "Correct! 3 × 2 = 6, so 6 ÷ 3 = 2.",
         "incorrect": "Count by 3s to 6: 3 (one), 6 (two). Two counts means 6 ÷ 3 = 2."
-      }
+      },
+      "question": "6 ÷ 3 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_03",
-      "stem": "12 ÷ 3 = ?",
-      "choices": ["3", "4", "5", "6"],
-      "answer": "B",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
       "explanation": "12 ÷ 3 = 4. Think: 3 × 4 = 12.",
       "difficulty": 1,
       "id": "R1_03",
@@ -299,14 +370,19 @@
       "feedback": {
         "correct": "Yes! 3 × 4 = 12, so 12 ÷ 3 = 4.",
         "incorrect": "Count by 3s to 12 — that takes 4 jumps. So 12 ÷ 3 = 4."
-      }
+      },
+      "question": "12 ÷ 3 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_04",
-      "stem": "18 ÷ 3 = ?",
-      "choices": ["5", "6", "7", "8"],
-      "answer": "B",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
       "explanation": "18 ÷ 3 = 6. Think: 3 × 6 = 18.",
       "difficulty": 1,
       "id": "R1_04",
@@ -317,14 +393,19 @@
       "feedback": {
         "correct": "Excellent! 3 × 6 = 18, so 18 ÷ 3 = 6.",
         "incorrect": "Count by 3s to 18 — that takes 6 jumps. So 18 ÷ 3 = 6."
-      }
+      },
+      "question": "18 ÷ 3 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_05",
-      "stem": "27 ÷ 3 = ?",
-      "choices": ["7", "8", "9", "10"],
-      "answer": "C",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
       "explanation": "27 ÷ 3 = 9. Think: 3 × 9 = 27.",
       "difficulty": 1,
       "id": "R1_05",
@@ -335,14 +416,19 @@
       "feedback": {
         "correct": "Great! 3 × 9 = 27, so 27 ÷ 3 = 9.",
         "incorrect": "Count by 3s to 27 — that takes 9 jumps. So 27 ÷ 3 = 9."
-      }
+      },
+      "question": "27 ÷ 3 = ?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_06",
-      "stem": "A baker puts 3 cookies on each plate. He has 21 cookies. How many plates?",
-      "choices": ["5", "6", "7", "8"],
-      "answer": "C",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
       "explanation": "21 ÷ 3 = 7 plates.",
       "difficulty": 1,
       "id": "R1_06",
@@ -353,14 +439,19 @@
       "feedback": {
         "correct": "Right! 3 × 7 = 21, so he needs 7 plates.",
         "incorrect": "Count by 3s to 21 — that takes 7 counts. The baker needs 21 ÷ 3 = 7 plates."
-      }
+      },
+      "question": "A baker puts 3 cookies on each plate. He has 21 cookies. How many plates?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_07",
-      "stem": "If 3 × 8 = 24, then 24 ÷ 3 = ?",
-      "choices": ["6", "7", "8", "9"],
-      "answer": "C",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
       "explanation": "24 ÷ 3 = 8. Division undoes multiplication.",
       "difficulty": 1,
       "id": "R1_07",
@@ -371,13 +462,13 @@
       "feedback": {
         "correct": "Exactly! 3 × 8 = 24 tells you 24 ÷ 3 = 8.",
         "incorrect": "Division reverses multiplication. 3 × 8 = 24, so 24 ÷ 3 = 8."
-      }
+      },
+      "question": "If 3 × 8 = 24, then 24 ÷ 3 = ?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "R1_08",
-      "stem": "15 ÷ 3 = ___",
-      "answer": "5",
       "explanation": "15 ÷ 3 = 5. Think: 3 × 5 = 15.",
       "difficulty": 1,
       "id": "R1_08",
@@ -388,13 +479,13 @@
       "feedback": {
         "correct": "Yes! 3 × 5 = 15, so 15 ÷ 3 = 5.",
         "incorrect": "Count by 3s to 15 — that takes 5 jumps. So 15 ÷ 3 = 5."
-      }
+      },
+      "question": "15 ÷ 3 = ___",
+      "correct_answer": "5"
     },
     {
       "type": "input",
       "problem_id": "R1_09",
-      "stem": "24 ÷ 3 = ___",
-      "answer": "8",
       "explanation": "24 ÷ 3 = 8. Think: 3 × 8 = 24.",
       "difficulty": 1,
       "id": "R1_09",
@@ -405,13 +496,13 @@
       "feedback": {
         "correct": "Great! 3 × 8 = 24, so 24 ÷ 3 = 8.",
         "incorrect": "Count by 3s to 24 — that takes 8 jumps. So 24 ÷ 3 = 8."
-      }
+      },
+      "question": "24 ÷ 3 = ___",
+      "correct_answer": "8"
     },
     {
       "type": "input",
       "problem_id": "R1_10",
-      "stem": "30 ÷ 3 = ___",
-      "answer": "10",
       "explanation": "30 ÷ 3 = 10. Think: 3 × 10 = 30.",
       "difficulty": 1,
       "id": "R1_10",
@@ -422,16 +513,21 @@
       "feedback": {
         "correct": "Perfect! 3 × 10 = 30, so 30 ÷ 3 = 10.",
         "incorrect": "Count by 3s to 30 — that takes 10 jumps. So 30 ÷ 3 = 10."
-      }
+      },
+      "question": "30 ÷ 3 = ___",
+      "correct_answer": "10"
     }
   ],
   "practice_r2": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_01",
-      "stem": "Which multiplication fact helps you solve 24 ÷ 3?",
-      "choices": ["3 × 6 = 18", "3 × 7 = 21", "3 × 8 = 24", "3 × 9 = 27"],
-      "answer": "C",
+      "choices": [
+        "A) 3 × 6 = 18",
+        "B) 3 × 7 = 21",
+        "C) 3 × 8 = 24",
+        "D) 3 × 9 = 27"
+      ],
       "explanation": "3 × 8 = 24, so 24 ÷ 3 = 8.",
       "difficulty": 2,
       "id": "R2_01",
@@ -442,14 +538,19 @@
       "feedback": {
         "correct": "Correct! 3 × 8 = 24, so 24 ÷ 3 = 8.",
         "incorrect": "Find the 3× fact where the product is 24. 3 × 8 = 24, so 24 ÷ 3 = 8."
-      }
+      },
+      "question": "Which multiplication fact helps you solve 24 ÷ 3?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_02",
-      "stem": "? ÷ 3 = 8. What is the missing number?",
-      "choices": ["18", "21", "24", "27"],
-      "answer": "C",
+      "choices": [
+        "A) 18",
+        "B) 21",
+        "C) 24",
+        "D) 27"
+      ],
       "explanation": "3 × 8 = 24, so 24 ÷ 3 = 8.",
       "difficulty": 2,
       "id": "R2_02",
@@ -460,14 +561,19 @@
       "feedback": {
         "correct": "Right! 3 × 8 = 24, so the missing number is 24.",
         "incorrect": "Work backwards: if ? ÷ 3 = 8, then ? = 3 × 8 = 24."
-      }
+      },
+      "question": "? ÷ 3 = 8. What is the missing number?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_03",
-      "stem": "Which division has the greatest quotient?",
-      "choices": ["9 ÷ 3", "18 ÷ 3", "21 ÷ 3", "15 ÷ 3"],
-      "answer": "C",
+      "choices": [
+        "A) 9 ÷ 3",
+        "B) 18 ÷ 3",
+        "C) 21 ÷ 3",
+        "D) 15 ÷ 3"
+      ],
       "explanation": "9÷3=3, 18÷3=6, 21÷3=7, 15÷3=5. Greatest quotient is 7.",
       "difficulty": 2,
       "id": "R2_03",
@@ -478,14 +584,19 @@
       "feedback": {
         "correct": "Yes! 21÷3=7 is the greatest quotient among the four.",
         "incorrect": "9÷3=3, 18÷3=6, 21÷3=7, 15÷3=5. The greatest is 7, from 21÷3."
-      }
+      },
+      "question": "Which division has the greatest quotient?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_04",
-      "stem": "A class has 30 students split into 3 equal teams. How many students per team?",
-      "choices": ["8", "9", "10", "11"],
-      "answer": "C",
+      "choices": [
+        "A) 8",
+        "B) 9",
+        "C) 10",
+        "D) 11"
+      ],
       "explanation": "30 ÷ 3 = 10 students per team.",
       "difficulty": 2,
       "id": "R2_04",
@@ -496,13 +607,13 @@
       "feedback": {
         "correct": "Correct! 3 × 10 = 30, so each team has 10 students.",
         "incorrect": "Count by 3s to 30 — 10 jumps. So 30 ÷ 3 = 10 students per team."
-      }
+      },
+      "question": "A class has 30 students split into 3 equal teams. How many students per team?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "R2_05",
-      "stem": "3 ÷ 3 = ___",
-      "answer": "1",
       "explanation": "3 ÷ 3 = 1. Any number divided by itself equals 1.",
       "difficulty": 2,
       "id": "R2_05",
@@ -513,13 +624,13 @@
       "feedback": {
         "correct": "Exactly! 3 ÷ 3 = 1.",
         "incorrect": "3 ÷ 3 means how many 3s in 3. Just one group: 3 ÷ 3 = 1."
-      }
+      },
+      "question": "3 ÷ 3 = ___",
+      "correct_answer": "1"
     },
     {
       "type": "input",
       "problem_id": "R2_06",
-      "stem": "? ÷ 3 = 6. What is the missing number?",
-      "answer": "18",
       "explanation": "3 × 6 = 18, so 18 ÷ 3 = 6.",
       "difficulty": 2,
       "id": "R2_06",
@@ -530,14 +641,19 @@
       "feedback": {
         "correct": "Right! 3 × 6 = 18, so the missing number is 18.",
         "incorrect": "Work backwards: if ? ÷ 3 = 6, then ? = 3 × 6 = 18."
-      }
+      },
+      "question": "? ÷ 3 = 6. What is the missing number?",
+      "correct_answer": "18"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_07",
-      "stem": "Which is NOT a correct ÷3 fact?",
-      "choices": ["6 ÷ 3 = 2", "15 ÷ 3 = 5", "27 ÷ 3 = 8", "30 ÷ 3 = 10"],
-      "answer": "C",
+      "choices": [
+        "A) 6 ÷ 3 = 2",
+        "B) 15 ÷ 3 = 5",
+        "C) 27 ÷ 3 = 8",
+        "D) 30 ÷ 3 = 10"
+      ],
       "explanation": "27 ÷ 3 = 9, not 8. All others are correct.",
       "difficulty": 2,
       "id": "R2_07",
@@ -548,13 +664,13 @@
       "feedback": {
         "correct": "Correct! 27 ÷ 3 = 9, not 8. Count by 3s to 27 — that's 9 jumps.",
         "incorrect": "Check 27 ÷ 3: 3×8=24 ≠ 27, but 3×9=27. So 27 ÷ 3 = 9, not 8. That's the wrong fact."
-      }
+      },
+      "question": "Which is NOT a correct ÷3 fact?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "R2_08",
-      "stem": "12 ÷ 3 = ___",
-      "answer": "4",
       "explanation": "12 ÷ 3 = 4. Think: 3 × 4 = 12.",
       "difficulty": 2,
       "id": "R2_08",
@@ -565,13 +681,13 @@
       "feedback": {
         "correct": "Yes! 3 × 4 = 12, so 12 ÷ 3 = 4.",
         "incorrect": "Count by 3s to 12 — that takes 4 jumps. So 12 ÷ 3 = 4."
-      }
+      },
+      "question": "12 ÷ 3 = ___",
+      "correct_answer": "4"
     },
     {
       "type": "input",
       "problem_id": "R2_09",
-      "stem": "27 ÷ 3 = ___",
-      "answer": "9",
       "explanation": "27 ÷ 3 = 9. Think: 3 × 9 = 27.",
       "difficulty": 2,
       "id": "R2_09",
@@ -582,14 +698,19 @@
       "feedback": {
         "correct": "Great! 3 × 9 = 27, so 27 ÷ 3 = 9.",
         "incorrect": "Count by 3s to 27 — that takes 9 jumps. So 27 ÷ 3 = 9."
-      }
+      },
+      "question": "27 ÷ 3 = ___",
+      "correct_answer": "9"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_10",
-      "stem": "(6 ÷ 3) × (9 ÷ 3) = ?",
-      "choices": ["5", "6", "7", "8"],
-      "answer": "B",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
       "explanation": "6÷3=2, 9÷3=3. 2×3=6.",
       "difficulty": 2,
       "id": "R2_10",
@@ -600,16 +721,21 @@
       "feedback": {
         "correct": "Yes! 6÷3=2, 9÷3=3, and 2×3=6.",
         "incorrect": "Step 1: 6÷3=2. Step 2: 9÷3=3. Step 3: 2×3=6."
-      }
+      },
+      "question": "(6 ÷ 3) × (9 ÷ 3) = ?",
+      "correct_answer": "B"
     }
   ],
   "practice_r3": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_01",
-      "stem": "Lucy has 24 apples. She splits them equally among 3 baskets, then gives away 2 apples from each basket. How many apples remain in each basket?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "C",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "24 ÷ 3 = 8 apples per basket. 8 − 2 = 6 apples remain.",
       "difficulty": 3,
       "id": "R3_01",
@@ -620,14 +746,19 @@
       "feedback": {
         "correct": "Yes! 24÷3=8, then 8−2=6 apples remain in each basket.",
         "incorrect": "24÷3=8 per basket, then 8−2=6 remain. The answer is 6."
-      }
+      },
+      "question": "Lucy has 24 apples. She splits them equally among 3 baskets, then gives away 2 apples from each basket. How many apples remain in each basket?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_02",
-      "stem": "A mystery number divided by 3 equals 7. What is the mystery number plus 5?",
-      "choices": ["22", "24", "26", "28"],
-      "answer": "C",
+      "choices": [
+        "A) 22",
+        "B) 24",
+        "C) 26",
+        "D) 28"
+      ],
       "explanation": "Mystery number = 3 × 7 = 21. 21 + 5 = 26.",
       "difficulty": 3,
       "id": "R3_02",
@@ -638,14 +769,19 @@
       "feedback": {
         "correct": "Correct! 3×7=21 is the mystery number, and 21+5=26.",
         "incorrect": "? ÷ 3 = 7 → ? = 3×7 = 21. Then 21+5 = 26."
-      }
+      },
+      "question": "A mystery number divided by 3 equals 7. What is the mystery number plus 5?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_03",
-      "stem": "Three friends share $27 equally. Then each donates $2. How much does each friend keep?",
-      "choices": ["5", "6", "7", "8"],
-      "answer": "C",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
       "explanation": "27 ÷ 3 = $9 each. $9 − $2 = $7 kept.",
       "difficulty": 3,
       "id": "R3_03",
@@ -656,14 +792,19 @@
       "feedback": {
         "correct": "Yes! 27÷3=$9 each, then $9−$2=$7 kept.",
         "incorrect": "27÷3=9, then 9−2=7. Each friend keeps $7."
-      }
+      },
+      "question": "Three friends share $27 equally. Then each donates $2. How much does each friend keep?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_04",
-      "stem": "30 students form 3 equal sport teams. After the game, 4 teams' worth of players go home (wait — there are only 3 teams!). Actually: 30 players split into 3 teams. One team of 10 goes home. How many players remain?",
-      "choices": ["10", "15", "20", "25"],
-      "answer": "C",
+      "choices": [
+        "A) 10",
+        "B) 15",
+        "C) 20",
+        "D) 25"
+      ],
       "explanation": "30 ÷ 3 = 10 players per team. 3 teams − 1 team gone = 2 teams remain. 2 × 10 = 20 players remain.",
       "difficulty": 3,
       "id": "R3_04",
@@ -674,13 +815,13 @@
       "feedback": {
         "correct": "Right! 30÷3=10 per team. 1 team leaves, so 2 teams × 10 = 20 remain.",
         "incorrect": "30÷3=10 per team. 3 teams − 1 = 2 teams remain. 2 × 10 = 20 players."
-      }
+      },
+      "question": "30 students form 3 equal sport teams. After the game, 4 teams' worth of players go home (wait — there are only 3 teams!). Actually: 30 players split into 3 teams. One team of 10 goes home. How many players remain?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "R3_05",
-      "stem": "? ÷ 3 = 8. What is the missing dividend?",
-      "answer": "24",
       "explanation": "3 × 8 = 24, so 24 ÷ 3 = 8.",
       "difficulty": 3,
       "id": "R3_05",
@@ -691,7 +832,9 @@
       "feedback": {
         "correct": "Correct! 3 × 8 = 24, so the missing number is 24.",
         "incorrect": "Work backwards: ? ÷ 3 = 8 means ? = 3 × 8 = 24."
-      }
+      },
+      "question": "? ÷ 3 = 8. What is the missing dividend?",
+      "correct_answer": "24"
     }
   ],
   "concept": "divide_by_3"

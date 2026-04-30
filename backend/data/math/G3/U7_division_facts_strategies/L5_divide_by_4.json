@@ -25,49 +25,74 @@
   ],
   "pretest": [
     {
-      "type": "MC",
-      "stem": "12 ÷ 4 = ?",
-      "choices": ["2", "3", "4", "5"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 5"
+      ],
       "explanation": "12 ÷ 4 = 3.",
       "difficulty": 1,
-      "id": "PT_01"
+      "id": "PT_01",
+      "question": "12 ÷ 4 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
-      "stem": "20 ÷ 4 = ?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "20 ÷ 4 = 5.",
       "difficulty": 1,
-      "id": "PT_02"
+      "id": "PT_02",
+      "question": "20 ÷ 4 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
-      "stem": "28 ÷ 4 = ?",
-      "choices": ["6", "7", "8", "9"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
       "explanation": "28 ÷ 4 = 7.",
       "difficulty": 1,
-      "id": "PT_03"
+      "id": "PT_03",
+      "question": "28 ÷ 4 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
-      "stem": "32 ÷ 4 = ?",
-      "choices": ["6", "7", "8", "9"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
       "explanation": "32 ÷ 4 = 8.",
       "difficulty": 1,
-      "id": "PT_04"
+      "id": "PT_04",
+      "question": "32 ÷ 4 = ?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
-      "stem": "16 wheels. Each car has 4 wheels. How many cars?",
-      "choices": ["3", "4", "5", "6"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
       "explanation": "16 ÷ 4 = 4.",
       "difficulty": 1,
-      "id": "PT_05"
+      "id": "PT_05",
+      "question": "16 wheels. Each car has 4 wheels. How many cars?",
+      "correct_answer": "B"
     }
   ],
   "learn": [
@@ -146,18 +171,24 @@
         "tool": "fact_table",
         "config": {
           "divisor": 4,
-          "range": [1, 10]
+          "range": [
+            1,
+            10
+          ]
         }
       }
     }
   ],
   "try": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "TRY_01",
-      "stem": "8 ÷ 4 = ?",
-      "choices": ["1", "2", "3", "4"],
-      "answer": "B",
+      "choices": [
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 4"
+      ],
       "explanation": "8 ÷ 4 = 2. Think: 4 × 2 = 8.",
       "difficulty": 1,
       "id": "TRY_01",
@@ -169,14 +200,22 @@
         "correct": "Nice! 4 × 2 = 8, so 8 ÷ 4 = 2.",
         "incorrect": "Halve twice: 8÷2=4, then 4÷2=2. So 8 ÷ 4 = 2."
       },
-      "solution_steps": ["4 × 2 = 8", "So 8 ÷ 4 = 2"]
+      "solution_steps": [
+        "4 × 2 = 8",
+        "So 8 ÷ 4 = 2"
+      ],
+      "question": "8 ÷ 4 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "TRY_02",
-      "stem": "A pizza is cut into 4 slices. There are 24 slices total. How many pizzas?",
-      "choices": ["5", "6", "7", "8"],
-      "answer": "B",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
       "explanation": "24 ÷ 4 = 6 pizzas. Think: 4 × 6 = 24.",
       "difficulty": 1,
       "id": "TRY_02",
@@ -188,13 +227,16 @@
         "correct": "Yes! 4 × 6 = 24, so there are 6 pizzas.",
         "incorrect": "Halve 24 twice: 24÷2=12, then 12÷2=6. So 24 ÷ 4 = 6 pizzas."
       },
-      "solution_steps": ["4 × 6 = 24", "So 24 ÷ 4 = 6 pizzas"]
+      "solution_steps": [
+        "4 × 6 = 24",
+        "So 24 ÷ 4 = 6 pizzas"
+      ],
+      "question": "A pizza is cut into 4 slices. There are 24 slices total. How many pizzas?",
+      "correct_answer": "B"
     },
     {
       "type": "input",
       "problem_id": "TRY_03",
-      "stem": "16 ÷ 4 = ___",
-      "answer": "4",
       "explanation": "16 ÷ 4 = 4. Think: 4 × 4 = 16.",
       "difficulty": 1,
       "id": "TRY_03",
@@ -206,13 +248,16 @@
         "correct": "Correct! 4 × 4 = 16, so 16 ÷ 4 = 4.",
         "incorrect": "Halve 16 twice: 16÷2=8, then 8÷2=4. So 16 ÷ 4 = 4."
       },
-      "solution_steps": ["4 × 4 = 16", "So 16 ÷ 4 = 4"]
+      "solution_steps": [
+        "4 × 4 = 16",
+        "So 16 ÷ 4 = 4"
+      ],
+      "question": "16 ÷ 4 = ___",
+      "correct_answer": "4"
     },
     {
       "type": "input",
       "problem_id": "TRY_04",
-      "stem": "32 ÷ 4 = ___",
-      "answer": "8",
       "explanation": "32 ÷ 4 = 8. Think: 4 × 8 = 32.",
       "difficulty": 1,
       "id": "TRY_04",
@@ -224,14 +269,22 @@
         "correct": "Great! 4 × 8 = 32, so 32 ÷ 4 = 8.",
         "incorrect": "Halve 32 twice: 32÷2=16, then 16÷2=8. So 32 ÷ 4 = 8."
       },
-      "solution_steps": ["4 × 8 = 32", "So 32 ÷ 4 = 8"]
+      "solution_steps": [
+        "4 × 8 = 32",
+        "So 32 ÷ 4 = 8"
+      ],
+      "question": "32 ÷ 4 = ___",
+      "correct_answer": "8"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "TRY_05",
-      "stem": "A garden has 40 flowers planted in 4 equal rows. How many flowers per row?",
-      "choices": ["8", "9", "10", "11"],
-      "answer": "C",
+      "choices": [
+        "A) 8",
+        "B) 9",
+        "C) 10",
+        "D) 11"
+      ],
       "explanation": "40 ÷ 4 = 10. Think: 4 × 10 = 40.",
       "difficulty": 1,
       "id": "TRY_05",
@@ -243,16 +296,24 @@
         "correct": "Yes! 4 × 10 = 40, so each row has 10 flowers.",
         "incorrect": "Halve 40 twice: 40÷2=20, then 20÷2=10. So 40 ÷ 4 = 10 flowers per row."
       },
-      "solution_steps": ["4 × 10 = 40", "So 40 ÷ 4 = 10 flowers per row"]
+      "solution_steps": [
+        "4 × 10 = 40",
+        "So 40 ÷ 4 = 10 flowers per row"
+      ],
+      "question": "A garden has 40 flowers planted in 4 equal rows. How many flowers per row?",
+      "correct_answer": "C"
     }
   ],
   "practice_r1": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_01",
-      "stem": "4 ÷ 4 = ?",
-      "choices": ["0", "1", "4", "8"],
-      "answer": "B",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 4",
+        "D) 8"
+      ],
       "explanation": "4 ÷ 4 = 1. Any number divided by itself is 1.",
       "difficulty": 1,
       "id": "R1_01",
@@ -263,14 +324,19 @@
       "feedback": {
         "correct": "Right! 4 ÷ 4 = 1.",
         "incorrect": "4 ÷ 4 means how many groups of 4 in 4. Just one: 4 ÷ 4 = 1."
-      }
+      },
+      "question": "4 ÷ 4 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_02",
-      "stem": "8 ÷ 4 = ?",
-      "choices": ["1", "2", "3", "4"],
-      "answer": "B",
+      "choices": [
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 4"
+      ],
       "explanation": "8 ÷ 4 = 2. Think: 4 × 2 = 8.",
       "difficulty": 1,
       "id": "R1_02",
@@ -281,14 +347,19 @@
       "feedback": {
         "correct": "Correct! 4 × 2 = 8, so 8 ÷ 4 = 2.",
         "incorrect": "Halve 8 twice: 8÷2=4, 4÷2=2. So 8 ÷ 4 = 2."
-      }
+      },
+      "question": "8 ÷ 4 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_03",
-      "stem": "16 ÷ 4 = ?",
-      "choices": ["3", "4", "5", "6"],
-      "answer": "B",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
       "explanation": "16 ÷ 4 = 4. Think: 4 × 4 = 16.",
       "difficulty": 1,
       "id": "R1_03",
@@ -299,14 +370,19 @@
       "feedback": {
         "correct": "Yes! 4 × 4 = 16, so 16 ÷ 4 = 4.",
         "incorrect": "Halve 16 twice: 16÷2=8, 8÷2=4. So 16 ÷ 4 = 4."
-      }
+      },
+      "question": "16 ÷ 4 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_04",
-      "stem": "24 ÷ 4 = ?",
-      "choices": ["5", "6", "7", "8"],
-      "answer": "B",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
       "explanation": "24 ÷ 4 = 6. Think: 4 × 6 = 24.",
       "difficulty": 1,
       "id": "R1_04",
@@ -317,14 +393,19 @@
       "feedback": {
         "correct": "Excellent! 4 × 6 = 24, so 24 ÷ 4 = 6.",
         "incorrect": "Halve 24 twice: 24÷2=12, 12÷2=6. So 24 ÷ 4 = 6."
-      }
+      },
+      "question": "24 ÷ 4 = ?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_05",
-      "stem": "36 ÷ 4 = ?",
-      "choices": ["7", "8", "9", "10"],
-      "answer": "C",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
       "explanation": "36 ÷ 4 = 9. Think: 4 × 9 = 36.",
       "difficulty": 1,
       "id": "R1_05",
@@ -335,14 +416,19 @@
       "feedback": {
         "correct": "Great! 4 × 9 = 36, so 36 ÷ 4 = 9.",
         "incorrect": "Halve 36 twice: 36÷2=18, 18÷2=9. So 36 ÷ 4 = 9."
-      }
+      },
+      "question": "36 ÷ 4 = ?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_06",
-      "stem": "There are 20 books on 4 equal shelves. How many books per shelf?",
-      "choices": ["4", "5", "6", "7"],
-      "answer": "B",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
       "explanation": "20 ÷ 4 = 5. Think: 4 × 5 = 20.",
       "difficulty": 1,
       "id": "R1_06",
@@ -353,14 +439,19 @@
       "feedback": {
         "correct": "Right! 4 × 5 = 20, so each shelf has 5 books.",
         "incorrect": "Halve 20 twice: 20÷2=10, 10÷2=5. So 20 ÷ 4 = 5 books per shelf."
-      }
+      },
+      "question": "There are 20 books on 4 equal shelves. How many books per shelf?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R1_07",
-      "stem": "If 4 × 7 = 28, then 28 ÷ 4 = ?",
-      "choices": ["5", "6", "7", "8"],
-      "answer": "C",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
       "explanation": "28 ÷ 4 = 7. Division reverses multiplication.",
       "difficulty": 1,
       "id": "R1_07",
@@ -371,13 +462,13 @@
       "feedback": {
         "correct": "Exactly! 4 × 7 = 28 tells you 28 ÷ 4 = 7.",
         "incorrect": "Division reverses multiplication. 4 × 7 = 28, so 28 ÷ 4 = 7."
-      }
+      },
+      "question": "If 4 × 7 = 28, then 28 ÷ 4 = ?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "R1_08",
-      "stem": "12 ÷ 4 = ___",
-      "answer": "3",
       "explanation": "12 ÷ 4 = 3. Think: 4 × 3 = 12.",
       "difficulty": 1,
       "id": "R1_08",
@@ -388,13 +479,13 @@
       "feedback": {
         "correct": "Yes! 4 × 3 = 12, so 12 ÷ 4 = 3.",
         "incorrect": "Halve 12 twice: 12÷2=6, 6÷2=3. So 12 ÷ 4 = 3."
-      }
+      },
+      "question": "12 ÷ 4 = ___",
+      "correct_answer": "3"
     },
     {
       "type": "input",
       "problem_id": "R1_09",
-      "stem": "28 ÷ 4 = ___",
-      "answer": "7",
       "explanation": "28 ÷ 4 = 7. Think: 4 × 7 = 28.",
       "difficulty": 1,
       "id": "R1_09",
@@ -405,13 +496,13 @@
       "feedback": {
         "correct": "Great! 4 × 7 = 28, so 28 ÷ 4 = 7.",
         "incorrect": "Halve 28 twice: 28÷2=14, 14÷2=7. So 28 ÷ 4 = 7."
-      }
+      },
+      "question": "28 ÷ 4 = ___",
+      "correct_answer": "7"
     },
     {
       "type": "input",
       "problem_id": "R1_10",
-      "stem": "40 ÷ 4 = ___",
-      "answer": "10",
       "explanation": "40 ÷ 4 = 10. Think: 4 × 10 = 40.",
       "difficulty": 1,
       "id": "R1_10",
@@ -422,16 +513,21 @@
       "feedback": {
         "correct": "Perfect! 4 × 10 = 40, so 40 ÷ 4 = 10.",
         "incorrect": "Halve 40 twice: 40÷2=20, 20÷2=10. So 40 ÷ 4 = 10."
-      }
+      },
+      "question": "40 ÷ 4 = ___",
+      "correct_answer": "10"
     }
   ],
   "practice_r2": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_01",
-      "stem": "Use halve-twice to find 20 ÷ 4. What is 20 ÷ 2 first?",
-      "choices": ["8", "9", "10", "11"],
-      "answer": "C",
+      "choices": [
+        "A) 8",
+        "B) 9",
+        "C) 10",
+        "D) 11"
+      ],
       "explanation": "20 ÷ 2 = 10. Then 10 ÷ 2 = 5. So 20 ÷ 4 = 5.",
       "difficulty": 2,
       "id": "R2_01",
@@ -442,14 +538,19 @@
       "feedback": {
         "correct": "Correct! 20÷2=10, then 10÷2=5. So 20÷4=5.",
         "incorrect": "First halve: 20÷2=10. Then halve again: 10÷2=5. So 20÷4=5."
-      }
+      },
+      "question": "Use halve-twice to find 20 ÷ 4. What is 20 ÷ 2 first?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_02",
-      "stem": "Which multiplication fact helps you solve 36 ÷ 4?",
-      "choices": ["4 × 7 = 28", "4 × 8 = 32", "4 × 9 = 36", "4 × 10 = 40"],
-      "answer": "C",
+      "choices": [
+        "A) 4 × 7 = 28",
+        "B) 4 × 8 = 32",
+        "C) 4 × 9 = 36",
+        "D) 4 × 10 = 40"
+      ],
       "explanation": "4 × 9 = 36, so 36 ÷ 4 = 9.",
       "difficulty": 2,
       "id": "R2_02",
@@ -460,14 +561,19 @@
       "feedback": {
         "correct": "Right! 4 × 9 = 36, so 36 ÷ 4 = 9.",
         "incorrect": "Find the 4× fact where the product is 36. 4 × 9 = 36, so 36 ÷ 4 = 9."
-      }
+      },
+      "question": "Which multiplication fact helps you solve 36 ÷ 4?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_03",
-      "stem": "? ÷ 4 = 7. What is the missing number?",
-      "choices": ["24", "28", "32", "36"],
-      "answer": "B",
+      "choices": [
+        "A) 24",
+        "B) 28",
+        "C) 32",
+        "D) 36"
+      ],
       "explanation": "4 × 7 = 28, so 28 ÷ 4 = 7.",
       "difficulty": 2,
       "id": "R2_03",
@@ -478,14 +584,19 @@
       "feedback": {
         "correct": "Correct! 4 × 7 = 28, so the missing number is 28.",
         "incorrect": "Work backwards: if ? ÷ 4 = 7, then ? = 4 × 7 = 28."
-      }
+      },
+      "question": "? ÷ 4 = 7. What is the missing number?",
+      "correct_answer": "B"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_04",
-      "stem": "Which division has the GREATEST quotient?",
-      "choices": ["12 ÷ 4", "20 ÷ 4", "32 ÷ 4", "16 ÷ 4"],
-      "answer": "C",
+      "choices": [
+        "A) 12 ÷ 4",
+        "B) 20 ÷ 4",
+        "C) 32 ÷ 4",
+        "D) 16 ÷ 4"
+      ],
       "explanation": "12÷4=3, 20÷4=5, 32÷4=8, 16÷4=4. Greatest quotient is 8.",
       "difficulty": 2,
       "id": "R2_04",
@@ -496,13 +607,13 @@
       "feedback": {
         "correct": "Yes! 32÷4=8 is the greatest quotient.",
         "incorrect": "12÷4=3, 20÷4=5, 32÷4=8, 16÷4=4. The greatest is 8, from 32÷4."
-      }
+      },
+      "question": "Which division has the GREATEST quotient?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "R2_05",
-      "stem": "4 ÷ 4 = ___",
-      "answer": "1",
       "explanation": "4 ÷ 4 = 1. Any number divided by itself is 1.",
       "difficulty": 2,
       "id": "R2_05",
@@ -513,13 +624,13 @@
       "feedback": {
         "correct": "Correct! 4 ÷ 4 = 1.",
         "incorrect": "4 ÷ 4 means how many groups of 4 in 4. Just one group: 4 ÷ 4 = 1."
-      }
+      },
+      "question": "4 ÷ 4 = ___",
+      "correct_answer": "1"
     },
     {
       "type": "input",
       "problem_id": "R2_06",
-      "stem": "? ÷ 4 = 5. What is the missing dividend?",
-      "answer": "20",
       "explanation": "4 × 5 = 20, so 20 ÷ 4 = 5.",
       "difficulty": 2,
       "id": "R2_06",
@@ -530,14 +641,19 @@
       "feedback": {
         "correct": "Right! 4 × 5 = 20, so the missing number is 20.",
         "incorrect": "Work backwards: ? ÷ 4 = 5 means ? = 4 × 5 = 20."
-      }
+      },
+      "question": "? ÷ 4 = 5. What is the missing dividend?",
+      "correct_answer": "20"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_07",
-      "stem": "Which is NOT a correct ÷4 fact?",
-      "choices": ["8 ÷ 4 = 2", "24 ÷ 4 = 6", "32 ÷ 4 = 7", "40 ÷ 4 = 10"],
-      "answer": "C",
+      "choices": [
+        "A) 8 ÷ 4 = 2",
+        "B) 24 ÷ 4 = 6",
+        "C) 32 ÷ 4 = 7",
+        "D) 40 ÷ 4 = 10"
+      ],
       "explanation": "32 ÷ 4 = 8, not 7. All others are correct.",
       "difficulty": 2,
       "id": "R2_07",
@@ -548,13 +664,13 @@
       "feedback": {
         "correct": "Correct! 32 ÷ 4 = 8, not 7. Halve twice: 32÷2=16, 16÷2=8.",
         "incorrect": "Check 32 ÷ 4: 4×7=28 ≠ 32, but 4×8=32. So 32 ÷ 4 = 8, not 7."
-      }
+      },
+      "question": "Which is NOT a correct ÷4 fact?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "R2_08",
-      "stem": "36 ÷ 4 = ___",
-      "answer": "9",
       "explanation": "36 ÷ 4 = 9. Think: 4 × 9 = 36.",
       "difficulty": 2,
       "id": "R2_08",
@@ -565,13 +681,13 @@
       "feedback": {
         "correct": "Yes! 4 × 9 = 36, so 36 ÷ 4 = 9.",
         "incorrect": "Halve 36 twice: 36÷2=18, 18÷2=9. So 36 ÷ 4 = 9."
-      }
+      },
+      "question": "36 ÷ 4 = ___",
+      "correct_answer": "9"
     },
     {
       "type": "input",
       "problem_id": "R2_09",
-      "stem": "24 ÷ 4 = ___",
-      "answer": "6",
       "explanation": "24 ÷ 4 = 6. Think: 4 × 6 = 24.",
       "difficulty": 2,
       "id": "R2_09",
@@ -582,14 +698,19 @@
       "feedback": {
         "correct": "Great! 4 × 6 = 24, so 24 ÷ 4 = 6.",
         "incorrect": "Halve 24 twice: 24÷2=12, 12÷2=6. So 24 ÷ 4 = 6."
-      }
+      },
+      "question": "24 ÷ 4 = ___",
+      "correct_answer": "6"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R2_10",
-      "stem": "(16 ÷ 4) × (8 ÷ 4) = ?",
-      "choices": ["6", "7", "8", "9"],
-      "answer": "C",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
       "explanation": "16÷4=4, 8÷4=2. 4×2=8.",
       "difficulty": 2,
       "id": "R2_10",
@@ -600,16 +721,21 @@
       "feedback": {
         "correct": "Yes! 16÷4=4, 8÷4=2, and 4×2=8.",
         "incorrect": "Step 1: 16÷4=4. Step 2: 8÷4=2. Step 3: 4×2=8."
-      }
+      },
+      "question": "(16 ÷ 4) × (8 ÷ 4) = ?",
+      "correct_answer": "C"
     }
   ],
   "practice_r3": [
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_01",
-      "stem": "A dollar is worth 4 quarters. Sam has 8 dollars. How many quarters does he have in total?",
-      "choices": ["24", "28", "32", "36"],
-      "answer": "C",
+      "choices": [
+        "A) 24",
+        "B) 28",
+        "C) 32",
+        "D) 36"
+      ],
       "explanation": "8 × 4 = 32 quarters.",
       "difficulty": 3,
       "id": "R3_01",
@@ -620,14 +746,19 @@
       "feedback": {
         "correct": "Right! 8 × 4 = 32 quarters total.",
         "incorrect": "8 dollars × 4 quarters each = 8 × 4 = 32 quarters."
-      }
+      },
+      "question": "A dollar is worth 4 quarters. Sam has 8 dollars. How many quarters does he have in total?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_02",
-      "stem": "Tim has 40 candies. He splits them equally into 4 jars, then eats 2 from each jar. How many candies remain in total?",
-      "choices": ["28", "30", "32", "34"],
-      "answer": "C",
+      "choices": [
+        "A) 28",
+        "B) 30",
+        "C) 32",
+        "D) 34"
+      ],
       "explanation": "40 ÷ 4 = 10 per jar. 10 − 2 = 8 each. 8 × 4 = 32 candies total.",
       "difficulty": 3,
       "id": "R3_02",
@@ -638,14 +769,19 @@
       "feedback": {
         "correct": "Yes! 40÷4=10 per jar, 10−2=8, and 8×4=32 candies remain.",
         "incorrect": "40÷4=10 per jar. 10−2=8 per jar. 8×4=32 total remain."
-      }
+      },
+      "question": "Tim has 40 candies. He splits them equally into 4 jars, then eats 2 from each jar. How many candies remain in total?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_03",
-      "stem": "A mystery number ÷ 4 = 6. What is the mystery number × 2?",
-      "choices": ["24", "36", "48", "60"],
-      "answer": "C",
+      "choices": [
+        "A) 24",
+        "B) 36",
+        "C) 48",
+        "D) 60"
+      ],
       "explanation": "Mystery number = 4 × 6 = 24. 24 × 2 = 48.",
       "difficulty": 3,
       "id": "R3_03",
@@ -656,14 +792,19 @@
       "feedback": {
         "correct": "Correct! 4×6=24 is the mystery number, and 24×2=48.",
         "incorrect": "? ÷ 4 = 6 → ? = 4×6 = 24. Then 24×2 = 48."
-      }
+      },
+      "question": "A mystery number ÷ 4 = 6. What is the mystery number × 2?",
+      "correct_answer": "C"
     },
     {
-      "type": "MC",
+      "type": "mc",
       "problem_id": "R3_04",
-      "stem": "36 stickers are arranged equally on 4 pages. After reading, 1 page is torn out and thrown away. How many stickers remain?",
-      "choices": ["25", "26", "27", "28"],
-      "answer": "C",
+      "choices": [
+        "A) 25",
+        "B) 26",
+        "C) 27",
+        "D) 28"
+      ],
       "explanation": "36 ÷ 4 = 9 per page. 3 pages remain. 3 × 9 = 27 stickers.",
       "difficulty": 3,
       "id": "R3_04",
@@ -674,13 +815,13 @@
       "feedback": {
         "correct": "Yes! 36÷4=9 per page. 3 pages × 9 = 27 stickers remain.",
         "incorrect": "36÷4=9 per page. 4−1=3 pages remain. 3×9=27 stickers."
-      }
+      },
+      "question": "36 stickers are arranged equally on 4 pages. After reading, 1 page is torn out and thrown away. How many stickers remain?",
+      "correct_answer": "C"
     },
     {
       "type": "input",
       "problem_id": "R3_05",
-      "stem": "? ÷ 4 = 9. What is the missing dividend?",
-      "answer": "36",
       "explanation": "4 × 9 = 36, so 36 ÷ 4 = 9.",
       "difficulty": 3,
       "id": "R3_05",
@@ -691,7 +832,9 @@
       "feedback": {
         "correct": "Correct! 4 × 9 = 36, so the missing number is 36.",
         "incorrect": "Work backwards: ? ÷ 4 = 9 means ? = 4 × 9 = 36."
-      }
+      },
+      "question": "? ÷ 4 = 9. What is the missing dividend?",
+      "correct_answer": "36"
     }
   ],
   "concept": "divide_by_4"

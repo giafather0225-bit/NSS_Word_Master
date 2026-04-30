@@ -3,83 +3,307 @@
   "title": "Unit 4 Test: Multiplication Facts and Strategies",
   "grade": "G3",
   "unit": "U4_multiplication_facts_strategies",
-  "ccss": ["3.OA.B.5", "3.OA.C.7"],
+  "ccss": [
+    "3.OA.B.5",
+    "3.OA.C.7"
+  ],
   "pass_threshold": 0.8,
   "time_limit_min": 30,
   "problems": [
-    {"id":"UT_01","type":"input","lesson_ref":"L1","skill_tag":"multiply_by_2","difficulty":1,
-     "question":"2 × 8 = ___","correct_answer":"16",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 16."}},
-    {"id":"UT_02","type":"input","lesson_ref":"L1","skill_tag":"multiply_by_4","difficulty":1,
-     "question":"4 × 6 = ___","correct_answer":"24","hint":"Double 2×6.",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 24."}},
-    {"id":"UT_03","type":"input","lesson_ref":"L2","skill_tag":"multiply_by_5","difficulty":1,
-     "question":"5 × 7 = ___","correct_answer":"35",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 35."}},
-    {"id":"UT_04","type":"input","lesson_ref":"L2","skill_tag":"multiply_by_10","difficulty":1,
-     "question":"10 × 9 = ___","correct_answer":"90",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 90."}},
-    {"id":"UT_05","type":"input","lesson_ref":"L3","skill_tag":"multiply_by_3","difficulty":1,
-     "question":"3 × 8 = ___","correct_answer":"24",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 24."}},
-    {"id":"UT_06","type":"input","lesson_ref":"L3","skill_tag":"multiply_by_6","difficulty":2,
-     "question":"6 × 7 = ___","correct_answer":"42","hint":"Double 3×7.",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 42."}},
-    {"id":"UT_07","type":"mc","lesson_ref":"L4","skill_tag":"distributive","difficulty":2,
-     "question":"Which shows the Distributive Property for 7 × 8?",
-     "choices":["A) 7 × 8 = 7 × 4 + 7 × 4","B) 7 × 8 = 7 + 8","C) 7 × 8 = 8 × 7 + 1","D) 7 × 8 = 7 × 7 + 1"],
-     "correct_answer":"A",
-     "feedback":{"correct":"Right! Break 8 into 4+4.","incorrect":"The answer is A. Break one factor into a sum."}},
-    {"id":"UT_08","type":"input","lesson_ref":"L4","skill_tag":"distributive","difficulty":2,
-     "question":"Use distributive: 6 × 9 = (6×5) + (6×4) = 30 + ___","correct_answer":"24",
-     "feedback":{"correct":"Right! Sum = 54.","incorrect":"The answer is 24."}},
-    {"id":"UT_09","type":"input","lesson_ref":"L5","skill_tag":"multiply_by_7","difficulty":2,
-     "question":"7 × 6 = ___","correct_answer":"42",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 42."}},
-    {"id":"UT_10","type":"mc","lesson_ref":"L6","skill_tag":"associative","difficulty":2,
-     "question":"Associative Property: (2 × 3) × 4 = ?",
-     "choices":["A) 2 × (3 + 4)","B) 2 × (3 × 4)","C) 2 + 3 × 4","D) (2+3) × 4"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right!","incorrect":"The answer is B. Change grouping only."}},
-    {"id":"UT_11","type":"input","lesson_ref":"L6","skill_tag":"associative","difficulty":2,
-     "question":"(4 × 2) × 5 = 4 × (2 × 5) = 4 × ___","correct_answer":"10",
-     "feedback":{"correct":"Right! 4×10=40.","incorrect":"The answer is 10."}},
-    {"id":"UT_12","type":"mc","lesson_ref":"L7","skill_tag":"multiplication_patterns","difficulty":2,
-     "question":"On a multiplication table, the row of 5s ends in which digits?",
-     "choices":["A) 0 or 5","B) only 5","C) 2 or 4","D) 1 or 9"],
-     "correct_answer":"A",
-     "feedback":{"correct":"Right!","incorrect":"The answer is A. Multiples of 5 end in 0 or 5."}},
-    {"id":"UT_13","type":"tf","lesson_ref":"L7","skill_tag":"multiplication_patterns","difficulty":1,
-     "question":"Every multiple of 2 is an even number.",
-     "correct_answer":"true",
-     "feedback":{"correct":"Correct!","incorrect":"True."}},
-    {"id":"UT_14","type":"input","lesson_ref":"L8","skill_tag":"multiply_by_8","difficulty":2,
-     "question":"8 × 7 = ___","correct_answer":"56",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 56."}},
-    {"id":"UT_15","type":"input","lesson_ref":"L8","skill_tag":"multiply_by_8","difficulty":2,
-     "question":"8 × 9 = ___","correct_answer":"72","hint":"Double 4×9.",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 72."}},
-    {"id":"UT_16","type":"input","lesson_ref":"L9","skill_tag":"multiply_by_9","difficulty":2,
-     "question":"9 × 6 = ___","correct_answer":"54","hint":"10×6 − 6.",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 54."}},
-    {"id":"UT_17","type":"mc","lesson_ref":"L9","skill_tag":"multiply_by_9","difficulty":2,
-     "question":"Trick for 9 × n: the digits of the answer sum to:",
-     "choices":["A) 7","B) 8","C) 9","D) 10"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! 9×3=27, 2+7=9.","incorrect":"The answer is C (9)."}},
-    {"id":"UT_18","type":"input","lesson_ref":"L10","skill_tag":"problem_solving_multiplication","difficulty":3,
-     "question":"A classroom has 6 rows of 7 desks. How many desks?",
-     "correct_answer":"42",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 42."}},
-    {"id":"UT_19","type":"input","lesson_ref":"L10","skill_tag":"problem_solving_multiplication","difficulty":3,
-     "question":"There are 8 boxes with 9 pencils each. How many pencils?",
-     "correct_answer":"72",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 72."}},
-    {"id":"UT_20","type":"mc","lesson_ref":"L10","skill_tag":"problem_solving_multiplication","difficulty":3,
-     "question":"A store sells packs of 4 muffins. You buy 7 packs. How many muffins?",
-     "choices":["A) 11","B) 24","C) 28","D) 32"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! 7×4=28.","incorrect":"The answer is C (28)."}}
+    {
+      "id": "UT_01",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "multiply_by_2",
+      "difficulty": 1,
+      "question": "2 × 8 = ___",
+      "correct_answer": "16",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 16."
+      }
+    },
+    {
+      "id": "UT_02",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "multiply_by_4",
+      "difficulty": 1,
+      "question": "4 × 6 = ___",
+      "correct_answer": "24",
+      "hint": "Double 2×6.",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 24."
+      }
+    },
+    {
+      "id": "UT_03",
+      "type": "input",
+      "lesson_ref": "L2",
+      "skill_tag": "multiply_by_5",
+      "difficulty": 1,
+      "question": "5 × 7 = ___",
+      "correct_answer": "35",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 35."
+      }
+    },
+    {
+      "id": "UT_04",
+      "type": "input",
+      "lesson_ref": "L2",
+      "skill_tag": "multiply_by_10",
+      "difficulty": 1,
+      "question": "10 × 9 = ___",
+      "correct_answer": "90",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 90."
+      }
+    },
+    {
+      "id": "UT_05",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "multiply_by_3",
+      "difficulty": 1,
+      "question": "3 × 8 = ___",
+      "correct_answer": "24",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 24."
+      }
+    },
+    {
+      "id": "UT_06",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "multiply_by_6",
+      "difficulty": 2,
+      "question": "6 × 7 = ___",
+      "correct_answer": "42",
+      "hint": "Double 3×7.",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 42."
+      }
+    },
+    {
+      "id": "UT_07",
+      "type": "mc",
+      "lesson_ref": "L4",
+      "skill_tag": "distributive",
+      "difficulty": 2,
+      "question": "Which shows the Distributive Property for 7 × 8?",
+      "choices": [
+        "A) 7 × 8 = 7 × 4 + 7 × 4",
+        "B) 7 × 8 = 7 + 8",
+        "C) 7 × 8 = 8 × 7 + 1",
+        "D) 7 × 8 = 7 × 7 + 1"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Right! Break 8 into 4+4.",
+        "incorrect": "The answer is A. Break one factor into a sum."
+      }
+    },
+    {
+      "id": "UT_08",
+      "type": "input",
+      "lesson_ref": "L4",
+      "skill_tag": "distributive",
+      "difficulty": 2,
+      "question": "Use distributive: 6 × 9 = (6×5) + (6×4) = 30 + ___",
+      "correct_answer": "24",
+      "feedback": {
+        "correct": "Right! Sum = 54.",
+        "incorrect": "The answer is 24."
+      }
+    },
+    {
+      "id": "UT_09",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "multiply_by_7",
+      "difficulty": 2,
+      "question": "7 × 6 = ___",
+      "correct_answer": "42",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 42."
+      }
+    },
+    {
+      "id": "UT_10",
+      "type": "mc",
+      "lesson_ref": "L6",
+      "skill_tag": "associative",
+      "difficulty": 2,
+      "question": "Associative Property: (2 × 3) × 4 = ?",
+      "choices": [
+        "A) 2 × (3 + 4)",
+        "B) 2 × (3 × 4)",
+        "C) 2 + 3 × 4",
+        "D) (2+3) × 4"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is B. Change grouping only."
+      }
+    },
+    {
+      "id": "UT_11",
+      "type": "input",
+      "lesson_ref": "L6",
+      "skill_tag": "associative",
+      "difficulty": 2,
+      "question": "(4 × 2) × 5 = 4 × (2 × 5) = 4 × ___",
+      "correct_answer": "10",
+      "feedback": {
+        "correct": "Right! 4×10=40.",
+        "incorrect": "The answer is 10."
+      }
+    },
+    {
+      "id": "UT_12",
+      "type": "mc",
+      "lesson_ref": "L7",
+      "skill_tag": "multiplication_patterns",
+      "difficulty": 2,
+      "question": "On a multiplication table, the row of 5s ends in which digits?",
+      "choices": [
+        "A) 0 or 5",
+        "B) only 5",
+        "C) 2 or 4",
+        "D) 1 or 9"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is A. Multiples of 5 end in 0 or 5."
+      }
+    },
+    {
+      "id": "UT_13",
+      "type": "tf",
+      "lesson_ref": "L7",
+      "skill_tag": "multiplication_patterns",
+      "difficulty": 1,
+      "question": "Every multiple of 2 is an even number.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "True."
+      }
+    },
+    {
+      "id": "UT_14",
+      "type": "input",
+      "lesson_ref": "L8",
+      "skill_tag": "multiply_by_8",
+      "difficulty": 2,
+      "question": "8 × 7 = ___",
+      "correct_answer": "56",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 56."
+      }
+    },
+    {
+      "id": "UT_15",
+      "type": "input",
+      "lesson_ref": "L8",
+      "skill_tag": "multiply_by_8",
+      "difficulty": 2,
+      "question": "8 × 9 = ___",
+      "correct_answer": "72",
+      "hint": "Double 4×9.",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 72."
+      }
+    },
+    {
+      "id": "UT_16",
+      "type": "input",
+      "lesson_ref": "L9",
+      "skill_tag": "multiply_by_9",
+      "difficulty": 2,
+      "question": "9 × 6 = ___",
+      "correct_answer": "54",
+      "hint": "10×6 − 6.",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 54."
+      }
+    },
+    {
+      "id": "UT_17",
+      "type": "mc",
+      "lesson_ref": "L9",
+      "skill_tag": "multiply_by_9",
+      "difficulty": 2,
+      "question": "Trick for 9 × n: the digits of the answer sum to:",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! 9×3=27, 2+7=9.",
+        "incorrect": "The answer is C (9)."
+      }
+    },
+    {
+      "id": "UT_18",
+      "type": "input",
+      "lesson_ref": "L10",
+      "skill_tag": "problem_solving_multiplication",
+      "difficulty": 3,
+      "question": "A classroom has 6 rows of 7 desks. How many desks?",
+      "correct_answer": "42",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 42."
+      }
+    },
+    {
+      "id": "UT_19",
+      "type": "input",
+      "lesson_ref": "L10",
+      "skill_tag": "problem_solving_multiplication",
+      "difficulty": 3,
+      "question": "There are 8 boxes with 9 pencils each. How many pencils?",
+      "correct_answer": "72",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 72."
+      }
+    },
+    {
+      "id": "UT_20",
+      "type": "mc",
+      "lesson_ref": "L10",
+      "skill_tag": "problem_solving_multiplication",
+      "difficulty": 3,
+      "question": "A store sells packs of 4 muffins. You buy 7 packs. How many muffins?",
+      "choices": [
+        "A) 11",
+        "B) 24",
+        "C) 28",
+        "D) 32"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! 7×4=28.",
+        "incorrect": "The answer is C (28)."
+      }
+    }
   ],
   "count": 20
 }

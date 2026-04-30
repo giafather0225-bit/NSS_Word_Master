@@ -1,13 +1,21 @@
 {
   "lesson_id": "L5_use_properties_to_add",
   "title": "Algebra: Use Properties to Add",
-  "ccss": ["3.NBT.A.2"],
+  "ccss": [
+    "3.NBT.A.2"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
   "go_math_ref": "Chapter 1, Lesson 1.5, pp.21-24",
   "essential_question": "How can you add more than two addends?",
-  "key_vocabulary": ["Commutative Property of Addition", "Associative Property of Addition", "Identity Property of Addition", "addend", "sum", "grouping"],
-
+  "key_vocabulary": [
+    "Commutative Property of Addition",
+    "Associative Property of Addition",
+    "Identity Property of Addition",
+    "addend",
+    "sum",
+    "grouping"
+  ],
   "pretest": [
     {
       "id": "PT_01",
@@ -17,16 +25,33 @@
       "skill_tag": "property_commutative",
       "difficulty": 2,
       "question": "Which shows the Commutative Property of Addition?",
-      "choices": {"A": "15 + 28 = 28 + 15", "B": "(15 + 28) + 7 = 15 + (28 + 7)", "C": "15 + 0 = 15", "D": "15 = 10 + 5"},
-      "answer": "A",
+      "choices": [
+        "A) 15 + 28 = 28 + 15",
+        "B) (15 + 28) + 7 = 15 + (28 + 7)",
+        "C) 15 + 0 = 15",
+        "D) 15 = 10 + 5"
+      ],
       "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "This is the Associative Property"},
-        "C": {"error_type": "concept_gap", "note": "This is the Identity Property"},
-        "D": {"error_type": "concept_gap", "note": "This is place value decomposition, not a property"}
+        "B": {
+          "error_type": "concept_gap",
+          "note": "This is the Associative Property"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "This is the Identity Property"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "This is place value decomposition, not a property"
+        }
       },
-      "solution_steps": ["Commutative Property: you can change the ORDER of addends", "15 + 28 = 28 + 15 — the order changed, the sum stays the same"],
+      "solution_steps": [
+        "Commutative Property: you can change the ORDER of addends",
+        "15 + 28 = 28 + 15 — the order changed, the sum stays the same"
+      ],
       "hint": "Commutative means you can switch the order.",
-      "verification": "Go Math p.21 — Commutative Property definition"
+      "verification": "Go Math p.21 — Commutative Property definition",
+      "correct_answer": "A"
     },
     {
       "id": "PT_02",
@@ -36,16 +61,33 @@
       "skill_tag": "property_associative",
       "difficulty": 2,
       "question": "Which shows the Associative Property of Addition?",
-      "choices": {"A": "86 + 7 = 7 + 86", "B": "(86 + 7) + 93 = 86 + (7 + 93)", "C": "86 + 0 = 86", "D": "86 = 80 + 6"},
-      "answer": "B",
+      "choices": [
+        "A) 86 + 7 = 7 + 86",
+        "B) (86 + 7) + 93 = 86 + (7 + 93)",
+        "C) 86 + 0 = 86",
+        "D) 86 = 80 + 6"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "This is the Commutative Property"},
-        "C": {"error_type": "concept_gap", "note": "This is the Identity Property"},
-        "D": {"error_type": "concept_gap", "note": "This is place value, not a property"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "This is the Commutative Property"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "This is the Identity Property"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "This is place value, not a property"
+        }
       },
-      "solution_steps": ["Associative Property: you can change the GROUPING of addends", "(86+7)+93 = 86+(7+93) — the parentheses moved, sum stays the same"],
+      "solution_steps": [
+        "Associative Property: you can change the GROUPING of addends",
+        "(86+7)+93 = 86+(7+93) — the parentheses moved, sum stays the same"
+      ],
       "hint": "Associative means you can regroup (move the parentheses).",
-      "verification": "Go Math p.24 Test Prep Q13 — exact problem"
+      "verification": "Go Math p.24 Test Prep Q13 — exact problem",
+      "correct_answer": "B"
     },
     {
       "id": "PT_03",
@@ -55,16 +97,35 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties to find the sum. 18 + 39 + 32 = ?",
-      "choices": {"A": "79", "B": "89", "C": "99", "D": "88"},
-      "answer": "B",
+      "choices": [
+        "A) 79",
+        "B) 89",
+        "C) 99",
+        "D) 88"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "18+32=50, 50+39=89… no, got 79 by miscalculating 50+29"},
-        "C": {"error_type": "careless", "note": "18+39=57, 57+32=89, not 99"},
-        "D": {"error_type": "careless", "note": "18+38+32=88"}
+        "A": {
+          "error_type": "careless",
+          "note": "18+32=50, 50+39=89… no, got 79 by miscalculating 50+29"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "18+39=57, 57+32=89, not 99"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "18+38+32=88"
+        }
       },
-      "solution_steps": ["Use Commutative: reorder → 18 + 32 + 39", "Use Associative: (18 + 32) + 39", "18 + 32 = 50", "50 + 39 = 89"],
+      "solution_steps": [
+        "Use Commutative: reorder → 18 + 32 + 39",
+        "Use Associative: (18 + 32) + 39",
+        "18 + 32 = 50",
+        "50 + 39 = 89"
+      ],
       "hint": "Look for two numbers that make a friendly sum. 18 + 32 = ?",
-      "verification": "Go Math p.23 On Your Own Q4"
+      "verification": "Go Math p.23 On Your Own Q4",
+      "correct_answer": "B"
     },
     {
       "id": "PT_04",
@@ -74,16 +135,34 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties to find the sum. 15 + 76 + 125 = ?",
-      "choices": {"A": "206", "B": "216", "C": "226", "D": "196"},
-      "answer": "B",
+      "choices": [
+        "A) 206",
+        "B) 216",
+        "C) 226",
+        "D) 196"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "15+125=140, 140+76=216, not 206"},
-        "C": {"error_type": "careless", "note": "15+76=91, 91+125=216, not 226"},
-        "D": {"error_type": "concept_gap", "note": "Added incorrectly"}
+        "A": {
+          "error_type": "careless",
+          "note": "15+125=140, 140+76=216, not 206"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "15+76=91, 91+125=216, not 226"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Added incorrectly"
+        }
       },
-      "solution_steps": ["Reorder: 15 + 125 + 76", "15 + 125 = 140", "140 + 76 = 216"],
+      "solution_steps": [
+        "Reorder: 15 + 125 + 76",
+        "15 + 125 = 140",
+        "140 + 76 = 216"
+      ],
       "hint": "15 + 125 is easy to add! Group those first.",
-      "verification": "Go Math p.23 On Your Own Q6"
+      "verification": "Go Math p.23 On Your Own Q6",
+      "correct_answer": "B"
     },
     {
       "id": "PT_05",
@@ -93,19 +172,36 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 3,
       "question": "Ms. Chang bought 16 apples, 29 peaches, and 11 bananas. How many pieces of fruit did she buy?",
-      "choices": {"A": "46", "B": "56", "C": "66", "D": "55"},
-      "answer": "B",
+      "choices": [
+        "A) 46",
+        "B) 56",
+        "C) 66",
+        "D) 55"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "16+29=45, forgot bananas or added 1"},
-        "C": {"error_type": "careless", "note": "16+29+21=66"},
-        "D": {"error_type": "careless", "note": "16+29+10=55"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "16+29=45, forgot bananas or added 1"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "16+29+21=66"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "16+29+10=55"
+        }
       },
-      "solution_steps": ["Reorder: 29 + 11 + 16", "29 + 11 = 40", "40 + 16 = 56"],
+      "solution_steps": [
+        "Reorder: 29 + 11 + 16",
+        "29 + 11 = 40",
+        "40 + 16 = 56"
+      ],
       "hint": "Look for numbers that add to a round number. 29 + 11 = ?",
-      "verification": "Go Math p.24 Problem Solving Q10 — exact problem"
+      "verification": "Go Math p.24 Problem Solving Q10 — exact problem",
+      "correct_answer": "B"
     }
   ],
-
   "learn": [
     {
       "id": "LEARN_01",
@@ -113,7 +209,9 @@
       "content": "Sometimes you need to add three or more numbers. You can use addition properties to make this easier. Properties are rules that are always true.",
       "cpa_phase": "concrete",
       "visual_type": "illustration",
-      "visual_data": {"description": "Three groups of objects (apples, peaches, bananas) being combined"},
+      "visual_data": {
+        "description": "Three groups of objects (apples, peaches, bananas) being combined"
+      },
       "verification": "Go Math p.21 introduction"
     },
     {
@@ -122,7 +220,11 @@
       "content": "The Commutative Property says you can add numbers in any order and get the same sum. Example: 4 + 7 = 7 + 4. Both equal 11. This helps because you can rearrange numbers to find easier pairs.",
       "cpa_phase": "pictorial",
       "visual_type": "equation_pair",
-      "visual_data": {"left": "4 + 7 = 11", "right": "7 + 4 = 11", "property": "Commutative"},
+      "visual_data": {
+        "left": "4 + 7 = 11",
+        "right": "7 + 4 = 11",
+        "property": "Commutative"
+      },
       "verification": "Go Math p.21 — Commutative Property review"
     },
     {
@@ -131,7 +233,11 @@
       "content": "The Associative Property says you can group addends differently and get the same sum. Example: (5 + 3) + 7 = 5 + (3 + 7). Left: 8 + 7 = 15. Right: 5 + 10 = 15. Same answer! Grouping 3 + 7 first makes a friendly 10.",
       "cpa_phase": "pictorial",
       "visual_type": "equation_pair",
-      "visual_data": {"left": "(5+3)+7 = 8+7 = 15", "right": "5+(3+7) = 5+10 = 15", "property": "Associative"},
+      "visual_data": {
+        "left": "(5+3)+7 = 8+7 = 15",
+        "right": "5+(3+7) = 5+10 = 15",
+        "property": "Associative"
+      },
       "verification": "Go Math p.21 — Associative Property definition"
     },
     {
@@ -140,7 +246,9 @@
       "content": "The Identity Property says that adding 0 to any number gives that same number. Example: 42 + 0 = 42. Zero is the 'identity' element for addition because it doesn't change the number.",
       "cpa_phase": "abstract",
       "visual_type": "equation",
-      "visual_data": {"equation": "42 + 0 = 42"},
+      "visual_data": {
+        "equation": "42 + 0 = 42"
+      },
       "verification": "Go Math p.21 — Identity Property"
     },
     {
@@ -149,7 +257,14 @@
       "content": "Find 36 + 37 + 51. Step 1: Line up by place value. Step 2: Look for friendly groups. 37 + 51: 7 + 1 = 8 (easy ones). Step 3: Change grouping → 36 + (37 + 51) = 36 + 88 = 124. Or reorder: (36 + 51) + 37 = 87 + 37 = 124.",
       "cpa_phase": "abstract",
       "visual_type": "step_by_step",
-      "visual_data": {"steps": ["36 + 37 + 51", "Regroup: 36 + (37+51)", "37+51 = 88", "36 + 88 = 124"]},
+      "visual_data": {
+        "steps": [
+          "36 + 37 + 51",
+          "Regroup: 36 + (37+51)",
+          "37+51 = 88",
+          "36 + 88 = 124"
+        ]
+      },
       "verification": "Go Math p.22 — Model example 36+37+51"
     },
     {
@@ -158,7 +273,19 @@
       "content": "When adding 3 or more numbers, look for pairs that make a ten or a hundred. Example: 18 + 39 + 32. Notice 18 + 32 = 50 (a friendly number!). Reorder: (18 + 32) + 39 = 50 + 39 = 89.",
       "cpa_phase": "abstract",
       "visual_type": "highlight",
-      "visual_data": {"numbers": [18, 39, 32], "friendly_pair": [18, 32], "pair_sum": 50, "total": 89},
+      "visual_data": {
+        "numbers": [
+          18,
+          39,
+          32
+        ],
+        "friendly_pair": [
+          18,
+          32
+        ],
+        "pair_sum": 50,
+        "total": 89
+      },
       "verification": "Go Math p.23 Q4 — 18+39+32"
     },
     {
@@ -167,7 +294,14 @@
       "content": "You can use properties with four or more addends too! Example: 33 + 71 + 56 + 29. Look for pairs: 71 + 29 = 100! Reorder: (71 + 29) + (33 + 56) = 100 + 89 = 189.",
       "cpa_phase": "abstract",
       "visual_type": "step_by_step",
-      "visual_data": {"steps": ["33+71+56+29", "Pair: 71+29=100", "Pair: 33+56=89", "100+89=189"]},
+      "visual_data": {
+        "steps": [
+          "33+71+56+29",
+          "Pair: 71+29=100",
+          "Pair: 33+56=89",
+          "100+89=189"
+        ]
+      },
       "verification": "Go Math p.23 Q7 — four addends"
     },
     {
@@ -180,7 +314,6 @@
       "verification": "Go Math pp.21-24 lesson summary"
     }
   ],
-
   "try": [
     {
       "id": "TRY_01",
@@ -190,16 +323,34 @@
       "skill_tag": "property_identify",
       "difficulty": 2,
       "question": "Which property is shown? 23 + 0 = 23",
-      "choices": {"A": "Commutative Property", "B": "Associative Property", "C": "Identity Property", "D": "None of these"},
-      "answer": "C",
+      "choices": [
+        "A) Commutative Property",
+        "B) Associative Property",
+        "C) Identity Property",
+        "D) None of these"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "Commutative changes order, not adds 0"},
-        "B": {"error_type": "concept_gap", "note": "Associative changes grouping"},
-        "D": {"error_type": "concept_gap", "note": "This is definitely the Identity Property"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Commutative changes order, not adds 0"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Associative changes grouping"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "This is definitely the Identity Property"
+        }
       },
-      "solution_steps": ["Adding 0 to a number gives the same number", "23 + 0 = 23", "This is the Identity Property of Addition"],
+      "solution_steps": [
+        "Adding 0 to a number gives the same number",
+        "23 + 0 = 23",
+        "This is the Identity Property of Addition"
+      ],
       "hint": "What happens when you add zero?",
-      "verification": "Go Math p.21 Identity Property"
+      "verification": "Go Math p.21 Identity Property",
+      "correct_answer": "C"
     },
     {
       "id": "TRY_02",
@@ -209,16 +360,34 @@
       "skill_tag": "properties_add_three",
       "difficulty": 2,
       "question": "Use properties to find the sum. 13 + 49 + 87 = ?",
-      "choices": {"A": "139", "B": "149", "C": "159", "D": "148"},
-      "answer": "B",
+      "choices": [
+        "A) 139",
+        "B) 149",
+        "C) 159",
+        "D) 148"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "13+87=100, 100+49=149, not 139"},
-        "C": {"error_type": "careless", "note": "13+49=62, 62+87=149, not 159"},
-        "D": {"error_type": "careless", "note": "13+48+87=148"}
+        "A": {
+          "error_type": "careless",
+          "note": "13+87=100, 100+49=149, not 139"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "13+49=62, 62+87=149, not 159"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "13+48+87=148"
+        }
       },
-      "solution_steps": ["Look for friendly pair: 13 + 87 = 100!", "Reorder: (13 + 87) + 49", "100 + 49 = 149"],
+      "solution_steps": [
+        "Look for friendly pair: 13 + 87 = 100!",
+        "Reorder: (13 + 87) + 49",
+        "100 + 49 = 149"
+      ],
       "hint": "Do any two numbers add up to 100?",
-      "verification": "Go Math p.23 On Your Own Q5"
+      "verification": "Go Math p.23 On Your Own Q5",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_03",
@@ -228,16 +397,34 @@
       "skill_tag": "properties_add_four",
       "difficulty": 3,
       "question": "Use properties to find the sum. 43 + 39 + 43 + 11 = ?",
-      "choices": {"A": "126", "B": "136", "C": "146", "D": "135"},
-      "answer": "B",
+      "choices": [
+        "A) 126",
+        "B) 136",
+        "C) 146",
+        "D) 135"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "39+11=50, 43+43=86, 50+86=136, not 126"},
-        "C": {"error_type": "careless", "note": "43+43=86, 39+11=50, 86+50=136, not 146"},
-        "D": {"error_type": "careless", "note": "43+39+43+10=135"}
+        "A": {
+          "error_type": "careless",
+          "note": "39+11=50, 43+43=86, 50+86=136, not 126"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "43+43=86, 39+11=50, 86+50=136, not 146"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "43+39+43+10=135"
+        }
       },
-      "solution_steps": ["Look for pairs: 39 + 11 = 50", "43 + 43 = 86", "50 + 86 = 136"],
+      "solution_steps": [
+        "Look for pairs: 39 + 11 = 50",
+        "43 + 43 = 86",
+        "50 + 86 = 136"
+      ],
       "hint": "Which two numbers make 50? Which two are the same?",
-      "verification": "Go Math p.23 On Your Own Q8"
+      "verification": "Go Math p.23 On Your Own Q8",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_04",
@@ -247,16 +434,34 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 3,
       "question": "Mr. Arnez bought 32 potatoes, 29 onions, 31 tomatoes and 28 peppers. How many vegetables did he buy?",
-      "choices": {"A": "110", "B": "120", "C": "130", "D": "119"},
-      "answer": "B",
+      "choices": [
+        "A) 110",
+        "B) 120",
+        "C) 130",
+        "D) 119"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "32+28=60, 29+31=60, 60+60=120, not 110"},
-        "C": {"error_type": "careless", "note": "32+29+31+38=130"},
-        "D": {"error_type": "careless", "note": "32+29+31+27=119"}
+        "A": {
+          "error_type": "careless",
+          "note": "32+28=60, 29+31=60, 60+60=120, not 110"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "32+29+31+38=130"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "32+29+31+27=119"
+        }
       },
-      "solution_steps": ["Look for pairs: 32 + 28 = 60", "29 + 31 = 60", "60 + 60 = 120"],
+      "solution_steps": [
+        "Look for pairs: 32 + 28 = 60",
+        "29 + 31 = 60",
+        "60 + 60 = 120"
+      ],
       "hint": "Look for two pairs that each make a round number.",
-      "verification": "Go Math p.24 Problem Solving Q9 — exact problem"
+      "verification": "Go Math p.24 Problem Solving Q9 — exact problem",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_05",
@@ -266,19 +471,38 @@
       "skill_tag": "property_unknown",
       "difficulty": 3,
       "question": "What is the unknown number? (? + 8) + 32 = 49",
-      "choices": {"A": "7", "B": "8", "C": "9", "D": "11"},
-      "answer": "C",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 11"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "(7+8)+32 = 15+32 = 47, not 49"},
-        "B": {"error_type": "careless", "note": "(8+8)+32 = 16+32 = 48, not 49"},
-        "D": {"error_type": "careless", "note": "(11+8)+32 = 19+32 = 51, not 49"}
+        "A": {
+          "error_type": "careless",
+          "note": "(7+8)+32 = 15+32 = 47, not 49"
+        },
+        "B": {
+          "error_type": "careless",
+          "note": "(8+8)+32 = 16+32 = 48, not 49"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "(11+8)+32 = 19+32 = 51, not 49"
+        }
       },
-      "solution_steps": ["(? + 8) + 32 = 49", "Use Associative: ? + (8 + 32) = 49", "? + 40 = 49", "? = 49 - 40 = 9", "Check: (9 + 8) + 32 = 17 + 32 = 49 ✓"],
+      "solution_steps": [
+        "(? + 8) + 32 = 49",
+        "Use Associative: ? + (8 + 32) = 49",
+        "? + 40 = 49",
+        "? = 49 - 40 = 9",
+        "Check: (9 + 8) + 32 = 17 + 32 = 49 ✓"
+      ],
       "hint": "First add 8 + 32. Then figure out what plus 40 equals 49.",
-      "verification": "Go Math p.24 Q11 — exact problem"
+      "verification": "Go Math p.24 Q11 — exact problem",
+      "correct_answer": "C"
     }
   ],
-
   "practice_r1": [
     {
       "id": "R1_01",
@@ -288,15 +512,33 @@
       "skill_tag": "property_identify",
       "difficulty": 2,
       "question": "Which property is shown? 45 + 12 = 12 + 45",
-      "choices": {"A": "Commutative", "B": "Associative", "C": "Identity", "D": "None"},
-      "answer": "A",
+      "choices": [
+        "A) Commutative",
+        "B) Associative",
+        "C) Identity",
+        "D) None"
+      ],
       "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "Associative changes grouping, not order"},
-        "C": {"error_type": "concept_gap", "note": "Identity involves adding 0"},
-        "D": {"error_type": "concept_gap", "note": "This is the Commutative Property"}
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Associative changes grouping, not order"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Identity involves adding 0"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "This is the Commutative Property"
+        }
       },
-      "solution_steps": ["The order of 45 and 12 is switched", "Same numbers, different order, same sum", "This is the Commutative Property"],
-      "hint": "Did the order change or the grouping?"
+      "solution_steps": [
+        "The order of 45 and 12 is switched",
+        "Same numbers, different order, same sum",
+        "This is the Commutative Property"
+      ],
+      "hint": "Did the order change or the grouping?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_02",
@@ -306,15 +548,33 @@
       "skill_tag": "property_identify",
       "difficulty": 2,
       "question": "Which property is shown? (9 + 6) + 4 = 9 + (6 + 4)",
-      "choices": {"A": "Commutative", "B": "Associative", "C": "Identity", "D": "None"},
-      "answer": "B",
+      "choices": [
+        "A) Commutative",
+        "B) Associative",
+        "C) Identity",
+        "D) None"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "The order didn't change, the grouping did"},
-        "C": {"error_type": "concept_gap", "note": "No zero involved"},
-        "D": {"error_type": "concept_gap", "note": "This is the Associative Property"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "The order didn't change, the grouping did"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "No zero involved"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "This is the Associative Property"
+        }
       },
-      "solution_steps": ["The parentheses moved from (9+6) to (6+4)", "The grouping changed, not the order", "This is the Associative Property"],
-      "hint": "Look at the parentheses — did they move?"
+      "solution_steps": [
+        "The parentheses moved from (9+6) to (6+4)",
+        "The grouping changed, not the order",
+        "This is the Associative Property"
+      ],
+      "hint": "Look at the parentheses — did they move?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_03",
@@ -324,15 +584,32 @@
       "skill_tag": "properties_add_three",
       "difficulty": 2,
       "question": "Use properties. 25 + 48 + 75 = ?",
-      "choices": {"A": "138", "B": "148", "C": "158", "D": "147"},
-      "answer": "B",
+      "choices": [
+        "A) 138",
+        "B) 148",
+        "C) 158",
+        "D) 147"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "25+75=100, 100+48=148, not 138"},
-        "C": {"error_type": "careless", "note": "25+48=73, 73+75=148, not 158"},
-        "D": {"error_type": "careless", "note": "25+75=100, 100+47=147"}
+        "A": {
+          "error_type": "careless",
+          "note": "25+75=100, 100+48=148, not 138"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "25+48=73, 73+75=148, not 158"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "25+75=100, 100+47=147"
+        }
       },
-      "solution_steps": ["25 + 75 = 100 (friendly pair!)", "100 + 48 = 148"],
-      "hint": "Which two numbers add up to 100?"
+      "solution_steps": [
+        "25 + 75 = 100 (friendly pair!)",
+        "100 + 48 = 148"
+      ],
+      "hint": "Which two numbers add up to 100?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_04",
@@ -342,16 +619,34 @@
       "skill_tag": "properties_add_three",
       "difficulty": 2,
       "question": "Use properties. 36 + 37 + 51 = ?",
-      "choices": {"A": "114", "B": "124", "C": "134", "D": "123"},
-      "answer": "B",
+      "choices": [
+        "A) 114",
+        "B) 124",
+        "C) 134",
+        "D) 123"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "36+37=73, 73+51=124, not 114"},
-        "C": {"error_type": "careless", "note": "36+51=87, 87+47=134"},
-        "D": {"error_type": "careless", "note": "36+37+50=123"}
+        "A": {
+          "error_type": "careless",
+          "note": "36+37=73, 73+51=124, not 114"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "36+51=87, 87+47=134"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "36+37+50=123"
+        }
       },
-      "solution_steps": ["36 + (37 + 51)", "37 + 51 = 88", "36 + 88 = 124"],
+      "solution_steps": [
+        "36 + (37 + 51)",
+        "37 + 51 = 88",
+        "36 + 88 = 124"
+      ],
       "hint": "Try adding 37 + 51 first.",
-      "verification": "Go Math p.22 Model example"
+      "verification": "Go Math p.22 Model example",
+      "correct_answer": "B"
     },
     {
       "id": "R1_05",
@@ -361,15 +656,32 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties. 44 + 27 + 56 = ?",
-      "choices": {"A": "117", "B": "127", "C": "137", "D": "126"},
-      "answer": "B",
+      "choices": [
+        "A) 117",
+        "B) 127",
+        "C) 137",
+        "D) 126"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "44+56=100, 100+27=127, not 117"},
-        "C": {"error_type": "careless", "note": "44+56=100, 100+37=137"},
-        "D": {"error_type": "careless", "note": "44+56=100, 100+26=126"}
+        "A": {
+          "error_type": "careless",
+          "note": "44+56=100, 100+27=127, not 117"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "44+56=100, 100+37=137"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "44+56=100, 100+26=126"
+        }
       },
-      "solution_steps": ["44 + 56 = 100 (friendly pair!)", "100 + 27 = 127"],
-      "hint": "44 + 56 makes a nice round number."
+      "solution_steps": [
+        "44 + 56 = 100 (friendly pair!)",
+        "100 + 27 = 127"
+      ],
+      "hint": "44 + 56 makes a nice round number.",
+      "correct_answer": "B"
     },
     {
       "id": "R1_06",
@@ -379,15 +691,32 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties. 62 + 19 + 38 = ?",
-      "choices": {"A": "109", "B": "119", "C": "129", "D": "118"},
-      "answer": "B",
+      "choices": [
+        "A) 109",
+        "B) 119",
+        "C) 129",
+        "D) 118"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "62+38=100, 100+19=119, not 109"},
-        "C": {"error_type": "careless", "note": "62+38=100, 100+29=129"},
-        "D": {"error_type": "careless", "note": "62+38=100, 100+18=118"}
+        "A": {
+          "error_type": "careless",
+          "note": "62+38=100, 100+19=119, not 109"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "62+38=100, 100+29=129"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "62+38=100, 100+18=118"
+        }
       },
-      "solution_steps": ["62 + 38 = 100", "100 + 19 = 119"],
-      "hint": "62 + 38 = ?"
+      "solution_steps": [
+        "62 + 38 = 100",
+        "100 + 19 = 119"
+      ],
+      "hint": "62 + 38 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_07",
@@ -397,16 +726,34 @@
       "skill_tag": "properties_add_four",
       "difficulty": 3,
       "question": "Use properties. 32 + 29 + 31 + 28 = ?",
-      "choices": {"A": "110", "B": "120", "C": "130", "D": "119"},
-      "answer": "B",
+      "choices": [
+        "A) 110",
+        "B) 120",
+        "C) 130",
+        "D) 119"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "32+28=60, 29+31=60, 60+60=120, not 110"},
-        "C": {"error_type": "careless", "note": "32+29+31+38=130"},
-        "D": {"error_type": "careless", "note": "32+29+31+27=119"}
+        "A": {
+          "error_type": "careless",
+          "note": "32+28=60, 29+31=60, 60+60=120, not 110"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "32+29+31+38=130"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "32+29+31+27=119"
+        }
       },
-      "solution_steps": ["Pair: 32 + 28 = 60", "Pair: 29 + 31 = 60", "60 + 60 = 120"],
+      "solution_steps": [
+        "Pair: 32 + 28 = 60",
+        "Pair: 29 + 31 = 60",
+        "60 + 60 = 120"
+      ],
       "hint": "Find two pairs that each make a round number.",
-      "verification": "Go Math p.24 Q9"
+      "verification": "Go Math p.24 Q9",
+      "correct_answer": "B"
     },
     {
       "id": "R1_08",
@@ -416,15 +763,32 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 3,
       "question": "A class collected 35 cans on Monday, 47 on Tuesday, and 15 on Wednesday. How many cans in all?",
-      "choices": {"A": "87", "B": "97", "C": "107", "D": "96"},
-      "answer": "B",
+      "choices": [
+        "A) 87",
+        "B) 97",
+        "C) 107",
+        "D) 96"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "35+47=82, 82+15=97, not 87"},
-        "C": {"error_type": "careless", "note": "35+15=50, 50+47=97, not 107"},
-        "D": {"error_type": "careless", "note": "35+47+14=96"}
+        "A": {
+          "error_type": "careless",
+          "note": "35+47=82, 82+15=97, not 87"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "35+15=50, 50+47=97, not 107"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "35+47+14=96"
+        }
       },
-      "solution_steps": ["35 + 15 = 50 (friendly pair)", "50 + 47 = 97"],
-      "hint": "35 + 15 makes a round number!"
+      "solution_steps": [
+        "35 + 15 = 50 (friendly pair)",
+        "50 + 47 = 97"
+      ],
+      "hint": "35 + 15 makes a round number!",
+      "correct_answer": "B"
     },
     {
       "id": "R1_09",
@@ -434,15 +798,34 @@
       "skill_tag": "property_unknown",
       "difficulty": 3,
       "question": "Find the unknown. 17 + ? = ? + 17. What property does this show?",
-      "choices": {"A": "Commutative — any number works", "B": "Associative — only 0 works", "C": "Identity — the answer is 0", "D": "Commutative — only 17 works"},
-      "answer": "A",
+      "choices": [
+        "A) Commutative — any number works",
+        "B) Associative — only 0 works",
+        "C) Identity — the answer is 0",
+        "D) Commutative — only 17 works"
+      ],
       "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "Associative involves grouping, not order"},
-        "C": {"error_type": "concept_gap", "note": "Identity is a+0=a, this is about order"},
-        "D": {"error_type": "concept_gap", "note": "Any number works, not just 17"}
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Associative involves grouping, not order"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Identity is a+0=a, this is about order"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Any number works, not just 17"
+        }
       },
-      "solution_steps": ["17 + ? = ? + 17", "This is true for ANY number", "Example: 17+5 = 5+17 = 22", "This is the Commutative Property"],
-      "hint": "Try putting any number in the box. Does it always work?"
+      "solution_steps": [
+        "17 + ? = ? + 17",
+        "This is true for ANY number",
+        "Example: 17+5 = 5+17 = 22",
+        "This is the Commutative Property"
+      ],
+      "hint": "Try putting any number in the box. Does it always work?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_10",
@@ -452,19 +835,35 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties. 63 + 86 + 77 = ?",
-      "choices": {"A": "216", "B": "226", "C": "236", "D": "225"},
-      "answer": "B",
+      "choices": [
+        "A) 216",
+        "B) 226",
+        "C) 236",
+        "D) 225"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "63+77=140, 140+86=226, not 216"},
-        "C": {"error_type": "careless", "note": "63+86=149, 149+77=226, not 236"},
-        "D": {"error_type": "careless", "note": "63+86+76=225"}
+        "A": {
+          "error_type": "careless",
+          "note": "63+77=140, 140+86=226, not 216"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "63+86=149, 149+77=226, not 236"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "63+86+76=225"
+        }
       },
-      "solution_steps": ["63 + 77 = 140 (3+7=10, friendly!)", "140 + 86 = 226"],
+      "solution_steps": [
+        "63 + 77 = 140 (3+7=10, friendly!)",
+        "140 + 86 = 226"
+      ],
       "hint": "63 + 77: the ones digits add to 10!",
-      "verification": "Go Math p.24 Q12"
+      "verification": "Go Math p.24 Q12",
+      "correct_answer": "B"
     }
   ],
-
   "practice_r2": [
     {
       "id": "R2_01",
@@ -474,15 +873,32 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties. 57 + 85 + 43 = ?",
-      "choices": {"A": "175", "B": "185", "C": "195", "D": "184"},
-      "answer": "B",
+      "choices": [
+        "A) 175",
+        "B) 185",
+        "C) 195",
+        "D) 184"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "57+43=100, 100+85=185, not 175"},
-        "C": {"error_type": "careless", "note": "57+43=100, 100+95=195"},
-        "D": {"error_type": "careless", "note": "57+43=100, 100+84=184"}
+        "A": {
+          "error_type": "careless",
+          "note": "57+43=100, 100+85=185, not 175"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "57+43=100, 100+95=195"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "57+43=100, 100+84=184"
+        }
       },
-      "solution_steps": ["57 + 43 = 100", "100 + 85 = 185"],
-      "hint": "57 + 43 = ?"
+      "solution_steps": [
+        "57 + 43 = 100",
+        "100 + 85 = 185"
+      ],
+      "hint": "57 + 43 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_02",
@@ -492,15 +908,33 @@
       "skill_tag": "properties_add_four",
       "difficulty": 3,
       "question": "Use properties. 15 + 48 + 25 + 12 = ?",
-      "choices": {"A": "90", "B": "100", "C": "110", "D": "99"},
-      "answer": "B",
+      "choices": [
+        "A) 90",
+        "B) 100",
+        "C) 110",
+        "D) 99"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "15+25=40, 48+12=60, 40+60=100, not 90"},
-        "C": {"error_type": "careless", "note": "15+48+25+22=110"},
-        "D": {"error_type": "careless", "note": "15+25=40, 48+11=59, 40+59=99"}
+        "A": {
+          "error_type": "careless",
+          "note": "15+25=40, 48+12=60, 40+60=100, not 90"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "15+48+25+22=110"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "15+25=40, 48+11=59, 40+59=99"
+        }
       },
-      "solution_steps": ["15 + 25 = 40", "48 + 12 = 60", "40 + 60 = 100"],
-      "hint": "Find two pairs that each make a round number."
+      "solution_steps": [
+        "15 + 25 = 40",
+        "48 + 12 = 60",
+        "40 + 60 = 100"
+      ],
+      "hint": "Find two pairs that each make a round number.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_03",
@@ -510,15 +944,32 @@
       "skill_tag": "properties_add_three",
       "difficulty": 4,
       "question": "Use properties. 125 + 88 + 175 = ?",
-      "choices": {"A": "378", "B": "388", "C": "398", "D": "387"},
-      "answer": "B",
+      "choices": [
+        "A) 378",
+        "B) 388",
+        "C) 398",
+        "D) 387"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "125+175=300, 300+88=388, not 378"},
-        "C": {"error_type": "careless", "note": "125+175=300, 300+98=398"},
-        "D": {"error_type": "careless", "note": "125+175=300, 300+87=387"}
+        "A": {
+          "error_type": "careless",
+          "note": "125+175=300, 300+88=388, not 378"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "125+175=300, 300+98=398"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "125+175=300, 300+87=387"
+        }
       },
-      "solution_steps": ["125 + 175 = 300", "300 + 88 = 388"],
-      "hint": "125 + 175 makes a nice round number."
+      "solution_steps": [
+        "125 + 175 = 300",
+        "300 + 88 = 388"
+      ],
+      "hint": "125 + 175 makes a nice round number.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_04",
@@ -528,15 +979,34 @@
       "skill_tag": "property_unknown",
       "difficulty": 3,
       "question": "Find the unknown. (? + 15) + 35 = 72. What is the unknown?",
-      "choices": {"A": "12", "B": "22", "C": "32", "D": "42"},
-      "answer": "B",
+      "choices": [
+        "A) 12",
+        "B) 22",
+        "C) 32",
+        "D) 42"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "(12+15)+35 = 27+35 = 62, not 72"},
-        "C": {"error_type": "careless", "note": "(32+15)+35 = 47+35 = 82, not 72"},
-        "D": {"error_type": "careless", "note": "(42+15)+35 = 57+35 = 92, not 72"}
+        "A": {
+          "error_type": "careless",
+          "note": "(12+15)+35 = 27+35 = 62, not 72"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "(32+15)+35 = 47+35 = 82, not 72"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "(42+15)+35 = 57+35 = 92, not 72"
+        }
       },
-      "solution_steps": ["Use Associative: ? + (15+35) = 72", "? + 50 = 72", "? = 72 - 50 = 22", "Check: (22+15)+35 = 37+35 = 72 ✓"],
-      "hint": "Add 15 + 35 first, then figure out the unknown."
+      "solution_steps": [
+        "Use Associative: ? + (15+35) = 72",
+        "? + 50 = 72",
+        "? = 72 - 50 = 22",
+        "Check: (22+15)+35 = 37+35 = 72 ✓"
+      ],
+      "hint": "Add 15 + 35 first, then figure out the unknown.",
+      "correct_answer": "B"
     },
     {
       "id": "R2_05",
@@ -546,15 +1016,32 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 4,
       "question": "A farmer picked 46 red apples, 28 green apples, and 54 yellow apples. How many apples in all?",
-      "choices": {"A": "118", "B": "128", "C": "138", "D": "127"},
-      "answer": "B",
+      "choices": [
+        "A) 118",
+        "B) 128",
+        "C) 138",
+        "D) 127"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "46+54=100, 100+28=128, not 118"},
-        "C": {"error_type": "careless", "note": "46+54=100, 100+38=138"},
-        "D": {"error_type": "careless", "note": "46+54=100, 100+27=127"}
+        "A": {
+          "error_type": "careless",
+          "note": "46+54=100, 100+28=128, not 118"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "46+54=100, 100+38=138"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "46+54=100, 100+27=127"
+        }
       },
-      "solution_steps": ["46 + 54 = 100 (friendly pair!)", "100 + 28 = 128"],
-      "hint": "Which two numbers add up to 100?"
+      "solution_steps": [
+        "46 + 54 = 100 (friendly pair!)",
+        "100 + 28 = 128"
+      ],
+      "hint": "Which two numbers add up to 100?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_06",
@@ -564,15 +1051,33 @@
       "skill_tag": "properties_add_four",
       "difficulty": 4,
       "question": "Use properties. 67 + 14 + 33 + 86 = ?",
-      "choices": {"A": "190", "B": "200", "C": "210", "D": "199"},
-      "answer": "B",
+      "choices": [
+        "A) 190",
+        "B) 200",
+        "C) 210",
+        "D) 199"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "67+33=100, 14+86=100, 100+100=200, not 190"},
-        "C": {"error_type": "careless", "note": "67+33=100, 14+86=100, 100+100=200, not 210"},
-        "D": {"error_type": "careless", "note": "67+33=100, 14+85=99, 100+99=199"}
+        "A": {
+          "error_type": "careless",
+          "note": "67+33=100, 14+86=100, 100+100=200, not 190"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "67+33=100, 14+86=100, 100+100=200, not 210"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "67+33=100, 14+85=99, 100+99=199"
+        }
       },
-      "solution_steps": ["67 + 33 = 100", "14 + 86 = 100", "100 + 100 = 200"],
-      "hint": "Can you make two pairs that each equal 100?"
+      "solution_steps": [
+        "67 + 33 = 100",
+        "14 + 86 = 100",
+        "100 + 100 = 200"
+      ],
+      "hint": "Can you make two pairs that each equal 100?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_07",
@@ -582,15 +1087,33 @@
       "skill_tag": "property_identify",
       "difficulty": 3,
       "question": "Sara wrote: 24 + 36 + 0 = 24 + 36. Which property did she use?",
-      "choices": {"A": "Commutative", "B": "Associative", "C": "Identity", "D": "All three"},
-      "answer": "C",
+      "choices": [
+        "A) Commutative",
+        "B) Associative",
+        "C) Identity",
+        "D) All three"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "No order was changed"},
-        "B": {"error_type": "concept_gap", "note": "No grouping was changed"},
-        "D": {"error_type": "careless", "note": "Only Identity is shown — adding 0"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "No order was changed"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "No grouping was changed"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Only Identity is shown — adding 0"
+        }
       },
-      "solution_steps": ["Adding 0 doesn't change the sum", "24 + 36 + 0 = 24 + 36", "This is the Identity Property"],
-      "hint": "What did Sara add that didn't change anything?"
+      "solution_steps": [
+        "Adding 0 doesn't change the sum",
+        "24 + 36 + 0 = 24 + 36",
+        "This is the Identity Property"
+      ],
+      "hint": "What did Sara add that didn't change anything?",
+      "correct_answer": "C"
     },
     {
       "id": "R2_08",
@@ -600,15 +1123,32 @@
       "skill_tag": "properties_add_three",
       "difficulty": 4,
       "question": "Use properties. 238 + 145 + 62 = ?",
-      "choices": {"A": "435", "B": "445", "C": "455", "D": "345"},
-      "answer": "B",
+      "choices": [
+        "A) 435",
+        "B) 445",
+        "C) 455",
+        "D) 345"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "238+62=300, 300+145=445, not 435"},
-        "C": {"error_type": "careless", "note": "238+62=300, 300+155=455"},
-        "D": {"error_type": "concept_gap", "note": "200+145=345"}
+        "A": {
+          "error_type": "careless",
+          "note": "238+62=300, 300+145=445, not 435"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "238+62=300, 300+155=455"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "200+145=345"
+        }
       },
-      "solution_steps": ["238 + 62 = 300 (38+62=100)", "300 + 145 = 445"],
-      "hint": "238 + 62: what do the ones and tens add to?"
+      "solution_steps": [
+        "238 + 62 = 300 (38+62=100)",
+        "300 + 145 = 445"
+      ],
+      "hint": "238 + 62: what do the ones and tens add to?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_09",
@@ -618,15 +1158,32 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 4,
       "question": "A bookstore sold 73 books in the morning, 58 at lunch, and 27 in the evening. How many books sold in all?",
-      "choices": {"A": "148", "B": "158", "C": "168", "D": "157"},
-      "answer": "B",
+      "choices": [
+        "A) 148",
+        "B) 158",
+        "C) 168",
+        "D) 157"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "73+27=100, 100+58=158, not 148"},
-        "C": {"error_type": "careless", "note": "73+58=131, 131+27=158, not 168"},
-        "D": {"error_type": "careless", "note": "73+27=100, 100+57=157"}
+        "A": {
+          "error_type": "careless",
+          "note": "73+27=100, 100+58=158, not 148"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "73+58=131, 131+27=158, not 168"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "73+27=100, 100+57=157"
+        }
       },
-      "solution_steps": ["73 + 27 = 100", "100 + 58 = 158"],
-      "hint": "73 + 27 = ?"
+      "solution_steps": [
+        "73 + 27 = 100",
+        "100 + 58 = 158"
+      ],
+      "hint": "73 + 27 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_10",
@@ -636,18 +1193,35 @@
       "skill_tag": "properties_add_four",
       "difficulty": 4,
       "question": "Use properties. 55 + 23 + 45 + 77 = ?",
-      "choices": {"A": "190", "B": "200", "C": "210", "D": "199"},
-      "answer": "B",
+      "choices": [
+        "A) 190",
+        "B) 200",
+        "C) 210",
+        "D) 199"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "55+45=100, 23+77=100, 100+100=200, not 190"},
-        "C": {"error_type": "careless", "note": "55+45=100, 23+77=100, 200+10=210"},
-        "D": {"error_type": "careless", "note": "55+45=100, 23+76=99, 100+99=199"}
+        "A": {
+          "error_type": "careless",
+          "note": "55+45=100, 23+77=100, 100+100=200, not 190"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "55+45=100, 23+77=100, 200+10=210"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "55+45=100, 23+76=99, 100+99=199"
+        }
       },
-      "solution_steps": ["55 + 45 = 100", "23 + 77 = 100", "100 + 100 = 200"],
-      "hint": "Two pairs that make 100!"
+      "solution_steps": [
+        "55 + 45 = 100",
+        "23 + 77 = 100",
+        "100 + 100 = 200"
+      ],
+      "hint": "Two pairs that make 100!",
+      "correct_answer": "B"
     }
   ],
-
   "practice_r3": [
     {
       "id": "R3_01",
@@ -657,15 +1231,33 @@
       "skill_tag": "properties_multi_step",
       "difficulty": 4,
       "question": "A store sold 134 shirts, 87 pants, 66 hats, and 113 jackets. How many items sold in all?",
-      "choices": {"A": "390", "B": "400", "C": "410", "D": "380"},
-      "answer": "B",
+      "choices": [
+        "A) 390",
+        "B) 400",
+        "C) 410",
+        "D) 380"
+      ],
       "expected_errors": {
-        "A": {"error_type": "careless", "note": "134+66=200, 87+113=200, 200+200=400, not 390"},
-        "C": {"error_type": "careless", "note": "134+66=200, 87+113=200, 200+200=400, not 410"},
-        "D": {"error_type": "concept_gap", "note": "Missed one item"}
+        "A": {
+          "error_type": "careless",
+          "note": "134+66=200, 87+113=200, 200+200=400, not 390"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "134+66=200, 87+113=200, 200+200=400, not 410"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Missed one item"
+        }
       },
-      "solution_steps": ["134 + 66 = 200 (34+66=100)", "87 + 113 = 200 (87+13=100)", "200 + 200 = 400"],
-      "hint": "Look for two pairs that each make 200."
+      "solution_steps": [
+        "134 + 66 = 200 (34+66=100)",
+        "87 + 113 = 200 (87+13=100)",
+        "200 + 200 = 400"
+      ],
+      "hint": "Look for two pairs that each make 200.",
+      "correct_answer": "B"
     },
     {
       "id": "R3_02",
@@ -675,15 +1267,34 @@
       "skill_tag": "properties_explain",
       "difficulty": 5,
       "question": "Tom solved 47 + 86 + 53 like this: '(47 + 53) + 86 = 100 + 86 = 186.' Which TWO properties did Tom use?",
-      "choices": {"A": "Commutative and Associative", "B": "Associative and Identity", "C": "Commutative only", "D": "Identity and Commutative"},
-      "answer": "A",
+      "choices": [
+        "A) Commutative and Associative",
+        "B) Associative and Identity",
+        "C) Commutative only",
+        "D) Identity and Commutative"
+      ],
       "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "No zero was added — Identity not used"},
-        "C": {"error_type": "concept_gap", "note": "Tom also changed the grouping (parentheses)"},
-        "D": {"error_type": "concept_gap", "note": "No zero involved"}
+        "B": {
+          "error_type": "concept_gap",
+          "note": "No zero was added — Identity not used"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Tom also changed the grouping (parentheses)"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "No zero involved"
+        }
       },
-      "solution_steps": ["Original: 47 + 86 + 53", "Tom switched 86 and 53 → Commutative Property", "Tom grouped (47+53) first → Associative Property", "Both properties were used"],
-      "hint": "Tom changed the order AND the grouping."
+      "solution_steps": [
+        "Original: 47 + 86 + 53",
+        "Tom switched 86 and 53 → Commutative Property",
+        "Tom grouped (47+53) first → Associative Property",
+        "Both properties were used"
+      ],
+      "hint": "Tom changed the order AND the grouping.",
+      "correct_answer": "A"
     },
     {
       "id": "R3_03",
@@ -693,15 +1304,34 @@
       "skill_tag": "properties_error_analysis",
       "difficulty": 5,
       "question": "Amy says: '(3 + 5) × 2 = 3 + (5 × 2) because of the Associative Property.' Is Amy correct?",
-      "choices": {"A": "Yes, the Associative Property works for all operations", "B": "No, the Associative Property only works within the same operation", "C": "Yes, because grouping doesn't matter", "D": "No, because 3 + 5 = 8, not 13"},
-      "answer": "B",
+      "choices": [
+        "A) Yes, the Associative Property works for all operations",
+        "B) No, the Associative Property only works within the same operation",
+        "C) Yes, because grouping doesn't matter",
+        "D) No, because 3 + 5 = 8, not 13"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "The Associative Property applies to addition with addition, or multiplication with multiplication — not mixed"},
-        "C": {"error_type": "concept_gap", "note": "Grouping matters when operations are mixed"},
-        "D": {"error_type": "careless", "note": "Correct that the answers differ, but wrong reason"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "The Associative Property applies to addition with addition, or multiplication with multiplication — not mixed"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Grouping matters when operations are mixed"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Correct that the answers differ, but wrong reason"
+        }
       },
-      "solution_steps": ["Left: (3+5)×2 = 8×2 = 16", "Right: 3+(5×2) = 3+10 = 13", "16 ≠ 13, so Amy is wrong", "The Associative Property works for all addition OR all multiplication, not mixed operations"],
-      "hint": "Calculate both sides. Are they equal?"
+      "solution_steps": [
+        "Left: (3+5)×2 = 8×2 = 16",
+        "Right: 3+(5×2) = 3+10 = 13",
+        "16 ≠ 13, so Amy is wrong",
+        "The Associative Property works for all addition OR all multiplication, not mixed operations"
+      ],
+      "hint": "Calculate both sides. Are they equal?",
+      "correct_answer": "B"
     },
     {
       "id": "R3_04",
@@ -711,15 +1341,34 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 5,
       "question": "Five friends collected stickers: Ana 45, Ben 78, Cal 55, Dee 22, Eve 100. They want to count the total quickly. What is the best way to group them?",
-      "choices": {"A": "(45+55) + (78+22) + 100 = 100+100+100 = 300", "B": "45+78+55+22+100 = add left to right = 300", "C": "(45+78) + (55+22) + 100 = 123+77+100 = 300", "D": "100+78+55+45+22 = just start with the biggest"},
-      "answer": "A",
+      "choices": [
+        "A) (45+55) + (78+22) + 100 = 100+100+100 = 300",
+        "B) 45+78+55+22+100 = add left to right = 300",
+        "C) (45+78) + (55+22) + 100 = 123+77+100 = 300",
+        "D) 100+78+55+45+22 = just start with the biggest"
+      ],
       "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "Works but not the 'best' mental math strategy"},
-        "C": {"error_type": "careless", "note": "Works but harder: 123+77=200, 200+100=300"},
-        "D": {"error_type": "concept_gap", "note": "Starting with the biggest doesn't make friendly pairs"}
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Works but not the 'best' mental math strategy"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Works but harder: 123+77=200, 200+100=300"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Starting with the biggest doesn't make friendly pairs"
+        }
       },
-      "solution_steps": ["Look for pairs making 100: 45+55=100, 78+22=100", "Group: (45+55)+(78+22)+100", "100+100+100 = 300", "This is the easiest mental math approach"],
-      "hint": "Which pairs of numbers add up to exactly 100?"
+      "solution_steps": [
+        "Look for pairs making 100: 45+55=100, 78+22=100",
+        "Group: (45+55)+(78+22)+100",
+        "100+100+100 = 300",
+        "This is the easiest mental math approach"
+      ],
+      "hint": "Which pairs of numbers add up to exactly 100?",
+      "correct_answer": "A"
     },
     {
       "id": "R3_05",
@@ -729,15 +1378,34 @@
       "skill_tag": "properties_reasoning",
       "difficulty": 5,
       "question": "Does the Commutative Property work for subtraction? Which example proves your answer?",
-      "choices": {"A": "Yes: 8 - 3 = 3 - 8 = 5", "B": "No: 8 - 3 = 5, but 3 - 8 is not possible with whole numbers", "C": "Yes: 5 - 0 = 0 - 5 = 5", "D": "No: but it doesn't matter because we only need it for addition"},
-      "answer": "B",
+      "choices": [
+        "A) Yes: 8 - 3 = 3 - 8 = 5",
+        "B) No: 8 - 3 = 5, but 3 - 8 is not possible with whole numbers",
+        "C) Yes: 5 - 0 = 0 - 5 = 5",
+        "D) No: but it doesn't matter because we only need it for addition"
+      ],
       "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "8-3=5 but 3-8 ≠ 5"},
-        "C": {"error_type": "concept_gap", "note": "5-0=5 but 0-5 is not 5"},
-        "D": {"error_type": "careless", "note": "Correct that it doesn't work, but wrong reasoning"}
+        "A": {
+          "error_type": "concept_gap",
+          "note": "8-3=5 but 3-8 ≠ 5"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "5-0=5 but 0-5 is not 5"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Correct that it doesn't work, but wrong reasoning"
+        }
       },
-      "solution_steps": ["Test: 8 - 3 = 5", "Test: 3 - 8 = ? (can't do with whole numbers in 3rd grade)", "Even if we could: 3 - 8 = -5, which ≠ 5", "So the Commutative Property does NOT work for subtraction"],
-      "hint": "Try switching the numbers in a subtraction. Do you get the same answer?"
+      "solution_steps": [
+        "Test: 8 - 3 = 5",
+        "Test: 3 - 8 = ? (can't do with whole numbers in 3rd grade)",
+        "Even if we could: 3 - 8 = -5, which ≠ 5",
+        "So the Commutative Property does NOT work for subtraction"
+      ],
+      "hint": "Try switching the numbers in a subtraction. Do you get the same answer?",
+      "correct_answer": "B"
     }
   ]
 }

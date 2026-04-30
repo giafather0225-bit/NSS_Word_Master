@@ -256,7 +256,11 @@ def run(grades: Iterable[str], strict: bool) -> int:
         if not groot.is_dir():
             errs.append(f"{grade}: directory not found at {groot}")
             continue
-        files = list(groot.rglob("*.json"))
+        # Skip deprecated/private subfolders (e.g. `_deprecated/`)
+        files = [
+            f for f in groot.rglob("*.json")
+            if not any(part.startswith("_") for part in f.relative_to(groot).parts)
+        ]
         grade_files[grade] = len(files)
         for f in files:
             if f.name == "unit_test.json":
@@ -272,6 +276,37 @@ def run(grades: Iterable[str], strict: bool) -> int:
     print(f"Lesson buckets: {bucket_count}")
     print(f"Errors: {len(errs)}")
     print(f"Warnings: {len(warns)}")
+
+    # Category summary — substring match on the whole warning line
+    from collections import Counter
+    cats: Counter = Counter()
+    for w in warns:
+        if "uses legacy 'stem'" in w or "uses legacy 'answer'" in w or "uses legacy 'options'" in w:
+            cats["legacy alias (stem/answer/options)"] += 1
+        elif "missing hint" in w:
+            cats["missing hint"] += 1
+        elif "missing feedback" in w:
+            cats["missing feedback"] += 1
+        elif "choice missing 'A)" in w:
+            cats["choice missing letter prefix"] += 1
+        elif "choices is dict" in w:
+            cats["choices is dict"] += 1
+        elif "mc correct_answer should be single letter" in w:
+            cats["mc answer not letter"] += 1
+        elif "input answer contains letters" in w:
+            cats["input answer has units"] += 1
+        elif "missing lesson_ref" in w:
+            cats["missing lesson_ref"] += 1
+        elif "learn card" in w:
+            cats["learn card warning"] += 1
+        elif "missing lesson meta" in w:
+            cats["missing lesson meta"] += 1
+        else:
+            cats["other"] += 1
+    if cats:
+        print("\n--- WARNING CATEGORIES ---")
+        for cat, n in cats.most_common():
+            print(f"  {n:5d}  {cat}")
     if errs:
         print("\n--- ERRORS ---")
         for e in errs[:50]:

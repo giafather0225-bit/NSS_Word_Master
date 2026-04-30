@@ -1,87 +1,157 @@
 {
   "lesson_id": "L8_estimate_differences",
   "title": "Estimate Differences",
-  "ccss": ["3.NBT.A.1"],
+  "ccss": [
+    "3.NBT.A.1"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
-  "go_math_ref": { "chapter": 1, "lesson": 1.8, "pages": "35-38" },
+  "go_math_ref": {
+    "chapter": 1,
+    "lesson": 1.8,
+    "pages": "35-38"
+  },
   "essential_question": "How can you use compatible numbers and rounding to estimate differences?",
-  "key_vocabulary": ["estimate", "compatible numbers", "rounding", "difference", "about"],
-  "strategies": ["compatible_numbers", "rounding_to_nearest_ten", "rounding_to_nearest_hundred"],
-
+  "key_vocabulary": [
+    "estimate",
+    "compatible numbers",
+    "rounding",
+    "difference",
+    "about"
+  ],
+  "strategies": [
+    "compatible_numbers",
+    "rounding_to_nearest_ten",
+    "rounding_to_nearest_hundred"
+  ],
   "pretest": [
     {
       "id": "PT_01",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate. 762 − 332 (round to the nearest hundred)",
-      "choices": ["A. 400", "B. 500", "C. 300", "D. 600"],
-      "answer": "B",
-      "solution_steps": ["Round 762 → 800", "Round 332 → 300", "800 − 300 = 500"],
+      "choices": [
+        "A) 400",
+        "B) 500",
+        "C) 300",
+        "D) 600"
+      ],
+      "solution_steps": [
+        "Round 762 → 800",
+        "Round 332 → 300",
+        "800 − 300 = 500"
+      ],
       "hint": "Round each number to the nearest hundred, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Adding instead of subtracting: 800+300=1100"]
+      "expected_errors": [
+        "Adding instead of subtracting: 800+300=1100"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "PT_02",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Use compatible numbers to estimate. 431 − 398",
-      "choices": ["A. about 25", "B. about 50", "C. about 100", "D. about 75"],
-      "answer": "A",
-      "solution_steps": ["Choose compatible numbers: 431→425, 398→400", "425 − 400 = 25"],
+      "choices": [
+        "A) about 25",
+        "B) about 50",
+        "C) about 100",
+        "D) about 75"
+      ],
+      "solution_steps": [
+        "Choose compatible numbers: 431→425, 398→400",
+        "425 − 400 = 25"
+      ],
       "hint": "Find numbers close to 431 and 398 that are easy to subtract mentally.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_compatible_numbers",
-      "expected_errors": ["Using 430−400=30 (also acceptable)", "Adding: 425+400=825"]
+      "expected_errors": [
+        "Using 430−400=30 (also acceptable)",
+        "Adding: 425+400=825"
+      ],
+      "correct_answer": "A"
     },
     {
       "id": "PT_03",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate. 98 − 49 (round to the nearest ten)",
-      "choices": ["A. 40", "B. 50", "C. 60", "D. 30"],
-      "answer": "B",
-      "solution_steps": ["Round 98 → 100", "Round 49 → 50", "100 − 50 = 50"],
+      "choices": [
+        "A) 40",
+        "B) 50",
+        "C) 60",
+        "D) 30"
+      ],
+      "solution_steps": [
+        "Round 98 → 100",
+        "Round 49 → 50",
+        "100 − 50 = 50"
+      ],
       "hint": "Round each number to the nearest ten first.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Not rounding: 98−49=49, confusing with exact answer"]
+      "expected_errors": [
+        "Not rounding: 98−49=49, confusing with exact answer"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "PT_04",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Ben has 812 stamps. He gives his brother 345 stamps. About how many stamps does Ben have left?",
-      "choices": ["A. about 400", "B. about 500", "C. about 550", "D. about 350"],
-      "answer": "B",
-      "solution_steps": ["Round 812 → 800", "Round 345 → 300 (or 350)", "800 − 300 = 500"],
+      "choices": [
+        "A) about 400",
+        "B) about 500",
+        "C) about 550",
+        "D) about 350"
+      ],
+      "solution_steps": [
+        "Round 812 → 800",
+        "Round 345 → 300 (or 350)",
+        "800 − 300 = 500"
+      ],
       "hint": "The word 'about' tells you to estimate. Round to the nearest hundred.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_word_problem",
-      "expected_errors": ["Adding: 800+300=1100", "Exact answer: 812−345=467"]
+      "expected_errors": [
+        "Adding: 800+300=1100",
+        "Exact answer: 812−345=467"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "PT_05",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Which is the best estimate for 586 − 321?",
-      "choices": ["A. 200", "B. 300", "C. 400", "D. 100"],
-      "answer": "B",
-      "solution_steps": ["Round 586 → 600", "Round 321 → 300", "600 − 300 = 300"],
+      "choices": [
+        "A) 200",
+        "B) 300",
+        "C) 400",
+        "D) 100"
+      ],
+      "solution_steps": [
+        "Round 586 → 600",
+        "Round 321 → 300",
+        "600 − 300 = 300"
+      ],
       "hint": "Round both numbers to the nearest hundred, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Choosing 200 (rounding 586→500: 500−300=200)"]
+      "expected_errors": [
+        "Choosing 200 (rounding 586→500: 500−300=200)"
+      ],
+      "correct_answer": "B"
     }
   ],
-
   "learn": [
     {
       "id": "LEARN_01",
@@ -98,7 +168,11 @@
       "content": "Compatible numbers are numbers that are easy to compute mentally. To estimate 431 − 398: change 431→425 and 398→400. Then 425 − 400 = 25. The estimated difference is about 25.",
       "visual_type": "step_by_step",
       "cpa_phase": "pictorial",
-      "example": { "problem": "431 − 398", "compatible": "425 − 400", "estimate": 25 }
+      "example": {
+        "problem": "431 − 398",
+        "compatible": "425 − 400",
+        "estimate": 25
+      }
     },
     {
       "id": "LEARN_03",
@@ -107,7 +181,11 @@
       "content": "Round each number to the nearest ten, then subtract. Example: 762 − 332 → 760 − 330 = 430. The estimated difference is about 430.",
       "visual_type": "number_line",
       "cpa_phase": "pictorial",
-      "example": { "problem": "762 − 332", "rounded": "760 − 330", "estimate": 430 }
+      "example": {
+        "problem": "762 − 332",
+        "rounded": "760 − 330",
+        "estimate": 430
+      }
     },
     {
       "id": "LEARN_04",
@@ -116,7 +194,11 @@
       "content": "Round each number to the nearest hundred, then subtract. Example: 762 − 332 → 800 − 300 = 500. The estimated difference is about 500.",
       "visual_type": "place_value_chart",
       "cpa_phase": "pictorial",
-      "example": { "problem": "762 − 332", "rounded": "800 − 300", "estimate": 500 }
+      "example": {
+        "problem": "762 − 332",
+        "rounded": "800 − 300",
+        "estimate": 500
+      }
     },
     {
       "id": "LEARN_05",
@@ -133,7 +215,11 @@
       "content": "If both numbers round to the same hundred, your estimate would be 0! Example: 436 − 412 → 400 − 400 = 0. That's not useful! Use tens instead: 440 − 410 = 30.",
       "visual_type": "warning_example",
       "cpa_phase": "abstract",
-      "example": { "problem": "436 − 412", "bad_estimate": "400 − 400 = 0", "better_estimate": "440 − 410 = 30" }
+      "example": {
+        "problem": "436 − 412",
+        "bad_estimate": "400 − 400 = 0",
+        "better_estimate": "440 − 410 = 30"
+      }
     },
     {
       "id": "LEARN_07",
@@ -142,7 +228,12 @@
       "content": "A yellowfin tuna weighs 431 pounds. A grouper weighs 398 pounds. About how much heavier is the tuna? Use compatible numbers: 425 − 400 = 25. The tuna is about 25 pounds heavier.",
       "visual_type": "illustration",
       "cpa_phase": "concrete",
-      "example": { "tuna": 431, "grouper": 398, "compatible": "425 − 400", "estimate": 25 }
+      "example": {
+        "tuna": 431,
+        "grouper": 398,
+        "compatible": "425 − 400",
+        "estimate": 25
+      }
     },
     {
       "id": "LEARN_08",
@@ -153,441 +244,784 @@
       "cpa_phase": "abstract"
     }
   ],
-
   "try": [
     {
       "id": "TRY_01",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 823 − 242 by rounding to the nearest hundred.",
-      "choices": ["A. 500", "B. 600", "C. 700", "D. 400"],
-      "answer": "B",
-      "solution_steps": ["Round 823 → 800", "Round 242 → 200", "800 − 200 = 600"],
+      "choices": [
+        "A) 500",
+        "B) 600",
+        "C) 700",
+        "D) 400"
+      ],
+      "solution_steps": [
+        "Round 823 → 800",
+        "Round 242 → 200",
+        "800 − 200 = 600"
+      ],
       "hint": "Round each number to the nearest hundred first.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Rounding 823→900: 900−200=700"]
+      "expected_errors": [
+        "Rounding 823→900: 900−200=700"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "TRY_02",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 287 − 162 by rounding to the nearest ten.",
-      "choices": ["A. 120", "B. 130", "C. 140", "D. 110"],
-      "answer": "B",
-      "solution_steps": ["Round 287 → 290", "Round 162 → 160", "290 − 160 = 130"],
+      "choices": [
+        "A) 120",
+        "B) 130",
+        "C) 140",
+        "D) 110"
+      ],
+      "solution_steps": [
+        "Round 287 → 290",
+        "Round 162 → 160",
+        "290 − 160 = 130"
+      ],
       "hint": "Look at the ones digit to decide how to round to the nearest ten.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding 287→280: 280−160=120"]
+      "expected_errors": [
+        "Rounding 287→280: 280−160=120"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "TRY_03",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Use compatible numbers to estimate 359 − 224.",
-      "choices": ["A. about 125", "B. about 150", "C. about 175", "D. about 100"],
-      "answer": "A",
-      "solution_steps": ["Choose compatible numbers: 359→350, 224→225", "350 − 225 = 125"],
+      "choices": [
+        "A) about 125",
+        "B) about 150",
+        "C) about 175",
+        "D) about 100"
+      ],
+      "solution_steps": [
+        "Choose compatible numbers: 359→350, 224→225",
+        "350 − 225 = 125"
+      ],
       "hint": "Pick numbers close to 359 and 224 that are easy to subtract.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_compatible_numbers",
-      "expected_errors": ["Using rounding: 360−220=140"]
+      "expected_errors": [
+        "Using rounding: 360−220=140"
+      ],
+      "correct_answer": "A"
     },
     {
       "id": "TRY_04",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 476 − 155 by rounding to the nearest hundred.",
-      "choices": ["A. 200", "B. 300", "C. 400", "D. 250"],
-      "answer": "B",
-      "solution_steps": ["Round 476 → 500", "Round 155 → 200", "500 − 200 = 300"],
+      "choices": [
+        "A) 200",
+        "B) 300",
+        "C) 400",
+        "D) 250"
+      ],
+      "solution_steps": [
+        "Round 476 → 500",
+        "Round 155 → 200",
+        "500 − 200 = 300"
+      ],
       "hint": "Round to the nearest hundred, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Rounding 155→100: 500−100=400"]
+      "expected_errors": [
+        "Rounding 155→100: 500−100=400"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "TRY_05",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Danika has 512 silver beads and 278 blue beads. About how many more silver beads does she have?",
-      "choices": ["A. about 200", "B. about 250", "C. about 300", "D. about 150"],
-      "answer": "A",
-      "solution_steps": ["Round 512 → 500", "Round 278 → 300", "500 − 300 = 200"],
+      "choices": [
+        "A) about 200",
+        "B) about 250",
+        "C) about 300",
+        "D) about 150"
+      ],
+      "solution_steps": [
+        "Round 512 → 500",
+        "Round 278 → 300",
+        "500 − 300 = 200"
+      ],
       "hint": "'How many more' means subtract. Round to the nearest hundred.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_word_problem",
-      "expected_errors": ["Adding: 500+300=800", "Using tens: 510−280=230 (also acceptable)"]
+      "expected_errors": [
+        "Adding: 500+300=800",
+        "Using tens: 510−280=230 (also acceptable)"
+      ],
+      "correct_answer": "A"
     }
   ],
-
   "practice_r1": [
     {
       "id": "R1_01",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 40 − 13 by rounding to the nearest ten.",
-      "choices": ["A. 20", "B. 30", "C. 40", "D. 10"],
-      "answer": "B",
-      "solution_steps": ["40 stays as 40", "Round 13 → 10", "40 − 10 = 30"],
+      "choices": [
+        "A) 20",
+        "B) 30",
+        "C) 40",
+        "D) 10"
+      ],
+      "solution_steps": [
+        "40 stays as 40",
+        "Round 13 → 10",
+        "40 − 10 = 30"
+      ],
       "hint": "40 is already a tens number. Just round 13.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Not rounding 13: 40−13=27"]
+      "expected_errors": [
+        "Not rounding 13: 40−13=27"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R1_02",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 68 − 31 by rounding to the nearest ten.",
-      "choices": ["A. 30", "B. 40", "C. 50", "D. 20"],
-      "answer": "B",
-      "solution_steps": ["Round 68 → 70", "Round 31 → 30", "70 − 30 = 40"],
+      "choices": [
+        "A) 30",
+        "B) 40",
+        "C) 50",
+        "D) 20"
+      ],
+      "solution_steps": [
+        "Round 68 → 70",
+        "Round 31 → 30",
+        "70 − 30 = 40"
+      ],
       "hint": "Round each number to the nearest ten.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Exact answer: 68−31=37"]
+      "expected_errors": [
+        "Exact answer: 68−31=37"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R1_03",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 622 − 307 by rounding to the nearest hundred.",
-      "choices": ["A. 200", "B. 300", "C. 400", "D. 100"],
-      "answer": "B",
-      "solution_steps": ["Round 622 → 600", "Round 307 → 300", "600 − 300 = 300"],
+      "choices": [
+        "A) 200",
+        "B) 300",
+        "C) 400",
+        "D) 100"
+      ],
+      "solution_steps": [
+        "Round 622 → 600",
+        "Round 307 → 300",
+        "600 − 300 = 300"
+      ],
       "hint": "Round to hundreds, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Rounding 622→700: 700−300=400"]
+      "expected_errors": [
+        "Rounding 622→700: 700−300=400"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R1_04",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 771 − 531 by rounding to the nearest ten.",
-      "choices": ["A. 230", "B. 240", "C. 250", "D. 220"],
-      "answer": "B",
-      "solution_steps": ["Round 771 → 770", "Round 531 → 530", "770 − 530 = 240"],
+      "choices": [
+        "A) 230",
+        "B) 240",
+        "C) 250",
+        "D) 220"
+      ],
+      "solution_steps": [
+        "Round 771 → 770",
+        "Round 531 → 530",
+        "770 − 530 = 240"
+      ],
       "hint": "Round to the nearest ten, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding to hundreds: 800−500=300"]
+      "expected_errors": [
+        "Rounding to hundreds: 800−500=300"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R1_05",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 299 − 60.",
-      "choices": ["A. 200", "B. 240", "C. 260", "D. 300"],
-      "answer": "B",
-      "solution_steps": ["Round 299 → 300", "60 stays as 60", "300 − 60 = 240"],
+      "choices": [
+        "A) 200",
+        "B) 240",
+        "C) 260",
+        "D) 300"
+      ],
+      "solution_steps": [
+        "Round 299 → 300",
+        "60 stays as 60",
+        "300 − 60 = 240"
+      ],
       "hint": "299 is very close to 300. Use that!",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding to hundreds: 300−100=200"]
+      "expected_errors": [
+        "Rounding to hundreds: 300−100=200"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R1_06",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 359 − 224 by rounding to the nearest ten.",
-      "choices": ["A. 130", "B. 140", "C. 150", "D. 120"],
-      "answer": "B",
-      "solution_steps": ["Round 359 → 360", "Round 224 → 220", "360 − 220 = 140"],
+      "choices": [
+        "A) 130",
+        "B) 140",
+        "C) 150",
+        "D) 120"
+      ],
+      "solution_steps": [
+        "Round 359 → 360",
+        "Round 224 → 220",
+        "360 − 220 = 140"
+      ],
       "hint": "Round each to the nearest ten, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding to hundreds: 400−200=200"]
+      "expected_errors": [
+        "Rounding to hundreds: 400−200=200"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R1_07",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 823 − 242 by rounding to the nearest ten.",
-      "choices": ["A. 570", "B. 580", "C. 590", "D. 560"],
-      "answer": "B",
-      "solution_steps": ["Round 823 → 820", "Round 242 → 240", "820 − 240 = 580"],
+      "choices": [
+        "A) 570",
+        "B) 580",
+        "C) 590",
+        "D) 560"
+      ],
+      "solution_steps": [
+        "Round 823 → 820",
+        "Round 242 → 240",
+        "820 − 240 = 580"
+      ],
       "hint": "Round to the nearest ten first.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding to hundreds: 800−200=600"]
+      "expected_errors": [
+        "Rounding to hundreds: 800−200=600"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R1_08",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 476 − 155 by rounding to the nearest ten.",
-      "choices": ["A. 310", "B. 320", "C. 330", "D. 300"],
-      "answer": "B",
-      "solution_steps": ["Round 476 → 480", "Round 155 → 160", "480 − 160 = 320"],
+      "choices": [
+        "A) 310",
+        "B) 320",
+        "C) 330",
+        "D) 300"
+      ],
+      "solution_steps": [
+        "Round 476 → 480",
+        "Round 155 → 160",
+        "480 − 160 = 320"
+      ],
       "hint": "Round to tens. 476→480, 155→160.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["480−150=330 (rounding 155 down)"]
+      "expected_errors": [
+        "480−150=330 (rounding 155 down)"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R1_09",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "A school has 812 students. 345 students are in grades K-2. About how many are in grades 3-5?",
-      "choices": ["A. about 500", "B. about 450", "C. about 550", "D. about 400"],
-      "answer": "A",
-      "solution_steps": ["Round 812 → 800", "Round 345 → 300 (or 350)", "800 − 300 = 500"],
+      "choices": [
+        "A) about 500",
+        "B) about 450",
+        "C) about 550",
+        "D) about 400"
+      ],
+      "solution_steps": [
+        "Round 812 → 800",
+        "Round 345 → 300 (or 350)",
+        "800 − 300 = 500"
+      ],
       "hint": "'About how many' means estimate. Round, then subtract.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_word_problem",
-      "expected_errors": ["Exact answer: 812−345=467"]
+      "expected_errors": [
+        "Exact answer: 812−345=467"
+      ],
+      "correct_answer": "A"
     },
     {
       "id": "R1_10",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 287 − 162 by rounding to the nearest hundred.",
-      "choices": ["A. 100", "B. 200", "C. 50", "D. 150"],
-      "answer": "A",
-      "solution_steps": ["Round 287 → 300", "Round 162 → 200", "300 − 200 = 100"],
+      "choices": [
+        "A) 100",
+        "B) 200",
+        "C) 50",
+        "D) 150"
+      ],
+      "solution_steps": [
+        "Round 287 → 300",
+        "Round 162 → 200",
+        "300 − 200 = 100"
+      ],
       "hint": "Round to hundreds, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Rounding to tens: 290−160=130"]
+      "expected_errors": [
+        "Rounding to tens: 290−160=130"
+      ],
+      "correct_answer": "A"
     }
   ],
-
   "practice_r2": [
     {
       "id": "R2_01",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Which is the closest estimate for 654 − 289?",
-      "choices": ["A. 300", "B. 400", "C. 350", "D. 500"],
-      "answer": "C",
-      "solution_steps": ["Round to nearest ten: 650 − 290 = 360 ≈ 350", "Or compatible: 650 − 300 = 350", "Actual: 654 − 289 = 365"],
+      "choices": [
+        "A) 300",
+        "B) 400",
+        "C) 350",
+        "D) 500"
+      ],
+      "solution_steps": [
+        "Round to nearest ten: 650 − 290 = 360 ≈ 350",
+        "Or compatible: 650 − 300 = 350",
+        "Actual: 654 − 289 = 365"
+      ],
       "hint": "Try both methods and pick the closest option.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_best_estimate",
-      "expected_errors": ["Rounding to hundreds: 700−300=400"]
+      "expected_errors": [
+        "Rounding to hundreds: 700−300=400"
+      ],
+      "correct_answer": "C"
     },
     {
       "id": "R2_02",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 937 − 462 using compatible numbers.",
-      "choices": ["A. about 450", "B. about 475", "C. about 500", "D. about 525"],
-      "answer": "C",
-      "solution_steps": ["Compatible numbers: 937→950, 462→450", "950 − 450 = 500", "Or: 940−440=500"],
+      "choices": [
+        "A) about 450",
+        "B) about 475",
+        "C) about 500",
+        "D) about 525"
+      ],
+      "solution_steps": [
+        "Compatible numbers: 937→950, 462→450",
+        "950 − 450 = 500",
+        "Or: 940−440=500"
+      ],
       "hint": "Pick numbers near 937 and 462 that subtract easily.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_compatible_numbers",
-      "expected_errors": ["Rounding to hundreds: 900−500=400"]
+      "expected_errors": [
+        "Rounding to hundreds: 900−500=400"
+      ],
+      "correct_answer": "C"
     },
     {
       "id": "R2_03",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 508 − 487 by rounding to the nearest ten.",
-      "choices": ["A. 20", "B. 30", "C. 10", "D. 0"],
-      "answer": "A",
-      "solution_steps": ["Round 508 → 510", "Round 487 → 490", "510 − 490 = 20"],
+      "choices": [
+        "A) 20",
+        "B) 30",
+        "C) 10",
+        "D) 0"
+      ],
+      "solution_steps": [
+        "Round 508 → 510",
+        "Round 487 → 490",
+        "510 − 490 = 20"
+      ],
       "hint": "Both numbers are close — be careful with rounding!",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding to hundreds: 500−500=0"]
+      "expected_errors": [
+        "Rounding to hundreds: 500−500=0"
+      ],
+      "correct_answer": "A"
     },
     {
       "id": "R2_04",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "A farmer has 743 apples. He sells 398 apples. About how many are left?",
-      "choices": ["A. about 300", "B. about 350", "C. about 400", "D. about 250"],
-      "answer": "B",
-      "solution_steps": ["Compatible: 743→750, 398→400", "750 − 400 = 350"],
+      "choices": [
+        "A) about 300",
+        "B) about 350",
+        "C) about 400",
+        "D) about 250"
+      ],
+      "solution_steps": [
+        "Compatible: 743→750, 398→400",
+        "750 − 400 = 350"
+      ],
       "hint": "Use compatible numbers. 398 is very close to 400.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_word_problem",
-      "expected_errors": ["Rounding to hundreds: 700−400=300"]
+      "expected_errors": [
+        "Rounding to hundreds: 700−400=300"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R2_05",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 582 − 319. Which rounding method gives a closer estimate: rounding to tens or hundreds?",
-      "choices": ["A. Tens: about 260", "B. Hundreds: about 300", "C. Both give the same estimate", "D. Tens: about 270"],
-      "answer": "A",
-      "solution_steps": ["Tens: 580 − 320 = 260", "Hundreds: 600 − 300 = 300", "Actual: 582 − 319 = 263", "Tens (260) is closer to 263"],
+      "choices": [
+        "A) Tens: about 260",
+        "B) Hundreds: about 300",
+        "C) Both give the same estimate",
+        "D) Tens: about 270"
+      ],
+      "solution_steps": [
+        "Tens: 580 − 320 = 260",
+        "Hundreds: 600 − 300 = 300",
+        "Actual: 582 − 319 = 263",
+        "Tens (260) is closer to 263"
+      ],
       "hint": "Try both methods, then compare with the actual difference.",
       "difficulty": 4,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_compare_methods",
-      "expected_errors": ["Choosing hundreds because the numbers are bigger"]
+      "expected_errors": [
+        "Choosing hundreds because the numbers are bigger"
+      ],
+      "correct_answer": "A"
     },
     {
       "id": "R2_06",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 895 − 647 by rounding to the nearest ten.",
-      "choices": ["A. 240", "B. 250", "C. 260", "D. 230"],
-      "answer": "B",
-      "solution_steps": ["Round 895 → 900", "Round 647 → 650", "900 − 650 = 250"],
+      "choices": [
+        "A) 240",
+        "B) 250",
+        "C) 260",
+        "D) 230"
+      ],
+      "solution_steps": [
+        "Round 895 → 900",
+        "Round 647 → 650",
+        "900 − 650 = 250"
+      ],
       "hint": "Round each to the nearest ten.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["900−600=300 (rounding to hundreds)"]
+      "expected_errors": [
+        "900−600=300 (rounding to hundreds)"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R2_07",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Mia says the estimate for 436 − 412 by rounding to the nearest hundred is 0. Is she correct? Why?",
-      "choices": ["A. Yes, 400−400=0 is a good estimate", "B. No, she should round to the nearest ten: 440−410=30", "C. No, the answer is exactly 24", "D. Yes, both numbers round to 400"],
-      "answer": "B",
-      "solution_steps": ["Rounding to hundreds: 400−400=0", "This is not useful!", "Round to tens: 440−410=30", "Actual: 436−412=24", "Tens gives a useful estimate"],
+      "choices": [
+        "A) Yes, 400−400=0 is a good estimate",
+        "B) No, she should round to the nearest ten: 440−410=30",
+        "C) No, the answer is exactly 24",
+        "D) Yes, both numbers round to 400"
+      ],
+      "solution_steps": [
+        "Rounding to hundreds: 400−400=0",
+        "This is not useful!",
+        "Round to tens: 440−410=30",
+        "Actual: 436−412=24",
+        "Tens gives a useful estimate"
+      ],
       "hint": "If both numbers round to the same hundred, the estimate is 0. That's not helpful!",
       "difficulty": 4,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_reasoning",
-      "expected_errors": ["Thinking 0 is correct because rounding is always right"]
+      "expected_errors": [
+        "Thinking 0 is correct because rounding is always right"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R2_08",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "A bookstore had 671 books on Monday. By Friday, 238 had been sold. About how many books are left?",
-      "choices": ["A. about 400", "B. about 430", "C. about 450", "D. about 500"],
-      "answer": "B",
-      "solution_steps": ["Round to nearest ten: 670 − 240 = 430", "Actual: 671 − 238 = 433"],
+      "choices": [
+        "A) about 400",
+        "B) about 430",
+        "C) about 450",
+        "D) about 500"
+      ],
+      "solution_steps": [
+        "Round to nearest ten: 670 − 240 = 430",
+        "Actual: 671 − 238 = 433"
+      ],
       "hint": "Round to the nearest ten for a closer estimate.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_word_problem",
-      "expected_errors": ["Rounding to hundreds: 700−200=500"]
+      "expected_errors": [
+        "Rounding to hundreds: 700−200=500"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R2_09",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Explain how to estimate 586 − 321 two different ways. Which way is listed?",
-      "choices": ["A. Tens: 590−320=270; Hundreds: 600−300=300", "B. Tens: 580−320=260; Hundreds: 600−300=300", "C. Tens: 590−320=270; Hundreds: 500−300=200", "D. Compatible: 575−325=250; Hundreds: 600−300=300"],
-      "answer": "A",
-      "solution_steps": ["Rounding to tens: 586→590, 321→320", "590 − 320 = 270", "Rounding to hundreds: 586→600, 321→300", "600 − 300 = 300"],
+      "choices": [
+        "A) Tens: 590−320=270; Hundreds: 600−300=300",
+        "B) Tens: 580−320=260; Hundreds: 600−300=300",
+        "C) Tens: 590−320=270; Hundreds: 500−300=200",
+        "D) Compatible: 575−325=250; Hundreds: 600−300=300"
+      ],
+      "solution_steps": [
+        "Rounding to tens: 586→590, 321→320",
+        "590 − 320 = 270",
+        "Rounding to hundreds: 586→600, 321→300",
+        "600 − 300 = 300"
+      ],
       "hint": "Round 586: to nearest ten is 590, to nearest hundred is 600.",
       "difficulty": 4,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_two_methods",
-      "expected_errors": ["Rounding 586→580 instead of 590"]
+      "expected_errors": [
+        "Rounding 586→580 instead of 590"
+      ],
+      "correct_answer": "A"
     },
     {
       "id": "R2_10",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Which subtraction would you NOT estimate by rounding to the nearest hundred?",
-      "choices": ["A. 891 − 234", "B. 718 − 452", "C. 523 − 497", "D. 645 − 123"],
-      "answer": "C",
-      "solution_steps": ["523 and 497 both round to 500", "500 − 500 = 0, which is not useful", "You should use rounding to tens: 520 − 500 = 20"],
+      "choices": [
+        "A) 891 − 234",
+        "B) 718 − 452",
+        "C) 523 − 497",
+        "D) 645 − 123"
+      ],
+      "solution_steps": [
+        "523 and 497 both round to 500",
+        "500 − 500 = 0, which is not useful",
+        "You should use rounding to tens: 520 − 500 = 20"
+      ],
       "hint": "Think: which pair of numbers would round to the same hundred?",
       "difficulty": 4,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_reasoning",
-      "expected_errors": ["Choosing B because the numbers seem close"]
+      "expected_errors": [
+        "Choosing B because the numbers seem close"
+      ],
+      "correct_answer": "C"
     }
   ],
-
   "practice_r3": [
     {
       "id": "R3_01",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "There were 418 people at a morning show and 289 at an evening show. Sam estimated the difference as about 200. Maya estimated about 130. Who used rounding to the nearest hundred?",
-      "choices": ["A. Sam", "B. Maya", "C. Both", "D. Neither"],
-      "answer": "A",
-      "solution_steps": ["Hundreds: 400 − 300 = 100... wait, let's check.", "Actually: 418→400, 289→300, 400−300=100", "Hmm, that's 100 not 200. Let me reconsider.", "418→400, 289→300: 400−300=100", "Tens: 420−290=130", "Sam's 200 doesn't match either standard method", "But if 418→400 and 289→200 (wrong rounding): 400−200=200", "Sam made a rounding error (289→200 instead of 300)"],
+      "choices": [
+        "A) Sam",
+        "B) Maya",
+        "C) Both",
+        "D) Neither"
+      ],
+      "solution_steps": [
+        "Hundreds: 400 − 300 = 100... wait, let's check.",
+        "Actually: 418→400, 289→300, 400−300=100",
+        "Hmm, that's 100 not 200. Let me reconsider.",
+        "418→400, 289→300: 400−300=100",
+        "Tens: 420−290=130",
+        "Sam's 200 doesn't match either standard method",
+        "But if 418→400 and 289→200 (wrong rounding): 400−200=200",
+        "Sam made a rounding error (289→200 instead of 300)"
+      ],
       "hint": "Calculate what each method gives: hundreds rounding → 400−300=100, tens rounding → 420−290=130.",
       "difficulty": 5,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_error_analysis",
-      "expected_errors": ["Assuming Sam is right without checking the math"],
-      "note": "This is an error-analysis question. Sam rounded 289→200 (incorrect), Maya correctly used tens."
+      "expected_errors": [
+        "Assuming Sam is right without checking the math"
+      ],
+      "note": "This is an error-analysis question. Sam rounded 289→200 (incorrect), Maya correctly used tens.",
+      "correct_answer": "A"
     },
     {
       "id": "R3_02",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "A zookeeper counts 892 visitors on Saturday and 745 on Sunday. She estimates the difference as about 250 using compatible numbers. Which compatible numbers could she have used?",
-      "choices": ["A. 900 − 750 = 150", "B. 900 − 650 = 250", "C. 875 − 625 = 250", "D. 900 − 745 = 155"],
-      "answer": "C",
-      "solution_steps": ["We need compatible numbers close to 892 and 745 that give 250", "875 is close to 892, 625 is close to 745? No, 625 is not close to 745", "Let's check: 900−750=150 (not 250)", "900−650=250 but 650 is not close to 745", "875−625=250 but 625 is not close to 745", "Actually 895−645=250, but that's not a choice", "Best answer: 900−650=250 is a plausible compatible pair"],
+      "choices": [
+        "A) 900 − 750 = 150",
+        "B) 900 − 650 = 250",
+        "C) 875 − 625 = 250",
+        "D) 900 − 745 = 155"
+      ],
+      "solution_steps": [
+        "We need compatible numbers close to 892 and 745 that give 250",
+        "875 is close to 892, 625 is close to 745? No, 625 is not close to 745",
+        "Let's check: 900−750=150 (not 250)",
+        "900−650=250 but 650 is not close to 745",
+        "875−625=250 but 625 is not close to 745",
+        "Actually 895−645=250, but that's not a choice",
+        "Best answer: 900−650=250 is a plausible compatible pair"
+      ],
       "hint": "Which pair gives exactly 250 as the difference?",
       "difficulty": 5,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_compatible_numbers_reverse",
-      "expected_errors": ["Picking A because 900 and 750 seem close to originals"],
+      "expected_errors": [
+        "Picking A because 900 and 750 seem close to originals"
+      ],
       "answer_override": "B",
-      "note": "B is the best answer: 900−650=250 uses compatible subtraction, though 650 is only moderately close to 745."
+      "note": "B is the best answer: 900−650=250 uses compatible subtraction, though 650 is only moderately close to 745.",
+      "correct_answer": "C"
     },
     {
       "id": "R3_03",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Estimate 703 − 298 three ways and choose the closest to the actual difference.",
-      "choices": ["A. Compatible: 700−300=400", "B. Tens: 700−300=400", "C. Compatible: 700−300=400", "D. All methods give 400"],
-      "answer": "A",
-      "solution_steps": ["Actual: 703−298=405", "Compatible: 700−300=400 (off by 5)", "Tens: 700−300=400 (both already round to same)", "Hundreds: 700−300=400", "All methods give 400 for this particular problem"],
+      "choices": [
+        "A) Compatible: 700−300=400",
+        "B) Tens: 700−300=400",
+        "C) Compatible: 700−300=400",
+        "D) All methods give 400"
+      ],
+      "solution_steps": [
+        "Actual: 703−298=405",
+        "Compatible: 700−300=400 (off by 5)",
+        "Tens: 700−300=400 (both already round to same)",
+        "Hundreds: 700−300=400",
+        "All methods give 400 for this particular problem"
+      ],
       "hint": "Sometimes all methods give the same answer!",
       "difficulty": 4,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_convergent",
-      "expected_errors": ["Overthinking — all choices give 400"],
+      "expected_errors": [
+        "Overthinking — all choices give 400"
+      ],
       "answer_override": "D",
-      "note": "Corrected: D is the best answer. All methods converge to 400 for this problem."
+      "note": "Corrected: D is the best answer. All methods converge to 400 for this problem.",
+      "correct_answer": "A"
     },
     {
       "id": "R3_04",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Jake estimated 547 − 283 as about 300. Emma estimated it as about 260. The actual difference is 264. Whose estimate is closer? Why?",
-      "choices": ["A. Jake — rounding to hundreds (500−200=300)", "B. Emma — rounding to tens (550−290=260)", "C. Both are equally close", "D. Neither is a good estimate"],
-      "answer": "B",
-      "solution_steps": ["Jake: 500−200=300 (off by 36)", "Emma: 550−290=260 (off by 4)", "Actual: 547−283=264", "Emma's estimate (260) is much closer"],
+      "choices": [
+        "A) Jake — rounding to hundreds (500−200=300)",
+        "B) Emma — rounding to tens (550−290=260)",
+        "C) Both are equally close",
+        "D) Neither is a good estimate"
+      ],
+      "solution_steps": [
+        "Jake: 500−200=300 (off by 36)",
+        "Emma: 550−290=260 (off by 4)",
+        "Actual: 547−283=264",
+        "Emma's estimate (260) is much closer"
+      ],
       "hint": "Calculate each person's error: |estimate − actual|.",
       "difficulty": 5,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_compare_accuracy",
-      "expected_errors": ["Assuming hundreds rounding is always better"]
+      "expected_errors": [
+        "Assuming hundreds rounding is always better"
+      ],
+      "correct_answer": "B"
     },
     {
       "id": "R3_05",
-      "type": "multiple_choice",
+      "type": "mc",
       "question": "Math Journal: Which method would you use to estimate 876 − 851 and why?",
-      "choices": ["A. Round to hundreds: 900−900=0", "B. Round to tens: 880−850=30", "C. Compatible numbers: 875−850=25", "D. Both B and C give useful estimates"],
-      "answer": "D",
-      "solution_steps": ["Hundreds: 900−900=0 (not useful!)", "Tens: 880−850=30", "Compatible: 875−850=25", "Actual: 876−851=25", "Both B and C give useful estimates", "Compatible is actually exact here"],
+      "choices": [
+        "A) Round to hundreds: 900−900=0",
+        "B) Round to tens: 880−850=30",
+        "C) Compatible numbers: 875−850=25",
+        "D) Both B and C give useful estimates"
+      ],
+      "solution_steps": [
+        "Hundreds: 900−900=0 (not useful!)",
+        "Tens: 880−850=30",
+        "Compatible: 875−850=25",
+        "Actual: 876−851=25",
+        "Both B and C give useful estimates",
+        "Compatible is actually exact here"
+      ],
       "hint": "When numbers are close together, hundreds rounding doesn't work well.",
       "difficulty": 5,
       "ccss": "3.NBT.A.1",
       "cpa_phase": "abstract",
       "skill_tag": "estimate_difference_method_selection",
-      "expected_errors": ["Choosing A without noticing 0 is not useful"]
+      "expected_errors": [
+        "Choosing A without noticing 0 is not useful"
+      ],
+      "correct_answer": "D"
     }
   ]
 }

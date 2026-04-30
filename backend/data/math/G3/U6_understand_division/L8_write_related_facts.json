@@ -28,73 +28,73 @@
   "pretest": [
     {
       "id": "PT_01",
-      "type": "MC",
-      "stem": "Which is NOT a related fact for 3, 8, 24?",
+      "type": "mc",
       "choices": [
-        "3 × 8 = 24",
-        "8 × 3 = 24",
-        "24 ÷ 3 = 8",
-        "24 ÷ 8 = 4"
+        "A) 3 × 8 = 24",
+        "B) 8 × 3 = 24",
+        "C) 24 ÷ 3 = 8",
+        "D) 24 ÷ 8 = 4"
       ],
-      "answer": "D",
       "explanation": "24 ÷ 8 = 3, not 4. Choice D is wrong.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "Which is NOT a related fact for 3, 8, 24?",
+      "correct_answer": "D"
     },
     {
       "id": "PT_02",
-      "type": "MC",
-      "stem": "Write the fact family for 5, 9, 45. How many facts are in this family?",
+      "type": "mc",
       "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 5"
       ],
-      "answer": "C",
       "explanation": "5×9=45, 9×5=45, 45÷5=9, 45÷9=5 → 4 facts.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "Write the fact family for 5, 9, 45. How many facts are in this family?",
+      "correct_answer": "C"
     },
     {
       "id": "PT_03",
-      "type": "MC",
-      "stem": "Which division fact belongs with 6 × 7 = 42?",
+      "type": "mc",
       "choices": [
-        "42 ÷ 6 = 7",
-        "42 ÷ 6 = 8",
-        "42 ÷ 7 = 8",
-        "42 ÷ 42 = 1"
+        "A) 42 ÷ 6 = 7",
+        "B) 42 ÷ 6 = 8",
+        "C) 42 ÷ 7 = 8",
+        "D) 42 ÷ 42 = 1"
       ],
-      "answer": "A",
       "explanation": "42 ÷ 6 = 7.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "Which division fact belongs with 6 × 7 = 42?",
+      "correct_answer": "A"
     },
     {
       "id": "PT_04",
-      "type": "MC",
-      "stem": "The fact family for 6, 6, 36 has how many DIFFERENT facts?",
+      "type": "mc",
       "choices": [
-        "1",
-        "2",
-        "3",
-        "4"
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 4"
       ],
-      "answer": "B",
       "explanation": "6×6=36 and 36÷6=6. Since both factors are the same, only 2 unique facts.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "The fact family for 6, 6, 36 has how many DIFFERENT facts?",
+      "correct_answer": "B"
     },
     {
       "id": "PT_05",
-      "type": "MC",
-      "stem": "Which set of numbers does NOT form a fact family?",
+      "type": "mc",
       "choices": [
-        "3, 7, 21",
-        "4, 8, 32",
-        "5, 6, 35",
-        "2, 9, 18"
+        "A) 3, 7, 21",
+        "B) 4, 8, 32",
+        "C) 5, 6, 35",
+        "D) 2, 9, 18"
       ],
-      "answer": "C",
       "explanation": "5 × 6 = 30, not 35. So 5, 6, 35 is not a valid fact family.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "Which set of numbers does NOT form a fact family?",
+      "correct_answer": "C"
     }
   ],
   "learn": [
@@ -140,8 +140,17 @@
       "visual_data": {
         "tool": "fact_family_steps",
         "config": {
-          "numbers": [4, 6, 24],
-          "facts": ["4×6=24", "6×4=24", "24÷4=6", "24÷6=4"]
+          "numbers": [
+            4,
+            6,
+            24
+          ],
+          "facts": [
+            "4×6=24",
+            "6×4=24",
+            "24÷4=6",
+            "24÷6=4"
+          ]
         }
       }
     },
@@ -158,7 +167,12 @@
           "top": 40,
           "left": 5,
           "right": 8,
-          "facts": ["5×8=40", "8×5=40", "40÷5=8", "40÷8=5"]
+          "facts": [
+            "5×8=40",
+            "8×5=40",
+            "40÷5=8",
+            "40÷8=5"
+          ]
         }
       }
     },
@@ -178,15 +192,13 @@
   "try": [
     {
       "id": "TRY_01",
-      "type": "MC",
-      "stem": "Write the related division fact for 4 × 9 = 36.",
+      "type": "mc",
       "choices": [
-        "36 ÷ 4 = 9",
-        "36 ÷ 4 = 8",
-        "36 ÷ 9 = 3",
-        "9 ÷ 4 = 36"
+        "A) 36 ÷ 4 = 9",
+        "B) 36 ÷ 4 = 8",
+        "C) 36 ÷ 9 = 3",
+        "D) 9 ÷ 4 = 36"
       ],
-      "answer": "A",
       "explanation": "36 ÷ 4 = 9 is the related division fact.",
       "difficulty": 1,
       "hints": [
@@ -197,19 +209,19 @@
         "correct": "Correct! 4 × 9 = 36 → 36 ÷ 4 = 9.",
         "incorrect": "Not quite. The related division is 36 ÷ 4 = 9 (same three numbers)."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Write the related division fact for 4 × 9 = 36.",
+      "correct_answer": "A"
     },
     {
       "id": "TRY_02",
-      "type": "MC",
-      "stem": "How many facts in the family for 8, 5, 40?",
+      "type": "mc",
       "choices": [
-        "2",
-        "3",
-        "4",
-        "5"
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 5"
       ],
-      "answer": "C",
       "explanation": "8×5=40, 5×8=40, 40÷8=5, 40÷5=8 → 4 facts.",
       "difficulty": 1,
       "hints": [
@@ -220,13 +232,13 @@
         "correct": "Correct! The family for 8, 5, 40 has 4 facts.",
         "incorrect": "Not quite. 8×5=40, 5×8=40, 40÷8=5, 40÷5=8 — that's 4 facts."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "How many facts in the family for 8, 5, 40?",
+      "correct_answer": "C"
     },
     {
       "id": "TRY_03",
       "type": "input",
-      "stem": "Fact family: 5, 6, 30. What is 30 ÷ 5?",
-      "answer": "6",
       "explanation": "5 × 6 = 30, so 30 ÷ 5 = 6.",
       "difficulty": 1,
       "hints": [
@@ -237,13 +249,13 @@
         "correct": "Correct! 30 ÷ 5 = 6 is in the family for 5, 6, 30.",
         "incorrect": "Not quite. 5 × 6 = 30 → 30 ÷ 5 = 6."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Fact family: 5, 6, 30. What is 30 ÷ 5?",
+      "correct_answer": "6"
     },
     {
       "id": "TRY_04",
       "type": "input",
-      "stem": "Fact family for 7, 8, 56. What is 56 ÷ 8?",
-      "answer": "7",
       "explanation": "7 × 8 = 56, so 56 ÷ 8 = 7.",
       "difficulty": 1,
       "hints": [
@@ -254,19 +266,19 @@
         "correct": "Correct! 56 ÷ 8 = 7 is in the family for 7, 8, 56.",
         "incorrect": "Not quite. 7 × 8 = 56 → 56 ÷ 8 = 7."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Fact family for 7, 8, 56. What is 56 ÷ 8?",
+      "correct_answer": "7"
     },
     {
       "id": "TRY_05",
-      "type": "MC",
-      "stem": "Which is the complete fact family for 4, 5, 20?",
+      "type": "mc",
       "choices": [
-        "4×5=20, 5×4=20, 20÷4=5, 20÷5=4",
-        "4×5=20, 20÷4=5 only",
-        "4×5=20, 5×4=20 only",
-        "4+5=9, 9−4=5, 20÷4=5, 20÷5=4"
+        "A) 4×5=20, 5×4=20, 20÷4=5, 20÷5=4",
+        "B) 4×5=20, 20÷4=5 only",
+        "C) 4×5=20, 5×4=20 only",
+        "D) 4+5=9, 9−4=5, 20÷4=5, 20÷5=4"
       ],
-      "answer": "A",
       "explanation": "The complete family: 4×5=20, 5×4=20, 20÷4=5, 20÷5=4.",
       "difficulty": 1,
       "hints": [
@@ -277,21 +289,21 @@
         "correct": "Correct! All 4 facts: 4×5=20, 5×4=20, 20÷4=5, 20÷5=4.",
         "incorrect": "Not quite. A complete family has all 4: 4×5=20, 5×4=20, 20÷4=5, 20÷5=4."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Which is the complete fact family for 4, 5, 20?",
+      "correct_answer": "A"
     }
   ],
   "practice_r1": [
     {
       "id": "R1_01",
-      "type": "MC",
-      "stem": "Which fact belongs in the family with 7 × 6 = 42?",
+      "type": "mc",
       "choices": [
-        "42 ÷ 7 = 6",
-        "42 ÷ 7 = 5",
-        "42 − 7 = 35",
-        "7 + 6 = 13"
+        "A) 42 ÷ 7 = 6",
+        "B) 42 ÷ 7 = 5",
+        "C) 42 − 7 = 35",
+        "D) 7 + 6 = 13"
       ],
-      "answer": "A",
       "explanation": "42 ÷ 7 = 6 uses the same three numbers: 7, 6, 42.",
       "difficulty": 1,
       "hints": [
@@ -301,19 +313,19 @@
       "feedback": {
         "correct": "Correct! 42 ÷ 7 = 6 is in the same fact family.",
         "incorrect": "Not quite. 7 × 6 = 42 → 42 ÷ 7 = 6 (same three numbers)."
-      }
+      },
+      "question": "Which fact belongs in the family with 7 × 6 = 42?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_02",
-      "type": "MC",
-      "stem": "Complete: 8 × 4 = 32, 4 × 8 = 32, 32 ÷ 8 = 4, 32 ÷ 4 = ?",
+      "type": "mc",
       "choices": [
-        "4",
-        "6",
-        "8",
-        "16"
+        "A) 4",
+        "B) 6",
+        "C) 8",
+        "D) 16"
       ],
-      "answer": "C",
       "explanation": "32 ÷ 4 = 8.",
       "difficulty": 1,
       "hints": [
@@ -323,19 +335,19 @@
       "feedback": {
         "correct": "Correct! The last fact is 32 ÷ 4 = 8.",
         "incorrect": "Not quite. 32 ÷ 4 = 8. Check: 4 × 8 = 32 ✓"
-      }
+      },
+      "question": "Complete: 8 × 4 = 32, 4 × 8 = 32, 32 ÷ 8 = 4, 32 ÷ 4 = ?",
+      "correct_answer": "C"
     },
     {
       "id": "R1_03",
-      "type": "MC",
-      "stem": "Which three numbers form a fact family?",
+      "type": "mc",
       "choices": [
-        "3, 5, 15",
-        "3, 5, 20",
-        "3, 6, 15",
-        "5, 5, 15"
+        "A) 3, 5, 15",
+        "B) 3, 5, 20",
+        "C) 3, 6, 15",
+        "D) 5, 5, 15"
       ],
-      "answer": "A",
       "explanation": "3 × 5 = 15 ✓. The others don't multiply correctly.",
       "difficulty": 1,
       "hints": [
@@ -345,19 +357,19 @@
       "feedback": {
         "correct": "Correct! 3 × 5 = 15, so {3, 5, 15} is a valid fact family.",
         "incorrect": "Not quite. Check which pair multiplies to give the third number: 3 × 5 = 15 ✓"
-      }
+      },
+      "question": "Which three numbers form a fact family?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_04",
-      "type": "MC",
-      "stem": "Related fact for 56 ÷ 7 = 8?",
+      "type": "mc",
       "choices": [
-        "7 × 8 = 56",
-        "7 + 8 = 15",
-        "56 − 7 = 49",
-        "8 × 7 = 57"
+        "A) 7 × 8 = 56",
+        "B) 7 + 8 = 15",
+        "C) 56 − 7 = 49",
+        "D) 8 × 7 = 57"
       ],
-      "answer": "A",
       "explanation": "7 × 8 = 56 is the related multiplication fact.",
       "difficulty": 1,
       "hints": [
@@ -367,19 +379,19 @@
       "feedback": {
         "correct": "Correct! 56 ÷ 7 = 8 → related fact: 7 × 8 = 56.",
         "incorrect": "Not quite. The related multiplication is 7 × 8 = 56."
-      }
+      },
+      "question": "Related fact for 56 ÷ 7 = 8?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_05",
-      "type": "MC",
-      "stem": "Fact family for 9, 3, 27. Which is NOT in it?",
+      "type": "mc",
       "choices": [
-        "9 × 3 = 27",
-        "3 × 9 = 27",
-        "27 ÷ 3 = 9",
-        "27 ÷ 9 = 27"
+        "A) 9 × 3 = 27",
+        "B) 3 × 9 = 27",
+        "C) 27 ÷ 3 = 9",
+        "D) 27 ÷ 9 = 27"
       ],
-      "answer": "D",
       "explanation": "27 ÷ 9 = 3, not 27.",
       "difficulty": 1,
       "hints": [
@@ -389,19 +401,19 @@
       "feedback": {
         "correct": "Correct! 27 ÷ 9 = 3, not 27. Choice D is wrong.",
         "incorrect": "Not quite. Check D: 27 ÷ 9 = 3, not 27. So D is NOT in the family."
-      }
+      },
+      "question": "Fact family for 9, 3, 27. Which is NOT in it?",
+      "correct_answer": "D"
     },
     {
       "id": "R1_06",
-      "type": "MC",
-      "stem": "Write the missing fact: 6 × 8 = 48, 8 × 6 = 48, 48 ÷ 6 = 8, __ = ?",
+      "type": "mc",
       "choices": [
-        "48 ÷ 8 = 6",
-        "48 ÷ 8 = 8",
-        "48 − 8 = 40",
-        "6 + 8 = 14"
+        "A) 48 ÷ 8 = 6",
+        "B) 48 ÷ 8 = 8",
+        "C) 48 − 8 = 40",
+        "D) 6 + 8 = 14"
       ],
-      "answer": "A",
       "explanation": "48 ÷ 8 = 6 completes the family.",
       "difficulty": 1,
       "hints": [
@@ -411,19 +423,19 @@
       "feedback": {
         "correct": "Correct! The missing fact is 48 ÷ 8 = 6.",
         "incorrect": "Not quite. The missing fact is 48 ÷ 8 = 6 (dividing by the other factor)."
-      }
+      },
+      "question": "Write the missing fact: 6 × 8 = 48, 8 × 6 = 48, 48 ÷ 6 = 8, __ = ?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_07",
-      "type": "MC",
-      "stem": "Fact family for 9, 8, 72. Which is NOT in it?",
+      "type": "mc",
       "choices": [
-        "9 × 8 = 72",
-        "72 ÷ 9 = 8",
-        "8 × 9 = 72",
-        "72 ÷ 8 = 72"
+        "A) 9 × 8 = 72",
+        "B) 72 ÷ 9 = 8",
+        "C) 8 × 9 = 72",
+        "D) 72 ÷ 8 = 72"
       ],
-      "answer": "D",
       "explanation": "72 ÷ 8 = 9, not 72. Choice D has the wrong quotient.",
       "difficulty": 1,
       "hints": [
@@ -433,13 +445,13 @@
       "feedback": {
         "correct": "Correct! 72 ÷ 8 = 9, not 72. Choice D is wrong.",
         "incorrect": "Not quite. Check D: 72 ÷ 8 = 9 (not 72). So D is NOT in the family."
-      }
+      },
+      "question": "Fact family for 9, 8, 72. Which is NOT in it?",
+      "correct_answer": "D"
     },
     {
       "id": "R1_08",
       "type": "input",
-      "stem": "Fact family: 6, 9, 54. What is 54 ÷ 9?",
-      "answer": "6",
       "explanation": "6 × 9 = 54, so 54 ÷ 9 = 6.",
       "difficulty": 1,
       "hints": [
@@ -450,19 +462,19 @@
         "correct": "Correct! 54 ÷ 9 = 6 is in the family for 6, 9, 54.",
         "incorrect": "Not quite. 6 × 9 = 54 → 54 ÷ 9 = 6."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Fact family: 6, 9, 54. What is 54 ÷ 9?",
+      "correct_answer": "6"
     },
     {
       "id": "R1_09",
-      "type": "MC",
-      "stem": "Which two numbers complete the fact family ?, ?, 45 (using single-digit factors)?",
+      "type": "mc",
       "choices": [
-        "5 and 9",
-        "5 and 8",
-        "6 and 7",
-        "4 and 9"
+        "A) 5 and 9",
+        "B) 5 and 8",
+        "C) 6 and 7",
+        "D) 4 and 9"
       ],
-      "answer": "A",
       "explanation": "5 × 9 = 45. So the missing numbers are 5 and 9.",
       "difficulty": 1,
       "hints": [
@@ -472,13 +484,13 @@
       "feedback": {
         "correct": "Correct! 5 × 9 = 45, so the fact family is {5, 9, 45}.",
         "incorrect": "Not quite. 5 × 9 = 45 — the missing numbers are 5 and 9."
-      }
+      },
+      "question": "Which two numbers complete the fact family ?, ?, 45 (using single-digit factors)?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_10",
       "type": "input",
-      "stem": "Complete the family: 3×7=21, 7×3=21, 21÷3=7, 21÷7=?",
-      "answer": "3",
       "explanation": "21 ÷ 7 = 3 completes the fact family.",
       "difficulty": 1,
       "hints": [
@@ -489,21 +501,21 @@
         "correct": "Correct! The last fact is 21 ÷ 7 = 3.",
         "incorrect": "Not quite. 21 ÷ 7 = 3. Check: 7 × 3 = 21 ✓"
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Complete the family: 3×7=21, 7×3=21, 21÷3=7, 21÷7=?",
+      "correct_answer": "3"
     }
   ],
   "practice_r2": [
     {
       "id": "R2_01",
-      "type": "MC",
-      "stem": "The fact family for 4, 4, 16 has how many facts?",
+      "type": "mc",
       "choices": [
-        "1",
-        "2",
-        "3",
-        "4"
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 4"
       ],
-      "answer": "B",
       "explanation": "4×4=16 and 16÷4=4. Only 2 unique facts because both factors are the same.",
       "difficulty": 2,
       "hints": [
@@ -513,19 +525,19 @@
       "feedback": {
         "correct": "Correct! Square number families have only 2 unique facts.",
         "incorrect": "Not quite. 4 and 4 are the same factor → only 2 unique facts: 4×4=16 and 16÷4=4."
-      }
+      },
+      "question": "The fact family for 4, 4, 16 has how many facts?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_02",
-      "type": "MC",
-      "stem": "Which number completes this fact family: 7, ?, 63?",
+      "type": "mc",
       "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
       ],
-      "answer": "C",
       "explanation": "7 × 9 = 63.",
       "difficulty": 2,
       "hints": [
@@ -535,19 +547,19 @@
       "feedback": {
         "correct": "Correct! 7 × 9 = 63, so the missing number is 9.",
         "incorrect": "Not quite. 7 × 9 = 63 — the missing number is 9."
-      }
+      },
+      "question": "Which number completes this fact family: 7, ?, 63?",
+      "correct_answer": "C"
     },
     {
       "id": "R2_03",
-      "type": "MC",
-      "stem": "If 72 ÷ 8 = 9, write ALL the facts. Which is NOT one of them?",
+      "type": "mc",
       "choices": [
-        "8 × 9 = 72",
-        "72 ÷ 9 = 8",
-        "9 × 8 = 72",
-        "72 ÷ 72 = 1"
+        "A) 8 × 9 = 72",
+        "B) 72 ÷ 9 = 8",
+        "C) 9 × 8 = 72",
+        "D) 72 ÷ 72 = 1"
       ],
-      "answer": "D",
       "explanation": "72 ÷ 72 = 1 is true but not part of this fact family (which uses 8 and 9 as factors).",
       "difficulty": 2,
       "hints": [
@@ -557,19 +569,19 @@
       "feedback": {
         "correct": "Correct! 72 ÷ 72 = 1 is not in the fact family for 8, 9, 72.",
         "incorrect": "Not quite. The family uses 8, 9, and 72. Choice D uses 72 twice — not part of this family."
-      }
+      },
+      "question": "If 72 ÷ 8 = 9, write ALL the facts. Which is NOT one of them?",
+      "correct_answer": "D"
     },
     {
       "id": "R2_04",
-      "type": "MC",
-      "stem": "How many different fact families use the number 24 with ONLY single-digit factors?",
+      "type": "mc",
       "choices": [
-        "1",
-        "2",
-        "3",
-        "4"
+        "A) 1",
+        "B) 2",
+        "C) 3",
+        "D) 4"
       ],
-      "answer": "B",
       "explanation": "3×8=24 and 4×6=24. Two families (not counting 1×24 or 2×12 since 12 and 24 are not single-digit).",
       "difficulty": 2,
       "hints": [
@@ -579,13 +591,13 @@
       "feedback": {
         "correct": "Correct! 3×8=24 and 4×6=24 give 2 fact families.",
         "incorrect": "Not quite. Single-digit pairs for 24: 3×8 and 4×6 → 2 families."
-      }
+      },
+      "question": "How many different fact families use the number 24 with ONLY single-digit factors?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_05",
       "type": "input",
-      "stem": "Fact family: 6, 7, 42. What is 42 ÷ 6?",
-      "answer": "7",
       "explanation": "6 × 7 = 42, so 42 ÷ 6 = 7.",
       "difficulty": 2,
       "hints": [
@@ -596,19 +608,19 @@
         "correct": "Correct! 42 ÷ 6 = 7 is in the family for 6, 7, 42.",
         "incorrect": "Not quite. 6 × 7 = 42 → 42 ÷ 6 = 7."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Fact family: 6, 7, 42. What is 42 ÷ 6?",
+      "correct_answer": "7"
     },
     {
       "id": "R2_06",
-      "type": "MC",
-      "stem": "A fact family uses factors 8 and 9. What is the product (the third number in the family)?",
+      "type": "mc",
       "choices": [
-        "63",
-        "72",
-        "81",
-        "17"
+        "A) 63",
+        "B) 72",
+        "C) 81",
+        "D) 17"
       ],
-      "answer": "B",
       "explanation": "8 × 9 = 72.",
       "difficulty": 2,
       "hints": [
@@ -618,13 +630,13 @@
       "feedback": {
         "correct": "Correct! 8 × 9 = 72, so the family is {8, 9, 72}.",
         "incorrect": "Not quite. 8 × 9 = 72. The product is 72."
-      }
+      },
+      "question": "A fact family uses factors 8 and 9. What is the product (the third number in the family)?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_07",
       "type": "input",
-      "stem": "Fact family: 5, 8, 40. What is 40 ÷ 5?",
-      "answer": "8",
       "explanation": "5 × 8 = 40, so 40 ÷ 5 = 8.",
       "difficulty": 2,
       "hints": [
@@ -635,19 +647,19 @@
         "correct": "Correct! 40 ÷ 5 = 8 is in the family for 5, 8, 40.",
         "incorrect": "Not quite. 5 × 8 = 40 → 40 ÷ 5 = 8."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Fact family: 5, 8, 40. What is 40 ÷ 5?",
+      "correct_answer": "8"
     },
     {
       "id": "R2_08",
-      "type": "MC",
-      "stem": "Which set of numbers forms a fact family?",
+      "type": "mc",
       "choices": [
-        "4, 6, 28",
-        "5, 9, 45",
-        "3, 8, 27",
-        "6, 7, 48"
+        "A) 4, 6, 28",
+        "B) 5, 9, 45",
+        "C) 3, 8, 27",
+        "D) 6, 7, 48"
       ],
-      "answer": "B",
       "explanation": "5 × 9 = 45 ✓. The others don't work: 4×6=24≠28, 3×8=24≠27, 6×7=42≠48.",
       "difficulty": 2,
       "hints": [
@@ -657,13 +669,13 @@
       "feedback": {
         "correct": "Correct! 5 × 9 = 45, so {5, 9, 45} is a valid fact family.",
         "incorrect": "Not quite. Only 5 × 9 = 45 works. Check: 4×6=24, 3×8=24, 6×7=42."
-      }
+      },
+      "question": "Which set of numbers forms a fact family?",
+      "correct_answer": "B"
     },
     {
       "id": "R2_09",
       "type": "input",
-      "stem": "Fact family: 9, 9, 81. What is 81 ÷ 9?",
-      "answer": "9",
       "explanation": "9 × 9 = 81, so 81 ÷ 9 = 9.",
       "difficulty": 2,
       "hints": [
@@ -674,19 +686,19 @@
         "correct": "Correct! 81 ÷ 9 = 9. Square number family: 9×9=81 and 81÷9=9.",
         "incorrect": "Not quite. 9 × 9 = 81 → 81 ÷ 9 = 9."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Fact family: 9, 9, 81. What is 81 ÷ 9?",
+      "correct_answer": "9"
     },
     {
       "id": "R2_10",
-      "type": "MC",
-      "stem": "Which statement is TRUE about a square number fact family (like 6, 6, 36)?",
+      "type": "mc",
       "choices": [
-        "It has 4 facts just like any other family",
-        "It has 1 fact: 6×6=36 only",
-        "It has exactly 2 facts because both factors are equal",
-        "It has 3 facts: two multiplication and one division"
+        "A) It has 4 facts just like any other family",
+        "B) It has 1 fact: 6×6=36 only",
+        "C) It has exactly 2 facts because both factors are equal",
+        "D) It has 3 facts: two multiplication and one division"
       ],
-      "answer": "C",
       "explanation": "6×6=36 and 36÷6=6 — only 2 unique facts because flipping equal factors gives the same equation.",
       "difficulty": 2,
       "hints": [
@@ -696,21 +708,21 @@
       "feedback": {
         "correct": "Correct! Square number families have exactly 2 unique facts.",
         "incorrect": "Not quite. 6×6=36 and 36÷6=6 — that's only 2 unique facts (the others are duplicates)."
-      }
+      },
+      "question": "Which statement is TRUE about a square number fact family (like 6, 6, 36)?",
+      "correct_answer": "C"
     }
   ],
   "practice_r3": [
     {
       "id": "R3_01",
-      "type": "MC",
-      "stem": "Amy wrote 3 × 9 = 27. She says she can write exactly 3 MORE related facts. Is she correct?",
+      "type": "mc",
       "choices": [
-        "Yes — 9×3=27, 27÷3=9, 27÷9=3",
-        "No — she can write only 2 more",
-        "No — she can write 4 more",
-        "Yes — but only if she uses addition"
+        "A) Yes — 9×3=27, 27÷3=9, 27÷9=3",
+        "B) No — she can write only 2 more",
+        "C) No — she can write 4 more",
+        "D) Yes — but only if she uses addition"
       ],
-      "answer": "A",
       "explanation": "From 3×9=27: three more are 9×3=27, 27÷3=9, 27÷9=3.",
       "difficulty": 3,
       "hints": [
@@ -720,19 +732,19 @@
       "feedback": {
         "correct": "Correct! 3 more facts: 9×3=27, 27÷3=9, 27÷9=3.",
         "incorrect": "Not quite. From 3×9=27, the 3 remaining facts are 9×3=27, 27÷3=9, 27÷9=3."
-      }
+      },
+      "question": "Amy wrote 3 × 9 = 27. She says she can write exactly 3 MORE related facts. Is she correct?",
+      "correct_answer": "A"
     },
     {
       "id": "R3_02",
-      "type": "MC",
-      "stem": "A fact family uses the numbers 8, ?, and 64. What is the missing number?",
+      "type": "mc",
       "choices": [
-        "7",
-        "8",
-        "9",
-        "10"
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
       ],
-      "answer": "B",
       "explanation": "8 × 8 = 64. The missing number is 8.",
       "difficulty": 2,
       "hints": [
@@ -742,19 +754,19 @@
       "feedback": {
         "correct": "Correct! 8 × 8 = 64. The family is {8, 8, 64} — a square number family.",
         "incorrect": "Not quite. 8 × 8 = 64. The missing number is 8."
-      }
+      },
+      "question": "A fact family uses the numbers 8, ?, and 64. What is the missing number?",
+      "correct_answer": "B"
     },
     {
       "id": "R3_03",
-      "type": "MC",
-      "stem": "Which fact family has exactly 2 facts (not 4)?",
+      "type": "mc",
       "choices": [
-        "5, 7, 35",
-        "3, 9, 27",
-        "6, 6, 36",
-        "4, 8, 32"
+        "A) 5, 7, 35",
+        "B) 3, 9, 27",
+        "C) 6, 6, 36",
+        "D) 4, 8, 32"
       ],
-      "answer": "C",
       "explanation": "6 × 6 = 36 and 36 ÷ 6 = 6 — only 2 unique facts because both factors are equal.",
       "difficulty": 3,
       "hints": [
@@ -764,19 +776,19 @@
       "feedback": {
         "correct": "Correct! 6×6=36 and 36÷6=6 — only 2 unique facts.",
         "incorrect": "Not quite. Equal factors give 2 unique facts: {6, 6, 36} → 6×6=36 and 36÷6=6."
-      }
+      },
+      "question": "Which fact family has exactly 2 facts (not 4)?",
+      "correct_answer": "C"
     },
     {
       "id": "R3_04",
-      "type": "MC",
-      "stem": "A shelf holds books in 6 stacks of 7 each. Which shows the complete fact family?",
+      "type": "mc",
       "choices": [
-        "6×7=42, 7×6=42, 42÷6=7, 42÷7=6",
-        "6×7=42 and 42÷6=7 only",
-        "6+7=13, 42−6=36, 42÷7=6",
-        "6×7=43, 43÷6=7, 43÷7=6"
+        "A) 6×7=42, 7×6=42, 42÷6=7, 42÷7=6",
+        "B) 6×7=42 and 42÷6=7 only",
+        "C) 6+7=13, 42−6=36, 42÷7=6",
+        "D) 6×7=43, 43÷6=7, 43÷7=6"
       ],
-      "answer": "A",
       "explanation": "The three numbers are 6, 7, 42. All 4 facts: 6×7=42, 7×6=42, 42÷6=7, 42÷7=6.",
       "difficulty": 3,
       "hints": [
@@ -786,13 +798,13 @@
       "feedback": {
         "correct": "Correct! The complete family: 6×7=42, 7×6=42, 42÷6=7, 42÷7=6.",
         "incorrect": "Not quite. Three numbers: 6, 7, 42. Complete family: 6×7=42, 7×6=42, 42÷6=7, 42÷7=6."
-      }
+      },
+      "question": "A shelf holds books in 6 stacks of 7 each. Which shows the complete fact family?",
+      "correct_answer": "A"
     },
     {
       "id": "R3_05",
       "type": "input",
-      "stem": "Fact family: 8, 7, 56. If 8×7=56 and 7×8=56, what is 56 ÷ 7?",
-      "answer": "8",
       "explanation": "56 ÷ 7 = 8 is one of the division facts in the family.",
       "difficulty": 3,
       "hints": [
@@ -803,7 +815,9 @@
         "correct": "Correct! 56 ÷ 7 = 8 completes the family for 7, 8, 56.",
         "incorrect": "Not quite. 7 × 8 = 56 → 56 ÷ 7 = 8."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Fact family: 8, 7, 56. If 8×7=56 and 7×8=56, what is 56 ÷ 7?",
+      "correct_answer": "8"
     }
   ],
   "concept": "write_related_facts"

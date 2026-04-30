@@ -28,48 +28,73 @@
   "pretest": [
     {
       "id": "PT_01",
-      "type": "MC",
-      "stem": "3 + 2 × 4 = ?",
-      "choices": ["11", "14", "20", "24"],
-      "answer": "A",
+      "type": "mc",
+      "choices": [
+        "A) 11",
+        "B) 14",
+        "C) 20",
+        "D) 24"
+      ],
       "explanation": "Multiply first: 2 × 4 = 8. Then add: 3 + 8 = 11.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "3 + 2 × 4 = ?",
+      "correct_answer": "A"
     },
     {
       "id": "PT_02",
-      "type": "MC",
-      "stem": "(3 + 2) × 4 = ?",
-      "choices": ["11", "14", "20", "24"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 11",
+        "B) 14",
+        "C) 20",
+        "D) 24"
+      ],
       "explanation": "Parentheses first: 3 + 2 = 5. Then 5 × 4 = 20.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "(3 + 2) × 4 = ?",
+      "correct_answer": "C"
     },
     {
       "id": "PT_03",
-      "type": "MC",
-      "stem": "20 − 12 ÷ 4 = ?",
-      "choices": ["2", "4", "8", "17"],
-      "answer": "D",
+      "type": "mc",
+      "choices": [
+        "A) 2",
+        "B) 4",
+        "C) 8",
+        "D) 17"
+      ],
       "explanation": "Divide first: 12 ÷ 4 = 3. Then 20 − 3 = 17.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "20 − 12 ÷ 4 = ?",
+      "correct_answer": "D"
     },
     {
       "id": "PT_04",
-      "type": "MC",
-      "stem": "5 × (6 − 2) = ?",
-      "choices": ["13", "16", "20", "28"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 13",
+        "B) 16",
+        "C) 20",
+        "D) 28"
+      ],
       "explanation": "Parentheses: 6 − 2 = 4. Then 5 × 4 = 20.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "5 × (6 − 2) = ?",
+      "correct_answer": "C"
     },
     {
       "id": "PT_05",
-      "type": "MC",
-      "stem": "4 + 5 × 2 − 3 = ?",
-      "choices": ["8", "11", "15", "18"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 8",
+        "B) 11",
+        "C) 15",
+        "D) 18"
+      ],
       "explanation": "5 × 2 = 10. Then 4 + 10 − 3 = 11.",
-      "difficulty": 2
+      "difficulty": 2,
+      "question": "4 + 5 × 2 − 3 = ?",
+      "correct_answer": "B"
     }
   ],
   "learn": [
@@ -97,8 +122,20 @@
       "visual_type": "two_path_diagram",
       "visual_data": {
         "expression": "3 + 4 × 2",
-        "wrong_path": { "label": "Wrong: add first", "steps": ["3 + 4 = 7", "7 × 2 = 14"] },
-        "correct_path": { "label": "Correct: multiply first", "steps": ["4 × 2 = 8", "3 + 8 = 11"] }
+        "wrong_path": {
+          "label": "Wrong: add first",
+          "steps": [
+            "3 + 4 = 7",
+            "7 × 2 = 14"
+          ]
+        },
+        "correct_path": {
+          "label": "Correct: multiply first",
+          "steps": [
+            "4 × 2 = 8",
+            "3 + 8 = 11"
+          ]
+        }
       }
     },
     {
@@ -110,8 +147,18 @@
       "visual_type": "comparison_table",
       "visual_data": {
         "rows": [
-          { "expression": "2 + 3 × 4", "step1": "3 × 4 = 12", "step2": "2 + 12 = 14", "result": "14" },
-          { "expression": "(2 + 3) × 4", "step1": "2 + 3 = 5", "step2": "5 × 4 = 20", "result": "20" }
+          {
+            "expression": "2 + 3 × 4",
+            "step1": "3 × 4 = 12",
+            "step2": "2 + 12 = 14",
+            "result": "14"
+          },
+          {
+            "expression": "(2 + 3) × 4",
+            "step1": "2 + 3 = 5",
+            "step2": "5 × 4 = 20",
+            "result": "20"
+          }
         ]
       }
     },
@@ -125,8 +172,14 @@
       "visual_data": {
         "expression": "20 − 15 ÷ 3",
         "steps": [
-          { "step": "Step 1 — Divide", "work": "15 ÷ 3 = 5" },
-          { "step": "Step 2 — Subtract", "work": "20 − 5 = 15" }
+          {
+            "step": "Step 1 — Divide",
+            "work": "15 ÷ 3 = 5"
+          },
+          {
+            "step": "Step 2 — Subtract",
+            "work": "20 − 5 = 15"
+          }
         ],
         "result": "15"
       }
@@ -143,10 +196,13 @@
   "try": [
     {
       "id": "TRY_01",
-      "type": "MC",
-      "stem": "2 × 3 + 4 = ?",
-      "choices": ["10", "14", "18", "24"],
-      "answer": "A",
+      "type": "mc",
+      "choices": [
+        "A) 10",
+        "B) 14",
+        "C) 18",
+        "D) 24"
+      ],
       "explanation": "2 × 3 = 6. 6 + 4 = 10.",
       "difficulty": 2,
       "hints": [
@@ -157,14 +213,22 @@
         "correct": "Exactly! 2 × 3 = 6, then 6 + 4 = 10.",
         "incorrect": "Multiply first: 2 × 3 = 6, then add 4. The answer is 10."
       },
-      "solution_steps": ["2 × 3 = 6", "6 + 4 = 10"]
+      "solution_steps": [
+        "2 × 3 = 6",
+        "6 + 4 = 10"
+      ],
+      "question": "2 × 3 + 4 = ?",
+      "correct_answer": "A"
     },
     {
       "id": "TRY_02",
-      "type": "MC",
-      "stem": "(8 − 3) × 2 = ?",
-      "choices": ["7", "10", "13", "16"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 7",
+        "B) 10",
+        "C) 13",
+        "D) 16"
+      ],
       "explanation": "8 − 3 = 5. 5 × 2 = 10.",
       "difficulty": 2,
       "hints": [
@@ -175,13 +239,16 @@
         "correct": "Yes! Parentheses first: 8 − 3 = 5, then 5 × 2 = 10.",
         "incorrect": "Start with the parentheses: 8 − 3 = 5. Then 5 × 2 = 10."
       },
-      "solution_steps": ["8 − 3 = 5", "5 × 2 = 10"]
+      "solution_steps": [
+        "8 − 3 = 5",
+        "5 × 2 = 10"
+      ],
+      "question": "(8 − 3) × 2 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "TRY_03",
       "type": "input",
-      "stem": "16 ÷ 4 + 3 = ?",
-      "answer": "7",
       "explanation": "Division first: 16 ÷ 4 = 4. Then 4 + 3 = 7.",
       "difficulty": 2,
       "hints": [
@@ -192,13 +259,16 @@
         "correct": "Right! Division first: 16 ÷ 4 = 4, then 4 + 3 = 7.",
         "incorrect": "Divide first: 16 ÷ 4 = 4. Then add 3 to get 7."
       },
-      "solution_steps": ["16 ÷ 4 = 4", "4 + 3 = 7"]
+      "solution_steps": [
+        "16 ÷ 4 = 4",
+        "4 + 3 = 7"
+      ],
+      "question": "16 ÷ 4 + 3 = ?",
+      "correct_answer": "7"
     },
     {
       "id": "TRY_04",
       "type": "input",
-      "stem": "3 × (5 + 2) = ?",
-      "answer": "21",
       "explanation": "Parentheses first: 5 + 2 = 7. Then 3 × 7 = 21.",
       "difficulty": 2,
       "hints": [
@@ -209,14 +279,22 @@
         "correct": "Great! Parentheses: 5 + 2 = 7, then 3 × 7 = 21.",
         "incorrect": "Solve the parentheses first: 5 + 2 = 7, then multiply: 3 × 7 = 21."
       },
-      "solution_steps": ["5 + 2 = 7", "3 × 7 = 21"]
+      "solution_steps": [
+        "5 + 2 = 7",
+        "3 × 7 = 21"
+      ],
+      "question": "3 × (5 + 2) = ?",
+      "correct_answer": "21"
     },
     {
       "id": "TRY_05",
-      "type": "MC",
-      "stem": "9 − 12 ÷ 3 = ?",
-      "choices": ["5", "2", "8", "7"],
-      "answer": "A",
+      "type": "mc",
+      "choices": [
+        "A) 5",
+        "B) 2",
+        "C) 8",
+        "D) 7"
+      ],
       "explanation": "Divide first: 12 ÷ 3 = 4. Then 9 − 4 = 5.",
       "difficulty": 2,
       "hints": [
@@ -227,16 +305,24 @@
         "correct": "Correct! 12 ÷ 3 = 4 first, then 9 − 4 = 5.",
         "incorrect": "Divide first: 12 ÷ 3 = 4. Then subtract: 9 − 4 = 5."
       },
-      "solution_steps": ["12 ÷ 3 = 4", "9 − 4 = 5"]
+      "solution_steps": [
+        "12 ÷ 3 = 4",
+        "9 − 4 = 5"
+      ],
+      "question": "9 − 12 ÷ 3 = ?",
+      "correct_answer": "A"
     }
   ],
   "practice_r1": [
     {
       "id": "R1_01",
-      "type": "MC",
-      "stem": "6 + 3 × 2 = ?",
-      "choices": ["12", "15", "18", "21"],
-      "answer": "A",
+      "type": "mc",
+      "choices": [
+        "A) 12",
+        "B) 15",
+        "C) 18",
+        "D) 21"
+      ],
       "explanation": "3 × 2 = 6. 6 + 6 = 12.",
       "difficulty": 1,
       "hints": [
@@ -246,14 +332,19 @@
       "feedback": {
         "correct": "Right! 3 × 2 = 6, then 6 + 6 = 12.",
         "incorrect": "Multiply first: 3 × 2 = 6, then 6 + 6 = 12."
-      }
+      },
+      "question": "6 + 3 × 2 = ?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_02",
-      "type": "MC",
-      "stem": "10 − 2 × 3 = ?",
-      "choices": ["4", "14", "24", "16"],
-      "answer": "A",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 14",
+        "C) 24",
+        "D) 16"
+      ],
       "explanation": "2 × 3 = 6. 10 − 6 = 4.",
       "difficulty": 2,
       "hints": [
@@ -263,14 +354,19 @@
       "feedback": {
         "correct": "Yes! 2 × 3 = 6, then 10 − 6 = 4.",
         "incorrect": "Multiply first: 2 × 3 = 6. Then 10 − 6 = 4."
-      }
+      },
+      "question": "10 − 2 × 3 = ?",
+      "correct_answer": "A"
     },
     {
       "id": "R1_03",
-      "type": "MC",
-      "stem": "(4 + 6) × 3 = ?",
-      "choices": ["18", "22", "30", "36"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 18",
+        "B) 22",
+        "C) 30",
+        "D) 36"
+      ],
       "explanation": "4 + 6 = 10. 10 × 3 = 30.",
       "difficulty": 2,
       "hints": [
@@ -280,14 +376,19 @@
       "feedback": {
         "correct": "Great! 4 + 6 = 10, then 10 × 3 = 30.",
         "incorrect": "Parentheses first: 4 + 6 = 10. Then 10 × 3 = 30."
-      }
+      },
+      "question": "(4 + 6) × 3 = ?",
+      "correct_answer": "C"
     },
     {
       "id": "R1_04",
-      "type": "MC",
-      "stem": "18 ÷ 3 + 5 = ?",
-      "choices": ["8", "9", "10", "11"],
-      "answer": "D",
+      "type": "mc",
+      "choices": [
+        "A) 8",
+        "B) 9",
+        "C) 10",
+        "D) 11"
+      ],
       "explanation": "18 ÷ 3 = 6. 6 + 5 = 11.",
       "difficulty": 2,
       "hints": [
@@ -297,14 +398,19 @@
       "feedback": {
         "correct": "Correct! 18 ÷ 3 = 6, then 6 + 5 = 11.",
         "incorrect": "Divide first: 18 ÷ 3 = 6. Then 6 + 5 = 11."
-      }
+      },
+      "question": "18 ÷ 3 + 5 = ?",
+      "correct_answer": "D"
     },
     {
       "id": "R1_05",
-      "type": "MC",
-      "stem": "7 × 2 − 5 = ?",
-      "choices": ["7", "9", "11", "14"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 7",
+        "B) 9",
+        "C) 11",
+        "D) 14"
+      ],
       "explanation": "7 × 2 = 14. 14 − 5 = 9.",
       "difficulty": 2,
       "hints": [
@@ -314,14 +420,19 @@
       "feedback": {
         "correct": "Right! 7 × 2 = 14, then 14 − 5 = 9.",
         "incorrect": "Multiply first: 7 × 2 = 14. Then 14 − 5 = 9."
-      }
+      },
+      "question": "7 × 2 − 5 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_06",
-      "type": "MC",
-      "stem": "(12 − 4) ÷ 2 = ?",
-      "choices": ["2", "4", "6", "10"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 2",
+        "B) 4",
+        "C) 6",
+        "D) 10"
+      ],
       "explanation": "12 − 4 = 8. 8 ÷ 2 = 4.",
       "difficulty": 2,
       "hints": [
@@ -331,14 +442,19 @@
       "feedback": {
         "correct": "Yes! 12 − 4 = 8, then 8 ÷ 2 = 4.",
         "incorrect": "Parentheses first: 12 − 4 = 8. Then 8 ÷ 2 = 4."
-      }
+      },
+      "question": "(12 − 4) ÷ 2 = ?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_07",
-      "type": "MC",
-      "stem": "Danny buys a marker for $4 and 5 pens for $2 each. Which expression shows the total cost?",
-      "choices": ["4 + 5 + 2", "4 + 5 × 2", "(4 + 5) × 2", "4 × 5 + 2"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) 4 + 5 + 2",
+        "B) 4 + 5 × 2",
+        "C) (4 + 5) × 2",
+        "D) 4 × 5 + 2"
+      ],
       "explanation": "$4 + (5 × $2) = $4 + $10 = $14.",
       "difficulty": 2,
       "hints": [
@@ -348,13 +464,13 @@
       "feedback": {
         "correct": "Correct! 5 × $2 = $10, then $4 + $10 = $14 total.",
         "incorrect": "The 5 pens need to be multiplied: 5 × $2 = $10. Then add the $4 marker → $14."
-      }
+      },
+      "question": "Danny buys a marker for $4 and 5 pens for $2 each. Which expression shows the total cost?",
+      "correct_answer": "B"
     },
     {
       "id": "R1_08",
       "type": "input",
-      "stem": "(3 + 4) × 5 = ?",
-      "answer": "35",
       "explanation": "Parentheses: 3 + 4 = 7. Then 7 × 5 = 35.",
       "difficulty": 2,
       "hints": [
@@ -365,13 +481,16 @@
         "correct": "Great! 3 + 4 = 7, then 7 × 5 = 35.",
         "incorrect": "Parentheses first: 3 + 4 = 7. Then 7 × 5 = 35."
       },
-      "solution_steps": ["3 + 4 = 7", "7 × 5 = 35"]
+      "solution_steps": [
+        "3 + 4 = 7",
+        "7 × 5 = 35"
+      ],
+      "question": "(3 + 4) × 5 = ?",
+      "correct_answer": "35"
     },
     {
       "id": "R1_09",
       "type": "input",
-      "stem": "24 ÷ 6 − 2 = ?",
-      "answer": "2",
       "explanation": "Division first: 24 ÷ 6 = 4. Then 4 − 2 = 2.",
       "difficulty": 2,
       "hints": [
@@ -382,14 +501,22 @@
         "correct": "Yes! 24 ÷ 6 = 4, then 4 − 2 = 2.",
         "incorrect": "Divide first: 24 ÷ 6 = 4. Then 4 − 2 = 2."
       },
-      "solution_steps": ["24 ÷ 6 = 4", "4 − 2 = 2"]
+      "solution_steps": [
+        "24 ÷ 6 = 4",
+        "4 − 2 = 2"
+      ],
+      "question": "24 ÷ 6 − 2 = ?",
+      "correct_answer": "2"
     },
     {
       "id": "R1_10",
-      "type": "MC",
-      "stem": "5 + 4 × 3 = ?",
-      "choices": ["17", "27", "12", "32"],
-      "answer": "A",
+      "type": "mc",
+      "choices": [
+        "A) 17",
+        "B) 27",
+        "C) 12",
+        "D) 32"
+      ],
       "explanation": "4 × 3 = 12. Then 5 + 12 = 17.",
       "difficulty": 1,
       "hints": [
@@ -399,16 +526,21 @@
       "feedback": {
         "correct": "Right! 4 × 3 = 12, then 5 + 12 = 17.",
         "incorrect": "Multiply first: 4 × 3 = 12. Then 5 + 12 = 17."
-      }
+      },
+      "question": "5 + 4 × 3 = ?",
+      "correct_answer": "A"
     }
   ],
   "practice_r2": [
     {
       "id": "R2_01",
-      "type": "MC",
-      "stem": "3 × (4 + 5) − 7 = ?",
-      "choices": ["14", "18", "20", "22"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 14",
+        "B) 18",
+        "C) 20",
+        "D) 22"
+      ],
       "explanation": "4 + 5 = 9. 3 × 9 = 27. 27 − 7 = 20.",
       "difficulty": 2,
       "hints": [
@@ -418,14 +550,19 @@
       "feedback": {
         "correct": "Excellent! 4+5=9, 3×9=27, 27−7=20.",
         "incorrect": "Parentheses first: 4+5=9. Then 3×9=27. Then 27−7=20."
-      }
+      },
+      "question": "3 × (4 + 5) − 7 = ?",
+      "correct_answer": "C"
     },
     {
       "id": "R2_02",
-      "type": "MC",
-      "stem": "24 ÷ (8 − 2) = ?",
-      "choices": ["2", "3", "4", "6"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 6"
+      ],
       "explanation": "8 − 2 = 6. 24 ÷ 6 = 4.",
       "difficulty": 2,
       "hints": [
@@ -435,14 +572,19 @@
       "feedback": {
         "correct": "Right! 8 − 2 = 6, then 24 ÷ 6 = 4.",
         "incorrect": "Parentheses first: 8 − 2 = 6. Then 24 ÷ 6 = 4."
-      }
+      },
+      "question": "24 ÷ (8 − 2) = ?",
+      "correct_answer": "C"
     },
     {
       "id": "R2_03",
-      "type": "MC",
-      "stem": "Which expression equals 15?",
-      "choices": ["3 + 4 × 3", "(3 + 4) × 3", "3 × 3 + 4", "4 × 4 − 3"],
-      "answer": "A",
+      "type": "mc",
+      "choices": [
+        "A) 3 + 4 × 3",
+        "B) (3 + 4) × 3",
+        "C) 3 × 3 + 4",
+        "D) 4 × 4 − 3"
+      ],
       "explanation": "3 + 4 × 3 = 3 + 12 = 15. ✓",
       "difficulty": 2,
       "hints": [
@@ -452,14 +594,19 @@
       "feedback": {
         "correct": "Yes! 3 + 4×3 = 3 + 12 = 15.",
         "incorrect": "Check choice A: 4 × 3 = 12 first, then 3 + 12 = 15. That equals 15!"
-      }
+      },
+      "question": "Which expression equals 15?",
+      "correct_answer": "A"
     },
     {
       "id": "R2_04",
-      "type": "MC",
-      "stem": "8 + 16 ÷ 4 − 2 = ?",
-      "choices": ["4", "8", "10", "12"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 8",
+        "C) 10",
+        "D) 12"
+      ],
       "explanation": "16 ÷ 4 = 4. 8 + 4 − 2 = 10.",
       "difficulty": 2,
       "hints": [
@@ -469,13 +616,13 @@
       "feedback": {
         "correct": "Correct! 16÷4=4, then 8+4−2=10.",
         "incorrect": "Divide first: 16÷4=4. Then 8+4−2=10."
-      }
+      },
+      "question": "8 + 16 ÷ 4 − 2 = ?",
+      "correct_answer": "C"
     },
     {
       "id": "R2_05",
       "type": "input",
-      "stem": "4 × 7 − 6 = ?",
-      "answer": "22",
       "explanation": "4 × 7 = 28. 28 − 6 = 22.",
       "difficulty": 2,
       "hints": [
@@ -486,13 +633,16 @@
         "correct": "Great! 4 × 7 = 28, then 28 − 6 = 22.",
         "incorrect": "Multiply first: 4 × 7 = 28. Then 28 − 6 = 22."
       },
-      "solution_steps": ["4 × 7 = 28", "28 − 6 = 22"]
+      "solution_steps": [
+        "4 × 7 = 28",
+        "28 − 6 = 22"
+      ],
+      "question": "4 × 7 − 6 = ?",
+      "correct_answer": "22"
     },
     {
       "id": "R2_06",
       "type": "input",
-      "stem": "(6 + 3) × 4 = ?",
-      "answer": "36",
       "explanation": "Parentheses: 6 + 3 = 9. Then 9 × 4 = 36.",
       "difficulty": 2,
       "hints": [
@@ -503,14 +653,22 @@
         "correct": "Right! 6 + 3 = 9, then 9 × 4 = 36.",
         "incorrect": "Parentheses first: 6 + 3 = 9. Then 9 × 4 = 36."
       },
-      "solution_steps": ["6 + 3 = 9", "9 × 4 = 36"]
+      "solution_steps": [
+        "6 + 3 = 9",
+        "9 × 4 = 36"
+      ],
+      "question": "(6 + 3) × 4 = ?",
+      "correct_answer": "36"
     },
     {
       "id": "R2_07",
-      "type": "MC",
-      "stem": "Which expression does NOT equal 20?",
-      "choices": ["(2 + 3) × 4", "4 × 6 − 4", "2 × 3 + 4", "18 ÷ 9 + 18"],
-      "answer": "C",
+      "type": "mc",
+      "choices": [
+        "A) (2 + 3) × 4",
+        "B) 4 × 6 − 4",
+        "C) 2 × 3 + 4",
+        "D) 18 ÷ 9 + 18"
+      ],
       "explanation": "A: 5×4=20 ✓. B: 24−4=20 ✓. C: 2×3+4=6+4=10 ✗. D: 2+18=20 ✓. Choice C does NOT equal 20.",
       "difficulty": 3,
       "hints": [
@@ -520,13 +678,13 @@
       "feedback": {
         "correct": "Correct! C: 2×3+4 = 6+4 = 10, which is not 20.",
         "incorrect": "Check choice C: 2×3=6, then 6+4=10 — that is not 20. The others all equal 20."
-      }
+      },
+      "question": "Which expression does NOT equal 20?",
+      "correct_answer": "C"
     },
     {
       "id": "R2_08",
       "type": "input",
-      "stem": "2 × (7 + 3) = ?",
-      "answer": "20",
       "explanation": "Parentheses: 7 + 3 = 10. Then 2 × 10 = 20.",
       "difficulty": 2,
       "hints": [
@@ -537,13 +695,16 @@
         "correct": "Yes! 7 + 3 = 10, then 2 × 10 = 20.",
         "incorrect": "Parentheses first: 7 + 3 = 10. Then 2 × 10 = 20."
       },
-      "solution_steps": ["7 + 3 = 10", "2 × 10 = 20"]
+      "solution_steps": [
+        "7 + 3 = 10",
+        "2 × 10 = 20"
+      ],
+      "question": "2 × (7 + 3) = ?",
+      "correct_answer": "20"
     },
     {
       "id": "R2_09",
       "type": "input",
-      "stem": "45 ÷ 9 + 6 = ?",
-      "answer": "11",
       "explanation": "Division first: 45 ÷ 9 = 5. Then 5 + 6 = 11.",
       "difficulty": 2,
       "hints": [
@@ -554,14 +715,22 @@
         "correct": "Right! 45 ÷ 9 = 5, then 5 + 6 = 11.",
         "incorrect": "Divide first: 45 ÷ 9 = 5. Then 5 + 6 = 11."
       },
-      "solution_steps": ["45 ÷ 9 = 5", "5 + 6 = 11"]
+      "solution_steps": [
+        "45 ÷ 9 = 5",
+        "5 + 6 = 11"
+      ],
+      "question": "45 ÷ 9 + 6 = ?",
+      "correct_answer": "11"
     },
     {
       "id": "R2_10",
-      "type": "MC",
-      "stem": "A baker makes 4 trays of cookies with 8 cookies on each tray. She eats 3 cookies. Which expression shows how many cookies are left?",
-      "choices": ["(4 + 8) × 3", "4 × 8 − 3", "4 × (8 − 3)", "4 + 8 − 3"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) (4 + 8) × 3",
+        "B) 4 × 8 − 3",
+        "C) 4 × (8 − 3)",
+        "D) 4 + 8 − 3"
+      ],
       "explanation": "4 trays × 8 cookies = 32 total. 32 − 3 = 29 left. Expression: 4 × 8 − 3.",
       "difficulty": 2,
       "hints": [
@@ -571,16 +740,21 @@
       "feedback": {
         "correct": "Correct! 4 × 8 = 32, then 32 − 3 = 29 cookies left.",
         "incorrect": "First find total: 4 × 8 = 32. Then subtract 3 eaten: 32 − 3. That is 4 × 8 − 3."
-      }
+      },
+      "question": "A baker makes 4 trays of cookies with 8 cookies on each tray. She eats 3 cookies. Which expression shows how many cookies are left?",
+      "correct_answer": "B"
     }
   ],
   "practice_r3": [
     {
       "id": "R3_01",
-      "type": "MC",
-      "stem": "Add parentheses to make this true: 2 + 3 × 6 = 30",
-      "choices": ["(2 + 3) × 6", "2 + (3 × 6)", "2 + 3 × (6)", "No parentheses needed"],
-      "answer": "A",
+      "type": "mc",
+      "choices": [
+        "A) (2 + 3) × 6",
+        "B) 2 + (3 × 6)",
+        "C) 2 + 3 × (6)",
+        "D) No parentheses needed"
+      ],
       "explanation": "(2 + 3) × 6 = 5 × 6 = 30. ✓",
       "difficulty": 3,
       "hints": [
@@ -590,14 +764,19 @@
       "feedback": {
         "correct": "Great! (2+3)×6 = 5×6 = 30. ✓",
         "incorrect": "The parentheses need to group the addition: (2+3)×6 = 5×6 = 30."
-      }
+      },
+      "question": "Add parentheses to make this true: 2 + 3 × 6 = 30",
+      "correct_answer": "A"
     },
     {
       "id": "R3_02",
-      "type": "MC",
-      "stem": "Sara says 5 + 3 × 2 = 16. Leo says it equals 11. Who is correct?",
-      "choices": ["Sara", "Leo", "Both", "Neither"],
-      "answer": "B",
+      "type": "mc",
+      "choices": [
+        "A) Sara",
+        "B) Leo",
+        "C) Both",
+        "D) Neither"
+      ],
       "explanation": "Multiply first: 3 × 2 = 6. Then 5 + 6 = 11. Leo is correct.",
       "difficulty": 3,
       "hints": [
@@ -607,14 +786,19 @@
       "feedback": {
         "correct": "Correct! 3 × 2 = 6 first, then 5 + 6 = 11. Leo is right.",
         "incorrect": "Multiply first: 3 × 2 = 6. Then 5 + 6 = 11. Leo is correct, not Sara."
-      }
+      },
+      "question": "Sara says 5 + 3 × 2 = 16. Leo says it equals 11. Who is correct?",
+      "correct_answer": "B"
     },
     {
       "id": "R3_03",
-      "type": "MC",
-      "stem": "Which has the greatest value?",
-      "choices": ["(2 + 4) × 5", "2 + 4 × 5", "2 × (4 + 5)", "2 × 4 + 5"],
-      "answer": "A",
+      "type": "mc",
+      "choices": [
+        "A) (2 + 4) × 5",
+        "B) 2 + 4 × 5",
+        "C) 2 × (4 + 5)",
+        "D) 2 × 4 + 5"
+      ],
       "explanation": "A: 6×5=30. B: 2+20=22. C: 2×9=18. D: 8+5=13. Greatest is 30.",
       "difficulty": 3,
       "hints": [
@@ -624,14 +808,19 @@
       "feedback": {
         "correct": "Right! A = 30 is the greatest. B=22, C=18, D=13.",
         "incorrect": "Calculate each: A=(2+4)×5=30, B=2+4×5=22, C=2×9=18, D=8+5=13. A is greatest."
-      }
+      },
+      "question": "Which has the greatest value?",
+      "correct_answer": "A"
     },
     {
       "id": "R3_04",
-      "type": "MC",
-      "stem": "Add parentheses to 8 + 4 ÷ 2 to make it equal 6.",
-      "choices": ["(8 + 4) ÷ 2", "8 + (4 ÷ 2)", "(8 ÷ 4) + 2", "No parentheses needed"],
-      "answer": "A",
+      "type": "mc",
+      "choices": [
+        "A) (8 + 4) ÷ 2",
+        "B) 8 + (4 ÷ 2)",
+        "C) (8 ÷ 4) + 2",
+        "D) No parentheses needed"
+      ],
       "explanation": "(8 + 4) ÷ 2 = 12 ÷ 2 = 6. ✓",
       "difficulty": 3,
       "hints": [
@@ -641,13 +830,13 @@
       "feedback": {
         "correct": "Yes! (8+4)÷2 = 12÷2 = 6. ✓",
         "incorrect": "Group (8+4) first: (8+4)÷2 = 12÷2 = 6."
-      }
+      },
+      "question": "Add parentheses to 8 + 4 ÷ 2 to make it equal 6.",
+      "correct_answer": "A"
     },
     {
       "id": "R3_05",
       "type": "input",
-      "stem": "Sam solves (4 + 2) × 3 = 18 with parentheses. What is the value of the same expression WITHOUT parentheses: 4 + 2 × 3 = ?",
-      "answer": "10",
       "explanation": "Without parentheses, multiply first: 2 × 3 = 6. Then 4 + 6 = 10.",
       "difficulty": 3,
       "hints": [
@@ -658,7 +847,12 @@
         "correct": "Correct! 2×3=6 first, then 4+6=10 — different from Sam's parentheses version!",
         "incorrect": "Without parentheses: multiply first → 2×3=6, then add → 4+6=10."
       },
-      "solution_steps": ["2 × 3 = 6", "4 + 6 = 10"]
+      "solution_steps": [
+        "2 × 3 = 6",
+        "4 + 6 = 10"
+      ],
+      "question": "Sam solves (4 + 2) × 3 = 18 with parentheses. What is the value of the same expression WITHOUT parentheses: 4 + 2 × 3 = ?",
+      "correct_answer": "10"
     }
   ],
   "concept": "order_of_operations"

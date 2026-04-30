@@ -3,99 +3,335 @@
   "title": "Unit 2 Test: Represent and Interpret Data",
   "grade": "G3",
   "unit": "U2_represent_interpret_data",
-  "ccss": ["3.MD.B.3", "3.MD.B.4"],
+  "ccss": [
+    "3.MD.B.3",
+    "3.MD.B.4"
+  ],
   "pass_threshold": 0.8,
   "time_limit_min": 30,
   "problems": [
-    {"id":"UT_01","type":"mc","lesson_ref":"L1","skill_tag":"tally_table","difficulty":1,
-     "question":"A tally mark group of 5 looks like:",
-     "choices":["A) |||||","B) 𝍸 (four lines with a slash)","C) |||","D) ||||"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! A slash across four makes 5.","incorrect":"The answer is B. Four vertical lines with a diagonal = 5."}},
-    {"id":"UT_02","type":"input","lesson_ref":"L1","skill_tag":"frequency_count","difficulty":1,
-     "question":"A tally shows ||||  |||  for apples. How many apples?",
-     "correct_answer":"8","hint":"5 + 3 = ?",
-     "feedback":{"correct":"Yes! 8 apples.","incorrect":"The answer is 8. One group of 5 plus 3 more."}},
-    {"id":"UT_03","type":"mc","lesson_ref":"L2","skill_tag":"picture_graph_read","difficulty":2,
-     "question":"In a picture graph, each ☺ = 2 students. If Class A has 4 faces, how many students?",
-     "choices":["A) 4","B) 6","C) 8","D) 10"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! 4 × 2 = 8.","incorrect":"The answer is C (8). Multiply pictures by the key."}},
-    {"id":"UT_04","type":"input","lesson_ref":"L2","skill_tag":"picture_graph_key","difficulty":2,
-     "question":"Each ★ = 5 books. A row has 6 stars. How many books?",
-     "correct_answer":"30","hint":"6 × 5 = ?",
-     "feedback":{"correct":"Nice! 30 books.","incorrect":"The answer is 30. Multiply 6 stars × 5."}},
-    {"id":"UT_05","type":"mc","lesson_ref":"L3","skill_tag":"make_picture_graph","difficulty":2,
-     "question":"If the key is ● = 4 and you have 20 votes, how many pictures do you draw?",
-     "choices":["A) 4","B) 5","C) 16","D) 20"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! 20 ÷ 4 = 5.","incorrect":"The answer is B (5). Divide total by the key."}},
-    {"id":"UT_06","type":"tf","lesson_ref":"L3","skill_tag":"half_symbol","difficulty":1,
-     "question":"In a picture graph, a half symbol represents half of the key value.",
-     "correct_answer":"true",
-     "feedback":{"correct":"Correct!","incorrect":"True. Half of a picture = half the key."}},
-    {"id":"UT_07","type":"mc","lesson_ref":"L4","skill_tag":"bar_graph_read","difficulty":1,
-     "question":"On a bar graph with scale of 2, a bar reaching the 10 line shows:",
-     "choices":["A) 2","B) 5","C) 10","D) 20"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! Read the value at the top of the bar.","incorrect":"The answer is C (10)."}},
-    {"id":"UT_08","type":"input","lesson_ref":"L4","skill_tag":"bar_graph_compare","difficulty":2,
-     "question":"Blue bar = 12, Red bar = 7. How many more blue than red?",
-     "correct_answer":"5","hint":"Subtract.",
-     "feedback":{"correct":"Nice! 12−7=5.","incorrect":"The answer is 5. Subtract red from blue."}},
-    {"id":"UT_09","type":"mc","lesson_ref":"L5","skill_tag":"bar_graph_scale","difficulty":2,
-     "question":"Which scale fits data values 5, 10, 15, 20, 25 best?",
-     "choices":["A) scale of 1","B) scale of 5","C) scale of 10","D) scale of 50"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! Scale of 5 fits perfectly.","incorrect":"The answer is B. Pick a scale that divides all values evenly."}},
-    {"id":"UT_10","type":"input","lesson_ref":"L5","skill_tag":"make_bar_graph","difficulty":2,
-     "question":"If scale=4 and a bar shows 16, how tall (in units) should the bar be?",
-     "correct_answer":"4","hint":"16 ÷ 4 = ?",
-     "feedback":{"correct":"Right! 4 units.","incorrect":"The answer is 4. Divide value by scale."}},
-    {"id":"UT_11","type":"mc","lesson_ref":"L6","skill_tag":"data_problem_solve","difficulty":2,
-     "question":"A bar graph shows: Dogs=8, Cats=6, Fish=4. Total pets?",
-     "choices":["A) 14","B) 16","C) 18","D) 20"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! 8+6+4=18.","incorrect":"The answer is C (18). Add all bars."}},
-    {"id":"UT_12","type":"input","lesson_ref":"L6","skill_tag":"data_difference","difficulty":2,
-     "question":"From a graph: Mon=15, Tue=9. How many fewer on Tuesday?",
-     "correct_answer":"6","hint":"15−9=?",
-     "feedback":{"correct":"Nice! 6 fewer.","incorrect":"The answer is 6."}},
-    {"id":"UT_13","type":"mc","lesson_ref":"L7","skill_tag":"line_plot_read","difficulty":2,
-     "question":"A line plot shows X's at 3, 4, 4, 5, 5, 5. What is the most common value?",
-     "choices":["A) 3","B) 4","C) 5","D) 6"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! 5 has three X's.","incorrect":"The answer is C. Most X's are at 5."}},
-    {"id":"UT_14","type":"input","lesson_ref":"L7","skill_tag":"line_plot_count","difficulty":2,
-     "question":"A line plot of shoe sizes has X's at: 6(2), 7(4), 8(3). How many shoes total?",
-     "correct_answer":"9","hint":"Add all X's.",
-     "feedback":{"correct":"Right! 2+4+3=9.","incorrect":"The answer is 9. Count every X."}},
-    {"id":"UT_15","type":"tf","lesson_ref":"L7","skill_tag":"line_plot_fractions","difficulty":2,
-     "question":"Line plots can show fraction values like 1/2 and 1/4 on the number line.",
-     "correct_answer":"true",
-     "feedback":{"correct":"Correct!","incorrect":"True. Line plots can use fraction scales."}},
-    {"id":"UT_16","type":"mc","lesson_ref":"L2","skill_tag":"picture_graph_key","difficulty":2,
-     "question":"A picture graph has 3 full suns and 1 half sun. Key: ☀=4. Value?",
-     "choices":["A) 12","B) 14","C) 16","D) 8"],
-     "correct_answer":"B",
-     "feedback":{"correct":"Right! 3×4 + 2 = 14.","incorrect":"The answer is B. 3 full (12) + half (2) = 14."}},
-    {"id":"UT_17","type":"input","lesson_ref":"L4","skill_tag":"bar_graph_sum","difficulty":2,
-     "question":"Bars: Red=7, Blue=9, Green=5. Total?",
-     "correct_answer":"21",
-     "feedback":{"correct":"Right!","incorrect":"The answer is 21."}},
-    {"id":"UT_18","type":"mc","lesson_ref":"L6","skill_tag":"two_step_data","difficulty":3,
-     "question":"A graph: Apples=10, Oranges=6, Bananas=8. How many more Apples than Oranges+Bananas combined?",
-     "choices":["A) 4","B) 0","C) −4","D) 14"],
-     "correct_answer":"C",
-     "feedback":{"correct":"Right! Apples(10) − (Oranges+Bananas=14) = −4. Fewer by 4.","incorrect":"The answer is C. Apples are actually 4 fewer."}},
-    {"id":"UT_19","type":"input","lesson_ref":"L1","skill_tag":"frequency_table","difficulty":2,
-     "question":"Votes: Red=||||, Blue=|||||| , Green=|||. Which color won and by how many over Green?",
-     "correct_answer":"3","hint":"Blue=6, Green=3. Difference?",
-     "feedback":{"correct":"Blue won by 3.","incorrect":"The answer is 3. Blue(6) − Green(3) = 3."}},
-    {"id":"UT_20","type":"input","lesson_ref":"L5","skill_tag":"make_bar_graph","difficulty":3,
-     "question":"Scale=2. How tall for a value of 14?",
-     "correct_answer":"7","hint":"14 ÷ 2",
-     "feedback":{"correct":"Right! 7 units.","incorrect":"The answer is 7."}}
+    {
+      "id": "UT_01",
+      "type": "mc",
+      "lesson_ref": "L1",
+      "skill_tag": "tally_table",
+      "difficulty": 1,
+      "question": "A tally mark group of 5 looks like:",
+      "choices": [
+        "A) |||||",
+        "B) 𝍸 (four lines with a slash)",
+        "C) |||",
+        "D) ||||"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! A slash across four makes 5.",
+        "incorrect": "The answer is B. Four vertical lines with a diagonal = 5."
+      }
+    },
+    {
+      "id": "UT_02",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "frequency_count",
+      "difficulty": 1,
+      "question": "A tally shows ||||  |||  for apples. How many apples?",
+      "correct_answer": "8",
+      "hint": "5 + 3 = ?",
+      "feedback": {
+        "correct": "Yes! 8 apples.",
+        "incorrect": "The answer is 8. One group of 5 plus 3 more."
+      }
+    },
+    {
+      "id": "UT_03",
+      "type": "mc",
+      "lesson_ref": "L2",
+      "skill_tag": "picture_graph_read",
+      "difficulty": 2,
+      "question": "In a picture graph, each ☺ = 2 students. If Class A has 4 faces, how many students?",
+      "choices": [
+        "A) 4",
+        "B) 6",
+        "C) 8",
+        "D) 10"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! 4 × 2 = 8.",
+        "incorrect": "The answer is C (8). Multiply pictures by the key."
+      }
+    },
+    {
+      "id": "UT_04",
+      "type": "input",
+      "lesson_ref": "L2",
+      "skill_tag": "picture_graph_key",
+      "difficulty": 2,
+      "question": "Each ★ = 5 books. A row has 6 stars. How many books?",
+      "correct_answer": "30",
+      "hint": "6 × 5 = ?",
+      "feedback": {
+        "correct": "Nice! 30 books.",
+        "incorrect": "The answer is 30. Multiply 6 stars × 5."
+      }
+    },
+    {
+      "id": "UT_05",
+      "type": "mc",
+      "lesson_ref": "L3",
+      "skill_tag": "make_picture_graph",
+      "difficulty": 2,
+      "question": "If the key is ● = 4 and you have 20 votes, how many pictures do you draw?",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 16",
+        "D) 20"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! 20 ÷ 4 = 5.",
+        "incorrect": "The answer is B (5). Divide total by the key."
+      }
+    },
+    {
+      "id": "UT_06",
+      "type": "tf",
+      "lesson_ref": "L3",
+      "skill_tag": "half_symbol",
+      "difficulty": 1,
+      "question": "In a picture graph, a half symbol represents half of the key value.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "True. Half of a picture = half the key."
+      }
+    },
+    {
+      "id": "UT_07",
+      "type": "mc",
+      "lesson_ref": "L4",
+      "skill_tag": "bar_graph_read",
+      "difficulty": 1,
+      "question": "On a bar graph with scale of 2, a bar reaching the 10 line shows:",
+      "choices": [
+        "A) 2",
+        "B) 5",
+        "C) 10",
+        "D) 20"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! Read the value at the top of the bar.",
+        "incorrect": "The answer is C (10)."
+      }
+    },
+    {
+      "id": "UT_08",
+      "type": "input",
+      "lesson_ref": "L4",
+      "skill_tag": "bar_graph_compare",
+      "difficulty": 2,
+      "question": "Blue bar = 12, Red bar = 7. How many more blue than red?",
+      "correct_answer": "5",
+      "hint": "Subtract.",
+      "feedback": {
+        "correct": "Nice! 12−7=5.",
+        "incorrect": "The answer is 5. Subtract red from blue."
+      }
+    },
+    {
+      "id": "UT_09",
+      "type": "mc",
+      "lesson_ref": "L5",
+      "skill_tag": "bar_graph_scale",
+      "difficulty": 2,
+      "question": "Which scale fits data values 5, 10, 15, 20, 25 best?",
+      "choices": [
+        "A) scale of 1",
+        "B) scale of 5",
+        "C) scale of 10",
+        "D) scale of 50"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! Scale of 5 fits perfectly.",
+        "incorrect": "The answer is B. Pick a scale that divides all values evenly."
+      }
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "make_bar_graph",
+      "difficulty": 2,
+      "question": "If scale=4 and a bar shows 16, how tall (in units) should the bar be?",
+      "correct_answer": "4",
+      "hint": "16 ÷ 4 = ?",
+      "feedback": {
+        "correct": "Right! 4 units.",
+        "incorrect": "The answer is 4. Divide value by scale."
+      }
+    },
+    {
+      "id": "UT_11",
+      "type": "mc",
+      "lesson_ref": "L6",
+      "skill_tag": "data_problem_solve",
+      "difficulty": 2,
+      "question": "A bar graph shows: Dogs=8, Cats=6, Fish=4. Total pets?",
+      "choices": [
+        "A) 14",
+        "B) 16",
+        "C) 18",
+        "D) 20"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! 8+6+4=18.",
+        "incorrect": "The answer is C (18). Add all bars."
+      }
+    },
+    {
+      "id": "UT_12",
+      "type": "input",
+      "lesson_ref": "L6",
+      "skill_tag": "data_difference",
+      "difficulty": 2,
+      "question": "From a graph: Mon=15, Tue=9. How many fewer on Tuesday?",
+      "correct_answer": "6",
+      "hint": "15−9=?",
+      "feedback": {
+        "correct": "Nice! 6 fewer.",
+        "incorrect": "The answer is 6."
+      }
+    },
+    {
+      "id": "UT_13",
+      "type": "mc",
+      "lesson_ref": "L7",
+      "skill_tag": "line_plot_read",
+      "difficulty": 2,
+      "question": "A line plot shows X's at 3, 4, 4, 5, 5, 5. What is the most common value?",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! 5 has three X's.",
+        "incorrect": "The answer is C. Most X's are at 5."
+      }
+    },
+    {
+      "id": "UT_14",
+      "type": "input",
+      "lesson_ref": "L7",
+      "skill_tag": "line_plot_count",
+      "difficulty": 2,
+      "question": "A line plot of shoe sizes has X's at: 6(2), 7(4), 8(3). How many shoes total?",
+      "correct_answer": "9",
+      "hint": "Add all X's.",
+      "feedback": {
+        "correct": "Right! 2+4+3=9.",
+        "incorrect": "The answer is 9. Count every X."
+      }
+    },
+    {
+      "id": "UT_15",
+      "type": "tf",
+      "lesson_ref": "L7",
+      "skill_tag": "line_plot_fractions",
+      "difficulty": 2,
+      "question": "Line plots can show fraction values like 1/2 and 1/4 on the number line.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "Correct!",
+        "incorrect": "True. Line plots can use fraction scales."
+      }
+    },
+    {
+      "id": "UT_16",
+      "type": "mc",
+      "lesson_ref": "L2",
+      "skill_tag": "picture_graph_key",
+      "difficulty": 2,
+      "question": "A picture graph has 3 full suns and 1 half sun. Key: ☀=4. Value?",
+      "choices": [
+        "A) 12",
+        "B) 14",
+        "C) 16",
+        "D) 8"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right! 3×4 + 2 = 14.",
+        "incorrect": "The answer is B. 3 full (12) + half (2) = 14."
+      }
+    },
+    {
+      "id": "UT_17",
+      "type": "input",
+      "lesson_ref": "L4",
+      "skill_tag": "bar_graph_sum",
+      "difficulty": 2,
+      "question": "Bars: Red=7, Blue=9, Green=5. Total?",
+      "correct_answer": "21",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The answer is 21."
+      }
+    },
+    {
+      "id": "UT_18",
+      "type": "mc",
+      "lesson_ref": "L6",
+      "skill_tag": "two_step_data",
+      "difficulty": 3,
+      "question": "A graph: Apples=10, Oranges=6, Bananas=8. How many more Apples than Oranges+Bananas combined?",
+      "choices": [
+        "A) 4",
+        "B) 0",
+        "C) −4",
+        "D) 14"
+      ],
+      "correct_answer": "C",
+      "feedback": {
+        "correct": "Right! Apples(10) − (Oranges+Bananas=14) = −4. Fewer by 4.",
+        "incorrect": "The answer is C. Apples are actually 4 fewer."
+      }
+    },
+    {
+      "id": "UT_19",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "frequency_table",
+      "difficulty": 2,
+      "question": "Votes: Red=||||, Blue=|||||| , Green=|||. Which color won and by how many over Green?",
+      "correct_answer": "3",
+      "hint": "Blue=6, Green=3. Difference?",
+      "feedback": {
+        "correct": "Blue won by 3.",
+        "incorrect": "The answer is 3. Blue(6) − Green(3) = 3."
+      }
+    },
+    {
+      "id": "UT_20",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "make_bar_graph",
+      "difficulty": 3,
+      "question": "Scale=2. How tall for a value of 14?",
+      "correct_answer": "7",
+      "hint": "14 ÷ 2",
+      "feedback": {
+        "correct": "Right! 7 units.",
+        "incorrect": "The answer is 7."
+      }
+    }
   ],
   "count": 20
 }
