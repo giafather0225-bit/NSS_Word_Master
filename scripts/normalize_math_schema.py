@@ -63,9 +63,16 @@ _TYPE_ALIASES_PROBLEM = {
 }
 
 _LEARN_TYPE_ALIASES = {
+    # Renderer in math-learn-cards.js does NOT dispatch on `type` — it reads
+    # title / content / cpa_phase / visual_type / visual_data / interaction.
+    # Collapsing all learn types to the canonical 'concept_card' is safe.
     "card": "concept_card",
-    # 'concept', 'instruction', 'instruction_check', 'example', 'interactive', 'summary'
-    # are preserved — renderer dispatches on them.
+    "concept": "concept_card",
+    "instruction": "concept_card",
+    "instruction_check": "concept_card",
+    "example": "concept_card",
+    "interactive": "concept_card",
+    "summary": "concept_card",
 }
 
 # A choice already has a letter prefix if it starts with `A`–`H` followed by `)`, `.`, or `:`.
@@ -288,13 +295,22 @@ def _normalize_problem(p: dict, stats: dict) -> dict:
 
 
 def _normalize_learn_card(c: dict, stats: dict) -> dict:
-    """Normalize learn card type: 'card' → 'concept_card'. Other types preserved."""
+    """Normalize learn card: collapse type to 'concept_card', alias content fields."""
     if not isinstance(c, dict):
         return c
     raw_type = str(c.get("type", "")).lower()
     if raw_type in _LEARN_TYPE_ALIASES:
-        c["type"] = _LEARN_TYPE_ALIASES[raw_type]
-        stats["learn_type_aliased"] = stats.get("learn_type_aliased", 0) + 1
+        new_type = _LEARN_TYPE_ALIASES[raw_type]
+        if new_type != raw_type:
+            c["type"] = new_type
+            stats["learn_type_aliased"] = stats.get("learn_type_aliased", 0) + 1
+    # Content aliases — some authors use `instruction` or `body` instead of `content`
+    if not c.get("content"):
+        for src in ("instruction", "body", "text", "description"):
+            if c.get(src):
+                c["content"] = c[src]
+                stats[f"learn_content_from_{src}"] = stats.get(f"learn_content_from_{src}", 0) + 1
+                break
     return c
 
 
