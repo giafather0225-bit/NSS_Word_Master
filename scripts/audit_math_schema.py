@@ -252,8 +252,7 @@ def _validate_unit_test(path: Path, errs: list, warns: list) -> None:
     problems = d.get("problems") or []
     if len(problems) < 15:
         errs.append(f"{rel}: only {len(problems)} problems (minimum 15)")
-    elif len(problems) < 20:
-        warns.append(f"{rel}: only {len(problems)} problems (G3 typical 20, G4 typical 15)")
+    # 15-20 is acceptable per spec (G3 typical 20, G4 typical 15) — no warning
     if d.get("count") != len(problems):
         warns.append(f"{rel}: count={d.get('count')} but problems[]={len(problems)}")
     for i, p in enumerate(problems):

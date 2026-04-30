@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-backfill_g3_content.py — Fill remaining G3 informational gaps.
+backfill_g3_content.py — Fill remaining math content gaps.
 
-Adds educational hint + feedback to every G3 problem still missing them.
+Adds educational hint + feedback to every problem still missing them.
+Despite the name, accepts a grade arg (default G3) for use across grades.
 The 1,153 informational warnings target stages where the UI either hides
 the field (pretest hints) or uses a fallback message (practice feedback).
 This script gives them substantive defaults so the schema is 100% complete.
@@ -18,8 +19,9 @@ Strategy per problem:
 Idempotent: only fills when missing. Won't overwrite existing content.
 
 Usage:
-    python3 scripts/backfill_g3_content.py             # apply
-    python3 scripts/backfill_g3_content.py --dry-run   # preview
+    python3 scripts/backfill_g3_content.py                   # apply to G3
+    python3 scripts/backfill_g3_content.py G4                # other grade
+    python3 scripts/backfill_g3_content.py G4 --dry-run      # preview
 """
 
 from __future__ import annotations
@@ -30,7 +32,7 @@ import re
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent / "backend" / "data" / "math" / "G3"
+_DATA_ROOT = Path(__file__).resolve().parent.parent / "backend" / "data" / "math"
 STD_STAGES = ("pretest", "try", "practice_r1", "practice_r2", "practice_r3")
 
 _AFFIRMATIONS = ["Right!", "Yes!", "Correct!", "Great!", "Nice work!", "Exactly!", "Good job!"]
@@ -138,21 +140,25 @@ def _walk(d: dict, fn) -> None:
         fn(p, "unit_test", i)
 
 
-def process(dry_run: bool) -> int:
+def process(grade: str, dry_run: bool) -> int:
     files_changed = 0
     files_total = 0
     total_h = 0
     total_f = 0
     seq = 0  # rotating affirmation seed across all problems
+    root = _DATA_ROOT / grade
+    if not root.is_dir():
+        print(f"  ✗ grade dir not found: {root}")
+        return 1
 
-    for f in ROOT.rglob("*.json"):
-        if any(part.startswith("_") for part in f.relative_to(ROOT).parts):
+    for f in root.rglob("*.json"):
+        if any(part.startswith("_") for part in f.relative_to(root).parts):
             continue
         files_total += 1
         try:
             d = json.loads(f.read_text("utf-8"))
         except Exception as e:
-            print(f"  ✗ {f.relative_to(ROOT)}: {e}")
+            print(f"  ✗ {f.relative_to(root)}: {e}")
             continue
 
         added_h = 0
@@ -182,10 +188,10 @@ def process(dry_run: bool) -> int:
             total_h += added_h
             total_f += added_f
             if dry_run:
-                print(f"  diff {f.relative_to(ROOT)}: +{added_h}h +{added_f}f")
+                print(f"  diff {f.relative_to(root)}: +{added_h}h +{added_f}f")
             else:
                 f.write_text(json.dumps(d, indent=2, ensure_ascii=False) + "\n", "utf-8")
-                print(f"  ✓ {f.relative_to(ROOT)}: +{added_h}h +{added_f}f")
+                print(f"  ✓ {f.relative_to(root)}: +{added_h}h +{added_f}f")
 
     print()
     print(f"Files scanned: {files_total}")
@@ -197,5 +203,7 @@ def process(dry_run: bool) -> int:
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
+    ap.add_argument("grade", nargs="?", default="G3")
     ap.add_argument("--dry-run", action="store_true")
-    sys.exit(process(ap.parse_args().dry_run))
+    args = ap.parse_args()
+    sys.exit(process(args.grade, args.dry_run))

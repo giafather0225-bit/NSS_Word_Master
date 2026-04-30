@@ -51,8 +51,12 @@ function _renderShopFrame() {
             <span class="shop-xp-badge" id="shop-xp-display">… XP</span>
         </div>
         <div class="shop-tabs">
-            <button class="shop-tab active" id="tab-shop"       onclick="_shopSwitchTab('shop')">Shop</button>
+            <button class="shop-tab active" id="tab-shop"       onclick="_shopSwitchTab('shop')">Rewards</button>
             <button class="shop-tab"        id="tab-my-rewards" onclick="_shopSwitchTab('my-rewards')">My Rewards</button>
+            <button class="shop-tab"        id="tab-evolution"  onclick="_shopSwitchTab('evolution')">Evolution</button>
+            <button class="shop-tab"        id="tab-food"       onclick="_shopSwitchTab('food')">Food</button>
+            <button class="shop-tab"        id="tab-decor"      onclick="_shopSwitchTab('decor')">Decor</button>
+            <button class="shop-tab"        id="tab-exchange"   onclick="_shopSwitchTab('exchange')">Exchange</button>
         </div>
         <div class="shop-cat-bar" id="shop-cat-bar">
             <button class="shop-cat active" data-cat="all" onclick="_shopFilterCat('all')">All</button>
@@ -75,10 +79,15 @@ function _shopFilterCat(cat) {
 function _shopSwitchTab(tab) {
     _shopTab = tab;
     document.querySelectorAll(".shop-tab").forEach(b => b.classList.remove("active"));
-    const active = document.getElementById(tab === "shop" ? "tab-shop" : "tab-my-rewards");
+    const active = document.getElementById("tab-" + tab);
     if (active) active.classList.add("active");
     const catBar = document.getElementById("shop-cat-bar");
     if (catBar) catBar.style.display = tab === "shop" ? "flex" : "none";
+    // Restore XP display when leaving island tabs
+    if (tab === "shop" || tab === "my-rewards") {
+        const xpEl = document.getElementById("shop-xp-display");
+        if (xpEl) xpEl.textContent = "… XP";
+    }
     _loadShopTab(tab);
 }
 
@@ -96,11 +105,14 @@ async function _loadShopTab(tab) {
             const data = await res.json();
             _updateXPDisplay(data.total_xp || 0);
             _renderShopGrid(data.items || [], data.total_xp || 0);
-        } else {
+        } else if (tab === "my-rewards") {
             const res = await fetch("/api/shop/my-rewards");
             const data = await res.json();
             _updateXPDisplay(data.total_xp || 0);
             _renderMyRewards(data.rewards || []);
+        } else if (["evolution", "food", "decor", "exchange"].includes(tab)) {
+            if (typeof _loadIslandTab === "function") _loadIslandTab(tab);
+            else body.innerHTML = `<p style="text-align:center;color:var(--text-secondary);padding:40px;">Island system not available.</p>`;
         }
     } catch (_) {
         body.innerHTML = `<p style="text-align:center;color:var(--color-error);padding:40px;">Failed to load.</p>`;
