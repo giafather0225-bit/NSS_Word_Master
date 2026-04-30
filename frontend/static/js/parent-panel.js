@@ -285,19 +285,24 @@ async function _ppSettings(body) {
         <div id="pp-settings-report"></div>
 
         <div class="pp-section-title" style="margin-top:24px">Textbooks</div>
-        <div id="pp-settings-textbooks"></div>`;
+        <div id="pp-settings-textbooks"></div>
+
+        <div class="pp-section-title" style="margin-top:24px">XP Rules &amp; Report</div>
+        <div id="pp-settings-xp"></div>`;
 
     const tasksEl     = document.getElementById("pp-settings-tasks");
     const scheduleEl  = document.getElementById("pp-settings-schedule");
     const pinEl       = document.getElementById("pp-settings-pin");
     const reportEl    = document.getElementById("pp-settings-report");
     const textbooksEl = document.getElementById("pp-settings-textbooks");
+    const xpEl        = document.getElementById("pp-settings-xp");
 
     if (typeof ppRenderTasks    === "function") await ppRenderTasks(tasksEl);
     if (typeof ppRenderSchedule === "function") await ppRenderSchedule(scheduleEl);
     if (typeof ppRenderPin      === "function") ppRenderPin(pinEl);
     if (typeof ppRenderReport   === "function") await ppRenderReport(reportEl);
     if (typeof _ppTextbooks     === "function") await _ppTextbooks(textbooksEl);
+    if (typeof _ppXP            === "function") await _ppXP(xpEl);
 
     if (typeof lucide !== "undefined") lucide.createIcons();
 }

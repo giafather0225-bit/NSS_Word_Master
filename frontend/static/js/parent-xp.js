@@ -39,6 +39,7 @@ async function _ppXP(body) {
             _ppXPReport(report) +
             _ppXPRulesEditor(rules) +
             _ppXPArcadeEditor(rules);
+        if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
         console.error("[parent-xp] load failed:", err);
         body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load XP settings.</p>`;
@@ -71,7 +72,7 @@ function _ppXPReport(r) {
         <div class="pp-section-title" style="margin-top:0">XP · Last 7 Days</div>
         <div class="pp-stats" style="grid-template-columns:1fr">
             <div class="pp-stat">
-                <div class="pp-stat-num">⭐ ${r.total_xp || 0}</div>
+                <div class="pp-stat-num"><i data-lucide="star" style="width:20px;height:20px;vertical-align:-3px"></i> ${r.total_xp || 0}</div>
                 <div class="pp-stat-label">Total XP · 7 days</div>
             </div>
         </div>
