@@ -29,6 +29,7 @@ cat \
   $JS/reward-shop.js \
   $JS/reward-shop-use.js \
   $JS/reward-shop-island.js \
+  frontend/src/island/IslandMain.jsx \
   $JS/diary.js \
   $JS/diary-home.js \
   $JS/diary-write.js \

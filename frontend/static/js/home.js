@@ -477,42 +477,21 @@ function renderSectionCards() {
     };
   }
 
-  // Ocean World card → open growth theme detail modal (growth-theme.js)
-  const oceanCard = document.getElementById('ocean-world-card');
-  if (oceanCard) {
-    oceanCard.onclick = () => {
-      if (typeof gtOpenThemeDetail === 'function') gtOpenThemeDetail();
+  // Island home card → open island main screen (IslandMain.jsx)
+  const islandCard = document.getElementById('island-home-card');
+  if (islandCard) {
+    islandCard.onclick = () => {
+      if (typeof openIslandMain === 'function') openIslandMain();
     };
   }
 }
 
 /**
- * Render growth theme widget — delegates to growth-theme.js (Phase 8).
- * @tag HOME_DASHBOARD @tag GROWTH_THEME
+ * Render island widget — loads live data into the island home card.
+ * @tag HOME_DASHBOARD @tag SHOP
  */
 function renderGrowthTheme() {
-  if (typeof gtRenderTheme === 'function') {
-    gtRenderTheme();
-  }
-  _loadOceanImage();
-}
-
-/**
- * Load the current Ocean World (growth theme) image into the dashboard card.
- * @tag HOME_DASHBOARD @tag GROWTH_THEME
- */
-async function _loadOceanImage() {
-  const card = document.getElementById('ocean-world-img');
-  const FALLBACK = '/static/img/themes/ocean/step_0_v1.svg';
-  // Show fallback immediately so the card never renders as a blank white box.
-  if (card && !card.getAttribute('src')) card.src = FALLBACK;
-  try {
-    const data = await apiFetchJSON('/api/growth/theme');
-    const url = data?.active?.img_url || FALLBACK;
-    if (card) card.src = url;
-  } catch {
-    if (card) card.src = FALLBACK;
-  }
+  if (typeof _loadIslandCard === 'function') _loadIslandCard();
 }
 
 /**

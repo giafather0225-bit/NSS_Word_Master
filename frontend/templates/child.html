@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="/static/css/home.css?v=7">
     <link rel="stylesheet" href="/static/css/daily-words.css?v=3">
     <link rel="stylesheet" href="/static/css/reward-shop.css?v=3">
+    <link rel="stylesheet" href="/static/css/island-main.css?v=1">
     <link rel="stylesheet" href="/static/css/parent.css?v=15">
     <link rel="stylesheet" href="/static/css/diary.css?v=4">
     <link rel="stylesheet" href="/static/css/diary-home.css?v=10">
@@ -680,13 +681,20 @@
                             </div>
                         </div>
 
-                        <div class="ocean-world-card" id="ocean-world-card" role="button" tabindex="0" aria-label="Ocean World">
-                            <div class="owc-label">WORLD</div>
-                            <div class="owc-name">Ocean World</div>
-                            <div class="owc-illustration">
-                                <img id="ocean-world-img" src="/static/img/themes/ocean/step_0_v1.svg" alt="" aria-hidden="true">
+                        <div class="island-home-card" id="island-home-card" role="button" tabindex="0" aria-label="Gia's Island">
+                            <div class="island-home-label">ISLAND</div>
+                            <div class="island-home-name">Gia's Island</div>
+                            <div class="island-home-preview">
+                                <div class="island-home-zones">
+                                    <span>🌳</span>
+                                    <span class="island-home-zone--center">✨</span>
+                                    <span>🌊</span>
+                                </div>
                             </div>
-                            <div class="owc-footer" id="ocean-world-progress">0 / 10 sea creatures collected</div>
+                            <div class="island-home-footer" id="island-home-footer">
+                                <span id="island-home-chars">Loading...</span>
+                                <span id="island-home-lumi"></span>
+                            </div>
                         </div>
                     </aside>
                 </div>
@@ -741,6 +749,9 @@
 
 <!-- Reward Shop full-screen overlay -->
 <div id="shop-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Reward Shop"></div>
+
+<!-- Island main screen full-screen overlay -->
+<div id="island-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Gia's Island"></div>
 
 <!-- Parent Dashboard full-screen overlay -->
 <div id="parent-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Parent Dashboard"></div>
@@ -821,7 +832,7 @@
 <script src="/static/js/analytics.js?v=2"></script>
 <script src="/static/js/navigation.js?v=5"></script>
 <!-- Feature modules (defer): 3 bundles instead of 71 individual files -->
-<script defer src="/static/js/bundle-a.min.js?v=14"></script>
+<script defer src="/static/js/bundle-a.min.js?v=15"></script>
 
 <!-- KaTeX (math equation rendering) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
