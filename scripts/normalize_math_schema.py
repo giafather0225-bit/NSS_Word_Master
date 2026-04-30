@@ -247,6 +247,43 @@ def _normalize_problem(p: dict, stats: dict) -> dict:
             p["hints"] = [socratic]
             stats["hint_socratic_extracted"] = stats.get("hint_socratic_extracted", 0) + 1
 
+    # Coalesce flat feedback_correct/feedback_wrong fields into the canonical
+    # feedback object (frontend supports both, but spec says object).
+    flat_correct = p.pop("feedback_correct", None)
+    flat_wrong = p.pop("feedback_wrong", None)
+    if flat_correct or flat_wrong:
+        fb = p.get("feedback")
+        if not isinstance(fb, dict):
+            fb = {}
+        if flat_correct and not fb.get("correct"):
+            fb["correct"] = flat_correct
+        if flat_wrong and not fb.get("incorrect"):
+            fb["incorrect"] = flat_wrong
+        p["feedback"] = fb
+        stats["feedback_flat_to_object"] = stats.get("feedback_flat_to_object", 0) + 1
+
+    # Auto-fill feedback from explanation when missing.
+    fb = p.get("feedback")
+    has_fb_obj = isinstance(fb, dict) and (fb.get("correct") or fb.get("incorrect"))
+    expl = p.get("explanation")
+    if not has_fb_obj and isinstance(expl, str) and expl.strip():
+        p["feedback"] = {
+            "correct": "Correct!",
+            "incorrect": expl.strip(),
+        }
+        stats["feedback_from_explanation"] = stats.get("feedback_from_explanation", 0) + 1
+    elif isinstance(fb, dict):
+        # Partial fill: maybe only one side present
+        changed = False
+        if not fb.get("incorrect") and isinstance(expl, str) and expl.strip():
+            fb["incorrect"] = expl.strip()
+            changed = True
+        if not fb.get("correct"):
+            fb["correct"] = "Correct!"
+            changed = True
+        if changed:
+            stats["feedback_partial_filled"] = stats.get("feedback_partial_filled", 0) + 1
+
     return p
 
 
