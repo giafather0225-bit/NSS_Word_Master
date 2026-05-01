@@ -536,3 +536,199 @@
 .ckla-review-empty-icon { font-size: 3rem; margin-bottom: 12px; }
 .ckla-review-empty-text { font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
 .ckla-review-empty-sub { font-size: 0.85rem; color: var(--text-secondary); }
+
+/* ── Sidebar: grade pills ───────────────────────────────────── */
+.ckla-grade-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.ckla-grade-pill {
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--english-soft);
+  background: var(--bg-card);
+  color: var(--english-ink);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.ckla-grade-pill:hover {
+  background: var(--english-light);
+  border-color: var(--english-primary);
+}
+.ckla-grade-pill.active {
+  background: var(--english-primary);
+  border-color: var(--english-primary);
+  color: var(--text-on-primary);
+}
+
+/* ── Sidebar: grade section title ───────────────────────────── */
+.ckla-section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--english-ink);
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+
+/* ── Badge gallery modal ─────────────────────────────────────── */
+.ckla-badge-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 39, 34, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+.ckla-badge-modal-box {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-modal);
+  width: 100%;
+  max-width: 480px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ckla-badge-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+.ckla-badge-modal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+.ckla-badge-modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+}
+.ckla-badge-modal-close:hover { background: var(--bg-surface); }
+.ckla-badge-modal-body {
+  padding: 16px 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+.ckla-badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+}
+.ckla-badge-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  opacity: 0.45;
+  transition: opacity var(--transition-fast);
+  text-align: center;
+}
+.ckla-badge-card--earned {
+  opacity: 1;
+  border-color: var(--english-soft);
+  background: var(--english-light);
+}
+.ckla-badge-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+.ckla-badge-name {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.ckla-badge-card--earned .ckla-badge-name { color: var(--english-ink); }
+.ckla-badge-earned-date {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+}
+
+/* ── Onboarding modal ───────────────────────────────────────── */
+.ckla-onboarding-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 39, 34, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2100;
+  padding: 20px;
+}
+.ckla-onboarding-content {
+  background: var(--bg-card);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-modal);
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 28px;
+  text-align: center;
+}
+.ckla-onboarding-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--english-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: var(--english-primary);
+}
+.ckla-onboarding-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+}
+.ckla-onboarding-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0 0 24px;
+}
+.ckla-onboarding-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ckla-onboarding-btn {
+  padding: 11px 20px;
+  border-radius: var(--radius-lg);
+  border: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.ckla-onboarding-btn--primary {
+  background: var(--english-primary);
+  color: var(--text-on-primary);
+}
+.ckla-onboarding-btn--primary:hover { background: var(--english-hover); }
+.ckla-onboarding-btn--secondary {
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+}
+.ckla-onboarding-btn--secondary:hover { background: var(--border-default); }

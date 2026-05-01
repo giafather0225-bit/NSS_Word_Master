@@ -69,6 +69,8 @@ function switchView(view) {
     const _engSb = document.getElementById('sidebar');
     if (_engSb) _engSb.classList.remove('collapsed');
     localStorage.removeItem('sb_collapsed');
+    if (typeof initCKLA === 'function') initCKLA();
+    if (typeof lucide !== 'undefined') lucide.createIcons();
   } else if (view === 'diary') {
     if (typeof openDiarySection === 'function') openDiarySection('today');
   }

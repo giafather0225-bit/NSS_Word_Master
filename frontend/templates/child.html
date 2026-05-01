@@ -174,6 +174,37 @@
                     <button class="sb-subject-tab" id="tab-math" onclick="setSubject('math')">Math</button>
                 </div>
 
+                <!-- CKLA primary section -->
+                <div class="sb-section">
+                    <div class="sb-section-label">CKLA</div>
+                    <!-- Grade pills -->
+                    <div class="ckla-grade-pills" id="ckla-grade-pills">
+                        <!-- populated by ckla.js initCKLA() -->
+                    </div>
+                    <!-- Grade title -->
+                    <div class="ckla-section-title" id="ckla-section-title">Grade 3</div>
+                    <!-- Open domains / lessons -->
+                    <button type="button" class="sb-sidebar-card" id="btn-ckla-open" onclick="showCKLAView()">
+                        <span class="sb-card-icon icon-wrap icon-wrap--english"><i data-lucide="book-open" width="16" height="16"></i></span>
+                        <span class="sb-card-label">Open CKLA</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                    <!-- CKLA Review -->
+                    <button type="button" class="sb-sidebar-card" id="btn-ckla-review" onclick="showCKLAReview()">
+                        <span class="sb-card-icon icon-wrap icon-wrap--review"><i data-lucide="rotate-ccw" width="16" height="16"></i></span>
+                        <span class="sb-card-label">CKLA Review</span>
+                        <span class="sb-review-badge" id="ckla-review-badge" style="display:none;">0</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                    <!-- Badge gallery trigger -->
+                    <button type="button" class="sb-sidebar-card" id="btn-ckla-badges" onclick="showBadgeGallery()">
+                        <span class="sb-card-icon icon-wrap icon-wrap--rewards"><i data-lucide="award" width="16" height="16"></i></span>
+                        <span class="sb-card-label">Badges</span>
+                        <span class="sb-card-chevron">›</span>
+                    </button>
+                </div>
+
+                <div class="sb-div"></div>
                 <div class="sb-section">
                     <div class="sb-section-label">REVIEW</div>
                     <!-- Unified Review: Academy + Daily Words + My Words due -->
@@ -188,13 +219,13 @@
                 <div class="sb-section">
                     <div class="sb-section-label">VOCABULARY</div>
 
-                    <!-- Academy accordion -->
-                    <button type="button" class="sb-accordion-btn" data-key="academy" onclick="toggleAccordion('academy')">
+                    <!-- DUX Vocabulary accordion (textbook-based 5-stage system) -->
+                    <button type="button" class="sb-accordion-btn" data-key="dux" onclick="toggleAccordion('dux')">
                         <span class="sb-card-icon icon-wrap icon-wrap--english"><i data-lucide="graduation-cap" width="16" height="16"></i></span>
-                        <span class="sb-accordion-label">Academy</span>
+                        <span class="sb-accordion-label">DUX Vocabulary</span>
                         <span class="sb-accordion-arrow">▾</span>
                     </button>
-                    <div class="sb-accordion-panel" data-key="academy">
+                    <div class="sb-accordion-panel" data-key="dux">
                         <!-- Textbook selection (existing IDs preserved) -->
                         <div id="sb-selection-area">
                             <div class="sb-label">Textbook</div>
@@ -235,16 +266,6 @@
                             <span class="sb-card-label">Unit Test</span>
                             <span class="sb-card-chevron">›</span>
                         </button>
-                        <div class="sb-div"></div>
-                        <!-- CKLA G3 entry -->
-                        <button type="button" class="sb-sidebar-card" onclick="showCKLAView()">
-                            <span class="sb-card-label">CKLA Grade 3</span>
-                            <span class="sb-card-chevron">›</span>
-                        </button>
-                        <button type="button" class="sb-sidebar-card" onclick="showCKLAReview()">
-                            <span class="sb-card-label">CKLA Review</span>
-                            <span class="sb-card-chevron">›</span>
-                        </button>
                     </div>
 
                     <!-- Daily Words accordion -->
@@ -279,16 +300,6 @@
                             <span class="sb-card-badge">50+ words needed</span>
                         </button>
                     </div>
-                </div>
-
-                <div class="sb-div"></div>
-                <div class="sb-section">
-                    <div class="sb-section-label">READING</div>
-                    <button type="button" class="sb-sidebar-card sb-card-disabled">
-                        <span class="sb-card-icon icon-wrap icon-wrap--english"><i data-lucide="file-text" width="16" height="16"></i></span>
-                        <span class="sb-card-label">Articles</span>
-                        <span class="sb-card-badge">Soon</span>
-                    </button>
                 </div>
 
                 <!-- Session info (kept for JS compat) -->

@@ -1,15 +1,17 @@
 """
-models/ckla.py — CKLA G3 ORM models
+models/ckla.py — CKLA ORM models (grade-aware)
 Section: Academy
-Dependencies: ._base.Base, migration 011_ckla_tables.py
+Dependencies: ._base.Base, migrations 011, 019, 020
 
-Tables (created by migration 011):
-  us_academy_domains          — 11 CKLA 도메인
-  us_academy_lessons          — 104 레슨 (passage + Word Work)
-  us_academy_questions        — 819 문제 (Literal/Inferential/Evaluative)
-  us_academy_word_lesson      — 단어 ↔ 레슨 N:M 링크
-  us_academy_lesson_progress  — 레슨별 학습 진행 상태
-  us_academy_question_responses — 문제별 답변 기록
+Tables (created/modified by migrations 011, 019, 020):
+  us_academy_domains          — CKLA domains (grade-aware)
+  us_academy_lessons          — lessons (passage + Word Work, grade-aware)
+  us_academy_questions        — comprehension questions
+  us_academy_word_lesson      — word ↔ lesson N:M link
+  us_academy_lesson_progress  — per-lesson progress (grade, started_at, difficulty_rating)
+  us_academy_question_responses — per-question answer records
+  ckla_badges                 — badge catalog (migration 020)
+  ckla_user_badges            — user earned badges (migration 020)
 """
 
 from sqlalchemy import Column, Integer, String, Boolean, Text, ForeignKey
@@ -18,19 +20,20 @@ from ._base import Base
 
 
 class CKLADomain(Base):
-    """CKLA G3 도메인 (11개)"""
+    """CKLA domain (11 per grade)"""
     __tablename__ = "us_academy_domains"
 
     id           = Column(Integer, primary_key=True)
-    domain_num   = Column(Integer, nullable=False, unique=True)   # 1~11
+    domain_num   = Column(Integer, nullable=False)   # 1~11
     title        = Column(String, nullable=False)
     source_pdf   = Column(String)
     lesson_count = Column(Integer, default=0)
     is_active    = Column(Boolean, default=True)
+    grade        = Column(Integer, nullable=False, default=3)
 
 
 class CKLALesson(Base):
-    """CKLA 레슨 (104개) — 지문 + Word Work"""
+    """CKLA lesson — passage + Word Work"""
     __tablename__ = "us_academy_lessons"
 
     id             = Column(Integer, primary_key=True)
@@ -40,24 +43,25 @@ class CKLALesson(Base):
     title          = Column(String, nullable=False)
     passage        = Column(Text, nullable=False)
     passage_chars  = Column(Integer, default=0)
-    word_work_word = Column(String)                # 집중 단어 1개
+    word_work_word = Column(String)
     is_active      = Column(Boolean, default=True)
+    grade          = Column(Integer, nullable=False, default=3)
 
 
 class CKLAQuestion(Base):
-    """이해 문제 (819개)"""
+    """Comprehension questions (Literal / Inferential / Evaluative)"""
     __tablename__ = "us_academy_questions"
 
     id            = Column(Integer, primary_key=True)
     lesson_id     = Column(Integer, ForeignKey("us_academy_lessons.id"), nullable=False)
     question_num  = Column(Integer, nullable=False)
-    kind          = Column(String, nullable=False)   # Literal / Inferential / Evaluative
+    kind          = Column(String, nullable=False)
     question_text = Column(Text, nullable=False)
     model_answer  = Column(Text)
 
 
 class CKLAWordLesson(Base):
-    """단어 ↔ 레슨 N:M 링크"""
+    """Word ↔ lesson N:M link"""
     __tablename__ = "us_academy_word_lesson"
 
     id        = Column(Integer, primary_key=True)
@@ -66,7 +70,7 @@ class CKLAWordLesson(Base):
 
 
 class CKLALessonProgress(Base):
-    """레슨별 학습 진행 상태"""
+    """Per-lesson learning progress"""
     __tablename__ = "us_academy_lesson_progress"
 
     id                  = Column(Integer, primary_key=True)
@@ -80,20 +84,47 @@ class CKLALessonProgress(Base):
     completed           = Column(Boolean, default=False)
     completed_at        = Column(String)
     last_active         = Column(String)
+    # migration 019
+    grade               = Column(Integer, nullable=False, default=3)
+    started_at          = Column(String)
+    difficulty_rating   = Column(String)   # "easy" / "neutral" / "hard"
 
 
 class CKLAQuestionResponse(Base):
-    """문제별 답변 기록 (AI 채점 포함)"""
+    """Per-question answer record (AI graded)"""
     __tablename__ = "us_academy_question_responses"
 
     id                  = Column(Integer, primary_key=True)
     question_id         = Column(Integer, ForeignKey("us_academy_questions.id"), nullable=False)
     lesson_progress_id  = Column(Integer, ForeignKey("us_academy_lesson_progress.id"))
     user_answer         = Column(Text)
-    ai_score            = Column(Integer, default=0)   # 0=틀림, 1=부분정답, 2=정답
+    ai_score            = Column(Integer, default=0)   # 0=wrong, 1=partial, 2=correct
     ai_feedback         = Column(Text)
     needs_parent_review = Column(Boolean, default=False)
     created_at          = Column(String)
+
+
+class CKLABadge(Base):
+    """Badge catalog (migration 020)"""
+    __tablename__ = "ckla_badges"
+
+    id              = Column(Integer, primary_key=True)
+    badge_key       = Column(String, unique=True, nullable=False)
+    badge_name      = Column(String, nullable=False)
+    description     = Column(String, nullable=False)
+    condition_type  = Column(String, nullable=False)   # "domain_complete" / "grade_complete"
+    condition_value = Column(Integer, nullable=False)   # domain_num or grade
+    image_path      = Column(String)
+    created_at      = Column(String)
+
+
+class CKLAUserBadge(Base):
+    """User earned badges — UNIQUE on badge_key (no duplicates)"""
+    __tablename__ = "ckla_user_badges"
+
+    id        = Column(Integer, primary_key=True)
+    badge_key = Column(String, unique=True, nullable=False)
+    earned_at = Column(String, nullable=False)
 
 
 __all__ = [
@@ -103,4 +134,6 @@ __all__ = [
     "CKLAWordLesson",
     "CKLALessonProgress",
     "CKLAQuestionResponse",
+    "CKLABadge",
+    "CKLAUserBadge",
 ]

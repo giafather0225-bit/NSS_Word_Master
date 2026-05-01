@@ -12,8 +12,8 @@ from backend.models import StreakLog, DayOffRequest, WordReview, AppConfig
 
 # ─── Config helpers ───────────────────────────────────────────
 
-_VALID_SUBJECTS = {"english", "math", "game"}
-_DEFAULT_SUBJECTS = {"english", "math", "game"}
+_VALID_SUBJECTS = {"ckla", "english", "math", "game"}
+_DEFAULT_SUBJECTS = {"ckla", "math", "game"}
 _DEFAULT_MODE = "all"
 
 
@@ -21,7 +21,7 @@ _DEFAULT_MODE = "all"
 def get_streak_config(db: Session) -> tuple[set[str], str]:
     """Return (subjects, mode) from AppConfig with safe defaults.
 
-    subjects: set of {"english","math","game"} that count toward streak.
+    subjects: set of {"ckla","english","math","game"} that count toward streak.
     mode: "all" (every selected subject required) or "any" (at least one).
     """
     sub_row = db.query(AppConfig).filter(AppConfig.key == "streak_subjects").first()
@@ -50,6 +50,7 @@ def get_or_create_streak_log(db: Session, day: str | None = None) -> StreakLog:
             daily_words_done=False,
             math_done=False,
             game_done=False,
+            ckla_done=False,
             streak_maintained=False,
         )
         db.add(log)
@@ -102,6 +103,16 @@ def mark_game_done(db: Session, day: str | None = None) -> None:
     _evaluate_streak(db, log)
 
 
+# @tag STREAK @tag CKLA
+def mark_ckla_done(db: Session, day: str | None = None) -> None:
+    """Mark CKLA lesson completed for the day and re-evaluate streak."""
+    log = get_or_create_streak_log(db, day)
+    if not log.ckla_done:
+        log.ckla_done = True
+        db.commit()
+    _evaluate_streak(db, log)
+
+
 # ─── Island lumi for streak ───────────────────────────────────
 
 def _award_streak_lumi(db: Session) -> None:
@@ -136,12 +147,18 @@ def _reviews_were_due(db: Session, day: str) -> bool:
 
 # @tag STREAK @tag ENGLISH
 def _english_ok(db: Session, log: StreakLog) -> bool:
-    """English subject requirement: review+daily_words (or daily_words alone when no reviews were due)."""
+    """English subject requirement: review+daily_words (or daily_words alone when no reviews due)."""
     if log.review_done and log.daily_words_done:
         return True
     if log.daily_words_done and not _reviews_were_due(db, log.date):
         return True
     return False
+
+
+# @tag STREAK @tag CKLA
+def _ckla_ok(db: Session, log: StreakLog) -> bool:
+    """CKLA subject requirement: at least one lesson completed today (via ckla_done flag)."""
+    return bool(log.ckla_done)
 
 
 # @tag STREAK
@@ -170,6 +187,7 @@ def _evaluate_streak(db: Session, log: StreakLog) -> None:
 
     subjects, mode = get_streak_config(db)
     flags = {
+        "ckla":    _ckla_ok(db, log),
         "english": _english_ok(db, log),
         "math":    bool(log.math_done),
         "game":    bool(log.game_done),

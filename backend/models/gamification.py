@@ -29,6 +29,7 @@ class StreakLog(Base):
     daily_words_done = Column(Boolean, default=False)
     math_done = Column(Boolean, default=False)
     game_done = Column(Boolean, default=False)
+    ckla_done = Column(Boolean, default=False)
     streak_maintained = Column(Boolean, default=False)
 
 
