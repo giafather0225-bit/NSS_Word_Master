@@ -27,6 +27,7 @@ import json
 import logging
 import random
 from datetime import date as _date, datetime, timedelta
+from difflib import SequenceMatcher
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
@@ -59,9 +60,10 @@ _GRADE_TITLES = {3: "Grade 3"}
 # ── Pydantic Schemas ──────────────────────────────────────────────────────────
 
 class ProgressUpdate(BaseModel):
-    reading_done:   bool | None = None
-    vocab_done:     bool | None = None
-    word_work_done: bool | None = None
+    reading_done:     bool | None = None
+    vocab_done:       bool | None = None
+    word_work_done:   bool | None = None
+    word_work_answer: str | None = None   # student's free-typed answer for similarity check
 
 
 class AnswerSubmit(BaseModel):
@@ -281,13 +283,31 @@ def get_lesson(lesson_id: int, db: Session = Depends(get_db)):
         .all()
     ) if word_ids else []
 
-    questions = (
+    all_questions = (
         db.query(CKLAQuestion)
         .filter_by(lesson_id=lesson_id)
         .order_by(CKLAQuestion.question_num)
         .all()
     )
     prog = db.query(CKLALessonProgress).filter_by(lesson_id=lesson_id).first()
+
+    # Sample Q&A: Literal×2 + Inferential×2 + Evaluative×1 (spec §CKLA Q&A)
+    by_kind: dict[str, list] = {"Literal": [], "Inferential": [], "Evaluative": []}
+    for q in all_questions:
+        bucket = by_kind.get(q.kind)
+        if bucket is not None:
+            bucket.append(q)
+    sampled = (
+        random.sample(by_kind["Literal"],     min(2, len(by_kind["Literal"])))
+        + random.sample(by_kind["Inferential"], min(2, len(by_kind["Inferential"])))
+        + random.sample(by_kind["Evaluative"],  min(1, len(by_kind["Evaluative"])))
+    )
+    # Pad to 5 if any kind was short
+    remaining = [q for q in all_questions if q not in sampled]
+    random.shuffle(remaining)
+    while len(sampled) < 5 and remaining:
+        sampled.append(remaining.pop())
+    random.shuffle(sampled)
 
     return {
         "id":             lesson.id,
@@ -308,7 +328,7 @@ def get_lesson(lesson_id: int, db: Session = Depends(get_db)):
                 "question":     q.question_text,
                 "model_answer": q.model_answer or "",
             }
-            for q in questions
+            for q in sampled
         ],
         "progress": _progress_dict(prog),
     }
@@ -370,6 +390,18 @@ def update_lesson_progress(
                     ))
 
         if req.word_work_done is True and not prog.word_work_done:
+            # Similarity guard: if answer ≥80% similar to hint word, reject (spec §Word Work)
+            if req.word_work_answer and lesson.word_work_word:
+                ratio = SequenceMatcher(
+                    None,
+                    req.word_work_answer.strip().lower(),
+                    lesson.word_work_word.strip().lower(),
+                ).ratio()
+                if ratio >= 0.8:
+                    raise HTTPException(
+                        status_code=400,
+                        detail="Your answer is too similar to the hint. Try to write your own sentence!",
+                    )
             prog.word_work_done = True
 
         prog.last_active = now
@@ -665,11 +697,24 @@ async def submit_domain_test(
         results.append({"question_id": qid, "score": score})
 
     pct = round(correct / total * 100) if total else 0
-    passed = pct >= 70
+    passed = pct >= 80   # spec: 80% pass threshold
 
     xp_awarded = 0
+    # Track consecutive failures for parent dashboard warning (spec: 3회 연속 실패)
+    fail_key = f"ckla_domain_test_consec_fails_d{domain_num}_g{grade}"
+    fail_cfg = db.query(AppConfig).filter_by(key=fail_key).first()
     if passed:
         xp_awarded = award_xp(db, "ckla_domain_test_pass", detail=f"domain_{domain_num}_grade_{grade}")
+        if fail_cfg:
+            fail_cfg.value = "0"
+    else:
+        new_count = int(fail_cfg.value) + 1 if fail_cfg else 1
+        if fail_cfg:
+            fail_cfg.value = str(new_count)
+        else:
+            db.add(AppConfig(key=fail_key, value=str(new_count)))
+
+    db.commit()
 
     return {
         "domain_num":  domain_num,
@@ -721,6 +766,23 @@ def get_grade_final_test(grade: int = Query(3), db: Session = Depends(get_db)):
     }
 
 
+@router.get("/grade-final-test/status")
+# @tag ACADEMY CKLA
+def get_grade_final_test_status(grade: int = Query(3), db: Session = Depends(get_db)):
+    """Check if grade final test is locked (24h cooldown after a failed attempt)."""
+    cooldown_key = f"ckla_final_test_last_fail_grade_{grade}"
+    cfg = db.query(AppConfig).filter_by(key=cooldown_key).first()
+    if cfg and cfg.value:
+        try:
+            last_fail = datetime.fromisoformat(cfg.value)
+            retry_after = last_fail + timedelta(hours=24)
+            if datetime.now() < retry_after:
+                return {"locked": True, "retry_after": retry_after.isoformat(timespec="seconds")}
+        except ValueError:
+            pass
+    return {"locked": False, "retry_after": None}
+
+
 @router.post("/grade-final-test/submit")
 # @tag ACADEMY CKLA XP
 async def submit_grade_final_test(
@@ -728,7 +790,24 @@ async def submit_grade_final_test(
     grade: int = Query(3),
     db: Session = Depends(get_db),
 ):
-    """Grade final test answers via AI and award XP on pass (>=80%)."""
+    """Grade final test answers via AI and award XP on pass (>=80%).
+    Failed attempts are locked for 24 hours before retry (spec §Grade Final Test).
+    """
+    # 24h cooldown guard
+    cooldown_key = f"ckla_final_test_last_fail_grade_{grade}"
+    cfg = db.query(AppConfig).filter_by(key=cooldown_key).first()
+    if cfg and cfg.value:
+        try:
+            last_fail = datetime.fromisoformat(cfg.value)
+            retry_after = last_fail + timedelta(hours=24)
+            if datetime.now() < retry_after:
+                raise HTTPException(
+                    status_code=429,
+                    detail=f"Please wait until {retry_after.isoformat(timespec='seconds')} before retrying.",
+                )
+        except ValueError:
+            pass
+
     total = len(req.answers)
     if total == 0:
         raise HTTPException(status_code=400, detail="No answers submitted")
@@ -767,6 +846,18 @@ async def submit_grade_final_test(
     xp_awarded = 0
     if passed:
         xp_awarded = award_xp(db, "ckla_grade_final_pass", detail=f"grade_{grade}")
+        # Clear cooldown on pass
+        if cfg:
+            cfg.value = ""
+    else:
+        # Store failure timestamp for 24h cooldown
+        now_str = datetime.now().isoformat(timespec="seconds")
+        if cfg:
+            cfg.value = now_str
+        else:
+            db.add(AppConfig(key=cooldown_key, value=now_str))
+
+    db.commit()
 
     return {
         "grade":      grade,

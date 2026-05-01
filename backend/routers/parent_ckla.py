@@ -17,6 +17,7 @@ from backend.models.ckla import (
     CKLADomain, CKLALesson, CKLALessonProgress, CKLAQuestionResponse,
 )
 from backend.models.gamification import XPLog
+from backend.models.system import AppConfig
 
 logger = logging.getLogger(__name__)
 
@@ -68,18 +69,31 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
     )
     domain_test_passed: set[str] = {r.detail for r in domain_test_logs if r.detail}
 
+    # ── Domain test consecutive fail counts (from AppConfig) ───
+    fail_configs: dict[int, int] = {}
+    for d in domains:
+        key = f"ckla_domain_test_consec_fails_d{d.domain_num}_g{grade}"
+        cfg = db.query(AppConfig).filter_by(key=key).first()
+        if cfg and cfg.value:
+            try:
+                fail_configs[d.domain_num] = int(cfg.value)
+            except ValueError:
+                pass
+
     # ── Domain breakdown ────────────────────────────────────────
     domain_rows = []
     for d in domains:
         ids = domain_lesson_map[d.id]
         done = sum(1 for lid in ids if lid in completed_ids)
+        consec_fails = fail_configs.get(d.domain_num, 0)
         domain_rows.append({
-            "domain_num":        d.domain_num,
-            "title":             d.title,
-            "lesson_count":      len(ids),
-            "completed_count":   done,
-            "all_complete":      len(ids) > 0 and done == len(ids),
-            "domain_test_passed": f"domain_{d.domain_num}_grade_{grade}" in domain_test_passed,
+            "domain_num":          d.domain_num,
+            "title":               d.title,
+            "lesson_count":        len(ids),
+            "completed_count":     done,
+            "all_complete":        len(ids) > 0 and done == len(ids),
+            "domain_test_passed":  f"domain_{d.domain_num}_grade_{grade}" in domain_test_passed,
+            "domain_test_consec_fails": consec_fails,
         })
 
     # ── Q&A accuracy ───────────────────────────────────────────
@@ -126,6 +140,30 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
     lessons_per_day = pace_window / 14 if pace_window else 0
     est_days = round(remaining / lessons_per_day) if lessons_per_day > 0 else None
 
+    # ── Domain test 3-fail alert list ─────────────────────────
+    domain_test_alerts = [
+        {"domain_num": d.domain_num, "title": d.title, "consec_fails": fail_configs[d.domain_num]}
+        for d in domains
+        if fail_configs.get(d.domain_num, 0) >= 3
+    ]
+
+    # ── Grade Final Test cooldown status ──────────────────────
+    final_test_locked = False
+    final_test_retry_after = None
+    final_cfg = db.query(AppConfig).filter_by(
+        key=f"ckla_final_test_last_fail_grade_{grade}"
+    ).first()
+    if final_cfg and final_cfg.value:
+        try:
+            from datetime import datetime as _dt
+            last_fail = _dt.fromisoformat(final_cfg.value)
+            retry_after = last_fail + timedelta(hours=24)
+            if _dt.now() < retry_after:
+                final_test_locked = True
+                final_test_retry_after = retry_after.isoformat(timespec="seconds")
+        except ValueError:
+            pass
+
     return {
         "grade":             grade,
         "total_lessons":     total_lessons,
@@ -139,4 +177,7 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
         "weekly_chart":      chart_days,
         "difficulty_breakdown": diff_counts,
         "estimated_completion_days": est_days,
+        "domain_test_alerts":       domain_test_alerts,
+        "final_test_locked":        final_test_locked,
+        "final_test_retry_after":   final_test_retry_after,
     }

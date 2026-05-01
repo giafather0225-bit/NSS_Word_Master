@@ -101,6 +101,28 @@ async function _ppCKLA(body) {
                 ${_ppDiffChip('Hard',       diff.hard    || 0, 'var(--review-soft)', 'var(--review-ink)')}
             </div>` : '';
 
+        // ── Domain test 3-fail alerts ──────────────────────────
+        const failAlerts = (d.domain_test_alerts || []).map(a => `
+            <div style="background:var(--review-light);border-radius:var(--radius-md);padding:10px 14px;font-size:.82rem;display:flex;align-items:center;gap:10px">
+                <i data-lucide="alert-triangle" style="width:14px;height:14px;color:var(--review-ink);flex-shrink:0"></i>
+                <span style="color:var(--review-ink);font-weight:700">Domain ${a.domain_num}</span>
+                <span style="color:var(--text-secondary)">${_ppEsc(a.title)}</span>
+                <span style="margin-left:auto;font-size:.75rem;color:var(--review-ink)">${a.consec_fails} failed attempts</span>
+            </div>`).join('');
+        const alertSection = failAlerts ? `
+            <div class="pp-section-title" style="margin:24px 0 10px;color:var(--review-ink)">
+                <i data-lucide="alert-triangle" style="width:15px;height:15px"></i> Domain Test Alerts
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">${failAlerts}</div>` : '';
+
+        // ── Grade Final Test cooldown banner ──────────────────
+        const finalTestBanner = d.final_test_locked ? `
+            <div style="background:var(--arcade-soft);border-radius:var(--radius-md);padding:10px 14px;font-size:.82rem;display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                <i data-lucide="lock" style="width:14px;height:14px;color:var(--arcade-ink);flex-shrink:0"></i>
+                <span style="color:var(--arcade-ink);font-weight:700">Grade Final Test locked</span>
+                <span style="color:var(--text-secondary)">Retry after ${d.final_test_retry_after?.replace('T', ' ') || ''}</span>
+            </div>` : '';
+
         // ── Needs review ───────────────────────────────────────
         const reviewSection = d.needs_review?.length ? `
             <div class="pp-section-title" style="margin:24px 0 10px;color:var(--review-ink)">
@@ -130,6 +152,8 @@ async function _ppCKLA(body) {
                 </div>
                 ${chart}
                 ${diffSection}
+                ${alertSection}
+                ${finalTestBanner}
                 ${reviewSection}
             </div>`;
 
