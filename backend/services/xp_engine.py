@@ -27,6 +27,7 @@ _LUMI_DEFAULTS: dict[str, int] = {
     "lumi_rule_math_unit":     20,
     "lumi_rule_diary":          8,
     "lumi_rule_review":         5,
+    "lumi_rule_streak":         5,
 }
 
 
@@ -52,20 +53,21 @@ def _award_lumi_for_action(db: Session, action: str) -> None:
 
 XP_RULES_DEFAULT: dict[str, int] = {
     "word_correct":           1,
-    "stage_complete":         2,
-    "final_test_pass":       10,
+    "stage_complete":         5,
+    "final_test_pass":       20,
     "unit_test_pass":         5,
-    "daily_words_complete":   5,
+    "daily_words_complete":  10,
     "weekly_test_pass":      10,
     "mywords_weekly_test_pass": 10,
-    "review_complete":        2,
-    "journal_complete":      10,
-    "must_do_bonus":          5,
-    "all_complete_bonus":    15,
+    "review_complete":        5,
+    "journal_complete":      15,
+    "must_do_bonus":         10,
+    "all_complete_bonus":    25,
     "streak_7_bonus":        30,
     "streak_30_bonus":       200,
-    "math_lesson_complete":     10,
-    "math_unit_test_pass":      25,
+    "streak_maintain":       10,
+    "math_lesson_complete":     15,
+    "math_unit_test_pass":      40,
     "math_daily_complete":       5,
     "math_daily_perfect":        3,
     "math_kangaroo_complete":  5,

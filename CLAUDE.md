@@ -402,20 +402,21 @@ MC 20 + Fill-in 20. 30-min timer. Pass = 90%. Pass → XP +10 + GrowthEvent("les
 | Action | XP | Limit |
 |---|---:|---|
 | `word_correct` | +1 | per attempt |
-| `stage_complete` | +2 | once / stage / lesson |
-| `final_test_pass` | +10 | once; retry pass = +10 |
+| `stage_complete` | +5 | once / stage / lesson |
+| `final_test_pass` | +20 | once; retry pass = +20 |
 | `unit_test_pass` | +5 | once |
-| `daily_words_complete` | +5 | once / day |
+| `daily_words_complete` | +10 | once / day |
 | `weekly_test_pass` | +10 | once / week |
 | `mywords_weekly_test_pass` | +10 | once / week |
-| `review_complete` | +2 | once / day |
-| `journal_complete` | +10 | once / day |
-| `must_do_bonus` | +5 | once / day (all must-do done) |
-| `all_complete_bonus` | +15 | once / day (all tasks done) |
+| `review_complete` | +5 | once / day |
+| `journal_complete` | +15 | once / day |
+| `must_do_bonus` | +10 | once / day (all must-do done) |
+| `all_complete_bonus` | +25 | once / day (all tasks done) |
 | `streak_7_bonus` | +30 | per occurrence |
 | `streak_30_bonus` | +200 | per occurrence |
-| `math_lesson_complete` | +10 | per lesson |
-| `math_unit_test_pass` | +25 | per unit test pass |
+| `streak_maintain` | +10 | once / day (streak kept) |
+| `math_lesson_complete` | +15 | per lesson |
+| `math_unit_test_pass` | +40 | per unit test pass |
 | `math_kangaroo_complete` | +5 | per set |
 | `math_kangaroo_80` | +5 | per set ≥80% |
 | `math_kangaroo_perfect` | +10 | per set 100% |
