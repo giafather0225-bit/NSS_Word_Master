@@ -116,6 +116,7 @@ async function loadCKLADomains() {
 /** @tag ACADEMY CKLA */
 function _renderDomains(domains) {
   const view = document.getElementById('ckla-view');
+  const allComplete = domains.length > 0 && domains.every(d => d.all_complete);
   view.innerHTML = `
     <div class="ckla-header">
       <button class="ckla-back-btn" onclick="hideCKLAView()">← Back</button>
@@ -132,7 +133,188 @@ function _renderDomains(domains) {
             Domain Test →</div>` : ''}
         </div>
       `).join('')}
+    </div>
+    ${allComplete ? `
+      <div class="ckla-final-test-row" id="ckla-final-test-row">
+        <div class="ckla-loading" style="font-size:.82rem">Checking final test status…</div>
+      </div>` : ''}`;
+
+  if (allComplete) _loadFinalTestRow();
+}
+
+/** Load + render the Grade Final Test call-to-action row. @tag ACADEMY CKLA */
+async function _loadFinalTestRow() {
+  const row = document.getElementById('ckla-final-test-row');
+  if (!row) return;
+  try {
+    const res = await fetch(`/api/academy/ckla/grade-final-test/status?grade=${cklaNav.grade}`);
+    const status = res.ok ? await res.json() : { locked: false, retry_after: null };
+    if (status.locked) {
+      row.innerHTML = `
+        <div class="ckla-final-locked">
+          <i data-lucide="lock" width="16" height="16"></i>
+          <span>Grade Final Test locked — retry after ${(status.retry_after || '').replace('T', ' ')}</span>
+          <div class="ckla-final-countdown" id="ckla-final-countdown"></div>
+        </div>`;
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+      _cklaStartCountdown(new Date(status.retry_after), 'ckla-final-countdown');
+    } else {
+      row.innerHTML = `
+        <button class="ckla-final-test-btn" onclick="showGradeFinalTest()">
+          <i data-lucide="trophy" width="18" height="18"></i>
+          Grade Final Test
+        </button>`;
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+  } catch {
+    row.innerHTML = '';
+  }
+}
+
+/** Load and render the Grade Final Test question screen. @tag ACADEMY CKLA FINAL_TEST */
+async function showGradeFinalTest() {
+  const view = document.getElementById('ckla-view');
+  if (!view) return;
+  view.innerHTML = '<div class="ckla-loading">Loading final test…</div>';
+  try {
+    const res = await fetch(`/api/academy/ckla/grade-final-test?grade=${cklaNav.grade}`);
+    if (!res.ok) throw new Error('Failed to load');
+    const data = await res.json();
+    _renderGradeFinalTest(data);
+  } catch (e) {
+    view.innerHTML = `<div class="ckla-empty">Could not load final test. ${e.message}</div>`;
+  }
+}
+
+/** Render Grade Final Test question interface. @tag ACADEMY CKLA FINAL_TEST */
+function _renderGradeFinalTest(data) {
+  const view = document.getElementById('ckla-view');
+  const questions = data.questions || [];
+  if (!questions.length) {
+    view.innerHTML = `<div class="ckla-empty">No questions available.<br><button class="ckla-btn" onclick="loadCKLADomains()">← Back</button></div>`;
+    return;
+  }
+
+  const answers = {};
+  let currentIdx = 0;
+
+  function renderQ() {
+    const q = questions[currentIdx];
+    view.innerHTML = `
+      <div class="ckla-header">
+        <button class="ckla-back-btn" onclick="loadCKLADomains()">← Back</button>
+        <h2 class="ckla-title">Grade ${data.grade} Final Test</h2>
+        <span class="ckla-progress-pill">${currentIdx + 1} / ${questions.length}</span>
+      </div>
+      <div class="ckla-test-body">
+        <div class="ckla-test-meta">${q.domain_title} · ${q.lesson_title}</div>
+        <div class="ckla-test-question">${q.question}</div>
+        <textarea id="gft-ans" class="ckla-test-textarea"
+          placeholder="Type your answer…">${answers[q.id] || ''}</textarea>
+      </div>
+      <div class="ckla-test-nav">
+        ${currentIdx > 0
+          ? `<button class="ckla-test-nav-btn" onclick="_gftNav(-1)">← Prev</button>`
+          : '<span></span>'}
+        ${currentIdx < questions.length - 1
+          ? `<button class="ckla-test-nav-btn" onclick="_gftNav(1)">Next →</button>`
+          : `<button class="ckla-btn" onclick="_gftSubmit()">Submit All</button>`}
+      </div>`;
+    window._gftSave = () => {
+      const ta = document.getElementById('gft-ans');
+      if (ta) answers[q.id] = ta.value.trim();
+    };
+  }
+
+  window._gftNav = (delta) => {
+    window._gftSave?.();
+    currentIdx = Math.max(0, Math.min(questions.length - 1, currentIdx + delta));
+    renderQ();
+  };
+
+  window._gftSubmit = async () => {
+    window._gftSave?.();
+    view.innerHTML = '<div class="ckla-loading">Grading…</div>';
+    try {
+      const res = await fetch(`/api/academy/ckla/grade-final-test/submit?grade=${cklaNav.grade}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answers }),
+      });
+      if (!res.ok) throw new Error('Submit failed');
+      const result = await res.json();
+      if (result.passed) {
+        _renderTestResult(result, () => loadCKLADomains());
+      } else {
+        _cklaRenderFinalTestWait(result);
+      }
+    } catch (e) {
+      view.innerHTML = `<div class="ckla-empty">Submit failed. ${e.message}<br><button class="ckla-btn" onclick="loadCKLADomains()">← Back</button></div>`;
+    }
+  };
+
+  renderQ();
+}
+
+/** Grade Final Test 실패 후 대기 화면 (카운트다운 + 틀린 문제). @tag ACADEMY CKLA FINAL_TEST */
+function _cklaRenderFinalTestWait(result) {
+  const view = document.getElementById('ckla-view');
+  if (!view) return;
+  const pct = Math.round(result.score_pct || 0);
+  const wrongList = (result.wrong_questions || []).map(q => `
+    <div class="cfw-wrong-item">
+      <div class="cfw-wrong-lesson">${q.lesson_title || 'Lesson'}</div>
+      <div class="cfw-wrong-q">${q.question_text}</div>
+      <div class="cfw-wrong-ans">Correct: ${q.correct_answer}</div>
+    </div>`).join('');
+
+  view.innerHTML = `
+    <div class="ckla-header">
+      <button class="ckla-back-btn" onclick="loadCKLADomains()">← Back</button>
+      <h2 class="ckla-title">Final Test Result</h2>
+    </div>
+    <div class="ckla-finaltest-wait">
+      <div class="cfw-score-row">
+        <div class="cfw-score">${pct}%</div>
+        <div class="cfw-score-label">Keep studying — you need 80% to pass!</div>
+      </div>
+      ${result.retry_after ? `
+        <div class="cfw-timer-box">
+          <div class="cfw-timer-label">Next attempt in</div>
+          <div class="cfw-timer" id="cfw-countdown">…</div>
+        </div>` : ''}
+      ${wrongList ? `
+        <div class="cfw-wrong-section">
+          <div class="cfw-wrong-title">Missed Questions (${result.wrong_questions.length})</div>
+          <div class="cfw-wrong-list">${wrongList}</div>
+        </div>` : ''}
+      <button class="cfw-review-btn" onclick="loadCKLADomains()">
+        Back to Domains
+      </button>
     </div>`;
+
+  if (result.retry_after) {
+    _cklaStartCountdown(new Date(result.retry_after), 'cfw-countdown');
+  }
+}
+
+/** Countdown timer helper. @tag ACADEMY CKLA FINAL_TEST */
+function _cklaStartCountdown(targetTime, elementId) {
+  function update() {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    const diff = targetTime - Date.now();
+    if (diff <= 0) {
+      el.textContent = 'Ready to retry now!';
+      return;
+    }
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    el.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    setTimeout(update, 1000);
+  }
+  update();
 }
 
 
@@ -557,6 +739,7 @@ function _renderCKLAReview(words) {
 
 /** Show first-time onboarding modal for CKLA. @tag ACADEMY CKLA */
 function showCKLAOnboarding() {
+  if (localStorage.getItem('ckla_onboarded') === '1') return;
   const existing = document.getElementById('ckla-onboarding-modal');
   if (existing) return;
 
@@ -579,7 +762,7 @@ function showCKLAOnboarding() {
           Start Learning
         </button>
         <button class="ckla-onboarding-btn ckla-onboarding-btn--secondary"
-                onclick="document.getElementById('ckla-onboarding-modal').remove()">
+                onclick="localStorage.setItem('ckla_onboarded','1'); document.getElementById('ckla-onboarding-modal').remove()">
           Maybe Later
         </button>
       </div>
@@ -590,6 +773,7 @@ function showCKLAOnboarding() {
 
 /** Dismiss onboarding and open CKLA view. @tag ACADEMY CKLA */
 function startCKLA() {
+  localStorage.setItem('ckla_onboarded', '1');
   const modal = document.getElementById('ckla-onboarding-modal');
   if (modal) modal.remove();
   showCKLAView();

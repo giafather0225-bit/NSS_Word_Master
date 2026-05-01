@@ -268,18 +268,20 @@ function _sectionOfTask(key) {
   if (key === 'daily_words' || key === 'academy' || key === 'english') return 'english';
   if (key === 'math') return 'math';
   if (key === 'arcade') return 'arcade';
+  if (key === 'ckla') return 'ckla';
   return 'english';
 }
 
 const _SECTION_LABELS = {
   english: 'English',
+  ckla:    'CKLA',
   math:    'Math',
   diary:   'Diary',
   review:  'Review',
   arcade:  'Arcade',
 };
 
-const _SECTION_ORDER = ['english', 'math', 'diary', 'review', 'arcade'];
+const _SECTION_ORDER = ['english', 'ckla', 'math', 'diary', 'review', 'arcade'];
 
 function _homeEscape(s) {
   return String(s ?? '').replace(/[&<>"']/g, (c) => ({
@@ -429,6 +431,10 @@ function _navigateTask(key) {
       break;
     case 'academy':
       switchView('english');
+      break;
+    case 'ckla':
+      switchView('english');
+      setTimeout(() => { if (typeof showCKLAView === 'function') showCKLAView(); }, 300);
       break;
     case 'journal':
       switchView('diary');

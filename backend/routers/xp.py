@@ -24,6 +24,8 @@ from backend.models import (
     XPLog,
     WordReview,
 )
+from backend.models.ckla import CKLALessonProgress
+from backend.models.system import AppConfig
 from backend.services.xp_engine import (
     award_xp,
     get_total_xp,
@@ -344,8 +346,30 @@ def tasks_today(db: Session = Depends(get_db)) -> list:
             _make_task("journal", "Daily Journal", "", journal_done, settings)
         )
 
+    # CKLA daily lessons task
+    if "ckla" in settings:
+        daily_cfg = db.query(AppConfig).filter_by(key="ckla_lessons_per_day").first()
+        ckla_target = int(daily_cfg.value) if (daily_cfg and daily_cfg.value and daily_cfg.value.isdigit()) else 1
+        ckla_done_today = (
+            db.query(CKLALessonProgress)
+            .filter(
+                CKLALessonProgress.completed == True,
+                CKLALessonProgress.completed_at.like(f"{today}%"),
+            )
+            .count()
+        )
+        tasks.append(
+            _make_task(
+                "ckla",
+                f"CKLA · {ckla_target} lesson{'s' if ckla_target != 1 else ''}",
+                f"{ckla_done_today}/{ckla_target}",
+                ckla_done_today >= ckla_target,
+                settings,
+            )
+        )
+
     # Any other active task keys not handled above
-    handled = {"review", "daily_words", "academy", "journal"}
+    handled = {"review", "daily_words", "academy", "journal", "ckla"}
     for key, s in settings.items():
         if key not in handled and s.is_active:
             tasks.append(

@@ -858,6 +858,7 @@ async def submit_grade_final_test(
     passed = pct >= 80
 
     xp_awarded = 0
+    retry_after_str: str | None = None
     if passed:
         xp_awarded = award_xp(db, "ckla_grade_final_pass", detail=f"grade_{grade}")
         # Clear cooldown on pass
@@ -870,15 +871,32 @@ async def submit_grade_final_test(
             cfg.value = now_str
         else:
             db.add(AppConfig(key=cooldown_key, value=now_str))
+        retry_after_str = (datetime.now() + timedelta(hours=24)).isoformat(timespec="seconds")
 
     db.commit()
 
+    # Build wrong_questions list for the wait screen
+    wrong_questions: list[dict] = []
+    for r in results:
+        if r["score"] < 2:
+            q = db.query(CKLAQuestion).filter_by(id=r["question_id"]).first()
+            if q:
+                lesson = db.query(CKLALesson).filter_by(id=q.lesson_id).first()
+                wrong_questions.append({
+                    "lesson_id":      q.lesson_id,
+                    "lesson_title":   lesson.title if lesson else "",
+                    "question_text":  q.question_text,
+                    "correct_answer": q.model_answer or "",
+                })
+
     return {
-        "grade":      grade,
-        "total":      total,
-        "correct":    correct,
-        "score_pct":  pct,
-        "passed":     passed,
-        "xp_awarded": xp_awarded,
-        "results":    results,
+        "grade":           grade,
+        "total":           total,
+        "correct":         correct,
+        "score_pct":       pct,
+        "passed":          passed,
+        "xp_awarded":      xp_awarded,
+        "results":         results,
+        "retry_after":     retry_after_str,
+        "wrong_questions": wrong_questions,
     }
