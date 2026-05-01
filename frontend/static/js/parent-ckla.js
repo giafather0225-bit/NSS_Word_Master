@@ -8,7 +8,7 @@
 /** Render the CKLA parent summary tab. @tag PARENT CKLA */
 async function _ppCKLA(body) {
     try {
-        const d = await window._ppFetch("/api/parent/ckla-summary?grade=3");
+        const d = await window._ppFetch("/api/parent/ckla-summary?grade=3").then(r => r.json());
 
         const pct = d.total_lessons
             ? Math.round(d.completed_lessons / d.total_lessons * 100)
