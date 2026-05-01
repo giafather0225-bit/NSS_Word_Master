@@ -845,27 +845,48 @@ def boost_status(db: Session = Depends(get_db)):
 # @tag ISLAND
 @router.get("/notifications")
 def notifications(db: Session = Depends(get_db)):
-    """Derive notifications from current gauge state."""
-    items = []
+    """Derive notifications: hungry/unhappy chars, evolvable chars, today's lumi production.
+
+    Returns:
+        {
+          hungry:    [{nickname, name, hunger, happiness}, ...],
+          evolvable: [{nickname, name}, ...],
+          lumi_earned: int
+        }
+    """
+    hungry: list[dict] = []
+    evolvable: list[dict] = []
+
     active = (
         db.query(IslandCharacterProgress, IslandCharacter)
         .join(IslandCharacter, IslandCharacterProgress.character_id == IslandCharacter.id)
-        .filter(IslandCharacterProgress.is_active == True,
-                IslandCharacterProgress.is_completed == False,
-                IslandCharacterProgress.is_legend_type == False)
+        .filter(
+            IslandCharacterProgress.is_active == True,
+            IslandCharacterProgress.is_completed == False,
+        )
         .all()
     )
     for prog, char in active:
-        if prog.hunger < 20:
-            items.append({"type": "hunger_critical", "character": char.name,
-                          "character_progress_id": prog.id, "value": prog.hunger})
-        elif prog.hunger < 40:
-            items.append({"type": "hunger_low", "character": char.name,
-                          "character_progress_id": prog.id, "value": prog.hunger})
-        if prog.happiness < 20:
-            items.append({"type": "happiness_critical", "character": char.name,
-                          "character_progress_id": prog.id, "value": prog.happiness})
-    return {"notifications": items, "count": len(items)}
+        # Hunger / happiness alerts
+        if (not prog.is_legend_type) and (prog.hunger < 40 or prog.happiness < 40):
+            hungry.append({
+                "nickname":  prog.nickname or char.name,
+                "name":      char.name,
+                "hunger":    prog.hunger,
+                "happiness": prog.happiness,
+            })
+
+        # Evolvable check (same logic as care_status)
+        if not prog.is_legend_type:
+            stage = prog.stage or "baby"
+            is_final = stage in ("final_a", "final_b")
+            xp_needed = (char.evo_second_xp if stage in ("mid_a", "mid_b") else char.evo_first_xp) if char else 100
+            if not is_final and not prog.is_completed:
+                if (prog.current_xp or 0) >= xp_needed and prog.hunger >= 20 and prog.happiness >= 20:
+                    evolvable.append({"nickname": prog.nickname or char.name, "name": char.name})
+
+    lumi_earned = prod.get_production_summary(db)["today"]
+    return {"hungry": hungry, "evolvable": evolvable, "lumi_earned": lumi_earned}
 
 
 # @tag ISLAND

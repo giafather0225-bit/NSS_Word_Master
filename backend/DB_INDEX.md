@@ -474,6 +474,160 @@ Parent-configured academy test days.
 
 ---
 
+## Island System Tables (`backend/models/island.py` — migration 018)
+
+### island_characters
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| name | String | e.g. "Clover", "Axie" |
+| zone | String | forest/ocean/savanna/space/legend |
+| subject | String | english/math/diary/review/all |
+| order_index | Integer | display order within zone |
+| description | String | flavor text |
+| images | String | JSON map stage→path |
+| lumi_production | Integer | Lumi/day when completed |
+| xp_boost_pct | Float | base XP boost % for active char |
+| xp_boost_a_pct | Float | A-form XP bonus % |
+| xp_boost_b_pct | Float | B-form extra lumi/day |
+| is_legend | Boolean | true for legend zone chars |
+| unlock_requires_character_id | Integer FK → island_characters.id | nullable |
+| is_available | Boolean | seeded false; set true when adoption unlocks |
+| evo_first_xp | Integer | cumulative XP threshold for 1st evolution |
+| evo_second_xp | Integer | cumulative XP threshold for 2nd evolution |
+
+### island_character_progress
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| character_id | Integer FK → island_characters.id | |
+| nickname | String | player-set nickname |
+| stage | String | baby/mid_a/mid_b/final_a/final_b |
+| level | Integer | 1–10 |
+| current_xp | Integer | cumulative XP |
+| hunger | Integer | 0–100 |
+| happiness | Integer | 0–100 |
+| is_completed | Boolean | reached final stage |
+| is_active | Boolean | currently being raised |
+| is_legend_type | Boolean | mirrors is_legend from catalog |
+| boost_active | Boolean | study boost in effect |
+| boost_subject | String | english/math/diary/review |
+| last_production_date | String | ISO date, dedup guard |
+| last_decay_date | String | ISO date |
+| pos_x / pos_y | Integer | island position |
+| adopted_at | DateTime | server default now() |
+| completed_at | DateTime | nullable |
+
+### island_care_log
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| character_progress_id | Integer FK → island_character_progress.id | |
+| action | String | feed/play/decay |
+| hunger_change | Integer | delta |
+| happiness_change | Integer | delta |
+| source | String | english/math/diary/review/food_item/auto_decay |
+| logged_at | DateTime | server default now() |
+
+**Note:** auto-deleted after 30 days by daily batch.
+
+### island_shop_items
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| name | String | |
+| category | String | evolution/decoration/food |
+| sub_category | String | nullable; prop/building/nature/landscape/special/common/… |
+| zone | String | target zone or "all" |
+| evolution_type | String | nullable; first_a/first_b/second/legend_first_a/legend_first_b/legend_second |
+| price | Integer | in Lumi (or Legend Lumi if is_legend_currency) |
+| is_legend_currency | Boolean | uses Legend Lumi instead of Lumi |
+| image | String | relative path |
+| is_active | Boolean | |
+| description | String | |
+
+**Seeded:** 55 items by migration 018.
+
+### island_inventory
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| shop_item_id | Integer FK → island_shop_items.id | |
+| item_type | String | evolution/decoration/food |
+| quantity | Integer | |
+| used_on_character_progress_id | Integer FK → island_character_progress.id | nullable |
+| purchased_at | DateTime | server default now() |
+
+### island_placed_items
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| shop_item_id | Integer FK → island_shop_items.id | UNIQUE — one instance per item |
+| zone | String | |
+| pos_x / pos_y | Integer | placement coordinates |
+| is_placed | Boolean | false = recalled to inventory |
+| placed_at | DateTime | server default now() |
+
+### island_currency
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | always id=1 (upsert) |
+| lumi | Integer | CHECK ≥ 0 |
+| legend_lumi | Integer | CHECK ≥ 0 |
+| total_earned | Integer | lifetime earned |
+| updated_at | DateTime | auto-updated |
+
+### island_lumi_log
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| currency_type | String | lumi/legend_lumi |
+| action | String | earn/spend/exchange |
+| amount | Integer | |
+| source | String | english/math/diary/review/shop/exchange/production |
+| balance_after | Integer | lumi balance after transaction |
+| legend_balance_after | Integer | legend_lumi balance after transaction |
+| character_progress_id | Integer FK → island_character_progress.id | nullable |
+| earned_date | Date | nullable; dedup guard for production logs |
+| created_at | DateTime | server default now() |
+
+**Note:** auto-deleted after 90 days by daily batch.
+
+### island_legend_progress
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| character_id | Integer FK → island_characters.id | |
+| consecutive_days | Integer | resets on streak break |
+| total_days | Integer | lifetime count |
+| last_completed_date | Date | nullable |
+| is_unlocked | Boolean | |
+| is_completed | Boolean | |
+| completed_at | DateTime | nullable |
+
+### island_zone_status
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| zone | String UNIQUE | forest/ocean/savanna/space/legend |
+| is_unlocked | Boolean | |
+| unlocked_at | DateTime | nullable |
+| first_completed_at | DateTime | nullable |
+
+**Seeded:** 5 rows (one per zone) by migration 018.
+
+---
+
 ## Quick Search
 
 ```bash

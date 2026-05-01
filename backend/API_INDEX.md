@@ -307,6 +307,48 @@
 
 ---
 
+## Island System (Gia's Island)
+
+| Method | Path | Defined In | Called From |
+|--------|------|-----------|-------------|
+| GET | /api/island/status | routers/island.py | IslandMain.jsx |
+| GET | /api/island/onboarding/status | routers/island.py | IslandMain.jsx |
+| POST | /api/island/onboarding/complete | routers/island.py | Onboarding.jsx |
+| GET | /api/island/zone/status | routers/island.py | IslandMain.jsx |
+| POST | /api/island/zone/unlock | routers/island.py | ZoneDetail.jsx |
+| GET | /api/island/characters | routers/island.py | Collection.jsx, Onboarding.jsx |
+| GET | /api/island/character/active | routers/island.py | IslandMain.jsx |
+| GET | /api/island/character/completed | routers/island.py | Collection.jsx |
+| GET | /api/island/character/silhouette | routers/island.py | Collection.jsx |
+| POST | /api/island/character/adopt | routers/island.py | Onboarding.jsx |
+| POST | /api/island/character/evolve | routers/island.py | EvolutionModal.jsx |
+| POST | /api/island/evolve/validate | routers/island.py | EvolutionModal.jsx |
+| GET | /api/island/character/{progress_id}/history | routers/island.py | CharacterDetail.jsx |
+| GET | /api/island/care/{character_progress_id} | routers/island.py | CharacterDetail.jsx |
+| POST | /api/island/care/feed | routers/island.py | CharacterDetail.jsx |
+| POST | /api/island/daily | routers/island.py | IslandMain.jsx (app-open batch) |
+| GET | /api/island/currency | routers/island.py | IslandShop.jsx, IslandMain.jsx |
+| POST | /api/island/lumi/earn | routers/island.py | xp_engine.py (internal) |
+| POST | /api/island/lumi/exchange | routers/island.py | IslandShop.jsx |
+| GET | /api/island/lumi/log | routers/island.py | LumiLog.jsx |
+| GET | /api/island/shop | routers/island.py | IslandShop.jsx |
+| POST | /api/island/shop/buy | routers/island.py | IslandShop.jsx |
+| GET | /api/island/inventory | routers/island.py | Inventory.jsx |
+| GET | /api/island/placed | routers/island.py | IslandMain.jsx |
+| POST | /api/island/decorate/place | routers/island.py | Inventory.jsx |
+| POST | /api/island/decorate/remove | routers/island.py | Inventory.jsx |
+| GET | /api/island/legend/progress | routers/island.py | CharacterDetail.jsx |
+| POST | /api/island/legend/daily | routers/island.py | IslandMain.jsx |
+| GET | /api/island/legend/unlock/status | routers/island.py | IslandMain.jsx |
+| GET | /api/island/boost/status | routers/island.py | IslandMain.jsx |
+| GET | /api/island/notifications | routers/island.py | IslandNotifications.jsx |
+| POST | /api/island/notifications/read | routers/island.py | IslandNotifications.jsx |
+| GET | /api/island/config | routers/island.py | IslandMain.jsx |
+| POST | /api/island/config/update | routers/island.py | parent-panel.js |
+| GET | /api/island/stats/summary | routers/island.py | parent-panel.js |
+
+---
+
 ## Quick Search
 
 ```bash
