@@ -59,7 +59,7 @@ async function _loadIslandTab(tab) {
 
 /** @tag SHOP */
 async function _renderEvolutionTab(body) {
-    const res = await fetch("/api/island/shop?type=evolution");
+    const res = await fetch("/api/island/shop?category=evolution");
     const data = await res.json();
     const items = data.items || [];
     if (!items.length) {
@@ -67,7 +67,7 @@ async function _renderEvolutionTab(body) {
         return;
     }
     const cards = items.map(item => {
-        const isLegend   = item.currency === "legend_lumi";
+        const isLegend   = item.is_legend_currency;
         const balance    = isLegend ? _islandLegendLumi : _islandLumi;
         const symbol     = isLegend ? "✨" : "💎";
         const affordable = balance >= item.price;
@@ -87,7 +87,7 @@ async function _renderEvolutionTab(body) {
 
 /** @tag SHOP */
 async function _renderFoodTab(body) {
-    const res = await fetch("/api/island/shop?type=food");
+    const res = await fetch("/api/island/shop?category=food");
     const data = await res.json();
     const items = data.items || [];
     if (!items.length) {
@@ -115,7 +115,7 @@ async function _renderFoodTab(body) {
 /** @tag SHOP */
 async function _renderDecorTab(body) {
     const zoneParam = _islandDecorZone !== "all" ? `&zone=${_islandDecorZone}` : "";
-    const res  = await fetch(`/api/island/shop?type=decor${zoneParam}`);
+    const res  = await fetch(`/api/island/shop?category=decoration${zoneParam}`);
     const data = await res.json();
     const items    = data.items    || [];
     const ownedIds = new Set(data.owned_ids || []);
@@ -208,14 +208,15 @@ async function _doExchange() {
         const res = await fetch("/api/island/lumi/exchange", {
             method:  "POST",
             headers: { "Content-Type": "application/json" },
-            body:    JSON.stringify({ amount: _exchAmount }),
+            body:    JSON.stringify({ lumi_amount: _exchAmount * 100 }),
         });
         if (res.ok) {
             const d = await res.json();
-            _islandLumi       = d.lumi        ?? _islandLumi;
-            _islandLegendLumi = d.legend_lumi ?? _islandLegendLumi;
+            const bal = d.currency ?? d;
+            _islandLumi       = bal.lumi        ?? _islandLumi;
+            _islandLegendLumi = bal.legend_lumi ?? _islandLegendLumi;
             _updateIslandCurrencyDisplay();
-            _showShopToast(`✨ +${_exchAmount} Legend Lumi`);
+            _showShopToast(`+${_exchAmount} Legend Lumi`);
             const body = document.getElementById("shop-body");
             if (body) _renderExchangeTab(body);
         } else {
@@ -260,12 +261,13 @@ async function _doIslandBuy(itemId) {
         const res = await fetch("/api/island/shop/buy", {
             method:  "POST",
             headers: { "Content-Type": "application/json" },
-            body:    JSON.stringify({ item_id: itemId }),
+            body:    JSON.stringify({ shop_item_id: itemId, quantity: 1 }),
         });
         if (res.ok) {
             const d = await res.json();
-            _islandLumi       = d.lumi        ?? _islandLumi;
-            _islandLegendLumi = d.legend_lumi ?? _islandLegendLumi;
+            const bal = d.currency ?? d;
+            _islandLumi       = bal.lumi        ?? _islandLumi;
+            _islandLegendLumi = bal.legend_lumi ?? _islandLegendLumi;
             _updateIslandCurrencyDisplay();
             _shopConfetti();
             _showShopToast("Added to Inventory!");
