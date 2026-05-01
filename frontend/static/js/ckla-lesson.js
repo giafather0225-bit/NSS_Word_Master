@@ -336,7 +336,7 @@ async function _markReadingDone() {
   _cklaPauseTimer();
   _cklaStopTTS();
   const prog = await _postProgress({ reading_done: true });
-  if (prog) { _cklaLesson.progress = prog; _renderReading(); }
+  if (prog) { _cklaLesson.progress = prog; _renderReading(); _maybeShowDifficultyPrompt(prog); }
 }
 
 
@@ -391,7 +391,7 @@ function _cklaAudio(url) {
 /** @tag ACADEMY CKLA */
 async function _markVocabDone() {
   const prog = await _postProgress({ vocab_done: true });
-  if (prog) { _cklaLesson.progress = prog; _renderVocab(); }
+  if (prog) { _cklaLesson.progress = prog; _renderVocab(); _maybeShowDifficultyPrompt(prog); }
 }
 
 
@@ -508,7 +508,55 @@ function _renderWordWork() {
 /** @tag ACADEMY CKLA */
 async function _markWordWorkDone() {
   const prog = await _postProgress({ word_work_done: true });
-  if (prog) { _cklaLesson.progress = prog; _renderWordWork(); }
+  if (prog) { _cklaLesson.progress = prog; _renderWordWork(); _maybeShowDifficultyPrompt(prog); }
+}
+
+
+/* ── Difficulty rating ─────────────────────────────────────────────────────── */
+
+/**
+ * Show difficulty prompt if lesson just became complete and hasn't been rated yet.
+ * @tag ACADEMY CKLA
+ */
+function _maybeShowDifficultyPrompt(prog) {
+  if (!prog || !prog.completed || prog.difficulty_rating) return;
+  const existing = document.getElementById('ckla-diff-overlay');
+  if (existing) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'ckla-diff-overlay';
+  overlay.className = 'ckla-diff-overlay';
+  overlay.innerHTML = `
+    <div class="ckla-diff-box">
+      <div class="ckla-diff-title">Lesson complete! How was it?</div>
+      <div class="ckla-diff-btns">
+        <button class="ckla-diff-btn ckla-diff-btn--easy"
+                onclick="_rateDifficulty('easy')">Easy</button>
+        <button class="ckla-diff-btn ckla-diff-btn--neutral"
+                onclick="_rateDifficulty('neutral')">Just right</button>
+        <button class="ckla-diff-btn ckla-diff-btn--hard"
+                onclick="_rateDifficulty('hard')">Hard</button>
+      </div>
+    </div>`;
+
+  const view = document.getElementById('ckla-view');
+  if (view) view.appendChild(overlay);
+}
+
+/** Submit difficulty rating and dismiss overlay. @tag ACADEMY CKLA */
+async function _rateDifficulty(rating) {
+  const overlay = document.getElementById('ckla-diff-overlay');
+  if (overlay) overlay.remove();
+  if (_cklaLesson?.progress) _cklaLesson.progress.difficulty_rating = rating;
+  try {
+    await fetch(`/api/academy/ckla/lessons/${_cklaLesson.id}/difficulty`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rating }),
+    });
+  } catch (e) {
+    console.warn('CKLA difficulty rating failed:', e);
+  }
 }
 
 

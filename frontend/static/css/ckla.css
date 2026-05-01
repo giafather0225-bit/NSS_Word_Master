@@ -733,6 +733,55 @@
 }
 .ckla-onboarding-btn--secondary:hover { background: var(--border-default); }
 
+/* ── Difficulty rating overlay (post-lesson prompt) ────────── */
+.ckla-diff-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  animation: ckla-slide-up 0.22s var(--ease-calm);
+}
+@keyframes ckla-slide-up {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.ckla-diff-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-modal);
+  padding: 18px 24px;
+  text-align: center;
+  min-width: 280px;
+}
+.ckla-diff-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+.ckla-diff-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.ckla-diff-btn {
+  padding: 8px 18px;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.ckla-diff-btn--easy    { background: var(--math-soft);    color: var(--math-ink); }
+.ckla-diff-btn--neutral { background: var(--bg-surface);   color: var(--text-secondary); }
+.ckla-diff-btn--hard    { background: var(--review-soft);  color: var(--review-ink); }
+.ckla-diff-btn--easy:hover    { background: var(--math-soft);    filter: brightness(0.95); }
+.ckla-diff-btn--neutral:hover { background: var(--border-default); }
+.ckla-diff-btn--hard:hover    { background: var(--review-soft);   filter: brightness(0.95); }
+
 /* ── Lesson difficulty badge ────────────────────────────────── */
 .ckla-lesson-diff {
   display: inline-block;
