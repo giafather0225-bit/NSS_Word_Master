@@ -18,6 +18,7 @@ class XPLog(Base):
     detail = Column(String)
     earned_date = Column(String)
     created_at = Column(String)
+    source = Column(String)  # e.g. "ckla", "math", "english", "diary"
 
 
 class StreakLog(Base):

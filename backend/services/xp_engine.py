@@ -116,12 +116,37 @@ def get_arcade_daily_cap(db: Session) -> int:
     return ARCADE_DAILY_CAP_DEFAULT
 
 
+_SOURCE_MAP: dict[str, str] = {
+    "ckla_lesson_complete": "ckla",
+    "ckla_domain_test_pass": "ckla",
+    "ckla_grade_final_pass": "ckla",
+    "ckla_daily_goal": "ckla",
+    "math_lesson_complete": "math",
+    "math_unit_test_pass": "math",
+    "math_kangaroo_complete": "math",
+    "math_kangaroo_80": "math",
+    "math_kangaroo_perfect": "math",
+    "journal_complete": "diary",
+    "review_complete": "review",
+    "daily_words_complete": "english",
+    "stage_complete": "english",
+    "final_test_pass": "english",
+    "unit_test_pass": "english",
+    "word_correct": "english",
+}
+
+
+def _infer_source(action: str) -> str:
+    return _SOURCE_MAP.get(action, "")
+
+
 # @tag XP @tag AWARD
 def award_xp(
     db: Session,
     action: str,
     detail: str = "",
     earned_date: str | None = None,
+    source: str = "",
 ) -> int:
     """Award XP for an action. Returns actual XP awarded (0 if already awarded today).
 
@@ -133,6 +158,7 @@ def award_xp(
         action: Key from XP_RULES (e.g. "stage_complete").
         detail: Optional extra context (word string for word_correct).
         earned_date: ISO date string override; defaults to today.
+        source: Module that triggered the award (e.g. "ckla", "math", "english").
 
     Returns:
         XP points actually inserted, or 0 if deduped / unknown action.
@@ -164,6 +190,7 @@ def award_xp(
         detail=detail,
         earned_date=today,
         created_at=datetime.now().isoformat(),
+        source=source or _infer_source(action),
     )
     db.add(log)
     _award_lumi_for_action(db, action)

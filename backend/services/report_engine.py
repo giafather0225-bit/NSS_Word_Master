@@ -265,6 +265,62 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
     fluency_rows = db.query(MathFactFluency).all()
     best_fluency = max((r.best_score or 0 for r in fluency_rows), default=0)
 
+    # ── CKLA 데이터 ──────────────────────────────────────────
+    from backend.models.ckla import (
+        CKLADomain, CKLALesson, CKLALessonProgress, CKLAQuestionResponse,
+    )
+
+    ckla_completed_this_week = (
+        db.query(func.count(CKLALessonProgress.id))
+        .filter(
+            CKLALessonProgress.completed == True,
+            func.substr(CKLALessonProgress.completed_at, 1, 10) >= start,
+        )
+        .scalar() or 0
+    )
+
+    # Total and completed lessons for grade 3
+    ckla_all_ids = [
+        r.id for r in
+        db.query(CKLALesson.id)
+        .join(CKLADomain, CKLALesson.domain_id == CKLADomain.id)
+        .filter(CKLADomain.grade == 3, CKLADomain.is_active == True, CKLALesson.is_active == True)
+        .all()
+    ]
+    ckla_total = len(ckla_all_ids)
+    ckla_completed_total = (
+        db.query(func.count(CKLALessonProgress.id))
+        .filter(CKLALessonProgress.lesson_id.in_(ckla_all_ids), CKLALessonProgress.completed == True)
+        .scalar() or 0
+    ) if ckla_all_ids else 0
+    ckla_pct = round(ckla_completed_total / ckla_total * 100) if ckla_total else 0
+
+    _ckla_rank_thresholds = [(100, "Master"), (76, "Champion"), (51, "Adventurer"), (26, "Explorer"), (0, "Beginner")]
+    ckla_rank = next(r for t, r in _ckla_rank_thresholds if ckla_pct >= t)
+
+    # Q&A accuracy this week
+    ckla_qa_rows = (
+        db.query(
+            func.count(CKLAQuestionResponse.id).label("total"),
+            func.sum(case((CKLAQuestionResponse.score >= 2, 1), else_=0)).label("correct"),
+        )
+        .filter(func.substr(CKLAQuestionResponse.created_at, 1, 10) >= start)
+        .one()
+    )
+    ckla_qa_total   = ckla_qa_rows.total or 0
+    ckla_qa_correct = ckla_qa_rows.correct or 0
+    ckla_qa_acc = round(ckla_qa_correct * 100.0 / max(ckla_qa_total, 1), 1) if ckla_qa_total else None
+
+    # Days with at least one lesson this week
+    ckla_days_studied = (
+        db.query(func.count(func.distinct(func.substr(CKLALessonProgress.completed_at, 1, 10))))
+        .filter(
+            CKLALessonProgress.completed == True,
+            func.substr(CKLALessonProgress.completed_at, 1, 10) >= start,
+        )
+        .scalar() or 0
+    )
+
     return {
         "week_label":      week_label,
         "total_xp":        total_xp,
@@ -279,6 +335,15 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
         "weak_words":      weak_words,
         "daily_activity":  daily_activity,
         "lessons_studied": lessons_studied,
+        "ckla": {
+            "lessons_this_week": int(ckla_completed_this_week),
+            "completed_total":   ckla_completed_total,
+            "total_lessons":     ckla_total,
+            "grade_pct":         ckla_pct,
+            "rank":              ckla_rank,
+            "qa_accuracy":       ckla_qa_acc,
+            "days_studied":      int(ckla_days_studied),
+        },
         "math": {
             "total_attempts":   math_total,
             "correct_attempts": math_correct,
@@ -319,6 +384,55 @@ def _acc_row(label: str, acc: float, count: int) -> str:
       </td>
       <td style="font-size:12px;font-weight:700;color:{color};width:40px;">{acc}%</td>
       <td style="font-size:11px;color:{_C['text_hint']};padding-left:6px;">{count}x</td>
+    </tr>"""
+
+
+def _ckla_section(ckla: dict, c: dict) -> str:
+    """Build CKLA email HTML block. Returns empty string if no data."""
+    if not ckla or ckla.get("total_lessons", 0) == 0:
+        return ""
+
+    pct     = ckla.get("grade_pct", 0)
+    rank    = ckla.get("rank", "Beginner")
+    lessons = ckla.get("lessons_this_week", 0)
+    total   = ckla.get("total_lessons", 1)
+    done    = ckla.get("completed_total", 0)
+    days    = ckla.get("days_studied", 0)
+    qa_acc  = ckla.get("qa_accuracy")
+
+    qa_row = ""
+    if qa_acc is not None:
+        qa_color = c["success"] if qa_acc >= 80 else (c["warning"] if qa_acc >= 60 else c["error"])
+        qa_row = f"""
+        <tr>
+          <td style="font-size:13px;color:{c['text_sub']};padding:4px 0;">Q&amp;A Accuracy (7d)</td>
+          <td style="font-size:13px;font-weight:700;color:{qa_color};text-align:right;">{qa_acc}%</td>
+        </tr>"""
+
+    header = _section_header("CKLA Grade 3", c["eng"], c["eng_light"], c["eng_ink"])
+    return f"""
+    {header}
+    <tr>
+      <td>
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="font-size:13px;color:{c['text_sub']};padding:4px 0;">This week</td>
+            <td style="font-size:13px;font-weight:700;color:{c['eng_ink']};text-align:right;">{lessons} lesson{'s' if lessons != 1 else ''} · {days} day{'s' if days != 1 else ''}</td>
+          </tr>
+          <tr>
+            <td style="font-size:13px;color:{c['text_sub']};padding:4px 0;">Overall progress</td>
+            <td style="font-size:13px;font-weight:700;color:{c['eng_ink']};text-align:right;">{done}/{total} ({pct}%) · {rank}</td>
+          </tr>
+          {qa_row}
+          <tr>
+            <td colspan="2" style="padding:6px 0 2px;">
+              <div style="background:{c['border_sub']};border-radius:4px;height:6px;">
+                <div style="background:{c['eng']};width:{pct}%;height:6px;border-radius:4px;"></div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
     </tr>"""
 
 
@@ -564,6 +678,9 @@ def build_html_report(data: dict, child_name: str = "Gia") -> str:
           </table>
         </td>
       </tr>
+
+      <!-- CKLA section -->
+      {_ckla_section(data.get('ckla', {}), c)}
 
       <!-- Overall stats -->
       {_section_header("Overall Progress", c['primary'], c['rewards_light'], c['text'])}

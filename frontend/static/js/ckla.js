@@ -106,28 +106,41 @@ async function loadCKLADomains() {
   try {
     const res = await fetch(`/api/academy/ckla/domains?grade=${cklaNav.grade}`);
     if (!res.ok) throw new Error('Failed to load');
-    const domains = await res.json();
-    _renderDomains(domains);
+    const data = await res.json();
+    _renderDomains(data.domains || data, data.rank, data.completion_pct);
   } catch (e) {
     view.innerHTML = `<div class="ckla-empty">Could not load domains. ${e.message}</div>`;
   }
 }
 
 /** @tag ACADEMY CKLA */
-function _renderDomains(domains) {
+function _renderDomains(domains, rank, completionPct) {
   const view = document.getElementById('ckla-view');
   const allComplete = domains.length > 0 && domains.every(d => d.all_complete);
+  const rankPill = rank
+    ? `<span class="ckla-rank-pill ckla-rank-${rank.toLowerCase()}">${rank}</span>`
+    : '';
+  const progressLine = typeof completionPct === 'number'
+    ? `<div class="ckla-grade-progress">
+        <div class="ckla-grade-progress-bar" style="width:${completionPct}%"></div>
+       </div>
+       <div class="ckla-grade-progress-label">${completionPct}% complete</div>`
+    : '';
   view.innerHTML = `
     <div class="ckla-header">
       <button class="ckla-back-btn" onclick="hideCKLAView()">← Back</button>
-      <h2 class="ckla-title">CKLA Grade ${cklaNav.grade}</h2>
+      <div class="ckla-header-title-row">
+        <h2 class="ckla-title">CKLA Grade ${cklaNav.grade}</h2>
+        ${rankPill}
+      </div>
+      ${progressLine}
     </div>
     <div class="ckla-domain-grid">
       ${domains.map(d => `
         <div class="ckla-domain-card" onclick="loadCKLALessons(${d.domain_num})">
           <div class="ckla-domain-num">Domain ${d.domain_num}</div>
           <div class="ckla-domain-title">${d.title}</div>
-          <div class="ckla-domain-lessons">${d.lesson_count} lessons</div>
+          <div class="ckla-domain-lessons">${d.completed_count != null ? `${d.completed_count}/` : ''}${d.lesson_count} lessons</div>
           ${d.all_complete ? `<div class="ckla-domain-test-link"
             onclick="event.stopPropagation(); openDomainTest(${d.domain_num})">
             Domain Test →</div>` : ''}
@@ -369,7 +382,7 @@ function _renderDomainTest(domainNum, data) {
       </div>`;
   }
 
-  window._domainTestState = { domainNum, data, answers, currentIdx, renderQ };
+  window._domainTestState = { domainNum, data, answers, currentIdx, renderQ, startTime: Date.now() };
   renderQ();
 }
 
@@ -391,15 +404,17 @@ function domainTestNav(delta) {
 /** @tag ACADEMY CKLA */
 async function submitDomainTest(domainNum) {
   if (!window._domainTestState) return;
-  const { data, answers } = window._domainTestState;
-  const responses = data.questions.map(q => ({ question_id: q.id, answer: answers[q.id] || '' }));
+  const { data, answers, startTime } = window._domainTestState;
+  const answersMap = {};
+  data.questions.forEach(q => { answersMap[q.id] = answers[q.id] || ''; });
+  const timeTaken = startTime ? Math.round((Date.now() - startTime) / 1000) : null;
   const view = document.getElementById('ckla-view');
   view.innerHTML = '<div class="ckla-loading">Grading…</div>';
   try {
     const res = await fetch(`/api/academy/ckla/domain-test/${domainNum}/submit?grade=${cklaNav.grade}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ responses }),
+      body: JSON.stringify({ answers: answersMap, time_taken_seconds: timeTaken }),
     });
     if (!res.ok) throw new Error('Submit failed');
     const result = await res.json();

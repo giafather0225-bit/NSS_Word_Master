@@ -56,6 +56,21 @@ NOW = lambda: datetime.now().isoformat(timespec="seconds")
 _SUPPORTED_GRADES = [3]
 _GRADE_TITLES = {3: "Grade 3"}
 
+_RANK_THRESHOLDS = [
+    (100, "Master"),
+    (76,  "Champion"),
+    (51,  "Adventurer"),
+    (26,  "Explorer"),
+    (0,   "Beginner"),
+]
+
+
+def _grade_rank(completion_pct: float) -> str:
+    for threshold, rank in _RANK_THRESHOLDS:
+        if completion_pct >= threshold:
+            return rank
+    return "Beginner"
+
 
 # ── Pydantic Schemas ──────────────────────────────────────────────────────────
 
@@ -76,6 +91,7 @@ class DifficultyRating(BaseModel):
 
 class DomainTestSubmit(BaseModel):
     answers: dict[int, str]   # {question_id: user_answer}
+    time_taken_seconds: int | None = None
 
 
 class GradeFinalTestSubmit(BaseModel):
@@ -208,13 +224,20 @@ def get_domains(grade: int = Query(3), db: Session = Depends(get_db)):
             .all()
         }
 
-    return [
+    total_lessons = len(all_ids)
+    completed_lessons = len(completed_set)
+    completion_pct = round(completed_lessons / total_lessons * 100) if total_lessons else 0
+
+    domain_list = [
         {
-            "id":           d.id,
-            "domain_num":   d.domain_num,
-            "title":        d.title,
-            "lesson_count": d.lesson_count,
-            "grade":        d.grade,
+            "id":              d.id,
+            "domain_num":      d.domain_num,
+            "title":           d.title,
+            "lesson_count":    d.lesson_count,
+            "grade":           d.grade,
+            "completed_count": sum(
+                1 for lid in all_lesson_ids_by_domain[d.id] if lid in completed_set
+            ),
             "all_complete": (
                 len(all_lesson_ids_by_domain[d.id]) > 0
                 and all(lid in completed_set for lid in all_lesson_ids_by_domain[d.id])
@@ -222,6 +245,14 @@ def get_domains(grade: int = Query(3), db: Session = Depends(get_db)):
         }
         for d in domains
     ]
+
+    return {
+        "rank":            _grade_rank(completion_pct),
+        "completion_pct":  completion_pct,
+        "total_lessons":   total_lessons,
+        "completed_lessons": completed_lessons,
+        "domains":         domain_list,
+    }
 
 
 @router.get("/domains/{domain_num}/lessons")
@@ -728,17 +759,27 @@ async def submit_domain_test(
         else:
             db.add(AppConfig(key=fail_key, value=str(new_count)))
 
+    # Save elapsed time (latest attempt wins)
+    if req.time_taken_seconds is not None:
+        time_key = f"ckla_domain_test_time_d{domain_num}_g{grade}"
+        time_cfg = db.query(AppConfig).filter_by(key=time_key).first()
+        if time_cfg:
+            time_cfg.value = str(req.time_taken_seconds)
+        else:
+            db.add(AppConfig(key=time_key, value=str(req.time_taken_seconds)))
+
     db.commit()
 
     return {
-        "domain_num":  domain_num,
-        "grade":       grade,
-        "total":       total,
-        "correct":     correct,
-        "score_pct":   pct,
-        "passed":      passed,
-        "xp_awarded":  xp_awarded,
-        "results":     results,
+        "domain_num":         domain_num,
+        "grade":              grade,
+        "total":              total,
+        "correct":            correct,
+        "score_pct":          pct,
+        "passed":             passed,
+        "xp_awarded":         xp_awarded,
+        "results":            results,
+        "time_taken_seconds": req.time_taken_seconds,
     }
 
 

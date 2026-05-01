@@ -1174,3 +1174,44 @@
   transition: background var(--transition-fast);
 }
 .cfw-review-btn:hover { background: var(--english-hover); }
+
+/* ── P2-1: Rank pill + grade progress bar ───────────────────── */
+.ckla-header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ckla-rank-pill {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--english-soft);
+  color: var(--english-ink);
+}
+.ckla-rank-pill.ckla-rank-explorer   { background: var(--math-soft);    color: var(--math-ink); }
+.ckla-rank-pill.ckla-rank-adventurer { background: var(--diary-soft);   color: var(--diary-ink); }
+.ckla-rank-pill.ckla-rank-champion   { background: var(--arcade-soft);  color: var(--arcade-ink); }
+.ckla-rank-pill.ckla-rank-master     { background: var(--rewards-soft); color: var(--rewards-ink); }
+.ckla-grade-progress {
+  height: 6px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: 8px;
+}
+.ckla-grade-progress-bar {
+  height: 100%;
+  background: var(--english-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.4s var(--ease-calm);
+}
+.ckla-grade-progress-label {
+  font-size: 0.72rem;
+  color: var(--text-hint);
+  margin-top: 4px;
+}
