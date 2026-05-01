@@ -21,6 +21,7 @@ from backend.models.island import (
     IslandLumiLog, IslandLegendProgress, IslandZoneStatus,
 )
 from backend.models.gamification import XPLog
+from backend.models.goals import WeeklyGoal
 from backend.models.system import AppConfig
 from backend.services import lumi_engine as le
 from backend.services import island_care_engine as care
@@ -361,6 +362,15 @@ def evolve_validate(body: EvolveBranchBody, db: Session = Depends(get_db)):
 
     if is_final or prog.is_completed:
         return {"valid": False, "message": "Character is already fully evolved."}
+
+    char = db.get(IslandCharacter, prog.character_id)
+    xp_to_next = (char.evo_second_xp if is_mid else char.evo_first_xp) if char else 100
+    current_xp = prog.current_xp or 0
+
+    if current_xp < xp_to_next:
+        return {"valid": False, "message": f"Not enough XP. Need {xp_to_next}, have {current_xp}."}
+    if not prog.is_legend_type and (prog.hunger < 20 or prog.happiness < 20):
+        return {"valid": False, "message": "Hunger and happiness must both be above 20 to evolve."}
 
     if prog.is_legend_type:
         stone_a = "legend_first_a" if not is_mid else "legend_second"
@@ -936,3 +946,155 @@ def stats_summary(db: Session = Depends(get_db)):
             "lumi_boost_diary", "lumi_boost_review",
         ]},
     }
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 12.12 Daily Screen
+# ─────────────────────────────────────────────────────────────────────────────
+
+# @tag ISLAND
+@router.get("/daily")
+def daily_screen(db: Session = Depends(get_db)):
+    """Return all data needed for the Daily attendance / missions / goals screen."""
+    from backend.services import streak_engine
+    from sqlalchemy import func as sqlfunc
+
+    today      = _today()
+    week_start = today - timedelta(days=today.weekday())  # Monday
+
+    streak = streak_engine.get_current_streak(db)
+
+    attendance_week = []
+    for offset in range(7):
+        day = week_start + timedelta(days=offset)
+        attended = db.query(XPLog).filter(
+            XPLog.earned_date == day.isoformat()
+        ).first() is not None
+        claimed = db.query(IslandLumiLog).filter(
+            IslandLumiLog.source == "daily_attendance",
+            IslandLumiLog.earned_date == day,
+        ).first() is not None
+        attendance_week.append({
+            "date":     day.isoformat(),
+            "attended": attended,
+            "claimed":  claimed,
+            "today":    day == today,
+        })
+
+    can_claim_today = (
+        db.query(XPLog).filter(XPLog.earned_date == today.isoformat()).first() is not None
+        and not db.query(IslandLumiLog).filter(
+            IslandLumiLog.source == "daily_attendance",
+            IslandLumiLog.earned_date == today,
+        ).first()
+    )
+    today_claimed = db.query(IslandLumiLog).filter(
+        IslandLumiLog.source == "daily_attendance",
+        IslandLumiLog.earned_date == today,
+    ).first() is not None
+
+    ATTENDANCE_REWARD = 30
+
+    today_actions = {
+        r.action for r in db.query(XPLog).filter(
+            XPLog.earned_date == today.isoformat()
+        ).all()
+    }
+
+    missions = [
+        {
+            "id":          "english",
+            "title":       "Study English",
+            "description": "Complete any English activity today",
+            "reward_lumi": 20,
+            "progress":    1 if today_actions & _SUBJECT_ACTIONS["english"] else 0,
+            "total":       1,
+            "completed":   bool(today_actions & _SUBJECT_ACTIONS["english"]),
+            "locked":      False,
+        },
+        {
+            "id":          "math",
+            "title":       "Study Math",
+            "description": "Complete any Math activity today",
+            "reward_lumi": 20,
+            "progress":    1 if today_actions & _SUBJECT_ACTIONS["math"] else 0,
+            "total":       1,
+            "completed":   bool(today_actions & _SUBJECT_ACTIONS["math"]),
+            "locked":      False,
+        },
+        {
+            "id":          "diary",
+            "title":       "Write in Diary",
+            "description": "Complete a diary entry today",
+            "reward_lumi": 15,
+            "progress":    1 if today_actions & _SUBJECT_ACTIONS["diary"] else 0,
+            "total":       1,
+            "completed":   bool(today_actions & _SUBJECT_ACTIONS["diary"]),
+            "locked":      False,
+        },
+        {
+            "id":          "all_four",
+            "title":       "Island Master",
+            "description": "Complete English + Math + Diary + Review today",
+            "reward_lumi": 50,
+            "progress":    sum(
+                1 for s in _SUBJECT_ACTIONS if today_actions & _SUBJECT_ACTIONS[s]
+            ),
+            "total":       4,
+            "completed":   all(today_actions & _SUBJECT_ACTIONS[s] for s in _SUBJECT_ACTIONS),
+            "locked":      False,
+        },
+    ]
+
+    xp_week = int(
+        db.query(sqlfunc.sum(XPLog.xp_amount))
+        .filter(XPLog.earned_date >= week_start.isoformat())
+        .scalar() or 0
+    )
+    goals_rows = db.query(WeeklyGoal).filter(WeeklyGoal.is_active == 1).all()
+    weekly_goals = [
+        {
+            "label":   g.label,
+            "key":     g.key,
+            "target":  g.target,
+            "current": xp_week if g.key == "xp_earned" else 0,
+        }
+        for g in goals_rows
+        if g.key == "xp_earned"
+    ]
+
+    return {
+        "streak":            streak,
+        "attendance_week":   attendance_week,
+        "can_claim_today":   can_claim_today,
+        "today_claimed":     today_claimed,
+        "attendance_reward": ATTENDANCE_REWARD,
+        "missions":          missions,
+        "weekly_goals":      weekly_goals,
+    }
+
+
+# @tag ISLAND
+@router.post("/daily/claim")
+def daily_claim(db: Session = Depends(get_db)):
+    """Claim today's attendance reward (30 Lumi). Deduped by daily_attendance source+date."""
+    today = _today()
+
+    studied = db.query(XPLog).filter(
+        XPLog.earned_date == today.isoformat()
+    ).first() is not None
+    if not studied:
+        raise HTTPException(400, "No study activity recorded today.")
+
+    already = db.query(IslandLumiLog).filter(
+        IslandLumiLog.source == "daily_attendance",
+        IslandLumiLog.earned_date == today,
+    ).first()
+    if already:
+        raise HTTPException(400, "Attendance reward already claimed today.")
+
+    REWARD = 30
+    result = le.earn_lumi(db, source="daily_attendance", amount=REWARD,
+                          earned_date=today)
+    db.commit()
+    return {"ok": True, "lumi_earned": REWARD, "currency": result}

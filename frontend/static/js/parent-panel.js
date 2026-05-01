@@ -346,7 +346,7 @@ async function _ppIslandToggle(el) {
     if (!el) return;
     try {
         const cfg = await apiFetchJSON("/api/island/config");
-        const on  = cfg.island_on !== false;
+        const on  = cfg.config?.island_on !== "false";
         el.innerHTML = `
             <div class="pp-toggle-row">
                 <div>

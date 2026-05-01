@@ -540,6 +540,10 @@ async function _loadIslandCard() {
     if (cardEl) cardEl.onclick = openIslandMain;
     try {
         const d    = await apiFetchJSON('/api/island/status');
+        if (d.island_on === false) {
+            if (cardEl) cardEl.style.display = 'none';
+            return;
+        }
         const cnt  = (d.active_characters || []).length + (d.completed_count || 0);
         const lumi = d.currency?.lumi ?? 0;
         if (charEl) charEl.textContent = `${cnt} character${cnt === 1 ? '' : 's'}`;
