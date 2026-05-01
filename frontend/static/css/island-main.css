@@ -522,40 +522,58 @@
     pointer-events: none; /* children re-enable their own clicks */
 }
 
-/* ── Zone hotspot ────────────────────────────────────────────── */
+/* ── SVG zone polygons ───────────────────────────────────────── */
 
-.gim-hotspot {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    pointer-events: all;
-    padding: 0;
-    transition: transform var(--transition-fast), filter var(--transition-fast);
-}
-.gim-hotspot:hover:not(.gim-hotspot--locked) { transform: translate(-50%, -50%) scale(1.06); }
-.gim-hotspot:focus-visible {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 4px;
-}
-.gim-hotspot--locked { cursor: help; }
-
-.gim-ring {
+.gim-zones-svg {
     position: absolute;
     inset: 0;
-    border-radius: 50%;
-    transition: filter var(--transition-fast);
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none; /* SVG container transparent; polygon children re-enable */
+    overflow: visible;
+}
+
+.gim-poly {
+    fill-opacity: 0.07;
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    cursor: pointer;
+    pointer-events: all;
+    transition: fill-opacity 0.15s ease, stroke-width 0.15s ease;
+}
+.gim-poly:hover { fill-opacity: 0.18; stroke-width: 4; }
+
+.gim-poly--english { fill: var(--english-light); stroke: var(--english-primary); }
+.gim-poly--math    { fill: var(--math-light);    stroke: var(--math-primary); }
+.gim-poly--diary   { fill: var(--diary-light);   stroke: var(--diary-primary); }
+.gim-poly--rewards { fill: var(--rewards-light); stroke: var(--rewards-primary); }
+.gim-poly--locked  {
+    fill: rgba(200,200,230,0.06);
+    stroke: rgba(255,255,255,0.55);
+    stroke-dasharray: 10 6;
+    cursor: help;
+}
+.gim-poly--locked:hover { fill-opacity: 0.12; }
+
+/* ── Zone label wrap (positioned at zone center) ─────────────── */
+
+.gim-zone-label-wrap {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    pointer-events: all;
+    cursor: pointer;
 }
 
 /* ── Zone label pill ─────────────────────────────────────────── */
 
 .gim-label {
-    position: absolute;
-    left: 50%;
-    bottom: -10px;
-    transform: translateX(-50%);
     background: #fff;
     border-radius: var(--radius-full);
     padding: 4px 12px;
@@ -579,9 +597,7 @@
 /* ── Status badges ───────────────────────────────────────────── */
 
 .gim-badge {
-    position: absolute;
-    top: -4px;
-    right: 6px;
+    position: relative;
     width: 26px;
     height: 26px;
     border-radius: 50%;
@@ -607,23 +623,24 @@
     50%       { transform: scale(1.15); box-shadow: 0 4px 12px rgba(238,199,112,.6); }
 }
 
-/* ── Locked zone content ─────────────────────────────────────── */
+/* ── Locked zone overlay (shows lock icon + progress near legend center) ── */
 
-.gim-lock-content {
-    position: absolute;
-    inset: 0;
+.gim-lock-overlay {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 4px;
+    gap: 2px;
     pointer-events: none;
+    margin-bottom: 4px;
 }
-.gim-lock-content span {
+.gim-lock-overlay span {
     font-size: 11px;
     font-weight: 800;
     color: rgba(255,255,255,.9);
-    text-shadow: 0 1px 3px rgba(0,0,0,.4);
+    text-shadow: 0 1px 4px rgba(0,0,0,.5);
+    background: rgba(0,0,0,.25);
+    padding: 1px 7px;
+    border-radius: var(--radius-full);
 }
 
 /* ── Character bubbles ───────────────────────────────────────── */
@@ -761,6 +778,114 @@
 }
 
 .gim-today-name { color: var(--text-primary); }
+
+/* ── Today panel — daily section ────────────────────────────── */
+
+.gim-today-divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin: 7px 0 6px;
+}
+
+.gim-today-attend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 7px;
+}
+
+.gim-today-claim-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    padding: 7px 0;
+    background: var(--diary-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-display);
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.gim-today-claim-btn i { width: 14px; height: 14px; }
+.gim-today-claim-btn:hover:not(:disabled) {
+    background: var(--diary-hover);
+    transform: translateY(-1px);
+}
+.gim-today-claim-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none;
+}
+.gim-today-claim-btn--locked {
+    background: var(--bg-surface);
+    color: var(--text-hint);
+    font-weight: 600;
+}
+
+.gim-today-claimed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--math-ink);
+    padding: 4px 0;
+}
+.gim-today-claimed i { width: 14px; height: 14px; color: var(--math-primary); }
+
+.gim-today-goal {
+    margin-top: 8px;
+}
+.gim-today-goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+.gim-today-goal-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--text-hint);
+}
+.gim-today-goal-pct {
+    font-size: 10px;
+    color: var(--text-hint);
+}
+.gim-today-goal-bar {
+    height: 5px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+.gim-today-goal-fill {
+    height: 100%;
+    background: var(--arcade-primary);
+    border-radius: var(--radius-full);
+    transition: width .4s ease;
+}
+
+/* Night overrides — daily section */
+.gim-screen--night .gim-today-divider      { background: rgba(255,255,255,.14); }
+.gim-screen--night .gim-today-attend       { color: rgba(255,255,255,.7); }
+.gim-screen--night .gim-today-claimed      { color: rgba(150,240,150,.9); }
+.gim-screen--night .gim-today-claimed i   { color: rgba(150,240,150,.9); }
+.gim-screen--night .gim-today-claim-btn--locked {
+    background: rgba(255,255,255,.08);
+    color: rgba(255,255,255,.35);
+}
+.gim-screen--night .gim-today-goal-bar     { background: rgba(255,255,255,.12); }
+.gim-screen--night .gim-today-goal-label,
+.gim-screen--night .gim-today-goal-pct    { color: rgba(255,255,255,.4); }
 
 /* ── Lumi toast ──────────────────────────────────────────────── */
 

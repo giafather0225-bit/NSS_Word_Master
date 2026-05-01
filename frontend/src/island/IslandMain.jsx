@@ -16,13 +16,35 @@ const _ZONE_META = {
     legend:  { label: 'Legend',  icon: '✨', varPfx: 'diary',   subject: 'All'     },
 };
 
-// CALIBRATED — do not change without re-checking against island_map.png (1376×768)
-const _HOTSPOTS = {
-    forest:  { left: '17%', top: '42%', size: 150 },
-    space:   { left: '47%', top: '22%', size: 110 },
-    legend:  { left: '50%', top: '50%', size: 130 },
-    ocean:   { left: '88%', top: '60%', size: 130 },
-    savanna: { left: '48%', top: '80%', size: 170 },
+// CALIBRATED — polygon points in 1376×768 coordinate space (SVG viewBox matches map)
+// lx/ly = label pill center (CSS transform: translate(-50%,-50%) is applied)
+// Zones are non-overlapping; shared edges touch but do not cross.
+const _ZONE_POLYS = {
+    // Forest: upper-left woodland — right edge stops at x=435 before Legend starts (y≥302)
+    forest:  {
+        pts: '12,88 190,62 392,70 492,108 530,192 435,290 258,468 78,448 12,368',
+        lx: '17%', ly: '38%',
+    },
+    // Space: top-center observatory — bottom edge y≈262, above Legend top (y=275)
+    space:   {
+        pts: '532,20 686,10 762,22 818,62 832,155 810,228 768,254 704,262 640,248 582,212 548,155',
+        lx: '49%', ly: '18%',
+    },
+    // Legend: center ruins — upper-left at (462,302), clear of Forest (ends y≈262 at x=462)
+    legend:  {
+        pts: '462,302 554,282 700,275 806,294 868,348 884,464 848,550 734,580 606,584 484,556 434,494 420,388',
+        lx: '50%', ly: '50%',
+    },
+    // Ocean: right coast — lighthouse + beach + dock; left edge x≈860 clear of Legend (right≈868)
+    ocean:   {
+        pts: '878,190 1008,146 1204,86 1376,166 1376,608 1224,664 1070,650 962,556 940,430 870,330 860,246',
+        lx: '85%', ly: '48%',
+    },
+    // Savanna: bottom grassland — top edge y≈506-540, below Legend bottom (y=584)
+    savanna: {
+        pts: '358,556 448,516 604,506 800,508 962,540 1064,596 1070,684 984,760 784,768 496,768 358,726 346,626',
+        lx: '49%', ly: '76%',
+    },
 };
 
 // Character emoji map — swap img src here when art ships
@@ -46,6 +68,7 @@ const _CHAR_BUBBLES = [
 /** @tag SHOP */
 let _islandStatus  = null;
 let _islandStreak  = 0;
+let _islandDaily   = null;
 let _nightSwitchTimer = null;
 
 // ─── Open / Close ───────────────────────────────────────────────
@@ -71,9 +94,11 @@ async function openIslandMain() {
     Promise.all([
         fetch('/api/island/status').then(r => r.json()),
         fetch('/api/xp/summary').then(r => r.json()),
-    ]).then(([statusData, xpData]) => {
+        fetch('/api/island/daily').then(r => r.json()).catch(() => null),
+    ]).then(([statusData, xpData, dailyData]) => {
         _islandStatus = statusData;
         _islandStreak = xpData.streak_days ?? 0;
+        _islandDaily  = dailyData;
         _renderIslandMap();
         if (typeof lucide !== 'undefined') lucide.createIcons();
         if (typeof checkIslandNotifications === 'function') checkIslandNotifications();
@@ -187,16 +212,11 @@ function _renderIslandMap() {
                 </div>
             </div>
 
-            <!-- Map stage — hotspots positioned relative to this layer -->
+            <!-- Map stage — SVG zone polygons + floating labels -->
             <div class="gim-map-stage" id="gim-map-stage">
 
-                <!-- Zone hotspots -->
-                ${Object.entries(_HOTSPOTS).map(([zone, pos]) =>
-                    _hotspotHTML(zone, _ZONE_META[zone], pos,
-                        zone === 'legend' && legendLocked,
-                        charsByZone[zone] || [],
-                        completedZones)
-                ).join('')}
+                <!-- Zone polygons (SVG) + HTML label pills -->
+                ${_svgZonesHTML(charsByZone, completedZones, legendLocked)}
 
                 <!-- Floating character bubbles -->
                 ${_bubblesHTML(charsByZone)}
@@ -228,48 +248,57 @@ function _renderIslandMap() {
     if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
-// ─── Hotspot ─────────────────────────────────────────────────────
+// ─── SVG zone polygons ────────────────────────────────────────────
 
-/** @tag SHOP */
-function _hotspotHTML(zone, meta, pos, locked, chars, completedZones) {
-    const varPfx = meta.varPfx;
-    const hasWarn  = chars.some(c => (c.hunger ?? 100) < 30 || (c.happiness ?? 100) < 30);
-    const hasReady = chars.some(c => c.ready_to_evolve);
+/** Render one SVG <polygon> per zone + HTML label pills positioned at zone centers. @tag SHOP */
+function _svgZonesHTML(charsByZone, completedZones, legendLocked) {
+    const polygons = Object.entries(_ZONE_POLYS).map(([zone, cfg]) => {
+        const meta   = _ZONE_META[zone];
+        const locked = zone === 'legend' && legendLocked;
+        const cls    = locked ? 'gim-poly gim-poly--locked' : `gim-poly gim-poly--${meta.varPfx}`;
+        const click  = locked
+            ? `onclick="_islandLockedClick('${zone}')" aria-label="Enter ${meta.label} zone (locked)"`
+            : `onclick="_islandZoneClick('${zone}')"  aria-label="Enter ${meta.label} zone"`;
+        return `<polygon class="${cls}" points="${cfg.pts}" ${click} />`;
+    }).join('');
 
-    const ringStyle = locked
-        ? `border:2px dashed rgba(255,255,255,.7); background:radial-gradient(circle,rgba(255,255,255,.5),rgba(243,210,220,.35)); box-shadow:inset 0 0 30px rgba(255,255,255,.6); backdrop-filter:blur(3px);`
-        : `border:3px solid var(--${varPfx}-primary); background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%); box-shadow:0 6px 20px rgba(0,0,0,.18),inset 0 0 0 6px rgba(255,255,255,.25);`;
+    const labels = Object.entries(_ZONE_POLYS).map(([zone, cfg]) => {
+        const meta   = _ZONE_META[zone];
+        const locked = zone === 'legend' && legendLocked;
+        const chars  = charsByZone[zone] || [];
+        const hasWarn  = chars.some(c => (c.hunger  ?? 100) < 30 || (c.happiness ?? 100) < 30);
+        const hasReady = chars.some(c => c.ready_to_evolve);
 
-    const clickAttr = locked
-        ? `onclick="_islandLockedClick('${zone}')" aria-label="Enter ${meta.label} zone (locked)"`
-        : `onclick="_islandZoneClick('${zone}')" aria-label="Enter ${meta.label} zone"`;
+        const warnBadge = (!locked && hasWarn)
+            ? `<div class="gim-badge gim-badge--warn" aria-label="Needs care">!</div>` : '';
+        const evoBadge  = (!locked && hasReady)
+            ? `<div class="gim-badge gim-badge--evo" aria-label="Ready to evolve">✨</div>` : '';
+        const lockTag   = locked
+            ? `<i data-lucide="lock" style="width:10px;height:10px;vertical-align:-1px"></i> ` : '';
+        const lockOverlay = locked ? `
+            <div class="gim-lock-overlay">
+                <i data-lucide="lock" style="width:24px;height:24px;color:rgba(255,255,255,.9)"></i>
+                <span>${completedZones} / 4</span>
+            </div>` : '';
 
-    const warnBadge = (!locked && hasWarn)
-        ? `<div class="gim-badge gim-badge--warn" aria-label="Needs care">!</div>` : '';
-    const evoBadge  = (!locked && hasReady)
-        ? `<div class="gim-badge gim-badge--evo" aria-label="Ready to evolve">✨</div>` : '';
+        const click = locked
+            ? `onclick="_islandLockedClick('${zone}')"`
+            : `onclick="_islandZoneClick('${zone}')"`;
 
-    const lockContent = locked ? `
-        <div class="gim-lock-content">
-            <i data-lucide="lock" style="width:26px;height:26px;color:rgba(255,255,255,.9)"></i>
-            <span>${completedZones} / 4</span>
-        </div>` : '';
-
-    const labelPill = `
-        <div class="gim-label gim-label--${varPfx}">
-            ${locked ? '<i data-lucide="lock" style="width:11px;height:11px"></i> ' : ''}${meta.label}
-        </div>`;
+        return `
+            <div class="gim-zone-label-wrap" style="left:${cfg.lx};top:${cfg.ly}" ${click}>
+                ${lockOverlay}
+                <div class="gim-label gim-label--${meta.varPfx}">${lockTag}${meta.label}</div>
+                ${warnBadge}${evoBadge}
+            </div>`;
+    }).join('');
 
     return `
-        <button class="gim-hotspot${locked ? ' gim-hotspot--locked' : ''}"
-                style="left:${pos.left};top:${pos.top};width:${pos.size}px;height:${pos.size}px"
-                ${clickAttr} tabindex="0">
-            <div class="gim-ring" style="${ringStyle}"></div>
-            ${labelPill}
-            ${warnBadge}
-            ${evoBadge}
-            ${lockContent}
-        </button>`;
+        <svg class="gim-zones-svg" viewBox="0 0 1376 768"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            ${polygons}
+        </svg>
+        ${labels}`;
 }
 
 // ─── Character bubbles ───────────────────────────────────────────
@@ -316,14 +345,64 @@ function _streakDotsHTML(count, total = 7) {
 
 /** @tag SHOP */
 function _todayRowsHTML(chars) {
+    // Character rows (top 3)
     const top3 = chars.slice(0, 3);
-    if (!top3.length) return `<div class="gim-today-row"><span>Your island awaits</span></div>`;
-    return top3.map(c => {
-        const emoji  = _charEmoji(c);
-        const name   = escapeHtml((c.nickname || c.name || '').substring(0, 10));
-        const status = _charStatus(c);
-        return `<div class="gim-today-row">${emoji} <b class="gim-today-name">${name}</b> · ${escapeHtml(status)}</div>`;
-    }).join('');
+    const charRows = top3.length
+        ? top3.map(c => {
+            const emoji  = _charEmoji(c);
+            const name   = escapeHtml((c.nickname || c.name || '').substring(0, 10));
+            const status = _charStatus(c);
+            return `<div class="gim-today-row">${emoji} <b class="gim-today-name">${name}</b> · ${escapeHtml(status)}</div>`;
+        }).join('')
+        : `<div class="gim-today-row"><span>Your island awaits</span></div>`;
+
+    // Daily section — skip if data unavailable
+    const d = _islandDaily;
+    if (!d) return charRows;
+
+    const streak   = typeof d.streak === 'number' ? d.streak : (d.streak?.current_streak ?? _islandStreak);
+    const attended = d.attendance_week?.find(w => w.today)?.attended ?? false;
+    const claimed  = d.today_claimed;
+    const canClaim = d.can_claim_today;
+
+    let claimHTML;
+    if (claimed) {
+        claimHTML = `<div class="gim-today-claimed"><i data-lucide="check-circle"></i> Claimed</div>`;
+    } else if (canClaim) {
+        claimHTML = `<button class="gim-today-claim-btn" id="gim-claim-btn" onclick="_claimDailyAttendance()">
+            <i data-lucide="gem"></i> Claim 30 Lumi
+        </button>`;
+    } else {
+        claimHTML = `<button class="gim-today-claim-btn gim-today-claim-btn--locked" disabled>
+            Study first to claim
+        </button>`;
+    }
+
+    // Weekly goal (first active XP goal, if any)
+    const goal = (d.weekly_goals || [])[0];
+    const goalHTML = goal ? (() => {
+        const pct = goal.target > 0 ? Math.min(100, Math.round((goal.current / goal.target) * 100)) : 0;
+        return `
+            <div class="gim-today-goal">
+                <div class="gim-today-goal-header">
+                    <span class="gim-today-goal-label">${escapeHtml(goal.label || 'Weekly XP')}</span>
+                    <span class="gim-today-goal-pct">${goal.current} / ${goal.target}</span>
+                </div>
+                <div class="gim-today-goal-bar">
+                    <div class="gim-today-goal-fill" style="width:${pct}%"></div>
+                </div>
+            </div>`;
+    })() : '';
+
+    return `
+        ${charRows}
+        <div class="gim-today-divider"></div>
+        <div class="gim-today-attend">
+            <span>${attended ? '✅' : '⬜'} Today</span>
+            <span>🔥 ${streak} day${streak === 1 ? '' : 's'}</span>
+        </div>
+        ${claimHTML}
+        ${goalHTML}`;
 }
 
 /** @tag SHOP */
@@ -332,6 +411,43 @@ function _charStatus(c) {
     if ((c.hunger ?? 100) < 30)    return 'feeling hungry';
     if ((c.happiness ?? 100) < 30) return 'feeling sad';
     return 'happy & full';
+}
+
+/** Claim today's attendance Lumi reward. @tag SHOP */
+async function _claimDailyAttendance() {
+    const btn = document.getElementById('gim-claim-btn');
+    if (!btn || btn.disabled) return;
+    btn.disabled = true;
+    btn.innerHTML = '<i data-lucide="loader-2"></i> Claiming…';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    try {
+        const result = await apiFetchJSON('/api/island/daily/claim', { method: 'POST' });
+
+        // Update topbar lumi balance
+        const newLumi = result.currency?.lumi;
+        if (newLumi != null) {
+            const lumiSpan = document.querySelector('.gim-stat--lumi span');
+            if (lumiSpan) lumiSpan.textContent = newLumi.toLocaleString();
+        }
+
+        // Swap button → claimed badge in place
+        btn.outerHTML = `<div class="gim-today-claimed"><i data-lucide="check-circle"></i> Claimed</div>`;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+
+        // Keep state in sync so re-renders stay consistent
+        if (_islandDaily) {
+            _islandDaily.today_claimed  = true;
+            _islandDaily.can_claim_today = false;
+        }
+
+        showIslandLumiToast(result.lumi_earned ?? 30);
+    } catch (e) {
+        btn.disabled = false;
+        btn.innerHTML = '<i data-lucide="gem"></i> Claim 30 Lumi';
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+        if (typeof _showShopToast === 'function') _showShopToast(e.message || 'Claim failed');
+    }
 }
 
 // ─── Zone click ──────────────────────────────────────────────────
