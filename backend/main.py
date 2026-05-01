@@ -43,6 +43,7 @@ from backend.routers import parent_math as parent_math_router
 from backend.routers import parent_streak as parent_streak_router
 from backend.routers import parent_xp as parent_xp_router
 from backend.routers import parent_report as parent_report_router
+from backend.routers import parent_ckla as parent_ckla_router
 from backend.routers import starred as starred_router
 from backend.routers import goals as goals_router
 from backend.routers import growth_theme as growth_theme_router
@@ -266,6 +267,7 @@ app.include_router(tutor_sentence_router.router)
 app.include_router(us_academy_router.router)
 app.include_router(ckla_router.router)
 app.include_router(ckla_review_router.router)
+app.include_router(parent_ckla_router.router)
 app.include_router(island_router.router)
 
 

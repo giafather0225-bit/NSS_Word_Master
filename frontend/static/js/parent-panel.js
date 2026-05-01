@@ -116,6 +116,7 @@ function _ppRemovePin() {
 const PP_TABS = [
     ["home",     "Home"],
     ["english",  "English"],
+    ["ckla",     "CKLA"],
     ["math",     "Math"],
     ["habits",   "Habits"],
     ["goals",    "Goals"],
@@ -165,6 +166,7 @@ async function _ppLoadTab(tab) {
     switch (tab) {
         case "home":     if (typeof _ppHome        === "function") await _ppHome(body);        else body.innerHTML = missing; break;
         case "english":  await _ppEnglish(body);  break;
+        case "ckla":     if (typeof _ppCKLA        === "function") await _ppCKLA(body);        else body.innerHTML = missing; break;
         case "math":     if (typeof _ppMathSummary === "function") await _ppMathSummary(body); else body.innerHTML = missing; break;
         case "habits":   await _ppHabits(body);   break;
         case "goals":    if (typeof _ppGoals       === "function") await _ppGoals(body);       else body.innerHTML = missing; break;
