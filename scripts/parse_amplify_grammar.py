@@ -134,14 +134,21 @@ def parse_units(text: str) -> list:
             raw = m_match.group(1).strip()
             morph_items = [line.strip("•–- ").strip() for line in raw.split("\n") if line.strip("•–- ").strip()][:6]
 
-        if not grammar_items and not morph_items:
-            results.append(verified_data[unit_num - 1])
+        vd = verified_data[unit_num - 1]
+        # Validate parsed items against verified data minimums to avoid
+        # accepting spurious single-word fragments from PDF prose.
+        min_g = max(1, len(vd["grammar"]) - 1)
+        min_m = max(1, len(vd["morphology"]) - 1)
+        g_ok = len(grammar_items) >= min_g
+        m_ok = len(morph_items) >= min_m
+        if not g_ok and not m_ok:
+            results.append(vd)
         else:
             results.append({
                 "unit": unit_num,
                 "domain": DOMAIN_NAMES[unit_num],
-                "grammar": grammar_items,
-                "morphology": morph_items,
+                "grammar": grammar_items if g_ok else vd["grammar"],
+                "morphology": morph_items if m_ok else vd["morphology"],
             })
 
     return results

@@ -20,6 +20,10 @@ API:
   GET  /api/academy/ckla/grade-final-test             — grade final test questions
   POST /api/academy/ckla/grade-final-test/submit      — submit grade final test
 
+  GET  /api/academy/ckla/spelling/{unit}              — spelling weeks for a unit
+  GET  /api/academy/ckla/grammar/{unit}               — grammar topics for a unit
+  GET  /api/academy/ckla/morphology/{unit}            — morphology topics for a unit
+
 SM-2 review: routers/ckla_review.py
 """
 
@@ -41,6 +45,7 @@ from backend.models.ckla import (
     CKLADomain, CKLALesson, CKLAQuestion,
     CKLAWordLesson, CKLALessonProgress, CKLAQuestionResponse,
     CKLABadge, CKLAUserBadge,
+    CKLASpelling, CKLAGrammar, CKLAMorphology,
 )
 from backend.models.us_academy import USAcademyWord, USAcademyWordProgress
 from backend.models.system import AppConfig
@@ -941,3 +946,62 @@ async def submit_grade_final_test(
         "retry_after":     retry_after_str,
         "wrong_questions": wrong_questions,
     }
+
+
+# ── Spelling / Grammar / Morphology ──────────────────────────────────────────
+
+@router.get("/spelling/{unit}")
+def get_spelling(unit: int, db: Session = Depends(get_db)):
+    """Return all spelling weeks for a unit.
+
+    Each week: {week, pattern, words: [], challenge_words: []}
+    """
+    rows = (
+        db.query(CKLASpelling)
+        .filter(CKLASpelling.unit == unit)
+        .order_by(CKLASpelling.week)
+        .all()
+    )
+    weeks = []
+    for row in rows:
+        try:
+            words = json.loads(row.words)
+        except (ValueError, TypeError):
+            words = []
+        try:
+            challenges = json.loads(row.challenge_words)
+        except (ValueError, TypeError):
+            challenges = []
+        weeks.append({
+            "week":            row.week,
+            "pattern":         row.pattern or "",
+            "words":           words,
+            "challenge_words": challenges,
+        })
+    return {"unit": unit, "weeks": weeks}
+
+
+@router.get("/grammar/{unit}")
+def get_grammar(unit: int, db: Session = Depends(get_db)):
+    """Return grammar topics for a unit."""
+    row = db.query(CKLAGrammar).filter(CKLAGrammar.unit == unit).first()
+    if not row:
+        return {"unit": unit, "topics": []}
+    try:
+        topics = json.loads(row.topics)
+    except (ValueError, TypeError):
+        topics = []
+    return {"unit": unit, "topics": topics}
+
+
+@router.get("/morphology/{unit}")
+def get_morphology(unit: int, db: Session = Depends(get_db)):
+    """Return morphology topics for a unit."""
+    row = db.query(CKLAMorphology).filter(CKLAMorphology.unit == unit).first()
+    if not row:
+        return {"unit": unit, "topics": []}
+    try:
+        topics = json.loads(row.topics)
+    except (ValueError, TypeError):
+        topics = []
+    return {"unit": unit, "topics": topics}

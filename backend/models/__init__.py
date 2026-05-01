@@ -60,6 +60,9 @@ from .ckla import (
     CKLAQuestionResponse,
     CKLABadge,
     CKLAUserBadge,
+    CKLASpelling,
+    CKLAGrammar,
+    CKLAMorphology,
 )
 
 __all__ = [
@@ -86,6 +89,7 @@ __all__ = [
     "CKLADomain", "CKLALesson", "CKLAQuestion",
     "CKLAWordLesson", "CKLALessonProgress", "CKLAQuestionResponse",
     "CKLABadge", "CKLAUserBadge",
+    "CKLASpelling", "CKLAGrammar", "CKLAMorphology",
     # island
     "IslandCharacter", "IslandCharacterProgress", "IslandCareLog",
     "IslandShopItem", "IslandInventory", "IslandPlacedItem",

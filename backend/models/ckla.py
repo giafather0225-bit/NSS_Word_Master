@@ -1,9 +1,9 @@
 """
 models/ckla.py — CKLA ORM models (grade-aware)
 Section: Academy
-Dependencies: ._base.Base, migrations 011, 019, 020
+Dependencies: ._base.Base, migrations 011, 019, 020, 021
 
-Tables (created/modified by migrations 011, 019, 020):
+Tables (created/modified by migrations 011, 019, 020, 021):
   us_academy_domains          — CKLA domains (grade-aware)
   us_academy_lessons          — lessons (passage + Word Work, grade-aware)
   us_academy_questions        — comprehension questions
@@ -12,6 +12,9 @@ Tables (created/modified by migrations 011, 019, 020):
   us_academy_question_responses — per-question answer records
   ckla_badges                 — badge catalog (migration 020)
   ckla_user_badges            — user earned badges (migration 020)
+  ckla_spelling               — weekly spelling word lists (migration 021)
+  ckla_grammar                — grammar topics per unit (migration 021)
+  ckla_morphology             — morphology topics per unit (migration 021)
 """
 
 from sqlalchemy import Column, Integer, String, Boolean, Text, ForeignKey
@@ -127,6 +130,36 @@ class CKLAUserBadge(Base):
     earned_at = Column(String, nullable=False)
 
 
+class CKLASpelling(Base):
+    """Weekly spelling word lists per unit (migration 021)"""
+    __tablename__ = "ckla_spelling"
+
+    id              = Column(Integer, primary_key=True)
+    unit            = Column(Integer, nullable=False)
+    week            = Column(Integer, nullable=False)
+    pattern         = Column(String, nullable=False, default="")
+    words           = Column(Text, nullable=False, default="[]")    # JSON array
+    challenge_words = Column(Text, nullable=False, default="[]")    # JSON array
+
+
+class CKLAGrammar(Base):
+    """Grammar topics per unit (migration 021)"""
+    __tablename__ = "ckla_grammar"
+
+    id     = Column(Integer, primary_key=True)
+    unit   = Column(Integer, nullable=False, unique=True)
+    topics = Column(Text, nullable=False, default="[]")    # JSON array
+
+
+class CKLAMorphology(Base):
+    """Morphology topics per unit (migration 021)"""
+    __tablename__ = "ckla_morphology"
+
+    id     = Column(Integer, primary_key=True)
+    unit   = Column(Integer, nullable=False, unique=True)
+    topics = Column(Text, nullable=False, default="[]")    # JSON array
+
+
 __all__ = [
     "CKLADomain",
     "CKLALesson",
@@ -136,4 +169,7 @@ __all__ = [
     "CKLAQuestionResponse",
     "CKLABadge",
     "CKLAUserBadge",
+    "CKLASpelling",
+    "CKLAGrammar",
+    "CKLAMorphology",
 ]
