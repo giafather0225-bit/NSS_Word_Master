@@ -87,7 +87,9 @@ function _cdRender(el) {
     const h      = prog.hunger    ?? 100;
     const p      = prog.happiness ?? 100;
     const canEvo = d.can_evolve   ?? false;
-    const stone  = escapeHtml(d.evolution_stone ?? 'None');
+    const stoneRaw = d.evolution_stone ?? 'None';
+    const _stoneLabels = { first_a:'1st Stone (A)', first_b:'1st Stone (B)', second_a:'2nd Stone (A)', second_b:'2nd Stone (B)' };
+    const stone  = escapeHtml(_stoneLabels[stoneRaw] || (stoneRaw === 'None' ? '—' : stoneRaw));
 
     const animCls = (h < 20 || p < 20) ? 'icd-avatar--sad'
                   : (h >= 60 && p >= 60) ? 'icd-avatar--happy' : 'icd-avatar--idle';
@@ -101,7 +103,7 @@ function _cdRender(el) {
                 <div class="icd-hero">
                     <div class="icd-avatar ${animCls}" id="icd-avatar"
                          onclick="_cdBounce()" role="button" tabindex="0" title="Say hi!">
-                        <div class="icd-avatar-emoji">${meta.icon || '🌟'}</div>
+                        <div class="icd-avatar-emoji">${_CHAR_EMOJI[(prog.character_name||'').toLowerCase()] || meta.icon || '🌟'}</div>
                         <span class="icd-avatar-stage">${stage}</span>
                     </div>
                     <div class="icd-hero-info">
@@ -175,7 +177,7 @@ function _cdEvoTree(prog) {
         const icon = isCur(s) ? 'star' : isDone(s) ? 'check-circle' : chosen ? 'circle' : 'lock';
         return `<div class="icd-evo-node ${cls}">
             <i data-lucide="${icon}"></i>
-            <span>${s}</span>
+            <span>${{baby:'Baby',mid_a:'Mid A',mid_b:'Mid B',final_a:'Final A',final_b:'Final B'}[s]||s}</span>
         </div>`;
     };
     const midAChosen = isMidA || stage === 'baby';

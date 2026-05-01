@@ -167,7 +167,7 @@ function _colCardHTML(char) {
         <div class="ico-card${done ? ' ico-card--done' : ' ico-card--locked'}"
              onclick="_colOpenDetail(${char.id})">
             <div class="ico-card-avatar${done ? '' : ' ico-card-avatar--sil'}">
-                ${meta.icon || '?'}
+                ${done ? (_CHAR_EMOJI[(char.name||'').toLowerCase()] || meta.icon || '?') : '?'}
             </div>
             <div class="ico-card-name">${name}</div>
             <div class="ico-card-zone">${done ? (meta.label || char.zone) : char.zone}</div>
@@ -199,7 +199,7 @@ function _colDetailModal() {
                     <i data-lucide="x"></i>
                 </button>
                 <div class="ico-modal-avatar${done ? '' : ' ico-card-avatar--sil'}">
-                    ${meta.icon || '?'}
+                    ${done ? (_CHAR_EMOJI[(char.name||'').toLowerCase()] || meta.icon || '?') : '?'}
                 </div>
                 <div class="ico-modal-name">${name}</div>
                 <div class="ico-modal-zone">${meta.label || char.zone}</div>

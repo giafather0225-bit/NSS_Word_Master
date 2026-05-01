@@ -256,16 +256,17 @@ async function _ishExchange() {
     if (btn) { btn.disabled = true; btn.innerHTML = '<i data-lucide="loader"></i> Converting…'; }
     if (typeof lucide !== 'undefined') lucide.createIcons();
     try {
+        const llGained = _ishExchAmt;
         const res = await fetch('/api/island/lumi/exchange', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ lumi_amount: _ishExchAmt }),
+            body: JSON.stringify({ lumi_amount: _ishExchAmt * 100 }),
         });
         if (res.ok) {
             const d = await res.json();
             _ishCurrency = d.currency || _ishCurrency;
             _ishExchAmt  = 0;
-            if (typeof _showShopToast === 'function') _showShopToast(`Converted! ✨ +${_ishExchAmt}`);
+            if (typeof _showShopToast === 'function') _showShopToast(`Converted! +${llGained} Legend Lumi`);
             const el = document.getElementById('isl-detail-overlay');
             if (el) { _ishRender(el); if (typeof lucide !== 'undefined') lucide.createIcons(); }
         } else {

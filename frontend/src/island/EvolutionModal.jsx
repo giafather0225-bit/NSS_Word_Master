@@ -36,6 +36,10 @@ async function openEvolutionModal(progId, currentStage, charName) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ character_progress_id: progId }),
         });
+        if (!_emValidData.valid) {
+            _emRenderError(el, _emValidData.message || 'Cannot evolve right now.');
+            return;
+        }
         _emRenderModal(el, _emValidData);
     } catch (err) {
         _emRenderError(el, err?.detail || 'Evolution check failed.');
@@ -82,15 +86,27 @@ function _emRenderError(el, msg) {
 
 // ─── Main render ─────────────────────────────────────────────
 
+const _EM_STAGE_LABELS = { baby:'Baby', mid_a:'Mid A', mid_b:'Mid B', final_a:'Final A', final_b:'Final B' };
+const _EM_STONE_LABELS = {
+    first_a: '1st Stone (A)', first_b: '1st Stone (B)',
+    second: '2nd Stone', second_a: '2nd Stone (A)', second_b: '2nd Stone (B)',
+    legend_first_a: 'Legend Stone (A)', legend_first_b: 'Legend Stone (B)',
+    legend_second: 'Legend Stone (2nd)',
+};
+
 /** @tag SHOP */
 function _emRenderModal(el, d) {
     const nameHtml = escapeHtml(_emCharName || 'Character');
-    const stoneA   = escapeHtml(d.branch_a?.stone || 'Stone A');
-    const stoneB   = escapeHtml(d.branch_b?.stone || 'Stone B');
-    const descA    = escapeHtml(d.branch_a?.description || 'Path A — takes a new form.');
-    const descB    = escapeHtml(d.branch_b?.description || 'Path B — takes a new form.');
-    const targetA  = escapeHtml(d.branch_a?.target_stage || 'mid_a');
-    const targetB  = escapeHtml(d.branch_b?.target_stage || 'mid_b');
+    const rawStoneA = d.branch_a?.stone || '';
+    const rawStoneB = d.branch_b?.stone || '';
+    const rawTargetA = d.branch_a?.target_stage || 'mid_a';
+    const rawTargetB = d.branch_b?.target_stage || 'mid_b';
+    const stoneA   = escapeHtml(_EM_STONE_LABELS[rawStoneA] || rawStoneA || 'Stone A');
+    const stoneB   = escapeHtml(_EM_STONE_LABELS[rawStoneB] || rawStoneB || 'Stone B');
+    const targetA  = escapeHtml(_EM_STAGE_LABELS[rawTargetA] || rawTargetA);
+    const targetB  = escapeHtml(_EM_STAGE_LABELS[rawTargetB] || rawTargetB);
+    const descA    = escapeHtml(`Evolve into ${_EM_STAGE_LABELS[rawTargetA] || rawTargetA} form.`);
+    const descB    = escapeHtml(`Evolve into ${_EM_STAGE_LABELS[rawTargetB] || rawTargetB} form.`);
 
     el.innerHTML = `
         <div class="iem-backdrop" onclick="_closeEvoModal()">

@@ -21,7 +21,7 @@ let _inData = null;
 async function checkIslandNotifications() {
     try {
         const data = await apiFetchJSON('/api/island/notifications');
-        if (!data || (!data.hungry?.length && !data.evolvable?.length && !data.lumi_earned == null)) return;
+        if (!data || (!data.hungry?.length && !data.evolvable?.length && !data.lumi_earned)) return;
         _inData = data;
         _inRender();
     } catch (_) { /* silent — notifications are optional */ }

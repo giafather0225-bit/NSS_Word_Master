@@ -141,11 +141,12 @@ function _zdCharVisual(prog) {
     const status  = h < 20 ? 'Hungry — needs food!'
                   : p < 20 ? 'Feeling lonely...'
                   : h >= 80 && p >= 80 ? 'Feeling great!' : 'Doing okay.';
+    const charEmoji = _CHAR_EMOJI[(cat.name || '').toLowerCase()] || _ZONE_META[_zdZone]?.icon || '🌟';
     return `
         <div class="izd-char-visual ${animCls}" onclick="_zdOpenCharDetail(${prog.id})"
              role="button" tabindex="0" title="View details">
             <div class="izd-char-avatar">
-                <div class="izd-char-emoji">${_ZONE_META[_zdZone]?.icon || '🌟'}</div>
+                <div class="izd-char-emoji">${charEmoji}</div>
                 <span class="izd-char-stage">${prog.stage || 'baby'}</span>
             </div>
             <div class="izd-char-name">${name}</div>
@@ -182,7 +183,9 @@ function _zdRightPanel(prog, isLegend) {
     const xp     = _zdCareData?.current_xp        ?? prog.current_xp   ?? 0;
     const maxXp  = _zdCareData?.xp_to_next_level  ?? 100;
     const xpPct  = Math.min(100, Math.round(xp / maxXp * 100));
-    const stone  = _zdCareData?.evolution_stone   ?? 'None';
+    const stoneRaw = _zdCareData?.evolution_stone ?? 'None';
+    const stoneLabels = { first_a: '1st Stone (A)', first_b: '1st Stone (B)', second_a: '2nd Stone (A)', second_b: '2nd Stone (B)' };
+    const stone = stoneLabels[stoneRaw] || (stoneRaw === 'None' ? '—' : stoneRaw);
     const canEvo = _zdCareData?.can_evolve        ?? false;
     const lumiPd = cat.lumi_production            ?? 0;
     const h = prog.hunger ?? 0, p = prog.happiness ?? 0;
@@ -301,12 +304,15 @@ function _zdAdopt() {
         return;
     }
     const meta  = _ZONE_META[_zdZone] || {};
-    const cards = adoptable.map(c => `
+    const cards = adoptable.map(c => {
+        const em = _CHAR_EMOJI[(c.name || '').toLowerCase()] || meta.icon || '🌟';
+        return `
         <div class="izd-adopt-card" onclick="_zdAdoptStart(${c.character_id})"
              role="button" tabindex="0">
-            <div class="izd-adopt-emoji">${meta.icon || '🌟'}</div>
+            <div class="izd-adopt-emoji">${em}</div>
             <div class="izd-adopt-name">${escapeHtml(c.name)}</div>
-        </div>`).join('');
+        </div>`;
+    }).join('');
     const left = document.querySelector('#izd-screen .izd-left');
     if (!left) return;
     left.innerHTML = `

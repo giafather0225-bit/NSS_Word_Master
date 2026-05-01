@@ -371,3 +371,429 @@
     opacity: 0.8;
     margin-top: 8px;
 }
+
+/* ════════════════════════════════════════════════════════════════
+   GIM — Full-bleed Island Map (Screen ①)
+   Prefix: .gim-*   Does NOT conflict with .isl-* screens above.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Screen shell ────────────────────────────────────────────── */
+
+.gim-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #1a3a52;
+}
+
+/* ── Backdrop image ──────────────────────────────────────────── */
+
+.gim-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    user-select: none;
+    transition: filter 0.4s ease;
+}
+.gim-backdrop--night {
+    filter: brightness(.5) saturate(.7) hue-rotate(-15deg);
+}
+
+/* ── Night overlay layers ─────────────────────────────────────── */
+
+.gim-night-scrim {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top, rgba(20,20,60,.2), rgba(10,10,40,.5));
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gim-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gim-star {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation: gim-twinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes gim-twinkle {
+    from { opacity: 0.2; }
+    to   { opacity: 1; }
+}
+
+/* ── Sun / Moon ───────────────────────────────────────────────── */
+
+.gim-sunmoon {
+    position: absolute;
+    top: 4%;
+    right: 6%;
+    font-size: 42px;
+    filter: drop-shadow(0 0 18px rgba(255,228,154,.7));
+    z-index: 2;
+    pointer-events: none;
+    line-height: 1;
+}
+.gim-night-moon {
+    font-size: 48px;
+    filter: drop-shadow(0 0 12px #ffe49a);
+}
+
+/* ── Top bar ─────────────────────────────────────────────────── */
+
+.gim-topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    z-index: 10;
+}
+.gim-topbar--night {
+    background: rgba(37,35,54,.92);
+    border-bottom-color: rgba(255,255,255,.08);
+}
+
+.gim-topbar-left  { display: flex; align-items: center; gap: 8px; }
+.gim-topbar-right { display: flex; align-items: center; gap: 4px; }
+
+.gim-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    border: none;
+    cursor: default;
+    white-space: nowrap;
+}
+.gim-stat--lumi   { background: #EEF4FA; color: var(--english-ink); cursor: pointer; }
+.gim-stat--legend { background: var(--rewards-light); color: var(--rewards-ink); }
+.gim-stat--streak { background: var(--review-light);  color: var(--review-ink); }
+.gim-stat--lumi:hover { background: var(--english-soft); }
+
+.gim-topbar--night .gim-stat--lumi   { background: rgba(127,168,204,.2); color: #c8dcee; }
+.gim-topbar--night .gim-stat--legend { background: rgba(184,164,220,.2); color: #d4c8ee; }
+.gim-topbar--night .gim-stat--streak { background: rgba(235,169,140,.2); color: #f0c4a8; }
+
+.gim-iconbtn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+.gim-iconbtn:hover { background: var(--bg-surface); color: var(--text-primary); }
+.gim-iconbtn i    { width: 18px; height: 18px; }
+.gim-topbar--night .gim-iconbtn { color: rgba(255,255,255,.6); }
+.gim-topbar--night .gim-iconbtn:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+/* ── Map stage ───────────────────────────────────────────────── */
+
+.gim-map-stage {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none; /* children re-enable their own clicks */
+}
+
+/* ── Zone hotspot ────────────────────────────────────────────── */
+
+.gim-hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    pointer-events: all;
+    padding: 0;
+    transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+.gim-hotspot:hover:not(.gim-hotspot--locked) { transform: translate(-50%, -50%) scale(1.06); }
+.gim-hotspot:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+}
+.gim-hotspot--locked { cursor: help; }
+
+.gim-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    transition: filter var(--transition-fast);
+}
+
+/* ── Zone label pill ─────────────────────────────────────────── */
+
+.gim-label {
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius: var(--radius-full);
+    padding: 4px 12px;
+    font-family: var(--font-family-display);
+    font-weight: 800;
+    font-size: 13px;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,.12);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    pointer-events: none;
+}
+.gim-label i { flex-shrink: 0; }
+
+.gim-label--english { border: 2px solid var(--english-primary); color: var(--english-ink); }
+.gim-label--math    { border: 2px solid var(--math-primary);    color: var(--math-ink); }
+.gim-label--diary   { border: 2px solid var(--diary-primary);   color: var(--diary-ink); }
+.gim-label--rewards { border: 2px solid var(--rewards-primary); color: var(--rewards-ink); }
+
+/* ── Status badges ───────────────────────────────────────────── */
+
+.gim-badge {
+    position: absolute;
+    top: -4px;
+    right: 6px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.3);
+    pointer-events: none;
+}
+.gim-badge--warn { background: #D97A7A; color: #fff; }
+.gim-badge--evo  {
+    background: #EEC770;
+    color: #7A5A1E;
+    width: 28px;
+    height: 28px;
+    animation: gim-pulse-badge 1.4s ease-in-out infinite;
+}
+
+@keyframes gim-pulse-badge {
+    0%, 100% { transform: scale(1);    box-shadow: 0 2px 6px rgba(0,0,0,.3); }
+    50%       { transform: scale(1.15); box-shadow: 0 4px 12px rgba(238,199,112,.6); }
+}
+
+/* ── Locked zone content ─────────────────────────────────────── */
+
+.gim-lock-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    pointer-events: none;
+}
+.gim-lock-content span {
+    font-size: 11px;
+    font-weight: 800;
+    color: rgba(255,255,255,.9);
+    text-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+
+/* ── Character bubbles ───────────────────────────────────────── */
+
+.gim-bubble {
+    position: absolute;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    pointer-events: all;
+    z-index: 4;
+}
+.gim-bubble-dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,.96);
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,.2);
+    font-size: 22px;
+    line-height: 1;
+    transition: transform var(--transition-fast);
+}
+.gim-bubble:hover .gim-bubble-dot { transform: scale(1.12); }
+
+.gim-float {
+    animation: gim-float 3s ease-in-out infinite;
+}
+
+@keyframes gim-float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(-8px); }
+}
+
+.gim-bubble--pulse .gim-bubble-dot {
+    animation: gim-bubble-pulse 0.6s ease;
+}
+@keyframes gim-bubble-pulse {
+    0%, 100% { transform: scale(1); }
+    40%       { transform: scale(1.25); }
+}
+
+/* ── Streak panel ────────────────────────────────────────────── */
+
+.gim-streak-panel {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,.92);
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.18);
+    backdrop-filter: blur(8px);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gim-streak-label {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--text-secondary);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.gim-streak-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.gim-streak-dot {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.gim-streak-dot--lit  { background: #EEC770; border: 2px solid #D8AE55; }
+.gim-streak-dot--dark { background: rgba(0,0,0,.12); border: 2px solid transparent; }
+
+.gim-streak-flame {
+    position: absolute;
+    top: -14px;
+    left: -3px;
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* ── Today panel ─────────────────────────────────────────────── */
+
+.gim-today-panel {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    width: 230px;
+    background: rgba(255,255,255,.94);
+    border-radius: 14px;
+    padding: 12px 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.18);
+    backdrop-filter: blur(8px);
+    z-index: 5;
+}
+
+.gim-today-title {
+    font-family: var(--font-family-display);
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.gim-today-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.gim-today-row {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.gim-today-name { color: var(--text-primary); }
+
+/* ── Lumi toast ──────────────────────────────────────────────── */
+
+.gim-lumi-toast {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background: rgba(255,255,255,.96);
+    border-radius: var(--radius-full);
+    padding: 8px 20px;
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    box-shadow: 0 4px 16px rgba(0,0,0,.18);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 20;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+}
+.gim-lumi-toast--show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ── Night overrides for panels ──────────────────────────────── */
+
+.gim-screen--night .gim-streak-panel,
+.gim-screen--night .gim-today-panel {
+    background: rgba(37,35,54,.88);
+    color: rgba(255,255,255,.9);
+}
+.gim-screen--night .gim-streak-label { color: rgba(255,255,255,.6); }
+.gim-screen--night .gim-today-title  { color: rgba(255,255,255,.95); }
+.gim-screen--night .gim-today-row    { color: rgba(255,255,255,.7); }
+.gim-screen--night .gim-today-name   { color: rgba(255,255,255,.95); }
