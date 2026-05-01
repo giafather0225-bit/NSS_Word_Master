@@ -16,6 +16,20 @@ let _cklaVocabIdx = 0;
 let _cklaQIdx = 0;
 /** @type {Object.<number, object>} Cached AI responses keyed by question_id */
 let _cklaResponses = {};
+/** @type {string} Font size class: sm / md / lg */
+let _cklaFontSize = localStorage.getItem('ckla_font_size') || 'md';
+/** @type {boolean} Vocab quiz mode active */
+let _cklaVocabQuizMode = false;
+/** @type {number} Current quiz question index */
+let _cklaVocabQuizIdx = 0;
+/** @type {number} Quiz correct answer count */
+let _cklaVocabQuizScore = 0;
+/** @type {Array} Generated quiz questions [{word, definition, choices:[]}] */
+let _cklaVocabQuizQuestions = [];
+/** @type {boolean} Hint visible in Word Work tab */
+let _cklaHintVisible = false;
+/** @type {Array} Text blocks from current passage for per-paragraph TTS */
+let _cklaPassageBlocks = [];
 
 /* ── ① Reading Timer state ─────────────────────────────────────────────────── */
 /** @type {number|null} Timer interval ID */
@@ -39,6 +53,12 @@ function renderCKLALesson(data) {
   _cklaVocabIdx  = 0;
   _cklaQIdx      = 0;
   _cklaResponses = {};
+  _cklaVocabQuizMode      = false;
+  _cklaVocabQuizIdx       = 0;
+  _cklaVocabQuizScore     = 0;
+  _cklaVocabQuizQuestions = [];
+  _cklaHintVisible        = false;
+  _cklaPassageBlocks      = [];
   _cklaStopTimer();
 
   const view = document.getElementById('ckla-view');
@@ -62,10 +82,25 @@ function renderCKLALesson(data) {
     <div id="ckla-tab-content" class="ckla-tab-content"></div>`;
 
   _renderReading();
+  _cklaUpdateTabLocks();
+}
+
+/** Disable non-reading tabs until reading is done. @tag ACADEMY CKLA */
+function _cklaUpdateTabLocks() {
+  const readDone = !!_cklaLesson?.progress?.reading_done;
+  ['vocab', 'questions', 'word-work'].forEach(id => {
+    const btn = document.getElementById(`tab-${id}`);
+    if (!btn) return;
+    btn.disabled = !readDone;
+    btn.style.opacity = readDone ? '' : '0.45';
+    btn.title = readDone ? '' : 'Complete reading first';
+  });
 }
 
 /** Switch between the four lesson tabs. @tag ACADEMY CKLA */
 function switchCKLATab(tab) {
+  // Block non-reading tabs until reading is done
+  if (tab !== 'reading' && !_cklaLesson?.progress?.reading_done) return;
   // Stop timer if leaving reading tab
   if (_cklaTab === 'reading' && tab !== 'reading') {
     _cklaPauseTimer();
@@ -225,7 +260,7 @@ function _cklaStopTTS() {
 function _cklaUpdateTTSBtn() {
   const btn = document.getElementById('ckla-tts-btn');
   if (!btn) return;
-  btn.textContent = _cklaTTSPlaying ? '⏹ Stop' : '🔊 Listen';
+  btn.textContent = _cklaTTSPlaying ? 'Stop' : 'Listen All';
   btn.classList.toggle('ckla-tts-playing', _cklaTTSPlaying);
 }
 
@@ -282,17 +317,25 @@ function _renderReading() {
   const blocks = _parsePassage(_cklaLesson.passage);
   const chars  = _cklaLesson.passage_chars || 0;
 
+  // Store blocks so _cklaReadParagraph can access content by index
+  _cklaPassageBlocks = blocks;
+
+  let paraIdx = 0;
   const html = blocks.map(b => {
     if (b.type === 'marker') {
       return `<div class="ckla-image-marker">${_esc(b.content)}</div>`;
     }
-    return `<p>${_esc(b.content)}</p>`;
+    const idx = paraIdx++;
+    return `<p id="ckla-para-${idx}" class="ckla-para" onclick="_cklaReadParagraph(${idx})" title="Tap to listen">${_esc(b.content)}</p>`;
   }).join('');
+
+  const fontBtns = ['sm','md','lg'].map(s =>
+    `<button class="ckla-font-btn${_cklaFontSize === s ? ' active' : ''}" data-size="${s}" onclick="_cklaSetFontSize('${s}')">${s === 'sm' ? 'A-' : s === 'lg' ? 'A+' : 'A'}</button>`
+  ).join('');
 
   el.innerHTML = `
     <div class="ckla-reading-toolbar">
       <div class="ckla-timer-wrap">
-        <span class="ckla-timer-icon">⏱</span>
         <span class="ckla-timer-display" id="ckla-timer-display">${_cklaFmtTime(_cklaTimerSec)}</span>
         ${!prog.reading_done ? `
           <button class="ckla-timer-btn" id="ckla-timer-btn" onclick="_cklaToggleTimer()">
@@ -300,18 +343,19 @@ function _renderReading() {
           </button>
         ` : ''}
       </div>
+      <div class="ckla-font-size-ctrl">${fontBtns}</div>
       <div class="ckla-reading-tools">
-        <button class="ckla-tts-btn" id="ckla-tts-btn" onclick="_cklaReadAloud()">🔊 Listen</button>
+        <button class="ckla-tts-btn" id="ckla-tts-btn" onclick="_cklaReadAloud()">Listen All</button>
         <span class="ckla-char-count">${chars.toLocaleString()} chars</span>
       </div>
     </div>
     <div class="ckla-passage-wrap">
-      <div class="ckla-passage">${html}</div>
+      <div class="ckla-passage ckla-font-${_cklaFontSize}">${html}</div>
     </div>
     <div class="ckla-action-bar">
       ${prog.reading_done
-        ? `<span class="ckla-done-badge">✓ Reading complete${prog.reading_done_at ? ' · ' + _cklaFmtTime(_cklaTimerSec) : ''}</span>`
-        : `<button class="ckla-primary-btn" onclick="_markReadingDone()">✓ Done Reading${_cklaTimerSec > 0 ? ' (' + _cklaFmtTime(_cklaTimerSec) + ')' : ''}</button>`}
+        ? `<span class="ckla-done-badge">Reading complete</span>`
+        : `<button class="ckla-primary-btn" onclick="_markReadingDone()">Done Reading${_cklaTimerSec > 0 ? ' (' + _cklaFmtTime(_cklaTimerSec) + ')' : ''}</button>`}
     </div>`;
 
   // Auto-start timer if not done
@@ -336,7 +380,12 @@ async function _markReadingDone() {
   _cklaPauseTimer();
   _cklaStopTTS();
   const prog = await _postProgress({ reading_done: true });
-  if (prog) { _cklaLesson.progress = prog; _renderReading(); _maybeShowDifficultyPrompt(prog); }
+  if (prog) {
+    _cklaLesson.progress = prog;
+    _renderReading();
+    _cklaUpdateTabLocks();
+    _maybeShowDifficultyPrompt(prog);
+  }
 }
 
 
@@ -344,6 +393,8 @@ async function _markReadingDone() {
 
 /** @tag ACADEMY CKLA */
 function _renderVocab() {
+  if (_cklaVocabQuizMode) { _renderVocabQuiz(); return; }
+
   const el = document.getElementById('ckla-tab-content');
   if (!el) return;
   const words = _cklaLesson.vocab;
@@ -359,7 +410,7 @@ function _renderVocab() {
       <div class="ckla-vocab-top">
         <span class="ckla-vocab-word">${_esc(w.word)}</span>
         ${w.part_of_speech ? `<span class="ckla-pos-pill">${_esc(w.part_of_speech)}</span>` : ''}
-        ${w.audio_url ? `<button class="ckla-audio-btn" onclick="_cklaAudio('${w.audio_url}')" title="Listen">🔊</button>` : ''}
+        ${w.audio_url ? `<button class="ckla-audio-btn" onclick="_cklaAudio('${w.audio_url}')" title="Listen"><i data-lucide="volume-2" style="width:14px;height:14px"></i></button>` : ''}
       </div>
       <div class="ckla-vocab-def">${_esc(w.definition) || '<em>No definition available</em>'}</div>
       ${w.example_1 ? `<div class="ckla-vocab-ex">"${_esc(w.example_1)}"</div>` : ''}
@@ -370,11 +421,13 @@ function _renderVocab() {
     </div>
     <div class="ckla-action-bar">
       ${prog.vocab_done
-        ? '<span class="ckla-done-badge">✓ Words complete</span>'
-        : `<button class="ckla-primary-btn" onclick="_markVocabDone()"${!atEnd ? ' style="opacity:.5" title="Swipe through all words first"' : ''}>
-             ✓ All Words Reviewed
-           </button>`}
+        ? '<span class="ckla-done-badge">Words complete</span>'
+        : (atEnd
+            ? `<button class="ckla-primary-btn" onclick="_startVocabQuiz()">Take Quiz (3 questions)</button>`
+            : `<button class="ckla-primary-btn" style="opacity:.5" title="Swipe through all words first" disabled>Take Quiz</button>`
+          )}
     </div>`;
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /** @tag ACADEMY CKLA */
@@ -480,67 +533,115 @@ function _renderWordWork() {
   const prog = _cklaLesson.progress;
   const vw = _cklaLesson.vocab.find(v => v.word === word) || { word };
 
+  const hintContent = [
+    vw.definition ? `<em>${_esc(vw.definition)}</em>` : '',
+    vw.example_1  ? `Example: "${_esc(vw.example_1)}"` : '',
+  ].filter(Boolean).join('<br>');
+
   el.innerHTML = `
     <div class="ckla-ww-card">
       <div class="ckla-ww-label">Word Work Focus</div>
-      <div class="ckla-ww-word">${_esc(vw.word)}</div>
-      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="ckla-ww-word">${_esc(vw.word)}</div>
         ${vw.part_of_speech ? `<span class="ckla-pos-pill">${_esc(vw.part_of_speech)}</span>` : ''}
-        ${vw.audio_url ? `<button class="ckla-audio-btn" onclick="_cklaAudio('${vw.audio_url}')">🔊 Listen</button>` : ''}
+        ${vw.audio_url ? `<button class="ckla-audio-btn" onclick="_cklaAudio('${vw.audio_url}')" title="Listen"><i data-lucide="volume-2" style="width:14px;height:14px"></i></button>` : ''}
+        ${!prog.word_work_done ? `<button class="ckla-hint-btn" id="ckla-hint-btn" onclick="_cklaToggleHint()">${_cklaHintVisible ? 'Hide Hint' : 'Hint'}</button>` : ''}
       </div>
-      ${vw.definition ? `<div class="ckla-ww-def">${_esc(vw.definition)}</div>` : ''}
-      ${vw.example_1  ? `<div class="ckla-vocab-ex">"${_esc(vw.example_1)}"</div>` : ''}
+      <div class="ckla-ww-hint${_cklaHintVisible ? ' visible' : ''}" id="ckla-ww-hint">${hintContent}</div>
+      ${prog.word_work_done
+        ? (vw.definition ? `<div class="ckla-ww-def">${_esc(vw.definition)}</div>` : '')
+        : ''}
       <div class="ckla-ww-prompt">
         <label class="ckla-ww-prompt-label">
           Write your own sentence using <strong>${_esc(word)}</strong>:
         </label>
-        <textarea class="ckla-answer-input" id="ckla-ww-ans" rows="3"
-                  placeholder="Write a sentence…"></textarea>
+        ${prog.word_work_done
+          ? '<div class="ckla-done-badge" style="margin-top:8px">Word Work complete</div>'
+          : `<textarea class="ckla-answer-input" id="ckla-ww-ans" rows="3" placeholder="Write a sentence using this word…"></textarea>
+             <div class="ckla-ww-hint-note" style="font-size:.75rem;color:var(--text-hint);margin-top:4px">Your sentence must include <strong>${_esc(word)}</strong></div>`}
       </div>
     </div>
+    ${!prog.word_work_done ? `
     <div class="ckla-action-bar">
-      ${prog.word_work_done
-        ? '<span class="ckla-done-badge">✓ Word Work complete</span>'
-        : '<button class="ckla-primary-btn" onclick="_markWordWorkDone()">✓ Done</button>'}
-    </div>`;
+      <button class="ckla-primary-btn" id="ckla-ww-submit" onclick="_markWordWorkDone()">Submit</button>
+    </div>` : ''}`;
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+/** @tag ACADEMY CKLA */
+function _cklaToggleHint() {
+  _cklaHintVisible = !_cklaHintVisible;
+  const hint = document.getElementById('ckla-ww-hint');
+  const btn  = document.getElementById('ckla-hint-btn');
+  if (hint) hint.classList.toggle('visible', _cklaHintVisible);
+  if (btn)  btn.textContent = _cklaHintVisible ? 'Hide Hint' : 'Hint';
 }
 
 /** @tag ACADEMY CKLA */
 async function _markWordWorkDone() {
-  const prog = await _postProgress({ word_work_done: true });
-  if (prog) { _cklaLesson.progress = prog; _renderWordWork(); _maybeShowDifficultyPrompt(prog); }
+  const input = document.getElementById('ckla-ww-ans');
+  const answer = input ? input.value.trim() : '';
+  if (!answer) {
+    if (input) input.style.borderColor = 'var(--review-primary)';
+    return;
+  }
+  const btn = document.getElementById('ckla-ww-submit');
+  if (btn) { btn.disabled = true; btn.textContent = 'Checking…'; }
+
+  const prog = await _postProgress({ word_work_done: true, word_work_answer: answer });
+  if (prog) {
+    _cklaLesson.progress = prog;
+    _renderWordWork();
+    _maybeShowDifficultyPrompt(prog);
+  } else {
+    if (btn) { btn.disabled = false; btn.textContent = 'Submit'; }
+  }
 }
 
 
 /* ── Difficulty rating ─────────────────────────────────────────────────────── */
 
 /**
- * Show difficulty prompt if lesson just became complete and hasn't been rated yet.
+ * Show celebration + difficulty prompt when lesson completes for the first time.
  * @tag ACADEMY CKLA
  */
 function _maybeShowDifficultyPrompt(prog) {
-  if (!prog || !prog.completed || prog.difficulty_rating) return;
-  const existing = document.getElementById('ckla-diff-overlay');
-  if (existing) return;
-
-  const overlay = document.createElement('div');
-  overlay.id = 'ckla-diff-overlay';
-  overlay.className = 'ckla-diff-overlay';
-  overlay.innerHTML = `
-    <div class="ckla-diff-box">
-      <div class="ckla-diff-title">Lesson complete! How was it?</div>
-      <div class="ckla-diff-btns">
-        <button class="ckla-diff-btn ckla-diff-btn--easy"
-                onclick="_rateDifficulty('easy')">Easy</button>
-        <button class="ckla-diff-btn ckla-diff-btn--neutral"
-                onclick="_rateDifficulty('neutral')">Just right</button>
-        <button class="ckla-diff-btn ckla-diff-btn--hard"
-                onclick="_rateDifficulty('hard')">Hard</button>
-      </div>
-    </div>`;
+  if (!prog || !prog.completed) return;
+  if (prog.difficulty_rating) return;
+  if (document.getElementById('ckla-diff-overlay')) return;
 
   const view = document.getElementById('ckla-view');
-  if (view) view.appendChild(overlay);
+  if (!view) return;
+
+  // Brief celebration flash (auto-dismisses after 1.5s then shows rating)
+  const burst = document.createElement('div');
+  burst.id = 'ckla-complete-burst';
+  burst.className = 'ckla-complete-burst';
+  burst.innerHTML = `<div class="ckla-burst-inner"><span class="ckla-burst-star">★</span><div class="ckla-burst-text">Lesson Complete!</div></div>`;
+  view.appendChild(burst);
+
+  setTimeout(() => {
+    burst.remove();
+    // Now show difficulty rating overlay
+    const overlay = document.createElement('div');
+    overlay.id = 'ckla-diff-overlay';
+    overlay.className = 'ckla-diff-overlay';
+    overlay.innerHTML = `
+      <div class="ckla-diff-box">
+        <div class="ckla-diff-title">How was this lesson?</div>
+        <div class="ckla-diff-btns">
+          <button class="ckla-diff-btn ckla-diff-btn--easy"
+                  onclick="_rateDifficulty('easy')">Easy</button>
+          <button class="ckla-diff-btn ckla-diff-btn--neutral"
+                  onclick="_rateDifficulty('neutral')">Just right</button>
+          <button class="ckla-diff-btn ckla-diff-btn--hard"
+                  onclick="_rateDifficulty('hard')">Hard</button>
+        </div>
+      </div>`;
+    if (document.getElementById('ckla-view')) {
+      document.getElementById('ckla-view').appendChild(overlay);
+    }
+  }, 1600);
 }
 
 /** Submit difficulty rating and dismiss overlay. @tag ACADEMY CKLA */
@@ -570,11 +671,32 @@ async function _postProgress(body) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
-    return res.ok ? await res.json() : null;
+    if (res.ok) return await res.json();
+    if (res.status === 400) {
+      const err = await res.json().catch(() => ({}));
+      const msg = err.detail || 'Could not save. Please try again.';
+      _cklaShowError(msg);
+    }
+    return null;
   } catch (e) {
     console.error('CKLA progress update failed:', e);
     return null;
   }
+}
+
+/** Show a non-blocking inline error near the active action bar. @tag ACADEMY CKLA */
+function _cklaShowError(msg) {
+  const bar = document.querySelector('.ckla-action-bar');
+  if (!bar) return;
+  let errEl = bar.querySelector('.ckla-inline-error');
+  if (!errEl) {
+    errEl = document.createElement('div');
+    errEl.className = 'ckla-inline-error';
+    bar.appendChild(errEl);
+  }
+  errEl.textContent = msg;
+  errEl.style.display = 'block';
+  setTimeout(() => { if (errEl) errEl.style.display = 'none'; }, 4000);
 }
 
 /** Escape HTML to prevent XSS. @tag SYSTEM */
@@ -585,4 +707,178 @@ function _esc(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+
+/* ── Font size control ─────────────────────────────────────────────────────── */
+
+/** Set reading font size and persist to localStorage. @tag ACADEMY CKLA */
+function _cklaSetFontSize(size) {
+  _cklaFontSize = size;
+  localStorage.setItem('ckla_font_size', size);
+  const pass = document.querySelector('.ckla-passage');
+  if (pass) {
+    pass.classList.remove('ckla-font-sm', 'ckla-font-md', 'ckla-font-lg');
+    pass.classList.add(`ckla-font-${size}`);
+  }
+  document.querySelectorAll('.ckla-font-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.size === size);
+  });
+}
+
+
+/* ── Per-paragraph TTS ─────────────────────────────────────────────────────── */
+
+/** Play TTS for a single paragraph and highlight it. @tag ACADEMY CKLA TTS */
+async function _cklaReadParagraph(idx) {
+  if (_cklaTTSPlaying) { _cklaStopTTS(); return; }
+  const block = _cklaPassageBlocks.filter(b => b.type === 'text')[idx];
+  if (!block) return;
+
+  _cklaTTSPlaying = true;
+  _cklaHighlightPara(idx);
+  _cklaUpdateTTSBtn();
+
+  const text = block.content;
+  try {
+    if (!_isOffline()) {
+      try {
+        const res = await fetch('/api/tts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text, voice: 'en-US-AriaNeural' }),
+        });
+        if (res.ok) {
+          const blob = await res.blob();
+          const url  = URL.createObjectURL(blob);
+          const audio = new Audio(url);
+          _globalCurrentAudio = audio;
+          await new Promise(r => { audio.onended = r; audio.onerror = r; audio.play().catch(r); });
+          URL.revokeObjectURL(url);
+          _globalCurrentAudio = null;
+          _cklaTTSPlaying = false;
+          _cklaClearHighlight();
+          _cklaUpdateTTSBtn();
+          return;
+        }
+      } catch (e) { console.warn('CKLA para TTS failed, using fallback:', e); }
+    }
+    if ('speechSynthesis' in window) {
+      await new Promise(r => {
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'en-US'; u.rate = 0.85; u.onend = r; u.onerror = r;
+        window.speechSynthesis.speak(u);
+      });
+    }
+  } catch (e) { console.error('CKLA para TTS error:', e); }
+
+  _cklaTTSPlaying = false;
+  _cklaClearHighlight();
+  _cklaUpdateTTSBtn();
+}
+
+/** Highlight the paragraph at text-block index idx. @tag ACADEMY CKLA */
+function _cklaHighlightPara(idx) {
+  _cklaClearHighlight();
+  const el = document.getElementById(`ckla-para-${idx}`);
+  if (el) el.classList.add('ckla-para-active');
+}
+
+/** Remove paragraph highlight. @tag ACADEMY CKLA */
+function _cklaClearHighlight() {
+  document.querySelectorAll('.ckla-para-active').forEach(el => el.classList.remove('ckla-para-active'));
+}
+
+
+/* ── Vocab quiz (3 MC questions, pass = 2/3) ───────────────────────────────── */
+
+/** Build 3 quiz questions and enter quiz mode. @tag ACADEMY CKLA */
+function _startVocabQuiz() {
+  const words = _cklaLesson.vocab.filter(w => w.definition);
+  if (words.length < 2) { _markVocabDone(); return; }
+
+  // Pick up to 3 target words
+  const shuffled = [...words].sort(() => Math.random() - 0.5);
+  const targets = shuffled.slice(0, Math.min(3, shuffled.length));
+
+  _cklaVocabQuizQuestions = targets.map(target => {
+    // 3 wrong choices from other words' definitions
+    const others = words.filter(w => w.id !== target.id);
+    const wrong  = others.sort(() => Math.random() - 0.5).slice(0, 3);
+    const choices = [...wrong, target].sort(() => Math.random() - 0.5);
+    return { word: target.word, correctId: target.id, choices };
+  });
+  _cklaVocabQuizMode  = true;
+  _cklaVocabQuizIdx   = 0;
+  _cklaVocabQuizScore = 0;
+  _renderVocabQuiz();
+}
+
+/** Render current quiz question. @tag ACADEMY CKLA */
+function _renderVocabQuiz() {
+  const el = document.getElementById('ckla-tab-content');
+  if (!el) return;
+
+  const total = _cklaVocabQuizQuestions.length;
+  if (_cklaVocabQuizIdx >= total) {
+    // Quiz finished
+    const pass = _cklaVocabQuizScore >= Math.ceil(total * 2 / 3);
+    el.innerHTML = `
+      <div class="ckla-quiz-result">
+        <div class="ckla-quiz-score">${_cklaVocabQuizScore} / ${total}</div>
+        <div class="ckla-quiz-verdict">${pass ? 'Well done!' : 'Keep practicing!'}</div>
+        ${pass
+          ? `<button class="ckla-primary-btn" style="margin-top:16px" onclick="_markVocabDone()">Words complete</button>`
+          : `<button class="ckla-primary-btn" style="margin-top:16px" onclick="_startVocabQuiz()">Try again</button>`}
+      </div>`;
+    return;
+  }
+
+  const q = _cklaVocabQuizQuestions[_cklaVocabQuizIdx];
+  const choiceHtml = q.choices.map(c =>
+    `<button class="ckla-quiz-choice" onclick="_submitVocabQuiz(${c.id})">${_esc(c.definition || c.word)}</button>`
+  ).join('');
+
+  el.innerHTML = `
+    <div class="ckla-q-nav">
+      <span class="ckla-q-counter">Question ${_cklaVocabQuizIdx + 1} of ${total}</span>
+      <span style="font-size:.8rem;color:var(--text-hint)">${_cklaVocabQuizScore} correct so far</span>
+    </div>
+    <div class="ckla-quiz-card">
+      <div class="ckla-quiz-prompt">Which definition matches <strong>${_esc(q.word)}</strong>?</div>
+      <div class="ckla-quiz-choices">${choiceHtml}</div>
+    </div>`;
+}
+
+/** Handle choice selection for vocab quiz. @tag ACADEMY CKLA */
+function _submitVocabQuiz(selectedId) {
+  const q = _cklaVocabQuizQuestions[_cklaVocabQuizIdx];
+  const correct = selectedId === q.correctId;
+  if (correct) _cklaVocabQuizScore++;
+
+  // Brief flash on buttons
+  document.querySelectorAll('.ckla-quiz-choice').forEach(btn => {
+    btn.disabled = true;
+    const choiceWord = q.choices.find(c => {
+      // match by definition text shown
+      return _esc(c.definition || c.word) === btn.textContent;
+    });
+  });
+
+  // Show correct/wrong highlight then advance
+  const btns = document.querySelectorAll('.ckla-quiz-choice');
+  btns.forEach(btn => {
+    // Find which choice this button represents by text
+    const c = q.choices.find(c => btn.textContent === (c.definition || c.word));
+    if (c) {
+      if (c.id === q.correctId) btn.classList.add('ckla-quiz-correct');
+      else if (c.id === selectedId) btn.classList.add('ckla-quiz-wrong');
+    }
+  });
+
+  setTimeout(() => {
+    _cklaVocabQuizIdx++;
+    _renderVocabQuiz();
+  }, 900);
 }
