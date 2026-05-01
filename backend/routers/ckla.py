@@ -464,10 +464,24 @@ def rate_difficulty(
 async def submit_answer(
     question_id: int, req: AnswerSubmit, db: Session = Depends(get_db)
 ):
-    """Submit an answer → AI grading → save result."""
+    """Submit an answer → AI grading → save result. Max 2 attempts per question (1 retry)."""
     question = db.query(CKLAQuestion).filter_by(id=question_id).first()
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
+
+    # Enforce 1-retry limit: count prior responses for this question in the current progress
+    prog_check = db.query(CKLALessonProgress).filter_by(lesson_id=question.lesson_id).first()
+    if prog_check:
+        prior = (
+            db.query(CKLAQuestionResponse)
+            .filter_by(question_id=question_id, lesson_progress_id=prog_check.id)
+            .count()
+        )
+        if prior >= 2:
+            raise HTTPException(
+                status_code=400,
+                detail="You have already used your retry for this question.",
+            )
 
     lesson = db.query(CKLALesson).filter_by(id=question.lesson_id).first()
     passage = lesson.passage if lesson else ""
