@@ -70,6 +70,22 @@ function _cdRenderError(el) {
     if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
+// ─── Image helper ─────────────────────────────────────────────
+
+/** Return <img> for current stage, fallback to emoji span. @tag SHOP */
+function _cdCharImg(prog) {
+    const name  = (prog.character_name || prog.nickname || '').toLowerCase();
+    const stage = prog.stage || 'baby';
+    const fb    = _CHAR_EMOJI[name] || '🌟';
+    let imgs = {};
+    try { imgs = JSON.parse(prog.images || '{}'); } catch (_) {}
+    const rel = imgs[stage] || imgs['baby'];
+    if (!rel) return `<span class="icd-avatar-emoji">${fb}</span>`;
+    const src = `/static/img/island/${rel}`;
+    return `<img class="icd-avatar-img" src="${src}" alt="${escapeHtml(prog.character_name || '')}"
+                 onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'icd-avatar-emoji',textContent:'${fb}'}))">`;
+}
+
 // ─── Main render ──────────────────────────────────────────────
 
 /** @tag SHOP */
@@ -103,7 +119,7 @@ function _cdRender(el) {
                 <div class="icd-hero">
                     <div class="icd-avatar ${animCls}" id="icd-avatar"
                          onclick="_cdBounce()" role="button" tabindex="0" title="Say hi!">
-                        <div class="icd-avatar-emoji">${_CHAR_EMOJI[(prog.character_name||'').toLowerCase()] || meta.icon || '🌟'}</div>
+                        ${_cdCharImg(prog)}
                         <span class="icd-avatar-stage">${stage}</span>
                     </div>
                     <div class="icd-hero-info">

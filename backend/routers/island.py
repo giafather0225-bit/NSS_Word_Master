@@ -94,6 +94,7 @@ def _prog_dict(prog: IslandCharacterProgress, char: IslandCharacter) -> dict:
         "boost_subject": prog.boost_subject,
         "pos_x": prog.pos_x,
         "pos_y": prog.pos_y,
+        "images": char.images or "{}",
     }
 
 
@@ -290,6 +291,7 @@ def character_silhouette(db: Session = Depends(get_db)):
             "order_index": char.order_index, "is_available": char.is_available,
             "zone_unlocked": zone_unlocked, "prereq_met": has_prereq,
             "adoptable": char.is_available and zone_unlocked and has_prereq,
+            "images": char.images or "{}",
         })
     return {"characters": result}
 
@@ -478,6 +480,7 @@ def care_status(character_progress_id: int, db: Session = Depends(get_db)):
             "is_legend_type": prog.is_legend_type,
             "is_completed": prog.is_completed,
             "consecutive_days": legend_prog.consecutive_days if legend_prog else 0,
+            "images": char.images or "{}",
         },
     }
 

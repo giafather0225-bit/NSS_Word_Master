@@ -117,11 +117,27 @@
     line-height: 1;
     animation: izd-idle 3s ease-in-out infinite;
 }
+.izd-char-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    animation: izd-idle 3s ease-in-out infinite;
+}
+.izd-char-emoji-fb {
+    font-size: 64px;
+    line-height: 1;
+    animation: izd-idle 3s ease-in-out infinite;
+}
 
-.izd-char-visual--happy .izd-char-emoji {
+.izd-char-visual--happy .izd-char-emoji,
+.izd-char-visual--happy .izd-char-img,
+.izd-char-visual--happy .izd-char-emoji-fb {
     animation: izd-idle 3s ease-in-out infinite, izd-happy-pulse 0.6s ease-in-out;
 }
-.izd-char-visual--sad .izd-char-emoji {
+.izd-char-visual--sad .izd-char-emoji,
+.izd-char-visual--sad .izd-char-img,
+.izd-char-visual--sad .izd-char-emoji-fb {
     animation: izd-sad-sway 2s ease-in-out infinite;
     opacity: 0.82;
 }
@@ -421,15 +437,25 @@
     flex-shrink: 0;
 }
 
-.icd-avatar--idle .icd-avatar-emoji  { animation: izd-idle 3s ease-in-out infinite; }
-.icd-avatar--happy .icd-avatar-emoji { animation: izd-idle 3s ease-in-out infinite, izd-happy-pulse 0.6s ease-in-out; }
-.icd-avatar--sad .icd-avatar-emoji   { animation: izd-sad-sway 2s ease-in-out infinite; opacity: 0.82; }
+.icd-avatar--idle .icd-avatar-emoji,
+.icd-avatar--idle .icd-avatar-img  { animation: izd-idle 3s ease-in-out infinite; }
+.icd-avatar--happy .icd-avatar-emoji,
+.icd-avatar--happy .icd-avatar-img { animation: izd-idle 3s ease-in-out infinite, izd-happy-pulse 0.6s ease-in-out; }
+.icd-avatar--sad .icd-avatar-emoji,
+.icd-avatar--sad .icd-avatar-img   { animation: izd-sad-sway 2s ease-in-out infinite; opacity: 0.82; }
 
-.icd-bounce .icd-avatar-emoji { animation: icd-bounce-anim 0.4s ease-out; }
+.icd-bounce .icd-avatar-emoji,
+.icd-bounce .icd-avatar-img { animation: icd-bounce-anim 0.4s ease-out; }
 
 .icd-avatar-emoji {
     font-size: 80px;
     line-height: 1;
+}
+.icd-avatar-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    image-rendering: pixelated;
 }
 .icd-avatar-stage {
     font-size: 10px;
@@ -835,6 +861,8 @@
 }
 
 .izd-adopt-emoji { font-size: 28px; line-height: 1; }
+.izd-adopt-emoji img { width: 36px; height: 36px; object-fit: contain; image-rendering: pixelated; }
+.izd-adopt-emoji .izd-char-emoji-fb { font-size: 28px; line-height: 1; }
 
 .izd-adopt-name {
     font-weight: 700;

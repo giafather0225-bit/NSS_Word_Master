@@ -9,6 +9,23 @@
                   POST /api/island/care/feed
    ================================================================ */
 
+// ─── Image helper ───────────────────────────────────────────────
+
+/**
+ * Return an <img> for the given stage, falling back to emoji text.
+ * imagesJson: raw JSON string from island_characters.images column.
+ * @tag SHOP
+ */
+function _charImg(name, stage, imagesJson, fallbackEmoji) {
+    let imgs = {};
+    try { imgs = JSON.parse(imagesJson || '{}'); } catch (_) {}
+    const rel = imgs[stage] || imgs['baby'];
+    if (!rel) return `<span class="izd-char-emoji-fb">${fallbackEmoji}</span>`;
+    const src = `/static/img/island/${rel}`;
+    return `<img class="izd-char-img" src="${src}" alt="${escapeHtml(name)}"
+                 onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'izd-char-emoji-fb',textContent:'${fallbackEmoji}'}))">`;
+}
+
 // ─── State ─────────────────────────────────────────────────────
 /** @tag SHOP */
 let _zdZone      = null;
@@ -141,12 +158,13 @@ function _zdCharVisual(prog) {
     const status  = h < 20 ? 'Hungry — needs food!'
                   : p < 20 ? 'Feeling lonely...'
                   : h >= 80 && p >= 80 ? 'Feeling great!' : 'Doing okay.';
-    const charEmoji = _CHAR_EMOJI[(cat.name || '').toLowerCase()] || _ZONE_META[_zdZone]?.icon || '🌟';
+    const fallbackEmoji = _CHAR_EMOJI[(cat.name || '').toLowerCase()] || _ZONE_META[_zdZone]?.icon || '🌟';
+    const charVisual = _charImg(cat.name || '', prog.stage || 'baby', prog.images || '{}', fallbackEmoji);
     return `
         <div class="izd-char-visual ${animCls}" onclick="_zdOpenCharDetail(${prog.id})"
              role="button" tabindex="0" title="View details">
             <div class="izd-char-avatar">
-                <div class="izd-char-emoji">${charEmoji}</div>
+                ${charVisual}
                 <span class="izd-char-stage">${prog.stage || 'baby'}</span>
             </div>
             <div class="izd-char-name">${name}</div>
@@ -305,11 +323,12 @@ function _zdAdopt() {
     }
     const meta  = _ZONE_META[_zdZone] || {};
     const cards = adoptable.map(c => {
-        const em = _CHAR_EMOJI[(c.name || '').toLowerCase()] || meta.icon || '🌟';
+        const fb = _CHAR_EMOJI[(c.name || '').toLowerCase()] || meta.icon || '🌟';
+        const adoptVisual = _charImg(c.name || '', 'baby', c.images || '{}', fb);
         return `
         <div class="izd-adopt-card" onclick="_zdAdoptStart(${c.character_id})"
              role="button" tabindex="0">
-            <div class="izd-adopt-emoji">${em}</div>
+            <div class="izd-adopt-emoji">${adoptVisual}</div>
             <div class="izd-adopt-name">${escapeHtml(c.name)}</div>
         </div>`;
     }).join('');
