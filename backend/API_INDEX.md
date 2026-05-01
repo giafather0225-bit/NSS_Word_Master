@@ -261,6 +261,52 @@
 
 ---
 
+## CKLA Academy (redesigned — migration 018/019)
+
+> All CKLA endpoints are in `routers/ckla.py`. DUX endpoints (lessons/study/review etc.) are separate and must not be modified.
+
+### Grade management
+
+| Method | Path | Notes |
+|--------|------|-------|
+| GET | /api/academy/ckla/grades | `[{grade, label, is_active, total_lessons, completed_lessons}]` |
+
+### Domains & Lessons (grade-aware)
+
+| Method | Path | Notes |
+|--------|------|-------|
+| GET | /api/academy/ckla/domains?grade=3 | grade 파라미터 추가 (default=3) |
+| GET | /api/academy/ckla/lessons/{domain_id} | 기존 엔드포인트, grade 필터 추가 |
+
+### Badges & Titles
+
+| Method | Path | Notes |
+|--------|------|-------|
+| GET | /api/academy/ckla/badges | 전체 배지 목록 + 획득 여부 |
+| POST | /api/academy/ckla/badges/check | Domain/Grade 완료 시 배지 자동 지급 체크 |
+
+### Domain Test
+
+| Method | Path | Notes |
+|--------|------|-------|
+| GET | /api/academy/ckla/domain-test/{domain_num} | 10문제 랜덤 추출 (Vocab×5 + Q&A×5) |
+| POST | /api/academy/ckla/domain-test/{domain_num}/submit | 채점 + XP +30 + 배지 체크 |
+
+### Grade Final Test
+
+| Method | Path | Notes |
+|--------|------|-------|
+| GET | /api/academy/ckla/grade-final-test | 27문제 랜덤 추출 (Vocab×15 + Q&A×10 + WordWork×2) |
+| POST | /api/academy/ckla/grade-final-test/submit | 채점 + XP +100 + 칭호 지급 |
+
+### Difficulty rating
+
+| Method | Path | Notes |
+|--------|------|-------|
+| PATCH | /api/academy/ckla/lessons/{id}/difficulty | 체감 난이도 저장 (easy/neutral/hard) |
+
+---
+
 ## Quick Search
 
 ```bash

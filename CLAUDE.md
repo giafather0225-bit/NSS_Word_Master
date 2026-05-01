@@ -1,8 +1,8 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-04-30 — Parent Dashboard 6-tab redesign + Settings 4-section + Weekly Report wiring + Home today_by_subject + math UNIQUE migration 017
+> Last updated: 2026-05-01 — CKLA redesign spec (66 decisions) + DUX freeze rules + streak subject change + migration 018/019
 
 ## Overview
-- **Product**: 9세 여아(Gia)를 위한 AI 학습 앱 — English vocabulary, Math Academy, Diary, Arcade, US Academy, CKLA
+- **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
 - **GitHub**: https://github.com/giafather0225-bit/NSS_Word_Master
 - **Working directory**: `/Users/markjhlee/Documents/GitHub/NSS_Word_Master`
 - **DB**: `~/NSS_Learning/database/voca.db` (SQLite WAL)
@@ -41,6 +41,17 @@
     → Confirmed fixes applied 2026-04-30: spelling.js / sentence.js / fillblank.js 이모지 전체 제거, sentence.js 한국어 로딩 텍스트 영문화, fillblank.js retry 카운터 UX 개선.
 12. class/ID 변경 시 모든 참조 동시 업데이트 (3 bundles 모두 영향).
 13. 응답 마지막에 수정된 파일 목록 기재.
+14. DUX 절대 수정 금지 파일:
+    `routers/lessons.py`, `routers/study.py`, `routers/finaltest.py`,
+    `routers/unittest.py`, `routers/daily_words.py`,
+    `routers/collocation.py`, `routers/review.py`,
+    `static/js/child.js`, `static/js/navigation.js`,
+    `static/js/preview.js`, `static/js/wordmatch.js`,
+    `static/js/fillblank.js`, `static/js/spelling.js`,
+    `static/js/sentence.js`, `static/js/finaltest.js`,
+    `static/js/unittest.js`, `static/js/home.js`
+15. CKLA는 DUX와 완전히 분리된 독립 모듈이다.
+    CKLA 작업 시 위 파일들을 절대 수정하지 않는다.
 
 ---
 
@@ -408,9 +419,10 @@ MC 20 + Fill-in 20. 30-min timer. Pass = 90%. Pass → XP +10 + GrowthEvent("les
 | `math_kangaroo_complete` | +5 | per set |
 | `math_kangaroo_80` | +5 | per set ≥80% |
 | `math_kangaroo_perfect` | +10 | per set 100% |
-| `ckla_reading_done` | +2 | per lesson (dedup by lesson_id) |
-| `ckla_vocab_done` | +3 | per lesson |
-| `ckla_lesson_complete` | +5 | per lesson |
+| `ckla_lesson_complete` | +15 | 레슨 4탭 전부 완료 (첫 완료만) |
+| `ckla_domain_test_pass` | +30 | Domain Test 80% 통과 |
+| `ckla_grade_final_pass` | +100 | Grade Final Test 80% 통과 |
+| `ckla_daily_goal` | +10 | 오늘 목표 레슨 수 달성 |
 | Arcade round | +1/+2/+3 | thresholds 500/1000/2000 score; daily cap = `arcade_daily_cap` (default 10) |
 
 Failed tests / re-learn after fail: 0 XP.
@@ -419,7 +431,10 @@ Failed tests / re-learn after fail: 0 XP.
 
 ## Streak Rules (`services/streak_engine.py`)
 
-- Tracks **3 subjects**: `english` / `math` / `game`. (Configurable via `app_config` keys `streak_subjects`, `streak_mode`.)
+- Tracks **3 subjects**: `ckla` / `math` / `game`. (Configurable via `app_config` keys `streak_subjects`, `streak_mode`.)
+  - `ckla`: CKLA 레슨 1개 이상 완료 시 streak 유지
+  - DUX는 streak과 무관
+  - 기존 `english` streak → `ckla` streak으로 대체
 - Mode `all` (default): every selected subject must show activity that day. Mode `any`: at least one suffices.
 - Approved Day-Off freezes streak (maintains count).
 - 7-day / 30-day milestones trigger XP bonuses (+30 / +200).
@@ -544,15 +559,103 @@ New module for US-school vocab prep.
 
 ---
 
-## CKLA Academy (Grade 3 reading)
+## CKLA Academy (메인 학습 — Grade 3~)
 
-- **Tabs**: Read / Words / Q&A / Word Work
-- Article rendering: `_parsePassage()` handles PDF line-break artefacts → prose
-- Models: `CKLADomain`, `CKLALesson`, `CKLAQuestion`, `CKLAWordLesson`, `CKLALessonProgress`, `CKLAQuestionResponse`
-- Routers: `ckla`, `ckla_review`
-- Service: `services/ckla_grader.py`
-- Frontend: `ckla.js`, `ckla-lesson.js`, `ckla-review.js`, `ckla.css`
-- Migration: `011_ckla_tables.py`
+### 설계 원칙
+- CKLA는 앱의 메인 학습 중심 (DUX는 보조)
+- Grade-aware 설계: grade 컬럼으로 G3~G8 확장 가능
+- DUX와 완전 분리: 코드/DB/UI 독립
+
+### 사이드바 구조
+- 최상단: CKLA (Grade Pill: G3 활성, G4~G6 잠김)
+- 하단: DUX (아코디언, 기본 접힘)
+
+### 레슨 흐름
+1. Domain 선택 (11개, 완전 자유 순서)
+2. Lesson 선택 (Domain당 평균 9개)
+3. 탭 학습:
+   - Read: 문단별 TTS, 스크롤+하이라이트, 글자크기 3단계
+   - Words: 전체 단어 카드 → 4지선다 퀴즈 3문제 (2/3 통과)
+   - Q&A: Literal×2+Inferential×2+Evaluative×1 랜덤 5문제, 1회 재시도 (같은 문제), 점수 숨김
+   - Word Work: Focus Word 자유 타이핑, 힌트 버튼, 힌트 유사도 80% 이상이면 오답 처리
+4. 완료 기준: Read 완료 → 나머지 3탭 자유순서 → 4탭 전부 제출
+5. XP: 레슨 완료 +15 (첫 완료만)
+
+### 테스트
+- **Domain Test**: 각 Domain 완료 시 자동 잠금 해제
+  - Vocab(4지선다×3 + 빈칸×2) + Q&A×5 = 10문제
+  - 통과 기준 80%, 즉시 재시도 가능, 타이머 없음(시간만 기록)
+  - 3회 연속 실패 시 Parent Dashboard 경고
+  - XP: +30
+
+- **Grade Final Test**: 전체 Domain 완료 시 잠금 해제
+  - Vocab×15 + Q&A×10(Literal4+Inferential4+Evaluative2) + WordWork×2 = 27문제
+  - 통과 기준 80%
+  - 80% 미달 시 24시간 후 재시도, 대기 화면에 틀린 문제+복습 버튼
+  - XP: +100
+
+### 하루 학습량
+- 방학 중: 앱 자동 계산(잔여레슨÷잔여일) + 부모 조정 가능
+- 방학 후: 1레슨/일 자동 전환 (부모 변경 가능)
+- Today's Tasks: "CKLA · N lessons" 하나로 표시
+
+### Grade 확장
+- DB: `grade INTEGER DEFAULT 3` 컬럼
+- G4~: G3 Final Test 통과 시 자동 해제. 3회 실패 시 Parent Dashboard "강제 해제" 버튼 노출
+- 칭호: 0~25% Beginner / 26~50% Explorer / 51~75% Adventurer / 76~99% Champion / 100% Master
+
+### 배지/칭호
+- Domain 완료 시 배지 자동 지급 (11개)
+- Grade Final Test 통과 시 "CKLA G3 Master" 칭호
+- 배지 갤러리: 칭호 클릭 → 획득(컬러+날짜)/미획득(흑백+조건)
+
+### Parent Dashboard CKLA 탭
+- Grade 3 전체 진행률
+- Domain별 완료 현황
+- Q&A 정확도
+- 오늘 학습 여부
+- `needs_parent_review` 항목
+- 주간 학습 그래프 (주간/월간/전체)
+- Domain Test 점수 이력 + 타이머 기록
+- 예상 완료일 (현재 페이스 기준)
+- 학습 시작 시간 패턴
+- Domain Test 3회 실패 경고
+
+### Parent Dashboard Settings CKLA 항목
+- 하루 목표 레슨 수
+- 방학 종료일
+- Domain 순서 강제 여부 (기본: 자유)
+- Domain/Grade Final Test 통과 기준 %
+- XP 수치 전체
+- 체감 난이도 표시 여부
+- 힌트 버튼 표시 여부
+- G4 강제 해제 버튼
+
+### Phase 4 백로그
+- 오프라인 지원 (전체 데이터 캐싱, Q&A는 복귀 후 동기화)
+- AI 튜터 (실시간 질문/답변)
+- 푸시 알림
+- 모바일/태블릿 반응형
+- 멀티 프로필 (DB user_id 확장 가능하도록 설계)
+
+### Models
+`CKLADomain`, `CKLALesson`, `CKLAQuestion`, `CKLAWordLesson`,
+`CKLALessonProgress`, `CKLAQuestionResponse`,
+`CKLABadge` (신규), `CKLAUserBadge` (신규)
+
+### Routers
+`ckla` (메인), `ckla_review` (삭제 예정 → review로 통합)
+
+### Service
+`services/ckla_grader.py`
+
+### Frontend
+`ckla.js`, `ckla-lesson.js`, `ckla-review.js`, `ckla.css`
+
+### Migrations
+- 011: 기존 CKLA 테이블
+- 018: grade 컬럼 추가 + XPLog source 컬럼
+- 019: `ckla_badges`, `ckla_user_badges` 테이블
 
 ---
 
@@ -618,7 +721,7 @@ New module for US-school vocab prep.
 `WeeklyGoal`
 
 ### Migrations (`backend/migrations/`)
-001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy · 011 ckla · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE(grade,unit,lesson).
+001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy · 011 ckla · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE(grade,unit,lesson) · 018 ckla grade column + xplog source column · 019 ckla_badges + ckla_user_badges tables.
 
 ---
 

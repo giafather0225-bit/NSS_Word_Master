@@ -404,6 +404,76 @@ Parent-configured academy test days.
 
 ---
 
+## CKLA Tables
+
+### ckla_domains / ckla_lessons / ckla_lesson_progress (migration 011 + 018 수정)
+
+#### CKLADomain (수정)
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| domain_num | Integer | 1–11 |
+| title | String | |
+| grade | Integer NOT NULL DEFAULT 3 | **신규 (018)** — G3~G8 확장용 |
+
+#### CKLALesson (수정)
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| domain_id | Integer FK → ckla_domains.id | |
+| lesson_num | Integer | |
+| title | String | |
+| grade | Integer NOT NULL DEFAULT 3 | **신규 (018)** |
+
+#### CKLALessonProgress (수정)
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| lesson_id | Integer FK → ckla_lessons.id | |
+| read_done | Boolean | |
+| words_done | Boolean | |
+| qa_done | Boolean | |
+| wordwork_done | Boolean | |
+| completed_at | String | nullable |
+| grade | Integer NOT NULL DEFAULT 3 | **신규 (018)** |
+| started_at | String | **신규 (018)** — 학습 시작 시간 |
+| difficulty_rating | String | **신규 (018)** — easy/neutral/hard |
+
+#### xp_logs (수정)
+| Column | Type | Notes |
+|--------|------|-------|
+| ... | ... | 기존 컬럼 유지 |
+| source | String | **신규 (018)** — "ckla" / "dux" / "math" / etc. |
+
+---
+
+### ckla_badges (신규 — migration 019)
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| badge_key | String UNIQUE | e.g. "domain_1_complete", "grade_3_master" |
+| badge_name | String | display name |
+| description | String | unlock condition text |
+| condition_type | String | "domain_complete" / "grade_complete" |
+| condition_value | Integer | domain_num or grade |
+| image_path | String | nullable, relative path |
+| created_at | String | ISO 8601 |
+
+---
+
+### ckla_user_badges (신규 — migration 019)
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | Integer PK | |
+| badge_key | String FK → ckla_badges.badge_key | |
+| earned_at | String | ISO 8601 |
+
+**Index:** (badge_key) UNIQUE — 중복 지급 방지
+
+---
+
 ## Quick Search
 
 ```bash
