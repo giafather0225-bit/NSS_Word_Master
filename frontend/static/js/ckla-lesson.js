@@ -43,6 +43,14 @@ let _cklaTimerRunning = false;
 /** @type {boolean} TTS currently playing */
 let _cklaTTSPlaying = false;
 
+/* ── ③ Reference tab cache ─────────────────────────────────────────────────── */
+/** @type {object|null} Cached spelling data for current unit */
+let _cklaSpellingCache = null;
+/** @type {object|null} Cached grammar data for current unit */
+let _cklaGrammarCache = null;
+/** @type {object|null} Cached morphology data for current unit */
+let _cklaMorphCache = null;
+
 
 /* ── Lesson shell ──────────────────────────────────────────────────────────── */
 
@@ -59,6 +67,9 @@ function renderCKLALesson(data) {
   _cklaVocabQuizQuestions = [];
   _cklaHintVisible        = false;
   _cklaPassageBlocks      = [];
+  _cklaSpellingCache      = null;
+  _cklaGrammarCache       = null;
+  _cklaMorphCache         = null;
   _cklaStopTimer();
 
   const view = document.getElementById('ckla-view');
@@ -78,6 +89,10 @@ function renderCKLALesson(data) {
       <button class="ckla-tab"        id="tab-vocab"     onclick="switchCKLATab('vocab')">Words</button>
       <button class="ckla-tab"        id="tab-questions" onclick="switchCKLATab('questions')">Q&amp;A</button>
       <button class="ckla-tab"        id="tab-word-work" onclick="switchCKLATab('word-work')">Word Work</button>
+      <span class="ckla-tab-sep" aria-hidden="true"></span>
+      <button class="ckla-tab ckla-tab-ref" id="tab-spelling"   onclick="switchCKLATab('spelling')">Spelling</button>
+      <button class="ckla-tab ckla-tab-ref" id="tab-grammar"    onclick="switchCKLATab('grammar')">Grammar</button>
+      <button class="ckla-tab ckla-tab-ref" id="tab-morphology" onclick="switchCKLATab('morphology')">Morphology</button>
     </div>
     <div id="ckla-tab-content" class="ckla-tab-content"></div>`;
 
@@ -97,10 +112,11 @@ function _cklaUpdateTabLocks() {
   });
 }
 
-/** Switch between the four lesson tabs. @tag ACADEMY CKLA */
+/** Switch between lesson tabs. Reference tabs (spelling/grammar/morphology) bypass the reading_done lock. @tag ACADEMY CKLA */
 function switchCKLATab(tab) {
-  // Block non-reading tabs until reading is done
-  if (tab !== 'reading' && !_cklaLesson?.progress?.reading_done) return;
+  const refTabs = new Set(['spelling', 'grammar', 'morphology']);
+  // Block core tabs until reading is done; reference tabs are always accessible
+  if (!refTabs.has(tab) && tab !== 'reading' && !_cklaLesson?.progress?.reading_done) return;
   // Stop timer if leaving reading tab
   if (_cklaTab === 'reading' && tab !== 'reading') {
     _cklaPauseTimer();
@@ -117,6 +133,9 @@ function switchCKLATab(tab) {
     vocab: _renderVocab,
     questions: _renderQuestions,
     'word-work': _renderWordWork,
+    spelling: _renderSpelling,
+    grammar: _renderGrammar,
+    morphology: _renderMorphology,
   };
   (fns[tab] || _renderReading)();
 }
@@ -881,4 +900,137 @@ function _submitVocabQuiz(selectedId) {
     _cklaVocabQuizIdx++;
     _renderVocabQuiz();
   }, 900);
+}
+
+
+/* ── Reference tabs: Spelling / Grammar / Morphology ──────────────────────── */
+
+/** Render Spelling reference tab for the current unit. @tag ACADEMY CKLA */
+async function _renderSpelling() {
+  const el = document.getElementById('ckla-tab-content');
+  if (!el) return;
+  const unit = _cklaLesson?.domain_num;
+  if (!unit) { el.innerHTML = '<div class="ckla-empty">No unit data.</div>'; return; }
+
+  if (!_cklaSpellingCache) {
+    el.innerHTML = '<div class="ckla-loading">Loading...</div>';
+    try {
+      const r = await fetch(`/api/academy/ckla/spelling/${unit}`);
+      _cklaSpellingCache = await r.json();
+    } catch {
+      el.innerHTML = '<div class="ckla-empty">Could not load spelling data.</div>';
+      return;
+    }
+  }
+
+  const { weeks } = _cklaSpellingCache;
+  if (!weeks || weeks.length === 0) {
+    el.innerHTML = '<div class="ckla-empty">No spelling data available for this unit.</div>';
+    return;
+  }
+
+  const sectionsHtml = weeks.map(w => {
+    const wordChips = w.words.map(word =>
+      `<span class="ckla-word-chip">${_esc(word)}</span>`
+    ).join('');
+    const challengeChips = w.challenge_words.map(word =>
+      `<span class="ckla-word-chip ckla-challenge-chip">${_esc(word)}</span>`
+    ).join('');
+    const patternHtml = w.pattern
+      ? `<div class="ckla-ref-pattern">Pattern: <strong>${_esc(w.pattern)}</strong></div>`
+      : '';
+    const challengeSection = w.challenge_words.length
+      ? `<div class="ckla-ref-sublabel">Challenge Words</div><div class="ckla-word-chips">${challengeChips}</div>`
+      : '';
+    return `
+      <div class="ckla-spell-week">
+        <div class="ckla-ref-week-label">Week ${w.week}</div>
+        ${patternHtml}
+        <div class="ckla-word-chips">${wordChips}</div>
+        ${challengeSection}
+      </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="ckla-ref-header">
+      <span class="ckla-ref-title">Spelling Words</span>
+      <span class="ckla-ref-unit">Unit ${unit}</span>
+    </div>
+    ${sectionsHtml}`;
+}
+
+/** Render Grammar reference tab for the current unit. @tag ACADEMY CKLA */
+async function _renderGrammar() {
+  const el = document.getElementById('ckla-tab-content');
+  if (!el) return;
+  const unit = _cklaLesson?.domain_num;
+  if (!unit) { el.innerHTML = '<div class="ckla-empty">No unit data.</div>'; return; }
+
+  if (!_cklaGrammarCache) {
+    el.innerHTML = '<div class="ckla-loading">Loading...</div>';
+    try {
+      const r = await fetch(`/api/academy/ckla/grammar/${unit}`);
+      _cklaGrammarCache = await r.json();
+    } catch {
+      el.innerHTML = '<div class="ckla-empty">Could not load grammar data.</div>';
+      return;
+    }
+  }
+
+  const { topics } = _cklaGrammarCache;
+  if (!topics || topics.length === 0) {
+    el.innerHTML = '<div class="ckla-empty">No grammar topics available for this unit.</div>';
+    return;
+  }
+
+  const itemsHtml = topics.map(t =>
+    `<li class="ckla-topic-item">${_esc(t)}</li>`
+  ).join('');
+
+  el.innerHTML = `
+    <div class="ckla-ref-header">
+      <span class="ckla-ref-title">Grammar</span>
+      <span class="ckla-ref-unit">Unit ${unit}</span>
+    </div>
+    <div class="ckla-vocab-card">
+      <ul class="ckla-topic-list">${itemsHtml}</ul>
+    </div>`;
+}
+
+/** Render Morphology reference tab for the current unit. @tag ACADEMY CKLA */
+async function _renderMorphology() {
+  const el = document.getElementById('ckla-tab-content');
+  if (!el) return;
+  const unit = _cklaLesson?.domain_num;
+  if (!unit) { el.innerHTML = '<div class="ckla-empty">No unit data.</div>'; return; }
+
+  if (!_cklaMorphCache) {
+    el.innerHTML = '<div class="ckla-loading">Loading...</div>';
+    try {
+      const r = await fetch(`/api/academy/ckla/morphology/${unit}`);
+      _cklaMorphCache = await r.json();
+    } catch {
+      el.innerHTML = '<div class="ckla-empty">Could not load morphology data.</div>';
+      return;
+    }
+  }
+
+  const { topics } = _cklaMorphCache;
+  if (!topics || topics.length === 0) {
+    el.innerHTML = '<div class="ckla-empty">No morphology topics available for this unit.</div>';
+    return;
+  }
+
+  const itemsHtml = topics.map(t =>
+    `<li class="ckla-topic-item">${_esc(t)}</li>`
+  ).join('');
+
+  el.innerHTML = `
+    <div class="ckla-ref-header">
+      <span class="ckla-ref-title">Morphology</span>
+      <span class="ckla-ref-unit">Unit ${unit}</span>
+    </div>
+    <div class="ckla-vocab-card">
+      <ul class="ckla-topic-list">${itemsHtml}</ul>
+    </div>`;
 }

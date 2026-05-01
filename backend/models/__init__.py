@@ -42,6 +42,9 @@ from .math import (
     MathFactFluency,
     MathDailyChallenge,
     MathKangarooProgress,
+    MathSpacedReview,
+    MathUnitTest,
+    MathPlacementTest,
 )
 from .assistant import AssistantLog
 from .us_academy import (
@@ -80,6 +83,7 @@ __all__ = [
     # math
     "MathPlacementResult", "MathProblem", "MathProgress", "MathAttempt",
     "MathWrongReview", "MathFactFluency", "MathDailyChallenge", "MathKangarooProgress",
+    "MathSpacedReview", "MathUnitTest", "MathPlacementTest",
     # assistant
     "AssistantLog",
     # us academy (word-first, SM-2)

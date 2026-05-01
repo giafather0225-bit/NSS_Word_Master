@@ -94,7 +94,8 @@
 .ckla-chip-done { opacity: 1; }
 
 /* ── Tabs ───────────────────────────────────────────────────── */
-.ckla-tabs { display: flex; border-bottom: 2px solid var(--border-default); padding: 0 20px; flex-shrink: 0; }
+.ckla-tabs { display: flex; border-bottom: 2px solid var(--border-default); padding: 0 20px; flex-shrink: 0; overflow-x: auto; scrollbar-width: none; }
+.ckla-tabs::-webkit-scrollbar { display: none; }
 .ckla-tab {
   background: none;
   border: none;
@@ -108,7 +109,99 @@
   white-space: nowrap;
 }
 .ckla-tab.active { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+/* Reference tabs (Spelling / Grammar / Morphology) — lighter style */
+.ckla-tab-ref { color: var(--text-hint); }
+.ckla-tab-ref.active { color: var(--english-primary); border-bottom-color: var(--english-primary); }
+/* Separator between core tabs and reference tabs */
+.ckla-tab-sep {
+  display: block;
+  width: 1px;
+  height: 20px;
+  background: var(--border-default);
+  align-self: center;
+  flex-shrink: 0;
+  margin: 0 4px;
+}
 .ckla-tab-content { flex: 1; overflow-y: auto; padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+
+/* ── Reference tab content ───────────────────────────────── */
+.ckla-ref-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.ckla-ref-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.ckla-ref-unit {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-hint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ckla-spell-week {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ckla-ref-week-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--english-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.ckla-ref-pattern {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+.ckla-ref-sublabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-hint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+.ckla-word-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ckla-word-chip {
+  background: var(--english-light);
+  color: var(--english-ink);
+  border: 1px solid var(--english-soft);
+  border-radius: var(--radius-full);
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.ckla-challenge-chip {
+  background: var(--arcade-light);
+  color: var(--arcade-ink);
+  border-color: var(--arcade-soft);
+}
+.ckla-topic-list {
+  margin: 0;
+  padding: 0 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ckla-topic-item {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
 
 /* ── Passage ────────────────────────────────────────────────── */
 .ckla-passage-wrap { flex: 1; }
@@ -239,6 +332,7 @@
 @media (max-width: 600px) {
   .ckla-domain-grid { grid-template-columns: 1fr 1fr; }
   .ckla-tab { padding: 10px 8px; font-size: 0.75rem; }
+  .ckla-word-chip, .ckla-challenge-chip { font-size: 0.78rem; padding: 3px 8px; }
 }
 
 /* ── ① Reading Timer ────────────────────────────────────────── */
