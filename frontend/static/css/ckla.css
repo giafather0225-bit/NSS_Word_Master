@@ -732,3 +732,27 @@
   color: var(--text-secondary);
 }
 .ckla-onboarding-btn--secondary:hover { background: var(--border-default); }
+
+/* ── Lesson difficulty badge ────────────────────────────────── */
+.ckla-lesson-diff {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+.ckla-diff-easy {
+  background: var(--math-soft);
+  color: var(--math-ink);
+}
+.ckla-diff-neutral {
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+}
+.ckla-diff-hard {
+  background: var(--review-soft);
+  color: var(--review-ink);
+}

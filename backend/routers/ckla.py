@@ -42,6 +42,7 @@ from backend.models.ckla import (
     CKLABadge, CKLAUserBadge,
 )
 from backend.models.us_academy import USAcademyWord, USAcademyWordProgress
+from backend.models.system import AppConfig
 from backend.services.ckla_grader import grade_answer
 from backend.services.xp_engine import award_xp
 from backend.services.streak_engine import mark_ckla_done
@@ -179,13 +180,32 @@ def get_title(grade: int = Query(3), db: Session = Depends(get_db)):
 @router.get("/domains")
 # @tag ACADEMY CKLA
 def get_domains(grade: int = Query(3), db: Session = Depends(get_db)):
-    """Domain list for the given grade."""
+    """Domain list for the given grade, with all_complete flag."""
     domains = (
         db.query(CKLADomain)
         .filter_by(is_active=True, grade=grade)
         .order_by(CKLADomain.domain_num)
         .all()
     )
+    # Bulk-fetch completed lesson counts per domain (avoids N+1)
+    all_lesson_ids_by_domain: dict[int, list[int]] = {}
+    for d in domains:
+        lessons = db.query(CKLALesson.id).filter_by(domain_id=d.id, is_active=True).all()
+        all_lesson_ids_by_domain[d.id] = [l.id for l in lessons]
+
+    all_ids = [lid for ids in all_lesson_ids_by_domain.values() for lid in ids]
+    completed_set = set()
+    if all_ids:
+        completed_set = {
+            p.lesson_id for p in
+            db.query(CKLALessonProgress.lesson_id)
+            .filter(
+                CKLALessonProgress.lesson_id.in_(all_ids),
+                CKLALessonProgress.completed == True,
+            )
+            .all()
+        }
+
     return [
         {
             "id":           d.id,
@@ -193,6 +213,10 @@ def get_domains(grade: int = Query(3), db: Session = Depends(get_db)):
             "title":        d.title,
             "lesson_count": d.lesson_count,
             "grade":        d.grade,
+            "all_complete": (
+                len(all_lesson_ids_by_domain[d.id]) > 0
+                and all(lid in completed_set for lid in all_lesson_ids_by_domain[d.id])
+            ),
         }
         for d in domains
     ]
@@ -357,6 +381,21 @@ def update_lesson_progress(
             prog.completed_at = now
             award_xp(db, "ckla_lesson_complete", detail=str(lesson_id))
             mark_ckla_done(db)
+
+            # Check daily lesson goal
+            today_str = _date.today().isoformat()
+            daily_goal_cfg = db.query(AppConfig).filter_by(key="ckla_lessons_per_day").first()
+            daily_goal = int(daily_goal_cfg.value) if daily_goal_cfg else 1
+            today_done = (
+                db.query(CKLALessonProgress)
+                .filter(
+                    CKLALessonProgress.completed == True,
+                    CKLALessonProgress.completed_at.like(f"{today_str}%"),
+                )
+                .count()
+            )
+            if today_done >= daily_goal:
+                award_xp(db, "ckla_daily_goal", detail=today_str)
 
         db.commit()
         return _progress_dict(prog)
