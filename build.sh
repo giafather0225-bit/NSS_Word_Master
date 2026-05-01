@@ -40,6 +40,14 @@ cat \
   frontend/src/island/Collection.jsx \
   frontend/src/island/LumiLog.jsx \
   frontend/src/island/IslandNotifications.jsx \
+  frontend/src/island/FeedScreen.jsx \
+  frontend/src/island/EmptyState.jsx \
+  frontend/src/island/DailyScreen.jsx \
+  frontend/src/island/SettingsScreen.jsx \
+  frontend/src/island/PurchaseModal.jsx \
+  frontend/src/island/LoadingScreen.jsx \
+  frontend/src/island/ErrorScreen.jsx \
+  frontend/src/island/Coachmarks.jsx \
   $JS/island-result.js \
   $JS/diary.js \
   $JS/diary-home.js \
