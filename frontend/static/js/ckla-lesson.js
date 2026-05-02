@@ -930,6 +930,13 @@ async function _renderSpelling() {
   }
 
   const sectionsHtml = weeks.map(w => {
+    if (!w.words.length && !w.challenge_words.length) {
+      return `
+      <div class="ckla-spell-week">
+        <div class="ckla-ref-week-label">Week ${w.week}</div>
+        <div class="ckla-empty">No spelling data available</div>
+      </div>`;
+    }
     const wordChips = w.words.map(word =>
       `<span class="ckla-word-chip">${_esc(word)}</span>`
     ).join('');
