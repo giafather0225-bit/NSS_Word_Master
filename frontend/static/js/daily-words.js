@@ -187,9 +187,16 @@ function _dwPlacementNext() {
         <div class="dw-card">
             <div class="dw-question-word">${escapeHtml(item.word)}</div>
             <div class="dw-choices">${choices.map(def =>
-                `<button class="dw-choice-btn" onclick="_dwPlacementAnswer(this,${def === item.definition},${JSON.stringify(item.word)})">${escapeHtml(def)}</button>`
+                `<button class="dw-choice-btn"
+                    data-correct="${def === item.definition}"
+                    data-word="${escapeHtml(item.word)}">${escapeHtml(def)}</button>`
             ).join("")}</div>
         </div>`;
+    view.querySelectorAll(".dw-choice-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+            _dwPlacementAnswer(this, this.dataset.correct === "true", this.dataset.word);
+        });
+    });
 }
 
 /**

@@ -119,7 +119,7 @@ function _renderReviewCard() {
         <div class="ckla-review-card">
           <div class="ckla-review-word">${_escRev(w.word)}</div>
           ${w.part_of_speech ? `<div class="ckla-review-pos">${_escRev(w.part_of_speech)}</div>` : ''}
-          ${w.audio_url ? `<button class="ckla-review-audio-btn" onclick="_cklaRevAudio('${w.audio_url}')">🔊</button>` : ''}
+          ${w.audio_url ? `<button class="ckla-review-audio-btn" data-audio-url="${_escRev(w.audio_url)}"><i data-lucide="volume-2" style="width:14px;height:14px;stroke-width:1.5"></i></button>` : ''}
           <div class="ckla-review-input-wrap">
             <div class="ckla-review-hint">Type the meaning of this word</div>
             <input type="text" class="ckla-review-input" id="ckla-rev-input"
@@ -132,6 +132,10 @@ function _renderReviewCard() {
           </div>
         </div>
       </div>`;
+
+    const audioBtn = body.querySelector('.ckla-review-audio-btn[data-audio-url]');
+    if (audioBtn) audioBtn.addEventListener('click', () => _cklaRevAudio(audioBtn.dataset.audioUrl));
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     // Autofocus
     setTimeout(() => {

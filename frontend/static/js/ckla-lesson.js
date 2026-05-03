@@ -75,10 +75,9 @@ function renderCKLALesson(data) {
   const view = document.getElementById('ckla-view');
   if (!view) return;
 
-  const backFn = `loadCKLALessons(${data.domain_num})`;
   view.innerHTML = `
     <div class="ckla-lesson-header">
-      <button class="ckla-back-btn" onclick="${backFn}">← Domain ${data.domain_num}</button>
+      <button class="ckla-back-btn" id="ckla-lesson-back-btn">← Domain ${data.domain_num}</button>
       <div class="ckla-lesson-info">
         <span class="ckla-lesson-tag">Lesson ${data.lesson_num} · ${data.domain_title}</span>
         <span class="ckla-lesson-htitle">${data.title}</span>
@@ -95,6 +94,9 @@ function renderCKLALesson(data) {
       <button class="ckla-tab ckla-tab-ref" id="tab-morphology" onclick="switchCKLATab('morphology')">Morphology</button>
     </div>
     <div id="ckla-tab-content" class="ckla-tab-content"></div>`;
+
+  const backBtn = document.getElementById('ckla-lesson-back-btn');
+  if (backBtn) backBtn.addEventListener('click', () => loadCKLALessons(data.domain_num));
 
   _renderReading();
   _cklaUpdateTabLocks();
@@ -429,7 +431,7 @@ function _renderVocab() {
       <div class="ckla-vocab-top">
         <span class="ckla-vocab-word">${_esc(w.word)}</span>
         ${w.part_of_speech ? `<span class="ckla-pos-pill">${_esc(w.part_of_speech)}</span>` : ''}
-        ${w.audio_url ? `<button class="ckla-audio-btn" onclick="_cklaAudio('${w.audio_url}')" title="Listen"><i data-lucide="volume-2" style="width:14px;height:14px"></i></button>` : ''}
+        ${w.audio_url ? `<button class="ckla-audio-btn" data-audio-url="${_esc(w.audio_url)}" title="Listen"><i data-lucide="volume-2" style="width:14px;height:14px"></i></button>` : ''}
       </div>
       <div class="ckla-vocab-def">${_esc(w.definition) || '<em>No definition available</em>'}</div>
       ${w.example_1 ? `<div class="ckla-vocab-ex">"${_esc(w.example_1)}"</div>` : ''}
@@ -446,6 +448,9 @@ function _renderVocab() {
             : `<button class="ckla-primary-btn" style="opacity:.5" title="Swipe through all words first" disabled>Take Quiz</button>`
           )}
     </div>`;
+  el.querySelectorAll('.ckla-audio-btn[data-audio-url]').forEach(btn => {
+    btn.addEventListener('click', () => _cklaAudio(btn.dataset.audioUrl));
+  });
   if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
@@ -563,7 +568,7 @@ function _renderWordWork() {
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
         <div class="ckla-ww-word">${_esc(vw.word)}</div>
         ${vw.part_of_speech ? `<span class="ckla-pos-pill">${_esc(vw.part_of_speech)}</span>` : ''}
-        ${vw.audio_url ? `<button class="ckla-audio-btn" onclick="_cklaAudio('${vw.audio_url}')" title="Listen"><i data-lucide="volume-2" style="width:14px;height:14px"></i></button>` : ''}
+        ${vw.audio_url ? `<button class="ckla-audio-btn" data-audio-url="${_esc(vw.audio_url)}" title="Listen"><i data-lucide="volume-2" style="width:14px;height:14px"></i></button>` : ''}
         ${!prog.word_work_done ? `<button class="ckla-hint-btn" id="ckla-hint-btn" onclick="_cklaToggleHint()">${_cklaHintVisible ? 'Hide Hint' : 'Hint'}</button>` : ''}
       </div>
       <div class="ckla-ww-hint${_cklaHintVisible ? ' visible' : ''}" id="ckla-ww-hint">${hintContent}</div>
@@ -584,6 +589,9 @@ function _renderWordWork() {
     <div class="ckla-action-bar">
       <button class="ckla-primary-btn" id="ckla-ww-submit" onclick="_markWordWorkDone()">Submit</button>
     </div>` : ''}`;
+  el.querySelectorAll('.ckla-audio-btn[data-audio-url]').forEach(btn => {
+    btn.addEventListener('click', () => _cklaAudio(btn.dataset.audioUrl));
+  });
   if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 

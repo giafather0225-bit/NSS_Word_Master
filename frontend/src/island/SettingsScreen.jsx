@@ -17,6 +17,7 @@ const _ISS_SECTIONS = [
     { id: 'lang',    icon: 'globe',       label: 'Language'     },
     { id: 'support', icon: 'help-circle', label: 'Support'      },
     { id: 'about',   icon: 'info',        label: 'About'        },
+    { id: 'dev',     icon: 'wrench',      label: 'Dev Tools'    },
 ];
 
 // ─── Entry ──────────────────────────────────────────────────────
@@ -88,6 +89,7 @@ function _issPanelHTML() {
         case 'lang':     return _issLangPanel();
         case 'support':  return _issSupportPanel();
         case 'about':    return _issAboutPanel();
+        case 'dev':      return _issDevPanel();
         default:         return '';
     }
 }
@@ -189,6 +191,55 @@ function _issAboutPanel() {
         ${_issRow("Gia's Island", 'island', `v${ver}`, '')}
         ${_issRow('Open source licenses', 'file-text', '', 'chevron-right')}
         ${_issRow('Privacy policy',        'shield',    '', 'chevron-right')}`;
+}
+
+// ─── Dev Tools panel ─────────────────────────────────────────────
+
+/** @tag SHOP */
+function _issDevPanel() {
+    return `
+        <h2 class="iss-panel-title">Dev Tools</h2>
+        <div class="iss-dev-notice">
+            <i data-lucide="triangle-alert"></i>
+            <span>Testing only — bypasses game constraints</span>
+        </div>
+        <div class="iss-dev-btn-list">
+            <button class="iss-dev-btn" onclick="_issDevAction('seed')">
+                <i data-lucide="coins"></i>
+                <div>
+                    <span class="iss-dev-btn-label">Add Lumi + Stones + Max Gauges</span>
+                    <span class="iss-dev-btn-sub">+9999 Lumi, +5 each evo stone, hunger/happiness → 100</span>
+                </div>
+            </button>
+            <button class="iss-dev-btn" onclick="_issDevAction('level-up')">
+                <i data-lucide="arrow-up-circle"></i>
+                <div>
+                    <span class="iss-dev-btn-label">Level Up to Evo-Ready</span>
+                    <span class="iss-dev-btn-sub">Push active chars to max level of their stage</span>
+                </div>
+            </button>
+            <button class="iss-dev-btn" onclick="_issDevAction('unlock-zones')">
+                <i data-lucide="unlock"></i>
+                <div>
+                    <span class="iss-dev-btn-label">Unlock All Zones</span>
+                    <span class="iss-dev-btn-sub">Forest, Ocean, Savanna, Space, Legend</span>
+                </div>
+            </button>
+        </div>`;
+}
+
+/** @tag SHOP */
+async function _issDevAction(action) {
+    const btns = document.querySelectorAll('.iss-dev-btn');
+    btns.forEach(b => { b.disabled = true; });
+    try {
+        const result = await apiFetchJSON('/api/island/dev/' + action, { method: 'POST' });
+        if (typeof _showShopToast === 'function') _showShopToast('Done: ' + JSON.stringify(result));
+    } catch (err) {
+        if (typeof _showShopToast === 'function') _showShopToast(err?.detail || 'Dev action failed.', true);
+    } finally {
+        btns.forEach(b => { b.disabled = false; });
+    }
 }
 
 // ─── Row helpers ─────────────────────────────────────────────────
