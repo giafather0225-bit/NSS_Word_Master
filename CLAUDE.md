@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-01 — CKLA redesign spec (66 decisions) + DUX freeze rules + streak subject change + migration 018/019 + Math Module v2.0 (MATH_SPEC.md)
+> Last updated: 2026-05-03 — CKLA redesign spec (66 decisions) + DUX freeze rules + streak subject change + migrations 018-022 + Math Module v2.0 (MATH_SPEC.md) + Island System
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -12,8 +12,8 @@
 ---
 
 ## Tech Stack
-- **Backend**: Python / FastAPI — `backend/main.py` mounts **45 routers** (`backend/routers/`, ~204 endpoints).
-- **Frontend**: HTML + CSS + Vanilla JS (no framework). 83 JS source + 57 CSS files. Pre-built into `bundle-{a,b,c}.min.js` via `build.sh` (esbuild). Auto-rebuilt at server startup.
+- **Backend**: Python / FastAPI — `backend/main.py` mounts **47 routers** (`backend/routers/`, ~204 endpoints).
+- **Frontend**: HTML + CSS + Vanilla JS (no framework). 89 JS source + 57 CSS files. Pre-built into `bundle-{a,b,c}.min.js` via `build.sh` (esbuild). Auto-rebuilt at server startup. Island UI uses JSX React components (`frontend/src/island/*.jsx`, 18 files — built separately, not bundled with esbuild).
 - **Database**: SQLite WAL · ORM: SQLAlchemy. Models split by domain in `backend/models/`.
 - **AI**: Ollama (`gemma2:2b`, local, lazy-start via `services/ollama_manager.py`) → Gemini fallback (`GEMINI_API_KEY`).
 - **TTS**: edge-tts → BytesIO in-memory (no temp files) — `backend/tts_edge.py`, `routers/tts.py`.
@@ -201,6 +201,7 @@ NSS_Word_Master/
 | `us_academy` | Word-first SM-2 system, sessions, mini-quiz, unit tests, passages |
 | `ckla` | CKLA G3 reading curriculum (Read / Words / Q&A / Word Work) |
 | `ckla_review` | CKLA review queue |
+| `parent_ckla` | Parent dashboard CKLA stats (progress, Q&A accuracy, weekly graph) |
 
 ---
 
@@ -632,7 +633,7 @@ pre_test (5문항, 진단+뇌 준비, 점수 미표시)
 ---
 
 ### DB 마이그레이션
-- **Migration 018** 실행 필수 (`MATH_SPEC.md` 섹션 13 참조)
+- **Migration 022** 실행 필수 (`MATH_SPEC.md` 섹션 13 참조)
 - 수정: `math_progress`, `math_wrong_review`
 - 신규: `math_spaced_review`, `math_unit_test`, `math_placement_test`
 
@@ -647,12 +648,14 @@ pre_test (5문항, 진단+뇌 준비, 점수 미표시)
 - `math-problem-ui.js` — 힌트 딜레이 10초, Glossary 접근 제어
 - `math-academy-learn.css` — 다크모드 토큰
 
-**추가할 파일**:
+**추가할 파일** (미구현):
 - `math-spaced-review.js`
-- `math-unit-test.js`
 - `math-placement-test.js`
-- `math-lesson-complete.js`
 - `math-academy-stages.css`
+
+**추가 완료** (2026-05-01):
+- `math-unit-test.js` ✅
+- `math-lesson-complete.js` ✅
 
 **절대 건드리지 말 것 (Kangaroo — 독립 모듈)**:
 - `math-kangaroo.js` (및 관련 kangaroo JS 파일 전체)
@@ -857,8 +860,11 @@ New module for US-school vocab prep.
 
 ### Migrations
 - 011: 기존 CKLA 테이블
-- 018: grade 컬럼 추가 + XPLog source 컬럼
-- 019: `ckla_badges`, `ckla_user_badges` 테이블
+- 018: CKLA grade 컬럼 추가 + XPLog source 컬럼
+- 019: CKLA grade 컬럼 (018 확장) + `ckla_badges`, `ckla_user_badges` 테이블
+- 020: `ckla_badges`, `ckla_user_badges` 테이블
+- 021: `ckla_spelling_grammar` 테이블
+- 022: Math v2 스키마 (`math_spaced_review` 등)
 
 ---
 
@@ -924,7 +930,7 @@ New module for US-school vocab prep.
 `WeeklyGoal`
 
 ### Migrations (`backend/migrations/`)
-001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy · 011 ckla · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE(grade,unit,lesson) · 018 ckla grade column + xplog source column · 019 ckla_badges + ckla_user_badges tables.
+001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy · 011 ckla · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE(grade,unit,lesson) · 018 ckla grade column + xplog source column · 019 ckla grade ext + ckla_badges + ckla_user_badges · 020 ckla_badges/user_badges tables · 021 ckla_spelling_grammar · 022 math_v2_schema.
 
 ---
 
@@ -1080,7 +1086,7 @@ New tables:
 9. `island_legend_progress` — legend streak tracking
 10. `island_zone_status` — unlock status (5 rows)
 
-**Tables DELETED in migration 018:** `rewards`, `schedules`, `growth_theme_progress`
+**Tables planned for deletion (Island spec):** `rewards`, `schedules`, `growth_theme_progress` — not yet deleted; `growth_theme_progress` still exists in `gamification.py` and `routers/growth_theme.py` is still registered.
 
 ---
 
@@ -1108,17 +1114,24 @@ New tables:
 | `frontend/static/js/reward-shop.js` | Add Island tabs |
 | `frontend/static/js/parent-panel.js` | Remove growth_theme, add island toggle |
 
-### Deleted Files
+### Files Planned for Deletion (not yet deleted)
 
 | File | Reason |
 |------|--------|
-| `routers/growth_theme.py` | Replaced by island |
-| `models/gamification.py` (growth_theme parts) | Removed |
+| `routers/growth_theme.py` | Will be replaced by island — currently still registered in main.py |
+| `models/gamification.py` (GrowthThemeProgress) | Will be removed — currently still present |
 
 ---
 
-### Frontend Config Files
+### Frontend Files
 
+Island UI is built with JSX React components (`frontend/src/island/*.jsx`, 18 files). These are separate from the vanilla JS bundles and have their own build pipeline.
+
+- `frontend/src/island/IslandMain.jsx` — main island screen
+- `frontend/src/island/SettingsScreen.jsx` — island settings (currently modified/WIP)
+- (and 16 more island JSX components)
+
+Config files:
 - `frontend/src/config/animations.config.js` — All animation timings (edit here, not in components)
 - `frontend/src/config/island.config.js` — Zone config, UI text, error messages, thresholds
 
