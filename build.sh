@@ -91,6 +91,7 @@ cat \
   $JS/math-lesson-complete.js \
   $JS/math-unit-test.js \
   $JS/math-problems-ui.js \
+  $JS/math-academy-submit.js \
   $JS/math-academy.js \
   $JS/math-review.js \
   $JS/math-fluency.js \
