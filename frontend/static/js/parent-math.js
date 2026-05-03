@@ -44,14 +44,16 @@ async function _ppMathSummary(body) {
     }
 }
 
-/** Top 4-stat grid: completed lessons, 7-day accuracy, wrong-review pending, mastered. @tag PARENT MATH */
+/** Top 4-stat grid: completed lessons, 7-day accuracy, unit tests passed, spaced review due. @tag PARENT MATH */
 function _ppMathCards(data) {
     const a = data.academy || {};
     const r = data.recent_7d || {};
-    const w = data.wrong_review || {};
+    const sr = data.spaced_review || {};
     const completion = a.total_lessons
         ? Math.round((a.completed / a.total_lessons) * 100)
         : 0;
+    const srDue = sr.due_today || 0;
+    const srDueStyle = srDue > 0 ? "color:var(--color-error)" : "";
     return `
         ${_ppMathTitle("calculator", "Math Overview", "margin-top:0")}
         <div class="pp-stats pp-math-stats">
@@ -64,12 +66,12 @@ function _ppMathCards(data) {
                 <div class="pp-stat-label">7d Accuracy · ${r.total_attempts || 0} tries</div>
             </div>
             <div class="pp-stat pp-math-stat">
-                <div class="pp-stat-num">${w.pending || 0}</div>
-                <div class="pp-stat-label">Wrong Review Due</div>
+                <div class="pp-stat-num">${a.unit_tests_passed || 0}</div>
+                <div class="pp-stat-label">Unit Tests Passed</div>
             </div>
             <div class="pp-stat pp-math-stat">
-                <div class="pp-stat-num">${w.mastered || 0}</div>
-                <div class="pp-stat-label">Mastered</div>
+                <div class="pp-stat-num" style="${srDueStyle}">${srDue}</div>
+                <div class="pp-stat-label">Spaced Review Due</div>
             </div>
         </div>`;
 }
@@ -206,9 +208,13 @@ function _ppMathUnitTestHistory(history) {
         const passed = r.passed
             ? `<span style="color:var(--color-success);font-weight:700">Pass</span>`
             : `<span style="color:var(--color-error)">Fail</span>`;
+        const attempt = r.attempt_number === 1
+            ? `<span style="color:var(--text-hint);font-size:11px">1st</span>`
+            : `<span style="color:var(--color-warning);font-size:11px;font-weight:600">Retry</span>`;
         return `
             <tr>
                 <td><strong>${escapeHtml(r.unit_id || "")}</strong></td>
+                <td style="text-align:center">${attempt}</td>
                 <td style="text-align:right">${r.score}/${r.total}</td>
                 <td style="text-align:right"><span class="pp-stage-acc pp-stage-acc--${accClass}">${r.pct}%</span></td>
                 <td style="text-align:center">${passed}</td>
@@ -221,6 +227,7 @@ function _ppMathUnitTestHistory(history) {
             <table class="pp-log-table">
                 <thead><tr>
                     <th>Unit</th>
+                    <th style="text-align:center">Attempt</th>
                     <th style="text-align:right">Score</th>
                     <th style="text-align:right">Acc</th>
                     <th style="text-align:center">Result</th>

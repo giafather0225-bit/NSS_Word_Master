@@ -60,12 +60,18 @@
         <div class="math-sr-header">
           <span class="math-sr-title">Math Review</span>
           <span class="math-sr-progress" id="math-sr-progress"></span>
+          <button class="math-sr-exit-btn" id="math-sr-exit" title="Exit">
+            <i data-lucide="x" width="16" height="16"></i>
+          </button>
         </div>
         <div class="math-sr-body" id="math-sr-body"></div>
       </div>
     `;
     document.body.appendChild(el);
     _overlay = el;
+    const exitBtn = el.querySelector('#math-sr-exit');
+    if (exitBtn) exitBtn.addEventListener('click', _removeOverlay);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
   }
 
   function _removeOverlay() {
@@ -136,6 +142,12 @@
   function _gradeChoice(p, letter, text, idx) {
     const correct = (p.correct_answer || '').trim().toUpperCase();
     const isCorrect = letter.toUpperCase() === correct;
+    // Mark the clicked button so _showFeedback can highlight it if wrong
+    const choices = document.getElementById('math-sr-choices');
+    if (choices) {
+      const clicked = choices.querySelector(`[data-letter="${letter}"]`);
+      if (clicked) clicked.classList.add('selected');
+    }
     _recordAnswer(p, isCorrect, letter);
     _showFeedback(p, isCorrect, p.answer_display || correct, idx);
   }

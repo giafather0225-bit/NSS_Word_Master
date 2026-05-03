@@ -129,6 +129,18 @@
 }
 .math-sr-progress {
     font-size: var(--font-size-sm); color: var(--text-hint); font-weight: 600;
+    flex: 1; text-align: right; margin-right: 8px;
+}
+.math-sr-exit-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; padding: 0;
+    border: none; border-radius: var(--radius-sm);
+    background: transparent; color: var(--text-hint);
+    cursor: pointer; flex-shrink: 0;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+.math-sr-exit-btn:hover {
+    background: var(--bg-surface); color: var(--text-primary);
 }
 
 .math-sr-body {

@@ -677,6 +677,42 @@ async function _rateDifficulty(rating) {
   } catch (e) {
     console.warn('CKLA difficulty rating failed:', e);
   }
+  _maybeShowDomainTestBanner();
+}
+
+/**
+ * After lesson completion, check if all lessons in the domain are done.
+ * If so, inject a Domain Test CTA banner into #ckla-view.
+ * @tag ACADEMY CKLA
+ */
+async function _maybeShowDomainTestBanner() {
+  const domainNum = _cklaLesson?.domain_num;
+  if (!domainNum) return;
+  const view = document.getElementById('ckla-view');
+  if (!view) return;
+  if (view.querySelector('.ckla-domain-test-banner')) return;
+
+  try {
+    const grade = (typeof cklaNav !== 'undefined' && cklaNav.grade) ? cklaNav.grade : 3;
+    const res = await fetch(`/api/academy/ckla/domains?grade=${grade}`);
+    if (!res.ok) return;
+    const data = await res.json();
+    const domain = (data.domains || []).find(d => d.domain_num === domainNum);
+    if (!domain || !domain.all_complete) return;
+
+    const banner = document.createElement('div');
+    banner.className = 'ckla-domain-test-banner';
+    banner.innerHTML = `
+      <div class="ckla-domain-test-banner-text">
+        <div class="ckla-domain-test-banner-title">Domain Test Unlocked!</div>
+        <div class="ckla-domain-test-banner-sub">You finished all lessons in Domain ${domainNum}. Ready to test your knowledge?</div>
+      </div>
+      <button class="ckla-domain-test-banner-btn" onclick="openDomainTest(${domainNum})">Take Test</button>
+    `;
+    view.insertBefore(banner, view.firstChild);
+  } catch (e) {
+    console.warn('Domain test banner check failed:', e);
+  }
 }
 
 

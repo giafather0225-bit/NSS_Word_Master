@@ -1202,6 +1202,102 @@
   border-color: var(--english-primary);
   box-shadow: 0 0 0 3px var(--english-soft);
 }
+.ckla-test-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ckla-test-option {
+  padding: 10px 16px;
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+.ckla-test-option:hover {
+  border-color: var(--english-primary);
+  background: var(--english-light);
+}
+.ckla-test-option.selected {
+  border-color: var(--english-primary);
+  background: var(--english-soft);
+  color: var(--english-ink);
+  font-weight: 600;
+}
+.ckla-test-nav-btn,
+.ckla-test-submit-btn {
+  padding: 9px 20px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.ckla-test-nav-btn {
+  border: 1.5px solid var(--border-default);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+}
+.ckla-test-nav-btn:hover {
+  border-color: var(--english-primary);
+  color: var(--english-ink);
+}
+.ckla-test-submit-btn {
+  border: none;
+  background: var(--english-primary);
+  color: var(--text-on-primary);
+}
+.ckla-test-submit-btn:hover {
+  background: var(--english-hover);
+}
+/* ── Domain Test unlock banner ────────────────────────────────────────────── */
+.ckla-domain-test-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--english-light);
+  border: 1.5px solid var(--english-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  margin: 16px 0 4px;
+}
+.ckla-domain-test-banner-text {
+  flex: 1;
+}
+.ckla-domain-test-banner-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--english-ink);
+  margin-bottom: 2px;
+}
+.ckla-domain-test-banner-sub {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+.ckla-domain-test-banner-btn {
+  padding: 9px 20px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--english-primary);
+  color: var(--text-on-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition-fast);
+}
+.ckla-domain-test-banner-btn:hover {
+  background: var(--english-hover);
+}
 .ckla-test-nav {
   display: flex;
   justify-content: space-between;
