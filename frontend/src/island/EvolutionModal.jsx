@@ -189,8 +189,13 @@ async function _emConfirm() {
     const btn = document.getElementById('iem-confirm-btn');
     if (btn) { btn.disabled = true; btn.textContent = 'Evolving…'; }
 
+    // Snapshot legend unlock state before evolution to detect a new unlock.
+    const legendWasUnlocked = _islandStatus?.zones
+        ? !!_islandStatus.zones.find(z => z.zone === 'legend')?.is_unlocked
+        : false;
+
     try {
-        await apiFetchJSON('/api/island/character/evolve', {
+        const result = await apiFetchJSON('/api/island/character/evolve', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -198,16 +203,139 @@ async function _emConfirm() {
                 branch: _emSelection,
             }),
         });
-        _showShopToast('Evolution complete!');
+        // Capture these before _closeEvoModal clears module state.
+        const zone = _cdZone || _zdZone || 'forest';
+        const charName = _emCharName || 'Character';
         _closeEvoModal();
-        // Refresh whichever screen called us
-        if (_cdProgId) {
-            openCharacterDetail(_cdProgId, _cdZone);
-        } else if (_zdZone) {
-            openZoneDetail(_zdZone);
+
+        if (result.is_completed) {
+            _showCharCompletion(result, zone, charName);
+        } else {
+            _showShopToast('Evolution complete!');
+            _emRefreshBack();
+        }
+
+        // Check if legend zone just unlocked via this evolution.
+        if (!legendWasUnlocked) {
+            try {
+                const ls = await apiFetchJSON('/api/island/legend/unlock/status');
+                if (ls.legend_unlocked) _showLegendUnlock();
+            } catch (_) {}
         }
     } catch (err) {
         if (btn) { btn.disabled = false; btn.textContent = 'Confirm Evolution'; }
         _showShopToast(err?.detail || 'Evolution failed.', true);
     }
+}
+
+/** Navigate back to character or zone detail after evolution. @tag SHOP */
+function _emRefreshBack() {
+    if (_cdProgId) {
+        openCharacterDetail(_cdProgId, _cdZone);
+    } else if (_zdZone) {
+        openZoneDetail(_zdZone);
+    }
+}
+
+// ─── Character Completion Celebration ─────────────────────────
+
+const _ZONE_PARTICLE_COLORS = {
+    forest:  ['var(--english-primary)', 'var(--english-soft)', 'var(--math-primary)'],
+    ocean:   ['var(--math-primary)', 'var(--math-soft)', 'var(--english-primary)'],
+    savanna: ['var(--diary-primary)', 'var(--diary-soft)', 'var(--arcade-primary)'],
+    space:   ['var(--rewards-primary)', 'var(--rewards-soft)', 'var(--arcade-primary)'],
+    legend:  ['var(--arcade-primary)', 'var(--arcade-soft)', 'var(--rewards-primary)'],
+};
+
+/** Show full-screen completion celebration. @tag SHOP */
+function _showCharCompletion(result, zone, charName) {
+    const overlay = document.createElement('div');
+    overlay.id    = 'icc-overlay';
+    overlay.className = `icc-overlay icc-${zone}`;
+
+    const emoji = _CHAR_EMOJI[(charName || '').toLowerCase()] || '?';
+    const boostSubject = result.boost_subject
+        ? result.boost_subject.charAt(0).toUpperCase() + result.boost_subject.slice(1)
+        : '';
+    const stageLabel = { final_a: 'Final Form A', final_b: 'Final Form B' }[result.new_stage] || result.new_stage || '';
+
+    const attrsHtml = [
+        boostSubject ? `<span class="icc-attr"><i data-lucide="zap"></i> ${escapeHtml(boostSubject)} Boost</span>` : '',
+        stageLabel   ? `<span class="icc-attr"><i data-lucide="star"></i> ${escapeHtml(stageLabel)}</span>` : '',
+        `<span class="icc-attr"><i data-lucide="gem"></i> Lumi Production Active</span>`,
+    ].filter(Boolean).join('');
+
+    overlay.innerHTML = `
+        <div class="icc-bloom"></div>
+        <div class="icc-particles" id="icc-particles"></div>
+        <div class="icc-content">
+            <div class="icc-char-emoji">${emoji}</div>
+            <div class="icc-badge">COMPLETE!</div>
+            <div class="icc-name">${escapeHtml(charName)}</div>
+            <div class="icc-subtitle">is fully evolved!</div>
+            <div class="icc-attrs">${attrsHtml}</div>
+            <button class="icc-continue-btn" onclick="_closeCharCompletion()">
+                <i data-lucide="arrow-right"></i> Continue
+            </button>
+        </div>`;
+
+    document.body.appendChild(overlay);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    // Spawn particles
+    const colors = _ZONE_PARTICLE_COLORS[zone] || _ZONE_PARTICLE_COLORS.forest;
+    const pEl = document.getElementById('icc-particles');
+    if (pEl) {
+        for (let i = 0; i < 18; i++) {
+            const p = document.createElement('div');
+            p.className = 'icc-particle';
+            p.style.cssText = [
+                `left:${5 + Math.random() * 90}%`,
+                `bottom:${Math.random() * 40}%`,
+                `background:${colors[i % colors.length]}`,
+                `--dur:${1.6 + Math.random() * 1.4}s`,
+                `--delay:${Math.random() * 1.5}s`,
+                `width:${6 + Math.random() * 8}px`,
+                `height:${6 + Math.random() * 8}px`,
+            ].join(';');
+            pEl.appendChild(p);
+        }
+    }
+}
+
+/** Dismiss completion overlay and refresh the island view. @tag SHOP */
+function _closeCharCompletion() {
+    const el = document.getElementById('icc-overlay');
+    if (el) el.remove();
+    _emRefreshBack();
+    // Reload island map so boost/lumi production is reflected.
+    if (typeof openIslandMain === 'function') openIslandMain();
+}
+
+// ─── Legend Zone Unlock Animation ─────────────────────────────
+
+/** Show Legend Isle awakens full-screen animation. @tag SHOP */
+function _showLegendUnlock() {
+    const overlay = document.createElement('div');
+    overlay.id        = 'ilu-overlay';
+    overlay.className = 'ilu-overlay';
+    overlay.onclick   = _closeLegendUnlock;
+
+    overlay.innerHTML = `
+        <div class="ilu-light"></div>
+        <div class="ilu-silhouette"></div>
+        <div class="ilu-icon"><i data-lucide="sparkles"></i></div>
+        <div class="ilu-text">The Legend Isle awakens...</div>
+        <div class="ilu-subtitle">All four zones are now connected.</div>
+        <button class="ilu-tap-hint" onclick="_closeLegendUnlock()">Tap to continue</button>`;
+
+    document.body.appendChild(overlay);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+/** Dismiss legend unlock overlay and reload island map. @tag SHOP */
+function _closeLegendUnlock() {
+    const el = document.getElementById('ilu-overlay');
+    if (el) el.remove();
+    if (typeof openIslandMain === 'function') openIslandMain();
 }

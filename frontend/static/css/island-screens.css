@@ -232,7 +232,8 @@
     transition: all var(--transition-fast);
 }
 .ish-tab:hover { border-color: var(--rewards-primary); color: var(--rewards-primary); }
-.ish-tab--active {
+.ish-tab--active,
+.ish-tab--active:hover {
     background: var(--rewards-primary); border-color: var(--rewards-primary);
     color: var(--text-on-primary);
 }
@@ -646,4 +647,138 @@
 .ir-bar-fill--low { background: var(--review-primary); }
 .ir-bar-fill--mid { background: var(--arcade-primary); }
 .ir-bar-fill--ok  { background: var(--math-primary); }
+
+/* ── Character Completion Celebration ────────────────────────────── */
+.icc-overlay {
+    position: fixed; inset: 0; z-index: 3000;
+    display: flex; align-items: center; justify-content: center;
+    animation: icc-fade-in 0.4s ease forwards;
+}
+.icc-overlay.icc-forest  { background: linear-gradient(160deg, var(--english-light) 0%, var(--english-soft) 60%, var(--english-primary) 100%); }
+.icc-overlay.icc-ocean   { background: linear-gradient(160deg, var(--math-light) 0%, var(--math-soft) 60%, var(--math-primary) 100%); }
+.icc-overlay.icc-savanna { background: linear-gradient(160deg, var(--diary-light) 0%, var(--diary-soft) 60%, var(--diary-primary) 100%); }
+.icc-overlay.icc-space   { background: linear-gradient(160deg, var(--rewards-light) 0%, var(--rewards-soft) 60%, var(--rewards-primary) 100%); }
+.icc-overlay.icc-legend  { background: linear-gradient(160deg, var(--arcade-light) 0%, var(--arcade-soft) 60%, var(--arcade-primary) 100%); }
+
+.icc-bloom {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.55) 0%, transparent 65%);
+    animation: icc-bloom-pulse 2s ease-in-out infinite;
+}
+.icc-particles {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.icc-particle {
+    position: absolute;
+    width: 8px; height: 8px; border-radius: 50%;
+    opacity: 0;
+    animation: icc-particle-up var(--dur, 2s) var(--delay, 0s) ease-out infinite;
+}
+
+.icc-content {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    text-align: center; padding: 32px 24px;
+    animation: icc-content-rise 0.6s 0.2s ease both;
+}
+.icc-char-emoji {
+    font-size: 72px; line-height: 1;
+    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.15));
+    animation: icc-char-bounce 1.2s 0.4s ease both;
+}
+.icc-badge {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--text-on-primary); background: rgba(43,39,34,0.35);
+    padding: 3px 12px; border-radius: var(--radius-full);
+}
+.icc-name {
+    font-family: var(--font-family-display); font-size: var(--font-size-2xl); font-weight: 700;
+    color: var(--text-primary); letter-spacing: -0.02em;
+    animation: icc-text-fade 0.5s 0.5s ease both; opacity: 0;
+}
+.icc-subtitle {
+    font-size: var(--font-size-md); color: var(--text-secondary);
+    animation: icc-text-fade 0.5s 0.7s ease both; opacity: 0;
+}
+.icc-attrs {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 4px;
+    animation: icc-text-fade 0.5s 0.9s ease both; opacity: 0;
+}
+.icc-attr {
+    display: flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,0.55); border-radius: var(--radius-full);
+    padding: 5px 14px; font-size: var(--font-size-sm); font-weight: 600; color: var(--text-primary);
+}
+.icc-continue-btn {
+    margin-top: 12px; display: flex; align-items: center; gap: 6px;
+    background: var(--text-primary); color: var(--text-on-primary);
+    border: none; border-radius: var(--radius-full); cursor: pointer;
+    font-size: var(--font-size-md); font-weight: 700; padding: 12px 28px;
+    animation: icc-text-fade 0.5s 1.1s ease both; opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+.icc-continue-btn:hover { opacity: 0.85; }
+
+@keyframes icc-fade-in    { from { opacity: 0 } to { opacity: 1 } }
+@keyframes icc-bloom-pulse { 0%,100% { opacity: 0.7 } 50% { opacity: 1 } }
+@keyframes icc-content-rise { from { opacity:0; transform:translateY(30px) } to { opacity:1; transform:translateY(0) } }
+@keyframes icc-char-bounce  { 0% { opacity:0; transform:scale(0.5) } 70% { transform:scale(1.1) } 100% { opacity:1; transform:scale(1) } }
+@keyframes icc-text-fade    { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
+@keyframes icc-particle-up  {
+    0%   { opacity:0; transform:translateY(0) scale(0.8); }
+    20%  { opacity:0.9; }
+    100% { opacity:0; transform:translateY(-180px) scale(0.4); }
+}
+
+/* ── Legend Zone Unlock Animation ────────────────────────────────── */
+.ilu-overlay {
+    position: fixed; inset: 0; z-index: 3100;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(12, 10, 8, 0); pointer-events: all;
+    animation: ilu-darken 0.8s ease forwards;
+    cursor: pointer;
+}
+.ilu-light {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 50% 55%, rgba(238,199,112,0.55) 0%, transparent 60%);
+    opacity: 0; animation: ilu-light-spread 1.2s 0.6s ease forwards;
+}
+.ilu-silhouette {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 40%; pointer-events: none;
+    background: linear-gradient(to top, rgba(43,39,34,0.8) 0%, rgba(43,39,34,0.5) 40%, transparent 100%);
+    opacity: 0; animation: ilu-silhouette-rise 1.4s 0.8s ease forwards;
+}
+.ilu-icon {
+    position: relative; z-index: 1;
+    color: var(--arcade-primary); margin-bottom: 16px;
+    opacity: 0; animation: ilu-text-appear 0.8s 1.4s ease forwards;
+}
+.ilu-icon svg { width: 56px; height: 56px; stroke-width: 1.5; }
+.ilu-text {
+    position: relative; z-index: 1;
+    font-family: var(--font-family-display); font-size: var(--font-size-xl); font-weight: 700;
+    color: var(--arcade-primary); text-align: center; padding: 0 24px;
+    letter-spacing: -0.01em;
+    opacity: 0; animation: ilu-text-appear 0.8s 1.6s ease forwards;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+.ilu-subtitle {
+    position: relative; z-index: 1;
+    font-size: var(--font-size-sm); color: rgba(255,255,255,0.75);
+    margin-top: 8px;
+    opacity: 0; animation: ilu-text-appear 0.6s 2.0s ease forwards;
+}
+.ilu-tap-hint {
+    position: absolute; bottom: 32px;
+    font-size: var(--font-size-xs); color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em; font-weight: 600;
+    background: none; border: none; cursor: pointer;
+    opacity: 0; animation: ilu-text-appear 0.6s 2.4s ease forwards;
+}
+
+@keyframes ilu-darken       { from { background:rgba(12,10,8,0) } to { background:rgba(12,10,8,0.88) } }
+@keyframes ilu-light-spread { from { opacity:0; transform:scale(0.6) } to { opacity:1; transform:scale(1) } }
+@keyframes ilu-silhouette-rise { from { opacity:0; transform:translateY(20px) } to { opacity:1; transform:translateY(0) } }
+@keyframes ilu-text-appear  { from { opacity:0; transform:translateY(12px) } to { opacity:1; transform:translateY(0) } }
 .sc-island-update { margin-top: 4px; }
