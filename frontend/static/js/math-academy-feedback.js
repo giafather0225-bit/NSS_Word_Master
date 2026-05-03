@@ -68,7 +68,7 @@ function showMathFeedback(result, problem, onNext, onRetry) {
         }
         cpaHtml = `
             <div class="math-cpa-fallback">
-                <div class="math-cpa-fallback-label">\u{1F4A1} Remember the picture:</div>
+                <div class="math-cpa-fallback-label">Remember the picture:</div>
                 <div class="math-cpa-fallback-title">${_mathEsc(c.title || '')}</div>
                 ${cpaVisual}
             </div>
@@ -77,7 +77,7 @@ function showMathFeedback(result, problem, onNext, onRetry) {
 
     const interactiveHtml = hasInteractive ? `
         <div class="math-steps math-steps-interactive" id="math-steps" data-open="1">
-            <div class="math-steps-title">\u{1F4D6} Work through it step by step</div>
+            <div class="math-steps-title">Work through it step by step</div>
             <ol class="math-isteps-list">
                 ${iSteps.map((s, si) => `
                     <li class="math-istep" data-si="${si}">
@@ -102,7 +102,7 @@ function showMathFeedback(result, problem, onNext, onRetry) {
     const stepsHtml = hasSteps ? `
         <div class="math-steps" id="math-steps" data-open="${autoOpen ? '1' : '0'}">
             <button type="button" class="math-btn-ghost math-steps-toggle" id="math-steps-toggle">
-                ${autoOpen ? '\u{1F4D6} Step-by-step' : '\u{1F4D6} Show steps'}
+                ${autoOpen ? 'Step-by-step' : 'Show steps'}
             </button>
             <div class="math-steps-body" id="math-steps-body" style="${autoOpen ? '' : 'display:none;'}">
                 <ol class="math-steps-list" id="math-steps-list"></ol>
@@ -278,10 +278,10 @@ function _wireReadOnlySteps(steps, autoOpen) {
         const open = bodyEl.style.display !== 'none';
         if (open) {
             bodyEl.style.display = 'none';
-            toggleBtn.textContent = '\u{1F4D6} Show steps';
+            toggleBtn.textContent = 'Show steps';
         } else {
             bodyEl.style.display = '';
-            toggleBtn.textContent = '\u{1F4D6} Step-by-step';
+            toggleBtn.textContent = 'Step-by-step';
             if (idx === 0) revealNext();
         }
     });

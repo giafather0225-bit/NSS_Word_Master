@@ -64,7 +64,7 @@ function _showEarlyBumpPrompt() {
     card.className = 'math-feedback-overlay math-feedback-correct';
     card.innerHTML = `
         <div class="math-feedback-card">
-            <div class="math-feedback-icon">\u{1F680}</div>
+            <div class="math-feedback-icon"><i data-lucide="zap"></i></div>
             <div class="math-feedback-result">You're on fire!</div>
             <div class="math-feedback-text">5 correct in a row. ${nextStage ? 'Skip to the next round?' : 'Keep going!'}</div>
             <div class="math-learn-actions" style="margin-top:20px; justify-content:center;">
@@ -74,6 +74,7 @@ function _showEarlyBumpPrompt() {
         </div>
     `;
     stage.appendChild(card);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     document.getElementById('math-bump-no').addEventListener('click', () => {
         card.remove();
@@ -122,7 +123,7 @@ function _renderRoundSummary({ stageLabel, correct, total, pct, passed, weakConc
     }
     const weakHtml = weakConcepts.length > 0
         ? `<div class="math-summary-weak">
-              <div class="math-summary-weak-label">\u{1F4CD} Focus areas</div>
+              <div class="math-summary-weak-label">Focus areas</div>
               <div class="math-summary-weak-list">${weakConcepts.map(c => `<div class="math-summary-weak-row"><span>${_mathEsc(c)}</span></div>`).join('')}</div>
            </div>`
         : '';
@@ -253,7 +254,7 @@ async function renderMathComplete() {
     stage.innerHTML = `
         <div class="math-complete">
             <div class="math-complete-hero">
-                <div class="math-complete-icon">✨</div>
+                <div class="math-complete-icon"><i data-lucide="star"></i></div>
                 <h2>Lesson Complete!</h2>
                 <p>${_mathEsc(lessonName)}</p>
                 <div class="math-complete-stats">
@@ -282,6 +283,7 @@ async function renderMathComplete() {
     if (typeof _appendIslandUpdate === 'function') {
         _appendIslandUpdate(document.getElementById('math-island-update'));
     }
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /** @tag MATH @tag ACADEMY */
