@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# DEPRECATED 2026-05-03 — PDF Anchor Mode 채택으로 이 스크립트는 더 이상 사용하지 않음.
+# 구 방식(PDF→PNG→Gemini Vision API) 참조용으로 보관. 삭제 금지.
+# 새 방식: JSON에 pdf_page 필드 추가, 앱이 PDF.js로 해당 페이지 직접 렌더링.
+# 전체 결정 경위: KANGAROO_DATA_PLAN.md 참조.
 """
 generate_kangaroo_solutions.py
 ==============================

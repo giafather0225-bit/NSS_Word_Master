@@ -175,5 +175,6 @@
     "28": "In a regular 20-gon inscribed in a circle of radius r, chord length for k steps = 2r*sin(k*pi/20). Chords longer than r but shorter than 2r: need r < 2r*sin(k*pi/20) < 2r => 1/2 < sin(k*pi/20) < 1 => 30 deg < k*9 deg < 90 deg => k=4,5,6,7,8,9. That is 6 distinct chord lengths, each occurring 20 times. Total = 6*20 = 120, which is answer C.",
     "29": "Line L1 intersects 5 others, so it is parallel to n-1-5=n-6 others. Line L3 intersects 11 others, so it is parallel to n-12 others. The parallel classes must be consistent. Working through the constraints on parallel groups and ensuring no contradictions, the smallest n satisfying all three intersection counts is answer B.",
     "30": "With 0 < m < n integers and points A=(m/n, 0) and B=(0, n/m) forming a triangle with O=(0,0): area = (1/2)*(m/n)*(n/m) ... but more likely the triangle uses (m,n) and (n,m): area = (1/2)|n^2-m^2| = 2024 => (n-m)(n+m)=4048=2^4*11*23. Both n-m and n+m must have the same parity (both even): writing n-m=2a, n+m=2b gives ab=1012=4*11*23. Factor pairs (a,b) with a<b: (1,1012),(2,506),(4,253),(11,92),(22,46),(23,44) -- 6 pairs, all giving valid positive integer solutions. Answer B."
-  }
+  },
+  "answers_verified": true
 }

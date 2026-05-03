@@ -294,6 +294,8 @@ def kangaroo_set(set_id: str) -> dict[str, Any]:
                 "image_only": bool(q.get("image_only", False)),
                 "image_description": q.get("image_description"),
                 "options": q.get("options", {}),
+                "pdf_page": q.get("pdf_page"),
+                "image_required": bool(q.get("image_required", False)),
             })
         sections_out.append({
             "name": section.get("name", ""),
