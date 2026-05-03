@@ -25,6 +25,7 @@ from backend.models import (
     WordReview,
 )
 from backend.models.ckla import CKLALessonProgress
+from backend.models.math import MathSpacedReview
 from backend.models.system import AppConfig
 from backend.services.xp_engine import (
     award_xp,
@@ -318,15 +319,27 @@ def tasks_today(db: Session = Depends(get_db)) -> list:
             .filter(WordReview.next_review <= today)
             .count()
         )
-        tasks.append(
-            _make_task(
-                "review",
-                "Review",
-                f"{review_due_count} words" if review_due_count else "No words due",
-                streak_log.review_done if streak_log else False,
-                settings,
-            )
+        math_review_count = (
+            db.query(MathSpacedReview)
+            .filter(MathSpacedReview.next_review_date <= today)
+            .count()
         )
+        parts = []
+        if review_due_count:
+            parts.append(f"English {review_due_count}")
+        if math_review_count:
+            parts.append(f"Math {math_review_count}")
+        review_detail = " + ".join(parts) if parts else "No reviews due"
+        review_task = _make_task(
+            "review",
+            "Review",
+            review_detail,
+            streak_log.review_done if streak_log else False,
+            settings,
+        )
+        review_task["math_review_count"] = math_review_count
+        review_task["english_review_count"] = review_due_count
+        tasks.append(review_task)
     if "daily_words" in settings:
         tasks.append(
             _make_task(

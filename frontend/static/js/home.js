@@ -10,6 +10,10 @@
 // Current view state
 let currentView = 'home'; // 'home' | 'english' | 'math' | 'diary'
 
+// Cached review counts — set by renderTodayTasks, used by renderSectionCards
+let _mathReviewDue = 0;
+let _englishReviewDue = 0;
+
 /**
  * Switch the app to the given view.
  *
@@ -371,6 +375,17 @@ async function renderTodayTasks() {
   const doneStatEl = document.getElementById('summary-done');
   if (doneStatEl) doneStatEl.textContent = `${doneCount}/${total}`;
 
+  // Update review counts for section card badge + onclick routing
+  const reviewTask = tasks.find(t => t.key === 'review');
+  _mathReviewDue    = reviewTask ? (reviewTask.math_review_count    || 0) : 0;
+  _englishReviewDue = reviewTask ? (reviewTask.english_review_count || 0) : 0;
+  const badge = document.getElementById('section-card-review-badge');
+  if (badge) {
+    const totalDue = _mathReviewDue + _englishReviewDue;
+    badge.textContent = totalDue;
+    badge.style.display = totalDue > 0 ? '' : 'none';
+  }
+
   // Wire click handlers
   list.querySelectorAll('.tc-row').forEach(el => {
     if (el.classList.contains('done')) return;
@@ -472,16 +487,23 @@ function renderSectionCards() {
     };
   }
 
-  // Review card → switch to english view, then trigger sidebar Review button.
+  // Review card — route by what's due:
+  //   Math only  → start MathSpacedReview overlay directly
+  //   English (or both) → English view + btn-review (chain hook handles math after)
+  //   Nothing due → English view anyway (review.js shows "nothing due" state)
   const reviewCard = document.getElementById('section-card-review');
   if (reviewCard) {
     reviewCard.disabled = false;
     reviewCard.onclick = () => {
-      switchView('english');
-      setTimeout(() => {
-        const btn = document.getElementById('btn-review');
-        if (btn) btn.click();
-      }, 300);
+      if (_mathReviewDue > 0 && _englishReviewDue === 0) {
+        if (typeof MathSpacedReview !== 'undefined') MathSpacedReview.start();
+      } else {
+        switchView('english');
+        setTimeout(() => {
+          const btn = document.getElementById('btn-review');
+          if (btn) btn.click();
+        }, 300);
+      }
     };
   }
 
