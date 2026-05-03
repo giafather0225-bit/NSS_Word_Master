@@ -444,10 +444,12 @@ def care_status(character_progress_id: int, db: Session = Depends(get_db)):
         can_evolve = False
     elif prog.is_legend_type:
         stone_needed = "legend_first_a" if stage == "baby" else "legend_second"
-        can_evolve = current_xp >= xp_to_next and prog.hunger >= 20 and prog.happiness >= 20
+        min_level = 10 if is_mid else 5
+        can_evolve = current_xp >= xp_to_next and prog.level >= min_level and prog.hunger >= 20 and prog.happiness >= 20
     else:
         stone_needed = ("first_a" if stage == "baby" else "second")
-        can_evolve = current_xp >= xp_to_next and prog.hunger >= 20 and prog.happiness >= 20
+        min_level = 10 if is_mid else 5
+        can_evolve = current_xp >= xp_to_next and prog.level >= min_level and prog.hunger >= 20 and prog.happiness >= 20
 
     # Legend streak
     legend_prog = None
@@ -1101,3 +1103,61 @@ def daily_claim(db: Session = Depends(get_db)):
                           earned_date=today)
     db.commit()
     return {"ok": True, "lumi_earned": REWARD, "currency": result}
+
+
+# ── Dev Tools (dev_mode only) ─────────────────────────────────────────────────
+
+def _require_dev_mode(db: Session) -> None:
+    cfg = db.query(AppConfig).filter_by(key="dev_mode").first()
+    if cfg and cfg.value == "false":
+        raise HTTPException(status_code=403, detail="Dev mode is disabled.")
+
+
+# @tag ISLAND
+@router.post("/dev/seed")
+def dev_seed(db: Session = Depends(get_db)):
+    """Add 9999 Lumi + 5 of each evolution stone + max gauges on active chars."""
+    _require_dev_mode(db)
+    le.earn_lumi(db, source="dev_seed", amount=9999, earned_date=_today())
+    stones = db.query(IslandShopItem).filter_by(category="evolution", is_active=True).all()
+    for stone in stones:
+        inv = db.query(IslandInventory).filter_by(shop_item_id=stone.id).first()
+        if inv:
+            inv.quantity += 5
+        else:
+            db.add(IslandInventory(shop_item_id=stone.id, item_type="evolution", quantity=5))
+    active = db.query(IslandCharacterProgress).filter_by(is_active=True, is_completed=False).all()
+    for char in active:
+        char.hunger = 100
+        char.happiness = 100
+    db.commit()
+    return {"ok": True, "lumi_added": 9999, "stones_seeded": len(stones)}
+
+
+# @tag ISLAND
+@router.post("/dev/level-up")
+def dev_level_up(db: Session = Depends(get_db)):
+    """Push active characters to max level of their current stage (evo-ready)."""
+    _require_dev_mode(db)
+    active = db.query(IslandCharacterProgress).filter_by(is_active=True, is_completed=False).all()
+    for char in active:
+        if char.stage == "baby":
+            char.level = 5
+            char.current_xp = 750
+        elif char.stage in ("mid_a", "mid_b"):
+            char.level = 10
+            char.current_xp = 1900
+    db.commit()
+    return {"ok": True, "chars_updated": len(active)}
+
+
+# @tag ISLAND
+@router.post("/dev/unlock-zones")
+def dev_unlock_zones(db: Session = Depends(get_db)):
+    """Unlock all 5 zones instantly."""
+    _require_dev_mode(db)
+    zones = db.query(IslandZoneStatus).all()
+    for z in zones:
+        z.is_unlocked = True
+    db.commit()
+    return {"ok": True, "zones_unlocked": len(zones)}

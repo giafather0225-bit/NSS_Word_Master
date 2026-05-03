@@ -211,15 +211,17 @@ function retryMathStage() {
  * @tag MATH @tag ACADEMY
  */
 async function renderMathComplete() {
-  // ── PHASE-0 FIX P0: call complete-lesson API ──
-  try {
-    await fetch('/api/math/academy/complete-lesson', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ grade: mathState.grade, unit: mathState.unit, lesson: mathState.lesson })
-    });
-  } catch (e) { console.error('complete-lesson failed', e); }
-  // ── END P0 ──
+    // v1 flow: call complete-lesson to award XP + mark complete.
+    // v2 flow: exit_quiz/submit already handled completion — skip to avoid double XP.
+    if (!mathState._v2Flow) {
+        try {
+            await fetch('/api/math/academy/complete-lesson', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ grade: mathState.grade, unit: mathState.unit, lesson: mathState.lesson })
+            });
+        } catch (e) { console.error('complete-lesson failed', e); }
+    }
 
     const stage = document.getElementById('stage');
     if (!stage) return;
@@ -227,29 +229,47 @@ async function renderMathComplete() {
 
     const lessonName = (mathState.lesson || '').replace(/_/g, ' ');
     const pretestPct = Math.round((mathState.pretestScore || 0) / 5 * 100);
+    const reviewDate = mathState.spacedReviewDate || '';
+    let reviewHtml = '';
+    if (reviewDate) {
+        const d = new Date(reviewDate);
+        const label = isNaN(d.getTime()) ? reviewDate : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        reviewHtml = `<div class="math-complete-review-date">Next review: ${_mathEsc(label)}</div>`;
+    }
+
+    const exitScore = mathState._v2Flow ? mathState.correct : null;
+    const midStat = mathState._v2Flow
+        ? `<div class="math-complete-stat">
+               <div class="math-complete-stat-label">Exit Quiz</div>
+               <div class="math-complete-stat-val">${exitScore}/5</div>
+               <div class="math-complete-stat-sub">${Math.round((exitScore / 5) * 100)}%</div>
+           </div>`
+        : `<div class="math-complete-stat">
+               <div class="math-complete-stat-label">Rounds</div>
+               <div class="math-complete-stat-val">3</div>
+               <div class="math-complete-stat-sub">Completed</div>
+           </div>`;
+
     stage.innerHTML = `
         <div class="math-complete">
             <div class="math-complete-hero">
-                <div class="math-complete-icon">\u{1F389}</div>
+                <div class="math-complete-icon">✨</div>
                 <h2>Lesson Complete!</h2>
                 <p>${_mathEsc(lessonName)}</p>
                 <div class="math-complete-stats">
                     <div class="math-complete-stat">
-                        <div class="math-complete-stat-label">Pretest</div>
+                        <div class="math-complete-stat-label">Pre-Test</div>
                         <div class="math-complete-stat-val">${mathState.pretestScore}/5</div>
                         <div class="math-complete-stat-sub">${pretestPct}%</div>
                     </div>
-                    <div class="math-complete-stat">
-                        <div class="math-complete-stat-label">Rounds</div>
-                        <div class="math-complete-stat-val">3</div>
-                        <div class="math-complete-stat-sub">Completed</div>
-                    </div>
+                    ${midStat}
                     <div class="math-complete-stat">
                         <div class="math-complete-stat-label">Mastery</div>
-                        <div class="math-complete-stat-val">\u2713</div>
+                        <div class="math-complete-stat-val">✓</div>
                         <div class="math-complete-stat-sub">Unlocked</div>
                     </div>
                 </div>
+                ${reviewHtml}
             </div>
             <div class="math-complete-actions">
                 <button class="math-btn-primary" id="math-complete-back-btn">Back to Math</button>

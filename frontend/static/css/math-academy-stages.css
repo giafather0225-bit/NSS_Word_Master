@@ -251,6 +251,83 @@
     min-width: 14px;
 }
 
+/* ── v2.0 Feedback action row (Try stage first_wrong retry) ── */
+
+.math-feedback-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 320px;
+    margin-top: 14px;
+}
+
+.math-feedback-actions .math-btn-primary,
+.math-feedback-actions .math-btn-ghost {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+}
+
+/* ── v2.0 Exit Quiz result screen ──────────────────────────── */
+
+.math-exit-quiz-result {
+    max-width: 480px;
+    margin: 40px auto;
+    text-align: center;
+    padding: 36px 28px;
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-card);
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.math-result-score {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    font-family: var(--font-family-display);
+}
+
+.math-result-msg {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 340px;
+}
+
+.math-attempts-left {
+    font-size: 13px;
+    color: var(--text-hint);
+    padding: 4px 12px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-full);
+}
+
+.math-result-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 280px;
+    margin-top: 4px;
+}
+
+.math-result-actions button {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+}
+
 /* ── Accessibility: reduced motion ────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
     .math-feedback-overlay {

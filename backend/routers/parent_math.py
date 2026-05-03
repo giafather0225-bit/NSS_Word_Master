@@ -17,11 +17,13 @@ try:
     from ..models import (MathProgress, MathAttempt, MathWrongReview,
                           MathFactFluency, MathDailyChallenge,
                           MathKangarooProgress)
+    from ..models.math import MathSpacedReview, MathUnitTest
 except ImportError:
     from database import get_db
     from models import (MathProgress, MathAttempt, MathWrongReview,
                         MathFactFluency, MathDailyChallenge,
                         MathKangarooProgress)
+    from models.math import MathSpacedReview, MathUnitTest
 
 
 router = APIRouter()
@@ -103,6 +105,36 @@ def parent_math_summary(db: Session = Depends(get_db)):
         "completed_at": (r.completed_at or "")[:10],
     } for r in kang_rows]
 
+    # Spaced review stats
+    seven_days = (date.today() + timedelta(days=7)).isoformat()
+    sr_due_today   = db.query(MathSpacedReview).filter(MathSpacedReview.next_review_date <= today_str).count()
+    sr_overdue     = db.query(MathSpacedReview).filter(MathSpacedReview.next_review_date < today_str).count()
+    sr_upcoming_7d = db.query(MathSpacedReview).filter(
+        MathSpacedReview.next_review_date > today_str,
+        MathSpacedReview.next_review_date <= seven_days,
+    ).count()
+    sr_total       = db.query(MathSpacedReview).count()
+    sr_scores      = [r.exit_quiz_score for r in db.query(MathSpacedReview).all() if r.exit_quiz_score is not None]
+    sr_avg_score   = round(sum(sr_scores) / len(sr_scores) * 20, 1) if sr_scores else 0.0  # /5 * 100
+
+    # Unit test history (last 10)
+    ut_rows = (
+        db.query(MathUnitTest)
+        .order_by(MathUnitTest.taken_at.desc())
+        .limit(10)
+        .all()
+    )
+    unit_test_history = [{
+        "unit_id":        r.unit_id,
+        "grade":          r.grade,
+        "attempt_number": r.attempt_number,
+        "score":          r.score,
+        "total":          r.total,
+        "pct":            round(r.score / r.total * 100, 1) if r.total else 0,
+        "passed":         r.passed,
+        "taken_at":       (r.taken_at or "")[:10],
+    } for r in ut_rows]
+
     return {
         "academy": {
             "total_lessons":     total_lessons,
@@ -120,4 +152,12 @@ def parent_math_summary(db: Session = Depends(get_db)):
         "fluency":       fluency,
         "daily_recent":  daily_recent,
         "kangaroo":      kangaroo,
+        "spaced_review": {
+            "due_today":    sr_due_today,
+            "overdue":      sr_overdue,
+            "upcoming_7d":  sr_upcoming_7d,
+            "total":        sr_total,
+            "avg_score_pct": sr_avg_score,
+        },
+        "unit_test_history": unit_test_history,
     }

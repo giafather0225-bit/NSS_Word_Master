@@ -83,6 +83,8 @@ function showCKLAView() {
   const view = document.getElementById('ckla-view');
   if (view) { view.style.display = 'flex'; }
   if (typeof switchView === 'function') switchView('english');
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar) { sidebar.classList.add('collapsed'); localStorage.setItem('sb_collapsed', '1'); }
   loadCKLADomains();
 }
 
@@ -90,8 +92,7 @@ function showCKLAView() {
 function hideCKLAView() {
   const view = document.getElementById('ckla-view');
   if (view) view.style.display = 'none';
-  const idle = document.getElementById('idle-wrapper');
-  if (idle) idle.style.display = '';
+  if (typeof switchView === 'function') switchView('english');
 }
 
 
@@ -351,38 +352,95 @@ async function openDomainTest(domainNum) {
 /** @tag ACADEMY CKLA */
 function _renderDomainTest(domainNum, data) {
   const view = document.getElementById('ckla-view');
-  let currentIdx = 0;
   const answers = {};
 
+  /** Persist current textarea/input value before navigating away. */
+  function _saveCurrentInput() {
+    const st = window._domainTestState;
+    if (!st) return;
+    const q = st.data.questions[st.currentIdx];
+    if (!q) return;
+    if (q.type === 'qa') {
+      const ta = document.getElementById('ckla-test-qa-input');
+      if (ta) answers[q.id] = ta.value;
+    } else if (q.type === 'vocab_fill') {
+      const inp = document.getElementById('ckla-test-fill-input');
+      if (inp) answers[q.id] = inp.value;
+    }
+  }
+
   function renderQ() {
-    const q = data.questions[currentIdx];
-    const total = data.questions.length;
+    const st = window._domainTestState;
+    const q = st.data.questions[st.currentIdx];
+    const total = st.data.questions.length;
+    const idx = st.currentIdx;
+
+    let bodyHtml = '';
+    if (q.type === 'vocab_mc') {
+      // Definition → choose the word
+      const choiceHtml = (q.choices || []).map((opt, i) => {
+        const sel = answers[q.id] === opt ? ' selected' : '';
+        const safeOpt = opt.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+        return `<button class="ckla-test-option${sel}"
+                  onclick="selectTestAnswer(${q.id}, '${safeOpt}', this)">
+                  ${String.fromCharCode(65 + i)}. ${opt}
+                </button>`;
+      }).join('');
+      bodyHtml = `
+        <div class="ckla-test-type-label">Vocabulary — Choose the Word</div>
+        <div class="ckla-test-question">${q.question_text}</div>
+        <div class="ckla-test-options">${choiceHtml}</div>`;
+
+    } else if (q.type === 'vocab_fill') {
+      // Definition → type the word
+      const saved = answers[q.id] || '';
+      bodyHtml = `
+        <div class="ckla-test-type-label">Vocabulary — Spell the Word</div>
+        <div class="ckla-test-question">${q.question_text}</div>
+        <div class="ckla-test-fill-wrap">
+          <input id="ckla-test-fill-input" class="ckla-test-fill-input"
+                 type="text" placeholder="Type the word…"
+                 value="${saved.replace(/"/g, '&quot;')}"
+                 oninput="window._domainTestState && (window._domainTestState.answers[${q.id}] = this.value)" />
+        </div>`;
+
+    } else {
+      // Q&A — textarea
+      const saved = answers[q.id] || '';
+      bodyHtml = `
+        <div class="ckla-test-type-label">${q.kind ? q.kind.replace(/_/g, ' ') : 'Comprehension'}</div>
+        <div class="ckla-test-question">${q.question_text}</div>
+        <textarea id="ckla-test-qa-input" class="ckla-test-qa" rows="4"
+                  placeholder="Write your answer…"
+                  oninput="window._domainTestState && (window._domainTestState.answers[${q.id}] = this.value)"
+        >${saved}</textarea>`;
+    }
+
     view.innerHTML = `
       <div class="ckla-header">
         <button class="ckla-back-btn" onclick="loadCKLADomains()">← Back</button>
-        <h2 class="ckla-title">Domain ${domainNum} Test (${currentIdx + 1}/${total})</h2>
+        <h2 class="ckla-title">Domain ${domainNum} Test (${idx + 1}/${total})</h2>
       </div>
       <div class="ckla-test-body">
-        <div class="ckla-test-passage">${q.passage_excerpt || ''}</div>
-        <div class="ckla-test-question">${q.question_text}</div>
-        <div class="ckla-test-options">
-          ${(q.options || []).map((opt, i) => `
-            <button class="ckla-test-option${answers[q.id] === opt ? ' selected' : ''}"
-                    onclick="selectTestAnswer(${q.id}, '${opt.replace(/'/g, "\\'")}', this)">
-              ${String.fromCharCode(65 + i)}. ${opt}
-            </button>
-          `).join('')}
-        </div>
+        ${bodyHtml}
         <div class="ckla-test-nav">
-          ${currentIdx > 0 ? `<button class="ckla-test-nav-btn" onclick="domainTestNav(-1)">← Prev</button>` : '<span></span>'}
-          ${currentIdx < total - 1
+          ${idx > 0
+            ? `<button class="ckla-test-nav-btn" onclick="domainTestNav(-1)">← Prev</button>`
+            : '<span></span>'}
+          ${idx < total - 1
             ? `<button class="ckla-test-nav-btn" onclick="domainTestNav(1)">Next →</button>`
             : `<button class="ckla-test-nav-btn ckla-test-submit-btn" onclick="submitDomainTest(${domainNum})">Submit</button>`}
         </div>
       </div>`;
   }
 
-  window._domainTestState = { domainNum, data, answers, currentIdx, renderQ, startTime: Date.now() };
+  window._domainTestState = {
+    domainNum, data, answers,
+    currentIdx: 0,
+    renderQ,
+    _saveCurrentInput,
+    startTime: Date.now(),
+  };
   renderQ();
 }
 
@@ -397,6 +455,7 @@ function selectTestAnswer(qId, answer, btn) {
 /** @tag ACADEMY CKLA */
 function domainTestNav(delta) {
   if (!window._domainTestState) return;
+  window._domainTestState._saveCurrentInput();
   window._domainTestState.currentIdx += delta;
   window._domainTestState.renderQ();
 }
@@ -404,6 +463,8 @@ function domainTestNav(delta) {
 /** @tag ACADEMY CKLA */
 async function submitDomainTest(domainNum) {
   if (!window._domainTestState) return;
+  // Save any unsaved text input on the current question before submitting
+  window._domainTestState._saveCurrentInput();
   const { data, answers, startTime } = window._domainTestState;
   const answersMap = {};
   data.questions.forEach(q => { answersMap[q.id] = answers[q.id] || ''; });
@@ -513,6 +574,8 @@ function _renderLessons(data) {
 /** Fetch lesson data and enter lesson view (delegates to ckla-lesson.js). @tag ACADEMY CKLA */
 async function openCKLALesson(lessonId) {
   cklaNav.screen = 'lesson';
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar) { sidebar.classList.add('collapsed'); localStorage.setItem('sb_collapsed', '1'); }
   const view = document.getElementById('ckla-view');
   if (!view) return;
   view.innerHTML = '<div class="ckla-loading">Loading lesson…</div>';

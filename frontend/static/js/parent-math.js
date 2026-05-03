@@ -32,6 +32,8 @@ async function _ppMathSummary(body) {
                 <div>${_ppMathWeakAreas(data.weak_areas || [])}</div>
                 <div>${_ppMathFluency(data.fluency || [])}</div>
             </div>
+            ${_ppMathSpacedReview(data.spaced_review || {})}
+            ${_ppMathUnitTestHistory(data.unit_test_history || [])}
             ${_ppMathDailyChart(data.daily_recent || [])}
             ${_ppMathKangaroo(data.kangaroo || [])}`;
 
@@ -163,6 +165,65 @@ function _ppMathKangaroo(kang) {
                     <th>Set</th>
                     <th style="text-align:right">Score</th>
                     <th style="text-align:right">Acc</th>
+                    <th>Date</th>
+                </tr></thead>
+                <tbody>${rows}</tbody>
+            </table>
+        </div>`;
+}
+
+/** Spaced review stats strip. @tag PARENT MATH */
+function _ppMathSpacedReview(sr) {
+    if (!sr || !sr.total) return "";
+    const dueClass = sr.due_today > 0 ? "color:var(--color-error)" : "color:var(--color-success)";
+    return `
+        ${_ppMathTitle("repeat", "Spaced Review", "margin-top:24px")}
+        <div class="pp-stats pp-math-stats">
+            <div class="pp-stat pp-math-stat">
+                <div class="pp-stat-num" style="${dueClass}">${sr.due_today}</div>
+                <div class="pp-stat-label">Due Today</div>
+            </div>
+            <div class="pp-stat pp-math-stat">
+                <div class="pp-stat-num">${sr.overdue}</div>
+                <div class="pp-stat-label">Overdue</div>
+            </div>
+            <div class="pp-stat pp-math-stat">
+                <div class="pp-stat-num">${sr.upcoming_7d}</div>
+                <div class="pp-stat-label">Next 7 Days</div>
+            </div>
+            <div class="pp-stat pp-math-stat">
+                <div class="pp-stat-num">${sr.avg_score_pct}%</div>
+                <div class="pp-stat-label">Avg Exit Score · ${sr.total} scheduled</div>
+            </div>
+        </div>`;
+}
+
+/** Unit test history table (last 10). @tag PARENT MATH */
+function _ppMathUnitTestHistory(history) {
+    if (!history.length) return "";
+    const rows = history.map(r => {
+        const accClass = r.pct >= 90 ? "good" : r.pct >= 80 ? "ok" : "low";
+        const passed = r.passed
+            ? `<span style="color:var(--color-success);font-weight:700">Pass</span>`
+            : `<span style="color:var(--color-error)">Fail</span>`;
+        return `
+            <tr>
+                <td><strong>${escapeHtml(r.unit_id || "")}</strong></td>
+                <td style="text-align:right">${r.score}/${r.total}</td>
+                <td style="text-align:right"><span class="pp-stage-acc pp-stage-acc--${accClass}">${r.pct}%</span></td>
+                <td style="text-align:center">${passed}</td>
+                <td style="color:var(--text-secondary)">${escapeHtml(r.taken_at || "")}</td>
+            </tr>`;
+    }).join("");
+    return `
+        ${_ppMathTitle("clipboard-list", "Unit Test History", "margin-top:24px")}
+        <div class="pp-table-wrap">
+            <table class="pp-log-table">
+                <thead><tr>
+                    <th>Unit</th>
+                    <th style="text-align:right">Score</th>
+                    <th style="text-align:right">Acc</th>
+                    <th style="text-align:center">Result</th>
                     <th>Date</th>
                 </tr></thead>
                 <tbody>${rows}</tbody>

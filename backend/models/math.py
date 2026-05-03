@@ -10,7 +10,7 @@ from ._base import Base
 
 
 class MathPlacementResult(Base):
-    """Math placement test results per domain."""
+    """Math placement test results per domain (legacy v1)."""
     __tablename__ = "math_placement_results"
     id = Column(Integer, primary_key=True)
     test_date = Column(String, index=True)
@@ -44,15 +44,16 @@ class MathProblem(Base):
 
 
 class MathProgress(Base):
-    """Math academy lesson progress tracking."""
+    """Math academy lesson progress — v2.0 schema (migration 022 adds exit_quiz columns)."""
     __tablename__ = "math_progress"
     id = Column(Integer, primary_key=True)
     grade = Column(String, index=True)
     unit = Column(String, index=True)
     lesson = Column(String, index=True)
-    stage = Column(String, default="pretest")
-    is_completed = Column(Boolean, default=False)
-    pretest_score = Column(Integer, nullable=True)
+    # v1 columns (kept for backward compat)
+    stage = Column(String, default="pre_test")        # current_stage alias
+    is_completed = Column(Boolean, default=False)      # lesson_completed alias
+    pretest_score = Column(Integer, nullable=True)     # pre_test_score alias
     pretest_passed = Column(Boolean, default=False)
     pretest_skipped = Column(Boolean, default=False)
     best_score_r1 = Column(Integer, nullable=True)
@@ -62,6 +63,11 @@ class MathProgress(Base):
     unit_test_passed = Column(Boolean, default=False)
     attempts = Column(Integer, default=0)
     last_accessed = Column(String)
+    # v2.0 columns (added by migration 022)
+    exit_quiz_score = Column(Integer, nullable=True)
+    exit_quiz_passed = Column(Boolean, default=False)
+    exit_quiz_attempts = Column(Integer, default=0)
+    completed_at = Column(String, nullable=True)
 
     __table_args__ = (
         Index("ix_math_progress_grade_unit_lesson", "grade", "unit", "lesson"),
@@ -86,7 +92,7 @@ class MathAttempt(Base):
 
 
 class MathWrongReview(Base):
-    """Spaced repetition for wrong math problems."""
+    """Spaced repetition for wrong math problems — v2.0 adds source_stage + consecutive tracking."""
     __tablename__ = "math_wrong_review"
     id = Column(Integer, primary_key=True)
     problem_id = Column(String, index=True)
@@ -95,6 +101,10 @@ class MathWrongReview(Base):
     interval_days = Column(Integer, default=1)
     times_reviewed = Column(Integer, default=0)
     is_mastered = Column(Boolean, default=False)
+    # v2.0 columns (added by migration 022)
+    source_stage = Column(String, nullable=True)        # 'try' | 'exit_quiz'
+    attempt_count = Column(Integer, default=0)
+    consecutive_correct = Column(Integer, default=0)    # removed at 2
 
 
 class MathFactFluency(Base):
@@ -137,6 +147,46 @@ class MathKangarooProgress(Base):
     completed_at = Column(String, nullable=True)
 
 
+class MathSpacedReview(Base):
+    """Spaced review schedule per lesson (v2.0 — migration 022)."""
+    __tablename__ = "math_spaced_review"
+    id = Column(Integer, primary_key=True)
+    lesson_id = Column(String, nullable=False, index=True)
+    unit_id = Column(String, nullable=False)
+    grade = Column(String, nullable=False, default="G3")
+    exit_quiz_score = Column(Integer, nullable=False)
+    next_review_date = Column(String, nullable=False, index=True)
+    interval_days = Column(Integer, nullable=False)
+    interval_index = Column(Integer, default=0)
+    last_reviewed_at = Column(String, nullable=True)
+    created_at = Column(String)
+
+
+class MathUnitTest(Base):
+    """Unit test attempt history (v2.0 — migration 022)."""
+    __tablename__ = "math_unit_test"
+    id = Column(Integer, primary_key=True)
+    unit_id = Column(String, nullable=False, index=True)
+    grade = Column(String, nullable=False, default="G3")
+    attempt_number = Column(Integer, default=1)
+    score = Column(Integer, nullable=False)
+    total = Column(Integer, nullable=False, default=10)
+    passed = Column(Boolean, default=False)
+    xp_awarded = Column(Integer, default=0)
+    taken_at = Column(String)
+
+
+class MathPlacementTest(Base):
+    """Placement test results v2.0 — unit-based (migration 022; separate from legacy math_placement_results)."""
+    __tablename__ = "math_placement_test"
+    id = Column(Integer, primary_key=True)
+    grade = Column(String, nullable=False, index=True)
+    score = Column(Integer, nullable=False)
+    total = Column(Integer, nullable=False, default=20)
+    unit_scores = Column(String, nullable=False, default="{}")  # JSON: {"U01": 80, ...}
+    taken_at = Column(String)
+
+
 __all__ = [
     "MathPlacementResult",
     "MathProblem",
@@ -146,4 +196,7 @@ __all__ = [
     "MathFactFluency",
     "MathDailyChallenge",
     "MathKangarooProgress",
+    "MathSpacedReview",
+    "MathUnitTest",
+    "MathPlacementTest",
 ]

@@ -15,9 +15,13 @@
  *   1) Interactive step-by-step inputs (problem.interactive_steps) — Try wrong only
  *   2) Read-only solution steps list (result.solution_steps) — Try only
  *   3) CPA Fallback pictorial card (Practice wrong only)
+ * @param {object} result
+ * @param {object} problem
+ * @param {function} onNext — called when user taps Continue / Next
+ * @param {function} [onRetry] — optional; when provided shows "Try Again" button (v2.0 Try stage first_wrong)
  * @tag MATH @tag ACADEMY
  */
-function showMathFeedback(result, problem, onNext) {
+function showMathFeedback(result, problem, onNext, onRetry) {
     const stage = document.getElementById('stage');
     if (!stage) return;
 
@@ -115,6 +119,14 @@ function showMathFeedback(result, problem, onNext) {
 
     // Polite live-region announcement for screen readers.
     const liveMsg = result.is_correct ? 'Correct answer.' : 'Incorrect answer.';
+    // v2.0 Try stage first_wrong: show "Try Again" as primary, "Next" as ghost skip
+    const retryBtnHtml = (onRetry && !result.is_correct)
+        ? `<div class="math-feedback-actions">
+               <button class="math-btn-primary" id="math-feedback-retry">Try Again</button>
+               <button class="math-btn-ghost" id="math-feedback-next">Skip</button>
+           </div>`
+        : `<button class="math-btn-primary" id="math-feedback-next">Next</button>`;
+
     overlay.innerHTML = `
         ${confettiHtml}
         <div class="math-sr-only" role="status" aria-live="polite">${liveMsg}</div>
@@ -125,7 +137,7 @@ function showMathFeedback(result, problem, onNext) {
             ${interactiveHtml}
             ${stepsHtml}
             ${cpaHtml}
-            <button class="math-btn-primary" id="math-feedback-next">Next</button>
+            ${retryBtnHtml}
         </div>
     `;
 
@@ -152,36 +164,39 @@ function showMathFeedback(result, problem, onNext) {
     if (hasSteps) _wireReadOnlySteps(steps, autoOpen);
 
     const nextBtn = document.getElementById('math-feedback-next');
-    // Autofocus the Continue button so keyboard users land on the primary action.
-    // requestAnimationFrame lets the browser place the element before focus().
+    const retryBtn = document.getElementById('math-feedback-retry');
+    // Autofocus primary action button
+    const primaryBtn = retryBtn || nextBtn;
     requestAnimationFrame(() => {
-        try { nextBtn.focus({ preventScroll: false }); } catch (_) { /* noop */ }
+        try { primaryBtn.focus({ preventScroll: false }); } catch (_) { /* noop */ }
     });
 
-    const dismiss = () => {
+    const dismiss = (action) => {
         document.removeEventListener('keydown', handler);
         overlay.remove();
-        // Restore focus to the element that had it before we opened.
         if (prevFocus && typeof prevFocus.focus === 'function' && document.contains(prevFocus)) {
             try { prevFocus.focus({ preventScroll: true }); } catch (_) { /* noop */ }
         }
-        onNext();
+        if (action === 'retry' && onRetry) onRetry();
+        else onNext();
     };
 
-    nextBtn.addEventListener('click', dismiss);
+    nextBtn.addEventListener('click', () => dismiss('next'));
+    if (retryBtn) retryBtn.addEventListener('click', () => dismiss('retry'));
 
-    // Keyboard: Enter continues (unless an input inside the overlay has focus),
-    // Escape always dismisses.
+    // Keyboard: Enter activates focused button; Escape dismisses (as Next/Skip).
     const handler = (e) => {
         if (e.key === 'Escape') {
             e.preventDefault();
-            dismiss();
+            dismiss('next');
             return;
         }
         if (e.key === 'Enter'
             && !document.activeElement?.classList.contains('math-istep-field')
             && document.activeElement?.id !== 'math-steps-next') {
-            dismiss();
+            const focused = document.activeElement;
+            if (focused && focused.id === 'math-feedback-retry') dismiss('retry');
+            else dismiss('next');
         }
     };
     document.addEventListener('keydown', handler);

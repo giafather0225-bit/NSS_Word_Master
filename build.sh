@@ -71,6 +71,7 @@ cat \
   $JS/finaltest.js \
   $JS/unittest.js \
   $JS/review.js \
+  $JS/math-spaced-review.js \
   | npx esbuild --minify --legal-comments=none --loader=js > $OUT/bundle-a.min.js
 echo "  bundle-a.min.js done ($(wc -c < $OUT/bundle-a.min.js) bytes)"
 

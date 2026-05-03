@@ -668,7 +668,13 @@ def check_and_award_badges(grade: int = Query(3), db: Session = Depends(get_db))
 def get_domain_test(
     domain_num: int, grade: int = Query(3), db: Session = Depends(get_db)
 ):
-    """Return a set of comprehension questions for a domain test (up to 10, one per lesson)."""
+    """Return 10 domain test questions: 3 vocab_mc + 2 vocab_fill + 5 Q&A.
+
+    ID scheme (no schema change needed):
+      Q&A        → real question.id  (< 10000)
+      vocab_mc   → word_id + 10000
+      vocab_fill → word_id + 20000
+    """
     domain = db.query(CKLADomain).filter_by(domain_num=domain_num, grade=grade, is_active=True).first()
     if not domain:
         raise HTTPException(status_code=404, detail="Domain not found")
@@ -678,26 +684,81 @@ def get_domain_test(
         .filter_by(domain_id=domain.id, is_active=True)
         .all()
     )
-    questions: list[dict] = []
-    for lesson in lessons:
+    lesson_ids = [l.id for l in lessons]
+
+    # ── Q&A questions (5) — one per lesson, shuffled ──────────────────────────
+    qa_questions: list[dict] = []
+    shuffled_lessons = lessons[:]
+    random.shuffle(shuffled_lessons)
+    for lesson in shuffled_lessons:
         qs = db.query(CKLAQuestion).filter_by(lesson_id=lesson.id).all()
         if qs:
             q = random.choice(qs)
-            questions.append({
+            qa_questions.append({
                 "id":           q.id,
+                "type":         "qa",
                 "lesson_id":    lesson.id,
                 "lesson_title": lesson.title,
                 "kind":         q.kind,
-                "question":     q.question_text,
+                "question_text": q.question_text,
             })
-        if len(questions) >= 10:
+        if len(qa_questions) >= 5:
             break
 
+    # ── Vocab questions (5: 3 MC + 2 fill) ───────────────────────────────────
+    # Get all words linked to this domain's lessons
+    word_links = (
+        db.query(CKLAWordLesson)
+        .filter(CKLAWordLesson.lesson_id.in_(lesson_ids))
+        .all()
+    ) if lesson_ids else []
+
+    word_ids = list({wl.word_id for wl in word_links})
+    domain_words: list[USAcademyWord] = []
+    if word_ids:
+        domain_words = db.query(USAcademyWord).filter(USAcademyWord.id.in_(word_ids)).all()
+
+    vocab_questions: list[dict] = []
+    if len(domain_words) >= 5:
+        chosen = random.sample(domain_words, 5)
+        # All domain words used as distractor pool
+        distractor_pool = [w for w in domain_words if w.word]
+
+        for i, word in enumerate(chosen):
+            q_type = "vocab_fill" if i >= 3 else "vocab_mc"
+            base: dict = {
+                "lesson_title": "",
+                "question_text": word.definition or "",
+                "word": word.word,
+            }
+            if q_type == "vocab_mc":
+                # 3 distractors from other domain words
+                others = [w for w in distractor_pool if w.id != word.id and w.word]
+                distractors = [w.word for w in random.sample(others, min(3, len(others)))]
+                choices = distractors + [word.word]
+                random.shuffle(choices)
+                base.update({
+                    "id":             word.id + 10000,
+                    "type":           "vocab_mc",
+                    "choices":        choices,
+                    "correct_answer": word.word,
+                })
+            else:
+                base.update({
+                    "id":   word.id + 20000,
+                    "type": "vocab_fill",
+                })
+            vocab_questions.append(base)
+
+    # ── Combine, shuffle, return ──────────────────────────────────────────────
+    all_questions = qa_questions + vocab_questions
+    random.shuffle(all_questions)
+
     return {
-        "domain_num": domain_num,
+        "domain_num":   domain_num,
         "domain_title": domain.title,
-        "grade": grade,
-        "questions": questions,
+        "grade":        grade,
+        "questions":    all_questions,
     }
 
 
@@ -709,7 +770,13 @@ async def submit_domain_test(
     grade: int = Query(3),
     db: Session = Depends(get_db),
 ):
-    """Grade domain test answers via AI and award XP on pass (>=70%)."""
+    """Grade domain test answers. Vocab (MC/fill) graded locally; Q&A via AI.
+
+    ID ranges:
+      < 10000  → Q&A (AI graded, score 0/1/2 → correct if score == 2)
+      10000–19999 → vocab_mc  (correct_answer exact match)
+      >= 20000    → vocab_fill (case-insensitive word match)
+    """
     domain = db.query(CKLADomain).filter_by(domain_num=domain_num, grade=grade, is_active=True).first()
     if not domain:
         raise HTTPException(status_code=404, detail="Domain not found")
@@ -726,25 +793,46 @@ async def submit_domain_test(
             qid = int(qid_str)
         except ValueError:
             continue
-        question = db.query(CKLAQuestion).filter_by(id=qid).first()
-        if not question:
-            continue
-        lesson = db.query(CKLALesson).filter_by(id=question.lesson_id).first()
-        passage = lesson.passage if lesson else ""
-        try:
-            result = await grade_answer(
-                question_text=question.question_text,
-                kind=question.kind,
-                model_answer=question.model_answer or "",
-                passage=passage,
-                user_answer=user_ans,
+
+        if qid >= 20000:
+            # vocab_fill — fetch word by id offset, case-insensitive match
+            word = db.query(USAcademyWord).filter_by(id=qid - 20000).first()
+            is_correct = bool(
+                word and user_ans.strip().lower() == (word.word or "").lower()
             )
-            score = result.score
-        except Exception:
-            score = 0
-        if score == 2:
-            correct += 1
-        results.append({"question_id": qid, "score": score})
+            correct += int(is_correct)
+            results.append({"question_id": qid, "score": 2 if is_correct else 0})
+
+        elif qid >= 10000:
+            # vocab_mc — the answer submitted should equal the correct word
+            word = db.query(USAcademyWord).filter_by(id=qid - 10000).first()
+            is_correct = bool(
+                word and user_ans.strip().lower() == (word.word or "").lower()
+            )
+            correct += int(is_correct)
+            results.append({"question_id": qid, "score": 2 if is_correct else 0})
+
+        else:
+            # Q&A — AI graded
+            question = db.query(CKLAQuestion).filter_by(id=qid).first()
+            if not question:
+                continue
+            lesson = db.query(CKLALesson).filter_by(id=question.lesson_id).first()
+            passage = lesson.passage if lesson else ""
+            try:
+                result = await grade_answer(
+                    question_text=question.question_text,
+                    kind=question.kind,
+                    model_answer=question.model_answer or "",
+                    passage=passage,
+                    user_answer=user_ans,
+                )
+                score = result.score
+            except Exception:
+                score = 0
+            if score == 2:
+                correct += 1
+            results.append({"question_id": qid, "score": score})
 
     pct = round(correct / total * 100) if total else 0
     passed = pct >= 80   # spec: 80% pass threshold

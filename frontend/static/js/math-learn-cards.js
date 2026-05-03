@@ -43,6 +43,18 @@ function _renderCurrentLearnCard() {
             document.removeEventListener('keydown', _learnKeyHandler);
             _learnKeyHandler = null;
         }
+        // v2.0: notify server that learn stage is complete before advancing
+        if (mathState && mathState._v2Flow) {
+            fetch('/api/math/academy/learn/complete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    grade: mathState.grade,
+                    unit: mathState.unit,
+                    lesson: mathState.lesson,
+                }),
+            }).catch(err => console.warn('[math] learn/complete notify failed:', err));
+        }
         advanceMathStage();
         return;
     }

@@ -829,3 +829,52 @@
     font-weight: 600;
     margin-top: 12px;
 }
+
+/* ── Dev Tools panel ──────────────────────────────────────────── */
+.iss-dev-notice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--arcade-light);
+    border: 1px solid var(--arcade-soft);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--arcade-ink);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+.iss-dev-notice i { width: 16px; height: 16px; flex-shrink: 0; }
+
+.iss-dev-btn-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.iss-dev-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: background var(--transition-fast);
+    width: 100%;
+}
+.iss-dev-btn:hover:not(:disabled) { background: var(--bg-surface); }
+.iss-dev-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.iss-dev-btn > i { width: 20px; height: 20px; flex-shrink: 0; color: var(--rewards-primary); }
+.iss-dev-btn > div { display: flex; flex-direction: column; gap: 2px; }
+.iss-dev-btn-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.iss-dev-btn-sub {
+    font-size: 12px;
+    color: var(--text-hint);
+}
