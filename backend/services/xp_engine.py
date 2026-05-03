@@ -5,9 +5,12 @@ Dependencies: models.py (XPLog, WordReview)
 API: called by routers/xp.py
 """
 
+import logging
 from datetime import datetime, date
 from sqlalchemy.orm import Session
 from backend.models import XPLog, WordReview, AppConfig
+
+logger = logging.getLogger(__name__)
 
 # XP awarded per action — defaults. Parent can override via app_config
 # keys of the form `xp_rule_<action>`. See get_xp_rules().
@@ -47,8 +50,8 @@ def _award_lumi_for_action(db: Session, action: str) -> None:
     try:
         from backend.services.lumi_engine import earn_lumi
         earn_lumi(db, source=earn_source, amount=amount)
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("lumi award failed for action=%s source=%s: %s", action, earn_source, exc)
 
 
 XP_RULES_DEFAULT: dict[str, int] = {

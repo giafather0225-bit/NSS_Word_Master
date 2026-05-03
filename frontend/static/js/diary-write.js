@@ -2,7 +2,7 @@
    diary-write.js — GIA's Diary · Write screen (Decorated)
    Section: Diary
    Dependencies: diary.js (escapeHtml, openDiarySection, _DH_MOODS, _dhRefreshIcons)
-   API endpoints: POST /api/diary/entries
+   API endpoints: POST /api/diary/entries, POST /api/diary/feedback
    Spec: handoff/02b-diary-spec.md (Screen 2)
    ================================================================ */
 
@@ -847,14 +847,89 @@ async function _dwSave() {
             if (saveBtn && saveBtn.parentElement) saveBtn.parentElement.appendChild(islandSlot);
             _appendIslandUpdate(islandSlot);
         }
-        setTimeout(() => {
-            _dwCleanupAndLeave();
-            if (typeof openDiarySection === "function") openDiarySection("today");
-        }, 700);
+        _dwOnSaveSuccess(today);
     } catch (err) {
         _dwToast("Couldn't save. Try again.", true);
         if (save) save.disabled = false;
     }
+}
+
+/* ── Post-save: opt-in writing tips ───────────────────────────── */
+
+/** Called after a successful save. Shows a Done button + opt-in tips prompt. */
+function _dwOnSaveSuccess(date) {
+    const save = document.getElementById("dw-save");
+    if (save) {
+        save.disabled = false;
+        save.innerHTML = _dwIcon("arrow-left", 13) + " Done";
+        save.onclick = _dwFinish;
+    }
+    const asideTop = document.getElementById("dw-aside-top");
+    if (!asideTop) {
+        // No aside visible — just navigate away normally.
+        setTimeout(_dwFinish, 700);
+        return;
+    }
+    asideTop.innerHTML = `
+        <div class="dw-card">
+            <div class="dw-card-label">Entry saved</div>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0 0 10px;">
+                Would you like a few writing tips from GIA?
+            </p>
+            <button class="dw-prompt-item is-active" id="dw-tips-ask-btn"
+                    type="button" style="width:100%;text-align:center;"
+                    data-date="${escapeHtml(date)}">
+                ${_dwIcon("sparkles", 12)} Get writing tips
+            </button>
+        </div>`;
+    _dwRefreshIcons();
+    const askBtn = document.getElementById("dw-tips-ask-btn");
+    if (askBtn) askBtn.addEventListener("click", function() {
+        _dwRequestWritingTips(this.dataset.date, this);
+    });
+}
+
+/** Navigate back to the diary home. Called from Done button or fallback. */
+function _dwFinish() {
+    _dwCleanupAndLeave();
+    if (typeof openDiarySection === "function") openDiarySection("today");
+}
+
+/** Fetch AI writing tips for the saved entry (child-triggered, opt-in only). */
+async function _dwRequestWritingTips(date, btn) {
+    if (btn) { btn.disabled = true; btn.textContent = "Thinking…"; }
+    try {
+        const res = await fetch(`/api/diary/feedback?entry_date=${encodeURIComponent(date)}`, {
+            method: "POST",
+        });
+        if (!res.ok) throw new Error("feedback failed");
+        const data = await res.json();
+        _dwShowFeedbackInAside((data && data.ai_feedback) || "Great writing! Keep it up.");
+    } catch (_) {
+        if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = _dwIcon("sparkles", 12) + " Try again";
+            _dwRefreshIcons();
+        }
+    }
+}
+
+/** Render AI feedback in the aside panel after the child requests it. */
+function _dwShowFeedbackInAside(text) {
+    const asideTop = document.getElementById("dw-aside-top");
+    if (!asideTop) return;
+    asideTop.innerHTML = `
+        <div class="dw-card">
+            <div class="dw-card-label">${_dwIcon("sparkles", 12)} GIA says</div>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;margin:0 0 12px;">
+                ${escapeHtml(text)}
+            </p>
+            <button class="dw-prompt-item" type="button"
+                    style="width:100%;text-align:center;" onclick="_dwFinish()">
+                ${_dwIcon("arrow-left", 12)} Done
+            </button>
+        </div>`;
+    _dwRefreshIcons();
 }
 
 /* ── Toast ─────────────────────────────────────────────────────── */

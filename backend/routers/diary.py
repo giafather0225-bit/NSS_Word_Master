@@ -47,6 +47,7 @@ class DiaryEntryCreate(BaseModel):
 
     The Decorated-diary metadata fields (title, mode, mood, prompt, style,
     photos) are all optional so older clients (and tests) keep working.
+    feedback_requested defaults to False — AI grammar feedback is opt-in.
     """
     content: Str5000
     entry_date: Str30
@@ -56,6 +57,7 @@ class DiaryEntryCreate(BaseModel):
     prompt: str | None = None
     style:  dict | None = None
     photos: list | None = None
+    feedback_requested: bool = False
 
     def clean(self) -> "DiaryEntryCreate":
         """Validate entry_date format (length enforced by Pydantic — 422 on overflow)."""
@@ -203,7 +205,9 @@ async def create_or_update_diary_entry(
     db: Session = Depends(get_db),
 ):
     """
-    Create or update today's DiaryEntry, then obtain AI grammar feedback.
+    Create or update today's DiaryEntry. AI grammar feedback is opt-in:
+    set feedback_requested=True to trigger the AI call; omitting it (default
+    False) skips the AI entirely so the child controls when feedback appears.
 
     If an entry for entry_date already exists it is updated in-place so that
     only one record per date is kept. Returns the saved entry + feedback.
@@ -220,14 +224,15 @@ async def create_or_update_diary_entry(
         existing_q = existing_q.filter(DiaryEntry.mode == req.mode)
     existing = existing_q.first()
 
-    feedback = await _get_grammar_feedback(req.content)
+    feedback = await _get_grammar_feedback(req.content) if req.feedback_requested else None
 
     style_json  = json.dumps(req.style)  if req.style  is not None else None
     photos_json = json.dumps(req.photos) if req.photos is not None else None
 
     if existing:
         existing.content     = req.content
-        existing.ai_feedback = feedback
+        if feedback is not None:
+            existing.ai_feedback = feedback
         # Only overwrite metadata when the client explicitly provided it,
         # so older clients that omit these fields don't wipe stored values.
         if req.title  is not None: existing.title  = req.title
@@ -273,6 +278,31 @@ async def create_or_update_diary_entry(
     response = _entry_to_dict(entry)
     response["island"] = island
     return response
+
+
+# @tag DIARY @tag AI
+@router.post("/api/diary/feedback")
+async def get_diary_feedback(
+    entry_date: str,
+    db: Session = Depends(get_db),
+):
+    """Return AI grammar feedback for an existing entry (opt-in, child-triggered).
+
+    Fetches the entry by date, runs _get_grammar_feedback, persists the result,
+    and returns {"ai_feedback": "..."}. Called only when the child taps the
+    'Get writing tips' button — never automatically on save.
+    """
+    if not _DATE_RE.match(entry_date):
+        raise HTTPException(status_code=400, detail="entry_date must be YYYY-MM-DD")
+
+    entry = db.query(DiaryEntry).filter(DiaryEntry.entry_date == entry_date).first()
+    if not entry:
+        raise HTTPException(status_code=404, detail="No diary entry found for that date.")
+
+    feedback = await _get_grammar_feedback(entry.content)
+    entry.ai_feedback = feedback
+    db.commit()
+    return {"ai_feedback": feedback}
 
 
 # @tag DIARY @tag AI

@@ -192,23 +192,22 @@ function _journalCharCount(ta) {
     if (el)  el.innerHTML = `${ta.value.length} characters · <span id="journal-word-count">${words}</span> words`;
 }
 
-/** POST journal entry and show AI feedback. @tag DIARY JOURNAL AI */
+/** POST journal entry (no AI call). @tag DIARY JOURNAL */
 async function _submitJournal(date) {
     const ta = document.getElementById("journal-text");
     if (!ta || !ta.value.trim()) return;
     const btn = document.querySelector(".journal-submit-btn");
-    const resetBtn = () => { if (btn) { btn.disabled = false; btn.textContent = "Save & Get Feedback"; } };
+    const resetBtn = () => { if (btn) { btn.disabled = false; btn.textContent = "Save Entry"; } };
     if (btn) { btn.disabled = true; btn.textContent = "Saving…"; }
     try {
         const res = await fetch("/api/diary/entries", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ content: ta.value, entry_date: date }),
+            body: JSON.stringify({ content: ta.value, entry_date: date, feedback_requested: false }),
         });
         if (res.ok) {
-            const data = await res.json();
             if (btn) { btn.disabled = false; btn.textContent = "Saved ✓"; }
-            if (data.ai_feedback) _showFeedback(data.ai_feedback);
+            _showFeedbackPrompt(date);
             return;
         }
         if (res.status !== 422) {
@@ -220,6 +219,38 @@ async function _submitJournal(date) {
     } catch (_) {
         if (window.toast) window.toast("Network error — try again.", "error");
         resetBtn();
+    }
+}
+
+/** Show opt-in AI feedback button after save. @tag DIARY JOURNAL AI */
+function _showFeedbackPrompt(date) {
+    const el = document.getElementById("journal-feedback");
+    if (!el) return;
+    el.innerHTML = `
+        <div class="ai-feedback-prompt">
+            <button type="button" class="ai-feedback-ask-btn" onclick="_requestFeedback('${date}')">
+                <i data-lucide="sparkles" width="12" height="12"></i> Get writing tips
+            </button>
+        </div>`;
+    if (typeof lucide !== "undefined") lucide.createIcons();
+}
+
+/** Fetch AI feedback on child's explicit request. @tag DIARY JOURNAL AI */
+async function _requestFeedback(date) {
+    const askBtn = document.querySelector(".ai-feedback-ask-btn");
+    if (askBtn) { askBtn.disabled = true; askBtn.textContent = "Thinking…"; }
+    try {
+        const res = await fetch(`/api/diary/feedback?entry_date=${encodeURIComponent(date)}`, {
+            method: "POST",
+        });
+        if (res.ok) {
+            const data = await res.json();
+            if (data.ai_feedback) _showFeedback(data.ai_feedback);
+        } else {
+            _showFeedback("Couldn't get feedback right now — try again later.");
+        }
+    } catch (_) {
+        if (askBtn) { askBtn.disabled = false; askBtn.textContent = "Get writing tips"; }
     }
 }
 
@@ -271,18 +302,22 @@ async function openDiaryOverlay() {
                 </div>
                 <div class="diary-lesson-cards">
                     ${lesson.sentences.map(s => {
-                        const safe = escapeHtml(s.sentence || "");
                         return `<div class="diary-sentence-card">
                             <span class="diary-sentence-word">${escapeHtml(s.word || "")}</span>
-                            <span class="diary-sentence-text">${safe}</span>
+                            <span class="diary-sentence-text">${escapeHtml(s.sentence || "")}</span>
                             <button class="diary-tts-btn" type="button" title="Listen"
-                                    onclick="_diaryPlayTTS('${safe.replace(/'/g, "\\'")}')"><i data-lucide="volume-2" style="width:14px;height:14px;stroke-width:1.5"></i></button>
+                                    data-sentence="${escapeHtml(s.sentence || "")}"><i data-lucide="volume-2" style="width:14px;height:14px;stroke-width:1.5"></i></button>
                         </div>`;
                     }).join("")}
                 </div>
             </div>`;
         });
         body.innerHTML = html;
+        body.querySelectorAll(".diary-tts-btn").forEach(btn => {
+            btn.addEventListener("click", function() {
+                _diaryPlayTTS(this.dataset.sentence);
+            });
+        });
         if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (_) {
         body.innerHTML = `<div class="diary-empty error">Failed to load sentences.</div>`;
