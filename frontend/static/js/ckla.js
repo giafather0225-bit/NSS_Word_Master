@@ -432,6 +432,23 @@ function _renderDomainTest(domainNum, data) {
             : `<button class="ckla-test-nav-btn ckla-test-submit-btn" onclick="submitDomainTest(${domainNum})">Submit</button>`}
         </div>
       </div>`;
+
+    // Enter key advances vocab_fill to next question (or submits on last)
+    if (q.type === 'vocab_fill') {
+      const inp = view.querySelector('#ckla-test-fill-input');
+      if (inp) {
+        inp.focus();
+        inp.addEventListener('keydown', e => {
+          if (e.key !== 'Enter') return;
+          st._saveCurrentInput();
+          if (st.currentIdx < st.data.questions.length - 1) {
+            domainTestNav(1);
+          } else {
+            submitDomainTest(domainNum);
+          }
+        });
+      }
+    }
   }
 
   window._domainTestState = {
@@ -479,7 +496,8 @@ async function submitDomainTest(domainNum) {
     });
     if (!res.ok) throw new Error('Submit failed');
     const result = await res.json();
-    _renderTestResult(result, () => loadCKLADomains());
+    const retryFn = result.passed ? null : () => openDomainTest(domainNum);
+    _renderTestResult(result, () => loadCKLADomains(), retryFn);
   } catch (e) {
     view.innerHTML = `<div class="ckla-empty">Submit failed. ${e.message}</div>`;
   }
@@ -488,23 +506,43 @@ async function submitDomainTest(domainNum) {
 
 /* ── Test result shared renderer ───────────────────────────────────────────── */
 
-/** @tag ACADEMY CKLA */
-function _renderTestResult(result, backFn) {
+/**
+ * @tag ACADEMY CKLA
+ * @param result  — API response with score_pct, passed, correct, total, xp_awarded
+ * @param backFn  — called when "← Back" is clicked
+ * @param retryFn — optional; if provided, shows "Try Again" button (for fail case)
+ */
+function _renderTestResult(result, backFn, retryFn) {
   const view = document.getElementById('ckla-view');
   const passed = result.passed;
   const pct = Math.round(result.score_pct || 0);
+  const detail = (result.correct != null && result.total != null)
+    ? `${result.correct} / ${result.total} correct`
+    : '';
+  const retryBtn = (!passed && retryFn)
+    ? `<button class="ckla-result-retry-btn" id="ckla-result-retry">Try Again</button>`
+    : '';
   view.innerHTML = `
     <div class="ckla-header">
-      <button class="ckla-back-btn" onclick="(${backFn.toString()})()">← Back</button>
+      <button class="ckla-back-btn" id="ckla-result-back">← Back</button>
       <h2 class="ckla-title">Test Result</h2>
     </div>
     <div class="ckla-test-result">
       <div class="ckla-result-score ${passed ? 'ckla-result-pass' : 'ckla-result-fail'}">${pct}%</div>
+      ${detail ? `<div class="ckla-result-detail">${detail}</div>` : ''}
       <div class="ckla-result-label">${passed ? 'Passed!' : 'Not yet — keep studying'}</div>
       ${result.xp_awarded ? `<div class="ckla-result-xp">+${result.xp_awarded} XP</div>` : ''}
-      ${result.badge_earned ? `<div class="ckla-result-badge">Badge earned: ${result.badge_name}</div>` : ''}
-      <button class="ckla-back-btn" onclick="(${backFn.toString()})()">← Back</button>
+      ${result.badge_earned ? `<div class="ckla-result-badge">Badge earned: ${result.badge_name || ''}</div>` : ''}
+      <div class="ckla-result-actions">
+        ${retryBtn}
+        <button class="ckla-back-btn" id="ckla-result-back2">← Back to Domains</button>
+      </div>
     </div>`;
+  view.querySelector('#ckla-result-back').addEventListener('click', backFn);
+  view.querySelector('#ckla-result-back2').addEventListener('click', backFn);
+  if (!passed && retryFn) {
+    view.querySelector('#ckla-result-retry').addEventListener('click', retryFn);
+  }
 }
 
 

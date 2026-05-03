@@ -1304,6 +1304,74 @@
   padding: 16px 24px 24px;
 }
 
+/* ── Domain / Grade Test result screen ───────────────────────────────── */
+.ckla-test-result {
+  max-width: 480px;
+  margin: 40px auto 0;
+  padding: 32px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.ckla-result-score {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  line-height: 1;
+}
+.ckla-result-score.ckla-result-pass { color: var(--color-success); }
+.ckla-result-score.ckla-result-fail { color: var(--color-error); }
+.ckla-result-detail {
+  font-size: var(--font-size-sm);
+  color: var(--text-hint);
+  margin-top: -8px;
+}
+.ckla-result-label {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.ckla-result-xp {
+  display: inline-block;
+  background: var(--english-soft);
+  color: var(--english-ink);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+}
+.ckla-result-badge {
+  display: inline-block;
+  background: var(--rewards-soft);
+  color: var(--rewards-ink);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+}
+.ckla-result-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.ckla-result-retry-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--english-primary);
+  color: var(--text-on-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.ckla-result-retry-btn:hover { background: var(--english-hover); }
+
 /* ── Grade Final Test wait screen ─────────────────────────────────────── */
 .ckla-finaltest-wait {
   max-width: 560px;
