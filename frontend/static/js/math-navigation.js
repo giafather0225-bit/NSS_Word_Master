@@ -246,5 +246,12 @@ async function loadMathSidebarStatus() {
                 if (typeof startMathUnitTest === 'function') startMathUnitTest(mathGrade, mathUnit);
             });
         }
+
+        const problemsBtn = document.getElementById('math-btn-problems');
+        if (problemsBtn) {
+            problemsBtn.addEventListener('click', () => {
+                if (typeof startMathProblemsReview === 'function') startMathProblemsReview();
+            });
+        }
     });
 })();
