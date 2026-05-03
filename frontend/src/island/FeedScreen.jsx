@@ -91,7 +91,7 @@ function _ifdRender() {
 function _ifdSelectHTML() {
     const c     = _ifdCareData || {};
     const prog  = c.progress   || {};
-    const emoji = (_CHAR_EMOJI && prog.character_id && _CHAR_EMOJI[prog.character_id]) || '🐾';
+    const icon  = (_ZONE_META?.[prog.zone] || {}).lucideIcon || 'heart';
     const name  = escapeHtml(prog.nickname || prog.character_name || 'Character');
     const hunger = c.hunger    ?? prog.hunger    ?? 0;
     const happy  = c.happiness ?? prog.happiness ?? 0;
@@ -112,7 +112,7 @@ function _ifdSelectHTML() {
 
     return `
         <div class="ifd-char-preview">
-            <span class="ifd-char-emoji">${emoji}</span>
+            <span class="ifd-char-emoji"><i data-lucide="${icon}"></i></span>
             <span class="ifd-char-name">${name}</span>
         </div>
         <div class="ifd-hud">
@@ -159,14 +159,11 @@ function _ifdEmptyHTML() {
 function _ifdResultHTML() {
     const r     = _ifdResult || {};
     const ok    = r.ok !== false;
-    const emoji = (() => {
-        const c = _ifdCareData?.progress || {};
-        return (_CHAR_EMOJI && c.character_id && _CHAR_EMOJI[c.character_id]) || '🐾';
-    })();
+    const icon  = (_ZONE_META?.[((_ifdCareData?.progress) || {}).zone] || {}).lucideIcon || 'heart';
 
     return `
         <div class="ifd-result ${ok ? 'ifd-result--ok' : 'ifd-result--err'}">
-            <span class="ifd-result-emoji">${emoji}</span>
+            <span class="ifd-result-emoji"><i data-lucide="${icon}"></i></span>
             <i data-lucide="${ok ? 'check-circle' : 'alert-circle'}" class="ifd-result-icon"></i>
             <p class="ifd-result-msg">${ok ? `Loved the ${escapeHtml(r.item_name || 'food')}!` : escapeHtml(r.detail || 'Something went wrong.')}</p>
             ${ok ? `<div class="ifd-result-xp">+${r.xp_gained ?? 0} XP</div>` : ''}

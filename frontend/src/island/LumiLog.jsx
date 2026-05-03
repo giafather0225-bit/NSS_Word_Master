@@ -20,7 +20,7 @@ async function openLumiLog() {
     el.classList.remove('hidden');
     el.dataset.screen = 'lumi-log';
     el.innerHTML = `<div class="ill-screen"><div class="isl-state-screen">
-        <div class="isl-loading-ship">⛵</div>
+        <div class="isl-loading-ship"><i data-lucide="anchor"></i></div>
         <div class="isl-state-text">Loading history...</div>
     </div></div>`;
     try {
@@ -81,7 +81,7 @@ function _llRender(el) {
                     <div class="ill-row-date">${dateStr}</div>
                 </div>
                 <div class="ill-row-right">
-                    <div class="ill-row-amount">${sign}${amount} 💎</div>
+                    <div class="ill-row-amount">${sign}${amount} <i data-lucide="gem"></i></div>
                     <div class="ill-row-bal">${bal.toLocaleString()}</div>
                 </div>
             </div>`;
@@ -94,7 +94,7 @@ function _llRender(el) {
                     <i data-lucide="arrow-left"></i>
                 </button>
                 <div class="ill-title">Lumi History</div>
-                <div class="ill-balance">💎 ${balance.toLocaleString()}</div>
+                <div class="ill-balance"><i data-lucide="gem"></i> ${balance.toLocaleString()}</div>
             </div>
             <div class="ill-tabs">${tabHTML}</div>
             <div class="ill-body">${rowsHTML}</div>

@@ -25,7 +25,7 @@ async function openIslandShop() {
     el.classList.remove('hidden');
     el.dataset.screen = 'shop';
     el.innerHTML = `<div class="ish-screen"><div class="isl-state-screen">
-        <div class="isl-loading-ship">⛵</div>
+        <div class="isl-loading-ship"><i data-lucide="anchor"></i></div>
         <div class="isl-state-text">Loading shop...</div>
     </div></div>`;
     try {
@@ -83,8 +83,8 @@ function _ishRender(el) {
                 </button>
                 <div class="ish-title">Island Shop</div>
                 <div class="ish-wallet">
-                    <span class="ish-cur"><span class="ish-cur-ic">💎</span>${lumi}</span>
-                    <span class="ish-cur"><span class="ish-cur-ic">✨</span>${ll}</span>
+                    <span class="ish-cur"><span class="ish-cur-ic"><i data-lucide="gem"></i></span>${lumi}</span>
+                    <span class="ish-cur"><span class="ish-cur-ic"><i data-lucide="sparkles"></i></span>${ll}</span>
                 </div>
             </div>
             <div class="ish-tabs">${tabHTML}</div>
@@ -125,7 +125,7 @@ function _ishGridHTML() {
                 <div class="ish-item-icon"><i data-lucide="${_ishItemIcon(item.category)}"></i></div>
                 <div class="ish-item-name">${escapeHtml(item.name)}</div>
                 <div class="ish-item-price${afford ? '' : ' ish-item-price--low'}">
-                    ${isLl ? '✨' : '💎'} ${price.toLocaleString()}
+                    <i data-lucide="${isLl ? 'sparkles' : 'gem'}"></i> ${price.toLocaleString()}
                 </div>
             </div>`;
     }).join('')}</div>`;
@@ -161,7 +161,7 @@ function _ishDetailModal() {
                 <div class="ish-modal-icon"><i data-lucide="${_ishItemIcon(item.category)}"></i></div>
                 <div class="ish-modal-name">${escapeHtml(item.name)}</div>
                 <div class="ish-modal-desc">${escapeHtml(item.description || '')}</div>
-                <div class="ish-modal-price">${isLl ? '✨' : '💎'} ${price.toLocaleString()}</div>
+                <div class="ish-modal-price"><i data-lucide="${isLl ? 'sparkles' : 'gem'}"></i> ${price.toLocaleString()}</div>
                 ${!afford ? `<div class="ish-modal-warn">Not enough ${isLl ? 'Legend Lumi' : 'Lumi'}.</div>` : ''}
                 <button class="ish-buy-btn${afford ? '' : ' disabled'}"
                         ${afford ? `onclick="_ishBuy(${item.id})"` : 'disabled'}>
@@ -220,8 +220,8 @@ function _ishExchangeHTML() {
     return `
         <div class="ish-exchange">
             <div class="ish-exch-title">Convert Lumi to Legend Lumi</div>
-            <div class="ish-exch-rate">100 💎 = 1 ✨</div>
-            <div class="ish-exch-balance">Balance: 💎 ${lumi.toLocaleString()}</div>
+            <div class="ish-exch-rate">100 <i data-lucide="gem"></i> = 1 <i data-lucide="sparkles"></i></div>
+            <div class="ish-exch-balance">Balance: <i data-lucide="gem"></i> ${lumi.toLocaleString()}</div>
             <div class="ish-exch-row">
                 <label class="ish-exch-label">Amount</label>
                 <input type="range" class="ish-exch-slider" id="ish-exch-slider"
@@ -230,8 +230,8 @@ function _ishExchangeHTML() {
                 <span class="ish-exch-val" id="ish-exch-val">${amt}</span>
             </div>
             <div class="ish-exch-preview">
-                You will receive: <strong>✨ ${ll}</strong>
-                (costs 💎 ${(amt * 100).toLocaleString()})
+                You will receive: <strong><i data-lucide="sparkles"></i> ${ll}</strong>
+                (costs <i data-lucide="gem"></i> ${(amt * 100).toLocaleString()})
             </div>
             <button class="ish-exch-btn${amt > 0 ? '' : ' disabled'}"
                     ${amt > 0 ? 'onclick="_ishExchange()"' : 'disabled'}>

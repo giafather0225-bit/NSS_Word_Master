@@ -54,7 +54,7 @@ async function _cdLoad(progId, el) {
 /** @tag SHOP */
 function _cdRenderLoading(el) {
     el.innerHTML = `<div class="icd-screen"><div class="isl-state-screen">
-        <div class="isl-loading-ship">⛵</div>
+        <div class="isl-loading-ship"><i data-lucide="anchor"></i></div>
         <div class="isl-state-text">Loading character...</div>
     </div></div>`;
 }
@@ -72,18 +72,17 @@ function _cdRenderError(el) {
 
 // ─── Image helper ─────────────────────────────────────────────
 
-/** Return <img> for current stage, fallback to emoji span. @tag SHOP */
+/** Return <img> for current stage, fallback to zone Lucide icon. @tag SHOP */
 function _cdCharImg(prog) {
-    const name  = (prog.character_name || prog.nickname || '').toLowerCase();
-    const stage = prog.stage || 'baby';
-    const fb    = _CHAR_EMOJI[name] || '🌟';
+    const stage   = prog.stage || 'baby';
+    const icon    = (window._ZONE_META?.[_cdZone] || {}).lucideIcon || 'heart';
     let imgs = {};
     try { imgs = JSON.parse(prog.images || '{}'); } catch (_) {}
     const rel = imgs[stage] || imgs['baby'];
-    if (!rel) return `<span class="icd-avatar-emoji">${fb}</span>`;
+    if (!rel) return `<span class="icd-avatar-emoji"><i data-lucide="${icon}"></i></span>`;
     const src = `/static/img/island/${rel}`;
     return `<img class="icd-avatar-img" src="${src}" alt="${escapeHtml(prog.character_name || '')}"
-                 onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'icd-avatar-emoji',textContent:'${fb}'}))">`;
+                 onerror="this.outerHTML='<span class=\\'icd-avatar-emoji\\'><i data-lucide=\\'${icon}\\'></i></span>';if(typeof lucide!='undefined')lucide.createIcons()">`;
 }
 
 // ─── Main render ──────────────────────────────────────────────

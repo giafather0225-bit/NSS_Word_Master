@@ -20,7 +20,7 @@ async function openInventory() {
     el.classList.remove('hidden');
     el.dataset.screen = 'inventory';
     el.innerHTML = `<div class="iiv-screen"><div class="isl-state-screen">
-        <div class="isl-loading-ship">⛵</div>
+        <div class="isl-loading-ship"><i data-lucide="anchor"></i></div>
         <div class="isl-state-text">Loading inventory...</div>
     </div></div>`;
     try {

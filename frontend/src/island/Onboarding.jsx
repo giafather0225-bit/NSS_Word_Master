@@ -135,7 +135,7 @@ function _obRenderChars(el) {
         ? zoneChars.map(c => `
             <div class="iob-char-card${_obCharId === c.id ? ' iob-char-card--selected' : ''}"
                  onclick="_obSelectChar(${c.id})">
-                <div class="iob-char-sil">${_CHAR_EMOJI[(c.name||'').toLowerCase()] || '?'}</div>
+                <div class="iob-char-sil"><i data-lucide="${meta.lucideIcon || 'smile'}"></i></div>
                 <div class="iob-char-name">${escapeHtml(c.name)}</div>
             </div>`).join('')
         : `<div class="iob-empty">No characters found for this zone.</div>`;

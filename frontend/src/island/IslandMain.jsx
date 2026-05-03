@@ -27,14 +27,6 @@ const _ZONE_CIRCLES = {
     savanna: { cx: 685, cy: 615, r: 85 },
 };
 
-// Character emoji map — swap img src here when art ships
-const _CHAR_EMOJI = {
-    sprout: '🌱', clover: '🍀', mossy: '🪨', fernlie: '🌿', blossie: '🌸',
-    axie: '🐠', finn: '🐟', delphi: '🐬', bubbles: '🐡', starla: '⭐',
-    mane: '🐴', ellie: '🐘', leo: '🦁', zuri: '🦒', rhino: '🦏',
-    lumie: '👽', twinkle: '✨', orbee: '🪐', nova: '☄️', cosmo: '🤖',
-    dragon: '🐉', unicorn: '🦄', phoenix: '🔥', gumiho: '🦊', qilin: '🐲',
-};
 
 // Char bubble anchor positions near artwork features
 const _CHAR_BUBBLES = [
@@ -101,7 +93,7 @@ function _renderIslandLoading() {
     if (!el) return;
     el.innerHTML = `
         <div class="isl-state-screen">
-            <div class="isl-loading-ship">⛵</div>
+            <div class="isl-loading-ship"><i data-lucide="anchor"></i></div>
             <div class="isl-state-text">Sailing to your island...</div>
         </div>`;
 }
@@ -303,22 +295,16 @@ function _bubblesHTML(charsByZone) {
         const chars = charsByZone[b.zone] || [];
         const char  = chars[0];
         if (!char) return '';
-        const emoji = _charEmoji(char);
+        const meta  = _ZONE_META[b.zone] || {};
         const name  = escapeHtml((char.nickname || char.name || '').substring(0, 8));
         return `
             <button class="gim-bubble gim-float"
                     style="left:${b.left};top:${b.top};animation-delay:${b.delay}"
                     onclick="_bubbleClick(this, '${escapeHtml(name)}')"
                     aria-label="${name}" title="${name}">
-                <span class="gim-bubble-dot">${emoji}</span>
+                <span class="gim-bubble-dot"><i data-lucide="${meta.lucideIcon || 'smile'}"></i></span>
             </button>`;
     }).join('');
-}
-
-/** @tag SHOP */
-function _charEmoji(char) {
-    const key = (char.name || '').toLowerCase();
-    return _CHAR_EMOJI[key] || '🐾';
 }
 
 // ─── Streak dots ─────────────────────────────────────────────────
@@ -343,10 +329,10 @@ function _todayRowsHTML(chars) {
     const top3 = chars.slice(0, 3);
     const charRows = top3.length
         ? top3.map(c => {
-            const emoji  = _charEmoji(c);
+            const meta   = _ZONE_META[c.zone] || {};
             const name   = escapeHtml((c.nickname || c.name || '').substring(0, 10));
             const status = _charStatus(c);
-            return `<div class="gim-today-row">${emoji} <b class="gim-today-name">${name}</b> · ${escapeHtml(status)}</div>`;
+            return `<div class="gim-today-row"><i data-lucide="${meta.lucideIcon || 'heart'}" class="gim-today-icon"></i> <b class="gim-today-name">${name}</b> · ${escapeHtml(status)}</div>`;
         }).join('')
         : `<div class="gim-today-row"><span>Your island awaits</span></div>`;
 

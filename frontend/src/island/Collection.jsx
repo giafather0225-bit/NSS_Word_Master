@@ -25,7 +25,7 @@ async function openCollection() {
     el.classList.remove('hidden');
     el.dataset.screen = 'collection';
     el.innerHTML = `<div class="ico-screen"><div class="isl-state-screen">
-        <div class="isl-loading-ship">⛵</div>
+        <div class="isl-loading-ship"><i data-lucide="anchor"></i></div>
         <div class="isl-state-text">Loading collection...</div>
     </div></div>`;
     try {
@@ -167,7 +167,7 @@ function _colCardHTML(char) {
         <div class="ico-card${done ? ' ico-card--done' : ' ico-card--locked'}"
              onclick="_colOpenDetail(${char.id})">
             <div class="ico-card-avatar${done ? '' : ' ico-card-avatar--sil'}">
-                ${done ? (_CHAR_EMOJI[(char.name||'').toLowerCase()] || meta.icon || '?') : '?'}
+                ${done ? `<i data-lucide="${meta.lucideIcon || 'star'}"></i>` : '?'}
             </div>
             <div class="ico-card-name">${name}</div>
             <div class="ico-card-zone">${done ? (meta.label || char.zone) : char.zone}</div>
@@ -199,7 +199,7 @@ function _colDetailModal() {
                     <i data-lucide="x"></i>
                 </button>
                 <div class="ico-modal-avatar${done ? '' : ' ico-card-avatar--sil'}">
-                    ${done ? (_CHAR_EMOJI[(char.name||'').toLowerCase()] || meta.icon || '?') : '?'}
+                    ${done ? `<i data-lucide="${meta.lucideIcon || 'star'}"></i>` : '?'}
                 </div>
                 <div class="ico-modal-name">${name}</div>
                 <div class="ico-modal-zone">${meta.label || char.zone}</div>

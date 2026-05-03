@@ -12,18 +12,19 @@
 // ─── Image helper ───────────────────────────────────────────────
 
 /**
- * Return an <img> for the given stage, falling back to emoji text.
+ * Return an <img> for the given stage, falling back to a Lucide icon.
  * imagesJson: raw JSON string from island_characters.images column.
+ * fallbackIcon: Lucide icon name (e.g. 'tree-pine').
  * @tag SHOP
  */
-function _charImg(name, stage, imagesJson, fallbackEmoji) {
+function _charImg(name, stage, imagesJson, fallbackIcon) {
     let imgs = {};
     try { imgs = JSON.parse(imagesJson || '{}'); } catch (_) {}
     const rel = imgs[stage] || imgs['baby'];
-    if (!rel) return `<span class="izd-char-emoji-fb">${fallbackEmoji}</span>`;
+    if (!rel) return `<span class="izd-char-emoji-fb"><i data-lucide="${fallbackIcon || 'heart'}"></i></span>`;
     const src = `/static/img/island/${rel}`;
     return `<img class="izd-char-img" src="${src}" alt="${escapeHtml(name)}"
-                 onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'izd-char-emoji-fb',textContent:'${fallbackEmoji}'}))">`;
+                 onerror="this.outerHTML='<span class=\\'izd-char-emoji-fb\\'><i data-lucide=\\'${fallbackIcon || 'heart'}\\'></i></span>';if(typeof lucide!='undefined')lucide.createIcons()">`;
 }
 
 // ─── State ─────────────────────────────────────────────────────
@@ -95,7 +96,7 @@ async function _zdLoad(zone, el) {
 /** @tag SHOP */
 function _zdRenderLoading(el) {
     el.innerHTML = `<div class="izd-screen"><div class="isl-state-screen">
-        <div class="isl-loading-ship">⛵</div>
+        <div class="isl-loading-ship"><i data-lucide="anchor"></i></div>
         <div class="isl-state-text">Loading zone...</div>
     </div></div>`;
 }
@@ -158,8 +159,8 @@ function _zdCharVisual(prog) {
     const status  = h < 20 ? 'Hungry — needs food!'
                   : p < 20 ? 'Feeling lonely...'
                   : h >= 80 && p >= 80 ? 'Feeling great!' : 'Doing okay.';
-    const fallbackEmoji = _CHAR_EMOJI[(cat.name || '').toLowerCase()] || '🌟';
-    const charVisual = _charImg(cat.name || '', prog.stage || 'baby', prog.images || '{}', fallbackEmoji);
+    const fallbackIcon = (_ZONE_META?.[cat.zone] || {}).lucideIcon || 'heart';
+    const charVisual = _charImg(cat.name || '', prog.stage || 'baby', prog.images || '{}', fallbackIcon);
     return `
         <div class="izd-char-visual ${animCls}" onclick="_zdOpenCharDetail(${prog.id})"
              role="button" tabindex="0" title="View details">
@@ -323,7 +324,7 @@ function _zdAdopt() {
     }
     const meta  = _ZONE_META[_zdZone] || {};
     const cards = adoptable.map(c => {
-        const fb = _CHAR_EMOJI[(c.name || '').toLowerCase()] || '🌟';
+        const fb = (meta.lucideIcon || 'heart');
         const adoptVisual = _charImg(c.name || '', 'baby', c.images || '{}', fb);
         return `
         <div class="izd-adopt-card" onclick="_zdAdoptStart(${c.character_id})"

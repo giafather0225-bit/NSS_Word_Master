@@ -60,7 +60,7 @@ function _closeEvoModal() {
 function _emRenderLoading(el) {
     el.innerHTML = `<div class="iem-backdrop">
         <div class="iem-box iem-box--loading">
-            <div class="isl-loading-ship">⛵</div>
+            <div class="isl-loading-ship"><i data-lucide="anchor"></i></div>
             <div class="isl-state-text">Checking evolution...</div>
         </div>
     </div>`;
@@ -253,7 +253,7 @@ function _showCharCompletion(result, zone, charName) {
     overlay.id    = 'icc-overlay';
     overlay.className = `icc-overlay icc-${zone}`;
 
-    const emoji = _CHAR_EMOJI[(charName || '').toLowerCase()] || '?';
+    const icon  = (_ZONE_META?.[zone] || {}).lucideIcon || 'star';
     const boostSubject = result.boost_subject
         ? result.boost_subject.charAt(0).toUpperCase() + result.boost_subject.slice(1)
         : '';
@@ -269,7 +269,7 @@ function _showCharCompletion(result, zone, charName) {
         <div class="icc-bloom"></div>
         <div class="icc-particles" id="icc-particles"></div>
         <div class="icc-content">
-            <div class="icc-char-emoji">${emoji}</div>
+            <div class="icc-char-emoji"><i data-lucide="${icon}"></i></div>
             <div class="icc-badge">COMPLETE!</div>
             <div class="icc-name">${escapeHtml(charName)}</div>
             <div class="icc-subtitle">is fully evolved!</div>
