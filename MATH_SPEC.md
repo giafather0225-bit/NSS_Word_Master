@@ -529,6 +529,57 @@ All 5 types are interactive with drag-and-drop (mouse/trackpad compatible).
 - Complete a set: +5 XP
 - All correct in a set: +5 XP bonus
 
+### Kangaroo Data Pipeline (확정 2026-05-03)
+전체 상세 계획: 프로젝트 루트의 `KANGAROO_DATA_PLAN.md` 참조
+
+**채택 방식: PDF Anchor Mode ✅**
+
+과거 검토 방식과 채택 결정:
+- ❌ `scripts/generate_kangaroo_solutions.py` (Gemini Vision 스크립트): PDF→PNG→API 변환 방식, 비용·속도·정확도 문제로 deprecated (2026-05-03)
+- ❌ base64 이미지 JSON 삽입: 파일 크기 폭증, 모바일 성능 저하
+- ❌ PNG 개별 추출: 103세트 × 24문제 = 수작업 불가
+- ✅ PDF 유지 + `pdf_page` 필드: PDF는 이미 서버에 존재, JSON에 페이지 번호만 추가
+
+**외부 데이터 소스 (검증 완료)**
+
+| 소스 | URL 패턴 | 용도 | 확인 연도 |
+|------|----------|------|-----------|
+| kaenguru.at (Austria) | `.../problems/{YEAR}_{LEVEL}_E.pdf` | 영문 문제 PDF | 2022–2025 ✅ |
+| mathkangaroo.org (USA) | `.../uploads/2026/04/{YEAR}.pdf` | 공식 전레벨 답안 | 2022–2025 ✅ |
+| matematica.pt | `kangaroo-questions.php` | 백업 소스 | 2009–2024 |
+
+Level 키 (kaenguru.at): `Pre_Ecolier` / `Ecolier` / `Benjamin` / `Cadet` / `Junior` / `Student`
+
+**Past Paper JSON 추가 필드 스펙**
+
+`ksf_2024_junior.json`이 표준 레퍼런스 (30문제 전체 solution 완비 ✅). 각 question 객체에 아래 필드 추가:
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| `pdf_page` | int | 해당 문제가 위치한 PDF 페이지 번호 (1-based) |
+| `image_required` | bool | 그림 없이 풀 수 없는 문제 여부 |
+| `solution` | string | Claude 생성 해설 (영어, 1–3문장) |
+| `solution_steps` | array of string | 단계별 풀이 (최소 2단계) |
+| `difficulty` | string | `easy`(Sec1) / `medium`(Sec2) / `hard`(Sec3) |
+| `topic` | string | `arithmetic` / `geometry` / `logic` / `pattern` / `spatial_reasoning` / `algebra` / `number_theory` / `combinatorics` |
+
+**해설 작성 원칙**
+- Claude가 공식 PDF 직접 열람 후 풀이
+- MK USA 공식 답안 PDF 대조 검증 필수
+- `image_required: true` → `solution`에 "See PDF page N for figure." 포함
+- 모든 해설은 영어로 작성
+
+**데이터 구축 우선순위**
+
+| 순서 | set_id | 상태 |
+|------|--------|------|
+| 1 | `ikmc_2024_ecolier` | 진행 중 |
+| 2 | `ikmc_2025_ecolier` | 대기 |
+| 3 | `ikmc_2023_ecolier` | 대기 |
+| 4 | `ikmc_2024_benjamin` | 대기 |
+| 5 | `ikmc_2025_benjamin` | 대기 |
+| 6+ | 이후 연도/레벨 확장 | 계획 중 |
+
 ---
 
 ## My Problems Module

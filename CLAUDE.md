@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-01 — CKLA redesign spec (66 decisions) + DUX freeze rules + streak subject change + migration 018/019
+> Last updated: 2026-05-01 — CKLA redesign spec (66 decisions) + DUX freeze rules + streak subject change + migration 018/019 + Math Module v2.0 (MATH_SPEC.md)
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -508,29 +508,231 @@ Cache busters in `child.html`: `parent.css?v=12`, `bundle-a.min.js?v=9` (bump on
 
 ---
 
-## Math Module
+## Math Module (v2.0, 2026-05-01)
 
-### Math Academy
-- **Grades**: G3, G4, G5, G6 (data in `backend/data/math/G{3..6}/`)
-- **Approach**: CPA (Concrete → Pictorial → Abstract)
-- **Learning Path view** (added 2026-04, commit `62be6da`): unit/lesson tree
-- **Visual error states** (commit `9b743ca`): no more blank cream screen on failure
-- Routers: `math_academy`, `math_daily`, `math_fluency`, `math_glossary`, `math_placement`, `math_problems`
-- JS: `math-academy.js` + `math-academy-{shell,ui,feedback}.js` + `math-manipulatives{,-2}.js` + `math-3read.js` + `math-learn-{cards,visuals}.js` + `math-problem-{types,ui}.js` + `math-katex-utils.js`
+### 개요
+- 대상: Gia (9세, G3, MAP RIT 205, 94th percentile)
+- 교재: Go Math + CCSS G3-G6
+- 목표: 개념 이해 + 기억 유지 + 적용 능력 (교사 없이 전 과정 수행)
+- 상세 스펙: `MATH_SPEC.md` v2.0 참조 (모든 설계 결정의 최종 기준)
+
+---
+
+### 모듈 구조
+| 모듈 | 설명 | 상태 |
+|---|---|---|
+| Academy | 정규 수학 학습 (핵심 모듈) | 🔄 v2.0 재설계 |
+| Fact Fluency | 연산 속도 훈련 | ✅ 유지 |
+| Daily Challenge | 매일 혼합 문제 | ✅ 유지 |
+| My Problems | 오답 관리 | ✅ 유지 |
+| Placement Test | 진단/기록 | ✅ 유지 |
+| Glossary | 용어집 | ✅ 유지 |
+| Kangaroo | 별개 독립 모듈 | ⛔ 절대 건드리지 말 것 |
+
+---
+
+### Academy 레슨 플로우 (v2.0)
+```
+pre_test (5문항, 진단+뇌 준비, 점수 미표시)
+└→ learn (4카드: I Do × 2 + vocab + 브릿지)
+   └→ try (5문항, You Do, 2단계 피드백)
+      └→ exit_quiz (5문항, 순수 인출, ≥80% 통과)
+         ├→ 통과 → 레슨 완료 화면
+         │         (마지막 레슨이면 Unit Test 자동 진입)
+         └→ 미통과 → 문제 교체 후 try 재시도
+                     (3회 미통과 → 오늘 종료)
+```
+
+---
+
+### 핵심 설계 원칙
+1. **한 화면 = 한 개념** (타이머 없음, 자유 속도)
+2. **"틀렸습니다" 금지** → 성장 마인드셋 문구 사용
+3. **점수 표시 금지** → pre_test는 진단 목적만
+4. **힌트/Tools/Glossary** → exit_quiz/Unit Test/spaced_review에서 완전 차단
+5. **CPA 애니메이션** → fade 0.3s만, 복잡한 애니메이션 금지
+6. **자기설명 질문** → "생각해봤어요 ✓" 소프트 강제
+7. **답 변경** → 확인 버튼 전까지 자유롭게 가능
+
+---
+
+### 피드백 시스템
+```
+1차 오답 → 설명적 피드백 + 재시도
+2차 오답 → 오개념 피드백 + CPA 폴백 + 정답 공개
+2연속 오답 → 재설명 카드 자동 표시
+재설명 후 오답 → 난이도 하향
+```
+
+---
+
+### 마스터리 기준
+| 단계 | 기준 |
+|---|---|
+| exit_quiz | ≥80% (4/5) 통과 |
+| Unit Test | ≥80% (8/10) 통과 |
+| My Problems 제거 | 2연속 정답 |
+
+---
+
+### 잠금 정책
+| 조건 | 결과 |
+|---|---|
+| 이전 레슨 exit_quiz ≥80% | 다음 레슨 해제 |
+| Unit Test ≥80% | 다음 단원 해제 |
+| Unit Test 미통과 | 다음 단원 전체 🔒 |
+| 부모 강제 해제 | 잠금 무관하게 해제 가능 |
+
+---
+
+### 간격 반복 스케줄
+| exit_quiz 점수 | 복습 인터벌 |
+|---|---|
+| 90~100% | 14일, 28일 |
+| 70~89% | 7일, 14일, 28일 |
+| 50~69% | 3일, 7일, 14일 |
+| <50% | 1일, 3일, 7일 |
+
+- 1일 놓침 → 인터벌 × 0.7
+- 2일 이상 놓침 → 최초 인터벌로 리셋
+- 복습은 홈보드 Review 섹션 (영어+수학 통합)
+
+---
+
+### XP 규칙 요약
+| 항목 | XP |
+|---|---|
+| try/exit_quiz 정답 | +1 |
+| 레슨 완료 | +10 |
+| Unit Test 첫 통과 | +35 |
+| Unit Test 재시도 통과 | +25 |
+| Daily Challenge 완료 | +5 |
+| Daily Challenge 전체 정답 | +3 추가 |
+| Fact Fluency 완료 | +10 |
+| Fact Fluency 개인 최고 | +2 추가 |
+| spaced_review 완료 | +3 |
+| My Problems 2연속 정답 제거 | +5 |
+| Placement Test 완료 | +20 |
+| pre_test / 재학습 / 미통과 | 0 |
+
+---
+
+### 스트릭 규칙
+| 상황 | 조건 |
+|---|---|
+| 레슨 있는 날 | 레슨 완료 필수 |
+| 레슨 없는 날 | spaced_review or Daily Challenge 완료 |
+| 아무것도 안 한 날 | 스트릭 리셋 |
+
+---
+
+### TTS 우선순위
+`edge-tts` → `Web Speech API` → 텍스트 하이라이트
+
+---
+
+### DB 마이그레이션
+- **Migration 018** 실행 필수 (`MATH_SPEC.md` 섹션 13 참조)
+- 수정: `math_progress`, `math_wrong_review`
+- 신규: `math_spaced_review`, `math_unit_test`, `math_placement_test`
+
+---
+
+### 파일 구조
+**수정할 파일**:
+- `math-learn-cards.js` — Card3 vocab + Card4 브릿지 + 자기설명
+- `math-academy.js` — 새 레슨 플로우
+- `math-academy-feedback.js` — 2단계 피드백 + 재설명 카드
+- `math-academy-shell.js` — 단계 저장/복원 (resume)
+- `math-problem-ui.js` — 힌트 딜레이 10초, Glossary 접근 제어
+- `math-academy-learn.css` — 다크모드 토큰
+
+**추가할 파일**:
+- `math-spaced-review.js`
+- `math-unit-test.js`
+- `math-placement-test.js`
+- `math-lesson-complete.js`
+- `math-academy-stages.css`
+
+**절대 건드리지 말 것 (Kangaroo — 독립 모듈)**:
+- `math-kangaroo.js` (및 관련 kangaroo JS 파일 전체)
+- `math-kangaroo.css`
+- `templates/math_kangaroo.html`
+- kangaroo 관련 DB 테이블 전체
+
+---
+
+### 개발 우선순위
+- **Phase 1**: DB 018 → pre_test → learn → try → exit_quiz → 레슨 완료 → resume
+- **Phase 2**: spaced_review + 홈보드 Review 통합 + 인터리빙
+- **Phase 3**: Unit Test + Placement Test + 부모 대시보드
+- **Phase 4**: My Problems + Glossary + Daily Challenge 업데이트
+
+---
+
+### 주의사항
+- `MATH_SPEC.md` v2.0이 모든 설계 결정의 최종 기준
+- 스펙에 없는 기능 임의 추가 금지
+- Kangaroo 모듈은 Academy와 완전히 별개, 절대 건드리지 말 것
+- 구현 중 스펙 불명확 시 `MATH_SPEC.md` 섹션 번호 명시 후 질문
+
+---
 
 ### Math Kangaroo
-- 103 sets in `backend/data/math/kangaroo/`: IKMC 2012-2023, KSF (Lebanon, India), USA 2003-2025
-- Levels: Pre-Ecolier (1-2), Ecolier (3-4), Benjamin (5-6), Cadet, Junior, Student
-- Modes: Practice (instant grade) / Test (timer + final grade)
-- XP: complete +5, ≥80% +5, perfect +10
-- Files: `math-kangaroo.js`, `-exam.js`, `-pdf-exam.js`, `-result.js`
+103 sets in `backend/data/math/kangaroo/`: IKMC 2012-2023, KSF (Lebanon, India), USA 2003-2025
+Levels: Pre-Ecolier (1-2), Ecolier (3-4), Benjamin (5-6), Cadet, Junior, Student
+Mode: 단일 모드 — 타이머 + 제출 후 결과 표시 (Practice/Test 구분 없음, 2026-05-03 통합)
+XP: complete +5, ≥80% +5, perfect +10
+Files: `math-kangaroo.js`, `-exam.js`, `-pdf-exam.js`, `-result.js`
 
-### Other Math
-- **Placement** (`math_placement`) — adaptive level finder
-- **Daily Challenge** (`math_daily`)
-- **Fluency** (`math_fluency`) — fact rounds with daily cap
-- **Glossary** (`math_glossary`) — per-grade vocab
-- **My Problems** (`math_problems`) — wrong-answer review queue
+**Data Architecture Decision (2026-05-03 확정)**
+- ✅ PDF Anchor Mode 채택: PDF는 `frontend/static/math/kangaroo/pdf/` 에 보관, JSON에 `pdf_page` 필드만 추가해 앱이 해당 페이지를 PDF.js로 오픈
+- ❌ base64 이미지 삽입 — 기각 (파일 크기 폭증)
+- ❌ PNG 개별 추출 — 기각 (103세트 × 24문제 = 수작업 불가)
+- ❌ `scripts/generate_kangaroo_solutions.py` (Gemini Vision) — deprecated (2026-05-03)
+
+**Verified External Sources**
+
+| 소스 | URL 패턴 | 용도 |
+|------|----------|------|
+| kaenguru.at | `https://www.kaenguru.at/files/problems/{YEAR}_{LEVEL}_E.pdf` | 영문 문제 PDF |
+| mathkangaroo.org | `https://mathkangaroo.org/mks/wp-content/uploads/2026/04/{YEAR}.pdf` | 공식 답안 (전 레벨) |
+| matematica.pt | `https://matematica.pt/en/useful/kangaroo-questions.php` | 백업 소스 |
+
+Level 키: `Pre_Ecolier` / `Ecolier` / `Benjamin` / `Cadet` / `Junior` / `Student` (kaenguru.at URL 기준)
+
+**Past Paper JSON 추가 필드** (`ksf_2024_junior.json` 기준 표준 스키마)
+```json
+{
+  "pdf_page": 1,
+  "image_required": false,
+  "solution": "English explanation (1-3 sentences).",
+  "solution_steps": ["Step 1: ...", "Step 2: ..."],
+  "difficulty": "easy | medium | hard",
+  "topic": "arithmetic | geometry | logic | pattern | spatial_reasoning | algebra | number_theory | combinatorics"
+}
+```
+
+**Solution 작성 원칙**
+- Claude가 공식 PDF를 직접 읽고 풀이 후 MK USA 공식 답안과 대조 검증
+- `image_required: true` → `solution`에 "See PDF page N for figure." 포함
+- `image_required: false` → `question_text` 인라인 렌더링 가능
+- 모든 solution은 영어로 작성
+
+**Answer Key 검증 현황 (2026-05-03 기준)**
+- VERIFIED 34개: `intl_*` 전체, `ikmc_2021_*`, `ikmc_2023_ecolier`, `leb_2025_*`, `cyp_*`
+- PENDING 2개: `ikmc_2023_benjamin`(Q25-30 미검증), `ikmc_2023_pre_ecolier` — UI 버튼 비활성화
+- UNVERIFIED 67개: `ikmc_2012~2022`, `usa_*`, `ksf_*` 등 — 데이터 구조 정상, 답 출처 미확인
+- ❌ 데이터 오류 2개: `cyp_2015` Q30=V, `cyp_2024` Q5=V (그리스 파일, PDF 없어 UI 노출 안됨)
+
+**Sources**
+| 소스 | URL / 경로 | 검증 방법 |
+|------|------------|-----------|
+| matematica.pt | `/en/useful/kangaroo-questions.php` | pymupdf 300dpi 렌더링 후 표 직접 판독 |
+| kangaleb.com | Lebanon 공식 PDF | 텍스트 추출 |
+| kaenguru.at | `files/problems/{YEAR}_{LEVEL}_E.pdf` | 영문 문제 PDF |
+
+전체 상세 계획: `KANGAROO_DATA_PLAN.md` 참조
 
 ---
 
