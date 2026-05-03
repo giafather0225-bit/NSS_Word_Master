@@ -106,9 +106,10 @@ function _checkUnitTestAnswer(problemId, userAnswer) {
         isCorrect = _mathAnswersEquivalent(userRaw, correctRaw);
     }
 
+    const fbObj = (problem.feedback && typeof problem.feedback === 'object') ? problem.feedback : null;
     const feedback = isCorrect
-        ? (problem.feedback_correct || '')
-        : (problem.feedback_wrong || '');
+        ? (problem.feedback_correct || fbObj?.correct || '')
+        : (problem.feedback_wrong || fbObj?.incorrect || fbObj?.wrong || '');
     return { is_correct: isCorrect, correct_answer: correctDisplay, feedback };
 }
 

@@ -320,6 +320,9 @@ function _mathStageLabel(stage) {
         practice_r1: 'Practice R1',
         practice_r2: 'Practice R2',
         practice_r3: 'Practice R3',
+        unit_test: 'Unit Test',
+        exit_quiz: 'Exit Quiz',
+        wrong_review: 'Review',
     };
     return labels[stage] || stage;
 }
