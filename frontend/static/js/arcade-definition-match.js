@@ -186,5 +186,5 @@ async function _dmGameOver() {
   document.removeEventListener('keydown', _dmKeydown);
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('definition_match', state.score, state.correct, state.total, accuracy);
-  _arcadeRenderGameOver({ state, accuracy, result, replay: 'dmStart()' });
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => dmStart() });
 }

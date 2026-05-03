@@ -310,5 +310,5 @@ async function _miGameOver() {
   if (body) body.classList.remove('arcade-body--game');
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('math_invaders', state.score, state.correct, state.total, accuracy, _miLevel);
-  _arcadeRenderGameOver({ state, accuracy, result, replay: `miStart('${_miLevel}')` });
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => miStart(_miLevel) });
 }

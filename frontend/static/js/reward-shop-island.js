@@ -67,12 +67,13 @@ async function _renderEvolutionTab(body) {
         return;
     }
     const cards = items.map(item => {
-        const isLegend   = item.is_legend_currency;
-        const balance    = isLegend ? _islandLegendLumi : _islandLumi;
-        const symbol     = isLegend ? "✨" : "💎";
-        const affordable = balance >= item.price;
-        const onclick    = affordable
-            ? `_islandConfirmBuy(${item.id},'${escapeHtml(item.name)}','${escapeHtml(item.icon || "🧬")}',${item.price},'${item.currency}')`
+        const isLegend    = item.is_legend_currency;
+        const balance     = isLegend ? _islandLegendLumi : _islandLumi;
+        const symbol      = isLegend ? "✨" : "💎";
+        const affordable  = balance >= item.price;
+        const currencyStr = isLegend ? "legend_lumi" : "lumi";
+        const onclick     = affordable
+            ? `_islandConfirmBuy(${item.id},'${escapeHtml(item.name)}','${escapeHtml(item.icon || "🧬")}',${item.price},'${currencyStr}')`
             : "";
         return `<div class="shop-item-card${affordable ? "" : " unaffordable"}" onclick="${onclick}">
             <span class="shop-item-icon">${item.icon || "🧬"}</span>

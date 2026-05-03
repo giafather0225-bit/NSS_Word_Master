@@ -41,6 +41,7 @@ async function renderMathComplete() {
         reviewHtml = `<div class="math-complete-review-date">Next review: ${_mathEsc(label)}</div>`;
     }
 
+    const xpEarned = mathState.xpEarned || 0;
     const exitScore = mathState._v2Flow ? mathState.correct : null;
     const midStat = mathState._v2Flow
         ? `<div class="math-complete-stat">
@@ -74,6 +75,7 @@ async function renderMathComplete() {
                     </div>
                 </div>
                 ${reviewHtml}
+                ${xpEarned > 0 ? `<div class="math-complete-xp">+${xpEarned} XP</div>` : ''}
             </div>
             <div class="math-complete-actions">
                 <button class="math-btn-primary" id="math-complete-back-btn">Back to Math</button>

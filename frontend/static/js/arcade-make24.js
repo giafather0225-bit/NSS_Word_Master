@@ -286,5 +286,5 @@ async function _mkGameOver() {
   _mk.running = false;
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('make24', state.score, state.correct, state.total, accuracy, _mkLevel);
-  _arcadeRenderGameOver({ state, accuracy, result, replay: `mkStart('${_mkLevel}')` });
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => mkStart(_mkLevel) });
 }

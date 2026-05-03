@@ -206,7 +206,7 @@ async function _arcadeReportScore(game, score, correct, total, accuracy, level =
 }
 
 /** Render the shared game-over panel. @tag ARCADE */
-function _arcadeRenderGameOver({ state, accuracy, result, replay }) {
+function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
   const body = document.getElementById('arcade-body');
   if (!body) return;
   const pct = Math.round(accuracy * 100);
@@ -239,10 +239,15 @@ function _arcadeRenderGameOver({ state, accuracy, result, replay }) {
       ${tierLine}
       ${xpLine}
       <div style="display:flex; gap:12px; margin-top:8px;">
-        <button class="wi-btn" onclick="${replay}">Play again</button>
+        <button class="wi-btn" id="arcade-replay-btn">Play again</button>
         <button class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
       </div>
     </div>`;
+
+  const replayBtn = document.getElementById('arcade-replay-btn');
+  if (replayBtn && typeof replayFn === 'function') {
+    replayBtn.addEventListener('click', replayFn);
+  }
 
   if (typeof refreshXPSummary === 'function') refreshXPSummary();
 

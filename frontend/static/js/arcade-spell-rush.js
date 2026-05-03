@@ -196,5 +196,5 @@ async function _srGameOver() {
   _sr.running = false;
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('spell_rush', state.score, state.correct, state.total, accuracy);
-  _arcadeRenderGameOver({ state, accuracy, result, replay: 'srStart()' });
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => srStart() });
 }

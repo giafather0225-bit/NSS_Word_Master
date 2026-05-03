@@ -443,5 +443,5 @@ async function _cwFinish() {
   _cw.running = false;
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('crossword', state.score, state.correct, state.total, accuracy);
-  _arcadeRenderGameOver({ state, accuracy, result, replay: 'cwStart()' });
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => cwStart() });
 }

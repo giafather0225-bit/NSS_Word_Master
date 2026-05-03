@@ -23,19 +23,29 @@ async function ppRenderTasks(body) {
                 <span class="pp-task-xp">+${t.xp_value} XP</span>
                 <label class="pp-toggle">
                     <input type="checkbox" ${t.is_active ? "checked" : ""}
-                           onchange="_ppToggleTask('${t.task_key}', this.checked)">
+                           data-task-key="${t.task_key}">
                     <span class="pp-toggle-track"></span>
                 </label>
                 ${t.is_required
                     ? `<span style="font-size:11px;font-weight:700;color:var(--color-primary)">Required</span>`
                     : `<button class="pp-btn secondary" style="padding:5px 10px;font-size:12px"
-                               onclick="_ppToggleRequired('${t.task_key}', ${!t.is_required})">Make Required</button>`}
+                               data-task-key="${t.task_key}">Make Required</button>`}
             </div>`;
         }).join("");
         body.innerHTML = `
             <div class="pp-section-title">Today's Tasks</div>
             <div class="pp-task-list">${rows || "<p style='color:var(--text-secondary)'>No tasks configured.</p>"}</div>
             <p style="font-size:12px;color:var(--text-secondary);margin-top:12px">Toggle to show/hide tasks on the Home screen.</p>`;
+        body.querySelectorAll('input[data-task-key]').forEach(cb => {
+            cb.addEventListener('change', function() {
+                _ppToggleTask(this.dataset.taskKey, this.checked);
+            });
+        });
+        body.querySelectorAll('button[data-task-key]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                _ppToggleRequired(this.dataset.taskKey, true);
+            });
+        });
     } catch (_) { body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`; }
 }
 

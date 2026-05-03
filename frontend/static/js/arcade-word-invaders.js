@@ -595,5 +595,5 @@ async function _wiGameOver() {
   if (body) body.classList.remove('arcade-body--game');
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('word_invaders', state.score, state.correct, state.total, accuracy, _wiLevel);
-  _arcadeRenderGameOver({ state, accuracy, result, replay: `wiStart('${_wiLevel}')` });
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => wiStart(_wiLevel) });
 }

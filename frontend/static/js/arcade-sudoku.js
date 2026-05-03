@@ -262,7 +262,7 @@ async function _suFinish() {
   const result = await _arcadeReportScore('sudoku', score, correct, total, accuracy, _suLevel);
   _arcadeRenderGameOver({
     state: { score, correct, total },
-    accuracy, result, replay: `suStart('${_suLevel}')`,
+    accuracy, result, replayFn: () => suStart(_suLevel),
   });
   const body = document.getElementById('arcade-body');
   const msg = `
