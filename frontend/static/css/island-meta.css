@@ -1,0 +1,692 @@
+/* ================================================================
+   island-meta.css — Daily Missions, Mailbox
+   Section: Shop (Island)
+   Dependencies: theme.css, island-main.css
+   ================================================================ */
+
+/* ─── Daily Screen (idl-*) ──────────────────────────────────────── */
+
+.idl-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-page);
+}
+
+.idl-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+
+.idl-topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.idl-title {
+    font-family: var(--font-family-display);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.idl-cur-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Tabs */
+.idl-tabs {
+    display: flex;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+
+.idl-tab {
+    flex: 1;
+    padding: 11px 8px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.idl-tab--active {
+    color: var(--diary-primary);
+    border-bottom-color: var(--diary-primary);
+}
+
+/* Streak banner */
+.idl-streak-banner {
+    background: linear-gradient(120deg, var(--arcade-light) 0%, var(--diary-light) 100%);
+    border-radius: var(--radius-lg);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--arcade-soft);
+    margin-bottom: 18px;
+}
+
+.idl-streak-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.idl-streak-ico  { font-size: 30px; }
+
+.idl-streak-count {
+    font-family: var(--font-family-display);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--arcade-ink);
+}
+
+.idl-streak-hint {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.idl-streak-hand {
+    font-family: var(--font-family-hand);
+    font-size: 19px;
+    color: var(--diary-ink);
+}
+
+/* Body scroll area */
+.idl-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 20px 24px;
+}
+
+/* Attendance tab */
+.idl-week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.idl-day-cell {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 8px 4px;
+    text-align: center;
+    position: relative;
+}
+
+.idl-day-cell--claimed {
+    background: var(--math-light);
+    border-color: var(--math-soft);
+}
+
+.idl-day-cell--today {
+    background: var(--diary-light);
+    border-color: var(--diary-primary);
+}
+
+.idl-day-letter {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.idl-day-num {
+    font-size: 16px;
+    font-weight: 800;
+    margin-top: 2px;
+    color: var(--text-primary);
+}
+
+.idl-day-cell--claimed .idl-day-num { color: var(--math-ink); }
+
+.idl-day-reward {
+    font-size: 10px;
+    font-weight: 800;
+    margin-top: 5px;
+    color: var(--text-secondary);
+}
+
+.idl-day-cell--claimed .idl-day-reward { color: var(--math-ink); }
+
+.idl-today-pip {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--diary-primary);
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+    padding: 1px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.idl-claim-btn {
+    width: 100%;
+    margin-top: 14px;
+}
+
+.idl-mega-hint {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: var(--rewards-light);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--rewards-soft);
+}
+
+.idl-mega-hint-ico  { font-size: 20px; }
+.idl-mega-hint-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--rewards-ink);
+}
+.idl-mega-hint-sub {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-top: 1px;
+}
+
+/* Mission cards */
+.idl-missions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.idl-missions-heading {
+    font-family: var(--font-family-display);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.idl-reset-hint {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.idl-mission-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.idl-mission-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: opacity var(--transition-fast);
+}
+
+.idl-mission-card--done   { background: var(--math-light); border-color: var(--math-soft); }
+.idl-mission-card--locked { opacity: .5; }
+
+.idl-mission-ico {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--bg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.idl-mission-ico--done { background: var(--math-primary); color: #fff; }
+
+.idl-mission-info { flex: 1; min-width: 0; }
+
+.idl-mission-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.idl-mission-title--done { text-decoration: line-through; color: var(--text-secondary); }
+
+.idl-mission-gauge-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.idl-mission-gauge {
+    flex: 1;
+    height: 6px;
+    background: var(--bg-surface);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.idl-mission-gauge-fill {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.idl-mission-gauge-fill--done    { background: var(--math-primary); }
+.idl-mission-gauge-fill--active  { background: linear-gradient(90deg, #F8C8D5, #E09AAE); }
+
+.idl-mission-prog {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.idl-mission-reward {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--math-ink);
+    flex-shrink: 0;
+}
+
+.idl-mission-claim-btn {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    background: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* Weekly tab */
+.idl-weekly-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.idl-weekly-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.idl-weekly-ico {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--rewards-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.idl-weekly-info   { flex: 1; }
+
+.idl-weekly-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.idl-weekly-gauge-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.idl-weekly-gauge {
+    flex: 1;
+    height: 8px;
+    background: var(--bg-surface);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.idl-weekly-gauge-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #B8A4DC, #E09AAE);
+    border-radius: 999px;
+}
+
+.idl-weekly-prog {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--rewards-ink);
+    white-space: nowrap;
+}
+
+.idl-weekly-reward {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--rewards-ink);
+    flex-shrink: 0;
+}
+
+.idl-weekly-paper {
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+}
+
+.idl-weekly-hand {
+    font-family: var(--font-family-hand);
+    font-size: 20px;
+    color: var(--diary-ink);
+}
+
+/* ─── Mailbox Screen (imb-*) ─────────────────────────────────────── */
+
+.imb-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-page);
+}
+
+.imb-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+
+.imb-topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.imb-title {
+    font-family: var(--font-family-display);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.imb-badge {
+    background: var(--diary-primary);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+/* Filters */
+.imb-filters {
+    display: flex;
+    gap: 6px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    overflow-x: auto;
+    flex-shrink: 0;
+}
+
+.imb-filter-btn {
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    color: var(--text-secondary);
+    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.imb-filter-btn--active {
+    border-color: var(--diary-primary);
+    background: var(--diary-light);
+    color: var(--diary-ink);
+}
+
+.imb-filter-count { opacity: .6; font-weight: 600; }
+
+/* Master/detail layout */
+.imb-layout {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+.imb-list {
+    overflow-y: auto;
+    border-right: 1px solid var(--border-subtle);
+}
+
+.imb-list--full   { flex: 1; border-right: none; }
+.imb-list--narrow { flex: 0 0 260px; }
+
+.imb-msg-row {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    cursor: pointer;
+    position: relative;
+    transition: background var(--transition-fast);
+}
+
+.imb-msg-row:hover            { background: var(--bg-surface); }
+.imb-msg-row--selected        { background: var(--diary-light); }
+.imb-msg-row--unread          { background: var(--bg-card); }
+.imb-msg-row--read            { background: transparent; }
+
+.imb-unread-dot {
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--diary-primary);
+}
+
+.imb-sender-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+}
+
+.imb-sender-avatar--lumi   { background: var(--rewards-light); }
+.imb-sender-avatar--gift   { background: var(--arcade-light); }
+.imb-sender-avatar--event  { background: var(--diary-light); }
+
+.imb-msg-info  { flex: 1; min-width: 0; }
+
+.imb-msg-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.imb-sender-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.imb-sender-name--unread { font-weight: 800; }
+
+.imb-msg-time {
+    font-size: 11px;
+    color: var(--text-hint);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.imb-msg-preview {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.imb-msg-preview--unread { color: var(--text-primary); font-weight: 600; }
+
+.imb-msg-gift { font-size: 17px; align-self: center; flex-shrink: 0; }
+
+.imb-empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-hint);
+}
+
+.imb-empty-ico  { font-size: 38px; margin-bottom: 8px; }
+.imb-empty-text { font-weight: 700; font-size: 14px; }
+
+/* Detail pane */
+.imb-detail {
+    flex: 1;
+    padding: 22px 24px;
+    overflow-y: auto;
+    background: var(--bg-page);
+}
+
+.imb-detail-sender {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.imb-detail-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--rewards-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.imb-detail-name {
+    font-family: var(--font-family-display);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.imb-detail-time {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.imb-letter-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 22px 20px;
+    box-shadow: var(--shadow-soft);
+}
+
+.imb-letter-greeting {
+    font-family: var(--font-family-hand);
+    font-size: 22px;
+    color: var(--diary-ink);
+    line-height: 1.3;
+}
+
+.imb-letter-body {
+    font-family: var(--font-family-hand);
+    font-size: 18px;
+    color: var(--text-primary);
+    line-height: 1.55;
+    margin-top: 10px;
+}
+
+.imb-letter-sign {
+    font-family: var(--font-family-hand);
+    font-size: 20px;
+    color: var(--diary-ink);
+    text-align: right;
+    margin-top: 14px;
+}
+
+.imb-gift-strip {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--arcade-light);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--arcade-soft);
+}
+
+.imb-gift-ico   { font-size: 26px; }
+
+.imb-gift-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--arcade-ink);
+}
+
+.imb-gift-sub {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-top: 1px;
+}
+
+.imb-detail-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+}

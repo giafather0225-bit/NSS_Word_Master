@@ -10,16 +10,16 @@
 
 // ─── Zone metadata ─────────────────────────────────────────────
 const _OB_ZONES = {
-    forest:  { desc: 'English vocabulary — grow a forest friend',  emoji: '🌳' },
-    ocean:   { desc: 'Math problems — raise an ocean creature',    emoji: '🌊' },
-    savanna: { desc: 'Diary journaling — raise a savanna companion',emoji: '🦁' },
-    space:   { desc: 'Spaced review — raise a space explorer',     emoji: '🚀' },
+    forest:  { desc: 'English vocabulary — grow a forest friend',   lucideIcon: 'tree-pine' },
+    ocean:   { desc: 'Math problems — raise an ocean creature',     lucideIcon: 'waves'     },
+    savanna: { desc: 'Diary journaling — raise a savanna companion', lucideIcon: 'paw-print' },
+    space:   { desc: 'Spaced review — raise a space explorer',      lucideIcon: 'rocket'    },
 };
 
 const _OB_SLIDES = [
-    { icon: '🌟', text: "Hi! I'm Lumi! This is Gia's Island!" },
-    { icon: '💎', text: 'Study to earn XP, convert to Lumi, and raise your characters!' },
-    { icon: '🤝', text: 'Ready to meet your first friend?' },
+    { lucideIcon: 'star',      text: "Hi! I'm Lumi! This is Gia's Island!" },
+    { lucideIcon: 'gem',       text: 'Study to earn XP, convert to Lumi, and raise your characters!' },
+    { lucideIcon: 'handshake', text: 'Ready to meet your first friend?' },
 ];
 
 // ─── State ─────────────────────────────────────────────────────
@@ -67,7 +67,7 @@ function _obRenderSlide(el) {
     el.innerHTML = `
         <div class="iob-screen">
             <div class="iob-slide">
-                <div class="iob-slide-icon">${s.icon}</div>
+                <div class="iob-slide-icon"><i data-lucide="${s.lucideIcon}"></i></div>
                 <div class="iob-slide-text">${escapeHtml(s.text)}</div>
                 <div class="iob-dots">${dots}</div>
                 <button class="iob-next-btn" onclick="_obNext()">
@@ -91,7 +91,7 @@ function _obRenderZones(el) {
     const cards = Object.entries(_OB_ZONES).map(([zone, z]) => `
         <div class="iob-zone-card${_obZone === zone ? ' iob-zone-card--selected' : ''}"
              onclick="_obSelectZone('${zone}')">
-            <div class="iob-zone-emoji">${z.emoji}</div>
+            <div class="iob-zone-emoji"><i data-lucide="${z.lucideIcon}"></i></div>
             <div class="iob-zone-name">${zone.charAt(0).toUpperCase() + zone.slice(1)}</div>
             <div class="iob-zone-desc">${escapeHtml(z.desc)}</div>
         </div>`).join('');
@@ -135,7 +135,7 @@ function _obRenderChars(el) {
         ? zoneChars.map(c => `
             <div class="iob-char-card${_obCharId === c.id ? ' iob-char-card--selected' : ''}"
                  onclick="_obSelectChar(${c.id})">
-                <div class="iob-char-sil">${_CHAR_EMOJI[(c.name||'').toLowerCase()] || meta.emoji || '?'}</div>
+                <div class="iob-char-sil">${_CHAR_EMOJI[(c.name||'').toLowerCase()] || '?'}</div>
                 <div class="iob-char-name">${escapeHtml(c.name)}</div>
             </div>`).join('')
         : `<div class="iob-empty">No characters found for this zone.</div>`;

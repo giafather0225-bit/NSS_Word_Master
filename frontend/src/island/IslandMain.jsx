@@ -9,42 +9,22 @@
 
 // ─── Zone metadata ──────────────────────────────────────────────
 const _ZONE_META = {
-    forest:  { label: 'Forest',  icon: '🌳', varPfx: 'english', subject: 'English' },
-    ocean:   { label: 'Ocean',   icon: '🌊', varPfx: 'math',    subject: 'Math'    },
-    savanna: { label: 'Savanna', icon: '🦁', varPfx: 'diary',   subject: 'Diary'   },
-    space:   { label: 'Space',   icon: '🚀', varPfx: 'rewards', subject: 'Review'  },
-    legend:  { label: 'Legend',  icon: '✨', varPfx: 'diary',   subject: 'All'     },
+    forest:  { label: 'Forest',  lucideIcon: 'tree-pine', varPfx: 'english', subject: 'English' },
+    ocean:   { label: 'Ocean',   lucideIcon: 'waves',     varPfx: 'math',    subject: 'Math'    },
+    savanna: { label: 'Savanna', lucideIcon: 'paw-print', varPfx: 'diary',   subject: 'Diary'   },
+    space:   { label: 'Space',   lucideIcon: 'rocket',    varPfx: 'rewards', subject: 'Review'  },
+    legend:  { label: 'Legend',  lucideIcon: 'sparkles',  varPfx: 'diary',   subject: 'All'     },
 };
 
-// CALIBRATED — polygon points in 1376×768 coordinate space (SVG viewBox matches map)
-// lx/ly = label pill center (CSS transform: translate(-50%,-50%) is applied)
-// Zones are non-overlapping; shared edges touch but do not cross.
-const _ZONE_POLYS = {
-    // Forest: upper-left woodland — right edge stops at x=435 before Legend starts (y≥302)
-    forest:  {
-        pts: '12,88 190,62 392,70 492,108 530,192 435,290 258,468 78,448 12,368',
-        lx: '17%', ly: '38%',
-    },
-    // Space: top-center observatory — bottom edge y≈262, above Legend top (y=275)
-    space:   {
-        pts: '532,20 686,10 762,22 818,62 832,155 810,228 768,254 704,262 640,248 582,212 548,155',
-        lx: '49%', ly: '18%',
-    },
-    // Legend: center ruins — upper-left at (462,302), clear of Forest (ends y≈262 at x=462)
-    legend:  {
-        pts: '462,302 554,282 700,275 806,294 868,348 884,464 848,550 734,580 606,584 484,556 434,494 420,388',
-        lx: '50%', ly: '50%',
-    },
-    // Ocean: right coast — lighthouse + beach + dock; left edge x≈860 clear of Legend (right≈868)
-    ocean:   {
-        pts: '878,190 1008,146 1204,86 1376,166 1376,608 1224,664 1070,650 962,556 940,430 870,330 860,246',
-        lx: '85%', ly: '48%',
-    },
-    // Savanna: bottom grassland — top edge y≈506-540, below Legend bottom (y=584)
-    savanna: {
-        pts: '358,556 448,516 604,506 800,508 962,540 1064,596 1070,684 984,760 784,768 496,768 358,726 346,626',
-        lx: '49%', ly: '76%',
-    },
+// ZONE CIRCLES — cx/cy/r in 1376×768 coordinate space (SVG viewBox matches map)
+// cx/cy = circle center, r = radius. Label pill is always rendered BELOW the circle.
+// Update cx/cy to reposition; update r to resize the clickable/visual area.
+const _ZONE_CIRCLES = {
+    forest:  { cx: 255, cy: 305, r: 85 },
+    space:   { cx: 685, cy: 155, r: 85 },
+    legend:  { cx: 690, cy: 375, r: 85 },
+    ocean:   { cx: 1195, cy: 400, r: 85 },
+    savanna: { cx: 685, cy: 615, r: 85 },
 };
 
 // Character emoji map — swap img src here when art ships
@@ -178,22 +158,22 @@ function _renderIslandMap() {
             ${isNight ? `
             <div class="gim-night-scrim"></div>
             <div class="gim-stars" id="gim-stars"></div>
-            <div class="gim-sunmoon gim-night-moon">🌙</div>
+            <div class="gim-sunmoon gim-night-moon"><i data-lucide="moon"></i></div>
             ` : `
-            <div class="gim-sunmoon">☀️</div>
+            <div class="gim-sunmoon"><i data-lucide="sun"></i></div>
             `}
 
             <!-- Top bar -->
             <div class="gim-topbar${isNight ? ' gim-topbar--night' : ''}">
                 <div class="gim-topbar-left">
                     <button class="gim-stat gim-stat--lumi" onclick="_openLumiLog()" title="Lumi history">
-                        💎 <span>${lumi.toLocaleString()}</span>
+                        <i data-lucide="gem"></i> <span>${lumi.toLocaleString()}</span>
                     </button>
                     <span class="gim-stat gim-stat--legend">
-                        ✨ <span>${legendLumi.toLocaleString()}</span>
+                        <i data-lucide="sparkles"></i> <span>${legendLumi.toLocaleString()}</span>
                     </span>
                     <span class="gim-stat gim-stat--streak">
-                        🔥 <span>${_islandStreak} day${_islandStreak === 1 ? '' : 's'}</span>
+                        <i data-lucide="flame"></i> <span>${_islandStreak} day${_islandStreak === 1 ? '' : 's'}</span>
                     </span>
                 </div>
                 <div class="gim-topbar-right">
@@ -248,21 +228,36 @@ function _renderIslandMap() {
     if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
-// ─── SVG zone polygons ────────────────────────────────────────────
+// ─── SVG zone circles ─────────────────────────────────────────────
 
-/** Render one SVG <polygon> per zone + HTML label pills positioned at zone centers. @tag SHOP */
+/** Render one SVG <circle> per zone + HTML label pills below each circle. @tag SHOP */
 function _svgZonesHTML(charsByZone, completedZones, legendLocked) {
-    const polygons = Object.entries(_ZONE_POLYS).map(([zone, cfg]) => {
+    const W = 1376, H = 768;
+
+    const circles = Object.entries(_ZONE_CIRCLES).map(([zone, cfg]) => {
         const meta   = _ZONE_META[zone];
         const locked = zone === 'legend' && legendLocked;
-        const cls    = locked ? 'gim-poly gim-poly--locked' : `gim-poly gim-poly--${meta.varPfx}`;
+        const cls    = locked ? 'gim-circle gim-circle--locked' : `gim-circle gim-circle--${meta.varPfx}`;
         const click  = locked
             ? `onclick="_islandLockedClick('${zone}')" aria-label="Enter ${meta.label} zone (locked)"`
             : `onclick="_islandZoneClick('${zone}')"  aria-label="Enter ${meta.label} zone"`;
-        return `<polygon class="${cls}" points="${cfg.pts}" ${click} />`;
+        return `<circle class="${cls}" cx="${cfg.cx}" cy="${cfg.cy}" r="${cfg.r}" ${click} />`;
     }).join('');
 
-    const labels = Object.entries(_ZONE_POLYS).map(([zone, cfg]) => {
+    // Lock overlay centered on circle (only for locked Legend)
+    const lockOverlays = Object.entries(_ZONE_CIRCLES).map(([zone, cfg]) => {
+        if (!(zone === 'legend' && legendLocked)) return '';
+        const lx = `${(cfg.cx / W * 100).toFixed(2)}%`;
+        const ly = `${(cfg.cy / H * 100).toFixed(2)}%`;
+        return `
+            <div class="gim-lock-center" style="left:${lx};top:${ly}" onclick="_islandLockedClick('legend')">
+                <i data-lucide="lock" style="width:24px;height:24px;color:rgba(255,255,255,.9)"></i>
+                <span>${completedZones} / 4</span>
+            </div>`;
+    }).join('');
+
+    // Label pills — always below the circle
+    const labels = Object.entries(_ZONE_CIRCLES).map(([zone, cfg]) => {
         const meta   = _ZONE_META[zone];
         const locked = zone === 'legend' && legendLocked;
         const chars  = charsByZone[zone] || [];
@@ -272,22 +267,20 @@ function _svgZonesHTML(charsByZone, completedZones, legendLocked) {
         const warnBadge = (!locked && hasWarn)
             ? `<div class="gim-badge gim-badge--warn" aria-label="Needs care">!</div>` : '';
         const evoBadge  = (!locked && hasReady)
-            ? `<div class="gim-badge gim-badge--evo" aria-label="Ready to evolve">✨</div>` : '';
+            ? `<div class="gim-badge gim-badge--evo" aria-label="Ready to evolve">+</div>` : '';
         const lockTag   = locked
             ? `<i data-lucide="lock" style="width:10px;height:10px;vertical-align:-1px"></i> ` : '';
-        const lockOverlay = locked ? `
-            <div class="gim-lock-overlay">
-                <i data-lucide="lock" style="width:24px;height:24px;color:rgba(255,255,255,.9)"></i>
-                <span>${completedZones} / 4</span>
-            </div>` : '';
 
         const click = locked
             ? `onclick="_islandLockedClick('${zone}')"`
             : `onclick="_islandZoneClick('${zone}')"`;
 
+        // Label is inside the circle, centered at the bottom (cy + r - 26px from bottom edge)
+        const lx = `${(cfg.cx / W * 100).toFixed(2)}%`;
+        const ly = `${((cfg.cy + cfg.r - 26) / H * 100).toFixed(2)}%`;
+
         return `
-            <div class="gim-zone-label-wrap" style="left:${cfg.lx};top:${cfg.ly}" ${click}>
-                ${lockOverlay}
+            <div class="gim-zone-label-wrap" style="left:${lx};top:${ly}" ${click}>
                 <div class="gim-label gim-label--${meta.varPfx}">${lockTag}${meta.label}</div>
                 ${warnBadge}${evoBadge}
             </div>`;
@@ -296,8 +289,9 @@ function _svgZonesHTML(charsByZone, completedZones, legendLocked) {
     return `
         <svg class="gim-zones-svg" viewBox="0 0 1376 768"
              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            ${polygons}
+            ${circles}
         </svg>
+        ${lockOverlays}
         ${labels}`;
 }
 
@@ -336,7 +330,7 @@ function _streakDotsHTML(count, total = 7) {
         const lit = i < clamped;
         const isLast = lit && i === clamped - 1;
         return `<span class="gim-streak-dot${lit ? ' gim-streak-dot--lit' : ' gim-streak-dot--dark'}">
-            ${isLast ? '<span class="gim-streak-flame">🔥</span>' : ''}
+            ${isLast ? '<span class="gim-streak-flame"><i data-lucide="flame"></i></span>' : ''}
         </span>`;
     }).join('');
 }
@@ -398,8 +392,8 @@ function _todayRowsHTML(chars) {
         ${charRows}
         <div class="gim-today-divider"></div>
         <div class="gim-today-attend">
-            <span>${attended ? '✅' : '⬜'} Today</span>
-            <span>🔥 ${streak} day${streak === 1 ? '' : 's'}</span>
+            <span>${attended ? '<i data-lucide="check-circle"></i>' : '<i data-lucide="circle"></i>'} Today</span>
+            <span><i data-lucide="flame"></i> ${streak} day${streak === 1 ? '' : 's'}</span>
         </div>
         ${claimHTML}
         ${goalHTML}`;
@@ -407,7 +401,7 @@ function _todayRowsHTML(chars) {
 
 /** @tag SHOP */
 function _charStatus(c) {
-    if (c.ready_to_evolve) return 'ready to evolve ✨';
+    if (c.ready_to_evolve) return 'ready to evolve!';
     if ((c.hunger ?? 100) < 30)    return 'feeling hungry';
     if ((c.happiness ?? 100) < 30) return 'feeling sad';
     return 'happy & full';
@@ -518,7 +512,8 @@ function _isDay() { const h = new Date().getHours(); return h >= 6 && h < 18; }
 function showIslandLumiToast(amount) {
     const el = document.getElementById('gim-lumi-toast');
     if (!el) return;
-    el.textContent = `💎 +${amount} Lumi earned!`;
+    el.innerHTML = `<i data-lucide="gem"></i> +${amount} Lumi earned!`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     el.classList.add('gim-lumi-toast--show');
     setTimeout(() => el.classList.remove('gim-lumi-toast--show'), 3000);
 }
@@ -547,7 +542,7 @@ async function _loadIslandCard() {
         const cnt  = (d.active_characters || []).length + (d.completed_count || 0);
         const lumi = d.currency?.lumi ?? 0;
         if (charEl) charEl.textContent = `${cnt} character${cnt === 1 ? '' : 's'}`;
-        if (lumiEl) lumiEl.textContent = `💎 ${lumi.toLocaleString()}`;
+        if (lumiEl) lumiEl.textContent = lumi.toLocaleString();
     } catch (_) {
         if (charEl) charEl.textContent = 'Your island awaits';
         if (lumiEl) lumiEl.textContent = '';

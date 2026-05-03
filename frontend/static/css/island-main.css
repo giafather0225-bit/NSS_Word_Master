@@ -534,34 +534,32 @@
     overflow: visible;
 }
 
-.gim-poly {
-    fill-opacity: 0.07;
-    stroke-width: 2.5;
-    stroke-linejoin: round;
-    stroke-linecap: round;
+.gim-circle {
+    fill-opacity: 0.10;
+    stroke-width: 3;
     cursor: pointer;
     pointer-events: all;
-    transition: fill-opacity 0.15s ease, stroke-width 0.15s ease;
+    transition: fill-opacity 0.15s ease, stroke-width 0.15s ease, r 0.15s ease;
 }
-.gim-poly:hover { fill-opacity: 0.18; stroke-width: 4; }
+.gim-circle:hover { fill-opacity: 0.22; stroke-width: 5; }
 
-.gim-poly--english { fill: var(--english-light); stroke: var(--english-primary); }
-.gim-poly--math    { fill: var(--math-light);    stroke: var(--math-primary); }
-.gim-poly--diary   { fill: var(--diary-light);   stroke: var(--diary-primary); }
-.gim-poly--rewards { fill: var(--rewards-light); stroke: var(--rewards-primary); }
-.gim-poly--locked  {
+.gim-circle--english { fill: var(--english-light); stroke: var(--english-primary); }
+.gim-circle--math    { fill: var(--math-light);    stroke: var(--math-primary); }
+.gim-circle--diary   { fill: var(--diary-light);   stroke: var(--diary-primary); }
+.gim-circle--rewards { fill: var(--rewards-light); stroke: var(--rewards-primary); }
+.gim-circle--locked  {
     fill: rgba(200,200,230,0.06);
     stroke: rgba(255,255,255,0.55);
     stroke-dasharray: 10 6;
     cursor: help;
 }
-.gim-poly--locked:hover { fill-opacity: 0.12; }
+.gim-circle--locked:hover { fill-opacity: 0.14; }
 
-/* ── Zone label wrap (positioned at zone center) ─────────────── */
+/* ── Zone label wrap (inside circle, bottom-center) ─────────────── */
 
 .gim-zone-label-wrap {
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);  /* center both axes on the anchor point */
     z-index: 5;
     display: flex;
     flex-direction: column;
@@ -623,23 +621,26 @@
     50%       { transform: scale(1.15); box-shadow: 0 4px 12px rgba(238,199,112,.6); }
 }
 
-/* ── Locked zone overlay (shows lock icon + progress near legend center) ── */
+/* ── Locked zone overlay — centered on circle, separate from label ── */
 
-.gim-lock-overlay {
+.gim-lock-center {
+    position: absolute;
+    transform: translate(-50%, -50%);  /* centers on cx/cy */
+    z-index: 6;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2px;
-    pointer-events: none;
-    margin-bottom: 4px;
+    pointer-events: all;
+    cursor: help;
 }
-.gim-lock-overlay span {
+.gim-lock-center span {
     font-size: 11px;
     font-weight: 800;
     color: rgba(255,255,255,.9);
     text-shadow: 0 1px 4px rgba(0,0,0,.5);
-    background: rgba(0,0,0,.25);
-    padding: 1px 7px;
+    background: rgba(0,0,0,.28);
+    padding: 2px 8px;
     border-radius: var(--radius-full);
 }
 

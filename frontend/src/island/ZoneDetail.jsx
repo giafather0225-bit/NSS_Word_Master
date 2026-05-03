@@ -124,7 +124,7 @@ function _zdRender(el) {
             <button class="izd-back-btn" onclick="_closeZoneDetail()" aria-label="Back to map">
                 <i data-lucide="arrow-left"></i>
             </button>
-            <div class="izd-zone-label">${meta.icon || ''} ${meta.label || _zdZone}</div>
+            <div class="izd-zone-label"><i data-lucide="${meta.lucideIcon || 'map-pin'}"></i> ${meta.label || _zdZone}</div>
             <div class="izd-body">
                 <div class="izd-left">
                     ${_zdCharVisual(prog)}
@@ -158,7 +158,7 @@ function _zdCharVisual(prog) {
     const status  = h < 20 ? 'Hungry — needs food!'
                   : p < 20 ? 'Feeling lonely...'
                   : h >= 80 && p >= 80 ? 'Feeling great!' : 'Doing okay.';
-    const fallbackEmoji = _CHAR_EMOJI[(cat.name || '').toLowerCase()] || _ZONE_META[_zdZone]?.icon || '🌟';
+    const fallbackEmoji = _CHAR_EMOJI[(cat.name || '').toLowerCase()] || '🌟';
     const charVisual = _charImg(cat.name || '', prog.stage || 'baby', prog.images || '{}', fallbackEmoji);
     return `
         <div class="izd-char-visual ${animCls}" onclick="_zdOpenCharDetail(${prog.id})"
@@ -323,7 +323,7 @@ function _zdAdopt() {
     }
     const meta  = _ZONE_META[_zdZone] || {};
     const cards = adoptable.map(c => {
-        const fb = _CHAR_EMOJI[(c.name || '').toLowerCase()] || meta.icon || '🌟';
+        const fb = _CHAR_EMOJI[(c.name || '').toLowerCase()] || '🌟';
         const adoptVisual = _charImg(c.name || '', 'baby', c.images || '{}', fb);
         return `
         <div class="izd-adopt-card" onclick="_zdAdoptStart(${c.character_id})"
