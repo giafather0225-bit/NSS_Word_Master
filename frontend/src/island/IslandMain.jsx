@@ -13,7 +13,7 @@ const _ZONE_META = {
     ocean:   { label: 'Ocean',   lucideIcon: 'waves',     varPfx: 'math',    subject: 'Math'    },
     savanna: { label: 'Savanna', lucideIcon: 'paw-print', varPfx: 'diary',   subject: 'Diary'   },
     space:   { label: 'Space',   lucideIcon: 'rocket',    varPfx: 'rewards', subject: 'Review'  },
-    legend:  { label: 'Legend',  lucideIcon: 'sparkles',  varPfx: 'diary',   subject: 'All'     },
+    legend:  { label: 'Legend',  lucideIcon: 'sparkles',  varPfx: 'legend',  subject: 'All'     },
 };
 
 // ZONE CIRCLES — cx/cy/r in 1376×768 coordinate space (SVG viewBox matches map)

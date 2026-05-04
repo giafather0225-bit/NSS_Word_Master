@@ -355,12 +355,18 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 26px;
     line-height: 1;
 }
 
-.island-home-zone--center {
-    font-size: 20px;
+.island-home-zones i {
+    width: 26px;
+    height: 26px;
+    color: var(--arcade-ink);
+}
+
+.island-home-zone--center i {
+    width: 20px;
+    height: 20px;
     opacity: 0.75;
 }
 
@@ -548,6 +554,7 @@
 .gim-circle--math    { fill: var(--math-light);    stroke: var(--math-primary); }
 .gim-circle--diary   { fill: var(--diary-light);   stroke: var(--diary-primary); }
 .gim-circle--rewards { fill: var(--rewards-light); stroke: var(--rewards-primary); }
+.gim-circle--legend  { fill: var(--arcade-light);  stroke: var(--arcade-primary); }
 .gim-circle--locked  {
     fill: rgba(200,200,230,0.06);
     stroke: rgba(255,255,255,0.55);
@@ -592,6 +599,7 @@
 .gim-label--math    { border: 2px solid var(--math-primary);    color: var(--math-ink); }
 .gim-label--diary   { border: 2px solid var(--diary-primary);   color: var(--diary-ink); }
 .gim-label--rewards { border: 2px solid var(--rewards-primary); color: var(--rewards-ink); }
+.gim-label--legend  { border: 2px solid var(--arcade-primary);  color: var(--arcade-ink); }
 
 /* ── Status badges ───────────────────────────────────────────── */
 
