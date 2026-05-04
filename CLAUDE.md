@@ -417,7 +417,7 @@ MC 20 + Fill-in 20. 30-min timer. Pass = 90%. Pass → XP +10 + GrowthEvent("les
 | `streak_30_bonus` | +200 | per occurrence |
 | `streak_maintain` | +10 | once / day (streak kept) |
 | `math_lesson_complete` | +15 | per lesson |
-| `math_unit_test_pass` | +40 | per unit test pass |
+| `math_unit_test_pass` | +15 | once per unit (MATH_SPEC.md authoritative) |
 | `math_kangaroo_complete` | +5 | per set |
 | `math_kangaroo_80` | +5 | per set ≥80% |
 | `math_kangaroo_perfect` | +10 | per set 100% |
@@ -605,8 +605,7 @@ pre_test (5문항, 진단+뇌 준비, 점수 미표시)
 |---|---|
 | try/exit_quiz 정답 | +1 |
 | 레슨 완료 | +10 |
-| Unit Test 첫 통과 | +35 |
-| Unit Test 재시도 통과 | +25 |
+| Unit Test 통과 | +15 |
 | Daily Challenge 완료 | +5 |
 | Daily Challenge 전체 정답 | +3 추가 |
 | Fact Fluency 완료 | +10 |
