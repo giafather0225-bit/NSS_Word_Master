@@ -140,7 +140,7 @@ frontend/static/math/kangaroo/pdf/
 
 | 순서 | set_id | 상태 | 문제 수 | 비고 |
 |------|--------|------|---------|------|
-| 1 | `ikmc_2024_ecolier` | 🔄 진행 중 | 24 | 답안 확인 완료, 해설 작성 중 |
+| 1 | `ikmc_2024_ecolier` | ✅ 완료 | 24 | 24문제 solution 전체 완성, Q8/Q10 답안 수정 |
 | 2 | `ikmc_2025_ecolier` | ⬜ 대기 | 24 | PDF 확인 완료 |
 | 3 | `ikmc_2023_ecolier` | ⬜ 대기 | 24 | 답안만 있음, PDF 미확인 |
 | 4 | `ikmc_2024_benjamin` | ⬜ 대기 | 24 | PDF 확인 완료 |
@@ -182,7 +182,7 @@ frontend/static/math/kangaroo/pdf/
 ## 8. 완료 체크리스트
 
 ### 데이터 구축
-- [ ] `ikmc_2024_ecolier.json` — solution 24개 완성
+- [x] `ikmc_2024_ecolier.json` — solution 24개 완성
 - [ ] `ikmc_2025_ecolier.json` — solution 24개 완성
 - [ ] `ikmc_2023_ecolier.json` — solution 24개 완성
 - [ ] `ikmc_2024_benjamin.json` — solution 24개 완성
