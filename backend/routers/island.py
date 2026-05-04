@@ -76,6 +76,19 @@ def _set_cfg(db: Session, key: str, value: str) -> None:
 
 
 def _prog_dict(prog: IslandCharacterProgress, char: IslandCharacter) -> dict:
+    stage = prog.stage or "baby"
+    is_mid   = stage in ("mid_a", "mid_b")
+    is_final = stage in ("final_a", "final_b")
+    xp_needed = (char.evo_second_xp if is_mid else char.evo_first_xp) if char else 100
+    min_level = 10 if is_mid else 5
+    ready_to_evolve = (
+        not prog.is_completed
+        and not is_final
+        and (prog.current_xp or 0) >= xp_needed
+        and (prog.level or 1) >= min_level
+        and (prog.hunger or 0) >= 20
+        and (prog.happiness or 0) >= 20
+    )
     return {
         "id": prog.id,
         "character_id": prog.character_id,
@@ -83,7 +96,7 @@ def _prog_dict(prog: IslandCharacterProgress, char: IslandCharacter) -> dict:
         "nickname": prog.nickname,
         "zone": char.zone,
         "subject": char.subject,
-        "stage": prog.stage,
+        "stage": stage,
         "level": prog.level,
         "current_xp": prog.current_xp,
         "hunger": prog.hunger,
@@ -92,6 +105,7 @@ def _prog_dict(prog: IslandCharacterProgress, char: IslandCharacter) -> dict:
         "is_legend_type": prog.is_legend_type,
         "boost_active": prog.boost_active,
         "boost_subject": prog.boost_subject,
+        "ready_to_evolve": ready_to_evolve,
         "pos_x": prog.pos_x,
         "pos_y": prog.pos_y,
         "images": char.images or "{}",
