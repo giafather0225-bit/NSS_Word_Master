@@ -162,6 +162,27 @@ app.add_middleware(
     allow_headers=["Content-Type", "Authorization"],
 )
 
+_ALLOWED_ORIGINS: frozenset[str] = frozenset(_CORS_ORIGINS)
+_MUTATING_METHODS: frozenset[str] = frozenset({"POST", "PUT", "PATCH", "DELETE"})
+
+
+@app.middleware("http")
+async def csrf_origin_guard(request: Request, call_next):
+    """Reject state-changing requests whose Origin header is set but not in the allow-list.
+
+    Browsers always send Origin on cross-site requests; same-site requests and
+    direct curl/app calls omit it — those are allowed through.
+    """
+    if request.method in _MUTATING_METHODS:
+        origin = request.headers.get("origin")
+        if origin is not None and origin not in _ALLOWED_ORIGINS:
+            return JSONResponse(
+                status_code=403,
+                content={"detail": "Cross-origin state-change rejected."},
+            )
+    return await call_next(request)
+
+
 # ── Validation error → child-friendly 422 JSON ───────────────
 # Replaces the old silent ``.strip()[:N]`` pattern. When a payload field is
 # too long (or missing), the frontend receives a clear message it can toast,

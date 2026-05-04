@@ -129,11 +129,13 @@ const PP_TABS = [
  * @tag PARENT
  */
 function _ppEmpty(icon, title, hint) {
+    const t = escapeHtml(title || "Nothing here yet.");
+    const h = hint ? escapeHtml(hint) : "";
     return `
         <div class="pp-empty">
             <i data-lucide="${icon || "inbox"}" class="pp-empty-icon"></i>
-            <p class="pp-empty-title">${title || "Nothing here yet."}</p>
-            ${hint ? `<p class="pp-empty-hint">${hint}</p>` : ""}
+            <p class="pp-empty-title">${t}</p>
+            ${h ? `<p class="pp-empty-hint">${h}</p>` : ""}
         </div>`;
 }
 window._ppEmpty = _ppEmpty;
@@ -401,7 +403,7 @@ async function _ppDayOff(body) {
                    <button class="pp-btn danger"  onclick="_ppDecideDayOff(${r.id},'denied')">Deny</button>`
                 : `<span class="status-badge ${r.status}">${r.status}</span>`;
             return `<div class="pp-dayoff-row" id="dor-${r.id}">
-                <div class="pp-dayoff-meta">${r.request_date} · <span class="status-badge ${r.status}">${r.status}</span></div>
+                <div class="pp-dayoff-meta">${escapeHtml(r.request_date)} · <span class="status-badge ${escapeHtml(r.status)}">${escapeHtml(r.status)}</span></div>
                 <div class="pp-dayoff-reason">${escapeHtml(r.reason)}</div>
                 <div class="pp-dayoff-btns" id="dor-btns-${r.id}">${btns}</div>
             </div>`;
