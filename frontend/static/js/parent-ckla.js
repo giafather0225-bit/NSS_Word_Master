@@ -14,9 +14,12 @@ async function _ppCKLA(body) {
             ? Math.round(d.completed_lessons / d.total_lessons * 100)
             : 0;
 
-        const estLine = d.estimated_completion_days != null
-            ? `~${d.estimated_completion_days} days at current pace`
-            : "Not enough data yet";
+        let estLine = "Not enough data yet";
+        if (d.estimated_completion_days != null) {
+            const estDate = new Date(Date.now() + d.estimated_completion_days * 86400000);
+            const opts = { month: 'short', day: 'numeric', year: 'numeric' };
+            estLine = `Est. completion: ${estDate.toLocaleDateString('en-US', opts)} (~${d.estimated_completion_days}d)`;
+        }
 
         const statusDot = d.today_studied
             ? `<span style="color:var(--math-ink);font-weight:700">Studied today</span>`
@@ -69,19 +72,23 @@ async function _ppCKLA(body) {
                 : (dom.all_complete
                     ? `<span style="font-size:.7rem;background:var(--arcade-soft);color:var(--arcade-ink);border-radius:var(--radius-full);padding:2px 8px;font-weight:700">Test ready</span>`
                     : '');
+            const histHtml = _ppTestHistory(dom.domain_test_history || []);
             return `
-                <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-subtle)">
-                    <div style="width:26px;height:26px;border-radius:var(--radius-sm);background:var(--english-light);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--english-ink);flex-shrink:0">${dom.domain_num}</div>
-                    <div style="flex:1;min-width:0">
-                        <div style="font-size:.82rem;font-weight:600;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${_ppEsc(dom.title)}</div>
-                        <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
-                            <div style="flex:1;background:var(--bg-surface);border-radius:var(--radius-full);height:6px;overflow:hidden">
-                                <div style="background:var(--english-primary);height:100%;width:${dpct}%;border-radius:var(--radius-full)"></div>
+                <div style="padding:10px 0;border-bottom:1px solid var(--border-subtle)">
+                    <div style="display:flex;align-items:center;gap:12px">
+                        <div style="width:26px;height:26px;border-radius:var(--radius-sm);background:var(--english-light);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--english-ink);flex-shrink:0">${dom.domain_num}</div>
+                        <div style="flex:1;min-width:0">
+                            <div style="font-size:.82rem;font-weight:600;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${_ppEsc(dom.title)}</div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+                                <div style="flex:1;background:var(--bg-surface);border-radius:var(--radius-full);height:6px;overflow:hidden">
+                                    <div style="background:var(--english-primary);height:100%;width:${dpct}%;border-radius:var(--radius-full)"></div>
+                                </div>
+                                <span style="font-size:.72rem;color:var(--text-hint);white-space:nowrap">${dom.completed_count}/${dom.lesson_count}</span>
                             </div>
-                            <span style="font-size:.72rem;color:var(--text-hint);white-space:nowrap">${dom.completed_count}/${dom.lesson_count}</span>
                         </div>
+                        ${testBadge}
                     </div>
-                    ${testBadge}
+                    ${histHtml}
                 </div>`;
         }).join('');
 
@@ -123,6 +130,20 @@ async function _ppCKLA(body) {
                 <span style="color:var(--text-secondary)">Retry after ${d.final_test_retry_after?.replace('T', ' ') || ''}</span>
             </div>` : '';
 
+        // ── Learning start time pattern ────────────────────────
+        const timePattern = (d.start_time_pattern || []);
+        const timeSection = timePattern.length ? `
+            <div class="pp-section-title" style="margin:24px 0 10px">
+                <i data-lucide="clock" style="width:15px;height:15px"></i> Study Time Pattern
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+                ${timePattern.map(t => `
+                    <div style="background:var(--english-light);border-radius:var(--radius-md);padding:8px 14px;text-align:center;min-width:72px">
+                        <div style="font-size:.92rem;font-weight:700;color:var(--english-ink)">${_ppEsc(t.label)}</div>
+                        <div style="font-size:.72rem;color:var(--text-hint);margin-top:2px">${t.count} sessions · ${t.pct}%</div>
+                    </div>`).join('')}
+            </div>` : '';
+
         // ── Needs review ───────────────────────────────────────
         const reviewSection = d.needs_review?.length ? `
             <div class="pp-section-title" style="margin:24px 0 10px;color:var(--review-ink)">
@@ -152,6 +173,7 @@ async function _ppCKLA(body) {
                 </div>
                 ${chart}
                 ${diffSection}
+                ${timeSection}
                 ${alertSection}
                 ${finalTestBanner}
                 ${reviewSection}
@@ -188,6 +210,23 @@ function _ppCKLAChart(days) {
 /** Difficulty chip helper. @tag PARENT CKLA */
 function _ppDiffChip(label, count, bg, color) {
     return `<div style="background:${bg};color:${color};border-radius:var(--radius-full);padding:5px 14px;font-size:.8rem;font-weight:700">${label} <span style="opacity:.7">${count}</span></div>`;
+}
+
+/** Render domain test attempt history dots. @tag PARENT CKLA */
+function _ppTestHistory(history) {
+    if (!history || history.length === 0) return '';
+    const dots = history.slice(0, 10).map(h => {
+        const color = h.passed ? 'var(--math-primary)' : 'var(--review-primary)';
+        const title = `${h.date}: ${h.correct}/${h.total} (${h.score_pct}%) ${h.passed ? 'Pass' : 'Fail'}`;
+        return `<div title="${_ppEsc(title)}" style="width:10px;height:10px;border-radius:50%;background:${color};flex-shrink:0"></div>`;
+    }).join('');
+    const last = history[0];
+    return `
+        <div style="display:flex;align-items:center;gap:6px;margin-top:6px;padding-left:38px">
+            <span style="font-size:.7rem;color:var(--text-hint);white-space:nowrap">Test history:</span>
+            <div style="display:flex;gap:4px;align-items:center">${dots}</div>
+            <span style="font-size:.7rem;color:var(--text-secondary);margin-left:2px">Latest: ${last.score_pct}% ${last.passed ? '(Pass)' : '(Fail)'}</span>
+        </div>`;
 }
 
 /** HTML-escape helper (scoped to this module). @tag SYSTEM */

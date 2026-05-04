@@ -6,7 +6,9 @@ API:
   GET /api/parent/ckla-summary — CKLA overview for parent dashboard
 """
 
+import json
 import logging
+from collections import Counter
 from datetime import date as _date, timedelta
 
 from fastapi import APIRouter, Depends, Query
@@ -69,15 +71,24 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
     )
     domain_test_passed: set[str] = {r.detail for r in domain_test_logs if r.detail}
 
-    # ── Domain test consecutive fail counts (from AppConfig) ───
+    # ── Domain test consecutive fail counts + history (from AppConfig) ──
     fail_configs: dict[int, int] = {}
+    domain_test_history: dict[int, list] = {}
     for d in domains:
-        key = f"ckla_domain_test_consec_fails_d{d.domain_num}_g{grade}"
-        cfg = db.query(AppConfig).filter_by(key=key).first()
-        if cfg and cfg.value:
+        fail_key = f"ckla_domain_test_consec_fails_d{d.domain_num}_g{grade}"
+        fail_cfg = db.query(AppConfig).filter_by(key=fail_key).first()
+        if fail_cfg and fail_cfg.value:
             try:
-                fail_configs[d.domain_num] = int(cfg.value)
+                fail_configs[d.domain_num] = int(fail_cfg.value)
             except ValueError:
+                pass
+
+        hist_key = f"ckla_domain_test_history_d{d.domain_num}_g{grade}"
+        hist_cfg = db.query(AppConfig).filter_by(key=hist_key).first()
+        if hist_cfg and hist_cfg.value:
+            try:
+                domain_test_history[d.domain_num] = json.loads(hist_cfg.value)
+            except (json.JSONDecodeError, ValueError):
                 pass
 
     # ── Domain breakdown ────────────────────────────────────────
@@ -94,6 +105,7 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
             "all_complete":        len(ids) > 0 and done == len(ids),
             "domain_test_passed":  f"domain_{d.domain_num}_grade_{grade}" in domain_test_passed,
             "domain_test_consec_fails": consec_fails,
+            "domain_test_history": domain_test_history.get(d.domain_num, []),
         })
 
     # ── Q&A accuracy ───────────────────────────────────────────
@@ -140,6 +152,32 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
     lessons_per_day = pace_window / 14 if pace_window else 0
     est_days = round(remaining / lessons_per_day) if lessons_per_day > 0 else None
 
+    # ── Learning start time pattern ────────────────────────────
+    # Group completed_at timestamps by hour bucket to find Gia's typical study time
+    hour_counts: Counter = Counter()
+    for p in completed_map.values():
+        if p.completed and p.completed_at:
+            try:
+                # completed_at is stored as ISO string "YYYY-MM-DDTHH:MM:SS" or "YYYY-MM-DD HH:MM:SS"
+                ts_str = p.completed_at.replace(" ", "T")
+                hour = int(ts_str[11:13])
+                hour_counts[hour] += 1
+            except (IndexError, ValueError):
+                pass
+    # Return top buckets as {label, count, pct}
+    total_sessions = sum(hour_counts.values())
+    start_time_pattern = []
+    if total_sessions > 0:
+        for hour, count in sorted(hour_counts.items(), key=lambda x: -x[1])[:4]:
+            period = "AM" if hour < 12 else "PM"
+            h12 = hour % 12 or 12
+            start_time_pattern.append({
+                "hour": hour,
+                "label": f"{h12} {period}",
+                "count": count,
+                "pct": round(count / total_sessions * 100),
+            })
+
     # ── Domain test 3-fail alert list ─────────────────────────
     domain_test_alerts = [
         {"domain_num": d.domain_num, "title": d.title, "consec_fails": fail_configs[d.domain_num]}
@@ -180,4 +218,5 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
         "domain_test_alerts":       domain_test_alerts,
         "final_test_locked":        final_test_locked,
         "final_test_retry_after":   final_test_retry_after,
+        "start_time_pattern":       start_time_pattern,
     }

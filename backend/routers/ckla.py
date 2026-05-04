@@ -861,6 +861,28 @@ async def submit_domain_test(
         else:
             db.add(AppConfig(key=time_key, value=str(req.time_taken_seconds)))
 
+    # Save per-attempt score history (last 10, newest first)
+    history_key = f"ckla_domain_test_history_d{domain_num}_g{grade}"
+    history_cfg = db.query(AppConfig).filter_by(key=history_key).first()
+    history: list = []
+    if history_cfg and history_cfg.value:
+        try:
+            history = json.loads(history_cfg.value)
+        except (json.JSONDecodeError, ValueError):
+            history = []
+    history.insert(0, {
+        "score_pct": pct,
+        "correct": correct,
+        "total": total,
+        "passed": passed,
+        "date": datetime.now().date().isoformat(),
+    })
+    history = history[:10]
+    if history_cfg:
+        history_cfg.value = json.dumps(history)
+    else:
+        db.add(AppConfig(key=history_key, value=json.dumps(history)))
+
     db.commit()
 
     return {
