@@ -212,8 +212,47 @@ function _renderGradeFinalTest(data) {
   const answers = {};
   let currentIdx = 0;
 
+  function _gftSaveCurrentInput() {
+    const q = questions[currentIdx];
+    if (q.type === 'vocab_mc') return; // MC answers saved on click
+    const inp = document.getElementById('gft-text-input');
+    if (inp) answers[q.id] = inp.value.trim();
+  }
+
   function renderQ() {
     const q = questions[currentIdx];
+    const metaHtml = (q.domain_title || q.lesson_title)
+      ? `<div class="ckla-test-meta">${[q.domain_title, q.lesson_title].filter(Boolean).join(' · ')}</div>`
+      : '';
+
+    let bodyHtml = '';
+    if (q.type === 'vocab_mc') {
+      const currentAns = answers[q.id] || '';
+      const choicesHtml = (q.choices || []).map((ch, ci) => {
+        const sel = currentAns === ch ? 'ckla-test-choice--selected' : '';
+        return `<button class="ckla-test-choice ${sel}" data-choice-idx="${ci}" onclick="_gftPickChoice(${q.id}, this)">${escapeHtml(ch)}</button>`;
+      }).join('');
+      bodyHtml = `
+        <span class="ckla-test-type-label">Vocabulary</span>
+        <div class="ckla-test-question">${escapeHtml(q.question_text)}</div>
+        <div class="ckla-test-choices" id="gft-choices">${choicesHtml}</div>`;
+    } else if (q.type === 'word_work') {
+      bodyHtml = `
+        <span class="ckla-test-type-label">Word Work</span>
+        <div class="ckla-test-question">${escapeHtml(q.question_text)}</div>
+        ${q.hint ? `<div class="ckla-test-hint">${escapeHtml(q.hint)}</div>` : ''}
+        <textarea id="gft-text-input" class="ckla-test-textarea"
+          placeholder="Write your sentence here…">${escapeHtml(answers[q.id] || '')}</textarea>`;
+    } else {
+      // Q&A
+      const kindLabel = (q.kind || 'qa').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      bodyHtml = `
+        <span class="ckla-test-type-label">${kindLabel}</span>
+        <div class="ckla-test-question">${escapeHtml(q.question_text)}</div>
+        <textarea id="gft-text-input" class="ckla-test-textarea"
+          placeholder="Type your answer…">${escapeHtml(answers[q.id] || '')}</textarea>`;
+    }
+
     view.innerHTML = `
       <div class="ckla-header">
         <button class="ckla-back-btn" onclick="loadCKLADomains()">← Back</button>
@@ -221,10 +260,8 @@ function _renderGradeFinalTest(data) {
         <span class="ckla-progress-pill">${currentIdx + 1} / ${questions.length}</span>
       </div>
       <div class="ckla-test-body">
-        <div class="ckla-test-meta">${q.domain_title} · ${q.lesson_title}</div>
-        <div class="ckla-test-question">${q.question}</div>
-        <textarea id="gft-ans" class="ckla-test-textarea"
-          placeholder="Type your answer…">${answers[q.id] || ''}</textarea>
+        ${metaHtml}
+        ${bodyHtml}
       </div>
       <div class="ckla-test-nav">
         ${currentIdx > 0
@@ -234,20 +271,26 @@ function _renderGradeFinalTest(data) {
           ? `<button class="ckla-test-nav-btn" onclick="_gftNav(1)">Next →</button>`
           : `<button class="ckla-btn" onclick="_gftSubmit()">Submit All</button>`}
       </div>`;
-    window._gftSave = () => {
-      const ta = document.getElementById('gft-ans');
-      if (ta) answers[q.id] = ta.value.trim();
-    };
   }
 
+  window._gftPickChoice = (qid, btnEl) => {
+    const choice = btnEl.textContent.trim();
+    answers[qid] = choice;
+    const container = document.getElementById('gft-choices');
+    if (!container) return;
+    container.querySelectorAll('.ckla-test-choice').forEach(btn => {
+      btn.classList.toggle('ckla-test-choice--selected', btn === btnEl);
+    });
+  };
+
   window._gftNav = (delta) => {
-    window._gftSave?.();
+    _gftSaveCurrentInput();
     currentIdx = Math.max(0, Math.min(questions.length - 1, currentIdx + delta));
     renderQ();
   };
 
   window._gftSubmit = async () => {
-    window._gftSave?.();
+    _gftSaveCurrentInput();
     view.innerHTML = '<div class="ckla-loading">Grading…</div>';
     try {
       const res = await fetch(`/api/academy/ckla/grade-final-test/submit?grade=${cklaNav.grade}`, {
@@ -258,6 +301,17 @@ function _renderGradeFinalTest(data) {
       if (!res.ok) throw new Error('Submit failed');
       const result = await res.json();
       if (result.passed) {
+        // Check for grade master badge on pass
+        try {
+          const br = await fetch(`/api/academy/ckla/badges/check?grade=${cklaNav.grade}`, { method: 'POST' });
+          if (br.ok) {
+            const bd = await br.json();
+            if (bd.newly_earned && bd.newly_earned.length > 0) {
+              result.badge_earned = true;
+              result.badge_name = bd.newly_earned.map(b => b.badge_name).join(', ');
+            }
+          }
+        } catch (_) { /* best-effort */ }
         _renderTestResult(result, () => loadCKLADomains());
       } else {
         _cklaRenderFinalTestWait(result);
@@ -496,6 +550,17 @@ async function submitDomainTest(domainNum) {
     });
     if (!res.ok) throw new Error('Submit failed');
     const result = await res.json();
+    // Check for newly earned badges (badges awarded when all domain lessons complete)
+    try {
+      const br = await fetch(`/api/academy/ckla/badges/check?grade=${cklaNav.grade}`, { method: 'POST' });
+      if (br.ok) {
+        const bd = await br.json();
+        if (bd.newly_earned && bd.newly_earned.length > 0) {
+          result.badge_earned = true;
+          result.badge_name = bd.newly_earned.map(b => b.badge_name).join(', ');
+        }
+      }
+    } catch (_) { /* badge check is best-effort */ }
     const retryFn = result.passed ? null : () => openDomainTest(domainNum);
     _renderTestResult(result, () => loadCKLADomains(), retryFn);
   } catch (e) {

@@ -599,7 +599,7 @@ def check_and_award_badges(grade: int = Query(3), db: Session = Depends(get_db))
 
     Returns list of newly awarded badge_keys (empty if none new).
     """
-    newly_earned: list[str] = []
+    newly_earned: list[dict] = []
     now = NOW()
 
     earned_keys = {ub.badge_key for ub in db.query(CKLAUserBadge).all()}
@@ -653,7 +653,7 @@ def check_and_award_badges(grade: int = Query(3), db: Session = Depends(get_db))
         if earned:
             db.add(CKLAUserBadge(badge_key=badge.badge_key, earned_at=now))
             award_xp(db, "ckla_domain_test_pass", detail=badge.badge_key)
-            newly_earned.append(badge.badge_key)
+            newly_earned.append({"badge_key": badge.badge_key, "badge_name": badge.badge_name})
 
     if newly_earned:
         db.commit()
@@ -903,32 +903,119 @@ async def submit_domain_test(
 @router.get("/grade-final-test")
 # @tag ACADEMY CKLA
 def get_grade_final_test(grade: int = Query(3), db: Session = Depends(get_db)):
-    """Return a set of questions for the grade final test (up to 20, one per domain)."""
+    """Return 27 grade final test questions: 15 vocab_mc + 10 Q&A + 2 word_work.
+
+    ID scheme (no schema change):
+      Q&A        < 10000 → real CKLAQuestion.id
+      vocab_mc   = word_id + 10000
+      word_work  = word_id + 30000
+    """
     domains = (
         db.query(CKLADomain)
         .filter_by(grade=grade, is_active=True)
         .order_by(CKLADomain.domain_num)
         .all()
     )
-    questions: list[dict] = []
+    if not domains:
+        return {"grade": grade, "questions": []}
+
+    domain_ids = [d.id for d in domains]
+    domain_map = {d.id: d for d in domains}
+
+    # Gather all lesson_ids across all domains
+    all_lessons = db.query(CKLALesson).filter(
+        CKLALesson.domain_id.in_(domain_ids), CKLALesson.is_active == True
+    ).all()
+    lesson_map = {ls.id: ls for ls in all_lessons}
+    lesson_ids = [ls.id for ls in all_lessons]
+
+    # ── 10 Q&A: 1 per domain, balanced Literal/Inferential/Evaluative ──────────
+    qa_questions: list[dict] = []
+    kind_counts: dict[str, int] = {"literal": 0, "inferential": 0, "evaluative": 0}
     for domain in domains:
-        lessons = db.query(CKLALesson).filter_by(domain_id=domain.id, is_active=True).all()
-        for lesson in lessons:
-            qs = db.query(CKLAQuestion).filter_by(lesson_id=lesson.id).all()
-            if qs:
-                q = random.choice(qs)
-                questions.append({
-                    "id":             q.id,
-                    "lesson_id":      lesson.id,
-                    "domain_num":     domain.domain_num,
-                    "domain_title":   domain.title,
-                    "lesson_title":   lesson.title,
-                    "kind":           q.kind,
-                    "question":       q.question_text,
-                })
+        d_lessons = [ls for ls in all_lessons if ls.domain_id == domain.id]
+        # Prefer Evaluative if under quota (2), then Inferential (4), else Literal (4)
+        preferred: list[str] = []
+        if kind_counts.get("evaluative", 0) < 2:
+            preferred = ["evaluative", "inferential", "literal"]
+        elif kind_counts.get("inferential", 0) < 4:
+            preferred = ["inferential", "literal", "evaluative"]
+        else:
+            preferred = ["literal", "inferential", "evaluative"]
+
+        picked = None
+        for kind in preferred:
+            candidates = []
+            for ls in d_lessons:
+                candidates += db.query(CKLAQuestion).filter_by(lesson_id=ls.id, kind=kind).all()
+            if candidates:
+                picked_q = random.choice(candidates)
+                picked_lesson = lesson_map.get(picked_q.lesson_id)
+                picked = {
+                    "id":           picked_q.id,
+                    "type":         "qa",
+                    "kind":         picked_q.kind,
+                    "domain_num":   domain.domain_num,
+                    "domain_title": domain.title,
+                    "lesson_title": picked_lesson.title if picked_lesson else "",
+                    "question_text": picked_q.question_text,
+                }
+                kind_counts[kind] = kind_counts.get(kind, 0) + 1
                 break
-        if len(questions) >= 20:
+        if picked:
+            qa_questions.append(picked)
+        if len(qa_questions) >= 10:
             break
+
+    # ── Gather all vocab words for this grade ──────────────────────────────────
+    word_links = db.query(CKLAWordLesson).filter(
+        CKLAWordLesson.lesson_id.in_(lesson_ids)
+    ).all()
+    word_ids = list({wl.word_id for wl in word_links})
+    all_words = db.query(USAcademyWord).filter(USAcademyWord.id.in_(word_ids)).all()
+    random.shuffle(all_words)
+
+    # ── 15 vocab_mc ────────────────────────────────────────────────────────────
+    vocab_mc_words = all_words[:15] if len(all_words) >= 15 else all_words
+    vocab_mc_questions: list[dict] = []
+    for w in vocab_mc_words:
+        distractors = random.sample(
+            [x for x in all_words if x.id != w.id],
+            min(3, len(all_words) - 1),
+        )
+        choices = [x.word for x in distractors] + [w.word]
+        random.shuffle(choices)
+        vocab_mc_questions.append({
+            "id":           w.id + 10000,
+            "type":         "vocab_mc",
+            "domain_num":   None,
+            "domain_title": "",
+            "lesson_title": "",
+            "question_text": w.definition or w.word,
+            "word":         w.word,
+            "choices":      choices,
+        })
+
+    # ── 2 word_work (write a sentence using the word) ─────────────────────────
+    ww_pool = all_words[15:] if len(all_words) > 15 else all_words
+    if len(ww_pool) < 2:
+        ww_pool = all_words
+    ww_words = random.sample(ww_pool, min(2, len(ww_pool)))
+    word_work_questions: list[dict] = []
+    for w in ww_words:
+        word_work_questions.append({
+            "id":           w.id + 30000,
+            "type":         "word_work",
+            "domain_num":   None,
+            "domain_title": "",
+            "lesson_title": "",
+            "question_text": f'Write a sentence using the word "{w.word}".',
+            "word":         w.word,
+            "hint":         w.definition or "",
+        })
+
+    # ── Combine: vocab_mc first, then Q&A, then word_work ────────────────────
+    questions = vocab_mc_questions + qa_questions + word_work_questions
 
     return {
         "grade":     grade,
@@ -960,8 +1047,14 @@ async def submit_grade_final_test(
     grade: int = Query(3),
     db: Session = Depends(get_db),
 ):
-    """Grade final test answers via AI and award XP on pass (>=80%).
-    Failed attempts are locked for 24 hours before retry (spec §Grade Final Test).
+    """Grade 27 final test answers by ID range, award XP on pass (>=80%).
+
+    ID routing:
+      qid < 10000        → Q&A         → AI graded (score 0/1/2; correct = 2)
+      10000 <= qid < 20000 → vocab_mc  → local exact match
+      30000 <= qid       → word_work   → difflib similarity >= 0.80
+
+    Failed attempts are locked for 24 hours before retry.
     """
     # 24h cooldown guard
     cooldown_key = f"ckla_final_test_last_fail_grade_{grade}"
@@ -984,31 +1077,81 @@ async def submit_grade_final_test(
 
     correct = 0
     results: list[dict] = []
+    wrong_questions: list[dict] = []
 
     for qid_str, user_ans in req.answers.items():
         try:
             qid = int(qid_str)
         except ValueError:
             continue
-        question = db.query(CKLAQuestion).filter_by(id=qid).first()
-        if not question:
-            continue
-        lesson = db.query(CKLALesson).filter_by(id=question.lesson_id).first()
-        passage = lesson.passage if lesson else ""
-        try:
-            result = await grade_answer(
-                question_text=question.question_text,
-                kind=question.kind,
-                model_answer=question.model_answer or "",
-                passage=passage,
-                user_answer=user_ans,
-            )
-            score = result.score
-        except Exception:
-            score = 0
-        if score == 2:
-            correct += 1
-        results.append({"question_id": qid, "score": score})
+
+        user_ans_stripped = (user_ans or "").strip()
+
+        if qid >= 30000:
+            # word_work — difflib similarity >= 0.80 (same as lesson Word Work tab)
+            word = db.query(USAcademyWord).filter_by(id=qid - 30000).first()
+            if not word:
+                results.append({"question_id": qid, "score": 0, "type": "word_work"})
+                continue
+            sim = SequenceMatcher(None, user_ans_stripped.lower(), (word.word or "").lower()).ratio()
+            is_correct = sim >= 0.80 and len(user_ans_stripped) >= 3
+            score = 2 if is_correct else 0
+            if score == 2:
+                correct += 1
+            else:
+                wrong_questions.append({
+                    "type":          "word_work",
+                    "lesson_title":  "Vocabulary",
+                    "question_text": f'Write a sentence using "{word.word}".',
+                    "correct_answer": word.definition or word.word,
+                })
+            results.append({"question_id": qid, "score": score, "type": "word_work"})
+
+        elif qid >= 10000:
+            # vocab_mc — case-insensitive exact match
+            word = db.query(USAcademyWord).filter_by(id=qid - 10000).first()
+            is_correct = bool(word and user_ans_stripped.lower() == (word.word or "").lower())
+            score = 2 if is_correct else 0
+            if score == 2:
+                correct += 1
+            else:
+                wrong_questions.append({
+                    "type":          "vocab_mc",
+                    "lesson_title":  "Vocabulary",
+                    "question_text": word.definition if word else "",
+                    "correct_answer": word.word if word else "",
+                })
+            results.append({"question_id": qid, "score": score, "type": "vocab_mc"})
+
+        else:
+            # Q&A — AI graded
+            question = db.query(CKLAQuestion).filter_by(id=qid).first()
+            if not question:
+                results.append({"question_id": qid, "score": 0, "type": "qa"})
+                continue
+            lesson = db.query(CKLALesson).filter_by(id=question.lesson_id).first()
+            passage = lesson.passage if lesson else ""
+            try:
+                result = await grade_answer(
+                    question_text=question.question_text,
+                    kind=question.kind,
+                    model_answer=question.model_answer or "",
+                    passage=passage,
+                    user_answer=user_ans_stripped,
+                )
+                score = result.score
+            except Exception:
+                score = 0
+            if score == 2:
+                correct += 1
+            else:
+                wrong_questions.append({
+                    "type":          "qa",
+                    "lesson_title":  lesson.title if lesson else "",
+                    "question_text": question.question_text,
+                    "correct_answer": question.model_answer or "",
+                })
+            results.append({"question_id": qid, "score": score, "type": "qa"})
 
     pct = round(correct / total * 100) if total else 0
     passed = pct >= 80
@@ -1017,11 +1160,9 @@ async def submit_grade_final_test(
     retry_after_str: str | None = None
     if passed:
         xp_awarded = award_xp(db, "ckla_grade_final_pass", detail=f"grade_{grade}")
-        # Clear cooldown on pass
         if cfg:
             cfg.value = ""
     else:
-        # Store failure timestamp for 24h cooldown
         now_str = datetime.now().isoformat(timespec="seconds")
         if cfg:
             cfg.value = now_str
@@ -1030,20 +1171,6 @@ async def submit_grade_final_test(
         retry_after_str = (datetime.now() + timedelta(hours=24)).isoformat(timespec="seconds")
 
     db.commit()
-
-    # Build wrong_questions list for the wait screen
-    wrong_questions: list[dict] = []
-    for r in results:
-        if r["score"] < 2:
-            q = db.query(CKLAQuestion).filter_by(id=r["question_id"]).first()
-            if q:
-                lesson = db.query(CKLALesson).filter_by(id=q.lesson_id).first()
-                wrong_questions.append({
-                    "lesson_id":      q.lesson_id,
-                    "lesson_title":   lesson.title if lesson else "",
-                    "question_text":  q.question_text,
-                    "correct_answer": q.model_answer or "",
-                })
 
     return {
         "grade":           grade,
