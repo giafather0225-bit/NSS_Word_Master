@@ -508,9 +508,10 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
         row.unit_test_score = req.score
         if passed:
             row.unit_test_passed = True
+    _xp_awarded = 0
     if passed:
         try:
-            xp_engine.award_xp(db, "math_unit_test_pass", detail=f"{req.grade}/{req.unit}")
+            _xp_awarded = xp_engine.award_xp(db, "math_unit_test_pass", detail=f"{req.grade}/{req.unit}")
         except Exception as e:
             logger.warning("XP award failed: %s", e)
         try:
@@ -518,10 +519,8 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
         except Exception as e:
             logger.warning("Streak math mark failed: %s", e)
     # Record MathUnitTest row for parent dashboard history
-    _xp_awarded = 0
     try:
         _attempt_num = db.query(MathUnitTest).filter_by(grade=req.grade, unit_id=req.unit).count() + 1
-        _xp_awarded = 40 if (passed and _attempt_num == 1) else (25 if passed else 0)
         db.add(MathUnitTest(
             unit_id=req.unit, grade=req.grade,
             attempt_number=_attempt_num,

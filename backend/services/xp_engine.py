@@ -183,6 +183,7 @@ def award_xp(
     _DETAIL_DEDUP = {
         "ckla_lesson_complete", "ckla_domain_test_pass",
         "ckla_grade_final_pass", "ckla_daily_goal",
+        "math_unit_test_pass",  # dedup per unit (grade/unit detail), not per day globally
     }
     if action not in _NO_DEDUP:
         filters = [XPLog.action == action, XPLog.earned_date == today]
