@@ -1185,6 +1185,15 @@
   border-color: var(--english-primary);
   box-shadow: 0 0 0 3px var(--english-soft);
 }
+.ckla-test-hint {
+  font-size: var(--font-size-sm);
+  color: var(--text-hint);
+  font-style: italic;
+  padding: 6px 10px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
 .ckla-test-fill-wrap { display: flex; }
 .ckla-test-fill-input {
   width: 100%;
@@ -1519,3 +1528,225 @@
   color: var(--text-hint);
   margin-top: 4px;
 }
+
+/* ── Spelling Practice — week card enhancements ──────────────── */
+.ckla-spell-week-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ckla-spell-practice-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 1px solid var(--english-soft);
+  border-radius: var(--radius-full);
+  background: var(--english-light);
+  color: var(--english-ink);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.ckla-spell-practice-btn:hover { background: var(--english-soft); }
+
+/* ── Spelling Practice — fullscreen overlay ──────────────────── */
+.ckla-spell-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 39, 34, 0.55);
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.ckla-spell-box {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-modal);
+  display: flex;
+  flex-direction: column;
+}
+.ckla-spell-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px 20px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+.ckla-spell-meta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ckla-spell-pattern {
+  font-size: 0.72rem;
+  color: var(--english-ink);
+  font-weight: 600;
+}
+.ckla-spell-close {
+  background: none;
+  border: none;
+  color: var(--text-hint);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+.ckla-spell-close:hover { background: var(--bg-surface); }
+.ckla-spell-progress-bar {
+  height: 4px;
+  background: var(--border-subtle);
+  flex-shrink: 0;
+}
+.ckla-spell-progress-fill {
+  height: 100%;
+  background: var(--english-primary);
+  transition: width 0.4s var(--ease-calm);
+}
+.ckla-spell-body {
+  flex: 1;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.ckla-spell-counter {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-hint);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ckla-spell-challenge-tag {
+  background: var(--arcade-soft);
+  color: var(--arcade-ink);
+  border-radius: var(--radius-full);
+  padding: 2px 8px;
+  font-size: 0.68rem;
+}
+.ckla-spell-listen-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ckla-spell-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  background: var(--english-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.ckla-spell-play-btn:hover { background: var(--english-hover); }
+.ckla-spell-play-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.ckla-spell-hint {
+  font-size: 0.8rem;
+  color: var(--text-hint);
+}
+.ckla-spell-input-row { display: flex; gap: 10px; }
+.ckla-spell-input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 2px solid var(--border-default);
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  background: var(--bg-card);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+.ckla-spell-input:focus { border-color: var(--english-primary); }
+.ckla-spell-input:disabled { background: var(--bg-surface); color: var(--text-hint); }
+.ckla-spell-feedback {
+  min-height: 28px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ckla-spell-correct { color: var(--math-ink); }
+.ckla-spell-wrong   { color: var(--review-ink); }
+.ckla-spell-submit-btn {
+  padding: 12px 28px;
+  background: var(--english-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  align-self: flex-end;
+}
+.ckla-spell-submit-btn:hover { background: var(--english-hover); }
+.ckla-spell-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Spelling Practice — results ─────────────────────────────── */
+.ckla-spell-result-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.ckla-spell-result-icon { color: var(--english-primary); }
+.ckla-spell-score {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  font-family: var(--font-family-display);
+}
+.ckla-spell-score-label { font-size: 0.85rem; color: var(--text-secondary); }
+.ckla-spell-res-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.ckla-spell-res-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-hint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.ckla-spell-res-row td { padding: 6px 8px; }
+.ckla-spell-res-row.ok  { color: var(--math-ink); }
+.ckla-spell-res-row.err { color: var(--review-ink); }
+.ckla-spell-res-word  { font-weight: 700; }
+.ckla-spell-res-typed { font-family: monospace; }
+.ckla-spell-result-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding-top: 8px;
+}
+.ckla-spell-retry-btn   { background: var(--english-primary); color: #fff; }
+.ckla-spell-retry-btn:hover { background: var(--english-hover); }
+.ckla-spell-close-btn   { background: var(--bg-surface); color: var(--text-secondary); border: none; }
+.ckla-spell-close-btn:hover { background: var(--border-default); }

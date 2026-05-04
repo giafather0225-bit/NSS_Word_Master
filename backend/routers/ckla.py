@@ -282,8 +282,15 @@ def get_lessons(domain_num: int, grade: int = Query(3), db: Session = Depends(ge
         .all()
     }
 
+    all_complete = bool(lessons) and all(
+        _progress_dict(prog_map.get(l.id))["completed"] for l in lessons
+    )
     return {
-        "domain": {"id": domain.id, "domain_num": domain_num, "title": domain.title, "grade": grade},
+        "domain": {
+            "id": domain.id, "domain_num": domain_num,
+            "title": domain.title, "grade": grade,
+            "all_complete": all_complete,
+        },
         "lessons": [
             {
                 "id":             l.id,

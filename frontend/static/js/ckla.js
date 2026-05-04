@@ -434,10 +434,10 @@ function _renderDomainTest(domainNum, data) {
       // Definition → choose the word
       const choiceHtml = (q.choices || []).map((opt, i) => {
         const sel = answers[q.id] === opt ? ' selected' : '';
-        const safeOpt = opt.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         return `<button class="ckla-test-option${sel}"
-                  onclick="selectTestAnswer(${q.id}, '${safeOpt}', this)">
-                  ${String.fromCharCode(65 + i)}. ${opt}
+                  data-answer="${escapeHtml(opt)}"
+                  onclick="selectTestAnswer(${q.id}, this)">
+                  ${String.fromCharCode(65 + i)}. ${escapeHtml(opt)}
                 </button>`;
       }).join('');
       bodyHtml = `
@@ -516,9 +516,9 @@ function _renderDomainTest(domainNum, data) {
 }
 
 /** @tag ACADEMY CKLA */
-function selectTestAnswer(qId, answer, btn) {
+function selectTestAnswer(qId, btn) {
   if (!window._domainTestState) return;
-  window._domainTestState.answers[qId] = answer;
+  window._domainTestState.answers[qId] = btn.dataset.answer;
   btn.closest('.ckla-test-options').querySelectorAll('.ckla-test-option').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
 }
@@ -641,11 +641,25 @@ function _renderLessons(data) {
     { key: 'word_work_done',      label: 'WW' },
   ];
 
+  const domainNum = data.domain.domain_num;
+  const allComplete = data.domain.all_complete;
+  const bannerHtml = allComplete ? `
+    <div class="ckla-domain-test-banner">
+      <div class="ckla-domain-test-banner-text">
+        <div class="ckla-domain-test-banner-title">All lessons complete!</div>
+        <div class="ckla-domain-test-banner-sub">Take the Domain Test to earn your badge</div>
+      </div>
+      <button class="ckla-domain-test-banner-btn" onclick="openDomainTest(${domainNum})">
+        Start Test
+      </button>
+    </div>` : '';
+
   view.innerHTML = `
     <div class="ckla-header">
       <button class="ckla-back-btn" onclick="loadCKLADomains()">← Domains</button>
-      <h2 class="ckla-title">D${data.domain.domain_num}: ${data.domain.title}</h2>
+      <h2 class="ckla-title">D${domainNum}: ${data.domain.title}</h2>
     </div>
+    ${bannerHtml}
     <div class="ckla-lesson-list">
       ${data.lessons.map(l => {
         const p = l.progress;

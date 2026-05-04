@@ -969,7 +969,10 @@ async function _renderSpelling() {
 
   const { weeks } = _cklaSpellingCache;
   if (!weeks || weeks.length === 0) {
-    el.innerHTML = '<div class="ckla-empty">No spelling data available for this unit.</div>';
+    const msg = unit === 1
+      ? 'Unit 1 is a review unit — new spelling patterns begin in Unit 2.'
+      : 'No spelling data available for this unit.';
+    el.innerHTML = `<div class="ckla-empty">${msg}</div>`;
     return;
   }
 
@@ -993,9 +996,16 @@ async function _renderSpelling() {
     const challengeSection = w.challenge_words.length
       ? `<div class="ckla-ref-sublabel">Challenge Words</div><div class="ckla-word-chips">${challengeChips}</div>`
       : '';
+    const weekJson = JSON.stringify(w).replace(/'/g, '&#39;').replace(/"/g, '&quot;');
     return `
       <div class="ckla-spell-week">
-        <div class="ckla-ref-week-label">Week ${w.week}</div>
+        <div class="ckla-spell-week-top">
+          <div class="ckla-ref-week-label">Week ${w.week}</div>
+          <button class="ckla-spell-practice-btn"
+                  onclick='startSpellingPractice(${weekJson}, ${unit})'>
+            <i data-lucide="pencil-line" width="13" height="13"></i> Practice
+          </button>
+        </div>
         ${patternHtml}
         <div class="ckla-word-chips">${wordChips}</div>
         ${challengeSection}
@@ -1008,6 +1018,7 @@ async function _renderSpelling() {
       <span class="ckla-ref-unit">Unit ${unit}</span>
     </div>
     ${sectionsHtml}`;
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /** Render Grammar reference tab for the current unit. @tag ACADEMY CKLA */
@@ -1030,7 +1041,10 @@ async function _renderGrammar() {
 
   const { topics } = _cklaGrammarCache;
   if (!topics || topics.length === 0) {
-    el.innerHTML = '<div class="ckla-empty">No grammar topics available for this unit.</div>';
+    const msg = unit === 1
+      ? 'Unit 1 is a review unit — grammar topics begin in Unit 2.'
+      : 'No grammar topics available for this unit.';
+    el.innerHTML = `<div class="ckla-empty">${msg}</div>`;
     return;
   }
 
@@ -1068,7 +1082,10 @@ async function _renderMorphology() {
 
   const { topics } = _cklaMorphCache;
   if (!topics || topics.length === 0) {
-    el.innerHTML = '<div class="ckla-empty">No morphology topics available for this unit.</div>';
+    const msg = unit === 1
+      ? 'Unit 1 is a review unit — morphology topics begin in Unit 2.'
+      : 'No morphology topics available for this unit.';
+    el.innerHTML = `<div class="ckla-empty">${msg}</div>`;
     return;
   }
 

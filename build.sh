@@ -60,6 +60,7 @@ cat \
   $JS/daily-words-weekly.js \
   $JS/ckla.js \
   $JS/ckla-lesson.js \
+  $JS/ckla-spelling.js \
   $JS/ckla-review.js \
   $JS/child.js \
   $JS/child-calendar.js \
