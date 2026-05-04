@@ -969,6 +969,15 @@ def _unit_number(unit_id: str) -> int:
     return int(m.group(1)) if m else 0
 
 
+def _lesson_name(lesson_id: str) -> str:
+    """Extract just the lesson file name from a lesson_id.
+
+    lesson_id is stored as 'grade/unit/lesson' (e.g. 'G3/U1_place_value/L1_multiply').
+    _load_lesson_json expects only the lesson segment.
+    """
+    return lesson_id.rsplit("/", 1)[-1]
+
+
 def _answer_display(problem: dict) -> str:
     """Return human-readable correct answer (resolves letter keys to choice text)."""
     correct_raw = str(problem.get("correct_answer", problem.get("answer", ""))).strip()
@@ -1063,7 +1072,7 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
     all_problems: list[dict] = []
 
     for sr in due_lessons:
-        data = _load_lesson_json(sr.grade, sr.unit_id, sr.lesson_id)
+        data = _load_lesson_json(sr.grade, sr.unit_id, _lesson_name(sr.lesson_id))
         if not data:
             continue
 
@@ -1086,7 +1095,7 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
             earlier = [p for p in prior_srs if _unit_number(p.unit_id) < unit_num]
             if earlier:
                 weakest_sr = max(earlier, key=lambda p: _weakness_score(p, db))
-                w_data = _load_lesson_json(weakest_sr.grade, weakest_sr.unit_id, weakest_sr.lesson_id)
+                w_data = _load_lesson_json(weakest_sr.grade, weakest_sr.unit_id, _lesson_name(weakest_sr.lesson_id))
                 if w_data:
                     w_pool = _stage_problems(w_data, "practice_r1")[:2]
                     interleave_pairs = [(p, weakest_sr, w_data) for p in w_pool]
@@ -1128,7 +1137,7 @@ def submit_spaced_review(req: SpacedReviewSubmitIn, db: Session = Depends(get_db
     lessons_seen: dict[str, tuple[str, str, str]] = {}  # key → (grade, unit_id, lesson_id)
 
     for ans in req.answers:
-        data = _load_lesson_json(ans.grade, ans.unit_id, ans.lesson_id)
+        data = _load_lesson_json(ans.grade, ans.unit_id, _lesson_name(ans.lesson_id))
         problem: dict | None = None
         if data:
             pool = _stage_problems(data, "practice_r1") or _stage_problems(data, "exit_quiz")
