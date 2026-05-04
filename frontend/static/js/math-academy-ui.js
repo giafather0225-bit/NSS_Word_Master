@@ -113,7 +113,7 @@ function _showEarlyBumpPrompt() {
  * Render a round summary after a Practice round — score, accuracy, weak concepts.
  * @tag MATH @tag ACADEMY @tag ROUND_SUMMARY
  */
-function _renderRoundSummary({ stageLabel, correct, total, pct, passed, weakConcepts, onContinue }) {
+function _renderRoundSummary({ stageLabel, correct, total, pct, passed, xpEarned, weakConcepts, onContinue }) {
     const stageEl = document.getElementById('stage');
     if (!stageEl) return;
 
@@ -150,6 +150,7 @@ function _renderRoundSummary({ stageLabel, correct, total, pct, passed, weakConc
                 </div>
             </div>
             ${weakHtml}
+            ${xpEarned > 0 ? `<div class="math-complete-xp">+${xpEarned} XP</div>` : ''}
             <div class="math-summary-actions">
                 <button class="math-btn-primary" id="math-summary-continue">
                     ${passed ? 'Continue \u2192' : 'Try Again'}

@@ -1,11 +1,11 @@
 /* ================================================================
    math-placement-results.js — Placement results + sidebar status
    Section: Math
-   Dependencies: math-placement.js (shares _escPl helper on window)
+   Dependencies: math-placement.js, math-katex-utils.js (_mathEsc)
    API endpoints: /api/math/placement/results
    ================================================================ */
 
-/* global _escPl, switchView */
+/* global _mathEsc, switchView */
 
 // ── Results ────────────────────────────────────────────────
 
@@ -20,8 +20,8 @@ function _renderPlacementResults(data) {
         return `
             <div class="math-placement-result-row">
                 <div class="math-placement-result-top">
-                    <span class="math-placement-result-label">${_escPl(r.label)}</span>
-                    <span class="math-placement-result-grade">${_escPl(r.estimated_grade)}</span>
+                    <span class="math-placement-result-label">${_mathEsc(r.label)}</span>
+                    <span class="math-placement-result-grade">${_mathEsc(r.estimated_grade)}</span>
                 </div>
                 <div class="math-placement-result-bar-wrap">
                     <div class="math-placement-result-bar ${barColor}" style="width:${pct}%"></div>
@@ -37,13 +37,13 @@ function _renderPlacementResults(data) {
                 <i data-lucide="check-circle-2" style="width:36px;height:36px;stroke-width:1.5;color:var(--math-primary)"></i>
             </div>
             <h2 class="math-placement-results-title">Placement Complete</h2>
-            <div class="math-placement-suggested-grade">${_escPl(suggested)}</div>
+            <div class="math-placement-suggested-grade">${_mathEsc(suggested)}</div>
             <div class="math-placement-suggested-label">Suggested starting grade</div>
             <div class="math-placement-domain-results">${rows}</div>
             <div class="math-placement-result-actions">
                 <button class="math-btn-ghost" id="math-placement-back">Back</button>
                 <button class="math-btn-primary" id="math-placement-go">
-                    Start ${_escPl(suggested)} Academy
+                    Start ${_mathEsc(suggested)} Academy
                     <i data-lucide="arrow-right" style="width:14px;height:14px;vertical-align:-2px;stroke-width:2"></i>
                 </button>
             </div>
@@ -99,11 +99,11 @@ async function loadMathPlacementStatus() {
     } catch (_) { /* silent */ }
 }
 
-// Hook into existing loadMathSidebarStatus if available
-if (typeof window !== 'undefined') {
-    const prev = window.loadMathSidebarStatus;
+// Inject placement status into loadMathSidebarStatus after DOM+navigation.js ready.
+document.addEventListener('DOMContentLoaded', () => {
+    const orig = window.loadMathSidebarStatus;
     window.loadMathSidebarStatus = function () {
-        if (typeof prev === 'function') try { prev(); } catch (_) {}
+        if (typeof orig === 'function') try { orig(); } catch (_) {}
         loadMathPlacementStatus();
     };
-}
+});

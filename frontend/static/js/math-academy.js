@@ -211,7 +211,7 @@ async function _prefetchLearnCards() {
  * Called when a stage is completed. Determines the next stage.
  * @tag MATH @tag ACADEMY
  */
-function advanceMathStage() {
+async function advanceMathStage() {
     const s = mathState.stage;
     const total = mathState.problems.length;
     const pct = total > 0 ? Math.round(mathState.correct / total * 100) : 0;
@@ -282,17 +282,20 @@ function advanceMathStage() {
     if (s === 'unit_test') {
         const threshold = mathState._unitTestPassThreshold || 0.8;
         const passed = total > 0 && (mathState.correct / total) >= threshold;
-        // Fire-and-forget score submission
-        fetch('/api/math/academy/unit-test/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                grade: mathState.grade,
-                unit: mathState.unit,
-                score: mathState.correct,
-                total,
-            }),
-        }).catch(err => console.warn('[math] Unit test score submit failed:', err));
+        let xpEarned = 0;
+        try {
+            const res = await fetch('/api/math/academy/unit-test/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    grade: mathState.grade,
+                    unit: mathState.unit,
+                    score: mathState.correct,
+                    total,
+                }),
+            });
+            if (res.ok) { const d = await res.json(); xpEarned = d.xp_earned || 0; }
+        } catch (err) { console.warn('[math] Unit test score submit failed:', err); }
 
         _renderRoundSummary({
             stageLabel: 'Unit Test',
@@ -300,6 +303,7 @@ function advanceMathStage() {
             total,
             pct,
             passed,
+            xpEarned,
             weakConcepts: _topWeakConcepts(mathState.wrongConcepts),
             onContinue: () => {
                 if (!passed) {

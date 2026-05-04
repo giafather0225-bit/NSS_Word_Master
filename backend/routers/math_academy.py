@@ -518,6 +518,7 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
         except Exception as e:
             logger.warning("Streak math mark failed: %s", e)
     # Record MathUnitTest row for parent dashboard history
+    _xp_awarded = 0
     try:
         _attempt_num = db.query(MathUnitTest).filter_by(grade=req.grade, unit_id=req.unit).count() + 1
         _xp_awarded = 40 if (passed and _attempt_num == 1) else (25 if passed else 0)
@@ -536,6 +537,7 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
         "status": "ok", "passed": passed,
         "score": req.score, "total": req.total,
         "pct": round(pct, 1),
+        "xp_earned": _xp_awarded,
         "island": {"xp_multiplier": 1.0},
     }
     if passed:
