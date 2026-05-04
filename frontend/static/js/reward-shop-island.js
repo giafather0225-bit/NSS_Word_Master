@@ -55,6 +55,23 @@ async function _loadIslandTab(tab) {
     }
 }
 
+// ─── Card listener helper ────────────────────────────────────
+
+/** Attach click listeners to island shop cards that carry data-item-id. @tag SHOP */
+function _attachIslandCardListeners(container) {
+    container.querySelectorAll(".shop-item-card[data-item-id]").forEach(card => {
+        card.addEventListener("click", () => {
+            _islandConfirmBuy(
+                Number(card.dataset.itemId),
+                card.dataset.itemName,
+                card.dataset.itemIcon,
+                Number(card.dataset.itemPrice),
+                card.dataset.currency
+            );
+        });
+    });
+}
+
 // ─── Evolution Tab ────────────────────────────────────────────
 
 /** @tag SHOP */
@@ -72,16 +89,17 @@ async function _renderEvolutionTab(body) {
         const symbol      = isLegend ? "✨" : "💎";
         const affordable  = balance >= item.price;
         const currencyStr = isLegend ? "legend_lumi" : "lumi";
-        const onclick     = affordable
-            ? `_islandConfirmBuy(${item.id},'${escapeHtml(item.name)}','${escapeHtml(item.icon || "🧬")}',${item.price},'${currencyStr}')`
+        const dataAttrs   = affordable
+            ? `data-item-id="${item.id}" data-item-name="${escapeHtml(item.name)}" data-item-icon="${escapeHtml(item.icon || "")}" data-item-price="${item.price}" data-currency="${currencyStr}"`
             : "";
-        return `<div class="shop-item-card${affordable ? "" : " unaffordable"}" onclick="${onclick}">
+        return `<div class="shop-item-card${affordable ? "" : " unaffordable"}" ${dataAttrs}>
             <span class="shop-item-icon">${item.icon || "🧬"}</span>
             <div class="shop-item-name">${escapeHtml(item.name)}</div>
             <div class="shop-item-price-row"><span class="shop-item-price">${item.price} ${symbol}</span></div>
         </div>`;
     }).join("");
     body.innerHTML = `<div class="shop-grid">${cards}</div>`;
+    _attachIslandCardListeners(body);
 }
 
 // ─── Food Tab ────────────────────────────────────────────────
@@ -98,10 +116,10 @@ async function _renderFoodTab(body) {
     const cards = items.map(item => {
         const affordable = _islandLumi >= item.price;
         const desc       = item.description ? `<div class="shop-item-desc">${escapeHtml(item.description)}</div>` : "";
-        const onclick    = affordable
-            ? `_islandConfirmBuy(${item.id},'${escapeHtml(item.name)}','${escapeHtml(item.icon || "🍖")}',${item.price},'lumi')`
+        const dataAttrs  = affordable
+            ? `data-item-id="${item.id}" data-item-name="${escapeHtml(item.name)}" data-item-icon="${escapeHtml(item.icon || "")}" data-item-price="${item.price}" data-currency="lumi"`
             : "";
-        return `<div class="shop-item-card${affordable ? "" : " unaffordable"}" onclick="${onclick}">
+        return `<div class="shop-item-card${affordable ? "" : " unaffordable"}" ${dataAttrs}>
             <span class="shop-item-icon">${item.icon || "🍖"}</span>
             <div class="shop-item-name">${escapeHtml(item.name)}</div>
             ${desc}
@@ -109,6 +127,7 @@ async function _renderFoodTab(body) {
         </div>`;
     }).join("");
     body.innerHTML = `<div class="shop-grid">${cards}</div>`;
+    _attachIslandCardListeners(body);
 }
 
 // ─── Decor Tab ────────────────────────────────────────────────
@@ -125,12 +144,13 @@ async function _renderDecorTab(body) {
         ${_DECOR_ZONES.map(z => {
             const label = z === "all" ? "All" : z.charAt(0).toUpperCase() + z.slice(1);
             return `<button class="shop-cat${_islandDecorZone === z ? " active" : ""}"
-                onclick="_islandSetDecorZone('${z}')">${label}</button>`;
+                data-zone="${z}">${label}</button>`;
         }).join("")}
     </div>`;
 
     if (!items.length) {
         body.innerHTML = zoneBar + `<p style="text-align:center;padding:40px;color:var(--text-secondary);">No items available.</p>`;
+        _attachDecorZoneListeners(body);
         return;
     }
 
@@ -144,10 +164,10 @@ async function _renderDecorTab(body) {
         const ownedBadge = owned
             ? `<span class="shop-item-cat" style="background:var(--math-soft);color:var(--math-ink)">Owned</span>`
             : "";
-        const onclick    = (affordable && !owned)
-            ? `_islandConfirmBuy(${item.id},'${escapeHtml(item.name)}','${escapeHtml(item.icon || "🌿")}',${item.price},'${currency}')`
+        const dataAttrs  = (affordable && !owned)
+            ? `data-item-id="${item.id}" data-item-name="${escapeHtml(item.name)}" data-item-icon="${escapeHtml(item.icon || "")}" data-item-price="${item.price}" data-currency="${currency}"`
             : "";
-        return `<div class="shop-item-card${affordable ? "" : " unaffordable"}" onclick="${onclick}">
+        return `<div class="shop-item-card${affordable ? "" : " unaffordable"}" ${dataAttrs}>
             <span class="shop-item-icon">${item.icon || "🌿"}</span>
             <div class="shop-item-name">${escapeHtml(item.name)}</div>
             <div class="shop-item-price-row"><span class="shop-item-price">${owned ? "—" : `${item.price} ${symbol}`}</span></div>
@@ -155,6 +175,15 @@ async function _renderDecorTab(body) {
         </div>`;
     }).join("");
     body.innerHTML = zoneBar + `<div class="shop-grid">${cards}</div>`;
+    _attachDecorZoneListeners(body);
+    _attachIslandCardListeners(body);
+}
+
+/** Attach zone filter button listeners in the Decor tab. @tag SHOP */
+function _attachDecorZoneListeners(container) {
+    container.querySelectorAll(".shop-cat[data-zone]").forEach(btn => {
+        btn.addEventListener("click", () => _islandSetDecorZone(btn.dataset.zone));
+    });
 }
 
 /** @tag SHOP */

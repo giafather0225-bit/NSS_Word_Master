@@ -621,6 +621,12 @@ def shop_catalog(category: Optional[str] = None, zone: Optional[str] = None,
         q = q.filter(IslandShopItem.zone.in_([zone, "all"]))
     items = q.order_by(IslandShopItem.category, IslandShopItem.price).all()
     currency = le.get_balance(db)
+    owned_ids = [
+        row.shop_item_id
+        for row in db.query(IslandInventory.shop_item_id)
+            .filter(IslandInventory.quantity > 0)
+            .all()
+    ]
     return {
         "items": [
             {"id": i.id, "name": i.name, "category": i.category,
@@ -631,6 +637,7 @@ def shop_catalog(category: Optional[str] = None, zone: Optional[str] = None,
             for i in items
         ],
         "currency": currency,
+        "owned_ids": owned_ids,
     }
 
 
