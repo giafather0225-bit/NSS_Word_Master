@@ -681,7 +681,7 @@ pre_test (5문항, 진단+뇌 준비, 점수 미표시)
 ---
 
 ### Math Kangaroo
-103 sets in `backend/data/math/kangaroo/`: IKMC 2012-2023, KSF (Lebanon, India), USA 2003-2025
+104 sets in `backend/data/math/kangaroo/`: IKMC 2012-2023, intl 2009-2025, KSF 2020-2025, Lebanon 2024-2025, India, USA 2003-2025, Cyprus
 Levels: Pre-Ecolier (1-2), Ecolier (3-4), Benjamin (5-6), Cadet, Junior, Student
 Mode: 단일 모드 — 타이머 + 제출 후 결과 표시 (Practice/Test 구분 없음, 2026-05-03 통합)
 XP: complete +5, ≥80% +5, perfect +10
@@ -690,24 +690,41 @@ Files: `math-kangaroo.js`, `-exam.js`, `-pdf-exam.js`, `-result.js`
 **Data Architecture Decision (2026-05-03 확정)**
 - ✅ PDF Anchor Mode 채택: PDF는 `frontend/static/math/kangaroo/pdf/` 에 보관, JSON에 `pdf_page` 필드만 추가해 앱이 해당 페이지를 PDF.js로 오픈
 - ❌ base64 이미지 삽입 — 기각 (파일 크기 폭증)
-- ❌ PNG 개별 추출 — 기각 (103세트 × 24문제 = 수작업 불가)
+- ❌ PNG 개별 추출 — 기각 (104세트 × 24문제 = 수작업 불가)
 - ❌ `scripts/generate_kangaroo_solutions.py` (Gemini Vision) — deprecated (2026-05-03)
 
 **Verified External Sources**
 
 | 소스 | URL 패턴 | 용도 |
 |------|----------|------|
-| kaenguru.at | `https://www.kaenguru.at/files/problems/{YEAR}_{LEVEL}_E.pdf` | 영문 문제 PDF |
-| mathkangaroo.org | `https://mathkangaroo.org/mks/wp-content/uploads/2026/04/{YEAR}.pdf` | 공식 답안 (전 레벨) |
-| matematica.pt | `https://matematica.pt/en/useful/kangaroo-questions.php` | 백업 소스 |
+| kaenguru.at | `https://www.kaenguru.at/files/problems/{YEAR}_{LEVEL}_E.pdf` | 영문 문제 PDF (2022–2025 확인) |
+| mathkangaroo.org | `https://mathkangaroo.org/mks/wp-content/uploads/2026/04/{YEAR}.pdf` | 공식 답안 (전 레벨, 2022–2025 확인) |
+| matematica.pt | `https://matematica.pt/en/useful/kangaroo-questions.php` | 백업 소스 (2009–2024) |
 
 Level 키: `Pre_Ecolier` / `Ecolier` / `Benjamin` / `Cadet` / `Junior` / `Student` (kaenguru.at URL 기준)
 
-**Past Paper JSON 추가 필드** (`ksf_2024_junior.json` 기준 표준 스키마)
+**PDF 보유 현황** (`frontend/static/math/kangaroo/pdf/`)
+
+| 접두사 | 연도 | 레벨 | 비고 |
+|--------|------|------|------|
+| `ikmc_` | 2012–2023 | Ecolier, Benjamin, Cadet (일부 Junior/Student) | kaenguru.at 소스 |
+| `intl_` | 2009–2025 | Ecolier, Benjamin, Cadet (일부) | 국제 공식 PDF |
+| `ksf_` | 2020–2025 | Junior, Student | KSF Lebanon 소스 |
+| `leb_` | 2025 | Pre-Ecolier, Ecolier, Benjamin | Lebanon 공식 |
+
+**Past Paper JSON 스키마** — `ikmc_2024_ecolier.json` 기준 (표준 완성본, 2026-05-04)
+
+questions 배열 내 각 문제 필드:
 ```json
 {
-  "pdf_page": 1,
+  "number": 1,
+  "section": 1,
+  "points": 3,
+  "pdf_page": 2,
   "image_required": false,
+  "question_text": "...",
+  "options": {"A": "...", "B": "...", "C": "...", "D": "...", "E": "..."},
+  "answer": "E",
   "solution": "English explanation (1-3 sentences).",
   "solution_steps": ["Step 1: ...", "Step 2: ..."],
   "difficulty": "easy | medium | hard",
@@ -715,17 +732,28 @@ Level 키: `Pre_Ecolier` / `Ecolier` / `Benjamin` / `Cadet` / `Junior` / `Studen
 }
 ```
 
+> ⚠️ `ksf_2024_junior.json` 등 구형 파일은 루트의 `solutions: {"1": "..."}` dict 방식을 사용. 신규 파일은 반드시 per-question `solution` + `solution_steps` 필드 방식으로 작성.
+
 **Solution 작성 원칙**
 - Claude가 공식 PDF를 직접 읽고 풀이 후 MK USA 공식 답안과 대조 검증
 - `image_required: true` → `solution`에 "See PDF page N for figure." 포함
 - `image_required: false` → `question_text` 인라인 렌더링 가능
 - 모든 solution은 영어로 작성
 
+**Solution 구축 현황 (2026-05-04 기준)**
+
+| set_id | 상태 | 비고 |
+|--------|------|------|
+| `ikmc_2024_ecolier` | ✅ 완료 (24/24) | Q8·Q10 답안 수정 포함 |
+| `ksf_2024_junior` 외 ksf 12세트 | 구형 solutions dict (30개) | per-question 미변환 |
+| 나머지 90세트 | solution 없음 | PDF는 보유 |
+
 **Answer Key 검증 현황 (2026-05-03 기준)**
-- VERIFIED 34개: `intl_*` 전체, `ikmc_2021_*`, `ikmc_2023_ecolier`, `leb_2025_*`, `cyp_*`
-- PENDING 2개: `ikmc_2023_benjamin`(Q25-30 미검증), `ikmc_2023_pre_ecolier` — UI 버튼 비활성화
-- UNVERIFIED 67개: `ikmc_2012~2022`, `usa_*`, `ksf_*` 등 — 데이터 구조 정상, 답 출처 미확인
-- ❌ 데이터 오류 2개: `cyp_2015` Q30=V, `cyp_2024` Q5=V (그리스 파일, PDF 없어 UI 노출 안됨)
+- VERIFIED: `intl_*` 전체, `ikmc_2021_*`, `ikmc_2023_ecolier`, `ikmc_2024_ecolier` (수학적 증명), `leb_2025_*`, `cyp_*`
+- PENDING: `ikmc_2023_benjamin`(Q25-30 미검증), `ikmc_2023_pre_ecolier` — UI 버튼 비활성화
+- UNVERIFIED: `ikmc_2012~2022`, `usa_*`, `ksf_*` 등 — 데이터 구조 정상, 답 출처 미확인
+- ❌ 데이터 오류: `cyp_2015` Q30=V, `cyp_2024` Q5=V (그리스 파일, PDF 없어 UI 노출 안됨)
+- ❌ 답안 오류 수정: `usa_2024_ecolier.json` Q8=B→D, Q10=A→C (ikmc_2024_ecolier 작성 시 발견)
 
 **Sources**
 | 소스 | URL / 경로 | 검증 방법 |
