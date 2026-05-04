@@ -213,7 +213,16 @@ def parent_set_schedule(
 
 # Whitelist of AppConfig keys safely readable via the public GET endpoint.
 # Excludes "pin" so the PIN itself never leaks over the wire.
-_READABLE_CONFIG_KEYS = {"parent_email"}
+_READABLE_CONFIG_KEYS = {
+    "parent_email",
+    "ckla_daily_goal",
+    "ckla_vacation_end",
+    "ckla_domain_order_fixed",
+    "ckla_domain_pass_pct",
+    "ckla_grade_pass_pct",
+    "ckla_show_hints",
+    "ckla_g4_unlocked",
+}
 
 
 @router.get("/api/parent/config/{key}")

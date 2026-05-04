@@ -322,7 +322,10 @@ async function _ppSettings(body) {
         <div id="pp-settings-xp"></div>
 
         <div class="pp-section-title" style="margin-top:24px">Island System</div>
-        <div id="pp-settings-island"></div>`;
+        <div id="pp-settings-island"></div>
+
+        <div class="pp-section-title" style="margin-top:24px">CKLA Settings</div>
+        <div id="pp-settings-ckla"></div>`;
 
     const tasksEl     = document.getElementById("pp-settings-tasks");
     const scheduleEl  = document.getElementById("pp-settings-schedule");
@@ -331,14 +334,16 @@ async function _ppSettings(body) {
     const textbooksEl = document.getElementById("pp-settings-textbooks");
     const xpEl        = document.getElementById("pp-settings-xp");
     const islandEl    = document.getElementById("pp-settings-island");
+    const cklaEl      = document.getElementById("pp-settings-ckla");
 
-    if (typeof ppRenderTasks    === "function") await ppRenderTasks(tasksEl);
-    if (typeof ppRenderSchedule === "function") await ppRenderSchedule(scheduleEl);
-    if (typeof ppRenderPin      === "function") ppRenderPin(pinEl);
-    if (typeof ppRenderReport   === "function") await ppRenderReport(reportEl);
-    if (typeof _ppTextbooks     === "function") await _ppTextbooks(textbooksEl);
-    if (typeof _ppXP            === "function") await _ppXP(xpEl);
+    if (typeof ppRenderTasks         === "function") await ppRenderTasks(tasksEl);
+    if (typeof ppRenderSchedule      === "function") await ppRenderSchedule(scheduleEl);
+    if (typeof ppRenderPin           === "function") ppRenderPin(pinEl);
+    if (typeof ppRenderReport        === "function") await ppRenderReport(reportEl);
+    if (typeof _ppTextbooks          === "function") await _ppTextbooks(textbooksEl);
+    if (typeof _ppXP                 === "function") await _ppXP(xpEl);
     _ppIslandToggle(islandEl);
+    if (typeof ppRenderCKLASettings  === "function") await ppRenderCKLASettings(cklaEl);
 
     if (typeof lucide !== "undefined") lucide.createIcons();
 }

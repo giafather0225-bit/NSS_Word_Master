@@ -231,6 +231,166 @@ async function _ppSaveParentEmail() {
     }
 }
 
+// ─── CKLA Settings ────────────────────────────────────────────
+
+const _CKLA_CFG_KEYS = [
+    "ckla_daily_goal", "ckla_vacation_end", "ckla_domain_order_fixed",
+    "ckla_domain_pass_pct", "ckla_grade_pass_pct", "ckla_show_hints", "ckla_g4_unlocked",
+];
+
+/**
+ * Render CKLA-specific settings (daily goal, vacation date, pass thresholds, G4 unlock).
+ * @tag PARENT SETTINGS CKLA
+ */
+async function ppRenderCKLASettings(body) {
+    if (!body) return;
+    body.innerHTML = `<p style="color:var(--text-secondary);font-size:13px">Loading…</p>`;
+    try {
+        const vals = {};
+        await Promise.all(_CKLA_CFG_KEYS.map(async k => {
+            try {
+                const r = await fetch(`/api/parent/config/${k}`);
+                if (r.ok) vals[k] = (await r.json()).value;
+            } catch (_) {}
+        }));
+
+        const dailyGoal  = vals.ckla_daily_goal     || "1";
+        const vacEnd     = vals.ckla_vacation_end    || "";
+        const orderFixed = vals.ckla_domain_order_fixed === "true";
+        const domainPct  = vals.ckla_domain_pass_pct || "80";
+        const gradePct   = vals.ckla_grade_pass_pct  || "80";
+        const showHints  = vals.ckla_show_hints !== "false";
+        const g4Unlocked = vals.ckla_g4_unlocked === "true";
+
+        body.innerHTML = `
+            <div class="pp-form-stack">
+                <div class="pp-grid-2" style="gap:12px">
+                    <div>
+                        <label class="pp-form-label">Daily Lesson Goal</label>
+                        <input id="ckla-daily-goal" class="pp-input" type="number"
+                               min="1" max="10" value="${dailyGoal}" />
+                        <p class="pp-form-hint">Lessons per day target (auto mode).</p>
+                    </div>
+                    <div>
+                        <label class="pp-form-label">Vacation End Date</label>
+                        <input id="ckla-vacation-end" class="pp-input" type="date"
+                               value="${vacEnd}" />
+                        <p class="pp-form-hint">Intensive pace until this date.</p>
+                    </div>
+                </div>
+                <div class="pp-grid-2" style="gap:12px;margin-top:4px">
+                    <div>
+                        <label class="pp-form-label">Domain Test Pass %</label>
+                        <input id="ckla-domain-pct" class="pp-input" type="number"
+                               min="50" max="100" value="${domainPct}" />
+                    </div>
+                    <div>
+                        <label class="pp-form-label">Grade Final Test Pass %</label>
+                        <input id="ckla-grade-pct" class="pp-input" type="number"
+                               min="50" max="100" value="${gradePct}" />
+                    </div>
+                </div>
+                <label class="pp-toggle-row" style="margin-top:4px">
+                    <input id="ckla-order-fixed" type="checkbox" ${orderFixed ? "checked" : ""}>
+                    <span>Enforce Domain Order (sequential only)</span>
+                </label>
+                <label class="pp-toggle-row">
+                    <input id="ckla-show-hints" type="checkbox" ${showHints ? "checked" : ""}>
+                    <span>Show Hint Button in Word Work</span>
+                </label>
+                <button class="pp-btn primary" style="margin-top:4px"
+                        onclick="ppSaveCKLASettings()">Save CKLA Settings</button>
+                <p id="ckla-settings-msg" class="pp-form-msg"></p>
+
+                <div class="pp-section-divider" style="margin:16px 0"></div>
+                <label class="pp-form-label">Grade 4 Access</label>
+                ${g4Unlocked
+                    ? `<p style="font-size:.82rem;color:var(--math-ink);font-weight:600;margin:4px 0">Grade 4 is unlocked.</p>`
+                    : `<button class="pp-btn secondary" onclick="ppForceUnlockG4()" style="margin-top:4px">
+                           Force Unlock Grade 4
+                       </button>`}
+                <p class="pp-form-hint">Override the G3 Final Test requirement and give access to Grade 4.</p>
+                <p id="ckla-g4-msg" class="pp-form-msg"></p>
+            </div>`;
+    } catch (_) {
+        body.innerHTML = `<p style="color:var(--color-error);padding:12px 0">Failed to load CKLA settings.</p>`;
+    }
+}
+
+/** Save CKLA config values. PIN-protected via window._ppFetch. @tag PARENT SETTINGS CKLA */
+async function ppSaveCKLASettings() {
+    const msg    = document.getElementById("ckla-settings-msg");
+    const setMsg = (text, kind) => {
+        if (!msg) return;
+        msg.textContent = text;
+        msg.classList.remove("error", "success");
+        if (kind) msg.classList.add(kind);
+    };
+
+    const dailyGoalRaw = parseInt(document.getElementById("ckla-daily-goal")?.value || "1", 10);
+    const domainPctRaw = parseInt(document.getElementById("ckla-domain-pct")?.value  || "80", 10);
+    const gradePctRaw  = parseInt(document.getElementById("ckla-grade-pct")?.value   || "80", 10);
+
+    if (isNaN(dailyGoalRaw) || dailyGoalRaw < 1 || dailyGoalRaw > 10) {
+        setMsg("Daily goal must be 1–10.", "error"); return;
+    }
+    if (isNaN(domainPctRaw) || domainPctRaw < 50 || domainPctRaw > 100) {
+        setMsg("Domain pass % must be 50–100.", "error"); return;
+    }
+    if (isNaN(gradePctRaw) || gradePctRaw < 50 || gradePctRaw > 100) {
+        setMsg("Grade pass % must be 50–100.", "error"); return;
+    }
+
+    const configs = [
+        { key: "ckla_daily_goal",          value: String(dailyGoalRaw) },
+        { key: "ckla_vacation_end",         value: document.getElementById("ckla-vacation-end")?.value || "" },
+        { key: "ckla_domain_pass_pct",      value: String(domainPctRaw) },
+        { key: "ckla_grade_pass_pct",       value: String(gradePctRaw) },
+        { key: "ckla_domain_order_fixed",   value: document.getElementById("ckla-order-fixed")?.checked  ? "true" : "false" },
+        { key: "ckla_show_hints",           value: document.getElementById("ckla-show-hints")?.checked   ? "true" : "false" },
+    ];
+
+    try {
+        const results = await Promise.all(configs.map(c =>
+            window._ppFetch("/api/parent/config", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(c),
+            })
+        ));
+        const allOk = results.every(r => r.ok);
+        setMsg(allOk ? "CKLA settings saved." : "Some settings failed to save.", allOk ? "success" : "error");
+    } catch (_) {
+        setMsg("Network error.", "error");
+    }
+}
+
+/** Force-unlock Grade 4 by setting ckla_g4_unlocked = "true". PIN-protected. @tag PARENT SETTINGS CKLA */
+async function ppForceUnlockG4() {
+    const msg    = document.getElementById("ckla-g4-msg");
+    const setMsg = (text, kind) => {
+        if (!msg) return;
+        msg.textContent = text;
+        msg.classList.remove("error", "success");
+        if (kind) msg.classList.add(kind);
+    };
+    try {
+        const res = await window._ppFetch("/api/parent/config", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ key: "ckla_g4_unlocked", value: "true" }),
+        });
+        if (res.ok) {
+            const cklaEl = document.getElementById("pp-settings-ckla");
+            if (cklaEl) await ppRenderCKLASettings(cklaEl);
+        } else {
+            setMsg("Failed to unlock.", "error");
+        }
+    } catch (_) {
+        setMsg("Network error.", "error");
+    }
+}
+
 /** POST new PIN to /api/parent/config. Requires current PIN to already be verified. @tag PARENT PIN */
 async function _ppSavePin() {
     const newPin  = document.getElementById("pp-new-pin")?.value.trim();
