@@ -1094,7 +1094,7 @@ New tables:
 
 | File | Purpose |
 |------|---------|
-| `routers/island.py` | All island API (34 endpoints) |
+| `routers/island.py` | All island API (40 endpoints) |
 | `services/lumi_engine.py` | Lumi earn/spend/exchange |
 | `services/island_care_engine.py` | Decay + gauge logic |
 | `services/island_production_engine.py` | Daily lumi batch |
@@ -1125,11 +1125,24 @@ New tables:
 
 ### Frontend Files
 
-Island UI is built with JSX React components (`frontend/src/island/*.jsx`, 18 files). These are separate from the vanilla JS bundles and have their own build pipeline.
+Island UI is built with JSX React components (`frontend/src/island/*.jsx`, 18 files). These are separate from the vanilla JS bundles and have their own build pipeline (`build.sh` builds all 18 JSX files + `island-result.js` via a separate React/Babel step).
 
-- `frontend/src/island/IslandMain.jsx` — main island screen
-- `frontend/src/island/SettingsScreen.jsx` — island settings (currently modified/WIP)
+JSX components (`frontend/src/island/`):
+- `IslandMain.jsx` — main island screen
+- `SettingsScreen.jsx` — island settings (Dev Tools panel included)
 - (and 16 more island JSX components)
+
+Vanilla JS (loaded separately, not in esbuild bundles):
+- `frontend/static/js/island-result.js` — island update card shown on study result screens (XP + lumi gain summary)
+- `frontend/static/js/reward-shop-island.js` — island shop tab content (Evolution / Food / Decor / Exchange)
+
+CSS files (`frontend/static/css/`):
+- `island-loop.css` — animation loop styles
+- `island-main.css` — main island screen layout
+- `island-meta.css` — meta/overlay panel styles
+- `island-screens.css` — screen transition styles
+- `island-system.css` — system-level island UI (currency display, gauges)
+- `island-zones.css` — zone card and zone unlock styles
 
 Config files:
 - `frontend/src/config/animations.config.js` — All animation timings (edit here, not in components)
