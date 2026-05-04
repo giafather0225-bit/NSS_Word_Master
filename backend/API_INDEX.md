@@ -240,6 +240,18 @@
 | GET | /api/goals/weekly | routers/goals.py | parent-goals.js · parent-overview.js (Home alerts) |
 | PUT | /api/goals/weekly/{key} | routers/goals.py | parent-goals.js (PIN) |
 
+## Math Kangaroo
+
+> `routers/math_kangaroo.py` — 103 sets (IKMC/KSF/USA/Lebanon/Cyprus). PDF Anchor Mode: JSON `pdf_page` field, app renders via PDF.js. See `KANGAROO_DATA_PLAN.md`.
+
+| Method | Path | Defined In | Called From | Notes |
+|--------|------|-----------|-------------|-------|
+| GET | /api/math/kangaroo/sets | routers/math_kangaroo.py | math-kangaroo.js | Returns catalog with `pdf_available`, `verified`, `source_type`, progress per set |
+| GET | /api/math/kangaroo/set/{set_id} | routers/math_kangaroo.py | math-kangaroo-exam.js · math-kangaroo-pdf-exam.js | Returns full set with questions, `pdf_page`, `image_required`, `solution`, `solution_steps` per question |
+| POST | /api/math/kangaroo/submit | routers/math_kangaroo.py | math-kangaroo-exam.js · math-kangaroo-pdf-exam.js | Grades submission, awards XP (complete +5, ≥80% +5, perfect +10), returns score + per-question feedback |
+
+---
+
 ## System (Phase 10) ✅
 
 | Method | Path | Defined In | Called From |
