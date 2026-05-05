@@ -114,11 +114,11 @@ def test_get_today_xp(db_session):
 
 
 def test_spend_xp_success(db_session):
-    award_xp(db_session, "final_test_pass")  # +10
-    award_xp(db_session, "unit_test_pass")   # +5  => 15 total
+    award_xp(db_session, "final_test_pass")  # +20
+    award_xp(db_session, "unit_test_pass")   # +5  => 25 total
     ok = spend_xp(db_session, 10, detail="YouTube 30min")
     assert ok is True
-    assert get_total_xp(db_session) == 5
+    assert get_total_xp(db_session) == 15
     purchase = db_session.query(XPLog).filter(XPLog.action == "shop_purchase").one()
     assert purchase.xp_amount == -10
     assert purchase.detail == "YouTube 30min"
