@@ -1,71 +1,245 @@
 {
   "description": "GIA Math Placement Test — 4 domains x 3 grade levels (G2/G3/G4/G5/G6)",
-  "version": 1,
+  "version": 2,
   "domains": [
     {
       "domain": "number_operations",
       "label": "Number & Operations",
       "questions": [
-        {"id": "no_g2_1", "grade": "G2", "type": "input", "question": "47 + 25 = ?",  "answer": "72"},
-        {"id": "no_g2_2", "grade": "G2", "type": "input", "question": "80 − 36 = ?", "answer": "44"},
-        {"id": "no_g3_1", "grade": "G3", "type": "input", "question": "324 + 276 = ?", "answer": "600"},
-        {"id": "no_g3_2", "grade": "G3", "type": "input", "question": "7 × 8 = ?",   "answer": "56"},
-        {"id": "no_g4_1", "grade": "G4", "type": "input", "question": "36 × 12 = ?", "answer": "432"},
-        {"id": "no_g4_2", "grade": "G4", "type": "input", "question": "144 ÷ 6 = ?",  "answer": "24"},
-        {"id": "no_g5_1", "grade": "G5", "type": "input", "question": "1.25 + 0.75 = ?", "answer": "2"},
-        {"id": "no_g5_2", "grade": "G5", "type": "input", "question": "2/3 + 1/6 = ? (simplify, like 5/6)", "answer": "5/6"},
-        {"id": "no_g6_1", "grade": "G6", "type": "input", "question": "3.6 × 2.5 = ?", "answer": "9"},
-        {"id": "no_g6_2", "grade": "G6", "type": "input", "question": "What is 20% of 85?", "answer": "17"}
+        {
+          "id": "no_g2_1", "grade": "G2", "difficulty": "easy",
+          "type": "input", "question": "47 + 25 = ?", "answer": "72"
+        },
+        {
+          "id": "no_g2_2", "grade": "G2", "difficulty": "easy",
+          "type": "input", "question": "80 − 36 = ?", "answer": "44"
+        },
+        {
+          "id": "no_g3_1", "grade": "G3", "difficulty": "easy",
+          "unit_id": "U1_add_sub_1000",
+          "type": "input", "question": "324 + 276 = ?", "answer": "600"
+        },
+        {
+          "id": "no_g3_2", "grade": "G3", "difficulty": "easy",
+          "unit_id": "U4_multiplication_facts_strategies",
+          "type": "input", "question": "7 × 8 = ?", "answer": "56"
+        },
+        {
+          "id": "no_g3_3", "grade": "G3", "difficulty": "easy",
+          "unit_id": "U7_division_facts_strategies",
+          "type": "input", "question": "54 ÷ 9 = ?", "answer": "6"
+        },
+        {
+          "id": "no_g3_4", "grade": "G3", "difficulty": "medium",
+          "unit_id": "U1_add_sub_1000",
+          "type": "mc",
+          "question": "Round 347 to the nearest hundred.",
+          "options": ["200", "300", "350", "400"],
+          "answer": "300"
+        },
+        {
+          "id": "no_g4_1", "grade": "G4", "difficulty": "medium",
+          "type": "input", "question": "36 × 12 = ?", "answer": "432"
+        },
+        {
+          "id": "no_g4_2", "grade": "G4", "difficulty": "medium",
+          "type": "input", "question": "144 ÷ 6 = ?", "answer": "24"
+        },
+        {
+          "id": "no_g5_1", "grade": "G5", "difficulty": "medium",
+          "type": "input", "question": "1.25 + 0.75 = ?", "answer": "2"
+        },
+        {
+          "id": "no_g5_2", "grade": "G5", "difficulty": "hard",
+          "type": "input", "question": "2/3 + 1/6 = ? (write as a fraction, e.g. 5/6)", "answer": "5/6"
+        },
+        {
+          "id": "no_g6_1", "grade": "G6", "difficulty": "medium",
+          "type": "input", "question": "3.6 × 2.5 = ?", "answer": "9"
+        },
+        {
+          "id": "no_g6_2", "grade": "G6", "difficulty": "medium",
+          "type": "input", "question": "What is 20% of 85?", "answer": "17"
+        }
       ]
     },
     {
       "domain": "measurement_data",
       "label": "Measurement & Data",
       "questions": [
-        {"id": "md_g2_1", "grade": "G2", "type": "mc",
+        {
+          "id": "md_g2_1", "grade": "G2", "difficulty": "easy",
+          "type": "mc",
           "question": "Which is longer: 2 meters or 150 centimeters?",
-          "options": ["2 meters", "150 centimeters"], "answer": "2 meters"},
-        {"id": "md_g3_1", "grade": "G3", "type": "input",
-          "question": "A ribbon is 85 cm long. How many cm short of 1 meter is it?", "answer": "15"},
-        {"id": "md_g4_1", "grade": "G4", "type": "input",
-          "question": "A rectangle is 12 cm by 5 cm. What is its area in square cm?", "answer": "60"},
-        {"id": "md_g5_1", "grade": "G5", "type": "input",
-          "question": "Convert: 2.5 kg = ? grams", "answer": "2500"},
-        {"id": "md_g6_1", "grade": "G6", "type": "input",
-          "question": "The mean of 4, 7, 9, 12 is?", "answer": "8"}
+          "options": ["2 meters", "150 centimeters"],
+          "answer": "2 meters"
+        },
+        {
+          "id": "md_g3_1", "grade": "G3", "difficulty": "medium",
+          "unit_id": "U11_time_mass_volume",
+          "type": "input",
+          "question": "A movie starts at 1:15 PM and ends at 2:50 PM. How many minutes long is it?",
+          "answer": "95"
+        },
+        {
+          "id": "md_g3_2", "grade": "G3", "difficulty": "medium",
+          "unit_id": "U12_area",
+          "type": "input",
+          "question": "A rectangle is 6 cm long and 4 cm wide. What is its area in square centimeters?",
+          "answer": "24"
+        },
+        {
+          "id": "md_g3_3", "grade": "G3", "difficulty": "easy",
+          "unit_id": "U10_perimeter",
+          "type": "input",
+          "question": "A square has sides 8 cm long. What is its perimeter in centimeters?",
+          "answer": "32"
+        },
+        {
+          "id": "md_g3_4", "grade": "G3", "difficulty": "easy",
+          "unit_id": "U11_time_mass_volume",
+          "type": "input",
+          "question": "1 kilogram = 1,000 grams. A watermelon weighs 3 kg. How many grams is that?",
+          "answer": "3000"
+        },
+        {
+          "id": "md_g4_1", "grade": "G4", "difficulty": "medium",
+          "type": "input",
+          "question": "A rectangle is 12 cm by 5 cm. What is its area in square cm?",
+          "answer": "60"
+        },
+        {
+          "id": "md_g5_1", "grade": "G5", "difficulty": "medium",
+          "type": "input",
+          "question": "Convert: 2.5 kg = ? grams",
+          "answer": "2500"
+        },
+        {
+          "id": "md_g6_1", "grade": "G6", "difficulty": "medium",
+          "type": "input",
+          "question": "The mean of 4, 7, 9, 12 is?",
+          "answer": "8"
+        }
       ]
     },
     {
       "domain": "geometry",
       "label": "Geometry",
       "questions": [
-        {"id": "ge_g2_1", "grade": "G2", "type": "mc",
+        {
+          "id": "ge_g2_1", "grade": "G2", "difficulty": "easy",
+          "type": "mc",
           "question": "A shape with 4 equal sides and 4 right angles is a…",
-          "options": ["triangle", "square", "circle", "hexagon"], "answer": "square"},
-        {"id": "ge_g3_1", "grade": "G3", "type": "input",
-          "question": "How many sides does a hexagon have?", "answer": "6"},
-        {"id": "ge_g4_1", "grade": "G4", "type": "input",
-          "question": "A square has perimeter 36 cm. What is the length of one side?", "answer": "9"},
-        {"id": "ge_g5_1", "grade": "G5", "type": "input",
-          "question": "A rectangular prism 2×3×4. What is its volume?", "answer": "24"},
-        {"id": "ge_g6_1", "grade": "G6", "type": "input",
-          "question": "Area of a triangle with base 10 and height 6?", "answer": "30"}
+          "options": ["triangle", "square", "circle", "hexagon"],
+          "answer": "square"
+        },
+        {
+          "id": "ge_g3_1", "grade": "G3", "difficulty": "medium",
+          "unit_id": "U13_shapes",
+          "type": "mc",
+          "question": "Which quadrilateral has 4 right angles but sides that are NOT all equal?",
+          "options": ["square", "rectangle", "rhombus", "trapezoid"],
+          "answer": "rectangle"
+        },
+        {
+          "id": "ge_g3_2", "grade": "G3", "difficulty": "easy",
+          "unit_id": "U8_understand_fractions",
+          "type": "mc",
+          "question": "A circle is divided into 8 equal parts. What fraction does each part represent?",
+          "options": ["1/4", "1/6", "1/8", "1/10"],
+          "answer": "1/8"
+        },
+        {
+          "id": "ge_g3_3", "grade": "G3", "difficulty": "easy",
+          "unit_id": "U13_shapes",
+          "type": "input",
+          "question": "A pentagon has how many sides?",
+          "answer": "5"
+        },
+        {
+          "id": "ge_g3_4", "grade": "G3", "difficulty": "medium",
+          "unit_id": "U13_shapes",
+          "type": "mc",
+          "question": "Which of these shapes is a quadrilateral?",
+          "options": ["triangle", "rhombus", "pentagon", "hexagon"],
+          "answer": "rhombus"
+        },
+        {
+          "id": "ge_g4_1", "grade": "G4", "difficulty": "medium",
+          "type": "input",
+          "question": "A square has perimeter 36 cm. What is the length of one side?",
+          "answer": "9"
+        },
+        {
+          "id": "ge_g5_1", "grade": "G5", "difficulty": "medium",
+          "type": "input",
+          "question": "A rectangular prism is 2 cm × 3 cm × 4 cm. What is its volume?",
+          "answer": "24"
+        },
+        {
+          "id": "ge_g6_1", "grade": "G6", "difficulty": "medium",
+          "type": "input",
+          "question": "A triangle has a base of 10 cm and a height of 6 cm. What is its area?",
+          "answer": "30"
+        }
       ]
     },
     {
       "domain": "algebraic_thinking",
       "label": "Algebraic Thinking",
       "questions": [
-        {"id": "at_g2_1", "grade": "G2", "type": "input",
-          "question": "Fill the blank: 9 + __ = 15", "answer": "6"},
-        {"id": "at_g3_1", "grade": "G3", "type": "input",
-          "question": "What comes next: 5, 10, 15, 20, __ ?", "answer": "25"},
-        {"id": "at_g4_1", "grade": "G4", "type": "input",
-          "question": "If 4 × n = 32, then n = ?", "answer": "8"},
-        {"id": "at_g5_1", "grade": "G5", "type": "input",
-          "question": "Evaluate: 3 × (4 + 2) − 5", "answer": "13"},
-        {"id": "at_g6_1", "grade": "G6", "type": "input",
-          "question": "Solve: 2x + 7 = 19, x = ?", "answer": "6"}
+        {
+          "id": "at_g2_1", "grade": "G2", "difficulty": "easy",
+          "type": "input",
+          "question": "Fill the blank: 9 + __ = 15",
+          "answer": "6"
+        },
+        {
+          "id": "at_g3_1", "grade": "G3", "difficulty": "easy",
+          "unit_id": "U5_use_multiplication_facts",
+          "type": "input",
+          "question": "What comes next: 5, 10, 15, 20, __ ?",
+          "answer": "25"
+        },
+        {
+          "id": "at_g3_2", "grade": "G3", "difficulty": "medium",
+          "unit_id": "U4_multiplication_facts_strategies",
+          "type": "input",
+          "question": "If 4 × n = 28, then n = ?",
+          "answer": "7"
+        },
+        {
+          "id": "at_g3_3", "grade": "G3", "difficulty": "medium",
+          "unit_id": "U6_understand_division",
+          "type": "input",
+          "question": "? ÷ 8 = 6. What is the missing number?",
+          "answer": "48"
+        },
+        {
+          "id": "at_g3_4", "grade": "G3", "difficulty": "medium",
+          "unit_id": "U5_use_multiplication_facts",
+          "type": "input",
+          "question": "Sam has 3 bags with 7 apples each. He eats 4 apples. How many apples does he have left?",
+          "answer": "17"
+        },
+        {
+          "id": "at_g4_1", "grade": "G4", "difficulty": "medium",
+          "type": "input",
+          "question": "If 4 × n = 32, then n = ?",
+          "answer": "8"
+        },
+        {
+          "id": "at_g5_1", "grade": "G5", "difficulty": "medium",
+          "type": "input",
+          "question": "Evaluate: 3 × (4 + 2) − 5",
+          "answer": "13"
+        },
+        {
+          "id": "at_g6_1", "grade": "G6", "difficulty": "medium",
+          "type": "input",
+          "question": "Solve: 2x + 7 = 19, x = ?",
+          "answer": "6"
+        }
       ]
     }
   ]
