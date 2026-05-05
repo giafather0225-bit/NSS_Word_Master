@@ -52,10 +52,6 @@ def _load_problem(attempt: MathAttempt):
         for p in data.get(stage_key, []):
             if p.get("id") == attempt.problem_id:
                 return p
-    # Fallback: older lesson files store all problems in a flat "items" array
-    for p in data.get("items", []):
-        if p.get("id") == attempt.problem_id:
-            return p
     return None
 
 
