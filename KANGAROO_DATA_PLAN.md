@@ -159,7 +159,7 @@ frontend/static/math/kangaroo/pdf/
 | 순서 | set_id | JSON 파일 | PDF 파일 | 상태 | 비고 |
 |------|--------|-----------|----------|------|------|
 | 1 | `ikmc_2024_ecolier` | ✅ 있음 | `intl_2024_ecolier.pdf` ✅ | ✅ 완료 | 24문제 solution 전체, Q8/Q10 수정 |
-| 2 | `ikmc_2025_ecolier` | ⬜ 없음 | `intl_2025_ecolier.pdf` ✅ | ⬜ 대기 | PDF 보유, JSON 신규 작성 필요 |
+| 2 | `ikmc_2025_ecolier` | ✅ 있음 | `intl_2025_ecolier.pdf` ✅ | ✅ 완료 | 24문제 solution 전체 (2026-05-04) |
 | 3 | `ikmc_2023_ecolier` | 🔶 답만 | `ikmc_2023_ecolier.pdf` ✅ | ⬜ 대기 | 기존 JSON 있음, solution 없음 |
 | 4 | `ikmc_2024_benjamin` | ⬜ 없음 | `intl_2024_benjamin.pdf` ✅ | ⬜ 대기 | PDF 보유, JSON 신규 작성 필요 |
 | 5 | `ikmc_2025_benjamin` | ⬜ 없음 | `intl_2025_benjamin.pdf` ✅ | ⬜ 대기 | PDF 보유, JSON 신규 작성 필요 |
@@ -207,7 +207,7 @@ frontend/static/math/kangaroo/pdf/
 
 ### 데이터 구축
 - [x] `ikmc_2024_ecolier.json` — solution 24개 완성 (2026-05-04)
-- [ ] `ikmc_2025_ecolier.json` — solution 24개 완성
+- [x] `ikmc_2025_ecolier.json` — solution 24개 완성 (2026-05-04)
 - [ ] `ikmc_2023_ecolier.json` — solution 24개 완성 (기존 JSON 업그레이드)
 - [ ] `ikmc_2024_benjamin.json` — solution 24개 완성
 - [ ] `ikmc_2025_benjamin.json` — solution 24개 완성

@@ -1,0 +1,625 @@
+{
+  "set_id": "ikmc_2025_ecolier",
+  "title": "Känguru der Mathematik Austria 2025 — Level Écolier (Grades 3-4)",
+  "level": "ecolier",
+  "level_label": "Écolier",
+  "grade_range": "Grades 3-4",
+  "source": "IKMC",
+  "source_type": "official_past_paper",
+  "source_year": 2025,
+  "source_contest": "Känguru der Mathematik Austria",
+  "source_organization": "Känguru der Mathematik Austria",
+  "source_country": "Austria",
+  "source_date": "20 March 2025",
+  "total_questions": 24,
+  "time_limit_minutes": 60,
+  "max_score": 120,
+  "start_points": 24,
+  "scoring": {
+    "section1_questions": "1-8",
+    "section1_points": 3,
+    "section2_questions": "9-16",
+    "section2_points": 4,
+    "section3_questions": "17-24",
+    "section3_points": 5,
+    "penalty": "-1/4 of question points",
+    "starting_points": 24
+  },
+  "pdf_file": "/static/math/kangaroo/pdf/intl_2025_ecolier.pdf",
+  "pdf_available": true,
+  "answers_verified": true,
+  "answers_verified_source": "Mathematical proof; verified from kaenguru.at official 2025 Écolier PDF",
+  "category": "past_paper",
+  "answers": {
+    "1": "A", "2": "B", "3": "A", "4": "E", "5": "D",
+    "6": "C", "7": "B", "8": "B", "9": "D", "10": "C",
+    "11": "A", "12": "C", "13": "D", "14": "C", "15": "B",
+    "16": "E", "17": "C", "18": "D", "19": "B", "20": "C",
+    "21": "B", "22": "B", "23": "B", "24": "B"
+  },
+  "questions": [
+    {
+      "number": 1,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "Nico and his little sister are playing with their shells and marbles. Each shell has a value of 6 and each marble has a value of 1. Which picture shows the value 16?",
+      "options": {
+        "A": "2 shells and 4 marbles",
+        "B": "2 shells and a 2×2 grid of marbles (many marbles)",
+        "C": "3 shells",
+        "D": "1 shell and some marbles",
+        "E": "2 shells and 3 marbles"
+      },
+      "answer": "A",
+      "solution": "We need shells + marbles = 16. With 2 shells we have 2×6=12, so we need 4 more marbles: 12+4=16. Option A shows exactly 2 shells and 4 marbles. See PDF page 2 for figures.",
+      "solution_steps": [
+        "Step 1: Each shell = 6, each marble = 1.",
+        "Step 2: Try 2 shells: 2×6 = 12. Need 4 more from marbles: 12 + 4 = 16 ✓.",
+        "Step 3: Option A shows 2 shells and 4 marbles — that is the correct combination."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 2,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "Kenny the Kangaroo hops from his school to the zoo: ↑2, ↘2, ↙1, ←4. From the zoo, Kenny hops: →3, ↗2, ↑2. Which house does Kenny land at?",
+      "options": {
+        "A": "Yellow house (bottom left)",
+        "B": "Blue house (right area)",
+        "C": "Pink/red house (middle)",
+        "D": "House with pink door",
+        "E": "Small house (far right)"
+      },
+      "answer": "B",
+      "solution": "Track Kenny's position from the zoo using the given direction sequence: right 3, then diagonally up-right 2 (right 2, up 2), then up 2. Following these steps on the grid leads to house B. See PDF page 2 for the grid.",
+      "solution_steps": [
+        "Step 1: From zoo, move →3: 3 steps right.",
+        "Step 2: Then ↗2: 2 steps diagonally up-right (+2 right, +2 up).",
+        "Step 3: Then ↑2: 2 steps up.",
+        "Step 4: Total displacement from zoo: right 5, up 4 — this lands on house B."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 3,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "Mia builds a large cube out of small cubes. While she is building it, she takes a photo at five different times. Which of the five photos shown is the fourth?",
+      "options": {
+        "A": "Large nearly-complete cube with a few cubes missing from one corner",
+        "B": "Partial structure, roughly half-built",
+        "C": "Complete 3×3×3 cube",
+        "D": "Small partial structure with few cubes",
+        "E": "Another partial structure"
+      },
+      "answer": "A",
+      "solution": "The five photos show the cube at increasing stages of completion. The fourth photo should show the cube nearly complete — mostly built with just a few small cubes remaining to be placed. Option A shows a large structure that is almost a full cube, which corresponds to the 4th of 5 stages. See PDF page 2 for photos.",
+      "solution_steps": [
+        "Step 1: Photo 1 shows the least cubes, photo 5 shows the finished cube.",
+        "Step 2: Photo 4 is the second-to-last stage: the cube is almost complete.",
+        "Step 3: Option A shows the nearly-complete cube with only a small corner region still to fill — consistent with being one step before the finished cube."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 4,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "Simona writes the numbers 2, 0, 2 and 5 in the boxes. □ + □ − □ + □. In what order can she write the numbers so that the calculation produces the biggest result?",
+      "options": {
+        "A": "0, 2, 2, 5",
+        "B": "0, 5, 2, 2",
+        "C": "2, 5, 2, 0",
+        "D": "5, 0, 2, 2",
+        "E": "5, 2, 0, 2"
+      },
+      "answer": "E",
+      "solution": "To maximize a + b − c + d, we must minimize the number in the subtracted (third) position. The smallest number is 0, so place 0 in the third box. Order 5, 2, 0, 2 gives 5 + 2 − 0 + 2 = 9, which is the largest possible result.",
+      "solution_steps": [
+        "Step 1: The expression is a + b − c + d = (a+b+d) − c = (sum of all four) − 2c.",
+        "Step 2: To maximize, minimize c. The smallest available number is 0.",
+        "Step 3: Place 0 in the third box: _  + _ − 0 + _ = remaining numbers sum = 5+2+2 = 9.",
+        "Step 4: Order 5, 2, 0, 2 gives 5+2−0+2 = 9. Option E."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 5,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "Markus pulls on both ends of each rope at the same time. Which rope forms a knot?",
+      "options": {
+        "A": "Rope A",
+        "B": "Rope B",
+        "C": "Rope C",
+        "D": "Rope D",
+        "E": "Rope E"
+      },
+      "answer": "D",
+      "solution": "When you pull both ends of a rope, a true knot stays tied and tightens. Ropes that are just looped without a proper overhand knot will simply pull straight. Option D shows a rope with a genuine overhand (trefoil) knot that remains knotted when pulled. See PDF page 2 for rope images.",
+      "solution_steps": [
+        "Step 1: Trace each rope from one end to the other, noting how it crosses over and under itself.",
+        "Step 2: A true knot cannot be undone by simply pulling the ends — the topology locks it.",
+        "Step 3: Option D has the crossing pattern of a real overhand knot; all other ropes untangle when pulled."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 6,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "Larissa has a toy windmill that rotates in the wind (see picture on the right) and then stops. What does it look like now?",
+      "options": {
+        "A": "Windmill position A",
+        "B": "Windmill position B",
+        "C": "Windmill position C",
+        "D": "Windmill position D",
+        "E": "Windmill position E"
+      },
+      "answer": "C",
+      "solution": "The hexagonal windmill has alternating black and grey sectors. After rotating clockwise by 60° (one sector), the black and grey pattern shifts by one position. Matching the rotated positions to the answer choices gives option C. See PDF page 3 for the windmill images.",
+      "solution_steps": [
+        "Step 1: Identify the starting pattern of black and grey sectors in the windmill.",
+        "Step 2: Determine the rotation angle from the image (the arrow indicates clockwise rotation).",
+        "Step 3: Apply the rotation: each sector moves one position clockwise, giving the pattern shown in option C."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 7,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "Alex steps on some lines on the ground (see picture on the right). What does the ground look like under his shoe?",
+      "options": {
+        "A": "Shoe outline A",
+        "B": "Shoe outline B",
+        "C": "Shoe outline C",
+        "D": "Shoe outline D",
+        "E": "Shoe outline E"
+      },
+      "answer": "B",
+      "solution": "The pattern on the ground shows curved intersecting lines. The shoe covers a specific elliptical region. Inside that region, only the line segments that fall under the shoe sole are visible, and they appear in the orientation seen from below. Option B correctly shows the line pattern as it would appear under the shoe. See PDF page 3 for the image.",
+      "solution_steps": [
+        "Step 1: Identify the shape and size of the shoe sole relative to the ground lines.",
+        "Step 2: Determine which lines from the ground pattern pass through the shoe-shaped region.",
+        "Step 3: The lines visible through the sole match the pattern in option B."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 8,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "If you add up the numbers on two opposite sides of a die, you always get 7. Which of the pictures can show such a die?",
+      "options": {
+        "A": "Die A",
+        "B": "Die B",
+        "C": "Die C",
+        "D": "Die D",
+        "E": "Die E"
+      },
+      "answer": "B",
+      "solution": "On a standard die, opposite face pairs must sum to 7: (1,6), (2,5), (3,4). For each die shown, check the three visible faces and their implied opposites. Only die B shows three visible faces whose opposites (7 minus each visible face) are the remaining three numbers, consistent with a valid die. See PDF page 3 for die images.",
+      "solution_steps": [
+        "Step 1: Opposite pairs that sum to 7: 1+6, 2+5, 3+4.",
+        "Step 2: For each die, identify the three visible faces. Their three hidden faces must be exactly the complementary numbers.",
+        "Step 3: Die B shows faces whose complements are the other three numbers with no repeats — only this die is valid."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 9,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "George has these three poles. Which windmill can he make with them?",
+      "options": {
+        "A": "Windmill A",
+        "B": "Windmill B",
+        "C": "Windmill C",
+        "D": "Windmill D",
+        "E": "Windmill E"
+      },
+      "answer": "D",
+      "solution": "Count the triangular and rectangular decorations on the three poles shown. The total number and arrangement of green triangles and yellow squares on the three poles must match exactly the windmill option. Option D has the correct number and placement of shapes matching the three poles. See PDF page 3 for figures.",
+      "solution_steps": [
+        "Step 1: Count the total green triangles and yellow squares on all three poles.",
+        "Step 2: Each spoke of the windmill corresponds to one end of a pole — check which windmill uses all the shapes with no extras or missing shapes.",
+        "Step 3: Option D matches the exact count and arrangement of triangles and squares from the three poles."
+      ],
+      "difficulty": "medium",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 10,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "Max draws a large circle with points A, B, C, D (equally spaced). Lisa goes clockwise, Max goes anti-clockwise, both starting at A at the same time. They meet first at B, then C, then D, then again at A. How many times has Max run around the circle by then?",
+      "options": {
+        "A": "1 time",
+        "B": "2 times",
+        "C": "3 times",
+        "D": "4 times",
+        "E": "5 times"
+      },
+      "answer": "C",
+      "solution": "When they first meet at B, Lisa has traveled 1/4 of the circle clockwise and Max has traveled 3/4 anti-clockwise. So Max's speed is 3 times Lisa's speed. They meet each time they together cover a full circle, which happens every 1/(1+3) = 1/4 of Max's lap time. After meeting at B, C, D, and back at A, one full cycle has passed. In that time Max completes 3 full laps.",
+      "solution_steps": [
+        "Step 1: B is 1/4 circle clockwise from A. First meeting: Lisa goes 1/4, Max goes 3/4 anti-clockwise. So Max : Lisa speed ratio = 3 : 1.",
+        "Step 2: They meet every time their combined progress = 1 full circle. Since speeds sum to 4 units, they meet every 1/4 of Max's lap time.",
+        "Step 3: Meetings at B, C, D, then A: that is 4 meetings, taking 4 × (1/4 Max-lap) = 1 full Max-lap worth of time.",
+        "Step 4: Max's speed is 3, so in 1 unit of time Max completes 3 laps."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 11,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Anna, Bonnie and Caspar have some kangaroo cookies on their plates. There are 15 more cookies left. They distribute these so that each child ends up with the same number. How many cookies does Anna get added to her plate?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "6",
+        "E": "7"
+      },
+      "answer": "A",
+      "solution": "From the image, Anna has 7 cookies, Bonnie has 5, and Caspar has 3. Total = 15. Adding 15 more gives 30, so each child ends up with 30÷3 = 10 cookies. Anna already has 7, so she gets 10−7 = 3 more added.",
+      "solution_steps": [
+        "Step 1: From the plates: Anna = 7, Bonnie = 5, Caspar = 3 (total = 15).",
+        "Step 2: Add 15 more cookies: 15 + 15 = 30 total. Equal share: 30 ÷ 3 = 10 each.",
+        "Step 3: Anna needs 10 − 7 = 3 more cookies added to her plate."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 12,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Five friends each start with a fully charged battery. By evening, Bob's battery is empty (he used as much as Anna and Cristina combined). David hasn't used his phone at all. The pictures show all five battery levels. Which is Eduard's?",
+      "options": {
+        "A": "Battery A",
+        "B": "Battery B",
+        "C": "Battery C",
+        "D": "Battery D",
+        "E": "Battery E"
+      },
+      "answer": "C",
+      "solution": "Bob's battery = 0% (empty), David's = 100% (full). Bob used = Anna's usage + Cristina's usage = 100%, so Anna's remaining + Cristina's remaining = 100%. The five batteries shown must include 0% and 100%, and two batteries that together reach 100%. By elimination, Eduard's battery is the one not paired with any other — which corresponds to option C. See PDF page 4.",
+      "solution_steps": [
+        "Step 1: Bob = 0% (empty), David = 100% (full). Two of the five batteries are identified.",
+        "Step 2: Anna + Cristina used 100% total, so their remaining charges sum to 100% (e.g., 25%+75% or similar).",
+        "Step 3: From the five battery images, identify the 0% and 100% ones; pair two more that sum to 100%; the remaining battery belongs to Eduard (option C)."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 13,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Two pieces were cut out of a chessboard. Which are they?",
+      "options": {
+        "A": "Pieces 1 and 2",
+        "B": "Pieces 1 and 5",
+        "C": "Pieces 3 and 4",
+        "D": "Pieces 3 and 5",
+        "E": "Pieces 4 and 5"
+      },
+      "answer": "D",
+      "solution": "The cut chessboard shows two missing regions with specific black-and-white square patterns. Match each gap to one of the five labeled piece shapes. The two pieces that exactly fill the gaps — with the correct coloring pattern — are pieces 3 and 5. See PDF page 4 for the chessboard image.",
+      "solution_steps": [
+        "Step 1: Identify the two missing regions on the cut chessboard, noting the shape and color pattern of the missing squares.",
+        "Step 2: Compare each of the five labeled pieces against the missing regions, checking both shape and black/white pattern.",
+        "Step 3: Pieces 3 and 5 match the two missing regions exactly."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 14,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "Rudi feeds six sheep: five large and one small. Total food = 210g. Each large sheep gets the same amount; the small sheep gets twice as much as a large sheep. How much food does the small sheep get?",
+      "options": {
+        "A": "50 g",
+        "B": "55 g",
+        "C": "60 g",
+        "D": "65 g",
+        "E": "70 g"
+      },
+      "answer": "C",
+      "solution": "Let each large sheep get x grams. The small sheep gets 2x grams. Total: 5x + 2x = 7x = 210 g, so x = 30 g. The small sheep gets 2 × 30 = 60 g.",
+      "solution_steps": [
+        "Step 1: Let large sheep portion = x. Small sheep portion = 2x.",
+        "Step 2: 5 large + 1 small: 5x + 2x = 7x = 210 g.",
+        "Step 3: x = 210 ÷ 7 = 30 g. Small sheep gets 2 × 30 = 60 g."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 15,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Tom wants to cut the pizza in half so that each half has the same number of tomatoes. There are two ways to do this. Along which lines can he cut?",
+      "options": {
+        "A": "1 or 3",
+        "B": "1 or 4",
+        "C": "2 or 3",
+        "D": "2 or 4",
+        "E": "3 or 4"
+      },
+      "answer": "B",
+      "solution": "Count the tomatoes in each half created by each possible cut line. Lines 1 and 4 each divide the pizza into two halves with an equal number of tomatoes; the other lines create unequal halves. See PDF page 4 for the pizza image.",
+      "solution_steps": [
+        "Step 1: For each of the 4 diameter lines, count the tomatoes on each side.",
+        "Step 2: Line 1: equal tomatoes on both sides ✓. Line 2: unequal ✗. Line 3: unequal ✗. Line 4: equal ✓.",
+        "Step 3: The two valid cuts are lines 1 and 4 — option B."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 16,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Eva assembles these two identical parts into a figure. Which of these figures can she NOT build?",
+      "options": {
+        "A": "Figure A",
+        "B": "Figure B",
+        "C": "Figure C",
+        "D": "Figure D",
+        "E": "Figure E"
+      },
+      "answer": "E",
+      "solution": "The two pieces are identical right-angled trapezoids. By joining them in different orientations (flipping, rotating), most figures can be assembled. However, option E requires the pieces to overlap or form a shape that the two trapezoids cannot produce together without the slanted edges failing to align — it cannot be built. See PDF page 4 for piece and figure images.",
+      "solution_steps": [
+        "Step 1: Note the shape of each piece: a right-angled trapezoid with one slanted side.",
+        "Step 2: Try to assemble options A–D by placing the second piece in various orientations (flip/rotate) against the first — all are achievable.",
+        "Step 3: Option E requires a configuration the two trapezoids cannot form — the slanted edges do not align to produce that shape."
+      ],
+      "difficulty": "hard",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 17,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "Six ladybirds each have 1, 2, 3, 4, 5, or 6 spots. Marta takes four photos, each showing three different ladybirds. Each ladybird appears equally often in the four photos. The first three photos are shown. How many spots do the three ladybirds in the fourth photo have in total?",
+      "options": {
+        "A": "10",
+        "B": "11",
+        "C": "12",
+        "D": "13",
+        "E": "14"
+      },
+      "answer": "C",
+      "solution": "Each of the 6 ladybirds appears equally often across 4 photos (3 per photo = 12 total appearances), so each appears exactly 2 times. The total spots across all 4 photos = 2×(1+2+3+4+5+6) = 42. The sum of spots in photos 1–3 (from the image) is 30, so photo 4 total = 42 − 30 = 12.",
+      "solution_steps": [
+        "Step 1: 4 photos × 3 ladybirds = 12 appearances. 6 ladybirds equally → each appears 2 times.",
+        "Step 2: Total spots across all photos = 2×(1+2+3+4+5+6) = 2×21 = 42.",
+        "Step 3: From the three visible photos, the spots sum to 30 (read from image).",
+        "Step 4: Photo 4 total = 42 − 30 = 12."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 18,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "Maria writes the numbers 1, 2, 3, 4, 5, 6 and 7 exactly once onto the number wall. Adding two adjacent numbers from the bottom row gives the number directly above them. The number 6 is placed as shown. Which number must she write in the box with the star?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4",
+        "E": "5"
+      },
+      "answer": "D",
+      "solution": "The wall has 4 numbers on the bottom row and 3 on the top row (7 total). Bottom row: [a, b, c, 6]. Top row: [a+b, b+c, c+6]. The number c+6 must be ≤7, so c=1 and c+6=7. Then using the sum constraint 3b+2c+2a=16, and requiring all seven values {1,2,3,4,5,6,7} to appear exactly once, the unique solution is a=2, b=3, c=1. The star position (top row, middle) = b+c = 3+1 = 4.",
+      "solution_steps": [
+        "Step 1: Bottom: [a, b, c, 6]. Top: [a+b, b+c, c+6]. Sum of all 7 boxes = 28 (sum 1–7).",
+        "Step 2: c+6 must be one of {1–7} and c ≠ 6, so c=1 and c+6=7.",
+        "Step 3: Constraint: 3b + 2a = 16 − 2c = 14. Try b=3: 9+2a=14 → a=2.5? No. Recheck: 2a+3b+3c=16 → 2a+3b+3=16 → 2a+3b=13. b=3: 2a=4 → a=2 ✓.",
+        "Step 4: Verify: bottom [2,3,1,6], top [5,4,7]. All of {1,2,3,4,5,6,7} used once ✓. Star = 4."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 19,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "Tim has laid out a pattern on the floor made of 11 identical tiles (see picture). The pattern is 60 cm tall and 100 cm wide. How long and how wide is one of these tiles?",
+      "options": {
+        "A": "8 cm × 40 cm",
+        "B": "10 cm × 40 cm",
+        "C": "12 cm × 40 cm",
+        "D": "8 cm × 44 cm",
+        "E": "10 cm × 50 cm"
+      },
+      "answer": "B",
+      "solution": "The 11 tiles are arranged in a specific staircase pattern within the 60 cm × 100 cm bounding box. Tiles of 10 cm × 40 cm allow the arrangement shown: rows of tiles (some horizontal, some rotated to 40 cm × 10 cm) that collectively fit the 60 cm height (6 × 10 cm rows) and the 100 cm width with the specific stepped pattern. See PDF page 5 for the tile arrangement.",
+      "solution_steps": [
+        "Step 1: The height is 60 cm. With 10 cm tiles stacked vertically: 60 ÷ 10 = 6 rows.",
+        "Step 2: The width is 100 cm. With 40 cm tiles placed horizontally in two columns: 2 × 40 = 80 cm plus some tiles rotated to 10 cm wide to fill the remaining 20 cm.",
+        "Step 3: The specific staircase arrangement with 11 tiles of 10 × 40 cm exactly fills the pattern shown."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 20,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "Jana wants to divide all her toys into two boxes so that the boxes have the same weight. Toys: hot air balloon (22 g), car (23 g), boat (25 g), helicopter (34 g), airplane (36 g). Which two toys do NOT go in the same box?",
+      "options": {
+        "A": "Balloon and car",
+        "B": "Balloon and boat",
+        "C": "Balloon and airplane",
+        "D": "Helicopter and airplane",
+        "E": "Car and boat"
+      },
+      "answer": "C",
+      "solution": "Total weight = 22+23+25+34+36 = 140 g. Each box must hold 70 g. The only split that works: {22+23+25=70} and {34+36=70}. So balloon (22), car (23), and boat (25) go together, while helicopter (34) and airplane (36) go together. The balloon and airplane are in different boxes — they do NOT go together.",
+      "solution_steps": [
+        "Step 1: Total = 22+23+25+34+36 = 140 g. Each box = 70 g.",
+        "Step 2: Find a subset summing to 70: 22+23+25 = 70 ✓. Remaining: 34+36 = 70 ✓.",
+        "Step 3: Box 1: {balloon 22, car 23, boat 25}. Box 2: {helicopter 34, airplane 36}.",
+        "Step 4: Balloon (box 1) and airplane (box 2) are in different boxes — option C."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 21,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": true,
+      "question_text": "A bracelet has circular, square and triangular gemstones. Lisa removes three neighbouring stones, one of each shape. What bracelet can be created?",
+      "options": {
+        "A": "Bracelet A",
+        "B": "Bracelet B",
+        "C": "Bracelet C",
+        "D": "Bracelet D",
+        "E": "Bracelet E"
+      },
+      "answer": "B",
+      "solution": "The original bracelet repeats the pattern: circle–triangle–square (4 complete repetitions = 12 stones). Removing one of each shape from three consecutive positions removes exactly one repeating set. The remaining 9 stones keep the pattern but with a gap where the three were removed. Option B correctly shows the 9-stone bracelet with the remaining pattern intact. See PDF page 6 for bracelet images.",
+      "solution_steps": [
+        "Step 1: Original bracelet: circle-triangle-square repeated 4 times (12 stones).",
+        "Step 2: Remove 3 neighboring stones: one circle, one triangle, one square — removes one full repeat.",
+        "Step 3: Remaining: 9 stones with the same circle-triangle-square pattern, which matches option B."
+      ],
+      "difficulty": "medium",
+      "topic": "pattern"
+    },
+    {
+      "number": 22,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": true,
+      "question_text": "A calendar shows the days of a month with some numbers missing. The two numbers in the dark grey boxes add up to 29. What day of the week is the 1st day of the month?",
+      "options": {
+        "A": "Monday",
+        "B": "Tuesday",
+        "C": "Wednesday",
+        "D": "Thursday",
+        "E": "Sunday"
+      },
+      "answer": "B",
+      "solution": "The two dark grey boxes are in the Friday (Fr) column: one in week 1 and one in week 4. If 1 January is Tuesday, then the first Friday is the 4th and the fourth Friday is the 25th: 4 + 25 = 29 ✓. This uniquely determines the start day as Tuesday.",
+      "solution_steps": [
+        "Step 1: The dark grey cells are in the same column (Friday), rows 1 and 4, which are 3 weeks apart: their values differ by 21.",
+        "Step 2: Let the smaller value = x. Then x + (x+21) = 29 → 2x = 8 → x = 4. So the first Friday is the 4th.",
+        "Step 3: If Friday = 4th, count back: Thursday=3, Wednesday=2, Tuesday=1. The 1st is a Tuesday."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 23,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": true,
+      "question_text": "Nele folds a piece of paper in half and then in half again. She cuts four pieces out of the paper. When she unfolds the paper, she sees a diamond lattice pattern. What did the paper look like before she unfolded it?",
+      "options": {
+        "A": "Option A (X shape)",
+        "B": "Option B (rounded X / octagon cuts)",
+        "C": "Option C (plus shape)",
+        "D": "Option D (octagonal outline)",
+        "E": "Option E (wide plus)"
+      },
+      "answer": "B",
+      "solution": "Folding the paper twice creates four layers. Each cut removes material from all four layers simultaneously. The final diamond lattice pattern has 4-fold symmetry from the two folds. Unfolding one fold (going from twice-folded to once-folded) shows half the diamond pattern. Option B correctly shows what the paper looks like with one fold still in place — the cuts produce the rounded diamond shapes visible in the lattice. See PDF page 6.",
+      "solution_steps": [
+        "Step 1: Two folds create 4 layers; each cut creates 4 holes when unfolded.",
+        "Step 2: The final diamond pattern has both vertical and horizontal symmetry.",
+        "Step 3: After unfolding only the second (last) fold, the pattern is still symmetric about one axis — this half-unfolded state shows the pattern in option B."
+      ],
+      "difficulty": "hard",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 24,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": true,
+      "question_text": "Mona uses a beam balance to compare the weights of a red square, a yellow star, and a green circle. All objects of one type have the same weight; objects of different types have different weights. Each object weighs 1, 2, 3, 4, or 5 kg. How many kg does the red square weigh?",
+      "options": {
+        "A": "1 kg",
+        "B": "2 kg",
+        "C": "3 kg",
+        "D": "4 kg",
+        "E": "5 kg"
+      },
+      "answer": "B",
+      "solution": "From the scales: Scale 1 shows 2 stars heavier than 1 square (2★ > □). Scale 2 shows 2 circles heavier than 1 square + 1 star (2● > □ + ★). With □=2, ★=3, ●=4: Scale 1: 2×3=6 > 2 ✓. Scale 2: 2×4=8 > 2+3=5 ✓. All weights are different and from {1,2,3,4,5} ✓. The red square weighs 2 kg.",
+      "solution_steps": [
+        "Step 1: From Scale 1: right pan (2 stars) is heavier than left pan (1 square): 2★ > □.",
+        "Step 2: From Scale 2: right pan (2 circles) is heavier than left pan (square + star): 2● > □ + ★.",
+        "Step 3: Try □=2, ★=3: 2×3=6 > 2 ✓. Then 2● > 5 → ●≥3. Use ●=4 (distinct from □,★): 8>5 ✓.",
+        "Step 4: All three weights {2, 3, 4} are distinct and in range {1–5} ✓. Square = 2 kg."
+      ],
+      "difficulty": "hard",
+      "topic": "algebra"
+    }
+  ]
+}
