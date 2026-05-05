@@ -1032,9 +1032,9 @@ NSS_Word_Master/
 │       ├── ── CPA / Learn ──
 │       ├── math-learn-cards.js         # CPA card renderer — static SVG + TTS + interaction
 │       ├── math-learn-visuals.js       # [ADDED] SVG visual asset renderer (pictorial phase)
-│       ├── math-manipulatives.js       # virtual manipulatives — 5 types (Learn + Try only)
-│       ├── math-manipulatives-2.js     # [ADDED] ⚠️ DUPLICATE RISK — role unclear
-│       │                               #   → TODO: merge into math-manipulatives.js or document split
+│       ├── math-manipulatives.js       # virtual manipulatives tools 1-3: number_line, base10_blocks, fraction_bar
+│       ├── math-manipulatives-2.js     # virtual manipulatives tools 4-7: array_grid, ten_frame, addition_table, bar_model
+│       │                               #   (intentional split — math-manipulatives.js dispatches here)
 │       │
 │       ├── ── Try Stage ──
 │       ├── math-3read.js               # [ADDED] 3-Read Strategy overlay (word problems)
@@ -1152,10 +1152,10 @@ Phase 2: M5 -> M6 (Learning Effectiveness)
   M5:  Wrong Review enhancement + My Problems + spaced repetition (day 1,3,7,21)
   M6:  Fact Fluency module (3 phases, timed rounds)
 
-Phase 3: M2 -> M10 -> M11 (User Experience)
-  M2:  Placement Test (CAT adaptive logic + UI)
-  M10: Virtual Manipulatives (all 5 types, interactive drag-and-drop)
-  M11: Step-by-Step Solution UI (Try stage)
+Phase 3: M2 -> M10 -> M11 (User Experience) ✅ COMPLETE
+  M2:  Placement Test (CAT adaptive logic + UI) ✅
+  M10: Virtual Manipulatives (7 types: number_line, base10_blocks, fraction_bar, array_grid, ten_frame, addition_table, bar_model) ✅
+  M11: Step-by-Step Solution UI (Try stage — math-academy-feedback.js + math-learn-visuals.js) ✅
 
 Phase 4: M7 -> M8 -> M9 (Daily Learning + Management)
   M7:  Daily Challenge (50% current + 30% spaced + 20% spiral)
