@@ -18,11 +18,11 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import MathWrongReview, MathAttempt
-    from ..services import xp_engine
+    from ..services import xp_engine, streak_engine
 except ImportError:
     from database import get_db
     from models import MathWrongReview, MathAttempt
-    from services import xp_engine
+    from services import xp_engine, streak_engine
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -52,6 +52,10 @@ def _load_problem(attempt: MathAttempt):
         for p in data.get(stage_key, []):
             if p.get("id") == attempt.problem_id:
                 return p
+    # Fallback: older lesson files store all problems in a flat "items" array
+    for p in data.get("items", []):
+        if p.get("id") == attempt.problem_id:
+            return p
     return None
 
 
@@ -206,6 +210,7 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
     xp_earned = 0
     if is_correct:
         row.consecutive_correct = (row.consecutive_correct or 0) + 1
+        streak_engine.mark_math_done(db)
         if row.consecutive_correct >= 2:
             row.is_mastered = True
             try:
