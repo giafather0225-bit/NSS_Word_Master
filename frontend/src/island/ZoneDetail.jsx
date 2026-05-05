@@ -122,10 +122,12 @@ function _zdRender(el) {
 
     el.innerHTML = `
         <div class="izd-screen izd-zone--${_zdZone}" id="izd-screen">
-            <button class="izd-back-btn" onclick="_closeZoneDetail()" aria-label="Back to map">
-                <i data-lucide="arrow-left"></i>
-            </button>
-            <div class="izd-zone-label"><i data-lucide="${meta.lucideIcon || 'map-pin'}"></i> ${meta.label || _zdZone}</div>
+            <div class="izd-zone-hero" style="background-image:url('/static/img/island/bg_${_zdZone}.png')">
+                <button class="izd-back-btn" onclick="_closeZoneDetail()" aria-label="Back to map">
+                    <i data-lucide="arrow-left"></i>
+                </button>
+                <div class="izd-zone-label"><i data-lucide="${meta.lucideIcon || 'map-pin'}"></i> ${meta.label || _zdZone}</div>
+            </div>
             <div class="izd-body">
                 <div class="izd-left">
                     ${_zdCharVisual(prog)}

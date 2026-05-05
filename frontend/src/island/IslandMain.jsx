@@ -144,7 +144,7 @@ function _renderIslandMap() {
 
             <!-- Full-bleed backdrop -->
             <img class="gim-backdrop${isNight ? ' gim-backdrop--night' : ''}"
-                 src="/static/img/island/island_map.png"
+                 src="/static/img/island/bg_island.png"
                  alt="Gia's Island" draggable="false">
 
             ${isNight ? `

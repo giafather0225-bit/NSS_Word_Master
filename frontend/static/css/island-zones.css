@@ -33,36 +33,72 @@
 .izd-zone--space   { background: linear-gradient(160deg, var(--rewards-light) 0%, var(--rewards-soft) 100%); }
 .izd-zone--legend  { background: linear-gradient(160deg, var(--arcade-light)  0%, var(--arcade-soft)  100%); }
 
+/* ── Zone hero banner (background image) ────────────────────── */
+
+.izd-zone-hero {
+    position: relative;
+    flex-shrink: 0;
+    height: 130px;
+    background-size: cover;
+    background-position: center top;
+    overflow: hidden;
+}
+
+/* Dark gradient overlay for readability */
+.izd-zone-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        rgba(0,0,0,0.22) 0%,
+        rgba(0,0,0,0.40) 100%);
+    pointer-events: none;
+}
+
+/* Fallback: if bg image fails to load, use zone gradient */
+.izd-zone--forest  .izd-zone-hero { background-color: var(--english-soft); }
+.izd-zone--ocean   .izd-zone-hero { background-color: var(--math-soft); }
+.izd-zone--savanna .izd-zone-hero { background-color: var(--diary-soft); }
+.izd-zone--space   .izd-zone-hero { background-color: var(--rewards-soft); }
+.izd-zone--legend  .izd-zone-hero { background-color: var(--arcade-soft); }
+
 .izd-back-btn {
     position: absolute;
-    top: 14px;
-    left: 14px;
+    top: 12px;
+    left: 12px;
     z-index: 10;
-    width: 36px;
-    height: 36px;
-    border: 1px solid var(--border-default);
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,0.35);
     border-radius: var(--radius-md);
-    background: rgba(255,255,255,0.85);
+    background: rgba(0,0,0,0.30);
     backdrop-filter: blur(6px);
-    color: var(--text-primary);
+    color: #ffffff;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background var(--transition-fast);
 }
-.izd-back-btn:hover { background: var(--bg-surface); }
+.izd-back-btn:hover { background: rgba(0,0,0,0.50); }
 .izd-back-btn i { width: 16px; height: 16px; }
 
 .izd-zone-label {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    z-index: 10;
     text-align: center;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: var(--text-secondary);
-    padding: 14px 0 6px;
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+    padding: 0;
 }
+.izd-zone-label i { width: 13px; height: 13px; vertical-align: middle; margin-right: 4px; }
 
 .izd-body {
     flex: 1;
