@@ -1085,7 +1085,7 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
 
         if unit_num >= 4 and len(current_pool) >= 3:
             # 3 random from current lesson
-            sampled = _rng.sample(current_pool, min(3, len(current_pool)))
+            sampled = random.sample(current_pool, min(3, len(current_pool)))
             for p in sampled:
                 lesson_problems.append(_build_sr_problem(p, sr.lesson_id, sr.unit_id, sr.grade, lesson_title))
 
@@ -1104,7 +1104,7 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
                 w_data = _load_lesson_json(weakest_sr.grade, weakest_sr.unit_id, _lesson_name(weakest_sr.lesson_id))
                 if w_data:
                     w_pool = _stage_problems(w_data, "practice_r1")
-                    w_sampled = _rng.sample(w_pool, min(2, len(w_pool)))
+                    w_sampled = random.sample(w_pool, min(2, len(w_pool)))
                     for p in w_sampled:
                         lesson_problems.append(_build_sr_problem(
                             p, weakest_sr.lesson_id, weakest_sr.unit_id, weakest_sr.grade,
@@ -1112,12 +1112,12 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
                         ))
         else:
             # U01-U03: 5 random from current lesson
-            sampled = _rng.sample(current_pool, min(5, len(current_pool)))
+            sampled = random.sample(current_pool, min(5, len(current_pool)))
             for p in sampled:
                 lesson_problems.append(_build_sr_problem(p, sr.lesson_id, sr.unit_id, sr.grade, lesson_title))
 
         # Shuffle within each lesson's problem set for variety
-        _rng.shuffle(lesson_problems)
+        random.shuffle(lesson_problems)
         all_problems.extend(lesson_problems)
 
     return {
