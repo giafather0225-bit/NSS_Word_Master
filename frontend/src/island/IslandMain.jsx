@@ -267,9 +267,11 @@ function _svgZonesHTML(charsByZone, completedZones, legendLocked) {
             ? `onclick="_islandLockedClick('${zone}')"`
             : `onclick="_islandZoneClick('${zone}')"`;
 
-        // Label is inside the circle, centered at the bottom (cy + r - 26px from bottom edge)
+        // Label sits BELOW the circle, with a small gap from the circle bottom edge.
+        // Anchor = bottom-center of circle + 18px gap. Label-wrap uses translate(-50%, 0)
+        // so the label's TOP aligns to the anchor (label hangs below).
         const lx = `${(cfg.cx / W * 100).toFixed(2)}%`;
-        const ly = `${((cfg.cy + cfg.r - 26) / H * 100).toFixed(2)}%`;
+        const ly = `${((cfg.cy + cfg.r + 18) / H * 100).toFixed(2)}%`;
 
         return `
             <div class="gim-zone-label-wrap" style="left:${lx};top:${ly}" ${click}>
