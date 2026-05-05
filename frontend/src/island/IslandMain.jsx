@@ -267,16 +267,18 @@ function _svgZonesHTML(charsByZone, completedZones, legendLocked) {
             ? `onclick="_islandLockedClick('${zone}')"`
             : `onclick="_islandZoneClick('${zone}')"`;
 
-        // Label sits BELOW the circle, with a small gap from the circle bottom edge.
-        // Anchor = bottom-center of circle + 18px gap. Label-wrap uses translate(-50%, 0)
-        // so the label's TOP aligns to the anchor (label hangs below).
+        // Label sits at the INSIDE bottom edge of the circle.
+        // Anchor = circle's bottom edge (cy + r). Label-wrap uses translate(-50%, -100%)
+        // so the entire stack (badges → label) hangs ABOVE the anchor, label bottom
+        // touching the circle rim from inside.
         const lx = `${(cfg.cx / W * 100).toFixed(2)}%`;
-        const ly = `${((cfg.cy + cfg.r + 18) / H * 100).toFixed(2)}%`;
+        const ly = `${((cfg.cy + cfg.r - 4) / H * 100).toFixed(2)}%`;
 
+        // Order: badges first (rendered ABOVE label) → label last (sits at bottom).
         return `
             <div class="gim-zone-label-wrap" style="left:${lx};top:${ly}" ${click}>
-                <div class="gim-label gim-label--${meta.varPfx}">${lockTag}${meta.label}</div>
                 ${warnBadge}${evoBadge}
+                <div class="gim-label gim-label--${meta.varPfx}">${lockTag}${meta.label}</div>
             </div>`;
     }).join('');
 

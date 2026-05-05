@@ -563,11 +563,14 @@
 }
 .gim-circle--locked:hover { fill-opacity: 0.14; }
 
-/* ── Zone label wrap (below circle, horizontally centered) ────── */
+/* ── Zone label wrap (inside circle, label bottom at rim) ─────── */
 
 .gim-zone-label-wrap {
     position: absolute;
-    transform: translate(-50%, 0);  /* center horizontally; top edge anchored below circle */
+    /* Anchor is at circle's bottom rim. Translate up by full height so the
+       wrap hangs above the anchor — badges stacked on top, label at bottom
+       resting on the rim from inside. */
+    transform: translate(-50%, -100%);
     z-index: 5;
     display: flex;
     flex-direction: column;
