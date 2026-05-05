@@ -10,7 +10,7 @@
 
 /* ═══ Rating Overlay (fullscreen white) ═══ */
 .review-rating-overlay {
-    position: fixed; inset: 0; z-index: 10000;
+    position: fixed; inset: 0; z-index: var(--z-modal);
     background: var(--bg-card);
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none;
@@ -65,7 +65,7 @@
 .review-rate-btn.wrong { border-color: var(--color-error); color: var(--color-error); }
 .review-rate-btn.wrong:hover { background: var(--color-error-light); }
 .review-rate-btn.hard  { border-color: var(--color-warning); color: var(--color-warning); }
-.review-rate-btn.hard:hover  { background: rgba(245,158,11,0.06); }
+.review-rate-btn.hard:hover  { background: var(--color-warning-light); }
 .review-rate-btn.good  { border-color: var(--color-success); color: var(--color-success); }
 .review-rate-btn.good:hover  { background: var(--color-success-light); }
 .review-rate-btn.easy  { border-color: var(--color-secondary); color: var(--color-secondary); }
@@ -73,7 +73,7 @@
 
 /* ═══ Done Overlay ═══ */
 .review-done-overlay {
-    position: fixed; inset: 0; z-index: 10000;
+    position: fixed; inset: 0; z-index: var(--z-modal);
     background: var(--bg-card);
     display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none;
@@ -100,8 +100,8 @@
 
 /* ═══ Math Spaced Review Overlay ═══ */
 .math-sr-overlay {
-    position: fixed; inset: 0; z-index: 10100;
-    background: rgba(43, 39, 34, 0.55);
+    position: fixed; inset: 0; z-index: calc(var(--z-modal) + 100);
+    background: rgba(43, 39, 34, 0.55); /* darker than --overlay-scrim for modal backdrop */
     display: flex; align-items: center; justify-content: center;
     animation: math-sr-fade-in 0.2s ease;
 }

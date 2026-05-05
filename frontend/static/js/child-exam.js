@@ -155,7 +155,7 @@ async function finishPerfectChallenge() {
     if (stageEl) {
         const bgStyle = perfect ? "exam-result--perfect" : "exam-result--done";
         const bodyLines = perfect
-            ? `<div class="exam-result-trophy">🏆</div>
+            ? `<div class="exam-result-trophy"><i data-lucide="trophy"></i></div>
                <div class="exam-result-title exam-result-title--perfect">PERFECT!</div>
                <div class="exam-result-sub exam-result-sub--perfect">No mistakes — incredible!</div>`
             : `<div class="exam-result-check"><span class="check-dot check-dot--lg"></span></div>
@@ -186,9 +186,10 @@ async function finishPerfectChallenge() {
         });
     }
     particleBurst(perfect ? 48 : 32);
-    showPerfectBanner(perfect ? "Perfect! 🏆" : "Final Test Done!");
+    if (typeof lucide !== "undefined") lucide.createIcons();
+    showPerfectBanner(perfect ? "Perfect!" : "Final Test Done!");
     setStatus(perfect
-        ? "🏆 Perfect score! Click \"Test\" to retake."
+        ? "Perfect score! Click \"Test\" to retake."
         : `Done! ${magicFailCount} reset(s). Click the Test button to retry.`
     );
 

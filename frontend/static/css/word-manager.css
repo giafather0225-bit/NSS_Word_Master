@@ -49,7 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
   transition: background 0.15s;
 }
 .wm-close-btn:hover { background: var(--border-strong); }
@@ -113,7 +113,7 @@
   border-radius: 50%;
   border: none;
   background: transparent;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
   font-size: 14px;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
@@ -136,7 +136,7 @@
   transition: border-color 0.15s;
 }
 .wm-input:focus { border-color: var(--primary, var(--color-info)); }
-.wm-input::placeholder { color: var(--text-secondary, var(--text-secondary)); }
+.wm-input::placeholder { color: var(--text-secondary); }
 
 .wm-btn-primary {
   padding: 10px 20px;
@@ -150,13 +150,13 @@
   white-space: nowrap;
   transition: background 0.15s;
 }
-.wm-btn-primary:hover { background: var(--primary-hover, #2563EB); }
+.wm-btn-primary:hover { background: var(--color-primary-hover); }
 .wm-btn-primary:disabled { opacity: 0.5; cursor: default; }
 
 .wm-empty, .wm-empty-words {
   text-align: center;
   padding: 40px 20px;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.6;
 }
@@ -202,7 +202,7 @@
   font-weight: 600;
   cursor: pointer;
   background: transparent;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
   transition: background 0.2s, color 0.2s;
 }
 .wm-mode-btn.active {
@@ -250,7 +250,7 @@
 .wm-ai-label {
   font-size: 12px;
   font-weight: 600;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
   text-transform: uppercase;
   margin-bottom: 4px;
   margin-top: 10px;
@@ -258,7 +258,7 @@
 .wm-ai-label:first-child { margin-top: 0; }
 .wm-ai-provider {
   font-size: 11px;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
   margin-top: 10px;
   text-align: right;
 }
@@ -322,13 +322,13 @@
 }
 .wm-word-pos {
   font-size: 12px;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
   font-weight: 400;
   font-style: italic;
 }
 .wm-word-def {
   font-size: 14px;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
   margin-top: 2px;
 }
 .wm-word-ex {
@@ -374,7 +374,7 @@
 }
 .wm-lesson-count {
   font-size: 12px;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
 }
 .wm-lesson-actions {
   display: flex;
@@ -450,7 +450,7 @@
 }
 .wm-wt-sub {
   font-size: 12px;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
 }
 
 /* ── Weekly Test Question View ─────────────────────────── */
@@ -466,7 +466,7 @@
 }
 .wm-wt-ex {
   font-size: 14px;
-  color: var(--text-secondary, var(--text-secondary));
+  color: var(--text-secondary);
   font-style: italic;
   margin-bottom: 12px;
 }
