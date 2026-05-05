@@ -10,6 +10,7 @@ API: GET /api/math/academy/grades, GET /api/math/academy/{grade}/units,
 
 import json
 import logging
+import random
 import re
 from datetime import date, datetime, timedelta
 from fractions import Fraction
@@ -1070,8 +1071,6 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
     )
 
     all_problems: list[dict] = []
-
-    import random as _rng
 
     for sr in due_lessons:
         data = _load_lesson_json(sr.grade, sr.unit_id, _lesson_name(sr.lesson_id))
