@@ -195,8 +195,8 @@ def submit_round(req: RoundResultIn, db: Session = Depends(get_db)):
             row.best_time_sec = req.time_sec
         row.accuracy_pct = max(row.accuracy_pct, accuracy)
 
-        # Phase progression: require perfect score on a round of >= 10 problems
-        perfect_round = req.total >= 10 and req.score == req.total
+        # Phase progression: perfect score on a round of >= 5 problems
+        perfect_round = req.total >= 5 and req.score == req.total
         if row.current_phase == "A" and perfect_round:
             row.current_phase = "B"
         elif row.current_phase == "B" and perfect_round:

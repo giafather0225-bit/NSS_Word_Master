@@ -21,14 +21,14 @@
 function _normalizeProblem(p) {
     if (!p) return p;
 
-    // 질문 텍스트 필드 정규화 — 일부 JSON은 question 대신 stem / prompt 사용.
+    // Normalize question text field — some JSON files use stem / prompt instead of question.
     if (!p.question) {
         p.question = p.stem || p.prompt || p.text || '';
     }
 
-    // choices → options 변환.
-    //  - dict {"A": "...", "B": "..."} → list, 키 순서대로
-    //  - "A) ", "A. ", "A: ", "A " 같은 모든 접두어 제거
+    // Convert choices → options array.
+    //  - dict {"A": "...", "B": "..."} → list, sorted by key
+    //  - Strip leading "A) ", "A. ", "A: ", "A " prefixes
     if (!p.options && p.choices) {
         var rawChoices = p.choices;
         var choicesList;
@@ -47,8 +47,8 @@ function _normalizeProblem(p) {
         });
     }
 
-    // type 정규화. JSON에 다양한 표기가 섞여 있고 일부는 type이 아예 없음.
-    // dispatcher가 'mc' / 'tf' / 'input' / 'drag_sort'만 분기하므로 그 4종으로 매핑.
+    // Normalize type field. JSON contains mixed notation and some lack type entirely.
+    // Dispatcher only branches on 'mc' / 'tf' / 'input' / 'drag_sort', so map to those 4.
     var typeMap = {
         'true_false':       'tf',
         'TRUE_FALSE':       'tf',
@@ -69,10 +69,10 @@ function _normalizeProblem(p) {
     }
     if (p.type) p.type = p.type.toLowerCase();
 
-    // STRUCTURE-BASED INFERENCE — JSON 메타데이터가 없거나 input으로 잘못 분류돼도
-    // options 배열이 존재하면 사실상 MC. 답이 'true'/'false' 한쪽이면 TF.
-    // 데이터 1,399 problems with type=<missing> + 858 with type='input' but
-    // having options exist; this rescues all of them without per-file fixes.
+    // STRUCTURE-BASED INFERENCE — even when JSON metadata is missing or type is
+    // misclassified as input, if an options array exists it is effectively MC.
+    // If answer is 'true'/'false', it is TF. This rescues 1,399 problems with
+    // type=<missing> + 858 with type='input' but having options, without per-file fixes.
     var ans = String(p.correct_answer != null ? p.correct_answer
                   : (p.answer != null ? p.answer : '')).trim();
     var hasOptions = Array.isArray(p.options) && p.options.length > 0;
@@ -315,7 +315,7 @@ function _hideMathLoading() {
 /** @tag MATH @tag PROBLEM */
 function _mathStageLabel(stage) {
     const labels = {
-        pretest: 'Pretest',
+        pretest: 'Warm-Up',
         try: 'Try',
         practice_r1: 'Practice R1',
         practice_r2: 'Practice R2',

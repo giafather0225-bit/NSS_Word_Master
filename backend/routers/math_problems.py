@@ -18,15 +18,17 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import MathWrongReview, MathAttempt
+    from ..services import xp_engine
 except ImportError:
     from database import get_db
     from models import MathWrongReview, MathAttempt
+    from services import xp_engine
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
-# Spaced repetition intervals (Phase 1: 1 correct = mastered;
-# wrong advances interval, scheduling next review farther out)
+# Spaced repetition intervals (2 consecutive correct = mastered;
+# wrong resets streak and advances interval farther out)
 _INTERVALS = [1, 3, 7, 21]
 
 _DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "math"
@@ -146,6 +148,8 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
     row = db.query(MathWrongReview).filter_by(id=req.review_id).first()
     if not row:
         return {"error": "Review item not found"}
+    if row.is_mastered:
+        return {"error": "Already mastered", "is_correct": True, "is_mastered": True}
 
     # Resolve correct answer
     attempt = db.query(MathAttempt).filter_by(id=row.original_attempt_id).first() if row.original_attempt_id else None
@@ -160,13 +164,13 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
     if not problem:
         return {"error": "Original problem not found"}
 
-    # answer 필드명 통일: "answer" 또는 "correct_answer" 모두 처리
+    # Unify answer field: accept both "answer" and "correct_answer"
     correct_raw = str(
         problem.get("answer") or problem.get("correct_answer") or ""
     ).strip()
     correct_letter = ""
     correct_answer = correct_raw
-    # choices list/dict일 때 answer 키→값 변환
+    # Resolve letter key → choice text when choices is list/dict
     choices = problem.get("choices")
     if correct_raw and len(correct_raw) == 1 and correct_raw.upper() in "ABCDEFGH":
         correct_letter = correct_raw.upper()
@@ -185,9 +189,21 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
 
     row.times_reviewed += 1
 
+    xp_earned = 0
     if is_correct:
-        row.is_mastered = True
+        row.consecutive_correct = (row.consecutive_correct or 0) + 1
+        if row.consecutive_correct >= 2:
+            row.is_mastered = True
+            try:
+                xp_earned = xp_engine.award_xp(db, "math_problem_mastered", detail=row.problem_id)
+            except Exception as e:
+                logger.warning("XP award failed: %s", e)
+        else:
+            row.next_review_date = (
+                datetime.now() + timedelta(days=row.interval_days or 1)
+            ).strftime("%Y-%m-%d")
     else:
+        row.consecutive_correct = 0
         idx = _INTERVALS.index(row.interval_days) if row.interval_days in _INTERVALS else 0
         next_idx = min(idx + 1, len(_INTERVALS) - 1)
         row.interval_days = _INTERVALS[next_idx]
@@ -200,7 +216,9 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
         "is_correct": is_correct,
         "correct_answer": correct_answer,
         "is_mastered": row.is_mastered,
+        "consecutive_correct": row.consecutive_correct or 0,
         "next_review_date": row.next_review_date if not row.is_mastered else None,
+        "xp_earned": xp_earned,
         "feedback": (lambda fb: (
             fb.get("correct", "") if is_correct else fb.get("incorrect", fb.get("wrong", ""))
         ) if isinstance(fb, dict) else str(fb or ""))(

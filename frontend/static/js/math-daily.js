@@ -31,7 +31,7 @@ async function startMathDaily() {
         if (!data.exists || !data.problems || !data.problems.length) {
             stage.innerHTML = `
                 <div class="math-daily math-daily-empty">
-                    <h2 class="math-daily-title">🌞 Daily Challenge</h2>
+                    <h2 class="math-daily-title"><i data-lucide="sun"></i> Daily Challenge</h2>
                     <p>No problems available yet. Add more lessons to enable daily challenges.</p>
                 </div>`;
             return;
@@ -217,7 +217,7 @@ function _renderDailySummary({ alreadyDone }) {
 
     stage.innerHTML = `
         <div class="math-daily math-daily-summary">
-            <h2 class="math-daily-title">🌞 Daily Challenge — Done</h2>
+            <h2 class="math-daily-title"><i data-lucide="sun"></i> Daily Challenge — Done</h2>
             <div class="math-daily-score">${correct} / ${total}</div>
             <div class="math-daily-pct">${pct}%</div>
             <div class="math-daily-chips">

@@ -82,7 +82,7 @@ def _collect_practice_problems() -> list[dict]:
                             continue
                         if not str(p.get("question", "")).strip():
                             continue  # skip problems with empty question text
-                        # choices → options 통합 (list 형식 + dict 형식 모두 처리)
+                        # Unify choices → options (handles both list and dict formats)
                         opts = p.get("options") or []
                         if not opts:
                             raw = p.get("choices") or []
@@ -95,19 +95,19 @@ def _collect_practice_problems() -> list[dict]:
                                     c[3:].strip() if len(c) > 2 and c[1] in ".)" else c
                                     for c in raw
                                 ]
-                        # choices → answer 키→값 변환 (dict형 + list형 모두 처리)
+                        # Resolve answer letter key → choice value (dict and list)
                         raw_choices = p.get("choices")
                         ans_val = str(p.get("answer", "")).strip()
                         if raw_choices and ans_val:
                             if isinstance(raw_choices, dict):
-                                # {"A": "175", "B": "185"} 형식
+                                # dict format: {"A": "175", "B": "185"}
                                 ans_key = ans_val.upper()
                                 if ans_key in raw_choices:
                                     p = dict(p)
                                     p["answer"] = raw_choices[ans_key]
                             elif isinstance(raw_choices, list):
-                                # ["A. 188", "B. 198"] 또는 ["A) 188", "B) 198"] 형식
-                                # answer가 단일 레이블("B")이면 해당 항목 값으로 변환
+                                # list format: ["A. 188", "B. 198"] or ["A) 188", "B) 198"]
+                                # If answer is a single label ("B"), resolve to the matching value
                                 if len(ans_val) == 1 and ans_val.upper() in "ABCDEFGH":
                                     label = ans_val.upper()
                                     for c in raw_choices:
@@ -116,7 +116,7 @@ def _collect_practice_problems() -> list[dict]:
                                             p = dict(p)
                                             p["answer"] = c_str[2:].strip()
                                             break
-                        # type 정규화
+                        # Normalize type field
                         _TYPE_MAP = {
                             "MC": "mc", "multiple_choice": "mc",
                             "TRUE_FALSE": "tf", "true_false": "tf",
@@ -272,7 +272,8 @@ def _pick_daily_problems(date_str: str, db: Session | None = None) -> list[dict]
         if len(picked) < n:
             picked.extend(_take(pool, n - len(picked)))
 
-    # Strip answer before sending to client
+    # Return full problems with answers for server-side storage.
+    # Client-facing stripping happens in the endpoint.
     return [{
         "index": i,
         "id": p["id"],
@@ -280,6 +281,9 @@ def _pick_daily_problems(date_str: str, db: Session | None = None) -> list[dict]
         "question": p["question"],
         "options": p["options"],
         "concept": p["concept"],
+        "answer": p["answer"],
+        "feedback_correct": p.get("feedback_correct", "Correct!"),
+        "feedback_wrong": p.get("feedback_wrong", ""),
     } for i, p in enumerate(picked)]
 
 
@@ -307,13 +311,22 @@ def daily_today(db: Session = Depends(get_db)):
         db.commit()
         db.refresh(row)
 
+    raw = json.loads(row.problems_json) if row.problems_json else []
+    client_problems = [{
+        "index": p.get("index", i),
+        "id": p.get("id"),
+        "type": p.get("type"),
+        "question": p.get("question"),
+        "options": p.get("options"),
+        "concept": p.get("concept"),
+    } for i, p in enumerate(raw)]
     return {
         "date": today,
         "exists": True,
         "completed": row.completed,
         "score": row.score,
         "total": row.total,
-        "problems": json.loads(row.problems_json) if row.problems_json else [],
+        "problems": client_problems,
     }
 
 
@@ -345,21 +358,19 @@ def daily_submit_answer(req: DailyAnswerIn, db: Session = Depends(get_db)):
     if req.index < 0 or req.index >= len(stored):
         raise HTTPException(status_code=400, detail="Invalid problem index")
 
-    problem_id = stored[req.index].get("id")
-    full_pool = {p["id"]: p for p in _collect_practice_problems()}
-    full = full_pool.get(problem_id)
-    if not full:
+    full = stored[req.index]
+    if not full or not full.get("answer"):
         raise HTTPException(status_code=404, detail="Problem not found")
 
     def _norm(s: str) -> str:
-        """정답 비교용 정규화: 공백 제거, 소문자, 분수 단순화."""
+        """Normalize for answer comparison: strip whitespace, lowercase."""
         s = str(s).strip().lower().replace(" ", "")
-        # "3/6" vs "3" 등 분수 분자만 입력한 경우 대비
+        # Handle fraction numerator-only input (e.g. "3" for "3/6")
         return s
 
     user_ans = _norm(req.answer)
     correct_ans = _norm(full["answer"])
-    # 분수: 분자만 입력 허용 (예: "3/6" 정답에 "3" 입력)
+    # Accept numerator-only input for fractions (e.g. "3" matches "3/6")
     is_correct = user_ans == correct_ans
     if not is_correct and "/" in correct_ans:
         try:
