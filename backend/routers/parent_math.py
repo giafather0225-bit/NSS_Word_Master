@@ -38,6 +38,8 @@ def parent_math_summary(db: Session = Depends(get_db)):
     completed         = sum(1 for r in progress_rows if r.is_completed)
     pretest_passed    = sum(1 for r in progress_rows if r.pretest_passed)
     unit_tests_passed = sum(1 for r in progress_rows if r.unit_test_passed)
+    exit_quiz_passed  = sum(1 for r in progress_rows if r.exit_quiz_passed)
+    eq_pass_rate      = round(exit_quiz_passed / completed * 100, 1) if completed else 0.0
 
     # Attempts — last 7 days
     week_ago = (date.today() - timedelta(days=7)).isoformat()
@@ -117,6 +119,21 @@ def parent_math_summary(db: Session = Depends(get_db)):
     sr_scores      = [r.exit_quiz_score for r in db.query(MathSpacedReview).all() if r.exit_quiz_score is not None]
     sr_avg_score   = round(sum(sr_scores) / len(sr_scores) * 20, 1) if sr_scores else 0.0  # /5 * 100
 
+    # Exit quiz history (last 10 passed lessons, newest first)
+    recent_eq = sorted(
+        [r for r in progress_rows if r.exit_quiz_passed and r.completed_at],
+        key=lambda r: r.completed_at or "",
+        reverse=True,
+    )[:10]
+    exit_quiz_history = [{
+        "grade":        r.grade,
+        "unit":         r.unit_id,
+        "lesson":       r.lesson_id,
+        "score":        r.exit_quiz_score,
+        "attempts":     r.exit_quiz_attempts or 1,
+        "completed_at": (r.completed_at or "")[:10],
+    } for r in recent_eq]
+
     # Unit test history (last 10)
     ut_rows = (
         db.query(MathUnitTest)
@@ -141,6 +158,8 @@ def parent_math_summary(db: Session = Depends(get_db)):
             "completed":         completed,
             "pretest_passed":    pretest_passed,
             "unit_tests_passed": unit_tests_passed,
+            "exit_quiz_passed":  exit_quiz_passed,
+            "eq_pass_rate":      eq_pass_rate,
         },
         "recent_7d": {
             "total_attempts":   total_attempts,
@@ -159,5 +178,6 @@ def parent_math_summary(db: Session = Depends(get_db)):
             "total":        sr_total,
             "avg_score_pct": sr_avg_score,
         },
+        "exit_quiz_history": exit_quiz_history,
         "unit_test_history": unit_test_history,
     }
