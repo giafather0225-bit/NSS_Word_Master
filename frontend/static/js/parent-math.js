@@ -33,6 +33,7 @@ async function _ppMathSummary(body) {
                 <div>${_ppMathFluency(data.fluency || [])}</div>
             </div>
             ${_ppMathSpacedReview(data.spaced_review || {})}
+            ${_ppMathExitQuizHistory(data.exit_quiz_history || [])}
             ${_ppMathUnitTestHistory(data.unit_test_history || [])}
             ${_ppMathDailyChart(data.daily_recent || [])}
             ${_ppMathKangaroo(data.kangaroo || [])}`;
@@ -44,7 +45,7 @@ async function _ppMathSummary(body) {
     }
 }
 
-/** Top 4-stat grid: completed lessons, 7-day accuracy, unit tests passed, spaced review due. @tag PARENT MATH */
+/** Top 5-stat grid: completed lessons, exit quiz rate, 7-day accuracy, unit tests passed, spaced review due. @tag PARENT MATH */
 function _ppMathCards(data) {
     const a = data.academy || {};
     const r = data.recent_7d || {};
@@ -54,12 +55,18 @@ function _ppMathCards(data) {
         : 0;
     const srDue = sr.due_today || 0;
     const srDueStyle = srDue > 0 ? "color:var(--color-error)" : "";
+    const eqRate = a.eq_pass_rate || 0;
+    const eqStyle = eqRate >= 80 ? "color:var(--math-ink)" : eqRate > 0 ? "color:var(--color-warning)" : "";
     return `
         ${_ppMathTitle("calculator", "Math Overview", "margin-top:0")}
         <div class="pp-stats pp-math-stats">
             <div class="pp-stat pp-math-stat">
                 <div class="pp-stat-num">${a.completed || 0}/${a.total_lessons || 0}</div>
                 <div class="pp-stat-label">Lessons (${completion}%)</div>
+            </div>
+            <div class="pp-stat pp-math-stat">
+                <div class="pp-stat-num" style="${eqStyle}">${eqRate}%</div>
+                <div class="pp-stat-label">Exit Quiz Rate · ${a.exit_quiz_passed || 0} passed</div>
             </div>
             <div class="pp-stat pp-math-stat">
                 <div class="pp-stat-num">${r.accuracy_pct || 0}%</div>
@@ -197,6 +204,44 @@ function _ppMathSpacedReview(sr) {
                 <div class="pp-stat-num">${sr.avg_score_pct}%</div>
                 <div class="pp-stat-label">Avg Exit Score · ${sr.total} scheduled</div>
             </div>
+        </div>`;
+}
+
+/** Exit quiz history table (last 10 passed lessons). @tag PARENT MATH */
+function _ppMathExitQuizHistory(history) {
+    if (!history.length) return "";
+    const rows = history.map(r => {
+        const score = r.score != null ? r.score : "—";
+        const pct = r.score != null ? Math.round((r.score / 5) * 100) : 0;
+        const accClass = pct >= 90 ? "good" : pct >= 80 ? "ok" : "low";
+        const attempts = r.attempts || 1;
+        const attLabel = attempts === 1
+            ? `<span style="color:var(--text-hint);font-size:11px">1st try</span>`
+            : `<span style="color:var(--color-warning);font-size:11px;font-weight:600">${attempts} tries</span>`;
+        return `
+            <tr>
+                <td style="color:var(--text-hint);font-size:12px">${escapeHtml(r.grade || "")}</td>
+                <td><strong>${escapeHtml(_ppMathLesson(r.lesson || ""))}</strong></td>
+                <td style="text-align:right">${score}/5</td>
+                <td style="text-align:right"><span class="pp-stage-acc pp-stage-acc--${accClass}">${pct}%</span></td>
+                <td style="text-align:center">${attLabel}</td>
+                <td style="color:var(--text-secondary)">${escapeHtml(r.completed_at || "")}</td>
+            </tr>`;
+    }).join("");
+    return `
+        ${_ppMathTitle("check-circle", "Exit Quiz History", "margin-top:24px")}
+        <div class="pp-table-wrap">
+            <table class="pp-log-table">
+                <thead><tr>
+                    <th>Grade</th>
+                    <th>Lesson</th>
+                    <th style="text-align:right">Score</th>
+                    <th style="text-align:right">Acc</th>
+                    <th style="text-align:center">Attempts</th>
+                    <th>Date</th>
+                </tr></thead>
+                <tbody>${rows}</tbody>
+            </table>
         </div>`;
 }
 
