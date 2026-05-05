@@ -155,6 +155,73 @@ def test_submit_wrong_reschedules(client, db_session):
     assert review.interval_days > 1  # interval advanced
 
 
+def test_miss_penalty_1day_overdue(client, db_session):
+    """1 day overdue: interval × 0.7, consecutive_correct reset."""
+    attempt = MathAttempt(
+        problem_id=_PROBLEM_ID, grade=_GRADE, unit=_UNIT, lesson=_LESSON,
+        stage="practice_r1", is_correct=False, user_answer="A",
+        error_type="concept_gap", time_spent_sec=5,
+        attempted_at=datetime.now().isoformat(),
+    )
+    db_session.add(attempt)
+    db_session.commit()
+    db_session.refresh(attempt)
+
+    yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+    review = MathWrongReview(
+        problem_id=_PROBLEM_ID, original_attempt_id=attempt.id,
+        next_review_date=yesterday, interval_days=7,
+        times_reviewed=1, is_mastered=False, consecutive_correct=1,
+    )
+    db_session.add(review)
+    db_session.commit()
+    db_session.refresh(review)
+
+    resp = client.post(
+        "/api/math/my-problems/submit-answer",
+        json={"review_id": review.id, "user_answer": _CORRECT},
+    )
+    body = resp.json()
+    assert body["is_correct"] is True
+    # consecutive_correct was reset to 0 by miss penalty, then +1 for correct = 1
+    assert body["consecutive_correct"] == 1
+    assert body["is_mastered"] is False
+
+
+def test_miss_penalty_2days_overdue_resets_interval(client, db_session):
+    """2+ days overdue: interval reset to first (_INTERVALS[0] = 1 day)."""
+    attempt = MathAttempt(
+        problem_id=_PROBLEM_ID, grade=_GRADE, unit=_UNIT, lesson=_LESSON,
+        stage="practice_r1", is_correct=False, user_answer="A",
+        error_type="concept_gap", time_spent_sec=5,
+        attempted_at=datetime.now().isoformat(),
+    )
+    db_session.add(attempt)
+    db_session.commit()
+    db_session.refresh(attempt)
+
+    three_days_ago = (datetime.now() - timedelta(days=3)).strftime("%Y-%m-%d")
+    review = MathWrongReview(
+        problem_id=_PROBLEM_ID, original_attempt_id=attempt.id,
+        next_review_date=three_days_ago, interval_days=21,
+        times_reviewed=3, is_mastered=False, consecutive_correct=1,
+    )
+    db_session.add(review)
+    db_session.commit()
+    db_session.refresh(review)
+
+    resp = client.post(
+        "/api/math/my-problems/submit-answer",
+        json={"review_id": review.id, "user_answer": _CORRECT},
+    )
+    body = resp.json()
+    assert body["is_correct"] is True
+    assert body["consecutive_correct"] == 1
+    assert body["is_mastered"] is False
+    db_session.refresh(review)
+    assert review.interval_days == 1  # reset to first interval
+
+
 def test_submit_unknown_review_id(client):
     resp = client.post(
         "/api/math/my-problems/submit-answer",
