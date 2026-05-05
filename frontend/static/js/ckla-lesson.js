@@ -639,6 +639,10 @@ async function _markWordWorkDone() {
  */
 function _maybeShowDifficultyPrompt(prog) {
   if (!prog || !prog.completed) return;
+  // Trigger badge check on every lesson completion (server deduplicates via UNIQUE key)
+  if (typeof cklaNav !== 'undefined') {
+    fetch(`/api/academy/ckla/badges/check?grade=${cklaNav.grade}`, { method: 'POST' }).catch(() => {});
+  }
   if (prog.difficulty_rating) return;
   if (document.getElementById('ckla-diff-overlay')) return;
 

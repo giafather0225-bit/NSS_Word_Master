@@ -747,6 +747,7 @@ async function showBadgeGallery() {
           </div>
         `).join('')}
       </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
   } catch {
     const body = modal.querySelector('.ckla-badge-modal-body');
     body.innerHTML = '<div class="ckla-empty">Could not load badges.</div>';

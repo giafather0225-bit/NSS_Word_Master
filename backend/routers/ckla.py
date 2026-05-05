@@ -676,7 +676,6 @@ def check_and_award_badges(grade: int = Query(3), db: Session = Depends(get_db))
 
         if earned:
             db.add(CKLAUserBadge(badge_key=badge.badge_key, earned_at=now))
-            award_xp(db, "ckla_domain_test_pass", detail=badge.badge_key)
             newly_earned.append({"badge_key": badge.badge_key, "badge_name": badge.badge_name})
 
     if newly_earned:
