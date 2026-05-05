@@ -109,19 +109,34 @@ def test_review_skips_future_items(client, db_session):
 
 
 def test_submit_correct_marks_mastered(client, db_session):
+    """Two consecutive correct answers required for mastery."""
     _, review = _seed_wrong_review(db_session, due_today=True)
-    resp = client.post(
+
+    # First correct — not yet mastered
+    resp1 = client.post(
         "/api/math/my-problems/submit-answer",
         json={"review_id": review.id, "user_answer": _CORRECT},
     )
-    assert resp.status_code == 200
-    body = resp.json()
-    assert body["is_correct"] is True
-    assert body["is_mastered"] is True
-    assert body["next_review_date"] is None
+    assert resp1.status_code == 200
+    body1 = resp1.json()
+    assert body1["is_correct"] is True
+    assert body1["is_mastered"] is False
+    assert body1["consecutive_correct"] == 1
+    assert body1["next_review_date"] is not None
+
+    # Second correct — mastered
+    resp2 = client.post(
+        "/api/math/my-problems/submit-answer",
+        json={"review_id": review.id, "user_answer": _CORRECT},
+    )
+    assert resp2.status_code == 200
+    body2 = resp2.json()
+    assert body2["is_correct"] is True
+    assert body2["is_mastered"] is True
+    assert body2["next_review_date"] is None
     db_session.refresh(review)
     assert review.is_mastered is True
-    assert review.times_reviewed == 1
+    assert review.times_reviewed == 2
 
 
 def test_submit_wrong_reschedules(client, db_session):

@@ -199,7 +199,7 @@ function renderMathRoadmap() {
     rm.innerHTML = '';
 
     const stages = [
-        { key: 'pretest',     label: 'Pretest',   desc: 'Check what you know' },
+        { key: 'pretest',     label: 'Warm-Up',   desc: 'Brain warm-up' },
         { key: 'learn',       label: 'Learn',     desc: 'Study the concept' },
         { key: 'try',         label: 'Try It',    desc: 'Practice with help' },
         { key: 'practice_r1', label: 'Round 1',   desc: 'Practice problems' },

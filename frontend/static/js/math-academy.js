@@ -36,6 +36,7 @@ const mathState = {
     tryAttemptCounts: {},   // {problemId: attemptCount} — tracks 1st vs 2nd attempt in try stage
     exitQuizAnswers: [],     // collected answers for batch exit-quiz submit
     _v2Flow: false,          // true when lesson uses pre_test → learn → try → exit_quiz flow
+    preTestCorrect: 0,       // correct count during pre_test (diagnostic only — never shown to user)
     spacedReviewDate: '',    // next spaced review date from exit_quiz/submit response
     xpEarned: 0,             // XP awarded on lesson completion (from exit_quiz submit)
 };
@@ -127,6 +128,7 @@ async function loadMathStage(stageName) {
         mathState._allWrong = [];
         mathState.learnCards = null;
         mathState.tryAttemptCounts = {};
+        mathState.preTestCorrect = 0;
     }
     if (stageName === 'exit_quiz') {
         mathState.exitQuizAnswers = [];

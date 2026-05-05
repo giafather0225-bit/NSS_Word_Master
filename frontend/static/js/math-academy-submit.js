@@ -37,6 +37,10 @@ async function submitMathAnswer(problemId, userAnswer) {
     if (mathState.stage === 'try' && mathState._v2Flow) {
         return _submitTryAnswer(problemId, userAnswer);
     }
+    // v2.0: pre_test collects answers silently — diagnostic only, no per-question feedback
+    if ((mathState.stage === 'pretest' || mathState.stage === 'pre_test') && mathState._v2Flow) {
+        return _collectPreTestAnswer(problemId, userAnswer);
+    }
     // v2.0: exit_quiz collects answers client-side for batch submit
     if (mathState.stage === 'exit_quiz') {
         return _collectExitQuizAnswer(problemId, userAnswer);
@@ -96,6 +100,21 @@ function _collectExitQuizAnswer(problemId, userAnswer) {
     return Promise.resolve({ is_correct: null, _exitQuizCollect: true });
 }
 
+/**
+ * Client-side answer collection for pre_test — grades locally for diagnostic score,
+ * never shows feedback. Score is sent to server after all questions complete.
+ * @tag MATH @tag ACADEMY
+ */
+function _collectPreTestAnswer(problemId, userAnswer) {
+    const problem = mathState.problems[mathState.currentIdx];
+    if (problem) {
+        const ca = String(problem.correct_answer != null ? problem.correct_answer : '').trim().toUpperCase();
+        const ua = String(userAnswer != null ? userAnswer : '').trim().toUpperCase();
+        if (ca === ua) mathState.preTestCorrect = (mathState.preTestCorrect || 0) + 1;
+    }
+    return Promise.resolve({ is_correct: null, _preTestCollect: true });
+}
+
 // ── Handle answer result ────────────────────────────────────
 
 /**
@@ -103,6 +122,18 @@ function _collectExitQuizAnswer(problemId, userAnswer) {
  * @tag MATH @tag ACADEMY
  */
 function handleMathAnswerResult(result, problem) {
+    // v2.0 pre_test collect mode: no feedback overlay — diagnostic only, always advances to learn
+    if (result._preTestCollect) {
+        mathState.currentIdx++;
+        if (mathState.currentIdx >= mathState.problems.length) {
+            _submitPreTest();
+        } else {
+            renderMathProblem();
+            renderMathRoadmap();
+        }
+        return;
+    }
+
     // v2.0 exit_quiz collect mode: no feedback overlay — just advance silently
     if (result._exitQuizCollect) {
         mathState.currentIdx++;
@@ -190,6 +221,33 @@ function handleMathAnswerResult(result, problem) {
             renderMathRoadmap();
         }
     });
+}
+
+// ── v2.0 Pre-Test submit ────────────────────────────────────
+
+/**
+ * Submit pre_test diagnostic result to server, then advance to learn.
+ * Non-blocking: failure is silently swallowed — the warm-up always proceeds.
+ * @tag MATH @tag ACADEMY
+ */
+async function _submitPreTest() {
+    const score = mathState.preTestCorrect || 0;
+    const total = mathState.problems.length;
+    try {
+        await fetch('/api/math/academy/pre-test/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                grade: mathState.grade,
+                unit: mathState.unit,
+                lesson: mathState.lesson,
+                score,
+                total,
+                skipped: false,
+            }),
+        });
+    } catch (_) { /* diagnostic — non-blocking */ }
+    loadMathStage('learn');
 }
 
 // ── v2.0 Exit Quiz submit ───────────────────────────────────
