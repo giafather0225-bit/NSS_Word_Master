@@ -66,17 +66,57 @@ _SEC_DEFAULT_NAMES = {
 }
 
 
+def _range_str_to_labels(range_str: str) -> list[str]:
+    """Convert '1-8' or '9-16' range strings to ['1','2',...,'8']."""
+    try:
+        start, end = range_str.split("-")
+        return [str(n) for n in range(int(start), int(end) + 1)]
+    except Exception:
+        return []
+
+
 def _past_paper_sections(data: dict[str, Any]) -> list[dict[str, Any]]:
     """Build a unified section list using numbering (labels) + scoring (points).
 
-    Returns [{key, name, points, questions: [label,...], prefix?}]. When a
-    `numbering` block is present its labels (e.g. A1..C8) win; otherwise the
-    labels are derived from scoring's integer question numbers.
+    Returns [{key, name, points, questions: [label,...], prefix?}]. Supports
+    two scoring formats:
+    - Old: scoring.section_one/two/three with questions list
+    - New: scoring.section1_questions ('1-8') + scoring.section1_points
+    When a `numbering` block is present its labels (e.g. A1..C8) win.
     """
     scoring = data.get("scoring") or {}
     numbering = data.get("numbering") or {}
     num_sections = numbering.get("sections") or []
     out: list[dict[str, Any]] = []
+
+    # New schema: section1_questions / section1_points
+    if "section1_points" in scoring:
+        new_defs = [
+            ("section_one",   "Section One",   "section1_questions",  "section1_points"),
+            ("section_two",   "Section Two",   "section2_questions",  "section2_points"),
+            ("section_three", "Section Three", "section3_questions",  "section3_points"),
+        ]
+        for i, (key, default_name, q_key, p_key) in enumerate(new_defs):
+            pts = int(scoring.get(p_key, 0) or 0)
+            if not pts:
+                continue
+            q_val = scoring.get(q_key, "")
+            if i < len(num_sections):
+                num_sec = num_sections[i]
+                labels = [str(q) for q in (num_sec.get("questions") or [])]
+                name = num_sec.get("name") or default_name
+                prefix = num_sec.get("prefix")
+            else:
+                labels = _range_str_to_labels(str(q_val)) if isinstance(q_val, str) else [str(q) for q in (q_val or [])]
+                name = default_name
+                prefix = None
+            entry: dict[str, Any] = {"key": key, "name": name, "points": pts, "questions": labels}
+            if prefix:
+                entry["prefix"] = prefix
+            out.append(entry)
+        return out
+
+    # Old schema: scoring.section_one / section_two / section_three
     for i, key in enumerate(_SEC_KEYS):
         sec = scoring.get(key)
         if not sec:
@@ -91,12 +131,7 @@ def _past_paper_sections(data: dict[str, Any]) -> list[dict[str, Any]]:
             labels = [str(q) for q in (sec.get("questions") or [])]
             name = _SEC_DEFAULT_NAMES[key]
             prefix = None
-        entry = {
-            "key": key,
-            "name": name,
-            "points": pts,
-            "questions": labels,
-        }
+        entry = {"key": key, "name": name, "points": pts, "questions": labels}
         if prefix:
             entry["prefix"] = prefix
         out.append(entry)
@@ -340,6 +375,13 @@ def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
         for k, v in (data.get("answers") or {}).items()
     }
 
+    # Build per-question detail lookup from flat questions array (new schema)
+    q_detail: dict[str, dict[str, Any]] = {}
+    for q in data.get("questions") or []:
+        key = str(q.get("number", ""))
+        if key:
+            q_detail[key] = q
+
     section_stats: list[dict[str, Any]] = []
     details: list[dict[str, Any]] = []
     total_score = 0
@@ -367,12 +409,17 @@ def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
                 wrong_count += 1
             else:
                 unanswered_count += 1
+            qd = q_detail.get(label, {})
             details.append({
                 "question": label,
                 "student": given or None,
                 "correct": correct_ans,
                 "is_correct": is_correct,
                 "points": pts,
+                "topic": qd.get("topic", ""),
+                "pdf_page": qd.get("pdf_page"),
+                "solution": qd.get("solution", ""),
+                "solution_steps": qd.get("solution_steps") or [],
             })
         section_stats.append({
             "key": sec["key"],

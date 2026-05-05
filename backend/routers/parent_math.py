@@ -127,8 +127,8 @@ def parent_math_summary(db: Session = Depends(get_db)):
     )[:10]
     exit_quiz_history = [{
         "grade":        r.grade,
-        "unit":         r.unit_id,
-        "lesson":       r.lesson_id,
+        "unit":         r.unit,
+        "lesson":       r.lesson,
         "score":        r.exit_quiz_score,
         "attempts":     r.exit_quiz_attempts or 1,
         "completed_at": (r.completed_at or "")[:10],

@@ -48,7 +48,7 @@ def _load_problem(attempt: MathAttempt):
     except Exception as e:
         logger.warning("Failed to load lesson %s: %s", lesson_file, e)
         return None
-    for stage_key in ("pretest", "try", "practice_r1", "practice_r2", "practice_r3"):
+    for stage_key in ("pretest", "try", "exit_quiz", "practice_r1", "practice_r2", "practice_r3"):
         for p in data.get(stage_key, []):
             if p.get("id") == attempt.problem_id:
                 return p
@@ -189,6 +189,20 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
 
     row.times_reviewed += 1
 
+    # Miss penalty: overdue reviews reset consecutive_correct streak
+    today = datetime.now().date()
+    days_overdue = 0
+    if row.next_review_date:
+        try:
+            due = datetime.strptime(row.next_review_date, "%Y-%m-%d").date()
+            days_overdue = max(0, (today - due).days)
+        except (ValueError, TypeError):
+            pass
+    if days_overdue >= 2:
+        row.consecutive_correct = 0
+    elif days_overdue == 1:
+        row.consecutive_correct = 0
+
     xp_earned = 0
     if is_correct:
         row.consecutive_correct = (row.consecutive_correct or 0) + 1
@@ -199,16 +213,30 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
             except Exception as e:
                 logger.warning("XP award failed: %s", e)
         else:
+            # Apply miss penalty to interval scheduling
+            base_days = row.interval_days or 1
+            if days_overdue == 1:
+                base_days = max(1, int(base_days * 0.7))
+            elif days_overdue >= 2:
+                base_days = _INTERVALS[0]
+                row.interval_days = base_days
             row.next_review_date = (
-                datetime.now() + timedelta(days=row.interval_days or 1)
+                datetime.now() + timedelta(days=base_days)
             ).strftime("%Y-%m-%d")
     else:
         row.consecutive_correct = 0
         idx = _INTERVALS.index(row.interval_days) if row.interval_days in _INTERVALS else 0
         next_idx = min(idx + 1, len(_INTERVALS) - 1)
         row.interval_days = _INTERVALS[next_idx]
+        # Miss penalty on wrong answer: overdue shrinks next interval
+        effective_days = row.interval_days
+        if days_overdue == 1:
+            effective_days = max(1, int(effective_days * 0.7))
+        elif days_overdue >= 2:
+            effective_days = _INTERVALS[0]
+            row.interval_days = effective_days
         row.next_review_date = (
-            datetime.now() + timedelta(days=row.interval_days)
+            datetime.now() + timedelta(days=effective_days)
         ).strftime("%Y-%m-%d")
 
     db.commit()

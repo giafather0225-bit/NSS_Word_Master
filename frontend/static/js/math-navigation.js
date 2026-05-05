@@ -180,6 +180,13 @@ async function loadMathSidebarStatus() {
             else el.textContent = `${data.total} problems`;
         }
     } catch (e) { /* silent */ }
+
+    // Spaced review count
+    try {
+        const data = await apiFetchJSON('/api/math/spaced-review/count');
+        const el = document.getElementById('math-sr-count');
+        if (el) el.textContent = data.count > 0 ? `${data.count} lessons` : 'All caught up';
+    } catch (e) { /* silent */ }
 }
 
 // ── Wire select handlers ────────────────────────────────────
@@ -251,6 +258,13 @@ async function loadMathSidebarStatus() {
         if (problemsBtn) {
             problemsBtn.addEventListener('click', () => {
                 if (typeof startMathProblemsReview === 'function') startMathProblemsReview();
+            });
+        }
+
+        const spacedBtn = document.getElementById('math-btn-spaced-review');
+        if (spacedBtn) {
+            spacedBtn.addEventListener('click', () => {
+                if (typeof MathSpacedReview !== 'undefined') MathSpacedReview.start();
             });
         }
     });
