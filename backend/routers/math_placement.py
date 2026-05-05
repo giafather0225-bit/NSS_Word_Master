@@ -20,9 +20,11 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import MathPlacementResult
+    from ..services import xp_engine
 except ImportError:
     from database import get_db
     from models import MathPlacementResult
+    from services import xp_engine
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -205,11 +207,19 @@ def save_placement_results(req: SaveResultsIn, db: Session = Depends(get_db)):
                 weak_unit_ids.append(uid)
                 seen.add(uid)
 
+    # XP: placement test completion
+    xp_earned = 0
+    try:
+        xp_earned = xp_engine.award_xp(db, "math_placement_complete", detail="placement_test")
+    except Exception as e:
+        logger.warning("XP award (placement) failed: %s", e)
+
     return {
         "saved_domains": saved,
         "results": overall,
         "suggested_grade": suggested,
         "weak_units": weak_unit_ids,
+        "xp_earned": xp_earned,
     }
 
 

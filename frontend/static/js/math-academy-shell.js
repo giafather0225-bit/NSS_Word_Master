@@ -198,7 +198,13 @@ function renderMathRoadmap() {
     if (!rm) return;
     rm.innerHTML = '';
 
-    const stages = [
+    const stages = mathState._v2Flow ? [
+        { key: 'pretest',   label: 'Warm-Up',   desc: 'Brain warm-up' },
+        { key: 'learn',     label: 'Learn',     desc: 'Study the concept' },
+        { key: 'try',       label: 'Try It',    desc: 'Practice with help' },
+        { key: 'exit_quiz', label: 'Exit Quiz', desc: 'Show what you know' },
+        { key: 'complete',  label: 'Complete',  desc: 'Lesson done' },
+    ] : [
         { key: 'pretest',     label: 'Warm-Up',   desc: 'Brain warm-up' },
         { key: 'learn',       label: 'Learn',     desc: 'Study the concept' },
         { key: 'try',         label: 'Try It',    desc: 'Practice with help' },
@@ -209,7 +215,9 @@ function renderMathRoadmap() {
         { key: 'complete',    label: 'Complete',  desc: 'Lesson done' },
     ];
 
-    const currentIdx = stages.findIndex(s => s.key === mathState.stage);
+    // Normalize pre_test → pretest for roadmap lookup
+    const curStage = mathState.stage === 'pre_test' ? 'pretest' : mathState.stage;
+    const currentIdx = stages.findIndex(s => s.key === curStage);
 
     stages.forEach((s, i) => {
         const done    = currentIdx >= 0 && i < currentIdx;

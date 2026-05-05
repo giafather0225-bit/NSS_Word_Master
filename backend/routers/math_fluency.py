@@ -202,12 +202,16 @@ def submit_round(req: RoundResultIn, db: Session = Depends(get_db)):
         elif row.current_phase == "B" and perfect_round:
             row.current_phase = "C"
 
-    # XP for personal best
+    # XP: base completion award + personal best bonus
+    try:
+        xp_engine.award_xp(db, "math_fluency_complete", detail=f"Fluency {req.fact_set}")
+    except Exception as e:
+        logger.warning("XP award (fluency complete) failed: %s", e)
     if new_best:
         try:
-            xp_engine.award_xp(db, "math_fluency_best", 2, f"Fluency {req.fact_set}")
+            xp_engine.award_xp(db, "math_fluency_best", detail=f"Fluency {req.fact_set}")
         except Exception as e:
-            logger.warning("XP award failed: %s", e)
+            logger.warning("XP award (fluency best) failed: %s", e)
 
     # Every completed fluency round counts toward streak
     try:
