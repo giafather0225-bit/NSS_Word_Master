@@ -110,7 +110,14 @@ def _score_domain(domain_spec: dict, answers: dict):
         by_grade[g][1] += 1
         if is_correct:
             by_grade[g][0] += 1
-        detail.append({"id": q["id"], "grade": g, "user": user, "correct": is_correct})
+        detail.append({
+            "id": q["id"],
+            "grade": g,
+            "user": user,
+            "correct": is_correct,
+            "unit_id": q.get("unit_id"),
+            "difficulty": q.get("difficulty"),
+        })
 
     # Highest grade with >= 70% correct
     grade_order = ["G2", "G3", "G4", "G5", "G6"]
@@ -188,7 +195,22 @@ def save_placement_results(req: SaveResultsIn, db: Session = Depends(get_db)):
     else:
         suggested = "G3"
 
-    return {"saved_domains": saved, "results": overall, "suggested_grade": suggested}
+    # Collect weak units: G3 questions answered incorrectly that have a unit_id
+    weak_unit_ids: list[str] = []
+    seen: set[str] = set()
+    for _, _, scored in scored_entries:
+        for item in scored["detail"]:
+            uid = item.get("unit_id")
+            if uid and not item["correct"] and item["grade"] == "G3" and uid not in seen:
+                weak_unit_ids.append(uid)
+                seen.add(uid)
+
+    return {
+        "saved_domains": saved,
+        "results": overall,
+        "suggested_grade": suggested,
+        "weak_units": weak_unit_ids,
+    }
 
 
 # ── Adaptive (CAT-lite) next-question ──────────────────────

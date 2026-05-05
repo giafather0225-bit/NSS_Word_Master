@@ -119,20 +119,22 @@ def parent_math_summary(db: Session = Depends(get_db)):
     sr_scores      = [r.exit_quiz_score for r in db.query(MathSpacedReview).all() if r.exit_quiz_score is not None]
     sr_avg_score   = round(sum(sr_scores) / len(sr_scores) * 20, 1) if sr_scores else 0.0  # /5 * 100
 
-    # Exit quiz history (last 10 passed lessons, newest first)
-    recent_eq = sorted(
-        [r for r in progress_rows if r.exit_quiz_passed and r.completed_at],
-        key=lambda r: r.completed_at or "",
+    # Exit quiz history — last 20 attempted lessons (passed + stuck), newest first.
+    # "Stuck" = exit_quiz_attempts >= 1 and not yet passed (3-attempt limit reached).
+    attempted_eq = sorted(
+        [r for r in progress_rows if (r.exit_quiz_attempts or 0) >= 1],
+        key=lambda r: r.completed_at or "0000",
         reverse=True,
-    )[:10]
+    )[:20]
     exit_quiz_history = [{
         "grade":        r.grade,
         "unit":         r.unit,
         "lesson":       r.lesson,
         "score":        r.exit_quiz_score,
         "attempts":     r.exit_quiz_attempts or 1,
+        "passed":       bool(r.exit_quiz_passed),
         "completed_at": (r.completed_at or "")[:10],
-    } for r in recent_eq]
+    } for r in attempted_eq]
 
     # Unit test history (last 10)
     ut_rows = (

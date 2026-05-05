@@ -207,24 +207,38 @@ function _ppMathSpacedReview(sr) {
         </div>`;
 }
 
-/** Exit quiz history table (last 10 passed lessons). @tag PARENT MATH */
+/** Exit quiz history table (last 20 attempted lessons — passed + stuck). @tag PARENT MATH */
 function _ppMathExitQuizHistory(history) {
     if (!history.length) return "";
     const rows = history.map(r => {
         const score = r.score != null ? r.score : "—";
-        const pct = r.score != null ? Math.round((r.score / 5) * 100) : 0;
-        const accClass = pct >= 90 ? "good" : pct >= 80 ? "ok" : "low";
+        const pct   = r.score != null ? Math.round((r.score / 5) * 100) : 0;
+        const stuck = !r.passed;
+        const rowStyle = stuck ? "background:var(--review-light)" : "";
+
+        const accClass = stuck ? "low" : pct >= 90 ? "good" : "ok";
+        const scoreCell = stuck
+            ? `<span style="color:var(--text-hint)">${score}/5</span>`
+            : `${score}/5`;
+
         const attempts = r.attempts || 1;
         const attLabel = attempts === 1
             ? `<span style="color:var(--text-hint);font-size:11px">1st try</span>`
             : `<span style="color:var(--color-warning);font-size:11px;font-weight:600">${attempts} tries</span>`;
+
+        const resultBadge = stuck
+            ? `<span style="color:var(--color-error);font-weight:700;font-size:11px">Stuck</span>`
+            : `<span style="color:var(--color-success);font-weight:700;font-size:11px">Pass</span>`;
+
         return `
-            <tr>
+            <tr style="${rowStyle}">
                 <td style="color:var(--text-hint);font-size:12px">${escapeHtml(r.grade || "")}</td>
+                <td style="color:var(--text-secondary);font-size:12px">${escapeHtml((r.unit || "").replace(/_/g," "))}</td>
                 <td><strong>${escapeHtml(_ppMathLesson(r.lesson || ""))}</strong></td>
-                <td style="text-align:right">${score}/5</td>
+                <td style="text-align:right">${scoreCell}</td>
                 <td style="text-align:right"><span class="pp-stage-acc pp-stage-acc--${accClass}">${pct}%</span></td>
                 <td style="text-align:center">${attLabel}</td>
+                <td style="text-align:center">${resultBadge}</td>
                 <td style="color:var(--text-secondary)">${escapeHtml(r.completed_at || "")}</td>
             </tr>`;
     }).join("");
@@ -234,10 +248,12 @@ function _ppMathExitQuizHistory(history) {
             <table class="pp-log-table">
                 <thead><tr>
                     <th>Grade</th>
+                    <th>Unit</th>
                     <th>Lesson</th>
                     <th style="text-align:right">Score</th>
                     <th style="text-align:right">Acc</th>
                     <th style="text-align:center">Attempts</th>
+                    <th style="text-align:center">Result</th>
                     <th>Date</th>
                 </tr></thead>
                 <tbody>${rows}</tbody>
