@@ -94,7 +94,6 @@ cat \
   $JS/math-problems-ui.js \
   $JS/math-academy-submit.js \
   $JS/math-academy.js \
-  $JS/math-review.js \
   $JS/math-fluency.js \
   $JS/math-placement.js \
   $JS/math-placement-results.js \
