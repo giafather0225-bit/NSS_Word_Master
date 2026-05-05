@@ -8,6 +8,7 @@ from backend.services.streak_engine import (
     check_streak_bonus,
     get_current_streak,
     get_or_create_streak_log,
+    mark_ckla_done,
     mark_daily_words_done,
     mark_game_done,
     mark_math_done,
@@ -83,10 +84,9 @@ def test_mark_game_done(db_session):
 
 
 def test_evaluate_streak_all_done(db_session):
-    """Default config requires english(review+daily_words) + math + game."""
+    """Default config requires ckla + math + game."""
     day = date.today().isoformat()
-    mark_review_done(db_session, day)
-    mark_daily_words_done(db_session, day)
+    mark_ckla_done(db_session, day)
     mark_math_done(db_session, day)
     mark_game_done(db_session, day)
 
@@ -104,15 +104,10 @@ def test_evaluate_streak_partial(db_session):
     assert log.streak_maintained is False
 
 
-def test_evaluate_streak_no_reviews_due_daily_words_only(db_session):
-    """English is satisfied by daily_words alone when no SM-2 reviews are due."""
+def test_evaluate_streak_ckla_satisfies_alone(db_session):
+    """CKLA done (no DUX dependency) + math + game → streak maintained."""
     day = date.today().isoformat()
-    # Seed a future-dated review so no reviews are due on `day`.
-    future = (date.today() + timedelta(days=3)).isoformat()
-    db_session.add(WordReview(word="apple", next_review=future))
-    db_session.commit()
-
-    mark_daily_words_done(db_session, day)
+    mark_ckla_done(db_session, day)
     mark_math_done(db_session, day)
     mark_game_done(db_session, day)
 
@@ -120,14 +115,9 @@ def test_evaluate_streak_no_reviews_due_daily_words_only(db_session):
     assert log.streak_maintained is True
 
 
-def test_evaluate_streak_reviews_due_requires_review_done(db_session):
-    """When a review is due, daily_words alone is insufficient for english."""
+def test_evaluate_streak_missing_ckla(db_session):
+    """math + game done but ckla missing → streak not maintained."""
     day = date.today().isoformat()
-    past = (date.today() - timedelta(days=1)).isoformat()
-    db_session.add(WordReview(word="apple", next_review=past))
-    db_session.commit()
-
-    mark_daily_words_done(db_session, day)
     mark_math_done(db_session, day)
     mark_game_done(db_session, day)
 

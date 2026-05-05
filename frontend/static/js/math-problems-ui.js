@@ -20,6 +20,7 @@
  */
 async function startMathProblemsReview() {
     if (typeof mountMathShell === 'function') mountMathShell();
+    if (typeof showLessonStage === 'function') showLessonStage();
 
     const stageEl = document.getElementById('stage');
     if (stageEl) stageEl.innerHTML = '<div class="math-loading">Loading your problems…</div>';
