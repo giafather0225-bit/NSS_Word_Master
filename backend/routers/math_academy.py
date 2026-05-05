@@ -905,7 +905,7 @@ def submit_exit_quiz(req: ExitQuizSubmitIn, db: Session = Depends(get_db)):
 
         try:
             xp_engine.award_xp(db, "math_lesson_complete", detail=lesson_id)
-            xp_earned = 10
+            xp_earned = xp_engine.get_xp_rules(db).get("math_lesson_complete", 10)
         except Exception as e:
             logger.warning("XP award failed: %s", e)
         try:
@@ -1158,6 +1158,15 @@ def submit_spaced_review(req: SpacedReviewSubmitIn, db: Session = Depends(get_db
         key = f"{ans.grade}|{ans.unit_id}|{ans.lesson_id}"
         lessons_seen[key] = (ans.grade, ans.unit_id, ans.lesson_id)
 
+    # Compute per-lesson accuracy from graded results
+    lesson_correct: dict[str, int] = {}
+    lesson_total: dict[str, int] = {}
+    for r in results:
+        lid = r["lesson_id"]
+        lesson_total[lid] = lesson_total.get(lid, 0) + 1
+        if r["is_correct"]:
+            lesson_correct[lid] = lesson_correct.get(lid, 0) + 1
+
     updated_lessons: list[dict] = []
     for key, (grade, unit_id, lesson_id) in lessons_seen.items():
         sr = (
@@ -1179,7 +1188,19 @@ def submit_spaced_review(req: SpacedReviewSubmitIn, db: Session = Depends(get_db
         intervals = _spaced_schedule(
             int(round((sr.exit_quiz_score / 5) * 100)) if sr.exit_quiz_score else 50
         )
-        next_idx = min((sr.interval_index or 0) + 1, len(intervals) - 1)
+
+        # Review accuracy gates interval advancement:
+        #   ≥80% correct → advance to next interval
+        #   <80% correct → reset to first interval (re-study needed)
+        l_total = lesson_total.get(lesson_id, 0)
+        l_correct = lesson_correct.get(lesson_id, 0)
+        review_pct = (l_correct / l_total * 100) if l_total else 0
+
+        if review_pct >= 80:
+            next_idx = min((sr.interval_index or 0) + 1, len(intervals) - 1)
+        else:
+            next_idx = 0
+
         base_interval = intervals[next_idx]
 
         if days_overdue == 1:
@@ -1199,6 +1220,7 @@ def submit_spaced_review(req: SpacedReviewSubmitIn, db: Session = Depends(get_db
             "lesson_id": lesson_id,
             "next_review_date": sr.next_review_date,
             "interval_days": adjusted,
+            "review_accuracy": round(review_pct, 1),
         })
 
     xp_earned = 0
