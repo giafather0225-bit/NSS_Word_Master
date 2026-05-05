@@ -179,6 +179,10 @@
     border-color: var(--math-primary); background: var(--math-light);
 }
 .math-sr-choice:disabled { cursor: default; }
+.math-sr-choice.selected {
+    border-color: var(--math-primary); background: var(--math-soft);
+    color: var(--math-ink); font-weight: 600;
+}
 .math-sr-choice.is-correct {
     border-color: var(--color-success); background: var(--color-success-light);
     color: var(--color-success);
