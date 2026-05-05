@@ -433,18 +433,35 @@ def update_lesson_progress(
                     ))
 
         if req.word_work_done is True and not prog.word_work_done:
-            # Similarity guard: if answer ≥80% similar to hint word, reject (spec §Word Work)
             if req.word_work_answer and lesson.word_work_word:
-                ratio = SequenceMatcher(
-                    None,
-                    req.word_work_answer.strip().lower(),
-                    lesson.word_work_word.strip().lower(),
-                ).ratio()
-                if ratio >= 0.8:
+                # Reject if student typed only the focus word (trivially short / just the word)
+                typed_lower = req.word_work_answer.strip().lower()
+                word_lower  = lesson.word_work_word.strip().lower()
+                if typed_lower == word_lower:
                     raise HTTPException(
                         status_code=400,
-                        detail="Your answer is too similar to the hint. Try to write your own sentence!",
+                        detail="Write a full sentence using the word, not just the word itself.",
                     )
+                # Reject if answer ≥80% similar to hint (definition or example) — spec §Word Work
+                focus_word_rec = (
+                    db.query(USAcademyWord)
+                    .filter(USAcademyWord.word == lesson.word_work_word)
+                    .first()
+                )
+                if focus_word_rec:
+                    hint_parts = [
+                        p.strip() for p in [
+                            focus_word_rec.definition or "",
+                            focus_word_rec.example_1  or "",
+                        ] if p.strip()
+                    ]
+                    for hint in hint_parts:
+                        ratio = SequenceMatcher(None, typed_lower, hint.lower()).ratio()
+                        if ratio >= 0.8:
+                            raise HTTPException(
+                                status_code=400,
+                                detail="Your sentence is too close to the hint. Try using your own words!",
+                            )
             prog.word_work_done = True
 
         prog.last_active = now

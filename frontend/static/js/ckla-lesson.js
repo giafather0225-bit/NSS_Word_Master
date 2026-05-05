@@ -622,6 +622,11 @@ async function _markWordWorkDone() {
     _maybeShowDifficultyPrompt(prog);
   } else {
     if (btn) { btn.disabled = false; btn.textContent = 'Submit'; }
+    const ta = document.getElementById('ckla-ww-ans');
+    if (ta) {
+      ta.style.borderColor = 'var(--review-primary)';
+      ta.addEventListener('input', () => { ta.style.borderColor = ''; }, { once: true });
+    }
   }
 }
 
