@@ -1071,6 +1071,8 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
 
     all_problems: list[dict] = []
 
+    import random as _rng
+
     for sr in due_lessons:
         data = _load_lesson_json(sr.grade, sr.unit_id, _lesson_name(sr.lesson_id))
         if not data:
@@ -1080,10 +1082,15 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
         unit_num = _unit_number(sr.unit_id)
         lesson_title = data.get("title", sr.lesson_id)
 
-        interleave_pairs: list[tuple[dict, MathSpacedReview, dict]] = []
+        lesson_problems: list[dict] = []
 
         if unit_num >= 4 and len(current_pool) >= 3:
-            # Find weakest prior lesson (from an earlier unit)
+            # 3 random from current lesson
+            sampled = _rng.sample(current_pool, min(3, len(current_pool)))
+            for p in sampled:
+                lesson_problems.append(_build_sr_problem(p, sr.lesson_id, sr.unit_id, sr.grade, lesson_title))
+
+            # 2 interleaved from weakest prior lesson
             prior_srs = (
                 db.query(MathSpacedReview)
                 .filter(
@@ -1097,21 +1104,22 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
                 weakest_sr = max(earlier, key=lambda p: _weakness_score(p, db))
                 w_data = _load_lesson_json(weakest_sr.grade, weakest_sr.unit_id, _lesson_name(weakest_sr.lesson_id))
                 if w_data:
-                    w_pool = _stage_problems(w_data, "practice_r1")[:2]
-                    interleave_pairs = [(p, weakest_sr, w_data) for p in w_pool]
-
-            selected = current_pool[:3]
+                    w_pool = _stage_problems(w_data, "practice_r1")
+                    w_sampled = _rng.sample(w_pool, min(2, len(w_pool)))
+                    for p in w_sampled:
+                        lesson_problems.append(_build_sr_problem(
+                            p, weakest_sr.lesson_id, weakest_sr.unit_id, weakest_sr.grade,
+                            w_data.get("title", weakest_sr.lesson_id),
+                        ))
         else:
-            selected = current_pool[:5]
+            # U01-U03: 5 random from current lesson
+            sampled = _rng.sample(current_pool, min(5, len(current_pool)))
+            for p in sampled:
+                lesson_problems.append(_build_sr_problem(p, sr.lesson_id, sr.unit_id, sr.grade, lesson_title))
 
-        for p in selected:
-            all_problems.append(_build_sr_problem(p, sr.lesson_id, sr.unit_id, sr.grade, lesson_title))
-
-        for p, w_sr, w_data in interleave_pairs:
-            all_problems.append(_build_sr_problem(
-                p, w_sr.lesson_id, w_sr.unit_id, w_sr.grade,
-                w_data.get("title", w_sr.lesson_id),
-            ))
+        # Shuffle within each lesson's problem set for variety
+        _rng.shuffle(lesson_problems)
+        all_problems.extend(lesson_problems)
 
     return {
         "count": len(all_problems),
