@@ -1,0 +1,893 @@
+{
+  "lesson_id": "L6_unit_fractions_area",
+  "title": "Express the Area of Each Part as a Unit Fraction",
+  "ccss": [
+    "3.G.A.2"
+  ],
+  "grade": "G3",
+  "unit": "U13_shapes",
+  "go_math_ref": "Chapter 12, Lesson 12.6",
+  "essential_question": "How can you describe the area of each equal part of a shape using a unit fraction?",
+  "key_vocabulary": [
+    "unit fraction",
+    "area",
+    "equal area",
+    "whole",
+    "denominator",
+    "numerator",
+    "1/n"
+  ],
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_definition",
+      "difficulty": 1,
+      "question": "Which of these is a UNIT FRACTION?",
+      "choices": ["A) 1/4", "B) 2/3", "C) 3/8", "D) 5/6"],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "Unit fractions have 1 on top"},
+        "C": {"error_type": "concept_gap", "note": "Unit fractions have 1 on top"},
+        "D": {"error_type": "concept_gap", "note": "Unit fractions have 1 on top"}
+      },
+      "verification": "Unit fraction = 1/n.",
+      "hints": ["Unit fractions have 1 as the top number."],
+      "feedback": {
+        "correct": "Yes! 1/4 is a unit fraction — it has 1 on top.",
+        "incorrect": "A unit fraction has 1 as the numerator. 1/4 fits."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_partition",
+      "difficulty": 2,
+      "question": "A square is divided into 6 equal parts. The area of each part is __ of the square's area. (Write as 1/n)",
+      "correct_answer": "1/6",
+      "expected_errors": {
+        "1/3": {"error_type": "concept_gap", "note": "1/3 means 3 parts; this has 6"},
+        "6/6": {"error_type": "concept_gap", "note": "That is the whole, not one part"}
+      },
+      "verification": "6 equal parts → each = 1/6 of area.",
+      "hints": ["6 equal parts → each is 1/6 of the area."],
+      "feedback": {
+        "correct": "Right! Each part has area 1/6 of the whole square.",
+        "incorrect": "6 equal parts means each part is 1/6 of the area."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_size",
+      "difficulty": 2,
+      "question": "Which unit fraction is the LARGEST piece (on the same whole)?",
+      "choices": ["A) 1/2", "B) 1/4", "C) 1/6", "D) 1/8"],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "1/2 is bigger — fewer parts means bigger pieces"},
+        "C": {"error_type": "concept_gap", "note": "1/2 is bigger"},
+        "D": {"error_type": "concept_gap", "note": "1/2 is bigger"}
+      },
+      "verification": "Smallest denominator = biggest piece.",
+      "hints": ["Bigger denominator = smaller piece."],
+      "feedback": {
+        "correct": "Right! 1/2 is the largest unit fraction here — only 2 parts means each is the biggest.",
+        "incorrect": "1/2 is the largest. With only 2 parts, each is the biggest."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_sum",
+      "difficulty": 2,
+      "question": "If you put 4 pieces of size 1/4 together, what fraction do you get?",
+      "correct_answer": "4/4",
+      "expected_errors": {
+        "1/4": {"error_type": "concept_gap", "note": "4 pieces, not 1"},
+        "1/16": {"error_type": "concept_gap", "note": "Add the numerators, not multiply denominators"}
+      },
+      "verification": "4 × 1/4 = 4/4 = whole.",
+      "hints": ["Add the top numbers; bottom stays the same."],
+      "feedback": {
+        "correct": "Right! 4 × 1/4 = 4/4, which is the whole.",
+        "incorrect": "Adding 1/4 four times gives 4/4 — the whole shape."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 3,
+      "question": "A rectangle is divided into 4 equal parts. The whole rectangle has an area of 12 square cm. What is the area of EACH part?",
+      "choices": ["A) 3 square cm", "B) 4 square cm", "C) 6 square cm", "D) 12 square cm"],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "12 ÷ 4 = 3, not 4"},
+        "C": {"error_type": "concept_gap", "note": "12 ÷ 2 = 6 (that's halves)"},
+        "D": {"error_type": "concept_gap", "note": "12 is the whole, not one part"}
+      },
+      "verification": "12 ÷ 4 = 3 sq cm per part.",
+      "hints": ["Divide the whole area by the number of equal parts."],
+      "feedback": {
+        "correct": "Right! 12 ÷ 4 = 3 square cm per part.",
+        "incorrect": "Each part is 12 ÷ 4 = 3 square cm."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "What Is a Unit Fraction?",
+      "content": "A UNIT FRACTION is a fraction with 1 as the NUMERATOR (top number). Examples: 1/2, 1/3, 1/4, 1/6, 1/8. Unit fractions describe ONE piece of an equally-partitioned whole. The DENOMINATOR (bottom number) tells you how many equal parts the whole is divided into.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.6: unit fraction definition."
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Equal Parts Have Equal Areas",
+      "content": "When a shape is partitioned into n EQUAL parts, every part has the SAME AREA. Example: a rectangle divided into 4 equal parts — each part has the same area, even if the parts look different (one might be a strip, another a square).",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.6: equal parts = equal areas."
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Each Part Is 1/n of the Area",
+      "content": "If a shape is partitioned into n equal parts, the AREA of each part is 1/n of the whole's area. Examples: 2 equal parts → each has area 1/2 of the whole. 4 equal parts → each has area 1/4. 8 equal parts → each has area 1/8.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.6: 1/n of area."
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Add Unit Fractions to Make a Whole",
+      "content": "Adding all the equal parts gives back the WHOLE. 1/2 + 1/2 = 2/2 = whole. 1/4 + 1/4 + 1/4 + 1/4 = 4/4 = whole. 1/8 + 1/8 + ... eight times = 8/8 = whole. The number of unit fractions needed equals the denominator.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.6: unit fractions sum to 1."
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Bigger Denominator → Smaller Piece",
+      "content": "When you compare unit fractions of the SAME WHOLE: a bigger denominator means a smaller piece. Order from biggest to smallest: 1/2 > 1/3 > 1/4 > 1/6 > 1/8. Why? More equal parts means each part is smaller.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.6: denominator and size."
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Combine Unit Fractions",
+      "content": "When you put two or more unit fractions of the SAME size together, you get a NON-UNIT fraction. Example: 1/4 + 1/4 = 2/4. 1/8 + 1/8 + 1/8 = 3/8. The denominator stays the same; you add the numerators.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.6: combining unit fractions."
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Find Each Part's Area",
+      "content": "If you know the area of the WHOLE shape, you can find the area of each equal part. Divide the whole's area by the number of parts. Example: a rectangle with area 24 sq cm divided into 4 equal parts — each part has area 24 ÷ 4 = 6 sq cm.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.6: divide to find part area."
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today you learned: (1) UNIT FRACTION = fraction with 1 as numerator. (2) Each equal part has 1/n of the whole's area. (3) Adding all unit fractions = whole (n/n). (4) Bigger denominator = smaller piece. (5) Find part area: divide whole area by n. (6) Combine unit fractions to make non-unit fractions.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Covers all Go Math 12.6 concepts."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_definition",
+      "difficulty": 1,
+      "question": "Which is NOT a unit fraction?",
+      "choices": ["A) 1/2", "B) 1/5", "C) 2/5", "D) 1/10"],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: Unit fractions have 1 on top.",
+        "Step 2: 1/2, 1/5, 1/10 all have 1 on top.",
+        "Step 3: 2/5 has 2 on top — NOT a unit fraction."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "1/2 IS a unit fraction"},
+        "B": {"error_type": "concept_gap", "note": "1/5 IS a unit fraction"},
+        "D": {"error_type": "concept_gap", "note": "1/10 IS a unit fraction"}
+      },
+      "feedback": {
+        "correct": "Right! 2/5 has 2 on top, so it is NOT a unit fraction.",
+        "incorrect": "2/5 is not a unit fraction. Unit fractions must have 1 on top."
+      },
+      "verification": "Unit fraction needs numerator 1.",
+      "hints": ["Look at the top number."]
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_partition",
+      "difficulty": 2,
+      "question": "A circle is divided into 8 equal parts. What unit fraction is one part? (Write as 1/n)",
+      "correct_answer": "1/8",
+      "solution_steps": [
+        "Step 1: 8 equal parts.",
+        "Step 2: Each part is 1 of 8.",
+        "Step 3: Unit fraction = 1/8."
+      ],
+      "expected_errors": {
+        "1/4": {"error_type": "concept_gap", "note": "1/4 means 4 parts"},
+        "8/8": {"error_type": "concept_gap", "note": "That is the whole"}
+      },
+      "feedback": {
+        "correct": "Right! Each part is 1/8 of the circle.",
+        "incorrect": "8 equal parts → each is 1/8."
+      },
+      "verification": "8 parts → 1/8.",
+      "hints": ["1 part out of 8 equal parts."]
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 3,
+      "question": "A rectangle has area 18 square cm and is divided into 6 equal parts. What is the area of EACH part? (Write the number of square cm.)",
+      "correct_answer": "3",
+      "solution_steps": [
+        "Step 1: Whole area = 18 sq cm.",
+        "Step 2: 6 equal parts.",
+        "Step 3: Each part = 18 ÷ 6 = 3 sq cm."
+      ],
+      "expected_errors": {
+        "6": {"error_type": "concept_gap", "note": "6 is the number of parts, not part area"},
+        "12": {"error_type": "concept_gap", "note": "Don't subtract — divide the area"}
+      },
+      "feedback": {
+        "correct": "Right! 18 ÷ 6 = 3 sq cm per part.",
+        "incorrect": "Each part has area 18 ÷ 6 = 3 sq cm."
+      },
+      "verification": "18 ÷ 6 = 3.",
+      "hints": ["Divide the whole area by the number of parts."]
+    },
+    {
+      "id": "TRY_04",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_sum",
+      "difficulty": 2,
+      "question": "How many pieces of 1/3 do you need to make 1 whole?",
+      "choices": ["A) 1", "B) 2", "C) 3", "D) 6"],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: 1/3 means 3 equal parts.",
+        "Step 2: All 3 parts make the whole.",
+        "Step 3: 3 × 1/3 = 3/3 = 1."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "1 piece is just 1/3"},
+        "B": {"error_type": "concept_gap", "note": "2 pieces is 2/3, not whole"},
+        "D": {"error_type": "concept_gap", "note": "6 pieces of 1/3 is 2 wholes"}
+      },
+      "feedback": {
+        "correct": "Right! 3 × 1/3 = 3/3 = 1 whole.",
+        "incorrect": "3 pieces of 1/3 make 1 whole. 3 × 1/3 = 3/3."
+      },
+      "verification": "3 × 1/3 = 1.",
+      "hints": ["The denominator tells you how many pieces make the whole."]
+    },
+    {
+      "id": "TRY_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_compare",
+      "difficulty": 3,
+      "question": "Which area is BIGGER on the same whole?",
+      "choices": ["A) 1/3", "B) 1/8", "C) Equal", "D) Cannot tell"],
+      "correct_answer": "A",
+      "solution_steps": [
+        "Step 1: 1/3 means 3 equal parts.",
+        "Step 2: 1/8 means 8 equal parts.",
+        "Step 3: More parts = smaller area each.",
+        "Step 4: 1/3 > 1/8."
+      ],
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "More parts = smaller area"},
+        "C": {"error_type": "concept_gap", "note": "Different denominators → different sizes"},
+        "D": {"error_type": "concept_gap", "note": "Same whole — we can compare"}
+      },
+      "feedback": {
+        "correct": "Right! 1/3 covers more area than 1/8 on the same whole.",
+        "incorrect": "1/3 is bigger. Smaller denominator means bigger area on the same whole."
+      },
+      "verification": "1/3 > 1/8.",
+      "hints": ["Smaller denominator = bigger area."]
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_definition",
+      "difficulty": 1,
+      "question": "Which is a unit fraction?",
+      "choices": ["A) 3/4", "B) 1/8", "C) 5/6", "D) 7/10"],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Unit fractions have 1 on top"},
+        "C": {"error_type": "concept_gap", "note": "Unit fractions have 1 on top"},
+        "D": {"error_type": "concept_gap", "note": "Unit fractions have 1 on top"}
+      },
+      "verification": "1/8: numerator 1.",
+      "hints": ["Top number must be 1."],
+      "feedback": {
+        "correct": "Right! 1/8 has 1 as the numerator — it is a unit fraction.",
+        "incorrect": "Unit fractions need 1 on top. 1/8 fits."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_partition",
+      "difficulty": 2,
+      "question": "A square is divided into 3 equal parts. Each part has __ of the square's area. (Write as 1/n)",
+      "correct_answer": "1/3",
+      "expected_errors": {
+        "1/2": {"error_type": "concept_gap", "note": "1/2 means 2 parts"},
+        "3/3": {"error_type": "concept_gap", "note": "That is the whole"}
+      },
+      "verification": "3 parts → 1/3.",
+      "hints": ["1 part out of 3 equal parts."],
+      "feedback": {
+        "correct": "Right! 1/3 of the square's area.",
+        "incorrect": "Each of 3 equal parts is 1/3 of the area."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 2,
+      "question": "A rectangle has area 16 square cm and is divided into 4 equal parts. What is the area of each part? (Write the number of sq cm.)",
+      "correct_answer": "4",
+      "expected_errors": {
+        "8": {"error_type": "concept_gap", "note": "16 ÷ 4 = 4, not 8"},
+        "16": {"error_type": "concept_gap", "note": "16 is the whole; one part is 16 ÷ 4 = 4"}
+      },
+      "verification": "16 ÷ 4 = 4.",
+      "hints": ["Divide the area by the number of parts."],
+      "feedback": {
+        "correct": "Right! 16 ÷ 4 = 4 sq cm.",
+        "incorrect": "Each part has area 16 ÷ 4 = 4 sq cm."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_sum",
+      "difficulty": 2,
+      "question": "How many pieces of 1/4 make a whole?",
+      "choices": ["A) 1", "B) 2", "C) 3", "D) 4"],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "1 piece is 1/4"},
+        "B": {"error_type": "concept_gap", "note": "2 pieces = 2/4"},
+        "C": {"error_type": "concept_gap", "note": "3 pieces = 3/4"}
+      },
+      "verification": "4 × 1/4 = 1.",
+      "hints": ["Denominator tells how many pieces make the whole."],
+      "feedback": {
+        "correct": "Right! 4 × 1/4 = 4/4 = 1 whole.",
+        "incorrect": "4 pieces of 1/4 make a whole."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_compare",
+      "difficulty": 2,
+      "question": "Which is the SMALLEST unit fraction (on the same whole)?",
+      "choices": ["A) 1/2", "B) 1/3", "C) 1/4", "D) 1/8"],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "1/2 is the biggest"},
+        "B": {"error_type": "concept_gap", "note": "1/3 is bigger than 1/8"},
+        "C": {"error_type": "concept_gap", "note": "1/4 is bigger than 1/8"}
+      },
+      "verification": "Biggest denominator = smallest piece.",
+      "hints": ["Bigger denominator = smaller piece."],
+      "feedback": {
+        "correct": "Right! 1/8 is the smallest because it has the biggest denominator.",
+        "incorrect": "1/8 is the smallest. More parts = smaller piece."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_partition",
+      "difficulty": 2,
+      "question": "A circle is divided into 6 equal parts. Each part has __ of the area. (Write as 1/n)",
+      "correct_answer": "1/6",
+      "expected_errors": {
+        "1/3": {"error_type": "concept_gap", "note": "1/3 = 3 parts; this has 6"},
+        "6/6": {"error_type": "concept_gap", "note": "That is the whole"}
+      },
+      "verification": "6 parts → 1/6.",
+      "hints": ["1 part out of 6."],
+      "feedback": {
+        "correct": "Right! 1/6 of the area.",
+        "incorrect": "Each is 1/6 of the area."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_logic",
+      "difficulty": 2,
+      "question": "True or False: 1/6 is bigger than 1/3 on the same whole.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {"error_type": "concept_gap", "note": "1/3 is bigger — fewer parts"}
+      },
+      "verification": "1/3 > 1/6.",
+      "hints": ["Which has fewer parts?"],
+      "feedback": {
+        "correct": "False! 1/3 is bigger because it has fewer parts.",
+        "incorrect": "False. 1/3 > 1/6 because 3 parts means each is bigger than each of 6."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_combine",
+      "difficulty": 3,
+      "question": "If you put 3 pieces of 1/8 together, what fraction do you have?",
+      "choices": ["A) 3/8", "B) 1/8", "C) 3/24", "D) 1/3"],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "3 pieces, not 1"},
+        "C": {"error_type": "concept_gap", "note": "Don't multiply denominators — keep the same"},
+        "D": {"error_type": "concept_gap", "note": "Don't combine numerator and denominator that way"}
+      },
+      "verification": "3 × 1/8 = 3/8.",
+      "hints": ["Add the top numbers; bottom stays."],
+      "feedback": {
+        "correct": "Right! 3 × 1/8 = 3/8.",
+        "incorrect": "Combine: 1/8 + 1/8 + 1/8 = 3/8."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 3,
+      "question": "A rectangle has area 24 sq cm and is divided into 8 equal parts. What is the area of each part? (Write the number of sq cm.)",
+      "correct_answer": "3",
+      "expected_errors": {
+        "8": {"error_type": "concept_gap", "note": "8 is the number of parts"},
+        "16": {"error_type": "concept_gap", "note": "Don't subtract — divide"}
+      },
+      "verification": "24 ÷ 8 = 3.",
+      "hints": ["Divide area by number of parts."],
+      "feedback": {
+        "correct": "Right! 24 ÷ 8 = 3 sq cm per part.",
+        "incorrect": "Each part = 24 ÷ 8 = 3 sq cm."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_partition",
+      "difficulty": 1,
+      "question": "If a shape is divided into 2 equal parts, each part has what fraction of the area?",
+      "choices": ["A) 1/2", "B) 1/3", "C) 1/4", "D) 2/2"],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "1/3 means 3 parts"},
+        "C": {"error_type": "concept_gap", "note": "1/4 means 4 parts"},
+        "D": {"error_type": "concept_gap", "note": "2/2 is the whole"}
+      },
+      "verification": "2 parts → 1/2.",
+      "hints": ["1 part out of 2 equal parts."],
+      "feedback": {
+        "correct": "Right! Each part is 1/2 of the area.",
+        "incorrect": "2 equal parts → each is 1/2."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_word_problem",
+      "difficulty": 2,
+      "question": "Sara cuts a pizza into 8 equal slices. Each slice has what fraction of the pizza's area?",
+      "choices": ["A) 1/4", "B) 1/6", "C) 1/8", "D) 8/8"],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "1/4 = 4 slices"},
+        "B": {"error_type": "concept_gap", "note": "1/6 = 6 slices"},
+        "D": {"error_type": "concept_gap", "note": "That is the whole pizza"}
+      },
+      "verification": "8 slices → 1/8.",
+      "hints": ["1 slice out of 8 equal slices."],
+      "feedback": {
+        "correct": "Right! Each slice is 1/8 of the pizza.",
+        "incorrect": "8 equal slices → each is 1/8 of the pizza."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 3,
+      "question": "Mia has a rectangle with area 20 sq cm. She divides it into 4 equal parts. What is the area of each part? (Write the number.)",
+      "correct_answer": "5",
+      "expected_errors": {
+        "4": {"error_type": "concept_gap", "note": "4 is the number of parts"},
+        "16": {"error_type": "concept_gap", "note": "Don't subtract — divide"}
+      },
+      "verification": "20 ÷ 4 = 5.",
+      "hints": ["Divide the area by the number of parts."],
+      "feedback": {
+        "correct": "Right! 20 ÷ 4 = 5 sq cm per part.",
+        "incorrect": "Each part has area 20 ÷ 4 = 5 sq cm."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_definition",
+      "difficulty": 2,
+      "question": "True or False: 2/4 is a unit fraction.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {"error_type": "concept_gap", "note": "Unit fractions have 1 on top, not 2"}
+      },
+      "verification": "Unit fraction needs numerator 1.",
+      "hints": ["Top number must be 1."],
+      "feedback": {
+        "correct": "False! 2/4 has 2 on top, so it is NOT a unit fraction.",
+        "incorrect": "False. Unit fractions must have 1 on top. 2/4 has 2."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_combine",
+      "difficulty": 3,
+      "question": "What do you get if you put 5 pieces of 1/6 together?",
+      "choices": ["A) 5/6", "B) 5/30", "C) 1/6", "D) 1/5"],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "Don't multiply denominators"},
+        "C": {"error_type": "concept_gap", "note": "5 pieces, not 1"},
+        "D": {"error_type": "concept_gap", "note": "Wrong fraction"}
+      },
+      "verification": "5 × 1/6 = 5/6.",
+      "hints": ["Add tops; keep bottoms."],
+      "feedback": {
+        "correct": "Right! 5 × 1/6 = 5/6.",
+        "incorrect": "Combining 5 pieces of 1/6 gives 5/6."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_compare",
+      "difficulty": 3,
+      "question": "Two students each have a same-size cookie. Anna cuts hers into 4 pieces; Lily cuts hers into 6 pieces. Whose piece is BIGGER?",
+      "choices": ["A) Anna's (1/4)", "B) Lily's (1/6)", "C) Equal", "D) Cannot compare"],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "More pieces = smaller pieces"},
+        "C": {"error_type": "concept_gap", "note": "Different denominators → different sizes"},
+        "D": {"error_type": "concept_gap", "note": "Same-size cookies → we can compare"}
+      },
+      "verification": "1/4 > 1/6.",
+      "hints": ["Anna has fewer pieces — each is..."],
+      "feedback": {
+        "correct": "Right! Anna's 1/4 is bigger than Lily's 1/6.",
+        "incorrect": "Anna's piece is bigger. Fewer cuts = bigger pieces."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_logic",
+      "difficulty": 2,
+      "question": "True or False: 6 pieces of 1/6 make a whole.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {"error_type": "concept_gap", "note": "6 × 1/6 = 6/6 = whole"}
+      },
+      "verification": "6 × 1/6 = 1.",
+      "hints": ["Denominator tells how many pieces make a whole."],
+      "feedback": {
+        "correct": "True! 6 × 1/6 = 6/6 = 1 whole.",
+        "incorrect": "True. 6 pieces of 1/6 fill the whole."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 3,
+      "question": "A square has area 36 sq cm. It is divided into 6 equal parts. What is the area of EACH part? (Write the number.)",
+      "correct_answer": "6",
+      "expected_errors": {
+        "12": {"error_type": "concept_gap", "note": "36 ÷ 6 = 6, not 12"},
+        "30": {"error_type": "concept_gap", "note": "Don't subtract — divide"}
+      },
+      "verification": "36 ÷ 6 = 6.",
+      "hints": ["Divide whole area by number of parts."],
+      "feedback": {
+        "correct": "Right! 36 ÷ 6 = 6 sq cm.",
+        "incorrect": "Each part = 36 ÷ 6 = 6 sq cm."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_partition",
+      "difficulty": 3,
+      "question": "Tom has a circle. He wants each piece to be 1/3 of the area. How many equal parts should he cut?",
+      "choices": ["A) 1", "B) 2", "C) 3", "D) 6"],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "1 piece is the whole, not 1/3"},
+        "B": {"error_type": "concept_gap", "note": "2 pieces = halves"},
+        "D": {"error_type": "concept_gap", "note": "6 pieces = sixths"}
+      },
+      "verification": "1/3 → 3 parts.",
+      "hints": ["Denominator tells you the number of equal parts."],
+      "feedback": {
+        "correct": "Right! 1/3 means 3 equal parts.",
+        "incorrect": "For 1/3 each, cut into 3 equal parts."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 3,
+      "question": "True or False: If a shape's area is 24 sq cm and it has 8 equal parts, each part has area 4 sq cm.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {"error_type": "concept_gap", "note": "24 ÷ 8 = 3, not 4"}
+      },
+      "verification": "24 ÷ 8 = 3.",
+      "hints": ["Compute 24 ÷ 8."],
+      "feedback": {
+        "correct": "False! 24 ÷ 8 = 3 sq cm per part, not 4.",
+        "incorrect": "False. 24 ÷ 8 = 3 sq cm. Each part is 3 sq cm."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_combine",
+      "difficulty": 3,
+      "question": "Anna has 3 pieces of 1/4 of a sandwich. What fraction does she have? (Write as a fraction like 3/4)",
+      "correct_answer": "3/4",
+      "expected_errors": {
+        "1/4": {"error_type": "concept_gap", "note": "3 pieces, not 1"},
+        "3/12": {"error_type": "concept_gap", "note": "Don't multiply denominators"}
+      },
+      "verification": "3 × 1/4 = 3/4.",
+      "hints": ["Combine: add the tops; keep the bottom."],
+      "feedback": {
+        "correct": "Right! 3 × 1/4 = 3/4.",
+        "incorrect": "Anna has 3/4 of the sandwich. 3 pieces of 1/4 = 3/4."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_logic",
+      "difficulty": 4,
+      "question": "Lily has a rectangle with area 16 sq cm. She wants each equal part to have area 2 sq cm. Into how many parts should she divide it?",
+      "choices": ["A) 4", "B) 6", "C) 8", "D) 16"],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: Total area = 16 sq cm.",
+        "Step 2: Each part = 2 sq cm.",
+        "Step 3: Number of parts = 16 ÷ 2 = 8."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "16 ÷ 4 = 4 sq cm, not 2"},
+        "B": {"error_type": "concept_gap", "note": "16 ÷ 6 ≈ 2.67, not 2"},
+        "D": {"error_type": "concept_gap", "note": "16 ÷ 16 = 1 sq cm"}
+      },
+      "feedback": {
+        "correct": "Right! 16 ÷ 2 = 8 equal parts.",
+        "incorrect": "Divide whole area by part area: 16 ÷ 2 = 8 parts."
+      },
+      "three_read_prompt": "Read 1: What is the whole area? Read 2: What is each part's area? Read 3: How many parts?",
+      "verification": "16 / 2 = 8 parts.",
+      "hints": ["Whole area ÷ part area = number of parts."]
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 4,
+      "question": "A rectangle is partitioned into 4 equal parts. The area of EACH part is 7 sq cm. What is the area of the WHOLE rectangle?",
+      "correct_answer": "28",
+      "solution_steps": [
+        "Step 1: 4 equal parts.",
+        "Step 2: Each = 7 sq cm.",
+        "Step 3: Whole = 4 × 7 = 28 sq cm."
+      ],
+      "expected_errors": {
+        "11": {"error_type": "concept_gap", "note": "Multiply, don't add"},
+        "7": {"error_type": "concept_gap", "note": "7 is one part; whole = 4 × 7"}
+      },
+      "feedback": {
+        "correct": "Right! 4 × 7 = 28 sq cm.",
+        "incorrect": "Whole = parts × part area = 4 × 7 = 28 sq cm."
+      },
+      "three_read_prompt": "Read 1: How many parts? Read 2: How big is each part? Read 3: How big is the whole?",
+      "verification": "4 × 7 = 28.",
+      "hints": ["Multiply parts by area of each."]
+    },
+    {
+      "id": "R3_03",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_combine",
+      "difficulty": 4,
+      "question": "True or False: 2 pieces of 1/8 + 1 piece of 1/4 cover the same area as 1/2 of the whole.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {"error_type": "concept_gap", "note": "2/8 = 1/4 and 1/4 + 1/4 = 1/2"}
+      },
+      "feedback": {
+        "correct": "True! 2/8 = 1/4. Then 1/4 + 1/4 = 2/4 = 1/2.",
+        "incorrect": "True. 2 × 1/8 = 1/4. Adding another 1/4 gives 1/2."
+      },
+      "three_read_prompt": "Read 1: What is 2 × 1/8? Read 2: Add 1/4 to that. Read 3: Does it equal 1/2?",
+      "verification": "2/8 + 1/4 = 1/4 + 1/4 = 1/2.",
+      "hints": ["First simplify 2/8."]
+    },
+    {
+      "id": "R3_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_compare",
+      "difficulty": 5,
+      "question": "Anna has a same-size brownie as Tom. Anna eats 2 pieces of 1/8. Tom eats 1 piece of 1/4. Who ate MORE?",
+      "choices": ["A) Anna", "B) Tom", "C) They ate the same", "D) Cannot tell"],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: Anna ate 2 × 1/8 = 2/8.",
+        "Step 2: 2/8 = 1/4.",
+        "Step 3: Tom ate 1/4.",
+        "Step 4: 1/4 = 1/4 → SAME amount."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "2/8 = 1/4 — same as Tom"},
+        "B": {"error_type": "concept_gap", "note": "1/4 = 2/8 — same as Anna"},
+        "D": {"error_type": "concept_gap", "note": "We can compute and compare"}
+      },
+      "feedback": {
+        "correct": "Right! Both ate 1/4 (Anna ate 2/8 which equals 1/4).",
+        "incorrect": "They ate the same amount. 2/8 = 1/4 = what Tom ate."
+      },
+      "three_read_prompt": "Read 1: How much did Anna eat? Read 2: How much did Tom eat? Read 3: How do they compare?",
+      "verification": "2/8 = 1/4.",
+      "hints": ["What is 2 × 1/8?"]
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 5,
+      "question": "A rectangle is divided into 6 equal parts. The whole rectangle has area 30 sq cm. What is the TOTAL area of 4 of these parts? (Write the number.)",
+      "correct_answer": "20",
+      "solution_steps": [
+        "Step 1: 30 sq cm ÷ 6 parts = 5 sq cm per part.",
+        "Step 2: 4 parts × 5 sq cm = 20 sq cm."
+      ],
+      "expected_errors": {
+        "5": {"error_type": "concept_gap", "note": "5 sq cm is just 1 part"},
+        "24": {"error_type": "concept_gap", "note": "Compute: 4 × 5 = 20, not 24"},
+        "10": {"error_type": "concept_gap", "note": "4 × 5 = 20"}
+      },
+      "feedback": {
+        "correct": "Right! Each part = 30 ÷ 6 = 5. 4 parts = 4 × 5 = 20 sq cm.",
+        "incorrect": "Each part is 5 sq cm. 4 parts = 4 × 5 = 20 sq cm."
+      },
+      "three_read_prompt": "Read 1: Whole area? Read 2: Each part's area? Read 3: 4 parts together?",
+      "verification": "30 / 6 = 5; 4 × 5 = 20.",
+      "hints": ["First find one part's area, then multiply by 4."]
+    }
+  ]
+}

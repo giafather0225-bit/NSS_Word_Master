@@ -1,0 +1,152 @@
+{
+  "lesson_id": "L2_measure_area_count",
+  "title": "Measure Area by Counting Unit Squares",
+  "ccss": [
+    "3.MD.C.5",
+    "3.MD.C.6"
+  ],
+  "grade": "G3",
+  "unit": "U12_area",
+  "go_math_ref": "Chapter 11, Lesson 11.5",
+  "essential_question": "How can you measure the area of a shape by counting unit squares?",
+  "key_vocabulary": [
+    "area",
+    "unit square",
+    "row",
+    "column",
+    "tile",
+    "square unit"
+  ],
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.6",
+      "skill_tag": "count_squares",
+      "difficulty": 1,
+      "question": "A rectangle is covered by 5 rows of unit squares. Each row has 3 squares. How many unit squares total?",
+      "correct_answer": "15",
+      "expected_errors": {"8": {"error_type": "concept_gap", "note": "5+3=8 but should multiply"}, "5": {"error_type": "concept_gap", "note": "5 is just rows"}},
+      "verification": "5 × 3 = 15.",
+      "hints": ["Multiply rows by squares per row."],
+      "feedback": {"correct": "Right! 15 unit squares.", "incorrect": "5 × 3 = 15 unit squares."}
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.C.6",
+      "skill_tag": "row_column_count",
+      "difficulty": 2,
+      "question": "Why do we count area in ROWS and COLUMNS?",
+      "choices": [
+        "A) It's faster than counting one by one",
+        "B) It's the only way",
+        "C) It always gives a wrong answer",
+        "D) It works only for triangles"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {"B": {"error_type": "concept_gap", "note": "You can also count one by one"}, "C": {"error_type": "concept_gap", "note": "Multiplying rows × columns is correct"}, "D": {"error_type": "concept_gap", "note": "It works for rectangles"}},
+      "verification": "Multiplication is faster.",
+      "hints": ["Multiplication beats counting one square at a time."],
+      "feedback": {"correct": "Right!", "incorrect": "Counting in rows × columns is faster than one-by-one."}
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.6",
+      "skill_tag": "count_squares",
+      "difficulty": 2,
+      "question": "A rectangle has 4 rows and 7 columns of unit squares. What is the area in square units?",
+      "correct_answer": "28",
+      "expected_errors": {"11": {"error_type": "concept_gap", "note": "4+7=11 but should multiply"}, "21": {"error_type": "careless", "note": "3×7=21, but rows are 4"}},
+      "verification": "4 × 7 = 28.",
+      "hints": ["Multiply rows × columns."],
+      "feedback": {"correct": "Right!", "incorrect": "Area = 4 × 7 = 28 sq units."}
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.C.6",
+      "skill_tag": "irregular_count",
+      "difficulty": 3,
+      "question": "An L-shape is made of 7 unit squares (no gaps). What is the BEST way to find its area?",
+      "choices": [
+        "A) Count each unit square one by one",
+        "B) Multiply width × height (only)",
+        "C) Subtract from the largest rectangle",
+        "D) Both A and C work; B alone doesn't fit an L"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {"A": {"error_type": "concept_gap", "note": "Counting works, but C also works"}, "B": {"error_type": "concept_gap", "note": "Width × height alone is for rectangles"}, "C": {"error_type": "concept_gap", "note": "Subtracting works, but counting also works"}},
+      "verification": "L-shape: count or subtract.",
+      "hints": ["L-shapes aren't simple rectangles."],
+      "feedback": {"correct": "Right!", "incorrect": "L-shapes work with counting or by subtracting from a bigger rectangle."}
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.6",
+      "skill_tag": "count_squares",
+      "difficulty": 2,
+      "question": "A rectangle has 8 columns and 2 rows of unit squares. What is the area in square units?",
+      "correct_answer": "16",
+      "expected_errors": {"10": {"error_type": "concept_gap", "note": "8+2=10 but multiply"}, "8": {"error_type": "concept_gap", "note": "Multiply 8 by rows (2)"}},
+      "verification": "8 × 2 = 16.",
+      "hints": ["Multiply columns × rows."],
+      "feedback": {"correct": "Right!", "incorrect": "Area = 8 × 2 = 16 sq units."}
+    }
+  ],
+  "learn": [
+    {"id": "LEARN_01", "type": "concept_card", "cpa_phase": "concrete", "title": "Counting Strategy", "content": "To find the area of a shape covered with unit squares: COUNT them. We can count one by one for any shape, but for rectangles, we use a faster way: rows × columns.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.5: counting unit squares."},
+    {"id": "LEARN_02", "type": "concept_card", "cpa_phase": "concrete", "title": "Rows and Columns", "content": "A ROW of unit squares goes ACROSS (left to right). A COLUMN goes UP and DOWN. A rectangle has rows AND columns of unit squares. The total = (number of rows) × (number of squares in one row).", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.5: rows and columns."},
+    {"id": "LEARN_03", "type": "concept_card", "cpa_phase": "pictorial", "title": "Multiplication Shortcut for Area", "content": "For rectangles: AREA = ROWS × COLUMNS (in unit squares). Example: 5 rows × 4 columns = 20 unit squares = 20 sq units. This is much faster than counting all 20 squares one at a time.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.5: multiplication shortcut."},
+    {"id": "LEARN_04", "type": "concept_card", "cpa_phase": "pictorial", "title": "Counting Irregular Shapes", "content": "For shapes that are NOT rectangles (like L-shapes, T-shapes), count the unit squares one by one. Or split the shape into smaller rectangles, find each area, then ADD.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.5: irregular shapes."},
+    {"id": "LEARN_05", "type": "concept_card", "cpa_phase": "abstract", "title": "Same Shape, Different Counts?", "content": "If two students cover the SAME shape with NO gaps and NO overlaps, they both get the SAME area count. Area is fixed for a shape — it doesn't change based on who counts.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.5: area invariance."},
+    {"id": "LEARN_06", "type": "concept_card", "cpa_phase": "abstract", "title": "Smaller Squares = More Squares", "content": "If you use SMALLER unit squares, you need MORE of them to cover the same shape. A rectangle that fits 12 unit squares of 1×1 might fit 48 squares of 1/2 × 1/2 — but the area is still the same in standard units.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.5: unit-size effect."},
+    {"id": "LEARN_07", "type": "concept_card", "cpa_phase": "abstract", "title": "Use a Strategy", "content": "Choose the best counting strategy: (1) RECTANGLE → rows × columns. (2) IRREGULAR → count one by one OR split into rectangles. (3) Always check no gaps and no overlaps.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.5: strategy choice."},
+    {"id": "LEARN_08", "type": "concept_card", "cpa_phase": "abstract", "title": "Lesson Summary", "content": "Today: (1) Count unit squares to find area. (2) For rectangles: AREA = rows × columns. (3) For irregular: count or split into rectangles. (4) Check no gaps, no overlaps. (5) Area is the same no matter who counts (with same units).", "visual_type": "none", "visual_data": {}, "verification": "Covers all Go Math 11.5."}
+  ],
+  "try": [
+    {"id": "TRY_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 2, "question": "A rectangle has 3 rows and 5 columns of unit squares. What is its area? (Write the number of sq units.)", "correct_answer": "15", "solution_steps": ["Step 1: 3 rows × 5 columns.", "Step 2: 3 × 5 = 15."], "expected_errors": {"8": {"error_type": "concept_gap", "note": "3+5 — should multiply"}, "10": {"error_type": "careless", "note": "2×5=10, but 3 rows"}}, "feedback": {"correct": "Right!", "incorrect": "3 × 5 = 15 sq units."}, "verification": "3 × 5 = 15.", "hints": ["Multiply rows × columns."]},
+    {"id": "TRY_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 2, "question": "A rectangle has 6 rows and 3 columns. Area in sq units?", "correct_answer": "18", "solution_steps": ["Step 1: 6 × 3 = 18."], "expected_errors": {"9": {"error_type": "concept_gap", "note": "6+3=9 but multiply"}}, "feedback": {"correct": "Right!", "incorrect": "Area = 6 × 3 = 18 sq units."}, "verification": "6 × 3 = 18.", "hints": ["6 × 3."]},
+    {"id": "TRY_03", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.C.6", "skill_tag": "irregular_count", "difficulty": 3, "question": "An L-shape is made of a 3×2 rectangle ON TOP of a 2×4 rectangle (no overlap). What's the total area?", "choices": ["A) 6 sq units", "B) 8 sq units", "C) 14 sq units", "D) 24 sq units"], "correct_answer": "C", "solution_steps": ["Step 1: Top: 3 × 2 = 6.", "Step 2: Bottom: 2 × 4 = 8.", "Step 3: Total: 6 + 8 = 14."], "expected_errors": {"A": {"error_type": "concept_gap", "note": "Just top, missed bottom"}, "B": {"error_type": "concept_gap", "note": "Just bottom"}, "D": {"error_type": "concept_gap", "note": "Don't multiply totals"}}, "feedback": {"correct": "Right! 6 + 8 = 14.", "incorrect": "Add the two rectangle areas: 6 + 8 = 14."}, "verification": "6 + 8 = 14.", "hints": ["Find each rectangle's area, then add."]},
+    {"id": "TRY_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 2, "question": "A rectangle has 9 columns and 1 row. Area in sq units?", "correct_answer": "9", "solution_steps": ["Step 1: 9 × 1 = 9."], "expected_errors": {"10": {"error_type": "concept_gap", "note": "9+1=10 but multiply"}}, "feedback": {"correct": "Right!", "incorrect": "9 × 1 = 9 sq units."}, "verification": "9 × 1 = 9.", "hints": ["9 × 1."]},
+    {"id": "TRY_05", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_logic", "difficulty": 3, "question": "True or False: A rectangle with 4 rows and 5 columns has the SAME area as one with 5 rows and 4 columns.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "4×5 = 5×4 = 20"}}, "feedback": {"correct": "True!", "incorrect": "True. 4×5 = 5×4 = 20."}, "verification": "4×5 = 5×4.", "hints": ["Order doesn't change multiplication."]}
+  ],
+  "practice_r1": [
+    {"id": "R1_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 1, "question": "Rectangle: 2 rows × 4 columns. Area?", "correct_answer": "8", "expected_errors": {"6": {"error_type": "concept_gap", "note": "2+4=6 but multiply"}}, "verification": "2×4=8.", "hints": ["Multiply."], "feedback": {"correct": "Right!", "incorrect": "2 × 4 = 8."}},
+    {"id": "R1_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 1, "question": "Rectangle: 3 rows × 3 columns. Area?", "correct_answer": "9", "expected_errors": {"6": {"error_type": "concept_gap", "note": "3+3=6 but multiply"}}, "verification": "3×3=9.", "hints": ["3 × 3."], "feedback": {"correct": "Right!", "incorrect": "3 × 3 = 9."}},
+    {"id": "R1_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 2, "question": "Rectangle: 5 rows × 4 columns. Area?", "correct_answer": "20", "expected_errors": {"9": {"error_type": "concept_gap", "note": "5+4=9 but multiply"}, "16": {"error_type": "careless", "note": "4×4=16, but 5 rows"}}, "verification": "5×4=20.", "hints": ["5 × 4."], "feedback": {"correct": "Right!", "incorrect": "5 × 4 = 20."}},
+    {"id": "R1_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 2, "question": "Rectangle: 7 rows × 6 columns. Area?", "correct_answer": "42", "expected_errors": {"13": {"error_type": "concept_gap", "note": "7+6=13 but multiply"}, "36": {"error_type": "careless", "note": "6×6=36, but 7 rows"}}, "verification": "7×6=42.", "hints": ["7 × 6."], "feedback": {"correct": "Right!", "incorrect": "7 × 6 = 42."}},
+    {"id": "R1_05", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_logic", "difficulty": 2, "question": "Which rectangle has the BIGGEST area?", "choices": ["A) 3 rows × 4 cols", "B) 5 rows × 3 cols", "C) 6 rows × 2 cols", "D) 4 rows × 4 cols"], "correct_answer": "D", "expected_errors": {"A": {"error_type": "concept_gap", "note": "12 < 16"}, "B": {"error_type": "concept_gap", "note": "15 < 16"}, "C": {"error_type": "concept_gap", "note": "12 < 16"}}, "verification": "16 > 15 > 12.", "hints": ["Compute each area."], "feedback": {"correct": "Right!", "incorrect": "4×4=16 is the biggest."}},
+    {"id": "R1_06", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 2, "question": "Rectangle: 8 rows × 5 columns. Area?", "correct_answer": "40", "expected_errors": {"13": {"error_type": "concept_gap", "note": "8+5=13 but multiply"}}, "verification": "8×5=40.", "hints": ["8 × 5."], "feedback": {"correct": "Right!", "incorrect": "8 × 5 = 40."}},
+    {"id": "R1_07", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "irregular_count", "difficulty": 3, "question": "An L-shape splits into a 2×3 rectangle and a 1×2 rectangle. Total area?", "correct_answer": "8", "expected_errors": {"6": {"error_type": "concept_gap", "note": "Forgot the second rectangle"}, "10": {"error_type": "careless", "note": "6+2=8, not 10"}}, "verification": "6+2=8.", "hints": ["Add the two areas."], "feedback": {"correct": "Right!", "incorrect": "6 + 2 = 8 sq units."}},
+    {"id": "R1_08", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_logic", "difficulty": 2, "question": "True or False: 2 × 6 has the same area as 6 × 2.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "Same product"}}, "verification": "2×6 = 6×2.", "hints": ["Order doesn't matter in multiplication."], "feedback": {"correct": "True!", "incorrect": "True. Both equal 12."}},
+    {"id": "R1_09", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 2, "question": "Rectangle: 6 rows × 6 columns. Area?", "correct_answer": "36", "expected_errors": {"12": {"error_type": "concept_gap", "note": "6+6=12 but multiply"}}, "verification": "6×6=36.", "hints": ["6 × 6."], "feedback": {"correct": "Right!", "incorrect": "6 × 6 = 36."}},
+    {"id": "R1_10", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 2, "question": "Rectangle: 1 row × 12 columns. Area?", "correct_answer": "12", "expected_errors": {"13": {"error_type": "concept_gap", "note": "1+12=13 but multiply"}}, "verification": "1×12=12.", "hints": ["1 × 12."], "feedback": {"correct": "Right!", "incorrect": "1 × 12 = 12."}}
+  ],
+  "practice_r2": [
+    {"id": "R2_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_word_problem", "difficulty": 2, "question": "Sara's rug has 4 rows of 9 unit squares. Area?", "correct_answer": "36", "expected_errors": {"13": {"error_type": "concept_gap", "note": "4+9=13 but multiply"}}, "verification": "4×9=36.", "hints": ["4 × 9."], "feedback": {"correct": "Right!", "incorrect": "Area = 4 × 9 = 36 sq units."}},
+    {"id": "R2_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 2, "question": "Rectangle: 10 rows × 3 columns. Area?", "correct_answer": "30", "expected_errors": {"13": {"error_type": "concept_gap", "note": "10+3=13 but multiply"}}, "verification": "10×3=30.", "hints": ["10 × 3."], "feedback": {"correct": "Right!", "incorrect": "10 × 3 = 30."}},
+    {"id": "R2_03", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_compare", "difficulty": 3, "question": "Which has the BIGGEST area?", "choices": ["A) 5 × 6", "B) 4 × 7", "C) 3 × 8", "D) 2 × 12"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "4×7=28 < 30"}, "C": {"error_type": "concept_gap", "note": "3×8=24 < 30"}, "D": {"error_type": "concept_gap", "note": "2×12=24 < 30"}}, "verification": "5×6=30, 4×7=28, 3×8=24, 2×12=24.", "hints": ["Compute each."], "feedback": {"correct": "Right! 5×6=30 is biggest.", "incorrect": "5×6=30 is biggest. 4×7=28, 3×8=24, 2×12=24."}},
+    {"id": "R2_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "irregular_count", "difficulty": 3, "question": "A T-shape: top is 3 squares wide × 2 tall, bottom is 1 square wide × 3 tall. Total area?", "correct_answer": "9", "expected_errors": {"6": {"error_type": "concept_gap", "note": "Just top, missed bottom"}, "8": {"error_type": "careless", "note": "6+3=9, not 8"}}, "verification": "6+3=9.", "hints": ["Add top and bottom rectangles."], "feedback": {"correct": "Right!", "incorrect": "Top: 3×2=6. Bottom: 1×3=3. Total: 9 sq units."}},
+    {"id": "R2_05", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_logic", "difficulty": 3, "question": "True or False: 3×6 and 4×4 have the same area.", "correct_answer": "false", "expected_errors": {"true": {"error_type": "concept_gap", "note": "18 ≠ 16"}}, "verification": "18 ≠ 16.", "hints": ["Compute each."], "feedback": {"correct": "False!", "incorrect": "False. 3×6=18, 4×4=16. Different."}},
+    {"id": "R2_06", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 2, "question": "Rectangle: 9 rows × 2 columns. Area?", "correct_answer": "18", "expected_errors": {"11": {"error_type": "concept_gap", "note": "9+2=11 but multiply"}}, "verification": "9×2=18.", "hints": ["9 × 2."], "feedback": {"correct": "Right!", "incorrect": "9 × 2 = 18."}},
+    {"id": "R2_07", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "irregular_count", "difficulty": 3, "question": "Tom's L-shape splits into a 4×3 rectangle and a 2×3 rectangle. Total area?", "choices": ["A) 12 sq units", "B) 18 sq units", "C) 24 sq units", "D) 6 sq units"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Just the first rectangle"}, "C": {"error_type": "concept_gap", "note": "12+6=18, not 24"}, "D": {"error_type": "concept_gap", "note": "Just the second rectangle"}}, "verification": "12+6=18.", "hints": ["Add 12 + 6."], "feedback": {"correct": "Right!", "incorrect": "12 + 6 = 18 sq units."}},
+    {"id": "R2_08", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "count_squares", "difficulty": 3, "question": "Rectangle: 7 rows × 7 columns. Area?", "correct_answer": "49", "expected_errors": {"14": {"error_type": "concept_gap", "note": "7+7=14 but multiply"}, "42": {"error_type": "careless", "note": "7×6=42, but 7 cols"}}, "verification": "7×7=49.", "hints": ["7 × 7."], "feedback": {"correct": "Right!", "incorrect": "7 × 7 = 49."}},
+    {"id": "R2_09", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_logic", "difficulty": 2, "question": "True or False: A rectangle with area 24 sq units could be 3 rows by 8 columns.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "3×8=24"}}, "verification": "3×8=24.", "hints": ["Compute 3×8."], "feedback": {"correct": "True!", "incorrect": "True. 3 × 8 = 24."}},
+    {"id": "R2_10", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_word_problem", "difficulty": 3, "question": "Lily wants a rug with area 24 sq units that has 4 rows. How many columns?", "correct_answer": "6", "expected_errors": {"4": {"error_type": "concept_gap", "note": "4 is rows; ? = 6"}, "24": {"error_type": "concept_gap", "note": "24 is total"}}, "verification": "24/4=6.", "hints": ["Total ÷ rows."], "feedback": {"correct": "Right!", "incorrect": "Columns = 24 ÷ 4 = 6."}}
+  ],
+  "practice_r3": [
+    {"id": "R3_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_construction", "difficulty": 4, "question": "A rectangle has area 36 sq units and 6 rows. How many columns?", "correct_answer": "6", "solution_steps": ["Step 1: rows × cols = 36.", "Step 2: 6 × ? = 36.", "Step 3: ? = 36 ÷ 6 = 6."], "expected_errors": {"30": {"error_type": "concept_gap", "note": "Don't subtract"}, "12": {"error_type": "concept_gap", "note": "36 ÷ 6 = 6, not 12"}}, "feedback": {"correct": "Right!", "incorrect": "Columns = 36 ÷ 6 = 6."}, "three_read_prompt": "Read 1: Total area? Read 2: Rows? Read 3: Columns?", "verification": "36/6=6.", "hints": ["Total ÷ rows = columns."]},
+    {"id": "R3_02", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_logic", "difficulty": 4, "question": "Two rectangles have the same area. One is 2×8. The other is 4×?. What is ?", "choices": ["A) 4", "B) 6", "C) 8", "D) 16"], "correct_answer": "A", "solution_steps": ["Step 1: 2×8 = 16.", "Step 2: 4×? = 16.", "Step 3: ? = 4."], "expected_errors": {"B": {"error_type": "concept_gap", "note": "4×6=24, not 16"}, "C": {"error_type": "concept_gap", "note": "4×8=32, not 16"}, "D": {"error_type": "concept_gap", "note": "4×16=64"}}, "feedback": {"correct": "Right! 4×4=16.", "incorrect": "16 ÷ 4 = 4."}, "three_read_prompt": "Read 1: First area? Read 2: Match second area. Read 3: Find ?", "verification": "4×4=16.", "hints": ["Find first area, then divide."]},
+    {"id": "R3_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "irregular_count", "difficulty": 5, "question": "An H-shape splits into 3 rectangles: 2×5 (left), 1×3 (middle), 2×5 (right). Total area?", "correct_answer": "23", "solution_steps": ["Step 1: Left: 2×5=10.", "Step 2: Middle: 1×3=3.", "Step 3: Right: 2×5=10.", "Step 4: 10+3+10=23."], "expected_errors": {"20": {"error_type": "concept_gap", "note": "Forgot middle"}, "13": {"error_type": "concept_gap", "note": "Only counted 2 rectangles"}}, "feedback": {"correct": "Right!", "incorrect": "10+3+10 = 23."}, "three_read_prompt": "Read 1: How many rectangles? Read 2: Each area? Read 3: Sum?", "verification": "10+3+10=23.", "hints": ["Add all 3 rectangle areas."]},
+    {"id": "R3_04", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_logic", "difficulty": 4, "question": "True or False: Two rectangles can have the same number of columns but different areas.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "Different rows → different areas"}}, "feedback": {"correct": "True! 2×4 = 8, 5×4 = 20.", "incorrect": "True. Same columns but different rows → different areas."}, "three_read_prompt": "Read 1: What can change? Read 2: How does area change? Read 3: Same columns possible?", "verification": "Yes — different rows.", "hints": ["What if rows differ?"]},
+    {"id": "R3_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.6", "skill_tag": "area_logic", "difficulty": 5, "question": "A rectangle has area 32 sq units. The number of rows is DOUBLE the number of columns. Find rows + columns.", "correct_answer": "12", "solution_steps": ["Step 1: rows = 2 × cols.", "Step 2: rows × cols = 32. So 2 × cols × cols = 32.", "Step 3: cols × cols = 16. So cols = 4.", "Step 4: rows = 2 × 4 = 8.", "Step 5: rows + cols = 8 + 4 = 12."], "expected_errors": {"6": {"error_type": "concept_gap", "note": "That's just cols × something wrong"}, "16": {"error_type": "concept_gap", "note": "16 is cols squared, not rows + cols"}, "10": {"error_type": "careless", "note": "8+4=12, not 10"}}, "feedback": {"correct": "Right! cols=4, rows=8, sum=12.", "incorrect": "cols × cols = 16 → cols=4. rows = 8. Sum = 12."}, "three_read_prompt": "Read 1: What's the relationship between rows and cols? Read 2: What's the area? Read 3: Find cols, then rows, then sum.", "verification": "4 × 8 = 32; 4 + 8 = 12.", "hints": ["If rows = 2 × cols and rows × cols = 32, find cols × cols."]}
+  ]
+}
