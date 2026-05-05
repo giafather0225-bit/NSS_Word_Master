@@ -234,7 +234,6 @@
     if (!body) return;
 
     const correct = _answers.filter((a, i) => {
-      // Re-check correct count from problems list (we graded client-side)
       const p = _problems[i];
       if (!p) return false;
       const ca = (p.correct_answer || '').trim();
@@ -244,20 +243,39 @@
     }).length;
     const total = _answers.length;
 
-    const nextDates = updatedLessons.map(l => {
-      const d = new Date(l.next_review_date);
-      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    });
-    const nextDateText = nextDates.length
-      ? `Next review: ${nextDates.join(', ')}`
-      : '';
+    let lessonRows = '';
+    if (updatedLessons.length) {
+      lessonRows = updatedLessons.map(l => {
+        const acc = l.review_accuracy != null ? Math.round(l.review_accuracy) : null;
+        const passed = acc != null && acc >= 80;
+        const accClass = acc == null ? '' : passed ? 'math-sr-acc--pass' : 'math-sr-acc--fail';
+        const accLabel = acc != null ? `${acc}%` : '--';
+        const statusLabel = acc == null ? '' : passed ? 'Interval advanced' : 'Needs more review';
+        const nextDate = l.next_review_date
+          ? new Date(l.next_review_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+          : '';
+        const name = _esc(l.lesson_title || l.lesson_id || '');
+        return `<div class="math-sr-lesson-row">
+          <span class="math-sr-lesson-name">${name}</span>
+          <span class="math-sr-acc ${accClass}">${accLabel}</span>
+          <span class="math-sr-status">${statusLabel}</span>
+          <span class="math-sr-next-date">${nextDate}</span>
+        </div>`;
+      }).join('');
+    }
 
     body.innerHTML = `
       <div class="math-sr-complete">
         <div class="math-sr-complete-score">${correct} / ${total}</div>
         <div class="math-sr-complete-label">Math Review Complete</div>
         ${xpEarned ? `<div class="math-sr-complete-xp">+${xpEarned} XP</div>` : ''}
-        ${nextDateText ? `<div class="math-sr-complete-next">${_esc(nextDateText)}</div>` : ''}
+        ${lessonRows ? `
+          <div class="math-sr-lessons-summary">
+            <div class="math-sr-lessons-header">
+              <span>Lesson</span><span>Accuracy</span><span>Status</span><span>Next</span>
+            </div>
+            ${lessonRows}
+          </div>` : ''}
         <button class="math-btn-primary math-sr-done-btn" id="math-sr-done">Done</button>
       </div>
     `;
@@ -265,7 +283,6 @@
     const doneBtn = body.querySelector('#math-sr-done');
     if (doneBtn) doneBtn.addEventListener('click', () => {
       _removeOverlay();
-      // Refresh home dashboard badge if available
       if (typeof renderTodayTasks === 'function') renderTodayTasks();
     });
   }

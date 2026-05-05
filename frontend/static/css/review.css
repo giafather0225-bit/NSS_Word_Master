@@ -279,3 +279,25 @@
     min-width: 140px; padding: 13px 28px;
     font-size: var(--font-size-md);
 }
+.math-sr-lessons-summary {
+    width: 100%; margin: 12px 0 20px; text-align: left;
+    font-size: var(--font-size-sm);
+}
+.math-sr-lessons-header {
+    display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr;
+    padding: 6px 0; border-bottom: 1px solid var(--border-default);
+    font-weight: 700; color: var(--text-secondary);
+    font-size: var(--font-size-xs); text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.math-sr-lesson-row {
+    display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr;
+    padding: 8px 0; border-bottom: 1px solid var(--border-subtle);
+    align-items: center;
+}
+.math-sr-lesson-name { font-weight: 600; color: var(--text-primary); }
+.math-sr-acc { font-weight: 700; }
+.math-sr-acc--pass { color: var(--math-primary); }
+.math-sr-acc--fail { color: var(--review-primary); }
+.math-sr-status { font-size: var(--font-size-xs); color: var(--text-secondary); }
+.math-sr-next-date { font-size: var(--font-size-xs); color: var(--text-hint); }
