@@ -479,8 +479,9 @@ async function _zdPlaceSelected(x, y) {
             body: JSON.stringify({
                 inventory_id: invId,
                 zone: _zdZone,
-                pos_x: Math.round(x * 100) / 100,
-                pos_y: Math.round(y * 100) / 100,
+                // Backend stores integer % (0–100). Round + clamp.
+                pos_x: Math.max(0, Math.min(100, Math.round(x))),
+                pos_y: Math.max(0, Math.min(100, Math.round(y))),
             }),
         });
         _showShopToast(`${it.name} placed!`);
