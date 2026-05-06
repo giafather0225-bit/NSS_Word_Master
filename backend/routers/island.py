@@ -621,12 +621,13 @@ def shop_catalog(category: Optional[str] = None, zone: Optional[str] = None,
         q = q.filter(IslandShopItem.zone.in_([zone, "all"]))
     items = q.order_by(IslandShopItem.category, IslandShopItem.price).all()
     currency = le.get_balance(db)
-    owned_ids = [
-        row.shop_item_id
-        for row in db.query(IslandInventory.shop_item_id)
-            .filter(IslandInventory.quantity > 0)
-            .all()
-    ]
+    # Owned = currently in inventory (qty>0) OR currently placed in a zone.
+    # For decorations this is unique-per-island; the buy endpoint rejects re-buys.
+    inv_ids = {row.shop_item_id for row in db.query(IslandInventory.shop_item_id)
+        .filter(IslandInventory.quantity > 0).all()}
+    placed_ids = {row.shop_item_id for row in db.query(IslandPlacedItem.shop_item_id)
+        .filter(IslandPlacedItem.is_placed == True).all()}
+    owned_ids = sorted(inv_ids | placed_ids)
     return {
         "items": [
             {"id": i.id, "name": i.name, "category": i.category,
@@ -647,6 +648,24 @@ def shop_buy(body: BuyBody, db: Session = Depends(get_db)):
     item = db.get(IslandShopItem, body.shop_item_id)
     if item is None or not item.is_active:
         raise HTTPException(404, "Item not found.")
+
+    # Decorations are unique-per-island: each can only be owned once.
+    # Reject if user already has it in inventory OR already placed in a zone.
+    if item.category == "decoration":
+        if body.quantity != 1:
+            raise HTTPException(400, "Decorations can only be bought one at a time.")
+        existing_inv = db.query(IslandInventory).filter_by(
+            shop_item_id=item.id, item_type="decoration",
+            used_on_character_progress_id=None,
+        ).first()
+        if existing_inv and existing_inv.quantity > 0:
+            raise HTTPException(400, f"You already own '{item.name}' (in inventory).")
+        existing_placed = db.query(IslandPlacedItem).filter_by(
+            shop_item_id=item.id, is_placed=True,
+        ).first()
+        if existing_placed:
+            raise HTTPException(400, f"You already placed '{item.name}' in your island.")
+
     total_cost = item.price * body.quantity
     try:
         if item.is_legend_currency:
