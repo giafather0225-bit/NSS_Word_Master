@@ -688,6 +688,7 @@ def inventory(category: Optional[str] = None, db: Session = Depends(get_db)):
     return {"items": [
         {"id": inv.id, "shop_item_id": inv.shop_item_id, "item_type": inv.item_type,
          "quantity": inv.quantity, "name": si.name, "category": si.category,
+         "sub_category": si.sub_category, "zone": si.zone,
          "evolution_type": si.evolution_type, "image": si.image,
          "used_on_character_progress_id": inv.used_on_character_progress_id}
         for inv, si in rows
@@ -705,7 +706,8 @@ def placed_items(zone: Optional[str] = None, db: Session = Depends(get_db)):
     rows = q.all()
     return {"items": [
         {"id": p.id, "shop_item_id": p.shop_item_id, "zone": p.zone,
-         "pos_x": p.pos_x, "pos_y": p.pos_y, "name": si.name, "image": si.image}
+         "pos_x": p.pos_x, "pos_y": p.pos_y,
+         "name": si.name, "image": si.image, "sub_category": si.sub_category}
         for p, si in rows
     ]}
 

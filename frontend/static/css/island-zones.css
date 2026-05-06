@@ -110,14 +110,244 @@
     position: absolute;
     inset: 0;
     z-index: 2;
-    pointer-events: none;  /* items themselves can opt back in */
+    pointer-events: none;  /* placed items opt back in via .izd-decor */
 }
-.izd-stage-decor img {
+
+/* Individual placed decoration */
+.izd-decor {
     position: absolute;
+    transform: translate(-50%, -50%);
     pointer-events: all;
     user-select: none;
     -webkit-user-drag: none;
+    transition: transform var(--transition-fast), filter var(--transition-fast);
 }
+.izd-decor img {
+    width: 128px;
+    height: 128px;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+    filter: drop-shadow(0 6px 14px rgba(0,0,0,.18));
+}
+
+/* Placeholder when PNG missing — colored badge with Lucide icon + name */
+.izd-decor-ph {
+    width: 110px;
+    height: 110px;
+    border-radius: var(--radius-lg);
+    background: rgba(255,255,255,0.85);
+    border: 2px dashed var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.12);
+}
+.izd-decor-ph i { width: 28px; height: 28px; color: var(--text-secondary); }
+.izd-decor-ph-label {
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.15;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Per-sub-category placeholder tints */
+.izd-decor-ph--prop      { background: var(--english-light); border-color: var(--english-primary); }
+.izd-decor-ph--prop i,
+.izd-decor-ph--prop .izd-decor-ph-label { color: var(--english-ink); }
+.izd-decor-ph--building  { background: var(--diary-light); border-color: var(--diary-primary); }
+.izd-decor-ph--building i,
+.izd-decor-ph--building .izd-decor-ph-label { color: var(--diary-ink); }
+.izd-decor-ph--special   { background: var(--rewards-light); border-color: var(--rewards-primary); }
+.izd-decor-ph--special i,
+.izd-decor-ph--special .izd-decor-ph-label { color: var(--rewards-ink); }
+.izd-decor-ph--landscape { background: var(--arcade-light); border-color: var(--arcade-primary); }
+.izd-decor-ph--landscape i,
+.izd-decor-ph--landscape .izd-decor-ph-label { color: var(--arcade-ink); }
+.izd-decor-ph--nature    { background: var(--math-light); border-color: var(--math-primary); }
+.izd-decor-ph--nature i,
+.izd-decor-ph--nature .izd-decor-ph-label { color: var(--math-ink); }
+.izd-decor-ph--common,
+.izd-decor-ph--dragon,
+.izd-decor-ph--unicorn,
+.izd-decor-ph--phoenix,
+.izd-decor-ph--gumiho,
+.izd-decor-ph--qilin     { background: var(--review-light); border-color: var(--review-primary); }
+.izd-decor-ph--common i,
+.izd-decor-ph--common .izd-decor-ph-label,
+.izd-decor-ph--dragon i,
+.izd-decor-ph--dragon .izd-decor-ph-label,
+.izd-decor-ph--unicorn i,
+.izd-decor-ph--unicorn .izd-decor-ph-label,
+.izd-decor-ph--phoenix i,
+.izd-decor-ph--phoenix .izd-decor-ph-label,
+.izd-decor-ph--gumiho i,
+.izd-decor-ph--gumiho .izd-decor-ph-label,
+.izd-decor-ph--qilin i,
+.izd-decor-ph--qilin .izd-decor-ph-label { color: var(--review-ink); }
+
+/* Decorate mode (entered via Decorate button) ─────────────── */
+
+.izd-stage--decorating { cursor: crosshair; }
+.izd-stage--decorating .izd-stage-char { opacity: 0.55; pointer-events: none; }
+.izd-stage--decorating .izd-decor { pointer-events: all; }
+.izd-stage--decorating .izd-decor:hover {
+    transform: translate(-50%, -50%) scale(1.06);
+    filter: drop-shadow(0 0 0 3px var(--review-primary));
+}
+
+/* Ghost preview that follows the cursor while placing */
+.izd-decor-ghost {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    opacity: 0.78;
+}
+.izd-decor-ghost img,
+.izd-decor-ghost .izd-decor-ph { width: 110px; height: 110px; }
+
+/* Decorate inventory drawer (replaces HUD content while in decorate mode) */
+.izd-decor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--diary-light);
+    border-bottom: 1px solid var(--diary-soft);
+    flex-wrap: wrap;
+}
+.izd-decor-toolbar-title {
+    font-family: var(--font-family-display);
+    font-weight: 800;
+    color: var(--diary-ink);
+    font-size: var(--font-size-md);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.izd-decor-toolbar-title i { width: 18px; height: 18px; }
+.izd-decor-toolbar-hint {
+    font-size: var(--font-size-xs);
+    color: var(--diary-ink);
+    font-style: italic;
+}
+.izd-decor-toolbar-btn {
+    border: 1px solid var(--diary-primary);
+    background: #fff;
+    color: var(--diary-ink);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    cursor: pointer;
+}
+.izd-decor-toolbar-btn:hover { background: var(--diary-soft); }
+
+.izd-decor-inv {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 12px 14px 14px;
+}
+.izd-decor-inv-item {
+    flex: 0 0 auto;
+    width: 86px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 6px;
+    background: #fff;
+    border: 2px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+.izd-decor-inv-item:hover {
+    border-color: var(--diary-primary);
+    transform: translateY(-2px);
+}
+.izd-decor-inv-item--selected {
+    border-color: var(--diary-primary);
+    background: var(--diary-light);
+    box-shadow: 0 0 0 2px var(--diary-primary);
+}
+.izd-decor-inv-thumb {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.izd-decor-inv-thumb img,
+.izd-decor-inv-thumb .izd-decor-ph { width: 56px; height: 56px; }
+.izd-decor-inv-thumb .izd-decor-ph i { width: 18px; height: 18px; }
+.izd-decor-inv-thumb .izd-decor-ph-label { font-size: 7px; }
+.izd-decor-inv-name {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.15;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+.izd-decor-inv-qty {
+    font-size: 9px;
+    font-weight: 800;
+    color: var(--text-hint);
+}
+.izd-decor-inv-empty {
+    width: 100%;
+    text-align: center;
+    color: var(--text-hint);
+    padding: 18px;
+    font-size: var(--font-size-sm);
+}
+
+/* Remove popup on placed item click in decorate mode */
+.izd-decor-popup {
+    position: absolute;
+    transform: translate(-50%, calc(-100% - 12px));
+    background: #fff;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 6px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.18);
+    z-index: 100;
+    display: flex;
+    gap: 4px;
+}
+.izd-decor-popup button {
+    background: var(--review-light);
+    color: var(--review-ink);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 6px 12px;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.izd-decor-popup button:hover { background: var(--review-soft); }
+.izd-decor-popup button i { width: 13px; height: 13px; }
 
 /* Character standing in the scene */
 .izd-stage-char {

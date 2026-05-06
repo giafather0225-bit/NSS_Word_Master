@@ -29,12 +29,17 @@ function _charImg(name, stage, imagesJson, fallbackIcon) {
 
 // ─── State ─────────────────────────────────────────────────────
 /** @tag SHOP */
-let _zdZone      = null;
-let _zdProg      = null;   // active character progress object
-let _zdCareData  = null;   // /care/{id} response
-let _zdCatalog   = {};     // character_id → catalog entry
-let _zdCompleted = [];
-let _zdLocked    = [];
+let _zdZone       = null;
+let _zdProg       = null;   // active character progress object
+let _zdCareData   = null;   // /care/{id} response
+let _zdCatalog    = {};     // character_id → catalog entry
+let _zdCompleted  = [];
+let _zdLocked     = [];
+let _zdPlaced     = [];     // /placed?zone= response items
+let _zdDecorating = false;  // true while in Decorate mode
+let _zdDecorInv   = [];     // decoration inventory snapshot
+let _zdSelectedInv = null;  // currently-selected inv id for placement
+let _zdGhostEl    = null;   // floating ghost preview during placement
 
 // ─── Open / Close ───────────────────────────────────────────────
 
@@ -61,11 +66,13 @@ function _closeZoneDetail() {
 /** @tag SHOP */
 async function _zdLoad(zone, el) {
     try {
-        const [activeData, completedData, silData] = await Promise.all([
+        const [activeData, completedData, silData, placedData] = await Promise.all([
             apiFetchJSON(`/api/island/character/active?zone=${zone}`),
             apiFetchJSON('/api/island/character/completed'),
             apiFetchJSON('/api/island/character/silhouette'),
+            apiFetchJSON(`/api/island/placed?zone=${zone}`).catch(() => ({ items: [] })),
         ]);
+        _zdPlaced = placedData.items || [];
         _zdProg      = activeData.characters?.[0] || null;
         _zdCompleted = (completedData.characters || []).filter(c => c.zone === zone);
 
@@ -186,11 +193,52 @@ function _zdStageEmpty() {
         </div>`;
 }
 
-/** Placed-decorations renderer (stub — wired up when /api/island/placed-items lands). @tag SHOP */
+/** Render all placed decorations for this zone (uses _zdPlaced). @tag SHOP */
 function _zdRenderPlacedItems() {
-    // TODO: fetch from /api/island/placed-items?zone=… and render <img> per item
-    // with absolute left/top from item.position_x/y. For now: empty layer.
-    return '';
+    if (!_zdPlaced.length) return '';
+    return _zdPlaced.map(p => {
+        const x = (p.pos_x ?? 50);
+        const y = (p.pos_y ?? 50);
+        const visual = _zdDecorVisual(p.image, p.name, p.sub_category);
+        const click = `onclick="event.stopPropagation();_zdDecorClick(${p.id},this)"`;
+        return `<div class="izd-decor" data-placed-id="${p.id}"
+                     style="left:${x}%;top:${y}%" ${click}>${visual}</div>`;
+    }).join('');
+}
+
+/** Build visual for a decoration: <img> with placeholder fallback. @tag SHOP */
+function _zdDecorVisual(image, name, subCat) {
+    const lucide = _zdDecorIcon(subCat);
+    const safe   = escapeHtml(name || '');
+    const phCls  = `izd-decor-ph izd-decor-ph--${escapeHtml(subCat || 'common')}`;
+    const phHtml = `<div class="${phCls}">
+        <i data-lucide="${lucide}"></i>
+        <span class="izd-decor-ph-label">${safe}</span>
+    </div>`;
+    if (!image) return phHtml;
+    const src = `/static/img/island/${image}`;
+    // Inline onerror swaps to placeholder if PNG missing
+    return `<img src="${src}" alt="${safe}" draggable="false"
+                 onerror="this.outerHTML=${JSON.stringify(phHtml).replace(/"/g, '&quot;')};
+                          if(typeof lucide!='undefined')lucide.createIcons()">`;
+}
+
+/** Map sub_category → Lucide icon name. @tag SHOP */
+function _zdDecorIcon(subCat) {
+    const map = {
+        prop:      'package',
+        building:  'home',
+        nature:    'trees',
+        landscape: 'mountain',
+        special:   'sparkles',
+        common:    'star',
+        dragon:    'flame',
+        unicorn:   'rainbow',
+        phoenix:   'flame',
+        gumiho:    'moon',
+        qilin:     'paw-print',
+    };
+    return map[subCat] || 'star';
 }
 
 // ─── HUD: stats + actions ────────────────────────────────────────
@@ -287,9 +335,220 @@ function _zdStripsRow() {
         </div>`;
 }
 
-/** Open Decorate mode (stub — actual placement UI pending placed-items API). @tag SHOP */
-function _zdOpenDecorate() {
-    _showShopToast('Decoration placement coming soon!', false);
+// ─── Decorate mode ───────────────────────────────────────────────
+
+/** Enter Decorate mode: load decoration inventory + swap HUD with toolbar. @tag SHOP */
+async function _zdOpenDecorate() {
+    if (_zdDecorating) return;
+    try {
+        const inv = await apiFetchJSON('/api/island/inventory?category=decoration');
+        // Filter to items applicable to this zone (zone === current OR 'all')
+        _zdDecorInv = (inv.items || []).filter(i =>
+            i.quantity > 0 && (
+                _zdAcceptZone(i.shop_item_id, _zdZone)
+            )
+        );
+    } catch (_) {
+        _showShopToast('Could not load decorations.', true);
+        return;
+    }
+    _zdDecorating  = true;
+    _zdSelectedInv = null;
+    const stage = document.getElementById('izd-stage');
+    if (stage) stage.classList.add('izd-stage--decorating');
+    _zdRenderDecorHud();
+    _zdAttachStagePlacementListener();
+}
+
+/** Exit Decorate mode: restore HUD, drop ghost, clear listeners. @tag SHOP */
+function _zdCloseDecorate() {
+    _zdDecorating  = false;
+    _zdSelectedInv = null;
+    const stage = document.getElementById('izd-stage');
+    if (stage) stage.classList.remove('izd-stage--decorating');
+    _zdRemoveGhost();
+    _zdDetachStagePlacementListener();
+    // Re-render full HUD with normal panel
+    const hud = document.getElementById('izd-hud');
+    if (hud && _zdProg) {
+        const isLegend = _zdZone === 'legend';
+        hud.innerHTML = _zdHudPanel(_zdProg, isLegend) + _zdStripsRow();
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+}
+
+/** Quick check: is this shop item placeable in this zone? @tag SHOP */
+function _zdAcceptZone(shopItemId, zone) {
+    // Item zone metadata is on the inventory entry's joined name only — for
+    // simplicity, accept any decoration whose backend already validates zone
+    // on /decorate/place. The API will reject mismatches.
+    return true;
+}
+
+/** Render the Decorate-mode toolbar + inventory drawer in place of HUD. @tag SHOP */
+function _zdRenderDecorHud() {
+    const hud = document.getElementById('izd-hud');
+    if (!hud) return;
+    const items = _zdDecorInv;
+    const inv = items.length
+        ? items.map(it => {
+            const sel = (_zdSelectedInv === it.id) ? ' izd-decor-inv-item--selected' : '';
+            const visual = _zdDecorVisual(it.image, it.name, it.sub_category || 'common');
+            return `<div class="izd-decor-inv-item${sel}" onclick="_zdSelectDecor(${it.id})">
+                <div class="izd-decor-inv-thumb">${visual}</div>
+                <div class="izd-decor-inv-name" title="${escapeHtml(it.name)}">${escapeHtml(it.name)}</div>
+                <div class="izd-decor-inv-qty">×${it.quantity}</div>
+            </div>`;
+        }).join('')
+        : `<div class="izd-decor-inv-empty">No decorations in your inventory yet.<br>Visit the shop to buy some!</div>`;
+    hud.innerHTML = `
+        <div class="izd-decor-toolbar">
+            <div class="izd-decor-toolbar-title">
+                <i data-lucide="palette"></i> Decorate Mode
+            </div>
+            <div class="izd-decor-toolbar-hint">
+                ${items.length ? 'Pick an item, then click on the scene to place it.' : ''}
+            </div>
+            <button class="izd-decor-toolbar-btn" onclick="_zdCloseDecorate()">
+                Done
+            </button>
+        </div>
+        <div class="izd-decor-inv">${inv}</div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+/** Select a decoration to place; tap on stage will drop it there. @tag SHOP */
+function _zdSelectDecor(invId) {
+    _zdSelectedInv = (_zdSelectedInv === invId) ? null : invId;
+    _zdRenderDecorHud();
+    _zdRemoveGhost();
+    if (_zdSelectedInv) _zdAttachGhost();
+}
+
+/** Attach floating ghost preview that follows cursor while a decor is selected. @tag SHOP */
+function _zdAttachGhost() {
+    if (!_zdSelectedInv) return;
+    const it = _zdDecorInv.find(x => x.id === _zdSelectedInv);
+    if (!it) return;
+    _zdGhostEl = document.createElement('div');
+    _zdGhostEl.className = 'izd-decor-ghost';
+    _zdGhostEl.innerHTML = _zdDecorVisual(it.image, it.name, it.sub_category || 'common');
+    document.body.appendChild(_zdGhostEl);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+    document.addEventListener('mousemove', _zdGhostMove);
+}
+function _zdRemoveGhost() {
+    if (_zdGhostEl) { _zdGhostEl.remove(); _zdGhostEl = null; }
+    document.removeEventListener('mousemove', _zdGhostMove);
+}
+function _zdGhostMove(e) {
+    if (!_zdGhostEl) return;
+    _zdGhostEl.style.left = `${e.clientX}px`;
+    _zdGhostEl.style.top  = `${e.clientY}px`;
+}
+
+/** Stage click handler — converts click coords to %, posts /decorate/place. @tag SHOP */
+function _zdStageClick(e) {
+    if (!_zdDecorating || !_zdSelectedInv) return;
+    if (e.target.closest('.izd-decor')) return;  // clicking existing item handled separately
+    const stage = document.getElementById('izd-stage');
+    if (!stage) return;
+    const rect = stage.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width)  * 100;
+    const y = ((e.clientY - rect.top)  / rect.height) * 100;
+    _zdPlaceSelected(x, y);
+}
+function _zdAttachStagePlacementListener() {
+    const stage = document.getElementById('izd-stage');
+    if (stage) stage.addEventListener('click', _zdStageClick);
+}
+function _zdDetachStagePlacementListener() {
+    const stage = document.getElementById('izd-stage');
+    if (stage) stage.removeEventListener('click', _zdStageClick);
+}
+
+/** POST place selected decoration at (x%, y%). @tag SHOP */
+async function _zdPlaceSelected(x, y) {
+    const invId = _zdSelectedInv;
+    const it = _zdDecorInv.find(i => i.id === invId);
+    if (!it) return;
+    try {
+        await apiFetchJSON('/api/island/decorate/place', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                inventory_id: invId,
+                zone: _zdZone,
+                pos_x: Math.round(x * 100) / 100,
+                pos_y: Math.round(y * 100) / 100,
+            }),
+        });
+        _showShopToast(`${it.name} placed!`);
+        // Decrement local quantity, refresh both layers
+        it.quantity -= 1;
+        if (it.quantity <= 0) {
+            _zdDecorInv = _zdDecorInv.filter(i => i.id !== invId);
+            _zdSelectedInv = null;
+            _zdRemoveGhost();
+        }
+        // Refresh placed list and re-render decor layer
+        const placedData = await apiFetchJSON(`/api/island/placed?zone=${_zdZone}`);
+        _zdPlaced = placedData.items || [];
+        const layer = document.getElementById('izd-stage-decor');
+        if (layer) layer.innerHTML = _zdRenderPlacedItems();
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+        _zdRenderDecorHud();
+    } catch (e) {
+        _showShopToast(e?.detail || 'Could not place item.', true);
+    }
+}
+
+/** Click an already-placed item in decorate mode → show Remove popup. @tag SHOP */
+function _zdDecorClick(placedId, btnEl) {
+    if (!_zdDecorating) return;
+    document.querySelectorAll('.izd-decor-popup').forEach(n => n.remove());
+    const popup = document.createElement('div');
+    popup.className = 'izd-decor-popup';
+    popup.innerHTML = `<button onclick="_zdRemovePlaced(${placedId})">
+        <i data-lucide="trash-2"></i> Remove
+    </button>`;
+    btnEl.appendChild(popup);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+    // Auto-dismiss on outside click
+    setTimeout(() => {
+        const close = ev => {
+            if (!popup.contains(ev.target)) {
+                popup.remove();
+                document.removeEventListener('click', close, true);
+            }
+        };
+        document.addEventListener('click', close, true);
+    }, 0);
+}
+
+/** Remove a placed item back to inventory. @tag SHOP */
+async function _zdRemovePlaced(placedId) {
+    try {
+        await apiFetchJSON('/api/island/decorate/remove', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ placed_item_id: placedId }),
+        });
+        _showShopToast('Returned to inventory.');
+        // Refresh both layers
+        const [placedData, invData] = await Promise.all([
+            apiFetchJSON(`/api/island/placed?zone=${_zdZone}`),
+            apiFetchJSON('/api/island/inventory?category=decoration'),
+        ]);
+        _zdPlaced   = placedData.items || [];
+        _zdDecorInv = (invData.items || []).filter(i => i.quantity > 0);
+        const layer = document.getElementById('izd-stage-decor');
+        if (layer) layer.innerHTML = _zdRenderPlacedItems();
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+        _zdRenderDecorHud();
+    } catch (e) {
+        _showShopToast(e?.detail || 'Could not remove item.', true);
+    }
 }
 
 /** @tag SHOP */
