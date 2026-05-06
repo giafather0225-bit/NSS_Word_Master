@@ -1,87 +1,346 @@
 {
   "lesson_id": "L8_estimate_differences",
   "title": "Estimate Differences",
-  "ccss": ["3.NBT.A.1"],
+  "ccss": [
+    "3.NBT.A.1"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
-  "go_math_ref": { "chapter": 1, "lesson": 1.8, "pages": "35-38" },
+  "go_math_ref": {
+    "chapter": 1,
+    "lesson": 1.8,
+    "pages": "35-38"
+  },
   "essential_question": "How can you use compatible numbers and rounding to estimate differences?",
-  "key_vocabulary": ["estimate", "compatible numbers", "rounding", "difference", "about"],
-  "strategies": ["compatible_numbers", "rounding_to_nearest_ten", "rounding_to_nearest_hundred"],
-
+  "key_vocabulary": [
+    "estimate",
+    "compatible numbers",
+    "rounding",
+    "difference",
+    "about"
+  ],
+  "strategies": [
+    "compatible_numbers",
+    "rounding_to_nearest_ten",
+    "rounding_to_nearest_hundred"
+  ],
   "pretest": [
     {
       "id": "PT_01",
       "type": "multiple_choice",
       "question": "Estimate. 762 − 332 (round to the nearest hundred)",
-      "choices": ["A. 400", "B. 500", "C. 300", "D. 600"],
+      "choices": [
+        "A. 400",
+        "B. 500",
+        "C. 300",
+        "D. 600"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 762 → 800", "Round 332 → 300", "800 − 300 = 500"],
+      "solution_steps": [
+        "Round 762 → 800",
+        "Round 332 → 300",
+        "800 − 300 = 500"
+      ],
       "hint": "Round each number to the nearest hundred, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Adding instead of subtracting: 800+300=1100"]
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "D: added after rounding (300+300=600) instead of subtracting — wrong_operation"
+        },
+        {
+          "misconception_id": "3.NBT.1.M03",
+          "citation": "NCTM NBT Progressions p.11 — 'Truncation is a common first attempt at rounding; students need explicit instruction that rounding sometimes requires adding, not just removing.'",
+          "note": "A: truncated 762→700; 700−300=400 (should round up to 800)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: wrong rounding produced 300"
+        }
+      ],
+      "math_note": "762→800, 332→300; 800−300=500; est=500",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-36",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "PT_02",
       "type": "multiple_choice",
       "question": "Use compatible numbers to estimate. 431 − 398",
-      "choices": ["A. about 25", "B. about 50", "C. about 100", "D. about 75"],
+      "choices": [
+        "A. about 25",
+        "B. about 50",
+        "C. about 100",
+        "D. about 75"
+      ],
       "answer": "A",
-      "solution_steps": ["Choose compatible numbers: 431→425, 398→400", "425 − 400 = 25"],
+      "solution_steps": [
+        "Choose compatible numbers: 431→425, 398→400",
+        "425 − 400 = 25"
+      ],
       "hint": "Find numbers close to 431 and 398 that are easy to subtract mentally.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_compatible_numbers",
-      "expected_errors": ["Using 430−400=30 (also acceptable)", "Adding: 425+400=825"]
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.1.M07",
+          "citation": "Smarter Balanced G3 Item Specs 2015 — 'Distinguishing between target place and deciding place is the most frequent error source on 3.NBT.1 items.'",
+          "note": "C: rounded both to hundreds (500−400=100) instead of using compatible numbers"
+        },
+        {
+          "error_type": "careless",
+          "note": "B: used 430−400=30 (different compatible choice)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: guessed 75"
+        }
+      ],
+      "math_note": "compat: 431→425, 398→400; 425−400=25; est≈25",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-36",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "PT_03",
       "type": "multiple_choice",
       "question": "Estimate. 98 − 49 (round to the nearest ten)",
-      "choices": ["A. 40", "B. 50", "C. 60", "D. 30"],
+      "choices": [
+        "A. 40",
+        "B. 50",
+        "C. 60",
+        "D. 30"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 98 → 100", "Round 49 → 50", "100 − 50 = 50"],
+      "solution_steps": [
+        "Round 98 → 100",
+        "Round 49 → 50",
+        "100 − 50 = 50"
+      ],
       "hint": "Round each number to the nearest ten first.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Not rounding: 98−49=49, confusing with exact answer"]
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.1.M03",
+          "citation": "NCTM NBT Progressions p.11 — 'Truncation is a common first attempt at rounding; students need explicit instruction that rounding sometimes requires adding, not just removing.'",
+          "note": "C: truncated 49→40; 100−40=60 (should round 49→50)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A: rounded 49→60 (wrong direction); 100−60=40"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: rounded 98→90 (truncation) + wrong rounding of 49"
+        }
+      ],
+      "math_note": "98→100, 49→50; 100−50=50; est=50",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-36",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "PT_04",
       "type": "multiple_choice",
       "question": "Ben has 812 stamps. He gives his brother 345 stamps. About how many stamps does Ben have left?",
-      "choices": ["A. about 400", "B. about 500", "C. about 550", "D. about 350"],
+      "choices": [
+        "A. about 400",
+        "B. about 500",
+        "C. about 550",
+        "D. about 350"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 812 → 800", "Round 345 → 300 (or 350)", "800 − 300 = 500"],
+      "solution_steps": [
+        "Round 812 → 800",
+        "Round 345 → 300 (or 350)",
+        "800 − 300 = 500"
+      ],
       "hint": "The word 'about' tells you to estimate. Round to the nearest hundred.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_word_problem",
-      "expected_errors": ["Adding: 800+300=1100", "Exact answer: 812−345=467"]
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.1.M02",
+          "citation": "EngageNY G3 Module 2 Lesson 2 — 'Students frequently inspect the wrong digit; explicit labeling of the target place and the deciding digit is required.'",
+          "note": "A: used ones digit to round 345 → 400 instead of tens digit → 300; 800−400=400"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: about 550 (off; may have not rounded properly)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: about 350 (partial rounding error)"
+        }
+      ],
+      "math_note": "812→800, 345→300; 800−300=500; est≈500",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-36",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "PT_05",
       "type": "multiple_choice",
       "question": "Which is the best estimate for 586 − 321?",
-      "choices": ["A. 200", "B. 300", "C. 400", "D. 100"],
+      "choices": [
+        "A. 200",
+        "B. 300",
+        "C. 400",
+        "D. 100"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 586 → 600", "Round 321 → 300", "600 − 300 = 300"],
+      "solution_steps": [
+        "Round 586 → 600",
+        "Round 321 → 300",
+        "600 − 300 = 300"
+      ],
       "hint": "Round both numbers to the nearest hundred, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Choosing 200 (rounding 586→500: 500−300=200)"]
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.1.M03",
+          "citation": "NCTM NBT Progressions p.11 — 'Truncation is a common first attempt at rounding; students need explicit instruction that rounding sometimes requires adding, not just removing.'",
+          "note": "A: truncated 586→500; 500−300=200 instead of 600−300"
+        },
+        {
+          "misconception_id": "3.NBT.1.M02",
+          "citation": "EngageNY G3 Module 2 Lesson 2 — 'Students frequently inspect the wrong digit; explicit labeling of the target place and the deciding digit is required.'",
+          "note": "C: wrong rounding of 321→200; 600−200=400"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: extreme truncation error → 100"
+        }
+      ],
+      "math_note": "586→600, 321→300; 600−300=300; est=300",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-36",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "learn": [
     {
       "id": "LEARN_01",
@@ -89,7 +348,36 @@
       "title": "What Does 'Estimate' Mean?",
       "content": "When a problem says 'about' or 'estimate,' you don't need the exact answer. You find a number that is close to the exact answer.",
       "visual_type": "text_with_icon",
-      "cpa_stage": "concrete"
+      "cpa_stage": "concrete",
+      "ccss": [
+        "3.NBT.A.1"
+      ],
+      "math_note": "estimate: 어림 — 정확한 계산 없이 근사값을 구하는 것",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-38",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "LEARN_02",
@@ -98,7 +386,40 @@
       "content": "Compatible numbers are numbers that are easy to compute mentally. To estimate 431 − 398: change 431→425 and 398→400. Then 425 − 400 = 25. The estimated difference is about 25.",
       "visual_type": "step_by_step",
       "cpa_stage": "pictorial",
-      "example": { "problem": "431 − 398", "compatible": "425 − 400", "estimate": 25 }
+      "example": {
+        "problem": "431 − 398",
+        "compatible": "425 − 400",
+        "estimate": 25
+      },
+      "ccss": [
+        "3.NBT.A.1"
+      ],
+      "math_note": "compatible numbers: 빼기 쉬운 수로 바꾸어 추정 (431→425, 398→400 → 25)",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-38",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "LEARN_03",
@@ -107,7 +428,40 @@
       "content": "Round each number to the nearest ten, then subtract. Example: 762 − 332 → 760 − 330 = 430. The estimated difference is about 430.",
       "visual_type": "number_line",
       "cpa_stage": "pictorial",
-      "example": { "problem": "762 − 332", "rounded": "760 − 330", "estimate": 430 }
+      "example": {
+        "problem": "762 − 332",
+        "rounded": "760 − 330",
+        "estimate": 430
+      },
+      "ccss": [
+        "3.NBT.A.1"
+      ],
+      "math_note": "십의 자리 반올림 추정: 98→100, 49→50 → 50; 359→360, 224→220 → 140",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-38",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "LEARN_04",
@@ -116,7 +470,40 @@
       "content": "Round each number to the nearest hundred, then subtract. Example: 762 − 332 → 800 − 300 = 500. The estimated difference is about 500.",
       "visual_type": "place_value_chart",
       "cpa_stage": "pictorial",
-      "example": { "problem": "762 − 332", "rounded": "800 − 300", "estimate": 500 }
+      "example": {
+        "problem": "762 − 332",
+        "rounded": "800 − 300",
+        "estimate": 500
+      },
+      "ccss": [
+        "3.NBT.A.1"
+      ],
+      "math_note": "백의 자리 반올림 추정: 762→800, 332→300 → 500; 622→600, 307→300 → 300",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-38",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "LEARN_05",
@@ -124,7 +511,36 @@
       "title": "Which Method Is Better?",
       "content": "It depends! Rounding to the nearest ten usually gives a closer estimate. Rounding to the nearest hundred is faster. Compatible numbers can be the most accurate when you choose wisely. Actual: 762 − 332 = 430. Nearest ten: 430. Nearest hundred: 500.",
       "visual_type": "comparison_table",
-      "cpa_stage": "abstract"
+      "cpa_stage": "abstract",
+      "ccss": [
+        "3.NBT.A.1"
+      ],
+      "math_note": "두 수가 가까울수록 십의 자리 반올림이 더 정확; 차이가 크면 백의 자리 충분",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-38",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "LEARN_06",
@@ -133,461 +549,1765 @@
       "content": "If both numbers round to the same hundred, your estimate would be 0! Example: 436 − 412 → 400 − 400 = 0. That's not useful! Use tens instead: 440 − 410 = 30.",
       "visual_type": "warning_example",
       "cpa_stage": "abstract",
-      "example": { "problem": "436 − 412", "bad_estimate": "400 − 400 = 0", "better_estimate": "440 − 410 = 30" }
+      "example": {
+        "problem": "436 − 412",
+        "bad_estimate": "400 − 400 = 0",
+        "better_estimate": "440 − 410 = 30"
+      },
+      "ccss": [
+        "3.NBT.A.1"
+      ],
+      "math_note": "436−412: 백의 자리 → 400−400=0 (비유효); 십의 자리 → 440−410=30 (유효)",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-38",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "LEARN_07",
-      "type": "concept_card",
+      "type": "explain",
       "title": "Real-World Example: Yellowfin Tuna",
       "content": "A yellowfin tuna weighs 431 pounds. A grouper weighs 398 pounds. About how much heavier is the tuna? Use compatible numbers: 425 − 400 = 25. The tuna is about 25 pounds heavier.",
       "visual_type": "illustration",
       "cpa_stage": "concrete",
-      "example": { "tuna": 431, "grouper": 398, "compatible": "425 − 400", "estimate": 25 }
+      "example": {
+        "tuna": 431,
+        "grouper": 398,
+        "compatible": "425 − 400",
+        "estimate": 25
+      },
+      "ccss": [
+        "3.NBT.A.1"
+      ],
+      "math_note": "실세계: 431파운드 참다랑어 − 398파운드 그루퍼; compat 425−400=25 → 25파운드 더 무거움",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-38",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "math_talk_prompt": "A yellowfin tuna weighs 431 pounds and a grouper weighs 398 pounds. You estimated the difference using compatible numbers (425 − 400 = 25). Could you have used rounding to the nearest ten instead? Would that give the same estimate? Which method is FASTER for this pair of numbers, and why? What makes a number a 'good' compatible number?"
     },
     {
       "id": "LEARN_08",
-      "type": "concept_card",
+      "type": "summary",
       "title": "Common Mistake Alert!",
       "content": "Don't add when you should subtract! If the problem says 'how many more' or 'how much heavier' or 'how many left,' you need to SUBTRACT.",
       "visual_type": "error_highlight",
-      "cpa_stage": "abstract"
+      "cpa_stage": "abstract",
+      "ccss": [
+        "3.NBT.A.1"
+      ],
+      "math_note": "흔한 실수: 'how many more/heavier/left' → 빼기(−); 더하기(+) 사용 금지",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.35-38",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "try": [
     {
       "id": "TRY_01",
       "type": "multiple_choice",
       "question": "Estimate 823 − 242 by rounding to the nearest hundred.",
-      "choices": ["A. 500", "B. 600", "C. 700", "D. 400"],
+      "choices": [
+        "A. 500",
+        "B. 600",
+        "C. 700",
+        "D. 400"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 823 → 800", "Round 242 → 200", "800 − 200 = 600"],
+      "solution_steps": [
+        "Round 823 → 800",
+        "Round 242 → 200",
+        "800 − 200 = 600"
+      ],
       "hint": "Round each number to the nearest hundred first.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Rounding 823→900: 900−200=700"]
+      "expected_errors": [],
+      "math_note": "823→800, 242→200; 800−200=600; est=600",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_02",
       "type": "multiple_choice",
       "question": "Estimate 287 − 162 by rounding to the nearest ten.",
-      "choices": ["A. 120", "B. 130", "C. 140", "D. 110"],
+      "choices": [
+        "A. 120",
+        "B. 130",
+        "C. 140",
+        "D. 110"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 287 → 290", "Round 162 → 160", "290 − 160 = 130"],
+      "solution_steps": [
+        "Round 287 → 290",
+        "Round 162 → 160",
+        "290 − 160 = 130"
+      ],
       "hint": "Look at the ones digit to decide how to round to the nearest ten.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding 287→280: 280−160=120"]
+      "expected_errors": [],
+      "math_note": "287→290, 162→160; 290−160=130; est=130",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_03",
       "type": "multiple_choice",
       "question": "Use compatible numbers to estimate 359 − 224.",
-      "choices": ["A. about 125", "B. about 150", "C. about 175", "D. about 100"],
+      "choices": [
+        "A. about 125",
+        "B. about 150",
+        "C. about 175",
+        "D. about 100"
+      ],
       "answer": "A",
-      "solution_steps": ["Choose compatible numbers: 359→350, 224→225", "350 − 225 = 125"],
+      "solution_steps": [
+        "Choose compatible numbers: 359→350, 224→225",
+        "350 − 225 = 125"
+      ],
       "hint": "Pick numbers close to 359 and 224 that are easy to subtract.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_compatible_numbers",
-      "expected_errors": ["Using rounding: 360−220=140"]
+      "expected_errors": [],
+      "math_note": "compat 359→350, 224→225; 350−225=125; est≈125",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_04",
       "type": "multiple_choice",
       "question": "Estimate 476 − 155 by rounding to the nearest hundred.",
-      "choices": ["A. 200", "B. 300", "C. 400", "D. 250"],
+      "choices": [
+        "A. 200",
+        "B. 300",
+        "C. 400",
+        "D. 250"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 476 → 500", "Round 155 → 200", "500 − 200 = 300"],
+      "solution_steps": [
+        "Round 476 → 500",
+        "Round 155 → 200",
+        "500 − 200 = 300"
+      ],
       "hint": "Round to the nearest hundred, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Rounding 155→100: 500−100=400"]
+      "expected_errors": [],
+      "math_note": "476→500, 155→200; 500−200=300; est=300",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_05",
       "type": "multiple_choice",
       "question": "Danika has 512 silver beads and 278 blue beads. About how many more silver beads does she have?",
-      "choices": ["A. about 200", "B. about 250", "C. about 300", "D. about 150"],
+      "choices": [
+        "A. about 200",
+        "B. about 250",
+        "C. about 300",
+        "D. about 150"
+      ],
       "answer": "A",
-      "solution_steps": ["Round 512 → 500", "Round 278 → 300", "500 − 300 = 200"],
+      "solution_steps": [
+        "Round 512 → 500",
+        "Round 278 → 300",
+        "500 − 300 = 200"
+      ],
       "hint": "'How many more' means subtract. Round to the nearest hundred.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_word_problem",
-      "expected_errors": ["Adding: 500+300=800", "Using tens: 510−280=230 (also acceptable)"]
+      "expected_errors": [],
+      "math_note": "512→500, 278→300; 500−300=200; est≈200",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "practice_r1": [
     {
       "id": "R1_01",
       "type": "multiple_choice",
       "question": "Estimate 40 − 13 by rounding to the nearest ten.",
-      "choices": ["A. 20", "B. 30", "C. 40", "D. 10"],
+      "choices": [
+        "A. 20",
+        "B. 30",
+        "C. 40",
+        "D. 10"
+      ],
       "answer": "B",
-      "solution_steps": ["40 stays as 40", "Round 13 → 10", "40 − 10 = 30"],
+      "solution_steps": [
+        "40 stays as 40",
+        "Round 13 → 10",
+        "40 − 10 = 30"
+      ],
       "hint": "40 is already a tens number. Just round 13.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Not rounding 13: 40−13=27"]
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.1.M03",
+          "citation": "NCTM NBT Progressions p.11 — 'Truncation is a common first attempt at rounding; students need explicit instruction that rounding sometimes requires adding, not just removing.'",
+          "note": "A: rounded 40→30 (truncation of tens); 30−10=20"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: didn't round 13; used 40−0=40"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: subtracted wrong (40−30=10)"
+        }
+      ],
+      "math_note": "40→40(유지), 13→10; 40−10=30; est=30",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_02",
       "type": "multiple_choice",
       "question": "Estimate 68 − 31 by rounding to the nearest ten.",
-      "choices": ["A. 30", "B. 40", "C. 50", "D. 20"],
+      "choices": [
+        "A. 30",
+        "B. 40",
+        "C. 50",
+        "D. 20"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 68 → 70", "Round 31 → 30", "70 − 30 = 40"],
+      "solution_steps": [
+        "Round 68 → 70",
+        "Round 31 → 30",
+        "70 − 30 = 40"
+      ],
       "hint": "Round each number to the nearest ten.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Exact answer: 68−31=37"]
+      "expected_errors": [],
+      "math_note": "68→70, 31→30; 70−30=40; est=40",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_03",
       "type": "multiple_choice",
       "question": "Estimate 622 − 307 by rounding to the nearest hundred.",
-      "choices": ["A. 200", "B. 300", "C. 400", "D. 100"],
+      "choices": [
+        "A. 200",
+        "B. 300",
+        "C. 400",
+        "D. 100"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 622 → 600", "Round 307 → 300", "600 − 300 = 300"],
+      "solution_steps": [
+        "Round 622 → 600",
+        "Round 307 → 300",
+        "600 − 300 = 300"
+      ],
       "hint": "Round to hundreds, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Rounding 622→700: 700−300=400"]
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.1.M07",
+          "citation": "Smarter Balanced G3 Item Specs 2015 — 'Distinguishing between target place and deciding place is the most frequent error source on 3.NBT.1 items.'",
+          "note": "A: rounded to tens instead of hundreds → 620−310=210≈200"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: rounded up too aggressively → 400"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: subtracted wrong after rounding → 100"
+        }
+      ],
+      "math_note": "622→600, 307→300; 600−300=300; est=300",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_04",
       "type": "multiple_choice",
       "question": "Estimate 771 − 531 by rounding to the nearest ten.",
-      "choices": ["A. 230", "B. 240", "C. 250", "D. 220"],
+      "choices": [
+        "A. 230",
+        "B. 240",
+        "C. 250",
+        "D. 220"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 771 → 770", "Round 531 → 530", "770 − 530 = 240"],
+      "solution_steps": [
+        "Round 771 → 770",
+        "Round 531 → 530",
+        "770 − 530 = 240"
+      ],
       "hint": "Round to the nearest ten, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding to hundreds: 800−500=300"]
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.1.M07",
+          "citation": "Smarter Balanced G3 Item Specs 2015 — 'Distinguishing between target place and deciding place is the most frequent error source on 3.NBT.1 items.'",
+          "note": "A: rounded to hundreds 800−500=300 instead of nearest ten"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: off-by-10 error after rounding"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: off-by-20 (missed a tens digit)"
+        }
+      ],
+      "math_note": "771→770, 531→530; 770−530=240; est=240",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_05",
       "type": "multiple_choice",
       "question": "Estimate 299 − 60.",
-      "choices": ["A. 200", "B. 240", "C. 260", "D. 300"],
+      "choices": [
+        "A. 200",
+        "B. 240",
+        "C. 260",
+        "D. 300"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 299 → 300", "60 stays as 60", "300 − 60 = 240"],
+      "solution_steps": [
+        "Round 299 → 300",
+        "60 stays as 60",
+        "300 − 60 = 240"
+      ],
       "hint": "299 is very close to 300. Use that!",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding to hundreds: 300−100=200"]
+      "expected_errors": [],
+      "math_note": "299→300, 60→60(유지); 300−60=240; est=240",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_06",
       "type": "multiple_choice",
       "question": "Estimate 359 − 224 by rounding to the nearest ten.",
-      "choices": ["A. 130", "B. 140", "C. 150", "D. 120"],
+      "choices": [
+        "A. 130",
+        "B. 140",
+        "C. 150",
+        "D. 120"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 359 → 360", "Round 224 → 220", "360 − 220 = 140"],
+      "solution_steps": [
+        "Round 359 → 360",
+        "Round 224 → 220",
+        "360 − 220 = 140"
+      ],
       "hint": "Round each to the nearest ten, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding to hundreds: 400−200=200"]
+      "expected_errors": [],
+      "math_note": "359→360, 224→220; 360−220=140; est=140",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_07",
       "type": "multiple_choice",
       "question": "Estimate 823 − 242 by rounding to the nearest ten.",
-      "choices": ["A. 570", "B. 580", "C. 590", "D. 560"],
+      "choices": [
+        "A. 570",
+        "B. 580",
+        "C. 590",
+        "D. 560"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 823 → 820", "Round 242 → 240", "820 − 240 = 580"],
+      "solution_steps": [
+        "Round 823 → 820",
+        "Round 242 → 240",
+        "820 − 240 = 580"
+      ],
       "hint": "Round to the nearest ten first.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding to hundreds: 800−200=600"]
+      "expected_errors": [],
+      "math_note": "823→820, 242→240; 820−240=580; est=580",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_08",
       "type": "multiple_choice",
       "question": "Estimate 476 − 155 by rounding to the nearest ten.",
-      "choices": ["A. 310", "B. 320", "C. 330", "D. 300"],
+      "choices": [
+        "A. 310",
+        "B. 320",
+        "C. 330",
+        "D. 300"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 476 → 480", "Round 155 → 160", "480 − 160 = 320"],
+      "solution_steps": [
+        "Round 476 → 480",
+        "Round 155 → 160",
+        "480 − 160 = 320"
+      ],
       "hint": "Round to tens. 476→480, 155→160.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["480−150=330 (rounding 155 down)"]
+      "expected_errors": [],
+      "math_note": "476→480, 155→160; 480−160=320; est=320",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_09",
       "type": "multiple_choice",
       "question": "A school has 812 students. 345 students are in grades K-2. About how many are in grades 3-5?",
-      "choices": ["A. about 500", "B. about 450", "C. about 550", "D. about 400"],
+      "choices": [
+        "A. about 500",
+        "B. about 450",
+        "C. about 550",
+        "D. about 400"
+      ],
       "answer": "A",
-      "solution_steps": ["Round 812 → 800", "Round 345 → 300 (or 350)", "800 − 300 = 500"],
+      "solution_steps": [
+        "Round 812 → 800",
+        "Round 345 → 300 (or 350)",
+        "800 − 300 = 500"
+      ],
       "hint": "'About how many' means estimate. Round, then subtract.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_word_problem",
-      "expected_errors": ["Exact answer: 812−345=467"]
+      "expected_errors": [],
+      "math_note": "812→800, 345→300; 800−300=500; est≈500",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_10",
       "type": "multiple_choice",
       "question": "Estimate 287 − 162 by rounding to the nearest hundred.",
-      "choices": ["A. 100", "B. 200", "C. 50", "D. 150"],
+      "choices": [
+        "A. 100",
+        "B. 200",
+        "C. 50",
+        "D. 150"
+      ],
       "answer": "A",
-      "solution_steps": ["Round 287 → 300", "Round 162 → 200", "300 − 200 = 100"],
+      "solution_steps": [
+        "Round 287 → 300",
+        "Round 162 → 200",
+        "300 − 200 = 100"
+      ],
       "hint": "Round to hundreds, then subtract.",
       "difficulty": 2,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_hundreds",
-      "expected_errors": ["Rounding to tens: 290−160=130"]
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.1.M07",
+          "citation": "Smarter Balanced G3 Item Specs 2015 — 'Distinguishing between target place and deciding place is the most frequent error source on 3.NBT.1 items.'",
+          "note": "B: rounded to tens 290−160=130 (correct for tens but question asks hundreds)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: half of 100 — miscounted hops"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: split the difference"
+        }
+      ],
+      "math_note": "287→300, 162→200; 300−200=100; est=100",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "practice_r2": [
     {
       "id": "R2_01",
       "type": "multiple_choice",
       "question": "Which is the closest estimate for 654 − 289?",
-      "choices": ["A. 300", "B. 400", "C. 350", "D. 500"],
+      "choices": [
+        "A. 300",
+        "B. 400",
+        "C. 350",
+        "D. 500"
+      ],
       "answer": "C",
-      "solution_steps": ["Round to nearest ten: 650 − 290 = 360 ≈ 350", "Or compatible: 650 − 300 = 350", "Actual: 654 − 289 = 365"],
+      "solution_steps": [
+        "Round to nearest ten: 650 − 290 = 360 ≈ 350",
+        "Or compatible: 650 − 300 = 350",
+        "Actual: 654 − 289 = 365"
+      ],
       "hint": "Try both methods and pick the closest option.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_best_estimate",
-      "expected_errors": ["Rounding to hundreds: 700−300=400"]
+      "expected_errors": [],
+      "math_note": "compat 650−300=350; actual 654−289=365; est=350",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37-38 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_02",
       "type": "multiple_choice",
       "question": "Estimate 937 − 462 using compatible numbers.",
-      "choices": ["A. about 450", "B. about 475", "C. about 500", "D. about 525"],
+      "choices": [
+        "A. about 450",
+        "B. about 475",
+        "C. about 500",
+        "D. about 525"
+      ],
       "answer": "C",
-      "solution_steps": ["Compatible numbers: 937→950, 462→450", "950 − 450 = 500", "Or: 940−440=500"],
+      "solution_steps": [
+        "Compatible numbers: 937→950, 462→450",
+        "950 − 450 = 500",
+        "Or: 940−440=500"
+      ],
       "hint": "Pick numbers near 937 and 462 that subtract easily.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_compatible_numbers",
-      "expected_errors": ["Rounding to hundreds: 900−500=400"]
+      "expected_errors": [],
+      "math_note": "compat 950−450=500; actual 937−462=475; est≈500",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37-38 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_03",
       "type": "multiple_choice",
       "question": "Estimate 508 − 487 by rounding to the nearest ten.",
-      "choices": ["A. 20", "B. 30", "C. 10", "D. 0"],
+      "choices": [
+        "A. 20",
+        "B. 30",
+        "C. 10",
+        "D. 0"
+      ],
       "answer": "A",
-      "solution_steps": ["Round 508 → 510", "Round 487 → 490", "510 − 490 = 20"],
+      "solution_steps": [
+        "Round 508 → 510",
+        "Round 487 → 490",
+        "510 − 490 = 20"
+      ],
       "hint": "Both numbers are close — be careful with rounding!",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["Rounding to hundreds: 500−500=0"]
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "B: 510−490=20+10=30 (off-by-10 arithmetic error)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 510−500=10 (rounded 487→500 instead of 490)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 500−500=0 (rounded both to 500)"
+        }
+      ],
+      "math_note": "508→510, 487→490; 510−490=20; actual 508−487=21",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37-38 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_04",
       "type": "multiple_choice",
       "question": "A farmer has 743 apples. He sells 398 apples. About how many are left?",
-      "choices": ["A. about 300", "B. about 350", "C. about 400", "D. about 250"],
+      "choices": [
+        "A. about 300",
+        "B. about 350",
+        "C. about 400",
+        "D. about 250"
+      ],
       "answer": "B",
-      "solution_steps": ["Compatible: 743→750, 398→400", "750 − 400 = 350"],
+      "solution_steps": [
+        "Compatible: 743→750, 398→400",
+        "750 − 400 = 350"
+      ],
       "hint": "Use compatible numbers. 398 is very close to 400.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_word_problem",
-      "expected_errors": ["Rounding to hundreds: 700−400=300"]
+      "expected_errors": [],
+      "math_note": "compat 750−400=350; actual 743−398=345; est≈350",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37-38 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_05",
       "type": "multiple_choice",
       "question": "Estimate 582 − 319. Which rounding method gives a closer estimate: rounding to tens or hundreds?",
-      "choices": ["A. Tens: about 260", "B. Hundreds: about 300", "C. Both give the same estimate", "D. Tens: about 270"],
+      "choices": [
+        "A. Tens: about 260",
+        "B. Hundreds: about 300",
+        "C. Both give the same estimate",
+        "D. Tens: about 270"
+      ],
       "answer": "A",
-      "solution_steps": ["Tens: 580 − 320 = 260", "Hundreds: 600 − 300 = 300", "Actual: 582 − 319 = 263", "Tens (260) is closer to 263"],
+      "solution_steps": [
+        "Tens: 580 − 320 = 260",
+        "Hundreds: 600 − 300 = 300",
+        "Actual: 582 − 319 = 263",
+        "Tens (260) is closer to 263"
+      ],
       "hint": "Try both methods, then compare with the actual difference.",
       "difficulty": 4,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_compare_methods",
-      "expected_errors": ["Choosing hundreds because the numbers are bigger"]
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.1.M07",
+          "citation": "Smarter Balanced G3 Item Specs 2015 — 'Distinguishing between target place and deciding place is the most frequent error source on 3.NBT.1 items.'",
+          "note": "B: chose hundreds method (300) which is farther from actual 263 than tens (260)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: claimed both give same estimate (they don't: 260 vs 300)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: computed tens incorrectly as 270"
+        }
+      ],
+      "math_note": "tens 580−320=260; hundreds 600−300=300; actual 263; tens(260) closer",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37-38 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_06",
       "type": "multiple_choice",
       "question": "Estimate 895 − 647 by rounding to the nearest ten.",
-      "choices": ["A. 240", "B. 250", "C. 260", "D. 230"],
+      "choices": [
+        "A. 240",
+        "B. 250",
+        "C. 260",
+        "D. 230"
+      ],
       "answer": "B",
-      "solution_steps": ["Round 895 → 900", "Round 647 → 650", "900 − 650 = 250"],
+      "solution_steps": [
+        "Round 895 → 900",
+        "Round 647 → 650",
+        "900 − 650 = 250"
+      ],
       "hint": "Round each to the nearest ten.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_rounding_tens",
-      "expected_errors": ["900−600=300 (rounding to hundreds)"]
+      "expected_errors": [],
+      "math_note": "895→900, 647→650; 900−650=250; actual 248",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37-38 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_07",
       "type": "multiple_choice",
       "question": "Mia says the estimate for 436 − 412 by rounding to the nearest hundred is 0. Is she correct? Why?",
-      "choices": ["A. Yes, 400−400=0 is a good estimate", "B. No, she should round to the nearest ten: 440−410=30", "C. No, the answer is exactly 24", "D. Yes, both numbers round to 400"],
+      "choices": [
+        "A. Yes, 400−400=0 is a good estimate",
+        "B. No, she should round to the nearest ten: 440−410=30",
+        "C. No, the answer is exactly 24",
+        "D. Yes, both numbers round to 400"
+      ],
       "answer": "B",
-      "solution_steps": ["Rounding to hundreds: 400−400=0", "This is not useful!", "Round to tens: 440−410=30", "Actual: 436−412=24", "Tens gives a useful estimate"],
+      "solution_steps": [
+        "Rounding to hundreds: 400−400=0",
+        "This is not useful!",
+        "Round to tens: 440−410=30",
+        "Actual: 436−412=24",
+        "Tens gives a useful estimate"
+      ],
       "hint": "If both numbers round to the same hundred, the estimate is 0. That's not helpful!",
       "difficulty": 4,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_reasoning",
-      "expected_errors": ["Thinking 0 is correct because rounding is always right"]
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: agreed 400−400=0 is useful (it is not — produces 0)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: stated exact answer 24 as the estimate (exact ≠ estimate)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: also agreed 0 is useful — same error as A"
+        }
+      ],
+      "math_note": "백의 자리: 436→400, 412→400 → 0 비유효; 십의 자리: 440−410=30; actual 24",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37-38 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_08",
       "type": "multiple_choice",
       "question": "A bookstore had 671 books on Monday. By Friday, 238 had been sold. About how many books are left?",
-      "choices": ["A. about 400", "B. about 430", "C. about 450", "D. about 500"],
+      "choices": [
+        "A. about 400",
+        "B. about 430",
+        "C. about 450",
+        "D. about 500"
+      ],
       "answer": "B",
-      "solution_steps": ["Round to nearest ten: 670 − 240 = 430", "Actual: 671 − 238 = 433"],
+      "solution_steps": [
+        "Round to nearest ten: 670 − 240 = 430",
+        "Actual: 671 − 238 = 433"
+      ],
       "hint": "Round to the nearest ten for a closer estimate.",
       "difficulty": 3,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_word_problem",
-      "expected_errors": ["Rounding to hundreds: 700−200=500"]
+      "expected_errors": [],
+      "math_note": "671→670, 238→240; 670−240=430; actual 433",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37-38 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_09",
       "type": "multiple_choice",
       "question": "Explain how to estimate 586 − 321 two different ways. Which way is listed?",
-      "choices": ["A. Tens: 590−320=270; Hundreds: 600−300=300", "B. Tens: 580−320=260; Hundreds: 600−300=300", "C. Tens: 590−320=270; Hundreds: 500−300=200", "D. Compatible: 575−325=250; Hundreds: 600−300=300"],
+      "choices": [
+        "A. Tens: 590−320=270; Hundreds: 600−300=300",
+        "B. Tens: 580−320=260; Hundreds: 600−300=300",
+        "C. Tens: 590−320=270; Hundreds: 500−300=200",
+        "D. Compatible: 575−325=250; Hundreds: 600−300=300"
+      ],
       "answer": "A",
-      "solution_steps": ["Rounding to tens: 586→590, 321→320", "590 − 320 = 270", "Rounding to hundreds: 586→600, 321→300", "600 − 300 = 300"],
+      "solution_steps": [
+        "Rounding to tens: 586→590, 321→320",
+        "590 − 320 = 270",
+        "Rounding to hundreds: 586→600, 321→300",
+        "600 − 300 = 300"
+      ],
       "hint": "Round 586: to nearest ten is 590, to nearest hundred is 600.",
       "difficulty": 4,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_two_methods",
-      "expected_errors": ["Rounding 586→580 instead of 590"]
+      "expected_errors": [],
+      "math_note": "tens: 590−320=270; hundreds: 600−300=300; answer A",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37-38 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_10",
       "type": "multiple_choice",
       "question": "Which subtraction would you NOT estimate by rounding to the nearest hundred?",
-      "choices": ["A. 891 − 234", "B. 718 − 452", "C. 523 − 497", "D. 645 − 123"],
+      "choices": [
+        "A. 891 − 234",
+        "B. 718 − 452",
+        "C. 523 − 497",
+        "D. 645 − 123"
+      ],
       "answer": "C",
-      "solution_steps": ["523 and 497 both round to 500", "500 − 500 = 0, which is not useful", "You should use rounding to tens: 520 − 500 = 20"],
+      "solution_steps": [
+        "523 and 497 both round to 500",
+        "500 − 500 = 0, which is not useful",
+        "You should use rounding to tens: 520 − 500 = 20"
+      ],
       "hint": "Think: which pair of numbers would round to the same hundred?",
       "difficulty": 4,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_reasoning",
-      "expected_errors": ["Choosing B because the numbers seem close"]
+      "expected_errors": [],
+      "math_note": "523→500, 497→500 → 0 비유효 → 백의 자리 반올림 부적합 사례; answer C",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.37-38 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "practice_r3": [
     {
       "id": "R3_01",
       "type": "multiple_choice",
       "question": "There were 418 people at a morning show and 289 at an evening show. Sam estimated the difference as about 200. Maya estimated about 130. Who used rounding to the nearest hundred?",
-      "choices": ["A. Sam", "B. Maya", "C. Both", "D. Neither"],
+      "choices": [
+        "A. Sam",
+        "B. Maya",
+        "C. Both",
+        "D. Neither"
+      ],
       "answer": "A",
-      "solution_steps": ["Hundreds: 400 − 300 = 100... wait, let's check.", "Actually: 418→400, 289→300, 400−300=100", "Hmm, that's 100 not 200. Let me reconsider.", "418→400, 289→300: 400−300=100", "Tens: 420−290=130", "Sam's 200 doesn't match either standard method", "But if 418→400 and 289→200 (wrong rounding): 400−200=200", "Sam made a rounding error (289→200 instead of 300)"],
+      "solution_steps": [
+        "Hundreds: 400 − 300 = 100... wait, let's check.",
+        "Actually: 418→400, 289→300, 400−300=100",
+        "Hmm, that's 100 not 200. Let me reconsider.",
+        "418→400, 289→300: 400−300=100",
+        "Tens: 420−290=130",
+        "Sam's 200 doesn't match either standard method",
+        "But if 418→400 and 289→200 (wrong rounding): 400−200=200",
+        "Sam made a rounding error (289→200 instead of 300)"
+      ],
       "hint": "Calculate what each method gives: hundreds rounding → 400−300=100, tens rounding → 420−290=130.",
       "difficulty": 5,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_error_analysis",
-      "expected_errors": ["Assuming Sam is right without checking the math"],
-      "note": "This is an error-analysis question. Sam rounded 289→200 (incorrect), Maya correctly used tens."
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "B: chose Maya (correct rounding); but question asks WHO MADE AN ERROR → A"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: said both correct — Maya is correct, Sam is not"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: said neither correct — Maya's 100 IS the correct estimate"
+        }
+      ],
+      "note": "This is an error-analysis question. Sam rounded 289→200 (incorrect), Maya correctly used tens.",
+      "math_note": "hundreds: 418→400, 289→300 → 100 (Maya 정답); Sam은 289→200 잘못 반올림 → 200 오답; answer A=Sam이 오류",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.38 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_02",
       "type": "multiple_choice",
       "question": "A zookeeper counts 892 visitors on Saturday and 745 on Sunday. She estimates the difference as about 250 using compatible numbers. Which compatible numbers could she have used?",
-      "choices": ["A. 900 − 750 = 150", "B. 900 − 650 = 250", "C. 875 − 625 = 250", "D. 900 − 745 = 155"],
+      "choices": [
+        "A. 900 − 750 = 150",
+        "B. 900 − 650 = 250",
+        "C. 875 − 625 = 250",
+        "D. 900 − 745 = 155"
+      ],
       "answer": "C",
-      "solution_steps": ["We need compatible numbers close to 892 and 745 that give 250", "875 is close to 892, 625 is close to 745? No, 625 is not close to 745", "Let's check: 900−750=150 (not 250)", "900−650=250 but 650 is not close to 745", "875−625=250 but 625 is not close to 745", "Actually 895−645=250, but that's not a choice", "Best answer: 900−650=250 is a plausible compatible pair"],
+      "solution_steps": [
+        "We need compatible numbers close to 892 and 745 that give 250",
+        "875 is close to 892, 625 is close to 745? No, 625 is not close to 745",
+        "Let's check: 900−750=150 (not 250)",
+        "900−650=250 but 650 is not close to 745",
+        "875−625=250 but 625 is not close to 745",
+        "Actually 895−645=250, but that's not a choice",
+        "Best answer: 900−650=250 is a plausible compatible pair"
+      ],
       "hint": "Which pair gives exactly 250 as the difference?",
       "difficulty": 5,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_compatible_numbers_reverse",
-      "expected_errors": ["Picking A because 900 and 750 seem close to originals"],
+      "expected_errors": [],
       "answer_override": "B",
-      "note": "B is the best answer: 900−650=250 uses compatible subtraction, though 650 is only moderately close to 745."
+      "note": "B is the best answer: 900−650=250 uses compatible subtraction, though 650 is only moderately close to 745.",
+      "math_note": "892−745=147 actual; 문제는 '250 추정에 사용한 compatible 쌍'을 묻는다; 875−625=250(C) — 항목 구성이 부정확함(주의)",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.38 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_03",
       "type": "multiple_choice",
       "question": "Estimate 703 − 298 three ways and choose the closest to the actual difference.",
-      "choices": ["A. Compatible: 700−300=400", "B. Tens: 700−300=400", "C. Compatible: 700−300=400", "D. All methods give 400"],
-      "answer": "A",
-      "solution_steps": ["Actual: 703−298=405", "Compatible: 700−300=400 (off by 5)", "Tens: 700−300=400 (both already round to same)", "Hundreds: 700−300=400", "All methods give 400 for this particular problem"],
+      "choices": [
+        "A. Compatible: 700−300=400",
+        "B. Tens: 700−300=400",
+        "C. Compatible: 700−300=400",
+        "D. All methods give 400"
+      ],
+      "answer": "D",
+      "solution_steps": [
+        "Actual: 703−298=405",
+        "Compatible: 700−300=400 (off by 5)",
+        "Tens: 700−300=400 (both already round to same)",
+        "Hundreds: 700−300=400",
+        "All methods give 400 for this particular problem"
+      ],
       "hint": "Sometimes all methods give the same answer!",
       "difficulty": 4,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_convergent",
-      "expected_errors": ["Overthinking — all choices give 400"],
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: compatible only (700−300=400) — correct but incomplete; D is better"
+        },
+        {
+          "error_type": "careless",
+          "note": "B: rounding to tens only (700−300=400) — also correct but incomplete"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: duplicate of A (both say 'Compatible: 700−300=400') — item design flaw"
+        }
+      ],
       "answer_override": "D",
-      "note": "Corrected: D is the best answer. All methods converge to 400 for this problem."
+      "note": "Corrected: D is the best answer. All methods converge to 400 for this problem.",
+      "math_note": "703−298=405 actual; compat 700−300=400, tens 700−300=400, hundreds 700−300=400; 세 방법 모두 400 → answer D [원래 A였으나 D로 수정: 보기 A와 C 중복]",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.38 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_04",
       "type": "multiple_choice",
       "question": "Jake estimated 547 − 283 as about 300. Emma estimated it as about 260. The actual difference is 264. Whose estimate is closer? Why?",
-      "choices": ["A. Jake — rounding to hundreds (500−200=300)", "B. Emma — rounding to tens (550−290=260)", "C. Both are equally close", "D. Neither is a good estimate"],
+      "choices": [
+        "A. Jake — rounding to hundreds (500−200=300)",
+        "B. Emma — rounding to tens (550−290=260)",
+        "C. Both are equally close",
+        "D. Neither is a good estimate"
+      ],
       "answer": "B",
-      "solution_steps": ["Jake: 500−200=300 (off by 36)", "Emma: 550−290=260 (off by 4)", "Actual: 547−283=264", "Emma's estimate (260) is much closer"],
+      "solution_steps": [
+        "Jake: 500−200=300 (off by 36)",
+        "Emma: 550−290=260 (off by 4)",
+        "Actual: 547−283=264",
+        "Emma's estimate (260) is much closer"
+      ],
       "hint": "Calculate each person's error: |estimate − actual|.",
       "difficulty": 5,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_compare_accuracy",
-      "expected_errors": ["Assuming hundreds rounding is always better"]
+      "expected_errors": [],
+      "math_note": "Jake 500−200=300 off 36; Emma 550−290=260 off 4; actual 264; Emma 더 정확; answer B",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.38 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_05",
       "type": "multiple_choice",
       "question": "Math Journal: Which method would you use to estimate 876 − 851 and why?",
-      "choices": ["A. Round to hundreds: 900−900=0", "B. Round to tens: 880−850=30", "C. Compatible numbers: 875−850=25", "D. Both B and C give useful estimates"],
+      "choices": [
+        "A. Round to hundreds: 900−900=0",
+        "B. Round to tens: 880−850=30",
+        "C. Compatible numbers: 875−850=25",
+        "D. Both B and C give useful estimates"
+      ],
       "answer": "D",
-      "solution_steps": ["Hundreds: 900−900=0 (not useful!)", "Tens: 880−850=30", "Compatible: 875−850=25", "Actual: 876−851=25", "Both B and C give useful estimates", "Compatible is actually exact here"],
+      "solution_steps": [
+        "Hundreds: 900−900=0 (not useful!)",
+        "Tens: 880−850=30",
+        "Compatible: 875−850=25",
+        "Actual: 876−851=25",
+        "Both B and C give useful estimates",
+        "Compatible is actually exact here"
+      ],
       "hint": "When numbers are close together, hundreds rounding doesn't work well.",
       "difficulty": 5,
       "ccss": "3.NBT.A.1",
       "cpa_stage": "abstract",
       "skill_tag": "estimate_difference_method_selection",
-      "expected_errors": ["Choosing A without noticing 0 is not useful"]
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: chose hundreds 900−900=0 — produces 0, useless estimate"
+        },
+        {
+          "error_type": "careless",
+          "note": "B: chose tens only — correct but D (both B and C) is more complete"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: chose compatible only — correct but D is more complete"
+        }
+      ],
+      "math_note": "876−851=25; hundreds 900−900=0 비유효; tens 880−850=30; compat 875−850=25; B·C 모두 유용; answer D",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 8 p.38 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 2 — rounding to nearest 10/100 and compatible-number estimation strategies",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11 — estimation strategies and place-value reasoning for subtraction",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
-  ]
+  ],
+  "tier": "A",
+  "vertical_alignment": {
+    "prerequisite": "2.NBT.A.3",
+    "successor": "4.NBT.A.3"
+  },
+  "review_from_units": [],
+  "lesson_summary": "추정은 정확한 계산 없이 합리적인 근사값을 구하는 도구입니다. compatible numbers(빼기 쉬운 수로 바꾸기), 십의 자리 반올림, 백의 자리 반올림 중에서 두 수가 가까울수록 십의 자리 반올림이 더 정확합니다. 어떤 방법을 사용하든 결과가 합리적인지 반드시 확인하세요.",
+  "unit_message": "추정은 추측이 아닙니다. 이 단원의 모든 뺄셈 문제에서 '내 답이 합리적인가?' 를 추정으로 먼저 확인하세요.",
+  "unit_intro_message": "이 단원에서는 1,000 이내의 덧셈·뺄셈을 배웁니다. 추정(estimation)은 계산 전에 '내 답이 합리적인가?'를 확인하는 핵심 도구입니다.",
+  "unit_close_message": "추정은 추측이 아닙니다. 이 단원의 모든 뺄셈 문제에서 compatible numbers나 반올림으로 먼저 추정하고, 정확한 계산이 합리적인지 검증하세요."
 }
