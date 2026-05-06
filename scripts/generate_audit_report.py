@@ -165,8 +165,11 @@ def check_stage3(lesson: dict) -> dict:
         correct = item.get("correct_answer", item.get("answer", ""))
         choices = item.get("choices", [])
 
-        # "X op Y = ?" 형식만 자동 검증
+        # "X op Y = ?" 형식만 자동 검증 (추정/호환수 문항은 건너뜀)
         import re
+        if re.search(r'estim|compatible', q, re.IGNORECASE):
+            skipped.append(item_id)
+            continue
         m = re.search(r'(\d+)\s*([\+\-\×\*\/x])\s*(\d+)\s*=\s*\?', q)
         if not m:
             skipped.append(item_id)
@@ -183,14 +186,18 @@ def check_stage3(lesson: dict) -> dict:
             continue
 
         # MC: correct_answer는 "B" 같은 레이블 — choices에서 실제 값 추출
+        # choices는 list 또는 {"A": ..., "B": ...} dict 두 형식 모두 지원
         actual_val = None
         if choices and len(correct) == 1 and correct.upper() in "ABCD":
-            idx = ord(correct.upper()) - ord("A")
-            if idx < len(choices):
-                choice_text = choices[idx]
-                nums = re.findall(r'\d+', choice_text)
-                if nums:
-                    actual_val = int(nums[-1])
+            key = correct.upper()
+            if isinstance(choices, dict):
+                choice_text = choices.get(key, "")
+            else:
+                idx = ord(key) - ord("A")
+                choice_text = choices[idx] if idx < len(choices) else ""
+            nums = re.findall(r'\d+', choice_text)
+            if nums:
+                actual_val = int(nums[-1])
         elif correct.lstrip("-").isdigit():
             actual_val = int(correct)
 
