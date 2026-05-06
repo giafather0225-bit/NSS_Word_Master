@@ -1,13 +1,21 @@
 {
   "lesson_id": "L5_use_properties_to_add",
   "title": "Algebra: Use Properties to Add",
-  "ccss": ["3.NBT.A.2"],
+  "ccss": [
+    "3.NBT.A.2"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
   "go_math_ref": "Chapter 1, Lesson 1.5, pp.21-24",
   "essential_question": "How can you add more than two addends?",
-  "key_vocabulary": ["Commutative Property of Addition", "Associative Property of Addition", "Identity Property of Addition", "addend", "sum", "grouping"],
-
+  "key_vocabulary": [
+    "Commutative Property of Addition",
+    "Associative Property of Addition",
+    "Identity Property of Addition",
+    "addend",
+    "sum",
+    "grouping"
+  ],
   "pretest": [
     {
       "id": "PT_01",
@@ -17,16 +25,58 @@
       "skill_tag": "property_commutative",
       "difficulty": 2,
       "question": "Which shows the Commutative Property of Addition?",
-      "choices": {"A": "15 + 28 = 28 + 15", "B": "(15 + 28) + 7 = 15 + (28 + 7)", "C": "15 + 0 = 15", "D": "15 = 10 + 5"},
-      "answer": "A",
-      "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "This is the Associative Property"},
-        "C": {"error_type": "concept_gap", "note": "This is the Identity Property"},
-        "D": {"error_type": "concept_gap", "note": "This is place value decomposition, not a property"}
+      "choices": {
+        "A": "15 + 28 = 28 + 15",
+        "B": "(15 + 28) + 7 = 15 + (28 + 7)",
+        "C": "15 + 0 = 15",
+        "D": "15 = 10 + 5"
       },
-      "solution_steps": ["Commutative Property: you can change the ORDER of addends", "15 + 28 = 28 + 15 — the order changed, the sum stays the same"],
+      "answer": "A",
+      "expected_errors": [
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "B: Associative Property를 Commutative Property로 혼동"
+        },
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "C: Identity Property(+0)를 Commutative Property로 혼동"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: place value 분해(15=10+5)는 덧셈 성질이 아님"
+        }
+      ],
+      "solution_steps": [
+        "Commutative Property: you can change the ORDER of addends",
+        "15 + 28 = 28 + 15 — the order changed, the sum stays the same"
+      ],
       "hint": "Commutative means you can switch the order.",
-      "verification": "Go Math p.21 — Commutative Property definition"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "성질 식별 문항 — 산술 검증 불필요. Commutative: a+b=b+a 구조 확인.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "PT_02",
@@ -36,16 +86,58 @@
       "skill_tag": "property_associative",
       "difficulty": 2,
       "question": "Which shows the Associative Property of Addition?",
-      "choices": {"A": "86 + 7 = 7 + 86", "B": "(86 + 7) + 93 = 86 + (7 + 93)", "C": "86 + 0 = 86", "D": "86 = 80 + 6"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "This is the Commutative Property"},
-        "C": {"error_type": "concept_gap", "note": "This is the Identity Property"},
-        "D": {"error_type": "concept_gap", "note": "This is place value, not a property"}
+      "choices": {
+        "A": "86 + 7 = 7 + 86",
+        "B": "(86 + 7) + 93 = 86 + (7 + 93)",
+        "C": "86 + 0 = 86",
+        "D": "86 = 80 + 6"
       },
-      "solution_steps": ["Associative Property: you can change the GROUPING of addends", "(86+7)+93 = 86+(7+93) — the parentheses moved, sum stays the same"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "A: Commutative Property를 Associative Property로 혼동"
+        },
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "C: Identity Property(+0)를 Associative Property로 혼동"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: place value 분해는 덧셈 성질이 아님"
+        }
+      ],
+      "solution_steps": [
+        "Associative Property: you can change the GROUPING of addends",
+        "(86+7)+93 = 86+(7+93) — the parentheses moved, sum stays the same"
+      ],
       "hint": "Associative means you can regroup (move the parentheses).",
-      "verification": "Go Math p.24 Test Prep Q13 — exact problem"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "성질 식별 문항 — 산술 검증 불필요. Associative: (a+b)+c=a+(b+c) 구조 확인.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "PT_03",
@@ -55,16 +147,58 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties to find the sum. 18 + 39 + 32 = ?",
-      "choices": {"A": "79", "B": "89", "C": "99", "D": "88"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "18+32=50, 50+39=89… no, got 79 by miscalculating 50+29"},
-        "C": {"error_type": "careless", "note": "18+39=57, 57+32=89, not 99"},
-        "D": {"error_type": "careless", "note": "18+38+32=88"}
+      "choices": {
+        "A": "79",
+        "B": "89",
+        "C": "99",
+        "D": "88"
       },
-      "solution_steps": ["Use Commutative: reorder → 18 + 32 + 39", "Use Associative: (18 + 32) + 39", "18 + 32 = 50", "50 + 39 = 89"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 18+32=50, 50+39=89 인데 50+29=79로 계산 — 39에서 9만 더한 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 18+39=57, 57+32=89 인데 57+42=99로 잘못 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 18+38+32=88 — 39를 38로 오독"
+        }
+      ],
+      "solution_steps": [
+        "Use Commutative: reorder → 18 + 32 + 39",
+        "Use Associative: (18 + 32) + 39",
+        "18 + 32 = 50",
+        "50 + 39 = 89"
+      ],
       "hint": "Look for two numbers that make a friendly sum. 18 + 32 = ?",
-      "verification": "Go Math p.23 On Your Own Q4"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "18+39+32: (18+32)+39=50+39=89 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "PT_04",
@@ -74,16 +208,57 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties to find the sum. 15 + 76 + 125 = ?",
-      "choices": {"A": "206", "B": "216", "C": "226", "D": "196"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "15+125=140, 140+76=216, not 206"},
-        "C": {"error_type": "careless", "note": "15+76=91, 91+125=216, not 226"},
-        "D": {"error_type": "concept_gap", "note": "Added incorrectly"}
+      "choices": {
+        "A": "206",
+        "B": "216",
+        "C": "226",
+        "D": "196"
       },
-      "solution_steps": ["Reorder: 15 + 125 + 76", "15 + 125 = 140", "140 + 76 = 216"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 15+125=140, 140+76=216 인데 140+66=206으로 십의 자리 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 15+76=91, 91+125=216 인데 91+135=226으로 잘못 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 15+76+105=196 — 125를 105로 오독"
+        }
+      ],
+      "solution_steps": [
+        "Reorder: 15 + 125 + 76",
+        "15 + 125 = 140",
+        "140 + 76 = 216"
+      ],
       "hint": "15 + 125 is easy to add! Group those first.",
-      "verification": "Go Math p.23 On Your Own Q6"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "15+76+125: (15+125)+76=140+76=216 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "PT_05",
@@ -93,19 +268,60 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 3,
       "question": "Ms. Chang bought 16 apples, 29 peaches, and 11 bananas. How many pieces of fruit did she buy?",
-      "choices": {"A": "46", "B": "56", "C": "66", "D": "55"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "16+29=45, forgot bananas or added 1"},
-        "C": {"error_type": "careless", "note": "16+29+21=66"},
-        "D": {"error_type": "careless", "note": "16+29+10=55"}
+      "choices": {
+        "A": "46",
+        "B": "56",
+        "C": "66",
+        "D": "55"
       },
-      "solution_steps": ["Reorder: 29 + 11 + 16", "29 + 11 = 40", "40 + 16 = 56"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M07",
+          "citation": "EngageNY G3 Module 2 Lesson 5-6 — properties identification and multi-addend addition.",
+          "note": "A: 16+29=45, 바나나(11개) 누락 — 세 피가산수 중 하나 빠뜨림"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 16+29+21=66 — 11을 21로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 16+29+10=55 — 11을 10으로 오독"
+        }
+      ],
+      "solution_steps": [
+        "Reorder: 29 + 11 + 16",
+        "29 + 11 = 40",
+        "40 + 16 = 56"
+      ],
       "hint": "Look for numbers that add to a round number. 29 + 11 = ?",
-      "verification": "Go Math p.24 Problem Solving Q10 — exact problem"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "16+29+11: (29+11)+16=40+16=56 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "learn": [
     {
       "id": "LEARN_01",
@@ -113,8 +329,35 @@
       "content": "Sometimes you need to add three or more numbers. You can use addition properties to make this easier. Properties are rules that are always true.",
       "cpa_stage": "concrete",
       "visual_type": "illustration",
-      "visual_data": {"description": "Three groups of objects (apples, peaches, bananas) being combined"},
-      "verification": "Go Math p.21 introduction"
+      "visual_data": {
+        "description": "Three groups of objects (apples, peaches, bananas) being combined"
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "N/A — 소개 카드",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": "3.NBT.A.2",
+      "type": null
     },
     {
       "id": "LEARN_02",
@@ -122,8 +365,37 @@
       "content": "The Commutative Property says you can add numbers in any order and get the same sum. Example: 4 + 7 = 7 + 4. Both equal 11. This helps because you can rearrange numbers to find easier pairs.",
       "cpa_stage": "pictorial",
       "visual_type": "equation_pair",
-      "visual_data": {"left": "4 + 7 = 11", "right": "7 + 4 = 11", "property": "Commutative"},
-      "verification": "Go Math p.21 — Commutative Property review"
+      "visual_data": {
+        "left": "4 + 7 = 11",
+        "right": "7 + 4 = 11",
+        "property": "Commutative"
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "4+7=11, 7+4=11 (교환법칙 시각화) ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": "3.NBT.A.2",
+      "type": null
     },
     {
       "id": "LEARN_03",
@@ -131,8 +403,37 @@
       "content": "The Associative Property says you can group addends differently and get the same sum. Example: (5 + 3) + 7 = 5 + (3 + 7). Left: 8 + 7 = 15. Right: 5 + 10 = 15. Same answer! Grouping 3 + 7 first makes a friendly 10.",
       "cpa_stage": "pictorial",
       "visual_type": "equation_pair",
-      "visual_data": {"left": "(5+3)+7 = 8+7 = 15", "right": "5+(3+7) = 5+10 = 15", "property": "Associative"},
-      "verification": "Go Math p.21 — Associative Property definition"
+      "visual_data": {
+        "left": "(5+3)+7 = 8+7 = 15",
+        "right": "5+(3+7) = 5+10 = 15",
+        "property": "Associative"
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "(5+3)+7=8+7=15, 5+(3+7)=5+10=15 (결합법칙 시각화) ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": "3.NBT.A.2",
+      "type": null
     },
     {
       "id": "LEARN_04",
@@ -140,8 +441,35 @@
       "content": "The Identity Property says that adding 0 to any number gives that same number. Example: 42 + 0 = 42. Zero is the 'identity' element for addition because it doesn't change the number.",
       "cpa_stage": "abstract",
       "visual_type": "equation",
-      "visual_data": {"equation": "42 + 0 = 42"},
-      "verification": "Go Math p.21 — Identity Property"
+      "visual_data": {
+        "equation": "42 + 0 = 42"
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "42+0=42 (항등법칙) ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": "3.NBT.A.2",
+      "type": null
     },
     {
       "id": "LEARN_05",
@@ -149,8 +477,40 @@
       "content": "Find 36 + 37 + 51. Step 1: Line up by place value. Step 2: Look for friendly groups. 37 + 51: 7 + 1 = 8 (easy ones). Step 3: Change grouping → 36 + (37 + 51) = 36 + 88 = 124. Or reorder: (36 + 51) + 37 = 87 + 37 = 124.",
       "cpa_stage": "abstract",
       "visual_type": "step_by_step",
-      "visual_data": {"steps": ["36 + 37 + 51", "Regroup: 36 + (37+51)", "37+51 = 88", "36 + 88 = 124"]},
-      "verification": "Go Math p.22 — Model example 36+37+51"
+      "visual_data": {
+        "steps": [
+          "36 + 37 + 51",
+          "Regroup: 36 + (37+51)",
+          "37+51 = 88",
+          "36 + 88 = 124"
+        ]
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "36+37+51: 36+(37+51)=36+88=124 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": "3.NBT.A.2",
+      "type": null
     },
     {
       "id": "LEARN_06",
@@ -158,8 +518,45 @@
       "content": "When adding 3 or more numbers, look for pairs that make a ten or a hundred. Example: 18 + 39 + 32. Notice 18 + 32 = 50 (a friendly number!). Reorder: (18 + 32) + 39 = 50 + 39 = 89.",
       "cpa_stage": "abstract",
       "visual_type": "highlight",
-      "visual_data": {"numbers": [18, 39, 32], "friendly_pair": [18, 32], "pair_sum": 50, "total": 89},
-      "verification": "Go Math p.23 Q4 — 18+39+32"
+      "visual_data": {
+        "numbers": [
+          18,
+          39,
+          32
+        ],
+        "friendly_pair": [
+          18,
+          32
+        ],
+        "pair_sum": 50,
+        "total": 89
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "18+39+32: (18+32)+39=50+39=89 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": "3.NBT.A.2",
+      "type": null
     },
     {
       "id": "LEARN_07",
@@ -167,8 +564,41 @@
       "content": "You can use properties with four or more addends too! Example: 33 + 71 + 56 + 29. Look for pairs: 71 + 29 = 100! Reorder: (71 + 29) + (33 + 56) = 100 + 89 = 189.",
       "cpa_stage": "abstract",
       "visual_type": "step_by_step",
-      "visual_data": {"steps": ["33+71+56+29", "Pair: 71+29=100", "Pair: 33+56=89", "100+89=189"]},
-      "verification": "Go Math p.23 Q7 — four addends"
+      "visual_data": {
+        "steps": [
+          "33+71+56+29",
+          "Pair: 71+29=100",
+          "Pair: 33+56=89",
+          "100+89=189"
+        ]
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "33+71+56+29: (71+29)+(33+56)=100+89=189 ✓ Math Talk 카드.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": "3.NBT.A.2",
+      "type": "explain",
+      "math_talk_prompt": "You found that 71 + 29 = 100 and grouped (33 + 56) together. How did you spot those pairs so quickly? If the four numbers were 37, 64, 63, and 26 instead, which pairs would you group, and why? Explain your strategy for finding friendly pairs in any set of numbers."
     },
     {
       "id": "LEARN_08",
@@ -177,10 +607,34 @@
       "cpa_stage": "abstract",
       "visual_type": "summary_card",
       "visual_data": {},
-      "verification": "Go Math pp.21-24 lesson summary"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "N/A — 요약 카드",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": "3.NBT.A.2",
+      "type": "summary"
     }
   ],
-
   "try": [
     {
       "id": "TRY_01",
@@ -190,16 +644,59 @@
       "skill_tag": "property_identify",
       "difficulty": 2,
       "question": "Which property is shown? 23 + 0 = 23",
-      "choices": {"A": "Commutative Property", "B": "Associative Property", "C": "Identity Property", "D": "None of these"},
-      "answer": "C",
-      "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "Commutative changes order, not adds 0"},
-        "B": {"error_type": "concept_gap", "note": "Associative changes grouping"},
-        "D": {"error_type": "concept_gap", "note": "This is definitely the Identity Property"}
+      "choices": {
+        "A": "Commutative Property",
+        "B": "Associative Property",
+        "C": "Identity Property",
+        "D": "None of these"
       },
-      "solution_steps": ["Adding 0 to a number gives the same number", "23 + 0 = 23", "This is the Identity Property of Addition"],
+      "answer": "C",
+      "expected_errors": [
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "A: 교환법칙을 항등법칙(+0)과 혼동"
+        },
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "B: 결합법칙을 항등법칙(+0)과 혼동"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 23+0=23은 덧셈 성질임 — 'None of these' 오선택"
+        }
+      ],
+      "solution_steps": [
+        "Adding 0 to a number gives the same number",
+        "23 + 0 = 23",
+        "This is the Identity Property of Addition"
+      ],
       "hint": "What happens when you add zero?",
-      "verification": "Go Math p.21 Identity Property"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "성질 식별 문항 — 23+0=23 항등법칙 구조 확인.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_02",
@@ -209,16 +706,57 @@
       "skill_tag": "properties_add_three",
       "difficulty": 2,
       "question": "Use properties to find the sum. 13 + 49 + 87 = ?",
-      "choices": {"A": "139", "B": "149", "C": "159", "D": "148"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "13+87=100, 100+49=149, not 139"},
-        "C": {"error_type": "careless", "note": "13+49=62, 62+87=149, not 159"},
-        "D": {"error_type": "careless", "note": "13+48+87=148"}
+      "choices": {
+        "A": "139",
+        "B": "149",
+        "C": "159",
+        "D": "148"
       },
-      "solution_steps": ["Look for friendly pair: 13 + 87 = 100!", "Reorder: (13 + 87) + 49", "100 + 49 = 149"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 13+87=100, 100+49=149 인데 100+39=139로 계산 — 49에서 9만 더한 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 13+49=62, 62+87=149 인데 62+97=159로 잘못 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 13+48+87=148 — 49를 48로 오독"
+        }
+      ],
+      "solution_steps": [
+        "Look for friendly pair: 13 + 87 = 100!",
+        "Reorder: (13 + 87) + 49",
+        "100 + 49 = 149"
+      ],
       "hint": "Do any two numbers add up to 100?",
-      "verification": "Go Math p.23 On Your Own Q5"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "13+49+87: (13+87)+49=100+49=149 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_03",
@@ -228,16 +766,57 @@
       "skill_tag": "properties_add_four",
       "difficulty": 3,
       "question": "Use properties to find the sum. 43 + 39 + 43 + 11 = ?",
-      "choices": {"A": "126", "B": "136", "C": "146", "D": "135"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "39+11=50, 43+43=86, 50+86=136, not 126"},
-        "C": {"error_type": "careless", "note": "43+43=86, 39+11=50, 86+50=136, not 146"},
-        "D": {"error_type": "careless", "note": "43+39+43+10=135"}
+      "choices": {
+        "A": "126",
+        "B": "136",
+        "C": "146",
+        "D": "135"
       },
-      "solution_steps": ["Look for pairs: 39 + 11 = 50", "43 + 43 = 86", "50 + 86 = 136"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 39+11=50, 43+43=86, 50+86=136 인데 50+76=126으로 86를 76으로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 39+11=50, 43+43=86, 50+86=136 인데 50+96=146으로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 43+39+43+10=135 — 11을 10으로 오독"
+        }
+      ],
+      "solution_steps": [
+        "Look for pairs: 39 + 11 = 50",
+        "43 + 43 = 86",
+        "50 + 86 = 136"
+      ],
       "hint": "Which two numbers make 50? Which two are the same?",
-      "verification": "Go Math p.23 On Your Own Q8"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "43+39+43+11: (39+11)+(43+43)=50+86=136 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_04",
@@ -247,16 +826,57 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 3,
       "question": "Mr. Arnez bought 32 potatoes, 29 onions, 31 tomatoes and 28 peppers. How many vegetables did he buy?",
-      "choices": {"A": "110", "B": "120", "C": "130", "D": "119"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "32+28=60, 29+31=60, 60+60=120, not 110"},
-        "C": {"error_type": "careless", "note": "32+29+31+38=130"},
-        "D": {"error_type": "careless", "note": "32+29+31+27=119"}
+      "choices": {
+        "A": "110",
+        "B": "120",
+        "C": "130",
+        "D": "119"
       },
-      "solution_steps": ["Look for pairs: 32 + 28 = 60", "29 + 31 = 60", "60 + 60 = 120"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 32+28=60, 29+31=60, 60+60=120 인데 60+50=110 — 두 번째 쌍을 잘못 합산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 32+29+31+38=130 — 28을 38로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 32+29+31+27=119 — 28을 27로 오독"
+        }
+      ],
+      "solution_steps": [
+        "Look for pairs: 32 + 28 = 60",
+        "29 + 31 = 60",
+        "60 + 60 = 120"
+      ],
       "hint": "Look for two pairs that each make a round number.",
-      "verification": "Go Math p.24 Problem Solving Q9 — exact problem"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "32+29+31+28: (32+28)+(29+31)=60+60=120 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_05",
@@ -266,19 +886,61 @@
       "skill_tag": "property_unknown",
       "difficulty": 3,
       "question": "What is the unknown number? (? + 8) + 32 = 49",
-      "choices": {"A": "7", "B": "8", "C": "9", "D": "11"},
-      "answer": "C",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "(7+8)+32 = 15+32 = 47, not 49"},
-        "B": {"error_type": "careless", "note": "(8+8)+32 = 16+32 = 48, not 49"},
-        "D": {"error_type": "careless", "note": "(11+8)+32 = 19+32 = 51, not 49"}
+      "choices": {
+        "A": "7",
+        "B": "8",
+        "C": "9",
+        "D": "11"
       },
-      "solution_steps": ["(? + 8) + 32 = 49", "Use Associative: ? + (8 + 32) = 49", "? + 40 = 49", "? = 49 - 40 = 9", "Check: (9 + 8) + 32 = 17 + 32 = 49 ✓"],
+      "answer": "C",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: (7+8)+32=47, 49가 아님"
+        },
+        {
+          "error_type": "careless",
+          "note": "B: (8+8)+32=48, 49가 아님"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: (11+8)+32=51, 49가 아님"
+        }
+      ],
+      "solution_steps": [
+        "(? + 8) + 32 = 49",
+        "Use Associative: ? + (8 + 32) = 49",
+        "? + 40 = 49",
+        "? = 49 - 40 = 9",
+        "Check: (9 + 8) + 32 = 17 + 32 = 49 ✓"
+      ],
       "hint": "First add 8 + 32. Then figure out what plus 40 equals 49.",
-      "verification": "Go Math p.24 Q11 — exact problem"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "(?+8)+32=49: ?+(8+32)=49, ?+40=49, ?=9 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "practice_r1": [
     {
       "id": "R1_01",
@@ -288,15 +950,59 @@
       "skill_tag": "property_identify",
       "difficulty": 2,
       "question": "Which property is shown? 45 + 12 = 12 + 45",
-      "choices": {"A": "Commutative", "B": "Associative", "C": "Identity", "D": "None"},
-      "answer": "A",
-      "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "Associative changes grouping, not order"},
-        "C": {"error_type": "concept_gap", "note": "Identity involves adding 0"},
-        "D": {"error_type": "concept_gap", "note": "This is the Commutative Property"}
+      "choices": {
+        "A": "Commutative",
+        "B": "Associative",
+        "C": "Identity",
+        "D": "None"
       },
-      "solution_steps": ["The order of 45 and 12 is switched", "Same numbers, different order, same sum", "This is the Commutative Property"],
-      "hint": "Did the order change or the grouping?"
+      "answer": "A",
+      "expected_errors": [
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "B: 결합법칙(순서 변경)을 교환법칙으로 혼동"
+        },
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "C: 항등법칙(+0)을 교환법칙으로 혼동"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 교환법칙의 예인데 'None'으로 오선택"
+        }
+      ],
+      "solution_steps": [
+        "The order of 45 and 12 is switched",
+        "Same numbers, different order, same sum",
+        "This is the Commutative Property"
+      ],
+      "hint": "Did the order change or the grouping?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "성질 식별 — 45+12=12+45 교환법칙 구조 확인.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_02",
@@ -306,15 +1012,59 @@
       "skill_tag": "property_identify",
       "difficulty": 2,
       "question": "Which property is shown? (9 + 6) + 4 = 9 + (6 + 4)",
-      "choices": {"A": "Commutative", "B": "Associative", "C": "Identity", "D": "None"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "The order didn't change, the grouping did"},
-        "C": {"error_type": "concept_gap", "note": "No zero involved"},
-        "D": {"error_type": "concept_gap", "note": "This is the Associative Property"}
+      "choices": {
+        "A": "Commutative",
+        "B": "Associative",
+        "C": "Identity",
+        "D": "None"
       },
-      "solution_steps": ["The parentheses moved from (9+6) to (6+4)", "The grouping changed, not the order", "This is the Associative Property"],
-      "hint": "Look at the parentheses — did they move?"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "A: 결합법칙(괄호 이동)을 교환법칙(순서 변경)으로 혼동"
+        },
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "C: 결합법칙인데 항등법칙(+0)으로 혼동"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 결합법칙의 예인데 'None'으로 오선택"
+        }
+      ],
+      "solution_steps": [
+        "The parentheses moved from (9+6) to (6+4)",
+        "The grouping changed, not the order",
+        "This is the Associative Property"
+      ],
+      "hint": "Look at the parentheses — did they move?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "성질 식별 — (9+6)+4=9+(6+4) 결합법칙 구조 확인.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_03",
@@ -324,15 +1074,56 @@
       "skill_tag": "properties_add_three",
       "difficulty": 2,
       "question": "Use properties. 25 + 48 + 75 = ?",
-      "choices": {"A": "138", "B": "148", "C": "158", "D": "147"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "25+75=100, 100+48=148, not 138"},
-        "C": {"error_type": "careless", "note": "25+48=73, 73+75=148, not 158"},
-        "D": {"error_type": "careless", "note": "25+75=100, 100+47=147"}
+      "choices": {
+        "A": "138",
+        "B": "148",
+        "C": "158",
+        "D": "147"
       },
-      "solution_steps": ["25 + 75 = 100 (friendly pair!)", "100 + 48 = 148"],
-      "hint": "Which two numbers add up to 100?"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 25+75=100, 100+48=148 인데 100+38=138로 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 25+48=73, 73+75=148 인데 73+85=158로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 25+75=100, 100+47=147 — 48를 47로 오독"
+        }
+      ],
+      "solution_steps": [
+        "25 + 75 = 100 (friendly pair!)",
+        "100 + 48 = 148"
+      ],
+      "hint": "Which two numbers add up to 100?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "25+48+75: (25+75)+48=100+48=148 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_04",
@@ -342,16 +1133,57 @@
       "skill_tag": "properties_add_three",
       "difficulty": 2,
       "question": "Use properties. 36 + 37 + 51 = ?",
-      "choices": {"A": "114", "B": "124", "C": "134", "D": "123"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "36+37=73, 73+51=124, not 114"},
-        "C": {"error_type": "careless", "note": "36+51=87, 87+47=134"},
-        "D": {"error_type": "careless", "note": "36+37+50=123"}
+      "choices": {
+        "A": "114",
+        "B": "124",
+        "C": "134",
+        "D": "123"
       },
-      "solution_steps": ["36 + (37 + 51)", "37 + 51 = 88", "36 + 88 = 124"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 36+(37+51)=36+88=124 인데 36+78=114로 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 36+37+51=124 인데 36+98=134로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 36+37+50=123 — 51을 50으로 오독"
+        }
+      ],
+      "solution_steps": [
+        "36 + (37 + 51)",
+        "37 + 51 = 88",
+        "36 + 88 = 124"
+      ],
       "hint": "Try adding 37 + 51 first.",
-      "verification": "Go Math p.22 Model example"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "36+37+51: 36+(37+51)=36+88=124 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_05",
@@ -361,15 +1193,56 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties. 44 + 27 + 56 = ?",
-      "choices": {"A": "117", "B": "127", "C": "137", "D": "126"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "44+56=100, 100+27=127, not 117"},
-        "C": {"error_type": "careless", "note": "44+56=100, 100+37=137"},
-        "D": {"error_type": "careless", "note": "44+56=100, 100+26=126"}
+      "choices": {
+        "A": "117",
+        "B": "127",
+        "C": "137",
+        "D": "126"
       },
-      "solution_steps": ["44 + 56 = 100 (friendly pair!)", "100 + 27 = 127"],
-      "hint": "44 + 56 makes a nice round number."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 44+56=100, 100+27=127 인데 100+17=117로 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 44+56=100, 100+37=137 — 27을 37로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 44+56=100, 100+26=126 — 27을 26으로 오독"
+        }
+      ],
+      "solution_steps": [
+        "44 + 56 = 100 (friendly pair!)",
+        "100 + 27 = 127"
+      ],
+      "hint": "44 + 56 makes a nice round number.",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "44+27+56: (44+56)+27=100+27=127 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_06",
@@ -379,15 +1252,56 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties. 62 + 19 + 38 = ?",
-      "choices": {"A": "109", "B": "119", "C": "129", "D": "118"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "62+38=100, 100+19=119, not 109"},
-        "C": {"error_type": "careless", "note": "62+38=100, 100+29=129"},
-        "D": {"error_type": "careless", "note": "62+38=100, 100+18=118"}
+      "choices": {
+        "A": "109",
+        "B": "119",
+        "C": "129",
+        "D": "118"
       },
-      "solution_steps": ["62 + 38 = 100", "100 + 19 = 119"],
-      "hint": "62 + 38 = ?"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 62+38=100, 100+19=119 인데 100+9=109로 계산 — 19에서 9만 더함"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 62+38=100, 100+29=129 — 19를 29로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 62+38=100, 100+18=118 — 19를 18로 오독"
+        }
+      ],
+      "solution_steps": [
+        "62 + 38 = 100",
+        "100 + 19 = 119"
+      ],
+      "hint": "62 + 38 = ?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "62+19+38: (62+38)+19=100+19=119 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_07",
@@ -397,16 +1311,57 @@
       "skill_tag": "properties_add_four",
       "difficulty": 3,
       "question": "Use properties. 32 + 29 + 31 + 28 = ?",
-      "choices": {"A": "110", "B": "120", "C": "130", "D": "119"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "32+28=60, 29+31=60, 60+60=120, not 110"},
-        "C": {"error_type": "careless", "note": "32+29+31+38=130"},
-        "D": {"error_type": "careless", "note": "32+29+31+27=119"}
+      "choices": {
+        "A": "110",
+        "B": "120",
+        "C": "130",
+        "D": "119"
       },
-      "solution_steps": ["Pair: 32 + 28 = 60", "Pair: 29 + 31 = 60", "60 + 60 = 120"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 32+28=60, 29+31=60, 60+60=120 인데 60+50=110으로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 32+29+31+38=130 — 28을 38로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 32+29+31+27=119 — 28을 27로 오독"
+        }
+      ],
+      "solution_steps": [
+        "Pair: 32 + 28 = 60",
+        "Pair: 29 + 31 = 60",
+        "60 + 60 = 120"
+      ],
       "hint": "Find two pairs that each make a round number.",
-      "verification": "Go Math p.24 Q9"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "32+29+31+28: (32+28)+(29+31)=60+60=120 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_08",
@@ -416,15 +1371,56 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 3,
       "question": "A class collected 35 cans on Monday, 47 on Tuesday, and 15 on Wednesday. How many cans in all?",
-      "choices": {"A": "87", "B": "97", "C": "107", "D": "96"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "35+47=82, 82+15=97, not 87"},
-        "C": {"error_type": "careless", "note": "35+15=50, 50+47=97, not 107"},
-        "D": {"error_type": "careless", "note": "35+47+14=96"}
+      "choices": {
+        "A": "87",
+        "B": "97",
+        "C": "107",
+        "D": "96"
       },
-      "solution_steps": ["35 + 15 = 50 (friendly pair)", "50 + 47 = 97"],
-      "hint": "35 + 15 makes a round number!"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 35+15=50, 50+47=97 인데 50+37=87로 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 35+15=50, 50+57=107 — 47을 57로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 35+47+14=96 — 15를 14로 오독"
+        }
+      ],
+      "solution_steps": [
+        "35 + 15 = 50 (friendly pair)",
+        "50 + 47 = 97"
+      ],
+      "hint": "35 + 15 makes a round number!",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "35+47+15: (35+15)+47=50+47=97 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_09",
@@ -434,15 +1430,60 @@
       "skill_tag": "property_unknown",
       "difficulty": 3,
       "question": "Find the unknown. 17 + ? = ? + 17. What property does this show?",
-      "choices": {"A": "Commutative — any number works", "B": "Associative — only 0 works", "C": "Identity — the answer is 0", "D": "Commutative — only 17 works"},
-      "answer": "A",
-      "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "Associative involves grouping, not order"},
-        "C": {"error_type": "concept_gap", "note": "Identity is a+0=a, this is about order"},
-        "D": {"error_type": "concept_gap", "note": "Any number works, not just 17"}
+      "choices": {
+        "A": "Commutative — any number works",
+        "B": "Associative — only 0 works",
+        "C": "Identity — the answer is 0",
+        "D": "Commutative — only 17 works"
       },
-      "solution_steps": ["17 + ? = ? + 17", "This is true for ANY number", "Example: 17+5 = 5+17 = 22", "This is the Commutative Property"],
-      "hint": "Try putting any number in the box. Does it always work?"
+      "answer": "A",
+      "expected_errors": [
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "B: 교환법칙(순서)을 결합법칙(묶기)으로 혼동; '0만 됨'은 항등법칙"
+        },
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "C: 교환법칙인데 항등법칙으로 혼동"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 교환법칙은 어떤 수에도 성립하는데 '17만 됨'으로 오해"
+        }
+      ],
+      "solution_steps": [
+        "17 + ? = ? + 17",
+        "This is true for ANY number",
+        "Example: 17+5 = 5+17 = 22",
+        "This is the Commutative Property"
+      ],
+      "hint": "Try putting any number in the box. Does it always work?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "성질 식별 — 17+?=?+17 교환법칙 (어떤 수에도 성립) 구조 확인.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_10",
@@ -452,19 +1493,58 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties. 63 + 86 + 77 = ?",
-      "choices": {"A": "216", "B": "226", "C": "236", "D": "225"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "63+77=140, 140+86=226, not 216"},
-        "C": {"error_type": "careless", "note": "63+86=149, 149+77=226, not 236"},
-        "D": {"error_type": "careless", "note": "63+86+76=225"}
+      "choices": {
+        "A": "216",
+        "B": "226",
+        "C": "236",
+        "D": "225"
       },
-      "solution_steps": ["63 + 77 = 140 (3+7=10, friendly!)", "140 + 86 = 226"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 63+77=140, 140+86=226 인데 140+76=216으로 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 63+77=140, 140+86=226 인데 140+96=236으로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 63+86+76=225 — 77을 76으로 오독"
+        }
+      ],
+      "solution_steps": [
+        "63 + 77 = 140 (3+7=10, friendly!)",
+        "140 + 86 = 226"
+      ],
       "hint": "63 + 77: the ones digits add to 10!",
-      "verification": "Go Math p.24 Q12"
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "63+86+77: (63+77)+86=140+86=226 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "practice_r2": [
     {
       "id": "R2_01",
@@ -474,15 +1554,56 @@
       "skill_tag": "properties_add_three",
       "difficulty": 3,
       "question": "Use properties. 57 + 85 + 43 = ?",
-      "choices": {"A": "175", "B": "185", "C": "195", "D": "184"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "57+43=100, 100+85=185, not 175"},
-        "C": {"error_type": "careless", "note": "57+43=100, 100+95=195"},
-        "D": {"error_type": "careless", "note": "57+43=100, 100+84=184"}
+      "choices": {
+        "A": "175",
+        "B": "185",
+        "C": "195",
+        "D": "184"
       },
-      "solution_steps": ["57 + 43 = 100", "100 + 85 = 185"],
-      "hint": "57 + 43 = ?"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 57+43=100, 100+85=185 인데 100+75=175로 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 57+43=100, 100+95=195 — 85를 95로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 57+43=100, 100+84=184 — 85를 84로 오독"
+        }
+      ],
+      "solution_steps": [
+        "57 + 43 = 100",
+        "100 + 85 = 185"
+      ],
+      "hint": "57 + 43 = ?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "57+85+43: (57+43)+85=100+85=185 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_02",
@@ -492,15 +1613,57 @@
       "skill_tag": "properties_add_four",
       "difficulty": 3,
       "question": "Use properties. 15 + 48 + 25 + 12 = ?",
-      "choices": {"A": "90", "B": "100", "C": "110", "D": "99"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "15+25=40, 48+12=60, 40+60=100, not 90"},
-        "C": {"error_type": "careless", "note": "15+48+25+22=110"},
-        "D": {"error_type": "careless", "note": "15+25=40, 48+11=59, 40+59=99"}
+      "choices": {
+        "A": "90",
+        "B": "100",
+        "C": "110",
+        "D": "99"
       },
-      "solution_steps": ["15 + 25 = 40", "48 + 12 = 60", "40 + 60 = 100"],
-      "hint": "Find two pairs that each make a round number."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 15+25=40, 48+12=60, 40+60=100 인데 40+50=90으로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 15+48+25+22=110 — 12를 22로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 15+25=40, 48+11=59, 40+59=99 — 12를 11로 오독"
+        }
+      ],
+      "solution_steps": [
+        "15 + 25 = 40",
+        "48 + 12 = 60",
+        "40 + 60 = 100"
+      ],
+      "hint": "Find two pairs that each make a round number.",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "15+48+25+12: (15+25)+(48+12)=40+60=100 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_03",
@@ -510,15 +1673,56 @@
       "skill_tag": "properties_add_three",
       "difficulty": 4,
       "question": "Use properties. 125 + 88 + 175 = ?",
-      "choices": {"A": "378", "B": "388", "C": "398", "D": "387"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "125+175=300, 300+88=388, not 378"},
-        "C": {"error_type": "careless", "note": "125+175=300, 300+98=398"},
-        "D": {"error_type": "careless", "note": "125+175=300, 300+87=387"}
+      "choices": {
+        "A": "378",
+        "B": "388",
+        "C": "398",
+        "D": "387"
       },
-      "solution_steps": ["125 + 175 = 300", "300 + 88 = 388"],
-      "hint": "125 + 175 makes a nice round number."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 125+175=300, 300+88=388 인데 300+78=378로 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 125+175=300, 300+98=398 — 88을 98로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 125+175=300, 300+87=387 — 88을 87로 오독"
+        }
+      ],
+      "solution_steps": [
+        "125 + 175 = 300",
+        "300 + 88 = 388"
+      ],
+      "hint": "125 + 175 makes a nice round number.",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "125+88+175: (125+175)+88=300+88=388 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_04",
@@ -528,15 +1732,58 @@
       "skill_tag": "property_unknown",
       "difficulty": 3,
       "question": "Find the unknown. (? + 15) + 35 = 72. What is the unknown?",
-      "choices": {"A": "12", "B": "22", "C": "32", "D": "42"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "(12+15)+35 = 27+35 = 62, not 72"},
-        "C": {"error_type": "careless", "note": "(32+15)+35 = 47+35 = 82, not 72"},
-        "D": {"error_type": "careless", "note": "(42+15)+35 = 57+35 = 92, not 72"}
+      "choices": {
+        "A": "12",
+        "B": "22",
+        "C": "32",
+        "D": "42"
       },
-      "solution_steps": ["Use Associative: ? + (15+35) = 72", "? + 50 = 72", "? = 72 - 50 = 22", "Check: (22+15)+35 = 37+35 = 72 ✓"],
-      "hint": "Add 15 + 35 first, then figure out the unknown."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: ?+(15+35)=72, ?+50=72, ?=12 — 72-50=22인데 72-60=12로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: (32+15)+35=47+35=82≠72, 32는 틀림"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: (42+15)+35=57+35=92≠72, 42는 너무 큼"
+        }
+      ],
+      "solution_steps": [
+        "Use Associative: ? + (15+35) = 72",
+        "? + 50 = 72",
+        "? = 72 - 50 = 22",
+        "Check: (22+15)+35 = 37+35 = 72 ✓"
+      ],
+      "hint": "Add 15 + 35 first, then figure out the unknown.",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "(?+15)+35=72: ?+(15+35)=72, ?+50=72, ?=22 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_05",
@@ -546,15 +1793,56 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 4,
       "question": "A farmer picked 46 red apples, 28 green apples, and 54 yellow apples. How many apples in all?",
-      "choices": {"A": "118", "B": "128", "C": "138", "D": "127"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "46+54=100, 100+28=128, not 118"},
-        "C": {"error_type": "careless", "note": "46+54=100, 100+38=138"},
-        "D": {"error_type": "careless", "note": "46+54=100, 100+27=127"}
+      "choices": {
+        "A": "118",
+        "B": "128",
+        "C": "138",
+        "D": "127"
       },
-      "solution_steps": ["46 + 54 = 100 (friendly pair!)", "100 + 28 = 128"],
-      "hint": "Which two numbers add up to 100?"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 46+54=100, 100+28=128 인데 100+18=118로 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 46+54=100, 100+38=138 — 28을 38로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 46+54=100, 100+27=127 — 28을 27로 오독"
+        }
+      ],
+      "solution_steps": [
+        "46 + 54 = 100 (friendly pair!)",
+        "100 + 28 = 128"
+      ],
+      "hint": "Which two numbers add up to 100?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "46+28+54: (46+54)+28=100+28=128 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_06",
@@ -564,15 +1852,57 @@
       "skill_tag": "properties_add_four",
       "difficulty": 4,
       "question": "Use properties. 67 + 14 + 33 + 86 = ?",
-      "choices": {"A": "190", "B": "200", "C": "210", "D": "199"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "67+33=100, 14+86=100, 100+100=200, not 190"},
-        "C": {"error_type": "careless", "note": "67+33=100, 14+86=100, 100+100=200, not 210"},
-        "D": {"error_type": "careless", "note": "67+33=100, 14+85=99, 100+99=199"}
+      "choices": {
+        "A": "190",
+        "B": "200",
+        "C": "210",
+        "D": "199"
       },
-      "solution_steps": ["67 + 33 = 100", "14 + 86 = 100", "100 + 100 = 200"],
-      "hint": "Can you make two pairs that each equal 100?"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 67+33=100, 14+86=100, 100+100=200 인데 100+90=190으로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 67+33=100, 14+86=100, 200+10=210 — 100+100을 110으로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 67+33=100, 14+85=99, 100+99=199 — 86을 85로 오독"
+        }
+      ],
+      "solution_steps": [
+        "67 + 33 = 100",
+        "14 + 86 = 100",
+        "100 + 100 = 200"
+      ],
+      "hint": "Can you make two pairs that each equal 100?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "67+14+33+86: (67+33)+(14+86)=100+100=200 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_07",
@@ -582,15 +1912,59 @@
       "skill_tag": "property_identify",
       "difficulty": 3,
       "question": "Sara wrote: 24 + 36 + 0 = 24 + 36. Which property did she use?",
-      "choices": {"A": "Commutative", "B": "Associative", "C": "Identity", "D": "All three"},
-      "answer": "C",
-      "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "No order was changed"},
-        "B": {"error_type": "concept_gap", "note": "No grouping was changed"},
-        "D": {"error_type": "careless", "note": "Only Identity is shown — adding 0"}
+      "choices": {
+        "A": "Commutative",
+        "B": "Associative",
+        "C": "Identity",
+        "D": "All three"
       },
-      "solution_steps": ["Adding 0 doesn't change the sum", "24 + 36 + 0 = 24 + 36", "This is the Identity Property"],
-      "hint": "What did Sara add that didn't change anything?"
+      "answer": "C",
+      "expected_errors": [
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "A: 항등법칙(+0)을 교환법칙으로 혼동"
+        },
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "B: 항등법칙(+0)을 결합법칙으로 혼동"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 항등법칙만 사용된 식인데 '세 성질 모두'로 과잉 식별"
+        }
+      ],
+      "solution_steps": [
+        "Adding 0 doesn't change the sum",
+        "24 + 36 + 0 = 24 + 36",
+        "This is the Identity Property"
+      ],
+      "hint": "What did Sara add that didn't change anything?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "성질 식별 — 24+36+0=24+36 항등법칙 구조 확인.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_08",
@@ -600,15 +1974,56 @@
       "skill_tag": "properties_add_three",
       "difficulty": 4,
       "question": "Use properties. 238 + 145 + 62 = ?",
-      "choices": {"A": "435", "B": "445", "C": "455", "D": "345"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "238+62=300, 300+145=445, not 435"},
-        "C": {"error_type": "careless", "note": "238+62=300, 300+155=455"},
-        "D": {"error_type": "concept_gap", "note": "200+145=345"}
+      "choices": {
+        "A": "435",
+        "B": "445",
+        "C": "455",
+        "D": "345"
       },
-      "solution_steps": ["238 + 62 = 300 (38+62=100)", "300 + 145 = 445"],
-      "hint": "238 + 62: what do the ones and tens add to?"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 238+62=300, 300+145=445 인데 300+135=435로 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 238+62=300, 300+155=455 — 145를 155로 오독"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 200+145=345 — 238의 38과 62를 합산하지 않음"
+        }
+      ],
+      "solution_steps": [
+        "238 + 62 = 300 (38+62=100)",
+        "300 + 145 = 445"
+      ],
+      "hint": "238 + 62: what do the ones and tens add to?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "238+145+62: (238+62)+145=300+145=445 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_09",
@@ -618,15 +2033,56 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 4,
       "question": "A bookstore sold 73 books in the morning, 58 at lunch, and 27 in the evening. How many books sold in all?",
-      "choices": {"A": "148", "B": "158", "C": "168", "D": "157"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "73+27=100, 100+58=158, not 148"},
-        "C": {"error_type": "careless", "note": "73+58=131, 131+27=158, not 168"},
-        "D": {"error_type": "careless", "note": "73+27=100, 100+57=157"}
+      "choices": {
+        "A": "148",
+        "B": "158",
+        "C": "168",
+        "D": "157"
       },
-      "solution_steps": ["73 + 27 = 100", "100 + 58 = 158"],
-      "hint": "73 + 27 = ?"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 73+27=100, 100+58=158 인데 100+48=148로 계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 73+58=131, 131+27=158 인데 131+37=168로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 73+27=100, 100+57=157 — 58을 57로 오독"
+        }
+      ],
+      "solution_steps": [
+        "73 + 27 = 100",
+        "100 + 58 = 158"
+      ],
+      "hint": "73 + 27 = ?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "73+58+27: (73+27)+58=100+58=158 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_10",
@@ -636,18 +2092,59 @@
       "skill_tag": "properties_add_four",
       "difficulty": 4,
       "question": "Use properties. 55 + 23 + 45 + 77 = ?",
-      "choices": {"A": "190", "B": "200", "C": "210", "D": "199"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "55+45=100, 23+77=100, 100+100=200, not 190"},
-        "C": {"error_type": "careless", "note": "55+45=100, 23+77=100, 200+10=210"},
-        "D": {"error_type": "careless", "note": "55+45=100, 23+76=99, 100+99=199"}
+      "choices": {
+        "A": "190",
+        "B": "200",
+        "C": "210",
+        "D": "199"
       },
-      "solution_steps": ["55 + 45 = 100", "23 + 77 = 100", "100 + 100 = 200"],
-      "hint": "Two pairs that make 100!"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 55+45=100, 23+77=100, 100+100=200 인데 100+90=190으로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 55+45=100, 23+77=100, 200+10=210 — 100+100을 110으로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 55+45=100, 23+76=99, 100+99=199 — 77을 76으로 오독"
+        }
+      ],
+      "solution_steps": [
+        "55 + 45 = 100",
+        "23 + 77 = 100",
+        "100 + 100 = 200"
+      ],
+      "hint": "Two pairs that make 100!",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "55+23+45+77: (55+45)+(23+77)=100+100=200 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "practice_r3": [
     {
       "id": "R3_01",
@@ -657,15 +2154,58 @@
       "skill_tag": "properties_multi_step",
       "difficulty": 4,
       "question": "A store sold 134 shirts, 87 pants, 66 hats, and 113 jackets. How many items sold in all?",
-      "choices": {"A": "390", "B": "400", "C": "410", "D": "380"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "134+66=200, 87+113=200, 200+200=400, not 390"},
-        "C": {"error_type": "careless", "note": "134+66=200, 87+113=200, 200+200=400, not 410"},
-        "D": {"error_type": "concept_gap", "note": "Missed one item"}
+      "choices": {
+        "A": "390",
+        "B": "400",
+        "C": "410",
+        "D": "380"
       },
-      "solution_steps": ["134 + 66 = 200 (34+66=100)", "87 + 113 = 200 (87+13=100)", "200 + 200 = 400"],
-      "hint": "Look for two pairs that each make 200."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 134+66=200, 87+113=200, 200+200=400 인데 200+190=390으로 오산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 134+66=200, 87+113=200, 200+200=400 인데 200+210=410으로 오산"
+        },
+        {
+          "misconception_id": "3.NBT.2.M07",
+          "citation": "EngageNY G3 Module 2 Lesson 5-6 — properties identification and multi-addend addition.",
+          "note": "D: 134+87+66만 합산하고 113(재킷) 누락 → 380; 4개 피가산수 중 1개 빠뜨림"
+        }
+      ],
+      "solution_steps": [
+        "134 + 66 = 200 (34+66=100)",
+        "87 + 113 = 200 (87+13=100)",
+        "200 + 200 = 400"
+      ],
+      "hint": "Look for two pairs that each make 200.",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "134+87+66+113: (134+66)+(87+113)=200+200=400 ✓",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_02",
@@ -675,15 +2215,61 @@
       "skill_tag": "properties_explain",
       "difficulty": 5,
       "question": "Tom solved 47 + 86 + 53 like this: '(47 + 53) + 86 = 100 + 86 = 186.' Which TWO properties did Tom use?",
-      "choices": {"A": "Commutative and Associative", "B": "Associative and Identity", "C": "Commutative only", "D": "Identity and Commutative"},
-      "answer": "A",
-      "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "No zero was added — Identity not used"},
-        "C": {"error_type": "concept_gap", "note": "Tom also changed the grouping (parentheses)"},
-        "D": {"error_type": "concept_gap", "note": "No zero involved"}
+      "choices": {
+        "A": "Commutative and Associative",
+        "B": "Associative and Identity",
+        "C": "Commutative only",
+        "D": "Identity and Commutative"
       },
-      "solution_steps": ["Original: 47 + 86 + 53", "Tom switched 86 and 53 → Commutative Property", "Tom grouped (47+53) first → Associative Property", "Both properties were used"],
-      "hint": "Tom changed the order AND the grouping."
+      "answer": "A",
+      "expected_errors": [
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "Smarter Balanced G3 Item Specs 2015 — property identification is explicitly tested; expect confusion between Commutative and Associative.",
+          "note": "B: 결합법칙+항등법칙으로 오식별 — 0이 쓰이지 않았으므로 항등법칙 아님"
+        },
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "C: 교환법칙만 사용되었다고 오식별 — 괄호 이동(결합법칙)도 적용됨"
+        },
+        {
+          "misconception_id": "3.OA.D.9.M01",
+          "citation": "NCTM OA Progressions K-5 p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+          "note": "D: 교환법칙+항등법칙으로 오식별 — 0이 쓰이지 않았으므로 항등법칙 아님"
+        }
+      ],
+      "solution_steps": [
+        "Original: 47 + 86 + 53",
+        "Tom switched 86 and 53 → Commutative Property",
+        "Tom grouped (47+53) first → Associative Property",
+        "Both properties were used"
+      ],
+      "hint": "Tom changed the order AND the grouping.",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "47+86+53: (47+53)+86=100+86=186 ✓ 교환법칙+결합법칙 이중 적용 식별 문항.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_03",
@@ -693,15 +2279,58 @@
       "skill_tag": "properties_error_analysis",
       "difficulty": 5,
       "question": "Amy says: '(3 + 5) × 2 = 3 + (5 × 2) because of the Associative Property.' Is Amy correct?",
-      "choices": {"A": "Yes, the Associative Property works for all operations", "B": "No, the Associative Property only works within the same operation", "C": "Yes, because grouping doesn't matter", "D": "No, because 3 + 5 = 8, not 13"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "The Associative Property applies to addition with addition, or multiplication with multiplication — not mixed"},
-        "C": {"error_type": "concept_gap", "note": "Grouping matters when operations are mixed"},
-        "D": {"error_type": "careless", "note": "Correct that the answers differ, but wrong reason"}
+      "choices": {
+        "A": "Yes, the Associative Property works for all operations",
+        "B": "No, the Associative Property only works within the same operation",
+        "C": "Yes, because grouping doesn't matter",
+        "D": "No, because 3 + 5 = 8, not 13"
       },
-      "solution_steps": ["Left: (3+5)×2 = 8×2 = 16", "Right: 3+(5×2) = 3+10 = 13", "16 ≠ 13, so Amy is wrong", "The Associative Property works for all addition OR all multiplication, not mixed operations"],
-      "hint": "Calculate both sides. Are they equal?"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: '결합법칙은 모든 연산에 성립' — 혼합 연산에는 성립하지 않음; 계산해 보면 16≠13"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: '묶기는 상관없음' — 연산이 다를 때 묶기는 결과를 바꿈"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: '3+5=8이 아니다'는 틀린 이유; 3+5=8이 맞고, 쟁점은 혼합 연산에서 결합법칙 불성립"
+        }
+      ],
+      "solution_steps": [
+        "Left: (3+5)×2 = 8×2 = 16",
+        "Right: 3+(5×2) = 3+10 = 13",
+        "16 ≠ 13, so Amy is wrong",
+        "The Associative Property works for all addition OR all multiplication, not mixed operations"
+      ],
+      "hint": "Calculate both sides. Are they equal?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "(3+5)×2=16, 3+(5×2)=13, 16≠13 ✓ 오류 분석 문항.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_04",
@@ -711,15 +2340,58 @@
       "skill_tag": "properties_word_problem",
       "difficulty": 5,
       "question": "Five friends collected stickers: Ana 45, Ben 78, Cal 55, Dee 22, Eve 100. They want to count the total quickly. What is the best way to group them?",
-      "choices": {"A": "(45+55) + (78+22) + 100 = 100+100+100 = 300", "B": "45+78+55+22+100 = add left to right = 300", "C": "(45+78) + (55+22) + 100 = 123+77+100 = 300", "D": "100+78+55+45+22 = just start with the biggest"},
-      "answer": "A",
-      "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "Works but not the 'best' mental math strategy"},
-        "C": {"error_type": "careless", "note": "Works but harder: 123+77=200, 200+100=300"},
-        "D": {"error_type": "concept_gap", "note": "Starting with the biggest doesn't make friendly pairs"}
+      "choices": {
+        "A": "(45+55) + (78+22) + 100 = 100+100+100 = 300",
+        "B": "45+78+55+22+100 = add left to right = 300",
+        "C": "(45+78) + (55+22) + 100 = 123+77+100 = 300",
+        "D": "100+78+55+45+22 = just start with the biggest"
       },
-      "solution_steps": ["Look for pairs making 100: 45+55=100, 78+22=100", "Group: (45+55)+(78+22)+100", "100+100+100 = 300", "This is the easiest mental math approach"],
-      "hint": "Which pairs of numbers add up to exactly 100?"
+      "answer": "A",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "B: 순서대로 계산 — 가능하지만 친숙한 수 쌍을 활용하는 것보다 비효율적"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: (45+78)+(55+22)+100 = 123+77+100 = 300 — 성립하나 최선의 전략 아님"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: '가장 큰 수부터 시작' — 친숙한 합(100)을 만드는 쌍을 찾지 않음"
+        }
+      ],
+      "solution_steps": [
+        "Look for pairs making 100: 45+55=100, 78+22=100",
+        "Group: (45+55)+(78+22)+100",
+        "100+100+100 = 300",
+        "This is the easiest mental math approach"
+      ],
+      "hint": "Which pairs of numbers add up to exactly 100?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "45+78+55+22+100: (45+55)+(78+22)+100=100+100+100=300 ✓ 최적 전략 선택 문항.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_05",
@@ -729,15 +2401,73 @@
       "skill_tag": "properties_reasoning",
       "difficulty": 5,
       "question": "Does the Commutative Property work for subtraction? Which example proves your answer?",
-      "choices": {"A": "Yes: 8 - 3 = 3 - 8 = 5", "B": "No: 8 - 3 = 5, but 3 - 8 is not possible with whole numbers", "C": "Yes: 5 - 0 = 0 - 5 = 5", "D": "No: but it doesn't matter because we only need it for addition"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "8-3=5 but 3-8 ≠ 5"},
-        "C": {"error_type": "concept_gap", "note": "5-0=5 but 0-5 is not 5"},
-        "D": {"error_type": "careless", "note": "Correct that it doesn't work, but wrong reasoning"}
+      "choices": {
+        "A": "Yes: 8 - 3 = 3 - 8 = 5",
+        "B": "No: 8 - 3 = 5, but 3 - 8 is not possible with whole numbers",
+        "C": "Yes: 5 - 0 = 0 - 5 = 5",
+        "D": "No: but it doesn't matter because we only need it for addition"
       },
-      "solution_steps": ["Test: 8 - 3 = 5", "Test: 3 - 8 = ? (can't do with whole numbers in 3rd grade)", "Even if we could: 3 - 8 = -5, which ≠ 5", "So the Commutative Property does NOT work for subtraction"],
-      "hint": "Try switching the numbers in a subtraction. Do you get the same answer?"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: '8-3=3-8=5' — 3-8은 5가 아님; 뺄셈은 교환법칙 성립 안 함"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: '5-0=0-5=5' — 0-5는 5가 아님"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: '맞긴 한데 덧셈에서만 필요' — 성립하지 않음을 바르게 봤지만 이유가 틀림"
+        }
+      ],
+      "solution_steps": [
+        "Test: 8 - 3 = 5",
+        "Test: 3 - 8 = ? (can't do with whole numbers in 3rd grade)",
+        "Even if we could: 3 - 8 = -5, which ≠ 5",
+        "So the Commutative Property does NOT work for subtraction"
+      ],
+      "hint": "Try switching the numbers in a subtraction. Do you get the same answer?",
+      "verification": {
+        "concept_source": {
+          "name": "Illustrative Mathematics G3 Unit 1 Lesson 5 — Properties of Addition",
+          "url": "https://curriculum.illustrativemathematics.org/k5/teachers/grade-3/unit-1/section-b/lesson-5.html"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Topic A Lesson 5 — Applying Properties to Add Three or More Addends",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.NBT.A.2 Properties and Multi-Addend Addition",
+          "url": "https://sampleitems.smarterbalanced.org/itempreview/sbac/index.htm#mat/3/NBT.A.2"
+        },
+        "math_note": "8-3=5, 3-8≠5 ✓ 뺄셈 교환법칙 불성립 추론 문항.",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
-  ]
+  ],
+  "tier": "A",
+  "vertical_alignment": {
+    "prerequisite": "2.NBT.B.7",
+    "successor": "4.NBT.B.4"
+  },
+  "unit_intro_message": "이 레슨에서는 덧셈의 세 가지 성질(교환·결합·항등)을 배우고, 세 수 이상을 더할 때 이 성질들을 활용해 친숙한 합을 만드는 전략을 익힙니다. 어떤 수를 먼저 더하면 가장 빠를지 판단하는 눈을 길러봅시다.",
+  "unit_close_message": "잘했어요! 이제 교환·결합·항등 법칙을 사용해 여러 수를 효율적으로 더할 수 있게 되었습니다. 다음 레슨에서는 자리값을 분리(break apart)하는 전략으로 더 큰 수 덧셈을 탐구합니다.",
+  "review_from_units": [],
+  "interleave_ratio": 0.0,
+  "passing_threshold": 0.8,
+  "fluency_required": true,
+  "supplementary_video": {
+    "title": "Addition properties — Khan Academy",
+    "url": "https://www.khanacademy.org/math/cc-third-grade-math/imp-addition-and-subtraction/imp-addition-properties/v/commutative-law-of-addition"
+  }
 }

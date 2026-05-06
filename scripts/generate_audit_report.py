@@ -165,22 +165,23 @@ def check_stage3(lesson: dict) -> dict:
         correct = item.get("correct_answer", item.get("answer", ""))
         choices = item.get("choices", [])
 
-        # "X op Y = ?" 형식만 자동 검증 (추정/호환수 문항은 건너뜀)
+        # "X op Y (op Z ...) = ?" 형식만 자동 검증 (추정/호환수 문항은 건너뜀)
         import re
         if re.search(r'estim|compatible', q, re.IGNORECASE):
             skipped.append(item_id)
             continue
-        m = re.search(r'(\d+)\s*([\+\-\×\*\/x])\s*(\d+)\s*=\s*\?', q)
-        if not m:
+
+        # 다중 피연산자 덧셈/뺄셈: "a + b + c (+ d) = ?" 전체 추출
+        ma = re.search(r'([\d]+(?:\s*[\+\-\×\*\/x]\s*[\d]+)+)\s*=\s*\?', q)
+        if not ma:
             skipped.append(item_id)
             continue
-
-        a, op_char, b = int(m.group(1)), m.group(2), int(m.group(3))
-        op_map = {"+": "+", "-": "-", "×": "*", "*": "*", "x": "*", "/": "/"}
-        op = op_map.get(op_char, "+")
+        expr_str = ma.group(1)
+        # × → * 변환
+        expr_str = re.sub(r'[×x]', '*', expr_str)
 
         try:
-            expected = int(sympy.sympify(f"{a}{op}{b}"))
+            expected = int(sympy.sympify(expr_str))
         except Exception:
             skipped.append(item_id)
             continue
