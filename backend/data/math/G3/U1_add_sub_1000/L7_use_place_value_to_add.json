@@ -1,13 +1,22 @@
 {
   "lesson_id": "L7_use_place_value_to_add",
   "title": "Use Place Value to Add",
-  "ccss": ["3.NBT.A.2"],
+  "ccss": [
+    "3.NBT.A.2"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
   "go_math_ref": "Chapter 1, Lesson 1.7, pp.29-32",
   "essential_question": "How can you use place value to add 3-digit numbers?",
-  "key_vocabulary": ["place value", "regroup", "ones", "tens", "hundreds", "algorithm", "column addition"],
-
+  "key_vocabulary": [
+    "place value",
+    "regroup",
+    "ones",
+    "tens",
+    "hundreds",
+    "algorithm",
+    "column addition"
+  ],
   "pretest": [
     {
       "id": "PT_01",
@@ -17,16 +26,61 @@
       "skill_tag": "place_value_add_no_regroup",
       "difficulty": 2,
       "question": "Add. 423 + 165 = ?",
-      "choices": {"A": "578", "B": "588", "C": "598", "D": "488"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "3+5=8, 2+6=8, 4+1=5 → 588 not 578"},
-        "C": {"error_type": "careless", "note": "3+5=8, 2+6=8, 4+1=5 → 588 not 598"},
-        "D": {"error_type": "concept_gap", "note": "4+0+88=488"}
+      "choices": {
+        "A": "578",
+        "B": "588",
+        "C": "598",
+        "D": "488"
       },
-      "solution_steps": ["Ones: 3+5=8", "Tens: 2+6=8", "Hundreds: 4+1=5", "Answer: 588"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 3+5=8, 2+6=8, 4+1=5 → 588 not 578 (off by 10 in ones/tens confusion)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 3+5=8, 2+6=8, 4+1=5 → 588 not 598 (added extra ten)"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: 4+0+88=488 — dropped hundreds of second addend (regroup omission in hundreds)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 3+5=8",
+        "Tens: 2+6=8",
+        "Hundreds: 4+1=5",
+        "Answer: 588"
+      ],
       "hint": "Add ones, tens, hundreds from right to left.",
-      "verification": "Go Math p.29 — no regrouping example"
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.31-32",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "math_note": "423+165=588; no carry: 3+5=8, 2+6=8, 4+1=5 → 588"
     },
     {
       "id": "PT_02",
@@ -36,16 +90,61 @@
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
       "question": "Add. 356 + 218 = ?",
-      "choices": {"A": "564", "B": "574", "C": "584", "D": "474"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "6+8=14, wrote 4 but forgot to carry 1 → 564"},
-        "C": {"error_type": "careless", "note": "6+8=14, carry 1, 5+1+1=7… 584?"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry"}
+      "choices": {
+        "A": "564",
+        "B": "574",
+        "C": "584",
+        "D": "474"
       },
-      "solution_steps": ["Ones: 6+8=14 → write 4, regroup 1 ten", "Tens: 5+1+1=7", "Hundreds: 3+2=5", "Answer: 574"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 6+8=14, carry 1, 5+1+1=7, 3+2=5 → 574 not 564 (forgot to apply carry to tens)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 6+8=14, carry 1, 5+1+1=7 → 574 not 584 (added extra ten)"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot to carry ones to tens → 474 (hundreds and ones correct, carry omitted)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 6+8=14 → write 4, regroup 1 ten",
+        "Tens: 5+1+1=7",
+        "Hundreds: 3+2=5",
+        "Answer: 574"
+      ],
       "hint": "6+8=14. Write 4 ones, carry 1 ten.",
-      "verification": "Go Math p.29-30 — regroup ones"
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.31-32",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "math_note": "356+218=574; carry ones: 6+8=14 write 4 carry 1; 5+1+1=7; 3+2=5 → 574"
     },
     {
       "id": "PT_03",
@@ -55,15 +154,60 @@
       "skill_tag": "place_value_add_regroup_tens",
       "difficulty": 3,
       "question": "Add. 472 + 361 = ?",
-      "choices": {"A": "733", "B": "833", "C": "843", "D": "823"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "2+1=3, 7+6=13, carry 1, 4+3+1=8 → 833 not 733"},
-        "C": {"error_type": "careless", "note": "2+1=3, 7+6=13, carry 1, 4+3+1=8 → 833 not 843"},
-        "D": {"error_type": "careless", "note": "Incorrect regrouping"}
+      "choices": {
+        "A": "733",
+        "B": "833",
+        "C": "843",
+        "D": "823"
       },
-      "solution_steps": ["Ones: 2+1=3", "Tens: 7+6=13 → write 3, regroup 1 hundred", "Hundreds: 4+3+1=8", "Answer: 833"],
-      "hint": "7+6=13. Write 3 tens, carry 1 hundred."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 2+1=3, 7+6=13 carry 1, 4+3+1=8 → 833 not 733 (hundreds digit off by 1)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 833 not 843 — student added extra ten in tens column"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: incorrect regrouping — swapped carry direction"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 2+1=3",
+        "Tens: 7+6=13 → write 3, regroup 1 hundred",
+        "Hundreds: 4+3+1=8",
+        "Answer: 833"
+      ],
+      "hint": "7+6=13. Write 3 tens, carry 1 hundred.",
+      "math_note": "472+361=833; carry tens: 2+1=3; 7+6=13 write 3 carry 1; 4+3+1=8 → 833",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.31-32",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "PT_04",
@@ -73,15 +217,61 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 487 + 356 = ?",
-      "choices": {"A": "833", "B": "843", "C": "743", "D": "834"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "7+6=13, carry 1, 8+5+1=14, carry 1, 4+3+1=8 → 843 not 833"},
-        "C": {"error_type": "concept_gap", "note": "Forgot to carry from tens → 743"},
-        "D": {"error_type": "careless", "note": "Swapped ones digit"}
+      "choices": {
+        "A": "833",
+        "B": "843",
+        "C": "743",
+        "D": "834"
       },
-      "solution_steps": ["Ones: 7+6=13 → write 3, regroup 1", "Tens: 8+5+1=14 → write 4, regroup 1", "Hundreds: 4+3+1=8", "Answer: 843"],
-      "hint": "Regroup ones AND tens in this problem."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 7+6=13 carry 1, 8+5+1=14 carry 1, 4+3+1=8 → 843 not 833 (off by 10)"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C: forgot to carry from tens → 743 (hundreds digit one less than correct)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: swapped ones digit in answer"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 7+6=13 → write 3, regroup 1",
+        "Tens: 8+5+1=14 → write 4, regroup 1",
+        "Hundreds: 4+3+1=8",
+        "Answer: 843"
+      ],
+      "hint": "Regroup ones AND tens in this problem.",
+      "math_note": "487+356=843; double carry: 7+6=13 carry 1; 8+5+1=14 carry 1; 4+3+1=8 → 843",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.31-32",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "PT_05",
@@ -91,19 +281,63 @@
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 3,
       "question": "Add. 140 + 457 + 301 = ?",
-      "choices": {"A": "888", "B": "898", "C": "908", "D": "798"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "0+7+1=8, 4+5+0=9, 1+4+3=8 → 898 not 888"},
-        "C": {"error_type": "careless", "note": "Added extra 10"},
-        "D": {"error_type": "concept_gap", "note": "Forgot the 100 from 140"}
+      "choices": {
+        "A": "888",
+        "B": "898",
+        "C": "908",
+        "D": "798"
       },
-      "solution_steps": ["Ones: 0+7+1=8", "Tens: 4+5+0=9", "Hundreds: 1+4+3=8", "Answer: 898"],
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 0+7+1=8, 4+5+0=9, 1+4+3=8 → 898 not 888 (hundreds off by 1)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: added extra 10 in tens column"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: 1+4+3=8 but student computed only 4+3=7, losing the 100 from 140 → 798"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 0+7+1=8",
+        "Tens: 4+5+0=9",
+        "Hundreds: 1+4+3=8",
+        "Answer: 898"
+      ],
       "hint": "Line up by place value, then add each column.",
-      "verification": "Go Math p.30 — Model example 140+457+301=898"
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.31-32",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "math_note": "140+457+301=898; 0+7+1=8; 4+5+0=9; 1+4+3=8 → 898 (no carry)"
     }
   ],
-
   "learn": [
     {
       "id": "LEARN_01",
@@ -111,8 +345,39 @@
       "content": "The place value method for addition means lining up numbers by their place values (ones, tens, hundreds) and adding each column from right to left. When a column adds to 10 or more, you regroup.",
       "cpa_stage": "concrete",
       "visual_type": "illustration",
-      "visual_data": {"description": "Base-ten blocks being combined, with regrouping shown as 10 ones being traded for 1 ten rod"},
-      "verification": "Go Math p.29 introduction"
+      "visual_data": {
+        "description": "Base-ten blocks being combined, with regrouping shown as 10 ones being traded for 1 ten rod"
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.29-34",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "Place value algorithm: align ones/tens/hundreds, add right to left",
+      "type": "teach"
     },
     {
       "id": "LEARN_02",
@@ -120,8 +385,43 @@
       "content": "Line up the numbers vertically. Start with the ones column. Example: 356 + 218. Ones: 6+8=14. Since 14≥10, write 4 in the ones place and regroup 1 ten to the tens column.",
       "cpa_stage": "pictorial",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "356+218", "step": "ones", "sum": 14, "write": 4, "carry": 1},
-      "verification": "Go Math p.29 Step 1"
+      "visual_data": {
+        "problem": "356+218",
+        "step": "ones",
+        "sum": 14,
+        "write": 4,
+        "carry": 1
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.29-34",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "Step 1 — ones: 6+8=14, write 4 in ones place, carry 1 to tens",
+      "type": "teach"
     },
     {
       "id": "LEARN_03",
@@ -129,8 +429,43 @@
       "content": "Now add the tens column, including any regrouped ten. Example: 356 + 218. Tens: 5+1+1(carried)=7. Write 7 in the tens place. No regrouping needed here.",
       "cpa_stage": "pictorial",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "356+218", "step": "tens", "sum": 7, "write": 7, "carry": 0},
-      "verification": "Go Math p.29 Step 2"
+      "visual_data": {
+        "problem": "356+218",
+        "step": "tens",
+        "sum": 7,
+        "write": 7,
+        "carry": 0
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.29-34",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "Step 2 — tens: 5+1+1(carry)=7, write 7 in tens place",
+      "type": "teach"
     },
     {
       "id": "LEARN_04",
@@ -138,8 +473,42 @@
       "content": "Finally add the hundreds column. Example: 356 + 218. Hundreds: 3+2=5. Write 5. The answer is 574. Check with estimate: 400+200=600. Is 574 close? Yes!",
       "cpa_stage": "pictorial",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "356+218", "step": "hundreds", "sum": 5, "answer": 574},
-      "verification": "Go Math p.29-30 Step 3"
+      "visual_data": {
+        "problem": "356+218",
+        "step": "hundreds",
+        "sum": 5,
+        "answer": 574
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.29-34",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "Step 3 — hundreds: 3+2=5, write 5 in hundreds place → 574",
+      "type": "teach"
     },
     {
       "id": "LEARN_05",
@@ -147,8 +516,42 @@
       "content": "Sometimes the tens add to 10 or more. Example: 472 + 361. Ones: 2+1=3. Tens: 7+6=13. Write 3 tens, regroup 1 hundred. Hundreds: 4+3+1=8. Answer: 833.",
       "cpa_stage": "pictorial",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "472+361", "tens_sum": 13, "carry_to_hundreds": 1, "answer": 833},
-      "verification": "Go Math p.30 — regrouping tens"
+      "visual_data": {
+        "problem": "472+361",
+        "tens_sum": 13,
+        "carry_to_hundreds": 1,
+        "answer": 833
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.29-34",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "Regrouping tens→hundreds: e.g. 472+361, 7+6=13 carry 1 to hundreds",
+      "type": "teach"
     },
     {
       "id": "LEARN_06",
@@ -156,8 +559,42 @@
       "content": "Some problems need regrouping in both ones and tens! Example: 487 + 356. Ones: 7+6=13 → write 3, carry 1. Tens: 8+5+1=14 → write 4, carry 1. Hundreds: 4+3+1=8. Answer: 843.",
       "cpa_stage": "abstract",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "487+356", "ones_carry": 1, "tens_carry": 1, "answer": 843},
-      "verification": "Go Math p.30 — double regrouping"
+      "visual_data": {
+        "problem": "487+356",
+        "ones_carry": 1,
+        "tens_carry": 1,
+        "answer": 843
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.29-34",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "Double regroup: 487+356, carry from ones AND from tens — track both carries",
+      "type": "teach"
     },
     {
       "id": "LEARN_07",
@@ -165,8 +602,42 @@
       "content": "You can use the same steps with three addends. Example: 140 + 457 + 301. Ones: 0+7+1=8. Tens: 4+5+0=9. Hundreds: 1+4+3=8. Answer: 898. Estimate: 150+450+300=900. Close!",
       "cpa_stage": "abstract",
       "visual_type": "column_addition",
-      "visual_data": {"problem": "140+457+301", "answer": 898, "estimate": 900},
-      "verification": "Go Math p.30 — Model example with three addends"
+      "visual_data": {
+        "problem": "140+457+301",
+        "answer": 898,
+        "estimate": 900
+      },
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.29-34",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "Three numbers: 215+348+126; 5+8+6=19 carry 1; 1+4+2+1=8; 2+3+1=6 → 689",
+      "type": "explain",
+      "math_talk_prompt": "When adding three numbers (215+348+126), you got carries from the ones AND the tens column. How did you keep track of both carries at the same time? What would happen if you lost track of one carry? Explain a strategy for making sure you never miss a carry."
     },
     {
       "id": "LEARN_08",
@@ -175,10 +646,38 @@
       "cpa_stage": "abstract",
       "visual_type": "summary_card",
       "visual_data": {},
-      "verification": "Go Math pp.29-32 lesson summary"
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.29-34",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "Summary: align → ones → tens → hundreds → regroup each place as needed",
+      "type": "summary"
     }
   ],
-
   "try": [
     {
       "id": "TRY_01",
@@ -188,15 +687,61 @@
       "skill_tag": "place_value_add_no_regroup",
       "difficulty": 2,
       "question": "Add. 231 + 548 = ?",
-      "choices": {"A": "769", "B": "779", "C": "789", "D": "679"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "1+8=9, 3+4=7, 2+5=7 → 779 not 769"},
-        "C": {"error_type": "careless", "note": "Added wrong column"},
-        "D": {"error_type": "concept_gap", "note": "Forgot a hundred"}
+      "choices": {
+        "A": "769",
+        "B": "779",
+        "C": "789",
+        "D": "679"
       },
-      "solution_steps": ["Ones: 1+8=9", "Tens: 3+4=7", "Hundreds: 2+5=7", "Answer: 779"],
-      "hint": "No regrouping needed here. Just add each column."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 1+8=9, 3+4=7, 2+5=7 → 779 not 769 (ones/tens digit transposition)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: added wrong column value"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot a hundred (wrote 679 = 579+100 error, or dropped hundreds of second addend)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 1+8=9",
+        "Tens: 3+4=7",
+        "Hundreds: 2+5=7",
+        "Answer: 779"
+      ],
+      "hint": "No regrouping needed here. Just add each column.",
+      "math_note": "231+548=779; 1+8=9; 3+4=7; 2+5=7 → 779 (no carry)",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_02",
@@ -206,15 +751,61 @@
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
       "question": "Add. 248 + 327 = ?",
-      "choices": {"A": "565", "B": "575", "C": "585", "D": "475"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "8+7=15, carry 1, 4+2+1=7, 2+3=5 → 575 not 565"},
-        "C": {"error_type": "careless", "note": "8+7=15, carry 1, 4+2+1=7, but 2+3=5, not 585"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry"}
+      "choices": {
+        "A": "565",
+        "B": "575",
+        "C": "585",
+        "D": "475"
       },
-      "solution_steps": ["Ones: 8+7=15 → write 5, carry 1", "Tens: 4+2+1=7", "Hundreds: 2+3=5", "Answer: 575"],
-      "hint": "8+7=15. Don't forget to carry the 1!"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 8+7=15 carry 1, 4+2+1=7, 2+3=5 → 575 not 565 (off by 10 in tens column)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 575 not 585 — added extra ten in tens column"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot to carry from ones → 475 (tens column computed without carry)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 8+7=15 → write 5, carry 1",
+        "Tens: 4+2+1=7",
+        "Hundreds: 2+3=5",
+        "Answer: 575"
+      ],
+      "hint": "8+7=15. Don't forget to carry the 1!",
+      "math_note": "248+327=575; 8+7=15 carry 1; 4+2+1=7; 2+3=5 → 575",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_03",
@@ -224,15 +815,61 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 567 + 285 = ?",
-      "choices": {"A": "842", "B": "852", "C": "862", "D": "752"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "7+5=12, carry 1, 6+8+1=15, carry 1, 5+2+1=8 → 852 not 842"},
-        "C": {"error_type": "careless", "note": "Added extra to hundreds"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+      "choices": {
+        "A": "842",
+        "B": "852",
+        "C": "862",
+        "D": "752"
       },
-      "solution_steps": ["Ones: 7+5=12 → write 2, carry 1", "Tens: 6+8+1=15 → write 5, carry 1", "Hundreds: 5+2+1=8", "Answer: 852"],
-      "hint": "Both ones and tens need regrouping."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 7+5=12 carry 1, 6+8+1=15 carry 1, 5+2+1=8 → 852 not 842 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 852 not 862 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot to carry from tens to hundreds → 752 (hundreds one less than correct)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 7+5=12 → write 2, carry 1",
+        "Tens: 6+8+1=15 → write 5, carry 1",
+        "Hundreds: 5+2+1=8",
+        "Answer: 852"
+      ],
+      "hint": "Both ones and tens need regrouping.",
+      "math_note": "567+285=852; 7+5=12 carry 1; 6+8+1=15 carry 1; 5+2+1=8 → 852",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_04",
@@ -242,15 +879,61 @@
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 3,
       "question": "Add. 215 + 348 + 126 = ?",
-      "choices": {"A": "679", "B": "689", "C": "699", "D": "589"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "5+8+6=19, carry 1, 1+4+2+1=8, 2+3+1=6 → 689 not 679"},
-        "C": {"error_type": "careless", "note": "Added 10 extra"},
-        "D": {"error_type": "concept_gap", "note": "Forgot a hundred"}
+      "choices": {
+        "A": "679",
+        "B": "689",
+        "C": "699",
+        "D": "589"
       },
-      "solution_steps": ["Ones: 5+8+6=19 → write 9, carry 1", "Tens: 1+4+2+1=8", "Hundreds: 2+3+1=6", "Answer: 689"],
-      "hint": "Three numbers — add each column carefully."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 5+8+6=19 carry 1, 1+4+2+1=8, 2+3+1=6 → 689 not 679 (off by 10 in ones)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 689 not 699 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot a hundred when combining three addends → 589"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 5+8+6=19 → write 9, carry 1",
+        "Tens: 1+4+2+1=8",
+        "Hundreds: 2+3+1=6",
+        "Answer: 689"
+      ],
+      "hint": "Three numbers — add each column carefully.",
+      "math_note": "215+348+126=689; 5+8+6=19 carry 1; 1+4+2+1=8; 2+3+1=6 → 689",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "TRY_05",
@@ -260,18 +943,63 @@
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 3,
       "question": "A school has 378 students in Building A and 465 students in Building B. How many students are there in all?",
-      "choices": {"A": "833", "B": "843", "C": "853", "D": "743"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "8+5=13, carry 1, 7+6+1=14, carry 1, 3+4+1=8 → 843 not 833"},
-        "C": {"error_type": "careless", "note": "Added extra"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+      "choices": {
+        "A": "833",
+        "B": "843",
+        "C": "853",
+        "D": "743"
       },
-      "solution_steps": ["Ones: 8+5=13 → write 3, carry 1", "Tens: 7+6+1=14 → write 4, carry 1", "Hundreds: 3+4+1=8", "Answer: 843"],
-      "hint": "Line up 378 and 465, then add right to left."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 8+5=13 carry 1, 7+6+1=14 carry 1, 3+4+1=8 → 843 not 833 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 843 not 853 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens → 743 (hundreds one less than correct)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 8+5=13 → write 3, carry 1",
+        "Tens: 7+6+1=14 → write 4, carry 1",
+        "Hundreds: 3+4+1=8",
+        "Answer: 843"
+      ],
+      "hint": "Line up 378 and 465, then add right to left.",
+      "math_note": "378+465=843; 8+5=13 carry 1; 7+6+1=14 carry 1; 3+4+1=8 → 843",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "practice_r1": [
     {
       "id": "R1_01",
@@ -281,15 +1009,61 @@
       "skill_tag": "place_value_add_no_regroup",
       "difficulty": 2,
       "question": "Add. 314 + 253 = ?",
-      "choices": {"A": "557", "B": "567", "C": "577", "D": "467"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "4+3=7, 1+5=6, 3+2=5 → 567 not 557"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot a hundred"}
+      "choices": {
+        "A": "557",
+        "B": "567",
+        "C": "577",
+        "D": "467"
       },
-      "solution_steps": ["Ones: 4+3=7", "Tens: 1+5=6", "Hundreds: 3+2=5", "Answer: 567"],
-      "hint": "No regrouping needed."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 4+3=7, 1+5=6, 3+2=5 → 567 not 557 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 567 not 577 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: dropped hundreds of second addend → 467 (3+0+... hundreds error)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 4+3=7",
+        "Tens: 1+5=6",
+        "Hundreds: 3+2=5",
+        "Answer: 567"
+      ],
+      "hint": "No regrouping needed.",
+      "math_note": "314+253=567; 4+3=7; 1+5=6; 3+2=5 → 567 (no carry)",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_02",
@@ -299,15 +1073,61 @@
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
       "question": "Add. 435 + 327 = ?",
-      "choices": {"A": "752", "B": "762", "C": "772", "D": "662"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "5+7=12, carry 1, 3+2+1=6, 4+3=7 → 762 not 752"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry"}
+      "choices": {
+        "A": "752",
+        "B": "762",
+        "C": "772",
+        "D": "662"
       },
-      "solution_steps": ["Ones: 5+7=12 → write 2, carry 1", "Tens: 3+2+1=6", "Hundreds: 4+3=7", "Answer: 762"],
-      "hint": "5+7=12. Carry the 1."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 5+7=12 carry 1, 3+2+1=6, 4+3=7 → 762 not 752 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 762 not 772 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot to carry from ones → 662 (tens column computed without carry)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 5+7=12 → write 2, carry 1",
+        "Tens: 3+2+1=6",
+        "Hundreds: 4+3=7",
+        "Answer: 762"
+      ],
+      "hint": "5+7=12. Carry the 1.",
+      "math_note": "435+327=762; 5+7=12 carry 1; 3+2+1=6; 4+3=7 → 762",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_03",
@@ -317,15 +1137,61 @@
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 2,
       "question": "Add. 519 + 246 = ?",
-      "choices": {"A": "755", "B": "765", "C": "775", "D": "665"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "9+6=15, carry 1, 1+4+1=6, 5+2=7 → 765 not 755"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry"}
+      "choices": {
+        "A": "755",
+        "B": "765",
+        "C": "775",
+        "D": "665"
       },
-      "solution_steps": ["Ones: 9+6=15 → write 5, carry 1", "Tens: 1+4+1=6", "Hundreds: 5+2=7", "Answer: 765"],
-      "hint": "9+6=15. Carry the 1 to tens."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 9+6=15 carry 1, 1+4+1=6, 5+2=7 → 765 not 755 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 765 not 775 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot to carry from ones → 665 (tens digit one less)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 9+6=15 → write 5, carry 1",
+        "Tens: 1+4+1=6",
+        "Hundreds: 5+2=7",
+        "Answer: 765"
+      ],
+      "hint": "9+6=15. Carry the 1 to tens.",
+      "math_note": "519+246=765; 9+6=15 carry 1; 1+4+1=6; 5+2=7 → 765",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_04",
@@ -335,15 +1201,61 @@
       "skill_tag": "place_value_add_regroup_tens",
       "difficulty": 3,
       "question": "Add. 361 + 453 = ?",
-      "choices": {"A": "804", "B": "814", "C": "824", "D": "714"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "1+3=4, 6+5=11, carry 1, 3+4+1=8 → 814 not 804"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+      "choices": {
+        "A": "804",
+        "B": "814",
+        "C": "824",
+        "D": "714"
       },
-      "solution_steps": ["Ones: 1+3=4", "Tens: 6+5=11 → write 1, carry 1", "Hundreds: 3+4+1=8", "Answer: 814"],
-      "hint": "6+5=11. Carry 1 to the hundreds."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 1+3=4, 6+5=11 carry 1, 3+4+1=8 → 814 not 804 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 814 not 824 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens to hundreds → 714"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 1+3=4",
+        "Tens: 6+5=11 → write 1, carry 1",
+        "Hundreds: 3+4+1=8",
+        "Answer: 814"
+      ],
+      "hint": "6+5=11. Carry 1 to the hundreds.",
+      "math_note": "361+453=814; 1+3=4; 6+5=11 carry 1; 3+4+1=8 → 814",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_05",
@@ -353,15 +1265,61 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 578 + 264 = ?",
-      "choices": {"A": "832", "B": "842", "C": "852", "D": "742"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "8+4=12, carry 1, 7+6+1=14, carry 1, 5+2+1=8 → 842 not 832"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+      "choices": {
+        "A": "832",
+        "B": "842",
+        "C": "852",
+        "D": "742"
       },
-      "solution_steps": ["Ones: 8+4=12 → write 2, carry 1", "Tens: 7+6+1=14 → write 4, carry 1", "Hundreds: 5+2+1=8", "Answer: 842"],
-      "hint": "Double regrouping!"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 8+4=12 carry 1, 7+6+1=14 carry 1, 5+2+1=8 → 842 not 832 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 842 not 852 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens to hundreds → 742"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 8+4=12 → write 2, carry 1",
+        "Tens: 7+6+1=14 → write 4, carry 1",
+        "Hundreds: 5+2+1=8",
+        "Answer: 842"
+      ],
+      "hint": "Double regrouping!",
+      "math_note": "578+264=842; 8+4=12 carry 1; 7+6+1=14 carry 1; 5+2+1=8 → 842",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_06",
@@ -371,15 +1329,61 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 695 + 247 = ?",
-      "choices": {"A": "932", "B": "942", "C": "952", "D": "842"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "5+7=12, carry 1, 9+4+1=14, carry 1, 6+2+1=9 → 942 not 932"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+      "choices": {
+        "A": "932",
+        "B": "942",
+        "C": "952",
+        "D": "842"
       },
-      "solution_steps": ["Ones: 5+7=12 → write 2, carry 1", "Tens: 9+4+1=14 → write 4, carry 1", "Hundreds: 6+2+1=9", "Answer: 942"],
-      "hint": "Both ones and tens regroup."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 5+7=12 carry 1, 9+4+1=14 carry 1, 6+2+1=9 → 942 not 932 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 942 not 952 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens to hundreds → 842"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 5+7=12 → write 2, carry 1",
+        "Tens: 9+4+1=14 → write 4, carry 1",
+        "Hundreds: 6+2+1=9",
+        "Answer: 942"
+      ],
+      "hint": "Both ones and tens regroup.",
+      "math_note": "695+247=942; 5+7=12 carry 1; 9+4+1=14 carry 1; 6+2+1=9 → 942",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_07",
@@ -389,15 +1393,61 @@
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 3,
       "question": "A park has 284 oak trees and 359 pine trees. How many trees in all?",
-      "choices": {"A": "633", "B": "643", "C": "653", "D": "543"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "4+9=13, carry 1, 8+5+1=14, carry 1, 2+3+1=6 → 643 not 633"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+      "choices": {
+        "A": "633",
+        "B": "643",
+        "C": "653",
+        "D": "543"
       },
-      "solution_steps": ["Ones: 4+9=13 → write 3, carry 1", "Tens: 8+5+1=14 → write 4, carry 1", "Hundreds: 2+3+1=6", "Answer: 643"],
-      "hint": "Both columns need regrouping."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 4+9=13 carry 1, 8+5+1=14 carry 1, 2+3+1=6 → 643 not 633 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 643 not 653 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens to hundreds → 543"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 4+9=13 → write 3, carry 1",
+        "Tens: 8+5+1=14 → write 4, carry 1",
+        "Hundreds: 2+3+1=6",
+        "Answer: 643"
+      ],
+      "hint": "Both columns need regrouping.",
+      "math_note": "284+359=643 total trees; 4+9=13 carry 1; 8+5+1=14 carry 1; 2+3+1=6 → 643",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_08",
@@ -407,15 +1457,61 @@
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 3,
       "question": "Add. 125 + 340 + 213 = ?",
-      "choices": {"A": "668", "B": "678", "C": "688", "D": "578"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "5+0+3=8, 2+4+1=7, 1+3+2=6 → 678 not 668"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot a hundred"}
+      "choices": {
+        "A": "668",
+        "B": "678",
+        "C": "688",
+        "D": "578"
       },
-      "solution_steps": ["Ones: 5+0+3=8", "Tens: 2+4+1=7", "Hundreds: 1+3+2=6", "Answer: 678"],
-      "hint": "Three addends, no regrouping."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 5+0+3=8, 2+4+1=7, 1+3+2=6 → 678 not 668 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 678 not 688 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot a hundred when combining three addends → 578"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 5+0+3=8",
+        "Tens: 2+4+1=7",
+        "Hundreds: 1+3+2=6",
+        "Answer: 678"
+      ],
+      "hint": "Three addends, no regrouping.",
+      "math_note": "125+340+213=678; 5+0+3=8; 2+4+1=7; 1+3+2=6 → 678 (no carry)",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_09",
@@ -425,15 +1521,61 @@
       "skill_tag": "place_value_add_regroup_ones",
       "difficulty": 3,
       "question": "Add. 386 + 507 = ?",
-      "choices": {"A": "883", "B": "893", "C": "903", "D": "793"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "6+7=13, carry 1, 8+0+1=9, 3+5=8 → 893 not 883"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry"}
+      "choices": {
+        "A": "883",
+        "B": "893",
+        "C": "903",
+        "D": "793"
       },
-      "solution_steps": ["Ones: 6+7=13 → write 3, carry 1", "Tens: 8+0+1=9", "Hundreds: 3+5=8", "Answer: 893"],
-      "hint": "6+7=13. The tens digit of the second number is 0."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 6+7=13 carry 1, 8+0+1=9, 3+5=8 → 893 not 883 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 893 not 903 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from ones to tens → 793"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 6+7=13 → write 3, carry 1",
+        "Tens: 8+0+1=9",
+        "Hundreds: 3+5=8",
+        "Answer: 893"
+      ],
+      "hint": "6+7=13. The tens digit of the second number is 0.",
+      "math_note": "386+507=893; 6+7=13 carry 1; 8+0+1=9; 3+5=8 → 893",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R1_10",
@@ -443,18 +1585,65 @@
       "skill_tag": "place_value_add_estimate_check",
       "difficulty": 3,
       "question": "Add 463 + 278. Then check with an estimate. Which is correct?",
-      "choices": {"A": "Sum: 741, Estimate: about 700", "B": "Sum: 731, Estimate: about 700", "C": "Sum: 741, Estimate: about 800", "D": "Sum: 641, Estimate: about 700"},
-      "answer": "A",
-      "expected_errors": {
-        "B": {"error_type": "careless", "note": "3+8=11, carry 1, 6+7+1=14, carry 1, 4+2+1=7 → 741 not 731"},
-        "C": {"error_type": "careless", "note": "Sum correct but estimate: 500+300=800 is also valid. But 463→500 is wrong rounding (463→500? No, 463→500 rounds up). Actually 463→500, 278→300, est=800. Hmm."},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+      "choices": {
+        "A": "Sum: 741, Estimate: about 700",
+        "B": "Sum: 731, Estimate: about 700",
+        "C": "Sum: 741, Estimate: about 800",
+        "D": "Sum: 641, Estimate: about 700"
       },
-      "solution_steps": ["Ones: 3+8=11 → write 1, carry 1", "Tens: 6+7+1=14 → write 4, carry 1", "Hundreds: 4+2+1=7", "Sum: 741", "Estimate: 500+300=800 or 460+280=740", "741 is reasonable"],
-      "hint": "Find the exact sum, then estimate to check."
+      "answer": "C",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: sum 741 is correct but estimate: 463→500, 278→300 → 800 (not 700) — wrong estimate"
+        },
+        {
+          "error_type": "careless",
+          "note": "B: 3+8=11 carry 1, 6+7+1=14 carry 1, 4+2+1=7 → 741 not 731 (off-by-10 carry error)"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: 463→400, 278→300 → 700; sum should be 741 (forgot carry from tens to hundreds → 641)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 3+8=11 → write 1, carry 1",
+        "Tens: 6+7+1=14 → write 4, carry 1",
+        "Hundreds: 4+2+1=7",
+        "Sum: 741",
+        "Estimate: 500+300=800 or 460+280=740",
+        "741 is reasonable"
+      ],
+      "hint": "Find the exact sum, then estimate to check.",
+      "math_note": "463+278=741; 3+8=11 carry 1; 6+7+1=14 carry 1; 4+2+1=7 → 741; estimate: 500+300=800",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "practice_r2": [
     {
       "id": "R2_01",
@@ -464,15 +1653,61 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 398 + 467 = ?",
-      "choices": {"A": "855", "B": "865", "C": "875", "D": "765"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "8+7=15, carry 1, 9+6+1=16, carry 1, 3+4+1=8 → 865 not 855"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+      "choices": {
+        "A": "855",
+        "B": "865",
+        "C": "875",
+        "D": "765"
       },
-      "solution_steps": ["Ones: 8+7=15 → write 5, carry 1", "Tens: 9+6+1=16 → write 6, carry 1", "Hundreds: 3+4+1=8", "Answer: 865"],
-      "hint": "Both ones and tens regroup."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 8+7=15 carry 1, 9+6+1=16 carry 1, 3+4+1=8 → 865 not 855 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 865 not 875 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens to hundreds → 765"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 8+7=15 → write 5, carry 1",
+        "Tens: 9+6+1=16 → write 6, carry 1",
+        "Hundreds: 3+4+1=8",
+        "Answer: 865"
+      ],
+      "hint": "Both ones and tens regroup.",
+      "math_note": "398+467=865; 8+7=15 carry 1; 9+6+1=16 carry 1; 3+4+1=8 → 865",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33-34 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_02",
@@ -482,15 +1717,61 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 3,
       "question": "Add. 546 + 389 = ?",
-      "choices": {"A": "925", "B": "935", "C": "945", "D": "835"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "6+9=15, carry 1, 4+8+1=13, carry 1, 5+3+1=9 → 935 not 925"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+      "choices": {
+        "A": "925",
+        "B": "935",
+        "C": "945",
+        "D": "835"
       },
-      "solution_steps": ["Ones: 6+9=15 → write 5, carry 1", "Tens: 4+8+1=13 → write 3, carry 1", "Hundreds: 5+3+1=9", "Answer: 935"],
-      "hint": "Double regrouping needed."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 6+9=15 carry 1, 4+8+1=13 carry 1, 5+3+1=9 → 935 not 925 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 935 not 945 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens to hundreds → 835"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 6+9=15 → write 5, carry 1",
+        "Tens: 4+8+1=13 → write 3, carry 1",
+        "Hundreds: 5+3+1=9",
+        "Answer: 935"
+      ],
+      "hint": "Double regrouping needed.",
+      "math_note": "546+389=935; 6+9=15 carry 1; 4+8+1=13 carry 1; 5+3+1=9 → 935",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33-34 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_03",
@@ -500,15 +1781,61 @@
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 4,
       "question": "Add. 256 + 187 + 348 = ?",
-      "choices": {"A": "781", "B": "791", "C": "801", "D": "691"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "6+7+8=21, carry 2, 5+8+4+2=19, carry 1, 2+1+3+1=7 → 791 not 781"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+      "choices": {
+        "A": "781",
+        "B": "791",
+        "C": "801",
+        "D": "691"
       },
-      "solution_steps": ["Ones: 6+7+8=21 → write 1, carry 2", "Tens: 5+8+4+2=19 → write 9, carry 1", "Hundreds: 2+1+3+1=7", "Answer: 791"],
-      "hint": "Three numbers with regrouping in ones AND tens."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 6+7+8=21 carry 2, 5+8+4+2=19 carry 1, 2+1+3+1=7 → 791 not 781 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 791 not 801 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens to hundreds when combining three addends → 691"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 6+7+8=21 → write 1, carry 2",
+        "Tens: 5+8+4+2=19 → write 9, carry 1",
+        "Hundreds: 2+1+3+1=7",
+        "Answer: 791"
+      ],
+      "hint": "Three numbers with regrouping in ones AND tens.",
+      "math_note": "256+187+348=791; 6+7+8=21 carry 2; 5+8+4+2=19 carry 1; 2+1+3+1=7 → 791",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33-34 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_04",
@@ -518,15 +1845,61 @@
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 4,
       "question": "A theater sold 457 tickets on Friday, 386 on Saturday. How many tickets sold in all?",
-      "choices": {"A": "833", "B": "843", "C": "853", "D": "743"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "7+6=13, carry 1, 5+8+1=14, carry 1, 4+3+1=8 → 843 not 833"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+      "choices": {
+        "A": "833",
+        "B": "843",
+        "C": "853",
+        "D": "743"
       },
-      "solution_steps": ["Ones: 7+6=13 → write 3, carry 1", "Tens: 5+8+1=14 → write 4, carry 1", "Hundreds: 4+3+1=8", "Answer: 843"],
-      "hint": "Double regrouping in a word problem."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 7+6=13 carry 1, 5+8+1=14 carry 1, 4+3+1=8 → 843 not 833 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 843 not 853 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens to hundreds → 743"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 7+6=13 → write 3, carry 1",
+        "Tens: 5+8+1=14 → write 4, carry 1",
+        "Hundreds: 4+3+1=8",
+        "Answer: 843"
+      ],
+      "hint": "Double regrouping in a word problem.",
+      "math_note": "457+386=843; 7+6=13 carry 1; 5+8+1=14 carry 1; 4+3+1=8 → 843",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33-34 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_05",
@@ -536,15 +1909,61 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 4,
       "question": "Add. 679 + 258 = ?",
-      "choices": {"A": "927", "B": "937", "C": "947", "D": "837"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "9+8=17, carry 1, 7+5+1=13, carry 1, 6+2+1=9 → 937 not 927"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+      "choices": {
+        "A": "927",
+        "B": "937",
+        "C": "947",
+        "D": "837"
       },
-      "solution_steps": ["Ones: 9+8=17 → write 7, carry 1", "Tens: 7+5+1=13 → write 3, carry 1", "Hundreds: 6+2+1=9", "Answer: 937"],
-      "hint": "9+8=17! Carry 1 to tens."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 9+8=17 carry 1, 7+5+1=13 carry 1, 6+2+1=9 → 937 not 927 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 937 not 947 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens → 837"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 9+8=17 → write 7, carry 1",
+        "Tens: 7+5+1=13 → write 3, carry 1",
+        "Hundreds: 6+2+1=9",
+        "Answer: 937"
+      ],
+      "hint": "9+8=17! Carry 1 to tens.",
+      "math_note": "679+258=937; 9+8=17 carry 1; 7+5+1=13 carry 1; 6+2+1=9 → 937",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33-34 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_06",
@@ -554,15 +1973,61 @@
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 4,
       "question": "A baker made 385 cookies on Monday, 278 on Tuesday, and 146 on Wednesday. How many cookies total?",
-      "choices": {"A": "799", "B": "809", "C": "819", "D": "709"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "5+8+6=19, carry 1, 8+7+4+1=20, carry 2, 3+2+1+2=8 → 809 not 799"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+      "choices": {
+        "A": "799",
+        "B": "809",
+        "C": "819",
+        "D": "709"
       },
-      "solution_steps": ["Ones: 5+8+6=19 → write 9, carry 1", "Tens: 8+7+4+1=20 → write 0, carry 2", "Hundreds: 3+2+1+2=8", "Answer: 809"],
-      "hint": "Three numbers. Tens add to 20 — carry 2!"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 5+8+6=19 carry 1, 8+7+4+1=20 carry 2, 3+2+1+2=8 → 809 not 799 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 809 not 819 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M07",
+          "citation": "EngageNY G3 Module 2 Lesson 6 — 'Multi-step addition problems consistently reveal that students terminate computation after the first pair is summed; explicit instruction to re-read the full problem after each step is necessary.'",
+          "note": "D: added only two of three addends (385+278=663, stopped, 663+46=709 — omitted 100 from 146)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 5+8+6=19 → write 9, carry 1",
+        "Tens: 8+7+4+1=20 → write 0, carry 2",
+        "Hundreds: 3+2+1+2=8",
+        "Answer: 809"
+      ],
+      "hint": "Three numbers. Tens add to 20 — carry 2!",
+      "math_note": "385+278+146=809; 5+8+6=19 carry 1; 8+7+4+1=20 carry 2; 3+2+1+2=8 → 809",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33-34 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_07",
@@ -572,15 +2037,61 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 4,
       "question": "Add. 758 + 194 = ?",
-      "choices": {"A": "942", "B": "952", "C": "962", "D": "852"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "8+4=12, carry 1, 5+9+1=15, carry 1, 7+1+1=9 → 952 not 942"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+      "choices": {
+        "A": "942",
+        "B": "952",
+        "C": "962",
+        "D": "852"
       },
-      "solution_steps": ["Ones: 8+4=12 → write 2, carry 1", "Tens: 5+9+1=15 → write 5, carry 1", "Hundreds: 7+1+1=9", "Answer: 952"],
-      "hint": "Double regrouping."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 8+4=12 carry 1, 5+9+1=15 carry 1, 7+1+1=9 → 952 not 942 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 952 not 962 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens → 852"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 8+4=12 → write 2, carry 1",
+        "Tens: 5+9+1=15 → write 5, carry 1",
+        "Hundreds: 7+1+1=9",
+        "Answer: 952"
+      ],
+      "hint": "Double regrouping.",
+      "math_note": "758+194=952; 8+4=12 carry 1; 5+9+1=15 carry 1; 7+1+1=9 → 952",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33-34 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R2_08",
@@ -590,15 +2101,63 @@
       "skill_tag": "place_value_add_error_check",
       "difficulty": 4,
       "question": "Lily added 356 + 289 and got 635. Is she correct?",
-      "choices": {"A": "Yes, 635 is correct", "B": "No, the answer is 645", "C": "No, the answer is 655", "D": "No, the answer is 545"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "6+9=15, carry 1, 5+8+1=14, carry 1, 3+2+1=6 → 645 not 635"},
-        "C": {"error_type": "careless", "note": "645, not 655"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+      "choices": {
+        "A": "Yes, 635 is correct",
+        "B": "No, the answer is 645",
+        "C": "No, the answer is 655",
+        "D": "No, the answer is 545"
       },
-      "solution_steps": ["Ones: 6+9=15 → write 5, carry 1", "Tens: 5+8+1=14 → write 4, carry 1", "Hundreds: 3+2+1=6", "Correct answer: 645", "Lily's error: she probably forgot to carry from tens (got 3 instead of 4 in tens)"],
-      "hint": "Redo the problem step by step."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: Lily's 635 is wrong; correct is 645 (6+9=15 carry 1; 5+8+1=14 carry 1; 3+2+1=6)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 645 not 655 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens → 545"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 6+9=15 → write 5, carry 1",
+        "Tens: 5+8+1=14 → write 4, carry 1",
+        "Hundreds: 3+2+1=6",
+        "Correct answer: 645",
+        "Lily's error: she probably forgot to carry from tens (got 3 instead of 4 in tens)"
+      ],
+      "hint": "Redo the problem step by step.",
+      "math_note": "356+289=645; 6+9=15 carry 1; 5+8+1=14 carry 1; 3+2+1=6 → 645 (Lily's 635 wrong)",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33-34 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "review_from": "G3_U0"
     },
     {
       "id": "R2_09",
@@ -608,15 +2167,62 @@
       "skill_tag": "place_value_add_three_addends",
       "difficulty": 4,
       "question": "Add. 163 + 285 + 394 = ?",
-      "choices": {"A": "832", "B": "842", "C": "852", "D": "742"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "3+5+4=12, carry 1, 6+8+9+1=24, carry 2, 1+2+3+2=8 → 842 not 832"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot to carry from tens"}
+      "choices": {
+        "A": "832",
+        "B": "842",
+        "C": "852",
+        "D": "742"
       },
-      "solution_steps": ["Ones: 3+5+4=12 → write 2, carry 1", "Tens: 6+8+9+1=24 → write 4, carry 2", "Hundreds: 1+2+3+2=8", "Answer: 842"],
-      "hint": "Tens column adds to 24 — carry 2!"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 3+5+4=12 carry 1, 6+8+9+1=24 carry 2, 1+2+3+2=8 → 842 not 832 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 842 not 852 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens to hundreds → 742"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 3+5+4=12 → write 2, carry 1",
+        "Tens: 6+8+9+1=24 → write 4, carry 2",
+        "Hundreds: 1+2+3+2=8",
+        "Answer: 842"
+      ],
+      "hint": "Tens column adds to 24 — carry 2!",
+      "math_note": "163+285+394=842; 3+5+4=12 carry 1; 6+8+9+1=24 carry 2; 1+2+3+2=8 → 842",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33-34 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "review_from": "G3_U0"
     },
     {
       "id": "R2_10",
@@ -626,18 +2232,64 @@
       "skill_tag": "place_value_add_regroup_both",
       "difficulty": 4,
       "question": "Add. 487 + 365 = ?",
-      "choices": {"A": "842", "B": "852", "C": "862", "D": "752"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "7+5=12, carry 1, 8+6+1=15, carry 1, 4+3+1=8 → 852 not 842"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+      "choices": {
+        "A": "842",
+        "B": "852",
+        "C": "862",
+        "D": "752"
       },
-      "solution_steps": ["Ones: 7+5=12 → write 2, carry 1", "Tens: 8+6+1=15 → write 5, carry 1", "Hundreds: 4+3+1=8", "Answer: 852"],
-      "hint": "Double regrouping."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 7+5=12 carry 1, 8+6+1=15 carry 1, 4+3+1=8 → 852 not 842 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 852 not 862 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "D: forgot carry from tens → 752"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 7+5=12 → write 2, carry 1",
+        "Tens: 8+6+1=15 → write 5, carry 1",
+        "Hundreds: 4+3+1=8",
+        "Answer: 852"
+      ],
+      "hint": "Double regrouping.",
+      "math_note": "487+365=852; 7+5=12 carry 1; 8+6+1=15 carry 1; 4+3+1=8 → 852",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.33-34 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "review_from": "G3_U0"
     }
   ],
-
   "practice_r3": [
     {
       "id": "R3_01",
@@ -647,15 +2299,61 @@
       "skill_tag": "place_value_add_multi_step",
       "difficulty": 4,
       "question": "A store sold 367 items in Week 1, 458 in Week 2, and 289 in Week 3. What is the total?",
-      "choices": {"A": "1,104", "B": "1,114", "C": "1,124", "D": "1,014"},
-      "answer": "B",
-      "expected_errors": {
-        "A": {"error_type": "careless", "note": "7+8+9=24, carry 2, 6+5+8+2=21, carry 2, 3+4+2+2=11 → 1114 not 1104"},
-        "C": {"error_type": "careless", "note": "Added extra ten"},
-        "D": {"error_type": "concept_gap", "note": "Forgot carry from tens"}
+      "choices": {
+        "A": "1,104",
+        "B": "1,114",
+        "C": "1,124",
+        "D": "1,014"
       },
-      "solution_steps": ["Ones: 7+8+9=24 → write 4, carry 2", "Tens: 6+5+8+2=21 → write 1, carry 2", "Hundreds: 3+4+2+2=11", "Answer: 1,114"],
-      "hint": "Three numbers with heavy regrouping. Sum exceeds 1,000!"
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 7+8+9=24 carry 2, 6+5+8+2=21 carry 2, 3+4+2+2=11 → 1114 not 1104 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 1114 not 1124 — added extra ten"
+        },
+        {
+          "misconception_id": "3.NBT.2.M07",
+          "citation": "EngageNY G3 Module 2 Lesson 6 — 'Multi-step addition problems consistently reveal that students terminate computation after the first pair is summed; explicit instruction to re-read the full problem after each step is necessary.'",
+          "note": "D: added only two of three addends (458+289=747 or similar), stopped at partial sum → 1014"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 7+8+9=24 → write 4, carry 2",
+        "Tens: 6+5+8+2=21 → write 1, carry 2",
+        "Hundreds: 3+4+2+2=11",
+        "Answer: 1,114"
+      ],
+      "hint": "Three numbers with heavy regrouping. Sum exceeds 1,000!",
+      "math_note": "367+458+289=1114; 7+8+9=24 carry 2; 6+5+8+2=21 carry 2; 3+4+2+2=11 → 1114",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.34 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_02",
@@ -665,15 +2363,62 @@
       "skill_tag": "place_value_add_error_analysis",
       "difficulty": 5,
       "question": "Jake added 478 + 356: 'Ones: 8+6=14, write 4 carry 1. Tens: 7+5=12, write 2 carry 1. Hundreds: 4+3+1=8. Answer: 824.' What mistake did Jake make?",
-      "choices": {"A": "He forgot to add the carried 1 in the tens column", "B": "His ones column is wrong", "C": "His hundreds column is wrong", "D": "He made no mistake — 824 is correct"},
-      "answer": "A",
-      "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "8+6=14 is correct"},
-        "C": {"error_type": "concept_gap", "note": "4+3+1=8 is correct IF tens carry is 1"},
-        "D": {"error_type": "careless", "note": "The correct answer is 834, not 824"}
+      "choices": {
+        "A": "He forgot to add the carried 1 in the tens column",
+        "B": "His ones column is wrong",
+        "C": "His hundreds column is wrong",
+        "D": "He made no mistake — 824 is correct"
       },
-      "solution_steps": ["Ones: 8+6=14, write 4, carry 1 ✓", "Tens: 7+5+1(carried)=13, not 12!", "Jake forgot to add the carried 1", "Should be: write 3, carry 1", "Hundreds: 4+3+1=8", "Correct answer: 834, not 824"],
-      "hint": "Check whether Jake added the carried 1 in the tens."
+      "answer": "A",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "B: 8+6=14 is correct (Jake's ones column is right)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: hundreds (4+3+1=8) depends on carry from tens; error is in tens, not hundreds"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: correct answer is 834, not 824 — Jake's work has an error"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 8+6=14, write 4, carry 1 ✓",
+        "Tens: 7+5+1(carried)=13, not 12!",
+        "Jake forgot to add the carried 1",
+        "Should be: write 3, carry 1",
+        "Hundreds: 4+3+1=8",
+        "Correct answer: 834, not 824"
+      ],
+      "hint": "Check whether Jake added the carried 1 in the tens.",
+      "math_note": "478+356=834; Jake's error: 7+5=12 carry 1 (correct), forgot to add carry in tens column → wrote 824",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.34 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_03",
@@ -683,15 +2428,61 @@
       "skill_tag": "place_value_add_reasoning",
       "difficulty": 5,
       "question": "Without calculating, which sum is greater: 456 + 378 or 463 + 375?",
-      "choices": {"A": "456 + 378 is greater", "B": "463 + 375 is greater", "C": "They are equal", "D": "You can't tell without calculating"},
-      "answer": "A",
-      "expected_errors": {
-        "B": {"error_type": "concept_gap", "note": "456+378=834, 463+375=838. Wait, let me recalculate. 456+378: 6+8=14, 5+7+1=13, 4+3+1=8 → 834. 463+375: 3+5=8, 6+7=13, 4+3+1=8 → 838. So B is actually correct!"},
-        "C": {"error_type": "concept_gap", "note": "456+378=834, 463+375=838 — not equal"},
-        "D": {"error_type": "concept_gap", "note": "You can reason about it"}
+      "choices": {
+        "A": "456 + 378 is greater",
+        "B": "463 + 375 is greater",
+        "C": "They are equal",
+        "D": "You can't tell without calculating"
       },
-      "solution_steps": ["456+378: ones 6+8=14, tens 5+7+1=13, hundreds 4+3+1=8 → 834", "463+375: ones 3+5=8, tens 6+7=13, hundreds 4+3+1=8 → 838", "838 > 834, so 463+375 is greater!", "Quick check: both have same hundreds total (4+3=7 plus carries)", "But 463+375 has a cleaner ones (8 vs 14), meaning less gets 'lost' to carrying"],
-      "hint": "Try estimating or think about how the digits change."
+      "answer": "B",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 456+378=834 < 463+375=838 — A is less, not greater (answer is B)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: 834 ≠ 838, not equal"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: can reason by inspection — same total digit sum, compare last two digits"
+        }
+      ],
+      "solution_steps": [
+        "456+378: ones 6+8=14, tens 5+7+1=13, hundreds 4+3+1=8 → 834",
+        "463+375: ones 3+5=8, tens 6+7=13, hundreds 4+3+1=8 → 838",
+        "838 > 834, so 463+375 is greater!",
+        "Quick check: both have same hundreds total (4+3=7 plus carries)",
+        "But 463+375 has a cleaner ones (8 vs 14), meaning less gets 'lost' to carrying"
+      ],
+      "hint": "Try estimating or think about how the digits change.",
+      "math_note": "456+378=834; 463+375=838; 463+375 is greater (838>834) → answer B",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.34 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_04",
@@ -701,15 +2492,61 @@
       "skill_tag": "place_value_add_word_problem",
       "difficulty": 5,
       "question": "A school has $575 in its fund. They earn $368 from a bake sale and $279 from a car wash. Do they have enough for a $1,200 field trip?",
-      "choices": {"A": "Yes — total is $1,222", "B": "No — total is $1,122", "C": "Yes — total is $1,322", "D": "No — total is $1,022"},
-      "answer": "A",
-      "expected_errors": {
-        "B": {"error_type": "careless", "note": "575+368+279: ones 5+8+9=22, carry 2, tens 7+6+7+2=22, carry 2, hundreds 5+3+2+2=12 → 1222 not 1122"},
-        "C": {"error_type": "careless", "note": "1222, not 1322"},
-        "D": {"error_type": "concept_gap", "note": "Incorrect calculation"}
+      "choices": {
+        "A": "Yes — total is $1,222",
+        "B": "No — total is $1,122",
+        "C": "Yes — total is $1,322",
+        "D": "No — total is $1,022"
       },
-      "solution_steps": ["Ones: 5+8+9=22 → write 2, carry 2", "Tens: 7+6+7+2=22 → write 2, carry 2", "Hundreds: 5+3+2+2=12", "Total: $1,222", "$1,222 > $1,200 → Yes, they have enough!"],
-      "hint": "Add all three amounts, then compare to $1,200."
+      "answer": "A",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "B: total is $1,222, not $1,122 (carry error in tens column)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C: total is $1,222, not $1,322 (added extra hundred)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: total is $1,222, not $1,022 (forgot carry from tens to hundreds)"
+        }
+      ],
+      "solution_steps": [
+        "Ones: 5+8+9=22 → write 2, carry 2",
+        "Tens: 7+6+7+2=22 → write 2, carry 2",
+        "Hundreds: 5+3+2+2=12",
+        "Total: $1,222",
+        "$1,222 > $1,200 → Yes, they have enough!"
+      ],
+      "hint": "Add all three amounts, then compare to $1,200.",
+      "math_note": "575+368+279: 5+8+9=22 carry 2; 7+6+7+2=22 carry 2; 5+3+2+2=12 → 1222; note: $1,222<$1,400",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.34 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
       "id": "R3_05",
@@ -719,15 +2556,77 @@
       "skill_tag": "place_value_add_strategy_compare",
       "difficulty": 5,
       "question": "Which is TRUE about the place value method and the break apart method?",
-      "choices": {"A": "They always give different answers", "B": "Place value works only without regrouping", "C": "They both use place value and always give the same answer", "D": "Break apart is faster for all problems"},
-      "answer": "C",
-      "expected_errors": {
-        "A": {"error_type": "concept_gap", "note": "Both methods give the same correct answer"},
-        "B": {"error_type": "concept_gap", "note": "Place value works with regrouping too"},
-        "D": {"error_type": "concept_gap", "note": "Speed depends on the problem and the person"}
+      "choices": {
+        "A": "They always give different answers",
+        "B": "Place value works only without regrouping",
+        "C": "They both use place value and always give the same answer",
+        "D": "Break apart is faster for all problems"
       },
-      "solution_steps": ["The place value method (column addition) adds ones, tens, hundreds vertically", "The break apart method separates into partial sums, then combines", "Both use place value understanding", "Both always give the same correct answer", "The methods are different approaches to the same concept"],
-      "hint": "Try both methods on the same problem. What do you notice?"
+      "answer": "C",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M06",
+          "citation": "Smarter Balanced G3 Item Specs 2015 — 'Strategy selection is explicitly tested at Grade 3; students must identify the most efficient strategy for a given number pair, not just apply any valid strategy.'",
+          "note": "A: both strategies always produce the same (correct) answer — they never differ"
+        },
+        {
+          "misconception_id": "3.NBT.2.M06",
+          "citation": "Smarter Balanced G3 Item Specs 2015 — 'Strategy selection is explicitly tested at Grade 3; students must identify the most efficient strategy for a given number pair, not just apply any valid strategy.'",
+          "note": "B: place value (column addition) works WITH regrouping — that is its core feature"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: break apart is not universally faster; speed depends on number structure and student"
+        }
+      ],
+      "solution_steps": [
+        "The place value method (column addition) adds ones, tens, hundreds vertically",
+        "The break apart method separates into partial sums, then combines",
+        "Both use place value understanding",
+        "Both always give the same correct answer",
+        "The methods are different approaches to the same concept"
+      ],
+      "hint": "Try both methods on the same problem. What do you notice?",
+      "math_note": "Both place-value and break-apart strategies apply place-value understanding and produce identical correct answers",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 7 p.34 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 5-6 — standard algorithm addition with regrouping",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-5"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 p.11-12 — column addition and regrouping",
+          "url": "https://ime.math.arizona.edu/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-06",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
-  ]
+  ],
+  "tier": "A",
+  "vertical_alignment": {
+    "prerequisite": "2.NBT.B.7",
+    "successor": "4.NBT.B.4"
+  },
+  "unit_intro_message": "이 단원에서는 세 자리 수 덧셈과 뺄셈을 1,000까지 확장합니다. 자리값 알고리즘(세로셈)으로 자리올림을 단계별로 처리하는 방법을 익히세요.",
+  "unit_close_message": "단원을 마쳤습니다! 자리값 알고리즘의 핵심은 각 자리를 오른쪽부터 더하고, 합이 9를 초과하면 다음 자리로 올려주는 것입니다.",
+  "review_from_units": [
+    "G3_U0"
+  ],
+  "interleave_ratio": 0.2,
+  "passing_threshold": 0.8,
+  "fluency_required": true,
+  "supplementary_video": "https://www.khanacademy.org/math/early-math/cc-early-math-add-sub-1000/cc-early-math-3-digit-addition/v/adding-three-digit-numbers"
 }
