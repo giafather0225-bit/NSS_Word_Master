@@ -112,7 +112,22 @@ function _zdRenderError(el) {
     if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
-// ─── Main render ─────────────────────────────────────────────────
+// ─── Main render — Scene-Stage layout ────────────────────────────
+//
+// Layout:
+//   ┌──────────────────────────────────────┐
+//   │  STAGE  (≈62% height)                │
+//   │  ── full-bleed zone bg image         │
+//   │  ── back btn + zone label (overlay)  │
+//   │  ── decoration layer (placed items)  │
+//   │  ── character (large, centered)      │
+//   ├──────────────────────────────────────┤
+//   │  HUD    (≈38% height)                │
+//   │  ── name + level                     │
+//   │  ── gauges + XP + stone              │
+//   │  ── actions (Feed/Evolve/Shop/Decor) │
+//   │  ── completed/locked strips          │
+//   └──────────────────────────────────────┘
 
 /** @tag SHOP */
 function _zdRender(el) {
@@ -122,85 +137,69 @@ function _zdRender(el) {
 
     el.innerHTML = `
         <div class="izd-screen izd-zone--${_zdZone}" id="izd-screen">
-            <div class="izd-zone-hero" style="background-image:url('/static/img/island/bg_${_zdZone}.png')">
+            <div class="izd-stage" id="izd-stage"
+                 style="background-image:url('/static/img/island/bg_${_zdZone}.png')">
                 <button class="izd-back-btn" onclick="_closeZoneDetail()" aria-label="Back to map">
                     <i data-lucide="arrow-left"></i>
                 </button>
                 <div class="izd-zone-label"><i data-lucide="${meta.lucideIcon || 'map-pin'}"></i> ${meta.label || _zdZone}</div>
+                <div class="izd-stage-decor" id="izd-stage-decor">
+                    ${_zdRenderPlacedItems()}
+                </div>
+                ${prog ? _zdStageChar(prog) : _zdStageEmpty()}
             </div>
-            <div class="izd-body">
-                <div class="izd-left">
-                    ${_zdCharVisual(prog)}
-                    ${_zdDoneStrip()}
-                    ${_zdLockedStrip()}
-                </div>
-                <div class="izd-right">
-                    ${prog ? _zdRightPanel(prog, isLegend) : _zdEmptyRight()}
-                </div>
+            <div class="izd-hud" id="izd-hud">
+                ${prog ? _zdHudPanel(prog, isLegend) : _zdEmptyHud()}
+                ${_zdStripsRow()}
             </div>
         </div>`;
     _zdAttachEsc();
 }
 
-// ─── Left panel ──────────────────────────────────────────────────
+// ─── Stage layer: character + decorations ────────────────────────
 
-/** @tag SHOP */
-function _zdCharVisual(prog) {
-    if (!prog) return `
-        <div class="izd-char-visual izd-char-visual--empty"
-             onclick="_zdAdopt()" role="button" tabindex="0" title="Adopt a companion">
-            <i data-lucide="plus-circle"></i>
-            <span>Adopt a companion</span>
-        </div>`;
-
+/** Big character standing in the scene. Click → character detail page. @tag SHOP */
+function _zdStageChar(prog) {
     const cat   = _zdCatalog[prog.character_id] || {};
-    const name  = escapeHtml((prog.nickname || cat.name || 'Character').substring(0, 12));
-    const h = prog.hunger ?? 100, p = prog.happiness ?? 100;
-    const animCls = (h < 20 || p < 20) ? 'izd-char-visual--sad'
-                  : (h >= 60 && p >= 60) ? 'izd-char-visual--happy' : '';
-    const status  = h < 20 ? 'Hungry — needs food!'
-                  : p < 20 ? 'Feeling lonely...'
-                  : h >= 80 && p >= 80 ? 'Feeling great!' : 'Doing okay.';
+    const h     = prog.hunger ?? 100, p = prog.happiness ?? 100;
+    const animCls = (h < 20 || p < 20) ? 'izd-stage-char--sad'
+                  : (h >= 60 && p >= 60) ? 'izd-stage-char--happy' : '';
     const fallbackIcon = (_ZONE_META?.[cat.zone] || {}).lucideIcon || 'heart';
     const charVisual = _charImg(cat.name || '', prog.stage || 'baby', prog.images || '{}', fallbackIcon);
     return `
-        <div class="izd-char-visual ${animCls}" onclick="_zdOpenCharDetail(${prog.id})"
+        <div class="izd-stage-char ${animCls}"
+             onclick="_zdOpenCharDetail(${prog.id})"
              role="button" tabindex="0" title="View details">
-            <div class="izd-char-avatar">
-                ${charVisual}
-                <span class="izd-char-stage">${prog.stage || 'baby'}</span>
-            </div>
-            <div class="izd-char-name">${name}</div>
-            <div class="izd-char-status">${status}</div>
+            ${charVisual}
         </div>`;
 }
 
-/** @tag SHOP */
-function _zdDoneStrip() {
-    if (!_zdCompleted.length) return '';
-    const dots = _zdCompleted.map(c => {
-        const n = escapeHtml((c.nickname || c.name || '?').substring(0, 6));
-        return `<div class="izd-done-char" title="${n}">
-            <div class="izd-done-dot"></div><span>${n}</span></div>`;
-    }).join('');
-    return `<div class="izd-done-strip"><span class="izd-strip-label">Completed</span>${dots}</div>`;
+/** Empty stage when no character — big adopt invite. @tag SHOP */
+function _zdStageEmpty() {
+    return `
+        <div class="izd-stage-empty"
+             onclick="_zdAdopt()" role="button" tabindex="0">
+            <div class="izd-stage-empty-circle">
+                <i data-lucide="plus-circle"></i>
+            </div>
+            <div class="izd-stage-empty-text">Adopt a companion</div>
+        </div>`;
 }
 
-/** @tag SHOP */
-function _zdLockedStrip() {
-    if (!_zdLocked.length) return '';
-    const dots = _zdLocked.map(() =>
-        `<div class="izd-locked-char"><i data-lucide="lock"></i><span>???</span></div>`
-    ).join('');
-    return `<div class="izd-locked-strip">${dots}</div>`;
+/** Placed-decorations renderer (stub — wired up when /api/island/placed-items lands). @tag SHOP */
+function _zdRenderPlacedItems() {
+    // TODO: fetch from /api/island/placed-items?zone=… and render <img> per item
+    // with absolute left/top from item.position_x/y. For now: empty layer.
+    return '';
 }
 
-// ─── Right panel ─────────────────────────────────────────────────
+// ─── HUD: stats + actions ────────────────────────────────────────
 
 /** @tag SHOP */
-function _zdRightPanel(prog, isLegend) {
+function _zdHudPanel(prog, isLegend) {
     const cat    = _zdCatalog[prog.character_id] || {};
     const name   = escapeHtml((prog.nickname || cat.name || 'Character').substring(0, 12));
+    const stage  = escapeHtml(prog.stage || 'baby');
     const xp     = _zdCareData?.current_xp        ?? prog.current_xp   ?? 0;
     const maxXp  = _zdCareData?.xp_to_next_level  ?? 100;
     const xpPct  = Math.min(100, Math.round(xp / maxXp * 100));
@@ -210,25 +209,18 @@ function _zdRightPanel(prog, isLegend) {
     const canEvo = _zdCareData?.can_evolve        ?? false;
     const lumiPd = cat.lumi_production            ?? 0;
     const h = prog.hunger ?? 0, p = prog.happiness ?? 0;
+    const status  = h < 20 ? 'Hungry — needs food!'
+                  : p < 20 ? 'Feeling lonely...'
+                  : h >= 80 && p >= 80 ? 'Feeling great!' : 'Doing okay.';
 
     return `
-        <div class="izd-info">
-            <div class="izd-info-name">${name}</div>
-            <div class="izd-info-lv">Lv. ${prog.level || 1} &middot; ${escapeHtml(prog.stage || 'baby')}</div>
-            ${isLegend ? _zdLegendDays(prog) : ''}
-            <div class="izd-gauges">
-                ${_zdGauge('Hunger', h, 'izd-g--hunger')}
-                ${_zdGauge('Happiness', p, 'izd-g--happy')}
+        <div class="izd-hud-head">
+            <div class="izd-hud-id">
+                <span class="izd-hud-stage-pill">${stage}</span>
+                <div class="izd-hud-name">${name}</div>
+                <div class="izd-hud-lv">Lv. ${prog.level || 1} &middot; ${status}</div>
             </div>
-            <div class="izd-xp-row">
-                <span>XP to evolve</span><span>${xp} / ${maxXp}</span>
-            </div>
-            <div class="izd-bar-wrap"><div class="izd-bar-fill" style="width:${xpPct}%"></div></div>
-            <div class="izd-meta-row"><span>Stone</span>
-                <span class="izd-meta-val">${escapeHtml(stone)}</span></div>
-            ${lumiPd ? `<div class="izd-meta-row"><span>Lumi</span>
-                <span class="izd-meta-val">+${lumiPd}/day</span></div>` : ''}
-            <div class="izd-actions">
+            <div class="izd-hud-actions">
                 <button class="izd-btn izd-btn--feed" onclick="_zdFeed(${prog.id})">
                     <i data-lucide="apple"></i> Feed
                 </button>
@@ -240,16 +232,64 @@ function _zdRightPanel(prog, isLegend) {
                 <button class="izd-btn izd-btn--shop" onclick="openIslandShop()">
                     <i data-lucide="shopping-bag"></i> Shop
                 </button>
+                <button class="izd-btn izd-btn--decor" onclick="_zdOpenDecorate()">
+                    <i data-lucide="palette"></i> Decorate
+                </button>
+            </div>
+        </div>
+        ${isLegend ? _zdLegendDays(prog) : ''}
+        <div class="izd-hud-stats">
+            <div class="izd-hud-stat-col">
+                ${_zdGauge('Hunger', h, 'izd-g--hunger')}
+                ${_zdGauge('Happy',  p, 'izd-g--happy')}
+            </div>
+            <div class="izd-hud-stat-col">
+                <div class="izd-hud-xp-row">
+                    <span class="izd-hud-stat-label">XP</span>
+                    <div class="izd-bar-wrap izd-bar-wrap--inline">
+                        <div class="izd-bar-fill" style="width:${xpPct}%"></div>
+                    </div>
+                    <span class="izd-hud-xp-val">${xp}/${maxXp}</span>
+                </div>
+                <div class="izd-hud-meta-row">
+                    <span class="izd-hud-meta-key">Stone</span>
+                    <span class="izd-hud-meta-val">${escapeHtml(stone)}</span>
+                    ${lumiPd ? `<span class="izd-hud-meta-key">&nbsp;Lumi</span>
+                        <span class="izd-hud-meta-val">+${lumiPd}/day</span>` : ''}
+                </div>
             </div>
         </div>`;
 }
 
 /** @tag SHOP */
-function _zdEmptyRight() {
-    return `<div class="izd-info izd-info--empty">
-        <div class="izd-info-name">No character here yet</div>
-        <p class="izd-info-hint">Complete the previous character to unlock the next one.</p>
+function _zdEmptyHud() {
+    return `<div class="izd-hud-empty">
+        <div class="izd-hud-empty-title">No character here yet</div>
+        <p class="izd-hud-empty-hint">Complete the previous character to unlock the next one, or tap the circle above to adopt.</p>
     </div>`;
+}
+
+/** Compact completed/locked strips at the bottom of HUD. @tag SHOP */
+function _zdStripsRow() {
+    const done = _zdCompleted.length ? _zdCompleted.map(c => {
+        const n = escapeHtml((c.nickname || c.name || '?').substring(0, 6));
+        return `<div class="izd-done-char" title="${n}">
+            <div class="izd-done-dot"></div><span>${n}</span></div>`;
+    }).join('') : '';
+    const locked = _zdLocked.length ? _zdLocked.map(() =>
+        `<div class="izd-locked-char"><i data-lucide="lock"></i></div>`
+    ).join('') : '';
+    if (!done && !locked) return '';
+    return `
+        <div class="izd-strips-row">
+            ${done   ? `<div class="izd-done-strip"><span class="izd-strip-label">Completed</span>${done}</div>`     : ''}
+            ${locked ? `<div class="izd-locked-strip"><span class="izd-strip-label">Locked</span>${locked}</div>` : ''}
+        </div>`;
+}
+
+/** Open Decorate mode (stub — actual placement UI pending placed-items API). @tag SHOP */
+function _zdOpenDecorate() {
+    _showShopToast('Decoration placement coming soon!', false);
 }
 
 /** @tag SHOP */
@@ -335,25 +375,28 @@ function _zdAdopt() {
             <div class="izd-adopt-name">${escapeHtml(c.name)}</div>
         </div>`;
     }).join('');
-    const left = document.querySelector('#izd-screen .izd-left');
-    if (!left) return;
-    left.innerHTML = `
+    const stage = document.getElementById('izd-stage');
+    if (!stage) return;
+    // Replace stage-empty / stage-char with adopt panel
+    stage.querySelectorAll('.izd-stage-char,.izd-stage-empty,.izd-adopt-panel').forEach(n => n.remove());
+    stage.insertAdjacentHTML('beforeend', `
         <div class="izd-adopt-panel">
             <div class="izd-adopt-title">Choose your companion</div>
             <div class="izd-adopt-grid">${cards}</div>
             <button class="izd-back-link" onclick="openZoneDetail('${_zdZone}')">
                 <i data-lucide="x"></i> Cancel
             </button>
-        </div>`;
+        </div>`);
     if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /** Show nickname input for chosen character. @tag SHOP */
 function _zdAdoptStart(charId) {
-    const cat  = _zdCatalog[charId] || {};
-    const left = document.querySelector('#izd-screen .izd-left');
-    if (!left) return;
-    left.innerHTML = `
+    const cat   = _zdCatalog[charId] || {};
+    const stage = document.getElementById('izd-stage');
+    if (!stage) return;
+    stage.querySelectorAll('.izd-stage-char,.izd-stage-empty,.izd-adopt-panel').forEach(n => n.remove());
+    stage.insertAdjacentHTML('beforeend', `
         <div class="izd-adopt-panel">
             <div class="izd-adopt-title">Name your companion</div>
             <div class="izd-adopt-hint">Max 8 characters</div>
@@ -369,7 +412,7 @@ function _zdAdoptStart(charId) {
                     <i data-lucide="arrow-left"></i> Back
                 </button>
             </div>
-        </div>`;
+        </div>`);
     if (typeof lucide !== 'undefined') lucide.createIcons();
     document.getElementById('izd-adopt-input')?.focus();
 }

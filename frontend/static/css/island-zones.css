@@ -33,45 +33,49 @@
 .izd-zone--space   { background: linear-gradient(160deg, var(--rewards-light) 0%, var(--rewards-soft) 100%); }
 .izd-zone--legend  { background: linear-gradient(160deg, var(--arcade-light)  0%, var(--arcade-soft)  100%); }
 
-/* ── Zone hero banner (background image) ────────────────────── */
+/* ── Stage (full-bleed scene with character + decorations) ───── */
 
-.izd-zone-hero {
+.izd-stage {
     position: relative;
-    flex-shrink: 0;
-    height: 130px;
+    flex: 1 1 62%;
+    min-height: 0;
     background-size: cover;
-    background-position: center top;
+    background-position: center;
     overflow: hidden;
 }
 
-/* Dark gradient overlay for readability */
-.izd-zone-hero::after {
+/* Soft gradient at top for back-btn / label readability */
+.izd-stage::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 110px;
     background: linear-gradient(to bottom,
-        rgba(0,0,0,0.22) 0%,
-        rgba(0,0,0,0.40) 100%);
+        rgba(0,0,0,0.30) 0%,
+        rgba(0,0,0,0.00) 100%);
     pointer-events: none;
+    z-index: 1;
 }
 
 /* Fallback: if bg image fails to load, use zone gradient */
-.izd-zone--forest  .izd-zone-hero { background-color: var(--english-soft); }
-.izd-zone--ocean   .izd-zone-hero { background-color: var(--math-soft); }
-.izd-zone--savanna .izd-zone-hero { background-color: var(--diary-soft); }
-.izd-zone--space   .izd-zone-hero { background-color: var(--rewards-soft); }
-.izd-zone--legend  .izd-zone-hero { background-color: var(--arcade-soft); }
+.izd-zone--forest  .izd-stage { background-color: var(--english-soft); }
+.izd-zone--ocean   .izd-stage { background-color: var(--math-soft); }
+.izd-zone--savanna .izd-stage { background-color: var(--diary-soft); }
+.izd-zone--space   .izd-stage { background-color: var(--rewards-soft); }
+.izd-zone--legend  .izd-stage { background-color: var(--arcade-soft); }
 
 .izd-back-btn {
     position: absolute;
-    top: 12px;
-    left: 12px;
+    top: 14px;
+    left: 14px;
     z-index: 10;
-    width: 34px;
-    height: 34px;
-    border: 1px solid rgba(255,255,255,0.35);
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255,255,255,0.40);
     border-radius: var(--radius-md);
-    background: rgba(0,0,0,0.30);
+    background: rgba(0,0,0,0.32);
     backdrop-filter: blur(6px);
     color: #ffffff;
     cursor: pointer;
@@ -81,158 +85,289 @@
     transition: background var(--transition-fast);
 }
 .izd-back-btn:hover { background: rgba(0,0,0,0.50); }
-.izd-back-btn i { width: 16px; height: 16px; }
+.izd-back-btn i { width: 18px; height: 18px; }
 
 .izd-zone-label {
     position: absolute;
-    bottom: 12px;
+    top: 18px;
     left: 0;
     right: 0;
     z-index: 10;
     text-align: center;
     font-size: 13px;
     font-weight: 700;
-    letter-spacing: 0.09em;
+    letter-spacing: 0.10em;
     text-transform: uppercase;
     color: #ffffff;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.55);
     padding: 0;
+    pointer-events: none;
 }
-.izd-zone-label i { width: 13px; height: 13px; vertical-align: middle; margin-right: 4px; }
+.izd-zone-label i { width: 14px; height: 14px; vertical-align: middle; margin-right: 4px; }
 
-.izd-body {
-    flex: 1;
-    display: flex;
-    overflow: hidden;
-    gap: 0;
+/* Decoration layer — absolute fill where placed_items render */
+.izd-stage-decor {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;  /* items themselves can opt back in */
+}
+.izd-stage-decor img {
+    position: absolute;
+    pointer-events: all;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
-.izd-left, .izd-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    padding: 12px 16px 20px;
-}
-
-.izd-left  { border-right: 1px solid var(--border-subtle); }
-
-/* ── Character visual (left panel) ──────────────────────────── */
-
-.izd-char-visual {
+/* Character standing in the scene */
+.izd-stage-char {
+    position: absolute;
+    left: 50%;
+    bottom: 8%;
+    transform: translateX(-50%);
+    z-index: 5;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    padding: 32px 16px 20px;
-    cursor: pointer;
-    border-radius: var(--radius-xl);
-    transition: background var(--transition-fast);
+    transition: transform var(--transition-fast);
 }
-.izd-char-visual:hover { background: rgba(255,255,255,0.45); }
+.izd-stage-char:hover { transform: translateX(-50%) translateY(-4px); }
 
-.izd-char-visual--empty {
-    opacity: 0.55;
-    gap: 14px;
-    font-size: var(--font-size-md);
-    color: var(--text-hint);
-    cursor: pointer;
-    min-height: 240px;
-    justify-content: center;
-}
-.izd-char-visual--empty:hover { opacity: 0.85; background: rgba(255,255,255,0.45); }
-.izd-char-visual--empty i { width: 56px; height: 56px; color: var(--text-hint); }
-
-.izd-char-avatar {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-}
-
-.izd-char-emoji {
-    font-size: 140px;
-    line-height: 1;
-    animation: izd-idle 3s ease-in-out infinite;
-}
-.izd-char-img {
-    width: 200px;
-    height: 200px;
+.izd-stage-char .izd-char-img {
+    width: 320px;
+    height: 320px;
     object-fit: contain;
     image-rendering: auto;
     animation: izd-idle 3s ease-in-out infinite;
-    filter: drop-shadow(0 6px 14px rgba(0,0,0,.12));
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,.20));
 }
-.izd-char-emoji-fb {
-    font-size: 140px;
+.izd-stage-char .izd-char-emoji-fb {
+    font-size: 220px;
     line-height: 1;
     animation: izd-idle 3s ease-in-out infinite;
 }
-.izd-char-emoji-fb i { width: 140px; height: 140px; color: var(--text-secondary); }
-
-.izd-char-visual--happy .izd-char-emoji,
-.izd-char-visual--happy .izd-char-img,
-.izd-char-visual--happy .izd-char-emoji-fb {
+.izd-stage-char .izd-char-emoji-fb i {
+    width: 220px;
+    height: 220px;
+    color: rgba(255,255,255,0.92);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,.4));
+}
+.izd-stage-char--happy .izd-char-img,
+.izd-stage-char--happy .izd-char-emoji-fb {
     animation: izd-idle 3s ease-in-out infinite, izd-happy-pulse 0.6s ease-in-out;
 }
-.izd-char-visual--sad .izd-char-emoji,
-.izd-char-visual--sad .izd-char-img,
-.izd-char-visual--sad .izd-char-emoji-fb {
+.izd-stage-char--sad .izd-char-img,
+.izd-stage-char--sad .izd-char-emoji-fb {
     animation: izd-sad-sway 2s ease-in-out infinite;
     opacity: 0.82;
 }
 
-.izd-char-stage {
-    font-size: 11px;
+/* Empty state on stage — adopt invite */
+.izd-stage-empty {
+    position: absolute;
+    left: 50%;
+    bottom: 12%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    color: #ffffff;
+}
+.izd-stage-empty-circle {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.20);
+    border: 3px dashed rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.izd-stage-empty:hover .izd-stage-empty-circle {
+    background: rgba(255,255,255,0.32);
+    transform: scale(1.04);
+}
+.izd-stage-empty-circle i {
+    width: 64px;
+    height: 64px;
+    color: #ffffff;
+}
+.izd-stage-empty-text {
+    font-family: var(--font-family-display);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* ── HUD (bottom panel: stats + actions + strips) ──────────── */
+
+.izd-hud {
+    flex: 0 0 auto;
+    max-height: 38%;
+    overflow-y: auto;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-subtle);
+    padding: 16px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.izd-hud-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.izd-hud-id {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 160px;
+}
+.izd-hud-stage-pill {
+    align-self: flex-start;
+    font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.10em;
     text-transform: uppercase;
     color: var(--text-secondary);
-    background: rgba(255,255,255,0.85);
-    border: 1px solid var(--border-subtle);
+    background: var(--bg-surface);
     border-radius: var(--radius-full);
-    padding: 3px 12px;
-    margin-top: 2px;
+    padding: 2px 10px;
+    margin-bottom: 4px;
 }
-
-.izd-char-name {
+.izd-hud-name {
     font-family: var(--font-family-display);
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 800;
     color: var(--text-primary);
     letter-spacing: -0.02em;
-    margin-top: 4px;
+    line-height: 1.1;
 }
-
-.izd-char-status {
+.izd-hud-lv {
     font-size: var(--font-size-sm);
     color: var(--text-secondary);
-    text-align: center;
-    font-style: italic;
+    font-weight: 600;
 }
 
-/* ── Completed / Locked strips ───────────────────────────────── */
+.izd-hud-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.izd-hud-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 24px;
+    align-items: center;
+}
+.izd-hud-stat-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.izd-hud-xp-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.izd-hud-stat-label {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--text-secondary);
+    width: 40px;
+}
+.izd-bar-wrap--inline { flex: 1; height: 8px; }
+.izd-hud-xp-val {
+    font-size: var(--font-size-xs);
+    color: var(--text-hint);
+    font-variant-numeric: tabular-nums;
+    min-width: 76px;
+    text-align: right;
+}
+
+.izd-hud-meta-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: var(--font-size-xs);
+}
+.izd-hud-meta-key {
+    color: var(--text-hint);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.izd-hud-meta-val {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.izd-hud-empty {
+    text-align: center;
+    padding: 24px 16px;
+    color: var(--text-hint);
+}
+.izd-hud-empty-title {
+    font-family: var(--font-family-display);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+.izd-hud-empty-hint {
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* ── Compact strips row at HUD bottom ───────────────────────── */
+
+.izd-strips-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 6px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+/* ── Completed / Locked strips (compact, inside HUD) ───────── */
 
 .izd-done-strip, .izd-locked-strip {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 12px;
-    padding: 10px 8px;
-    background: rgba(255,255,255,0.5);
+    gap: 8px;
+    padding: 6px 10px;
+    background: var(--bg-surface);
     border-radius: var(--radius-md);
+    flex: 1;
+    min-width: 160px;
 }
 
 .izd-strip-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.10em;
     text-transform: uppercase;
     color: var(--text-hint);
-    width: 100%;
-    margin-bottom: 2px;
+    margin-right: 4px;
 }
 
 .izd-done-char, .izd-locked-char {
@@ -421,9 +556,18 @@
 .izd-btn:disabled, .izd-btn.disabled { opacity: 0.45; cursor: default; transform: none; box-shadow: none; }
 .izd-btn i { width: 17px; height: 17px; }
 
-.izd-btn--feed { background: var(--review-light);   color: var(--review-ink); }
-.izd-btn--evo  { background: var(--rewards-light);  color: var(--rewards-ink); }
-.izd-btn--shop { background: var(--arcade-light);   color: var(--arcade-ink); }
+.izd-btn--feed  { background: var(--review-light);   color: var(--review-ink); }
+.izd-btn--evo   { background: var(--rewards-light);  color: var(--rewards-ink); }
+.izd-btn--shop  { background: var(--arcade-light);   color: var(--arcade-ink); }
+.izd-btn--decor { background: var(--diary-light);    color: var(--diary-ink); }
+
+/* HUD action buttons should be slightly more compact than the centered izd-actions */
+.izd-hud-actions .izd-btn {
+    flex: 0 0 auto;
+    min-width: 96px;
+    padding: 10px 16px;
+    font-size: var(--font-size-sm);
+}
 
 /* ── Character Detail screen ─────────────────────────────────── */
 
