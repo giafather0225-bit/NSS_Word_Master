@@ -91,7 +91,7 @@
 (CKLADomain, CKLALesson, CKLAQuestion, CKLAWordLesson, CKLALessonProgress, CKLAQuestionResponse, CKLABadge, CKLAUserBadge, CKLASpelling, CKLAGrammar, CKLAMorphology)
 
 **데이터:**
-- `data/academy/ckla_g3/D1~D11.json` — ≈1.4MB, 154 레슨, ~1,400 Q
+- `data/academy/ckla_g3/D1~D11.json` — ≈1.4MB, **104 레슨**, **819 Q&A + 684 어휘 = 1,503 항목**
 - `backend/data/daily_words/grade_3.json` — 200 words
 
 **스크립트:**
@@ -258,3 +258,161 @@ CKLA의 핵심 원칙은 **지식 축적형 커리큘럼**이다. 단순 독해 
 - 도메인 완료 순서: 자유 선택 허용 (순서 강제 없음)
 - 도메인 간 어휘 연결: Daily Words 4개 주제 그룹이 CKLA 도메인과 주제적으로 겹치도록 설계
 - 지식 누적 가시화: 도메인 완료 배지 11개 — 지식 지형도처럼 표시
+
+---
+
+## 섹션 5. Curriculum Structure
+
+### 5.1 CKLA G3 — 11 Domain Map
+
+> 실제 JSON 스캔 기준 (2026-05-07). 도메인 이름은 `grammar_morphology.json` 기준.
+
+| D | Domain Name | Lessons | Q&A | Grammar Topics | Morphology Topics |
+|---|---|---|---|---|---|
+| 1 | Classic Tales | 12 | 80 | — | — |
+| 2 | Classification of Animals | 9 | 57 | nouns & verbs · adjectives & adverbs · compound sentences | suffixes (-ed/-ing) · prefixes (un-/non-) |
+| 3 | Human Body: Systems and Senses | 9 | 90 | plural nouns · irregular plural nouns | prefixes (dis-/mis-) |
+| 4 | Ancient Roman Civilization | 12 | 92 | verb tenses · irregular verbs | suffixes (-ist/-ian/-y/-al) |
+| 5 | Light and Sound | 8 | 56 | adjectives & adverbs · conjunctions | suffixes (-er/-or/-ist/-ian) · suffix (-ly) |
+| 6 | The Vikings and Norse Mythology | 8 | 57 | conjunction (because) | suffixes (-ive/-ly) |
+| 7 | Astronomy: The Solar System and Beyond | 10 | 92 | conjunction (so) | suffixes (-ful/-less) |
+| 8 | Native Americans | 8 | 62 | plural possessive nouns · possessive pronouns | suffixes (-ish/-ness) · suffixes (-able/-ible) |
+| 9 | European Exploration of North America | 9 | 76 | linking words · comparative & superlative adj. | prefixes (pro-/anti-) |
+| 10 | Colonial America | 12 | 108 | comparative & superlative adverbs | prefixes (uni-/bi-/tri-/multi-) |
+| 11 | Ecology | 7 | 49 | subject & object pronouns · conjunctions review | prefix review · end-of-year review |
+| | **Total** | **104** | **819** | | |
+
+**어휘 항목:** 684 단어 (전 도메인 합산)  
+**C가 답하는 총 항목:** 819 Q&A + 312 vocab quiz (레슨당 3문항 × 104) + 104 Word Work = **약 1,235 문항**  
+**섹션 1.6 검토 기준:** 819 Q&A 정확성 + CCSS 코드 매핑 — 개발자 직접 검토 대상
+
+> **주의:** D1 Classic Tales는 Grammar/Morphology 토픽 없음. CKLA 원본 커리큘럼 설계 그대로.
+
+---
+
+### 5.2 CKLA 레슨 구조 (레슨 1개 기준)
+
+각 레슨은 4탭으로 구성. 탭 완료 순서는 자유, 4탭 전부 제출해야 레슨 완료.
+
+| 탭 | 콘텐츠 | 완료 기준 |
+|---|---|---|
+| **Read** | 지문 + TTS + 문단 하이라이트 + 글자 크기 3단계 | 끝까지 스크롤 |
+| **Vocabulary** | 전체 어휘 카드 (정의·예문) → 4지선다 퀴즈 3문항 | 퀴즈 2/3 통과 |
+| **Q&A** | Literal×2 + Inferential×2 + Evaluative×1 (랜덤 5문항) · 1회 재시도 | 5문항 전부 제출 |
+| **Word Work** | Focus Word 자유 타이핑 · 힌트 버튼 | 제출 (유사도 80% 미만 = 오답 기록) |
+
+---
+
+### 5.3 CKLA 테스트 구조
+
+**Domain Test** (각 도메인 완료 시 해제)
+
+| 항목 | 내용 |
+|---|---|
+| 문항 구성 | Vocab 4지선다×3 + 빈칸×2 + Q&A×5 = **10문항** |
+| 통과 기준 | 80% (8/10) |
+| 재시도 | 즉시 가능 (문항 랜덤 교체) |
+| 3회 연속 실패 | Parent Dashboard 경고 |
+| XP | +30 |
+
+**Grade Final Test** (11개 도메인 모두 완료 시 해제)
+
+| 항목 | 내용 |
+|---|---|
+| 문항 구성 | Vocab×15 + Q&A×10 (Literal4+Inferential4+Evaluative2) + WordWork×2 = **27문항** |
+| 통과 기준 | 80% (22/27) |
+| 재시도 | 24시간 대기 후 재시도 (대기 화면에 틀린 문항 + 복습 버튼) |
+| XP | +100 |
+
+---
+
+### 5.4 Daily Words G3 — 13주 사이클
+
+**기본 정보**
+
+| 항목 | 값 |
+|---|---|
+| 총 단어 수 | 200 단어 |
+| 출처 | Flocabulary G3 + Think SRSD Tier 2 G3 |
+| 사이클 | 7일 (Day 1 진단 → Day 2-6 학습 → Day 7 주간 테스트) |
+| 하루 학습량 | 10단어/일 |
+| 총 콜로케이션 | 60개 (Week 12~13) |
+| 주간 테스트 통과 기준 | 90% 이상 → 다음 학년 진급 |
+
+**13주 테마 구성**
+
+| Week | Theme | 샘플 어휘 |
+|---|---|---|
+| 1 | Exploring & Discovering | curious, observe, explore |
+| 2 | People & Qualities | brave, clever, loyal |
+| 3 | Nature & Environment | habitat, climate, moisture |
+| 4 | Actions & Problem Solving | solution, cooperate, communicate |
+| 5 | Thinking & Learning | imagine, consider, realize |
+| 6 | Feelings & Experiences | fortunate, terrify, thrill |
+| 7 | Change & Movement | increase, decrease, replace |
+| 8 | Communication & Society | participate, contribute, respond |
+| 9 | Strategy & Survival | avoid, defend, protect |
+| 10 | Describing & Comparing | ancient, delicate, rare |
+| 11 | Daily Life & Actions | perform, schedule, adopt |
+| 12 | Collocations & Chunks | make a decision, take a break, pay attention |
+| 13 | More Collocations & Expressions | come up with, point out, run out of |
+
+> Week 1~11: 단일 어휘 (Tier 2 중심). Week 12~13: 콜로케이션·관용 표현.  
+> 7일 사이클 × 13주 = 91일. 여름방학 52일 안에 Week 1~7 완료, 나머지는 학기 중 연속.
+
+---
+
+### 5.5 Grammar & Morphology — 11 Unit Scope
+
+> 출처: Amplify CKLA G3 Scope and Sequence PDF → `data/ckla_source/grammar_morphology.json`  
+> Unit 번호 = Domain 번호 (D1=U1, …, D11=U11).
+
+| Unit | Domain | Grammar | Morphology |
+|---|---|---|---|
+| 1 | Classic Tales | — | — |
+| 2 | Classification of Animals | nouns & verbs · adjectives & adverbs · compound sentences | suffixes (-ed/-ing) · prefixes (un-/non-) |
+| 3 | Human Body | plural nouns · irregular plural nouns | prefixes (dis-/mis-) |
+| 4 | Ancient Roman Civilization | verb tenses · irregular verbs | suffixes (-ist/-ian/-y/-al) |
+| 5 | Light and Sound | adjectives & adverbs · conjunctions | suffixes (-er/-or/-ist/-ian) · suffix (-ly) |
+| 6 | Vikings and Norse Mythology | conjunction (because) | suffixes (-ive/-ly) |
+| 7 | Astronomy | conjunction (so) | suffixes (-ful/-less) |
+| 8 | Native Americans | plural possessive nouns · possessive pronouns | suffixes (-ish/-ness) · suffixes (-able/-ible) |
+| 9 | European Exploration | linking words · comparative & superlative adjectives | prefixes (pro-/anti-) |
+| 10 | Colonial America | comparative & superlative adverbs | prefixes (uni-/bi-/tri-/multi-) |
+| 11 | Ecology | subject & object pronouns · conjunctions review | prefix review · end-of-year review |
+
+**Unit 1 처리:** CKLA 원본에서 Grammar/Morphology 없음. 앱에서 Grammar/Morphology 탭 비활성화 또는 "No Grammar lesson for this domain." 안내 표시.
+
+---
+
+### 5.6 CCSS G3 ELA 코드 매핑 (요약)
+
+> 코드별 문항 배분 상세는 섹션 7 (Content Validation Plan)에서 정의.
+
+| CCSS 영역 | 코드 범위 | 주 커버 탭 |
+|---|---|---|
+| Reading Literature (RL) | RL.3.1~9 | Q&A (D1·D6·D7 등 문학 도메인) |
+| Reading Informational (RI) | RI.3.1~10 | Q&A (D2~D5·D8~D11 등 정보 도메인) |
+| Language (L) | L.3.1~6 | Grammar + Morphology + Vocabulary |
+
+**L.3.x 세부 매핑:**
+
+| L 코드 | 내용 | 커버 위치 |
+|---|---|---|
+| L.3.1a | Noun-verb agreement | Grammar U2~U4 |
+| L.3.1b | Regular/irregular plurals | Grammar U3 |
+| L.3.1c | Abstract nouns | Grammar U2 |
+| L.3.1d | Verb tenses | Grammar U4 |
+| L.3.1e | Compound/complex sentences | Grammar U2 |
+| L.3.1f | Adjectives and adverbs | Grammar U2, U5 |
+| L.3.1g | Conjunctions | Grammar U5~U7, U11 |
+| L.3.1h | Commas in compound sentences | **보강 자료 필요** |
+| L.3.1i | Capitalization/punctuation | **보강 자료 필요** |
+| L.3.2 | Spelling conventions | **제외 (가을)** |
+| L.3.4 | Context clues for word meaning | Vocabulary + Q&A |
+| L.3.4b | Affixes and roots | Morphology U2~U11 |
+| L.3.4c | Root word meaning | Morphology U2~U11 |
+| L.3.5 | Word relationships, nuances | Word Work + Vocabulary |
+| L.3.6 | Tier 2 academic vocabulary | Daily Words + CKLA Vocabulary |
+
+> L.3.1h·L.3.1i: CKLA 커버 없음 → 보강 자료 출처를 섹션 7에서 결정.
