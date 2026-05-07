@@ -24,10 +24,23 @@
     "Record data in a frequency table",
     "Compare values using subtraction"
   ],
-  "items": [
+  "tier": "A",
+  "vertical_alignment": {
+    "prerequisite": "2.MD.D.10",
+    "successor": "4.MD.B.4"
+  },
+  "unit_intro_message": "U2에 오신 것을 환영합니다! 이 단원에서는 탤리표·빈도표·그림 그래프·막대 그래프로 데이터를 정리하고 읽는 방법을 배웁니다. 데이터에서 패턴과 비교를 찾아내는 능력은 수학적 추론의 핵심입니다.",
+  "unit_close_message": "U2를 완료했습니다! 탤리표와 빈도표를 읽고 작성하며, 그림 그래프와 막대 그래프를 해석하는 능력을 갖추었습니다. 이제 비교·합산·2단계 문제까지 데이터 분석 전문가가 되었습니다!",
+  "review_from_units": [
+    "U1"
+  ],
+  "interleave_ratio": 0.2,
+  "passing_threshold": 0.75,
+  "fluency_required": false,
+  "supplementary_video": "https://www.khanacademy.org/math/cc-third-grade-math/represent-and-interpret-data",
+  "pretest": [
     {
       "id": "PT_01",
-      "section": "pretest",
       "difficulty": 1,
       "question": "A tally table shows: Soccer ||||, Baseball |||, Tennis ||. How many students chose Soccer?",
       "data_table": {
@@ -53,11 +66,45 @@
         "D. 5"
       ],
       "answer": "C",
-      "explanation": "Count the tally marks for Soccer: |||| = 4."
+      "explanation": "Count the tally marks for Soccer: |||| = 4.",
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_tally_table",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "Soccer 탤리 |||| = 4개를 3으로 잘못 읽음",
+          "citation": "Friel et al. (2001) p.130 — 탤리 그룹 오독"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "5로 한 개 더 카운트하는 단순 오류"
+        }
+      ],
+      "math_note": "Count the tally marks for Soccer: |||| = 4.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "PT_02",
-      "section": "pretest",
       "difficulty": 1,
       "question": "A frequency table shows: Red 8, Blue 5, Green 3. Which color was chosen the least?",
       "data_table": {
@@ -83,11 +130,45 @@
         "D. Red and Blue"
       ],
       "answer": "C",
-      "explanation": "Green has the smallest number: 3."
+      "explanation": "Green has the smallest number: 3.",
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "identify_max_min",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M06",
+          "description": "'가장 적은' 대신 '가장 많은' 카테고리 선택 (Red 8)",
+          "citation": "Van de Walle et al. (2013) p.391 — 최소/최대 혼동"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "Red와 Blue를 함께 나열하는 임의 오답"
+        }
+      ],
+      "math_note": "Green has the smallest number: 3.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "PT_03",
-      "section": "pretest",
       "difficulty": 2,
       "question": "A tally table shows: Math 𝍸𝍸||, Science 𝍸, Reading 𝍸|||. How many students chose Math and Reading combined?",
       "data_table": {
@@ -113,11 +194,45 @@
         "D. 15"
       ],
       "answer": "B",
-      "explanation": "Math = 12, Reading = 8. 12 + 8 = 20."
+      "explanation": "Math = 12, Reading = 8. 12 + 8 = 20.",
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_total_frequency",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M02",
+          "description": "Reading 대신 Science 행 읽음 → 12+5=17",
+          "citation": "Van de Walle et al. (2013) p.391 — 잘못된 행 선택"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "12+8=20인데 잘못 계산하여 13"
+        }
+      ],
+      "math_note": "Math = 12, Reading = 8. 12 + 8 = 20.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "PT_04",
-      "section": "pretest",
       "difficulty": 2,
       "question": "A frequency table shows: Apple 10, Banana 6, Orange 4. How many fewer students chose Orange than Apple?",
       "data_table": {
@@ -143,11 +258,45 @@
         "D. 14"
       ],
       "answer": "B",
-      "explanation": "10 − 4 = 6."
+      "explanation": "10 − 4 = 6.",
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_frequency_fewer",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "'더 적은' 문제에서 10−4 대신 10+4=14 계산",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9 — 비교 언어 오해석"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "Orange값(4)을 그대로 답으로 제출"
+        }
+      ],
+      "math_note": "10 − 4 = 6.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "PT_05",
-      "section": "pretest",
       "difficulty": 2,
       "question": "A frequency table shows: Cats 9, Dogs 7, Fish 4. How many students answered the survey in all?",
       "data_table": {
@@ -173,41 +322,267 @@
         "D. 22"
       ],
       "answer": "C",
-      "explanation": "9 + 7 + 4 = 20."
-    },
+      "explanation": "9 + 7 + 4 = 20.",
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_total_frequency",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M04",
+          "description": "Fish(4) 카테고리 누락 → 9+7=16",
+          "citation": "Friel et al. (2001) p.131 — 일부 카테고리 누락 합산"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "9+7+2=18 잘못된 Fish 값 사용"
+        }
+      ],
+      "math_note": "9 + 7 + 4 = 20.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
+    }
+  ],
+  "learn": [
     {
-      "id": "LN_01",
-      "section": "learn",
-      "difficulty": 0,
+      "id": "LEARN_01",
       "type": "concept_card",
       "title": "What is a Tally Table?",
       "content": "A tally table uses tally marks to record data. Each mark | represents 1. A group of five is written as 𝍸 (four marks with a line through them). To find the total, count the tally marks.",
-      "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "none",
+      "cpa_stage": "concrete",
+      "ccss": "3.MD.B.3",
+      "math_note": "A tally table uses tally marks to record data. Each mark | represents 1. A group",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
     },
     {
-      "id": "LN_02",
-      "section": "learn",
-      "difficulty": 0,
+      "id": "LEARN_02",
       "type": "concept_card",
       "title": "What is a Frequency Table?",
       "content": "A frequency table uses numbers to show how many times each item was chosen. It has two columns: the category and the number (frequency). You can convert a tally table into a frequency table by counting the tally marks.",
-      "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "none",
+      "cpa_stage": "concrete",
+      "ccss": "3.MD.B.3",
+      "math_note": "A frequency table uses numbers to show how many times each item was chosen. It h",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
     },
     {
-      "id": "LN_03",
-      "section": "learn",
-      "difficulty": 0,
+      "id": "LEARN_03",
       "type": "concept_card",
       "title": "Comparing Data",
       "content": "To find 'how many more' or 'how many fewer,' subtract the smaller number from the larger number. To find a total, add all the numbers together.",
-      "cpa_phase": "pictorial",
-      "visual_type": "none"
+      "visual_type": "none",
+      "cpa_stage": "pictorial",
+      "ccss": "3.MD.B.3",
+      "math_note": "To find 'how many more' or 'how many fewer,' subtract the smaller number from th",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
     },
     {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "title": "Converting a Tally Table to a Frequency Table",
+      "content": "To convert a tally table to a frequency table: (1) Look at each row. (2) Count the tally marks — remember: 𝍸 = 5, | = 1. (3) Write the number in the frequency column. Example: 𝍸|| → 5 + 2 = 7.",
+      "visual_type": "two_column_table",
+      "cpa_stage": "pictorial",
+      "ccss": "3.MD.B.3",
+      "math_note": "𝍸 1개=5, | 1개=1. 𝍸||| = 5+3 = 8.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
+    },
+    {
+      "id": "LEARN_05",
+      "title": "Finding the Total from a Table",
+      "type": "concept_card",
+      "content": "To find the total number of students surveyed, ADD all the numbers in the frequency column. Write an equation: __ + __ + __ = total. Example: Cats 9, Dogs 7, Fish 4 → 9 + 7 + 4 = 20 students total.",
+      "visual_type": "frequency_table",
+      "cpa_stage": "pictorial",
+      "ccss": "3.MD.B.3",
+      "math_note": "합계 = 모든 빈도 더하기. 3개 이상 카테고리도 순서대로 더함.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
+    },
+    {
+      "id": "LEARN_06",
+      "title": "Solving Two-Step Data Problems",
+      "type": "concept_card",
+      "content": "Some problems need TWO steps. Example: 'How many students did NOT choose Pizza?' Step 1: Find the TOTAL (add all categories). Step 2: Subtract the Pizza value from the total. Always re-read the question after Step 1 to plan Step 2.",
+      "visual_type": "frequency_table",
+      "cpa_stage": "abstract",
+      "ccss": "3.MD.B.3",
+      "math_note": "'NOT 선택한 수' = 전체 합 − 해당 카테고리 수. 2단계 계획 필수.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
+    },
+    {
+      "id": "LEARN_07",
+      "type": "explain",
+      "title": "Math Talk: Check Your Reasoning",
+      "content": "A frequency table shows: Sunny 9, Rainy 4, Cloudy 7, Snowy 2. Total = 9 + 4 + 7 + 2 = 22 days. How many MORE Sunny days than Snowy days? Check: 9 − 2 = 7. ✓ (Not 9 + 2 = 11!)",
+      "visual_type": "frequency_table",
+      "cpa_stage": "abstract",
+      "ccss": "3.MD.B.3",
+      "math_talk_prompt": "이 표를 보고 계산했습니다: Sunny=9, Snowy=2 → 9−2=7. 친구가 '9+2=11이 맞아요'라고 했습니다. 어떻게 설명하면 친구의 생각을 수정할 수 있을까요? '더 많은'이라는 말은 더하기 기호가 아니라 어떤 연산을 의미하는지 이야기해 봅시다.",
+      "math_note": "'How many more' = 큰 수 − 작은 수 = 차이. 9−2=7 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
+    },
+    {
+      "id": "LEARN_08",
+      "type": "summary",
+      "title": "Lesson Summary: Organize Data",
+      "content": "In this lesson you learned how to: ① Read tally marks (𝍸=5, |=1). ② Convert a tally table to a frequency table. ③ Find totals by adding all frequency values. ④ Compare categories using subtraction ('how many more/fewer'). ⑤ Solve two-step problems (find total → subtract one category).",
+      "lesson_summary": "탤리표·빈도표 마스터: ①𝍸=5 탤리 읽기 ②탤리→빈도 변환 ③모든 빈도 합산 = 전체 ④'더 많은/적은' = 뺄셈 ⑤2단계 문제: 전체합→특정 카테고리 빼기",
+      "visual_type": "none",
+      "cpa_stage": "abstract",
+      "ccss": "3.MD.B.3",
+      "math_note": "핵심: 비교 문제는 항상 빼기. 2단계 문제는 전체 구한 후 빼기.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
+    }
+  ],
+  "try": [
+    {
       "id": "TRY_01",
-      "section": "try",
       "difficulty": 1,
       "question": "A frequency table shows: Chocolate 15, Vanilla 9, Strawberry 6. Which flavor was chosen the most?",
       "data_table": {
@@ -242,11 +617,46 @@
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "identify_max_min",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M06",
+          "description": "Chocolate(15) 아닌 Vanilla(9)를 가장 많다고 선택",
+          "citation": "Van de Walle et al. (2013) p.391 — 최대값 오식별"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "가장 작은 Strawberry를 선택하는 최소/최대 역전 오류"
+        }
+      ],
+      "math_note": "Chocolate has the highest number: 15.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "TRY_02",
-      "section": "try",
       "difficulty": 1,
       "question": "A tally table shows: Swings |||, Slide 𝍸|, Monkey Bars ||. How many students chose Slide?",
       "data_table": {
@@ -281,11 +691,46 @@
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_tally_table",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "Slide 탤리 𝍸|을 5로 읽음 (|을 무시)",
+          "citation": "Friel et al. (2001) p.130 — 탤리 그룹 후 추가 획 누락"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "𝍸|을 5+3=8로 잘못 읽음"
+        }
+      ],
+      "math_note": "Slide: 𝍸| = 5 + 1 = 6.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "TRY_03",
-      "section": "try",
       "difficulty": 2,
       "question": "Frequency table: Pizza 11, Tacos 7, Burgers 5, Salad 3. How many students did NOT choose Pizza?",
       "data_table": {
@@ -322,11 +767,208 @@
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how organize data works."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_data",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M05",
+          "description": "Not Pizza를 Pizza 값(11)으로 잘못 답함",
+          "citation": "EngageNY G3 M6 L2 — 중간 결과에서 멈춤"
+        },
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M04",
+          "description": "전체 합(26)을 그대로 제출 (2단계 계산 미완료)",
+          "citation": "Friel et al. (2001) p.131 — 모든 카테고리 합산"
+        }
+      ],
+      "math_note": "Total = 11+7+5+3 = 26. Not Pizza = 26 − 11 = 15.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      }
     },
     {
+      "id": "TRY_04",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Frequency table: Dogs 14, Cats 9, Birds 6, Fish 3. How many more students chose Dogs than Fish?",
+      "data_table": {
+        "title": "Favorite Pet",
+        "type": "frequency_table",
+        "categories": [
+          "Dogs",
+          "Cats",
+          "Birds",
+          "Fish"
+        ],
+        "values": [
+          14,
+          9,
+          6,
+          3
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 3",
+        "B. 8",
+        "C. 11",
+        "D. 17"
+      ],
+      "answer": "C",
+      "explanation": "14 − 3 = 11.",
+      "solution_steps": [
+        "Dogs = 14, Fish = 3",
+        "14 − 3 = 11"
+      ],
+      "hints": [
+        "Find the value for Dogs and Fish in the table.",
+        "'How many more' means subtract the smaller from the larger."
+      ],
+      "feedback": {
+        "correct": "Great! You used subtraction correctly for a comparison question.",
+        "incorrect": "Remember: 'how many more' means subtract, not add."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_frequency_more",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "'더 많은' 질문에서 빼기 대신 더하기 수행",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9 — 비교 연산 오류"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "표 전체 합을 제출"
+        }
+      ],
+      "math_note": "비교 문제: 14−3=11. 14+3=17은 오답 (덧셈은 총합).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Great! You used subtraction correctly for a comparison question."
+    },
+    {
+      "id": "TRY_05",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "A tally table shows: Spring 𝍸||, Summer 𝍸𝍸, Fall ||||, Winter |||. How many fewer students chose Winter than Spring?",
+      "data_table": {
+        "title": "Favorite Season",
+        "type": "tally_table",
+        "categories": [
+          "Spring",
+          "Summer",
+          "Fall",
+          "Winter"
+        ],
+        "values": [
+          7,
+          10,
+          4,
+          3
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 3",
+        "B. 4",
+        "C. 7",
+        "D. 10"
+      ],
+      "answer": "B",
+      "explanation": "Spring: 𝍸|| = 5+2 = 7. Winter: ||| = 3. 7 − 3 = 4.",
+      "solution_steps": [
+        "Spring tally: 𝍸|| = 5+2 = 7",
+        "Winter tally: ||| = 3",
+        "7 − 3 = 4"
+      ],
+      "hints": [
+        "Count tally marks: 𝍸 = 5, | = 1.",
+        "Find Spring and Winter, then subtract smaller from larger."
+      ],
+      "feedback": {
+        "correct": "Excellent tally reading and comparison!",
+        "incorrect": "First count the tally marks carefully, then subtract."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_tally_table",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "탤리 그룹 오독으로 잘못된 값 추출",
+          "citation": "Friel et al. (2001) p.130 — 탤리 오독"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "두 번째 카테고리 행을 읽음"
+        }
+      ],
+      "math_note": "Spring=7, Winter=3. 7−3=4 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Excellent tally reading and comparison!"
+    }
+  ],
+  "practice_r1": [
+    {
       "id": "R1_01",
-      "section": "practice_r1",
       "difficulty": 1,
       "question": "A frequency table shows: Swimming 7, Running 5, Biking 3. How many more students chose Swimming than Biking?",
       "data_table": {
@@ -360,11 +1002,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_frequency_more",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "Swimming-Biking 차이 대신 7+3=10 덧셈 수행",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "Running 값(5)과 Biking 값(3) 차=2"
+        }
+      ],
+      "math_note": "7 − 3 = 4.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_02",
-      "section": "practice_r1",
       "difficulty": 1,
       "question": "A tally table shows: Spring 𝍸||, Summer 𝍸𝍸, Fall ||||, Winter ||. How many students chose Summer?",
       "data_table": {
@@ -400,11 +1077,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_tally_table",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "Summer 𝍸𝍸를 5로 읽음 (그룹 하나만 카운트)",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "𝍸𝍸를 12로 잘못 읽음"
+        }
+      ],
+      "math_note": "Summer: 𝍸𝍸 = 5 + 5 = 10.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_03",
-      "section": "practice_r1",
       "difficulty": 1,
       "question": "Frequency table: Markers 9, Crayons 6, Pencils 8. What is the total number of students who answered?",
       "data_table": {
@@ -438,11 +1150,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is D. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_total_frequency",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M04",
+          "description": "Markers만 사용하여 부분합 계산 또는 2개 카테고리만 합산",
+          "citation": "Friel et al. (2001) p.131"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "9+6+8을 21로 잘못 덧셈"
+        }
+      ],
+      "math_note": "9 + 6 + 8 = 23.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_04",
-      "section": "practice_r1",
       "difficulty": 1,
       "question": "Frequency table: Banana 4, Apple 8, Grapes 6. Which fruit got the fewest votes?",
       "data_table": {
@@ -476,11 +1223,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "identify_max_min",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M06",
+          "description": "'가장 적은' 대신 '가장 많은' Apple(8) 선택",
+          "citation": "Van de Walle et al. (2013) p.391"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "Grapes(6)를 최솟값으로 오인"
+        }
+      ],
+      "math_note": "Banana has the smallest number: 4.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_05",
-      "section": "practice_r1",
       "difficulty": 1,
       "question": "Tally table: Lions |||, Bears 𝍸, Eagles 𝍸||. Which animal was chosen by exactly 5 students?",
       "data_table": {
@@ -514,11 +1296,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_tally_table",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M02",
+          "description": "Bears 탤리 대신 Lions(|||=3) 행 오독",
+          "citation": "Van de Walle et al. (2013) p.391"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "Eagles를 5로 오독 (𝍸||=7인데 𝍸=5로만 읽음)"
+        }
+      ],
+      "math_note": "Bears: 𝍸 = 5.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_06",
-      "section": "practice_r1",
       "difficulty": 2,
       "question": "Frequency table: Red 12, Blue 8, Yellow 5. How many fewer students chose Yellow than Red?",
       "data_table": {
@@ -552,11 +1369,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_frequency_fewer",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "'더 적은' 질문에서 12+5=17 덧셈 또는 Yellow 값 5를 답으로 제출",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "Blue(8) 값을 답으로 제출"
+        }
+      ],
+      "math_note": "12 − 5 = 7.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_07",
-      "section": "practice_r1",
       "difficulty": 2,
       "question": "Frequency table: Soccer 10, Basketball 6, Baseball 4, Hockey 3. How many students chose Soccer or Basketball?",
       "data_table": {
@@ -592,11 +1444,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_subset_frequency",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M04",
+          "description": "Soccer+Basketball 대신 전체 4개 카테고리 합산 (23)",
+          "citation": "Friel et al. (2001) p.131"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "Soccer만 계산하여 10+6=16이 아닌 Soccer=10+Baseball=4=14"
+        }
+      ],
+      "math_note": "10 + 6 = 16.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_08",
-      "section": "practice_r1",
       "difficulty": 2,
       "question": "Frequency table: Math 14, Science 5, Reading 9, Social Studies 12. How many fewer students chose Science than Social Studies?",
       "data_table": {
@@ -632,11 +1519,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_frequency_fewer",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "12-5=7 대신 12+5=17 덧셈 (비교 언어 오해석)",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "Science 값(5) 그대로 제출"
+        }
+      ],
+      "math_note": "12 − 5 = 7.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_09",
-      "section": "practice_r1",
       "difficulty": 2,
       "question": "Tally table: Cats 𝍸𝍸|, Dogs 𝍸|||, Fish ||||. If 3 students change from Dogs to Fish, how many students would choose Fish?",
       "data_table": {
@@ -670,11 +1592,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "hypothetical_data_change",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "가상 변경 문제에서 Dogs(8)→Dogs-3=5를 Fish에 적용하는 2단계 오류",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "변경된 Dogs 수(5)를 Fish로 오해"
+        }
+      ],
+      "math_note": "Fish was 4, add 3 → 4 + 3 = 7.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_10",
-      "section": "practice_r1",
       "difficulty": 2,
       "question": "Frequency table: Cookies 8, Cake 10, Pie 6, Ice Cream 12. What is the total and which treat got the most votes?",
       "data_table": {
@@ -710,11 +1667,48 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is A. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "identify_max_min",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M06",
+          "description": "Ice Cream(12)이 가장 많지만 두 번째인 Cake(10)를 선택",
+          "citation": "Van de Walle et al. (2013) p.391"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "합계를 34로 잘못 계산"
+        }
+      ],
+      "math_note": "8+10+6+12 = 36. Ice Cream = 12 is the most.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
-    },
+    }
+  ],
+  "practice_r2": [
     {
       "id": "R2_01",
-      "section": "practice_r2",
       "difficulty": 2,
       "question": "Frequency table: Sunny 9, Rainy 4, Cloudy 7, Snowy 2. How many more days were Sunny than Snowy?",
       "data_table": {
@@ -750,11 +1744,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_frequency_more",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "Sunny-Snowy 차이 대신 9+2=11 덧셈",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "Snowy(2) 대신 Rainy(4)로 9-4=5 계산"
+        }
+      ],
+      "math_note": "9 − 2 = 7.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R2_02",
-      "section": "practice_r2",
       "difficulty": 2,
       "question": "Frequency table: Car 6, Bus 10, Walk 8, Bike 4. How many students ride a bus or walk to school?",
       "data_table": {
@@ -790,11 +1819,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_subset_frequency",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M02",
+          "description": "Walk(8) 대신 Bike(4) 행 선택 → Bus+Bike=10+4=14",
+          "citation": "Van de Walle et al. (2013) p.391"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "4개 카테고리 전체 합(28) 제출"
+        }
+      ],
+      "math_note": "10 + 8 = 18.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R2_03",
-      "section": "practice_r2",
       "difficulty": 2,
       "question": "Frequency table: Violin 5, Piano 11, Guitar 8, Drums 6. How many students did NOT choose Piano?",
       "data_table": {
@@ -830,51 +1894,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_data",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M05",
+          "description": "Not Piano 대신 Piano 값(11)을 그대로 제출",
+          "citation": "EngageNY G3 M6 L2 — 중간 단계에서 멈춤"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "전체 합(30)을 제출 — 2단계 계산 미완료"
+        }
+      ],
+      "math_note": "Total = 5+11+8+6 = 30. Not Piano = 30 − 11 = 19.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R2_04",
-      "section": "practice_r2",
-      "difficulty": 3,
-      "question": "Frequency table: Math 14, Science 5, Reading 9, Social Studies 12. If 3 students change from Math to Science, which two subjects would have the same number?",
-      "data_table": {
-        "title": "Subject Change",
-        "type": "frequency_table",
-        "categories": [
-          "Math",
-          "Science",
-          "Reading",
-          "Social Studies"
-        ],
-        "values": [
-          14,
-          5,
-          9,
-          12
-        ],
-        "scale": 1,
-        "unit": "students"
-      },
-      "choices": [
-        "A. Math and Reading",
-        "B. Math and Social Studies",
-        "C. Science and Reading",
-        "D. Reading and Social Studies"
-      ],
-      "answer": "B",
-      "explanation": "Math: 14−3=11, Science: 5+3=8. Wait — Math=11, Social Studies=12. Let me recheck. Actually Math→11 ≠ 12. Correction: If 2 change → 12=12. With 3 changing: Math=11, Sci=8, Read=9, SS=12. None match. Re-evaluating: The correct scenario is that Math becomes 11 and Reading is 9 — no match. The answer is rechecked: none match perfectly. But closest answer is B if we adjust. Actually the intended answer is A: Math 14−3=11 ≠ Reading 9. Let me fix the problem.",
-      "hints": [
-        "Think about what organize data means.",
-        "Try drawing a picture or using a number line."
-      ],
-      "feedback": {
-        "correct": "Great job! You got it!",
-        "incorrect": "Not quite. The answer is B. Remember how organize data works."
-      }
-    },
-    {
-      "id": "R2_04_v2",
-      "section": "practice_r2",
       "difficulty": 3,
       "question": "Frequency table: Cats 12, Dogs 8, Fish 6, Birds 4. Suppose 4 students change their vote from Cats to Fish. What would be the new number for Cats and Fish?",
       "data_table": {
@@ -910,11 +1969,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is A. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "hypothetical_data_change",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "Cats와 Fish 변화 방향 역전 (Cats에 4 더하고 Fish에서 4 뺌)",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10 — 가상 변경 방향 오류"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "Cats와 Fish가 같아진다고 오해 (8=8)"
+        }
+      ],
+      "math_note": "Cats: 12 − 4 = 8. Fish: 6 + 4 = 10.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R2_05",
-      "section": "practice_r2",
       "difficulty": 3,
       "question": "Frequency table: Room A – 15, Room B – 12, Room C – 18. Room A and Room B collected cans together. Room C collected cans alone. Which group collected more and by how many?",
       "data_table": {
@@ -948,11 +2042,428 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_data",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "Room C(18)와 A 또는 B 하나만 비교하여 잘못된 차이 계산",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "27≠18이므로 동일하지 않음에도 같다고 답"
+        }
+      ],
+      "math_note": "A+B = 15+12 = 27. C = 18. 27 − 18 = 9. Rooms A+B by 9.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
+      "id": "R2_06",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Frequency table: Science Club 18, Art Club 11, Chess Club 7, Drama Club 14. How many fewer students are in Chess Club than in Drama Club?",
+      "data_table": {
+        "title": "Club Membership",
+        "type": "frequency_table",
+        "categories": [
+          "Science Club",
+          "Art Club",
+          "Chess Club",
+          "Drama Club"
+        ],
+        "values": [
+          18,
+          11,
+          7,
+          14
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 3",
+        "B. 7",
+        "C. 11",
+        "D. 21"
+      ],
+      "answer": "B",
+      "explanation": "Drama Club 14 − Chess Club 7 = 7.",
+      "hints": [
+        "Find Drama Club and Chess Club values.",
+        "'How many fewer' means subtract."
+      ],
+      "feedback": {
+        "correct": "Correct! 14 − 7 = 7.",
+        "incorrect": "Find both clubs, then subtract the smaller from the larger."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_frequency_fewer",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "'더 적게 읽은' 질문에서 빼기 대신 더하기 수행",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "두 카테고리 합을 제출"
+        }
+      ],
+      "math_note": "Drama(14) − Chess(7) = 7 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Correct! 14 − 7 = 7."
+    },
+    {
+      "id": "R2_07",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Frequency table: Morning 22, Afternoon 17, Evening 9, Night 2. How many more students exercise in the Morning than in the Evening?",
+      "data_table": {
+        "title": "Exercise Time",
+        "type": "frequency_table",
+        "categories": [
+          "Morning",
+          "Afternoon",
+          "Evening",
+          "Night"
+        ],
+        "values": [
+          22,
+          17,
+          9,
+          2
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 9",
+        "B. 13",
+        "C. 17",
+        "D. 31"
+      ],
+      "answer": "B",
+      "explanation": "22 − 9 = 13.",
+      "hints": [
+        "Use only Morning and Evening values.",
+        "Subtract Evening from Morning."
+      ],
+      "feedback": {
+        "correct": "Great! 22 − 9 = 13.",
+        "incorrect": "You only need Morning and Evening. Subtract."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_frequency_more",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M04",
+          "description": "두 카테고리 비교에 전체 합 사용",
+          "citation": "Friel et al. (2001) p.131"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "첫 번째 카테고리 값만 답으로 제출"
+        }
+      ],
+      "math_note": "Morning(22) − Evening(9) = 13 ✓. 나머지 카테고리 불필요.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Great! 22 − 9 = 13."
+    },
+    {
+      "id": "R2_08",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "Frequency table: Grade 3A 24, Grade 3B 18, Grade 3C 21, Grade 3D 17. How many students did NOT come from Grade 3B?",
+      "data_table": {
+        "title": "Field Trip Students",
+        "type": "frequency_table",
+        "categories": [
+          "Grade 3A",
+          "Grade 3B",
+          "Grade 3C",
+          "Grade 3D"
+        ],
+        "values": [
+          24,
+          18,
+          21,
+          17
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 18",
+        "B. 62",
+        "C. 17",
+        "D. 80"
+      ],
+      "answer": "B",
+      "explanation": "Total = 24+18+21+17 = 80. Not 3B = 80 − 18 = 62.",
+      "hints": [
+        "First find the total.",
+        "Then subtract Grade 3B from the total."
+      ],
+      "feedback": {
+        "correct": "Perfect two-step work! Total = 80, then 80 − 18 = 62.",
+        "incorrect": "Step 1: Add all grades. Step 2: Subtract Grade 3B."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_data",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M05",
+          "description": "전체 합계를 구한 후 2단계 계산 미완료",
+          "citation": "EngageNY G3 M6 L2"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "대상 카테고리 값을 그대로 제출"
+        }
+      ],
+      "math_note": "Total=80, Not 3B=80−18=62 ✓. 2단계 필수.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Perfect two-step work! Total = 80, then 80 − 18 = 62.",
+      "review_from": "U1"
+    },
+    {
+      "id": "R2_09",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "Frequency table: Apples 8, Pears 12, Oranges 5, Mangoes 15. Which fruit was chosen the least, and what is the difference between it and the most popular fruit?",
+      "data_table": {
+        "title": "Fruit Survey",
+        "type": "frequency_table",
+        "categories": [
+          "Apples",
+          "Pears",
+          "Oranges",
+          "Mangoes"
+        ],
+        "values": [
+          8,
+          12,
+          5,
+          15
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A. Oranges, difference = 7",
+        "B. Apples, difference = 7",
+        "C. Oranges, difference = 10",
+        "D. Pears, difference = 3"
+      ],
+      "answer": "C",
+      "explanation": "Least: Oranges (5). Most: Mangoes (15). 15 − 5 = 10.",
+      "hints": [
+        "Find the smallest and largest values.",
+        "Subtract smallest from largest."
+      ],
+      "feedback": {
+        "correct": "Excellent! Oranges=5 (least), Mangoes=15 (most), 15−5=10.",
+        "incorrect": "Scan all values to find the least and most, then subtract."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "identify_max_min",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M06",
+          "description": "최솟값 카테고리 오식별",
+          "citation": "Van de Walle et al. (2013) p.391"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "전체 합 제출"
+        }
+      ],
+      "math_note": "Oranges(5) 최소, Mangoes(15) 최대. 15−5=10 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Excellent! Oranges=5 (least), Mangoes=15 (most), 15−5=10.",
+      "review_from": "U1"
+    },
+    {
+      "id": "R2_10",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "Frequency table: Monday 8, Tuesday 5, Wednesday 11, Thursday 6, Friday 10. If 3 more students borrow books on Tuesday, how many books would be borrowed on Tuesday and Wednesday combined?",
+      "data_table": {
+        "title": "Library Borrowing",
+        "type": "frequency_table",
+        "categories": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "values": [
+          8,
+          5,
+          11,
+          6,
+          10
+        ],
+        "scale": 1,
+        "unit": "books"
+      },
+      "choices": [
+        "A. 16",
+        "B. 19",
+        "C. 21",
+        "D. 24"
+      ],
+      "answer": "B",
+      "explanation": "New Tuesday = 5+3 = 8. Combined = 8+11 = 19.",
+      "hints": [
+        "Update Tuesday first: 5+3.",
+        "Then add the new Tuesday to Wednesday."
+      ],
+      "feedback": {
+        "correct": "Great! Tuesday becomes 8, then 8+11=19.",
+        "incorrect": "First change Tuesday, THEN add to Wednesday."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "hypothetical_data_change",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "가상 증가 시나리오에서 잘못된 카테고리 업데이트",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "원래 값 그대로 제출"
+        }
+      ],
+      "math_note": "Tuesday=5+3=8, 8+Wednesday(11)=19 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Great! Tuesday becomes 8, then 8+11=19.",
+      "review_from": "U1"
+    }
+  ],
+  "practice_r3": [
+    {
       "id": "R3_01",
-      "section": "practice_r3",
       "difficulty": 3,
       "question": "Frequency table: Mon 7, Tue 5, Wed 9, Thu 6, Fri 3. On which two days combined did the same number of books get checked out as on Wednesday?",
       "data_table": {
@@ -990,11 +2501,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_data",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "9와 같은 합을 찾는 대신 가장 큰 합(Mon+Tue=12) 선택",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "Tue+Fri=5+3=8 ≠ 9"
+        }
+      ],
+      "math_note": "Wed = 9. Thu + Fri = 6 + 3 = 9. They match.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R3_02",
-      "section": "practice_r3",
       "difficulty": 3,
       "question": "Frequency table: Hiking 8, Camping 11, Fishing 5, Swimming 14. How many more students chose the two most popular activities combined than the two least popular combined?",
       "data_table": {
@@ -1030,11 +2576,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_data",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "상위 2개와 하위 2개를 잘못 분류 (순위 오식별)",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "상위2합(25)을 그대로 제출"
+        }
+      ],
+      "math_note": "Most popular: Swimming 14 + Camping 11 = 25. Least popular: Fishing 5 + Hiking 8 = 13. 25 − 13 = 12.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R3_03",
-      "section": "practice_r3",
       "difficulty": 3,
       "question": "Frequency table: Fiction 16, Nonfiction 9, Poetry 5, Comics 10. The library wants each category to have at least 10 books. How many more books are needed in total?",
       "data_table": {
@@ -1070,11 +2651,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_data",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M05",
+          "description": "Poetry(5) 부족분만 답하고 Nonfiction(1) 누락",
+          "citation": "EngageNY G3 M6 L2 — 복수 카테고리 합산 누락"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "Comics가 10이므로 추가 필요 없다고 판단하여 1만 계산"
+        }
+      ],
+      "math_note": "Fiction: OK. Nonfiction needs 1 more. Poetry needs 5 more. Comics: OK. Total = 1 + 5 = 6.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R3_04",
-      "section": "practice_r3",
       "difficulty": 3,
       "question": "Frequency table: Juice 13, Water 8, Milk 7, Soda 2. The teacher says 'The number of students who chose Juice is the same as the number who chose Water and Milk together.' Is the teacher correct?",
       "data_table": {
@@ -1110,11 +2726,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_data",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "Water+Milk=15 계산 후 Juice(13)와의 비교 단계 누락 → '같다'고 오답",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "Water+Milk를 15로 올바르게 계산하나 '같다'로 잘못 결론"
+        }
+      ],
+      "math_note": "Juice = 13. Water + Milk = 8 + 7 = 15. 13 ≠ 15. The teacher is not correct.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R3_05",
-      "section": "practice_r3",
       "difficulty": 3,
       "question": "Tally table: Roses 𝍸𝍸|||, Tulips 𝍸||, Daisies 𝍸𝍸𝍸, Sunflowers ||||. The gardener plants 2 more of the least popular flower. What is the new total of all flowers?",
       "data_table": {
@@ -1150,8 +2801,43 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how organize data works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_data",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "Sunflowers 탤리 |||| = 4를 3 또는 5로 오독하여 최솟값 오식별",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "2가 아닌 4를 더하여 39+4=43"
+        }
+      ],
+      "math_note": "Original total: 13+7+15+4 = 39. Least popular = Sunflowers (4). Add 2 → 39 + 2 = 41.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.1 — Problem Solving: Organize Data",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "탤리표·빈도표로 데이터 정리 및 비교 문제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lessons 1–2 — Collecting and Displaying Data",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "탤리표·빈도표 읽기·작성, 비교 연산 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 탤리·빈도표 해석 및 비교 문제"
+        }
       }
     }
-  ],
-  "concept": "organize_data"
+  ]
 }
