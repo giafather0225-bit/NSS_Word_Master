@@ -505,7 +505,7 @@ Auxiliary modules still bundled but not direct tabs:
 - English/Math shared: `.pp-stage-list/-head/-acc` (+ `--good/ok/low`), `.pp-table-wrap` (sticky header), `.pp-section-title--icon`, `.pp-phase-pill`.
 - Settings: `.pp-form-row`, `.pp-toggle-row`, `.pp-rep-preview`.
 
-Cache busters in `child.html`: `parent.css?v=12`, `bundle-a.min.js?v=9` (bump on every parent-* / CSS change so service worker re-fetches).
+Cache busters in `child.html` are auto-managed by `build.sh` — every run rewrites all `?v=...` markers to a single content hash derived from the freshly built bundles + every CSS file. **Do not bump versions by hand.** A server restart (which re-runs `build.sh` via lifespan) is enough to invalidate stale browser/service-worker caches.
 
 ---
 
