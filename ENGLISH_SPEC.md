@@ -416,3 +416,518 @@ CKLA의 핵심 원칙은 **지식 축적형 커리큘럼**이다. 단순 독해 
 | L.3.6 | Tier 2 academic vocabulary | Daily Words + CKLA Vocabulary |
 
 > L.3.1h·L.3.1i: CKLA 커버 없음 → 보강 자료 출처를 섹션 7에서 결정.
+
+---
+
+## Section 6 — Lesson Flow (구현 기준)
+
+> 이 섹션은 실제 소스 코드(`ckla.js`, `ckla-lesson.js`, `daily-words.js`, `daily-words-weekly.js`, `ckla-review.js`)를 직접 분석한 구현 기준 문서다. 스펙과 구현이 어긋날 경우 이 섹션이 진실 기준(source of truth).
+
+---
+
+### 6.1 CKLA 레슨 탭 구조 및 잠금 정책
+
+레슨 화면은 **7개 탭**으로 구성된다.
+
+#### 탭 목록
+
+| 탭 ID | 표시명 | 분류 | 초기 잠금 여부 |
+|---|---|---|---|
+| `reading` | Read | 핵심 | ❌ (항상 열림) |
+| `vocab` | Words | 핵심 | ✅ (reading_done까지) |
+| `questions` | Q&A | 핵심 | ✅ (reading_done까지) |
+| `word-work` | Word Work | 핵심 | ✅ (reading_done까지) |
+| `spelling` | Spelling | 참조 | ❌ (항상 열림) |
+| `grammar` | Grammar | 참조 | ❌ (항상 열림) |
+| `morphology` | Morphology | 참조 | ❌ (항상 열림) |
+
+#### 잠금 해제 트리거
+
+```
+POST /api/academy/ckla/lessons/{id}/progress  {reading_done: true}
+  → progress.reading_done = true
+  → _cklaUpdateTabLocks() 재호출
+  → vocab / questions / word-work 탭 잠금 해제
+```
+
+- `refTabs = new Set(['spelling', 'grammar', 'morphology'])` — 참조 탭은 잠금 로직에서 완전 제외
+- 잠긴 탭 클릭 시: 아무 동작 없음 (클릭 이벤트 무시)
+
+#### 완료 기준 (4탭 모두)
+
+| 탭 | 완료 조건 | 서버 필드 |
+|---|---|---|
+| Read | "Done Reading" 버튼 클릭 | `reading_done: true` |
+| Words | 단어 카드 끝까지 + 퀴즈 ≥ 2/3 정답 | `vocab_done: true` |
+| Q&A | 모든 질문 제출 완료 | `questions_attempted` ≥ 전체 문항 수 |
+| Word Work | 답안 제출 | `word_work_done: true` |
+
+4탭 전부 완료 → `progress.completed = true` (서버가 자동 설정) → 완료 플로우 진입.
+
+---
+
+### 6.2 핵심 탭별 상세 플로우
+
+#### 6.2.1 Read (읽기) 탭
+
+```
+진입
+  → 타이머 시작 (서버 측 time_taken 기록)
+  → 지문 파싱: _parsePassage()
+      - § 마커(§, 섹션 구분자)로 1차 분리
+      - >80자 + 문장 종결 기호 + 다음 줄 대문자 → 문단 분리
+  → 문단 카드 렌더링 (인덱스 0부터)
+
+사용자 상호작용:
+  [문단 클릭 또는 재생 버튼]
+    → _cklaReadParagraph(idx)
+    → TTS: POST /api/tts/sentence {text, voice:'en-US-AriaNeural', rate:0.85}
+    → 해당 문단에 .ckla-para-active 클래스 → 하이라이트
+    → 재생 완료 시 다음 문단으로 자동 이동
+
+  [Listen All 버튼]
+    → _cklaReadAloud()
+    → 전체 지문 순서대로 TTS 연속 재생
+
+  [폰트 크기 버튼: sm / md / lg]
+    → localStorage['ckla_font_size'] 에 저장
+    → 즉시 적용 (새로고침 없이)
+
+  [Done Reading 버튼]
+    → _markReadingDone()
+    → POST /api/academy/ckla/lessons/{id}/progress {reading_done: true}
+    → 성공 시 → _cklaUpdateTabLocks() → vocab/questions/word-work 잠금 해제
+```
+
+**TTS 폴백 체인:** edge-tts (en-US-AriaNeural, rate 0.85) → browser `speechSynthesis` API
+
+---
+
+#### 6.2.2 Words (어휘) 탭
+
+```
+진입
+  → GET /api/academy/ckla/lessons/{id}  (lesson.words 배열 사용)
+  → 단어 카드 브라우저 렌더링
+      카드: 단어 / 품사 / 정의 / 예문(example_1) / TTS 버튼
+  → "Take Quiz" 버튼: 비활성화 (마지막 카드 도달 전)
+
+카드 탐색:
+  → 이전/다음 버튼으로 이동
+  → 마지막 카드 도달(atEnd = true) → "Take Quiz (3 questions)" 활성화
+
+[Take Quiz 버튼]
+  → _startVocabQuiz()
+  → 3문항 순서대로 출제 (단어 → 4개 정의 보기, 1개 정답)
+  → 문항 사이: 900ms 자동 딜레이
+  → 완료 후 채점:
+      pass 기준: 정답 수 ≥ Math.ceil(총 문항 × 2/3)  → 2/3 = 최소 2문항
+  → pass: POST /api/academy/ckla/lessons/{id}/progress {vocab_done: true}
+  → fail: "Try again" → 퀴즈 재시작 (카드 브라우저 재진입 없이)
+```
+
+---
+
+#### 6.2.3 Q&A (질문과 답변) 탭
+
+```
+진입
+  → GET /api/academy/ckla/lessons/{id}  (lesson.questions 배열)
+  → 질문 1개씩 순서대로 표시
+  → 각 질문: 종류 배지(Literal / Inferential / Evaluative) + 질문 텍스트 + textarea
+
+[답안 제출]
+  → _submitAnswer(questionId)
+  → POST /api/academy/ckla/questions/{id}/answer  {user_answer: "..."}
+  → 응답: {score: 0|1|2, feedback: "..."}
+      score 0 → ✗ (틀림)
+      score 1 → △ (부분 정답)
+      score 2 → ✓ (정답)
+  → 결과 표시 후 → "Next Question" 버튼으로 이동
+  → 캐시: _cklaResponses Map에 questionId → {score, feedback} 저장
+
+완료 판정:
+  → 별도 "완료" 버튼 없음
+  → 서버가 questions_attempted 카운트 추적
+  → 전체 질문 제출 완료 → questions_done: true (서버 자동 설정)
+```
+
+**AI 채점 로직 (서버측 `services/ckla_grader.py`):**
+- Literal: 키워드 매칭 + 의미 유사도
+- Inferential/Evaluative: Ollama(gemma2:2b) → Gemini 폴백
+- 점수 기준: 0 = 관련 없음, 1 = 부분적으로 정확, 2 = 완전 정확
+
+---
+
+#### 6.2.4 Word Work (단어 활용) 탭
+
+```
+진입
+  → lesson.word_work_word 필드의 집중 단어 표시
+  → textarea: "Write a sentence using this word"
+
+[Hint 버튼 (토글)]
+  → 정의(definition) + 예문(example_1) 표시
+  → 토글 방식 (열기/닫기)
+
+[제출 버튼]
+  → _markWordWorkDone()
+  → 유효성 검사: 빈 입력 → 오렌지 테두리 (var(--review-primary)) + 포커스
+  → POST /api/academy/ckla/lessons/{id}/progress
+        {word_work_done: true, word_work_answer: "사용자 입력"}
+  → 서버측 유사도 검증: answer와 힌트(definition) 간 80% 이상 유사도
+      → 80% 미만: 오답으로 처리 (완료는 됨, 정확도 기록에만 영향)
+  → 완료: word_work_done = true
+```
+
+---
+
+### 6.3 참조 탭 (Spelling / Grammar / Morphology)
+
+참조 탭은 잠금 정책에서 제외되며 **레슨 진행과 무관하게 언제든 접근** 가능하다.
+
+#### Unit 1 특수 처리
+
+Unit 1(Classic Tales)은 문법/형태소 내용이 없으므로 참조 탭에서 안내 메시지 표시:
+
+```
+"Unit 1 is a review unit — [Spelling / Grammar / Morphology topics] begin in Unit 2."
+```
+
+#### Spelling 탭
+
+```
+GET /api/academy/ckla/spelling/{unit}
+→ {weeks: [{week, pattern, words, challenge_words}]}
+
+표시: 주차별 패턴 카드
+  - week: "Week 1" 등
+  - pattern: 철자 규칙 설명
+  - words: 연습 단어 목록
+  - challenge_words: 심화 단어 목록
+
+[Practice 버튼]
+  → startSpellingPractice(weekJson, unit)
+  → 별도 철자 연습 화면 진입
+```
+
+#### Grammar 탭
+
+```
+GET /api/academy/ckla/grammar/{unit}
+→ {topics: ["nouns and verbs", "adjectives and adverbs", ...]}
+
+표시: 해당 Unit의 문법 주제 목록 (텍스트 리스트)
+데이터 소스: data/ckla_source/grammar_morphology.json
+```
+
+#### Morphology 탭
+
+```
+GET /api/academy/ckla/morphology/{unit}
+→ {topics: ["suffixes (-ed and -ing)", "prefixes (un- and non-)", ...]}
+
+표시: 해당 Unit의 형태소 주제 목록 (텍스트 리스트)
+데이터 소스: data/ckla_source/grammar_morphology.json
+```
+
+---
+
+### 6.4 레슨 완료 플로우
+
+```
+progress.completed = true 감지 (4탭 전부 완료 후 서버 응답)
+  ↓
+_maybeShowDifficultyPrompt(prog) 호출
+  ↓
+1단계: 완료 축하 버스트 (1.6초)
+  → "★ Lesson Complete!" 텍스트 + CSS 애니메이션
+  → 1,600ms 후 자동 해제
+
+  ↓
+2단계: 난이도 평가 오버레이
+  → 3개 버튼: Easy / Just right / Hard
+  → 선택 시: POST /api/academy/ckla/lessons/{id}/difficulty  {rating: "easy"|"just_right"|"hard"}
+  → 즉시 다음 단계 진행 (서버 응답 대기 없음)
+
+  ↓
+3단계: Domain Test 배너 확인
+  → _maybeShowDomainTestBanner()
+  → 해당 Domain의 모든 레슨 완료 여부 확인
+  → 미완료: 배너 미표시, 레슨 목록으로 복귀
+  → 완료: "Domain Test Available" 배너 표시
+      → [Start Domain Test] 버튼 → openDomainTest(domainId) 호출
+
+XP 지급: +15 (첫 완료만, 서버측 중복 방지)
+```
+
+---
+
+### 6.5 Domain Test 플로우
+
+**진입:** Domain의 모든 레슨 완료 후 자동 해제. `openDomainTest(domainId)` 호출.
+
+**구성:** 총 10문항
+
+| 유형 | 문항 수 | 방식 |
+|---|---|---|
+| vocab_mc | 3 | 정의 → 단어 선택 (A/B/C/D 4지선다) |
+| vocab_fill | 2 | 정의 제시 → 단어 직접 입력 (Enter로 제출) |
+| Q&A | 5 | 질문 + textarea → AI 채점 |
+
+**채점 및 통과:**
+
+```
+POST /api/academy/ckla/domains/{id}/test
+  body: {answers: [...], time_taken_seconds: N}
+  →응답: {score: N, total: 10, passed: bool, ...}
+
+통과 기준: score ≥ 8 / 10 (80%)
+```
+
+**재시도 정책:**
+- 실패 시 즉시 재시도 가능 (잠금 없음)
+- 3회 연속 실패 시: Parent Dashboard에 경고 플래그 설정
+
+**통과 후:**
+- 배지 자동 지급: POST `/api/academy/ckla/badges/check?grade=3` (best-effort)
+- XP: +30
+- Domain 완료 상태 → 사이드바 배지 업데이트
+
+---
+
+### 6.6 Grade Final Test 플로우
+
+**진입 조건:** 11개 Domain 전부 완료. `showGradeFinalTest()` 호출.
+
+**구성:** 총 27문항
+
+| 유형 | 문항 수 | 방식 |
+|---|---|---|
+| vocab_mc | 15 | 정의 → 단어 선택 (4지선다) |
+| word_work | 2 | 집중 단어 → 문장 작성 |
+| Q&A | 10 | Literal×4 + Inferential×4 + Evaluative×2 |
+
+**통과 기준:** score ≥ 22 / 27 (≈ 80%)
+
+**결과 처리:**
+
+```
+통과 시:
+  → XP +100
+  → 배지 "CKLA G3 Master" 지급
+  → POST /api/academy/ckla/badges/check?grade=3
+  → 축하 화면 표시
+
+실패 시:
+  → _cklaRenderFinalTestWait() 호출
+  → 24시간 카운트다운 타이머 표시
+  → 틀린 문항 목록 + 복습 버튼
+  → 24시간 후 재시도 해제 (서버측 잠금)
+```
+
+**3회 연속 실패:**
+- Parent Dashboard: "G4 강제 해제" 버튼 노출
+- 학습 상태: Grade Final Test 대기 화면 유지
+
+---
+
+### 6.7 Daily Words 7일 사이클
+
+**진입:** `GET /api/daily-words/today`
+
+```
+응답: {
+  cycleDay: 1~7,
+  sessionType: "placement"|"study"|"weekly",
+  alreadyDoneToday: bool,
+  words: [...],
+  currentIndex: 0
+}
+```
+
+**오늘 이미 완료한 경우 (Day 7 제외):**
+```
+alreadyDoneToday = true && cycleDay !== 7
+→ "Done for today! Come back tomorrow." 화면
+→ 더 이상 진행 불가
+```
+
+#### Day 1 — 진단 퀴즈 (Placement)
+
+```
+sessionType = "placement" (cycleDay === 1)
+→ _dwRenderPlacementIntro() → 진단 시작
+
+각 단어: MC 퀴즈 (단어 → 정의 보기 4개)
+  → 정답: 이미 아는 단어 (복습 필요도 낮음)
+  → 오답: 이번 주 집중 단어로 지정
+
+결과: POST /api/daily-words/day1-result
+  → {failed_word_ids: [...]} 전송
+  → 이 단어들이 Day 2~6 플래시카드 학습 대상
+```
+
+#### Day 2~6 — 플래시카드 학습 (Study)
+
+```
+sessionType = "study"
+→ 플래시카드 브라우저
+
+각 카드:
+  앞면: 단어 + TTS 버튼
+  뒤면: 정의 + 예문
+
+상태 관리:
+  status = 'ok'     → 완료 처리 (다음 카드 자동 이동)
+  status = 'auto-pass' → 완료 처리
+
+전체 완료:
+  → POST /api/daily-words/complete
+  → XP +10
+  → "See you tomorrow!" 화면
+```
+
+#### Day 7 — 주간 스펠링 테스트 (Weekly Test)
+
+```
+sessionType = "weekly" (cycleDay === 7)
+→ dwRenderWeeklyIntro()
+→ 인트로 화면: "You need 90% to pass and earn +10 XP"
+
+각 문항:
+  → 정의 표시 + TTS
+  → 사용자가 단어 직접 입력 (스펠링)
+  → dwWeeklySubmit() → 채점 → dwWeeklyNext()
+
+결과 (dwFinishWeekly):
+  pass 기준: 정답률 ≥ 0.9 (90%)
+
+  통과:
+    → POST /api/daily-words/weekly-test/result {passed: true, ...}
+    → XP +10
+    → 사이클 리셋 (새 단어 세트로 Day 1 재시작)
+    → _dwRenderWeeklyResult(correct, total, passed=true, xpAwarded=10, newGrade)
+
+  실패:
+    → POST /api/daily-words/weekly-test/result {passed: false, ...}
+    → XP 없음
+    → 사이클 리셋 (실패해도 새 사이클 시작)
+    → 화면: "Score X% — need 90% to pass. New cycle begins now."
+```
+
+---
+
+### 6.8 SM-2 Review 플로우
+
+**진입:** `showCKLAReview()` 호출 → `GET /api/academy/ckla/review/due`
+
+```
+응답: {words: [{id, word, part_of_speech, definition, audio_url, example_1}, ...]}
+
+words 비어있는 경우:
+  → _cklaRenderReviewEmpty() 호출
+  → "No words to review today!" 화면
+  → "Keep studying lessons — new review words will appear tomorrow."
+  → 더 이상 진행 없음
+```
+
+**3단계 상태 머신: `prompt` → `result` → (다음 단어로) `prompt` → ... → `summary`**
+
+#### Phase 1: Prompt
+
+```
+표시:
+  - 단어 (크게)
+  - 품사 (있는 경우)
+  - 오디오 버튼 (audio_url 있는 경우)
+  - 입력 필드: "Type the meaning of this word"
+  - 진행 바: N / 총 단어 수 + 현재 정답 수 ✓
+
+버튼:
+  [Show Answer] → _cklaRevShowAnswer(): 오답 처리 + result 화면
+  [Check]       → _cklaRevCheck(): 답안 검증
+  [Enter 키]    → _cklaRevCheck() 동일
+```
+
+#### 답안 검증 (_cklaRevMatchAnswer)
+
+퍼지 매칭 로직 (순서대로 적용):
+
+```
+1. 정규화: 소문자 변환 + 비영숫자 제거
+2. 완전 일치: ua === def → 정답
+3. 포함 일치: def.includes(ua) && ua.length > 3 → 정답
+4. 키워드 매칭:
+   - 정의에서 불용어(stop words) 제외한 핵심 단어 추출
+   - 사용자 입력의 단어와 비교 (stem prefix 매칭 포함)
+   - 매칭 비율 ≥ 0.4 (40%) → 정답
+
+불용어 예시: a, an, the, is, are, to, of, in, for, and, that, ...
+```
+
+#### Phase 2: Result
+
+```
+POST /api/academy/ckla/review/result
+  body: {word_id: N, is_correct: bool, attempts: N}
+
+표시:
+  - 정답: "✓ Correct!" (green, .ckla-review-correct)
+  - 오답: "✗ Not quite" (red, .ckla-review-wrong)
+  - 정의 표시 (항상)
+  - 예문 표시 (example_1, 있는 경우)
+  - [Next Word →] 또는 [See Results] 버튼
+```
+
+#### Phase 3: Summary
+
+```
+모든 단어 완료 시:
+  pct = round(correct / total × 100)
+
+  pct ≥ 80: "🌟 Excellent work!"
+  pct ≥ 50: "👍 Good effort!"
+  pct < 50: "💪 Keep practicing!"
+
+  표시: 정답 수 / 총 단어 수 + 퍼센트 + 메시지
+  [Done] 버튼 → hideCKLAView()
+
+XP: 서버측 자동 처리 (UI에 미표시)
+```
+
+---
+
+### 6.9 플로우 상태 전환 요약
+
+```
+CKLA 메인 화면 (Domain 목록)
+  └─→ Domain 선택 → Lesson 목록
+        └─→ Lesson 선택 → 레슨 탭 화면
+              ├─→ Read 탭 (항상 접근 가능)
+              │     └─→ "Done Reading" → vocab/Q&A/Word Work 잠금 해제
+              ├─→ Words 탭 (reading_done 후)
+              │     └─→ 카드 끝 → 퀴즈 → pass → vocab_done
+              ├─→ Q&A 탭 (reading_done 후)
+              │     └─→ 전 문항 제출 → questions_done
+              ├─→ Word Work 탭 (reading_done 후)
+              │     └─→ 답안 제출 → word_work_done
+              └─→ [4탭 완료] → progress.completed = true
+                    → 1.6s 버스트 → 난이도 평가 → Domain Test 배너 확인
+
+Domain Test (Domain 완료 후 해제)
+  └─→ 10문항 → 80% 통과 → 배지 + XP +30
+        → 11개 Domain 모두 완료 → Grade Final Test 해제
+
+Grade Final Test
+  └─→ 27문항 → 80% 통과 → "CKLA G3 Master" 배지 + XP +100
+        → 실패: 24시간 잠금 → 재시도
+
+Daily Words (별도 진입점)
+  └─→ Day 1: 진단 퀴즈 → 집중 단어 결정
+  └─→ Day 2~6: 플래시카드 → +10 XP
+  └─→ Day 7: 스펠링 테스트 → 90% 통과 → +10 XP → 사이클 리셋
+
+SM-2 Review (별도 진입점)
+  └─→ due 단어 목록 → prompt → result → (반복) → summary
+```
