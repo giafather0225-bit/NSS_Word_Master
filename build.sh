@@ -122,4 +122,21 @@ cat \
   | npx esbuild --minify --legal-comments=none --loader=js > $OUT/bundle-c.min.js
 echo "  bundle-c.min.js done ($(wc -c < $OUT/bundle-c.min.js) bytes)"
 
+# ─── Cache-bust child.html ──────────────────────────────────────────────
+# Compute a single build hash from the freshly built bundles + every CSS
+# file. Then rewrite every "?v=..." in child.html to that hash so a single
+# server restart invalidates stale browser / service-worker caches across
+# the board. No more bumping per-file versions by hand.
+HTML="frontend/templates/child.html"
+if [ -f "$HTML" ]; then
+  BUILD_ID=$(cat \
+    $OUT/bundle-a.min.js $OUT/bundle-b.min.js $OUT/bundle-c.min.js \
+    frontend/static/css/*.css \
+    | shasum | cut -c1-8)
+  # BSD sed (macOS) and GNU sed (Linux) both accept `-i.bak` + cleanup.
+  sed -i.bak -E "s/\?v=[A-Za-z0-9]+/?v=$BUILD_ID/g" "$HTML"
+  rm -f "$HTML.bak"
+  echo "  cache-bust applied: ?v=$BUILD_ID"
+fi
+
 echo "Done."
