@@ -931,3 +931,150 @@ Daily Words (별도 진입점)
 SM-2 Review (별도 진입점)
   └─→ due 단어 목록 → prompt → result → (반복) → summary
 ```
+
+---
+
+## Section 7 — Content Validation Plan
+
+> 이 섹션은 앱이 CCSS G3 ELA Language strand를 실제로 얼마나 커버하는지 검증하고, 미커버 항목의 처리 방침을 결정한다.
+
+---
+
+### 7.1 CCSS L.3 커버리지 최종 판정
+
+| L 코드 | 기준 | 앱 커버 여부 | 커버 위치 | 판정 |
+|---|---|---|---|---|
+| L.3.1a | Subject-verb agreement | ✅ | Grammar U2~U4 | 커버 |
+| L.3.1b | Regular / irregular plurals | ✅ | Grammar U3 | 커버 |
+| L.3.1c | Abstract nouns | ✅ | Grammar U2 | 커버 |
+| L.3.1d | Verb tenses (present / past / future) | ✅ | Grammar U4 | 커버 |
+| L.3.1e | Compound / complex sentences | ✅ | Grammar U2, U5 | 커버 |
+| L.3.1f | Adjectives and adverbs | ✅ | Grammar U2, U5 | 커버 |
+| L.3.1g | Subordinating / coordinating conjunctions | ✅ | Grammar U5~U7, U11 | 커버 |
+| L.3.1h | Commas in compound sentences | ❌ | — | **제외 (가을)** |
+| L.3.1i | Capitalization / punctuation in writing | ❌ | — | **제외 (가을)** |
+| L.3.2 | Spelling conventions | ❌ | — | **제외 (가을)** |
+| L.3.4 | Context clues for word meaning | ✅ | Vocabulary + Q&A | 커버 |
+| L.3.4b | Affixes and roots | ✅ | Morphology U2~U11 | 커버 |
+| L.3.4c | Root word meaning | ✅ | Morphology U2~U11 | 커버 |
+| L.3.5 | Word relationships and nuances | ✅ | Word Work + Vocabulary | 커버 |
+| L.3.6 | Tier 2 academic vocabulary acquisition | ✅ | Daily Words + CKLA Vocabulary | 커버 |
+
+**커버율: 12 / 15 항목 (80%)**
+
+---
+
+### 7.2 미커버 항목 처리 방침
+
+#### L.3.1h — Commas in Compound Sentences
+
+- **현황:** CKLA G3 도메인 텍스트에서 쉼표 규칙을 명시적으로 다루지 않음
+- **결정: 2026 가을 학기 스코프로 이연**
+  - 시기: 2026년 9월 이후 Phase 2
+  - 방법: Grammar 탭에 Unit별 미니 퀴즈 추가 (옵션 C) — 개발 비용 최소화
+  - 임시 대응: Word Work 자유 작문에서 부수적 노출은 되나 채점 기준에 포함 안 됨
+
+#### L.3.1i — Capitalization and Punctuation in Writing
+
+- **현황:** Word Work 답안 서버 유사도 검증 시 구두점 무시 (정규화 과정에서 제거)
+- **결정: 2026 가을 학기 스코프로 이연**
+  - 시기: 2026년 9월 이후 Phase 2
+  - 방법: Word Work 채점 기준 확장 — 대문자 + 마침표 존재 여부 가산점
+
+#### L.3.2 — Spelling Conventions
+
+- **현황:** Spelling 탭(참조 전용)에서 패턴 제시만 함. 채점 없음.
+- **결정: 2026 가을 학기 스코프로 이연**
+  - 현재 Daily Words Day 7 스펠링 테스트가 부분 대체 역할 수행
+  - Phase 2에서 Spelling 탭에 채점형 연습 추가 검토
+
+---
+
+### 7.3 Q&A 문항 유형 분포 검증
+
+CKLA G3 레슨 Q&A는 **Bloom's Taxonomy** + **Webb's DOK** 기준으로 3종류로 분류된다.
+
+| 유형 | 설명 | 목표 비율 | 실제 분포 기준 |
+|---|---|---|---|
+| Literal | 텍스트에 명시된 사실 질문 | 40% | 5문항 중 2문항 |
+| Inferential | 텍스트 근거로 추론 요구 | 40% | 5문항 중 2문항 |
+| Evaluative | 자신의 의견·판단 요구 | 20% | 5문항 중 1문항 |
+
+**Domain Test Q&A (5문항):** 동일 비율 적용 — Literal 2 + Inferential 2 + Evaluative 1  
+**Grade Final Test Q&A (10문항):** Literal 4 + Inferential 4 + Evaluative 2
+
+---
+
+### 7.4 Vocabulary 문항 분포 검증
+
+#### 레슨 내 퀴즈 (3문항)
+- 해당 레슨 vocabulary 단어에서 랜덤 추출
+- 보기 4개: 정답 1 + 오답 3 (다른 레슨 단어에서 추출)
+- 최소 통과: 2/3 (≈ 67%)
+
+#### Domain Test vocab (5문항: 3 MC + 2 Fill)
+- MC 3문항: Domain 전체 단어 풀에서 추출
+- Fill 2문항: MC 오답 단어 또는 고빈도 단어 우선
+
+#### Grade Final Test vocab (15문항)
+- 11개 Domain 전체 단어 풀에서 가중 랜덤 추출
+- SM-2 `ef < 2.0` (취약 단어) 우선 출제
+- 보기 오답: 동일 Domain 단어 우선 → 타 Domain 보조
+
+---
+
+### 7.5 Word Work 채점 기준 (현재 구현)
+
+```
+서버측 유사도 계산 (services/ckla_grader.py):
+  - 사용자 문장 정규화 (소문자 + 구두점 제거)
+  - 집중 단어 definition + example_1 과 코사인 유사도 계산
+  - 임계값: 0.80 (80%) 이상 → 정답 처리
+  - 임계값 미달: 완료는 됨, accuracy 기록에만 반영 (차단 없음)
+
+Phase 2 개선 예정:
+  - 대문자·마침표 유무 체크 (+L.3.1i 부분 커버)
+  - 집중 단어 포함 여부 필수 체크
+```
+
+---
+
+### 7.6 SM-2 간격 반복 스케줄 (CKLA 단어 기준)
+
+| 채점 결과 | 다음 복습 간격 |
+|---|---|
+| 정답 (is_correct=true), 1회 시도 | EF 상승 → 인터벌 × EF |
+| 정답 (is_correct=true), 2회 시도 | EF 유지 |
+| 오답 (is_correct=false) | EF 하강, 인터벌 1일로 리셋 |
+
+- 초기값: EF = 2.5, interval = 1일
+- 최대 간격: 설정 없음 (표준 SM-2)
+- `GET /api/academy/ckla/review/due`: 오늘 날짜 ≥ next_review_date 인 단어만 반환
+
+---
+
+### 7.7 데이터 품질 검증 체크리스트
+
+배포 전 아래 항목을 확인한다.
+
+| 항목 | 기준 | 검증 방법 |
+|---|---|---|
+| 레슨당 단어 수 | 5~15개 | `SELECT COUNT(*) FROM ckla_word_lessons GROUP BY lesson_id` |
+| 레슨당 질문 수 | 3~7개 | `SELECT COUNT(*) FROM ckla_questions GROUP BY lesson_id` |
+| word_work_word 필드 | 전 레슨에 존재 | `SELECT COUNT(*) FROM ckla_lessons WHERE word_work_word IS NULL` |
+| Domain당 레슨 수 | 5~15개 | `SELECT COUNT(*) FROM ckla_lessons GROUP BY domain_id` |
+| TTS 대상 텍스트 | 500자 이내 / 문단 | `ckla_grader.py` 전처리 단계 확인 |
+| Q&A 유형 분포 | Literal ≥ 1, Inf ≥ 1, Eval ≥ 1 / 레슨 | `SELECT kind, COUNT(*) FROM ckla_questions GROUP BY kind, lesson_id` |
+
+---
+
+### 7.8 Phase 2 백로그 (가을 학기)
+
+| 항목 | 설명 | 우선순위 |
+|---|---|---|
+| L.3.1h 미니 퀴즈 | Grammar 탭 Unit별 쉼표 퀴즈 추가 | P2 |
+| L.3.1i 채점 기준 확장 | Word Work 대문자·마침표 가산점 | P2 |
+| L.3.2 Spelling 채점 | Spelling 탭 채점형 전환 | P3 |
+| Word Work 필수 단어 체크 | 집중 단어 포함 여부 필수화 | P2 |
+| Q&A 재시도 허용 | 동일 문항 1회 재시도 (Inferential/Evaluative) | P3 |
+| 오프라인 지원 | 전체 레슨 데이터 캐싱 | P4 |
