@@ -166,3 +166,95 @@
 | `scripts/restore_from_backup.sh` | 백업 폴더에서 1-click DB 복구 | 개발자 부재 시 C 또는 엄마 |
 
 두 스크립트 모두 6/19 코드 프리즈 전 완성 및 테스트 완료 필수.
+
+---
+
+## 섹션 4. Reading-Science Based Pedagogy
+
+### 4.1 설계 기반 (Evidence Base)
+
+이 모듈의 교수법 설계는 아래 네 개 근거 체계를 따른다.
+
+| 근거 | 핵심 주장 | 이 모듈에서의 적용 |
+|---|---|---|
+| NRP (2000) Five Pillars | 읽기 = Phonemic Awareness + Phonics + Fluency + Vocabulary + Comprehension | C는 처음 두 항목 완료 → Fluency·Vocabulary·Comprehension 집중 |
+| Beck & McKeown (2002) | Tier 2 어휘가 학업 성취의 핵심 레버 | CKLA vocabulary + Daily Words = Tier 2 중심 선정 |
+| Hattie (2009) Meta-Analysis | 형성평가(d=0.73), 피드백(d=0.75), 인출 연습(d=0.67)이 고효과 전략 | SM-2 인출 연습, Q&A 즉시 피드백, 도메인 테스트 |
+| IES Practice Guide (2010) | 읽기 이해: 배경지식 활성화 + 추론 질문 + 독해 전략 명시적 교수 | CKLA 도메인 지식 축적 구조, Q&A 3분류(Literal·Inferential·Evaluative) |
+
+### 4.2 NRP Five Pillars — C 적용 매핑
+
+| Pillar | C 상태 | 모듈 처리 |
+|---|---|---|
+| Phonemic Awareness | 완료 | 다루지 않음 |
+| Phonics | 완료 | 다루지 않음 |
+| Fluency | 진행 중 | Read 탭 TTS + 문단별 하이라이트로 모델링 제공 |
+| Vocabulary | 집중 영역 | CKLA Words 탭 + Daily Words G3 + SM-2 복습 |
+| Comprehension | 집중 영역 | Q&A 탭 (Literal·Inferential·Evaluative 3분류) |
+
+> Spelling은 Fluency 범주에 속하나 6/19 release에서 제외 (데이터 미완성). 가을 추가 시 Fluency Pillar 보강.
+
+### 4.3 Tier 2 어휘 선정 원칙 (Beck & McKeown)
+
+**Tier 2 선정 기준 (세 가지 모두 충족):**
+1. 여러 도메인에 걸쳐 반복 출현 (domain-general)
+2. 교사 없이 스스로 쓸 수 있는 생산적 어휘
+3. G3 학교 지문에서 실제 마주칠 빈도
+
+**적용:**
+- CKLA D1~D11 vocabulary: 각 레슨의 정의·예문이 Tier 2 기준으로 큐레이션된 CKLA 원본 데이터 사용
+- Daily Words G3 (200단어): MW Elementary 기반 정의, 4개 주제 그룹으로 구성 (섹션 5에서 상세)
+- Tier 1 (일상어) / Tier 3 (전문 기술 용어)는 자동 필터링 안 함 — CKLA 커리큘럼이 이미 선별한 단어 목록 그대로 사용
+
+### 4.4 Q&A 3분류 설계 (IES + Bloom)
+
+| 유형 | 정의 | CKLA 출제 비율 | Bloom 레벨 |
+|---|---|---|---|
+| Literal | 본문에 명시적으로 있는 정보 | 40% | Remember / Understand |
+| Inferential | 본문 단서 + 배경지식 연결 | 40% | Analyze / Evaluate |
+| Evaluative | 주제·가치·저자 의도 판단 | 20% | Evaluate / Create |
+
+**채점 기준 (ckla_grader.py):**
+- Score 2: 정확하고 완전한 답변
+- Score 1: 방향은 맞으나 불완전
+- Score 0: 오답 또는 무응답
+
+**피드백 방식:** Socratic — 정답을 직접 알려주지 않고 본문의 어느 부분을 다시 읽으면 도움이 되는지 안내. 1회 재시도 허용.
+
+**외부 AI 사용:** Ollama gemma2:2b 우선 → 실패 시 Gemini-1.5-flash 유료 폴백. 개인정보 없이 passage + question + answer만 전송 (섹션 3.4 β 정책).
+
+### 4.5 인출 연습 설계 (Hattie + Cognitive Science)
+
+**SM-2 알고리즘 적용 대상:**
+- CKLA Words 탭 어휘 퀴즈 결과
+- Daily Words G3 주간 테스트 결과
+
+**간격 반복 원칙:**
+- 정답: 간격 늘림 (2일 → 7일 → 14일 → 30일)
+- 오답: 간격 초기화 후 짧은 간격 재학습
+- 목표: 학습 후 90일 시점 정답률 80% (섹션 1.6 성공 지표)
+
+**인출 강도 설계:**
+- Words 탭: 4지선다 (인식 수준)
+- Word Work 탭: 자유 타이핑 (인출 수준) — 힌트 유사도 80% 이상이면 오답 처리
+- Daily Words: Day 1 진단(70문항) → Day 2-6 학습 → Day 7 주간 테스트 (90% 통과 기준)
+
+### 4.6 형성평가 구조 (Hattie d=0.73)
+
+| 평가 시점 | 형태 | 피드백 속도 |
+|---|---|---|
+| 레슨 내 | Words 퀴즈 (3문항) | 즉시 |
+| 레슨 내 | Q&A 5문항 + 1회 재시도 | 즉시 (Socratic) |
+| 레슨 내 | Word Work 자유 타이핑 | 즉시 (유사도 점수) |
+| 도메인 완료 후 | Domain Test (10문항, 80% 기준) | 즉시 |
+| 전체 완료 후 | Grade Final Test (27문항, 80% 기준) | 즉시 |
+| 매일 | Daily Words 주간 사이클 | 주 1회 (Day 7) |
+
+### 4.7 배경지식 축적 설계 (Knowledge-Rich Curriculum)
+
+CKLA의 핵심 원칙은 **지식 축적형 커리큘럼**이다. 단순 독해 기술 훈련이 아니라 11개 도메인(고전·동물·인체·로마·빛·바이킹·천문·원주민·탐험·식민지·생태)을 통해 배경지식 자체를 쌓는다.
+
+**앱 설계에서의 반영:**
+- 도메인 완료 순서: 자유 선택 허용 (순서 강제 없음)
+- 도메인 간 어휘 연결: Daily Words 4개 주제 그룹이 CKLA 도메인과 주제적으로 겹치도록 설계
+- 지식 누적 가시화: 도메인 완료 배지 11개 — 지식 지형도처럼 표시
