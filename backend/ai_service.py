@@ -23,6 +23,9 @@ import json
 import logging
 import os
 import re
+import sqlite3
+import time
+from pathlib import Path
 from typing import Any
 
 import httpx
@@ -35,6 +38,7 @@ load_dotenv()
 log = logging.getLogger(__name__)
 
 # ── 설정 ─────────────────────────────────────────────────────────
+_AI_LOG_DB = Path.home() / "NSS_Learning" / "database" / "voca.db"
 OLLAMA_HOST      = os.environ.get("OLLAMA_HOST",      "http://127.0.0.1:11434")
 OLLAMA_OCR_MODEL = os.environ.get("OLLAMA_OCR_MODEL", "gemma2:2b")
 GEMINI_API_KEY   = os.environ.get("GEMINI_API_KEY",   "")
@@ -48,6 +52,42 @@ GEMINI_ENDPOINT  = (
 LONG_TEXT_THRESHOLD = 3_000
 # Ollama 품질 점수가 이 값 미만이면 Gemini로 폴백
 QUALITY_THRESHOLD = 0.55
+
+
+# ══════════════════════════════════════════════════════════════════
+# AI 호출 감사 로그
+# ══════════════════════════════════════════════════════════════════
+
+def _log_ai_call(
+    *,
+    provider: str,
+    caller: str,
+    prompt: str,
+    response: str,
+    success: bool,
+    latency_ms: int,
+    quality_score: float | None = None,
+    fallback_used: bool = False,
+    error_message: str | None = None,
+) -> None:
+    """ai_call_log 테이블에 fire-and-forget insert. 절대 예외를 올리지 않음."""
+    try:
+        conn = sqlite3.connect(str(_AI_LOG_DB), timeout=3)
+        conn.execute(
+            """INSERT INTO ai_call_log
+               (provider, caller, prompt_summary, response_summary,
+                success, latency_ms, quality_score, fallback_used, error_message)
+               VALUES (?,?,?,?,?,?,?,?,?)""",
+            (
+                provider, caller, prompt[:200], response[:200],
+                1 if success else 0, latency_ms, quality_score,
+                1 if fallback_used else 0, error_message,
+            ),
+        )
+        conn.commit()
+        conn.close()
+    except Exception:
+        pass  # 로깅이 메인 흐름을 방해해서는 안 됨
 
 
 # ══════════════════════════════════════════════════════════════════
@@ -219,31 +259,90 @@ async def refine_ocr_text(
     use_gemini_first = force_gemini or (len(ocr_text) > LONG_TEXT_THRESHOLD)
 
     if not use_gemini_first:
+        t0 = time.monotonic()
         try:
             raw = await _ollama_chat(prompt, timeout=120.0)
+            latency = int((time.monotonic() - t0) * 1000)
             entries = parse_json_array(raw)
             if entries is not None:
                 normalized = [_normalize_entry(e) for e in entries if e.get("word")]
                 score = quality_score(normalized)
                 log.debug("Ollama quality score: %.2f (%d entries)", score, len(normalized))
                 if score >= QUALITY_THRESHOLD:
+                    _log_ai_call(
+                        provider="ollama", caller="ai_service.refine_ocr_text",
+                        prompt=prompt, response=raw,
+                        success=True, latency_ms=latency, quality_score=score,
+                    )
                     return normalized, "ollama"
                 log.info("Ollama quality %.2f < threshold %.2f — falling back to Gemini",
                          score, QUALITY_THRESHOLD)
+                _log_ai_call(
+                    provider="ollama", caller="ai_service.refine_ocr_text",
+                    prompt=prompt, response=raw,
+                    success=False, latency_ms=latency, quality_score=score,
+                    fallback_used=True,
+                    error_message=f"quality {score:.2f} < threshold {QUALITY_THRESHOLD}",
+                )
             else:
+                latency = int((time.monotonic() - t0) * 1000)
                 log.info("Ollama returned non-JSON — falling back to Gemini")
+                _log_ai_call(
+                    provider="ollama", caller="ai_service.refine_ocr_text",
+                    prompt=prompt, response=raw,
+                    success=False, latency_ms=latency,
+                    fallback_used=True, error_message="non-JSON response",
+                )
         except Exception as exc:
+            latency = int((time.monotonic() - t0) * 1000)
             log.warning("Ollama error: %s — falling back to Gemini", exc)
+            _log_ai_call(
+                provider="ollama", caller="ai_service.refine_ocr_text",
+                prompt=prompt, response="",
+                success=False, latency_ms=latency,
+                fallback_used=True, error_message=str(exc)[:200],
+            )
 
     # Gemini 폴백 (또는 직행)
     provider = "gemini"
-    raw = await _gemini_generate(prompt)
+    t0 = time.monotonic()
+    try:
+        raw = await _gemini_generate(prompt)
+        latency = int((time.monotonic() - t0) * 1000)
+    except Exception as exc:
+        latency = int((time.monotonic() - t0) * 1000)
+        _log_ai_call(
+            provider="gemini", caller="ai_service.refine_ocr_text",
+            prompt=prompt, response="",
+            success=False, latency_ms=latency,
+            fallback_used=(not use_gemini_first), error_message=str(exc)[:200],
+        )
+        raise
     entries = parse_json_array(raw)
     if entries is None:
+        _log_ai_call(
+            provider="gemini", caller="ai_service.refine_ocr_text",
+            prompt=prompt, response=raw,
+            success=False, latency_ms=latency,
+            fallback_used=(not use_gemini_first), error_message="JSON parse failed",
+        )
         raise ValueError(f"Gemini 응답을 JSON으로 파싱 실패:\n{raw[:400]}")
     normalized = [_normalize_entry(e) for e in entries if e.get("word")]
     if not normalized:
+        _log_ai_call(
+            provider="gemini", caller="ai_service.refine_ocr_text",
+            prompt=prompt, response=raw,
+            success=False, latency_ms=latency,
+            fallback_used=(not use_gemini_first), error_message="no valid entries",
+        )
         raise ValueError("정제 결과에 유효한 단어 항목 없음")
+    score = quality_score(normalized)
+    _log_ai_call(
+        provider="gemini", caller="ai_service.refine_ocr_text",
+        prompt=prompt, response=raw,
+        success=True, latency_ms=latency, quality_score=score,
+        fallback_used=(not use_gemini_first),
+    )
     return normalized, provider
 
 
@@ -261,21 +360,75 @@ async def enrich_words(
     prompt  = _ENRICH_PROMPT.format(words_json=json.dumps(payload, ensure_ascii=False))
 
     if not force_gemini:
+        t0 = time.monotonic()
         try:
             raw = await _ollama_chat(prompt, timeout=90.0)
+            latency = int((time.monotonic() - t0) * 1000)
             entries = parse_json_array(raw)
             if entries:
                 normalized = [_normalize_entry(e) for e in entries if e.get("word")]
-                if quality_score(normalized) >= QUALITY_THRESHOLD:
+                score = quality_score(normalized)
+                if score >= QUALITY_THRESHOLD:
+                    _log_ai_call(
+                        provider="ollama", caller="ai_service.enrich_words",
+                        prompt=prompt, response=raw,
+                        success=True, latency_ms=latency, quality_score=score,
+                    )
                     return normalized, "ollama"
+                _log_ai_call(
+                    provider="ollama", caller="ai_service.enrich_words",
+                    prompt=prompt, response=raw,
+                    success=False, latency_ms=latency, quality_score=score,
+                    fallback_used=True,
+                    error_message=f"quality {score:.2f} < threshold {QUALITY_THRESHOLD}",
+                )
+            else:
+                _log_ai_call(
+                    provider="ollama", caller="ai_service.enrich_words",
+                    prompt=prompt, response=raw,
+                    success=False, latency_ms=latency,
+                    fallback_used=True, error_message="non-JSON or empty response",
+                )
         except Exception as exc:
+            latency = int((time.monotonic() - t0) * 1000)
             log.warning("Ollama enrich error: %s — falling back to Gemini", exc)
+            _log_ai_call(
+                provider="ollama", caller="ai_service.enrich_words",
+                prompt=prompt, response="",
+                success=False, latency_ms=latency,
+                fallback_used=True, error_message=str(exc)[:200],
+            )
 
-    raw = await _gemini_generate(prompt)
+    t0 = time.monotonic()
+    try:
+        raw = await _gemini_generate(prompt)
+        latency = int((time.monotonic() - t0) * 1000)
+    except Exception as exc:
+        latency = int((time.monotonic() - t0) * 1000)
+        _log_ai_call(
+            provider="gemini", caller="ai_service.enrich_words",
+            prompt=prompt, response="",
+            success=False, latency_ms=latency,
+            fallback_used=(not force_gemini), error_message=str(exc)[:200],
+        )
+        raise
     entries = parse_json_array(raw)
     if not entries:
+        _log_ai_call(
+            provider="gemini", caller="ai_service.enrich_words",
+            prompt=prompt, response=raw,
+            success=False, latency_ms=latency,
+            fallback_used=(not force_gemini), error_message="JSON parse failed",
+        )
         raise ValueError("Gemini enrich 파싱 실패")
-    return [_normalize_entry(e) for e in entries if e.get("word")], "gemini"
+    normalized = [_normalize_entry(e) for e in entries if e.get("word")]
+    _log_ai_call(
+        provider="gemini", caller="ai_service.enrich_words",
+        prompt=prompt, response=raw,
+        success=True, latency_ms=latency, quality_score=quality_score(normalized),
+        fallback_used=(not force_gemini),
+    )
+    return normalized, "gemini"
 
 
 async def generate_example(

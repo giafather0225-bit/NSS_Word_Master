@@ -46,7 +46,7 @@ from .math import (
     MathUnitTest,
     MathPlacementTest,
 )
-from .assistant import AssistantLog
+from .assistant import AssistantLog, AiCallLog
 from .us_academy import (
     USAcademyWord,
     USAcademyWordProgress,
@@ -84,8 +84,8 @@ __all__ = [
     "MathPlacementResult", "MathProblem", "MathProgress", "MathAttempt",
     "MathWrongReview", "MathFactFluency", "MathDailyChallenge", "MathKangarooProgress",
     "MathSpacedReview", "MathUnitTest", "MathPlacementTest",
-    # assistant
-    "AssistantLog",
+    # assistant / ai audit
+    "AssistantLog", "AiCallLog",
     # us academy (word-first, SM-2)
     "USAcademyWord", "USAcademyWordProgress", "USAcademyPassage",
     "USAcademySession", "USAcademyUnitResult",

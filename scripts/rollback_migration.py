@@ -80,6 +80,7 @@ MIGRATION_TABLES: dict[str, list[str]] = {
     ],
     "023": [],   # Column additions to island_shop_items
     "024": [],   # Column additions to island tables (decor extension)
+    "025": ["ai_call_log"],
 }
 
 
