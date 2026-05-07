@@ -24,10 +24,23 @@
     "Multiply or skip count to find totals",
     "Use half symbols for half values"
   ],
-  "items": [
+  "tier": "A",
+  "vertical_alignment": {
+    "prerequisite": "2.MD.D.10",
+    "successor": "4.MD.B.4"
+  },
+  "unit_intro_message": "U2에 오신 것을 환영합니다! 이 단원에서는 탤리표·빈도표·그림 그래프·막대 그래프로 데이터를 정리하고 읽는 방법을 배웁니다.",
+  "unit_close_message": "U2를 완료했습니다! 탤리표와 빈도표를 읽고 작성하며, 그림 그래프와 막대 그래프를 해석하는 능력을 갖추었습니다.",
+  "review_from_units": [
+    "U1"
+  ],
+  "interleave_ratio": 0.2,
+  "passing_threshold": 0.75,
+  "fluency_required": false,
+  "supplementary_video": "https://www.khanacademy.org/math/cc-third-grade-math/represent-and-interpret-data",
+  "pretest": [
     {
       "id": "PT_01",
-      "section": "pretest",
       "difficulty": 1,
       "question": "In a picture graph, each ⭐ = 2 votes. A category has 3 stars. How many votes is that?",
       "choices": [
@@ -37,11 +50,45 @@
         "D. 8"
       ],
       "answer": "C",
-      "explanation": "3 × 2 = 6."
+      "explanation": "3 × 2 = 6.",
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_picture_graph",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "키(×2) 무시하고 심볼 수(3) 그대로 제출",
+          "citation": "Friel et al. (2001) p.130 — 그림 그래프 스케일 오독"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "3×2=6이 아닌 3×3=9로 계산"
+        }
+      ],
+      "math_note": "3 × 2 = 6.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "PT_02",
-      "section": "pretest",
       "difficulty": 1,
       "question": "In a picture graph, each 🍎 = 4 students. How many students does half an apple (½🍎) represent?",
       "choices": [
@@ -51,11 +98,45 @@
         "D. 8"
       ],
       "answer": "B",
-      "explanation": "Half of 4 = 2."
+      "explanation": "Half of 4 = 2.",
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_half_symbol",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "½ 심볼을 1 심볼로 읽어 반이 아닌 키 값(4) 전체 제출",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "절반 계산 오류: ½×4=1로 잘못 계산"
+        }
+      ],
+      "math_note": "Half of 4 = 2.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "PT_03",
-      "section": "pretest",
       "difficulty": 2,
       "question": "Picture graph: Cats has 5 symbols, Dogs has 3 symbols. Each symbol = 2 students. How many more students chose Cats than Dogs?",
       "data_table": {
@@ -80,11 +161,45 @@
         "D. 8"
       ],
       "answer": "B",
-      "explanation": "Cats = 5×2 = 10. Dogs = 3×2 = 6. 10 − 6 = 4."
+      "explanation": "Cats = 5×2 = 10. Dogs = 3×2 = 6. 10 − 6 = 4.",
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_picture_graph",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "'더 많은' 질문에서 Cats+Dogs=16 덧셈 수행",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "Cats 값(10)만 제출"
+        }
+      ],
+      "math_note": "Cats = 5×2 = 10. Dogs = 3×2 = 6. 10 − 6 = 4.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "PT_04",
-      "section": "pretest",
       "difficulty": 2,
       "question": "Picture graph key: Each ⭐ = 4 students. Scores: 100 has 5 stars, 95 has 3 stars, 90 has 2 stars. How many students in all scored 100 or 95?",
       "data_table": {
@@ -111,11 +226,45 @@
         "D. 40"
       ],
       "answer": "C",
-      "explanation": "100: 5×4=20. 95: 3×4=12. 20+12=32."
+      "explanation": "100: 5×4=20. 95: 3×4=12. 20+12=32.",
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M05",
+          "description": "100점(20명) 구한 후 합산 2단계 미완료",
+          "citation": "EngageNY G3 M6 — 중간 단계에서 멈춤"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "5+3=8 심볼 합 제출 (키 곱하기 누락)"
+        }
+      ],
+      "math_note": "100: 5×4=20. 95: 3×4=12. 20+12=32.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "PT_05",
-      "section": "pretest",
       "difficulty": 2,
       "question": "Picture graph key: Each 🌺 = 6 flowers. Roses has 4 symbols, Tulips has 2½ symbols. How many Tulips are there?",
       "data_table": {
@@ -140,41 +289,267 @@
         "D. 18"
       ],
       "answer": "C",
-      "explanation": "2½ × 6 = 15."
-    },
+      "explanation": "2½ × 6 = 15.",
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_half_symbol",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "2½ 심볼을 2로 읽어 2×6=12 계산",
+          "citation": "Friel et al. (2001) p.130 — 반 심볼 오독"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "3×6=18 (반올림 오류)"
+        }
+      ],
+      "math_note": "2½ × 6 = 15.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
+    }
+  ],
+  "learn": [
     {
-      "id": "LN_01",
-      "section": "learn",
-      "difficulty": 0,
+      "id": "LEARN_01",
       "type": "concept_card",
       "title": "Reading a Picture Graph",
       "content": "A picture graph uses symbols (pictures) to show data. The KEY tells you how many each symbol represents. To find the number for a category, count the symbols and multiply by the key value.",
-      "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "none",
+      "cpa_stage": "concrete",
+      "ccss": "3.MD.B.3",
+      "math_note": "A picture graph uses symbols (pictures) to show data. The KEY tells you how many",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
     },
     {
-      "id": "LN_02",
-      "section": "learn",
-      "difficulty": 0,
+      "id": "LEARN_02",
       "type": "concept_card",
       "title": "Half Symbols",
       "content": "Sometimes a picture graph uses half a symbol. If each symbol = 4, then half a symbol = 2. This lets us show numbers that are not exact multiples of the key.",
-      "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "none",
+      "cpa_stage": "concrete",
+      "ccss": "3.MD.B.3",
+      "math_note": "Sometimes a picture graph uses half a symbol. If each symbol = 4, then half a sy",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
     },
     {
-      "id": "LN_03",
-      "section": "learn",
-      "difficulty": 0,
+      "id": "LEARN_03",
       "type": "concept_card",
       "title": "Comparing Data in Picture Graphs",
       "content": "To compare categories: find each total using the key, then subtract. 'How many more' or 'how many fewer' means you subtract.",
-      "cpa_phase": "pictorial",
-      "visual_type": "none"
+      "visual_type": "none",
+      "cpa_stage": "pictorial",
+      "ccss": "3.MD.B.3",
+      "math_note": "To compare categories: find each total using the key, then subtract. 'How many m",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
     },
     {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "title": "Finding the Total from a Picture Graph",
+      "content": "To find the TOTAL number, multiply each category's symbol count by the key, then ADD all the results together. Example: Key = 4. Category A has 3 symbols → 3×4=12. Category B has 2½ symbols → 2½×4=10. Total = 12+10 = 22.",
+      "visual_type": "picture_graph",
+      "cpa_stage": "pictorial",
+      "ccss": "3.MD.B.3",
+      "math_note": "전체 합 = Σ(심볼 수 × 키). 반 심볼은 키÷2.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "title": "Comparing Categories in a Picture Graph",
+      "content": "'How many MORE' means SUBTRACT. 'How many FEWER' also means SUBTRACT (bigger − smaller). Step 1: Find each category's value (symbols × key). Step 2: Subtract smaller from larger. Example: Dogs=5 symbols, Cats=3 symbols. Key=6. Dogs=30, Cats=18. 30−18=12 more.",
+      "visual_type": "picture_graph",
+      "cpa_stage": "pictorial",
+      "ccss": "3.MD.B.3",
+      "math_note": "'더 많은/적은' = 큰 값 − 작은 값. 먼저 각 값을 구한 후 뺄셈.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "title": "Hypothetical Changes to a Picture Graph",
+      "content": "If N new data points are added to a category: Step 1: Add N to the current value. Step 2: Divide by the key to find how many symbols to draw. Example: Current Sports value = 20. Add 4 more students. Key = 4. New value = 24. 24 ÷ 4 = 6 symbols.",
+      "visual_type": "picture_graph",
+      "cpa_stage": "abstract",
+      "ccss": "3.MD.B.3",
+      "math_note": "새 심볼 수 = (원래 값 + 변화량) ÷ 키.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
+    },
+    {
+      "id": "LEARN_07",
+      "type": "explain",
+      "title": "Math Talk: Check Your Picture Graph Reasoning",
+      "content": "A picture graph shows: Spring 🌸🌸🌸½ (3½ symbols), Winter ❄️❄️ (2 symbols). Key = 4. How many MORE Spring days than Winter days? Spring = 3½ × 4 = 14. Winter = 2 × 4 = 8. 14 − 8 = 6. ✓ (Not 3½ + 2 = 5½ symbols — always multiply by key FIRST!)",
+      "visual_type": "picture_graph",
+      "cpa_stage": "abstract",
+      "ccss": "3.MD.B.3",
+      "math_talk_prompt": "그림 그래프: Spring = 3½ 심볼, Winter = 2 심볼, 키=4. Spring=3½×4=14, Winter=2×4=8, 14−8=6. 친구가 '3½−2=1½이 답이에요'라고 했습니다. 어디에서 실수했는지 설명하고, 올바른 풀이 순서를 말해 봅시다. 심볼 수가 아니라 실제 값(키를 곱한 수)을 비교해야 하는 이유는 무엇인가요?",
+      "math_note": "비교 전에 반드시 키를 곱해 실제 값으로 변환. 3½×4=14, 2×4=8, 14−8=6 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
+    },
+    {
+      "id": "LEARN_08",
+      "type": "summary",
+      "title": "Lesson Summary: Use Picture Graphs",
+      "content": "In this lesson you learned how to: ① Read a picture graph using the KEY (symbols × key = value). ② Read half symbols (½ symbol = key ÷ 2). ③ Find totals by adding all category values. ④ Compare categories using subtraction ('how many more/fewer'). ⑤ Solve multi-step picture graph problems. ⑥ Understand hypothetical changes (add/remove data points → change symbols).",
+      "lesson_summary": "그림 그래프 마스터: ①심볼×키=값 ②½심볼=키÷2 ③전체=모든 카테고리 값 합산 ④비교='더 많은/적은'=뺄셈 ⑤2단계: 값 구하기→비교 ⑥가상변경: (값+변화)÷키=새 심볼 수",
+      "visual_type": "none",
+      "cpa_stage": "abstract",
+      "ccss": "3.MD.B.3",
+      "math_note": "핵심: 항상 키 먼저 곱한 후 비교. 반 심볼 = 키÷2.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
+    }
+  ],
+  "try": [
+    {
       "id": "TRY_01",
-      "section": "try",
       "difficulty": 1,
       "question": "Each 📚 = 3 books. A shelf has 4 book symbols. How many books are on the shelf?",
       "choices": [
@@ -193,11 +568,46 @@
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how use picture graphs works."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_picture_graph",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "4개 심볼에 키(3)를 곱하지 않고 4+3=7 제출",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "4×4=16으로 키 값 혼동"
+        }
+      ],
+      "math_note": "4 × 3 = 12.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "TRY_02",
-      "section": "try",
       "difficulty": 2,
       "question": "Picture graph: Apple 4 symbols, Banana 2½ symbols, Orange 3 symbols. Each symbol = 2 students. How many students chose Banana?",
       "data_table": {
@@ -233,11 +643,46 @@
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how use picture graphs works."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_half_symbol",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "Banana 2½를 2로 읽어 2×2=4 제출",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "반 심볼 = ½×2=1이라고 잘못 계산하여 2-1=1"
+        }
+      ],
+      "math_note": "2½ × 2 = 5.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
     },
     {
       "id": "TRY_03",
-      "section": "try",
       "difficulty": 2,
       "question": "Picture graph: Karen's Favorite Dogs. Poodle has 2 symbols, Beagle has 5 symbols, Lab has 3 symbols. Each symbol = 2 students. How many people chose Poodles?",
       "data_table": {
@@ -273,11 +718,203 @@
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how use picture graphs works."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_picture_graph",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M02",
+          "description": "Poodle 대신 Beagle(5심볼) 행 읽어 5×2=10 제출",
+          "citation": "Van de Walle et al. (2013) p.391"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "2+2=4가 아닌 심볼 수(2)만 제출"
+        }
+      ],
+      "math_note": "2 × 2 = 4.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      }
     },
     {
+      "id": "TRY_04",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Picture graph: Spring 🌺🌺🌺 (3 symbols), Fall 🌺🌺½ (2½ symbols). Each 🌺 = 10 days. How many more Spring days than Fall days?",
+      "data_table": {
+        "title": "Favorite Season",
+        "type": "picture_graph",
+        "categories": [
+          "Spring",
+          "Fall"
+        ],
+        "symbol_counts": [
+          3,
+          2.5
+        ],
+        "key_value": 10,
+        "unit": "days"
+      },
+      "choices": [
+        "A. 30",
+        "B. 5",
+        "C. 55",
+        "D. 25"
+      ],
+      "answer": "B",
+      "explanation": "Spring = 3×10 = 30. Fall = 2½×10 = 25. 30 − 25 = 5.",
+      "solution_steps": [
+        "Spring = 3 × 10 = 30",
+        "Fall = 2½ × 10 = 25",
+        "30 − 25 = 5"
+      ],
+      "hints": [
+        "Multiply each symbol count by the key (10).",
+        "'How many more' means subtract."
+      ],
+      "feedback": {
+        "correct": "Excellent! Spring=30, Fall=25, difference=5.",
+        "incorrect": "First find each value (symbols × key), then subtract."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_picture_graph",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "'더 많은' 비교에 덧셈 수행 (30+18=48)",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "Spring 값(30)만 제출"
+        }
+      ],
+      "math_note": "Spring=3×10=30, Fall=2½×10=25, 30−25=5 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Excellent! Spring=30, Fall=25, difference=5."
+    },
+    {
+      "id": "TRY_05",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Picture graph key: Each 🐟 = 2 fish. Trout: 4 symbols, Salmon: 6 symbols, Bass: 3 symbols, Catfish: 2 symbols. How many fish in all?",
+      "data_table": {
+        "title": "Fish Caught",
+        "type": "picture_graph",
+        "categories": [
+          "Trout",
+          "Salmon",
+          "Bass",
+          "Catfish"
+        ],
+        "symbol_counts": [
+          4,
+          6,
+          3,
+          2
+        ],
+        "key_value": 2,
+        "unit": "fish"
+      },
+      "choices": [
+        "A. 26",
+        "B. 15",
+        "C. 30",
+        "D. 18"
+      ],
+      "answer": "C",
+      "explanation": "Trout=4×2=8. Salmon=6×2=12. Bass=3×2=6. Catfish=2×2=4. Total=8+12+6+4=30.",
+      "solution_steps": [
+        "Trout=4×2=8, Salmon=6×2=12, Bass=3×2=6, Catfish=2×2=4",
+        "8+12+6+4=30"
+      ],
+      "hints": [
+        "Multiply each category's symbols by 2.",
+        "Add all four values to get the total."
+      ],
+      "feedback": {
+        "correct": "Great! You multiplied correctly and added all categories.",
+        "incorrect": "Don't forget to multiply by 2 (the key) for each category, then add all."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_total_picture_graph",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M04",
+          "description": "전체 합을 구할 때 마지막 카테고리 Fish(4) 누락 → 26 제출",
+          "citation": "Friel et al. (2001) p.131"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "심볼 수 합(7)만 제출하고 키 곱하기 누락"
+        }
+      ],
+      "math_note": "8+12+6+4=30 ✓ 키(×2)를 각 카테고리에 곱한 후 합산.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Great! You multiplied correctly and added all categories."
+    }
+  ],
+  "practice_r1": [
+    {
       "id": "R1_01",
-      "section": "practice_r1",
       "difficulty": 1,
       "question": "Each 🎵 = 5 students. A category shows 3 music notes. How many students is that?",
       "choices": [
@@ -295,11 +932,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is D. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_picture_graph",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "키(×5) 무시하고 심볼 수(3) 그대로 제출",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "3×5=15가 아닌 3+5=8"
+        }
+      ],
+      "math_note": "3 × 5 = 15.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_02",
-      "section": "practice_r1",
       "difficulty": 1,
       "question": "Each 🏀 = 2 students. Basketball has 6 symbols. How many students chose Basketball?",
       "choices": [
@@ -317,11 +989,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is D. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_picture_graph",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "키(×2) 무시하고 심볼 수(6) 제출",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "6+2=8로 잘못 계산"
+        }
+      ],
+      "math_note": "6 × 2 = 12.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_03",
-      "section": "practice_r1",
       "difficulty": 1,
       "question": "Each symbol = 4. What does half a symbol represent?",
       "choices": [
@@ -339,11 +1046,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_half_symbol",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "½ 심볼을 1로 보아 키 값(4) 전체 제출",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "½×4=1로 계산 오류"
+        }
+      ],
+      "math_note": "Half of 4 = 2.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_04",
-      "section": "practice_r1",
       "difficulty": 2,
       "question": "Picture graph: Red 3 symbols, Blue 5 symbols, Green 2 symbols. Each = 4 votes. How many votes did Blue get?",
       "data_table": {
@@ -378,11 +1120,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is D. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_picture_graph",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M02",
+          "description": "Blue(5심볼) 대신 Red(3심볼) 행 읽어 12 제출",
+          "citation": "Van de Walle et al. (2013) p.391"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "5+4=9로 잘못 계산"
+        }
+      ],
+      "math_note": "5 × 4 = 20.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_05",
-      "section": "practice_r1",
       "difficulty": 2,
       "question": "Picture graph: Vanilla 4 symbols, Chocolate 6 symbols, Mint 2½ symbols. Each = 2 votes. How many total votes?",
       "data_table": {
@@ -417,11 +1194,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_total_picture_graph",
+      "cpa_stage": "pictorial",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M04",
+          "description": "Mint 카테고리 누락하여 Vanilla+Chocolate=20만 합산",
+          "citation": "Friel et al. (2001) p.131"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "Mint: 2½×2=4로 계산 오류 → 합계=24"
+        }
+      ],
+      "math_note": "Vanilla: 4×2=8. Chocolate: 6×2=12. Mint: 2½×2=5. Total: 8+12+5=25.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_06",
-      "section": "practice_r1",
       "difficulty": 2,
       "question": "Each ⭐ = 6 people. Pizza has 5⭐, Tacos has 3½⭐. How many people total for pizza and tacos?",
       "data_table": {
@@ -454,11 +1266,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_total_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "'합계' 대신 차이(30-21=9) 계산",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "심볼 합(5+3.5=8.5)만 제출하고 키 곱하기 누락"
+        }
+      ],
+      "math_note": "Pizza: 5×6=30. Tacos: 3½×6=21. 30+21=51.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R1_07",
-      "section": "practice_r1",
       "difficulty": 2,
       "question": "Henry's pizza graph: each 🍕 = 6 people. How many people does half a pizza symbol stand for?",
       "choices": [
@@ -476,11 +1323,274 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_half_symbol",
+      "cpa_stage": "concrete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "½ 심볼을 1로 보아 키 전체 값(6) 제출",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "½×6=2로 계산 오류"
+        }
+      ],
+      "math_note": "Half of 6 = 3.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
+      "id": "R1_08",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Picture graph: Apples 🍎🍎🍎🍎 (4 symbols), Oranges 🍎🍎 (2 symbols). Each 🍎 = 5. How many more apples than oranges?",
+      "data_table": {
+        "title": "Fruit Count",
+        "type": "picture_graph",
+        "categories": [
+          "Apples",
+          "Oranges"
+        ],
+        "symbol_counts": [
+          4,
+          2
+        ],
+        "key_value": 5,
+        "unit": "pieces"
+      },
+      "choices": [
+        "A. 20",
+        "B. 30",
+        "C. 10",
+        "D. 2"
+      ],
+      "answer": "C",
+      "explanation": "Apples=4×5=20. Oranges=2×5=10. 20−10=10.",
+      "solution_steps": [
+        "Apples=4×5=20, Oranges=2×5=10",
+        "20−10=10"
+      ],
+      "hints": [
+        "Multiply both symbol counts by 5.",
+        "Subtract: larger − smaller."
+      ],
+      "feedback": {
+        "correct": "Correct! Apples=20, Oranges=10, difference=10.",
+        "incorrect": "Multiply by key first, then subtract."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "비교 대신 덧셈 수행",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "큰 카테고리 값만 제출"
+        }
+      ],
+      "math_note": "20−10=10 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Correct! Apples=20, Oranges=10, difference=10."
+    },
+    {
+      "id": "R1_09",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Picture graph key: Each 🌟 = 3. Red team: 4 symbols. Blue team: 3½ symbols. Green team: 2 symbols. How many students in all three teams?",
+      "data_table": {
+        "title": "Team Members",
+        "type": "picture_graph",
+        "categories": [
+          "Red",
+          "Blue",
+          "Green"
+        ],
+        "symbol_counts": [
+          4,
+          3.5,
+          2
+        ],
+        "key_value": 3,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 9½",
+        "B. 28",
+        "C. 28½",
+        "D. 9"
+      ],
+      "answer": "C",
+      "explanation": "Red=4×3=12. Blue=3½×3=10½. Green=2×3=6. Total=12+10½+6=28½.",
+      "solution_steps": [
+        "Red=4×3=12, Blue=3½×3=10½, Green=2×3=6",
+        "12+10½+6=28½"
+      ],
+      "hints": [
+        "Multiply each team's symbols by 3. Remember ½×3=1½.",
+        "Add all three values."
+      ],
+      "feedback": {
+        "correct": "Great! 12+10½+6=28½ students total.",
+        "incorrect": "Don't skip the ½ symbol: 3½×3=10½, not 9."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_total_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "반 심볼을 1로 보아 잘못된 합계 계산",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "심볼 수 합만 제출하고 키 곱하기 누락"
+        }
+      ],
+      "math_note": "12+10½+6=28½ ✓ 반 심볼: ½×3=1½.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Great! 12+10½+6=28½ students total."
+    },
+    {
+      "id": "R1_10",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "A picture graph shows: Soccer = 4 symbols. Key = 5. If 5 more students join the soccer category, how many total symbols would Soccer need to show?",
+      "data_table": {
+        "title": "Sports Club",
+        "type": "picture_graph",
+        "categories": [
+          "Soccer"
+        ],
+        "symbol_counts": [
+          4
+        ],
+        "key_value": 5,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 4",
+        "B. 5",
+        "C. 9",
+        "D. 25"
+      ],
+      "answer": "B",
+      "explanation": "Current Soccer = 4×5 = 20. New total = 20+5 = 25. Symbols needed = 25÷5 = 5.",
+      "solution_steps": [
+        "Current value = 4×5 = 20",
+        "New value = 20+5 = 25",
+        "New symbols = 25÷5 = 5"
+      ],
+      "hints": [
+        "First find the current value (symbols × key).",
+        "Add 5, then divide by key to get new symbol count."
+      ],
+      "feedback": {
+        "correct": "Correct! 20+5=25, 25÷5=5 symbols.",
+        "incorrect": "Step 1: current value = 4×5=20. Step 2: add 5. Step 3: divide by key."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "hypothetical_graph_change",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "가상 변경 후 심볼 수 계산에서 2단계 오류",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "변경 전 값 그대로 제출"
+        }
+      ],
+      "math_note": "현재=4×5=20, 새값=20+5=25, 심볼=25÷5=5 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Correct! 20+5=25, 25÷5=5 symbols."
+    }
+  ],
+  "practice_r2": [
+    {
       "id": "R2_01",
-      "section": "practice_r2",
       "difficulty": 2,
       "question": "Picture graph: Score 100 = 5⭐, Score 95 = 3⭐, Score 90 = 2⭐, Score 85 = 1½⭐. Each ⭐ = 4 students. How many more students scored 90 than 85?",
       "data_table": {
@@ -517,11 +1627,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "'더 많은' 질문에 8+6=14 덧셈 수행",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "큰 값(8) 그대로 제출"
+        }
+      ],
+      "math_note": "90: 2×4=8. 85: 1½×4=6. 8−6=2.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R2_02",
-      "section": "practice_r2",
       "difficulty": 2,
       "question": "Same graph as above. How many students in all took the test?",
       "data_table": {
@@ -558,11 +1703,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is D. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_total_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M04",
+          "description": "95점과 100점만 합산(32)하고 나머지 카테고리 누락",
+          "citation": "Friel et al. (2001) p.131"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "심볼 수 합(5+3+2+1.5=11.5)만 제출하고 키 곱하기 누락"
+        }
+      ],
+      "math_note": "20+12+8+6=46.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R2_03",
-      "section": "practice_r2",
       "difficulty": 3,
       "question": "Suppose all students who scored 85 and 90 retake the test and score 95. How many total stars would be next to 95 now? (Each ⭐ = 4 students)",
       "data_table": {
@@ -599,11 +1779,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is B. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "hypothetical_graph_change",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M05",
+          "description": "새 95점 학생 수(26)를 구하고 심볼 수 변환 2단계 미완료",
+          "citation": "EngageNY G3 M6 L2 — 중간 단계에서 멈춤"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "14 (85+90 학생 합계)만 제출"
+        }
+      ],
+      "math_note": "Original 95: 12 students. Add 85+90: 6+8=14. New 95: 12+14=26. 26÷4=6½ stars.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R2_04",
-      "section": "practice_r2",
       "difficulty": 3,
       "question": "Picture graph: each 🎾 = 8 players. Tennis Club has 3½ symbols, Soccer Club has 5 symbols. How many fewer players in Tennis Club?",
       "data_table": {
@@ -636,11 +1851,491 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "'더 많은' 질문에 40+28=68 덧셈 수행",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "Soccer(40) 값만 제출"
+        }
+      ],
+      "math_note": "Tennis: 3½×8=28. Soccer: 5×8=40. 40−28=12.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
+      "id": "R2_05",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Picture graph: Cats 🐱🐱🐱🐱 (4 symbols), Dogs 🐱🐱🐱 (3 symbols), Fish 🐱½ (1½ symbols). Key = 4. How many more students chose Cats than Fish?",
+      "data_table": {
+        "title": "Favorite Pet",
+        "type": "picture_graph",
+        "categories": [
+          "Cats",
+          "Dogs",
+          "Fish"
+        ],
+        "symbol_counts": [
+          4,
+          3,
+          1.5
+        ],
+        "key_value": 4,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 16",
+        "B. 10",
+        "C. 22",
+        "D. 2.5"
+      ],
+      "answer": "B",
+      "explanation": "Cats=4×4=16. Fish=1½×4=6. 16−6=10.",
+      "hints": [
+        "Find Cats and Fish values only (ignore Dogs).",
+        "Subtract Fish from Cats."
+      ],
+      "feedback": {
+        "correct": "Correct! Cats=16, Fish=6, 16−6=10.",
+        "incorrect": "Use only Cats and Fish. Multiply by key, then subtract."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "compare_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M04",
+          "description": "지정된 두 카테고리 대신 전체 합 계산",
+          "citation": "Friel et al. (2001) p.131"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "큰 카테고리 값만 제출"
+        }
+      ],
+      "math_note": "Cats=4×4=16, Fish=1½×4=6, 16−6=10 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Correct! Cats=16, Fish=6, 16−6=10."
+    },
+    {
+      "id": "R2_06",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Picture graph key: Each 🏆 = 6 points. Team A: 5 symbols, Team B: 4½ symbols, Team C: 2 symbols, Team D: 3 symbols. Which team scored the fewest points?",
+      "data_table": {
+        "title": "Tournament Scores",
+        "type": "picture_graph",
+        "categories": [
+          "Team A",
+          "Team B",
+          "Team C",
+          "Team D"
+        ],
+        "symbol_counts": [
+          5,
+          4.5,
+          2,
+          3
+        ],
+        "key_value": 6,
+        "unit": "points"
+      },
+      "choices": [
+        "A. Team A",
+        "B. Team B",
+        "C. Team C",
+        "D. Team D"
+      ],
+      "answer": "C",
+      "explanation": "A=30, B=27, C=12, D=18. Fewest = Team C (12).",
+      "hints": [
+        "Multiply each team's symbols by 6.",
+        "Compare all four values to find the smallest."
+      ],
+      "feedback": {
+        "correct": "Correct! C=2×6=12 is the fewest.",
+        "incorrect": "Check all teams: A=30, B=27, C=12, D=18. Which is smallest?"
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "identify_max_min",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M06",
+          "description": "최솟값 카테고리 오식별",
+          "citation": "Van de Walle et al. (2013) p.391"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "전체 합 제출"
+        }
+      ],
+      "math_note": "A=30, B=27, C=12, D=18. 최솟값=C(12) ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Correct! C=2×6=12 is the fewest."
+    },
+    {
+      "id": "R2_07",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "Picture graph key: Each 🎵 = 5. Rock: 6 symbols, Pop: 4½ symbols, Jazz: 3 symbols. How many students chose Rock or Jazz in total?",
+      "data_table": {
+        "title": "Favorite Music",
+        "type": "picture_graph",
+        "categories": [
+          "Rock",
+          "Pop",
+          "Jazz"
+        ],
+        "symbol_counts": [
+          6,
+          4.5,
+          3
+        ],
+        "key_value": 5,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 30",
+        "B. 22½",
+        "C. 45",
+        "D. 15"
+      ],
+      "answer": "C",
+      "explanation": "Rock=6×5=30. Jazz=3×5=15. Rock+Jazz=30+15=45.",
+      "hints": [
+        "Find Rock and Jazz values only (ignore Pop).",
+        "Add Rock and Jazz together."
+      ],
+      "feedback": {
+        "correct": "Great! Rock=30, Jazz=15, total=45.",
+        "incorrect": "Find Rock and Jazz separately, then add them."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M05",
+          "description": "중간 단계 결과에서 멈춤",
+          "citation": "EngageNY G3 M6 L2"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "첫 번째 카테고리 값만 제출"
+        }
+      ],
+      "math_note": "Rock=30, Jazz=15, 합=45 ✓. Pop(22½) 제외.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Great! Rock=30, Jazz=15, total=45."
+    },
+    {
+      "id": "R2_08",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "Picture graph key: Each 🌍 = 10. Asia: 7 symbols, Africa: 5½ symbols, Americas: 4 symbols. How many more students chose Africa and Americas combined than Asia?",
+      "data_table": {
+        "title": "Continent Study",
+        "type": "picture_graph",
+        "categories": [
+          "Asia",
+          "Africa",
+          "Americas"
+        ],
+        "symbol_counts": [
+          7,
+          5.5,
+          4
+        ],
+        "key_value": 10,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 15",
+        "B. 25",
+        "C. 70",
+        "D. 95"
+      ],
+      "answer": "B",
+      "explanation": "Asia=7×10=70. Africa=5½×10=55. Americas=4×10=40. Combined=95. 95−70=25.",
+      "solution_steps": [
+        "Asia=7×10=70",
+        "Africa=5½×10=55, Americas=4×10=40",
+        "Africa+Americas=55+40=95",
+        "95−70=25"
+      ],
+      "hints": [
+        "Find Asia, Africa, and Americas values.",
+        "Add Africa+Americas, then compare to Asia."
+      ],
+      "feedback": {
+        "correct": "Well done!",
+        "incorrect": "Find each value first, then add Africa+Americas to compare with Asia."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "2단계 문제에서 두 번째 연산 오류",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "C",
+          "note": "심볼 수만 제출하고 키 곱하기 누락"
+        }
+      ],
+      "math_note": "Asia=70, Africa+Americas=95, 95−70=25 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Well done!",
+      "review_from": "U1"
+    },
+    {
+      "id": "R2_09",
+      "type": "multiple_choice",
+      "difficulty": 2,
+      "question": "Picture graph key: Each 🌞 = 4. Monday: 3½ symbols, Tuesday: 2½ symbols. How many sunny hours on Tuesday?",
+      "data_table": {
+        "title": "Sunny Hours",
+        "type": "picture_graph",
+        "categories": [
+          "Monday",
+          "Tuesday"
+        ],
+        "symbol_counts": [
+          3.5,
+          2.5
+        ],
+        "key_value": 4,
+        "unit": "hours"
+      },
+      "choices": [
+        "A. 2½",
+        "B. 14",
+        "C. 8",
+        "D. 10"
+      ],
+      "answer": "D",
+      "explanation": "Tuesday = 2½ × 4 = 10.",
+      "hints": [
+        "Tuesday has 2½ symbols.",
+        "2½ × 4 = 2×4 + ½×4 = 8+2 = 10."
+      ],
+      "feedback": {
+        "correct": "Correct! 2½×4=10 hours.",
+        "incorrect": "Multiply 2½ by 4: 2×4=8, ½×4=2, total=10."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "read_half_symbol",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M01",
+          "description": "반 심볼 오독으로 잘못된 계산",
+          "citation": "Friel et al. (2001) p.130"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "전체 합 제출"
+        }
+      ],
+      "math_note": "Tuesday=2½×4=10 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Correct! 2½×4=10 hours.",
+      "review_from": "U1"
+    },
+    {
+      "id": "R2_10",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "Picture graph key: Each 📱 = 8. Brand A currently has 4 symbols. If 16 more students choose Brand A, how many total symbols will Brand A show?",
+      "data_table": {
+        "title": "Phone Brand Survey",
+        "type": "picture_graph",
+        "categories": [
+          "Brand A"
+        ],
+        "symbol_counts": [
+          4
+        ],
+        "key_value": 8,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 4",
+        "B. 6",
+        "C. 20",
+        "D. 48"
+      ],
+      "answer": "B",
+      "explanation": "Current Brand A = 4×8 = 32. New total = 32+16 = 48. Symbols = 48÷8 = 6.",
+      "hints": [
+        "Step 1: Find current value (4×8=32).",
+        "Step 2: Add 16. Step 3: Divide by key."
+      ],
+      "feedback": {
+        "correct": "Correct! 32+16=48, 48÷8=6 symbols.",
+        "incorrect": "Three steps: current value → add 16 → divide by key(8)."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "hypothetical_graph_change",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "가상 변경 시나리오에서 잘못된 카테고리 업데이트",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "원래 값 그대로 제출"
+        }
+      ],
+      "math_note": "현재=4×8=32, 새값=32+16=48, 심볼=48÷8=6 ✓",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Correct! 32+16=48, 48÷8=6 symbols.",
+      "review_from": "U1"
+    }
+  ],
+  "practice_r3": [
+    {
       "id": "R3_01",
-      "section": "practice_r3",
       "difficulty": 3,
       "question": "Picture graph key: Each 📖 = 10 books. Grade 3A = 4½ symbols, Grade 3B = 3 symbols, Grade 3C = 2½ symbols. How many books did all three grades read in total?",
       "data_table": {
@@ -675,11 +2370,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "find_total_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M04",
+          "description": "전체 합 대신 Grade 3A(45) 값만 제출",
+          "citation": "Friel et al. (2001) p.131"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "4.5+3+2.5=10 심볼만 합산하고 키 곱하기 누락"
+        }
+      ],
+      "math_note": "3A: 4½×10=45. 3B: 3×10=30. 3C: 2½×10=25. 45+30+25=100.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R3_02",
-      "section": "practice_r3",
       "difficulty": 3,
       "question": "If 2 more students scored 80 on the test, and each ⭐ = 4 students, how would you show 2 students with stars?",
       "choices": [
@@ -697,11 +2427,46 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "hypothetical_graph_change",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "학생 수(2)를 심볼로 변환하는 나눗셈 대신 곱셈 수행",
+          "citation": "NCTM MD Progressions K-5 (2011) p.10"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "B",
+          "note": "4개 새 심볼 추가라고 오해"
+        }
+      ],
+      "math_note": "2 students = 2÷4 = ½ star.",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
     },
     {
       "id": "R3_03",
-      "section": "practice_r3",
       "difficulty": 3,
       "question": "Picture graph: Bikes 6 symbols, Scooters 4½ symbols, Skateboards 2 symbols. Each = 4 items sold. The store sold how many more Bikes than Scooters and Skateboards combined?",
       "data_table": {
@@ -736,8 +2501,191 @@
       "feedback": {
         "correct": "Great job! You got it!",
         "incorrect": "Not quite. The answer is C. Remember how use picture graphs works."
+      },
+      "type": "multiple_choice",
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M03",
+          "description": "합 대신 개별 최대 카테고리(Bikes=24)가 더 많다고 결론",
+          "citation": "NCTM MD Progressions K-5 (2011) p.9"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "차이를 4로 잘못 계산"
+        }
+      ],
+      "math_note": "Bikes = 24. Scooters + Skateboards = 18+8 = 26. 24−26 = −2. Bikes sold FEWER. The answer is C (−2 means 2 fewer).",
+      "feedback_correct": "Great job! You got it!",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
       }
+    },
+    {
+      "id": "R3_04",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "Picture graph: key=5. Library A: 6 symbols, Library B: 4½ symbols, Library C: 3 symbols. Library B got a donation of 10 new books. After the donation, how many more books does Library A have than Library C?",
+      "data_table": {
+        "title": "Library Books",
+        "type": "picture_graph",
+        "categories": [
+          "Library A",
+          "Library B",
+          "Library C"
+        ],
+        "symbol_counts": [
+          6,
+          4.5,
+          3
+        ],
+        "key_value": 5,
+        "unit": "books"
+      },
+      "choices": [
+        "A. 15",
+        "B. 30",
+        "C. 22½",
+        "D. 3"
+      ],
+      "answer": "A",
+      "explanation": "Library A=6×5=30. Library C=3×5=15. The donation goes to B, not A or C, so it doesn't affect this comparison. A−C=30−15=15.",
+      "hints": [
+        "The donation is to Library B — does it change A or C?",
+        "Find A and C values, then subtract."
+      ],
+      "feedback": {
+        "correct": "Excellent! The donation to B doesn't change A or C. A=30, C=15, 30−15=15.",
+        "incorrect": "The donation goes to Library B. Find A=6×5=30 and C=3×5=15. Subtract."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M07",
+          "description": "3단계 문제에서 3단계 연산 오류",
+          "citation": "Van de Walle et al. (2013) p.168"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "A",
+          "note": "중간 단계 값 제출"
+        }
+      ],
+      "math_note": "A=30, C=15, 30−15=15 ✓. Library B 변화는 A-C 비교에 영향 없음.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Excellent! The donation to B doesn't change A or C. A=30, C=15, 30−15=15."
+    },
+    {
+      "id": "R3_05",
+      "type": "multiple_choice",
+      "difficulty": 3,
+      "question": "Picture graph key: Each ⚽ = 6 goals. Team Red: 5 symbols, Team Blue: 3½ symbols, Team Green: 4 symbols, Team Yellow: 2½ symbols. How many students did NOT cheer for Team Red or Team Blue? (Each student cheered for exactly one team.)",
+      "data_table": {
+        "title": "Team Supporters",
+        "type": "picture_graph",
+        "categories": [
+          "Team Red",
+          "Team Blue",
+          "Team Green",
+          "Team Yellow"
+        ],
+        "symbol_counts": [
+          5,
+          3.5,
+          4,
+          2.5
+        ],
+        "key_value": 6,
+        "unit": "students"
+      },
+      "choices": [
+        "A. 57",
+        "B. 51",
+        "C. 39",
+        "D. 90"
+      ],
+      "answer": "C",
+      "explanation": "Red=5×6=30. Blue=3½×6=21. Green=4×6=24. Yellow=2½×6=15. Total=30+21+24+15=90. NOT Red or Blue = Green+Yellow = 24+15 = 39.",
+      "hints": [
+        "Find all four team values first.",
+        "Add only Green and Yellow (those NOT cheering for Red or Blue)."
+      ],
+      "feedback": {
+        "correct": "Correct! Green=24, Yellow=15, total NOT Red/Blue=39.",
+        "incorrect": "Find Green+Yellow: 4×6=24 and 2½×6=15. Add them: 39."
+      },
+      "ccss": "3.MD.B.3",
+      "skill_tag": "multi_step_picture_graph",
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.MD.B.3.M05",
+          "description": "중간 합계에서 멈추고 최종 빼기 단계 누락",
+          "citation": "EngageNY G3 M6 L2"
+        },
+        {
+          "error_type": "careless",
+          "wrong_choice": "D",
+          "note": "전체 합 제출"
+        }
+      ],
+      "math_note": "Green=24, Yellow=15, 합=39 ✓. Red+Blue=51(오답 함정).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 2 Lesson 2.3 — Read Picture Graphs",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "그림 그래프 읽기, 키 값 활용, 반 심볼 해석"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 6 Lesson 4 — Scaled Picture Graphs",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-6",
+          "description": "스케일 그림 그래프 읽기 및 비교 절차"
+        },
+        "assessment_source": {
+          "name": "Smarter Balanced Grade 3 Sample Items — 3.MD.B.3",
+          "url": "https://sampleitems.smarterbalanced.org/",
+          "description": "3.MD.B.3 평가 지침 — 그림 그래프 해석 및 비교 문제"
+        }
+      },
+      "feedback_correct": "Correct! Green=24, Yellow=15, total NOT Red/Blue=39."
     }
-  ],
-  "concept": "use_picture_graphs"
+  ]
 }
