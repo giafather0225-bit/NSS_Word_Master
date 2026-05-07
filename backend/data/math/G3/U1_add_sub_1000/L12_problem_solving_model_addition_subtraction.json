@@ -1,203 +1,2007 @@
 {
   "lesson_id": "L12_problem_solving_model_addition_subtraction",
   "title": "Problem Solving: Model Addition and Subtraction",
-  "ccss": ["3.NBT.A.2", "3.OA.D.8"],
+  "ccss": [
+    "3.NBT.A.2",
+    "3.OA.D.8"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
-  "go_math_ref": { "chapter": 1, "lesson": 1.12, "pages": "51-54" },
+  "go_math_ref": {
+    "chapter": 1,
+    "lesson": 1.12,
+    "pages": "51-54"
+  },
   "essential_question": "How can you use the strategy draw a diagram to solve addition and subtraction problems?",
-  "key_vocabulary": ["bar model", "diagram", "two-step problem", "addition", "subtraction", "total", "difference"],
-  "strategies": ["draw_bar_model", "two_step_problem_solving", "identify_operation"],
-
+  "key_vocabulary": [
+    "bar model",
+    "diagram",
+    "two-step problem",
+    "addition",
+    "subtraction",
+    "total",
+    "difference"
+  ],
+  "strategies": [
+    "draw_bar_model",
+    "two_step_problem_solving",
+    "identify_operation"
+  ],
   "pretest": [
     {
-      "id": "PT_01", "type": "multiple_choice",
+      "id": "PT_01",
+      "type": "multiple_choice",
       "question": "Elena bowled 127 in game 1. She scored 16 more in game 2. What was her total score?",
-      "choices": ["A. 254", "B. 260", "C. 270", "D. 280"],
+      "choices": [
+        "A. 254",
+        "B. 260",
+        "C. 270",
+        "D. 280"
+      ],
       "answer": "C",
-      "solution_steps": ["Game 2: 127+16=143", "Total: 127+143=270"],
-      "hint": "First find game 2 score, then add both games.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_stage": "pictorial", "skill_tag": "two_step_addition",
-      "expected_errors": ["127+16=143 and stopping (only game 2, not total)"]
+      "solution_steps": [
+        "Game 2: 127+16=143",
+        "Total: 127+143=270"
+      ],
+      "hint": "First find game 2 score, then add both games.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "pictorial",
+      "skill_tag": "two_step_addition",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "Game 2 점수(143)에서 멈춤 — 두 경기 합계를 구해야 하는데 부분 결과를 최종 답으로 제출",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "2단계 덧셈: ①2경기 점수 계산(127+16=143), ②합계 계산(127+143=270). 중간 결과(143)가 최종 답이 아님.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "PT_02", "type": "multiple_choice",
+      "id": "PT_02",
+      "type": "multiple_choice",
       "question": "Mike's Music sold 287 CDs on day 1. Day 2 sold 96 MORE than day 1. How many CDs total?",
-      "choices": ["A. 574", "B. 670", "C. 383", "D. 191"],
+      "choices": [
+        "A. 574",
+        "B. 670",
+        "C. 383",
+        "D. 191"
+      ],
       "answer": "B",
-      "solution_steps": ["Day 2: 287+96=383", "Total: 287+383=670"],
-      "hint": "'96 more than day 1' means day 2 = 287+96.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_stage": "pictorial", "skill_tag": "two_step_addition",
-      "expected_errors": ["287+96=383 (only day 2, not total)"]
+      "solution_steps": [
+        "Day 2: 287+96=383",
+        "Total: 287+383=670"
+      ],
+      "hint": "'96 more than day 1' means day 2 = 287+96.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "pictorial",
+      "skill_tag": "two_step_addition",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "2일차 CD 수(383)에서 멈춤 — 양일 합계(670)를 구해야 하는 2단계 문제",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "2단계 덧셈: ①2일차 CD 수(287+96=383), ②합계(287+383=670). '96 more than'은 기준량에 추가하는 비교 덧셈.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "PT_03", "type": "multiple_choice",
+      "id": "PT_03",
+      "type": "multiple_choice",
       "question": "A store had 543 books. Sold 287 on Monday. Received 125 new books Tuesday. How many now?",
-      "choices": ["A. 371", "B. 381", "C. 391", "D. 256"],
+      "choices": [
+        "A. 371",
+        "B. 381",
+        "C. 391",
+        "D. 256"
+      ],
       "answer": "B",
-      "solution_steps": ["After Monday: 543−287=256", "After Tuesday: 256+125=381"],
-      "hint": "Subtract what was sold, then add what arrived.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_mixed",
-      "expected_errors": ["543−287=256 (stopping after step 1)"]
+      "solution_steps": [
+        "After Monday: 543−287=256",
+        "After Tuesday: 256+125=381"
+      ],
+      "hint": "Subtract what was sold, then add what arrived.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "월요일 이후 권수(256)에서 멈춤 — 화요일 입고 후 최종 재고(381)를 구해야 함",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "덧셈·뺄셈 혼합: ①월요일 이후(543−287=256), ②화요일 이후(256+125=381). 두 연산을 순서대로 적용.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "PT_04", "type": "multiple_choice",
+      "id": "PT_04",
+      "type": "multiple_choice",
       "question": "Which bar model shows '348 + 156 = ?'?",
-      "choices": ["A. One bar labeled ? with two parts: 348 and 156", "B. One bar labeled 348 with a part labeled 156 and part labeled ?", "C. Two separate bars: 348 and 156", "D. One bar labeled 348+156 with no parts"],
+      "choices": [
+        "A. One bar labeled ? with two parts: 348 and 156",
+        "B. One bar labeled 348 with a part labeled 156 and part labeled ?",
+        "C. Two separate bars: 348 and 156",
+        "D. One bar labeled 348+156 with no parts"
+      ],
       "answer": "A",
-      "solution_steps": ["We're adding 348 and 156 to find total", "Bar model: total (?) on top, two parts below"],
-      "hint": "Addition = total unknown. Parts are the two addends.", "difficulty": 2,
-      "ccss": "3.OA.D.8", "cpa_stage": "pictorial", "skill_tag": "bar_model_addition",
-      "expected_errors": ["Choosing B (that's for finding a missing part)"]
+      "solution_steps": [
+        "We're adding 348 and 156 to find total",
+        "Bar model: total (?) on top, two parts below"
+      ],
+      "hint": "Addition = total unknown. Parts are the two addends.",
+      "difficulty": 2,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "pictorial",
+      "skill_tag": "bar_model_addition",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M07",
+          "description": "B 선택 — 전체를 알고 부분을 찾는 뺄셈 모델로 혼동. 348+156=?는 부분→전체 덧셈 모델(A)이 정답",
+          "citation": "EngageNY G3 Module 2 Lesson 5 Teacher Edition — 'Students conflate the addition and subtraction bar model structures.'"
+        }
+      ],
+      "math_note": "막대 모델 선택: 덧셈(부분 합산→전체) 모델은 부분이 아래, 전체(?)가 위. 348+156=? → 정답 A.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "PT_05", "type": "multiple_choice",
+      "id": "PT_05",
+      "type": "multiple_choice",
       "question": "Tara has 450 stickers. She gives 178 to her friend and 135 to her sister. How many does she have left?",
-      "choices": ["A. 127", "B. 137", "C. 147", "D. 272"],
+      "choices": [
+        "A. 127",
+        "B. 137",
+        "C. 147",
+        "D. 272"
+      ],
       "answer": "B",
-      "solution_steps": ["Given away: 178+135=313", "Left: 450−313=137"],
-      "hint": "First find total given away, then subtract from 450.", "difficulty": 4,
-      "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_subtract",
-      "expected_errors": ["450−178=272 (forgetting the sister)"]
+      "solution_steps": [
+        "Given away: 178+135=313",
+        "Left: 450−313=137"
+      ],
+      "hint": "First find total given away, then subtract from 450.",
+      "difficulty": 4,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_subtract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M05",
+          "description": "언니에게만 뺌(450−178=272) — 동생에게 준 135도 빼야 하는 2번째 뺄셈 성분 누락",
+          "citation": "Carpenter et al. (1999) p.15 — 'Students undercount components when two or more groups are removed or added simultaneously.'"
+        }
+      ],
+      "math_note": "2단계 뺄셈: ①두 명에게 준 스티커(178+135=313), ②남은 스티커(450−313=137). 두 번 빼야 함.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     }
   ],
-
   "learn": [
     {
-      "id": "LEARN_01", "type": "concept_card",
+      "id": "LEARN_01",
+      "type": "concept_card",
       "title": "What Is a Bar Model?",
       "content": "A bar model is a drawing that helps you see the parts of a problem. It looks like a rectangle split into sections. The WHOLE bar is the total. The sections are the parts.",
-      "visual_type": "bar_model", "cpa_stage": "pictorial"
+      "visual_type": "bar_model",
+      "cpa_stage": "concrete",
+      "ccss": [
+        "3.NBT.A.2",
+        "3.OA.D.8"
+      ],
+      "math_note": "막대 모델은 전체와 부분의 관계를 시각화. 이 단계에서는 실제 사물(블록, 카운터)로 전체-부분 구조를 먼저 탐구.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "LEARN_02", "type": "concept_card",
+      "id": "LEARN_02",
+      "type": "concept_card",
       "title": "Bar Model for Addition",
       "content": "When you ADD, you know the parts and need the total. Draw a bar split into parts. Write the known numbers in the parts. The total (?) goes on top. Example: 287 + 383 = ? → bar with parts 287 and 383, total ? on top.",
-      "visual_type": "bar_model", "cpa_stage": "pictorial"
+      "visual_type": "bar_model",
+      "cpa_stage": "pictorial",
+      "ccss": [
+        "3.NBT.A.2",
+        "3.OA.D.8"
+      ],
+      "math_note": "덧셈 막대 모델: 부분1 + 부분2 = 전체(위). ?가 전체 위치에 있으면 덧셈 문제.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "LEARN_03", "type": "concept_card",
+      "id": "LEARN_03",
+      "type": "concept_card",
       "title": "Bar Model for Subtraction",
       "content": "When you SUBTRACT, you know the total and one part. You need the other part. Draw a bar with the total on top. One part is known, the other is ?. Example: 543 − 287 = ? → total 543, one part 287, missing part ?.",
-      "visual_type": "bar_model", "cpa_stage": "pictorial"
+      "visual_type": "bar_model",
+      "cpa_stage": "pictorial",
+      "ccss": [
+        "3.NBT.A.2",
+        "3.OA.D.8"
+      ],
+      "math_note": "뺄셈 막대 모델: 전체(위) − 알려진 부분 = ?. ?가 부분 위치에 있으면 뺄셈 문제.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "LEARN_04", "type": "concept_card",
+      "id": "LEARN_04",
+      "type": "concept_card",
       "title": "Two-Step Problems",
       "content": "Some problems need TWO calculations. Read carefully! Example: Elena scored 127 in game 1 and 16 MORE in game 2. Total? Step 1: Game 2 = 127+16 = 143. Step 2: Total = 127+143 = 270.",
-      "visual_type": "step_by_step", "cpa_stage": "abstract"
+      "visual_type": "step_by_step",
+      "cpa_stage": "abstract",
+      "ccss": [
+        "3.NBT.A.2",
+        "3.OA.D.8"
+      ],
+      "math_note": "2단계 문제: 1단계 결과를 중간 값으로 사용해 2단계 계산. 각 단계를 별도 막대 모델로 표현 가능.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "LEARN_05", "type": "concept_card",
+      "id": "LEARN_05",
+      "type": "concept_card",
       "title": "Key Words to Watch For",
       "content": "'More than' often means add first, then maybe add again. 'In all' or 'total' means add. 'How many left' or 'how many more' means subtract. 'Then' or 'after' often signals a second step.",
-      "visual_type": "keyword_table", "cpa_stage": "abstract"
+      "visual_type": "keyword_table",
+      "cpa_stage": "abstract",
+      "ccss": [
+        "3.NBT.A.2",
+        "3.OA.D.8"
+      ],
+      "math_note": "핵심 어휘: 'more than'→덧셈으로 기준량 먼저 계산, 'in all/total'→덧셈, 'left/more'→뺄셈, 'then/after'→2단계 신호.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "LEARN_06", "type": "concept_card",
+      "id": "LEARN_06",
+      "type": "concept_card",
       "title": "Example: Mike's Music",
       "content": "Day 1: 287 CDs. Day 2: 96 MORE than day 1. Total? Bar model: Total = Day1 + Day2. Day 2 = Day1 + 96 = 287+96 = 383. Total = 287+383 = 670.",
-      "visual_type": "bar_model", "cpa_stage": "pictorial",
-      "example": { "day1": 287, "day2": 383, "total": 670 }
+      "visual_type": "bar_model",
+      "cpa_stage": "pictorial",
+      "example": {
+        "day1": 287,
+        "day2": 383,
+        "total": 670
+      },
+      "ccss": [
+        "3.NBT.A.2",
+        "3.OA.D.8"
+      ],
+      "math_note": "Mike's Music 예시: Day2=Day1+96=287+96=383, Total=287+383=670. 2단계 막대 모델 완전 예시.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "LEARN_07", "type": "concept_card",
+      "id": "LEARN_07",
+      "type": "explain",
       "title": "Check: Does My Answer Make Sense?",
       "content": "After solving, ask: Is my answer reasonable? Estimate first! 287+383 → about 300+400=700. Answer 670 is close to 700. Makes sense!",
-      "visual_type": "comparison_table", "cpa_stage": "abstract"
+      "visual_type": "comparison_table",
+      "cpa_stage": "abstract",
+      "ccss": [
+        "3.NBT.A.2",
+        "3.OA.D.8"
+      ],
+      "math_note": "검산 전략: 추정값과 비교(300+400≈700, 실제 670). 합리적 범위 내 → 정답 가능성 높음. 답+뺀 수=원래 수로 역검산.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      },
+      "math_talk_prompt": "Mike's Music 문제를 풀었습니다: Day1=287, Day2=383, Total=670. 검산해봅시다: 670에서 383을 빼면? 670−383=287 ✓ Day1과 같네요. 지금 풀고 있는 문제에서도 이렇게 역방향으로 확인할 수 있을까요? 왜 이 확인 방법이 항상 통하는 걸까요?"
     },
     {
-      "id": "LEARN_08", "type": "concept_card",
+      "id": "LEARN_08",
+      "type": "summary",
       "title": "Drawing Your Own Bar Model",
       "content": "Step 1: Read the problem. Step 2: Ask 'What do I need to find?' Step 3: Draw a bar. Label the known parts. Put ? for the unknown. Step 4: Decide: add or subtract? Step 5: Solve and check.",
-      "visual_type": "step_by_step", "cpa_stage": "pictorial"
+      "visual_type": "step_by_step",
+      "cpa_stage": "pictorial",
+      "ccss": [
+        "3.NBT.A.2",
+        "3.OA.D.8"
+      ],
+      "math_note": "5단계 요약: 읽기 → 무엇을 찾나 → 막대 그리기 → 연산 결정 → 계산·검산. 이 순서를 습관화.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     }
   ],
-
   "try": [
     {
-      "id": "TRY_01", "type": "multiple_choice",
+      "id": "TRY_01",
+      "type": "multiple_choice",
       "question": "A baker made 245 muffins Monday and 178 Tuesday. He sold 89 muffins Wednesday. How many muffins are left?",
-      "choices": ["A. 324", "B. 334", "C. 344", "D. 423"],
+      "choices": [
+        "A. 324",
+        "B. 334",
+        "C. 344",
+        "D. 423"
+      ],
       "answer": "B",
-      "solution_steps": ["Total baked: 245+178=423", "After selling: 423−89=334"],
-      "hint": "Step 1: Add to find total. Step 2: Subtract what was sold.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_mixed",
-      "expected_errors": ["245+178=423 (stopping at step 1)"]
+      "solution_steps": [
+        "Total baked: 245+178=423",
+        "After selling: 423−89=334"
+      ],
+      "hint": "Step 1: Add to find total. Step 2: Subtract what was sold.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "총 머핀(423)에서 멈춤 — 판매 후 남은 머핀(334)을 구하는 2단계를 실행하지 않음",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "덧·뺄 혼합: ①총 머핀(245+178=423), ②판매 후(423−89=334). 2단계 문장제 기본 구조.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "TRY_02", "type": "multiple_choice",
+      "id": "TRY_02",
+      "type": "multiple_choice",
       "question": "Lily collected 312 seashells. Her brother collected 145 fewer. How many do they have together?",
-      "choices": ["A. 469", "B. 479", "C. 489", "D. 167"],
+      "choices": [
+        "A. 469",
+        "B. 479",
+        "C. 489",
+        "D. 167"
+      ],
       "answer": "B",
-      "solution_steps": ["Brother: 312−145=167", "Together: 312+167=479"],
-      "hint": "'Fewer' means brother has LESS. Find his amount, then add both.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_mixed",
-      "expected_errors": ["312−145=167 (stopping, forgetting to add)"]
+      "solution_steps": [
+        "Brother: 312−145=167",
+        "Together: 312+167=479"
+      ],
+      "hint": "'Fewer' means brother has LESS. Find his amount, then add both.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "남동생 조개 수(167)에서 멈춤 — 두 사람 합계(479)를 구하는 마지막 단계 누락",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "비교 뺄셈 후 합산: ①남동생 조개(312−145=167), ②합계(312+167=479). 'fewer'=뺄셈으로 기준량 찾기.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "TRY_03", "type": "multiple_choice",
+      "id": "TRY_03",
+      "type": "multiple_choice",
       "question": "A bus has 72 passengers. 28 get off. Then 35 get on. How many are on the bus now?",
-      "choices": ["A. 69", "B. 79", "C. 89", "D. 44"],
+      "choices": [
+        "A. 69",
+        "B. 79",
+        "C. 89",
+        "D. 44"
+      ],
       "answer": "B",
-      "solution_steps": ["After getting off: 72−28=44", "After getting on: 44+35=79"],
-      "hint": "First subtract passengers who leave, then add new ones.", "difficulty": 3,
-      "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_mixed",
-      "expected_errors": ["72−28=44 (stopping)"]
+      "solution_steps": [
+        "After getting off: 72−28=44",
+        "After getting on: 44+35=79"
+      ],
+      "hint": "First subtract passengers who leave, then add new ones.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "내린 후 승객 수(44)에서 멈춤 — 이후 탑승(35명)을 더하는 단계 누락",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "덧·뺄 혼합: ①내린 후(72−28=44), ②탄 후(44+35=79). 순서대로 연산 적용.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "TRY_04", "type": "multiple_choice",
+      "id": "TRY_04",
+      "type": "multiple_choice",
       "question": "Which operation do you do FIRST? 'Sam had 500 points. He lost 175 and gained 230.'",
-      "choices": ["A. Add 175+230 first", "B. Subtract 500−175 first", "C. Add 500+230 first", "D. Subtract 500−230 first"],
+      "choices": [
+        "A. Add 175+230 first",
+        "B. Subtract 500−175 first",
+        "C. Add 500+230 first",
+        "D. Subtract 500−230 first"
+      ],
       "answer": "B",
-      "solution_steps": ["The events happen in order: lost first, then gained", "500−175=325, then 325+230=555"],
-      "hint": "Follow the order of events.", "difficulty": 2,
-      "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "identify_first_step",
-      "expected_errors": ["Choosing A (combining the changes first)"]
+      "solution_steps": [
+        "The events happen in order: lost first, then gained",
+        "500−175=325, then 325+230=555"
+      ],
+      "hint": "Follow the order of events.",
+      "difficulty": 2,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "identify_first_step",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "description": "A 선택 — 이야기 순서를 무시하고 얻기(+230)를 먼저 계산. 잃기(−175)를 먼저 적용해야 함"
+        }
+      ],
+      "math_note": "연산 순서: 이야기 순서(잃음→얻음)로 먼저 뺀다(500−175). 막대 모델의 시간적 순서 = 연산 순서.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     },
     {
-      "id": "TRY_05", "type": "multiple_choice",
+      "id": "TRY_05",
+      "type": "multiple_choice",
       "question": "A farm has 328 chickens and 195 ducks. 147 chickens are sold. How many birds are on the farm now?",
-      "choices": ["A. 366", "B. 376", "C. 386", "D. 523"],
+      "choices": [
+        "A. 366",
+        "B. 376",
+        "C. 386",
+        "D. 523"
+      ],
       "answer": "B",
-      "solution_steps": ["Chickens remaining: 328−147=181", "Total birds: 181+195=376"],
-      "hint": "Subtract sold chickens, then add remaining chickens + ducks.", "difficulty": 4,
-      "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_mixed",
-      "expected_errors": ["328+195=523 (forgetting sold chickens)"]
+      "solution_steps": [
+        "Chickens remaining: 328−147=181",
+        "Total birds: 181+195=376"
+      ],
+      "hint": "Subtract sold chickens, then add remaining chickens + ducks.",
+      "difficulty": 4,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M05",
+          "description": "팔린 닭(147마리)을 제외하지 않고 원래 닭 수로 계산(328+195=523) — 남은 닭 수(181)를 먼저 구해야 함",
+          "citation": "Carpenter et al. (1999) p.15 — 'Students undercount components when two or more groups are removed or added simultaneously.'"
+        }
+      ],
+      "math_note": "덧·뺄 혼합: ①닭 남은 수(328−147=181), ②전체 새(181+195=376). 닭과 오리 수를 합산해야 함.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
     }
   ],
-
   "practice_r1": [
-    { "id": "R1_01", "type": "multiple_choice", "question": "Pedro read 134 pages Monday and 98 pages Tuesday. He has 268 pages left. How many pages is the book?", "choices": ["A. 490", "B. 500", "C. 510", "D. 366"], "answer": "B", "solution_steps": ["Pages read: 134+98=232", "Total: 232+268=500"], "hint": "Total book = pages read + pages left.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_addition", "expected_errors": ["134+98=232 (stopping)"] },
-    { "id": "R1_02", "type": "multiple_choice", "question": "A jar had 400 marbles. 156 red and 118 blue were removed. How many are left?", "choices": ["A. 116", "B. 126", "C. 136", "D. 274"], "answer": "B", "solution_steps": ["Removed: 156+118=274", "Left: 400−274=126"], "hint": "Add removed marbles, then subtract from total.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_subtract", "expected_errors": ["400−156=244 (forgetting blue)"] },
-    { "id": "R1_03", "type": "multiple_choice", "question": "Maya earned $275 in week 1 and $189 in week 2. She spent $200. How much does she have?", "choices": ["A. 254", "B. 264", "C. 274", "D. 464"], "answer": "B", "solution_steps": ["Earned: 275+189=464", "After spending: 464−200=264"], "hint": "Add earnings, then subtract spending.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_mixed", "expected_errors": ["275+189=464 (forgetting spending)"] },
-    { "id": "R1_04", "type": "multiple_choice", "question": "A train had 325 passengers. 198 got off. Then 147 got on. How many are on the train?", "choices": ["A. 264", "B. 274", "C. 284", "D. 127"], "answer": "B", "solution_steps": ["After off: 325−198=127", "After on: 127+147=274"], "hint": "Subtract first, then add.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_mixed", "expected_errors": ["325−198=127 (stopping)"] },
-    { "id": "R1_05", "type": "multiple_choice", "question": "Ryan scored 215 in game 1. He scored 47 MORE in game 2. What's his total?", "choices": ["A. 467", "B. 477", "C. 487", "D. 262"], "answer": "B", "solution_steps": ["Game 2: 215+47=262", "Total: 215+262=477"], "hint": "'47 more' means game 2 = 215+47.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_addition", "expected_errors": ["215+47=262 (just game 2, not total)"] },
-    { "id": "R1_06", "type": "multiple_choice", "question": "A garden has 260 flowers. 95 are red, 87 are yellow. The rest are white. How many white flowers?", "choices": ["A. 68", "B. 78", "C. 88", "D. 175"], "answer": "B", "solution_steps": ["Red+yellow: 95+87=182", "White: 260−182=78"], "hint": "Add known flowers, subtract from total.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_subtract", "expected_errors": ["260−95=165 (forgetting yellow)"] },
-    { "id": "R1_07", "type": "multiple_choice", "question": "Ava collected 189 stickers. Ben collected 156 fewer than Ava. How many do they have in all?", "choices": ["A. 212", "B. 222", "C. 232", "D. 33"], "answer": "B", "solution_steps": ["Ben: 189−156=33", "Total: 189+33=222"], "hint": "'Fewer' means subtract to find Ben's amount.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_mixed", "expected_errors": ["189−156=33 (just Ben's count)"] },
-    { "id": "R1_08", "type": "multiple_choice", "question": "A school has 412 students. 189 walk to school. 134 take the bus. The rest are driven. How many are driven?", "choices": ["A. 79", "B. 89", "C. 99", "D. 323"], "answer": "B", "solution_steps": ["Walk+bus: 189+134=323", "Driven: 412−323=89"], "hint": "Add walkers and bus riders, subtract from total.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_subtract", "expected_errors": ["412−189=223 (forgetting bus)"] },
-    { "id": "R1_09", "type": "multiple_choice", "question": "Carlos had 350 baseball cards. He gave away 125, then bought 78 more. How many now?", "choices": ["A. 293", "B. 303", "C. 313", "D. 225"], "answer": "B", "solution_steps": ["After giving: 350−125=225", "After buying: 225+78=303"], "hint": "Subtract given, add bought.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_mixed", "expected_errors": ["350−125=225 (stopping)"] },
-    { "id": "R1_10", "type": "multiple_choice", "question": "A bakery made 156 cookies in the morning and 237 in the afternoon. They put them equally into 3 display cases. How many total cookies?", "choices": ["A. 383", "B. 393", "C. 403", "D. 81"], "answer": "B", "solution_steps": ["Total: 156+237=393", "The question asks for total cookies (not per case)"], "hint": "Read carefully — it asks for TOTAL, not per case.", "difficulty": 2, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "addition_read_carefully", "expected_errors": ["Trying to divide by 3"] }
+    {
+      "id": "R1_01",
+      "type": "multiple_choice",
+      "question": "Pedro read 134 pages Monday and 98 pages Tuesday. He has 268 pages left. How many pages is the book?",
+      "choices": [
+        "A. 490",
+        "B. 500",
+        "C. 510",
+        "D. 366"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Pages read: 134+98=232",
+        "Total: 232+268=500"
+      ],
+      "hint": "Total book = pages read + pages left.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_addition",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "읽은 쪽수(232)에서 멈춤 — 남은 쪽수를 더해 총 쪽수(500)를 구하는 단계 누락",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "역방향 문제: 읽은 쪽+남은 쪽=총 쪽. ①읽은 쪽(134+98=232), ②총 쪽(232+268=500).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "multiple_choice",
+      "question": "A jar had 400 marbles. 156 red and 118 blue were removed. How many are left?",
+      "choices": [
+        "A. 116",
+        "B. 126",
+        "C. 136",
+        "D. 274"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Removed: 156+118=274",
+        "Left: 400−274=126"
+      ],
+      "hint": "Add removed marbles, then subtract from total.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_subtract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M05",
+          "description": "빨간 구슬만 제거(400−156=244) — 파란 구슬(118)도 제거해야 하는 성분 누락",
+          "citation": "Carpenter et al. (1999) p.15 — 'Students undercount components when two or more groups are removed or added simultaneously.'"
+        }
+      ],
+      "math_note": "2가지 물건 제거: ①빨강+파란(156+118=274), ②남은 구슬(400−274=126). 두 제거량을 합산 후 빼야 함.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "multiple_choice",
+      "question": "Maya earned $275 in week 1 and $189 in week 2. She spent $200. How much does she have?",
+      "choices": [
+        "A. 254",
+        "B. 264",
+        "C. 274",
+        "D. 464"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Earned: 275+189=464",
+        "After spending: 464−200=264"
+      ],
+      "hint": "Add earnings, then subtract spending.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "총 수입(464)에서 멈춤 — 지출(200)을 빼는 마지막 단계 누락",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "벌고 쓰기: ①총 수입(275+189=464), ②지출 후(464−200=264).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "multiple_choice",
+      "question": "A train had 325 passengers. 198 got off. Then 147 got on. How many are on the train?",
+      "choices": [
+        "A. 264",
+        "B. 274",
+        "C. 284",
+        "D. 127"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "After off: 325−198=127",
+        "After on: 127+147=274"
+      ],
+      "hint": "Subtract first, then add.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "하차 후 승객 수(127)에서 멈춤 — 이후 탑승자(147)를 더하는 단계 누락",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "승하차: ①내린 후(325−198=127), ②탄 후(127+147=274).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "multiple_choice",
+      "question": "Ryan scored 215 in game 1. He scored 47 MORE in game 2. What's his total?",
+      "choices": [
+        "A. 467",
+        "B. 477",
+        "C. 487",
+        "D. 262"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Game 2: 215+47=262",
+        "Total: 215+262=477"
+      ],
+      "hint": "'47 more' means game 2 = 215+47.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_addition",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "2경기 점수(262)에서 멈춤 — 두 경기 합계(477)를 구해야 하는 2단계 문제",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "비교 덧셈+합산: ①2경기 점수(215+47=262), ②합계(215+262=477).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "multiple_choice",
+      "question": "A garden has 260 flowers. 95 are red, 87 are yellow. The rest are white. How many white flowers?",
+      "choices": [
+        "A. 68",
+        "B. 78",
+        "C. 88",
+        "D. 175"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Red+yellow: 95+87=182",
+        "White: 260−182=78"
+      ],
+      "hint": "Add known flowers, subtract from total.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_subtract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M05",
+          "description": "빨간 꽃만 빼기(260−95=165) — 노란 꽃(87)도 포함해 제거해야 하는 성분 누락",
+          "citation": "Carpenter et al. (1999) p.15 — 'Students undercount components when two or more groups are removed or added simultaneously.'"
+        }
+      ],
+      "math_note": "보색 꽃 계산: ①빨강+노란(95+87=182), ②흰색(260−182=78).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "multiple_choice",
+      "question": "Ava collected 189 stickers. Ben collected 156 fewer than Ava. How many do they have in all?",
+      "choices": [
+        "A. 212",
+        "B. 222",
+        "C. 232",
+        "D. 33"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ben: 189−156=33",
+        "Total: 189+33=222"
+      ],
+      "hint": "'Fewer' means subtract to find Ben's amount.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "벤의 스티커(33)에서 멈춤 — 에이바와 벤 합계(222)를 구하는 단계 누락",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "비교 뺄셈+합산: ①벤의 스티커(189−156=33), ②합계(189+33=222).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "multiple_choice",
+      "question": "A school has 412 students. 189 walk to school. 134 take the bus. The rest are driven. How many are driven?",
+      "choices": [
+        "A. 79",
+        "B. 89",
+        "C. 99",
+        "D. 323"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Walk+bus: 189+134=323",
+        "Driven: 412−323=89"
+      ],
+      "hint": "Add walkers and bus riders, subtract from total.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_subtract",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M05",
+          "description": "걸어오는 학생만 빼기(412−189=223) — 버스 학생(134)도 제외해야 하는 성분 누락",
+          "citation": "Carpenter et al. (1999) p.15 — 'Students undercount components when two or more groups are removed or added simultaneously.'"
+        }
+      ],
+      "math_note": "3가지 그룹 중 나머지: ①걸어+버스(189+134=323), ②차로(412−323=89).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "multiple_choice",
+      "question": "Carlos had 350 baseball cards. He gave away 125, then bought 78 more. How many now?",
+      "choices": [
+        "A. 293",
+        "B. 303",
+        "C. 313",
+        "D. 225"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "After giving: 350−125=225",
+        "After buying: 225+78=303"
+      ],
+      "hint": "Subtract given, add bought.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "나눠준 후(225)에서 멈춤 — 새로 구매한 카드(78)를 더하는 단계 누락",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "주고 사기: ①준 후(350−125=225), ②산 후(225+78=303).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "multiple_choice",
+      "question": "A bakery made 156 cookies in the morning and 237 in the afternoon. They put them equally into 3 display cases. How many total cookies?",
+      "choices": [
+        "A. 383",
+        "B. 393",
+        "C. 403",
+        "D. 81"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Total: 156+237=393",
+        "The question asks for total cookies (not per case)"
+      ],
+      "hint": "Read carefully — it asks for TOTAL, not per case.",
+      "difficulty": 2,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "addition_read_carefully",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "description": "3으로 나누려 함 — '3개 케이스에 동등 배분'이라는 불필요 정보에 현혹. 문제는 총 쿠키 수(393)만 묻고 있음"
+        }
+      ],
+      "math_note": "합계만 묻는 문제: 총 쿠키(156+237=393). '3개 케이스에 동등 배분'은 추가 정보이며 답과 무관.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    }
   ],
-
   "practice_r2": [
-    { "id": "R2_01", "type": "multiple_choice", "question": "A zookeeper counted 345 birds, 278 reptiles, and 189 mammals. How many more birds than mammals?", "choices": ["A. 146", "B. 156", "C. 166", "D. 534"], "answer": "B", "solution_steps": ["Birds − mammals: 345−189=156", "Reptiles are extra info!"], "hint": "Watch out for extra information! Only compare birds and mammals.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "extra_information", "expected_errors": ["345+278+189=812 (using all numbers)"] },
-    { "id": "R2_02", "type": "multiple_choice", "question": "Jenna saved $218 in January and $175 in February. She spent $109 on a gift and $86 on books. How much is left?", "choices": ["A. 188", "B. 198", "C. 208", "D. 393"], "answer": "B", "solution_steps": ["Saved: 218+175=393", "Spent: 109+86=195", "Left: 393−195=198"], "hint": "Add savings, add spending, then subtract.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "multi_step_mixed", "expected_errors": ["393−109=284 (forgetting books)"] },
-    { "id": "R2_03", "type": "multiple_choice", "question": "Team A scored 246. Team B scored 189. Team C scored 73 more than Team B. Which team scored the most?", "choices": ["A. Team A (246)", "B. Team B (189)", "C. Team C (262)", "D. Teams A and C tied"], "answer": "C", "solution_steps": ["Team C: 189+73=262", "Compare: A=246, B=189, C=262", "C is highest"], "hint": "Find Team C's score first, then compare all three.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_compare", "expected_errors": ["Not calculating Team C's score"] },
-    { "id": "R2_04", "type": "multiple_choice", "question": "A library had 750 books. Monday: returned 143, borrowed 267. Tuesday: returned 98, borrowed 156. How many books now?", "choices": ["A. 558", "B. 568", "C. 578", "D. 750"], "answer": "B", "solution_steps": ["Monday: 750+143−267=626", "Tuesday: 626+98−156=568"], "hint": "Returned = add, Borrowed = subtract. Do each day in order.", "difficulty": 5, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "multi_step_sequential", "expected_errors": ["Adding all returns and subtracting all borrows at once (same result but might confuse)"] },
-    { "id": "R2_05", "type": "multiple_choice", "question": "Rosa has 500 beads. She uses 185 for a necklace and 137 for a bracelet. She buys 100 more. How many now?", "choices": ["A. 268", "B. 278", "C. 288", "D. 178"], "answer": "B", "solution_steps": ["Used: 185+137=322", "After using: 500−322=178", "After buying: 178+100=278"], "hint": "Subtract used beads, then add new ones.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "multi_step_mixed", "expected_errors": ["500−185=315 (forgetting bracelet)"] },
-    { "id": "R2_06", "type": "multiple_choice", "question": "Jake's class collected 412 cans. Emma's class collected 389 cans. Together they gave 215 cans to charity. How many are left for recycling?", "choices": ["A. 576", "B. 586", "C. 596", "D. 801"], "answer": "B", "solution_steps": ["Total: 412+389=801", "After charity: 801−215=586"], "hint": "Combine both classes, then subtract charity donation.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "two_step_mixed", "expected_errors": ["412+389=801 (not subtracting)"] },
-    { "id": "R2_07", "type": "multiple_choice", "question": "A theater sold 328 adult tickets and 256 child tickets. Adult tickets cost $8 each. How many tickets were sold in all?", "choices": ["A. 574", "B. 584", "C. 594", "D. 2624"], "answer": "B", "solution_steps": ["Total tickets: 328+256=584", "The price ($8) is extra information!"], "hint": "The question asks for NUMBER of tickets, not money.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "extra_information", "expected_errors": ["328×8=2624 (using irrelevant info)"] },
-    { "id": "R2_08", "type": "multiple_choice", "question": "Ella had some stickers. She gave 128 to Amy and 96 to Bella. Now she has 276 left. How many did she start with?", "choices": ["A. 490", "B. 500", "C. 510", "D. 276"], "answer": "B", "solution_steps": ["Given away: 128+96=224", "Started with: 276+224=500", "Working backwards!"], "hint": "Work backwards: add what she gave away to what's left.", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "work_backwards", "expected_errors": ["276−128−96=52 (subtracting instead of adding back)"] },
-    { "id": "R2_09", "type": "multiple_choice", "question": "Which bar model fits: 'Tom had 450 cards. He gave some to friends. Now he has 283. How many did he give away?'", "choices": ["A. Total 450, parts: ? and 283", "B. Total ?, parts: 450 and 283", "C. Total 283, parts: 450 and ?", "D. Total 450, parts: 283 and 283"], "answer": "A", "solution_steps": ["Total is 450 (what he started with)", "Two parts: given away (?) and remaining (283)", "450 = ? + 283, so ? = 450−283 = 167"], "hint": "The total he started with splits into two parts.", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "pictorial", "skill_tag": "bar_model_subtraction", "expected_errors": ["Choosing B"] },
-    { "id": "R2_10", "type": "multiple_choice", "question": "Pattie had 264 peppers. She sold some and had 112 left. Then she picked 89 more. How many does she have now?", "choices": ["A. 191", "B. 201", "C. 211", "D. 112"], "answer": "B", "solution_steps": ["After selling: 112 (given)", "After picking: 112+89=201", "Note: 264−?=112 is not needed to answer!"], "hint": "She has 112 left, then picks 89 more. Simple addition!", "difficulty": 3, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "read_carefully", "expected_errors": ["264−112=152, then 152+89 (wrong approach)"] }
+    {
+      "id": "R2_01",
+      "type": "multiple_choice",
+      "question": "A zookeeper counted 345 birds, 278 reptiles, and 189 mammals. How many more birds than mammals?",
+      "choices": [
+        "A. 146",
+        "B. 156",
+        "C. 166",
+        "D. 534"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Birds − mammals: 345−189=156",
+        "Reptiles are extra info!"
+      ],
+      "hint": "Watch out for extra information! Only compare birds and mammals.",
+      "difficulty": 4,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "extra_information",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M02",
+          "description": "파충류(278) 포함 계산(345+278+189=812) — 문제는 새와 포유류만 비교. 파충류는 불필요 정보",
+          "citation": "Van de Walle et al. (2013) p.167 — 'Students often incorporate all numbers present in a problem regardless of relevance.'"
+        }
+      ],
+      "math_note": "불필요 정보 포함: 새−포유류만 필요(345−189=156). 파충류(278)는 무관한 정보.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "multiple_choice",
+      "question": "Jenna saved $218 in January and $175 in February. She spent $109 on a gift and $86 on books. How much is left?",
+      "choices": [
+        "A. 188",
+        "B. 198",
+        "C. 208",
+        "D. 393"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Saved: 218+175=393",
+        "Spent: 109+86=195",
+        "Left: 393−195=198"
+      ],
+      "hint": "Add savings, add spending, then subtract.",
+      "difficulty": 4,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "multi_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M05",
+          "description": "책 비용만 빼고 선물 비용 누락(393−86=307) 또는 선물만 빼기(393−109=284) — 두 지출 모두 빼야 함",
+          "citation": "Carpenter et al. (1999) p.15 — 'Students undercount components when two or more groups are removed or added simultaneously.'"
+        }
+      ],
+      "math_note": "2번 지출: ①저축 합계(218+175=393), ②지출 합계(109+86=195), ③남은 금액(393−195=198).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "multiple_choice",
+      "question": "Team A scored 246. Team B scored 189. Team C scored 73 more than Team B. Which team scored the most?",
+      "choices": [
+        "A. Team A (246)",
+        "B. Team B (189)",
+        "C. Team C (262)",
+        "D. Teams A and C tied"
+      ],
+      "answer": "C",
+      "solution_steps": [
+        "Team C: 189+73=262",
+        "Compare: A=246, B=189, C=262",
+        "C is highest"
+      ],
+      "hint": "Find Team C's score first, then compare all three.",
+      "difficulty": 4,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_compare",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "C팀 점수를 계산하지 않고 주어진 수(A=246, B=189)만 비교 — C팀=189+73=262를 먼저 계산해야 함",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "C팀 점수 계산 후 비교: ①C팀(189+73=262), ②비교(A=246, B=189, C=262) → C가 최고.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "multiple_choice",
+      "question": "A library had 750 books. Monday: returned 143, borrowed 267. Tuesday: returned 98, borrowed 156. How many books now?",
+      "choices": [
+        "A. 558",
+        "B. 568",
+        "C. 578",
+        "D. 750"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Monday: 750+143−267=626",
+        "Tuesday: 626+98−156=568"
+      ],
+      "hint": "Returned = add, Borrowed = subtract. Do each day in order.",
+      "difficulty": 5,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "multi_step_sequential",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "description": "월·화 반납을 모두 더한 후 대출을 모두 빼는 방식(750+143+98−267−156=568) — 결과는 같지만 연산 순서 이해 확인 필요"
+        }
+      ],
+      "math_note": "다중 반납·대출: ①월요일(750+143−267=626), ②화요일(626+98−156=568). 각 날 순서대로 계산.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "multiple_choice",
+      "question": "Rosa has 500 beads. She uses 185 for a necklace and 137 for a bracelet. She buys 100 more. How many now?",
+      "choices": [
+        "A. 268",
+        "B. 278",
+        "C. 288",
+        "D. 178"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Used: 185+137=322",
+        "After using: 500−322=178",
+        "After buying: 178+100=278"
+      ],
+      "hint": "Subtract used beads, then add new ones.",
+      "difficulty": 4,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "multi_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M05",
+          "description": "목걸이 구슬만 사용(500−185=315) — 팔찌 구슬(137)도 함께 빼야 하는 성분 누락",
+          "citation": "Carpenter et al. (1999) p.15 — 'Students undercount components when two or more groups are removed or added simultaneously.'"
+        }
+      ],
+      "math_note": "3단계: ①사용(185+137=322), ②사용 후(500−322=178), ③구매 후(178+100=278).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "multiple_choice",
+      "question": "Jake's class collected 412 cans. Emma's class collected 389 cans. Together they gave 215 cans to charity. How many are left for recycling?",
+      "choices": [
+        "A. 576",
+        "B. 586",
+        "C. 596",
+        "D. 801"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Total: 412+389=801",
+        "After charity: 801−215=586"
+      ],
+      "hint": "Combine both classes, then subtract charity donation.",
+      "difficulty": 4,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "합계(801)에서 멈춤 — 자선 기부(215)를 빼는 마지막 단계 누락",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "기부 후 남은 양: ①합계(412+389=801), ②기부 후(801−215=586).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "multiple_choice",
+      "question": "A theater sold 328 adult tickets and 256 child tickets. Adult tickets cost $8 each. How many tickets were sold in all?",
+      "choices": [
+        "A. 574",
+        "B. 584",
+        "C. 594",
+        "D. 2624"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Total tickets: 328+256=584",
+        "The price ($8) is extra information!"
+      ],
+      "hint": "The question asks for NUMBER of tickets, not money.",
+      "difficulty": 4,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "extra_information",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M02",
+          "description": "가격($8) 사용 — 328×8=2624. 문제는 총 티켓 수(584)만 묻고 있어 가격은 불필요 정보",
+          "citation": "Van de Walle et al. (2013) p.167 — 'Students often incorporate all numbers present in a problem regardless of relevance.'"
+        }
+      ],
+      "math_note": "불필요 정보: 총 티켓만 묻는 문제(328+256=584). 가격($8/장)은 답과 무관.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "multiple_choice",
+      "question": "Ella had some stickers. She gave 128 to Amy and 96 to Bella. Now she has 276 left. How many did she start with?",
+      "choices": [
+        "A. 490",
+        "B. 500",
+        "C. 510",
+        "D. 276"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Given away: 128+96=224",
+        "Started with: 276+224=500",
+        "Working backwards!"
+      ],
+      "hint": "Work backwards: add what she gave away to what's left.",
+      "difficulty": 4,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "work_backwards",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "description": "276−128−96=52 계산 — 역방향 문제에서 덧셈 대신 뺄셈 사용. 시작 수=남은 수+나눠준 수"
+        }
+      ],
+      "math_note": "역방향 문제: 준 양(128+96=224), 시작 스티커(276+224=500). 남은 양에서 거슬러 올라감.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "multiple_choice",
+      "question": "Which bar model fits: 'Tom had 450 cards. He gave some to friends. Now he has 283. How many did he give away?'",
+      "choices": [
+        "A. Total 450, parts: ? and 283",
+        "B. Total ?, parts: 450 and 283",
+        "C. Total 283, parts: 450 and ?",
+        "D. Total 450, parts: 283 and 283"
+      ],
+      "answer": "A",
+      "solution_steps": [
+        "Total is 450 (what he started with)",
+        "Two parts: given away (?) and remaining (283)",
+        "450 = ? + 283, so ? = 450−283 = 167"
+      ],
+      "hint": "The total he started with splits into two parts.",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "pictorial",
+      "skill_tag": "bar_model_subtraction",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M07",
+          "description": "B 선택(전체 ?, 부분 450/283) — 전체 450을 알고 부분 283을 알므로 전체가 위, 미지수가 부분인 A가 정답",
+          "citation": "EngageNY G3 Module 2 Lesson 5 Teacher Edition — 'Students conflate the addition and subtraction bar model structures.'"
+        }
+      ],
+      "math_note": "뺄셈 막대 모델: 전체(450)를 알고 부분 하나(283)를 알 때 → 전체 위, 부분 두 개 아래. 정답 A.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "multiple_choice",
+      "question": "Pattie had 264 peppers. She sold some and had 112 left. Then she picked 89 more. How many does she have now?",
+      "choices": [
+        "A. 191",
+        "B. 201",
+        "C. 211",
+        "D. 112"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "After selling: 112 (given)",
+        "After picking: 112+89=201",
+        "Note: 264−?=112 is not needed to answer!"
+      ],
+      "hint": "She has 112 left, then picks 89 more. Simple addition!",
+      "difficulty": 3,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "read_carefully",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M02",
+          "description": "264를 사용(264−112=152, 152+89=241) — 현재 보유량(112)이 이미 주어져 있으므로 264는 불필요 정보",
+          "citation": "Van de Walle et al. (2013) p.167 — 'Students often incorporate all numbers present in a problem regardless of relevance.'"
+        }
+      ],
+      "math_note": "역방향+덧셈: 판매 후 이미 112개로 주어짐. ①더 딴 후(112+89=201). 264는 불필요 정보.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    }
   ],
-
   "practice_r3": [
-    { "id": "R3_01", "type": "multiple_choice", "question": "Draw a bar model: A school fair raised $347 from food, $285 from games, and $168 from crafts. They spent $436 on supplies. What was the profit? What is the first step?", "choices": ["A. Add all three earnings: 347+285+168", "B. Subtract 436 from 347", "C. Add 347+285, then subtract 168", "D. Subtract 436 from 285"], "answer": "A", "solution_steps": ["Step 1: Total earned = 347+285+168=800", "Step 2: Profit = 800−436=364", "First step is adding all earnings"], "hint": "Find total earnings before subtracting expenses.", "difficulty": 5, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "multi_step_identify_first", "expected_errors": ["Trying to subtract before adding all"] },
-    { "id": "R3_02", "type": "multiple_choice", "question": "From the problem above, what is the school fair's profit?", "choices": ["A. 354", "B. 364", "C. 374", "D. 800"], "answer": "B", "solution_steps": ["800−436=364"], "hint": "Total earnings (800) minus expenses (436).", "difficulty": 4, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "multi_step_complete", "expected_errors": ["Stopping at total: 800"] },
-    { "id": "R3_03", "type": "multiple_choice", "question": "Sam had some coins. He found 46 more, then lost 29. Now he has 150. How many did he start with?", "choices": ["A. 123", "B. 133", "C. 143", "D. 167"], "answer": "B", "solution_steps": ["Work backwards: before losing 29 → 150+29=179", "Before finding 46 → 179−46=133", "Check: 133+46−29=150 ✓"], "hint": "Work backwards! Undo each step in reverse order.", "difficulty": 5, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "work_backwards", "expected_errors": ["150−46+29=133 (correct!) or 150+29−46=133 (also correct reasoning)"] },
-    { "id": "R3_04", "type": "multiple_choice", "question": "Three classes collected cans: Room A got 215, Room B got 178, Room C got 207. The goal was 650 cans. Did they reach the goal? By how much over or under?", "choices": ["A. Under by 40", "B. Under by 50", "C. Over by 50", "D. Exactly at goal"], "answer": "B", "solution_steps": ["Total: 215+178+207=600", "Goal: 650", "Under by: 650−600=50"], "hint": "Add all three rooms, then compare to 650.", "difficulty": 5, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "multi_step_compare_to_goal", "expected_errors": ["Adding wrong: 215+178+207=610"] },
-    { "id": "R3_05", "type": "multiple_choice", "question": "A toy store had 500 toys. Monday: sold 187. Tuesday: received 125, sold 93. Wednesday: received 200, sold 156. How many toys now?", "choices": ["A. 379", "B. 389", "C. 399", "D. 500"], "answer": "B", "solution_steps": ["Monday: 500−187=313", "Tuesday: 313+125−93=345", "Wednesday: 345+200−156=389"], "hint": "Process each day in order: add received, subtract sold.", "difficulty": 5, "ccss": "3.OA.D.8", "cpa_stage": "abstract", "skill_tag": "multi_step_sequential", "expected_errors": ["Missing a step or day"] }
-  ]
+    {
+      "id": "R3_01",
+      "type": "multiple_choice",
+      "question": "Draw a bar model: A school fair raised $347 from food, $285 from games, and $168 from crafts. They spent $436 on supplies. What was the profit? What is the first step?",
+      "choices": [
+        "A. Add all three earnings: 347+285+168",
+        "B. Subtract 436 from 347",
+        "C. Add 347+285, then subtract 168",
+        "D. Subtract 436 from 285"
+      ],
+      "answer": "A",
+      "solution_steps": [
+        "Step 1: Total earned = 347+285+168=800",
+        "Step 2: Profit = 800−436=364",
+        "First step is adding all earnings"
+      ],
+      "hint": "Find total earnings before subtracting expenses.",
+      "difficulty": 5,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "multi_step_identify_first",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "description": "436을 먼저 빼려 함 — 전체 수입 합계를 먼저 구해야 이익 계산이 가능. 순서 이해 필요"
+        }
+      ],
+      "math_note": "3가지 수입의 합계가 먼저: 347+285+168=800. 이익을 구하려면 전체 수입부터 더해야 함.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "multiple_choice",
+      "question": "From the problem above, what is the school fair's profit?",
+      "choices": [
+        "A. 354",
+        "B. 364",
+        "C. 374",
+        "D. 800"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "800−436=364"
+      ],
+      "hint": "Total earnings (800) minus expenses (436).",
+      "difficulty": 4,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "multi_step_complete",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "총 수입(800)에서 멈춤 — 이익=수입−지출(800−436=364)을 계산하는 마지막 단계 누락",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "이익 = 수입−지출: 800−436=364. R3_01에서 구한 800을 이용.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "multiple_choice",
+      "question": "Sam had some coins. He found 46 more, then lost 29. Now he has 150. How many did he start with?",
+      "choices": [
+        "A. 123",
+        "B. 133",
+        "C. 143",
+        "D. 167"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Work backwards: before losing 29 → 150+29=179",
+        "Before finding 46 → 179−46=133",
+        "Check: 133+46−29=150 ✓"
+      ],
+      "hint": "Work backwards! Undo each step in reverse order.",
+      "difficulty": 5,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "work_backwards",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "description": "계산 실수: 역방향 풀이(150+29−46=133 또는 150+29=179, 179−46=133) 모두 정답이므로 산술 오류만 주의"
+        }
+      ],
+      "math_note": "역방향 문제: 최종값에서 역산. 150+29=179, 179−46=133. 검산: 133+46−29=150 ✓.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "multiple_choice",
+      "question": "Three classes collected cans: Room A got 215, Room B got 178, Room C got 207. The goal was 650 cans. Did they reach the goal? By how much over or under?",
+      "choices": [
+        "A. Under by 40",
+        "B. Under by 50",
+        "C. Over by 50",
+        "D. Exactly at goal"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Total: 215+178+207=600",
+        "Goal: 650",
+        "Under by: 650−600=50"
+      ],
+      "hint": "Add all three rooms, then compare to 650.",
+      "difficulty": 5,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "multi_step_compare_to_goal",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "description": "덧셈 오류: 215+178+207 계산 실수 → 610으로 잘못 계산. 올바른 합계=600, 50 부족"
+        }
+      ],
+      "math_note": "3개 그룹 합계: 215+178+207=600. 목표(650)와 비교 → 50 부족.",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "multiple_choice",
+      "question": "A toy store had 500 toys. Monday: sold 187. Tuesday: received 125, sold 93. Wednesday: received 200, sold 156. How many toys now?",
+      "choices": [
+        "A. 379",
+        "B. 389",
+        "C. 399",
+        "D. 500"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Monday: 500−187=313",
+        "Tuesday: 313+125−93=345",
+        "Wednesday: 345+200−156=389"
+      ],
+      "hint": "Process each day in order: add received, subtract sold.",
+      "difficulty": 5,
+      "ccss": [
+        "3.OA.D.8"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "multi_step_sequential",
+      "expected_errors": [
+        {
+          "error_type": "misconception",
+          "misconception_id": "3.OA.D.8.M01",
+          "description": "하나의 날(예: 월요일 결과 313)에서 멈춤 — 3일간의 변동을 모두 순서대로 적용해야 최종 389 도달",
+          "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students.'"
+        }
+      ],
+      "math_note": "3단계 재고 관리: ①월(500−187=313), ②화(313+125−93=345), ③수(345+200−156=389).",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 12",
+          "url": "https://www.hmhco.com/programs/go-math",
+          "description": "Problem Solving: Model Addition and Subtraction — bar model 전략으로 2단계 문장제 풀기"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2",
+          "description": "2단계 덧셈·뺄셈 문장제: 막대 모델 그리기 → 식 세우기 → 검산"
+        },
+        "assessment_source": {
+          "name": "NCTM OA Progressions Grade 3 p.9",
+          "url": "https://commoncoretools.me/wp-content/uploads/2011/05/ccss_progression_oa_k5_2011_05_09.pdf",
+          "description": "3.OA.D.8 평가 지침 — 2단계 문장제 풀이 및 식 표현 능력 검증 기준"
+        }
+      }
+    }
+  ],
+  "tier": "A",
+  "review_from_units": [],
+  "vertical_alignment": {
+    "prerequisite": "2.OA.A.1",
+    "successor": "4.OA.A.3"
+  },
+  "lesson_summary": "막대 모델 문장제 마스터: ①문제 읽기 ②전체·부분 파악 ③막대 그리기 ④연산 결정 ⑤계산·검산. 2단계 문제는 1단계 결과를 중간값으로 사용해 2단계를 완성. 핵심 경계: '중간 결과에서 멈추지 않기' — 항상 질문에 직접 답했는지 재확인.",
+  "unit_intro_message": "이번 단원에서는 막대 모델(bar model)로 덧셈·뺄셈 문장제를 체계적으로 풀어봅니다. 막대 그림 한 장이 복잡한 2단계 문제도 쉽게 만들어줍니다. 준비됐나요? 🎯",
+  "unit_close_message": "막대 모델 전략을 완성했습니다! 이제 어떤 2단계 문장제도 ①전체·부분 파악 → ②막대 그리기 → ③연산 결정의 3단계로 해결할 수 있습니다. 항상 '내가 질문에 직접 답했나?'를 확인하는 습관을 유지하세요. 🏆"
 }

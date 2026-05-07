@@ -171,6 +171,12 @@ def check_stage3(lesson: dict) -> dict:
             skipped.append(item_id)
             continue
 
+        # bar model 선택 / 개념 문항 스킵: 수식이 따옴표 안에 있으면 묘사용이므로 자동 검증 대상 아님
+        # 예) "Which bar model shows '348 + 156 = ?'?" → 스킵
+        if re.search(r"['\"][\d\s\+\-\×\*\/x]+(?:\s*=\s*\?)?\s*['\"]", q):
+            skipped.append(item_id)
+            continue
+
         # 다중 피연산자 덧셈/뺄셈: "a + b + c (+ d) = ?" 전체 추출
         ma = re.search(r'([\d]+(?:\s*[\+\-\×\*\/x]\s*[\d]+)+)\s*=\s*\?', q)
         if not ma:
