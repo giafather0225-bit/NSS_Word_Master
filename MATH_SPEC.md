@@ -167,21 +167,30 @@ Cross-grade: if mastery shown in current grade domain -> offer next grade conten
 
 ## Curriculum Structure (Go Math Aligned)
 
-### G3 (12 Units)
-| Unit | Topic | Go Math Ch |
-|------|-------|-----------|
-| U1 | Addition & Subtraction within 1,000 | Ch 1 |
-| U2 | Data & Graphs | Ch 2 |
-| U3 | Understand Multiplication | Ch 3 |
-| U4 | Multiplication Facts | Ch 4 |
-| U5 | Use Multiplication Facts | Ch 5 |
-| U6 | Understand Division | Ch 6 |
-| U7 | Division Facts | Ch 7 |
-| U8 | Fractions | Ch 8 |
-| U9 | Compare Fractions | Ch 9 |
-| U10 | Time, Length, Mass | Ch 10 |
-| U11 | Perimeter & Area | Ch 11 |
-| U12 | Two-Dimensional Shapes | Ch 12 |
+### G3 (13 Units)
+
+> Reorganized 2026-05-06 to give full CCSS Grade 3 coverage. U10 narrowed to perimeter only; U11 (time/mass/volume), U12 (area), U13 (shapes) added so each Go Math chapter maps to its own unit.
+
+| Unit | Topic | Go Math Ch | CCSS |
+|------|-------|-----------|------|
+| U1 | Addition & Subtraction within 1,000 | Ch 1 | 3.NBT |
+| U2 | Represent & Interpret Data | Ch 2 | 3.MD.B.3-4 |
+| U3 | Understand Multiplication | Ch 3 | 3.OA.A |
+| U4 | Multiplication Facts & Strategies | Ch 4 | 3.OA.B-C |
+| U5 | Use Multiplication Facts | Ch 5 | 3.OA.D |
+| U6 | Understand Division | Ch 6 | 3.OA.A |
+| U7 | Division Facts & Strategies | Ch 7 | 3.OA.C |
+| U8 | Understand Fractions | Ch 8 | 3.NF.A.1-2 |
+| U9 | Compare Fractions | Ch 9 | 3.NF.A.3 |
+| U10 | Perimeter | Ch 11 (partial) | 3.MD.D.8 |
+| U11 | Time, Mass, & Liquid Volume | Ch 10 | 3.MD.A.1-2 |
+| U12 | Area | Ch 11 | 3.MD.C.5-7 |
+| U13 | Two-Dimensional Shapes & Partitioning | Ch 12 | 3.G.A.1-2 |
+
+**Coverage notes**:
+- U10 has 6 lessons (perimeter only). Area was split off into U12 to give it room for 8 lessons covering 3.MD.C.5, 3.MD.C.6, and 3.MD.C.7.
+- U11 (8 lessons) covers `3.MD.A.1` (time to nearest minute, elapsed time, time word problems) and `3.MD.A.2` (mass in grams/kilograms and liquid volume in liters/milliliters).
+- U13 (7 lessons) covers `3.G.A.1` (describe and classify polygons including the quadrilateral family) and `3.G.A.2` (partition shapes into equal parts and express each part as a unit fraction).
 
 ### G4 (13 Units)
 | Unit | Topic |
