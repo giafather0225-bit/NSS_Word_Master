@@ -200,9 +200,9 @@ function _zdRenderPlacedItems() {
         const x = (p.pos_x ?? 50);
         const y = (p.pos_y ?? 50);
         const visual = _zdDecorVisual(p.image, p.name, p.sub_category);
-        const click = `onclick="event.stopPropagation();_zdDecorClick(${p.id},this)"`;
+        const handler = `onmousedown="_zdDecorMouseDown(event,${p.id},this)"`;
         return `<div class="izd-decor" data-placed-id="${p.id}"
-                     style="left:${x}%;top:${y}%" ${click}>${visual}</div>`;
+                     style="left:${x}%;top:${y}%" ${handler}>${visual}</div>`;
     }).join('');
 }
 
@@ -502,6 +502,87 @@ async function _zdPlaceSelected(x, y) {
     } catch (e) {
         _showShopToast(e?.detail || 'Could not place item.', true);
     }
+}
+
+/**
+ * Mousedown on a placed decoration — distinguishes click vs drag.
+ * - movement ≤ 5px: treat as click → show Remove popup (legacy behavior).
+ * - movement >  5px: drag → live-track cursor, POST /decorate/move on release.
+ * Only active in decorate mode. @tag SHOP
+ */
+function _zdDecorMouseDown(e, placedId, el) {
+    if (!_zdDecorating) return;
+    if (e.button !== 0) return;            // left click only
+    e.stopPropagation();
+    e.preventDefault();
+
+    const stage = document.getElementById('izd-stage');
+    if (!stage) return;
+    const stageRect = stage.getBoundingClientRect();
+    const startX = e.clientX, startY = e.clientY;
+    const DRAG_THRESHOLD = 5;
+    let dragging = false;
+
+    function _toPct(clientX, clientY) {
+        const x = ((clientX - stageRect.left) / stageRect.width)  * 100;
+        const y = ((clientY - stageRect.top)  / stageRect.height) * 100;
+        return [
+            Math.max(0, Math.min(100, Math.round(x))),
+            Math.max(0, Math.min(100, Math.round(y))),
+        ];
+    }
+
+    function onMove(ev) {
+        const dx = ev.clientX - startX;
+        const dy = ev.clientY - startY;
+        if (!dragging && Math.hypot(dx, dy) > DRAG_THRESHOLD) {
+            dragging = true;
+            el.classList.add('izd-decor--dragging');
+            // Hide ghost preview if any (don't double-render).
+            if (_zdGhostEl) _zdGhostEl.style.display = 'none';
+        }
+        if (dragging) {
+            const [px, py] = _toPct(ev.clientX, ev.clientY);
+            el.style.left = `${px}%`;
+            el.style.top  = `${py}%`;
+        }
+    }
+
+    async function onUp(ev) {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup',   onUp);
+        if (_zdGhostEl) _zdGhostEl.style.display = '';
+        if (!dragging) {
+            // Click → existing Remove popup behavior.
+            _zdDecorClick(placedId, el);
+            return;
+        }
+        el.classList.remove('izd-decor--dragging');
+        const [px, py] = _toPct(ev.clientX, ev.clientY);
+        // Optimistic local update — already moved visually above.
+        const placed = _zdPlaced.find(p => p.id === placedId);
+        if (placed) { placed.pos_x = px; placed.pos_y = py; }
+        try {
+            await apiFetchJSON('/api/island/decorate/move', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ placed_item_id: placedId, pos_x: px, pos_y: py }),
+            });
+        } catch (err) {
+            _showShopToast(err?.detail || 'Could not move item.', true);
+            // Revert by refetching authoritative state.
+            try {
+                const data = await apiFetchJSON(`/api/island/placed?zone=${_zdZone}`);
+                _zdPlaced = data.items || [];
+                const layer = document.getElementById('izd-stage-decor');
+                if (layer) layer.innerHTML = _zdRenderPlacedItems();
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            } catch {}
+        }
+    }
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup',   onUp);
 }
 
 /** Click an already-placed item in decorate mode → show Remove popup. @tag SHOP */

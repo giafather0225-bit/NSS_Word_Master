@@ -156,6 +156,11 @@ class PlaceBody(BaseModel):
 class RemoveBody(BaseModel):
     placed_item_id: int
 
+class MoveBody(BaseModel):
+    placed_item_id: int
+    pos_x: int = 0
+    pos_y: int = 0
+
 class ConfigUpdateBody(BaseModel):
     key: str
     value: str
@@ -760,6 +765,19 @@ def decorate_place(body: PlaceBody, db: Session = Depends(get_db)):
     inv.quantity -= 1
     db.commit()
     return {"ok": True, "zone": body.zone}
+
+
+# @tag ISLAND
+@router.post("/decorate/move")
+def decorate_move(body: MoveBody, db: Session = Depends(get_db)):
+    """Reposition a placed decoration without returning it to inventory."""
+    placed = db.get(IslandPlacedItem, body.placed_item_id)
+    if placed is None or not placed.is_placed:
+        raise HTTPException(404, "Placed item not found.")
+    placed.pos_x = max(0, min(100, body.pos_x))
+    placed.pos_y = max(0, min(100, body.pos_y))
+    db.commit()
+    return {"ok": True, "pos_x": placed.pos_x, "pos_y": placed.pos_y}
 
 
 # @tag ISLAND
