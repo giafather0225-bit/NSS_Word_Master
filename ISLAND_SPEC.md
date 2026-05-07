@@ -374,7 +374,10 @@ Reward Shop now has 5 tabs:
 ### 7.4 Decoration Rules
 
 - Max placement per zone: **All purchased items** (no limit — Forest/Ocean/Savanna/Space up to 9 items each, Legend up to 10)
-- Duplicate purchase: **NOT allowed** (decoration items) — shows "Owned" badge
+- Duplicate purchase: **NOT allowed** (decoration items) — shows "Owned" badge.
+  Backend enforcement (`/shop/buy`): rejects with 400 when the item is already in inventory **or** already placed; quantity must be 1.
+- Decorate flow: Zone Detail → **Decorate** button → click on stage to place selected item; click on a placed item to Remove; **drag a placed item** to reposition (POST `/decorate/move`, click vs drag is distinguished by a 5px movement threshold)
+- Asset path: each placed item resolves to `island/decor/{zone}_{slug}.png`. Missing PNG falls back to a Lucide-icon placeholder tinted by `sub_category`. Coverage check: `python3 scripts/check_decor_assets.py`.
 - Evolution stones: Duplicate purchase **ALLOWED** (consumable)
 - Decoration **sell back**: 50% of purchase price in Lumi
 - Sell-back UI: Inventory → item detail → "Sell" button → confirmation popup
@@ -814,6 +817,7 @@ island_on                   = true         # Parent can disable island
 | GET | /api/island/inventory | Owned items list |
 | GET | /api/island/placed | Placed decoration list |
 | POST | /api/island/decorate/place | Place item in zone |
+| POST | /api/island/decorate/move | Reposition a placed item (drag-to-reposition) |
 | POST | /api/island/decorate/remove | Recall item to inventory |
 
 ### 12.8 Legend System

@@ -348,6 +348,7 @@
 | GET | /api/island/inventory | routers/island.py | Inventory.jsx |
 | GET | /api/island/placed | routers/island.py | IslandMain.jsx |
 | POST | /api/island/decorate/place | routers/island.py | Inventory.jsx |
+| POST | /api/island/decorate/move | routers/island.py | ZoneDetail.jsx |
 | POST | /api/island/decorate/remove | routers/island.py | Inventory.jsx |
 | GET | /api/island/legend/progress | routers/island.py | CharacterDetail.jsx |
 | POST | /api/island/legend/daily | routers/island.py | IslandMain.jsx |

@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-03 — CKLA redesign spec (66 decisions) + DUX freeze rules + streak subject change + migrations 018-022 + Math Module v2.0 (MATH_SPEC.md) + Island System
+> Last updated: 2026-05-07 — CKLA redesign spec (66 decisions) + DUX freeze rules + streak subject change + migrations 018-024 + Math Module v2.0 (MATH_SPEC.md) + Island System (Scene-Stage decorate flow + drag-to-reposition + auto cache-bust)
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -119,6 +119,7 @@ NSS_Word_Master/
 │   ├── ckla_parser.py  ckla_view.py  import_ckla.py
 │   ├── enrich_missing.py  enrich_mw.py
 │   ├── generate_kangaroo_solutions.py  validate_kangaroo_phase1.py
+│   ├── check_decor_assets.py    # Island decor PNG coverage report
 │   ├── setup_daughter_mac.sh  com.gia.learning.plist
 ├── tools/nss_ocr/               # OCR helper tooling
 ├── logs/                        # runtime logs
@@ -957,7 +958,7 @@ New module for US-school vocab prep.
 `WeeklyGoal`
 
 ### Migrations (`backend/migrations/`)
-001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy · 011 ckla · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE(grade,unit,lesson) · 018 ckla grade column + xplog source column · 019 ckla grade ext + ckla_badges + ckla_user_badges · 020 ckla_badges/user_badges tables · 021 ckla_spelling_grammar · 022 math_v2_schema.
+001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy · 011 ckla · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE(grade,unit,lesson) · 018 ckla grade column + xplog source column · 019 ckla grade ext + ckla_badges + ckla_user_badges · 020 ckla_badges/user_badges tables · 021 ckla_spelling_grammar · 022 math_v2_schema · 023 island_shop_items.image backfill (46 decor paths) · 024 island_decor_extension (idempotent extension point for new decoration items).
 
 ---
 
@@ -1121,7 +1122,7 @@ New tables:
 
 | File | Purpose |
 |------|---------|
-| `routers/island.py` | All island API (40 endpoints) |
+| `routers/island.py` | All island API (41 endpoints, incl. `/decorate/{place,move,remove}`) |
 | `services/lumi_engine.py` | Lumi earn/spend/exchange |
 | `services/island_care_engine.py` | Decay + gauge logic |
 | `services/island_production_engine.py` | Daily lumi batch |
