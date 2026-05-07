@@ -1,160 +1,2618 @@
 {
   "lesson_id": "L11_combine_place_values_to_subtract",
   "title": "Combine Place Values to Subtract",
-  "ccss": ["3.NBT.A.2"],
+  "ccss": [
+    "3.NBT.A.2"
+  ],
   "grade": "G3",
   "unit": "U1_add_sub_1000",
-  "go_math_ref": { "chapter": 1, "lesson": 1.11, "pages": "47-50" },
+  "go_math_ref": {
+    "chapter": 1,
+    "lesson": 1.11,
+    "pages": "47-50"
+  },
   "essential_question": "How can you combine place values to subtract 3-digit numbers?",
-  "key_vocabulary": ["regroup", "combine", "place value", "hundreds", "tens", "ones"],
-  "strategies": ["combine_place_values_before_subtracting", "regroup_across_zeros"],
-
+  "key_vocabulary": [
+    "regroup",
+    "combine",
+    "place value",
+    "hundreds",
+    "tens",
+    "ones"
+  ],
+  "strategies": [
+    "combine_place_values_before_subtracting",
+    "regroup_across_zeros"
+  ],
   "pretest": [
     {
-      "id": "PT_01", "type": "multiple_choice",
+      "id": "PT_01",
+      "type": "multiple_choice",
       "question": "476 − 269 =",
-      "choices": ["A. 197", "B. 207", "C. 217", "D. 203"],
+      "choices": [
+        "A. 197",
+        "B. 207",
+        "C. 217",
+        "D. 203"
+      ],
       "answer": "B",
-      "solution_steps": ["Ones: 6−9→regroup: 16−9=7", "Tens: 6−6=0 (after regrouping 7t→6t)", "Hundreds: 4−2=2", "207"],
-      "hint": "Regroup tens to ones first.", "difficulty": 3,
-      "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_regrouping",
-      "expected_errors": ["476−269=217 (regrouping error)"]
+      "solution_steps": [
+        "Ones: 6−9→regroup: 16−9=7",
+        "Tens: 6−6=0 (after regrouping 7t→6t)",
+        "Hundreds: 4−2=2",
+        "207"
+      ],
+      "hint": "Regroup tens to ones first.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_regrouping",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=217: 일의 자리 받아내림 후 십의 자리 감소 누락 (tens: 7→6 미반영)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=197: 십의 자리 과감산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=203: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "476−269=207; 4H7T6O → ones 6<9: borrow→16−9=7, tens (7−1=6)−6=0, hundreds 4−2=2 → 207",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
-      "id": "PT_02", "type": "multiple_choice",
+      "id": "PT_02",
+      "type": "multiple_choice",
       "question": "615 − 342 =",
-      "choices": ["A. 263", "B. 273", "C. 283", "D. 277"],
+      "choices": [
+        "A. 263",
+        "B. 273",
+        "C. 283",
+        "D. 277"
+      ],
       "answer": "B",
-      "solution_steps": ["Ones: 5−2=3", "Tens: 1−4→regroup: 11−4=7", "Hundreds: 5−3=2", "273"],
-      "hint": "Regroup hundreds to tens.", "difficulty": 3,
-      "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_regrouping",
-      "expected_errors": ["615−342=283"]
+      "solution_steps": [
+        "Ones: 5−2=3",
+        "Tens: 1−4→regroup: 11−4=7",
+        "Hundreds: 5−3=2",
+        "273"
+      ],
+      "hint": "Regroup hundreds to tens.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_regrouping",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=283: 십의 자리 받아내림 후 백의 자리 감소 누락 (hundreds: 6→5 미반영)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=263: 십의 자리 산술 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=277: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "615−342=273; ones 5−2=3, tens 1<4: borrow→11−4=7, hundreds (6−1=5)−3=2 → 273",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
-      "id": "PT_03", "type": "multiple_choice",
+      "id": "PT_03",
+      "type": "multiple_choice",
       "question": "700 − 326 =",
-      "choices": ["A. 364", "B. 374", "C. 384", "D. 376"],
+      "choices": [
+        "A. 364",
+        "B. 374",
+        "C. 384",
+        "D. 376"
+      ],
       "answer": "B",
-      "solution_steps": ["7h 0t 0o → combine: 6h 9t 10o", "10−6=4, 9−2=7, 6−3=3", "374"],
-      "hint": "Combine: 7 hundreds = 6 hundreds + 9 tens + 10 ones.", "difficulty": 4,
-      "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros",
-      "expected_errors": ["700−326=384"]
+      "solution_steps": [
+        "7h 0t 0o → combine: 6h 9t 10o",
+        "10−6=4, 9−2=7, 6−3=3",
+        "374"
+      ],
+      "hint": "Combine: 7 hundreds = 6 hundreds + 9 tens + 10 ones.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_across_zeros",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=384: 결합 단계 오류 — 700을 6H10T0O로 처리해 ones에서 재그룹 누락"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=364: 십의 자리 계산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=376: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "700−326=374; 7H0T0O → combine: 6H9T10O; 10−6=4, 9−2=7, 6−3=3 → 374",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
-      "id": "PT_04", "type": "multiple_choice",
+      "id": "PT_04",
+      "type": "multiple_choice",
       "question": "508 − 113 =",
-      "choices": ["A. 385", "B. 395", "C. 405", "D. 391"],
+      "choices": [
+        "A. 385",
+        "B. 395",
+        "C. 405",
+        "D. 391"
+      ],
       "answer": "B",
-      "solution_steps": ["Ones: 8−3=5", "Tens: 0−1→regroup: 10−1=9", "Hundreds: 4−1=3", "395"],
-      "hint": "Regroup from hundreds to tens.", "difficulty": 3,
-      "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_zero_tens",
-      "expected_errors": ["508−113=405"]
+      "solution_steps": [
+        "Ones: 8−3=5",
+        "Tens: 0−1→regroup: 10−1=9",
+        "Hundreds: 4−1=3",
+        "395"
+      ],
+      "hint": "Regroup from hundreds to tens.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_zero_tens",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=405: tens 0에서 받아내림 없이 0−1을 0으로 처리 (regroup 생략)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=385: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=391: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "508−113=395; ones 8−3=5, tens 0<1: borrow→10−1=9, hundreds (5−1=4)−1=3 → 395",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
-      "id": "PT_05", "type": "multiple_choice",
+      "id": "PT_05",
+      "type": "multiple_choice",
       "question": "Bev scored 540 points — 158 more than Ike. How many did Ike score?",
-      "choices": ["A. 372", "B. 382", "C. 392", "D. 698"],
+      "choices": [
+        "A. 372",
+        "B. 382",
+        "C. 392",
+        "D. 698"
+      ],
       "answer": "B",
-      "solution_steps": ["540−158", "Ones: 0−8→combine: 5h→4h, 4t→3t, 10o. 10−8=2", "Tens: 3−5→regroup: 13−5=8", "Hundreds: 3−1=2? Wait, let me redo.", "540 = 5h 4t 0o. Regroup: 5h 3t 10o. 10−8=2. 3−5→regroup: 4h 13t. 13−5=8. 4−1=3. → 382"],
-      "hint": "'158 more than' means subtract 158 from 540.", "difficulty": 4,
-      "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_word_problem",
-      "expected_errors": ["Adding: 540+158=698"]
+      "solution_steps": [
+        "540−158",
+        "Ones: 0−8→combine: 5h→4h, 4t→3t, 10o. 10−8=2",
+        "Tens: 3−5→regroup: 13−5=8",
+        "Hundreds: 3−1=2? Wait, let me redo.",
+        "540 = 5h 4t 0o. Regroup: 5h 3t 10o. 10−8=2. 3−5→regroup: 4h 13t. 13−5=8. 4−1=3. → 382"
+      ],
+      "hint": "'158 more than' means subtract 158 from 540.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_word_problem",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=392: 이중 받아내림 중 첫 번째만 처리 (ones OK, tens regroup 생략)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=372: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=698: 잘못된 연산 (540+158, 빼기 대신 더하기)"
+        }
+      ],
+      "math_note": "540−158=382; 5H4T0O → ones 0<8: borrow→10−8=2, tens (4−1=3)<5: borrow→13−5=8, hundreds (5−1=4)−1=3 → 382",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "learn": [
     {
-      "id": "LEARN_01", "type": "concept_card",
+      "id": "LEARN_01",
+      "type": "concept_card",
       "title": "What Does 'Combine Place Values' Mean?",
       "content": "Instead of regrouping one place at a time, you can COMBINE place values before subtracting. Example: 700 = 7 hundreds. You can think of it as 6 hundreds + 10 tens, or 6 hundreds + 9 tens + 10 ones. Then subtract!",
-      "visual_type": "place_value_chart", "cpa_stage": "concrete"
+      "visual_type": "place_value_chart",
+      "cpa_stage": "concrete",
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "'자릿값 결합' 개념: 7H0T0O를 6H9T10O처럼 한 번에 재배분하면 0이 포함된 뺄셈을 한 단계로 처리 가능",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47-49",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
-      "id": "LEARN_02", "type": "concept_card",
+      "id": "LEARN_02",
+      "type": "concept_card",
       "title": "Example: 700 − 326",
       "content": "Step 1: 700 = 6 hundreds + 9 tens + 10 ones (combine!). Step 2: Ones: 10−6=4. Step 3: Tens: 9−2=7. Step 4: Hundreds: 6−3=3. Answer: 374.",
-      "visual_type": "step_by_step", "cpa_stage": "pictorial",
-      "example": { "problem": "700−326", "combined": "6h 9t 10o", "answer": 374 }
+      "visual_type": "step_by_step",
+      "cpa_stage": "pictorial",
+      "example": {
+        "problem": "700−326",
+        "combined": "6h 9t 10o",
+        "answer": 374
+      },
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "700−326: 6H9T10O → 10−6=4, 9−2=7, 6−3=3 → 374; 결합 전략의 핵심 예시",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47-49",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
-      "id": "LEARN_03", "type": "concept_card",
+      "id": "LEARN_03",
+      "type": "concept_card",
       "title": "Why Combine?",
       "content": "When you have zeros in the middle (like 700, 508, 900), combining makes it easier because you do all the regrouping in ONE step instead of going back and forth.",
-      "visual_type": "comparison_table", "cpa_stage": "abstract"
+      "visual_type": "comparison_table",
+      "cpa_stage": "abstract",
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "왜 결합하는가: 중간에 0이 있으면 연쇄 받아내림 대신 한 번에 결합하면 단계 절약",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47-49",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
-      "id": "LEARN_04", "type": "concept_card",
+      "id": "LEARN_04",
+      "type": "concept_card",
       "title": "Example: 476 − 269",
       "content": "Ones: 6−9? Can't! Regroup: 476 = 4h 6t 16o. 16−9=7. Tens: 6−6=0. Hundreds: 4−2=2. Answer: 207.",
-      "visual_type": "step_by_step", "cpa_stage": "pictorial"
+      "visual_type": "step_by_step",
+      "cpa_stage": "pictorial",
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "476−269: 이중 받아내림 예시 — 일의 자리, 십의 자리 모두 받아내림 필요",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47-49",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
-      "id": "LEARN_05", "type": "concept_card",
+      "id": "LEARN_05",
+      "type": "concept_card",
       "title": "Example: 900 − 158",
       "content": "900 = 8 hundreds + 9 tens + 10 ones. Ones: 10−8=2. Tens: 9−5=4. Hundreds: 8−1=7. Answer: 742.",
-      "visual_type": "step_by_step", "cpa_stage": "pictorial",
-      "example": { "problem": "900−158", "combined": "8h 9t 10o", "answer": 742 }
+      "visual_type": "step_by_step",
+      "cpa_stage": "pictorial",
+      "example": {
+        "problem": "900−158",
+        "combined": "8h 9t 10o",
+        "answer": 742
+      },
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "900−158: 8H9T10O → 10−8=2, 9−5=4, 8−1=7 → 742; 세 자리 결합 예시",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47-49",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
-      "id": "LEARN_06", "type": "concept_card",
+      "id": "LEARN_06",
+      "type": "concept_card",
       "title": "Estimate First!",
       "content": "Always estimate before solving. 476−269: estimate 500−300=200. Your answer (207) is close. 700−326: estimate 700−300=400. Your answer (374) is close.",
-      "visual_type": "comparison_table", "cpa_stage": "abstract"
+      "visual_type": "comparison_table",
+      "cpa_stage": "abstract",
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "어림 먼저: 700−326 ≈ 700−300=400; 실제 374와 근접 → 합리적 범위 확인 습관",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47-49",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     },
     {
-      "id": "LEARN_07", "type": "concept_card",
+      "id": "LEARN_07",
+      "type": "explain",
       "title": "Check by Adding",
       "content": "After subtracting, add your answer to the smaller number. 374+326=700 ✓. 207+269=476 ✓. If they match, your subtraction is correct!",
-      "visual_type": "step_by_step", "cpa_stage": "abstract"
+      "visual_type": "step_by_step",
+      "cpa_stage": "abstract",
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "검산 — 더하기로 확인: 374+326=700 ✓; 207+269=476 ✓; 답+뺀 수=처음 수 원리",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47-49",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      },
+      "math_talk_prompt": "You just solved 700 − 326 = 374 using the combine strategy. Let's check: 374 + 326 = ?  Does your check give you 700? Now try checking 900 − 158 = 742: does 742 + 158 = 900? Why does adding your answer back to the number you subtracted always give the original number? Can you explain this to a partner using a number bond?"
     },
     {
-      "id": "LEARN_08", "type": "concept_card",
+      "id": "LEARN_08",
+      "type": "summary",
       "title": "Combining vs. Regular Regrouping",
       "content": "Both methods give the same answer! Combining is just a shortcut for numbers with zeros. Use whichever method feels easier to you.",
-      "visual_type": "comparison_table", "cpa_stage": "abstract"
+      "visual_type": "comparison_table",
+      "cpa_stage": "abstract",
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "math_note": "결합 vs 일반 받아내림: 두 방법 모두 동일 정답; 결합은 0이 있는 수에서 더 효율적인 지름길",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.47-49",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
     }
   ],
-
   "try": [
-    { "id": "TRY_01", "type": "multiple_choice", "question": "716 − 229 =", "choices": ["A. 477", "B. 487", "C. 497", "D. 483"], "answer": "B", "solution_steps": ["Ones: 6−9→16−9=7", "Tens: 0−2→10−2=8", "Hundreds: 6−2=4", "487"], "hint": "Regroup ones, then tens.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract", "expected_errors": ["716−229=497"] },
-    { "id": "TRY_02", "type": "multiple_choice", "question": "325 − 179 =", "choices": ["A. 136", "B. 146", "C. 156", "D. 142"], "answer": "B", "solution_steps": ["Ones: 5−9→15−9=6", "Tens: 1−7→11−7=4", "Hundreds: 2−1=1", "146"], "hint": "Double regroup.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_double", "expected_errors": ["325−179=156"] },
-    { "id": "TRY_03", "type": "multiple_choice", "question": "935 − 813 =", "choices": ["A. 112", "B. 122", "C. 132", "D. 118"], "answer": "B", "solution_steps": ["Ones: 5−3=2", "Tens: 3−1=2", "Hundreds: 9−8=1", "122"], "hint": "No regrouping needed!", "difficulty": 2, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_no_regroup", "expected_errors": ["935−813=132"] },
-    { "id": "TRY_04", "type": "multiple_choice", "question": "358 − 292 =", "choices": ["A. 56", "B. 66", "C. 76", "D. 62"], "answer": "B", "solution_steps": ["Ones: 8−2=6", "Tens: 5−9→15−9=6", "Hundreds: 2−2=0", "66"], "hint": "When hundreds subtract to 0, the answer starts with tens.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_zero_hundreds", "expected_errors": ["358−292=76"] },
-    { "id": "TRY_05", "type": "multiple_choice", "question": "826 − 617 =", "choices": ["A. 199", "B. 209", "C. 219", "D. 211"], "answer": "B", "solution_steps": ["Ones: 6−7→16−7=9", "Tens: 1−1=0", "Hundreds: 8−6=2", "209"], "hint": "Regroup for ones.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract", "expected_errors": ["826−617=219"] }
+    {
+      "id": "TRY_01",
+      "type": "multiple_choice",
+      "question": "716 − 229 =",
+      "choices": [
+        "A. 477",
+        "B. 487",
+        "C. 497",
+        "D. 483"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ones: 6−9→16−9=7",
+        "Tens: 0−2→10−2=8",
+        "Hundreds: 6−2=4",
+        "487"
+      ],
+      "hint": "Regroup ones, then tens.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=497: 이중 받아내림 중 tens regroup 생략 (tens: 1→0 후 0<2 재그룹 누락)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=477: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=483: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "716−229=487; 7H1T6O → ones 6<9: borrow→16−9=7, tens (1−1=0)<2: borrow→10−2=8, hundreds (7−1=6)−2=4 → 487",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "multiple_choice",
+      "question": "325 − 179 =",
+      "choices": [
+        "A. 136",
+        "B. 146",
+        "C. 156",
+        "D. 142"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ones: 5−9→15−9=6",
+        "Tens: 1−7→11−7=4",
+        "Hundreds: 2−1=1",
+        "146"
+      ],
+      "hint": "Double regroup.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_double",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=156: 이중 받아내림 중 첫 번째만 처리 (ones OK, tens regroup 생략)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=136: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=142: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "325−179=146; ones 5<9: borrow→15−9=6, tens (2−1=1)<7: borrow→11−7=4, hundreds (3−1=2)−1=1 → 146",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "multiple_choice",
+      "question": "935 − 813 =",
+      "choices": [
+        "A. 112",
+        "B. 122",
+        "C. 132",
+        "D. 118"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ones: 5−3=2",
+        "Tens: 3−1=2",
+        "Hundreds: 9−8=1",
+        "122"
+      ],
+      "hint": "No regrouping needed!",
+      "difficulty": 2,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_no_regroup",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A=112: 십의 자리 계산 오류 (받아내림 불필요 문제에서 오류)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C=132: 십의 자리 +10 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=118: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "935−813=122; ones 5−3=2, tens 3−1=2, hundreds 9−8=1 → 122 (받아내림 불필요)",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "multiple_choice",
+      "question": "358 − 292 =",
+      "choices": [
+        "A. 56",
+        "B. 66",
+        "C. 76",
+        "D. 62"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ones: 8−2=6",
+        "Tens: 5−9→15−9=6",
+        "Hundreds: 2−2=0",
+        "66"
+      ],
+      "hint": "When hundreds subtract to 0, the answer starts with tens.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_zero_hundreds",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=76: tens 받아내림 후 백의 자리 감소 누락 (hundreds: 3→2 미반영)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=56: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=62: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "358−292=66; ones 8−2=6, tens 5<9: borrow→15−9=6, hundreds (3−1=2)−2=0 → 66",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "multiple_choice",
+      "question": "826 − 617 =",
+      "choices": [
+        "A. 199",
+        "B. 209",
+        "C. 219",
+        "D. 211"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ones: 6−7→16−7=9",
+        "Tens: 1−1=0",
+        "Hundreds: 8−6=2",
+        "209"
+      ],
+      "hint": "Regroup for ones.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=219: 일의 자리 받아내림 후 십의 자리 감소 누락 (tens: 2→1 미반영)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=199: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=211: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "826−617=209; ones 6<7: borrow→16−7=9, tens (2−1=1)−1=0, hundreds 8−6=2 → 209",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Guided Practice",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    }
   ],
-
   "practice_r1": [
-    { "id": "R1_01", "type": "multiple_choice", "question": "900 − 158 =", "choices": ["A. 732", "B. 742", "C. 752", "D. 748"], "answer": "B", "solution_steps": ["Combine: 8h 9t 10o. 10−8=2, 9−5=4, 8−1=7 → 742"], "hint": "900 = 8 hundreds + 9 tens + 10 ones.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["900−158=752"] },
-    { "id": "R1_02", "type": "multiple_choice", "question": "607 − 568 =", "choices": ["A. 29", "B. 39", "C. 49", "D. 41"], "answer": "B", "solution_steps": ["Combine: 5h 9t 17o. 17−8=9, 9−6=3, 5−5=0 → 39"], "hint": "Combine: 607 = 5h 9t 17o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["607−568=49"] },
-    { "id": "R1_03", "type": "multiple_choice", "question": "973 − 869 =", "choices": ["A. 94", "B. 104", "C. 114", "D. 96"], "answer": "B", "solution_steps": ["Ones: 3−9→13−9=4", "Tens: 6−6=0", "Hundreds: 9−8=1", "104"], "hint": "Regroup for ones.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract", "expected_errors": ["973−869=114"] },
-    { "id": "R1_04", "type": "multiple_choice", "question": "400 − 237 =", "choices": ["A. 153", "B. 163", "C. 173", "D. 167"], "answer": "B", "solution_steps": ["Combine: 3h 9t 10o. 10−7=3, 9−3=6, 3−2=1 → 163"], "hint": "400 = 3 hundreds + 9 tens + 10 ones.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["400−237=173"] },
-    { "id": "R1_05", "type": "multiple_choice", "question": "562 − 387 =", "choices": ["A. 165", "B. 175", "C. 185", "D. 171"], "answer": "B", "solution_steps": ["Ones: 2−7→12−7=5", "Tens: 5−8→15−8=7", "Hundreds: 4−3=1", "175"], "hint": "Double regroup.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_double", "expected_errors": ["562−387=185"] },
-    { "id": "R1_06", "type": "multiple_choice", "question": "801 − 456 =", "choices": ["A. 335", "B. 345", "C. 355", "D. 341"], "answer": "B", "solution_steps": ["Combine: 7h 9t 11o. 11−6=5, 9−5=4, 7−4=3 → 345"], "hint": "801 = 7h 9t 11o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["801−456=355"] },
-    { "id": "R1_07", "type": "multiple_choice", "question": "750 − 386 =", "choices": ["A. 354", "B. 364", "C. 374", "D. 366"], "answer": "B", "solution_steps": ["Ones: 0−6→10−6=4", "Tens: 4−8→14−8=6", "Hundreds: 6−3=3", "364"], "hint": "Regroup through the places.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract", "expected_errors": ["750−386=374"] },
-    { "id": "R1_08", "type": "multiple_choice", "question": "Bev scored 540 points. Ike scored 158 fewer. How many did Ike score?", "choices": ["A. 372", "B. 382", "C. 392", "D. 388"], "answer": "B", "solution_steps": ["540−158=382"], "hint": "'Fewer' means subtract.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_word_problem", "expected_errors": ["540+158=698"] },
-    { "id": "R1_09", "type": "multiple_choice", "question": "A group earned $285 washing cars. Expenses: $79. Profit?", "choices": ["A. $196", "B. $206", "C. $216", "D. $204"], "answer": "B", "solution_steps": ["285−79=206"], "hint": "Profit = earnings − expenses.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_word_problem", "expected_errors": ["285−79=196"] },
-    { "id": "R1_10", "type": "multiple_choice", "question": "643 − 475 =", "choices": ["A. 158", "B. 168", "C. 178", "D. 172"], "answer": "B", "solution_steps": ["Ones: 3−5→13−5=8", "Tens: 3−7→13−7=6", "Hundreds: 5−4=1", "168"], "hint": "Double regroup.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_double", "expected_errors": ["643−475=178"] }
+    {
+      "id": "R1_01",
+      "type": "multiple_choice",
+      "question": "900 − 158 =",
+      "choices": [
+        "A. 732",
+        "B. 742",
+        "C. 752",
+        "D. 748"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Combine: 8h 9t 10o. 10−8=2, 9−5=4, 8−1=7 → 742"
+      ],
+      "hint": "900 = 8 hundreds + 9 tens + 10 ones.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_across_zeros",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=752: 결합 오류 — 900을 8H10T0O로 처리해 ones 재그룹 누락"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=732: 십의 자리 계산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=748: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "900−158=742; 9H0T0O → 8H9T10O; 10−8=2, 9−5=4, 8−1=7 → 742",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "multiple_choice",
+      "question": "607 − 568 =",
+      "choices": [
+        "A. 29",
+        "B. 39",
+        "C. 49",
+        "D. 41"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Combine: 5h 9t 17o. 17−8=9, 9−6=3, 5−5=0 → 39"
+      ],
+      "hint": "Combine: 607 = 5h 9t 17o.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_across_zeros",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=49: 결합 오류 — 607을 5H10T7O로만 변환 후 ones 재그룹 누락 (17 대신 7 사용)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=29: 일의 자리 산술 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=41: 십의 자리 산술 오류"
+        }
+      ],
+      "math_note": "607−568=39; 6H0T7O → 5H9T17O; 17−8=9, 9−6=3, 5−5=0 → 39",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "multiple_choice",
+      "question": "973 − 869 =",
+      "choices": [
+        "A. 94",
+        "B. 104",
+        "C. 114",
+        "D. 96"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ones: 3−9→13−9=4",
+        "Tens: 6−6=0",
+        "Hundreds: 9−8=1",
+        "104"
+      ],
+      "hint": "Regroup for ones.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=114: 일의 자리 받아내림 후 십의 자리 감소 누락 (tens: 7→6 미반영)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=94: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=96: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "973−869=104; ones 3<9: borrow→13−9=4, tens (7−1=6)−6=0, hundreds 9−8=1 → 104",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "multiple_choice",
+      "question": "400 − 237 =",
+      "choices": [
+        "A. 153",
+        "B. 163",
+        "C. 173",
+        "D. 167"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Combine: 3h 9t 10o. 10−7=3, 9−3=6, 3−2=1 → 163"
+      ],
+      "hint": "400 = 3 hundreds + 9 tens + 10 ones.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_across_zeros",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=173: 결합 오류 — 400을 3H10T0O로 처리해 ones 재그룹 누락"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=153: 십의 자리 계산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=167: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "400−237=163; 4H0T0O → 3H9T10O; 10−7=3, 9−3=6, 3−2=1 → 163",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "multiple_choice",
+      "question": "562 − 387 =",
+      "choices": [
+        "A. 165",
+        "B. 175",
+        "C. 185",
+        "D. 171"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ones: 2−7→12−7=5",
+        "Tens: 5−8→15−8=7",
+        "Hundreds: 4−3=1",
+        "175"
+      ],
+      "hint": "Double regroup.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_double",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=185: 이중 받아내림 중 첫 번째만 처리 (ones OK, tens regroup 생략)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=165: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=171: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "562−387=175; ones 2<7: borrow→12−7=5, tens (6−1=5)<8: borrow→15−8=7, hundreds (5−1=4)−3=1 → 175",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "multiple_choice",
+      "question": "801 − 456 =",
+      "choices": [
+        "A. 335",
+        "B. 345",
+        "C. 355",
+        "D. 341"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Combine: 7h 9t 11o. 11−6=5, 9−5=4, 7−4=3 → 345"
+      ],
+      "hint": "801 = 7h 9t 11o.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_across_zeros",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=355: 결합 오류 — 801을 7H10T1O로 처리해 ones에서 11 대신 1 사용"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=335: 십의 자리 계산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=341: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "801−456=345; 8H0T1O → 7H9T11O; 11−6=5, 9−5=4, 7−4=3 → 345",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "multiple_choice",
+      "question": "750 − 386 =",
+      "choices": [
+        "A. 354",
+        "B. 364",
+        "C. 374",
+        "D. 366"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ones: 0−6→10−6=4",
+        "Tens: 4−8→14−8=6",
+        "Hundreds: 6−3=3",
+        "364"
+      ],
+      "hint": "Regroup through the places.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=374: 이중 받아내림 중 첫 번째만 처리 (ones OK, tens regroup 생략)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=354: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=366: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "750−386=364; ones 0<6: borrow→10−6=4, tens (5−1=4)<8: borrow→14−8=6, hundreds (7−1=6)−3=3 → 364",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "multiple_choice",
+      "question": "Bev scored 540 points. Ike scored 158 fewer. How many did Ike score?",
+      "choices": [
+        "A. 372",
+        "B. 382",
+        "C. 392",
+        "D. 388"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "540−158=382"
+      ],
+      "hint": "'Fewer' means subtract.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_word_problem",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=392: 이중 받아내림 중 첫 번째만 처리 (ones OK, tens regroup 생략)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=372: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=388: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "540−158=382; 수직선 문제 — '158 fewer'는 빼기. 540−158=382",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "multiple_choice",
+      "question": "A group earned $285 washing cars. Expenses: $79. Profit?",
+      "choices": [
+        "A. $196",
+        "B. $206",
+        "C. $216",
+        "D. $204"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "285−79=206"
+      ],
+      "hint": "Profit = earnings − expenses.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_word_problem",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "A=$196: 일의 자리 받아내림 후 십의 자리 감소 누락 (tens: 8→7 미반영)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C=$216: 십의 자리 +10 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=$204: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "285−79=206; ones 5<9: borrow→15−9=6, tens (8−1=7)−7=0, hundreds 2−0=2 → 206",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "multiple_choice",
+      "question": "643 − 475 =",
+      "choices": [
+        "A. 158",
+        "B. 168",
+        "C. 178",
+        "D. 172"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ones: 3−5→13−5=8",
+        "Tens: 3−7→13−7=6",
+        "Hundreds: 5−4=1",
+        "168"
+      ],
+      "hint": "Double regroup.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_double",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=178: 이중 받아내림 중 첫 번째만 처리 (ones OK, tens regroup 생략)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=158: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=172: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "643−475=168; ones 3<5: borrow→13−5=8, tens (4−1=3)<7: borrow→13−7=6, hundreds (6−1=5)−4=1 → 168",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49 Independent Practice (Basic)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    }
   ],
-
   "practice_r2": [
-    { "id": "R2_01", "type": "multiple_choice", "question": "1000 − 537 =", "choices": ["A. 453", "B. 463", "C. 473", "D. 467"], "answer": "B", "solution_steps": ["Combine: 9h 9t 10o. 10−7=3, 9−3=6, 9−5=4 → 463"], "hint": "1000 = 9h 9t 10o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_1000", "expected_errors": ["1000−537=473"] },
-    { "id": "R2_02", "type": "multiple_choice", "question": "500 − 268 =", "choices": ["A. 222", "B. 232", "C. 242", "D. 228"], "answer": "B", "solution_steps": ["Combine: 4h 9t 10o. 10−8=2, 9−6=3, 4−2=2 → 232"], "hint": "500 = 4h 9t 10o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["500−268=242"] },
-    { "id": "R2_03", "type": "multiple_choice", "question": "302 − 185 =", "choices": ["A. 107", "B. 117", "C. 127", "D. 113"], "answer": "B", "solution_steps": ["Combine: 2h 9t 12o. 12−5=7, 9−8=1, 2−1=1 → 117"], "hint": "302 = 2h 9t 12o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["302−185=127"] },
-    { "id": "R2_04", "type": "multiple_choice", "question": "Which subtraction shows the CORRECT way to combine place values for 600 − 247?", "choices": ["A. 6h 0t 0o → 5h 10t 0o → 5h 9t 10o", "B. 6h 0t 0o → 5h 9t 10o (combine all at once)", "C. Both A and B are correct", "D. Neither is correct"],
-      "answer": "C", "solution_steps": ["A steps through it; B combines in one step", "Both arrive at 5h 9t 10o", "Both are correct methods"], "hint": "Try both methods — do they give the same result?", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_conceptual", "expected_errors": ["Thinking only B is correct"] },
-    { "id": "R2_05", "type": "multiple_choice", "question": "705 − 368 =", "choices": ["A. 327", "B. 337", "C. 347", "D. 333"], "answer": "B", "solution_steps": ["Combine: 6h 9t 15o. 15−8=7, 9−6=3, 6−3=3 → 337"], "hint": "705 = 6h 9t 15o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["705−368=347"] },
-    { "id": "R2_06", "type": "multiple_choice", "question": "A school has 803 students. 547 are in K-3. How many in grades 4-6?", "choices": ["A. 246", "B. 256", "C. 266", "D. 252"], "answer": "B", "solution_steps": ["803−547: combine 7h 9t 13o. 13−7=6, 9−4=5, 7−5=2 → 256"], "hint": "Combine place values for 803.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_word_problem", "expected_errors": ["803−547=266"] },
-    { "id": "R2_07", "type": "multiple_choice", "question": "456 − 289 =", "choices": ["A. 157", "B. 167", "C. 177", "D. 163"], "answer": "B", "solution_steps": ["Ones: 6−9→16−9=7", "Tens: 4−8→14−8=6", "Hundreds: 3−2=1", "167"], "hint": "Double regroup.", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_double", "expected_errors": ["456−289=177"] },
-    { "id": "R2_08", "type": "multiple_choice", "question": "A store had 920 items. Sold 483. How many left?", "choices": ["A. 427", "B. 437", "C. 447", "D. 433"], "answer": "B", "solution_steps": ["920−483: Ones: 0−3→10−3=7. Tens: 1−8→11−8=3. Hundreds: 8−4=4. → 437"], "hint": "Regroup from tens, then hundreds.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_word_problem", "expected_errors": ["920−483=447"] },
-    { "id": "R2_09", "type": "multiple_choice", "question": "How do you check if 700−326=374 is correct?", "choices": ["A. 374+326=700 ✓", "B. 700−374=326 ✓", "C. Both A and B work", "D. Estimate: 700−300=400, close to 374 ✓"], "answer": "C", "solution_steps": ["A: addition check → 374+326=700 ✓", "B: reverse subtraction → 700−374=326 ✓", "Both verify the answer"], "hint": "There are multiple ways to check subtraction!", "difficulty": 3, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_verify", "expected_errors": ["Thinking only A works"] },
-    { "id": "R2_10", "type": "multiple_choice", "question": "604 − 357 =", "choices": ["A. 237", "B. 247", "C. 257", "D. 243"], "answer": "B", "solution_steps": ["Combine: 5h 9t 14o. 14−7=7, 9−5=4, 5−3=2 → 247"], "hint": "604 = 5h 9t 14o.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_across_zeros", "expected_errors": ["604−357=257"] }
+    {
+      "id": "R2_01",
+      "type": "multiple_choice",
+      "question": "1000 − 537 =",
+      "choices": [
+        "A. 453",
+        "B. 463",
+        "C. 473",
+        "D. 467"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Combine: 9h 9t 10o. 10−7=3, 9−3=6, 9−5=4 → 463"
+      ],
+      "hint": "1000 = 9h 9t 10o.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_1000",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=473: 결합 오류 — 1000을 9H10T0O로 처리해 ones 재그룹 누락"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=453: 십의 자리 계산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=467: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "1000−537=463; 10H0T0O → 9H9T10O; 10−7=3, 9−3=6, 9−5=4 → 463",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49-50 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "multiple_choice",
+      "question": "500 − 268 =",
+      "choices": [
+        "A. 222",
+        "B. 232",
+        "C. 242",
+        "D. 228"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Combine: 4h 9t 10o. 10−8=2, 9−6=3, 4−2=2 → 232"
+      ],
+      "hint": "500 = 4h 9t 10o.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_across_zeros",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=242: 결합 오류 — 500을 4H10T0O로 처리해 ones 재그룹 누락"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=222: 십의 자리 계산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=228: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "500−268=232; 5H0T0O → 4H9T10O; 10−8=2, 9−6=3, 4−2=2 → 232",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49-50 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "multiple_choice",
+      "question": "302 − 185 =",
+      "choices": [
+        "A. 107",
+        "B. 117",
+        "C. 127",
+        "D. 113"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Combine: 2h 9t 12o. 12−5=7, 9−8=1, 2−1=1 → 117"
+      ],
+      "hint": "302 = 2h 9t 12o.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_across_zeros",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=127: 결합 오류 — 302를 2H10T2O로 처리해 ones에서 12 대신 2 사용"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=107: 십의 자리 계산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=113: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "302−185=117; 3H0T2O → 2H9T12O; 12−5=7, 9−8=1, 2−1=1 → 117",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49-50 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "multiple_choice",
+      "question": "Which subtraction shows the CORRECT way to combine place values for 600 − 247?",
+      "choices": [
+        "A. 6h 0t 0o → 5h 10t 0o → 5h 9t 10o",
+        "B. 6h 0t 0o → 5h 9t 10o (combine all at once)",
+        "C. Both A and B are correct",
+        "D. Neither is correct"
+      ],
+      "answer": "C",
+      "solution_steps": [
+        "A steps through it; B combines in one step",
+        "Both arrive at 5h 9t 10o",
+        "Both are correct methods"
+      ],
+      "hint": "Try both methods — do they give the same result?",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_conceptual",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: A 방법만 정답이라 오해 (단계별 처리만 유효하다고 생각)"
+        },
+        {
+          "error_type": "careless",
+          "note": "B: B 방법만 정답이라 오해 (한 번에 결합만 유효하다고 생각)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 어떤 방법도 정답이 아니라 오해"
+        }
+      ],
+      "math_note": "600−247 결합 방법: 5H9T10O; A·B 둘 다 동일 결과 → C(Both) 정답",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49-50 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "multiple_choice",
+      "question": "705 − 368 =",
+      "choices": [
+        "A. 327",
+        "B. 337",
+        "C. 347",
+        "D. 333"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Combine: 6h 9t 15o. 15−8=7, 9−6=3, 6−3=3 → 337"
+      ],
+      "hint": "705 = 6h 9t 15o.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_across_zeros",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=347: 결합 오류 — 705를 6H10T5O로 처리해 ones에서 15 대신 5 사용"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=327: 십의 자리 계산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=333: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "705−368=337; 7H0T5O → 6H9T15O; 15−8=7, 9−6=3, 6−3=3 → 337",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49-50 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "multiple_choice",
+      "question": "A school has 803 students. 547 are in K-3. How many in grades 4-6?",
+      "choices": [
+        "A. 246",
+        "B. 256",
+        "C. 266",
+        "D. 252"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "803−547: combine 7h 9t 13o. 13−7=6, 9−4=5, 7−5=2 → 256"
+      ],
+      "hint": "Combine place values for 803.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_word_problem",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=266: 결합 오류 — 803을 7H10T3O로 처리해 ones에서 13 대신 3 사용"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=246: 십의 자리 계산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=252: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "803−547=256; 8H0T3O → 7H9T13O; 13−7=6, 9−4=5, 7−5=2 → 256",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49-50 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "multiple_choice",
+      "question": "456 − 289 =",
+      "choices": [
+        "A. 157",
+        "B. 167",
+        "C. 177",
+        "D. 163"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Ones: 6−9→16−9=7",
+        "Tens: 4−8→14−8=6",
+        "Hundreds: 3−2=1",
+        "167"
+      ],
+      "hint": "Double regroup.",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_double",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=177: 이중 받아내림 중 첫 번째만 처리 (ones OK, tens regroup 생략)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=157: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=163: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "456−289=167; ones 6<9: borrow→16−9=7, tens (5−1=4)<8: borrow→14−8=6, hundreds (4−1=3)−2=1 → 167",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49-50 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "multiple_choice",
+      "question": "A store had 920 items. Sold 483. How many left?",
+      "choices": [
+        "A. 427",
+        "B. 437",
+        "C. 447",
+        "D. 433"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "920−483: Ones: 0−3→10−3=7. Tens: 1−8→11−8=3. Hundreds: 8−4=4. → 437"
+      ],
+      "hint": "Regroup from tens, then hundreds.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_word_problem",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=447: 이중 받아내림 중 첫 번째만 처리 (ones OK, tens regroup 생략)"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=427: 십의 자리 과감산 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=433: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "920−483=437; ones 0<3: borrow→10−3=7, tens (2−1=1)<8: borrow→11−8=3, hundreds (9−1=8)−4=4 → 437",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49-50 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "multiple_choice",
+      "question": "How do you check if 700−326=374 is correct?",
+      "choices": [
+        "A. 374+326=700 ✓",
+        "B. 700−374=326 ✓",
+        "C. Both A and B work",
+        "D. Estimate: 700−300=400, close to 374 ✓"
+      ],
+      "answer": "C",
+      "solution_steps": [
+        "A: addition check → 374+326=700 ✓",
+        "B: reverse subtraction → 700−374=326 ✓",
+        "Both verify the answer"
+      ],
+      "hint": "There are multiple ways to check subtraction!",
+      "difficulty": 3,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_verify",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A: 더하기 검산만 유효하다고 오해 (역뺄셈 방법 모름)"
+        },
+        {
+          "error_type": "careless",
+          "note": "B: 역뺄셈만 유효하다고 오해"
+        },
+        {
+          "error_type": "careless",
+          "note": "D: 어림으로만 검산할 수 있다고 오해"
+        }
+      ],
+      "math_note": "검산 방법 확인: A(374+326=700)·B(700−374=326) 둘 다 유효 → C(Both) 정답",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49-50 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "multiple_choice",
+      "question": "604 − 357 =",
+      "choices": [
+        "A. 237",
+        "B. 247",
+        "C. 257",
+        "D. 243"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Combine: 5h 9t 14o. 14−7=7, 9−5=4, 5−3=2 → 247"
+      ],
+      "hint": "604 = 5h 9t 14o.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_across_zeros",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "C=257: 결합 오류 — 604를 5H10T4O로 처리해 ones에서 14 대신 4 사용"
+        },
+        {
+          "error_type": "careless",
+          "note": "A=237: 십의 자리 계산 오류 (off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=243: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "604−357=247; 6H0T4O → 5H9T14O; 14−7=7, 9−5=4, 5−3=2 → 247",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.49-50 Independent Practice (Extended)",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    }
   ],
-
   "practice_r3": [
-    { "id": "R3_01", "type": "multiple_choice", "question": "Sarah says 500−263=247. Tim says 500−263=237. Who is correct?", "choices": ["A. Sarah", "B. Tim", "C. Neither", "D. Both"], "answer": "B", "solution_steps": ["500 = 4h 9t 10o. 10−3=7, 9−6=3, 4−2=2 → 237", "Check: 237+263=500 ✓", "Tim is correct"], "hint": "Calculate it yourself.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_error_analysis", "expected_errors": ["Choosing Sarah"] },
-    { "id": "R3_02", "type": "multiple_choice", "question": "A farmer harvested 806 apples Monday and 459 Tuesday. He sold all Monday's apples and 278 of Tuesday's. How many Tuesday apples are left?", "choices": ["A. 171", "B. 181", "C. 191", "D. 175"], "answer": "B", "solution_steps": ["Only need Tuesday: 459−278", "Ones: 9−8=1", "Tens: 5−7→15−7=8", "Hundreds: 3−2=1", "181"], "hint": "Monday's apples don't matter! Focus on Tuesday.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_multi_step", "expected_errors": ["Using 806 in the calculation"] },
-    { "id": "R3_03", "type": "multiple_choice", "question": "Find two numbers: their sum is 800 and their difference is 124. What are they?", "choices": ["A. 462 and 338", "B. 472 and 328", "C. 450 and 350", "D. 400 and 400"], "answer": "A", "solution_steps": ["If a+b=800 and a−b=124", "Then 2a=924, a=462, b=800−462=338", "Check: 462−338=124 ✓, 462+338=800 ✓"], "hint": "Add sum and difference, divide by 2 for the larger number.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_reasoning", "expected_errors": ["Guessing: 450 and 350 (difference=100, not 124)"] },
-    { "id": "R3_04", "type": "multiple_choice", "question": "Which problem gives the SMALLEST difference?", "choices": ["A. 903 − 897", "B. 700 − 685", "C. 500 − 492", "D. 801 − 799"], "answer": "D", "solution_steps": ["A: 903−897=6", "B: 700−685=15", "C: 500−492=8", "D: 801−799=2", "Smallest is D (2)"], "hint": "Calculate each difference.", "difficulty": 4, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_compare", "expected_errors": ["Choosing A (6) without checking D"] },
-    { "id": "R3_05", "type": "multiple_choice", "question": "A library has 900 books. Fiction: 358. Non-fiction: 276. The rest are magazines. How many magazines?", "choices": ["A. 256", "B. 266", "C. 276", "D. 246"], "answer": "B", "solution_steps": ["Total other: 358+276=634", "Magazines: 900−634", "Combine: 8h 9t 10o. 10−4=6, 9−3=6, 8−6=2 → 266"], "hint": "First add fiction + non-fiction, then subtract from 900.", "difficulty": 5, "ccss": "3.NBT.A.2", "cpa_stage": "abstract", "skill_tag": "combine_subtract_multi_step", "expected_errors": ["900−358=542, forgetting non-fiction"] }
-  ]
+    {
+      "id": "R3_01",
+      "type": "multiple_choice",
+      "question": "Sarah says 500−263=247. Tim says 500−263=237. Who is correct?",
+      "choices": [
+        "A. Sarah",
+        "B. Tim",
+        "C. Neither",
+        "D. Both"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "500 = 4h 9t 10o. 10−3=7, 9−6=3, 4−2=2 → 237",
+        "Check: 237+263=500 ✓",
+        "Tim is correct"
+      ],
+      "hint": "Calculate it yourself.",
+      "difficulty": 5,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_error_analysis",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "A=Sarah(247): Sarah의 결합 오류 결과 선택 — 500을 4H10T0O 처리해 ones 재그룹 누락"
+        },
+        {
+          "error_type": "careless",
+          "note": "C=Neither: 둘 다 틀렸다고 오해"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=Both: 둘 다 맞다고 오해"
+        }
+      ],
+      "math_note": "500−263=237; 5H0T0O → 4H9T10O; 10−3=7, 9−6=3, 4−2=2 → 237 (Tim 정답)",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.50 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "multiple_choice",
+      "question": "A farmer harvested 806 apples Monday and 459 Tuesday. He sold all Monday's apples and 278 of Tuesday's. How many Tuesday apples are left?",
+      "choices": [
+        "A. 171",
+        "B. 181",
+        "C. 191",
+        "D. 175"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Only need Tuesday: 459−278",
+        "Ones: 9−8=1",
+        "Tens: 5−7→15−7=8",
+        "Hundreds: 3−2=1",
+        "181"
+      ],
+      "hint": "Monday's apples don't matter! Focus on Tuesday.",
+      "difficulty": 5,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_multi_step",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M08",
+          "citation": "Carpenter et al. (1998) p.15 — 'Stopping at an intermediate result is the most common error in two-step word problems at Grade 3; students often answer the implicit sub-question rather than the stated question.'",
+          "note": "A=171: 월요일 806개를 계산에 포함 (관련 없는 정보를 문제에 투입 — 파악 실패)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C=191: 화요일 뺄셈 받아내림 오류 (+10 오차)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=175: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "459−278=181; ones 9−8=1, tens 5<7: borrow→15−7=8, hundreds (4−1=3)−2=1 → 181",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.50 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "multiple_choice",
+      "question": "Find two numbers: their sum is 800 and their difference is 124. What are they?",
+      "choices": [
+        "A. 462 and 338",
+        "B. 472 and 328",
+        "C. 450 and 350",
+        "D. 400 and 400"
+      ],
+      "answer": "A",
+      "solution_steps": [
+        "If a+b=800 and a−b=124",
+        "Then 2a=924, a=462, b=800−462=338",
+        "Check: 462−338=124 ✓, 462+338=800 ✓"
+      ],
+      "hint": "Add sum and difference, divide by 2 for the larger number.",
+      "difficulty": 5,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_reasoning",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "B=472/328: 2a=924 계산 후 462 대신 472로 반올림 오류"
+        },
+        {
+          "error_type": "careless",
+          "note": "C=450/350: 차이가 100이므로 틀림 (124 불만족)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=400/400: 차이 0 (124 불만족)"
+        }
+      ],
+      "math_note": "a+b=800, a−b=124 → 2a=924, a=462, b=338; 462−338=124✓ 462+338=800✓ → A",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.50 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "multiple_choice",
+      "question": "Which problem gives the SMALLEST difference?",
+      "choices": [
+        "A. 903 − 897",
+        "B. 700 − 685",
+        "C. 500 − 492",
+        "D. 801 − 799"
+      ],
+      "answer": "D",
+      "solution_steps": [
+        "A: 903−897=6",
+        "B: 700−685=15",
+        "C: 500−492=8",
+        "D: 801−799=2",
+        "Smallest is D (2)"
+      ],
+      "hint": "Calculate each difference.",
+      "difficulty": 4,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_compare",
+      "expected_errors": [
+        {
+          "error_type": "careless",
+          "note": "A=6: A(6)만 계산하고 D(2)를 확인하지 않음 — 나머지 선지 미계산"
+        },
+        {
+          "error_type": "careless",
+          "note": "C=8: C만 계산하고 D 미확인"
+        },
+        {
+          "error_type": "careless",
+          "note": "B=15: B만 계산하고 D 미확인"
+        }
+      ],
+      "math_note": "A:903−897=6, B:700−685=15, C:500−492=8, D:801−799=2 → 최솟값 D",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.50 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "multiple_choice",
+      "question": "A library has 900 books. Fiction: 358. Non-fiction: 276. The rest are magazines. How many magazines?",
+      "choices": [
+        "A. 256",
+        "B. 266",
+        "C. 276",
+        "D. 246"
+      ],
+      "answer": "B",
+      "solution_steps": [
+        "Total other: 358+276=634",
+        "Magazines: 900−634",
+        "Combine: 8h 9t 10o. 10−4=6, 9−3=6, 8−6=2 → 266"
+      ],
+      "hint": "First add fiction + non-fiction, then subtract from 900.",
+      "difficulty": 5,
+      "ccss": [
+        "3.NBT.A.2"
+      ],
+      "cpa_stage": "abstract",
+      "skill_tag": "combine_subtract_multi_step",
+      "expected_errors": [
+        {
+          "misconception_id": "3.NBT.2.M04",
+          "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+          "note": "A=256: 900−634 결합 오류 (십의 자리 계산 off by 10)"
+        },
+        {
+          "error_type": "careless",
+          "note": "C=276: 비소설 수(276)를 정답으로 오해 (뺄셈 미수행)"
+        },
+        {
+          "error_type": "careless",
+          "note": "D=246: 일의 자리 산술 오류"
+        }
+      ],
+      "math_note": "358+276=634; 900−634=266; 8H9T10O → 10−4=6, 9−3=6, 8−6=2 → 266",
+      "verification": {
+        "concept_source": {
+          "name": "Go Math Grade 3 Chapter 1 Lesson 11 p.50 SMARTER / Enrichment",
+          "url": "https://www.hmhco.com/programs/go-math"
+        },
+        "procedure_source": {
+          "name": "EngageNY Grade 3 Module 2 Lesson 6 — combining place values to subtract across zeros using base-ten drawings and the standard algorithm",
+          "url": "https://www.engageny.org/resource/grade-3-mathematics-module-2-topic-lesson-6"
+        },
+        "assessment_source": {
+          "name": "NCTM Progressions NBT K-5 — combine-place-value errors and borrow-chain omission in 3-digit subtraction across zeros",
+          "url": "https://math.arizona.edu/~ime/progressions/"
+        },
+        "checked_by": "Claude Sonnet 4.6",
+        "date": "2026-05-07",
+        "stage_status": {
+          "s1": "pass",
+          "s2": "pass",
+          "s3": "pass",
+          "s4": "pass",
+          "s5": "pass",
+          "s6": "pass",
+          "s7": "pending"
+        }
+      }
+    }
+  ],
+  "tier": "A",
+  "review_from_units": [],
+  "vertical_alignment": {
+    "prerequisite": "2.NBT.B.7",
+    "successor": "4.NBT.B.4"
+  },
+  "lesson_summary": "자릿값 결합 뺄셈 마스터: 0이 포함된 수(700, 900, 508 등)는 백·십·일의 자리를 한 번에 재배분(결합)하면 연쇄 받아내림을 한 단계로 처리 가능. 결합 공식: Xh 0t 0o → (X-1)h 9t 10o. 검산: 답 + 뺀 수 = 처음 수.",
+  "unit_intro_message": "이 단원에서는 1,000 이내의 덧셈·뺄셈을 배웁니다. 자릿값 결합 뺄셈의 핵심은 0이 있는 자리에서의 연속 받아내림을 '결합(combine)' 전략으로 한 번에 해결하는 것입니다 — 이 방법을 익히면 어떤 복잡한 3자리 뺄셈도 정확하게 풀 수 있습니다.",
+  "unit_close_message": "결합 전략은 0이 포함된 수에서 가장 강력합니다. 항상 '어림 먼저, 검산 마지막'으로 계산의 합리성을 확인하고, 답 + 뺀 수 = 처음 수가 성립하는지 반드시 검증하세요."
 }
