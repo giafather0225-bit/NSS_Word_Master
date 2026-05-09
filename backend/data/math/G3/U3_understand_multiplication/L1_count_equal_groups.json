@@ -3,121 +3,339 @@
   "title": "Count Equal Groups",
   "grade": "G3",
   "unit": "U3_understand_multiplication",
-  "ccss": ["3.OA.A.1"],
-  "go_math_ref": {"chapter": 3, "lesson": "3.1", "pages": "101-104"},
+  "ccss": [
+    "3.OA.A.1"
+  ],
+  "go_math_ref": {
+    "chapter": 3,
+    "lesson": "3.1",
+    "pages": "101-104"
+  },
   "essential_question": "How can you find how many in all when you have equal groups?",
-  "key_vocabulary": ["equal groups", "skip count", "multiply", "in all", "groups of"],
+  "key_vocabulary": [
+    "equal groups",
+    "skip count",
+    "multiply",
+    "in all",
+    "groups of"
+  ],
   "strategies": [
     "Draw equal groups",
     "Skip count to find total",
     "Count: groups × items in each group",
     "Repeated addition to total"
   ],
-  "items": [
+  "concept": "count_equal_groups",
+  "pretest": [
     {
       "id": "PT_01",
       "section": "pretest",
       "difficulty": 1,
       "question": "There are 3 bags. Each bag has 4 apples. How many apples in all?",
-      "choices": ["A. 7", "B. 8", "C. 12", "D. 15"],
+      "choices": [
+        "A. 7",
+        "B. 8",
+        "C. 12",
+        "D. 15"
+      ],
       "answer": "C",
-      "explanation": "3 groups of 4: skip count 4, 8, 12."
+      "explanation": "3 groups of 4: skip count 4, 8, 12.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "count_equal_groups",
+      "expected_errors": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M03"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "PT_02",
       "section": "pretest",
       "difficulty": 1,
       "question": "2 groups of 5 equals how many?",
-      "choices": ["A. 7", "B. 10", "C. 12", "D. 15"],
+      "choices": [
+        "A. 7",
+        "B. 10",
+        "C. 12",
+        "D. 15"
+      ],
       "answer": "B",
-      "explanation": "5 + 5 = 10."
+      "explanation": "5 + 5 = 10.",
+      "cpa_stage": "concrete",
+      "skill_tag": "count_equal_groups",
+      "expected_errors": [
+        "3.OA.A.1.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "PT_03",
       "section": "pretest",
       "difficulty": 2,
       "question": "4 groups of 3. How many in all?",
-      "choices": ["A. 7", "B. 9", "C. 12", "D. 15"],
+      "choices": [
+        "A. 7",
+        "B. 9",
+        "C. 12",
+        "D. 15"
+      ],
       "answer": "C",
-      "explanation": "3 + 3 + 3 + 3 = 12."
+      "explanation": "3 + 3 + 3 + 3 = 12.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "count_equal_groups",
+      "expected_errors": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "PT_04",
       "section": "pretest",
       "difficulty": 2,
       "question": "Marcia puts 2 slices of cheese on each of 4 sandwiches. How many slices in all?",
-      "choices": ["A. 6", "B. 8", "C. 10", "D. 12"],
+      "choices": [
+        "A. 6",
+        "B. 8",
+        "C. 10",
+        "D. 12"
+      ],
       "answer": "B",
-      "explanation": "4 groups of 2 = 8."
+      "explanation": "4 groups of 2 = 8.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "groups_of_meaning",
+      "expected_errors": [
+        "3.OA.A.1.M02",
+        "3.OA.A.1.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "PT_05",
       "section": "pretest",
       "difficulty": 2,
       "question": "Tomas puts 3 tomatoes on each of 5 salads. How many tomatoes?",
-      "choices": ["A. 8", "B. 12", "C. 15", "D. 18"],
+      "choices": [
+        "A. 8",
+        "B. 12",
+        "C. 15",
+        "D. 18"
+      ],
       "answer": "C",
-      "explanation": "5 groups of 3 = 15."
-    },
+      "explanation": "5 groups of 3 = 15.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "groups_of_meaning",
+      "expected_errors": [
+        "3.OA.A.1.M02",
+        "3.OA.A.1.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "learn": [
     {
-      "id": "LN_01",
+      "id": "LEARN_01",
       "section": "learn",
       "difficulty": 0,
       "type": "concept_card",
       "title": "What Are Equal Groups?",
       "content": "Equal groups all have the SAME number of objects. 3 plates with 4 cookies each = 3 equal groups of 4. If one plate has 5 cookies and the others have 4, the groups are NOT equal.",
-      "cpa_phase": "concrete",
       "visual_type": "manipulative",
-      "visual_data": {"tool": "array_grid", "config": {"rows": 3, "cols": 4}}
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 4
+        }
+      },
+      "cpa_stage": "concrete",
+      "skill_tag": "equal_vs_unequal",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
-      "id": "LN_02",
+      "id": "LEARN_02",
       "section": "learn",
       "difficulty": 0,
       "type": "concept_card",
       "title": "Skip Counting to Find the Total",
       "content": "Skip count by the number in each group. For 4 groups of 5: count 5, 10, 15, 20. That's the total — 20 in all.",
-      "cpa_phase": "concrete",
       "visual_type": "manipulative",
-      "visual_data": {"tool": "array_grid", "config": {"rows": 4, "cols": 5}}
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 4,
+          "cols": 5
+        }
+      },
+      "cpa_stage": "concrete",
+      "skill_tag": "skip_count_total",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
-      "id": "LN_03",
+      "id": "LEARN_03",
       "section": "learn",
       "difficulty": 0,
       "type": "concept_card",
       "title": "Groups Of",
       "content": "'3 groups of 6' means 3 groups, each with 6 objects. Total = 6 + 6 + 6 = 18. This is the same as 3 × 6 = 18.",
-      "cpa_phase": "pictorial",
       "visual_type": "manipulative",
-      "visual_data": {"tool": "array_grid", "config": {"rows": 3, "cols": 6}}
+      "visual_data": {
+        "tool": "array_grid",
+        "config": {
+          "rows": 3,
+          "cols": 6
+        }
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "groups_of_meaning",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
-      "id": "LN_04",
+      "id": "LEARN_04",
       "section": "learn",
       "difficulty": 0,
       "type": "concept_card",
       "title": "Repeated Addition",
       "content": "Equal groups are the same as adding the same number over and over. 5 groups of 3 = 3 + 3 + 3 + 3 + 3 = 15. This idea is the start of multiplication.",
-      "cpa_phase": "pictorial",
-      "visual_type": "none"
+      "visual_type": "none",
+      "cpa_stage": "pictorial",
+      "skill_tag": "repeated_addition",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
-      "id": "LN_05",
+      "id": "LEARN_05",
       "section": "learn",
       "difficulty": 0,
       "type": "concept_card",
       "title": "Reading Problems Carefully",
       "content": "Look for words like 'each', 'every', 'per' — they tell you equal groups. 'Each box has 4 pencils, 5 boxes' → 5 groups of 4, not 4 groups of 5. The number of GROUPS is 5; the SIZE of each group is 4.",
-      "cpa_phase": "abstract",
-      "visual_type": "none"
+      "visual_type": "none",
+      "cpa_stage": "abstract",
+      "skill_tag": "groups_of_meaning",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
+    {
+      "id": "LEARN_06",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
+      "title": "건너뛰며 세기 — 올바른 방향",
+      "content": "곱셈에서 건너뛰며 세기는 '한 그룹의 크기'만큼 점프하고, '그룹의 개수'만큼 점프 횟수를 만듭니다. 예: 4 groups of 5 → 5씩 4번 점프 → 5, 10, 15, 20. 주의: 4씩 5번(4, 8, 12, 16, 20)으로 세면 답은 같아도 '몇 그룹?'을 물었을 때 틀린 모델이 됩니다. 팁: 손가락 하나가 한 그룹 — 손가락마다 점프 한 번.",
+      "cpa_stage": "pictorial",
+      "visual_type": "number_line_skip",
+      "skill_tag": "skip_count_total",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_07",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
+      "title": "GROUPS와 SIZE 구별하기",
+      "content": "문제를 읽을 때 '몇 개의 그룹(GROUPS)'과 '한 그룹에 몇 개(SIZE)'를 분리합니다. 예: '5개의 상자에 연필이 4개씩' → GROUPS=5, SIZE=4. '4개의 상자에 연필이 5개씩'과는 모델이 완전히 다름! 팁: GROUPS 단어에 밑줄, SIZE 단어에 동그라미. 'each / every / per' 뒤의 숫자 = SIZE.",
+      "cpa_stage": "abstract",
+      "visual_type": "none",
+      "skill_tag": "groups_of_meaning",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_08",
+      "section": "learn",
+      "difficulty": 0,
+      "type": "concept_card",
+      "title": "등량 그룹 풀이 4가지 전략 요약",
+      "content": "전략 1 그리기: 각 그룹을 동그라미로 그리고 안에 점 찍기. 전략 2 건너뛰며 세기: SIZE만큼 점프, GROUPS만큼 횟수. 전략 3 반복 덧셈: SIZE를 GROUPS번 더하기. 전략 4 곱셈: GROUPS × SIZE = 합계. 검증: '같은 수 × 같은 수'가 되는지(등량 조건) 먼저 확인!",
+      "cpa_stage": "abstract",
+      "visual_type": "strategy_summary",
+      "skill_tag": "count_equal_groups",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "try": [
     {
       "id": "TRY_01",
       "section": "try",
       "difficulty": 1,
       "question": "5 groups of 2. How many in all?",
-      "choices": ["A. 7", "B. 10", "C. 12", "D. 15"],
+      "choices": [
+        "A. 7",
+        "B. 10",
+        "C. 12",
+        "D. 15"
+      ],
       "answer": "B",
       "explanation": "2 + 2 + 2 + 2 + 2 = 10.",
       "hints": [
@@ -128,14 +346,32 @@
         "correct": "Right — 10.",
         "incorrect": "5 groups of 2 = 10. Skip count: 2, 4, 6, 8, 10."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "cpa_stage": "pictorial",
+      "skill_tag": "skip_count_total",
+      "feedback_correct": "Right — 10.",
+      "expected_errors": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "TRY_02",
       "section": "try",
       "difficulty": 1,
       "question": "Jen makes 3 bracelets. Each has 3 beads. How many beads total?",
-      "choices": ["A. 6", "B. 9", "C. 12", "D. 15"],
+      "choices": [
+        "A. 6",
+        "B. 9",
+        "C. 12",
+        "D. 15"
+      ],
       "answer": "B",
       "explanation": "3 groups of 3 = 9 beads.",
       "hints": [
@@ -146,14 +382,32 @@
         "correct": "Right — 9 beads.",
         "incorrect": "3 groups of 3 = 9."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "cpa_stage": "pictorial",
+      "skill_tag": "count_equal_groups",
+      "feedback_correct": "Right — 9 beads.",
+      "expected_errors": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M03"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "TRY_03",
       "section": "try",
       "difficulty": 2,
       "question": "Ian has 5 cards. Each needs 2 stamps. How many stamps total?",
-      "choices": ["A. 7", "B. 10", "C. 12", "D. 15"],
+      "choices": [
+        "A. 7",
+        "B. 10",
+        "C. 12",
+        "D. 15"
+      ],
       "answer": "B",
       "explanation": "5 groups of 2 stamps = 10.",
       "hints": [
@@ -164,7 +418,20 @@
         "correct": "Right — 10 stamps.",
         "incorrect": "5 cards × 2 stamps each = 10."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "cpa_stage": "pictorial",
+      "skill_tag": "groups_of_meaning",
+      "feedback_correct": "Right — 10 stamps.",
+      "expected_errors": [
+        "3.OA.A.1.M02",
+        "3.OA.A.1.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "TRY_04",
@@ -187,14 +454,31 @@
         "correct": "Right — same number in each.",
         "incorrect": "Equal groups must all have the same count."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "cpa_stage": "pictorial",
+      "skill_tag": "equal_vs_unequal",
+      "feedback_correct": "Right — same number in each.",
+      "expected_errors": [
+        "3.OA.A.1.M05"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "TRY_05",
       "section": "try",
       "difficulty": 2,
       "question": "Liam has 4 vases. Each vase has 3 flowers. How many flowers total?",
-      "choices": ["A. 7", "B. 10", "C. 12", "D. 14"],
+      "choices": [
+        "A. 7",
+        "B. 10",
+        "C. 12",
+        "D. 14"
+      ],
       "answer": "C",
       "explanation": "4 groups of 3 = 12.",
       "hints": [
@@ -205,20 +489,55 @@
         "correct": "Right — 12 flowers.",
         "incorrect": "4 vases × 3 flowers = 12."
       },
-      "solution_steps": []
-    },
+      "solution_steps": [],
+      "cpa_stage": "pictorial",
+      "skill_tag": "groups_of_meaning",
+      "feedback_correct": "Right — 12 flowers.",
+      "expected_errors": [
+        "3.OA.A.1.M02",
+        "3.OA.A.1.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "practice_r1": [
     {
       "id": "R1_01",
       "section": "practice_r1",
       "difficulty": 1,
       "question": "2 groups of 6. How many in all?",
-      "choices": ["A. 8", "B. 10", "C. 12", "D. 14"],
+      "choices": [
+        "A. 8",
+        "B. 10",
+        "C. 12",
+        "D. 14"
+      ],
       "answer": "C",
       "explanation": "6 + 6 = 12.",
-      "hints": ["Two 6s added.", "6 + 6 = 12."],
+      "hints": [
+        "Two 6s added.",
+        "6 + 6 = 12."
+      ],
       "feedback": {
         "correct": "Right — 12.",
         "incorrect": "6 + 6 = 12."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "repeated_addition",
+      "feedback_correct": "Right — 12.",
+      "expected_errors": [
+        "3.OA.A.1.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -226,13 +545,34 @@
       "section": "practice_r1",
       "difficulty": 1,
       "question": "4 groups of 2. How many in all?",
-      "choices": ["A. 6", "B. 8", "C. 10", "D. 12"],
+      "choices": [
+        "A. 6",
+        "B. 8",
+        "C. 10",
+        "D. 12"
+      ],
       "answer": "B",
       "explanation": "2 + 2 + 2 + 2 = 8.",
-      "hints": ["Add four 2s.", "Or skip count: 2, 4, 6, 8."],
+      "hints": [
+        "Add four 2s.",
+        "Or skip count: 2, 4, 6, 8."
+      ],
       "feedback": {
         "correct": "Right — 8.",
         "incorrect": "4 × 2 = 8."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "skip_count_total",
+      "feedback_correct": "Right — 8.",
+      "expected_errors": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -240,13 +580,34 @@
       "section": "practice_r1",
       "difficulty": 1,
       "question": "3 groups of 5. How many in all?",
-      "choices": ["A. 8", "B. 12", "C. 15", "D. 18"],
+      "choices": [
+        "A. 8",
+        "B. 12",
+        "C. 15",
+        "D. 18"
+      ],
       "answer": "C",
       "explanation": "5 + 5 + 5 = 15.",
-      "hints": ["Skip count by 5 three times.", "5, 10, 15."],
+      "hints": [
+        "Skip count by 5 three times.",
+        "5, 10, 15."
+      ],
       "feedback": {
         "correct": "Right — 15.",
         "incorrect": "3 × 5 = 15."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "skip_count_total",
+      "feedback_correct": "Right — 15.",
+      "expected_errors": [
+        "3.OA.A.1.M04",
+        "3.OA.A.1.M07"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -254,13 +615,33 @@
       "section": "practice_r1",
       "difficulty": 1,
       "question": "6 groups of 2. Skip count to find the total.",
-      "choices": ["A. 8", "B. 10", "C. 12", "D. 14"],
+      "choices": [
+        "A. 8",
+        "B. 10",
+        "C. 12",
+        "D. 14"
+      ],
       "answer": "C",
       "explanation": "2, 4, 6, 8, 10, 12.",
-      "hints": ["Count by 2s six times.", "End at 12."],
+      "hints": [
+        "Count by 2s six times.",
+        "End at 12."
+      ],
       "feedback": {
         "correct": "Right — 12.",
         "incorrect": "2, 4, 6, 8, 10, 12."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "skip_count_total",
+      "feedback_correct": "Right — 12.",
+      "expected_errors": [
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -268,13 +649,33 @@
       "section": "practice_r1",
       "difficulty": 2,
       "question": "There are 4 vases. Each vase has 5 flowers. How many flowers total?",
-      "choices": ["A. 9", "B. 15", "C. 20", "D. 25"],
+      "choices": [
+        "A. 9",
+        "B. 15",
+        "C. 20",
+        "D. 25"
+      ],
       "answer": "C",
       "explanation": "4 × 5 = 20 flowers.",
-      "hints": ["4 groups of 5.", "Skip count by 5 four times."],
+      "hints": [
+        "4 groups of 5.",
+        "Skip count by 5 four times."
+      ],
       "feedback": {
         "correct": "Right — 20.",
         "incorrect": "4 × 5 = 20."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "groups_of_meaning",
+      "feedback_correct": "Right — 20.",
+      "expected_errors": [
+        "3.OA.A.1.M02"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -282,13 +683,33 @@
       "section": "practice_r1",
       "difficulty": 2,
       "question": "3 groups of 6. How many in all?",
-      "choices": ["A. 9", "B. 12", "C. 15", "D. 18"],
+      "choices": [
+        "A. 9",
+        "B. 12",
+        "C. 15",
+        "D. 18"
+      ],
       "answer": "D",
       "explanation": "6 + 6 + 6 = 18.",
-      "hints": ["Three 6s added.", "Or skip count by 6: 6, 12, 18."],
+      "hints": [
+        "Three 6s added.",
+        "Or skip count by 6: 6, 12, 18."
+      ],
       "feedback": {
         "correct": "Right — 18.",
         "incorrect": "3 × 6 = 18."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "skip_count_total",
+      "feedback_correct": "Right — 18.",
+      "expected_errors": [
+        "3.OA.A.1.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -296,13 +717,34 @@
       "section": "practice_r1",
       "difficulty": 2,
       "question": "5 groups of 4. How many in all?",
-      "choices": ["A. 9", "B. 15", "C. 20", "D. 25"],
+      "choices": [
+        "A. 9",
+        "B. 15",
+        "C. 20",
+        "D. 25"
+      ],
       "answer": "C",
       "explanation": "4 + 4 + 4 + 4 + 4 = 20.",
-      "hints": ["Five 4s added.", "Skip count by 4: 4, 8, 12, 16, 20."],
+      "hints": [
+        "Five 4s added.",
+        "Skip count by 4: 4, 8, 12, 16, 20."
+      ],
       "feedback": {
         "correct": "Right — 20.",
         "incorrect": "5 × 4 = 20."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "skip_count_total",
+      "feedback_correct": "Right — 20.",
+      "expected_errors": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -310,13 +752,33 @@
       "section": "practice_r1",
       "difficulty": 1,
       "question": "1 group of 8. How many in all?",
-      "choices": ["A. 0", "B. 1", "C. 8", "D. 16"],
+      "choices": [
+        "A. 0",
+        "B. 1",
+        "C. 8",
+        "D. 16"
+      ],
       "answer": "C",
       "explanation": "One group of 8 is just 8.",
-      "hints": ["Only one group.", "No repeating."],
+      "hints": [
+        "Only one group.",
+        "No repeating."
+      ],
       "feedback": {
         "correct": "Right — 8.",
         "incorrect": "1 group of 8 = 8."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "count_equal_groups",
+      "feedback_correct": "Right — 8.",
+      "expected_errors": [
+        "3.OA.A.1.M03"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -339,6 +801,18 @@
       "feedback": {
         "correct": "Right — add 3 four times.",
         "incorrect": "4 groups of 3 = 3 + 3 + 3 + 3."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "repeated_addition",
+      "feedback_correct": "Right — add 3 four times.",
+      "expected_errors": [
+        "3.OA.A.1.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -349,24 +823,61 @@
       "type": "input",
       "answer": "18",
       "explanation": "6 × 3 = 18. Or 3 + 3 + 3 + 3 + 3 + 3 = 18.",
-      "hints": ["Skip count by 3 six times.", "3, 6, 9, 12, 15, 18."],
+      "hints": [
+        "Skip count by 3 six times.",
+        "3, 6, 9, 12, 15, 18."
+      ],
       "feedback": {
         "correct": "Right!",
         "incorrect": "6 × 3 = 18."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "skip_count_total",
+      "feedback_correct": "Right!",
+      "expected_errors": [
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    },
+    }
+  ],
+  "practice_r2": [
     {
       "id": "R2_01",
       "section": "practice_r2",
       "difficulty": 2,
       "question": "A store has 6 shelves. Each shelf has 4 books. How many books?",
-      "choices": ["A. 10", "B. 18", "C. 24", "D. 30"],
+      "choices": [
+        "A. 10",
+        "B. 18",
+        "C. 24",
+        "D. 30"
+      ],
       "answer": "C",
       "explanation": "6 × 4 = 24 books.",
-      "hints": ["Shelves are groups. Books per shelf is the size.", "6 × 4."],
+      "hints": [
+        "Shelves are groups. Books per shelf is the size.",
+        "6 × 4."
+      ],
       "feedback": {
         "correct": "Right — 24.",
         "incorrect": "6 shelves × 4 books = 24."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "groups_of_meaning",
+      "feedback_correct": "Right — 24.",
+      "expected_errors": [
+        "3.OA.A.1.M02"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -374,13 +885,34 @@
       "section": "practice_r2",
       "difficulty": 2,
       "question": "7 groups of 3. How many in all?",
-      "choices": ["A. 10", "B. 18", "C. 21", "D. 24"],
+      "choices": [
+        "A. 10",
+        "B. 18",
+        "C. 21",
+        "D. 24"
+      ],
       "answer": "C",
       "explanation": "3 + 3 + 3 + 3 + 3 + 3 + 3 = 21.",
-      "hints": ["Seven 3s.", "Skip count by 3 seven times."],
+      "hints": [
+        "Seven 3s.",
+        "Skip count by 3 seven times."
+      ],
       "feedback": {
         "correct": "Right — 21.",
         "incorrect": "7 × 3 = 21."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "skip_count_total",
+      "feedback_correct": "Right — 21.",
+      "expected_errors": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -388,7 +920,10 @@
       "section": "practice_r2",
       "difficulty": 2,
       "question": "Are these equal groups? 3 bowls: one with 4 grapes, one with 5 grapes, one with 4 grapes.",
-      "choices": ["A. Yes, equal", "B. No, not equal"],
+      "choices": [
+        "A. Yes, equal",
+        "B. No, not equal"
+      ],
       "answer": "B",
       "explanation": "One bowl has 5 — not all the same. Not equal groups.",
       "hints": [
@@ -398,6 +933,18 @@
       "feedback": {
         "correct": "Right — not equal.",
         "incorrect": "4, 5, 4 — not all the same, so not equal."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "equal_vs_unequal",
+      "feedback_correct": "Right — not equal.",
+      "expected_errors": [
+        "3.OA.A.1.M05"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -408,10 +955,25 @@
       "type": "input",
       "answer": "32",
       "explanation": "8 × 4 = 32.",
-      "hints": ["Skip count by 4 eight times.", "4, 8, 12, 16, 20, 24, 28, 32."],
+      "hints": [
+        "Skip count by 4 eight times.",
+        "4, 8, 12, 16, 20, 24, 28, 32."
+      ],
       "feedback": {
         "correct": "Right!",
         "incorrect": "8 × 4 = 32."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "skip_count_total",
+      "feedback_correct": "Right!",
+      "expected_errors": [
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -419,13 +981,34 @@
       "section": "practice_r2",
       "difficulty": 2,
       "question": "5 bags, each with 7 candies. How many candies total?",
-      "choices": ["A. 12", "B. 28", "C. 35", "D. 42"],
+      "choices": [
+        "A. 12",
+        "B. 28",
+        "C. 35",
+        "D. 42"
+      ],
       "answer": "C",
       "explanation": "5 × 7 = 35 candies.",
-      "hints": ["Bags × candies per bag.", "5 × 7."],
+      "hints": [
+        "Bags × candies per bag.",
+        "5 × 7."
+      ],
       "feedback": {
         "correct": "Right — 35.",
         "incorrect": "5 × 7 = 35."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "groups_of_meaning",
+      "feedback_correct": "Right — 35.",
+      "expected_errors": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -448,6 +1031,18 @@
       "feedback": {
         "correct": "Right — 4 bags × 5 coins.",
         "incorrect": "4 groups of 5 means 4 bags with 5 each."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "groups_of_meaning",
+      "feedback_correct": "Right — 4 bags × 5 coins.",
+      "expected_errors": [
+        "3.OA.A.1.M02"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -458,63 +1053,145 @@
       "type": "input",
       "answer": "45",
       "explanation": "9 × 5 = 45.",
-      "hints": ["Skip count by 5 nine times.", "5, 10, 15, 20, 25, 30, 35, 40, 45."],
+      "hints": [
+        "Skip count by 5 nine times.",
+        "5, 10, 15, 20, 25, 30, 35, 40, 45."
+      ],
       "feedback": {
         "correct": "Right!",
         "incorrect": "9 × 5 = 45."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "skip_count_total",
+      "feedback_correct": "Right!",
+      "expected_errors": [
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_08",
       "section": "practice_r2",
       "difficulty": 2,
-      "question": "True or False: '3 groups of 4' is the same total as '4 groups of 3.'",
-      "choices": ["A. True", "B. False"],
-      "answer": "A",
-      "explanation": "True — both equal 12. (This preview of the Commutative Property comes later!)",
+      "question": "Find the sum: 247 + 156.",
+      "choices": [
+        "A. 393",
+        "B. 403",
+        "C. 413",
+        "D. 503"
+      ],
+      "answer": "B",
+      "explanation": "247+156: 7+6=13 (carry 1), 4+5+1=10 (carry 1), 2+1+1=4. Result: 403.",
       "hints": [
-        "Count both.",
-        "3 + 3 + 3 + 3 vs 4 + 4 + 4."
+        "Line up the digits — ones, tens, hundreds.",
+        "Don't forget to carry when a column sum is 10 or more."
       ],
       "feedback": {
-        "correct": "Right — both = 12.",
-        "incorrect": "True. Both total 12."
+        "correct": "Right — 403.",
+        "incorrect": "247+156=403. Watch the carries."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "addition_3digit",
+      "feedback_correct": "Right — 403.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_09",
       "section": "practice_r2",
-      "difficulty": 3,
-      "question": "A classroom has 6 tables. Each table seats 4 students. If the room is full, how many students?",
-      "choices": ["A. 10", "B. 20", "C. 24", "D. 28"],
-      "answer": "C",
-      "explanation": "6 × 4 = 24 students.",
-      "hints": ["Tables × students per table.", "6 × 4."],
+      "difficulty": 2,
+      "question": "Find the difference: 538 − 274.",
+      "choices": [
+        "A. 254",
+        "B. 264",
+        "C. 274",
+        "D. 364"
+      ],
+      "answer": "B",
+      "explanation": "538−274: 8−4=4. 3−7 needs borrow → 13−7=6, hundreds becomes 4. 4−2=2. Result: 264.",
+      "hints": [
+        "Subtract right to left: ones, tens, hundreds.",
+        "Borrow from the next column if the top digit is smaller."
+      ],
       "feedback": {
-        "correct": "Right — 24 students.",
-        "incorrect": "6 × 4 = 24."
+        "correct": "Right — 264.",
+        "incorrect": "538−274=264. Remember to borrow."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "subtraction_3digit",
+      "feedback_correct": "Right — 264.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_10",
       "section": "practice_r2",
-      "difficulty": 2,
-      "question": "Type the total: 2 groups of 9 = ___",
-      "type": "input",
-      "answer": "18",
-      "explanation": "9 + 9 = 18.",
-      "hints": ["Two 9s.", "Or double 9."],
+      "difficulty": 3,
+      "question": "Maya had 425 stickers. She gave 138 to her friend, then earned 56 more. How many stickers does she have now?",
+      "choices": [
+        "A. 287",
+        "B. 343",
+        "C. 363",
+        "D. 619"
+      ],
+      "answer": "B",
+      "explanation": "Step 1: 425−138=287. Step 2: 287+56=343.",
+      "hints": [
+        "Two steps: subtract first (gave away), then add (earned).",
+        "Be careful with borrow in 425−138 and carry in 287+56."
+      ],
       "feedback": {
-        "correct": "Right!",
-        "incorrect": "9 + 9 = 18."
+        "correct": "Right — 343 stickers.",
+        "incorrect": "425−138=287, then 287+56=343."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_add_sub",
+      "feedback_correct": "Right — 343 stickers.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    },
+    }
+  ],
+  "practice_r3": [
     {
       "id": "R3_01",
       "section": "practice_r3",
       "difficulty": 3,
       "question": "A baker puts 6 muffins in each box. She fills 8 boxes, then eats 3 muffins. How many muffins are left in the boxes?",
-      "choices": ["A. 45", "B. 48", "C. 51", "D. 11"],
+      "choices": [
+        "A. 45",
+        "B. 48",
+        "C. 51",
+        "D. 11"
+      ],
       "answer": "A",
       "explanation": "8 × 6 = 48 muffins in boxes. 48 − 3 eaten = 45.",
       "hints": [
@@ -524,6 +1201,19 @@
       "feedback": {
         "correct": "Right — 45 left.",
         "incorrect": "8 × 6 = 48. 48 − 3 = 45."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_multiplication",
+      "feedback_correct": "Right — 45 left.",
+      "expected_errors": [
+        "3.OA.A.1.M02",
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -531,7 +1221,12 @@
       "section": "practice_r3",
       "difficulty": 3,
       "question": "Emma has some bags of marbles. Each bag has 5 marbles. She has 35 marbles in all. How many bags?",
-      "choices": ["A. 5", "B. 6", "C. 7", "D. 8"],
+      "choices": [
+        "A. 5",
+        "B. 6",
+        "C. 7",
+        "D. 8"
+      ],
       "answer": "C",
       "explanation": "Count by 5s until you hit 35: 5, 10, 15, 20, 25, 30, 35 — that's 7 groups.",
       "hints": [
@@ -541,6 +1236,18 @@
       "feedback": {
         "correct": "Right — 7 bags.",
         "incorrect": "Count by 5s to 35: 7 bags."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_groups",
+      "feedback_correct": "Right — 7 bags.",
+      "expected_errors": [
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -548,7 +1255,12 @@
       "section": "practice_r3",
       "difficulty": 3,
       "question": "Sam has 4 groups of stickers. Each group has the same number. He has 28 stickers total. How many in each group?",
-      "choices": ["A. 6", "B. 7", "C. 8", "D. 9"],
+      "choices": [
+        "A. 6",
+        "B. 7",
+        "C. 8",
+        "D. 9"
+      ],
       "answer": "B",
       "explanation": "4 groups × ? = 28. Try 4 × 7 = 28. ✓ So 7 per group.",
       "hints": [
@@ -558,6 +1270,18 @@
       "feedback": {
         "correct": "Right — 7 per group.",
         "incorrect": "4 × 7 = 28. So 7 in each group."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_group_size",
+      "feedback_correct": "Right — 7 per group.",
+      "expected_errors": [
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -575,6 +1299,19 @@
       "feedback": {
         "correct": "Exact — 23!",
         "incorrect": "9 × 3 = 27. 27 − 4 = 23."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_multiplication",
+      "feedback_correct": "Exact — 23!",
+      "expected_errors": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
@@ -592,8 +1329,32 @@
       "feedback": {
         "correct": "Exact — 38 chickens!",
         "incorrect": "5 × 6 = 30. 2 × 4 = 8. 30 + 8 = 38."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_multiplication",
+      "feedback_correct": "Exact — 38 chickens!",
+      "expected_errors": [
+        "3.OA.A.1.M02"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson 3.1 'Count Equal Groups' pp.101-104",
+        "procedure_source": "EngageNY Grade 3 Module 1 Topic A — Multiplication and the Meaning of the Factors",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     }
   ],
-  "concept": "count_equal_groups"
+  "vertical_alignment": {
+    "prerequisite": "G2 — 같은 수 반복 더하기, 2·5·10 건너뛰며 세기 (2.OA.C.4)",
+    "current": "G3 — 등량 그룹의 곱 해석; 그룹 수 × 그룹 크기 (3.OA.A.1)",
+    "successor": "G4 — 곱셈 비교; 'n배' 관계 이해 (4.OA.A.1)"
+  },
+  "metadata": {
+    "total_items": 43,
+    "upgraded": true,
+    "upgrade_script": "scripts/upgrade_u3_l1.py",
+    "review_from_units": [
+      "U1"
+    ]
+  }
 }
