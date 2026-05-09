@@ -28,7 +28,6 @@
     {
       "id": "PT_01",
       "type": "MC",
-      "stem": "4 × 50 = ?",
       "choices": [
         "150",
         "200",
@@ -37,12 +36,23 @@
       ],
       "answer": "B",
       "explanation": "4 × 5 tens = 20 tens = 200.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "4 × 50 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "PT_02",
       "type": "MC",
-      "stem": "60 × 3 = ?",
       "choices": [
         "120",
         "180",
@@ -51,12 +61,23 @@
       ],
       "answer": "B",
       "explanation": "6 tens × 3 = 18 tens = 180.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "60 × 3 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10_left",
+      "expected_errors": [
+        "3.NBT.A.3.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "PT_03",
       "type": "MC",
-      "stem": "Each shelf holds 30 books. There are 9 shelves. How many books?",
       "choices": [
         "220",
         "260",
@@ -65,12 +86,23 @@
       ],
       "answer": "C",
       "explanation": "9 × 30 = 270 books.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "Each shelf holds 30 books. There are 9 shelves. How many books?",
+      "cpa_stage": "abstract",
+      "skill_tag": "rate_x10_word",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "PT_04",
       "type": "MC",
-      "stem": "One can of juice mix makes 60 ounces. How many ounces from 6 cans?",
       "choices": [
         "300 ounces",
         "360 ounces",
@@ -79,12 +111,23 @@
       ],
       "answer": "B",
       "explanation": "6 × 60 = 360 ounces.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "One can of juice mix makes 60 ounces. How many ounces from 6 cans?",
+      "cpa_stage": "abstract",
+      "skill_tag": "rate_x10_word",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "PT_05",
       "type": "MC",
-      "stem": "Sue bought 7 cans of tennis balls. There are 3 balls in each can. How many balls?",
       "choices": [
         "10",
         "21",
@@ -93,16 +136,27 @@
       ],
       "answer": "B",
       "explanation": "7 × 3 = 21 balls.",
-      "difficulty": 1
+      "difficulty": 1,
+      "question": "Sue bought 7 cans of tennis balls. There are 3 balls in each can. How many balls?",
+      "cpa_stage": "abstract",
+      "skill_tag": "rate_x10_word",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     }
   ],
   "learn": [
     {
-      "id": "LN_01",
+      "id": "LEARN_01",
       "type": "concept_card",
       "title": "Base-Ten Blocks",
       "content": "To find 4 × 50, show 4 groups of 5 rods (each rod = 10). Count: 4 × 5 = 20 rods = 200.",
-      "cpa_phase": "concrete",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "array_grid",
@@ -110,30 +164,54 @@
           "rows": 4,
           "cols": 5
         }
+      },
+      "cpa_stage": "concrete",
+      "skill_tag": "base_ten_blocks",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
-      "id": "LN_02",
+      "id": "LEARN_02",
       "type": "concept_card",
       "title": "Basic Fact + Place Value",
       "content": "For 6 × 90: basic fact is 6 × 9 = 54. Since 90 is 9 tens, the answer is 54 tens = 540.",
-      "cpa_phase": "concrete",
-      "visual_type": "none"
+      "visual_type": "none",
+      "cpa_stage": "pictorial",
+      "skill_tag": "basic_fact_place_value",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
-      "id": "LN_03",
+      "id": "LEARN_03",
       "type": "concept_card",
       "title": "Vertical Format",
       "content": "You can also write it vertically:\n  30\n× 8\n---\n240\nMultiply 3 × 8 = 24, then write the zero: 240.",
-      "cpa_phase": "pictorial",
-      "visual_type": "none"
+      "visual_type": "none",
+      "cpa_stage": "abstract",
+      "skill_tag": "vertical_format_x10",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
-      "id": "LN_04",
+      "id": "LEARN_04",
       "type": "concept_card",
       "title": "Drawing Base-Ten Rods",
       "content": "Draw rods to find 3 × 50. Draw 3 groups of 5 rods (each rod = 10). Count all rods: 15 rods. 15 rods = 15 tens = 150. Drawing pictures helps you see why the basic fact works: 3 × 5 = 15 rods = 150.",
-      "cpa_phase": "pictorial",
       "visual_type": "manipulative",
       "visual_data": {
         "tool": "array_grid",
@@ -141,14 +219,22 @@
           "rows": 3,
           "cols": 5
         }
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "drawing_base_ten_rods",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
-      "id": "LN_05",
+      "id": "LEARN_05",
       "type": "concept_card",
       "title": "Check with Estimation",
       "content": "After you multiply, check your answer makes sense. 7 × 80 = 560. Check: 7 × 80 is about 7 × 80. Since 7 × 8 = 56, the answer 56 tens = 560 makes sense. The product of a 1-digit number and a 2-digit multiple of 10 always ends in zero.",
-      "cpa_phase": "abstract",
       "visual_type": "equation",
       "visual_data": {
         "tool": "equation_display",
@@ -159,6 +245,63 @@
             "Check: answer always ends in 0 ✓"
           ]
         }
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "estimation_check_x10",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "title": "0 붙이기 루틴 — 가장 빠른 방법",
+      "content": "한 자리 × 10의 배수는 두 단계만 거치면 끝: 단계 1) 10의 배수에서 0을 잠시 떼어 기본 사실 계산 — 7 × 80 → 7 × 8 = 56. 단계 2) 떼어둔 0을 답 끝에 다시 붙임 — 56 → 560. 왜 작동하나? 80 = 8 × 10이니까 7 × 80 = 7 × 8 × 10 = 56 × 10 = 560. 흔한 실수 (M01): 0을 다시 붙이지 않아 56이라 답 → 10배 작음. 흔한 실수 (M02): 0을 두 개 붙여 5,600이라 답 → 10배 큼. 팁: '한 자리 곱하기 두 자리(0 끝) → 답은 세 자리(끝 0 1개).'",
+      "cpa_stage": "abstract",
+      "visual_type": "zero_attach_routine",
+      "skill_tag": "zero_attach_routine",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "title": "위치는 무관 — 60 × 7 도 7 × 60 처럼 풀기",
+      "content": "10의 배수가 왼쪽이든 오른쪽이든 같은 답: 60 × 7 = 7 × 60 = 420. 전략: 10의 배수를 항상 오른쪽으로 옮긴 뒤 0 붙이기 루틴 적용. 예 1) 60 × 7 → 7 × 60 → 7 × 6 = 42 → 420. 예 2) 90 × 4 → 4 × 90 → 4 × 9 = 36 → 360. 흔한 실수 (M06): 60 × 7과 7 × 60을 다른 문제로 보고 한쪽만 풀 줄 앎 — 교환법칙 한 번 더 떠올리세요.",
+      "cpa_stage": "abstract",
+      "visual_type": "commutative_x10",
+      "skill_tag": "x10_position_flexibility",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "title": "스스로 검증 — 답이 맞는지 3가지 방법",
+      "content": "방법 1 자릿수 점검: 한 자리 × 10의 배수 → 답은 보통 세 자리.   예: 8 × 70 = 560 (3자리 ✓), 8 × 70 = 56 ❌ 또는 5,600 ❌. 방법 2 어림셈: 9 × 70 ≈ 10 × 70 = 700, 그래서 답은 700보다 약간 작은 630. 방법 3 기본 사실 재확인: 7 × 8 = 56이 맞는지 곱셈표로 검산 (M04 예방). 🔍 검증: 어림셈 ± 10% 안에 답이 들어가는지 항상 확인.",
+      "cpa_stage": "abstract",
+      "visual_type": "self_check_strategy",
+      "skill_tag": "x10_self_check",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     }
   ],
@@ -166,7 +309,6 @@
     {
       "id": "TRY_01",
       "type": "MC",
-      "stem": "60 × 5 = ?",
       "choices": [
         "250",
         "280",
@@ -184,12 +326,24 @@
         "correct": "Correct! 6 × 5 = 30, so 60 × 5 = 300.",
         "incorrect": "Use the basic fact: 6 × 5 = 30. Then 60 × 5 = 30 tens = 300."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "60 × 5 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10_left",
+      "feedback_correct": "Correct! 6 × 5 = 30, so 60 × 5 = 300.",
+      "expected_errors": [
+        "3.NBT.A.3.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "TRY_02",
       "type": "MC",
-      "stem": "Each model car costs $4. There are 30 cars in a set. How much for the whole set?",
       "choices": [
         "$34",
         "$90",
@@ -207,12 +361,24 @@
         "correct": "Right! 4 × 3 = 12, so 4 × 30 = $120.",
         "incorrect": "Use the basic fact: 4 × 3 = 12. Then 4 × 30 = 12 tens = $120."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "Each model car costs $4. There are 30 cars in a set. How much for the whole set?",
+      "cpa_stage": "abstract",
+      "skill_tag": "rate_x10_word",
+      "feedback_correct": "Right! 4 × 3 = 12, so 4 × 30 = $120.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "TRY_03",
       "type": "input",
-      "stem": "5 × 40 = ?",
       "answer": "200",
       "explanation": "5 × 4 tens = 20 tens = 200.",
       "difficulty": 1,
@@ -224,12 +390,24 @@
         "correct": "Great! 5 × 4 = 20, so 5 × 40 = 200.",
         "incorrect": "Use the basic fact: 5 × 4 = 20. Then add a zero: 5 × 40 = 200."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "5 × 40 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10",
+      "feedback_correct": "Great! 5 × 4 = 20, so 5 × 40 = 200.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "TRY_04",
       "type": "input",
-      "stem": "8 × 70 = ?",
       "answer": "560",
       "explanation": "8 × 7 tens = 56 tens = 560.",
       "difficulty": 1,
@@ -241,12 +419,24 @@
         "correct": "Excellent! 8 × 7 = 56, so 8 × 70 = 560.",
         "incorrect": "Use the basic fact: 8 × 7 = 56. Then add a zero: 8 × 70 = 560."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "8 × 70 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10",
+      "feedback_correct": "Excellent! 8 × 7 = 56, so 8 × 70 = 560.",
+      "expected_errors": [
+        "3.NBT.A.3.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     },
     {
       "id": "TRY_05",
       "type": "MC",
-      "stem": "A pet store has 9 tanks. Each tank holds 30 fish. How many fish are there in all?",
       "choices": [
         "240",
         "260",
@@ -264,14 +454,26 @@
         "correct": "Correct! 9 × 3 = 27, so 9 × 30 = 270 fish.",
         "incorrect": "Use the basic fact: 9 × 3 = 27. Then 9 × 30 = 27 tens = 270."
       },
-      "solution_steps": []
+      "solution_steps": [],
+      "question": "A pet store has 9 tanks. Each tank holds 30 fish. How many fish are there in all?",
+      "cpa_stage": "abstract",
+      "skill_tag": "rate_x10_word",
+      "feedback_correct": "Correct! 9 × 3 = 27, so 9 × 30 = 270 fish.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
     }
   ],
   "practice_r1": [
     {
       "id": "R1_01",
       "type": "MC",
-      "stem": "30 × 8 = ?",
       "choices": [
         "210",
         "220",
@@ -288,12 +490,24 @@
       "feedback": {
         "correct": "Correct! 3 × 8 = 24, so 30 × 8 = 240.",
         "incorrect": "Use the basic fact: 3 × 8 = 24. Then 30 × 8 = 24 tens = 240."
+      },
+      "question": "30 × 8 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10_left",
+      "feedback_correct": "Correct! 3 × 8 = 24, so 30 × 8 = 240.",
+      "expected_errors": [
+        "3.NBT.A.3.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R1_02",
       "type": "MC",
-      "stem": "50 × 2 = ?",
       "choices": [
         "10",
         "52",
@@ -310,12 +524,24 @@
       "feedback": {
         "correct": "Right! 5 × 2 = 10, so 50 × 2 = 100.",
         "incorrect": "Use the basic fact: 5 × 2 = 10. Then 50 × 2 = 10 tens = 100."
+      },
+      "question": "50 × 2 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10_left",
+      "feedback_correct": "Right! 5 × 2 = 10, so 50 × 2 = 100.",
+      "expected_errors": [
+        "3.NBT.A.3.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R1_03",
       "type": "MC",
-      "stem": "60 × 7 = ?",
       "choices": [
         "360",
         "400",
@@ -332,12 +558,24 @@
       "feedback": {
         "correct": "Correct! 6 × 7 = 42, so 60 × 7 = 420.",
         "incorrect": "Use the basic fact: 6 × 7 = 42. Then 60 × 7 = 42 tens = 420."
+      },
+      "question": "60 × 7 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10_left",
+      "feedback_correct": "Correct! 6 × 7 = 42, so 60 × 7 = 420.",
+      "expected_errors": [
+        "3.NBT.A.3.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R1_04",
       "type": "MC",
-      "stem": "70 × 4 = ?",
       "choices": [
         "240",
         "260",
@@ -354,12 +592,24 @@
       "feedback": {
         "correct": "Right! 7 × 4 = 28, so 70 × 4 = 280.",
         "incorrect": "Use the basic fact: 7 × 4 = 28. Then 70 × 4 = 28 tens = 280."
+      },
+      "question": "70 × 4 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10_left",
+      "feedback_correct": "Right! 7 × 4 = 28, so 70 × 4 = 280.",
+      "expected_errors": [
+        "3.NBT.A.3.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R1_05",
       "type": "MC",
-      "stem": "6 × 90 = ?",
       "choices": [
         "480",
         "520",
@@ -376,12 +626,24 @@
       "feedback": {
         "correct": "Correct! 6 × 9 = 54, so 6 × 90 = 540.",
         "incorrect": "Use the basic fact: 6 × 9 = 54. Then 6 × 90 = 54 tens = 540."
+      },
+      "question": "6 × 90 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10",
+      "feedback_correct": "Correct! 6 × 9 = 54, so 6 × 90 = 540.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R1_06",
       "type": "MC",
-      "stem": "9 × 70 = ?",
       "choices": [
         "560",
         "600",
@@ -398,12 +660,24 @@
       "feedback": {
         "correct": "Right! 9 × 7 = 63, so 9 × 70 = 630.",
         "incorrect": "Use the basic fact: 9 × 7 = 63. Then 9 × 70 = 63 tens = 630."
+      },
+      "question": "9 × 70 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10",
+      "feedback_correct": "Right! 9 × 7 = 63, so 9 × 70 = 630.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R1_07",
       "type": "MC",
-      "stem": "8 × 90 = ?",
       "choices": [
         "640",
         "680",
@@ -420,12 +694,24 @@
       "feedback": {
         "correct": "Correct! 8 × 9 = 72, so 8 × 90 = 720.",
         "incorrect": "Use the basic fact: 8 × 9 = 72. Then 8 × 90 = 72 tens = 720."
+      },
+      "question": "8 × 90 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10",
+      "feedback_correct": "Correct! 8 × 9 = 72, so 8 × 90 = 720.",
+      "expected_errors": [
+        "3.NBT.A.3.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R1_08",
       "type": "MC",
-      "stem": "6 × 80 = ?",
       "choices": [
         "420",
         "460",
@@ -442,12 +728,24 @@
       "feedback": {
         "correct": "Right! 6 × 8 = 48, so 6 × 80 = 480.",
         "incorrect": "Use the basic fact: 6 × 8 = 48. Then 6 × 80 = 48 tens = 480."
+      },
+      "question": "6 × 80 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10",
+      "feedback_correct": "Right! 6 × 8 = 48, so 6 × 80 = 480.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R1_09",
       "type": "MC",
-      "stem": "Amanda exercises for 50 minutes each day. How many minutes in 7 days?",
       "choices": [
         "300",
         "320",
@@ -464,12 +762,24 @@
       "feedback": {
         "correct": "Great! 7 × 5 = 35, so 7 × 50 = 350 minutes.",
         "incorrect": "Use the basic fact: 7 × 5 = 35. Then 7 × 50 = 35 tens = 350."
+      },
+      "question": "Amanda exercises for 50 minutes each day. How many minutes in 7 days?",
+      "cpa_stage": "abstract",
+      "skill_tag": "rate_x10_word",
+      "feedback_correct": "Great! 7 × 5 = 35, so 7 × 50 = 350 minutes.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R1_10",
       "type": "input",
-      "stem": "2 × 80 = ?",
       "answer": "160",
       "explanation": "2 × 8 tens = 16 tens = 160.",
       "difficulty": 1,
@@ -480,6 +790,19 @@
       "feedback": {
         "correct": "Correct! 2 × 8 = 16, so 2 × 80 = 160.",
         "incorrect": "Use the basic fact: 2 × 8 = 16. Then add a zero: 2 × 80 = 160."
+      },
+      "question": "2 × 80 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10_left",
+      "feedback_correct": "Correct! 2 × 8 = 16, so 2 × 80 = 160.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     }
   ],
@@ -487,7 +810,6 @@
     {
       "id": "R2_01",
       "type": "input",
-      "stem": "3 × 70 = ?",
       "answer": "210",
       "explanation": "3 × 7 tens = 21 tens = 210.",
       "difficulty": 2,
@@ -498,12 +820,24 @@
       "feedback": {
         "correct": "Correct! 3 × 7 = 21, so 3 × 70 = 210.",
         "incorrect": "Use the basic fact: 3 × 7 = 21. Then add a zero: 3 × 70 = 210."
+      },
+      "question": "3 × 70 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10",
+      "feedback_correct": "Correct! 3 × 7 = 21, so 3 × 70 = 210.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_02",
       "type": "MC",
-      "stem": "Compare: 7 × 80 ○ 8 × 70. What goes in the ○?",
       "choices": [
         ">",
         "<",
@@ -520,12 +854,24 @@
       "feedback": {
         "correct": "Correct! Both equal 560, so 7 × 80 = 8 × 70.",
         "incorrect": "Calculate each: 7 × 80 = 560 and 8 × 70 = 560. They are equal (=)."
+      },
+      "question": "Compare: 7 × 80 ○ 8 × 70. What goes in the ○?",
+      "cpa_stage": "abstract",
+      "skill_tag": "compare_x10_products",
+      "feedback_correct": "Correct! Both equal 560, so 7 × 80 = 8 × 70.",
+      "expected_errors": [
+        "3.NBT.A.3.M06"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_03",
       "type": "MC",
-      "stem": "Find all products that equal 360: 4 × 90, 6 × 60, 9 × 40, 5 × 70",
       "choices": [
         "4 × 90 and 9 × 40 only",
         "6 × 60 and 9 × 40 only",
@@ -542,12 +888,24 @@
       "feedback": {
         "correct": "Excellent! 4×90=360, 6×60=360, 9×40=360, but 5×70=350.",
         "incorrect": "Check each: 4×9=36→360 ✓, 6×6=36→360 ✓, 9×4=36→360 ✓, 5×7=35→350 ✗."
+      },
+      "question": "Find all products that equal 360: 4 × 90, 6 × 60, 9 × 40, 5 × 70",
+      "cpa_stage": "abstract",
+      "skill_tag": "identify_equal_products",
+      "feedback_correct": "Excellent! 4×90=360, 6×60=360, 9×40=360, but 5×70=350.",
+      "expected_errors": [
+        "3.NBT.A.3.M02"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_04",
       "type": "MC",
-      "stem": "A store sells boxes of crayons for $3 each. Marcus buys 50 boxes. How much does he spend?",
       "choices": [
         "$53",
         "$130",
@@ -564,12 +922,24 @@
       "feedback": {
         "correct": "Right! 5 × 3 = 15, so 50 × 3 = $150.",
         "incorrect": "Use the basic fact: 5 × 3 = 15. Then 50 × 3 = 15 tens = $150."
+      },
+      "question": "A store sells boxes of crayons for $3 each. Marcus buys 50 boxes. How much does he spend?",
+      "cpa_stage": "abstract",
+      "skill_tag": "rate_x10_word",
+      "feedback_correct": "Right! 5 × 3 = 15, so 50 × 3 = $150.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_05",
       "type": "input",
-      "stem": "4 × 60 = ?",
       "answer": "240",
       "explanation": "4 × 6 tens = 24 tens = 240.",
       "difficulty": 2,
@@ -580,12 +950,24 @@
       "feedback": {
         "correct": "Correct! 4 × 6 = 24, so 4 × 60 = 240.",
         "incorrect": "Use the basic fact: 4 × 6 = 24. Then add a zero: 4 × 60 = 240."
+      },
+      "question": "4 × 60 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10",
+      "feedback_correct": "Correct! 4 × 6 = 24, so 4 × 60 = 240.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_06",
       "type": "MC",
-      "stem": "Which expression gives the largest product?",
       "choices": [
         "7 × 80",
         "6 × 90",
@@ -602,12 +984,24 @@
       "feedback": {
         "correct": "Correct! 7 × 80 = 560 is the largest.",
         "incorrect": "Calculate all four: 560, 540, 480, 450. The largest is 7 × 80 = 560."
+      },
+      "question": "Which expression gives the largest product?",
+      "cpa_stage": "abstract",
+      "skill_tag": "compare_x10_products",
+      "feedback_correct": "Correct! 7 × 80 = 560 is the largest.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_07",
       "type": "input",
-      "stem": "5 × 90 = ?",
       "answer": "450",
       "explanation": "5 × 9 tens = 45 tens = 450.",
       "difficulty": 2,
@@ -618,66 +1012,124 @@
       "feedback": {
         "correct": "Great! 5 × 9 = 45, so 5 × 90 = 450.",
         "incorrect": "Use the basic fact: 5 × 9 = 45. Then add a zero: 5 × 90 = 450."
+      },
+      "question": "5 × 90 = ?",
+      "cpa_stage": "abstract",
+      "skill_tag": "x_multiple_of_10",
+      "feedback_correct": "Great! 5 × 9 = 45, so 5 × 90 = 450.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_08",
       "type": "MC",
-      "stem": "A train has 7 cars. Each car has 60 seats. How many seats in all?",
+      "question": "Find the sum: 376 + 489.",
       "choices": [
-        "380",
-        "400",
-        "420",
-        "460"
+        "A. 755",
+        "B. 765",
+        "C. 855",
+        "D. 865"
       ],
-      "answer": "C",
-      "explanation": "7 × 60 = 420. Basic fact: 7 × 6 = 42, so 7 × 60 = 42 tens = 420.",
+      "answer": "D",
+      "explanation": "376+489: 6+9=15 (carry 1), 7+8+1=16 (carry 1), 3+4+1=8. Result: 865.",
       "difficulty": 2,
       "hints": [
-        "Write the equation: 7 cars × 60 seats each. Think of 60 as 6 tens.",
-        "Basic fact: 7 × 6 = 42. So 7 × 60 = 42 tens = 420."
+        "Two carries.",
+        "Ones: 15. Tens: 16. Hundreds: 8."
       ],
       "feedback": {
-        "correct": "Right! 7 × 6 = 42, so 7 × 60 = 420 seats.",
-        "incorrect": "Use the basic fact: 7 × 6 = 42. Then 7 × 60 = 42 tens = 420."
+        "correct": "Right — 865.",
+        "incorrect": "376+489=865."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "addition_3digit",
+      "feedback_correct": "Right — 865.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_09",
-      "type": "input",
-      "stem": "9 × 60 = ?",
-      "answer": "540",
-      "explanation": "9 × 6 tens = 54 tens = 540.",
+      "type": "MC",
+      "question": "Find the difference: 612 − 248.",
+      "choices": [
+        "A. 364",
+        "B. 374",
+        "C. 464",
+        "D. 474"
+      ],
+      "answer": "A",
+      "explanation": "612−248: 2−8 borrow → 12−8=4; tens 0−4 borrow → 10−4=6; hundreds 5−2=3. Result: 364.",
       "difficulty": 2,
       "hints": [
-        "Think of 60 as 6 tens. What is 9 × 6?",
-        "9 × 6 = 54, so 9 × 6 tens = 54 tens = 540."
+        "Two borrows.",
+        "612−248=364."
       ],
       "feedback": {
-        "correct": "Excellent! 9 × 6 = 54, so 9 × 60 = 540.",
-        "incorrect": "Use the basic fact: 9 × 6 = 54. Then add a zero: 9 × 60 = 540."
+        "correct": "Right — 364.",
+        "incorrect": "612−248=364."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "subtraction_3digit",
+      "feedback_correct": "Right — 364.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R2_10",
       "type": "MC",
-      "stem": "True or False: 5 × 80 = 8 × 50.",
+      "question": "A library had 547 books. They donated 189 and received 235 new ones. How many books now?",
       "choices": [
-        "True — both equal 400",
-        "False — 5 × 80 is bigger",
-        "False — 8 × 50 is bigger",
-        "Cannot tell without a calculator"
+        "A. 358",
+        "B. 593",
+        "C. 736",
+        "D. 971"
       ],
-      "answer": "A",
-      "explanation": "5 × 80 = 5 × 8 tens = 40 tens = 400. 8 × 50 = 8 × 5 tens = 40 tens = 400. They are equal.",
-      "difficulty": 2,
+      "answer": "B",
+      "explanation": "Step 1: 547−189=358. Step 2: 358+235=593.",
+      "difficulty": 3,
       "hints": [
-        "Calculate each side using basic facts: 5 × 8 = ? and 8 × 5 = ?",
-        "5 × 8 = 40 → 5 × 80 = 400. 8 × 5 = 40 → 8 × 50 = 400. They are the same."
+        "Subtract donated, then add received.",
+        "547−189=358, 358+235=593."
       ],
       "feedback": {
-        "correct": "Correct! Both 5 × 80 and 8 × 50 equal 400.",
-        "incorrect": "Calculate both: 5 × 80 = 400 and 8 × 50 = 400. They are equal — True."
+        "correct": "Right — 593 books.",
+        "incorrect": "547−189=358, then +235=593."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_add_sub",
+      "feedback_correct": "Right — 593 books.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     }
   ],
@@ -685,7 +1137,6 @@
     {
       "id": "R3_01",
       "type": "MC",
-      "stem": "Mrs. Lee ordered 8 packs of notebooks with 40 notebooks each and 5 packs of folders with 60 folders each. Which did she order more of — notebooks or folders? By how many?",
       "choices": [
         "Notebooks, by 20",
         "Folders, by 20",
@@ -702,12 +1153,25 @@
       "feedback": {
         "correct": "Well done! 8×40=320 and 5×60=300. 320−300=20, so 20 more notebooks.",
         "incorrect": "Find each total: 8×40=320 notebooks, 5×60=300 folders. 320−300=20 more notebooks."
+      },
+      "question": "Mrs. Lee ordered 8 packs of notebooks with 40 notebooks each and 5 packs of folders with 60 folders each. Which did she order more of — notebooks or folders? By how many?",
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_x10_combine",
+      "feedback_correct": "Well done! 8×40=320 and 5×60=300. 320−300=20, so 20 more notebooks.",
+      "expected_errors": [
+        "3.OA.D.8.M01",
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R3_02",
       "type": "MC",
-      "stem": "Jake has 3 × 90 baseball cards. He gives away 80 cards. How many does he have left?",
       "choices": [
         "180",
         "190",
@@ -724,12 +1188,25 @@
       "feedback": {
         "correct": "Correct! 3 × 90 = 270, and 270 − 80 = 190.",
         "incorrect": "First: 3 × 9 = 27, so 3 × 90 = 270. Then subtract: 270 − 80 = 190."
+      },
+      "question": "Jake has 3 × 90 baseball cards. He gives away 80 cards. How many does he have left?",
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_x10_subtract",
+      "feedback_correct": "Correct! 3 × 90 = 270, and 270 − 80 = 190.",
+      "expected_errors": [
+        "3.OA.D.8.M01",
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R3_03",
       "type": "MC",
-      "stem": "A number × 70 = 490. What is the number?",
       "choices": [
         "5",
         "6",
@@ -746,12 +1223,25 @@
       "feedback": {
         "correct": "Excellent! 7 × 7 = 49, so 7 × 70 = 490.",
         "incorrect": "Drop the zero: ? × 7 = 49. Since 7 × 7 = 49, the missing number is 7."
+      },
+      "question": "A number × 70 = 490. What is the number?",
+      "cpa_stage": "abstract",
+      "skill_tag": "missing_factor_x10",
+      "feedback_correct": "Excellent! 7 × 7 = 49, so 7 × 70 = 490.",
+      "expected_errors": [
+        "3.OA.A.4.M01",
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R3_04",
       "type": "MC",
-      "stem": "A baker makes 9 batches of cookies. Each batch has 40 cookies. She gives away 150 cookies. How many does she have left?",
       "choices": [
         "190",
         "200",
@@ -768,12 +1258,25 @@
       "feedback": {
         "correct": "Well done! 9 × 40 = 360, and 360 − 150 = 210 cookies left.",
         "incorrect": "First: 9 × 4 = 36, so 9 × 40 = 360. Then 360 − 150 = 210."
+      },
+      "question": "A baker makes 9 batches of cookies. Each batch has 40 cookies. She gives away 150 cookies. How many does she have left?",
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_x10_subtract",
+      "feedback_correct": "Well done! 9 × 40 = 360, and 360 − 150 = 210 cookies left.",
+      "expected_errors": [
+        "3.OA.D.8.M01",
+        "3.NBT.A.3.M05"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     },
     {
       "id": "R3_05",
       "type": "input",
-      "stem": "A stadium has 5 sections. Each section has 80 seats. How many seats are there in all?",
       "answer": "400",
       "explanation": "5 × 80 = 400. Basic fact: 5 × 8 = 40, so 5 × 80 = 40 tens = 400.",
       "difficulty": 3,
@@ -784,8 +1287,34 @@
       "feedback": {
         "correct": "Correct! 5 × 8 = 40, so 5 × 80 = 400 seats.",
         "incorrect": "Use the basic fact: 5 × 8 = 40. Then 5 × 80 = 40 tens = 400."
+      },
+      "question": "A stadium has 5 sections. Each section has 80 seats. How many seats are there in all?",
+      "cpa_stage": "abstract",
+      "skill_tag": "rate_x10_word",
+      "feedback_correct": "Correct! 5 × 8 = 40, so 5 × 80 = 400 seats.",
+      "expected_errors": [
+        "3.NBT.A.3.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson 5.5 'Multiply 1-Digit Numbers by Multiples of 10' pp.205-208",
+        "procedure_source": "EngageNY Grade 3 Module 3 Topic G — Multiplication of Single-Digit Factors and Multiples of 10",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
     }
   ],
-  "concept": "multiply_1digit_by_multiples_of_10"
+  "concept": "multiply_1digit_by_multiples_of_10",
+  "vertical_alignment": {
+    "prerequisite": "G3 U5 L4 — 10의 배수 곱셈 결합법칙 전략 (3.NBT.A.3)",
+    "current": "G3 — 한 자리 × 10의 배수 결정판: 0 붙이기·자릿값 검산 (3.NBT.A.3)",
+    "successor": "G3 U6 L1 — 나눗셈의 의미 (3.OA.A.2 / 3.OA.A.3)"
+  },
+  "metadata": {
+    "total_items": 43,
+    "upgraded": true,
+    "upgrade_script": "scripts/upgrade_u5_l5.py",
+    "review_from_units": [
+      "U1"
+    ]
+  }
 }
