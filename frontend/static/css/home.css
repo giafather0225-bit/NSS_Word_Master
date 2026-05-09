@@ -962,3 +962,251 @@
 }
 .gs-switch input:checked ~ .gs-switch-track { background: var(--color-primary); }
 .gs-switch input:checked ~ .gs-switch-thumb { left: 23px; }
+
+
+/* ================================================================
+   ISLAND MAP — 아일랜드 맵 홈 화면
+   기존 .dashboard-grid 3컬럼 레이아웃 대체
+   새 아트워크 교체 시 .zone--* 좌표 주석 참고
+   ================================================================ */
+
+/* ── 전체 래퍼 ─────────────────────────────────────────────────── */
+.island-map-wrapper {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.island-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ── 공통 유리 패널 (HUD + Tasks) ──────────────────────────────── */
+.island-hud,
+.island-tasks-panel {
+    position: absolute;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: 20px;
+    box-shadow: 0 4px 28px rgba(0, 0, 0, 0.10), 0 1px 0 rgba(255,255,255,0.6) inset;
+}
+
+/* ── 좌상단 HUD: 인사말 + 통계 ─────────────────────────────────── */
+.island-hud--topleft {
+    top: 20px;
+    left: 20px;
+    min-width: 220px;
+    max-width: 260px;
+    padding: 16px 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* HUD 내부 인사말 블록 */
+.island-hud--topleft .greeting-block {
+    padding: 0;
+}
+
+.island-hud--topleft .greeting-hello {
+    font-size: 22px;
+}
+
+/* HUD 내부 통계 행 간격 축소 */
+.island-hud--topleft .stats-stack {
+    gap: 6px;
+}
+
+.island-hud--topleft .stat-row {
+    padding: 6px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.island-hud--topleft .stat-row:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+/* ── 좌하단 패널: 오늘의 할일 ──────────────────────────────────── */
+.island-tasks-panel {
+    bottom: 72px;
+    left: 20px;
+    width: 240px;
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 14px 16px;
+    scrollbar-width: thin;
+}
+
+.island-tasks-panel .today-checklist {
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    gap: 8px;
+}
+
+/* ── 존 핫스팟 컨테이너 ────────────────────────────────────────── */
+.island-zones {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* ── 존 핫스팟 버튼 공통 ───────────────────────────────────────── */
+.zone-hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: all;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 10px 18px 9px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.30);
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    box-shadow: 0 3px 16px rgba(0, 0, 0, 0.14), 0 1px 0 rgba(255,255,255,0.7) inset;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+                background 0.15s ease,
+                box-shadow 0.15s ease;
+    font-family: inherit;
+}
+
+.zone-hotspot:hover {
+    transform: translate(-50%, -50%) scale(1.14);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.20), 0 1px 0 rgba(255,255,255,0.7) inset;
+}
+
+.zone-hotspot:active {
+    transform: translate(-50%, -50%) scale(0.97);
+}
+
+.zone-hotspot:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+.zone-icon {
+    font-size: 26px;
+    line-height: 1;
+    display: block;
+}
+
+.zone-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(30, 20, 10, 0.80);
+    white-space: nowrap;
+}
+
+/* 존 별 배경색 */
+.zone--english {
+    background: rgba(91, 163, 122, 0.32);
+    border-color: rgba(91, 163, 122, 0.75);
+}
+.zone--english:hover { background: rgba(91, 163, 122, 0.52); }
+
+.zone--math {
+    background: rgba(79, 143, 191, 0.32);
+    border-color: rgba(79, 143, 191, 0.75);
+}
+.zone--math:hover { background: rgba(79, 143, 191, 0.52); }
+
+.zone--diary {
+    background: rgba(212, 163, 60, 0.32);
+    border-color: rgba(212, 163, 60, 0.75);
+}
+.zone--diary:hover { background: rgba(212, 163, 60, 0.52); }
+
+.zone--review {
+    background: rgba(124, 95, 184, 0.32);
+    border-color: rgba(124, 95, 184, 0.75);
+}
+.zone--review:hover { background: rgba(124, 95, 184, 0.52); }
+
+.zone--arcade {
+    background: rgba(232, 115, 106, 0.32);
+    border-color: rgba(232, 115, 106, 0.75);
+}
+.zone--arcade:hover { background: rgba(232, 115, 106, 0.52); }
+
+.zone--shop {
+    background: rgba(224, 154, 174, 0.32);
+    border-color: rgba(224, 154, 174, 0.75);
+}
+.zone--shop:hover { background: rgba(224, 154, 174, 0.52); }
+
+/* ── 존 좌표 ───────────────────────────────────────────────────────
+   새 파스텔 아이소메트릭 아트워크 기준:
+   새 이미지 배치 후 아트워크를 보면서 미세 조정 필요.
+   ──────────────────────────────────────────────────────────────── */
+.zone--english { left: 20%;  top: 52%; }   /* 왼쪽 숲/체리꽃 지역 */
+.zone--math    { left: 74%;  top: 43%; }   /* 오른쪽 크리스탈/유적 지역 */
+.zone--diary   { left: 47%;  top: 58%; }   /* 중앙 마을/드래곤 광장 */
+.zone--review  { left: 81%;  top: 23%; }   /* 우상단 눈/이글루 지역 */
+.zone--arcade  { left: 28%;  top: 66%; }   /* 좌하단 무지개/폭포 지역 */
+.zone--shop    { left: 57%;  top: 44%; }   /* 마을 우측 상점 */
+
+/* ── 하단 바: 이번 주 스트릭 ────────────────────────────────────── */
+.island-bottom-bar {
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    left: 280px;    /* 할일 패널과 겹치지 않도록 */
+    right: 0;
+    padding: 0 20px 10px;
+}
+
+.island-bottom-bar .weekly-strip {
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: 16px;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 12px 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+}
+
+/* ── 반응형: 소형 화면에서 패널 크기 축소 ─────────────────────── */
+@media (max-width: 768px) {
+    .island-hud--topleft {
+        max-width: 200px;
+        padding: 12px 14px;
+    }
+    .island-hud--topleft .greeting-hello { font-size: 18px; }
+
+    .island-tasks-panel {
+        width: 200px;
+        max-height: 200px;
+        bottom: 64px;
+    }
+
+    .island-bottom-bar {
+        left: 224px;
+    }
+
+    .zone-hotspot {
+        padding: 8px 14px 7px;
+    }
+    .zone-icon { font-size: 20px; }
+    .zone-label { font-size: 9px; }
+}

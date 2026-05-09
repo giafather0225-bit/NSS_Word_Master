@@ -1081,5 +1081,135 @@ M16 requires M15
 
 ---
 
+---
+
+## 12. Triple-Source Verification Protocol
+
+### Overview
+Every G3 lesson item must pass all 7 stages before merge. Tier A/B require Stage 7 (learner validation); Tier C requires Stages 1–6 only.
+
+### Tier Classification
+| Tier | Units | Learning Window | Stage 7 Required |
+|------|-------|-----------------|------------------|
+| A | U1, U3, U4 | 2026-06-20 (Day 1) | Yes |
+| B | U5, U6, U7, U8, U9, U11, U12 | July 2026 | Yes |
+| C | U2, U10, U13 | Fall 2026 | No |
+
+### 7-Stage Checklist (per lesson)
+
+| Stage | Name | Method | Pass Criteria |
+|-------|------|--------|---------------|
+| S1 | Standards Alignment | `scripts/audit_g3_lessons.py` | CCSS code exact match, vertical_alignment fields present |
+| S2 | Triple-Source Verification | `scripts/source_citation_check.py` + manual fetch | ≥2 of 3 sources agree on concept + procedure |
+| S3 | Mathematical Correctness | `scripts/verify_math_answers.py` (sympy) | 0 arithmetic/algebraic errors |
+| S4 | Solution-Explanation Consistency | `scripts/consistency_checker.py` | answer·hint·feedback share same solution path |
+| S5 | Pedagogical Validity | `scripts/audit_g3_lessons.py` (Pillar checks) | All 7 sub-items pass (see below) |
+| S6 | Misconception Validity | `scripts/misconception_matcher.py` | All expected_errors cite misconception_id from pool |
+| S7 | Learner Validation | Pilot run 2026-06-13–19 or First Pass | correct_rate ≥75%, 21-day retention ≥60% |
+
+### Stage 5 — 7 Sub-Items
+1. **CPA order**: LEARN cards follow concrete → pictorial → abstract sequence
+2. **Bloom distribution**: pretest items Bloom 1→3 progressive; practice balanced
+3. **Worked Example fade**: TRY sequence = full → partial → strong hint → weak hint → independent
+4. **Math Talk**: ≥1 LEARN card asks student to explain reasoning (type: "explain")
+5. **Interleaving**: practice_r2 last 25% are review items from `review_from_units` list
+6. **Lesson Summary card**: last LEARN card is type "summary" with key takeaways
+7. **Unit messages**: lesson has `essential_question`, and unit has `unit_intro_message` + `unit_close_message`
+
+### Source URLs (fetch during verification)
+```
+IM Tasks by standard : https://tasks.illustrativemathematics.org/content-standards/3
+EngageNY G3 modules  : https://www.engageny.org/resource/grade-3-mathematics
+Smarter Balanced     : https://sampleitems.smarterbalanced.org/BrowseItems?Subject=MATH&Grade=3
+NCTM Progressions PDF: https://mathematicalmusings.org/wp-content/uploads/2023/02/Progressions.pdf
+Achieve Coherence Map: https://achievethecore.org/coherence-map/
+CCSS G3 Standards    : https://thecorestandards.org/Math/Content/3
+```
+
+### Verification JSON Fields (added to each item)
+```json
+{
+  "verification": {
+    "concept_source":    {"name": "IM Grade 3 Unit X Lesson Y", "url": "https://...", "license": "CC BY 4.0"},
+    "procedure_source":  {"name": "EngageNY G3 M[X] L[Y]",     "url": "https://...", "license": "CC BY-NC-SA 3.0"},
+    "assessment_source": {"name": "Smarter Balanced Item ID",   "url": "https://..."},
+    "standard_alignment": {
+      "ccss": "3.OA.D.9",
+      "coherence_map": "https://achievethecore.org/coherence-map/3/14/143/143"
+    },
+    "vertical_alignment": {"prerequisite": "2.OA.B.2", "successor": "4.OA.C.5"},
+    "math_content": "existing verification string preserved here",
+    "stage_status": {"s1": true, "s2": true, "s3": true, "s4": true, "s5": true, "s6": true, "s7": null}
+  },
+  "expected_errors": [
+    {
+      "error_type": "place_value_confusion",
+      "description": "Adds tens to ones place",
+      "citation": "NCTM Progressions NBT p.14",
+      "misconception_id": "3.NBT.A.2.M03"
+    }
+  ],
+  "visual_data": {
+    "type": "svg | manipulative_link | none",
+    "content": "<svg>...</svg> or https://apps.mathlearningcenter.org/...",
+    "alt_text": "..."
+  },
+  "supplementary_video": {
+    "preview":    {"provider": "math_antics | khan_academy", "url": "https://...", "duration_seconds": 0},
+    "remediation":{"provider": "khan_academy",               "url": "https://...", "duration_seconds": 0, "trigger": "wrong_3_times"}
+  }
+}
+```
+
+### Lesson-Level Metadata Fields
+```json
+{
+  "tier": "A | B | C",
+  "passing_threshold": 0.75,
+  "fluency_required": true,
+  "fluency_target": {"accuracy": 0.95, "max_avg_seconds": 3.0},
+  "essential_question": "...",
+  "unit_intro_message": "...",
+  "unit_close_message": "...",
+  "review_from_units": ["U3", "U4"],
+  "interleave_ratio": 0.25
+}
+```
+
+### ID Convention
+```
+4-tuple prefix: G3_U[N]_L[N]_[SECTION]_[NN]
+Examples:
+  G3_U1_L1_PT_01          pretest item 1
+  G3_U1_L1_LEARN_05       learn card 5
+  G3_U1_L1_PRACTICE_R2_07 practice round 2 item 7
+```
+
+### Misconception Pool Location
+`backend/data/math/G3/misconceptions/[CCSS_CODE].json`
+Each file: array of misconception objects with `misconception_id`, `description`, `citation`, `source`.
+
+### Audit Script Usage
+```bash
+# Single lesson audit (all 7 stages)
+python3 scripts/generate_audit_report.py G3 U1 L1
+
+# Unit batch audit
+python3 scripts/audit_g3_lessons.py --unit U1
+
+# Math answer verification
+python3 scripts/verify_math_answers.py backend/data/math/G3/U1_add_sub_1000/L1_number_patterns.json
+```
+
+### Commit Convention
+```
+verify: G3 U[X] L[Y] 7-stage pass           # clean pass
+verify: G3 U[X] L[Y] [REVIEW NEEDED]        # needs parent/Mom check
+docs:   MATH_SPEC.md — [change summary]     # spec-only change
+```
+
+---
+
 *Document version: 2026-04-25 — In Development (synced with actual codebase)*
+*Triple-Source Verification Protocol added: 2026-05-06*
 *To be updated as implementation progresses.*

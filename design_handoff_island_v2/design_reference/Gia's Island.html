@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Gia's Island — Design Canvas</title>
+<link rel="stylesheet" href="styles.css"/>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="screens-map.jsx"></script>
+<script type="text/babel" src="screens-detail.jsx"></script>
+<script type="text/babel" src="screens-shop.jsx"></script>
+<script type="text/babel" src="screens-loop.jsx"></script>
+<script type="text/babel" src="screens-meta.jsx"></script>
+<script type="text/babel" src="screens-system.jsx"></script>
+
+<script type="text/babel" data-presets="env,react">
+const { useState } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "night": false,
+  "fontMix": "balanced",
+  "mapLayout": "radial",
+  "gaugeStyle": "bar",
+  "mood": "happy",
+  "zoneProgress": 1
+}/*EDITMODE-END*/;
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  // Apply font weights based on mix
+  const fontFam = t.fontMix === 'displayHeavy'
+    ? "'Quicksand', 'Nunito', sans-serif"
+    : t.fontMix === 'handHeavy'
+    ? "'Caveat', 'Nunito', sans-serif"
+    : "'Nunito', 'Quicksand', sans-serif";
+
+  return (
+    <div style={{fontFamily: fontFam}}>
+      <DesignCanvas>
+        <DCSection id="map" title="① Island Map" subtitle="Real island artwork as backdrop. Zone hotspots overlaid. Toggle Tweaks → night / unlocked / Lumi toast.">
+          <DCArtboard id="map-day" label="Day · live (uses Tweaks)" width={920} height={520}>
+            <IslandMap night={t.night} zoneProgress={t.zoneProgress}/>
+          </DCArtboard>
+          <DCArtboard id="map-night" label="Night · stars + moon" width={920} height={520}>
+            <IslandMap night={true} zoneProgress={4}/>
+          </DCArtboard>
+          <DCArtboard id="map-toast" label="Lumi earned · Toast" width={920} height={520}>
+            <IslandMap night={false} zoneProgress={4} lumiToast={true}/>
+          </DCArtboard>
+          <DCArtboard id="map-legend" label="Legend zone unlocked" width={920} height={520}>
+            <IslandMap night={false} zoneProgress={5}/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="zone" title="② Zone Detail" subtitle="Raise a single character. Compare gauge styles + moods.">
+          <DCArtboard id="zone-bar" label="Bar gauges · Happy" width={920} height={560}>
+            <ZoneDetail zone="forest" gaugeStyle={t.gaugeStyle} mood={t.mood}/>
+          </DCArtboard>
+          <DCArtboard id="zone-hearts" label="Heart gauges" width={920} height={560}>
+            <ZoneDetail zone="forest" gaugeStyle="hearts" mood="happy"/>
+          </DCArtboard>
+          <DCArtboard id="zone-donut" label="Donut gauges" width={920} height={560}>
+            <ZoneDetail zone="forest" gaugeStyle="donut" mood="happy"/>
+          </DCArtboard>
+          <DCArtboard id="zone-warn" label="Warning state · Hungry" width={920} height={560}>
+            <ZoneDetail zone="forest" gaugeStyle="bar" mood="hungry"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="char" title="③ Character Detail" subtitle="Evolution tree + gauges + actions. Real Clover artwork.">
+          <DCArtboard id="char-tree" label="Full evolution path" width={1040} height={680}>
+            <CharacterDetail/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="evo" title="④ Evolution Branch Modal" subtitle="A vs B — irreversible choice.">
+          <DCArtboard id="evo-modal" label="Choose Clover's path" width={920} height={580}>
+            <EvolutionModal/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="shop" title="⑤ Shop" subtitle="5 tabs · Evolution / Food / Decor / Exchange.">
+          <DCArtboard id="shop-evo" label="Evolution stones" width={760} height={580}>
+            <Shop tab="evolution"/>
+          </DCArtboard>
+          <DCArtboard id="shop-food" label="Food" width={760} height={580}>
+            <Shop tab="food"/>
+          </DCArtboard>
+          <DCArtboard id="shop-decor" label="Forest decor" width={760} height={580}>
+            <Shop tab="decor"/>
+          </DCArtboard>
+          <DCArtboard id="shop-exchange" label="Exchange" width={760} height={580}>
+            <Shop tab="exchange"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="invdex" title="⑥ Inventory & Collection" subtitle="What you own + the dokgam.">
+          <DCArtboard id="inv" label="Inventory" width={760} height={580}>
+            <InventoryCollection view="inventory"/>
+          </DCArtboard>
+          <DCArtboard id="dex" label="Collection (dokgam)" width={760} height={580}>
+            <InventoryCollection view="collection"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="onboard" title="⑦ Onboarding" subtitle="First-run only · Lumi greets → zone → friend → name.">
+          <DCArtboard id="onb-1" label="① Greeting" width={520} height={580}>
+            <Onboarding step="greet"/>
+          </DCArtboard>
+          <DCArtboard id="onb-2" label="② Zone select" width={760} height={580}>
+            <Onboarding step="zone"/>
+          </DCArtboard>
+          <DCArtboard id="onb-3" label="③ Friend select" width={820} height={580}>
+            <Onboarding step="char"/>
+          </DCArtboard>
+          <DCArtboard id="onb-4" label="④ Name" width={520} height={580}>
+            <Onboarding step="name"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="celebrate" title="⑧ Character Complete" subtitle="Full-screen celebration when Clover reaches Final A/B.">
+          <DCArtboard id="complete" label="🎉 Clover complete" width={920} height={620}>
+            <CompleteModal/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="feed" title="⑨ Feed Interaction" subtitle="Pick a treat → drag to Clover → gauges fill. Core daily action.">
+          <DCArtboard id="feed-select" label="Pick a food" width={760} height={580}>
+            <FeedScreen stage="select" food="cake"/>
+          </DCArtboard>
+          <DCArtboard id="feed-drag" label="Drag to feed" width={760} height={580}>
+            <FeedScreen stage="drag" food="cake"/>
+          </DCArtboard>
+          <DCArtboard id="feed-result" label="+150 XP · happy" width={760} height={580}>
+            <FeedScreen stage="result" food="cake"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="sleep" title="⑩ Sleep / Rest" subtitle="Pairs with the night cycle. Energy regenerates while away.">
+          <DCArtboard id="sleep-night" label="Sleeping · 22:14" width={760} height={580}>
+            <SleepScreen phase="sleeping"/>
+          </DCArtboard>
+          <DCArtboard id="sleep-wake" label="Energy 100% · wake" width={760} height={580}>
+            <SleepScreen phase="wake"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="farewell" title="⑪ Farewell → Dex" subtitle="Lifecycle close. Letter ➝ added to dokgam forever.">
+          <DCArtboard id="farewell-letter" label="Goodbye letter" width={920} height={580}>
+            <FarewellScreen stage="goodbye"/>
+          </DCArtboard>
+          <DCArtboard id="farewell-dex" label="Added to dokgam" width={760} height={620}>
+            <FarewellScreen stage="dex"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="empty" title="⑫ Empty States" subtitle="First-visit / nothing-yet states across the app.">
+          <DCArtboard id="empty-zone" label="Empty zone" width={760} height={580}>
+            <EmptyState kind="zone"/>
+          </DCArtboard>
+          <DCArtboard id="empty-inv" label="Empty inventory" width={760} height={580}>
+            <EmptyState kind="inv"/>
+          </DCArtboard>
+          <DCArtboard id="empty-dex" label="Empty dokgam" width={760} height={580}>
+            <EmptyState kind="dex"/>
+          </DCArtboard>
+          <DCArtboard id="empty-friends" label="No friends yet" width={760} height={580}>
+            <EmptyState kind="friends"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="daily" title="⑬ Daily / Missions" subtitle="Streak + attendance calendar + daily &amp; weekly missions.">
+          <DCArtboard id="daily-attend" label="Attendance · Day 4" width={760} height={620}>
+            <DailyScreen tab="attendance"/>
+          </DCArtboard>
+          <DCArtboard id="daily-missions" label="Daily missions" width={760} height={620}>
+            <DailyScreen tab="missions"/>
+          </DCArtboard>
+          <DCArtboard id="daily-weekly" label="Weekly missions" width={760} height={620}>
+            <DailyScreen tab="weekly"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="mailbox" title="⑭ Mailbox" subtitle="Lumi messages, friend gifts, event news.">
+          <DCArtboard id="mail-list" label="Inbox · 3 new" width={820} height={620}>
+            <MailboxScreen filter="all"/>
+          </DCArtboard>
+          <DCArtboard id="mail-open" label="Reading a Lumi note" width={1020} height={620}>
+            <MailboxScreen filter="all" open={1}/>
+          </DCArtboard>
+          <DCArtboard id="mail-gifts" label="Gifts only" width={820} height={620}>
+            <MailboxScreen filter="gift"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="settings" title="⑮ Settings" subtitle="Account · sound · notifications · language · support · about.">
+          <DCArtboard id="set-account" label="Account" width={820} height={620}>
+            <SettingsScreen section="account"/>
+          </DCArtboard>
+          <DCArtboard id="set-sound" label="Sound" width={820} height={620}>
+            <SettingsScreen section="sound"/>
+          </DCArtboard>
+          <DCArtboard id="set-notify" label="Notifications" width={820} height={620}>
+            <SettingsScreen section="notify"/>
+          </DCArtboard>
+          <DCArtboard id="set-lang" label="Language" width={820} height={620}>
+            <SettingsScreen section="lang"/>
+          </DCArtboard>
+          <DCArtboard id="set-about" label="About" width={820} height={620}>
+            <SettingsScreen section="about"/>
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="purchase" title="⑯ Purchase Confirm" subtitle="Buy / success / insufficient balance.">
+          <DCArtboard id="buy-confirm" label="Confirm purchase" width={760} height={620}>
+            <PurchaseModal kind="buy" state="confirm"/>
+          </DCArtboard>
+          <DCArtboard id="buy-success" label="Success" width={760} height={620}>
+            <PurchaseModal kind="buy" state="success"/>
+          </DCArtboard>
+          <DCArtboard id="buy-lumi" label="Lumi purchase (rare)" width={760} height={620}>
+            <PurchaseModal kind="lumi" state="confirm"/>
+          </DCArtboard>
+          <DCArtboard id="buy-insufficient" label="Not enough gems" width={760} height={620}>
+            <PurchaseModal kind="insufficient" state="confirm"/>
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+
+      <TweaksPanel>
+        <TweakSection label="View"/>
+        <TweakToggle label="Night mode" value={t.night} onChange={v=>setTweak('night',v)}/>
+        <TweakRadio label="Font mix" value={t.fontMix} options={['balanced','displayHeavy','handHeavy']} onChange={v=>setTweak('fontMix',v)}/>
+
+        <TweakSection label="① Island Map"/>
+        <TweakSlider label="Zones unlocked" value={t.zoneProgress} min={1} max={5} onChange={v=>setTweak('zoneProgress',v)}/>
+
+        <TweakSection label="② Zone Detail"/>
+        <TweakRadio label="Gauge style" value={t.gaugeStyle} options={['bar','hearts','donut']} onChange={v=>setTweak('gaugeStyle',v)}/>
+        <TweakRadio label="Mood" value={t.mood} options={['happy','hungry','sad']} onChange={v=>setTweak('mood',v)}/>
+      </TweaksPanel>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

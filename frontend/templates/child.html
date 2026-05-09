@@ -579,11 +579,18 @@
                 <span id="growth-level-hint" hidden></span>
                 <span id="summary-done" hidden></span>
 
-                <!-- Main 3-column grid -->
-                <div class="dashboard-grid">
+                <!-- 아일랜드 맵 레이아웃 -->
+                <!-- 새 아트워크 사용 시: /static/img/island/Island/island_v2.png 로 교체 -->
+                <div class="island-map-wrapper">
 
-                    <!-- ═══ LEFT: Greeting + Today's tasks ═══ -->
-                    <aside class="col-left">
+                    <!-- 아일랜드 배경 이미지 -->
+                    <img class="island-bg"
+                         src="/static/img/island/Island/island.png"
+                         alt="Gia's Island"
+                         draggable="false">
+
+                    <!-- 좌상단 HUD: 인사말 + 통계 -->
+                    <div class="island-hud island-hud--topleft">
                         <div class="greeting-block">
                             <div class="greeting-date" id="greeting-date"></div>
                             <h1 class="greeting-hello">
@@ -591,63 +598,6 @@
                                 <span class="greeting-name" id="greeting-name">Gia</span>
                             </h1>
                         </div>
-
-                        <section class="today-checklist card" aria-labelledby="today-tasks-title">
-                            <header class="tc-header">
-                                <span class="tc-title" id="today-tasks-title">Today's tasks</span>
-                                <span class="tc-count" id="today-tasks-count">0 / 0 done</span>
-                            </header>
-                            <div class="tc-sub" id="today-tasks-xp">Set by parent · 0 / 0 XP earned</div>
-                            <div class="tc-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                                <div class="tc-progress-fill" id="today-tasks-progress-fill"></div>
-                            </div>
-                            <div class="tc-list" id="today-task-list"></div>
-                        </section>
-                    </aside>
-
-                    <!-- ═══ CENTER: Header + 6-card grid + Weekly strip ═══ -->
-                    <section class="col-center">
-                        <div class="header-bar">
-                            <div class="hb-label">PICK A ROOM</div>
-                            <h2 class="hb-title">What do you feel like today?</h2>
-                        </div>
-
-                        <div class="section-grid" role="list">
-                            <button type="button" class="section-card section-card--english" id="section-card-english" role="listitem" aria-label="English — open">
-                                <span class="sc-title">English</span>
-                            </button>
-                            <button type="button" class="section-card section-card--math" id="section-card-math" role="listitem" aria-label="Math — open">
-                                <span class="sc-title">Math</span>
-                            </button>
-                            <button type="button" class="section-card section-card--diary" id="section-card-diary" role="listitem" aria-label="Diary — open">
-                                <span class="sc-title">Diary</span>
-                            </button>
-                            <button type="button" class="section-card section-card--arcade" id="section-card-arcade" role="listitem" aria-label="Arcade — open">
-                                <span class="sc-title">Arcade</span>
-                            </button>
-                            <button type="button" class="section-card section-card--shop" id="home-reward-card" role="listitem" aria-label="Shop — open">
-                                <span class="sc-title">Shop</span>
-                            </button>
-                            <button type="button" class="section-card section-card--review" id="section-card-review" role="listitem" aria-label="Review — open">
-                                <span class="sc-title">Review</span>
-                                <span class="sc-badge" id="section-card-review-badge" style="display:none;">0</span>
-                            </button>
-                        </div>
-
-                        <section class="weekly-strip card" aria-labelledby="weekly-title">
-                            <header class="ws-header">
-                                <span class="ws-title" id="weekly-title">This week</span>
-                                <span class="ws-streak">
-                                    <span id="weekly-streak-days">0</span>-day streak
-                                    <i data-lucide="flame" width="12" height="12"></i>
-                                </span>
-                            </header>
-                            <div class="ws-bars" id="weekly-bars" aria-hidden="true"></div>
-                        </section>
-                    </section>
-
-                    <!-- ═══ RIGHT: Stats stack + Ocean World ═══ -->
-                    <aside class="col-right">
                         <div class="stats-stack">
                             <div class="stat-row">
                                 <span class="sr-icon sr-icon--words">
@@ -680,17 +630,93 @@
                                 <div class="sr-sub" id="summary-streak-best">best: 0</div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="ocean-world-card" id="ocean-world-card" role="button" tabindex="0" aria-label="Ocean World">
-                            <div class="owc-label">WORLD</div>
-                            <div class="owc-name">Ocean World</div>
-                            <div class="owc-illustration">
-                                <img id="ocean-world-img" src="/static/img/themes/ocean/step_0_v1.svg" alt="" aria-hidden="true">
+                    <!-- 좌하단 패널: 오늘의 할일 -->
+                    <div class="island-tasks-panel">
+                        <section class="today-checklist" aria-labelledby="today-tasks-title">
+                            <header class="tc-header">
+                                <span class="tc-title" id="today-tasks-title">Today's tasks</span>
+                                <span class="tc-count" id="today-tasks-count">0 / 0 done</span>
+                            </header>
+                            <div class="tc-sub" id="today-tasks-xp">Set by parent · 0 / 0 XP earned</div>
+                            <div class="tc-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                <div class="tc-progress-fill" id="today-tasks-progress-fill"></div>
                             </div>
-                            <div class="owc-footer" id="ocean-world-progress">0 / 10 sea creatures collected</div>
+                            <div class="tc-list" id="today-task-list"></div>
+                        </section>
+                    </div>
+
+                    <!-- 존 핫스팟: 클릭 가능한 구역들 -->
+                    <!-- 좌표는 새 아트워크에 맞게 조정 필요:
+                         .zone--english  → 숲/왼쪽 체리꽃 지역
+                         .zone--math     → 크리스탈/오른쪽 유적 지역
+                         .zone--diary    → 중앙 마을/드래곤 광장
+                         .zone--review   → 우상단 눈/이글루 지역
+                         .zone--arcade   → 좌하단 무지개/폭포 지역
+                         .zone--shop     → 마을 중심부 상점
+                    -->
+                    <div class="island-zones">
+                        <button type="button" class="zone-hotspot zone--english"
+                                id="section-card-english" aria-label="English — open">
+                            <span class="zone-icon">🌳</span>
+                            <span class="zone-label">English</span>
+                        </button>
+                        <button type="button" class="zone-hotspot zone--math"
+                                id="section-card-math" aria-label="Math — open">
+                            <span class="zone-icon">💎</span>
+                            <span class="zone-label">Math</span>
+                        </button>
+                        <button type="button" class="zone-hotspot zone--diary"
+                                id="section-card-diary" aria-label="Diary — open">
+                            <span class="zone-icon">🐉</span>
+                            <span class="zone-label">Diary</span>
+                        </button>
+                        <button type="button" class="zone-hotspot zone--review"
+                                id="section-card-review" aria-label="Review — open">
+                            <span class="zone-icon">❄️</span>
+                            <span class="zone-label">Review</span>
+                            <span class="sc-badge" id="section-card-review-badge" style="display:none;">0</span>
+                        </button>
+                        <button type="button" class="zone-hotspot zone--arcade"
+                                id="section-card-arcade" aria-label="Arcade — open">
+                            <span class="zone-icon">🎮</span>
+                            <span class="zone-label">Arcade</span>
+                        </button>
+                        <button type="button" class="zone-hotspot zone--shop"
+                                id="home-reward-card" aria-label="Shop — open">
+                            <span class="zone-icon">🛍️</span>
+                            <span class="zone-label">Shop</span>
+                        </button>
+                    </div>
+
+                    <!-- 하단 바: 이번 주 스트릭 + Ocean World (숨김) -->
+                    <div class="island-bottom-bar">
+                        <section class="weekly-strip" aria-labelledby="weekly-title">
+                            <header class="ws-header">
+                                <span class="ws-title" id="weekly-title">This week</span>
+                                <span class="ws-streak">
+                                    <span id="weekly-streak-days">0</span>-day streak
+                                    <i data-lucide="flame" width="12" height="12"></i>
+                                </span>
+                            </header>
+                            <div class="ws-bars" id="weekly-bars" aria-hidden="true"></div>
+                        </section>
+                    </div>
+
+                    <!-- Ocean World 카드 (JS 호환 유지, 숨김) -->
+                    <div class="ocean-world-card" id="ocean-world-card"
+                         role="button" tabindex="0" aria-label="Ocean World"
+                         style="display:none;" hidden>
+                        <div class="owc-label">WORLD</div>
+                        <div class="owc-name">Ocean World</div>
+                        <div class="owc-illustration">
+                            <img id="ocean-world-img" src="/static/img/themes/ocean/step_0_v1.svg" alt="" aria-hidden="true">
                         </div>
-                    </aside>
-                </div>
+                        <div class="owc-footer" id="ocean-world-progress">0 / 10 sea creatures collected</div>
+                    </div>
+
+                </div><!-- /.island-map-wrapper -->
             </div>
 
 <!-- Hero card (shown before a session starts — replaces the legacy idle+Start pattern) -->
