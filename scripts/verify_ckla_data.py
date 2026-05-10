@@ -57,8 +57,8 @@ KF_WEIGHT = {
 
 WORD_CASE_RE = re.compile(r"^[A-Z]?[a-z]+(-[a-z]+)?$")
 REQUIRED_TABLES = [
-    "ckla_domains", "ckla_lessons", "ckla_questions",
-    "us_academy_words", "ckla_word_lessons",
+    "us_academy_domains", "us_academy_lessons", "us_academy_questions",
+    "us_academy_words", "us_academy_word_lesson",
     "ckla_spelling", "ckla_grammar", "ckla_morphology",
 ]
 
@@ -128,22 +128,22 @@ def load_json(json_dir: Path, df: Optional[int]) -> Dict[int, Optional[dict]]:
         f = json_dir / f"D{d}.json"
         try:
             data = json.loads(f.read_text())
-            out[d] = data if ("lessons" in data and "domain_number" in data) else None
+            out[d] = data if ("lessons" in data and "domain_title" in data) else None
         except Exception:
             out[d] = None
     return out
 
 # ── Validation — Section 1 ────────────────────────────────────────────────────
 def c1_domain_count(conn) -> Optional[Issue]:
-    for sql in ("SELECT COUNT(*) FROM ckla_domains WHERE grade=3 AND is_active=1","SELECT COUNT(*) FROM ckla_domains"):
+    for sql in ("SELECT COUNT(*) FROM us_academy_domains WHERE grade=3 AND is_active=1","SELECT COUNT(*) FROM us_academy_domains"):
         r = _q(conn, sql)
         if r is not None:
             return Issue("DOMAIN_COUNT","error","2",f"Active G3 domains: {r[0][0]} (expected 11)",WEIGHT_GROUP_1,actionable=False) if r[0][0]!=EXPECTED_DOMAIN_COUNT else None
     return _skip("DOMAIN_COUNT","error","2",WEIGHT_GROUP_1)
 
 def c2_domain_missing_nums(conn) -> Optional[Issue]:
-    for sql in ("SELECT domain_num FROM ckla_domains WHERE grade=3 AND is_active=1",
-                "SELECT domain_num FROM ckla_domains"):
+    for sql in ("SELECT domain_num FROM us_academy_domains WHERE grade=3 AND is_active=1",
+                "SELECT domain_num FROM us_academy_domains"):
         r = _q(conn, sql)
         if r is not None:
             miss = [i for i in range(1,12) if i not in {x[0] for x in r}]
@@ -151,24 +151,24 @@ def c2_domain_missing_nums(conn) -> Optional[Issue]:
     return _skip("DOMAIN_MISSING_NUMS","error","2",WEIGHT_GROUP_1)
 
 def c3_domain_empty(conn) -> Optional[Issue]:
-    return _row_issue(conn,"DOMAIN_EMPTY_FIELD","warn","2","{n} domains with empty title/name",WEIGHT_WARN,
-        "SELECT id,domain_num FROM ckla_domains WHERE (title IS NULL OR TRIM(title)='') OR (name IS NULL OR TRIM(name)='')",
+    return _row_issue(conn,"DOMAIN_EMPTY_FIELD","warn","2","{n} domains with empty title",WEIGHT_WARN,
+        "SELECT id,domain_num FROM us_academy_domains WHERE (title IS NULL OR TRIM(title)='')",
         keys=("id","domain_num"))
 
 def c4_lesson_count(conn, df) -> Optional[Issue]:
-    sql = "SELECT COUNT(*) FROM ckla_lessons l JOIN ckla_domains d ON l.domain_id=d.id WHERE l.is_active=1 AND d.domain_num=?" if df else "SELECT COUNT(*) FROM ckla_lessons WHERE is_active=1"
+    sql = "SELECT COUNT(*) FROM us_academy_lessons l JOIN us_academy_domains d ON l.domain_id=d.id WHERE l.is_active=1 AND d.domain_num=?" if df else "SELECT COUNT(*) FROM us_academy_lessons WHERE is_active=1"
     r = _q(conn, sql, (df,) if df else ())
     if r is None: return _skip("LESSON_COUNT_OFF","warn","2")
     n = r[0][0]; lo,hi = EXPECTED_LESSON_COUNT_RANGE
     return Issue("LESSON_COUNT_OFF","warn","2",f"Total active lessons: {n} (expected {lo}-{hi})",WEIGHT_WARN,actionable=False) if not (lo<=n<=hi) else None
 
 def c5_lesson_per_domain(conn) -> Issue:
-    r = _q(conn,"SELECT d.domain_num, COUNT(l.id) c FROM ckla_domains d LEFT JOIN ckla_lessons l ON l.domain_id=d.id AND l.is_active=1 GROUP BY d.domain_num ORDER BY d.domain_num")
+    r = _q(conn,"SELECT d.domain_num, COUNT(l.id) c FROM us_academy_domains d LEFT JOIN us_academy_lessons l ON l.domain_id=d.id AND l.is_active=1 GROUP BY d.domain_num ORDER BY d.domain_num")
     msg = ", ".join(f"D{x[0]}:{x[1]}" for x in r) if r else "schema mismatch"
     return Issue("LESSON_PER_DOMAIN","info","INFO",f"Lessons per domain: {msg}",0,actionable=False)
 
 def _lesson_issue(conn, df, code, sev, grp, msg, w, where_extra, keys):
-    base = f"SELECT l.lesson_num,d.domain_num FROM ckla_lessons l JOIN ckla_domains d ON l.domain_id=d.id WHERE l.is_active=1 AND {where_extra}"
+    base = f"SELECT l.lesson_num,d.domain_num FROM us_academy_lessons l JOIN us_academy_domains d ON l.domain_id=d.id WHERE l.is_active=1 AND {where_extra}"
     r = _q(conn, base + (" AND d.domain_num=?" if df else ""), (df,) if df else ())
     if r is None: return _skip(code, sev, grp)
     return Issue(code,sev,grp,msg.format(n=len(r)),w,count=len(r),samples=_samps(r,keys)) if r else None
@@ -183,7 +183,7 @@ def c8_no_word_work(conn, df):
     return _lesson_issue(conn,df,"LESSON_NO_WORD_WORK","error","3","{n} lessons missing word_work_word",WEIGHT_GROUP_3,"(l.word_work_word IS NULL OR TRIM(l.word_work_word)='')",("domain_num","lesson_num"))
 
 def c9_lesson_orphan(conn) -> Optional[Issue]:
-    r = _q(conn,"SELECT l.id,l.lesson_num,l.domain_id FROM ckla_lessons l WHERE l.is_active=1 AND l.domain_id NOT IN (SELECT id FROM ckla_domains)")
+    r = _q(conn,"SELECT l.id,l.lesson_num,l.domain_id FROM us_academy_lessons l WHERE l.is_active=1 AND l.domain_id NOT IN (SELECT id FROM us_academy_domains)")
     if r is None: return _skip("LESSON_ORPHAN","error","3")
     if not r: return None
     groups: dict = {}
@@ -192,14 +192,14 @@ def c9_lesson_orphan(conn) -> Optional[Issue]:
     return Issue("LESSON_ORPHAN","error","3",f"{len(r)} orphaned lessons",pen/max(len(r),1),count=len(r),samples=[{"lesson_num":x["lesson_num"],"domain_id":x["domain_id"]} for x in r[:5]])
 
 def c10_question_count(conn, df) -> Optional[Issue]:
-    sql = "SELECT COUNT(*) FROM ckla_questions q JOIN ckla_lessons l ON q.lesson_id=l.id JOIN ckla_domains d ON l.domain_id=d.id WHERE l.is_active=1 AND d.domain_num=?" if df else "SELECT COUNT(*) FROM ckla_questions q JOIN ckla_lessons l ON q.lesson_id=l.id WHERE l.is_active=1"
+    sql = "SELECT COUNT(*) FROM us_academy_questions q JOIN us_academy_lessons l ON q.lesson_id=l.id JOIN us_academy_domains d ON l.domain_id=d.id WHERE l.is_active=1 AND d.domain_num=?" if df else "SELECT COUNT(*) FROM us_academy_questions q JOIN us_academy_lessons l ON q.lesson_id=l.id WHERE l.is_active=1"
     r = _q(conn, sql, (df,) if df else ())
     if r is None: return _skip("QUESTION_COUNT_OFF","warn","2")
     n = r[0][0]; lo,hi = EXPECTED_QUESTION_COUNT_RANGE
     return Issue("QUESTION_COUNT_OFF","warn","2",f"Total questions: {n} (expected {lo}-{hi})",WEIGHT_WARN,actionable=False) if not (lo<=n<=hi) else None
 
 def _q_issue(conn, df, code, sev, grp, msg, w, where_extra, actionable=True):
-    base = f"SELECT q.id,l.lesson_num,d.domain_num FROM ckla_questions q JOIN ckla_lessons l ON q.lesson_id=l.id JOIN ckla_domains d ON l.domain_id=d.id WHERE l.is_active=1 AND {where_extra}"
+    base = f"SELECT q.id,l.lesson_num,d.domain_num FROM us_academy_questions q JOIN us_academy_lessons l ON q.lesson_id=l.id JOIN us_academy_domains d ON l.domain_id=d.id WHERE l.is_active=1 AND {where_extra}"
     r = _q(conn, base + (" AND d.domain_num=?" if df else ""), (df,) if df else ())
     if r is None: return _skip(code, sev, grp)
     return Issue(code,sev,grp,msg.format(n=len(r)),w,count=len(r),samples=_samps(r,("domain_num","lesson_num")),actionable=actionable) if r else None
@@ -208,30 +208,30 @@ def c11_kind_invalid(conn, df):
     return _q_issue(conn,df,"QUESTION_KIND_INVALID","error","3","{n} questions with invalid kind",WEIGHT_GROUP_3,"q.kind NOT IN ('Literal','Inferential','Evaluative')")
 
 def c12_empty_text(conn, df):
-    return _q_issue(conn,df,"QUESTION_EMPTY_TEXT","error","1","{n} questions with empty text",WEIGHT_GROUP_1,"(q.question IS NULL OR TRIM(q.question)='')")
+    return _q_issue(conn,df,"QUESTION_EMPTY_TEXT","error","1","{n} questions with empty text",WEIGHT_GROUP_1,"(q.question_text IS NULL OR TRIM(q.question_text)='')")
 
 def c13_no_model_answer(conn, df):
     return _q_issue(conn,df,"QUESTION_NO_MODEL_ANSWER","warn","KF_COUNT","{n} questions missing model_answer",KF_WEIGHT["QUESTION_NO_MODEL_ANSWER"],"(q.model_answer IS NULL OR TRIM(q.model_answer)='')")
 
 def c14_question_orphan(conn) -> Optional[Issue]:
     return _row_issue(conn,"QUESTION_ORPHAN","error","3","{n} questions referencing missing lessons",WEIGHT_GROUP_3,
-        "SELECT q.id,q.lesson_id FROM ckla_questions q WHERE q.lesson_id NOT IN (SELECT id FROM ckla_lessons WHERE is_active=1)",
+        "SELECT q.id,q.lesson_id FROM us_academy_questions q WHERE q.lesson_id NOT IN (SELECT id FROM us_academy_lessons WHERE is_active=1)",
         keys=("id","lesson_id"))
 
 def c15_word_invalid_domain(conn) -> Optional[Issue]:
-    return _row_issue(conn,"WORD_INVALID_DOMAIN","warn","2","{n} words with invalid domain_id",WEIGHT_WARN,
-        "SELECT w.word,w.domain_id FROM us_academy_words w WHERE w.grade=3 AND w.id IN (SELECT word_id FROM ckla_word_lessons) AND (w.domain_id IS NULL OR w.domain_id<1 OR w.domain_id>11)",
-        keys=("word","domain_id"))
+    return _row_issue(conn,"WORD_INVALID_DOMAIN","warn","2","{n} words with invalid domain_num",WEIGHT_WARN,
+        "SELECT w.word,w.domain_num FROM us_academy_words w WHERE w.id IN (SELECT word_id FROM us_academy_word_lesson) AND (w.domain_num IS NULL OR w.domain_num<1 OR w.domain_num>11)",
+        keys=("word","domain_num"))
 
 def c16_word_case(conn) -> Optional[Issue]:
-    r = _q(conn,"SELECT word FROM us_academy_words WHERE grade=3")
+    r = _q(conn,"SELECT word FROM us_academy_words")
     if r is None: return _skip("WORD_CASE_MIXED","warn","2")
     bad = [x[0] for x in r if not WORD_CASE_RE.match(x[0])]
     return Issue("WORD_CASE_MIXED","warn","2",f"{len(bad)} words with unexpected case",WEIGHT_WARN,count=len(bad),samples=[{"word":w} for w in bad[:5]]) if bad else None
 
 def c17_word_link_coverage(conn) -> Issue:
-    t = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE grade=3")
-    l = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE grade=3 AND id IN (SELECT word_id FROM ckla_word_lessons)")
+    t = _q(conn,"SELECT COUNT(*) FROM us_academy_words")
+    l = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE id IN (SELECT word_id FROM us_academy_word_lesson)")
     if t is None or l is None: return _skip("WORD_LINK_COVERAGE","info","INFO")
     pct = (l[0][0]/t[0][0]*100) if t[0][0] else 0
     return Issue("WORD_LINK_COVERAGE","info","INFO",f"CKLA word link coverage: {pct:.1f}% ({l[0][0]}/{t[0][0]})",0,actionable=False)
@@ -244,7 +244,7 @@ def c19_json_mismatch(conn, jdata: Dict) -> Optional[Issue]:
     miss = []
     for d,data in jdata.items():
         if data is None: continue
-        r = _q(conn,"SELECT COUNT(*) FROM ckla_lessons l JOIN ckla_domains dom ON l.domain_id=dom.id WHERE l.is_active=1 AND dom.domain_num=?",(d,))
+        r = _q(conn,"SELECT COUNT(*) FROM us_academy_lessons l JOIN us_academy_domains dom ON l.domain_id=dom.id WHERE l.is_active=1 AND dom.domain_num=?",(d,))
         if r is None: return _skip("JSON_DB_MISMATCH","warn","1")
         if abs(len(data["lessons"]) - r[0][0]) >= 2:
             miss.append({"domain":d,"json_lessons":len(data["lessons"]),"db_lessons":r[0][0]})
@@ -257,23 +257,22 @@ def c20_aux_counts(conn) -> Issue:
     return Issue("CKLA_AUX_COUNT","info","INFO",f"Auxiliary rows — spelling:{counts['ckla_spelling']} grammar:{counts['ckla_grammar']} morphology:{counts['ckla_morphology']}",0,actionable=False)
 
 def c21_dup_lesson_num(conn, df) -> Optional[Issue]:
-    r = _q(conn,"SELECT domain_id,lesson_num,COUNT(*) c FROM ckla_lessons WHERE is_active=1 GROUP BY domain_id,lesson_num HAVING c>1")
+    r = _q(conn,"SELECT domain_id,lesson_num,COUNT(*) c FROM us_academy_lessons WHERE is_active=1 GROUP BY domain_id,lesson_num HAVING c>1")
     if r is None: return _skip("LESSON_DUPLICATE_NUM","error","3")
     if df:
-        dom = _q(conn,"SELECT id FROM ckla_domains WHERE domain_num=?",(df,))
+        dom = _q(conn,"SELECT id FROM us_academy_domains WHERE domain_num=?",(df,))
         if dom: r = [x for x in r if x["domain_id"] in {d[0] for d in dom}]
     return Issue("LESSON_DUPLICATE_NUM","error","3",f"{len(r)} duplicate lesson_num entries",WEIGHT_GROUP_3,count=len(r),samples=_samps(r,("domain_id","lesson_num","c"))) if r else None
 
 # ── Validation — Section 2 ────────────────────────────────────────────────────
 def c22_vocab_insufficient(conn, df) -> List[Issue]:
-    r = _q(conn,"SELECT domain_num,id FROM ckla_domains WHERE grade=3 ORDER BY domain_num")
-    if r is None: r = _q(conn,"SELECT domain_num,id FROM ckla_domains ORDER BY domain_num")
+    r = _q(conn,"SELECT domain_num FROM us_academy_domains ORDER BY domain_num")
     if r is None: return [_skip("DOMAIN_TEST_VOCAB_INSUFFICIENT","error","3")]
     out = []
     for row in r:
         if df and row["domain_num"] != df: continue
-        tot = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE grade=3 AND domain_id=?",(row["id"],))
-        dfn = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE grade=3 AND domain_id=? AND definition IS NOT NULL AND TRIM(definition)!=''",(row["id"],))
+        tot = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE domain_num=?",(row["domain_num"],))
+        dfn = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE domain_num=? AND definition IS NOT NULL AND TRIM(definition)!=''",(row["domain_num"],))
         t_c = tot[0][0] if tot else 0; d_c = dfn[0][0] if dfn else 0
         if d_c < 5:
             msg = f"D{row['domain_num']}: DOMAIN_VOCAB_TOO_FEW: structural limit, manual fix required" if t_c<5 else f"D{row['domain_num']}: only {d_c} words defined (need ≥5)"
@@ -285,8 +284,8 @@ def c23_qa_kind_incomplete(conn, df) -> Optional[Issue]:
         SUM(CASE WHEN q.kind='Literal' THEN 1 ELSE 0 END) lit,
         SUM(CASE WHEN q.kind='Inferential' THEN 1 ELSE 0 END) inf,
         SUM(CASE WHEN q.kind='Evaluative' THEN 1 ELSE 0 END) ev
-        FROM ckla_lessons l JOIN ckla_domains d ON l.domain_id=d.id
-        LEFT JOIN ckla_questions q ON q.lesson_id=l.id WHERE l.is_active=1"""
+        FROM us_academy_lessons l JOIN us_academy_domains d ON l.domain_id=d.id
+        LEFT JOIN us_academy_questions q ON q.lesson_id=l.id WHERE l.is_active=1"""
     r = _q(conn, base + (" AND d.domain_num=? GROUP BY l.id" if df else " GROUP BY l.id"), (df,) if df else ())
     if r is None: return _skip("LESSON_QA_KIND_INCOMPLETE","warn","KF_COUNT")
     bad = [{"domain":x["domain_num"],"lesson":x["lesson_num"]} for x in r
@@ -294,20 +293,20 @@ def c23_qa_kind_incomplete(conn, df) -> Optional[Issue]:
     return Issue("LESSON_QA_KIND_INCOMPLETE","warn","KF_COUNT",f"{len(bad)} lessons with incomplete QA kind coverage",KF_WEIGHT["LESSON_QA_KIND_INCOMPLETE"],count=len(bad),samples=bad[:5]) if bad else None
 
 def c24_evaluative_missing(conn, df) -> Optional[Issue]:
-    base = "SELECT d.domain_num FROM ckla_domains d WHERE d.grade=3 AND NOT EXISTS (SELECT 1 FROM ckla_questions q JOIN ckla_lessons l ON q.lesson_id=l.id WHERE l.domain_id=d.id AND l.is_active=1 AND q.kind='Evaluative')"
+    base = "SELECT d.domain_num FROM us_academy_domains d WHERE NOT EXISTS (SELECT 1 FROM us_academy_questions q JOIN us_academy_lessons l ON q.lesson_id=l.id WHERE l.domain_id=d.id AND l.is_active=1 AND q.kind='Evaluative')"
     r = _q(conn, base + (" AND d.domain_num=?" if df else ""), (df,) if df else ())
     if r is None: return _skip("DOMAIN_EVALUATIVE_MISSING","warn","KF_COUNT")
     doms = [x[0] for x in r]
     return Issue("DOMAIN_EVALUATIVE_MISSING","warn","KF_COUNT",f"{len(doms)} domains missing Evaluative questions",KF_WEIGHT["DOMAIN_EVALUATIVE_MISSING"],count=len(doms),samples=[{"domain":d} for d in doms[:5]]) if doms else None
 
 def c25_word_no_def(conn, df) -> Optional[Issue]:
-    base = "SELECT word FROM us_academy_words WHERE grade=3 AND id IN (SELECT word_id FROM ckla_word_lessons) AND (definition IS NULL OR TRIM(definition)='')"
-    r = _q(conn, base + (" AND domain_id IN (SELECT id FROM ckla_domains WHERE domain_num=?)" if df else ""), (df,) if df else ())
+    base = "SELECT word FROM us_academy_words WHERE id IN (SELECT word_id FROM us_academy_word_lesson) AND (definition IS NULL OR TRIM(definition)='')"
+    r = _q(conn, base + (" AND domain_num=?" if df else ""), (df,) if df else ())
     if r is None: return _skip("WORD_NO_DEFINITION","error","2")
     return Issue("WORD_NO_DEFINITION","error","2",f"{len(r)} CKLA words missing definition",WEIGHT_DEF_PER_WORD,count=len(r),samples=[{"word":x[0]} for x in r[:5]]) if r else None
 
 def c26_29_word_coverage(conn) -> Tuple[List[Optional[Issue]], Dict]:
-    W = "grade=3 AND id IN (SELECT word_id FROM ckla_word_lessons)"
+    W = "id IN (SELECT word_id FROM us_academy_word_lesson)"
     cov = {"definition":0.0,"example":0.0,"audio":0.0,"short_def":0.0,"short_def_denominator":0}
     tot = _q(conn,f"SELECT COUNT(*) FROM us_academy_words WHERE {W}")
     if tot is None: return [None,None,None], cov
@@ -329,11 +328,11 @@ def c26_29_word_coverage(conn) -> Tuple[List[Optional[Issue]], Dict]:
     return issues, cov
 
 def c28_days_ratio(conn, df) -> List[Issue]:
-    tot = _q(conn,"SELECT COUNT(*) FROM ckla_lessons WHERE is_active=1")
+    tot = _q(conn,"SELECT COUNT(*) FROM us_academy_lessons WHERE is_active=1")
     if tot is None: return [_skip("LESSON_DAYS_RATIO_OFF","warn","2")]
     tl = tot[0][0]; out = []
     for d in ([df] if df else range(1,12)):
-        r = _q(conn,"SELECT COUNT(*) FROM ckla_lessons l JOIN ckla_domains dom ON l.domain_id=dom.id WHERE l.is_active=1 AND dom.domain_num=?",(d,))
+        r = _q(conn,"SELECT COUNT(*) FROM us_academy_lessons l JOIN us_academy_domains dom ON l.domain_id=dom.id WHERE l.is_active=1 AND dom.domain_num=?",(d,))
         if r is None: break
         act = r[0][0]; exp = round(DOMAIN_DAYS[d]*tl/TOTAL_DAYS) if tl else DOMAIN_DAYS[d]
         if exp>0 and abs(act-exp)/exp > LESSON_DAYS_RATIO_TOLERANCE:
@@ -375,7 +374,7 @@ def run_all_checks(conn, jdata, df) -> Tuple[List[Issue], Dict]:
     def add(*args):
         for a in args:
             if a is None: continue
-            iss.extend(a) if isinstance(a, list) else iss.append(a)
+            iss.extend(x for x in a if x is not None) if isinstance(a, list) else iss.append(a)
 
     dc = c1_domain_count(conn); add(dc)
     if dc is None or dc.severity != "error": add(c2_domain_missing_nums(conn))
@@ -439,17 +438,17 @@ def build_remediation(issues, cov, sc) -> List[Dict]:
 
 # ── Domain matrix ─────────────────────────────────────────────────────────────
 def domain_matrix(conn, df) -> List[Dict]:
-    tot = _q(conn,"SELECT COUNT(*) FROM ckla_lessons WHERE is_active=1")
+    tot = _q(conn,"SELECT COUNT(*) FROM us_academy_lessons WHERE is_active=1")
     tl = tot[0][0] if tot else 0
     out = []
     for d in ([df] if df else range(1,12)):
-        la = _q(conn,"SELECT COUNT(*) FROM ckla_lessons l JOIN ckla_domains dom ON l.domain_id=dom.id WHERE l.is_active=1 AND dom.domain_num=?",(d,))
+        la = _q(conn,"SELECT COUNT(*) FROM us_academy_lessons l JOIN us_academy_domains dom ON l.domain_id=dom.id WHERE l.is_active=1 AND dom.domain_num=?",(d,))
         act = la[0][0] if la else 0; exp = round(DOMAIN_DAYS[d]*tl/TOTAL_DAYS) if tl else DOMAIN_DAYS[d]
-        wc = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE grade=3 AND domain_id IN (SELECT id FROM ckla_domains WHERE domain_num=?)",(d,))
+        wc = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE domain_num=?",(d,))
         wn = wc[0][0] if wc else 0
-        dc = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE grade=3 AND domain_id IN (SELECT id FROM ckla_domains WHERE domain_num=?) AND definition IS NOT NULL AND TRIM(definition)!=''",(d,))
+        dc = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE domain_num=? AND definition IS NOT NULL AND TRIM(definition)!=''",(d,))
         dp = round(dc[0][0]/wn*100 if dc and wn else 0,1)
-        ac = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE grade=3 AND domain_id IN (SELECT id FROM ckla_domains WHERE domain_num=?) AND audio_url IS NOT NULL AND TRIM(audio_url)!=''",(d,))
+        ac = _q(conn,"SELECT COUNT(*) FROM us_academy_words WHERE domain_num=? AND audio_url IS NOT NULL AND TRIM(audio_url)!=''",(d,))
         ap = round(ac[0][0]/wn*100 if ac and wn else 0,1)
         ratio_ok = act==0 or abs(act-exp)/max(exp,1)<=LESSON_DAYS_RATIO_TOLERANCE
         out.append({"domain":d,"lessons_actual":act,"lessons_expected":exp,"words":wn,"definition_pct":dp,"audio_pct":ap,"status":"ok" if ratio_ok and dp>=95 else "warn"})
@@ -534,7 +533,7 @@ def save_json(args, db_path, conn2, issues, cov, sc, rem, prev, dm) -> Path:
     report = {
         "version":"1.0","ran_at":datetime.now().isoformat(),"db_path":str(db_path),
         "sources":{"db":str(db_path),"json_dir":"data/academy/ckla_g3","json_files":[f"D{d}.json" for d in ([args.domain] if args.domain else range(1,12))],"domain_filter":args.domain},
-        "summary":{"domains":EXPECTED_DOMAIN_COUNT,"lessons":_cnt(conn2,"SELECT COUNT(*) FROM ckla_lessons WHERE is_active=1"),"questions":_cnt(conn2,"SELECT COUNT(*) FROM ckla_questions q JOIN ckla_lessons l ON q.lesson_id=l.id WHERE l.is_active=1"),"words":_cnt(conn2,"SELECT COUNT(*) FROM us_academy_words WHERE grade=3"),"spelling_rows":_cnt(conn2,"SELECT COUNT(*) FROM ckla_spelling"),"grammar_rows":_cnt(conn2,"SELECT COUNT(*) FROM ckla_grammar"),"morphology_rows":_cnt(conn2,"SELECT COUNT(*) FROM ckla_morphology")},
+        "summary":{"domains":EXPECTED_DOMAIN_COUNT,"lessons":_cnt(conn2,"SELECT COUNT(*) FROM us_academy_lessons WHERE is_active=1"),"questions":_cnt(conn2,"SELECT COUNT(*) FROM us_academy_questions q JOIN us_academy_lessons l ON q.lesson_id=l.id WHERE l.is_active=1"),"words":_cnt(conn2,"SELECT COUNT(*) FROM us_academy_words"),"spelling_rows":_cnt(conn2,"SELECT COUNT(*) FROM ckla_spelling"),"grammar_rows":_cnt(conn2,"SELECT COUNT(*) FROM ckla_grammar"),"morphology_rows":_cnt(conn2,"SELECT COUNT(*) FROM ckla_morphology")},
         "scores":{"authority":{"value":sc["authority"],"target":100,"raw_penalty":sc["authority_raw_penalty"],"status":"ok" if sc["authority"]>=100 else "below_target"},"kid_fitness":{"value":sc["kid_fitness"],"target":90,"status":"ok" if sc["kid_fitness"]>=90 else "below_target"}},
         "verdict":{"status":vs,"message":vm.lstrip("✅⚠️❌ ")},
         "word_coverage":{"definition":round(cov.get("definition",0),3),"example":round(cov.get("example",0),3),"audio":round(cov.get("audio",0),3),"short_def":round(cov.get("short_def",0),3),"short_def_denominator":cov.get("short_def_denominator",0)},
