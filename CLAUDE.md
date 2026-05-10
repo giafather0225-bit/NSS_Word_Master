@@ -120,6 +120,7 @@ NSS_Word_Master/
 │   ├── enrich_missing.py  enrich_mw.py
 │   ├── generate_kangaroo_solutions.py  validate_kangaroo_phase1.py
 │   ├── check_decor_assets.py    # Island decor PNG coverage report
+│   ├── verify_ckla_data.py      # CKLA G3 data verification (Authority + Kid Fitness scores)
 │   ├── setup_daughter_mac.sh  com.gia.learning.plist
 ├── tools/nss_ocr/               # OCR helper tooling
 ├── logs/                        # runtime logs
@@ -1202,3 +1203,26 @@ Home screen → Right column → OceanWorldCard replaced with Island card → Is
 island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 ```
 (Full list in ISLAND_SPEC.md Section 11.3)
+
+---
+
+## Architecture Decisions
+
+### CKLA Data Verification Tool (2026-05-10)
+
+**Tool:** `scripts/verify_ckla_data.py`  
+**Purpose:** Read-only integrity check producing two scores:
+- **Authority Score** (0–100): source fidelity — JSON↔DB consistency, structural completeness, app-critical fields
+- **Kid Fitness Score** (0–100): age-appropriateness — word coverage ratios, Q&A quality, passage length suitability
+
+**Design decisions:**
+- ✅ Two-score system adopted (Authority + Kid Fitness) — single pass/fail rejected as too coarse for content quality
+- ✅ 33 validation items in 5 groups: Source Fidelity (Group 1), Structure (Group 2), App Functionality (Group 3), KF_COUNT (count-based kid fitness), KF_RATIO (ratio-based kid fitness)
+- ✅ Standard library only (`sqlite3`, `json`, `re`, `argparse`, `pathlib`) — no third-party deps
+- ✅ Single read-only transaction (`BEGIN ... ROLLBACK`) for snapshot consistency
+- ✅ Orphan cascade cap: if ≥5 lessons share same orphaned domain_id, deduction capped at 10 pts
+- ❌ Single aggregate score rejected — masks authority vs enrichment distinction
+- ❌ Live DB writes rejected — tool must be completely non-destructive
+- **Thresholds:** Authority ≥100 + Kid Fitness ≥90 = "Ready"; Auth <80 = "Critical"
+- **Exit codes:** 0 (clean), 1 (errors found), 2 (schema/DB missing)
+- **Reports:** saved to `reports/ckla_verify_*.json` (gitignored, regenerable)

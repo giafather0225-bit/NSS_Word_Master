@@ -106,6 +106,9 @@ sqlite3 ~/NSS_Learning/database/voca.db ".tables"
 
 # Run tests
 cd backend && pytest
+
+# CKLA G3 data verification (Authority + Kid Fitness scores)
+python3 scripts/verify_ckla_data.py
 ```
 
 ---
