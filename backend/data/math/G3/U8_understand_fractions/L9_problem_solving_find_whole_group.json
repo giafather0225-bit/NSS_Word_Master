@@ -21,488 +21,1320 @@
   "strategies": [
     "if 1/n of the group = a known number, multiply that number by n to find the whole"
   ],
-  "sections": {
-    "pretest": [
-      {
-        "id": "PT_01",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/3 of a group is 4. How many are in the whole group?",
-        "choices": [
-          "7",
-          "8",
-          "12",
-          "16"
-        ],
-        "answer": "C",
-        "explanation": "If 1/3 = 4, the whole = 4 × 3 = 12."
-      },
-      {
-        "id": "PT_02",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/2 of a group is 5. How many are in the whole group?",
-        "choices": [
-          "5",
-          "7",
-          "10",
-          "15"
-        ],
-        "answer": "C",
-        "explanation": "If 1/2 = 5, the whole = 5 × 2 = 10."
-      },
-      {
-        "id": "PT_03",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/4 of a number is 3. What is the number?",
-        "choices": [
-          "7",
-          "8",
-          "12",
-          "16"
-        ],
-        "answer": "C",
-        "explanation": "3 × 4 = 12."
-      },
-      {
-        "id": "PT_04",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "Lily has some stickers. 1/6 of her stickers is 5. How many stickers does she have in all?",
-        "choices": [
-          "11",
-          "20",
-          "25",
-          "30"
-        ],
-        "answer": "D",
-        "explanation": "5 × 6 = 30 stickers."
-      },
-      {
-        "id": "PT_05",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "1/8 of the marbles in a bag is 3. How many marbles are in the bag?",
-        "choices": [
-          "11",
-          "16",
-          "24",
-          "32"
-        ],
-        "answer": "C",
-        "explanation": "3 × 8 = 24 marbles."
+  "concept": "problem_solving_find_whole_group",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/3 of a group is 4. How many are in the whole group?",
+      "choices": [
+        "7",
+        "8",
+        "12",
+        "16"
+      ],
+      "answer": "C",
+      "explanation": "If 1/3 = 4, the whole = 4 × 3 = 12.",
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "learn": [
-      {
-        "id": "LRN_01",
-        "type": "card",
-        "title": "From Part to Whole",
-        "content": "If you know a unit fraction of a group, you can find the whole group by multiplying. Example: 1/4 of a group is 6. The whole group = 6 × 4 = 24.",
-        "cpa_phase": "concrete",
-        "visual_type": "manipulative",
-        "visual_data": {
-          "tool": "fraction_bar",
-          "config": {
-            "denominator": 4,
-            "numerator": 1
-          }
-        }
-      },
-      {
-        "id": "LRN_02",
-        "type": "card",
-        "title": "Why Multiply?",
-        "content": "A unit fraction like 1/4 means the whole is made of 4 equal parts. If 1 part = 6, then 4 parts = 6 + 6 + 6 + 6 = 24. Multiplying is a shortcut: 6 × 4 = 24.",
-        "cpa_phase": "concrete",
-        "visual_type": "manipulative",
-        "visual_data": {
-          "tool": "fraction_bar",
-          "config": {
-            "denominator": 4,
-            "numerator": 1
-          }
-        }
-      },
-      {
-        "id": "LRN_03",
-        "type": "card",
-        "title": "Check Your Answer",
-        "content": "After finding the whole, check by dividing. If the whole is 24 and the fraction is 1/4, then 24 ÷ 4 = 6. That matches the given part, so the answer is correct.",
-        "cpa_phase": "pictorial",
-        "visual_type": "manipulative",
-        "visual_data": {
-          "tool": "fraction_bar",
-          "config": {
-            "denominator": 4,
-            "numerator": 1
-          }
-        }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/2 of a group is 5. How many are in the whole group?",
+      "choices": [
+        "5",
+        "7",
+        "10",
+        "15"
+      ],
+      "answer": "C",
+      "explanation": "If 1/2 = 5, the whole = 5 × 2 = 10.",
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "try": [
-      {
-        "id": "TRY_01",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/3 of a group is 7. How many are in the whole group?",
-        "choices": [
-          "10",
-          "14",
-          "21",
-          "28"
-        ],
-        "answer": "C",
-        "explanation": "7 × 3 = 21.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
-        },
-        "solution_steps": []
-      },
-      {
-        "id": "TRY_02",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/2 of the oranges is 9. How many oranges are there in all?",
-        "choices": [
-          "11",
-          "12",
-          "16",
-          "18"
-        ],
-        "answer": "D",
-        "explanation": "9 × 2 = 18.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is D. Remember how problem solving find whole group works."
-        },
-        "solution_steps": []
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/4 of a number is 3. What is the number?",
+      "choices": [
+        "7",
+        "8",
+        "12",
+        "16"
+      ],
+      "answer": "C",
+      "explanation": "3 × 4 = 12.",
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "practice_r1": [
-      {
-        "id": "R1_01",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/4 of a group is 5. What is the whole?",
-        "choices": [
-          "9",
-          "15",
-          "20",
-          "25"
-        ],
-        "answer": "C",
-        "explanation": "5 × 4 = 20.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
-        }
-      },
-      {
-        "id": "R1_02",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/2 of the books is 8. How many books are there in all?",
-        "choices": [
-          "10",
-          "12",
-          "14",
-          "16"
-        ],
-        "answer": "D",
-        "explanation": "8 × 2 = 16.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is D. Remember how problem solving find whole group works."
-        }
-      },
-      {
-        "id": "R1_03",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/3 of the pencils is 6. How many pencils are there in all?",
-        "choices": [
-          "9",
-          "12",
-          "18",
-          "24"
-        ],
-        "answer": "C",
-        "explanation": "6 × 3 = 18.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
-        }
-      },
-      {
-        "id": "R1_04",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/6 of a number is 2. What is the number?",
-        "choices": [
-          "8",
-          "10",
-          "12",
-          "14"
-        ],
-        "answer": "C",
-        "explanation": "2 × 6 = 12.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
-        }
-      },
-      {
-        "id": "R1_05",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/4 of the balloons is 2. How many balloons are there?",
-        "choices": [
-          "6",
-          "8",
-          "10",
-          "12"
-        ],
-        "answer": "B",
-        "explanation": "2 × 4 = 8.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how problem solving find whole group works."
-        }
-      },
-      {
-        "id": "R1_06",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/8 of the coins is 1. How many coins are there?",
-        "choices": [
-          "4",
-          "6",
-          "8",
-          "9"
-        ],
-        "answer": "C",
-        "explanation": "1 × 8 = 8.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
-        }
-      },
-      {
-        "id": "R1_07",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "1/2 of the crayons is 3. How many crayons are there?",
-        "choices": [
-          "5",
-          "6",
-          "8",
-          "9"
-        ],
-        "answer": "B",
-        "explanation": "3 × 2 = 6.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how problem solving find whole group works."
-        }
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "Lily has some stickers. 1/6 of her stickers is 5. How many stickers does she have in all?",
+      "choices": [
+        "11",
+        "20",
+        "25",
+        "30"
+      ],
+      "answer": "D",
+      "explanation": "5 × 6 = 30 stickers.",
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "practice_r2": [
-      {
-        "id": "R2_01",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "Sam has toy cars. 1/4 of his cars are red. He has 3 red cars. How many toy cars does Sam have in all?",
-        "choices": [
-          "7",
-          "9",
-          "12",
-          "15"
-        ],
-        "answer": "C",
-        "explanation": "3 × 4 = 12 cars.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
-        }
-      },
-      {
-        "id": "R2_02",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "1/6 of the muffins in a box is 4. How many muffins are in the box?",
-        "choices": [
-          "10",
-          "18",
-          "24",
-          "30"
-        ],
-        "answer": "C",
-        "explanation": "4 × 6 = 24 muffins.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
-        }
-      },
-      {
-        "id": "R2_03",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "A teacher says 1/3 of her students are absent. 7 students are absent. How many students are in her class?",
-        "choices": [
-          "10",
-          "14",
-          "21",
-          "28"
-        ],
-        "answer": "C",
-        "explanation": "7 × 3 = 21 students.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
-        }
-      },
-      {
-        "id": "R2_04",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "1/8 of the beads in a jar is 4. How many beads are in the jar?",
-        "choices": [
-          "12",
-          "24",
-          "32",
-          "40"
-        ],
-        "answer": "C",
-        "explanation": "4 × 8 = 32 beads.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
-        }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "1/8 of the marbles in a bag is 3. How many marbles are in the bag?",
+      "choices": [
+        "11",
+        "16",
+        "24",
+        "32"
+      ],
+      "answer": "C",
+      "explanation": "3 × 8 = 24 marbles.",
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "practice_r3": [
-      {
-        "id": "R3_01",
-        "type": "mc",
-        "difficulty": 3,
-        "question": "1/4 of the cookies in a box is 6. Anna eats 5 cookies. How many cookies are left in the box?",
-        "choices": [
-          "1",
-          "14",
-          "19",
-          "24"
-        ],
-        "answer": "C",
-        "explanation": "Whole: 6 × 4 = 24. After eating 5: 24 − 5 = 19.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+    }
+  ],
+  "learn": [
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "title": "From Part to Whole",
+      "content": "If you know a unit fraction of a group, you can find the whole group by multiplying. Example: 1/4 of a group is 6. The whole group = 6 × 4 = 24.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "denominator": 4,
+          "numerator": 1
         }
       },
-      {
-        "id": "R3_02",
-        "type": "mc",
-        "difficulty": 3,
-        "question": "1/3 of Ryan's cards is 9. He gives away 1/3 of all his cards. How many does he have left?",
-        "choices": [
-          "9",
-          "12",
-          "18",
-          "27"
-        ],
-        "answer": "C",
-        "explanation": "Whole: 9 × 3 = 27. Gives away 1/3 = 9. Left: 27 − 9 = 18.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
-        }
-      },
-      {
-        "id": "R3_03",
-        "type": "mc",
-        "difficulty": 3,
-        "question": "1/6 of a class is 5 students. The teacher splits the whole class into 3 equal teams. How many students are on each team?",
-        "choices": [
-          "5",
-          "10",
-          "15",
-          "30"
-        ],
-        "answer": "B",
-        "explanation": "Whole class: 5 × 6 = 30. Each team: 30 ÷ 3 = 10.",
-        "hints": [
-          "Think about what problem solving find whole group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how problem solving find whole group works."
-        }
+      "cpa_stage": "pictorial",
+      "skill_tag": "part_to_whole_intro",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ]
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "title": "Why Multiply?",
+      "content": "A unit fraction like 1/4 means the whole is made of 4 equal parts. If 1 part = 6, then 4 parts = 6 + 6 + 6 + 6 = 24. Multiplying is a shortcut: 6 × 4 = 24.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "denominator": 4,
+          "numerator": 1
+        }
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "why_multiply",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "title": "Check Your Answer",
+      "content": "After finding the whole, check by dividing. If the whole is 24 and the fraction is 1/4, then 24 ÷ 4 = 6. That matches the given part, so the answer is correct.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "denominator": 4,
+          "numerator": 1
+        }
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "check_answer",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "title": "전체 = 부분 × b — 핵심 공식",
+      "content": "1/b of N = P이면 N = P × b.   1/3 of N = 6 → N = 6 × 3 = 18   1/4 of N = 5 → N = 5 × 4 = 20 🔍 직관: 부분이 b개 모이면 전체가 됨.",
+      "cpa_stage": "abstract",
+      "visual_type": "multiplication_formula",
+      "skill_tag": "multiplication_formula",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "title": "역연산 — 나눗셈의 반대",
+      "content": "L8에서 1/b of N = N÷b를 배웠음. 이번에는 거꾸로: 부분 P를 알고 N을 찾기 → 곱하기.   N÷b = P (앞 단계)   N = P×b (역연산) 검산: P × b의 답을 다시 b로 나누면 P가 되어야 함.",
+      "cpa_stage": "abstract",
+      "visual_type": "inverse_division",
+      "skill_tag": "inverse_division",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "title": "전체 찾기 3단계 루틴",
+      "content": "부분 → 전체 풀이 3단계:   단계 1) 단위분수 1/b의 분모 b 확인.   단계 2) 부분 값 P 확인.   단계 3) N = P × b 계산. 예: 1/4가 7이면 → 1) b=4, 2) P=7, 3) N=7×4=28.",
+      "cpa_stage": "abstract",
+      "visual_type": "find_whole_routine",
+      "skill_tag": "find_whole_routine",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "title": "막대 모델 — b개 칸으로 시각화",
+      "content": "1/b가 P이면 막대를 b개 칸으로 그리고 한 칸을 P로 표시.   예: 1/4 of N = 5 → [5][5][5][5] → N = 20 🔍 막대 모델은 곱셈을 시각적으로 보여줌. 한 칸 × 칸 수 = 전체.",
+      "cpa_stage": "pictorial",
+      "visual_type": "bar_model",
+      "skill_tag": "bar_model_part_whole",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "title": "문장제 신호 — '~의 1/b가 P'",
+      "content": "문장 패턴: 'A의 1/b는 P이다 → A는?'   예: '학생의 1/3이 8명이면 전체는?' → 8 × 3 = 24명.   예: '돈의 1/5가 4달러면 전체는?' → 4 × 5 = 20달러. 흔한 실수 (M04): 부분과 전체 혼동 — 'A의 1/b'에서 A가 전체임을 명심.",
+      "cpa_stage": "abstract",
+      "visual_type": "word_problem_keyword",
+      "skill_tag": "word_problem_keyword",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/3 of a group is 7. How many are in the whole group?",
+      "choices": [
+        "10",
+        "14",
+        "21",
+        "28"
+      ],
+      "answer": "C",
+      "explanation": "7 × 3 = 21.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "solution_steps": [],
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/2 of the oranges is 9. How many oranges are there in all?",
+      "choices": [
+        "11",
+        "12",
+        "16",
+        "18"
+      ],
+      "answer": "D",
+      "explanation": "9 × 2 = 18.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how problem solving find whole group works."
+      },
+      "solution_steps": [],
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "MC",
+      "question": "1/4 of a group is 6. How many are in the whole group?",
+      "choices": [
+        "A. 10",
+        "B. 18",
+        "C. 24",
+        "D. 30"
+      ],
+      "answer": "C",
+      "explanation": "6 × 4 = 24.",
+      "difficulty": 1,
+      "hints": [
+        "P×b = N.",
+        "6×4=24."
+      ],
+      "feedback": {
+        "correct": "정답! 24.",
+        "incorrect": "6×4=24."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답! 24.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "MC",
+      "question": "1/5 of the candies is 3. How many candies in all?",
+      "choices": [
+        "A. 8",
+        "B. 12",
+        "C. 15",
+        "D. 18"
+      ],
+      "answer": "C",
+      "explanation": "3 × 5 = 15.",
+      "difficulty": 1,
+      "hints": [
+        "3×5."
+      ],
+      "feedback": {
+        "correct": "정답! 15.",
+        "incorrect": "3×5=15."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답! 15.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "question": "1/7 of a number is 2. What is the number?",
+      "choices": [
+        "A. 9",
+        "B. 14",
+        "C. 21",
+        "D. 28"
+      ],
+      "answer": "B",
+      "explanation": "2 × 7 = 14.",
+      "difficulty": 2,
+      "hints": [
+        "2×7."
+      ],
+      "feedback": {
+        "correct": "정답! 14.",
+        "incorrect": "2×7=14."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답! 14.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/4 of a group is 5. What is the whole?",
+      "choices": [
+        "9",
+        "15",
+        "20",
+        "25"
+      ],
+      "answer": "C",
+      "explanation": "5 × 4 = 20.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/2 of the books is 8. How many books are there in all?",
+      "choices": [
+        "10",
+        "12",
+        "14",
+        "16"
+      ],
+      "answer": "D",
+      "explanation": "8 × 2 = 16.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/3 of the pencils is 6. How many pencils are there in all?",
+      "choices": [
+        "9",
+        "12",
+        "18",
+        "24"
+      ],
+      "answer": "C",
+      "explanation": "6 × 3 = 18.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/6 of a number is 2. What is the number?",
+      "choices": [
+        "8",
+        "10",
+        "12",
+        "14"
+      ],
+      "answer": "C",
+      "explanation": "2 × 6 = 12.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/4 of the balloons is 2. How many balloons are there?",
+      "choices": [
+        "6",
+        "8",
+        "10",
+        "12"
+      ],
+      "answer": "B",
+      "explanation": "2 × 4 = 8.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/8 of the coins is 1. How many coins are there?",
+      "choices": [
+        "4",
+        "6",
+        "8",
+        "9"
+      ],
+      "answer": "C",
+      "explanation": "1 × 8 = 8.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "1/2 of the crayons is 3. How many crayons are there?",
+      "choices": [
+        "5",
+        "6",
+        "8",
+        "9"
+      ],
+      "answer": "B",
+      "explanation": "3 × 2 = 6.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "MC",
+      "question": "1/3 of the apples is 4. How many apples are there?",
+      "choices": [
+        "A. 7",
+        "B. 10",
+        "C. 12",
+        "D. 15"
+      ],
+      "answer": "C",
+      "explanation": "4×3=12.",
+      "difficulty": 1,
+      "hints": [
+        "4×3."
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "4×3=12."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "question": "1/5 of the marbles is 6. How many marbles are there?",
+      "choices": [
+        "A. 11",
+        "B. 25",
+        "C. 30",
+        "D. 36"
+      ],
+      "answer": "C",
+      "explanation": "6×5=30.",
+      "difficulty": 1,
+      "hints": [
+        "6×5."
+      ],
+      "feedback": {
+        "correct": "정답! 30.",
+        "incorrect": "6×5=30."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답! 30.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "MC",
+      "question": "1/6 of a number is 7. What is the number?",
+      "choices": [
+        "A. 13",
+        "B. 36",
+        "C. 42",
+        "D. 48"
+      ],
+      "answer": "C",
+      "explanation": "7×6=42.",
+      "difficulty": 2,
+      "hints": [
+        "7×6."
+      ],
+      "feedback": {
+        "correct": "정답! 42.",
+        "incorrect": "7×6=42."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답! 42.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "Sam has toy cars. 1/4 of his cars are red. He has 3 red cars. How many toy cars does Sam have in all?",
+      "choices": [
+        "7",
+        "9",
+        "12",
+        "15"
+      ],
+      "answer": "C",
+      "explanation": "3 × 4 = 12 cars.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "1/6 of the muffins in a box is 4. How many muffins are in the box?",
+      "choices": [
+        "10",
+        "18",
+        "24",
+        "30"
+      ],
+      "answer": "C",
+      "explanation": "4 × 6 = 24 muffins.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "A teacher says 1/3 of her students are absent. 7 students are absent. How many students are in her class?",
+      "choices": [
+        "10",
+        "14",
+        "21",
+        "28"
+      ],
+      "answer": "C",
+      "explanation": "7 × 3 = 21 students.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "1/8 of the beads in a jar is 4. How many beads are in the jar?",
+      "choices": [
+        "12",
+        "24",
+        "32",
+        "40"
+      ],
+      "answer": "C",
+      "explanation": "4 × 8 = 32 beads.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "MC",
+      "question": "Joe says 1/3 of his pencils is 6, so he has 6÷3=2 pencils. What is wrong?",
+      "choices": [
+        "A. 부분→전체일 때는 곱해야 함 → 6×3=18",
+        "B. 답은 6/3=2가 맞음",
+        "C. 분모를 빼야 함",
+        "D. 정답"
+      ],
+      "answer": "A",
+      "explanation": "부분 P를 알면 N = P×b. 6×3=18.",
+      "difficulty": 3,
+      "hints": [
+        "부분→전체 = ×."
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "P×b=18 (부분→전체는 곱셈)."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "question": "Compare: A) 1/2 of N = 8. B) 1/4 of M = 8. Which is larger, N or M?",
+      "choices": [
+        "A. N (=16)",
+        "B. M (=32)",
+        "C. 같음",
+        "D. 알 수 없음"
+      ],
+      "answer": "B",
+      "explanation": "N = 8×2 = 16, M = 8×4 = 32. M이 큼.",
+      "difficulty": 3,
+      "hints": [
+        "각각 P×b 계산."
+      ],
+      "feedback": {
+        "correct": "정답! M=32.",
+        "incorrect": "N=16, M=32."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답! M=32.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "MC",
+      "question": "1/8 of the books is 3. Verify: total × 1/8 should equal 3. What is the total, and check with division.",
+      "choices": [
+        "A. 24, 24÷8=3 ✓",
+        "B. 11, 11÷8 ≠ 3",
+        "C. 16, 16÷8=2",
+        "D. 32, 32÷8=4"
+      ],
+      "answer": "A",
+      "explanation": "3×8=24. 검산 24÷8=3.",
+      "difficulty": 2,
+      "hints": [
+        "3×8=24, 검산 24÷8=3."
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "24, 검산 24÷8=3."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "question": "Find the sum: 367 + 489.",
+      "choices": [
+        "A. 746",
+        "B. 756",
+        "C. 846",
+        "D. 856"
+      ],
+      "answer": "D",
+      "explanation": "367+489: 7+9=16 (carry 1), 6+8+1=15 (carry 1), 3+4+1=8. Result: 856.",
+      "difficulty": 2,
+      "hints": [
+        "Two carries.",
+        "367+489=856."
+      ],
+      "feedback": {
+        "correct": "Right — 856.",
+        "incorrect": "367+489=856."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "addition_3digit",
+      "feedback_correct": "Right — 856.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "MC",
+      "question": "Find the difference: 905 − 467.",
+      "choices": [
+        "A. 438",
+        "B. 448",
+        "C. 538",
+        "D. 548"
+      ],
+      "answer": "A",
+      "explanation": "905−467=438 (borrow across zero).",
+      "difficulty": 2,
+      "hints": [
+        "Borrow across the zero.",
+        "905−467=438."
+      ],
+      "feedback": {
+        "correct": "Right — 438.",
+        "incorrect": "905−467=438."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "subtraction_3digit",
+      "feedback_correct": "Right — 438.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "question": "A theater had 624 seats. They added 137 more, then removed 89. How many seats now?",
+      "choices": [
+        "A. 398",
+        "B. 672",
+        "C. 752",
+        "D. 850"
+      ],
+      "answer": "B",
+      "explanation": "Step 1: 624+137=761. Step 2: 761−89=672.",
+      "difficulty": 3,
+      "hints": [
+        "Add then subtract.",
+        "624+137=761, 761−89=672."
+      ],
+      "feedback": {
+        "correct": "Right — 672 seats.",
+        "incorrect": "624+137=761, then −89=672."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_add_sub",
+      "feedback_correct": "Right — 672 seats.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "1/4 of the cookies in a box is 6. Anna eats 5 cookies. How many cookies are left in the box?",
+      "choices": [
+        "1",
+        "14",
+        "19",
+        "24"
+      ],
+      "answer": "C",
+      "explanation": "Whole: 6 × 4 = 24. After eating 5: 24 − 5 = 19.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "1/3 of Ryan's cards is 9. He gives away 1/3 of all his cards. How many does he have left?",
+      "choices": [
+        "9",
+        "12",
+        "18",
+        "27"
+      ],
+      "answer": "C",
+      "explanation": "Whole: 9 × 3 = 27. Gives away 1/3 = 9. Left: 27 − 9 = 18.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "1/6 of a class is 5 students. The teacher splits the whole class into 3 equal teams. How many students are on each team?",
+      "choices": [
+        "5",
+        "10",
+        "15",
+        "30"
+      ],
+      "answer": "B",
+      "explanation": "Whole class: 5 × 6 = 30. Each team: 30 ÷ 3 = 10.",
+      "hints": [
+        "Think about what problem solving find whole group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how problem solving find whole group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "question": "1/5 of a class is 4 students. The teacher splits the whole class into 2 equal teams. How many in each team?",
+      "choices": [
+        "A. 5",
+        "B. 8",
+        "C. 10",
+        "D. 20"
+      ],
+      "answer": "C",
+      "explanation": "전체 = 4×5 = 20. 팀당 = 20÷2 = 10.",
+      "difficulty": 3,
+      "hints": [
+        "전체 먼저, 그 다음 팀당.",
+        "4×5=20, 20÷2=10."
+      ],
+      "feedback": {
+        "correct": "정답! 10.",
+        "incorrect": "전체=20, 팀당=10."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답! 10.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "MC",
+      "question": "1/4 of Mia's beads is 7. She uses 1/2 of all her beads. How many does she use?",
+      "choices": [
+        "A. 7",
+        "B. 14",
+        "C. 21",
+        "D. 28"
+      ],
+      "answer": "B",
+      "explanation": "전체 = 7×4 = 28. 사용 = 28×1/2 = 14.",
+      "difficulty": 3,
+      "hints": [
+        "전체 먼저: 7×4=28."
+      ],
+      "feedback": {
+        "correct": "정답! 14.",
+        "incorrect": "전체=28, 1/2=14."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_whole_from_part",
+      "feedback_correct": "정답! 14.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.9 'Problem Solving: Find the Whole Group' pp.345-348",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic F — Comparison, Order, and Size of Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U8 L8 — 1/b of N = N÷b (3.NF.A.1)",
+    "current": "G3 — 부분으로 전체 찾기: 1/b of N = P → N = P×b (3.NF.A.1)",
+    "successor": "G3 U9 L1 — 분수 비교 시작 (3.NF.A.3)"
   },
-  "concept": "problem_solving_find_whole_group"
+  "metadata": {
+    "total_items": 43,
+    "upgraded": true,
+    "upgrade_script": "scripts/upgrade_u8_l9.py",
+    "review_from_units": [
+      "U1"
+    ]
+  }
 }
