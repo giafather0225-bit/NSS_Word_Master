@@ -1,0 +1,1006 @@
+{
+  "lesson_id": "L2_classify_polygons",
+  "title": "Classify Polygons by Their Attributes",
+  "ccss": [
+    "3.G.A.1"
+  ],
+  "grade": "G3",
+  "unit": "U13_shapes",
+  "go_math_ref": "Chapter 12, Lesson 12.2",
+  "essential_question": "How can you classify polygons by the attributes they share?",
+  "key_vocabulary": [
+    "attribute",
+    "classify",
+    "sort",
+    "equal sides",
+    "right angle",
+    "group",
+    "shared attribute"
+  ],
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_by_sides",
+      "difficulty": 2,
+      "question": "Which group contains ONLY polygons with 4 sides?",
+      "choices": [
+        "A) Square, rectangle, triangle",
+        "B) Square, rectangle, rhombus",
+        "C) Triangle, pentagon, hexagon",
+        "D) Hexagon, pentagon, octagon"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Triangle has 3 sides, not 4"},
+        "C": {"error_type": "concept_gap", "note": "None of these have 4 sides"},
+        "D": {"error_type": "concept_gap", "note": "None of these have 4 sides"}
+      },
+      "verification": "Square, rectangle, rhombus — all 4-sided.",
+      "hints": ["Find the group where every shape has exactly 4 sides."],
+      "feedback": {
+        "correct": "Yes! Square, rectangle, and rhombus all have 4 sides — they share that attribute.",
+        "incorrect": "The answer is B. Square, rectangle, and rhombus are all 4-sided polygons."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "shared_attribute",
+      "difficulty": 2,
+      "question": "Which attribute do a square and a rectangle SHARE?",
+      "choices": [
+        "A) All sides are the same length",
+        "B) They have 4 right angles",
+        "C) They have 3 sides",
+        "D) One side is curved"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Squares have all equal sides, but rectangles do not"},
+        "C": {"error_type": "concept_gap", "note": "Both have 4 sides, not 3"},
+        "D": {"error_type": "concept_gap", "note": "Polygons have no curved sides"}
+      },
+      "verification": "Both have 4 right angles.",
+      "hints": ["Look at the corners — what kind of angles do squares and rectangles share?"],
+      "feedback": {
+        "correct": "Yes! Both squares and rectangles have 4 right angles.",
+        "incorrect": "Both squares and rectangles have 4 right angles. That is the shared attribute."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_right_angles",
+      "difficulty": 1,
+      "question": "How many right angles does a square have?",
+      "correct_answer": "4",
+      "expected_errors": {
+        "0": {"error_type": "concept_gap", "note": "All 4 corners of a square are right angles"},
+        "2": {"error_type": "concept_gap", "note": "All 4 corners are right angles, not just 2"}
+      },
+      "verification": "Square: 4 right angles.",
+      "hints": ["Each corner of a square is a square corner."],
+      "feedback": {
+        "correct": "Right! All 4 corners of a square are right angles.",
+        "incorrect": "A square has 4 right angles — every corner is a square corner."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_by_sides_equal",
+      "difficulty": 2,
+      "question": "Which polygon has ALL sides the same length?",
+      "choices": [
+        "A) A square",
+        "B) A rectangle (not a square)",
+        "C) A trapezoid",
+        "D) An open figure"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "A non-square rectangle has 2 long sides and 2 short sides"},
+        "C": {"error_type": "concept_gap", "note": "Trapezoids do not need equal sides"},
+        "D": {"error_type": "concept_gap", "note": "Open figures are not polygons"}
+      },
+      "verification": "Square: all 4 sides equal.",
+      "hints": ["Which shape has every side the same length?"],
+      "feedback": {
+        "correct": "Yes! A square has all 4 sides equal.",
+        "incorrect": "The answer is A. A square has all sides equal in length."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "shared_attribute",
+      "difficulty": 3,
+      "question": "Which attribute do a triangle and a hexagon BOTH have?",
+      "choices": [
+        "A) Exactly 4 sides",
+        "B) All right angles",
+        "C) Closed figures with all straight sides",
+        "D) One curved side"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Triangle=3 sides, hexagon=6 sides"},
+        "B": {"error_type": "concept_gap", "note": "Most triangles and hexagons have no right angles"},
+        "D": {"error_type": "concept_gap", "note": "Polygons cannot have curved sides"}
+      },
+      "verification": "Both are polygons — closed with straight sides.",
+      "hints": ["What is true for every polygon, no matter the number of sides?"],
+      "feedback": {
+        "correct": "Yes! Both are polygons — closed figures with straight sides.",
+        "incorrect": "All polygons share this: closed figures with all straight sides. Triangles and hexagons both qualify."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "What Is an Attribute?",
+      "content": "An ATTRIBUTE is a special feature of a shape — like number of sides, kind of angles, or whether sides are equal. Examples of attributes: 'has 4 sides', 'has a right angle', 'has all sides equal'. We can sort shapes into groups by their attributes.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.2: attribute definition."
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Classify Means Sort into Groups",
+      "content": "To CLASSIFY shapes is to put them in groups by something they have in common. Example: Put all polygons with 3 sides in one group, and all polygons with 4 sides in another group. The 3-sided group has triangles. The 4-sided group has squares, rectangles, rhombuses, and trapezoids.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.2: classify by sides."
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Classify by Number of Right Angles",
+      "content": "Another way to classify polygons is by their angles. SQUARE: 4 right angles. RECTANGLE: 4 right angles. RIGHT TRIANGLE: 1 right angle. REGULAR PENTAGON: 0 right angles. So squares and rectangles share the attribute '4 right angles'.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.2: angle classification."
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Classify by Side Lengths",
+      "content": "We can sort polygons by whether their sides are equal. ALL SIDES EQUAL: square (4 equal sides), rhombus (4 equal sides), equilateral triangle (3 equal sides). NOT ALL SIDES EQUAL: rectangle that is not a square, scalene triangle, most trapezoids.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.2: side-length classification."
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Shapes Can Have Many Attributes",
+      "content": "One shape can have many attributes at the same time. A SQUARE has: 4 sides, 4 right angles, all sides equal. So a square belongs to several groups: 'has 4 sides', 'has 4 right angles', and 'has all sides equal'. The same shape can fit into more than one group.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.2: multi-attribute membership."
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Some Groups Live Inside Other Groups",
+      "content": "Every SQUARE is also a RECTANGLE — because a square has 4 sides and 4 right angles, just like rectangles. But not every rectangle is a square (a rectangle that is 5 cm by 3 cm has 4 right angles but is not a square). So the 'square group' fits INSIDE the 'rectangle group'.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.2: nested classification."
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Two Shapes Share an Attribute When…",
+      "content": "Two shapes SHARE an attribute when both shapes have that feature. Square and rectangle both have 4 right angles. Square and rhombus both have 4 equal sides. Triangle and hexagon both are closed figures with all straight sides (both are polygons). Look for what they have in common.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.2: shared attributes."
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today you learned: (1) An ATTRIBUTE is a feature of a shape. (2) To CLASSIFY is to sort shapes into groups by attributes. (3) Common attributes: number of sides, number of right angles, equal side lengths. (4) One shape can have many attributes. (5) A square is also a rectangle, because every square has 4 right angles.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Covers all Go Math 12.2 concepts."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_by_sides",
+      "difficulty": 2,
+      "question": "Sort by number of sides. Which group contains only TRIANGLES?",
+      "choices": [
+        "A) Equilateral triangle, scalene triangle, right triangle",
+        "B) Square, rectangle, rhombus",
+        "C) Pentagon, hexagon, octagon",
+        "D) Triangle, square, pentagon"
+      ],
+      "correct_answer": "A",
+      "solution_steps": [
+        "Step 1: A triangle is any polygon with 3 sides.",
+        "Step 2: Equilateral, scalene, and right triangles all have 3 sides.",
+        "Step 3: They are all triangles."
+      ],
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "Those are all quadrilaterals, not triangles"},
+        "C": {"error_type": "concept_gap", "note": "Those have 5, 6, and 8 sides"},
+        "D": {"error_type": "concept_gap", "note": "Square=4 sides, pentagon=5 sides — not all triangles"}
+      },
+      "feedback": {
+        "correct": "Yes! All three are triangles — every one has 3 sides.",
+        "incorrect": "Triangles have 3 sides. Choice A — equilateral, scalene, right triangle — all qualify."
+      },
+      "verification": "All triangles have 3 sides.",
+      "hints": ["Which group has only 3-sided polygons?"]
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_right_angles",
+      "difficulty": 2,
+      "question": "How many right angles does a rectangle have?",
+      "correct_answer": "4",
+      "solution_steps": [
+        "Step 1: A rectangle has 4 corners.",
+        "Step 2: Every corner is a right angle.",
+        "Step 3: 4 right angles total."
+      ],
+      "expected_errors": {
+        "2": {"error_type": "concept_gap", "note": "All 4 corners are right angles"},
+        "0": {"error_type": "concept_gap", "note": "A rectangle's corners are right angles"}
+      },
+      "feedback": {
+        "correct": "Right! A rectangle has 4 right angles.",
+        "incorrect": "A rectangle has 4 right angles — every corner is a square corner."
+      },
+      "verification": "Rectangle: 4 right angles.",
+      "hints": ["Count the corners. How many of them are square corners?"]
+    },
+    {
+      "id": "TRY_03",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "shared_attribute",
+      "difficulty": 3,
+      "question": "Which attribute do a SQUARE and a RHOMBUS share?",
+      "choices": [
+        "A) 4 right angles",
+        "B) All sides equal",
+        "C) 3 sides",
+        "D) Curved side"
+      ],
+      "correct_answer": "B",
+      "solution_steps": [
+        "Step 1: Square has 4 equal sides.",
+        "Step 2: Rhombus has 4 equal sides.",
+        "Step 3: Both share 'all sides equal'."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Square has 4 right angles; a typical rhombus does not"},
+        "C": {"error_type": "concept_gap", "note": "Both have 4 sides, not 3"},
+        "D": {"error_type": "concept_gap", "note": "Polygons have no curved sides"}
+      },
+      "feedback": {
+        "correct": "Yes! Both have all sides equal — that is what they share.",
+        "incorrect": "Both square and rhombus have all 4 sides equal in length. That is the shared attribute."
+      },
+      "verification": "Square and rhombus: all sides equal.",
+      "hints": ["Compare the side lengths of both shapes."]
+    },
+    {
+      "id": "TRY_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "multi_attribute",
+      "difficulty": 3,
+      "question": "Which of these is true about a SQUARE?",
+      "choices": [
+        "A) It has 4 sides",
+        "B) It has 4 right angles",
+        "C) All its sides are equal",
+        "D) All of the above"
+      ],
+      "correct_answer": "D",
+      "solution_steps": [
+        "Step 1: A square has 4 sides — TRUE.",
+        "Step 2: A square has 4 right angles — TRUE.",
+        "Step 3: A square has all sides equal — TRUE.",
+        "Step 4: All three are correct."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "True, but B and C are also true"},
+        "B": {"error_type": "concept_gap", "note": "True, but A and C are also true"},
+        "C": {"error_type": "concept_gap", "note": "True, but A and B are also true"}
+      },
+      "feedback": {
+        "correct": "Right! A square has many attributes — 4 sides, 4 right angles, and all sides equal.",
+        "incorrect": "All three are true for a square. A square has many attributes at once."
+      },
+      "verification": "Square: 4 sides + 4 right angles + all sides equal.",
+      "hints": ["A square has more than one attribute. Check each statement."]
+    },
+    {
+      "id": "TRY_05",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "nested_groups",
+      "difficulty": 4,
+      "question": "True or False: Every square is also a rectangle.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {"error_type": "concept_gap", "note": "A square has 4 right angles and 4 sides — it fits the rectangle definition"}
+      },
+      "feedback": {
+        "correct": "True! A square has 4 sides and 4 right angles, so it fits the rectangle group.",
+        "incorrect": "True. Every square has 4 sides and 4 right angles — that's a rectangle. The square group lives inside the rectangle group."
+      },
+      "verification": "Square is a special rectangle (with all sides equal).",
+      "hints": ["What makes a shape a rectangle? Does a square fit those rules?"]
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_by_sides",
+      "difficulty": 1,
+      "question": "Which group contains only QUADRILATERALS?",
+      "choices": [
+        "A) Square, rectangle, rhombus, trapezoid",
+        "B) Triangle, pentagon, hexagon",
+        "C) Pentagon, hexagon, octagon",
+        "D) Triangle, square, hexagon"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "Those are not 4-sided"},
+        "C": {"error_type": "concept_gap", "note": "Those have 5, 6, 8 sides"},
+        "D": {"error_type": "concept_gap", "note": "Triangle and hexagon are not quadrilaterals"}
+      },
+      "verification": "Quadrilateral group: 4-sided polygons.",
+      "hints": ["Quadrilateral = 4-sided polygon. Find the all-4-sided group."],
+      "feedback": {
+        "correct": "Right! All four are 4-sided polygons.",
+        "incorrect": "Quadrilaterals have 4 sides. Choice A — square, rectangle, rhombus, trapezoid — all qualify."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_equal_sides",
+      "difficulty": 2,
+      "question": "How many equal sides does an equilateral triangle have?",
+      "correct_answer": "3",
+      "expected_errors": {
+        "2": {"error_type": "concept_gap", "note": "ALL 3 sides are equal in an equilateral triangle"},
+        "0": {"error_type": "concept_gap", "note": "Equilateral means equal — all sides match"}
+      },
+      "verification": "Equilateral = all sides equal.",
+      "hints": ["'Equi' means equal. How many sides total does a triangle have?"],
+      "feedback": {
+        "correct": "Right! All 3 sides are equal in an equilateral triangle.",
+        "incorrect": "An equilateral triangle has 3 equal sides. 'Equi' means equal."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "shared_attribute",
+      "difficulty": 2,
+      "question": "Which attribute is true for BOTH a square and a rectangle?",
+      "choices": [
+        "A) All sides equal",
+        "B) 4 right angles",
+        "C) Curved sides",
+        "D) 3 sides"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Squares yes, rectangles not in general"},
+        "C": {"error_type": "concept_gap", "note": "Polygons have no curved sides"},
+        "D": {"error_type": "concept_gap", "note": "Both have 4 sides, not 3"}
+      },
+      "verification": "Both have 4 right angles.",
+      "hints": ["Check each attribute for BOTH shapes."],
+      "feedback": {
+        "correct": "Yes! Both squares and rectangles have 4 right angles.",
+        "incorrect": "The shared attribute is '4 right angles' — true for both squares and rectangles."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_no_right_angles",
+      "difficulty": 2,
+      "question": "Which polygon has NO right angles?",
+      "choices": [
+        "A) Square",
+        "B) Rectangle",
+        "C) Right triangle",
+        "D) Regular hexagon"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Square has 4 right angles"},
+        "B": {"error_type": "concept_gap", "note": "Rectangle has 4 right angles"},
+        "C": {"error_type": "concept_gap", "note": "Right triangle has 1 right angle"}
+      },
+      "verification": "Regular hexagon: 0 right angles.",
+      "hints": ["Which choice has no square corners?"],
+      "feedback": {
+        "correct": "Right! A regular hexagon has 0 right angles.",
+        "incorrect": "A regular hexagon has 0 right angles. Squares, rectangles, and right triangles all have at least one."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_right_angles",
+      "difficulty": 2,
+      "question": "How many right angles does a right triangle have?",
+      "correct_answer": "1",
+      "expected_errors": {
+        "0": {"error_type": "concept_gap", "note": "A right triangle has exactly 1 right angle"},
+        "3": {"error_type": "concept_gap", "note": "Only 1 of its 3 angles is a right angle"}
+      },
+      "verification": "Right triangle: 1 right angle.",
+      "hints": ["The word 'right' in 'right triangle' tells you about the angles."],
+      "feedback": {
+        "correct": "Right! A right triangle has exactly 1 right angle.",
+        "incorrect": "A right triangle has 1 right angle. The other two angles are smaller than a right angle."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_by_attribute",
+      "difficulty": 2,
+      "question": "Which polygon has 4 EQUAL sides AND 4 right angles?",
+      "choices": [
+        "A) Rhombus (not a square)",
+        "B) Rectangle (not a square)",
+        "C) Square",
+        "D) Trapezoid"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Rhombus has equal sides but not 4 right angles"},
+        "B": {"error_type": "concept_gap", "note": "Rectangle has 4 right angles but not all equal sides"},
+        "D": {"error_type": "concept_gap", "note": "Trapezoid usually has neither"}
+      },
+      "verification": "Square: 4 equal sides + 4 right angles.",
+      "hints": ["Which shape has BOTH attributes at once?"],
+      "feedback": {
+        "correct": "Right! A square has 4 equal sides AND 4 right angles.",
+        "incorrect": "A square is the only shape here with both 4 equal sides AND 4 right angles."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_attribute",
+      "difficulty": 2,
+      "question": "True or False: All triangles have at least one right angle.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {"error_type": "concept_gap", "note": "Only RIGHT triangles have a right angle. Equilateral triangles have none."}
+      },
+      "verification": "Equilateral triangle has 0 right angles.",
+      "hints": ["Think about an equilateral triangle. Does it have a right angle?"],
+      "feedback": {
+        "correct": "False! Only right triangles have a right angle. Equilateral triangles have none.",
+        "incorrect": "False. Some triangles have no right angles — for example, equilateral triangles."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "shared_attribute",
+      "difficulty": 2,
+      "question": "Which attribute is shared by ALL polygons (no exceptions)?",
+      "choices": [
+        "A) 4 sides",
+        "B) Right angles",
+        "C) All straight sides",
+        "D) Equal side lengths"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Triangles have 3 sides; pentagons have 5"},
+        "B": {"error_type": "concept_gap", "note": "Many polygons have no right angles"},
+        "D": {"error_type": "concept_gap", "note": "Most polygons do not need equal sides"}
+      },
+      "verification": "All polygons have all-straight sides.",
+      "hints": ["What is true for EVERY polygon, no matter the type?"],
+      "feedback": {
+        "correct": "Right! All polygons have all straight sides — that is the universal rule.",
+        "incorrect": "All polygons have all straight sides — that is true with no exceptions."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_pentagon",
+      "difficulty": 2,
+      "question": "Which group contains only PENTAGONS?",
+      "choices": [
+        "A) Regular pentagon, irregular pentagon, house-shaped pentagon",
+        "B) Square, rectangle, rhombus",
+        "C) Triangle, pentagon, hexagon",
+        "D) Pentagon, hexagon, octagon"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "Those are quadrilaterals, not pentagons"},
+        "C": {"error_type": "concept_gap", "note": "Triangle and hexagon are not pentagons"},
+        "D": {"error_type": "concept_gap", "note": "Hexagon and octagon are not pentagons"}
+      },
+      "verification": "Pentagon group: 5-sided polygons.",
+      "hints": ["Pentagons have 5 sides. Find the all-5-sided group."],
+      "feedback": {
+        "correct": "Right! Regular, irregular, and house-shaped pentagons all have 5 sides.",
+        "incorrect": "Pentagons have 5 sides. Only choice A has all pentagons."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_equal_sides",
+      "difficulty": 2,
+      "question": "A rhombus has how many equal sides?",
+      "correct_answer": "4",
+      "expected_errors": {
+        "2": {"error_type": "concept_gap", "note": "All 4 sides of a rhombus are equal"},
+        "3": {"error_type": "concept_gap", "note": "All 4 sides of a rhombus are equal"}
+      },
+      "verification": "Rhombus: all 4 sides equal.",
+      "hints": ["A rhombus is a 4-sided polygon. How many of its sides are equal?"],
+      "feedback": {
+        "correct": "Right! A rhombus has all 4 sides equal in length.",
+        "incorrect": "A rhombus has 4 equal sides — that is its main attribute."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "shared_attribute",
+      "difficulty": 2,
+      "question": "Tom has a square and a rhombus on his desk. Which attribute do they BOTH have?",
+      "choices": [
+        "A) 4 right angles",
+        "B) 4 equal sides",
+        "C) 3 sides",
+        "D) Curved side"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Square yes, rhombus not in general"},
+        "C": {"error_type": "concept_gap", "note": "Both have 4 sides"},
+        "D": {"error_type": "concept_gap", "note": "Polygons have no curved sides"}
+      },
+      "verification": "Square and rhombus: 4 equal sides.",
+      "hints": ["What is true for ALL sides of both shapes?"],
+      "feedback": {
+        "correct": "Yes! Both a square and a rhombus have 4 equal sides.",
+        "incorrect": "Both squares and rhombuses have all 4 sides equal in length."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "nested_groups",
+      "difficulty": 3,
+      "question": "True or False: Every rectangle is also a square.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {"error_type": "concept_gap", "note": "Squares ARE rectangles, but rectangles do not have to be squares"}
+      },
+      "verification": "Not every rectangle has all equal sides.",
+      "hints": ["Does every rectangle have ALL sides equal?"],
+      "feedback": {
+        "correct": "False! Rectangles do not have to have all sides equal. A 5x3 rectangle is not a square.",
+        "incorrect": "False. Squares are special rectangles with all sides equal — most rectangles are not squares."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_attribute",
+      "difficulty": 3,
+      "question": "Lila is sorting polygons. She makes a group called 'has at least one right angle.' Which polygon does NOT belong in her group?",
+      "choices": [
+        "A) Square",
+        "B) Rectangle",
+        "C) Right triangle",
+        "D) Equilateral triangle"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Square has 4 right angles"},
+        "B": {"error_type": "concept_gap", "note": "Rectangle has 4 right angles"},
+        "C": {"error_type": "concept_gap", "note": "Right triangle has 1 right angle"}
+      },
+      "verification": "Equilateral triangle: 0 right angles.",
+      "hints": ["Which one has NO right angles at all?"],
+      "feedback": {
+        "correct": "Right! An equilateral triangle has 0 right angles, so it does not belong in the group.",
+        "incorrect": "An equilateral triangle has no right angles — it does not belong in 'has at least one right angle'."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_attribute",
+      "difficulty": 3,
+      "question": "How many sides does a polygon need to have to be a quadrilateral?",
+      "correct_answer": "4",
+      "expected_errors": {
+        "3": {"error_type": "concept_gap", "note": "That's a triangle"},
+        "5": {"error_type": "concept_gap", "note": "That's a pentagon"}
+      },
+      "verification": "Quadrilateral = 4 sides.",
+      "hints": ["'Quad' means four."],
+      "feedback": {
+        "correct": "Right! A quadrilateral has exactly 4 sides.",
+        "incorrect": "A quadrilateral has 4 sides. 'Quad' means four."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_attribute",
+      "difficulty": 3,
+      "question": "Mia wants to sort her shapes into the group 'has 4 right angles.' Which shape goes in the group?",
+      "choices": [
+        "A) Triangle",
+        "B) Trapezoid",
+        "C) Rectangle",
+        "D) Pentagon"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Triangle has 3 angles, not 4"},
+        "B": {"error_type": "concept_gap", "note": "Most trapezoids have 0 right angles"},
+        "D": {"error_type": "concept_gap", "note": "Regular pentagon has 0 right angles"}
+      },
+      "verification": "Rectangle: 4 right angles.",
+      "hints": ["Which choice has 4 square corners?"],
+      "feedback": {
+        "correct": "Right! A rectangle has exactly 4 right angles.",
+        "incorrect": "A rectangle is the only choice with 4 right angles."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "shared_attribute",
+      "difficulty": 3,
+      "question": "True or False: A square and a triangle share the attribute 'all sides are straight.'",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {"error_type": "concept_gap", "note": "All polygons have straight sides — squares and triangles both qualify"}
+      },
+      "verification": "Both polygons; both have all straight sides.",
+      "hints": ["Are both shapes polygons? What is true for all polygons?"],
+      "feedback": {
+        "correct": "True! Both squares and triangles have all straight sides — like every polygon.",
+        "incorrect": "True. All polygons have all straight sides — squares and triangles both share this attribute."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_polygon_no_right",
+      "difficulty": 3,
+      "question": "Sam draws a 4-sided polygon with NO right angles and NO equal sides. Which polygon could Sam have drawn?",
+      "choices": [
+        "A) A square",
+        "B) A rectangle (not a square)",
+        "C) An irregular trapezoid with no right angles",
+        "D) A rhombus"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Square has 4 right angles AND equal sides"},
+        "B": {"error_type": "concept_gap", "note": "Rectangle has 4 right angles"},
+        "D": {"error_type": "concept_gap", "note": "Rhombus has 4 equal sides"}
+      },
+      "verification": "Irregular trapezoid: no right angles, no equal sides.",
+      "hints": ["Eliminate any shape that has right angles OR equal sides."],
+      "feedback": {
+        "correct": "Right! An irregular trapezoid can have no right angles and no equal sides.",
+        "incorrect": "Squares, rectangles, and rhombuses all have at least one matching attribute. Only choice C has neither."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_attribute",
+      "difficulty": 3,
+      "question": "Which group of polygons all share the attribute 'all sides equal'?",
+      "choices": [
+        "A) Square, equilateral triangle, rhombus",
+        "B) Rectangle, scalene triangle, trapezoid",
+        "C) Square, rectangle, scalene triangle",
+        "D) Rhombus, rectangle, trapezoid"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "Scalene triangle has all DIFFERENT sides"},
+        "C": {"error_type": "concept_gap", "note": "Rectangle and scalene triangle do not have all equal sides"},
+        "D": {"error_type": "concept_gap", "note": "Rectangle and trapezoid do not have all equal sides"}
+      },
+      "verification": "Square, equilateral triangle, rhombus: all equal sides.",
+      "hints": ["Which group has every shape with all sides matching?"],
+      "feedback": {
+        "correct": "Right! Squares (4=), equilateral triangles (3=), and rhombuses (4=) all have equal sides.",
+        "incorrect": "All members must have all equal sides. Only choice A — square, equilateral triangle, rhombus — qualifies."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "shared_attribute",
+      "difficulty": 3,
+      "question": "True or False: A pentagon and an octagon share the attribute 'has more than 4 sides.'",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {"error_type": "concept_gap", "note": "Pentagon=5, octagon=8 — both more than 4"}
+      },
+      "verification": "5>4 and 8>4.",
+      "hints": ["How many sides does each have? Are both more than 4?"],
+      "feedback": {
+        "correct": "True! Pentagon (5) and octagon (8) both have more than 4 sides.",
+        "incorrect": "True. Pentagon has 5 sides and octagon has 8 — both more than 4."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_attribute",
+      "difficulty": 3,
+      "question": "Look at this list: triangle, square, rectangle, hexagon, octagon, circle. How many of these are polygons?",
+      "correct_answer": "5",
+      "expected_errors": {
+        "6": {"error_type": "concept_gap", "note": "Don't count the circle — it has a curved side"},
+        "4": {"error_type": "careless", "note": "Count again — there are 5 polygons"}
+      },
+      "verification": "5 polygons; circle is not a polygon.",
+      "hints": ["Which item is NOT a polygon? Subtract that one from the total."],
+      "feedback": {
+        "correct": "Right! 5 are polygons. Only the circle (curved) is not.",
+        "incorrect": "Triangle, square, rectangle, hexagon, octagon = 5 polygons. The circle is not a polygon."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_reasoning",
+      "difficulty": 4,
+      "question": "Anna says, 'My polygon has 4 sides AND all sides equal.' Which polygon could Anna's NOT be?",
+      "choices": [
+        "A) A square",
+        "B) A rhombus",
+        "C) A rectangle that is not a square",
+        "D) A square tilted on its corner"
+      ],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: Check each shape: 4 sides AND all sides equal?",
+        "Step 2: Square — 4 sides, 4 equal sides. Fits.",
+        "Step 3: Rhombus — 4 sides, 4 equal sides. Fits.",
+        "Step 4: Rectangle (not square) — 4 sides but NOT all equal. Does NOT fit."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "Square has 4 equal sides"},
+        "B": {"error_type": "concept_gap", "note": "Rhombus has 4 equal sides"},
+        "D": {"error_type": "concept_gap", "note": "A tilted square is still a square"}
+      },
+      "feedback": {
+        "correct": "Right! A non-square rectangle has 2 long and 2 short sides — sides are not all equal.",
+        "incorrect": "A rectangle that is not a square does not have all equal sides. So it cannot be Anna's polygon."
+      },
+      "three_read_prompt": "Read 1: What two rules does Anna's polygon follow? Read 2: Which choices fit both rules? Read 3: Which choice fails one rule?",
+      "verification": "Non-square rectangle fails 'all sides equal'.",
+      "hints": ["Test each shape against BOTH rules."]
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_count",
+      "difficulty": 4,
+      "question": "From this list — triangle, square, circle, hexagon, open V-shape, rectangle — how many are polygons?",
+      "correct_answer": "4",
+      "solution_steps": [
+        "Step 1: Triangle — closed, all straight. Polygon.",
+        "Step 2: Square — closed, all straight. Polygon.",
+        "Step 3: Circle — curved. NOT a polygon.",
+        "Step 4: Hexagon — closed, all straight. Polygon.",
+        "Step 5: Open V-shape — not closed. NOT a polygon.",
+        "Step 6: Rectangle — closed, all straight. Polygon.",
+        "Step 7: Total = 4."
+      ],
+      "expected_errors": {
+        "5": {"error_type": "careless", "note": "Don't count the open V-shape"},
+        "6": {"error_type": "concept_gap", "note": "Circle is curved, V-shape is not closed"},
+        "3": {"error_type": "careless", "note": "Recount — 4 polygons"}
+      },
+      "feedback": {
+        "correct": "Right! Triangle, square, hexagon, rectangle = 4 polygons.",
+        "incorrect": "4 polygons. Circle (curved) and open V (not closed) are NOT polygons."
+      },
+      "three_read_prompt": "Read 1: What is the list? Read 2: What two tests must each pass to be a polygon? Read 3: How many pass both tests?",
+      "verification": "4 polygons in the list.",
+      "hints": ["Apply both polygon tests to each item: closed? all straight?"]
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "logic_attribute",
+      "difficulty": 5,
+      "question": "Ben has a 4-sided polygon with 4 right angles. Which statement MUST be true?",
+      "choices": [
+        "A) It is a square",
+        "B) It is a rhombus",
+        "C) It is a rectangle (or a square)",
+        "D) All sides are different lengths"
+      ],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: 4 sides AND 4 right angles defines a rectangle.",
+        "Step 2: All squares are rectangles (they also have 4 right angles).",
+        "Step 3: So it must be a rectangle (which includes squares as a special case)."
+      ],
+      "expected_errors": {
+        "A": {"error_type": "concept_gap", "note": "MUST is too strong — sides could be unequal"},
+        "B": {"error_type": "concept_gap", "note": "Rhombuses do not need to have right angles"},
+        "D": {"error_type": "concept_gap", "note": "Rectangles can have 2 pairs of equal sides"}
+      },
+      "feedback": {
+        "correct": "Right! 4 sides + 4 right angles = rectangle (a square is a special rectangle).",
+        "incorrect": "It must be a rectangle. Squares are rectangles, but it is not GUARANTEED to be a square."
+      },
+      "three_read_prompt": "Read 1: What two attributes does Ben's polygon have? Read 2: Which shapes always have those attributes? Read 3: Which choice must be true?",
+      "verification": "4 sides + 4 right angles = rectangle (or square).",
+      "hints": ["What shape is defined by 4 sides AND 4 right angles?"]
+    },
+    {
+      "id": "R3_04",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "logic_nested",
+      "difficulty": 5,
+      "question": "True or False: Every rhombus is a square.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {"error_type": "concept_gap", "note": "Rhombuses do not all have right angles, so not all are squares"}
+      },
+      "feedback": {
+        "correct": "False! A rhombus has 4 equal sides but does not need 4 right angles.",
+        "incorrect": "False. A rhombus may not have right angles. So not every rhombus is a square."
+      },
+      "three_read_prompt": "Read 1: What is a rhombus? Read 2: What does a square need? Read 3: Does every rhombus have those?",
+      "verification": "Squares need right angles; rhombuses do not.",
+      "hints": ["Does every rhombus have right angles?"]
+    },
+    {
+      "id": "R3_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "logic_attribute",
+      "difficulty": 5,
+      "question": "Which statement is TRUE about polygons?",
+      "choices": [
+        "A) Every square is a rectangle",
+        "B) Every rectangle is a square",
+        "C) Every triangle has 4 right angles",
+        "D) Every polygon has equal sides"
+      ],
+      "correct_answer": "A",
+      "solution_steps": [
+        "Step 1: Squares have 4 sides + 4 right angles → that fits the rectangle definition.",
+        "Step 2: Rectangles need not have all sides equal — not all are squares.",
+        "Step 3: Triangles have 3 angles, not 4.",
+        "Step 4: Most polygons do not have equal sides."
+      ],
+      "expected_errors": {
+        "B": {"error_type": "concept_gap", "note": "Squares are rectangles, but not all rectangles are squares"},
+        "C": {"error_type": "concept_gap", "note": "Triangles have 3 angles total"},
+        "D": {"error_type": "concept_gap", "note": "Most polygons do NOT have equal sides"}
+      },
+      "feedback": {
+        "correct": "Right! Every square is a rectangle (4 sides + 4 right angles). The square group lives inside the rectangle group.",
+        "incorrect": "A is true: every square is a rectangle. The other statements are false."
+      },
+      "three_read_prompt": "Read 1: What does each statement say? Read 2: Test each one with examples. Read 3: Which is always true?",
+      "verification": "Square ⊂ rectangle.",
+      "hints": ["Test each statement with at least one example."]
+    }
+  ]
+}

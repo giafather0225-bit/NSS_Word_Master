@@ -1,0 +1,255 @@
+{
+  "unit_id": "G3_U13",
+  "title": "Unit 13 Test: Two-Dimensional Shapes and Partitioning",
+  "grade": "G3",
+  "unit": "U13_shapes",
+  "ccss": [
+    "3.G.A.1",
+    "3.G.A.2"
+  ],
+  "pass_threshold": 0.8,
+  "time_limit_min": 30,
+  "problems": [
+    {
+      "id": "UT_01",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "count_sides",
+      "difficulty": 1,
+      "question": "How many sides does a hexagon have?",
+      "correct_answer": "6",
+      "feedback": {"correct": "Right! 6 sides.", "incorrect": "Hexagon has 6 sides ('hex' = 6)."},
+      "hints": ["'Hex' means six."]
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "lesson_ref": "L1",
+      "skill_tag": "non_polygon",
+      "difficulty": 1,
+      "question": "Which is NOT a polygon?",
+      "choices": ["A) Triangle", "B) Square", "C) Circle", "D) Hexagon"],
+      "correct_answer": "C",
+      "feedback": {"correct": "Right! Circles are curved.", "incorrect": "A circle is curved — not a polygon."},
+      "hints": ["Polygons have all straight sides."]
+    },
+    {
+      "id": "UT_03",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "count_vertices",
+      "difficulty": 2,
+      "question": "How many vertices does a pentagon have?",
+      "correct_answer": "5",
+      "feedback": {"correct": "Right! 5 vertices.", "incorrect": "Pentagon has 5 sides = 5 vertices."},
+      "hints": ["Vertices = sides for any polygon."]
+    },
+    {
+      "id": "UT_04",
+      "type": "mc",
+      "lesson_ref": "L2",
+      "skill_tag": "shared_attribute",
+      "difficulty": 2,
+      "question": "Which attribute is shared by ALL polygons?",
+      "choices": ["A) 4 right angles", "B) All sides equal", "C) Closed with all straight sides", "D) 4 sides"],
+      "correct_answer": "C",
+      "feedback": {"correct": "Right!", "incorrect": "All polygons are closed figures with all straight sides."},
+      "hints": ["What is true with no exceptions?"]
+    },
+    {
+      "id": "UT_05",
+      "type": "mc",
+      "lesson_ref": "L2",
+      "skill_tag": "classify_attribute",
+      "difficulty": 2,
+      "question": "Which polygon ALWAYS has 4 right angles?",
+      "choices": ["A) Triangle", "B) Square", "C) Pentagon", "D) Hexagon"],
+      "correct_answer": "B",
+      "feedback": {"correct": "Right! 4 right angles.", "incorrect": "A square always has 4 right angles."},
+      "hints": ["4 right angles + 4 equal sides defines this shape."]
+    },
+    {
+      "id": "UT_06",
+      "type": "input",
+      "lesson_ref": "L2",
+      "skill_tag": "count_right_angles",
+      "difficulty": 2,
+      "question": "How many right angles does a right triangle have?",
+      "correct_answer": "1",
+      "feedback": {"correct": "Right!", "incorrect": "A right triangle has exactly 1 right angle."},
+      "hints": ["The 'right' in the name tells you."]
+    },
+    {
+      "id": "UT_07",
+      "type": "mc",
+      "lesson_ref": "L3",
+      "skill_tag": "identify_quadrilateral",
+      "difficulty": 2,
+      "question": "Which quadrilateral has 4 equal sides but no right angles (in general)?",
+      "choices": ["A) Square", "B) Rectangle", "C) Rhombus (not square)", "D) Trapezoid"],
+      "correct_answer": "C",
+      "feedback": {"correct": "Right! 4 equal sides without right angles.", "incorrect": "Rhombus: 4 equal sides, no right angles (unless it's a square)."},
+      "hints": ["Equal sides without 4 right angles."]
+    },
+    {
+      "id": "UT_08",
+      "type": "mc",
+      "lesson_ref": "L3",
+      "skill_tag": "identify_trapezoid",
+      "difficulty": 2,
+      "question": "Which describes a trapezoid?",
+      "choices": [
+        "A) 4-sided polygon with at least 1 pair of parallel sides",
+        "B) 3-sided polygon",
+        "C) A polygon with 4 right angles",
+        "D) A circle"
+      ],
+      "correct_answer": "A",
+      "feedback": {"correct": "Right!", "incorrect": "Trapezoid: 4 sides + at least 1 pair of parallel sides."},
+      "hints": ["Trapezoids have parallel sides — at least one pair."]
+    },
+    {
+      "id": "UT_09",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "count_parallel_pairs",
+      "difficulty": 2,
+      "question": "How many pairs of parallel sides does a parallelogram have?",
+      "correct_answer": "2",
+      "feedback": {"correct": "Right!", "incorrect": "A parallelogram has 2 pairs of parallel sides."},
+      "hints": ["The name starts with 'parallel'."]
+    },
+    {
+      "id": "UT_10",
+      "type": "tf",
+      "lesson_ref": "L3",
+      "skill_tag": "nested_quadrilateral",
+      "difficulty": 3,
+      "question": "True or False: Every square is a rectangle.",
+      "correct_answer": "true",
+      "feedback": {"correct": "True!", "incorrect": "True. Squares fit the rectangle definition (4 sides + 4 right angles)."},
+      "hints": ["Does a square fit the rectangle definition?"]
+    },
+    {
+      "id": "UT_11",
+      "type": "mc",
+      "lesson_ref": "L4",
+      "skill_tag": "compare_attributes",
+      "difficulty": 2,
+      "question": "What is the SAME for a square and a rectangle?",
+      "choices": ["A) 4 right angles", "B) All sides equal", "C) 3 sides", "D) Curved sides"],
+      "correct_answer": "A",
+      "feedback": {"correct": "Right! Both have 4 right angles.", "incorrect": "Both have 4 right angles."},
+      "hints": ["Compare angles."]
+    },
+    {
+      "id": "UT_12",
+      "type": "mc",
+      "lesson_ref": "L4",
+      "skill_tag": "compare_different",
+      "difficulty": 3,
+      "question": "What is DIFFERENT between a parallelogram and a trapezoid?",
+      "choices": [
+        "A) Parallelogram has 2 pairs parallel; trapezoid has 1",
+        "B) Parallelogram has 4 sides; trapezoid has 5",
+        "C) Trapezoid has curved sides",
+        "D) They are the same"
+      ],
+      "correct_answer": "A",
+      "feedback": {"correct": "Right!", "incorrect": "Difference: 2 pairs of parallel sides vs 1 pair."},
+      "hints": ["Compare parallel pairs."]
+    },
+    {
+      "id": "UT_13",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "fraction_for_part",
+      "difficulty": 1,
+      "question": "A circle is divided into 4 equal parts. Each part is what fraction? (Write as 1/n)",
+      "correct_answer": "1/4",
+      "feedback": {"correct": "Right!", "incorrect": "Each of 4 equal parts is 1/4."},
+      "hints": ["1 of 4 equal parts."]
+    },
+    {
+      "id": "UT_14",
+      "type": "mc",
+      "lesson_ref": "L5",
+      "skill_tag": "name_parts",
+      "difficulty": 2,
+      "question": "A square is divided into 8 equal parts. Each part is a __",
+      "choices": ["A) Half", "B) Fourth", "C) Sixth", "D) Eighth"],
+      "correct_answer": "D",
+      "feedback": {"correct": "Right!", "incorrect": "8 equal parts → eighths."},
+      "hints": ["8 equal parts has a special name."]
+    },
+    {
+      "id": "UT_15",
+      "type": "mc",
+      "lesson_ref": "L5",
+      "skill_tag": "compare_size",
+      "difficulty": 2,
+      "question": "Which is BIGGER on the same whole: 1/3 or 1/8?",
+      "choices": ["A) 1/3", "B) 1/8", "C) Equal", "D) Cannot tell"],
+      "correct_answer": "A",
+      "feedback": {"correct": "Right!", "incorrect": "1/3 is bigger. Fewer parts = bigger pieces."},
+      "hints": ["Smaller denominator = bigger piece."]
+    },
+    {
+      "id": "UT_16",
+      "type": "input",
+      "lesson_ref": "L6",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 3,
+      "question": "A rectangle has area 24 sq cm and is divided into 6 equal parts. Find the area of each part. (Write the number.)",
+      "correct_answer": "4",
+      "feedback": {"correct": "Right! 24 ÷ 6 = 4.", "incorrect": "Each part = 24 ÷ 6 = 4 sq cm."},
+      "hints": ["Divide whole area by number of parts."]
+    },
+    {
+      "id": "UT_17",
+      "type": "mc",
+      "lesson_ref": "L6",
+      "skill_tag": "unit_fraction_definition",
+      "difficulty": 2,
+      "question": "Which is a unit fraction?",
+      "choices": ["A) 2/4", "B) 1/6", "C) 3/8", "D) 5/10"],
+      "correct_answer": "B",
+      "feedback": {"correct": "Right! 1 on top.", "incorrect": "Unit fractions have 1 as numerator."},
+      "hints": ["Top number must be 1."]
+    },
+    {
+      "id": "UT_18",
+      "type": "input",
+      "lesson_ref": "L6",
+      "skill_tag": "unit_fraction_combine",
+      "difficulty": 3,
+      "question": "If you put 5 pieces of 1/8 together, what fraction do you get? (Write as a fraction)",
+      "correct_answer": "5/8",
+      "feedback": {"correct": "Right!", "incorrect": "5 × 1/8 = 5/8."},
+      "hints": ["Add tops; keep bottom."]
+    },
+    {
+      "id": "UT_19",
+      "type": "mc",
+      "lesson_ref": "L7",
+      "skill_tag": "shape_logic",
+      "difficulty": 4,
+      "question": "Anna's quadrilateral has 4 right angles AND 4 equal sides. What is it?",
+      "choices": ["A) Trapezoid", "B) Square", "C) Rhombus (not square)", "D) Parallelogram (not rectangle)"],
+      "correct_answer": "B",
+      "feedback": {"correct": "Right!", "incorrect": "4 right angles AND 4 equal sides = square."},
+      "hints": ["Both attributes together."]
+    },
+    {
+      "id": "UT_20",
+      "type": "input",
+      "lesson_ref": "L7",
+      "skill_tag": "fraction_area_logic",
+      "difficulty": 4,
+      "question": "A rectangle has area 36 sq cm in 4 equal parts. What is the TOTAL area of 3 of these parts? (Write the number.)",
+      "correct_answer": "27",
+      "feedback": {"correct": "Right! 36 ÷ 4 = 9; 3 × 9 = 27.", "incorrect": "Each part = 36 ÷ 4 = 9. 3 parts = 3 × 9 = 27 sq cm."},
+      "hints": ["Find one part first, then multiply."]
+    }
+  ]
+}

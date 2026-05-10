@@ -1,0 +1,1353 @@
+{
+  "lesson_id": "L1_describe_polygons",
+  "title": "Describe Sides, Vertices, and Angles of Polygons",
+  "ccss": [
+    "3.G.A.1"
+  ],
+  "grade": "G3",
+  "unit": "U13_shapes",
+  "go_math_ref": "Chapter 12, Lesson 12.1",
+  "essential_question": "How can you describe a polygon by its sides, vertices, and angles?",
+  "key_vocabulary": [
+    "polygon",
+    "side",
+    "vertex",
+    "vertices",
+    "angle",
+    "right angle",
+    "triangle",
+    "quadrilateral",
+    "pentagon",
+    "hexagon",
+    "octagon",
+    "closed figure"
+  ],
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.G.A.1",
+      "skill_tag": "identify_polygon",
+      "difficulty": 2,
+      "question": "Which figure is a polygon?",
+      "choices": [
+        "A) A circle",
+        "B) A square",
+        "C) A figure with one side curved and three sides straight",
+        "D) A line segment"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Circles are not polygons — they have no straight sides"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "All sides of a polygon must be straight"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "A polygon must be a closed figure"
+        }
+      },
+      "verification": "Polygon = closed figure with all straight sides. Square fits.",
+      "hints": [
+        "A polygon must be CLOSED and have ALL STRAIGHT sides."
+      ],
+      "feedback": {
+        "correct": "Yes! A square is a polygon — it is closed and all sides are straight.",
+        "incorrect": "The answer is B (a square). A polygon must be CLOSED with ALL STRAIGHT sides."
+      }
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_sides",
+      "difficulty": 1,
+      "question": "How many sides does a triangle have?",
+      "correct_answer": "3",
+      "expected_errors": {
+        "4": {
+          "error_type": "careless",
+          "note": "That's a quadrilateral"
+        },
+        "2": {
+          "error_type": "concept_gap",
+          "note": "A triangle has 3 sides"
+        }
+      },
+      "verification": "Triangle: tri- means three.",
+      "hints": [
+        "The word 'tri' means three."
+      ],
+      "feedback": {
+        "correct": "Right! A triangle has 3 sides.",
+        "incorrect": "A triangle has 3 sides. 'Tri' means three."
+      }
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_vertices",
+      "difficulty": 2,
+      "question": "How many vertices (corners) does a quadrilateral have?",
+      "correct_answer": "4",
+      "expected_errors": {
+        "3": {
+          "error_type": "concept_gap",
+          "note": "A quadrilateral has 4 corners"
+        },
+        "5": {
+          "error_type": "careless",
+          "note": "That's a pentagon"
+        }
+      },
+      "verification": "Quadrilateral: 4 sides means 4 vertices.",
+      "hints": [
+        "A polygon has the same number of vertices as sides."
+      ],
+      "feedback": {
+        "correct": "Correct! A quadrilateral has 4 vertices.",
+        "incorrect": "A quadrilateral has 4 vertices. The number of vertices equals the number of sides."
+      }
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "non_polygon",
+      "difficulty": 2,
+      "question": "Which of these is NOT a polygon?",
+      "choices": [
+        "A) A pentagon",
+        "B) A hexagon",
+        "C) A circle",
+        "D) An octagon"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "A pentagon is a polygon — 5 straight sides"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "A hexagon is a polygon — 6 straight sides"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "An octagon is a polygon — 8 straight sides"
+        }
+      },
+      "verification": "Circle has a curved side — not a polygon.",
+      "hints": [
+        "Polygons have only straight sides, no curves."
+      ],
+      "feedback": {
+        "correct": "Yes! A circle is curved, so it is NOT a polygon.",
+        "incorrect": "The answer is C (a circle). Polygons have ONLY straight sides — no curves."
+      }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "name_by_sides",
+      "difficulty": 3,
+      "question": "What is the name of a polygon with 6 sides?",
+      "choices": [
+        "A) Pentagon",
+        "B) Hexagon",
+        "C) Octagon",
+        "D) Quadrilateral"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Pentagon has 5 sides"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Octagon has 8 sides"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Quadrilateral has 4 sides"
+        }
+      },
+      "verification": "Hexa- means six. Hexagon = 6 sides.",
+      "hints": [
+        "Match the number of sides to the polygon name."
+      ],
+      "feedback": {
+        "correct": "Yes! A hexagon has 6 sides. 'Hex' means six.",
+        "incorrect": "The answer is B (hexagon). 'Hex' means six, so a hexagon has 6 sides."
+      }
+    }
+  ],
+  "learn": [
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "What Is a Polygon?",
+      "content": "A POLYGON is a closed figure made of straight sides. Two rules: (1) it must be CLOSED — all sides connect with no gaps. (2) every side must be STRAIGHT — no curves allowed. Examples of polygons: a triangle, a square, a stop sign. NOT polygons: a circle (curved), a half-open shape (not closed).",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.1: polygon definition."
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Sides of a Polygon",
+      "content": "Each STRAIGHT line segment that forms a polygon is called a SIDE. Count the sides by tracing around the polygon and counting each straight segment. A triangle has 3 sides. A square has 4 sides. A stop sign has 8 sides.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.1: sides definition."
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Vertices — The Corners",
+      "content": "A VERTEX is the point where two sides meet — what you might call a CORNER. The plural is VERTICES. A triangle has 3 vertices (3 corners). A pentagon has 5 vertices. Important rule: the number of vertices ALWAYS equals the number of sides.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.1: vertex definition. Sides = vertices."
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Angles — Inside Each Corner",
+      "content": "An ANGLE is formed at each vertex by the two sides that meet there. Every polygon has the SAME number of angles as sides. A triangle has 3 angles. A hexagon has 6 angles. So for ANY polygon: number of sides = number of vertices = number of angles.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.1: angle definition."
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Right Angles — The Square Corners",
+      "content": "A RIGHT ANGLE looks like the corner of a book, a window, or a piece of paper. It is a perfect square corner. Squares and rectangles have 4 right angles each. Some polygons have NO right angles (like a regular triangle). Some have just one or two.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.1: right angle introduction."
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Naming Polygons by Sides",
+      "content": "Polygon names tell you the number of sides: TRIANGLE = 3 sides ('tri' = 3). QUADRILATERAL = 4 sides ('quad' = 4). PENTAGON = 5 sides ('penta' = 5). HEXAGON = 6 sides ('hex' = 6). OCTAGON = 8 sides ('oct' = 8). Tip: an octopus has 8 arms — octagon has 8 sides.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.1: polygon naming chart."
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Polygon or Not? — The Two Tests",
+      "content": "To check if a figure is a polygon, ask TWO questions: (1) Is it CLOSED? If there is any gap or opening, it is NOT a polygon. (2) Are ALL sides STRAIGHT? If even ONE side is curved, it is NOT a polygon. A circle fails test 2 (curved). An open V-shape fails test 1 (not closed).",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Go Math 12.1: polygon vs non-polygon."
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today you learned: (1) A polygon is a CLOSED figure with all STRAIGHT sides. (2) SIDES are the straight segments. (3) VERTICES are the corners where sides meet. (4) ANGLES are formed at each vertex. (5) For any polygon: sides = vertices = angles. (6) A RIGHT ANGLE is a square corner. (7) Names: 3=triangle, 4=quadrilateral, 5=pentagon, 6=hexagon, 8=octagon.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": "Covers all Go Math 12.1 concepts."
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "identify_polygon",
+      "difficulty": 2,
+      "question": "Which describes a figure that IS a polygon?",
+      "choices": [
+        "A) A closed figure with one curved side and three straight sides",
+        "B) A closed figure with five straight sides",
+        "C) An open figure with four straight sides",
+        "D) A circle"
+      ],
+      "correct_answer": "B",
+      "solution_steps": [
+        "Step 1: Test 1 — Is it closed? Yes.",
+        "Step 2: Test 2 — Are all sides straight? Yes (5 straight sides).",
+        "Step 3: Both tests pass, so it IS a polygon."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "One curved side fails test 2 — not a polygon"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Open figure fails test 1 — not a polygon"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "A circle is curved — not a polygon"
+        }
+      },
+      "feedback": {
+        "correct": "Yes! Closed AND all straight = polygon. 5 straight sides means it is a pentagon.",
+        "incorrect": "A polygon needs to be CLOSED with ALL STRAIGHT sides. Only choice B passes both tests."
+      },
+      "verification": "Polygon = closed + all straight. B is correct.",
+      "hints": [
+        "Apply both tests: closed? all straight?"
+      ]
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_sides",
+      "difficulty": 2,
+      "question": "How many sides does a hexagon have?",
+      "correct_answer": "6",
+      "solution_steps": [
+        "Step 1: 'Hex' means six.",
+        "Step 2: Hexagon = 6 sides."
+      ],
+      "expected_errors": {
+        "5": {
+          "error_type": "concept_gap",
+          "note": "That's a pentagon"
+        },
+        "8": {
+          "error_type": "concept_gap",
+          "note": "That's an octagon"
+        }
+      },
+      "feedback": {
+        "correct": "Right! 'Hex' means six. A hexagon has 6 sides.",
+        "incorrect": "A hexagon has 6 sides. 'Hex' means six."
+      },
+      "verification": "Hexagon = 6 sides.",
+      "hints": [
+        "What number does the prefix 'hex' mean?"
+      ]
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_vertices",
+      "difficulty": 2,
+      "question": "A pentagon has 5 sides. How many vertices does it have?",
+      "correct_answer": "5",
+      "solution_steps": [
+        "Step 1: For any polygon, number of vertices = number of sides.",
+        "Step 2: Pentagon has 5 sides, so 5 vertices."
+      ],
+      "expected_errors": {
+        "4": {
+          "error_type": "concept_gap",
+          "note": "Vertices always match sides — 5"
+        },
+        "6": {
+          "error_type": "concept_gap",
+          "note": "Vertices always match sides — 5"
+        },
+        "10": {
+          "error_type": "concept_gap",
+          "note": "Don't double — vertices = sides, not 2x sides"
+        }
+      },
+      "feedback": {
+        "correct": "Yes! Sides equal vertices. 5 sides = 5 vertices.",
+        "incorrect": "The number of vertices equals the number of sides. Pentagon: 5 sides = 5 vertices."
+      },
+      "verification": "Sides = vertices.",
+      "hints": [
+        "Vertices and sides have the same count in any polygon."
+      ]
+    },
+    {
+      "id": "TRY_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "name_by_sides",
+      "difficulty": 2,
+      "question": "What is a polygon with 8 sides called?",
+      "choices": [
+        "A) Hexagon",
+        "B) Pentagon",
+        "C) Octagon",
+        "D) Triangle"
+      ],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: 'Oct' means eight (think of an octopus — 8 arms).",
+        "Step 2: 8 sides = octagon."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Hexagon has 6 sides"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Pentagon has 5 sides"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Triangle has 3 sides"
+        }
+      },
+      "feedback": {
+        "correct": "Yes! 'Oct' means eight, like an octopus. 8 sides = octagon.",
+        "incorrect": "8 sides = octagon. Think of an octopus with 8 arms."
+      },
+      "verification": "Octagon = 8 sides.",
+      "hints": [
+        "An octopus has 8 arms. What polygon has 8 sides?"
+      ]
+    },
+    {
+      "id": "TRY_05",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "right_angle",
+      "difficulty": 3,
+      "question": "Which polygon has 4 right angles?",
+      "choices": [
+        "A) A triangle",
+        "B) A square",
+        "C) A pentagon",
+        "D) A regular hexagon"
+      ],
+      "correct_answer": "B",
+      "solution_steps": [
+        "Step 1: A right angle is a square corner.",
+        "Step 2: A square has 4 corners, all of them right angles.",
+        "Step 3: Triangles, pentagons, and regular hexagons do not have 4 right angles."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Triangles only have 3 angles, and most have no right angles"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "A regular pentagon has no right angles"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "A regular hexagon has no right angles"
+        }
+      },
+      "feedback": {
+        "correct": "Right! A square has 4 right angles — all four corners are square corners.",
+        "incorrect": "A square has 4 right angles — every corner is a square corner."
+      },
+      "verification": "Square: 4 right angles.",
+      "hints": [
+        "A right angle looks like the corner of a book. Which shape has 4 of those?"
+      ]
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_sides",
+      "difficulty": 1,
+      "question": "How many sides does a quadrilateral have?",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "That's a triangle"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "That's a pentagon"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "That's a hexagon"
+        }
+      },
+      "verification": "Quadrilateral: 'quad' = 4.",
+      "hints": [
+        "'Quad' means four."
+      ],
+      "feedback": {
+        "correct": "Yes! 'Quad' means four. A quadrilateral has 4 sides.",
+        "incorrect": "The answer is B (4). 'Quad' means four."
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_vertices",
+      "difficulty": 1,
+      "question": "A hexagon has 6 sides. How many vertices does it have?",
+      "correct_answer": "6",
+      "expected_errors": {
+        "5": {
+          "error_type": "concept_gap",
+          "note": "Vertices = sides"
+        },
+        "12": {
+          "error_type": "concept_gap",
+          "note": "Don't double — vertices = sides, not 2x sides"
+        }
+      },
+      "verification": "Vertices = sides = 6.",
+      "hints": [
+        "Vertices always match the number of sides."
+      ],
+      "feedback": {
+        "correct": "Right! 6 sides = 6 vertices.",
+        "incorrect": "A hexagon has 6 vertices. Vertices always equal the number of sides."
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "name_by_sides",
+      "difficulty": 2,
+      "question": "What is the name of a polygon with 5 sides?",
+      "choices": [
+        "A) Triangle",
+        "B) Quadrilateral",
+        "C) Pentagon",
+        "D) Hexagon"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Triangle = 3 sides"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Quadrilateral = 4 sides"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Hexagon = 6 sides"
+        }
+      },
+      "verification": "Pentagon = 5 sides.",
+      "hints": [
+        "'Penta' means five."
+      ],
+      "feedback": {
+        "correct": "Yes! 'Penta' means five. A pentagon has 5 sides.",
+        "incorrect": "The answer is C (pentagon). 'Penta' means five."
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "identify_polygon",
+      "difficulty": 2,
+      "question": "Which figure is a polygon?",
+      "choices": [
+        "A) A closed figure with 4 straight sides",
+        "B) A closed figure with one curved side",
+        "C) An open figure made of 3 straight segments",
+        "D) A circle"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Curved side is not allowed"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Polygons must be closed"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Circles are not polygons"
+        }
+      },
+      "verification": "Polygon needs closed AND all straight.",
+      "hints": [
+        "Apply both tests: closed? all straight?"
+      ],
+      "feedback": {
+        "correct": "Yes! Closed and all straight — that's a polygon (a quadrilateral).",
+        "incorrect": "The answer is A. A polygon must be CLOSED and have ALL STRAIGHT sides."
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_angles",
+      "difficulty": 2,
+      "question": "How many angles does an octagon have?",
+      "correct_answer": "8",
+      "expected_errors": {
+        "6": {
+          "error_type": "concept_gap",
+          "note": "That's a hexagon"
+        },
+        "16": {
+          "error_type": "concept_gap",
+          "note": "Don't double — angles = sides"
+        }
+      },
+      "verification": "Octagon: 8 sides = 8 angles.",
+      "hints": [
+        "Angles always match the number of sides."
+      ],
+      "feedback": {
+        "correct": "Right! Octagon has 8 sides, so 8 angles.",
+        "incorrect": "An octagon has 8 angles. The number of angles always equals the number of sides."
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "non_polygon",
+      "difficulty": 2,
+      "question": "Which figure is NOT a polygon?",
+      "choices": [
+        "A) Triangle",
+        "B) Hexagon",
+        "C) Circle",
+        "D) Octagon"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Triangle is a polygon (3 straight sides)"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Hexagon is a polygon (6 straight sides)"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Octagon is a polygon (8 straight sides)"
+        }
+      },
+      "verification": "Circle has a curved side — not a polygon.",
+      "hints": [
+        "Polygons cannot have curved sides."
+      ],
+      "feedback": {
+        "correct": "Yes! A circle is curved, so it is NOT a polygon.",
+        "incorrect": "The answer is C. Polygons must have ALL STRAIGHT sides — circles are curved."
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "right_angle",
+      "difficulty": 2,
+      "question": "Which is an example of a right angle?",
+      "choices": [
+        "A) The corner of a book",
+        "B) The point of a pencil",
+        "C) A circle",
+        "D) The narrow tip of a slice of pizza"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "A pencil tip is too sharp — smaller than a right angle"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "A circle has no angles"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Narrow pizza tip is smaller than a right angle"
+        }
+      },
+      "verification": "Book corner = right angle.",
+      "hints": [
+        "A right angle looks like a perfect square corner."
+      ],
+      "feedback": {
+        "correct": "Yes! A book corner is a perfect right angle.",
+        "incorrect": "The answer is A. A right angle is a square corner — like the corner of a book."
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "name_by_sides",
+      "difficulty": 2,
+      "question": "A polygon has 4 sides. What is it called? (Write the name in lowercase.)",
+      "correct_answer": "quadrilateral",
+      "expected_errors": {
+        "square": {
+          "error_type": "concept_gap",
+          "note": "A square is one type of quadrilateral, but the general name is quadrilateral"
+        },
+        "rectangle": {
+          "error_type": "concept_gap",
+          "note": "A rectangle is one type, but the general name is quadrilateral"
+        }
+      },
+      "verification": "Quadrilateral = 4-sided polygon (general name).",
+      "hints": [
+        "The general name for any 4-sided polygon starts with 'quad'."
+      ],
+      "feedback": {
+        "correct": "Right! Any polygon with 4 sides is a quadrilateral.",
+        "incorrect": "The answer is 'quadrilateral'. 'Quad' means four — quadrilateral = 4 sides."
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_sides",
+      "difficulty": 2,
+      "question": "Which polygon has 3 sides?",
+      "choices": [
+        "A) Triangle",
+        "B) Pentagon",
+        "C) Hexagon",
+        "D) Octagon"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Pentagon has 5 sides"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Hexagon has 6 sides"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Octagon has 8 sides"
+        }
+      },
+      "verification": "Triangle = 3 sides.",
+      "hints": [
+        "'Tri' means three."
+      ],
+      "feedback": {
+        "correct": "Yes! 'Tri' means three. A triangle has 3 sides.",
+        "incorrect": "The answer is A (triangle). 'Tri' means three."
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_attributes",
+      "difficulty": 2,
+      "question": "A polygon has 6 vertices. How many angles does it have?",
+      "correct_answer": "6",
+      "expected_errors": {
+        "5": {
+          "error_type": "concept_gap",
+          "note": "Angles = vertices"
+        },
+        "12": {
+          "error_type": "concept_gap",
+          "note": "Don't double — angles = vertices"
+        }
+      },
+      "verification": "Vertices = angles in any polygon.",
+      "hints": [
+        "Sides = vertices = angles for any polygon."
+      ],
+      "feedback": {
+        "correct": "Right! 6 vertices = 6 angles. They always match.",
+        "incorrect": "Vertices and angles are always equal in count. 6 vertices = 6 angles."
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "name_by_sides",
+      "difficulty": 2,
+      "question": "Maya draws a polygon with 5 sides and 5 angles. What is her polygon called?",
+      "choices": [
+        "A) Quadrilateral",
+        "B) Pentagon",
+        "C) Hexagon",
+        "D) Octagon"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Quadrilateral has 4 sides"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Hexagon has 6 sides"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Octagon has 8 sides"
+        }
+      },
+      "verification": "Pentagon = 5 sides.",
+      "hints": [
+        "'Penta' means five."
+      ],
+      "feedback": {
+        "correct": "Yes! 5 sides and 5 angles = pentagon.",
+        "incorrect": "Maya drew a pentagon. 'Penta' means five."
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_rules",
+      "difficulty": 2,
+      "question": "True or False: A polygon must have all straight sides.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "All sides of a polygon must be straight — no curves"
+        }
+      },
+      "verification": "Polygon rule: all sides straight.",
+      "hints": [
+        "What are the two rules for a polygon?"
+      ],
+      "feedback": {
+        "correct": "True! A polygon must have all straight sides. No curves.",
+        "incorrect": "True. Every side of a polygon must be straight — no curves are allowed."
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_vertices",
+      "difficulty": 2,
+      "question": "A stop sign is shaped like an octagon. How many vertices does a stop sign have?",
+      "correct_answer": "8",
+      "expected_errors": {
+        "6": {
+          "error_type": "concept_gap",
+          "note": "Octagon = 8 sides = 8 vertices"
+        },
+        "4": {
+          "error_type": "concept_gap",
+          "note": "That's a quadrilateral"
+        }
+      },
+      "verification": "Octagon: 8 vertices.",
+      "hints": [
+        "An octopus has 8 arms — what does 'oct' mean?"
+      ],
+      "feedback": {
+        "correct": "Right! An octagon (stop sign) has 8 vertices.",
+        "incorrect": "A stop sign has 8 vertices. 'Oct' means eight."
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.1",
+      "skill_tag": "right_angle",
+      "difficulty": 2,
+      "question": "How many right angles does a rectangle have?",
+      "choices": [
+        "A) 0",
+        "B) 2",
+        "C) 3",
+        "D) 4"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Rectangles have right angles at every corner"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Every corner of a rectangle is a right angle — 4 in total"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "All 4 corners are right angles"
+        }
+      },
+      "verification": "Rectangle: 4 right angles.",
+      "hints": [
+        "A rectangle has 4 corners. How many of them are square corners?"
+      ],
+      "feedback": {
+        "correct": "Yes! A rectangle has 4 right angles — every corner is a square corner.",
+        "incorrect": "A rectangle has 4 right angles. Every one of its 4 corners is a square corner."
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "non_polygon",
+      "difficulty": 3,
+      "question": "Sam draws a closed figure with 4 sides, but ONE side is curved. Is the figure a polygon?",
+      "choices": [
+        "A) Yes — it has 4 sides",
+        "B) Yes — it is closed",
+        "C) No — one side is curved",
+        "D) No — it has too few sides"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "4 sides isn't enough — they must all be straight"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Being closed isn't enough — sides must be straight too"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "4 sides is enough; the issue is the curved side"
+        }
+      },
+      "verification": "Curved side fails test 2.",
+      "hints": [
+        "Apply both tests: closed? AND all straight?"
+      ],
+      "feedback": {
+        "correct": "Right! One curved side breaks the rule. Polygons must have ALL straight sides.",
+        "incorrect": "Even one curved side disqualifies a figure from being a polygon."
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_attributes",
+      "difficulty": 3,
+      "question": "A polygon has 7 sides. How many vertices and angles does it have? (Write one number.)",
+      "correct_answer": "7",
+      "expected_errors": {
+        "14": {
+          "error_type": "concept_gap",
+          "note": "Don't add or double — sides = vertices = angles"
+        },
+        "6": {
+          "error_type": "careless",
+          "note": "Same as sides"
+        }
+      },
+      "verification": "Sides = vertices = angles.",
+      "hints": [
+        "Sides, vertices, and angles are always the same number."
+      ],
+      "feedback": {
+        "correct": "Right! 7 sides = 7 vertices = 7 angles.",
+        "incorrect": "All three counts are equal in any polygon. 7 sides means 7 vertices and 7 angles."
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "name_by_sides",
+      "difficulty": 2,
+      "question": "Which polygon has the FEWEST sides?",
+      "choices": [
+        "A) Triangle",
+        "B) Quadrilateral",
+        "C) Pentagon",
+        "D) Hexagon"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "careless",
+          "note": "Triangle has fewer (3 < 4)"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Triangle has fewer (3 < 5)"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "Triangle has fewer (3 < 6)"
+        }
+      },
+      "verification": "Triangle = 3, smallest polygon.",
+      "hints": [
+        "Compare side counts: 3, 4, 5, 6. Which is smallest?"
+      ],
+      "feedback": {
+        "correct": "Yes! A triangle has 3 sides — the fewest of any polygon.",
+        "incorrect": "Triangles have 3 sides. That is the fewest a polygon can have."
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_rules",
+      "difficulty": 3,
+      "question": "True or False: Every polygon has the same number of sides as vertices.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "Sides and vertices are always equal in count"
+        }
+      },
+      "verification": "Sides = vertices for any polygon.",
+      "hints": [
+        "Each side connects two vertices, but each vertex is shared between two sides — so the counts are equal."
+      ],
+      "feedback": {
+        "correct": "True! Sides and vertices are always the same count.",
+        "incorrect": "True. In every polygon, sides equal vertices — they always match."
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "right_angle",
+      "difficulty": 3,
+      "question": "Which polygon has 0 right angles?",
+      "choices": [
+        "A) A square",
+        "B) A rectangle",
+        "C) A regular pentagon",
+        "D) A figure shaped like the letter L"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "A square has 4 right angles"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "A rectangle has 4 right angles"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "An L-shape has right angles at its corners"
+        }
+      },
+      "verification": "Regular pentagon: 0 right angles.",
+      "hints": [
+        "Which choice has no square corners?"
+      ],
+      "feedback": {
+        "correct": "Yes! A regular pentagon has 5 angles, but none of them are right angles.",
+        "incorrect": "A regular pentagon has 0 right angles. Squares, rectangles, and L-shapes all have right angles."
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "count_sides",
+      "difficulty": 3,
+      "question": "An octagon and a hexagon are placed side by side. How many sides do they have ALL TOGETHER?",
+      "correct_answer": "14",
+      "expected_errors": {
+        "12": {
+          "error_type": "careless",
+          "note": "Octagon=8 + hexagon=6 = 14, not 12"
+        },
+        "16": {
+          "error_type": "careless",
+          "note": "Don't use 8+8 — hexagon is 6"
+        }
+      },
+      "verification": "Octagon 8 + hexagon 6 = 14.",
+      "hints": [
+        "Add the sides: octagon (8) + hexagon (6)."
+      ],
+      "feedback": {
+        "correct": "Right! 8 + 6 = 14 sides total.",
+        "incorrect": "Octagon has 8 sides and hexagon has 6 sides. 8 + 6 = 14."
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_reasoning",
+      "difficulty": 4,
+      "question": "Lily says, 'My polygon has more sides than a pentagon but fewer sides than an octagon.' Which polygon could Lily have drawn? (Choose any one that fits.)",
+      "choices": [
+        "A) Triangle",
+        "B) Quadrilateral",
+        "C) Hexagon",
+        "D) Octagon"
+      ],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: Pentagon has 5 sides; octagon has 8 sides.",
+        "Step 2: Lily's polygon has more than 5 and fewer than 8 — so 6 or 7.",
+        "Step 3: Among the choices, only hexagon (6 sides) fits."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Triangle = 3 sides, fewer than 5"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Quadrilateral = 4 sides, fewer than 5"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Octagon = 8 sides — not fewer than 8"
+        }
+      },
+      "feedback": {
+        "correct": "Right! Hexagon has 6 sides, which is between 5 and 8.",
+        "incorrect": "Lily's polygon has between 5 and 8 sides. Only the hexagon (6 sides) fits."
+      },
+      "three_read_prompt": "Read 1: How many sides do pentagon and octagon have? Read 2: What range fits 'more than 5 but fewer than 8'? Read 3: Which choice has that many sides?",
+      "verification": "Pentagon=5, octagon=8. Range: 6 or 7. Hexagon=6.",
+      "hints": [
+        "How many sides do pentagon and octagon have? What numbers fit between them?"
+      ]
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_logic",
+      "difficulty": 4,
+      "question": "A polygon has the same number of sides as a hexagon plus a triangle. How many sides does it have?",
+      "correct_answer": "9",
+      "solution_steps": [
+        "Step 1: Hexagon = 6 sides.",
+        "Step 2: Triangle = 3 sides.",
+        "Step 3: 6 + 3 = 9 sides."
+      ],
+      "expected_errors": {
+        "6": {
+          "error_type": "careless",
+          "note": "Forgot to add the triangle"
+        },
+        "10": {
+          "error_type": "careless",
+          "note": "Off by one — 6+3=9, not 10"
+        },
+        "8": {
+          "error_type": "concept_gap",
+          "note": "Hexagon=6, triangle=3 → 6+3=9"
+        }
+      },
+      "feedback": {
+        "correct": "Right! 6 + 3 = 9 sides.",
+        "incorrect": "Hexagon (6) + triangle (3) = 9 sides."
+      },
+      "verification": "6 + 3 = 9.",
+      "hints": [
+        "How many sides for hexagon? For triangle? Add them."
+      ]
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_attributes",
+      "difficulty": 4,
+      "question": "A polygon has 4 sides AND 4 right angles. Which of these CANNOT describe it?",
+      "choices": [
+        "A) A square",
+        "B) A rectangle",
+        "C) A trapezoid with no right angles",
+        "D) Any quadrilateral with 4 square corners"
+      ],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: The polygon must have 4 sides AND 4 right angles.",
+        "Step 2: A square fits — 4 sides, 4 right angles.",
+        "Step 3: A rectangle fits — 4 sides, 4 right angles.",
+        "Step 4: A trapezoid with NO right angles cannot fit (has 0 right angles, not 4)."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "A square does fit — 4 sides and 4 right angles"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "A rectangle fits — 4 sides and 4 right angles"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Any 4-sided shape with 4 square corners fits the description"
+        }
+      },
+      "feedback": {
+        "correct": "Right! A trapezoid with no right angles has 0 right angles, not 4 — so it cannot match.",
+        "incorrect": "The polygon must have 4 right angles. A trapezoid with no right angles fails that requirement."
+      },
+      "three_read_prompt": "Read 1: What two rules must the polygon follow? Read 2: Which choices follow both rules? Read 3: Which choice fails one rule?",
+      "verification": "Trapezoid with 0 right angles fails 'must have 4 right angles'.",
+      "hints": [
+        "Check each choice against both rules: 4 sides AND 4 right angles."
+      ]
+    },
+    {
+      "id": "R3_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_logic",
+      "difficulty": 5,
+      "question": "Two polygons together have 11 sides. One is a quadrilateral. How many sides does the OTHER polygon have?",
+      "correct_answer": "7",
+      "solution_steps": [
+        "Step 1: Quadrilateral = 4 sides.",
+        "Step 2: Total = 11 sides. Other polygon's sides = 11 - 4 = 7.",
+        "Step 3: A 7-sided polygon is a heptagon."
+      ],
+      "expected_errors": {
+        "11": {
+          "error_type": "concept_gap",
+          "note": "Don't include the quadrilateral's sides — subtract them"
+        },
+        "4": {
+          "error_type": "concept_gap",
+          "note": "That's the quadrilateral, not the other polygon"
+        },
+        "8": {
+          "error_type": "careless",
+          "note": "11 - 4 = 7, not 8"
+        }
+      },
+      "feedback": {
+        "correct": "Right! 11 − 4 = 7 sides.",
+        "incorrect": "Quadrilateral has 4 sides. 11 − 4 = 7. The other polygon has 7 sides."
+      },
+      "three_read_prompt": "Read 1: What is the total? Read 2: How many sides does a quadrilateral have? Read 3: What operation finds the other polygon's sides?",
+      "verification": "11 − 4 = 7.",
+      "hints": [
+        "Subtract the quadrilateral's 4 sides from the total of 11."
+      ]
+    },
+    {
+      "id": "R3_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_reasoning",
+      "difficulty": 5,
+      "question": "Ben says, 'I drew a polygon with 3 sides and 4 vertices.' Could Ben be correct?",
+      "choices": [
+        "A) Yes — sides and vertices can differ",
+        "B) Yes — only if the figure is curved",
+        "C) No — sides and vertices must be equal in any polygon",
+        "D) No — polygons must have at least 4 sides"
+      ],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: In every polygon, sides = vertices.",
+        "Step 2: Ben said 3 sides and 4 vertices — that is impossible.",
+        "Step 3: A polygon with 3 sides has exactly 3 vertices."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Sides and vertices are always equal in a polygon"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Polygons cannot be curved at all"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Triangles (3 sides) are valid polygons"
+        }
+      },
+      "feedback": {
+        "correct": "Right! Sides always equal vertices. 3 sides means 3 vertices, not 4.",
+        "incorrect": "Sides and vertices are ALWAYS equal in a polygon. Ben must be mistaken."
+      },
+      "three_read_prompt": "Read 1: What did Ben say? Read 2: What is the rule for sides and vertices? Read 3: Does Ben's claim match the rule?",
+      "verification": "Sides = vertices always.",
+      "hints": [
+        "What is the rule connecting sides and vertices in any polygon?"
+      ]
+    }
+  ]
+}
