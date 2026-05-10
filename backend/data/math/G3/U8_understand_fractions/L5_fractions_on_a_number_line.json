@@ -24,491 +24,1323 @@
     "divide 0 to 1 into equal lengths",
     "count lengths from 0 to locate fraction"
   ],
-  "sections": {
-    "pretest": [
-      {
-        "id": "PT_01",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A number line from 0 to 1 is divided into 4 equal parts. What fraction does the first mark after 0 represent?",
-        "choices": [
-          "1/2",
-          "1/3",
-          "1/4",
-          "4/4"
-        ],
-        "answer": "C",
-        "explanation": "4 equal parts → the first mark is at 1/4."
-      },
-      {
-        "id": "PT_02",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A number line from 0 to 1 is divided into 3 equal parts. What fraction does the point at the second mark represent?",
-        "choices": [
-          "1/3",
-          "2/3",
-          "3/3",
-          "1/2"
-        ],
-        "answer": "B",
-        "explanation": "Second mark out of 3 equal parts = 2/3."
-      },
-      {
-        "id": "PT_03",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "On a number line from 0 to 1, where is 0/4 located?",
-        "choices": [
-          "At 0",
-          "At 1/4",
-          "At 1/2",
-          "At 1"
-        ],
-        "answer": "A",
-        "explanation": "0/4 = 0, which is at the very start of the number line."
-      },
-      {
-        "id": "PT_04",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "A number line from 0 to 1 is divided into 6 equal parts. A point is at the 4th mark. What fraction is it?",
-        "choices": [
-          "2/6",
-          "3/6",
-          "4/6",
-          "5/6"
-        ],
-        "answer": "C",
-        "explanation": "4th mark out of 6 equal parts = 4/6."
-      },
-      {
-        "id": "PT_05",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "On a number line from 0 to 1 divided into 8 equal parts, what fraction is at the same point as 1?",
-        "choices": [
-          "7/8",
-          "8/8",
-          "1/8",
-          "8/1"
-        ],
-        "answer": "B",
-        "explanation": "The end of the number line is 1 = 8/8."
+  "concept": "fractions_on_a_number_line",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A number line from 0 to 1 is divided into 4 equal parts. What fraction does the first mark after 0 represent?",
+      "choices": [
+        "1/2",
+        "1/3",
+        "1/4",
+        "4/4"
+      ],
+      "answer": "C",
+      "explanation": "4 equal parts → the first mark is at 1/4.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "learn": [
-      {
-        "id": "LRN_01",
-        "type": "card",
-        "title": "Fractions on a Number Line",
-        "content": "A number line from 0 to 1 can be divided into equal parts, just like a shape. If you divide it into 4 equal lengths, the marks show 0/4, 1/4, 2/4, 3/4, and 4/4.",
-        "cpa_phase": "concrete",
-        "visual_type": "manipulative",
-        "visual_data": {
-          "tool": "number_line",
-          "config": {
-            "min": 0,
-            "max": 50,
-            "step": 5
-          }
-        }
-      },
-      {
-        "id": "LRN_02",
-        "type": "card",
-        "title": "Locating a Fraction",
-        "content": "To find a fraction on a number line: 1) Look at the denominator — it tells how many equal lengths between 0 and 1. 2) Count from 0 the number of lengths shown by the numerator. Example: 3/4 → divide into 4 parts, count 3 from 0.",
-        "cpa_phase": "concrete",
-        "visual_type": "manipulative",
-        "visual_data": {
-          "tool": "number_line",
-          "config": {
-            "min": 0,
-            "max": 50,
-            "step": 5
-          }
-        }
-      },
-      {
-        "id": "LRN_03",
-        "type": "card",
-        "title": "Endpoints",
-        "content": "0/4 is at 0 (the start). 4/4 is at 1 (the end). Any fraction with 0 as the numerator equals 0. Any fraction where numerator = denominator equals 1.",
-        "cpa_phase": "pictorial",
-        "visual_type": "manipulative",
-        "visual_data": {
-          "tool": "number_line",
-          "config": {
-            "min": 0,
-            "max": 50,
-            "step": 5
-          }
-        }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A number line from 0 to 1 is divided into 3 equal parts. What fraction does the point at the second mark represent?",
+      "choices": [
+        "1/3",
+        "2/3",
+        "3/3",
+        "1/2"
+      ],
+      "answer": "B",
+      "explanation": "Second mark out of 3 equal parts = 2/3.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "try": [
-      {
-        "id": "TRY_01",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A number line from 0 to 1 is divided into 8 equal parts. What fraction is at the third mark?",
-        "choices": [
-          "1/8",
-          "2/8",
-          "3/8",
-          "4/8"
-        ],
-        "answer": "C",
-        "explanation": "Third mark = 3/8.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
-        },
-        "solution_steps": []
-      },
-      {
-        "id": "TRY_02",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "On a number line from 0 to 1 divided into 2 equal parts, where is 1/2?",
-        "choices": [
-          "At 0",
-          "In the middle",
-          "At 1",
-          "Cannot be found"
-        ],
-        "answer": "B",
-        "explanation": "1/2 is exactly in the middle between 0 and 1.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
-        },
-        "solution_steps": []
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "On a number line from 0 to 1, where is 0/4 located?",
+      "choices": [
+        "At 0",
+        "At 1/4",
+        "At 1/2",
+        "At 1"
+      ],
+      "answer": "A",
+      "explanation": "0/4 = 0, which is at the very start of the number line.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "practice_r1": [
-      {
-        "id": "R1_01",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A number line from 0 to 1 is divided into 3 equal parts. What fraction is at the first mark?",
-        "choices": [
-          "1/2",
-          "1/3",
-          "2/3",
-          "3/3"
-        ],
-        "answer": "B",
-        "explanation": "First mark of 3 equal parts = 1/3.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
-        }
-      },
-      {
-        "id": "R1_02",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A number line from 0 to 1 is divided into 4 equal parts. What fraction is at the third mark?",
-        "choices": [
-          "1/4",
-          "2/4",
-          "3/4",
-          "4/4"
-        ],
-        "answer": "C",
-        "explanation": "Third mark = 3/4.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
-        }
-      },
-      {
-        "id": "R1_03",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A number line from 0 to 1 is divided into 6 equal parts. What fraction is at the first mark?",
-        "choices": [
-          "1/3",
-          "1/4",
-          "1/6",
-          "1/8"
-        ],
-        "answer": "C",
-        "explanation": "First mark = 1/6.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
-        }
-      },
-      {
-        "id": "R1_04",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "What fraction is located at 0 on any number line?",
-        "choices": [
-          "1/2",
-          "0/1",
-          "1/1",
-          "1/0"
-        ],
-        "answer": "B",
-        "explanation": "0 can be written as 0/1 (or 0/any number). It is at the start of the number line.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
-        }
-      },
-      {
-        "id": "R1_05",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A number line from 0 to 1 is divided into 8 equal parts. What fraction is at the last mark before 1?",
-        "choices": [
-          "6/8",
-          "7/8",
-          "8/8",
-          "1/8"
-        ],
-        "answer": "B",
-        "explanation": "The last mark before 1 (8/8) is 7/8.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
-        }
-      },
-      {
-        "id": "R1_06",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A number line from 0 to 1 is divided into 4 equal parts. Which fraction is at the same location as 1?",
-        "choices": [
-          "1/4",
-          "3/4",
-          "4/4",
-          "4/1"
-        ],
-        "answer": "C",
-        "explanation": "4/4 = 1 whole.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
-        }
-      },
-      {
-        "id": "R1_07",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A number line from 0 to 1 is divided into 6 equal parts. What fraction is at the 5th mark?",
-        "choices": [
-          "4/6",
-          "5/6",
-          "6/6",
-          "5/5"
-        ],
-        "answer": "B",
-        "explanation": "5th mark = 5/6.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
-        }
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "A number line from 0 to 1 is divided into 6 equal parts. A point is at the 4th mark. What fraction is it?",
+      "choices": [
+        "2/6",
+        "3/6",
+        "4/6",
+        "5/6"
+      ],
+      "answer": "C",
+      "explanation": "4th mark out of 6 equal parts = 4/6.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "practice_r2": [
-      {
-        "id": "R2_01",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "A number line from 0 to 1 is divided into 4 equal parts. Which fraction is closer to 1?",
-        "choices": [
-          "1/4",
-          "2/4",
-          "3/4",
-          "They are all the same distance"
-        ],
-        "answer": "C",
-        "explanation": "3/4 is only 1/4 away from 1, which is the closest.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
-        }
-      },
-      {
-        "id": "R2_02",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "On a number line divided into 8 equal parts, how many marks are there between 0 and 1 (not counting 0 and 1)?",
-        "choices": [
-          "6",
-          "7",
-          "8",
-          "9"
-        ],
-        "answer": "B",
-        "explanation": "8 equal parts create 7 marks between 0 and 1.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
-        }
-      },
-      {
-        "id": "R2_03",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "A number line from 0 to 1 is divided into 6 equal parts. Which two fractions are the same distance from 3/6?",
-        "choices": [
-          "1/6 and 4/6",
-          "2/6 and 4/6",
-          "1/6 and 5/6",
-          "0/6 and 5/6"
-        ],
-        "answer": "B",
-        "explanation": "2/6 is 1 step left of 3/6 and 4/6 is 1 step right of 3/6. Both are 1/6 away.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
-        }
-      },
-      {
-        "id": "R2_04",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "Ben marks a point on a number line from 0 to 1. The point is past the halfway mark but not at 1. The line is divided into 4 equal parts. Where could Ben's point be?",
-        "choices": [
-          "1/4",
-          "2/4",
-          "3/4",
-          "0/4"
-        ],
-        "answer": "C",
-        "explanation": "Halfway is 2/4. Past halfway but not at 1 (4/4) means 3/4.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
-        }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "On a number line from 0 to 1 divided into 8 equal parts, what fraction is at the same point as 1?",
+      "choices": [
+        "7/8",
+        "8/8",
+        "1/8",
+        "8/1"
+      ],
+      "answer": "B",
+      "explanation": "The end of the number line is 1 = 8/8.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "practice_r3": [
-      {
-        "id": "R3_01",
-        "type": "mc",
-        "difficulty": 3,
-        "question": "On a number line from 0 to 1, the point for 2/6 and the point for 1/3 are at the same location. Why?",
-        "choices": [
-          "Because 2 + 6 = 1 + 3",
-          "Because they are equivalent fractions (2/6 = 1/3)",
-          "Because both are less than 1/2",
-          "Because the denominators are both even"
-        ],
-        "answer": "B",
-        "explanation": "2/6 simplifies to 1/3. Equivalent fractions are at the same point on a number line.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
+    }
+  ],
+  "learn": [
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "title": "Fractions on a Number Line",
+      "content": "A number line from 0 to 1 can be divided into equal parts, just like a shape. If you divide it into 4 equal lengths, the marks show 0/4, 1/4, 2/4, 3/4, and 4/4.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "min": 0,
+          "max": 50,
+          "step": 5
         }
       },
-      {
-        "id": "R3_02",
-        "type": "mc",
-        "difficulty": 3,
-        "question": "A number line from 0 to 1 is divided into 8 equal parts. Ella says 4/8 is the same as 1/2. How can you check on the number line?",
-        "choices": [
-          "4/8 is the 4th mark; 1/2 is the middle mark. They are the same point.",
-          "Count 4 marks from the right; that is 1/2.",
-          "4/8 is closer to 1 than 1/2.",
-          "You cannot check without a ruler."
-        ],
-        "answer": "A",
-        "explanation": "On 8 equal parts, the 4th mark is exactly in the middle (halfway), which is also 1/2.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is A. Remember how fractions on a number line works."
-        }
-      },
-      {
-        "id": "R3_03",
-        "type": "mc",
-        "difficulty": 3,
-        "question": "A number line from 0 to 1 is divided into 6 equal parts. Sara places a point 2 lengths from 0 and another point 2 lengths from 1. What fractions did she place?",
-        "choices": [
-          "2/6 and 6/6",
-          "2/6 and 4/6",
-          "1/6 and 5/6",
-          "3/6 and 3/6"
-        ],
-        "answer": "B",
-        "explanation": "2 lengths from 0 = 2/6. 2 lengths from 1 (i.e., 6/6) backward = 4/6.",
-        "hints": [
-          "Think about what fractions on a number line means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
-        }
+      "cpa_stage": "pictorial",
+      "skill_tag": "number_line_intro",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ]
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "title": "Locating a Fraction",
+      "content": "To find a fraction on a number line: 1) Look at the denominator — it tells how many equal lengths between 0 and 1. 2) Count from 0 the number of lengths shown by the numerator. Example: 3/4 → divide into 4 parts, count 3 from 0.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "min": 0,
+          "max": 50,
+          "step": 5
+        }
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "locate_fraction",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "title": "Endpoints",
+      "content": "0/4 is at 0 (the start). 4/4 is at 1 (the end). Any fraction with 0 as the numerator equals 0. Any fraction where numerator = denominator equals 1.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "number_line",
+        "config": {
+          "min": 0,
+          "max": 50,
+          "step": 5
+        }
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "endpoints_0_1",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "title": "점프 세기 방법 — 0에서 출발",
+      "content": "수직선에서 a/b를 찾으려면: 0에서 출발해 1/b씩 a번 점프한다. 예: 3/4 → 0에서 1/4씩 3번 점프 → 3번째 눈금. 예: 5/6 → 0에서 1/6씩 5번 점프 → 5번째 눈금. 🔍 핵심: 분자 a = 점프 횟수, 분모 b = 점프 한 번의 크기.",
+      "cpa_stage": "pictorial",
+      "visual_type": "count_jumps",
+      "skill_tag": "count_jumps_method",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "title": "눈금에 라벨 붙이기 — 0/b부터 b/b까지",
+      "content": "0~1을 b등분하면 b+1개의 눈금이 생김. 왼쪽부터 0/b, 1/b, 2/b, …, b/b (=1). 예: 4등분 → 0/4, 1/4, 2/4, 3/4, 4/4. 끝점 0 = 0/b, 끝점 1 = b/b. 흔한 실수 (M01): 칸 수와 눈금 수 혼동 — 칸이 b개면 눈금은 b+1개.",
+      "cpa_stage": "pictorial",
+      "visual_type": "label_tickmarks",
+      "skill_tag": "label_tickmarks",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "title": "분모는 칸 수 — 0~1을 몇 등분?",
+      "content": "분모 b는 0과 1 사이를 몇 칸으로 나눴는지 알려줌. 분모 4 → 4칸 / 분모 6 → 6칸 / 분모 8 → 8칸. 분모가 클수록 한 칸의 길이는 짧고, 같은 거리를 가는 데 더 많은 점프가 필요. 🔍 빠른 검산: 1까지 b번 점프했는가?",
+      "cpa_stage": "abstract",
+      "visual_type": "denominator_partition",
+      "skill_tag": "denominator_partition",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "title": "분수 = 0에서의 거리",
+      "content": "수직선 위의 a/b는 단순한 점이 아니라 '0에서 그 점까지의 거리'를 의미. 예: 3/4는 0에서 출발해 전체 길이의 3/4만큼 떨어진 위치. 이 관점은 분수 비교에도 도움 — 0에서 더 멀면 더 큰 분수. 예: 3/4 > 2/4 (3/4가 0에서 더 멀리 있음).",
+      "cpa_stage": "pictorial",
+      "visual_type": "fraction_distance",
+      "skill_tag": "fraction_distance_origin",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "title": "수직선 분수 3단계 루틴",
+      "content": "낯선 분수 a/b를 수직선에 표시할 때 3단계:   단계 1) 0과 1 사이를 분모 b만큼 같은 칸으로 나눈다.   단계 2) 0부터 시작해 분자 a번 점프한다.   단계 3) a번째 눈금이 a/b의 위치. 예: 5/8 → 8칸으로 나누고 5번째 눈금. 흔한 실수 (M02): 분모 만큼 칸으로 나누지 않고 자기 마음대로 — 반드시 같은 길이로 b등분 했는지 검증.",
+      "cpa_stage": "abstract",
+      "visual_type": "number_line_routine",
+      "skill_tag": "number_line_routine",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A number line from 0 to 1 is divided into 8 equal parts. What fraction is at the third mark?",
+      "choices": [
+        "1/8",
+        "2/8",
+        "3/8",
+        "4/8"
+      ],
+      "answer": "C",
+      "explanation": "Third mark = 3/8.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
+      },
+      "solution_steps": [],
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "On a number line from 0 to 1 divided into 2 equal parts, where is 1/2?",
+      "choices": [
+        "At 0",
+        "In the middle",
+        "At 1",
+        "Cannot be found"
+      ],
+      "answer": "B",
+      "explanation": "1/2 is exactly in the middle between 0 and 1.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
+      },
+      "solution_steps": [],
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "MC",
+      "question": "A number line from 0 to 1 is divided into 6 equal parts. Where is 4/6 located?",
+      "choices": [
+        "A. The 2nd tick from 0",
+        "B. The 3rd tick from 0",
+        "C. The 4th tick from 0",
+        "D. The 5th tick from 0"
+      ],
+      "answer": "C",
+      "explanation": "분모 6 → 6등분. 분자 4 → 0에서 1/6씩 4번 점프. 4번째 눈금.",
+      "difficulty": 2,
+      "hints": [
+        "1/6씩 점프.",
+        "분자가 점프 횟수."
+      ],
+      "feedback": {
+        "correct": "정답! 4번째 눈금.",
+        "incorrect": "분자만큼 점프하면 4번째."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 4번째 눈금.",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "MC",
+      "question": "On a number line from 0 to 1 divided into 4 equal parts, what fraction is at the 4th tick from 0?",
+      "choices": [
+        "A. 1/4",
+        "B. 3/4",
+        "C. 4/4",
+        "D. 4/3"
+      ],
+      "answer": "C",
+      "explanation": "오른쪽 끝점 = 1 = 4/4.",
+      "difficulty": 1,
+      "hints": [
+        "4번째 눈금은 끝점 1.",
+        "분자/분모가 같으면 1."
+      ],
+      "feedback": {
+        "correct": "정답! 4/4 = 1.",
+        "incorrect": "끝점 1 = 4/4."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 4/4 = 1.",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "question": "A number line from 0 to 1 has 3 equal parts. Where is 2/3?",
+      "choices": [
+        "A. The 1st tick",
+        "B. The 2nd tick",
+        "C. The 3rd tick",
+        "D. Beyond 1"
+      ],
+      "answer": "B",
+      "explanation": "0에서 1/3씩 2번 → 2번째 눈금.",
+      "difficulty": 1,
+      "hints": [
+        "1/3씩 2번 점프."
+      ],
+      "feedback": {
+        "correct": "정답! 2번째 눈금.",
+        "incorrect": "분자=2, 즉 2번 점프."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 2번째 눈금.",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A number line from 0 to 1 is divided into 3 equal parts. What fraction is at the first mark?",
+      "choices": [
+        "1/2",
+        "1/3",
+        "2/3",
+        "3/3"
+      ],
+      "answer": "B",
+      "explanation": "First mark of 3 equal parts = 1/3.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A number line from 0 to 1 is divided into 4 equal parts. What fraction is at the third mark?",
+      "choices": [
+        "1/4",
+        "2/4",
+        "3/4",
+        "4/4"
+      ],
+      "answer": "C",
+      "explanation": "Third mark = 3/4.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A number line from 0 to 1 is divided into 6 equal parts. What fraction is at the first mark?",
+      "choices": [
+        "1/3",
+        "1/4",
+        "1/6",
+        "1/8"
+      ],
+      "answer": "C",
+      "explanation": "First mark = 1/6.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "What fraction is located at 0 on any number line?",
+      "choices": [
+        "1/2",
+        "0/1",
+        "1/1",
+        "1/0"
+      ],
+      "answer": "B",
+      "explanation": "0 can be written as 0/1 (or 0/any number). It is at the start of the number line.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A number line from 0 to 1 is divided into 8 equal parts. What fraction is at the last mark before 1?",
+      "choices": [
+        "6/8",
+        "7/8",
+        "8/8",
+        "1/8"
+      ],
+      "answer": "B",
+      "explanation": "The last mark before 1 (8/8) is 7/8.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A number line from 0 to 1 is divided into 4 equal parts. Which fraction is at the same location as 1?",
+      "choices": [
+        "1/4",
+        "3/4",
+        "4/4",
+        "4/1"
+      ],
+      "answer": "C",
+      "explanation": "4/4 = 1 whole.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A number line from 0 to 1 is divided into 6 equal parts. What fraction is at the 5th mark?",
+      "choices": [
+        "4/6",
+        "5/6",
+        "6/6",
+        "5/5"
+      ],
+      "answer": "B",
+      "explanation": "5th mark = 5/6.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "MC",
+      "question": "A number line from 0 to 1 is divided into 8 equal parts. Where is 5/8?",
+      "choices": [
+        "A. 4번째 눈금",
+        "B. 5번째 눈금",
+        "C. 6번째 눈금",
+        "D. 8번째 눈금"
+      ],
+      "answer": "B",
+      "explanation": "분자 5 → 0에서 1/8씩 5번 점프 → 5번째 눈금.",
+      "difficulty": 2,
+      "hints": [
+        "1/8씩 5번."
+      ],
+      "feedback": {
+        "correct": "정답! 5번째.",
+        "incorrect": "분자=5번 점프."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 5번째.",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "question": "What fraction names 1 on a number line divided into 6 equal parts (using sixths)?",
+      "choices": [
+        "A. 0/6",
+        "B. 1/6",
+        "C. 5/6",
+        "D. 6/6"
+      ],
+      "answer": "D",
+      "explanation": "끝점 1 = b/b = 6/6.",
+      "difficulty": 1,
+      "hints": [
+        "전체 길이 = b/b = 1."
+      ],
+      "feedback": {
+        "correct": "정답! 6/6 = 1.",
+        "incorrect": "끝점 1 = 6/6."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 6/6 = 1.",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "MC",
+      "question": "A number line from 0 to 1 is divided into 3 equal parts. Where is 1/3?",
+      "choices": [
+        "A. 1번째 눈금",
+        "B. 2번째 눈금",
+        "C. 3번째 눈금",
+        "D. 0번째 눈금"
+      ],
+      "answer": "A",
+      "explanation": "분자 1 → 1번 점프 → 1번째 눈금.",
+      "difficulty": 1,
+      "hints": [
+        "1/3씩 1번."
+      ],
+      "feedback": {
+        "correct": "정답! 1번째.",
+        "incorrect": "1번 점프."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 1번째.",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "A number line from 0 to 1 is divided into 4 equal parts. Which fraction is closer to 1?",
+      "choices": [
+        "1/4",
+        "2/4",
+        "3/4",
+        "They are all the same distance"
+      ],
+      "answer": "C",
+      "explanation": "3/4 is only 1/4 away from 1, which is the closest.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "On a number line divided into 8 equal parts, how many marks are there between 0 and 1 (not counting 0 and 1)?",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "B",
+      "explanation": "8 equal parts create 7 marks between 0 and 1.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "A number line from 0 to 1 is divided into 6 equal parts. Which two fractions are the same distance from 3/6?",
+      "choices": [
+        "1/6 and 4/6",
+        "2/6 and 4/6",
+        "1/6 and 5/6",
+        "0/6 and 5/6"
+      ],
+      "answer": "B",
+      "explanation": "2/6 is 1 step left of 3/6 and 4/6 is 1 step right of 3/6. Both are 1/6 away.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "Ben marks a point on a number line from 0 to 1. The point is past the halfway mark but not at 1. The line is divided into 4 equal parts. Where could Ben's point be?",
+      "choices": [
+        "1/4",
+        "2/4",
+        "3/4",
+        "0/4"
+      ],
+      "answer": "C",
+      "explanation": "Halfway is 2/4. Past halfway but not at 1 (4/4) means 3/4.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "MC",
+      "question": "On a number line from 0 to 1 divided into 8 equal parts, which fraction is closer to 1: 7/8 or 5/8?",
+      "choices": [
+        "A. 5/8",
+        "B. 7/8",
+        "C. 둘 다 같음",
+        "D. 알 수 없음"
+      ],
+      "answer": "B",
+      "explanation": "0에서 더 멀수록 1에 가까움. 7/8가 더 멀리.",
+      "difficulty": 2,
+      "hints": [
+        "분자가 클수록 1에 가까움."
+      ],
+      "feedback": {
+        "correct": "정답! 7/8.",
+        "incorrect": "7/8이 1에 더 가까움."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 7/8.",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "question": "A point sits exactly halfway between 0 and 1. What fraction is it (in fourths)?",
+      "choices": [
+        "A. 1/4",
+        "B. 2/4",
+        "C. 3/4",
+        "D. 4/4"
+      ],
+      "answer": "B",
+      "explanation": "정중앙 = 1/2 = 2/4.",
+      "difficulty": 2,
+      "hints": [
+        "1/2 = ?/4"
+      ],
+      "feedback": {
+        "correct": "정답! 2/4.",
+        "incorrect": "1/2 = 2/4."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 2/4.",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "MC",
+      "question": "A number line from 0 to 1 has 6 equal parts. How many of those parts make 4/6?",
+      "choices": [
+        "A. 2 parts",
+        "B. 3 parts",
+        "C. 4 parts",
+        "D. 6 parts"
+      ],
+      "answer": "C",
+      "explanation": "4/6 = 1/6짜리 4개.",
+      "difficulty": 1,
+      "hints": [
+        "분자가 부분 개수."
+      ],
+      "feedback": {
+        "correct": "정답! 4 parts.",
+        "incorrect": "분자 = 4."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 4 parts.",
+      "expected_errors": [
+        "3.NF.A.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "question": "Find the sum: 437 + 285.",
+      "choices": [
+        "A. 612",
+        "B. 622",
+        "C. 712",
+        "D. 722"
+      ],
+      "answer": "D",
+      "explanation": "437+285: 7+5=12 (carry 1), 3+8+1=12 (carry 1), 4+2+1=7. Result: 722.",
+      "difficulty": 2,
+      "hints": [
+        "Two carries.",
+        "437+285=722."
+      ],
+      "feedback": {
+        "correct": "Right — 722.",
+        "incorrect": "437+285=722."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "addition_3digit",
+      "feedback_correct": "Right — 722.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "MC",
+      "question": "Find the difference: 600 − 247.",
+      "choices": [
+        "A. 343",
+        "B. 353",
+        "C. 363",
+        "D. 453"
+      ],
+      "answer": "B",
+      "explanation": "600−247=353 (borrow across both zeros).",
+      "difficulty": 2,
+      "hints": [
+        "Borrow across zeros.",
+        "600−247=353."
+      ],
+      "feedback": {
+        "correct": "Right — 353.",
+        "incorrect": "600−247=353."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "subtraction_3digit",
+      "feedback_correct": "Right — 353.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "question": "A school had 645 pencils. They handed out 278, then bought 159 more. How many pencils now?",
+      "choices": [
+        "A. 367",
+        "B. 437",
+        "C. 526",
+        "D. 645"
+      ],
+      "answer": "C",
+      "explanation": "Step 1: 645−278=367. Step 2: 367+159=526.",
+      "difficulty": 3,
+      "hints": [
+        "Subtract handed, add bought.",
+        "645−278=367, 367+159=526."
+      ],
+      "feedback": {
+        "correct": "Right — 526 pencils.",
+        "incorrect": "645−278=367, then +159=526."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_add_sub",
+      "feedback_correct": "Right — 526 pencils.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "On a number line from 0 to 1, the point for 2/6 and the point for 1/3 are at the same location. Why?",
+      "choices": [
+        "Because 2 + 6 = 1 + 3",
+        "Because they are equivalent fractions (2/6 = 1/3)",
+        "Because both are less than 1/2",
+        "Because the denominators are both even"
+      ],
+      "answer": "B",
+      "explanation": "2/6 simplifies to 1/3. Equivalent fractions are at the same point on a number line.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M02"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "A number line from 0 to 1 is divided into 8 equal parts. Ella says 4/8 is the same as 1/2. How can you check on the number line?",
+      "choices": [
+        "4/8 is the 4th mark; 1/2 is the middle mark. They are the same point.",
+        "Count 4 marks from the right; that is 1/2.",
+        "4/8 is closer to 1 than 1/2.",
+        "You cannot check without a ruler."
+      ],
+      "answer": "A",
+      "explanation": "On 8 equal parts, the 4th mark is exactly in the middle (halfway), which is also 1/2.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M02"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "A number line from 0 to 1 is divided into 6 equal parts. Sara places a point 2 lengths from 0 and another point 2 lengths from 1. What fractions did she place?",
+      "choices": [
+        "2/6 and 6/6",
+        "2/6 and 4/6",
+        "1/6 and 5/6",
+        "3/6 and 3/6"
+      ],
+      "answer": "B",
+      "explanation": "2 lengths from 0 = 2/6. 2 lengths from 1 (i.e., 6/6) backward = 4/6.",
+      "hints": [
+        "Think about what fractions on a number line means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions on a number line works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.2.M02"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "question": "Tom marks 2/4 and Lisa marks 1/2 on identical number lines from 0 to 1. Compare positions.",
+      "choices": [
+        "A. 2/4가 더 오른쪽",
+        "B. 1/2가 더 오른쪽",
+        "C. 같은 위치",
+        "D. 비교 불가"
+      ],
+      "answer": "C",
+      "explanation": "2/4 = 1/2 (같은 분수, 같은 점).",
+      "difficulty": 3,
+      "hints": [
+        "2/4를 약분하면?"
+      ],
+      "feedback": {
+        "correct": "정답! 같은 위치.",
+        "incorrect": "2/4 = 1/2 → 같은 점."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 같은 위치.",
+      "expected_errors": [
+        "3.NF.A.2.M02"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "MC",
+      "question": "A number line from 0 to 1 is divided into n equal parts. As n grows larger, what happens to the distance between consecutive ticks?",
+      "choices": [
+        "A. 더 길어짐",
+        "B. 더 짧아짐",
+        "C. 변화 없음",
+        "D. 사라짐"
+      ],
+      "answer": "B",
+      "explanation": "1을 더 많은 칸으로 나눌수록 한 칸 길이는 짧아짐.",
+      "difficulty": 3,
+      "hints": [
+        "분모가 클수록 한 칸은?"
+      ],
+      "feedback": {
+        "correct": "정답! 짧아짐.",
+        "incorrect": "분모↑ → 한 칸↓."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_number_line",
+      "feedback_correct": "정답! 짧아짐.",
+      "expected_errors": [
+        "3.NF.A.2.M02"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.5 'Fractions on a Number Line' pp.329-332",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic C — Comparing Unit Fractions and Specifying the Whole",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U8 L4 — 분수 a/b: 단위분수 a개 모음 (3.NF.A.1)",
+    "current": "G3 — 수직선 위의 분수: 0~1을 b등분 → a/b 위치 (3.NF.A.2)",
+    "successor": "G3 U8 L6 — 분수와 자연수 관계 (3.NF.A.3c)"
   },
-  "concept": "fractions_on_a_number_line"
+  "metadata": {
+    "total_items": 43,
+    "upgraded": true,
+    "upgrade_script": "scripts/upgrade_u8_l5.py",
+    "review_from_units": [
+      "U1"
+    ]
+  }
 }
