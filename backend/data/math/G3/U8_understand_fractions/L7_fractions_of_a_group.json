@@ -23,488 +23,1320 @@
     "denominator = total items in group",
     "numerator = items that match the description"
   ],
-  "sections": {
-    "pretest": [
-      {
-        "id": "PT_01",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "There are 6 balloons. 2 are red. What fraction of the balloons are red?",
-        "choices": [
-          "1/6",
-          "2/6",
-          "4/6",
-          "6/2"
-        ],
-        "answer": "B",
-        "explanation": "2 red out of 6 total = 2/6."
-      },
-      {
-        "id": "PT_02",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "There are 8 marbles. 3 are blue. What fraction of the marbles are blue?",
-        "choices": [
-          "3/8",
-          "5/8",
-          "8/3",
-          "3/3"
-        ],
-        "answer": "A",
-        "explanation": "3 blue out of 8 total = 3/8."
-      },
-      {
-        "id": "PT_03",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "There are 4 apples. All 4 are green. What fraction of the apples are green?",
-        "choices": [
-          "1/4",
-          "3/4",
-          "4/4",
-          "0/4"
-        ],
-        "answer": "C",
-        "explanation": "All 4 out of 4 = 4/4 = the whole group."
-      },
-      {
-        "id": "PT_04",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "There are 8 crayons. 5 are broken. What fraction of the crayons are NOT broken?",
-        "choices": [
-          "3/8",
-          "5/8",
-          "8/5",
-          "3/5"
-        ],
-        "answer": "A",
-        "explanation": "8 − 5 = 3 not broken → 3/8."
-      },
-      {
-        "id": "PT_05",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "A bag has 6 counters: 1 red, 2 blue, 3 yellow. What fraction of the counters are yellow?",
-        "choices": [
-          "1/6",
-          "2/6",
-          "3/6",
-          "6/3"
-        ],
-        "answer": "C",
-        "explanation": "3 yellow out of 6 total = 3/6."
+  "concept": "fractions_of_a_group",
+  "pretest": [
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "There are 6 balloons. 2 are red. What fraction of the balloons are red?",
+      "choices": [
+        "1/6",
+        "2/6",
+        "4/6",
+        "6/2"
+      ],
+      "answer": "B",
+      "explanation": "2 red out of 6 total = 2/6.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "learn": [
-      {
-        "id": "LRN_01",
-        "type": "card",
-        "title": "Fraction of a Group",
-        "content": "A fraction can name part of a group, not just part of a shape. The denominator is the total number of items. The numerator is how many items match. Example: 3 out of 5 fish are goldfish → 3/5 of the fish are goldfish.",
-        "cpa_phase": "concrete",
-        "visual_type": "manipulative",
-        "visual_data": {
-          "tool": "fraction_bar",
-          "config": {
-            "denominator": 4,
-            "numerator": 1
-          }
-        }
-      },
-      {
-        "id": "LRN_02",
-        "type": "card",
-        "title": "Finding the Numerator",
-        "content": "Count how many items match the description. If there are 8 stickers and 5 are stars, the numerator for 'star stickers' is 5 → 5/8.",
-        "cpa_phase": "concrete",
-        "visual_type": "manipulative",
-        "visual_data": {
-          "tool": "fraction_bar",
-          "config": {
-            "denominator": 4,
-            "numerator": 1
-          }
-        }
-      },
-      {
-        "id": "LRN_03",
-        "type": "card",
-        "title": "Part NOT Described",
-        "content": "To find the fraction that is NOT the described part, subtract the numerator from the denominator. 5/8 are stars → 8 − 5 = 3 are not stars → 3/8.",
-        "cpa_phase": "pictorial",
-        "visual_type": "manipulative",
-        "visual_data": {
-          "tool": "fraction_bar",
-          "config": {
-            "denominator": 4,
-            "numerator": 1
-          }
-        }
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "There are 8 marbles. 3 are blue. What fraction of the marbles are blue?",
+      "choices": [
+        "3/8",
+        "5/8",
+        "8/3",
+        "3/3"
+      ],
+      "answer": "A",
+      "explanation": "3 blue out of 8 total = 3/8.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "try": [
-      {
-        "id": "TRY_01",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "There are 4 flowers. 1 is pink. What fraction of the flowers are pink?",
-        "choices": [
-          "1/2",
-          "1/3",
-          "1/4",
-          "3/4"
-        ],
-        "answer": "C",
-        "explanation": "1 pink out of 4 total = 1/4.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions of a group works."
-        },
-        "solution_steps": []
-      },
-      {
-        "id": "TRY_02",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "There are 3 dogs. 2 are big and 1 is small. What fraction of the dogs are big?",
-        "choices": [
-          "1/3",
-          "2/3",
-          "3/3",
-          "2/2"
-        ],
-        "answer": "B",
-        "explanation": "2 big out of 3 total = 2/3.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
-        },
-        "solution_steps": []
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "There are 4 apples. All 4 are green. What fraction of the apples are green?",
+      "choices": [
+        "1/4",
+        "3/4",
+        "4/4",
+        "0/4"
+      ],
+      "answer": "C",
+      "explanation": "All 4 out of 4 = 4/4 = the whole group.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "practice_r1": [
-      {
-        "id": "R1_01",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "There are 6 birds. 4 are robins. What fraction of the birds are robins?",
-        "choices": [
-          "2/6",
-          "4/6",
-          "6/4",
-          "4/4"
-        ],
-        "answer": "B",
-        "explanation": "4 out of 6 = 4/6.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
-        }
-      },
-      {
-        "id": "R1_02",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "There are 8 eggs. 1 is cracked. What fraction of the eggs are cracked?",
-        "choices": [
-          "1/8",
-          "7/8",
-          "8/1",
-          "1/1"
-        ],
-        "answer": "A",
-        "explanation": "1 cracked out of 8 = 1/8.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is A. Remember how fractions of a group works."
-        }
-      },
-      {
-        "id": "R1_03",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "There are 3 cats. None are orange. What fraction of the cats are orange?",
-        "choices": [
-          "0/3",
-          "1/3",
-          "3/3",
-          "3/0"
-        ],
-        "answer": "A",
-        "explanation": "0 orange out of 3 = 0/3 = 0.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is A. Remember how fractions of a group works."
-        }
-      },
-      {
-        "id": "R1_04",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A box has 4 pencils: 2 red and 2 yellow. What fraction are red?",
-        "choices": [
-          "1/4",
-          "2/4",
-          "3/4",
-          "4/4"
-        ],
-        "answer": "B",
-        "explanation": "2 red out of 4 = 2/4.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
-        }
-      },
-      {
-        "id": "R1_05",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "There are 6 cupcakes. 6 have frosting. What fraction have frosting?",
-        "choices": [
-          "0/6",
-          "3/6",
-          "5/6",
-          "6/6"
-        ],
-        "answer": "D",
-        "explanation": "All 6 have frosting → 6/6.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is D. Remember how fractions of a group works."
-        }
-      },
-      {
-        "id": "R1_06",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "There are 8 buttons. 5 are round. What fraction are round?",
-        "choices": [
-          "3/8",
-          "5/8",
-          "8/5",
-          "5/5"
-        ],
-        "answer": "B",
-        "explanation": "5 round out of 8 = 5/8.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
-        }
-      },
-      {
-        "id": "R1_07",
-        "type": "mc",
-        "difficulty": 1,
-        "question": "A basket has 3 oranges and 1 lemon. What fraction of the fruit are oranges?",
-        "choices": [
-          "1/4",
-          "3/4",
-          "1/3",
-          "3/3"
-        ],
-        "answer": "B",
-        "explanation": "Total fruit = 3 + 1 = 4. Oranges = 3 → 3/4.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
-        }
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "There are 8 crayons. 5 are broken. What fraction of the crayons are NOT broken?",
+      "choices": [
+        "3/8",
+        "5/8",
+        "8/5",
+        "3/5"
+      ],
+      "answer": "A",
+      "explanation": "8 − 5 = 3 not broken → 3/8.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "practice_r2": [
-      {
-        "id": "R2_01",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "There are 8 shapes: 3 circles, 2 squares, and 3 triangles. What fraction of the shapes are NOT circles?",
-        "choices": [
-          "3/8",
-          "5/8",
-          "2/8",
-          "6/8"
-        ],
-        "answer": "B",
-        "explanation": "8 − 3 circles = 5 not circles → 5/8.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
-        }
-      },
-      {
-        "id": "R2_02",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "A jar has 6 gumballs: 2 red, 1 green, 3 blue. What fraction of the gumballs are red or green?",
-        "choices": [
-          "2/6",
-          "3/6",
-          "5/6",
-          "1/6"
-        ],
-        "answer": "B",
-        "explanation": "Red + green = 2 + 1 = 3 → 3/6.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
-        }
-      },
-      {
-        "id": "R2_03",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "There are 4 kittens in a litter. 3/4 of them are gray. How many kittens are gray?",
-        "choices": [
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
-        "answer": "C",
-        "explanation": "3/4 of 4 = 3 kittens.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions of a group works."
-        }
-      },
-      {
-        "id": "R2_04",
-        "type": "mc",
-        "difficulty": 2,
-        "question": "In a group of 8 students, 2/8 wear glasses. What fraction do NOT wear glasses?",
-        "choices": [
-          "2/8",
-          "4/8",
-          "6/8",
-          "8/8"
-        ],
-        "answer": "C",
-        "explanation": "8/8 − 2/8 = 6/8 do not wear glasses.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions of a group works."
-        }
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "A bag has 6 counters: 1 red, 2 blue, 3 yellow. What fraction of the counters are yellow?",
+      "choices": [
+        "1/6",
+        "2/6",
+        "3/6",
+        "6/3"
+      ],
+      "answer": "C",
+      "explanation": "3 yellow out of 6 total = 3/6.",
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ],
-    "practice_r3": [
-      {
-        "id": "R3_01",
-        "type": "mc",
-        "difficulty": 3,
-        "question": "There are 6 flowers. 2/6 are roses and 1/6 are tulips. The rest are daisies. What fraction are daisies?",
-        "choices": [
-          "1/6",
-          "2/6",
-          "3/6",
-          "4/6"
-        ],
-        "answer": "C",
-        "explanation": "Roses + tulips = 2/6 + 1/6 = 3/6. Daisies = 6/6 − 3/6 = 3/6.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions of a group works."
+    }
+  ],
+  "learn": [
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "title": "Fraction of a Group",
+      "content": "A fraction can name part of a group, not just part of a shape. The denominator is the total number of items. The numerator is how many items match. Example: 3 out of 5 fish are goldfish → 3/5 of the fish are goldfish.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "denominator": 4,
+          "numerator": 1
         }
       },
-      {
-        "id": "R3_02",
-        "type": "mc",
-        "difficulty": 3,
-        "question": "A parking lot has 8 cars. 4/8 are white, 2/8 are blue, and the rest are black. How many cars are black?",
-        "choices": [
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
-        "answer": "B",
-        "explanation": "White + blue = 4 + 2 = 6 cars. Black = 8 − 6 = 2 cars.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
-        }
-      },
-      {
-        "id": "R3_03",
-        "type": "mc",
-        "difficulty": 3,
-        "question": "Maya has 8 stickers. She gives 3/8 to Lily and 2/8 to Jake. What fraction of the stickers does Maya still have?",
-        "choices": [
-          "1/8",
-          "2/8",
-          "3/8",
-          "5/8"
-        ],
-        "answer": "C",
-        "explanation": "Given away: 3/8 + 2/8 = 5/8. Left: 8/8 − 5/8 = 3/8.",
-        "hints": [
-          "Think about what fractions of a group means.",
-          "Try drawing a picture or using a number line."
-        ],
-        "feedback": {
-          "correct": "Great job! You got it!",
-          "incorrect": "Not quite. The answer is C. Remember how fractions of a group works."
-        }
+      "cpa_stage": "pictorial",
+      "skill_tag": "group_fraction_intro",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
       }
-    ]
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "title": "Finding the Numerator",
+      "content": "Count how many items match the description. If there are 8 stickers and 5 are stars, the numerator for 'star stickers' is 5 → 5/8.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "denominator": 4,
+          "numerator": 1
+        }
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "find_numerator_count",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "title": "Part NOT Described",
+      "content": "To find the fraction that is NOT the described part, subtract the numerator from the denominator. 5/8 are stars → 8 − 5 = 3 are not stars → 3/8.",
+      "visual_type": "manipulative",
+      "visual_data": {
+        "tool": "fraction_bar",
+        "config": {
+          "denominator": 4,
+          "numerator": 1
+        }
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "part_not_described",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "title": "분모 = 그룹 전체 개수",
+      "content": "그룹의 분수 a/b에서 분모 b는 전체 물건 개수. 예: 8개 사탕 중 3개가 빨강 → 빨강 분수 = 3/8 (분모는 항상 8). 흔한 실수 (M04): 빨강이 3개니까 '3/3'이라고 적음 — 전체 개수(8)를 잊음. 항상 '전체가 몇 개?' 먼저 묻기.",
+      "cpa_stage": "abstract",
+      "visual_type": "denominator_total",
+      "skill_tag": "denominator_total_count",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "title": "부분의 합 = 1 (전체)",
+      "content": "그룹의 모든 부분 분수를 더하면 1이 됨. 예: 6개 구슬 = 빨강 2/6 + 파랑 1/6 + 노랑 3/6 = 6/6 = 1. 🔍 검산: 모든 색의 분수를 더해 b/b가 나오면 정답. 다르면 어딘가 빠뜨림.",
+      "cpa_stage": "abstract",
+      "visual_type": "fractions_sum_to_one",
+      "skill_tag": "fractions_sum_to_one",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "title": "그룹 분수 3단계 루틴",
+      "content": "그룹의 분수를 적을 때 3단계:   단계 1) 전체 개수를 센다 → 분모.   단계 2) 조건에 맞는 개수를 센다 → 분자.   단계 3) 분자/분모 형태로 적는다. 예: 8 꽃 중 5 빨강 → 1) 분모 8, 2) 분자 5, 3) 5/8.",
+      "cpa_stage": "abstract",
+      "visual_type": "group_routine",
+      "skill_tag": "group_routine",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "title": "여집합 — 빨강이 3/8이면 빨강 아닌 것은?",
+      "content": "한 부분의 분수를 알면 나머지(여집합)는 1에서 뺀 값. 예: 빨강 = 3/8 → 빨강 아닌 것 = 8/8 − 3/8 = 5/8. 예: 좋아함 = 2/6 → 안 좋아함 = 4/6. 🔍 빠른 검산: 두 분수 합이 1 (b/b)인가?",
+      "cpa_stage": "abstract",
+      "visual_type": "complement_rule",
+      "skill_tag": "complement_rule",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "title": "검증 — 분자 ≤ 분모 항상 성립",
+      "content": "그룹 분수에서 분자는 분모를 넘을 수 없음 (전체보다 부분이 많을 수 없음).   분자 < 분모 → 일부 (예: 3/8)   분자 = 분모 → 전체 (예: 8/8 = 1)   분자 > 분모 → 그룹 분수에서는 불가능. 예: 5개 사탕 중 7개가 빨강? 불가능. 🔍 검산: 분자가 분모 이하인지 확인.",
+      "cpa_stage": "abstract",
+      "visual_type": "verify_group_fraction",
+      "skill_tag": "verify_group_fraction",
+      "expected_errors": [],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "try": [
+    {
+      "id": "TRY_01",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "There are 4 flowers. 1 is pink. What fraction of the flowers are pink?",
+      "choices": [
+        "1/2",
+        "1/3",
+        "1/4",
+        "3/4"
+      ],
+      "answer": "C",
+      "explanation": "1 pink out of 4 total = 1/4.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions of a group works."
+      },
+      "solution_steps": [],
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_02",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "There are 3 dogs. 2 are big and 1 is small. What fraction of the dogs are big?",
+      "choices": [
+        "1/3",
+        "2/3",
+        "3/3",
+        "2/2"
+      ],
+      "answer": "B",
+      "explanation": "2 big out of 3 total = 2/3.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
+      },
+      "solution_steps": [],
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_03",
+      "type": "MC",
+      "question": "There are 8 fish in a tank. 5 are gold and 3 are silver. What fraction are gold?",
+      "choices": [
+        "A. 3/8",
+        "B. 5/8",
+        "C. 5/3",
+        "D. 8/5"
+      ],
+      "answer": "B",
+      "explanation": "전체 8, 금 5 → 5/8.",
+      "difficulty": 1,
+      "hints": [
+        "분모=전체, 분자=조건."
+      ],
+      "feedback": {
+        "correct": "정답! 5/8.",
+        "incorrect": "5/8 (전체 8 중 5개 금)."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답! 5/8.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_04",
+      "type": "MC",
+      "question": "A group of 6 puppies has 4 brown ones. What fraction is NOT brown?",
+      "choices": [
+        "A. 2/6",
+        "B. 4/6",
+        "C. 6/2",
+        "D. 6/4"
+      ],
+      "answer": "A",
+      "explanation": "갈색 아닌 것 = 6 − 4 = 2. → 2/6.",
+      "difficulty": 2,
+      "hints": [
+        "여집합 = 1 − 4/6 = 2/6."
+      ],
+      "feedback": {
+        "correct": "정답! 2/6.",
+        "incorrect": "6−4=2 → 2/6."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답! 2/6.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "TRY_05",
+      "type": "MC",
+      "question": "There are 5 books: 2 are fiction, 3 are non-fiction. What fraction are fiction?",
+      "choices": [
+        "A. 2/3",
+        "B. 2/5",
+        "C. 3/5",
+        "D. 5/2"
+      ],
+      "answer": "B",
+      "explanation": "전체 5, 소설 2 → 2/5.",
+      "difficulty": 1,
+      "hints": [
+        "분모=5, 분자=2."
+      ],
+      "feedback": {
+        "correct": "정답! 2/5.",
+        "incorrect": "2/5."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답! 2/5.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "practice_r1": [
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "There are 6 birds. 4 are robins. What fraction of the birds are robins?",
+      "choices": [
+        "2/6",
+        "4/6",
+        "6/4",
+        "4/4"
+      ],
+      "answer": "B",
+      "explanation": "4 out of 6 = 4/6.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "There are 8 eggs. 1 is cracked. What fraction of the eggs are cracked?",
+      "choices": [
+        "1/8",
+        "7/8",
+        "8/1",
+        "1/1"
+      ],
+      "answer": "A",
+      "explanation": "1 cracked out of 8 = 1/8.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how fractions of a group works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_03",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "There are 3 cats. None are orange. What fraction of the cats are orange?",
+      "choices": [
+        "0/3",
+        "1/3",
+        "3/3",
+        "3/0"
+      ],
+      "answer": "A",
+      "explanation": "0 orange out of 3 = 0/3 = 0.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how fractions of a group works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A box has 4 pencils: 2 red and 2 yellow. What fraction are red?",
+      "choices": [
+        "1/4",
+        "2/4",
+        "3/4",
+        "4/4"
+      ],
+      "answer": "B",
+      "explanation": "2 red out of 4 = 2/4.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "There are 6 cupcakes. 6 have frosting. What fraction have frosting?",
+      "choices": [
+        "0/6",
+        "3/6",
+        "5/6",
+        "6/6"
+      ],
+      "answer": "D",
+      "explanation": "All 6 have frosting → 6/6.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is D. Remember how fractions of a group works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "There are 8 buttons. 5 are round. What fraction are round?",
+      "choices": [
+        "3/8",
+        "5/8",
+        "8/5",
+        "5/5"
+      ],
+      "answer": "B",
+      "explanation": "5 round out of 8 = 5/8.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_07",
+      "type": "mc",
+      "difficulty": 1,
+      "question": "A basket has 3 oranges and 1 lemon. What fraction of the fruit are oranges?",
+      "choices": [
+        "1/4",
+        "3/4",
+        "1/3",
+        "3/3"
+      ],
+      "answer": "B",
+      "explanation": "Total fruit = 3 + 1 = 4. Oranges = 3 → 3/4.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_08",
+      "type": "MC",
+      "question": "There are 10 stickers: 7 are stars, 3 are hearts. What fraction are hearts?",
+      "choices": [
+        "A. 3/7",
+        "B. 3/10",
+        "C. 7/10",
+        "D. 10/3"
+      ],
+      "answer": "B",
+      "explanation": "전체 10, 하트 3 → 3/10.",
+      "difficulty": 1,
+      "hints": [
+        "3/10."
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "3/10."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_09",
+      "type": "MC",
+      "question": "A group of 5 birds has 5 sparrows. What fraction are sparrows?",
+      "choices": [
+        "A. 0/5",
+        "B. 1/5",
+        "C. 5/5",
+        "D. 5/0"
+      ],
+      "answer": "C",
+      "explanation": "모두가 참새 → 5/5 = 1.",
+      "difficulty": 1,
+      "hints": [
+        "전체 = 분자."
+      ],
+      "feedback": {
+        "correct": "정답! 5/5.",
+        "incorrect": "전체 = 5/5 = 1."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답! 5/5.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R1_10",
+      "type": "MC",
+      "question": "There are 9 toys: 4 cars, 5 dolls. What fraction are cars?",
+      "choices": [
+        "A. 4/5",
+        "B. 4/9",
+        "C. 5/9",
+        "D. 9/4"
+      ],
+      "answer": "B",
+      "explanation": "전체 9, 자동차 4 → 4/9.",
+      "difficulty": 1,
+      "hints": [
+        "분모 9."
+      ],
+      "feedback": {
+        "correct": "정답! 4/9.",
+        "incorrect": "4/9."
+      },
+      "cpa_stage": "pictorial",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답! 4/9.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "practice_r2": [
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "There are 8 shapes: 3 circles, 2 squares, and 3 triangles. What fraction of the shapes are NOT circles?",
+      "choices": [
+        "3/8",
+        "5/8",
+        "2/8",
+        "6/8"
+      ],
+      "answer": "B",
+      "explanation": "8 − 3 circles = 5 not circles → 5/8.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_02",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "A jar has 6 gumballs: 2 red, 1 green, 3 blue. What fraction of the gumballs are red or green?",
+      "choices": [
+        "2/6",
+        "3/6",
+        "5/6",
+        "1/6"
+      ],
+      "answer": "B",
+      "explanation": "Red + green = 2 + 1 = 3 → 3/6.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "There are 4 kittens in a litter. 3/4 of them are gray. How many kittens are gray?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "C",
+      "explanation": "3/4 of 4 = 3 kittens.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions of a group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "difficulty": 2,
+      "question": "In a group of 8 students, 2/8 wear glasses. What fraction do NOT wear glasses?",
+      "choices": [
+        "2/8",
+        "4/8",
+        "6/8",
+        "8/8"
+      ],
+      "answer": "C",
+      "explanation": "8/8 − 2/8 = 6/8 do not wear glasses.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions of a group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_05",
+      "type": "MC",
+      "question": "A bag has 10 marbles: 4 red, 3 blue, 3 green. What fraction are NOT red?",
+      "choices": [
+        "A. 4/10",
+        "B. 6/10",
+        "C. 7/10",
+        "D. 10/4"
+      ],
+      "answer": "B",
+      "explanation": "빨강 아닌 것 = 3+3 = 6 → 6/10.",
+      "difficulty": 2,
+      "hints": [
+        "10 − 4 = 6.",
+        "여집합 = 6/10."
+      ],
+      "feedback": {
+        "correct": "정답! 6/10.",
+        "incorrect": "여집합 = 6/10."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답! 6/10.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_06",
+      "type": "MC",
+      "question": "Sam says 4/3 of his 3 toys are robots. Why is that impossible?",
+      "choices": [
+        "A. 분자가 분모보다 클 수 없음 (그룹 분수)",
+        "B. 분수는 자연수여야 함",
+        "C. 3 toys는 너무 적음",
+        "D. 가능함"
+      ],
+      "answer": "A",
+      "explanation": "전체 3개 중 4개일 수 없음.",
+      "difficulty": 3,
+      "hints": [
+        "분자 ≤ 분모.",
+        "전체보다 부분이 많을 수 없음."
+      ],
+      "feedback": {
+        "correct": "정답!",
+        "incorrect": "분자 > 분모 → 불가능 (그룹 분수)."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_07",
+      "type": "MC",
+      "question": "A class of 6 students: 1/6 brought lunch, 2/6 brought snacks, 3/6 brought neither. Verify the parts sum to 1.",
+      "choices": [
+        "A. 합 = 5/6 (오류)",
+        "B. 합 = 6/6 = 1 (정확)",
+        "C. 합 = 7/6 (오류)",
+        "D. 합 = 3/6"
+      ],
+      "answer": "B",
+      "explanation": "1/6 + 2/6 + 3/6 = 6/6 = 1.",
+      "difficulty": 2,
+      "hints": [
+        "분자 모두 더하기."
+      ],
+      "feedback": {
+        "correct": "정답! 6/6 = 1.",
+        "incorrect": "1+2+3=6 → 6/6=1."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답! 6/6 = 1.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_08",
+      "type": "MC",
+      "question": "Find the sum: 286 + 374.",
+      "choices": [
+        "A. 550",
+        "B. 560",
+        "C. 650",
+        "D. 660"
+      ],
+      "answer": "D",
+      "explanation": "286+374: 6+4=10 (carry 1), 8+7+1=16 (carry 1), 2+3+1=6. Result: 660.",
+      "difficulty": 2,
+      "hints": [
+        "Two carries.",
+        "286+374=660."
+      ],
+      "feedback": {
+        "correct": "Right — 660.",
+        "incorrect": "286+374=660."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "addition_3digit",
+      "feedback_correct": "Right — 660.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_09",
+      "type": "MC",
+      "question": "Find the difference: 800 − 365.",
+      "choices": [
+        "A. 425",
+        "B. 435",
+        "C. 445",
+        "D. 535"
+      ],
+      "answer": "B",
+      "explanation": "800−365=435 (borrow across both zeros).",
+      "difficulty": 2,
+      "hints": [
+        "Borrow across zeros.",
+        "800−365=435."
+      ],
+      "feedback": {
+        "correct": "Right — 435.",
+        "incorrect": "800−365=435."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "subtraction_3digit",
+      "feedback_correct": "Right — 435.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R2_10",
+      "type": "MC",
+      "question": "A farm had 478 chickens. They sold 156, then bought 234 more. How many chickens now?",
+      "choices": [
+        "A. 322",
+        "B. 466",
+        "C. 556",
+        "D. 712"
+      ],
+      "answer": "C",
+      "explanation": "Step 1: 478−156=322. Step 2: 322+234=556.",
+      "difficulty": 3,
+      "hints": [
+        "Subtract sold, add bought.",
+        "478−156=322, 322+234=556."
+      ],
+      "feedback": {
+        "correct": "Right — 556 chickens.",
+        "incorrect": "478−156=322, then +234=556."
+      },
+      "review_from": "U1",
+      "cpa_stage": "abstract",
+      "skill_tag": "two_step_add_sub",
+      "feedback_correct": "Right — 556 chickens.",
+      "expected_errors": [
+        "3.NBT.2.M01"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "practice_r3": [
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "There are 6 flowers. 2/6 are roses and 1/6 are tulips. The rest are daisies. What fraction are daisies?",
+      "choices": [
+        "1/6",
+        "2/6",
+        "3/6",
+        "4/6"
+      ],
+      "answer": "C",
+      "explanation": "Roses + tulips = 2/6 + 1/6 = 3/6. Daisies = 6/6 − 3/6 = 3/6.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions of a group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_02",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "A parking lot has 8 cars. 4/8 are white, 2/8 are blue, and the rest are black. How many cars are black?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "B",
+      "explanation": "White + blue = 4 + 2 = 6 cars. Black = 8 − 6 = 2 cars.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how fractions of a group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "Maya has 8 stickers. She gives 3/8 to Lily and 2/8 to Jake. What fraction of the stickers does Maya still have?",
+      "choices": [
+        "1/8",
+        "2/8",
+        "3/8",
+        "5/8"
+      ],
+      "answer": "C",
+      "explanation": "Given away: 3/8 + 2/8 = 5/8. Left: 8/8 − 5/8 = 3/8.",
+      "hints": [
+        "Think about what fractions of a group means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how fractions of a group works."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "Great job! You got it!",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_04",
+      "type": "MC",
+      "question": "If 3/10 of the 10 students like pizza and 2/10 like pasta, what fraction likes neither?",
+      "choices": [
+        "A. 3/10",
+        "B. 5/10",
+        "C. 7/10",
+        "D. 10/10"
+      ],
+      "answer": "B",
+      "explanation": "1 − 3/10 − 2/10 = 5/10.",
+      "difficulty": 3,
+      "hints": [
+        "여집합 = 10/10 − 3/10 − 2/10."
+      ],
+      "feedback": {
+        "correct": "정답! 5/10.",
+        "incorrect": "10−3−2=5 → 5/10."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답! 5/10.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    },
+    {
+      "id": "R3_05",
+      "type": "MC",
+      "question": "A box has 8 chocolates. Mia eats 3/8, then her brother eats 2/8. What fraction is left?",
+      "choices": [
+        "A. 2/8",
+        "B. 3/8",
+        "C. 5/8",
+        "D. 6/8"
+      ],
+      "answer": "B",
+      "explanation": "8/8 − 3/8 − 2/8 = 3/8.",
+      "difficulty": 3,
+      "hints": [
+        "남은 = 1 − 먹은 합."
+      ],
+      "feedback": {
+        "correct": "정답! 3/8.",
+        "incorrect": "8−3−2=3 → 3/8."
+      },
+      "cpa_stage": "abstract",
+      "skill_tag": "fraction_of_group",
+      "feedback_correct": "정답! 3/8.",
+      "expected_errors": [
+        "3.NF.A.1.M04"
+      ],
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.8 Lesson 8.7 'Fractions of a Group' pp.337-340",
+        "procedure_source": "EngageNY Grade 3 Module 5 Topic E — Equivalent Fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015"
+      }
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U8 L6 — 분수와 자연수 (3.NF.A.3c)",
+    "current": "G3 — 그룹의 분수: 전체 N개 중 a개 = a/N (3.NF.A.1)",
+    "successor": "G3 U8 L8 — 단위분수로 그룹의 일부 찾기 (3.NF.A.1)"
   },
-  "concept": "fractions_of_a_group"
+  "metadata": {
+    "total_items": 43,
+    "upgraded": true,
+    "upgrade_script": "scripts/upgrade_u8_l7.py",
+    "review_from_units": [
+      "U1"
+    ]
+  }
 }
