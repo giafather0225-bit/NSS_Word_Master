@@ -1,65 +1,1457 @@
 {
   "lesson_id": "L1_tell_time_nearest_minute",
   "title": "Tell Time to the Nearest Minute",
-  "ccss": ["3.MD.A.1"],
+  "ccss": [
+    "3.MD.A.1"
+  ],
   "grade": "G3",
   "unit": "U11_time_mass_volume",
   "go_math_ref": "Chapter 10, Lesson 10.1",
   "essential_question": "How can you tell time to the nearest minute on an analog clock?",
-  "key_vocabulary": ["hour", "minute", "analog clock", "digital clock", "A.M.", "P.M.", "minute hand", "hour hand", "o'clock"],
+  "key_vocabulary": [
+    "hour",
+    "minute",
+    "analog clock",
+    "digital clock",
+    "A.M.",
+    "P.M.",
+    "minute hand",
+    "hour hand",
+    "o'clock"
+  ],
   "pretest": [
-    {"id": "PT_01", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.1", "skill_tag": "clock_parts", "difficulty": 1, "question": "On an analog clock, which hand is LONGER?", "choices": ["A) Hour hand", "B) Minute hand", "C) They are equal", "D) Second hand only"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Minute hand is longer"}}, "verification": "Minute hand longer.", "hints": ["The minute hand is longer."], "feedback": {"correct": "Right!", "incorrect": "The minute hand is longer than the hour hand."}},
-    {"id": "PT_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_per_hour", "difficulty": 1, "question": "How many minutes are in 1 hour?", "correct_answer": "60", "expected_errors": {"30": {"error_type": "concept_gap", "note": "60 minutes per hour"}, "100": {"error_type": "concept_gap", "note": "60 minutes per hour"}}, "verification": "60 min/hr.", "hints": ["1 hour = 60 minutes."], "feedback": {"correct": "Right!", "incorrect": "1 hour = 60 minutes."}},
-    {"id": "PT_03", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.A.1", "skill_tag": "read_clock", "difficulty": 2, "question": "The hour hand is between 3 and 4. The minute hand points to 6. What time is it?", "choices": ["A) 3:30", "B) 6:00", "C) 4:30", "D) 3:06"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Minute hand on 6 = 30 minutes"}, "C": {"error_type": "concept_gap", "note": "Hour is 3, not 4"}, "D": {"error_type": "concept_gap", "note": "6 means 30 minutes, not 6"}}, "verification": "3:30.", "hints": ["6 on the clock = 30 minutes."], "feedback": {"correct": "Right!", "incorrect": "6 on minute hand = 30 min. So 3:30."}},
-    {"id": "PT_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_per_number", "difficulty": 2, "question": "Each NUMBER on a clock represents how many minutes? (Example: from 12 to 1)", "correct_answer": "5", "expected_errors": {"1": {"error_type": "concept_gap", "note": "Each number = 5 minutes"}, "60": {"error_type": "concept_gap", "note": "60 is the whole hour"}}, "verification": "5 min/number.", "hints": ["12 numbers, 60 minutes total."], "feedback": {"correct": "Right!", "incorrect": "Each number = 5 minutes. 60÷12=5."}},
-    {"id": "PT_05", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "am_pm", "difficulty": 2, "question": "If it is 8 in the morning, you write:", "choices": ["A) 8:00 A.M.", "B) 8:00 P.M.", "C) Both A and B", "D) Neither"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "P.M. is afternoon/evening"}, "C": {"error_type": "concept_gap", "note": "Only A.M. for morning"}}, "verification": "Morning = A.M.", "hints": ["A.M. = morning."], "feedback": {"correct": "Right!", "incorrect": "Morning = A.M."}}
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "clock_parts",
+      "difficulty": 1,
+      "question": "On an analog clock, which hand is LONGER?",
+      "choices": [
+        "A) Hour hand",
+        "B) Minute hand",
+        "C) They are equal",
+        "D) Second hand only"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Minute hand is longer"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Minute hand longer."
+      },
+      "hints": [
+        "The minute hand is longer."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "The minute hand is longer than the hour hand."
+      },
+      "cpa_stage": "concrete",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_per_hour",
+      "difficulty": 1,
+      "question": "How many minutes are in 1 hour?",
+      "correct_answer": "60",
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "60 minutes per hour"
+        },
+        "100": {
+          "error_type": "concept_gap",
+          "note": "60 minutes per hour"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "60 min/hr."
+      },
+      "hints": [
+        "1 hour = 60 minutes."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "1 hour = 60 minutes."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "read_clock",
+      "difficulty": 2,
+      "question": "The hour hand is between 3 and 4. The minute hand points to 6. What time is it?",
+      "choices": [
+        "A) 3:30",
+        "B) 6:00",
+        "C) 4:30",
+        "D) 3:06"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Minute hand on 6 = 30 minutes"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Hour is 3, not 4"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "6 means 30 minutes, not 6"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "3:30."
+      },
+      "hints": [
+        "6 on the clock = 30 minutes."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "6 on minute hand = 30 min. So 3:30."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "PT_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_per_number",
+      "difficulty": 2,
+      "question": "Each NUMBER on a clock represents how many minutes? (Example: from 12 to 1)",
+      "correct_answer": "5",
+      "expected_errors": {
+        "1": {
+          "error_type": "concept_gap",
+          "note": "Each number = 5 minutes"
+        },
+        "60": {
+          "error_type": "concept_gap",
+          "note": "60 is the whole hour"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5 min/number."
+      },
+      "hints": [
+        "12 numbers, 60 minutes total."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Each number = 5 minutes. 60÷12=5."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "am_pm",
+      "difficulty": 2,
+      "question": "If it is 8 in the morning, you write:",
+      "choices": [
+        "A) 8:00 A.M.",
+        "B) 8:00 P.M.",
+        "C) Both A and B",
+        "D) Neither"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "P.M. is afternoon/evening"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Only A.M. for morning"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Morning = A.M."
+      },
+      "hints": [
+        "A.M. = morning."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Morning = A.M."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    }
   ],
   "learn": [
-    {"id": "LEARN_01", "type": "concept_card", "cpa_phase": "concrete", "title": "Parts of a Clock", "content": "An ANALOG clock has two hands: the SHORT one is the HOUR HAND. The LONG one is the MINUTE HAND. Numbers 1-12 are around the clock face. (Some clocks also have a thin SECOND hand.)", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.1."},
-    {"id": "LEARN_02", "type": "concept_card", "cpa_phase": "concrete", "title": "Hour and Minute Numbers", "content": "1 HOUR = 60 MINUTES. Each NUMBER on the clock face = 5 MINUTES (because 60÷12=5). So the minute hand on '3' means 15 minutes. On '6' means 30 minutes. On '9' means 45 minutes.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.1."},
-    {"id": "LEARN_03", "type": "concept_card", "cpa_phase": "pictorial", "title": "Reading the Hour", "content": "The HOUR HAND tells you the hour. If the hour hand points BETWEEN 4 and 5, the hour is 4 (because the hour hasn't reached 5 yet). Always say the LOWER hour.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.1."},
-    {"id": "LEARN_04", "type": "concept_card", "cpa_phase": "pictorial", "title": "Reading the Minutes", "content": "Count by 5s starting from 12. 12=0 min, 1=5 min, 2=10 min, 3=15 min, 4=20 min, 5=25 min, 6=30 min, 7=35, 8=40, 9=45, 10=50, 11=55. If the minute hand is between numbers, count 1-by-1 (5 small ticks per number).", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.1."},
-    {"id": "LEARN_05", "type": "concept_card", "cpa_phase": "pictorial", "title": "Nearest Minute", "content": "To tell time to the NEAREST MINUTE, count by 5s up to the nearest small tick, then add the extra ticks. Example: minute hand 1 tick past the 7 → 35 + 1 = 36 minutes.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.1."},
-    {"id": "LEARN_06", "type": "concept_card", "cpa_phase": "abstract", "title": "Writing Time", "content": "Write time as HH:MM. Example: 3 hours and 25 minutes = 3:25. The hour goes first, then a colon, then the minutes (always two digits — like 3:05, not 3:5).", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.1."},
-    {"id": "LEARN_07", "type": "concept_card", "cpa_phase": "abstract", "title": "A.M. and P.M.", "content": "A.M. = before noon (midnight to noon, 12:00 A.M. to 11:59 A.M.). P.M. = after noon (noon to midnight, 12:00 P.M. to 11:59 P.M.). Morning = A.M. Afternoon/evening = P.M.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.1."},
-    {"id": "LEARN_08", "type": "concept_card", "cpa_phase": "abstract", "title": "Lesson Summary", "content": "Today: (1) Hour hand short, minute hand long. (2) Each number = 5 minutes. (3) Hour = lower of two numbers the hour hand is between. (4) Count by 5s for minutes; add extra ticks for nearest minute. (5) Write as HH:MM. (6) A.M. = morning, P.M. = afternoon/evening.", "visual_type": "none", "visual_data": {}, "verification": "Summary."}
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Parts of a Clock",
+      "content": "An ANALOG clock has two hands: the SHORT one is the HOUR HAND. The LONG one is the MINUTE HAND. Numbers 1-12 are around the clock face. (Some clocks also have a thin SECOND hand.)",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.1."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Hour and Minute Numbers",
+      "content": "1 HOUR = 60 MINUTES. Each NUMBER on the clock face = 5 MINUTES (because 60÷12=5). So the minute hand on '3' means 15 minutes. On '6' means 30 minutes. On '9' means 45 minutes.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.1."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Reading the Hour",
+      "content": "The HOUR HAND tells you the hour. If the hour hand points BETWEEN 4 and 5, the hour is 4 (because the hour hasn't reached 5 yet). Always say the LOWER hour.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.1."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Reading the Minutes",
+      "content": "Count by 5s starting from 12. 12=0 min, 1=5 min, 2=10 min, 3=15 min, 4=20 min, 5=25 min, 6=30 min, 7=35, 8=40, 9=45, 10=50, 11=55. If the minute hand is between numbers, count 1-by-1 (5 small ticks per number).",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.1."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Nearest Minute",
+      "content": "To tell time to the NEAREST MINUTE, count by 5s up to the nearest small tick, then add the extra ticks. Example: minute hand 1 tick past the 7 → 35 + 1 = 36 minutes.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.1."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Writing Time",
+      "content": "Write time as HH:MM. Example: 3 hours and 25 minutes = 3:25. The hour goes first, then a colon, then the minutes (always two digits — like 3:05, not 3:5).",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.1."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "A.M. and P.M.",
+      "content": "A.M. = before noon (midnight to noon, 12:00 A.M. to 11:59 A.M.). P.M. = after noon (noon to midnight, 12:00 P.M. to 11:59 P.M.). Morning = A.M. Afternoon/evening = P.M.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.1."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today: (1) Hour hand short, minute hand long. (2) Each number = 5 minutes. (3) Hour = lower of two numbers the hour hand is between. (4) Count by 5s for minutes; add extra ticks for nearest minute. (5) Write as HH:MM. (6) A.M. = morning, P.M. = afternoon/evening.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Summary."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    }
   ],
   "try": [
-    {"id": "TRY_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_per_number", "difficulty": 1, "question": "If minute hand is on the 4, how many minutes? (Just the number)", "correct_answer": "20", "solution_steps": ["4 × 5 = 20 minutes."], "expected_errors": {"4": {"error_type": "concept_gap", "note": "Each number = 5 min"}}, "feedback": {"correct": "Right!", "incorrect": "4×5=20 minutes."}, "verification": "20.", "hints": ["Multiply by 5."]},
-    {"id": "TRY_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_per_number", "difficulty": 1, "question": "Minute hand on 9 = how many minutes?", "correct_answer": "45", "solution_steps": ["9 × 5 = 45."], "expected_errors": {"9": {"error_type": "concept_gap", "note": "Each = 5"}}, "feedback": {"correct": "Right!", "incorrect": "9×5=45."}, "verification": "45.", "hints": ["9×5."]},
-    {"id": "TRY_03", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.A.1", "skill_tag": "read_clock", "difficulty": 2, "question": "Hour hand between 7 and 8. Minute hand on 9. What time?", "choices": ["A) 7:09", "B) 7:45", "C) 8:45", "D) 9:07"], "correct_answer": "B", "solution_steps": ["Hour: 7. Minutes: 9×5=45."], "expected_errors": {"A": {"error_type": "concept_gap", "note": "9 = 45 min, not 9 min"}, "C": {"error_type": "concept_gap", "note": "Hour is 7, not 8"}}, "feedback": {"correct": "Right!", "incorrect": "7:45."}, "verification": "7:45.", "hints": ["Hour and minutes."]},
-    {"id": "TRY_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_count", "difficulty": 2, "question": "Minute hand 2 ticks past the 6. How many minutes?", "correct_answer": "32", "solution_steps": ["6×5=30. +2 ticks=32."], "expected_errors": {"30": {"error_type": "concept_gap", "note": "Add the 2 ticks"}, "8": {"error_type": "concept_gap", "note": "Past 6, not before"}}, "feedback": {"correct": "Right!", "incorrect": "30+2=32."}, "verification": "32.", "hints": ["30 + 2 ticks."]},
-    {"id": "TRY_05", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "am_pm", "difficulty": 2, "question": "School starts at 8:30 in the morning. Write the time.", "choices": ["A) 8:30 P.M.", "B) 8:30 A.M.", "C) 30:8", "D) 8:30 noon"], "correct_answer": "B", "solution_steps": ["Morning = A.M."], "expected_errors": {"A": {"error_type": "concept_gap", "note": "Morning = A.M."}}, "feedback": {"correct": "Right!", "incorrect": "8:30 A.M. (morning)."}, "verification": "A.M. for morning.", "hints": ["Morning = A.M."]}
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_per_number",
+      "difficulty": 1,
+      "question": "If minute hand is on the 4, how many minutes? (Just the number)",
+      "correct_answer": "20",
+      "solution_steps": [
+        "4 × 5 = 20 minutes."
+      ],
+      "expected_errors": {
+        "4": {
+          "error_type": "concept_gap",
+          "note": "Each number = 5 min"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4×5=20 minutes."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20."
+      },
+      "hints": [
+        "Multiply by 5."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_per_number",
+      "difficulty": 1,
+      "question": "Minute hand on 9 = how many minutes?",
+      "correct_answer": "45",
+      "solution_steps": [
+        "9 × 5 = 45."
+      ],
+      "expected_errors": {
+        "9": {
+          "error_type": "concept_gap",
+          "note": "Each = 5"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "9×5=45."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "45."
+      },
+      "hints": [
+        "9×5."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "TRY_03",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "read_clock",
+      "difficulty": 2,
+      "question": "Hour hand between 7 and 8. Minute hand on 9. What time?",
+      "choices": [
+        "A) 7:09",
+        "B) 7:45",
+        "C) 8:45",
+        "D) 9:07"
+      ],
+      "correct_answer": "B",
+      "solution_steps": [
+        "Hour: 7. Minutes: 9×5=45."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "9 = 45 min, not 9 min"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Hour is 7, not 8"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "7:45."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "7:45."
+      },
+      "hints": [
+        "Hour and minutes."
+      ],
+      "cpa_stage": "pictorial",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_count",
+      "difficulty": 2,
+      "question": "Minute hand 2 ticks past the 6. How many minutes?",
+      "correct_answer": "32",
+      "solution_steps": [
+        "6×5=30. +2 ticks=32."
+      ],
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "Add the 2 ticks"
+        },
+        "8": {
+          "error_type": "concept_gap",
+          "note": "Past 6, not before"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "30+2=32."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "32."
+      },
+      "hints": [
+        "30 + 2 ticks."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "TRY_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "am_pm",
+      "difficulty": 2,
+      "question": "School starts at 8:30 in the morning. Write the time.",
+      "choices": [
+        "A) 8:30 P.M.",
+        "B) 8:30 A.M.",
+        "C) 30:8",
+        "D) 8:30 noon"
+      ],
+      "correct_answer": "B",
+      "solution_steps": [
+        "Morning = A.M."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Morning = A.M."
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "8:30 A.M. (morning)."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "A.M. for morning."
+      },
+      "hints": [
+        "Morning = A.M."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    }
   ],
   "practice_r1": [
-    {"id": "R1_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_per_number", "difficulty": 1, "question": "Minute hand on 3 = how many minutes?", "correct_answer": "15", "expected_errors": {"3": {"error_type": "concept_gap", "note": "Each = 5"}}, "verification": "15.", "hints": ["3×5."], "feedback": {"correct": "Right!", "incorrect": "15."}},
-    {"id": "R1_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_per_number", "difficulty": 1, "question": "Minute hand on 6 = how many minutes?", "correct_answer": "30", "expected_errors": {"6": {"error_type": "concept_gap", "note": "Each = 5"}}, "verification": "30.", "hints": ["6×5."], "feedback": {"correct": "Right!", "incorrect": "30."}},
-    {"id": "R1_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_per_number", "difficulty": 1, "question": "Minute hand on 12 = how many minutes?", "correct_answer": "0", "expected_errors": {"60": {"error_type": "concept_gap", "note": "12=0 (start)"}, "12": {"error_type": "concept_gap", "note": "Each = 5"}}, "verification": "0.", "hints": ["12 = start = 0 min."], "feedback": {"correct": "Right!", "incorrect": "12 = 0 minutes."}},
-    {"id": "R1_04", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.A.1", "skill_tag": "read_clock", "difficulty": 2, "question": "Hour hand between 5 and 6. Minute hand on 6. Time?", "choices": ["A) 5:30", "B) 6:30", "C) 5:06", "D) 6:00"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Hour is 5"}}, "verification": "5:30.", "hints": ["Lower hour."], "feedback": {"correct": "Right!", "incorrect": "5:30."}},
-    {"id": "R1_05", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.A.1", "skill_tag": "read_clock", "difficulty": 2, "question": "Hour hand between 9 and 10. Minute hand on 3. Time?", "choices": ["A) 9:03", "B) 9:15", "C) 10:15", "D) 3:09"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "3=15 min"}}, "verification": "9:15.", "hints": ["3 = 15 min."], "feedback": {"correct": "Right!", "incorrect": "9:15."}},
-    {"id": "R1_06", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_count", "difficulty": 2, "question": "Minute hand 3 ticks past 8. How many minutes?", "correct_answer": "43", "expected_errors": {"40": {"error_type": "concept_gap", "note": "Add 3 ticks"}}, "verification": "40+3=43.", "hints": ["40+3."], "feedback": {"correct": "Right!", "incorrect": "43."}},
-    {"id": "R1_07", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "clock_basic", "difficulty": 1, "question": "True or False: 1 hour has 60 minutes.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "Yes, 60"}}, "verification": "60.", "hints": ["60."], "feedback": {"correct": "True!", "incorrect": "True."}},
-    {"id": "R1_08", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "am_pm", "difficulty": 2, "question": "Dinner at 7 in the evening. Write:", "choices": ["A) 7:00 A.M.", "B) 7:00 P.M.", "C) 19:00", "D) 7:00 noon"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Evening = P.M."}}, "verification": "P.M.", "hints": ["Evening = P.M."], "feedback": {"correct": "Right!", "incorrect": "7:00 P.M."}},
-    {"id": "R1_09", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_count", "difficulty": 2, "question": "Minute hand 4 ticks past 5. Minutes?", "correct_answer": "29", "expected_errors": {"25": {"error_type": "concept_gap", "note": "Add 4 ticks"}}, "verification": "25+4=29.", "hints": ["25+4."], "feedback": {"correct": "Right!", "incorrect": "29."}},
-    {"id": "R1_10", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.A.1", "skill_tag": "read_clock", "difficulty": 2, "question": "Hour hand between 2 and 3. Minute hand on 12. Time?", "choices": ["A) 2:00", "B) 2:12", "C) 12:02", "D) 3:00"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "12=0 min"}}, "verification": "2:00.", "hints": ["12=0."], "feedback": {"correct": "Right!", "incorrect": "2:00."}}
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_per_number",
+      "difficulty": 1,
+      "question": "Minute hand on 3 = how many minutes?",
+      "correct_answer": "15",
+      "expected_errors": {
+        "3": {
+          "error_type": "concept_gap",
+          "note": "Each = 5"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "15."
+      },
+      "hints": [
+        "3×5."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "15."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_per_number",
+      "difficulty": 1,
+      "question": "Minute hand on 6 = how many minutes?",
+      "correct_answer": "30",
+      "expected_errors": {
+        "6": {
+          "error_type": "concept_gap",
+          "note": "Each = 5"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "30."
+      },
+      "hints": [
+        "6×5."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "30."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_per_number",
+      "difficulty": 1,
+      "question": "Minute hand on 12 = how many minutes?",
+      "correct_answer": "0",
+      "expected_errors": {
+        "60": {
+          "error_type": "concept_gap",
+          "note": "12=0 (start)"
+        },
+        "12": {
+          "error_type": "concept_gap",
+          "note": "Each = 5"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "0."
+      },
+      "hints": [
+        "12 = start = 0 min."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "12 = 0 minutes."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "read_clock",
+      "difficulty": 2,
+      "question": "Hour hand between 5 and 6. Minute hand on 6. Time?",
+      "choices": [
+        "A) 5:30",
+        "B) 6:30",
+        "C) 5:06",
+        "D) 6:00"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Hour is 5"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5:30."
+      },
+      "hints": [
+        "Lower hour."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5:30."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "read_clock",
+      "difficulty": 2,
+      "question": "Hour hand between 9 and 10. Minute hand on 3. Time?",
+      "choices": [
+        "A) 9:03",
+        "B) 9:15",
+        "C) 10:15",
+        "D) 3:09"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "3=15 min"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "9:15."
+      },
+      "hints": [
+        "3 = 15 min."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "9:15."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_count",
+      "difficulty": 2,
+      "question": "Minute hand 3 ticks past 8. How many minutes?",
+      "correct_answer": "43",
+      "expected_errors": {
+        "40": {
+          "error_type": "concept_gap",
+          "note": "Add 3 ticks"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "40+3=43."
+      },
+      "hints": [
+        "40+3."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "43."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_07",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "clock_basic",
+      "difficulty": 1,
+      "question": "True or False: 1 hour has 60 minutes.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "Yes, 60"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "60."
+      },
+      "hints": [
+        "60."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "True!"
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "am_pm",
+      "difficulty": 2,
+      "question": "Dinner at 7 in the evening. Write:",
+      "choices": [
+        "A) 7:00 A.M.",
+        "B) 7:00 P.M.",
+        "C) 19:00",
+        "D) 7:00 noon"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Evening = P.M."
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "P.M."
+      },
+      "hints": [
+        "Evening = P.M."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "7:00 P.M."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_count",
+      "difficulty": 2,
+      "question": "Minute hand 4 ticks past 5. Minutes?",
+      "correct_answer": "29",
+      "expected_errors": {
+        "25": {
+          "error_type": "concept_gap",
+          "note": "Add 4 ticks"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "25+4=29."
+      },
+      "hints": [
+        "25+4."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "29."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_10",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "read_clock",
+      "difficulty": 2,
+      "question": "Hour hand between 2 and 3. Minute hand on 12. Time?",
+      "choices": [
+        "A) 2:00",
+        "B) 2:12",
+        "C) 12:02",
+        "D) 3:00"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "12=0 min"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "2:00."
+      },
+      "hints": [
+        "12=0."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "2:00."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    }
   ],
   "practice_r2": [
-    {"id": "R2_01", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.A.1", "skill_tag": "read_clock_word", "difficulty": 2, "question": "Sara's clock shows hour hand between 4 and 5, minute hand on 9. Time?", "choices": ["A) 4:09", "B) 4:45", "C) 5:09", "D) 9:04"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "9=45 min"}}, "verification": "4:45.", "hints": ["9 = 45 min."], "feedback": {"correct": "Right!", "incorrect": "4:45."}},
-    {"id": "R2_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_count", "difficulty": 2, "question": "Minute hand 1 tick past 11. Minutes?", "correct_answer": "56", "expected_errors": {"55": {"error_type": "concept_gap", "note": "Add 1 tick"}}, "verification": "55+1=56.", "hints": ["55+1."], "feedback": {"correct": "Right!", "incorrect": "56."}},
-    {"id": "R2_03", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "am_pm", "difficulty": 2, "question": "Tom plays soccer at 4:30 in the afternoon. Write:", "choices": ["A) 4:30 A.M.", "B) 4:30 P.M.", "C) 4:30 noon", "D) 4:30 night"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Afternoon = P.M."}}, "verification": "P.M.", "hints": ["Afternoon = P.M."], "feedback": {"correct": "Right!", "incorrect": "4:30 P.M."}},
-    {"id": "R2_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_per_number", "difficulty": 1, "question": "Minute hand on 11 = how many minutes?", "correct_answer": "55", "expected_errors": {"11": {"error_type": "concept_gap", "note": "Each=5"}}, "verification": "55.", "hints": ["11×5."], "feedback": {"correct": "Right!", "incorrect": "55."}},
-    {"id": "R2_05", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "clock_logic", "difficulty": 2, "question": "True or False: When minute hand is on 6, the time is half past the hour.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "6=30 min=half past"}}, "verification": "6=30=half past.", "hints": ["6=30 min."], "feedback": {"correct": "True!", "incorrect": "True. 30 min = half past."}},
-    {"id": "R2_06", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.A.1", "skill_tag": "read_clock", "difficulty": 2, "question": "Hour hand between 11 and 12. Minute hand on 4. Time?", "choices": ["A) 11:04", "B) 11:20", "C) 12:20", "D) 4:11"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "4=20 min"}}, "verification": "11:20.", "hints": ["4=20 min."], "feedback": {"correct": "Right!", "incorrect": "11:20."}},
-    {"id": "R2_07", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_count", "difficulty": 3, "question": "Minute hand 2 ticks past 2. How many minutes?", "correct_answer": "12", "expected_errors": {"10": {"error_type": "concept_gap", "note": "+2 ticks"}}, "verification": "10+2=12.", "hints": ["10+2."], "feedback": {"correct": "Right!", "incorrect": "12."}},
-    {"id": "R2_08", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "am_pm", "difficulty": 2, "question": "Lily eats breakfast at 7:30 in the morning. Time:", "choices": ["A) 7:30 A.M.", "B) 7:30 P.M."], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Morning = A.M."}}, "verification": "A.M.", "hints": ["Morning."], "feedback": {"correct": "Right!", "incorrect": "7:30 A.M."}},
-    {"id": "R2_09", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "minutes_count", "difficulty": 3, "question": "Minute hand 3 ticks past 4. Minutes?", "correct_answer": "23", "expected_errors": {"20": {"error_type": "concept_gap", "note": "+3 ticks"}}, "verification": "20+3=23.", "hints": ["20+3."], "feedback": {"correct": "Right!", "incorrect": "23."}},
-    {"id": "R2_10", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "am_pm_logic", "difficulty": 2, "question": "True or False: 11:00 P.M. is at night.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "P.M. evening/night"}}, "verification": "Yes.", "hints": ["P.M. = afternoon/evening/night."], "feedback": {"correct": "True!", "incorrect": "True. 11 PM is at night."}}
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "read_clock_word",
+      "difficulty": 2,
+      "question": "Sara's clock shows hour hand between 4 and 5, minute hand on 9. Time?",
+      "choices": [
+        "A) 4:09",
+        "B) 4:45",
+        "C) 5:09",
+        "D) 9:04"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "9=45 min"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4:45."
+      },
+      "hints": [
+        "9 = 45 min."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4:45."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_count",
+      "difficulty": 2,
+      "question": "Minute hand 1 tick past 11. Minutes?",
+      "correct_answer": "56",
+      "expected_errors": {
+        "55": {
+          "error_type": "concept_gap",
+          "note": "Add 1 tick"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "55+1=56."
+      },
+      "hints": [
+        "55+1."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "56."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "am_pm",
+      "difficulty": 2,
+      "question": "Tom plays soccer at 4:30 in the afternoon. Write:",
+      "choices": [
+        "A) 4:30 A.M.",
+        "B) 4:30 P.M.",
+        "C) 4:30 noon",
+        "D) 4:30 night"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Afternoon = P.M."
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "P.M."
+      },
+      "hints": [
+        "Afternoon = P.M."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4:30 P.M."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_per_number",
+      "difficulty": 1,
+      "question": "Minute hand on 11 = how many minutes?",
+      "correct_answer": "55",
+      "expected_errors": {
+        "11": {
+          "error_type": "concept_gap",
+          "note": "Each=5"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "55."
+      },
+      "hints": [
+        "11×5."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "55."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_05",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "clock_logic",
+      "difficulty": 2,
+      "question": "True or False: When minute hand is on 6, the time is half past the hour.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "6=30 min=half past"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "6=30=half past."
+      },
+      "hints": [
+        "6=30 min."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 30 min = half past."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "True!"
+    },
+    {
+      "id": "R2_06",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "read_clock",
+      "difficulty": 2,
+      "question": "Hour hand between 11 and 12. Minute hand on 4. Time?",
+      "choices": [
+        "A) 11:04",
+        "B) 11:20",
+        "C) 12:20",
+        "D) 4:11"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "4=20 min"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "11:20."
+      },
+      "hints": [
+        "4=20 min."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "11:20."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_count",
+      "difficulty": 3,
+      "question": "Minute hand 2 ticks past 2. How many minutes?",
+      "correct_answer": "12",
+      "expected_errors": {
+        "10": {
+          "error_type": "concept_gap",
+          "note": "+2 ticks"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "10+2=12."
+      },
+      "hints": [
+        "10+2."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "12."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_08",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "am_pm",
+      "difficulty": 2,
+      "question": "Lily eats breakfast at 7:30 in the morning. Time:",
+      "choices": [
+        "A) 7:30 A.M.",
+        "B) 7:30 P.M."
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Morning = A.M."
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "A.M."
+      },
+      "hints": [
+        "Morning."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "7:30 A.M."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "minutes_count",
+      "difficulty": 3,
+      "question": "Minute hand 3 ticks past 4. Minutes?",
+      "correct_answer": "23",
+      "expected_errors": {
+        "20": {
+          "error_type": "concept_gap",
+          "note": "+3 ticks"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20+3=23."
+      },
+      "hints": [
+        "20+3."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "23."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_10",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "am_pm_logic",
+      "difficulty": 2,
+      "question": "True or False: 11:00 P.M. is at night.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "P.M. evening/night"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Yes."
+      },
+      "hints": [
+        "P.M. = afternoon/evening/night."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 11 PM is at night."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "True!"
+    }
   ],
   "practice_r3": [
-    {"id": "R3_01", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.A.1", "skill_tag": "read_clock_logic", "difficulty": 4, "question": "Hour hand just before 5. Minute hand 2 ticks past 11. What time?", "choices": ["A) 4:55", "B) 4:57", "C) 5:55", "D) 5:11"], "correct_answer": "B", "solution_steps": ["Hour: 4. Minutes: 55+2=57."], "expected_errors": {"A": {"error_type": "concept_gap", "note": "Add 2 ticks"}}, "feedback": {"correct": "Right!", "incorrect": "4:57."}, "three_read_prompt": "Read 1: Hour? Read 2: Minutes? Read 3: Combine.", "verification": "4:57.", "hints": ["Hour 4, minutes 57."]},
-    {"id": "R3_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "time_logic", "difficulty": 4, "question": "How many minutes are in 2 hours?", "correct_answer": "120", "solution_steps": ["2×60=120."], "expected_errors": {"60": {"error_type": "concept_gap", "note": "1 hour = 60 min"}, "30": {"error_type": "concept_gap", "note": "2 hours, not half"}}, "feedback": {"correct": "Right!", "incorrect": "2×60=120."}, "verification": "120.", "hints": ["2×60."]},
-    {"id": "R3_03", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "am_pm_word", "difficulty": 4, "question": "Sara wakes up at 6:30 in the morning. She goes to bed at 9:30 at night. Which uses the same letters?", "choices": ["A) 6:30 A.M. and 9:30 A.M.", "B) 6:30 P.M. and 9:30 P.M.", "C) 6:30 A.M. and 9:30 P.M.", "D) 6:30 P.M. and 9:30 A.M."], "correct_answer": "C", "solution_steps": ["Morning=A.M., night=P.M."], "expected_errors": {"A": {"error_type": "concept_gap", "note": "Night ≠ A.M."}}, "feedback": {"correct": "Right!", "incorrect": "Wake A.M., bed P.M."}, "verification": "A.M. + P.M.", "hints": ["Morning vs night."]},
-    {"id": "R3_04", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "clock_logic", "difficulty": 4, "question": "True or False: When the minute hand is exactly on 12, the time is exactly on the hour (like 5:00).", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "12=0 min=on the hour"}}, "feedback": {"correct": "True!", "incorrect": "True. Minute hand on 12 = on the hour."}, "verification": "True.", "hints": ["12 = 0 minutes."]},
-    {"id": "R3_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "time_logic", "difficulty": 5, "question": "Tom looks at the clock: hour hand between 8 and 9, minute hand 4 ticks past the 7. Write the time as HH:MM.", "correct_answer": "8:39", "solution_steps": ["Hour: 8. Minutes: 35+4=39."], "expected_errors": {"8:35": {"error_type": "concept_gap", "note": "Add 4 ticks"}, "9:39": {"error_type": "concept_gap", "note": "Hour is 8"}}, "feedback": {"correct": "Right!", "incorrect": "8:39."}, "three_read_prompt": "Read 1: Hour? Read 2: Minutes? Read 3: Format.", "verification": "8:39.", "hints": ["Hour 8, minute 35+4."]}
-  ]
+    {
+      "id": "R3_01",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "read_clock_logic",
+      "difficulty": 4,
+      "question": "Hour hand just before 5. Minute hand 2 ticks past 11. What time?",
+      "choices": [
+        "A) 4:55",
+        "B) 4:57",
+        "C) 5:55",
+        "D) 5:11"
+      ],
+      "correct_answer": "B",
+      "solution_steps": [
+        "Hour: 4. Minutes: 55+2=57."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Add 2 ticks"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4:57."
+      },
+      "three_read_prompt": "Read 1: Hour? Read 2: Minutes? Read 3: Combine.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4:57."
+      },
+      "hints": [
+        "Hour 4, minutes 57."
+      ],
+      "cpa_stage": "pictorial",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "time_logic",
+      "difficulty": 4,
+      "question": "How many minutes are in 2 hours?",
+      "correct_answer": "120",
+      "solution_steps": [
+        "2×60=120."
+      ],
+      "expected_errors": {
+        "60": {
+          "error_type": "concept_gap",
+          "note": "1 hour = 60 min"
+        },
+        "30": {
+          "error_type": "concept_gap",
+          "note": "2 hours, not half"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "2×60=120."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "120."
+      },
+      "hints": [
+        "2×60."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "am_pm_word",
+      "difficulty": 4,
+      "question": "Sara wakes up at 6:30 in the morning. She goes to bed at 9:30 at night. Which uses the same letters?",
+      "choices": [
+        "A) 6:30 A.M. and 9:30 A.M.",
+        "B) 6:30 P.M. and 9:30 P.M.",
+        "C) 6:30 A.M. and 9:30 P.M.",
+        "D) 6:30 P.M. and 9:30 A.M."
+      ],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Morning=A.M., night=P.M."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Night ≠ A.M."
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Wake A.M., bed P.M."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "A.M. + P.M."
+      },
+      "hints": [
+        "Morning vs night."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R3_04",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "clock_logic",
+      "difficulty": 4,
+      "question": "True or False: When the minute hand is exactly on 12, the time is exactly on the hour (like 5:00).",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "12=0 min=on the hour"
+        }
+      },
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. Minute hand on 12 = on the hour."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "True."
+      },
+      "hints": [
+        "12 = 0 minutes."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "True!"
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "time_logic",
+      "difficulty": 5,
+      "question": "Tom looks at the clock: hour hand between 8 and 9, minute hand 4 ticks past the 7. Write the time as HH:MM.",
+      "correct_answer": "8:39",
+      "solution_steps": [
+        "Hour: 8. Minutes: 35+4=39."
+      ],
+      "expected_errors": {
+        "8:35": {
+          "error_type": "concept_gap",
+          "note": "Add 4 ticks"
+        },
+        "9:39": {
+          "error_type": "concept_gap",
+          "note": "Hour is 8"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "8:39."
+      },
+      "three_read_prompt": "Read 1: Hour? Read 2: Minutes? Read 3: Format.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson 10.1 'Time to the Minute'",
+        "procedure_source": "EngageNY Grade 3 Module 2 Topic A — Time Measurement",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "8:39."
+      },
+      "hints": [
+        "Hour 8, minute 35+4."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U10 — 둘레 (3.MD.D.8)",
+    "current": "G3 U11 L1 — 시간 읽기: 가장 가까운 분까지 (3.MD.A.1)",
+    "successor": "G3 U11 L2 — 경과 시간 수직선 (3.MD.A.1)"
+  },
+  "metadata": {
+    "total_items": 43,
+    "upgraded": true,
+    "upgrade_script": "scripts/upgrade_u11_l1.py"
+  }
 }
