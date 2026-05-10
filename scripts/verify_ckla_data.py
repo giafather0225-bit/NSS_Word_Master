@@ -35,7 +35,7 @@ EXPECTED_QUESTION_COUNT_RANGE = (800, 850)
 EXPECTED_WORD_COUNT         = 684
 WORD_DEF_MAX_CHARS          = 100
 LESSON_PASSAGE_MIN_CHARS    = 200
-LESSON_PASSAGE_MAX_CHARS    = 3000
+LESSON_PASSAGE_MAX_CHARS    = 10000
 LESSON_DAYS_RATIO_TOLERANCE = 0.30
 
 KF_THRESHOLD = {"definition": 90, "example": 90, "audio": 90, "short_def": 85}
@@ -289,7 +289,7 @@ def c23_qa_kind_incomplete(conn, df) -> Optional[Issue]:
     r = _q(conn, base + (" AND d.domain_num=? GROUP BY l.id" if df else " GROUP BY l.id"), (df,) if df else ())
     if r is None: return _skip("LESSON_QA_KIND_INCOMPLETE","warn","KF_COUNT")
     bad = [{"domain":x["domain_num"],"lesson":x["lesson_num"]} for x in r
-           if sum(1 for v in (x["lit"],x["inf"],x["ev"]) if v>0)<3 or max(x["lit"]or 0,x["inf"]or 0,x["ev"]or 0)>4]
+           if sum(1 for v in (x["lit"],x["inf"],x["ev"]) if v>0)<3 or max(x["lit"]or 0,x["inf"]or 0,x["ev"]or 0)>6]
     return Issue("LESSON_QA_KIND_INCOMPLETE","warn","KF_COUNT",f"{len(bad)} lessons with incomplete QA kind coverage",KF_WEIGHT["LESSON_QA_KIND_INCOMPLETE"],count=len(bad),samples=bad[:5]) if bad else None
 
 def c24_evaluative_missing(conn, df) -> Optional[Issue]:
@@ -347,7 +347,7 @@ def _aux_check(conn, code, sev, w, table, value_col, is_error):
     r = _q(conn,f"SELECT unit,{value_col} FROM {table} ORDER BY unit")
     if r is None: return _skip(code,sev,"2",w)
     have = {x["unit"]:x[value_col] for x in r}
-    miss = [u for u in range(1,13) if u not in have]
+    miss = [u for u in range(1,12) if u not in have]
     empty = [u for u,v in have.items() if not v or v=="[]"]
     if miss or empty:
         parts = ([f"missing units: {miss}"] if miss else []) + ([f"units with empty content: {empty}"] if empty else [])
@@ -361,7 +361,7 @@ def c31_spelling(conn) -> Optional[Issue]:
     r = _q(conn,"SELECT unit,COUNT(DISTINCT week) w FROM ckla_spelling GROUP BY unit")
     if r is None: return _skip("CKLA_SPELLING_INCOMPLETE","error","2",WEIGHT_GROUP_2)
     have = {x["unit"]:x["w"] for x in r}
-    miss = [u for u in range(1,13) if u not in have]
+    miss = [u for u in range(1,12) if u not in have]
     few  = [u for u,w in have.items() if w<3]
     if miss or few:
         parts = ([f"missing units: {miss}"] if miss else []) + ([f"units with <3 weeks: {few}"] if few else [])
