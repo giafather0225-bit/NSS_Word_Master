@@ -55,7 +55,7 @@ KF_WEIGHT = {
     "LESSON_PASSAGE_TOO_SHORT":  0.3,
 }
 
-WORD_CASE_RE = re.compile(r"^[A-Z]?[a-z]+(-[a-z]+)?$")
+WORD_CASE_RE = re.compile(r"^[A-Z]?[a-z]+(-[a-z]+)?(\s+[a-z]+(-[a-z]+)?)*$")
 REQUIRED_TABLES = [
     "us_academy_domains", "us_academy_lessons", "us_academy_questions",
     "us_academy_words", "us_academy_word_lesson",
