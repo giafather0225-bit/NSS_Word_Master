@@ -16,6 +16,8 @@ let _cklaVocabIdx = 0;
 let _cklaQIdx = 0;
 /** @type {Object.<number, object>} Cached AI responses keyed by question_id */
 let _cklaResponses = {};
+/** @type {Object.<number, number>} Attempt count per question_id (max 2) */
+let _cklaAttempts = {};
 /** @type {string} Font size class: sm / md / lg */
 let _cklaFontSize = localStorage.getItem('ckla_font_size') || 'md';
 /** @type {boolean} Vocab quiz mode active */
@@ -61,6 +63,7 @@ function renderCKLALesson(data) {
   _cklaVocabIdx  = 0;
   _cklaQIdx      = 0;
   _cklaResponses = {};
+  _cklaAttempts  = {};
   _cklaVocabQuizMode      = false;
   _cklaVocabQuizIdx       = 0;
   _cklaVocabQuizScore     = 0;
@@ -507,7 +510,13 @@ function _renderQuestions() {
       <div class="ckla-q-arrows">
         <button class="ckla-arrow-btn" onclick="_cklaQNav(-1)" ${_cklaQIdx === 0 ? 'disabled' : ''}>◀ Prev</button>
         ${resp
-          ? `<button class="ckla-arrow-btn" onclick="_cklaQNav(1)" ${_cklaQIdx === qs.length - 1 ? 'disabled' : ''}>Next ▶</button>`
+          ? (() => {
+              const attempts = _cklaAttempts[q.id] || 0;
+              const canRetry  = resp.ai_score < 2 && attempts < 2 && !qaDone;
+              return canRetry
+                ? `<button class="ckla-retry-btn" onclick="_retryQuestion(${q.id})">Try Again</button>`
+                : `<button class="ckla-arrow-btn" onclick="_cklaQNav(1)" ${_cklaQIdx === qs.length - 1 ? 'disabled' : ''}>Next ▶</button>`;
+            })()
           : `<button class="ckla-submit-btn" id="ckla-sub-btn" onclick="_submitAnswer(${q.id})">Submit →</button>`}
       </div>
     </div>`;
@@ -516,6 +525,17 @@ function _renderQuestions() {
 /** @tag ACADEMY CKLA */
 function _cklaQNav(dir) {
   _cklaQIdx = Math.max(0, Math.min(_cklaLesson.questions.length - 1, _cklaQIdx + dir));
+  _renderQuestions();
+}
+
+/**
+ * Clear the last response for a question so the student can try again.
+ * Only available when score < 2 and attempts < 2.
+ * @param {number} questionId
+ * @tag ACADEMY CKLA
+ */
+function _retryQuestion(questionId) {
+  delete _cklaResponses[questionId];
   _renderQuestions();
 }
 
@@ -538,7 +558,8 @@ async function _submitAnswer(questionId) {
     });
     if (res.ok) {
       _cklaResponses[questionId] = await res.json();
-      // If all questions answered, mark Q&A tab done
+      _cklaAttempts[questionId] = (_cklaAttempts[questionId] || 0) + 1;
+      // If all questions answered (or each has had max attempts), mark Q&A tab done
       const allAnswered = _cklaLesson.questions.every(q => _cklaResponses[q.id]);
       if (allAnswered && !_cklaLesson.progress?.qa_done) {
         const prog = await _postProgress({ qa_done: true });

@@ -307,6 +307,19 @@
 }
 .ckla-submit-btn:disabled { opacity: 0.5; cursor: default; }
 
+.ckla-retry-btn {
+  background: var(--review-light);
+  color: var(--review-ink);
+  border: 1px solid var(--review-soft);
+  border-radius: var(--radius-sm);
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.ckla-retry-btn:hover { background: var(--review-soft); }
+
 /* ── AI Feedback ────────────────────────────────────────────── */
 .ckla-feedback {
   border-radius: var(--radius-sm);
