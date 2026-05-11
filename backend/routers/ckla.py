@@ -863,7 +863,9 @@ async def submit_domain_test(
             results.append({"question_id": qid, "score": score})
 
     pct = round(correct / total * 100) if total else 0
-    passed = pct >= 80   # spec: 80% pass threshold
+    _dpct_cfg = db.query(AppConfig).filter_by(key="ckla_domain_pass_pct").first()
+    _domain_pass_pct = int(_dpct_cfg.value) if _dpct_cfg and _dpct_cfg.value else 80
+    passed = pct >= _domain_pass_pct
 
     xp_awarded = 0
     # Track consecutive failures for parent dashboard warning (spec: 3회 연속 실패)
@@ -1182,7 +1184,9 @@ async def submit_grade_final_test(
             results.append({"question_id": qid, "score": score, "type": "qa"})
 
     pct = round(correct / total * 100) if total else 0
-    passed = pct >= 80
+    _gpct_cfg = db.query(AppConfig).filter_by(key="ckla_grade_pass_pct").first()
+    _grade_pass_pct = int(_gpct_cfg.value) if _gpct_cfg and _gpct_cfg.value else 80
+    passed = pct >= _grade_pass_pct
 
     xp_awarded = 0
     retry_after_str: str | None = None
