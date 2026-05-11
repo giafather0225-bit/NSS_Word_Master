@@ -1,5 +1,5 @@
 {
-  "standard": "3.NBT.1",
+  "standard": "3.NBT.A.1",
   "standard_description": "Use place value understanding to round whole numbers to the nearest 10 or 100.",
   "sources": [
     "NCTM Progressions for the Common Core State Standards in Mathematics — Number and Operations in Base Ten K-5, 2011",
@@ -10,7 +10,7 @@
   ],
   "misconceptions": [
     {
-      "misconception_id": "3.NBT.1.M01",
+      "misconception_id": "3.NBT.A.1.M01",
       "error_type": "halfway_rule_reversal",
       "short_label": "Rounds DOWN when digit is exactly 5",
       "description": "Student rounds DOWN when the relevant digit is exactly 5, violating the standard convention (round half up). The student may believe the halfway point belongs to the lower interval.",
@@ -21,7 +21,7 @@
       "bloom_level": 2
     },
     {
-      "misconception_id": "3.NBT.1.M02",
+      "misconception_id": "3.NBT.A.1.M02",
       "error_type": "wrong_digit_rounding",
       "short_label": "Uses the wrong place-value digit to round",
       "description": "When rounding to the nearest hundred, the student looks at the ones digit instead of the tens digit (or vice versa). The correct digit to inspect is the digit ONE place to the right of the target place.",
@@ -32,7 +32,7 @@
       "bloom_level": 2
     },
     {
-      "misconception_id": "3.NBT.1.M03",
+      "misconception_id": "3.NBT.A.1.M03",
       "error_type": "truncation_not_rounding",
       "short_label": "Truncates instead of rounding",
       "description": "Student removes the trailing digit(s) without adjusting upward, effectively always rounding down. The number is simply truncated to the target place.",
@@ -43,7 +43,7 @@
       "bloom_level": 2
     },
     {
-      "misconception_id": "3.NBT.1.M04",
+      "misconception_id": "3.NBT.A.1.M04",
       "error_type": "round_always_up",
       "short_label": "Always rounds up regardless of digit value",
       "description": "Student always rounds up to the higher ten or hundred, regardless of the deciding digit. This produces correct answers only when the deciding digit is >= 5.",
@@ -54,7 +54,7 @@
       "bloom_level": 2
     },
     {
-      "misconception_id": "3.NBT.1.M05",
+      "misconception_id": "3.NBT.A.1.M05",
       "error_type": "round_always_down",
       "short_label": "Always rounds down regardless of digit value",
       "description": "Student always rounds down to the lower ten or hundred, regardless of the deciding digit. This is essentially truncation applied to hundreds as well, or a systematic downward bias.",
@@ -65,7 +65,7 @@
       "bloom_level": 2
     },
     {
-      "misconception_id": "3.NBT.1.M06",
+      "misconception_id": "3.NBT.A.1.M06",
       "error_type": "midpoint_selection",
       "short_label": "Selects the midpoint value rather than rounding to it",
       "description": "Student identifies the midpoint (e.g., 35 between 30 and 40, or 750 between 700 and 800) and reports the midpoint itself as the rounded answer, instead of rounding to the adjacent bench mark.",
@@ -76,7 +76,7 @@
       "bloom_level": 3
     },
     {
-      "misconception_id": "3.NBT.1.M07",
+      "misconception_id": "3.NBT.A.1.M07",
       "error_type": "place_value_level_confusion",
       "short_label": "Rounds to the wrong place (e.g., rounds to ten when asked for hundred)",
       "description": "Student rounds to the correct direction but to the wrong place value. This includes rounding to the nearest ten when asked for nearest hundred, or skipping a place value entirely.",
@@ -87,7 +87,7 @@
       "bloom_level": 2
     },
     {
-      "misconception_id": "3.NBT.1.M08",
+      "misconception_id": "3.NBT.A.1.M08",
       "error_type": "rounding_boundary_off_by_one",
       "short_label": "Off-by-one error at rounding boundaries",
       "description": "Student makes an off-by-one error when identifying the range of numbers that round to a given value, or when reasoning about the greatest/least number in a rounding range. Typically manifests as including 850 in the range that rounds to 800 (when it actually rounds to 900).",
@@ -101,7 +101,9 @@
   "metadata": {
     "created": "2026-05-06",
     "version": "1.0",
-    "lesson_uses": ["G3_U1_L2"],
+    "lesson_uses": [
+      "G3_U1_L2"
+    ],
     "total_misconceptions": 8
   }
 }
