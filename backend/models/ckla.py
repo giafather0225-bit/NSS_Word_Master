@@ -83,6 +83,7 @@ class CKLALessonProgress(Base):
     vocab_done          = Column(Boolean, default=False)
     questions_attempted = Column(Integer, default=0)
     questions_correct   = Column(Integer, default=0)
+    qa_done             = Column(Boolean, default=False)
     word_work_done      = Column(Boolean, default=False)
     completed           = Column(Boolean, default=False)
     completed_at        = Column(String)

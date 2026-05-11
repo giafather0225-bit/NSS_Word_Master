@@ -635,10 +635,10 @@ async function loadCKLALessons(domainNum) {
 function _renderLessons(data) {
   const view = document.getElementById('ckla-view');
   const progressIcons = [
-    { key: 'reading_done',        label: 'Read' },
-    { key: 'vocab_done',          label: 'Words' },
-    { key: 'questions_attempted', label: 'Q&A', isCount: true },
-    { key: 'word_work_done',      label: 'WW' },
+    { key: 'reading_done',  label: 'Read' },
+    { key: 'vocab_done',    label: 'Words' },
+    { key: 'qa_done',       label: 'Q&A' },
+    { key: 'word_work_done', label: 'WW' },
   ];
 
   const domainNum = data.domain.domain_num;
@@ -664,7 +664,7 @@ function _renderLessons(data) {
       ${data.lessons.map(l => {
         const p = l.progress;
         const chips = progressIcons.map(pi => {
-          const done = pi.isCount ? (p[pi.key] > 0) : p[pi.key];
+          const done = !!p[pi.key];
           return `<span class="ckla-chip ${done ? 'ckla-chip-done' : ''}" title="${pi.label}">${pi.label}</span>`;
         }).join('');
         const isDone = p.completed;

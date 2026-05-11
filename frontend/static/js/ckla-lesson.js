@@ -481,12 +481,16 @@ function _renderQuestions() {
   const qs = _cklaLesson.questions;
   if (!qs.length) { el.innerHTML = '<div class="ckla-empty">No questions for this lesson.</div>'; return; }
 
+  const allAnswered = qs.every(q => _cklaResponses[q.id]);
+  const qaDone = _cklaLesson.progress?.qa_done;
+
   const q    = qs[_cklaQIdx];
   const resp = _cklaResponses[q.id];
   const kindCls = { Literal: 'kind-lit', Inferential: 'kind-inf', Evaluative: 'kind-eva' };
   const scoreIcon = ['✗', '△', '✓'];
 
   el.innerHTML = `
+    ${(allAnswered || qaDone) ? '<div class="ckla-done-badge" style="margin-bottom:12px">Q&amp;A complete</div>' : ''}
     <div class="ckla-q-nav">
       <span class="ckla-q-counter">Question ${_cklaQIdx + 1} of ${qs.length}</span>
       <span class="ckla-kind-badge ${kindCls[q.kind] || ''}">${q.kind}</span>
@@ -534,6 +538,12 @@ async function _submitAnswer(questionId) {
     });
     if (res.ok) {
       _cklaResponses[questionId] = await res.json();
+      // If all questions answered, mark Q&A tab done
+      const allAnswered = _cklaLesson.questions.every(q => _cklaResponses[q.id]);
+      if (allAnswered && !_cklaLesson.progress?.qa_done) {
+        const prog = await _postProgress({ qa_done: true });
+        if (prog) { _cklaLesson.progress = prog; _maybeShowDifficultyPrompt(prog); }
+      }
       _renderQuestions();
     } else {
       if (btn) { btn.disabled = false; btn.textContent = 'Submit →'; }

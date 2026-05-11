@@ -82,6 +82,7 @@ def _grade_rank(completion_pct: float) -> str:
 class ProgressUpdate(BaseModel):
     reading_done:     bool | None = None
     vocab_done:       bool | None = None
+    qa_done:          bool | None = None
     word_work_done:   bool | None = None
     word_work_answer: str | None = None   # student's free-typed answer for similarity check
 
@@ -125,7 +126,7 @@ def _progress_dict(p: CKLALessonProgress | None) -> dict:
     if not p:
         return {
             "reading_done": False, "reading_done_at": None,
-            "vocab_done": False, "word_work_done": False,
+            "vocab_done": False, "qa_done": False, "word_work_done": False,
             "questions_attempted": 0, "questions_correct": 0,
             "completed": False, "completed_at": None, "last_active": None,
             "started_at": None, "difficulty_rating": None, "grade": 3,
@@ -134,6 +135,7 @@ def _progress_dict(p: CKLALessonProgress | None) -> dict:
         "reading_done":        bool(p.reading_done),
         "reading_done_at":     p.reading_done_at,
         "vocab_done":          bool(p.vocab_done),
+        "qa_done":             bool(p.qa_done),
         "word_work_done":      bool(p.word_work_done),
         "questions_attempted": p.questions_attempted or 0,
         "questions_correct":   p.questions_correct or 0,
@@ -432,6 +434,9 @@ def update_lesson_progress(
                         last_studied=today_str,
                     ))
 
+        if req.qa_done is True and not prog.qa_done:
+            prog.qa_done = True
+
         if req.word_work_done is True and not prog.word_work_done:
             if req.word_work_answer and lesson.word_work_word:
                 # Reject if student typed only the focus word (trivially short / just the word)
@@ -466,8 +471,8 @@ def update_lesson_progress(
 
         prog.last_active = now
 
-        # Lesson complete: all three tabs done for the first time
-        if (prog.reading_done and prog.vocab_done and prog.word_work_done
+        # Lesson complete: all four tabs done for the first time
+        if (prog.reading_done and prog.vocab_done and prog.qa_done and prog.word_work_done
                 and not prog.completed):
             prog.completed    = True
             prog.completed_at = now
