@@ -533,7 +533,14 @@ def update_lesson_progress(
                 .count()
             )
             if today_done >= daily_goal:
-                award_xp(db, "ckla_daily_goal", detail=today_str)
+                # Guard: only award once per day — check XPLog before awarding
+                from backend.models.gamification import XPLog
+                already_awarded = db.query(XPLog).filter(
+                    XPLog.action == "ckla_daily_goal",
+                    XPLog.detail == today_str,
+                ).first()
+                if not already_awarded:
+                    award_xp(db, "ckla_daily_goal", detail=today_str)
 
         db.commit()
         return _progress_dict(prog)
@@ -1159,13 +1166,24 @@ async def submit_grade_final_test(
         user_ans_stripped = (user_ans or "").strip()
 
         if qid >= 30000:
-            # word_work — difflib similarity >= 0.80 (same as lesson Word Work tab)
+            # word_work — student must write an original sentence using the focus word.
+            # Reject (score=0) if the sentence copies the hint (definition or example_1)
+            # with ≥80% similarity — mirrors the lesson Word Work tab logic exactly.
+            # Also reject if the answer is too short to be a real sentence (< 8 chars).
             word = db.query(USAcademyWord).filter_by(id=qid - 30000).first()
             if not word:
                 results.append({"question_id": qid, "score": 0, "type": "word_work"})
                 continue
-            sim = SequenceMatcher(None, user_ans_stripped.lower(), (word.word or "").lower()).ratio()
-            is_correct = sim >= 0.80 and len(user_ans_stripped) >= 3
+            hint_texts = [
+                p.strip() for p in [word.definition or "", word.example_1 or ""]
+                if p.strip()
+            ]
+            ans_lower = user_ans_stripped.lower()
+            copied_hint = any(
+                SequenceMatcher(None, ans_lower, h.lower()).ratio() >= 0.8
+                for h in hint_texts
+            )
+            is_correct = (not copied_hint) and len(user_ans_stripped) >= 8
             score = 2 if is_correct else 0
             if score == 2:
                 correct += 1
