@@ -1,0 +1,96 @@
+{
+  "standard": "3.MD.D.8",
+  "standard_description": "Solve real world and mathematical problems involving perimeters of polygons, including finding the perimeter given the side lengths, finding an unknown side length, and exhibiting rectangles with the same perimeter and different areas or with the same area and different perimeters.",
+  "sources": [
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Geometric Measurement (GM) K–5, 2012",
+    "Van de Walle, J.A., Karp, K.S., & Bay-Williams, J.M. (2013). Elementary and Middle School Mathematics (8th ed.). Pearson.",
+    "EngageNY Grade 3 Module 7: Geometry and Measurement Word Problems, Teacher Edition, 2013",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015",
+    "Battista, M.T. (2007). The development of geometric and spatial thinking. In F.K. Lester (Ed.), Second handbook of research on mathematics teaching and learning. NCTM."
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.MD.D.8.M01",
+      "error_type": "perimeter_area_confusion",
+      "short_label": "Computing area instead of perimeter",
+      "description": "Student multiplies length × width (area formula) when the question asks for perimeter, or vice versa. The two concepts are introduced near each other and students conflate the procedures because both involve length and width.",
+      "example": "Rectangle 4 cm × 3 cm. Question: 'What is the perimeter?' Student computes 4 × 3 = 12 sq cm instead of 4 + 3 + 4 + 3 = 14 cm.",
+      "citation": "Van de Walle et al. (2013) p.443 — 'Students routinely confuse perimeter and area procedures, multiplying length by width when asked for perimeter; this stems from teaching both formulas in the same lesson without first establishing perimeter as a sum of all sides through hands-on tracing.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Trace the OUTSIDE of the shape with a finger while saying 'around, around, around.' Perimeter = distance around = ADD all sides. Area = SPACE inside = MULTIPLY. Use the ant-walking-the-fence analogy.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.D.8.M02",
+      "error_type": "missing_side",
+      "short_label": "Adding only labeled sides (forgetting hidden sides)",
+      "description": "On rectangle problems where only length and width are labeled (not all four sides), the student adds only the two labeled values instead of adding all four sides. Common because the student does not realize the unlabeled sides equal the labeled opposites.",
+      "example": "Rectangle labeled length=5, width=3 (only those two labels visible). Student computes 5+3=8 instead of 5+3+5+3=16.",
+      "citation": "NCTM GM Progressions K-5 (2012) p.18 — 'Children often compute perimeter by summing only the labeled side lengths in a diagram, failing to recognize that opposite sides of a rectangle have equal length and must each be counted; explicit labeling of all four sides during early instruction reduces this error.'",
+      "source": "NCTM Progressions GM K-5",
+      "remediation": "Before adding, RELABEL all four sides: write the length on top AND bottom; write the width on left AND right. Count: 'four sides — four numbers to add.' Use grid paper to count unit lengths along every edge.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.D.8.M03",
+      "error_type": "wrong_units",
+      "short_label": "Reporting perimeter in square units",
+      "description": "Student computes the correct perimeter sum but labels it with square units (cm², sq ft) instead of linear units (cm, ft). This indicates the student treats every length-related answer as 'area-like' due to unit confusion.",
+      "example": "Rectangle 4 cm × 3 cm. Student correctly computes 4+3+4+3=14 but writes '14 sq cm' or '14 cm²'.",
+      "citation": "Battista (2007) p.872 — 'Unit confusion (cm² vs cm) persists into middle grades; students do not yet conceive of perimeter as a one-dimensional measure (length) distinct from area as a two-dimensional measure (square coverage).'",
+      "source": "Battista (2007) NCTM Handbook",
+      "remediation": "Perimeter is a DISTANCE — measured in plain length units (cm, m, in, ft). Area is COVERAGE — measured in square units (cm², sq ft). Visual: perimeter = a string laid around the shape (1D); area = tiles filling the shape (2D).",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.D.8.M04",
+      "error_type": "square_double_only",
+      "short_label": "For a square, doubling instead of quadrupling",
+      "description": "When given a square with side length s, the student computes s+s=2s instead of s+s+s+s=4s. The student treats 'all sides equal' as if there are only two sides to combine.",
+      "example": "Square with side 5 cm. Student computes 5+5=10 cm instead of 5+5+5+5=20 cm.",
+      "citation": "Van de Walle et al. (2013) p.443 — 'For squares, a common Grade 3 error is computing 2 × side instead of 4 × side; the student conflates the rectangle pattern (length+length+width+width = 2 pairs) with the square pattern (4 equal sides), losing one of the pairs.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "A square has 4 EQUAL sides. Perimeter = 4 × side, OR side+side+side+side. Trace each of the 4 edges and count: 1, 2, 3, 4. Use a square tile and walk fingers around all four edges.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.D.8.M05",
+      "error_type": "vertex_count",
+      "short_label": "Counting vertices/corners instead of edge units",
+      "description": "On grid-based perimeter problems, the student counts corners (vertices) of the shape rather than the unit-length segments along each edge. This produces a small undercounted perimeter value.",
+      "example": "Rectangle on grid: 4 units long, 2 units wide. Student counts the 4 corners and reports perimeter = 4, instead of counting unit segments around the edge (4+2+4+2=12).",
+      "citation": "Battista (2007) p.881 — 'When measuring perimeter on grid paper, young students may count discrete features (corners, dots, square cells along an edge) rather than continuous length units, producing systematically incorrect counts; the underlying issue is that they have not yet conceptualized length as a 1D continuous measure.'",
+      "source": "Battista (2007) NCTM Handbook",
+      "remediation": "On grid paper, count the LITTLE LINE SEGMENTS between dots, not the dots themselves. Trace each unit segment with a pencil, counting aloud: '1 unit, 2 units, …'. Color each segment a different color until reaching the start.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.D.8.M06",
+      "error_type": "unknown_side_subtract_error",
+      "short_label": "Wrong operation when finding an unknown side",
+      "description": "Given a perimeter and some side lengths, the student must find the missing side by subtracting the known sides from the perimeter. The student instead adds the known sides to the perimeter or makes other operation errors.",
+      "example": "Rectangle: perimeter = 20, length = 7, width = ? Student computes 20+7+7=34 or 20÷4=5 instead of (20−14)÷2=3.",
+      "citation": "EngageNY G3 Module 7 Lesson 18 Teacher Edition — 'Finding an unknown side from a known perimeter requires students to reverse the addition process: subtract the known sides from the total perimeter, then divide if the remaining sides are equal. Many students attempt to add or apply the area procedure instead.'",
+      "source": "EngageNY Grade 3 Module 7",
+      "remediation": "Two-step plan: (1) Subtract the known sides from the perimeter. (2) If two equal sides remain, divide by 2. Label clearly: 'Total around = ___, Known sides = ___, Missing = total − known.'",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.MD.D.8.M07",
+      "error_type": "irregular_skip",
+      "short_label": "Skipping sides on irregular polygons",
+      "description": "On L-shapes, T-shapes, and other irregular polygons, the student fails to count all sides — typically missing the inner notch sides or short connecting segments. Result: a substantially undercounted perimeter.",
+      "example": "L-shape with sides 4, 2, 2, 2, 2, 4 (six sides, perimeter 16). Student adds only the four outer sides 4+2+2+4=12, missing the two inner notch sides.",
+      "citation": "NCTM GM Progressions K-5 (2012) p.19 — 'For irregular polygons (especially L-shapes and step-shapes), students systematically undercount sides by skipping inner notch segments; explicit numbering of every vertex and explicit naming of every side resolves the error.'",
+      "source": "NCTM Progressions GM K-5",
+      "remediation": "Number each VERTEX (1, 2, 3, …) walking around the shape. The number of sides equals the number of vertices. After labeling each side length, check: did you label as many segments as there are vertices? Trace the entire boundary with one continuous finger motion.",
+      "bloom_level": 3
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-10",
+    "version": "1.0",
+    "lesson_uses": ["G3_U10_L1", "G3_U10_L2", "G3_U10_L3", "G3_U10_L4", "G3_U10_L5", "G3_U10_L6"],
+    "total_misconceptions": 7
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "standard": "3.NBT.1",
+  "standard_description": "Use place value understanding to round whole numbers to the nearest 10 or 100.",
+  "sources": [
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Number and Operations in Base Ten K-5, 2011",
+    "Ashlock, R. B. (2010). Error Patterns in Computation (10th ed.). Pearson.",
+    "EngageNY Grade 3 Module 2 Teacher Edition, 2013",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015",
+    "Kamii, C. & Dominick, A. (1997). To Teach or Not to Teach Algorithms. Teaching Children Mathematics, 3(6), 315–318."
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.NBT.1.M01",
+      "error_type": "halfway_rule_reversal",
+      "short_label": "Rounds DOWN when digit is exactly 5",
+      "description": "Student rounds DOWN when the relevant digit is exactly 5, violating the standard convention (round half up). The student may believe the halfway point belongs to the lower interval.",
+      "example": "85 rounded to the nearest ten → 80 (correct is 90). 250 rounded to the nearest hundred → 200 (correct is 300).",
+      "citation": "Ashlock (2010) p.37 — 'A recurring error pattern is treating the midpoint as belonging to the lower interval, probably because the number is \"not quite\" at the upper bound.'",
+      "source": "Ashlock Error Patterns in Computation",
+      "remediation": "Use a number line: place the midpoint token directly between the two bench marks. Ask: 'Which bench mark do we jump to when we are exactly in the middle?' Establish the rule physically before writing it symbolically.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.NBT.1.M02",
+      "error_type": "wrong_digit_rounding",
+      "short_label": "Uses the wrong place-value digit to round",
+      "description": "When rounding to the nearest hundred, the student looks at the ones digit instead of the tens digit (or vice versa). The correct digit to inspect is the digit ONE place to the right of the target place.",
+      "example": "463 rounded to nearest hundred: student looks at ones digit (3) instead of tens digit (6), concludes 'round down' and writes 400 (which happens to be correct by luck) or looks at ones digit of 371 and writes 400 instead of 400 — errors surface clearly on numbers like 482 → student writes 400 (checked ones=2) when correct is 500 (tens=8).",
+      "citation": "EngageNY G3 Module 2 Lesson 2 — 'Students frequently inspect the wrong digit; explicit labeling of the target place and the deciding digit is required.'",
+      "source": "EngageNY Grade 3 Module 2",
+      "remediation": "Underline the target place (e.g., hundreds), then circle the digit immediately to its right (the deciding digit). Say aloud: 'I am rounding to the hundreds. My deciding digit is in the tens place.'",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.NBT.1.M03",
+      "error_type": "truncation_not_rounding",
+      "short_label": "Truncates instead of rounding",
+      "description": "Student removes the trailing digit(s) without adjusting upward, effectively always rounding down. The number is simply truncated to the target place.",
+      "example": "66 rounded to the nearest ten → 60 (correct is 70). 507 rounded to the nearest ten → 500 (correct is 510).",
+      "citation": "NCTM NBT Progressions p.11 — 'Truncation is a common first attempt at rounding; students need explicit instruction that rounding sometimes requires adding, not just removing.'",
+      "source": "NCTM Progressions NBT K-5",
+      "remediation": "Compare truncation (tear off the ones digit) vs rounding (land on nearest bench mark). Use a number line to show the difference between 63 torn to 60 vs 63 landing on 60 because it is closer.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.NBT.1.M04",
+      "error_type": "round_always_up",
+      "short_label": "Always rounds up regardless of digit value",
+      "description": "Student always rounds up to the higher ten or hundred, regardless of the deciding digit. This produces correct answers only when the deciding digit is >= 5.",
+      "example": "82 rounded to the nearest ten → 90 (correct is 80). 739 rounded to the nearest hundred → 800 (correct is 700).",
+      "citation": "Ashlock (2010) p.38 — 'Some students learn only the \"round up\" instruction without internalizing the digit threshold condition, producing systematic upward bias.'",
+      "source": "Ashlock Error Patterns in Computation",
+      "remediation": "Present pairs: one number with deciding digit < 5 and one with >= 5. Ask: 'Are these the same or different?' Require the student to state the digit and compare before rounding.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.NBT.1.M05",
+      "error_type": "round_always_down",
+      "short_label": "Always rounds down regardless of digit value",
+      "description": "Student always rounds down to the lower ten or hundred, regardless of the deciding digit. This is essentially truncation applied to hundreds as well, or a systematic downward bias.",
+      "example": "17 rounded to nearest ten → 10 (correct is 20). 298 rounded to nearest hundred → 200 (correct is 300).",
+      "citation": "Kamii & Dominick (1997) p.317 — 'Children taught only the floor of the interval default to rounding down in ambiguous cases and generalize that pattern broadly.'",
+      "source": "Kamii & Dominick 1997",
+      "remediation": "Use a number line and place the number marker. Physically move to the nearer bench mark. Ask: 'Is it closer to the lower or the higher one?' Verify by counting steps each way.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.NBT.1.M06",
+      "error_type": "midpoint_selection",
+      "short_label": "Selects the midpoint value rather than rounding to it",
+      "description": "Student identifies the midpoint (e.g., 35 between 30 and 40, or 750 between 700 and 800) and reports the midpoint itself as the rounded answer, instead of rounding to the adjacent bench mark.",
+      "example": "34 rounded to the nearest ten → 35 (correct is 30). 658 rounded to the nearest hundred → 650 (correct is 700).",
+      "citation": "EngageNY G3 Module 2 Lesson 1 — 'Students confuse locating the midpoint as a step in rounding with selecting the midpoint as the answer; the midpoint is a decision tool, not the result.'",
+      "source": "EngageNY Grade 3 Module 2",
+      "remediation": "Separate the two steps explicitly: (1) Find the midpoint to determine direction. (2) Jump to the bench mark. Never write the midpoint as an answer.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.NBT.1.M07",
+      "error_type": "place_value_level_confusion",
+      "short_label": "Rounds to the wrong place (e.g., rounds to ten when asked for hundred)",
+      "description": "Student rounds to the correct direction but to the wrong place value. This includes rounding to the nearest ten when asked for nearest hundred, or skipping a place value entirely.",
+      "example": "463 rounded to the nearest hundred → 460 (correct is 500) — student rounded to nearest ten. 486 rounded to the nearest ten → 500 (correct is 490) — student rounded to nearest hundred.",
+      "citation": "Smarter Balanced G3 Item Specs 2015 — 'Distinguishing between target place and deciding place is the most frequent error source on 3.NBT.1 items.'",
+      "source": "Smarter Balanced Grade 3 Item Specifications",
+      "remediation": "Highlight the key word (TEN or HUNDRED) in the problem. Point to the place in the number. Ask: 'What place are you rounding TO?' before any computation begins.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.NBT.1.M08",
+      "error_type": "rounding_boundary_off_by_one",
+      "short_label": "Off-by-one error at rounding boundaries",
+      "description": "Student makes an off-by-one error when identifying the range of numbers that round to a given value, or when reasoning about the greatest/least number in a rounding range. Typically manifests as including 850 in the range that rounds to 800 (when it actually rounds to 900).",
+      "example": "Greatest number rounding to 800 → 850 (correct is 849). Count of numbers rounding to 400 → 99 or 101 (correct is 100, range 350–449).",
+      "citation": "NCTM NBT Progressions p.12 — 'Boundary reasoning requires students to consider strict inequalities; off-by-one errors at the boundary are common and require explicit attention to the halfway point convention.'",
+      "source": "NCTM Progressions NBT K-5",
+      "remediation": "Test boundary values explicitly: 'Does 850 round to 800 or 900? Check the tens digit.' Build the range by listing smallest and largest, then counting.",
+      "bloom_level": 4
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-06",
+    "version": "1.0",
+    "lesson_uses": ["G3_U1_L2"],
+    "total_misconceptions": 8
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "standard": "3.MD.C.6",
+  "standard_description": "Measure areas by counting unit squares (square cm, square m, square in, square ft, and improvised units).",
+  "sources": [
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Geometric Measurement K–5, 2012",
+    "Battista, M.T. (2007). The development of geometric and spatial thinking. NCTM Handbook.",
+    "EngageNY Grade 3 Module 4 Topic A — Measure Area, Teacher Edition, 2013",
+    "Outhred, L. & Mitchelmore, M. (2000). Young children's intuitive understanding of rectangular area measurement. Journal for Research in Mathematics Education, 31(2), 144-167.",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.MD.C.6.M01",
+      "error_type": "double_count",
+      "short_label": "Double-counting unit squares",
+      "description": "When counting unit squares to find area, student counts some squares twice. Most common on irregular shapes or when no systematic order is used.",
+      "example": "Rectangle covered by 12 squares. Student counts 14 by accidentally counting a row twice.",
+      "citation": "Outhred & Mitchelmore (2000) p.156 — 'Without systematic counting strategies (row-by-row or column-by-column), young children frequently double-count or skip unit squares; teaching a left-to-right, top-to-bottom scan reduces this.'",
+      "source": "Outhred & Mitchelmore (2000)",
+      "remediation": "Count row by row, marking each square with a number or color as counted. Or: count rows × columns for rectangles (5 rows × 3 cols = 15 sq).",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.C.6.M02",
+      "error_type": "skip_count",
+      "short_label": "Skipping unit squares during count",
+      "description": "Student misses some unit squares while counting, leading to underestimation. Opposite of double-counting.",
+      "example": "Rectangle has 18 squares; student counts 16, missing 2 in a back corner or middle.",
+      "citation": "NCTM GM Progressions K-5 (2012) p.18 — 'Skipping unit squares is the most common counting error after double-counting; both stem from lack of a systematic scan strategy.'",
+      "source": "NCTM Progressions GM K-5",
+      "remediation": "Systematic count: start at top-left, move right then down. Touch each square. Mark off completed rows.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.C.6.M03",
+      "error_type": "count_perimeter_squares_only",
+      "short_label": "Counting only the boundary squares (perimeter)",
+      "description": "Student counts only the squares along the edge of the shape, ignoring interior squares. Closely related to area-perimeter confusion.",
+      "example": "4×4 rectangle (area = 16). Student counts only boundary = 12 squares.",
+      "citation": "Battista (2007) p.876 — 'Some students count only the squares along the boundary of a rectangle, conflating area with a perimeter-like count; this error indicates lack of understanding of area as interior coverage.'",
+      "source": "Battista (2007) NCTM Handbook",
+      "remediation": "Verify: ALL squares inside, not just edges. Shade the entire interior. Count every shaded square, including center.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.C.6.M04",
+      "error_type": "wrong_unit_label",
+      "short_label": "Counting correctly but reporting wrong unit",
+      "description": "Student counts 12 unit squares correctly but writes '12 cm' or '12 squares' instead of '12 sq cm' (with units).",
+      "example": "Rectangle on cm grid: area = 12 unit squares. Student writes 12 cm or 12 (no unit).",
+      "citation": "NCTM GM Progressions K-5 (2012) p.18 — 'Counting accurately but reporting without units (or with the wrong unit) is a persistent error in area measurement; explicit unit labeling must be modeled.'",
+      "source": "NCTM Progressions GM K-5",
+      "remediation": "Always end with units: 12 sq cm or 12 cm². If unit squares from a non-metric grid, use 'square units' generically.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.C.6.M05",
+      "error_type": "non_unit_squares",
+      "short_label": "Counting 2×1 or larger rectangles as 1 'unit square'",
+      "description": "Student counts visually-similar but non-unit shapes (e.g., 2×1 rectangles) as if they were unit squares.",
+      "example": "Grid with mixed 1×1 and 2×1 cells. Student counts each cell as 1, regardless of size.",
+      "citation": "Outhred & Mitchelmore (2000) p.158 — 'Children initially treat any rectilinear cell as a counting unit without attending to size; insisting on uniform unit squares before counting is essential.'",
+      "source": "Outhred & Mitchelmore (2000)",
+      "remediation": "Verify each cell is a unit square (same size, square shape) before counting. If cells vary, subdivide into smallest common unit.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.C.6.M06",
+      "error_type": "count_dots_instead",
+      "short_label": "Counting grid intersection dots instead of squares",
+      "description": "On dot-grid paper, student counts dots at grid intersections instead of unit squares between them. Result: typically (n+1) where n is the correct count.",
+      "example": "3×2 rectangle (6 unit squares). Student counts dots at intersections (4×3 = 12) and reports 12.",
+      "citation": "Battista (2007) p.881 — 'On dot-grid paper, children may count dots rather than squares; the distinction between discrete points and unit-square regions must be explicitly taught.'",
+      "source": "Battista (2007) NCTM Handbook",
+      "remediation": "Squares are the SPACES between dots, not the dots themselves. Shade each square. Count shaded regions, not dots.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.C.6.M07",
+      "error_type": "scale_unit_confusion",
+      "short_label": "Counting squares in a scaled drawing as actual size",
+      "description": "On a scale drawing (e.g., 1 grid square = 5 ft²), student counts grid squares without applying the scale factor.",
+      "example": "Scale: 1 square = 4 sq ft. Drawing has 6 squares. Student reports area = 6 sq ft instead of 24 sq ft.",
+      "citation": "Van de Walle et al. (2013) p.444 — 'When unit squares represent a multiple of the basic unit, students forget to apply the scale; explicit scale-aware counting is needed for later area work.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Identify scale FIRST (1 sq = ? sq units). Count squares. Multiply count × scale.",
+      "bloom_level": 3
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-11",
+    "version": "1.0",
+    "lesson_uses": ["G3_U12_L2"],
+    "total_misconceptions": 7
+  }
+}

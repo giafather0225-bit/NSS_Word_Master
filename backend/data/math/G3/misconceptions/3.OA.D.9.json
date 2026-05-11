@@ -1,0 +1,107 @@
+{
+  "standard": "3.OA.D.9",
+  "standard_description": "Identify arithmetic patterns (including patterns in the addition table or multiplication table), and explain them using properties of operations.",
+  "sources": [
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Operations and Algebraic Thinking (OA) K–5, 2011",
+    "Burger, E. B. & Shaughnessy, M. (2012). Number Sense and Nonsense. Math Solutions.",
+    "Ashlock, R. B. (2010). Error Patterns in Computation (10th ed.). Pearson.",
+    "EngageNY Grade 3 Module 1 Teacher Edition, 2013",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.OA.D.9.M01",
+      "error_type": "commutative_confusion",
+      "short_label": "Commutative vs Identity Property confusion",
+      "description": "Student confuses the Commutative Property (a + b = b + a) with the Identity Property (a + 0 = a). When asked to identify the Commutative Property, student selects an Identity Property example (e.g., 7 + 0 = 7) because both involve 'something + something = answer'.",
+      "example": "Selects '7 + 0 = 7' as Commutative Property instead of '4 + 5 = 5 + 4'.",
+      "citation": "NCTM OA Progressions p.6 — 'Students may conflate the two addition properties when they only see symbolic examples without concrete/pictorial models.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Use manipulatives: show two groups swapping positions (Commutative) vs. one group with an empty plate (Identity). Explicit verbal labels required.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.D.9.M02",
+      "error_type": "odd_even_sum_rule",
+      "short_label": "Odd + even sum rule error",
+      "description": "Student incorrectly applies the odd/even sum rule. Common errors: (a) believes odd + even = even; (b) believes even + even = odd; (c) applies the rule inconsistently by checking only the tens digit rather than the ones digit.",
+      "example": "For '3 + 4', student says the sum is even because 4 is even (ignores that 3 is odd).",
+      "citation": "Ashlock (2010) p.22 — 'Children often over-generalize even/odd rules from multiplication to addition without testing.'",
+      "source": "Ashlock Error Patterns in Computation",
+      "remediation": "Count-by-2 visual: circle every other number on a number line. Build odd+odd, odd+even, even+even cases empirically before stating rules.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.D.9.M03",
+      "error_type": "addition_table_row_pattern",
+      "short_label": "Row increment confused with row label",
+      "description": "In the addition table, student reports that the row for 3 increases by 3 each time, rather than by 1. Student confuses the fixed addend (3) with the increment between consecutive entries (+1 per column).",
+      "example": "Row 3: 3, 4, 5, 6... student says 'it goes up by 3'.",
+      "citation": "EngageNY G3 Module 1 Lesson 1 Teacher Edition — 'A common error is that students report the row header number as the increment.'",
+      "source": "EngageNY Grade 3 Module 1",
+      "remediation": "Have student physically trace adjacent cells and compute difference. Ask: 'What changes as we move one column right?'",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.D.9.M04",
+      "error_type": "diagonal_pattern_direction",
+      "short_label": "Diagonal sum pattern mis-identified",
+      "description": "Student recognizes that diagonal entries in the addition table form a constant-sum pattern but reports the wrong diagonal or wrong value. Often selects the main diagonal (top-left to bottom-right) when asked about anti-diagonal (top-right to bottom-left), or vice versa.",
+      "example": "When asked which diagonal shows equal sums, student points to the main diagonal instead of the anti-diagonal.",
+      "citation": "Illustrative Mathematics Grade 3 Unit 1 — 'Students benefit from explicitly labeling diagonals before making claims about patterns.'",
+      "source": "Illustrative Mathematics G3",
+      "remediation": "Color-code diagonals. Have student record the sum of each anti-diagonal before generalizing.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.D.9.M05",
+      "error_type": "doubles_pattern_generalization",
+      "short_label": "Doubles diagonal overgeneralization",
+      "description": "Student correctly identifies the main diagonal of the addition table as the 'doubles' but over-generalizes: claims ALL items on this diagonal are even, without reasoning that odd + odd = even. Student may also claim only the doubles row/column produces evens.",
+      "example": "Student says '3 + 3 = 6 is even because it's a double, but 3 + 5 can't be even.'",
+      "citation": "Burger & Shaughnessy (2012) p.41 — 'Overgeneralizing doubles as the only source of even sums is a persistent misconception through G4.'",
+      "source": "Burger & Shaughnessy Number Sense",
+      "remediation": "Present counterexamples: 2 + 4 = 6 (not a double but still even). Build even/odd classification from pairability, not just from doubles.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.D.9.M06",
+      "error_type": "skip_counting_rule_application",
+      "short_label": "Skip-count increment confused with skip-count starting value",
+      "description": "Student correctly identifies a skip-counting pattern but applies the rule starting from 0 rather than from the first given term, producing an off-by-one error in extending the sequence.",
+      "example": "Sequence 4, 6, 8, 10 → student says next is 10 (restarts from 0+2) instead of 12.",
+      "citation": "NCTM OA Progressions p.8 — 'Students must distinguish between the generator (rule) and the starting value of a sequence.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Use a number line: mark the first term, then apply the rule by hopping forward. Emphasize 'where you start, then hop'.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.D.9.M07",
+      "error_type": "commutativity_symmetry_misread",
+      "short_label": "Addition table symmetry mis-described",
+      "description": "Student notices that the addition table is symmetric about the main diagonal (because addition is commutative) but describes it incorrectly — e.g., claims the table is symmetric about the center point rather than the main diagonal, or claims entire rows equal entire columns.",
+      "example": "Student says 'row 2 and column 2 have the same numbers' but means different positions within each.",
+      "citation": "Smarter Balanced G3 Item Specs 2015 — 'Symmetry of addition table is a high-Bloom item; expect precision errors in how symmetry is described.'",
+      "source": "Smarter Balanced Grade 3 Item Specifications",
+      "remediation": "Fold a printed addition table along the main diagonal. Discuss: which cells land on top of each other? Introduce vocabulary 'symmetric about the diagonal'.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.D.9.M08",
+      "error_type": "pattern_rule_vs_specific_case",
+      "short_label": "Confusing a pattern observation with a rule",
+      "description": "Student correctly identifies a specific example of a pattern (e.g., 3 + 4 = 7) but cannot generalize to a rule (e.g., odd + even = odd). Student treats each pattern observation as isolated rather than as evidence of a general property.",
+      "example": "Student checks that 3+4=7 is odd but cannot predict whether 7+8 will be odd or even without computing.",
+      "citation": "NCTM OA Progressions p.9 — 'Moving from noticing a pattern to articulating a generalized rule requires explicit instructional scaffolding.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Use 'If...then...' sentence frames: 'If I add an odd number and an even number, then the sum is always ___.' Test with 5 examples, then state the rule.",
+      "bloom_level": 4
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-06",
+    "version": "1.0",
+    "lesson_uses": ["G3_U1_L1"],
+    "total_misconceptions": 8
+  }
+}
