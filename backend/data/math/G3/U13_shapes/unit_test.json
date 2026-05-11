@@ -758,16 +758,22 @@
       "correct_answer": "B",
       "expected_errors": {
         "A": {
-          "error_type": "concept_gap",
-          "note": "Unit fractions have 1 on top"
+          "error_type": "unequal_partition",
+          "note": "Partitioning into visually similar but unequal parts",
+          "misconception_id": "3.G.A.2.M01",
+          "synthesized": true
         },
         "C": {
-          "error_type": "concept_gap",
-          "note": "Unit fractions have 1 on top"
+          "error_type": "fraction_denominator_error",
+          "note": "Using wrong denominator for partitioned shape",
+          "misconception_id": "3.G.A.2.M02",
+          "synthesized": true
         },
         "D": {
-          "error_type": "concept_gap",
-          "note": "Unit fractions have 1 on top"
+          "error_type": "shape_must_be_congruent",
+          "note": "Believing parts must be congruent (same shape), not just equal area",
+          "misconception_id": "3.G.A.2.M03",
+          "synthesized": true
         }
       },
       "verification": {
@@ -925,8 +931,10 @@
       "correct_answer": "false",
       "expected_errors": {
         "true": {
-          "error_type": "concept_gap",
-          "note": "Only RIGHT triangles have a right angle. Equilateral triangles have none."
+          "error_type": "prototype_shape",
+          "note": "Recognizing shapes only in 'standard' orientation",
+          "misconception_id": "3.G.A.1.M01",
+          "synthesized": true
         }
       },
       "verification": {
@@ -1146,8 +1154,10 @@
       "correct_answer": "false",
       "expected_errors": {
         "true": {
-          "error_type": "concept_gap",
-          "note": "Some quadrilaterals (like trapezoids) are NOT parallelograms"
+          "error_type": "prototype_shape",
+          "note": "Recognizing shapes only in 'standard' orientation",
+          "misconception_id": "3.G.A.1.M01",
+          "synthesized": true
         }
       },
       "verification": {

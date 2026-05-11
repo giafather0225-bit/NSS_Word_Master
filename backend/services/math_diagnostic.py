@@ -132,6 +132,12 @@ def diagnose(problem: dict, user_answer: str, grade: str = "G3", *, is_correct: 
     if isinstance(ccss, list):
         ccss = ccss[0] if ccss else None
     expected_errors = problem.get("expected_errors") or {}
+    # list-shape 방어: 일부 레거시 항목이 [strings] 형식 → _wrong 키로 변환
+    if isinstance(expected_errors, list):
+        joined = "; ".join(str(x) for x in expected_errors if x)
+        expected_errors = {"_wrong": {"error_type": "concept_gap", "note": joined}} if joined else {}
+    elif not isinstance(expected_errors, dict):
+        expected_errors = {}
     candidates = problem.get("misconception_candidates") or []
     choices = problem.get("choices") or []
 
