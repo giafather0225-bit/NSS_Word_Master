@@ -1,5 +1,8 @@
 """
-032_math_attempt_misconception.py — math_attempts에 misconception_id 컬럼 추가.
+034_math_attempt_misconception.py — math_attempts에 misconception_id 컬럼 추가.
+
+번호 변경 이력: 원래 032로 작성했으나 원격 main의 032(CKLA round2)와 충돌해
+                머지 후 034로 재번호. DB 적용은 이미 완료(idempotent 재실행 안전).
 
 진단 엔진(backend/services/math_diagnostic.py)이 오답을 misconception 라이브러리와
 조인한 결과를 attempt 레코드에 영구 저장하기 위함. 후속 분석(코칭/대시보드)이
@@ -35,7 +38,7 @@ def main():
             print(f"  + math_attempts.{col} ({ddl})")
     con.commit()
     con.close()
-    print(f"✅ migration 032: {added} column(s) added")
+    print(f"✅ migration 034: {added} column(s) added")
 
 
 if __name__ == "__main__":
