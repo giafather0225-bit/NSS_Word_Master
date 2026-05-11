@@ -1,65 +1,1406 @@
 {
   "lesson_id": "L6_distributive_property_area",
   "title": "Distributive Property and Area",
-  "ccss": ["3.MD.C.7"],
+  "ccss": [
+    "3.MD.C.7"
+  ],
   "grade": "G3",
   "unit": "U12_area",
   "go_math_ref": "Chapter 11, Lesson 11.8",
   "essential_question": "How can you use the distributive property to find the area of a rectangle?",
-  "key_vocabulary": ["distributive property", "decompose", "factor", "area", "split"],
+  "key_vocabulary": [
+    "distributive property",
+    "decompose",
+    "factor",
+    "area",
+    "split"
+  ],
   "pretest": [
-    {"id": "PT_01", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive", "difficulty": 2, "question": "Which is the same as 6 × 8?", "choices": ["A) 6 × (5 + 3)", "B) 6 × (4 + 4)", "C) 6 × (2 + 6)", "D) All of the above"], "correct_answer": "D", "expected_errors": {"A": {"error_type": "concept_gap", "note": "All three split 8"}, "B": {"error_type": "concept_gap", "note": "All three are correct"}, "C": {"error_type": "concept_gap", "note": "All three are correct"}}, "verification": "5+3 = 4+4 = 2+6 = 8.", "hints": ["Each split adds to 8."], "feedback": {"correct": "Right!", "incorrect": "All three split 8 into two parts. 6 × 8 = 6 × (any pair adding to 8)."}},
-    {"id": "PT_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 2, "question": "6 × 8 = 6 × (5 + 3) = (6×5) + (6×3) = ? + ?. Compute the total.", "correct_answer": "48", "expected_errors": {"30": {"error_type": "concept_gap", "note": "Just first part"}, "39": {"error_type": "careless", "note": "30+18=48"}}, "verification": "30+18=48.", "hints": ["30 + 18."], "feedback": {"correct": "Right!", "incorrect": "30+18=48."}},
-    {"id": "PT_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "Split 7 × 9 as 7 × (5 + 4). Compute (7×5) + (7×4).", "correct_answer": "63", "expected_errors": {"35": {"error_type": "concept_gap", "note": "Just first"}, "60": {"error_type": "careless", "note": "35+28=63"}}, "verification": "35+28=63.", "hints": ["35+28."], "feedback": {"correct": "Right!", "incorrect": "35+28=63."}},
-    {"id": "PT_04", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.C.7", "skill_tag": "distributive_visual", "difficulty": 2, "question": "A rectangle 6 × 8 is split into a 6 × 5 and a 6 × 3 (side by side). What does this show?", "choices": ["A) Distributive property", "B) Subtraction", "C) Division", "D) Repeated addition"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "We're splitting and adding"}, "C": {"error_type": "concept_gap", "note": "Not division"}, "D": {"error_type": "concept_gap", "note": "Not exactly that"}}, "verification": "Distributive property visualized.", "hints": ["Splitting a multiplication into two parts."], "feedback": {"correct": "Right!", "incorrect": "Splitting and adding shows the distributive property."}},
-    {"id": "PT_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "Use distributive: 8 × 7 = 8 × (5 + 2). Compute.", "correct_answer": "56", "expected_errors": {"40": {"error_type": "concept_gap", "note": "Just first"}, "50": {"error_type": "careless", "note": "40+16=56"}}, "verification": "40+16=56.", "hints": ["40+16."], "feedback": {"correct": "Right!", "incorrect": "40+16=56."}}
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive",
+      "difficulty": 2,
+      "question": "Which is the same as 6 × 8?",
+      "choices": [
+        "A) 6 × (5 + 3)",
+        "B) 6 × (4 + 4)",
+        "C) 6 × (2 + 6)",
+        "D) All of the above"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "All three split 8"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "All three are correct"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "All three are correct"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5+3 = 4+4 = 2+6 = 8."
+      },
+      "hints": [
+        "Each split adds to 8."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "All three split 8 into two parts. 6 × 8 = 6 × (any pair adding to 8)."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 2,
+      "question": "6 × 8 = 6 × (5 + 3) = (6×5) + (6×3) = ? + ?. Compute the total.",
+      "correct_answer": "48",
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "Just first part"
+        },
+        "39": {
+          "error_type": "careless",
+          "note": "30+18=48"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "30+18=48."
+      },
+      "hints": [
+        "30 + 18."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "30+18=48."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "Split 7 × 9 as 7 × (5 + 4). Compute (7×5) + (7×4).",
+      "correct_answer": "63",
+      "expected_errors": {
+        "35": {
+          "error_type": "concept_gap",
+          "note": "Just first"
+        },
+        "60": {
+          "error_type": "careless",
+          "note": "35+28=63"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "35+28=63."
+      },
+      "hints": [
+        "35+28."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "35+28=63."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_visual",
+      "difficulty": 2,
+      "question": "A rectangle 6 × 8 is split into a 6 × 5 and a 6 × 3 (side by side). What does this show?",
+      "choices": [
+        "A) Distributive property",
+        "B) Subtraction",
+        "C) Division",
+        "D) Repeated addition"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "We're splitting and adding"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Not division"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Not exactly that"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Distributive property visualized."
+      },
+      "hints": [
+        "Splitting a multiplication into two parts."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Splitting and adding shows the distributive property."
+      },
+      "cpa_stage": "pictorial",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "Use distributive: 8 × 7 = 8 × (5 + 2). Compute.",
+      "correct_answer": "56",
+      "expected_errors": {
+        "40": {
+          "error_type": "concept_gap",
+          "note": "Just first"
+        },
+        "50": {
+          "error_type": "careless",
+          "note": "40+16=56"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "40+16=56."
+      },
+      "hints": [
+        "40+16."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "40+16=56."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "learn": [
-    {"id": "LEARN_01", "type": "concept_card", "cpa_phase": "concrete", "title": "What Is the Distributive Property?", "content": "The DISTRIBUTIVE PROPERTY says: a × (b + c) = (a × b) + (a × c). It lets you SPLIT one of the numbers into two parts, multiply each part, and ADD the results.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.8."},
-    {"id": "LEARN_02", "type": "concept_card", "cpa_phase": "concrete", "title": "Why Use It?", "content": "Sometimes 6 × 8 is hard to recall. Split: 6 × 8 = 6 × (5 + 3) = 30 + 18 = 48. Splitting into facts you KNOW makes hard multiplication easier.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.8."},
-    {"id": "LEARN_03", "type": "concept_card", "cpa_phase": "pictorial", "title": "Area Picture of Distributive Property", "content": "Imagine a 6 × 8 rectangle. Cut it into a 6 × 5 rectangle and a 6 × 3 rectangle. Total area = (6×5) + (6×3) = 30 + 18 = 48 sq units. Same as the original.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.8: visual."},
-    {"id": "LEARN_04", "type": "concept_card", "cpa_phase": "pictorial", "title": "Choose Smart Splits", "content": "Pick splits that use facts you know well. Common choices: 5 + something. Example: 7 × 9 = 7 × (5 + 4) = 35 + 28 = 63.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.8."},
-    {"id": "LEARN_05", "type": "concept_card", "cpa_phase": "abstract", "title": "Multiple Ways to Split", "content": "There are MANY ways to split. 8 × 7 = 8 × (5+2) = 40+16 = 56. Or 8 × 7 = 8 × (4+3) = 32+24 = 56. Or 8 × (6+1) = 48+8 = 56. All give the same answer.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.8."},
-    {"id": "LEARN_06", "type": "concept_card", "cpa_phase": "abstract", "title": "Split Either Factor", "content": "You can split EITHER number. 6 × 8 = (5+1) × 8 = 5×8 + 1×8 = 40+8 = 48. The distributive property works either way.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.8."},
-    {"id": "LEARN_07", "type": "concept_card", "cpa_phase": "abstract", "title": "Apply to Area", "content": "When a rectangle is too big to recall directly, split it visually into 2 smaller rectangles whose areas you know. Add the areas. This is finding area using the distributive property.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.8."},
-    {"id": "LEARN_08", "type": "concept_card", "cpa_phase": "abstract", "title": "Lesson Summary", "content": "Today: (1) Distributive: a × (b+c) = a×b + a×c. (2) Splits hard facts into easier ones. (3) Visualized as splitting a rectangle. (4) Many valid splits — all give same answer. (5) Useful for area when factors are big.", "visual_type": "none", "visual_data": {}, "verification": "Covers all Go Math 11.8."}
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "What Is the Distributive Property?",
+      "content": "The DISTRIBUTIVE PROPERTY says: a × (b + c) = (a × b) + (a × c). It lets you SPLIT one of the numbers into two parts, multiply each part, and ADD the results.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.8."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Why Use It?",
+      "content": "Sometimes 6 × 8 is hard to recall. Split: 6 × 8 = 6 × (5 + 3) = 30 + 18 = 48. Splitting into facts you KNOW makes hard multiplication easier.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.8."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Area Picture of Distributive Property",
+      "content": "Imagine a 6 × 8 rectangle. Cut it into a 6 × 5 rectangle and a 6 × 3 rectangle. Total area = (6×5) + (6×3) = 30 + 18 = 48 sq units. Same as the original.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.8: visual."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Choose Smart Splits",
+      "content": "Pick splits that use facts you know well. Common choices: 5 + something. Example: 7 × 9 = 7 × (5 + 4) = 35 + 28 = 63.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.8."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Multiple Ways to Split",
+      "content": "There are MANY ways to split. 8 × 7 = 8 × (5+2) = 40+16 = 56. Or 8 × 7 = 8 × (4+3) = 32+24 = 56. Or 8 × (6+1) = 48+8 = 56. All give the same answer.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.8."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Split Either Factor",
+      "content": "You can split EITHER number. 6 × 8 = (5+1) × 8 = 5×8 + 1×8 = 40+8 = 48. The distributive property works either way.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.8."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Apply to Area",
+      "content": "When a rectangle is too big to recall directly, split it visually into 2 smaller rectangles whose areas you know. Add the areas. This is finding area using the distributive property.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.8."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today: (1) Distributive: a × (b+c) = a×b + a×c. (2) Splits hard facts into easier ones. (3) Visualized as splitting a rectangle. (4) Many valid splits — all give same answer. (5) Useful for area when factors are big.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Covers all Go Math 11.8."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    }
   ],
   "try": [
-    {"id": "TRY_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 2, "question": "5 × 7 = 5 × (5+2). Compute (5×5) + (5×2).", "correct_answer": "35", "solution_steps": ["25+10=35."], "expected_errors": {"25": {"error_type": "concept_gap", "note": "Add the second part"}}, "feedback": {"correct": "Right!", "incorrect": "25+10=35."}, "verification": "35.", "hints": ["25+10."]},
-    {"id": "TRY_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 2, "question": "9 × 6 = 9 × (5+1). Compute.", "correct_answer": "54", "solution_steps": ["45+9=54."], "expected_errors": {"45": {"error_type": "concept_gap", "note": "Forgot 9×1"}}, "feedback": {"correct": "Right!", "incorrect": "45+9=54."}, "verification": "54.", "hints": ["45+9."]},
-    {"id": "TRY_03", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_split", "difficulty": 2, "question": "Which split would help with 7 × 8?", "choices": ["A) 7 × (5+3)", "B) 7 × (4+4)", "C) 7 × (6+2)", "D) All work"], "correct_answer": "D", "expected_errors": {"A": {"error_type": "concept_gap", "note": "All add to 8"}, "B": {"error_type": "concept_gap", "note": "All add to 8"}, "C": {"error_type": "concept_gap", "note": "All add to 8"}}, "feedback": {"correct": "Right!", "incorrect": "All splits add to 8 — all valid."}, "verification": "5+3=4+4=6+2=8.", "hints": ["Sum each pair."]},
-    {"id": "TRY_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "8 × 6 = 8 × (5+1). Compute.", "correct_answer": "48", "solution_steps": ["40+8=48."], "expected_errors": {"40": {"error_type": "concept_gap", "note": "Forgot 8×1"}}, "feedback": {"correct": "Right!", "incorrect": "40+8=48."}, "verification": "48.", "hints": ["40+8."]},
-    {"id": "TRY_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_area", "difficulty": 3, "question": "A 4×9 rectangle splits into 4×5 and 4×4. Total area?", "correct_answer": "36", "solution_steps": ["20+16=36."], "expected_errors": {"20": {"error_type": "concept_gap", "note": "Forgot second"}}, "feedback": {"correct": "Right!", "incorrect": "20+16=36."}, "verification": "36.", "hints": ["20+16."]}
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 2,
+      "question": "5 × 7 = 5 × (5+2). Compute (5×5) + (5×2).",
+      "correct_answer": "35",
+      "solution_steps": [
+        "25+10=35."
+      ],
+      "expected_errors": {
+        "25": {
+          "error_type": "concept_gap",
+          "note": "Add the second part"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "25+10=35."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "35."
+      },
+      "hints": [
+        "25+10."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 2,
+      "question": "9 × 6 = 9 × (5+1). Compute.",
+      "correct_answer": "54",
+      "solution_steps": [
+        "45+9=54."
+      ],
+      "expected_errors": {
+        "45": {
+          "error_type": "concept_gap",
+          "note": "Forgot 9×1"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "45+9=54."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "54."
+      },
+      "hints": [
+        "45+9."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_split",
+      "difficulty": 2,
+      "question": "Which split would help with 7 × 8?",
+      "choices": [
+        "A) 7 × (5+3)",
+        "B) 7 × (4+4)",
+        "C) 7 × (6+2)",
+        "D) All work"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "All add to 8"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "All add to 8"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "All add to 8"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "All splits add to 8 — all valid."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5+3=4+4=6+2=8."
+      },
+      "hints": [
+        "Sum each pair."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "8 × 6 = 8 × (5+1). Compute.",
+      "correct_answer": "48",
+      "solution_steps": [
+        "40+8=48."
+      ],
+      "expected_errors": {
+        "40": {
+          "error_type": "concept_gap",
+          "note": "Forgot 8×1"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "40+8=48."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "48."
+      },
+      "hints": [
+        "40+8."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_area",
+      "difficulty": 3,
+      "question": "A 4×9 rectangle splits into 4×5 and 4×4. Total area?",
+      "correct_answer": "36",
+      "solution_steps": [
+        "20+16=36."
+      ],
+      "expected_errors": {
+        "20": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "20+16=36."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "36."
+      },
+      "hints": [
+        "20+16."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "practice_r1": [
-    {"id": "R1_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 2, "question": "4 × 7 = 4 × (5+2). Compute.", "correct_answer": "28", "expected_errors": {"20": {"error_type": "concept_gap", "note": "Forgot 4×2"}}, "verification": "20+8=28.", "hints": ["20+8."], "feedback": {"correct": "Right!", "incorrect": "20+8=28."}},
-    {"id": "R1_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 2, "question": "3 × 9 = 3 × (5+4). Compute.", "correct_answer": "27", "expected_errors": {"15": {"error_type": "concept_gap", "note": "Forgot 3×4"}}, "verification": "15+12=27.", "hints": ["15+12."], "feedback": {"correct": "Right!", "incorrect": "15+12=27."}},
-    {"id": "R1_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 2, "question": "6 × 5 = 6 × (4+1). Compute.", "correct_answer": "30", "expected_errors": {"24": {"error_type": "concept_gap", "note": "Forgot 6×1"}}, "verification": "24+6=30.", "hints": ["24+6."], "feedback": {"correct": "Right!", "incorrect": "24+6=30."}},
-    {"id": "R1_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 2, "question": "8 × 4 = 8 × (2+2). Compute.", "correct_answer": "32", "expected_errors": {"16": {"error_type": "concept_gap", "note": "Forgot second"}}, "verification": "16+16=32.", "hints": ["16+16."], "feedback": {"correct": "Right!", "incorrect": "16+16=32."}},
-    {"id": "R1_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "7 × 8 = 7 × (4+4). Compute.", "correct_answer": "56", "expected_errors": {"28": {"error_type": "concept_gap", "note": "Forgot second"}}, "verification": "28+28=56.", "hints": ["28+28."], "feedback": {"correct": "Right!", "incorrect": "28+28=56."}},
-    {"id": "R1_06", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_area", "difficulty": 3, "question": "A 5×8 rectangle splits into 5×3 and 5×5. Total area?", "correct_answer": "40", "expected_errors": {"15": {"error_type": "concept_gap", "note": "Forgot second"}}, "verification": "15+25=40.", "hints": ["15+25."], "feedback": {"correct": "Right!", "incorrect": "15+25=40."}},
-    {"id": "R1_07", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_area", "difficulty": 3, "question": "A 6 × 7 rectangle splits into 6×4 and 6×3. Total area?", "correct_answer": "42", "expected_errors": {"24": {"error_type": "concept_gap", "note": "Forgot second"}}, "verification": "24+18=42.", "hints": ["24+18."], "feedback": {"correct": "Right!", "incorrect": "24+18=42."}},
-    {"id": "R1_08", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_logic", "difficulty": 3, "question": "True or False: 6 × 9 = (6×5) + (6×4).", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "5+4=9, so it works"}}, "verification": "30+24=54.", "hints": ["5+4=9."], "feedback": {"correct": "True!", "incorrect": "True. 30+24=54=6×9."}},
-    {"id": "R1_09", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "9 × 7 = 9 × (5+2). Compute.", "correct_answer": "63", "expected_errors": {"45": {"error_type": "concept_gap", "note": "Forgot 9×2"}}, "verification": "45+18=63.", "hints": ["45+18."], "feedback": {"correct": "Right!", "incorrect": "45+18=63."}},
-    {"id": "R1_10", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "8 × 9 = 8 × (5+4). Compute.", "correct_answer": "72", "expected_errors": {"40": {"error_type": "concept_gap", "note": "Forgot 8×4"}}, "verification": "40+32=72.", "hints": ["40+32."], "feedback": {"correct": "Right!", "incorrect": "40+32=72."}}
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 2,
+      "question": "4 × 7 = 4 × (5+2). Compute.",
+      "correct_answer": "28",
+      "expected_errors": {
+        "20": {
+          "error_type": "concept_gap",
+          "note": "Forgot 4×2"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20+8=28."
+      },
+      "hints": [
+        "20+8."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "20+8=28."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 2,
+      "question": "3 × 9 = 3 × (5+4). Compute.",
+      "correct_answer": "27",
+      "expected_errors": {
+        "15": {
+          "error_type": "concept_gap",
+          "note": "Forgot 3×4"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "15+12=27."
+      },
+      "hints": [
+        "15+12."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "15+12=27."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 2,
+      "question": "6 × 5 = 6 × (4+1). Compute.",
+      "correct_answer": "30",
+      "expected_errors": {
+        "24": {
+          "error_type": "concept_gap",
+          "note": "Forgot 6×1"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "24+6=30."
+      },
+      "hints": [
+        "24+6."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "24+6=30."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 2,
+      "question": "8 × 4 = 8 × (2+2). Compute.",
+      "correct_answer": "32",
+      "expected_errors": {
+        "16": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "16+16=32."
+      },
+      "hints": [
+        "16+16."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "16+16=32."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "7 × 8 = 7 × (4+4). Compute.",
+      "correct_answer": "56",
+      "expected_errors": {
+        "28": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "28+28=56."
+      },
+      "hints": [
+        "28+28."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "28+28=56."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_area",
+      "difficulty": 3,
+      "question": "A 5×8 rectangle splits into 5×3 and 5×5. Total area?",
+      "correct_answer": "40",
+      "expected_errors": {
+        "15": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "15+25=40."
+      },
+      "hints": [
+        "15+25."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "15+25=40."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_area",
+      "difficulty": 3,
+      "question": "A 6 × 7 rectangle splits into 6×4 and 6×3. Total area?",
+      "correct_answer": "42",
+      "expected_errors": {
+        "24": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "24+18=42."
+      },
+      "hints": [
+        "24+18."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "24+18=42."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_08",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_logic",
+      "difficulty": 3,
+      "question": "True or False: 6 × 9 = (6×5) + (6×4).",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "5+4=9, so it works"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "30+24=54."
+      },
+      "hints": [
+        "5+4=9."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 30+24=54=6×9."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "9 × 7 = 9 × (5+2). Compute.",
+      "correct_answer": "63",
+      "expected_errors": {
+        "45": {
+          "error_type": "concept_gap",
+          "note": "Forgot 9×2"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "45+18=63."
+      },
+      "hints": [
+        "45+18."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "45+18=63."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "8 × 9 = 8 × (5+4). Compute.",
+      "correct_answer": "72",
+      "expected_errors": {
+        "40": {
+          "error_type": "concept_gap",
+          "note": "Forgot 8×4"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "40+32=72."
+      },
+      "hints": [
+        "40+32."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "40+32=72."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "practice_r2": [
-    {"id": "R2_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "6 × 11 = 6 × (10+1). Compute.", "correct_answer": "66", "expected_errors": {"60": {"error_type": "concept_gap", "note": "Forgot 6×1"}}, "verification": "60+6=66.", "hints": ["60+6."], "feedback": {"correct": "Right!", "incorrect": "60+6=66."}},
-    {"id": "R2_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "7 × 12 = 7 × (10+2). Compute.", "correct_answer": "84", "expected_errors": {"70": {"error_type": "concept_gap", "note": "Forgot 7×2"}}, "verification": "70+14=84.", "hints": ["70+14."], "feedback": {"correct": "Right!", "incorrect": "70+14=84."}},
-    {"id": "R2_03", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_split", "difficulty": 3, "question": "Which is the BEST split to compute 9 × 6?", "choices": ["A) 9 × (3+3)", "B) 9 × (5+1)", "C) 9 × (4+2)", "D) All work"], "correct_answer": "D", "expected_errors": {"A": {"error_type": "concept_gap", "note": "All work — all sum to 6"}, "B": {"error_type": "concept_gap", "note": "All work"}, "C": {"error_type": "concept_gap", "note": "All work"}}, "verification": "Each adds to 6.", "hints": ["Each pair adds to 6."], "feedback": {"correct": "Right!", "incorrect": "All splits work — all add to 6."}},
-    {"id": "R2_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_area", "difficulty": 3, "question": "A 7×9 rectangle splits into 7×5 and 7×4. Total area?", "correct_answer": "63", "expected_errors": {"35": {"error_type": "concept_gap", "note": "Forgot second"}}, "verification": "35+28=63.", "hints": ["35+28."], "feedback": {"correct": "Right!", "incorrect": "35+28=63."}},
-    {"id": "R2_05", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_logic", "difficulty": 3, "question": "True or False: There is only ONE correct way to split a multiplication using distributive property.", "correct_answer": "false", "expected_errors": {"true": {"error_type": "concept_gap", "note": "Many splits work"}}, "verification": "Multiple valid splits.", "hints": ["Many splits work."], "feedback": {"correct": "False!", "incorrect": "False. Many ways to split give the same answer."}},
-    {"id": "R2_06", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "8 × 6 = 8 × (3+3). Compute.", "correct_answer": "48", "expected_errors": {"24": {"error_type": "concept_gap", "note": "Forgot second"}}, "verification": "24+24=48.", "hints": ["24+24."], "feedback": {"correct": "Right!", "incorrect": "24+24=48."}},
-    {"id": "R2_07", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "5 × 12 = 5 × (10+2). Compute.", "correct_answer": "60", "expected_errors": {"50": {"error_type": "concept_gap", "note": "Forgot 5×2"}}, "verification": "50+10=60.", "hints": ["50+10."], "feedback": {"correct": "Right!", "incorrect": "50+10=60."}},
-    {"id": "R2_08", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_area", "difficulty": 3, "question": "A 4×11 rectangle splits into 4×5 and 4×6. Total area?", "correct_answer": "44", "expected_errors": {"20": {"error_type": "concept_gap", "note": "Forgot second"}}, "verification": "20+24=44.", "hints": ["20+24."], "feedback": {"correct": "Right!", "incorrect": "20+24=44."}},
-    {"id": "R2_09", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_logic", "difficulty": 3, "question": "True or False: 5 × (3+4) = (5×3) + (5×4) = 35.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "15+20=35"}}, "verification": "35.", "hints": ["15+20=35."], "feedback": {"correct": "True!", "incorrect": "True. 15+20=35."}},
-    {"id": "R2_10", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 3, "question": "9 × 8 = 9 × (5+3). Compute.", "correct_answer": "72", "expected_errors": {"45": {"error_type": "concept_gap", "note": "Forgot 9×3"}}, "verification": "45+27=72.", "hints": ["45+27."], "feedback": {"correct": "Right!", "incorrect": "45+27=72."}}
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "6 × 11 = 6 × (10+1). Compute.",
+      "correct_answer": "66",
+      "expected_errors": {
+        "60": {
+          "error_type": "concept_gap",
+          "note": "Forgot 6×1"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "60+6=66."
+      },
+      "hints": [
+        "60+6."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "60+6=66."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "7 × 12 = 7 × (10+2). Compute.",
+      "correct_answer": "84",
+      "expected_errors": {
+        "70": {
+          "error_type": "concept_gap",
+          "note": "Forgot 7×2"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "70+14=84."
+      },
+      "hints": [
+        "70+14."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "70+14=84."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_split",
+      "difficulty": 3,
+      "question": "Which is the BEST split to compute 9 × 6?",
+      "choices": [
+        "A) 9 × (3+3)",
+        "B) 9 × (5+1)",
+        "C) 9 × (4+2)",
+        "D) All work"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "All work — all sum to 6"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "All work"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "All work"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Each adds to 6."
+      },
+      "hints": [
+        "Each pair adds to 6."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "All splits work — all add to 6."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_area",
+      "difficulty": 3,
+      "question": "A 7×9 rectangle splits into 7×5 and 7×4. Total area?",
+      "correct_answer": "63",
+      "expected_errors": {
+        "35": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "35+28=63."
+      },
+      "hints": [
+        "35+28."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "35+28=63."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_05",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_logic",
+      "difficulty": 3,
+      "question": "True or False: There is only ONE correct way to split a multiplication using distributive property.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {
+          "error_type": "concept_gap",
+          "note": "Many splits work"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Multiple valid splits."
+      },
+      "hints": [
+        "Many splits work."
+      ],
+      "feedback": {
+        "correct": "False!",
+        "incorrect": "False. Many ways to split give the same answer."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "False!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "8 × 6 = 8 × (3+3). Compute.",
+      "correct_answer": "48",
+      "expected_errors": {
+        "24": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "24+24=48."
+      },
+      "hints": [
+        "24+24."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "24+24=48."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "5 × 12 = 5 × (10+2). Compute.",
+      "correct_answer": "60",
+      "expected_errors": {
+        "50": {
+          "error_type": "concept_gap",
+          "note": "Forgot 5×2"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "50+10=60."
+      },
+      "hints": [
+        "50+10."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "50+10=60."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_area",
+      "difficulty": 3,
+      "question": "A 4×11 rectangle splits into 4×5 and 4×6. Total area?",
+      "correct_answer": "44",
+      "expected_errors": {
+        "20": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20+24=44."
+      },
+      "hints": [
+        "20+24."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "20+24=44."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_09",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_logic",
+      "difficulty": 3,
+      "question": "True or False: 5 × (3+4) = (5×3) + (5×4) = 35.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "15+20=35"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "35."
+      },
+      "hints": [
+        "15+20=35."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 15+20=35."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "9 × 8 = 9 × (5+3). Compute.",
+      "correct_answer": "72",
+      "expected_errors": {
+        "45": {
+          "error_type": "concept_gap",
+          "note": "Forgot 9×3"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "45+27=72."
+      },
+      "hints": [
+        "45+27."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "45+27=72."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "practice_r3": [
-    {"id": "R3_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_logic", "difficulty": 4, "question": "Use distributive: 6 × 14 = 6 × (10+4). Compute.", "correct_answer": "84", "solution_steps": ["6×10=60. 6×4=24. 60+24=84."], "expected_errors": {"60": {"error_type": "concept_gap", "note": "Forgot 6×4"}}, "feedback": {"correct": "Right!", "incorrect": "60+24=84."}, "three_read_prompt": "Read 1: How is 14 split? Read 2: Each part. Read 3: Sum.", "verification": "84.", "hints": ["60+24."]},
-    {"id": "R3_02", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_logic", "difficulty": 4, "question": "Which expression equals 7 × 13?", "choices": ["A) (7×10) + (7×3) = 91", "B) 7 + 13 = 20", "C) 7 × 10 = 70", "D) 7 × 13 - 7 = 84"], "correct_answer": "A", "solution_steps": ["7 × 13 = 7 × (10+3) = 70+21 = 91."], "expected_errors": {"B": {"error_type": "concept_gap", "note": "Adding, not multiplying"}, "C": {"error_type": "concept_gap", "note": "Just one part"}, "D": {"error_type": "concept_gap", "note": "Wrong"}}, "feedback": {"correct": "Right!", "incorrect": "7×13 = 70+21 = 91."}, "three_read_prompt": "Read 1: What is 7×13? Read 2: Use distributive. Read 3: Match.", "verification": "70+21=91.", "hints": ["Split 13."]},
-    {"id": "R3_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_word", "difficulty": 4, "question": "Lily's garden is 8 m × 13 m. Use distributive: 8 × (10+3). Find total area.", "correct_answer": "104", "solution_steps": ["8×10=80. 8×3=24. 80+24=104."], "expected_errors": {"80": {"error_type": "concept_gap", "note": "Forgot 8×3"}}, "feedback": {"correct": "Right!", "incorrect": "80+24=104 sq m."}, "three_read_prompt": "Read 1: Dimensions? Read 2: Distributive split. Read 3: Total.", "verification": "104.", "hints": ["80+24."]},
-    {"id": "R3_04", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_logic", "difficulty": 4, "question": "True or False: 9 × (6+4) = 9×6 + 9×4 = 90.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "54+36=90"}}, "feedback": {"correct": "True!", "incorrect": "True. 54+36=90."}, "verification": "90.", "hints": ["Compute each part."]},
-    {"id": "R3_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "distributive_compute", "difficulty": 5, "question": "Use distributive twice: 9 × 11 = 9 × (10+1). Compute.", "correct_answer": "99", "solution_steps": ["9×10=90. 9×1=9. 90+9=99."], "expected_errors": {"90": {"error_type": "concept_gap", "note": "Forgot 9×1"}}, "feedback": {"correct": "Right!", "incorrect": "90+9=99."}, "three_read_prompt": "Read 1: Split. Read 2: Each part. Read 3: Sum.", "verification": "99.", "hints": ["90+9."]}
-  ]
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_logic",
+      "difficulty": 4,
+      "question": "Use distributive: 6 × 14 = 6 × (10+4). Compute.",
+      "correct_answer": "84",
+      "solution_steps": [
+        "6×10=60. 6×4=24. 60+24=84."
+      ],
+      "expected_errors": {
+        "60": {
+          "error_type": "concept_gap",
+          "note": "Forgot 6×4"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "60+24=84."
+      },
+      "three_read_prompt": "Read 1: How is 14 split? Read 2: Each part. Read 3: Sum.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "84."
+      },
+      "hints": [
+        "60+24."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_02",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_logic",
+      "difficulty": 4,
+      "question": "Which expression equals 7 × 13?",
+      "choices": [
+        "A) (7×10) + (7×3) = 91",
+        "B) 7 + 13 = 20",
+        "C) 7 × 10 = 70",
+        "D) 7 × 13 - 7 = 84"
+      ],
+      "correct_answer": "A",
+      "solution_steps": [
+        "7 × 13 = 7 × (10+3) = 70+21 = 91."
+      ],
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Adding, not multiplying"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Just one part"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Wrong"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "7×13 = 70+21 = 91."
+      },
+      "three_read_prompt": "Read 1: What is 7×13? Read 2: Use distributive. Read 3: Match.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "70+21=91."
+      },
+      "hints": [
+        "Split 13."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_word",
+      "difficulty": 4,
+      "question": "Lily's garden is 8 m × 13 m. Use distributive: 8 × (10+3). Find total area.",
+      "correct_answer": "104",
+      "solution_steps": [
+        "8×10=80. 8×3=24. 80+24=104."
+      ],
+      "expected_errors": {
+        "80": {
+          "error_type": "concept_gap",
+          "note": "Forgot 8×3"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "80+24=104 sq m."
+      },
+      "three_read_prompt": "Read 1: Dimensions? Read 2: Distributive split. Read 3: Total.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "104."
+      },
+      "hints": [
+        "80+24."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_04",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_logic",
+      "difficulty": 4,
+      "question": "True or False: 9 × (6+4) = 9×6 + 9×4 = 90.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "54+36=90"
+        }
+      },
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 54+36=90."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "90."
+      },
+      "hints": [
+        "Compute each part."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_compute",
+      "difficulty": 5,
+      "question": "Use distributive twice: 9 × 11 = 9 × (10+1). Compute.",
+      "correct_answer": "99",
+      "solution_steps": [
+        "9×10=90. 9×1=9. 90+9=99."
+      ],
+      "expected_errors": {
+        "90": {
+          "error_type": "concept_gap",
+          "note": "Forgot 9×1"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "90+9=99."
+      },
+      "three_read_prompt": "Read 1: Split. Read 2: Each part. Read 3: Sum.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "99."
+      },
+      "hints": [
+        "90+9."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U12_area/L5_combined_rectangles — Area of Combined Rectangles (Decompose Composite Figures) (3.MD.C.7)",
+    "current": "G3 U12_area/L6_distributive_property_area — Distributive Property and Area (3.MD.C.7)",
+    "successor": "G3 U12_area/L7_area_word_problems — Area Word Problems (3.MD.C.7)"
+  },
+  "metadata": {
+    "upgraded": true,
+    "upgrade_version": "2.0-on-main",
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
+  }
 }
