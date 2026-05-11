@@ -14,7 +14,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 try:
@@ -35,7 +35,11 @@ _BANK_PATH = Path(__file__).resolve().parents[1] / "data" / "math" / "placement"
 @lru_cache(maxsize=4)
 def _read_bank_cached(path_str: str, mtime: float) -> dict:
     """Parse bank JSON keyed by (path, mtime) — file edits auto-invalidate."""
-    return json.loads(Path(path_str).read_text("utf-8"))
+    try:
+        return json.loads(Path(path_str).read_text("utf-8"))
+    except (json.JSONDecodeError, OSError) as exc:
+        logger.warning("Failed to parse placement bank %s: %s", path_str, exc)
+        return {}
 
 
 def _load_bank():
@@ -160,12 +164,12 @@ def save_placement_results(req: SaveResultsIn, db: Session = Depends(get_db)):
         scored = _score_domain(spec, r.answers or {})
         scored_entries.append((r.domain, spec, scored))
 
-    # Now mutate the DB in a single unit.
-    db.query(MathPlacementResult).delete()
-
+    # Upsert per domain — replace only the domains included in this submission
+    # so that a partial re-test does not wipe results for untested domains.
     saved = []
     overall = []
     for domain_key, spec, scored in scored_entries:
+        db.query(MathPlacementResult).filter_by(domain=domain_key).delete()
         row = MathPlacementResult(
             test_date=now,
             domain=domain_key,
@@ -312,7 +316,7 @@ def placement_next(req: AdaptiveNextIn):
 class AdaptiveCheckIn(BaseModel):
     domain: str
     question_id: str
-    answer: str
+    answer: str = Field(max_length=200)
 
 
 # @tag MATH @tag PLACEMENT

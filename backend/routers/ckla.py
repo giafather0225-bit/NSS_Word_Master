@@ -35,7 +35,7 @@ from difflib import SequenceMatcher
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
-from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
 
 logger = logging.getLogger(__name__)
@@ -56,6 +56,12 @@ from backend.services.streak_engine import mark_ckla_done
 router = APIRouter(prefix="/api/academy/ckla", tags=["ckla"])
 
 NOW = lambda: datetime.now().isoformat(timespec="seconds")
+
+# AppConfig key constants — avoids magic strings scattered across the file
+_CFG_DOMAIN_ORDER_FIXED = "ckla_domain_order_fixed"
+_CFG_DAILY_GOAL         = "ckla_daily_goal"
+_CFG_DOMAIN_PASS_PCT    = "ckla_domain_pass_pct"
+_CFG_GRADE_PASS_PCT     = "ckla_grade_pass_pct"
 
 # Grades currently supported (expand as content is added)
 _SUPPORTED_GRADES = [3]
@@ -84,11 +90,11 @@ class ProgressUpdate(BaseModel):
     vocab_done:       bool | None = None
     qa_done:          bool | None = None
     word_work_done:   bool | None = None
-    word_work_answer: str | None = None   # student's free-typed answer for similarity check
+    word_work_answer: str | None = Field(default=None, max_length=2000)
 
 
 class AnswerSubmit(BaseModel):
-    user_answer: str
+    user_answer: str = Field(max_length=2000)
 
 
 class DifficultyRating(BaseModel):
@@ -111,13 +117,17 @@ def _get_or_create_progress(db: Session, lesson_id: int) -> CKLALessonProgress:
     prog = db.query(CKLALessonProgress).filter_by(lesson_id=lesson_id).first()
     if not prog:
         lesson = db.query(CKLALesson).filter_by(id=lesson_id).first()
-        prog = CKLALessonProgress(
-            lesson_id=lesson_id,
-            grade=lesson.grade if lesson else 3,
-            started_at=NOW(),
-        )
-        db.add(prog)
-        db.flush()
+        try:
+            prog = CKLALessonProgress(
+                lesson_id=lesson_id,
+                grade=lesson.grade if lesson else 3,
+                started_at=NOW(),
+            )
+            db.add(prog)
+            db.flush()
+        except IntegrityError:
+            db.rollback()
+            prog = db.query(CKLALessonProgress).filter_by(lesson_id=lesson_id).first()
     return prog
 
 
@@ -212,11 +222,17 @@ def get_domains(grade: int = Query(3), db: Session = Depends(get_db)):
         .order_by(CKLADomain.domain_num)
         .all()
     )
-    # Bulk-fetch completed lesson counts per domain (avoids N+1)
-    all_lesson_ids_by_domain: dict[int, list[int]] = {}
-    for d in domains:
-        lessons = db.query(CKLALesson.id).filter_by(domain_id=d.id, is_active=True).all()
-        all_lesson_ids_by_domain[d.id] = [l.id for l in lessons]
+    # Bulk-fetch all lesson IDs across all domains in a single query
+    domain_ids = [d.id for d in domains]
+    all_lesson_ids_by_domain: dict[int, list[int]] = {d.id: [] for d in domains}
+    if domain_ids:
+        lessons_bulk = (
+            db.query(CKLALesson.id, CKLALesson.domain_id)
+            .filter(CKLALesson.domain_id.in_(domain_ids), CKLALesson.is_active == True)
+            .all()
+        )
+        for lid, did in lessons_bulk:
+            all_lesson_ids_by_domain[did].append(lid)
 
     all_ids = [lid for ids in all_lesson_ids_by_domain.values() for lid in ids]
     completed_set = set()
@@ -236,7 +252,7 @@ def get_domains(grade: int = Query(3), db: Session = Depends(get_db)):
     completion_pct = round(completed_lessons / total_lessons * 100) if total_lessons else 0
 
     # Read sequential-order config (default: free order)
-    order_cfg = db.query(AppConfig).filter_by(key=f"ckla_domain_order_fixed").first()
+    order_cfg = db.query(AppConfig).filter_by(key=_CFG_DOMAIN_ORDER_FIXED).first()
     order_fixed = order_cfg and order_cfg.value == "true"
 
     # Build all_complete set keyed by domain_num for sequential-lock check
@@ -290,7 +306,7 @@ def get_lessons(domain_num: int, grade: int = Query(3), db: Session = Depends(ge
         raise HTTPException(status_code=404, detail="Domain not found")
 
     # Enforce sequential domain order if configured
-    order_cfg = db.query(AppConfig).filter_by(key="ckla_domain_order_fixed").first()
+    order_cfg = db.query(AppConfig).filter_by(key=_CFG_DOMAIN_ORDER_FIXED).first()
     if order_cfg and order_cfg.value == "true" and domain_num > 1:
         prev_domain = db.query(CKLADomain).filter_by(
             domain_num=domain_num - 1, grade=grade, is_active=True
@@ -479,6 +495,11 @@ def update_lesson_progress(
             prog.qa_done = True
 
         if req.word_work_done is True and not prog.word_work_done:
+            if not req.word_work_answer or not req.word_work_answer.strip():
+                raise HTTPException(
+                    status_code=400,
+                    detail="Word work answer is required.",
+                )
             if req.word_work_answer and lesson.word_work_word:
                 # Reject if student typed only the focus word (trivially short / just the word)
                 typed_lower = req.word_work_answer.strip().lower()
@@ -522,7 +543,7 @@ def update_lesson_progress(
 
             # Check daily lesson goal
             today_str = _date.today().isoformat()
-            daily_goal_cfg = db.query(AppConfig).filter_by(key="ckla_daily_goal").first()
+            daily_goal_cfg = db.query(AppConfig).filter_by(key=_CFG_DAILY_GOAL).first()
             daily_goal = int(daily_goal_cfg.value) if daily_goal_cfg else 1
             today_done = (
                 db.query(CKLALessonProgress)
@@ -804,13 +825,14 @@ def get_domain_test(
         domain_words = db.query(USAcademyWord).filter(USAcademyWord.id.in_(word_ids)).all()
 
     vocab_questions: list[dict] = []
-    if len(domain_words) >= 5:
-        chosen = random.sample(domain_words, 5)
+    if domain_words:
+        n_vocab = min(5, len(domain_words))
+        chosen = random.sample(domain_words, n_vocab)
         # All domain words used as distractor pool
         distractor_pool = [w for w in domain_words if w.word]
 
         for i, word in enumerate(chosen):
-            q_type = "vocab_fill" if i >= 3 else "vocab_mc"
+            q_type = "vocab_fill" if (n_vocab >= 5 and i >= 3) else "vocab_mc"
             base: dict = {
                 "lesson_title": "",
                 "question_text": word.definition or "",
@@ -874,6 +896,7 @@ async def submit_domain_test(
     results: list[dict] = []
 
     for qid_str, user_ans in req.answers.items():
+        user_ans = (user_ans or "")[:2000]
         try:
             qid = int(qid_str)
         except ValueError:
@@ -920,7 +943,7 @@ async def submit_domain_test(
             results.append({"question_id": qid, "score": score})
 
     pct = round(correct / total * 100) if total else 0
-    _dpct_cfg = db.query(AppConfig).filter_by(key="ckla_domain_pass_pct").first()
+    _dpct_cfg = db.query(AppConfig).filter_by(key=_CFG_DOMAIN_PASS_PCT).first()
     _domain_pass_pct = int(_dpct_cfg.value) if _dpct_cfg and _dpct_cfg.value else 80
     passed = pct >= _domain_pass_pct
 
@@ -1181,12 +1204,13 @@ async def submit_grade_final_test(
     wrong_questions: list[dict] = []
 
     for qid_str, user_ans in req.answers.items():
+        user_ans = (user_ans or "")[:2000]
         try:
             qid = int(qid_str)
         except ValueError:
             continue
 
-        user_ans_stripped = (user_ans or "").strip()
+        user_ans_stripped = user_ans.strip()
 
         if qid >= 30000:
             # word_work — student must write an original sentence using the focus word.
@@ -1266,7 +1290,7 @@ async def submit_grade_final_test(
             results.append({"question_id": qid, "score": score, "type": "qa"})
 
     pct = round(correct / total * 100) if total else 0
-    _gpct_cfg = db.query(AppConfig).filter_by(key="ckla_grade_pass_pct").first()
+    _gpct_cfg = db.query(AppConfig).filter_by(key=_CFG_GRADE_PASS_PCT).first()
     _grade_pass_pct = int(_gpct_cfg.value) if _gpct_cfg and _gpct_cfg.value else 80
     passed = pct >= _grade_pass_pct
 

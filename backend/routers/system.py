@@ -8,7 +8,7 @@ API: GET /api/system/status, GET /api/system/ollama,
 """
 
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 try:
     from ..services import ollama_manager, backup_engine
@@ -21,7 +21,7 @@ router = APIRouter(prefix="/api/system", tags=["system"])
 
 
 class RestoreRequest(BaseModel):
-    filename: str
+    filename: str = Field(max_length=200)
 
 
 # @tag SYSTEM

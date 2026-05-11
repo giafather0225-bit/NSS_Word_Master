@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from fastapi import APIRouter, Depends
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 try:
@@ -138,7 +138,7 @@ def problems_review(db: Session = Depends(get_db)):
 
 class ReviewSubmitIn(BaseModel):
     review_id: int
-    user_answer: str = ""
+    user_answer: str = Field(default="", max_length=200)
 
 
 # @tag MATH @tag MY_PROBLEMS

@@ -13,7 +13,7 @@ import logging
 from datetime import datetime
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
@@ -28,7 +28,7 @@ router = APIRouter()
 class ReportScheduleIn(BaseModel):
     enabled:     bool = True
     day_of_week: int  = 1      # 0=Mon … 6=Sun
-    child_name:  str  = "Gia"
+    child_name:  str  = Field(default="Gia", max_length=50)
 
 
 def _cfg(db: Session, key: str, default: str = "") -> str:

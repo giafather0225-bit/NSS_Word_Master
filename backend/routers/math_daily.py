@@ -16,7 +16,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -337,7 +337,7 @@ def daily_today(db: Session = Depends(get_db)):
 
 class DailyAnswerIn(BaseModel):
     index: int
-    answer: str
+    answer: str = Field(max_length=200)
 
 
 # @tag MATH @tag DAILY

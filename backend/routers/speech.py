@@ -68,11 +68,16 @@ async def recognize_speech(
             detail="Offline speech recognition not available. Install faster-whisper.",
         )
 
-    suffix = os.path.splitext(audio.filename or "")[1] or ".webm"
+    _ALLOWED_AUDIO_EXTS = {".webm", ".ogg", ".wav", ".mp3", ".m4a", ".aac"}
+    raw_suffix = os.path.splitext(audio.filename or "")[1].lower()
+    suffix = raw_suffix if raw_suffix in _ALLOWED_AUDIO_EXTS else ".webm"
+    _AUDIO_MAX_BYTES = 10_000_000  # 10 MB — ample for any realistic speech clip
     try:
         data = await audio.read()
         if not data:
             raise HTTPException(status_code=400, detail="Empty audio upload")
+        if len(data) > _AUDIO_MAX_BYTES:
+            raise HTTPException(status_code=413, detail="Audio file too large (max 10 MB)")
         with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
             tmp.write(data)
             tmp_path = tmp.name
@@ -94,4 +99,4 @@ async def recognize_speech(
         raise
     except Exception as exc:
         logger.error("Whisper transcription failed: %s", exc)
-        raise HTTPException(status_code=500, detail=f"transcription failed: {exc}")
+        raise HTTPException(status_code=500, detail="Speech recognition failed. Please try again.")

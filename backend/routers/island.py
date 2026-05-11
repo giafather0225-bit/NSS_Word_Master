@@ -117,7 +117,7 @@ def _prog_dict(prog: IslandCharacterProgress, char: IslandCharacter) -> dict:
 # ─────────────────────────────────────────────────────────────────────────────
 
 class ZoneUnlockBody(BaseModel):
-    zone: str
+    zone: str = Field(max_length=50)
 
 class AdoptBody(BaseModel):
     character_id: int
@@ -125,18 +125,18 @@ class AdoptBody(BaseModel):
 
 class EvolveBody(BaseModel):
     character_progress_id: int
-    stone_type: str = ""
+    stone_type: str = Field("", max_length=50)
 
 class EvolveBranchBody(BaseModel):
     character_progress_id: int
-    branch: str = ""  # 'a' or 'b'; optional for /evolve/validate
+    branch: str = Field("", max_length=2)  # 'a' or 'b'; optional for /evolve/validate
 
 class FeedBody(BaseModel):
     character_progress_id: int
     inventory_id: int
 
 class EarnLumiBody(BaseModel):
-    source: str
+    source: str = Field(max_length=100)
     amount: int
     character_progress_id: Optional[int] = None
 
@@ -149,7 +149,7 @@ class BuyBody(BaseModel):
 
 class PlaceBody(BaseModel):
     inventory_id: int
-    zone: str
+    zone: str = Field(max_length=50)
     pos_x: int = 0
     pos_y: int = 0
 
@@ -162,8 +162,8 @@ class MoveBody(BaseModel):
     pos_y: int = 0
 
 class ConfigUpdateBody(BaseModel):
-    key: str
-    value: str
+    key: str = Field(max_length=100)
+    value: str = Field(max_length=200)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
