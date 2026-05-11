@@ -602,6 +602,600 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "type": "input",
+      "question": "Simplify: 2/6 = __/__",
+      "accept": [
+        "1/3"
+      ],
+      "correct_answer": "1/3",
+      "hints": [
+        "Same denominator → bigger numerator wins. Same numerator → smaller denominator means bigger pieces."
+      ],
+      "feedback": {
+        "correct": "Great! The answer is 1/3.",
+        "incorrect": "The answer is 1/3. Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "feedback_correct": "Great! The answer is 1/3.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L7_equivalent_fractions",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l7",
+      "source_stage": "practice_r2",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "question": "Which is greater: 6/8 or 2/8?",
+      "choices": [
+        "A) 6/8",
+        "B) 2/8",
+        "C) They are equal"
+      ],
+      "correct_answer": "A",
+      "hints": [
+        "Same denominator → bigger numerator wins. Same numerator → smaller denominator means bigger pieces."
+      ],
+      "feedback": {
+        "correct": "Great! The answer is A (6/8).",
+        "incorrect": "The answer is A (6/8). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "feedback_correct": "Great! The answer is A (6/8).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L1_problem_solving_compare_fractions",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "B": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "compares_by_numerator_only",
+          "note": "Compares by numerator only, ignores denominator",
+          "misconception_id": "3.NF.A.3.M02",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l1",
+      "source_stage": "practice_r1",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_03",
+      "type": "input",
+      "question": "Nate says 2/4 = 2/8 because they both have a numerator of 2. Is he correct? Use a model to explain.",
+      "correct_answer": "Nate is NOT correct. If you draw two same-size strips, 2/4 covers half the strip but 2/8 only covers a quarter. The shaded areas are different sizes. Same numerator does NOT mean equivalent — the denominators make the pieces different sizes.",
+      "hints": [
+        "Same denominator → bigger numerator wins. Same numerator → smaller denominator means bigger pieces."
+      ],
+      "feedback": {
+        "correct": "Correct! The answer is Nate is NOT correct. If you draw two same-size strips, 2/4 covers half the strip but 2/8 only covers a quarter. The shaded areas are different sizes. Same numerator does NOT mean equivalent — the denominators make the pieces different sizes.",
+        "incorrect": "The answer is Nate is NOT correct. If you draw two same-size strips, 2/4 covers half the strip but 2/8 only covers a quarter. The shaded areas are different sizes. Same numerator does NOT mean equivalent — the denominators make the pieces different sizes. Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "feedback_correct": "Correct! The answer is Nate is NOT correct. If you draw two same-size strips, 2/4 covers half the strip but 2/8 only covers a quarter. The shaded areas are different sizes. Same numerator does NOT mean equivalent — the denominators make the pieces different sizes.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L6_model_equivalent_fractions",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l6",
+      "source_stage": "practice_r3",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_04",
+      "type": "mc",
+      "question": "Which pair shows equivalent fractions?",
+      "choices": [
+        "A) 1/3 and 2/3",
+        "B) 2/6 and 1/3",
+        "C) 1/4 and 1/8"
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Equivalent fractions: multiply (or divide) numerator and denominator by the SAME number."
+      ],
+      "feedback": {
+        "correct": "Exactly! The answer is B (2/6 and 1/3).",
+        "incorrect": "The answer is B (2/6 and 1/3). Equivalent fractions: multiply (or divide) numerator and denominator by the SAME number."
+      },
+      "feedback_correct": "Exactly! The answer is B (2/6 and 1/3).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L6_model_equivalent_fractions",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "A": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "compares_by_numerator_only",
+          "note": "Compares by numerator only, ignores denominator",
+          "misconception_id": "3.NF.A.3.M02",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l6",
+      "source_stage": "practice_r2",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_05",
+      "type": "mc",
+      "question": "Which fraction is equivalent to 3/4?",
+      "choices": [
+        "A) 3/8",
+        "B) 6/8",
+        "C) 4/8"
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Numerator (top) = parts taken. Denominator (bottom) = total equal parts."
+      ],
+      "feedback": {
+        "correct": "Correct! The answer is B (6/8).",
+        "incorrect": "The answer is B (6/8). Numerator (top) = parts taken. Denominator (bottom) = total equal parts."
+      },
+      "feedback_correct": "Correct! The answer is B (6/8).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L7_equivalent_fractions",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "A": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "compares_by_numerator_only",
+          "note": "Compares by numerator only, ignores denominator",
+          "misconception_id": "3.NF.A.3.M02",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l7",
+      "source_stage": "practice_r1",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_06",
+      "type": "mc",
+      "question": "Which fraction belongs BETWEEN 2/8 and 6/8 on a number line?",
+      "choices": [
+        "A) 1/8",
+        "B) 7/8",
+        "C) 4/8"
+      ],
+      "correct_answer": "C",
+      "hints": [
+        "Each tick equals 1 over the total parts."
+      ],
+      "feedback": {
+        "correct": "Yes! The answer is C (4/8).",
+        "incorrect": "The answer is C (4/8). Each tick equals 1 over the total parts."
+      },
+      "feedback_correct": "Yes! The answer is C (4/8).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L5_compare_and_order_fractions",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "A": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "compares_by_numerator_only",
+          "note": "Compares by numerator only, ignores denominator",
+          "misconception_id": "3.NF.A.3.M02",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l5",
+      "source_stage": "practice_r2",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_07",
+      "type": "mc",
+      "question": "Which statement is TRUE?",
+      "choices": [
+        "A) 1/2 < 1/8",
+        "B) 3/4 > 3/6",
+        "C) 2/3 = 2/8"
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Test the statement against what you know about the operation."
+      ],
+      "feedback": {
+        "correct": "Correct! The answer is B (3/4 > 3/6).",
+        "incorrect": "The answer is B (3/4 > 3/6). Test the statement against what you know about the operation."
+      },
+      "feedback_correct": "Correct! The answer is B (3/4 > 3/6).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L1_problem_solving_compare_fractions",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "A": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "compares_by_numerator_only",
+          "note": "Compares by numerator only, ignores denominator",
+          "misconception_id": "3.NF.A.3.M02",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l1",
+      "source_stage": "practice_r2",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_08",
+      "type": "drag_sort",
+      "question": "Order from least to greatest: 4/6, 1/6, 5/6",
+      "correct_answer": "1/6, 4/6, 5/6",
+      "hints": [
+        "Numerator (top) = parts taken. Denominator (bottom) = total equal parts."
+      ],
+      "feedback": {
+        "correct": "Good job! The answer is 1/6, 4/6, 5/6.",
+        "incorrect": "The answer is 1/6, 4/6, 5/6. Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "feedback_correct": "Good job! The answer is 1/6, 4/6, 5/6.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L5_compare_and_order_fractions",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l5",
+      "source_stage": "practice_r1",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_09",
+      "type": "input",
+      "question": "Write a fraction with denominator 6 that is LESS than 5/6.",
+      "accept": [
+        "1/6",
+        "2/6",
+        "3/6",
+        "4/6"
+      ],
+      "correct_answer": "Any of: 1/6, 2/6, 3/6, 4/6",
+      "hints": [
+        "Numerator (top) = parts taken. Denominator (bottom) = total equal parts."
+      ],
+      "feedback": {
+        "correct": "Right! The answer is Any of: 1/6, 2/6, 3/6, 4/6.",
+        "incorrect": "The answer is Any of: 1/6, 2/6, 3/6, 4/6. Numerator (top) = parts taken. Denominator (bottom) = total equal parts."
+      },
+      "feedback_correct": "Right! The answer is Any of: 1/6, 2/6, 3/6, 4/6.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L2_compare_same_denominator",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l2",
+      "source_stage": "practice_r2",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "question": "Two same-size boards. Board A has 3/4 painted. Board B has 2/4 painted. Which board has more paint? Write a comparison.",
+      "correct_answer": "Board A; 3/4 > 2/4",
+      "hints": [
+        "Numerator (top) = parts taken. Denominator (bottom) = total equal parts."
+      ],
+      "feedback": {
+        "correct": "Exactly! The answer is Board A; 3/4 > 2/4.",
+        "incorrect": "The answer is Board A; 3/4 > 2/4. Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "feedback_correct": "Exactly! The answer is Board A; 3/4 > 2/4.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L2_compare_same_denominator",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l2",
+      "source_stage": "practice_r2",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_11",
+      "type": "mc",
+      "question": "Compare: 6/8 ○ 6/6",
+      "choices": [
+        "A) >",
+        "B) <",
+        "C) ="
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Same denominator → bigger numerator wins. Same numerator → smaller denominator means bigger pieces."
+      ],
+      "feedback": {
+        "correct": "Exactly! The answer is B (<).",
+        "incorrect": "The answer is B (<). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "feedback_correct": "Exactly! The answer is B (<).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L3_compare_same_numerator",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "A": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "compares_by_numerator_only",
+          "note": "Compares by numerator only, ignores denominator",
+          "misconception_id": "3.NF.A.3.M02",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l3",
+      "source_stage": "practice_r1",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    },
+    {
+      "id": "UT_12",
+      "type": "mc",
+      "question": "Compare: 3/3 ○ 3/8",
+      "choices": [
+        "A) >",
+        "B) <",
+        "C) ="
+      ],
+      "correct_answer": "A",
+      "hints": [
+        "Same denominator → bigger numerator wins. Same numerator → smaller denominator means bigger pieces."
+      ],
+      "feedback": {
+        "correct": "Yes! The answer is A (>).",
+        "incorrect": "The answer is A (>). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "feedback_correct": "Yes! The answer is A (>).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.9 Lesson — U9_compare_fractions/L3_compare_same_numerator",
+        "procedure_source": "EngageNY Grade 3 Module 5 — U9_compare_fractions",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "B": {
+          "error_type": "larger_denominator_means_larger_fraction",
+          "note": "Treats larger denominator as larger fraction (whole-number bias)",
+          "misconception_id": "3.NF.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "compares_by_numerator_only",
+          "note": "Compares by numerator only, ignores denominator",
+          "misconception_id": "3.NF.A.3.M02",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "g3_u9_l3",
+      "source_stage": "practice_r1",
+      "ccss": "3.NF.A.3a",
+      "misconception_candidates": [
+        "3.NF.A.3.M01",
+        "3.NF.A.3.M02",
+        "3.NF.A.3.M03",
+        "3.NF.A.3.M04",
+        "3.NF.A.3.M05",
+        "3.NF.A.3.M06",
+        "3.NF.A.3.M07",
+        "3.NF.A.3.M08"
+      ]
+    }
+  ]
 }

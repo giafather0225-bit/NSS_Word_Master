@@ -1,0 +1,79 @@
+{
+  "standard": "3.NF.A.3",
+  "standard_description": "Explain equivalence of fractions in special cases, and compare fractions by reasoning about their size. (a) Understand two fractions as equivalent (equal) if they are the same size, or the same point on a number line. (b) Recognize and generate simple equivalent fractions (e.g., 1/2 = 2/4, 4/6 = 2/3). (c) Express whole numbers as fractions, and recognize fractions that are equivalent to whole numbers. (d) Compare two fractions with the same numerator or the same denominator by reasoning about their size.",
+  "applies_to_substandards": ["3.NF.A.3a", "3.NF.A.3b", "3.NF.A.3c", "3.NF.A.3d"],
+  "sources": [
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Number and Operations, Fractions Grades 3-5, 2013",
+    "EngageNY Grade 3 Module 5 Teacher Edition — Topic D: Fractions on the Number Line and Topic E: Equivalent Fractions, 2013",
+    "Behr, M.J., Lesh, R., Post, T.R., & Silver, E.A. (1983). Rational-number concepts. In R. Lesh & M. Landau (Eds.), Acquisition of Mathematics Concepts and Processes (pp. 91-126). Academic Press.",
+    "Stafylidou, S., & Vosniadou, S. (2004). The development of students' understanding of the numerical value of fractions. Learning and Instruction, 14(5), 503-518.",
+    "Cramer, K. A., Post, T. R., & delMas, R. C. (2002). Initial fraction learning by fourth- and fifth-grade students: A comparison of the effects of using commercial curricula with the effects of using the Rational Number Project curriculum. Journal for Research in Mathematics Education, 33(2), 111-144.",
+    "Common Core State Standards Initiative (2010). CCSS for Mathematics — Grade 3 NF.A.3."
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.NF.A.3.M01",
+      "error_type": "larger_denominator_means_larger_fraction",
+      "short_label": "Treats larger denominator as larger fraction (whole-number bias)",
+      "description": "Student applies whole-number reasoning to denominators: since 8 > 4, concludes 1/8 > 1/4. This is the single most-documented misconception in fraction comparison and reflects incomplete construction of the inverse relationship between denominator and piece size.",
+      "example": "Compare 1/4 and 1/8: student says 1/8 is bigger because 8 > 4.",
+      "citation": "Stafylidou & Vosniadou (2004), p.510 — 'Whole-number bias dominates early fraction comparison; same-numerator pairs are particularly susceptible.'"
+    },
+    {
+      "misconception_id": "3.NF.A.3.M02",
+      "error_type": "compares_by_numerator_only",
+      "short_label": "Compares by numerator only, ignores denominator",
+      "description": "Student picks the fraction with the bigger numerator as larger regardless of denominator. Companion error to M01; both stem from treating fraction components as independent whole numbers.",
+      "example": "Compare 2/3 and 4/8: student says 4/8 is bigger because 4 > 2.",
+      "citation": "Behr, Lesh, Post, Silver (1983) — 'Component-wise comparison is the default strategy before unitization of a/b.'"
+    },
+    {
+      "misconception_id": "3.NF.A.3.M03",
+      "error_type": "additive_equivalence_strategy",
+      "short_label": "Adds the same number to numerator and denominator to make equivalent",
+      "description": "Student believes equivalent fractions are produced by adding the same value to both numerator and denominator (e.g., 1/2 = 2/3 = 3/4), reflecting an additive rather than multiplicative understanding.",
+      "example": "Asked for a fraction equivalent to 1/2: student writes 2/3 (adding 1 to both). Or claims 1/2 = 3/4.",
+      "citation": "Cramer, Post, delMas (2002) — 'Additive transformations of numerator and denominator are a hallmark of pre-multiplicative reasoning about equivalence.'"
+    },
+    {
+      "misconception_id": "3.NF.A.3.M04",
+      "error_type": "whole_number_as_fraction_inverted",
+      "short_label": "Writes whole number n as 1/n instead of n/1",
+      "description": "When asked to express a whole number as a fraction, student writes the whole number in the denominator (1/n) instead of the numerator (n/1). Indicates confusion between 'parts of one' and 'how many wholes'.",
+      "example": "Express 3 as a fraction: student writes 1/3 instead of 3/1.",
+      "citation": "EngageNY G3 Module 5 Lesson 24 Teacher Edition — 'Whole numbers as fractions require explicit modeling; students default to placing the whole number where the denominator usually goes.'"
+    },
+    {
+      "misconception_id": "3.NF.A.3.M05",
+      "error_type": "denies_equivalence_of_different_looking_fractions",
+      "short_label": "Refuses 1/2 = 2/4 because numerators and denominators differ",
+      "description": "Student believes two fractions can only be equal if they are written identically. Equivalent fractions like 1/2 and 2/4 are judged unequal despite visual or number-line evidence.",
+      "example": "Shown that 1/2 and 2/4 land on the same point on a number line, student insists they are not equal because '1 isn't 2 and 2 isn't 4'.",
+      "citation": "NCTM Progressions NF 3-5 (2013), p.4 — 'Equivalence as same-point-on-number-line must be repeatedly demonstrated; symbolic equivalence is not initially accepted.'"
+    },
+    {
+      "misconception_id": "3.NF.A.3.M06",
+      "error_type": "treats_n_over_n_as_undefined",
+      "short_label": "Does not recognize n/n = 1 (whole)",
+      "description": "Student does not see 4/4, 3/3, etc. as equal to 1. May call it 'a fraction' but cannot connect to the whole, or may say it's 0 (since 'all parts are taken').",
+      "example": "Asked to evaluate 4/4: student says 'a fraction' or 'I don't know', does not say 1.",
+      "citation": "Behr et al. (1983) — 'The identity n/n = 1 is non-obvious; students need partitioning + iterating language to construct it.'"
+    },
+    {
+      "misconception_id": "3.NF.A.3.M07",
+      "error_type": "same_denominator_compare_by_denominator",
+      "short_label": "With same denominator, compares wrong component",
+      "description": "When comparing fractions with the same denominator (e.g., 2/5 vs 4/5), student attends to the denominator and says they are equal, or compares to find 'smaller pieces'.",
+      "example": "Compare 2/5 and 4/5: student says they are equal because both are fifths, or says 2/5 is bigger because '2 is less so pieces are bigger'.",
+      "citation": "EngageNY G3 Module 5 Lesson 27 — 'Same-denominator comparisons require attending to numerator only; students often defocus the numerator after seeing matching denominators.'"
+    },
+    {
+      "misconception_id": "3.NF.A.3.M08",
+      "error_type": "same_numerator_picks_larger_denominator",
+      "short_label": "With same numerator, picks larger-denominator fraction as bigger",
+      "description": "Direct application of M01 to same-numerator comparison. Comparing 3/4 vs 3/8, student says 3/8 is bigger because the pieces 'add up' to a larger number.",
+      "example": "Compare 3/4 and 3/8: student says 3/8 is bigger because 8 > 4 (or because '8 pieces is more than 4 pieces').",
+      "citation": "Stafylidou & Vosniadou (2004), p.512 — 'Same-numerator pairs trigger the whole-number bias most strongly; explicit attention to piece size is required.'"
+    }
+  ]
+}

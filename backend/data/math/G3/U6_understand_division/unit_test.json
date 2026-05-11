@@ -555,6 +555,722 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "type": "mc",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 9"
+      ],
+      "explanation": "18 ÷ 3 = 6.",
+      "difficulty": 1,
+      "hints": [
+        "Total (18) ÷ groups (3) = each group. Write: 18 ÷ 3 = ?",
+        "Think: 3 × ? = 18. Since 3 × 6 = 18, each group has 6."
+      ],
+      "feedback": {
+        "correct": "Right! 3 × 6 = 18, so 18 ÷ 3 = 6.",
+        "incorrect": "Use the related fact: 3 × 6 = 18, so 18 ÷ 3 = 6."
+      },
+      "question": "18 counters, 3 groups. Each group has?",
+      "correct_answer": "B",
+      "feedback_correct": "Right! 3 × 6 = 18, so 18 ÷ 3 = 6.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L2_size_of_equal_groups",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.2",
+      "expected_errors": {
+        "A": {
+          "error_type": "subtracts_instead_of_divides",
+          "note": "Subtracts the two numbers instead of dividing",
+          "misconception_id": "3.OA.A.2.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "partition_quotative_confusion",
+          "note": "Confuses 'how many in each group' vs 'how many groups'",
+          "misconception_id": "3.OA.A.2.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "reverses_dividend_divisor",
+          "note": "Divides smaller by larger by mistake",
+          "misconception_id": "3.OA.A.2.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L2_size_of_equal_groups",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.2.M01",
+        "3.OA.A.2.M02",
+        "3.OA.A.2.M03",
+        "3.OA.A.2.M04",
+        "3.OA.A.2.M05",
+        "3.OA.A.2.M06",
+        "3.OA.A.2.M07"
+      ]
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) 8"
+      ],
+      "explanation": "30 ÷ 5 = 6.",
+      "difficulty": 1,
+      "hints": [
+        "Draw 5 equal circles. Share 30 counters equally.",
+        "Think: 5 × ? = 30. Since 5 × 6 = 30, then 30 ÷ 5 = 6."
+      ],
+      "feedback": {
+        "correct": "Right! 5 × 6 = 30, so 30 ÷ 5 = 6.",
+        "incorrect": "Use the related fact: 5 × 6 = 30, so 30 ÷ 5 = 6."
+      },
+      "question": "30 ÷ 5 = ?",
+      "correct_answer": "B",
+      "feedback_correct": "Right! 5 × 6 = 30, so 30 ÷ 5 = 6.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L1_model_division",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "array_dimension_swap",
+          "note": "Confusing rows and columns in arrays",
+          "misconception_id": "3.OA.A.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "skip_count_off_by_one",
+          "note": "Skip count makes wrong number of jumps on number line",
+          "misconception_id": "3.OA.A.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L1_model_division",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_03",
+      "type": "mc",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
+      "explanation": "32 ÷ 8 = 4.",
+      "difficulty": 1,
+      "hints": [
+        "Bar model: 32 total, 8 parts. Each = 32 ÷ 8.",
+        "Think: 8 × ? = 32. Since 8 × 4 = 32, each part is 4."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 4 = 32, so 32 ÷ 8 = 4.",
+        "incorrect": "Draw the bar: 32 total, 8 parts. 8 × 4 = 32, so each part = 4."
+      },
+      "question": "A bar model shows 32 split into 8 parts. Each = ?",
+      "correct_answer": "B",
+      "feedback_correct": "Correct! 8 × 4 = 32, so 32 ÷ 8 = 4.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L4_model_with_bar_models",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "array_dimension_swap",
+          "note": "Confusing rows and columns in arrays",
+          "misconception_id": "3.OA.A.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "skip_count_off_by_one",
+          "note": "Skip count makes wrong number of jumps on number line",
+          "misconception_id": "3.OA.A.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L4_model_with_bar_models",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_04",
+      "type": "mc",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
+      "explanation": "81 ÷ 9 = 9 seeds per pot.",
+      "difficulty": 2,
+      "hints": [
+        "Total (81) ÷ groups (9 pots) = each pot. Write: 81 ÷ 9 = ?",
+        "Think: 9 × ? = 81. Since 9 × 9 = 81, each pot gets 9 seeds."
+      ],
+      "feedback": {
+        "correct": "Correct! 9 × 9 = 81, so 81 ÷ 9 = 9 seeds per pot.",
+        "incorrect": "Use the related fact: 9 × 9 = 81, so 81 ÷ 9 = 9."
+      },
+      "question": "Sam plants 81 seeds equally in 9 pots. How many seeds per pot?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 9 × 9 = 81, so 81 ÷ 9 = 9 seeds per pot.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L2_size_of_equal_groups",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.2",
+      "expected_errors": {
+        "A": {
+          "error_type": "subtracts_instead_of_divides",
+          "note": "Subtracts the two numbers instead of dividing",
+          "misconception_id": "3.OA.A.2.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "partition_quotative_confusion",
+          "note": "Confuses 'how many in each group' vs 'how many groups'",
+          "misconception_id": "3.OA.A.2.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "reverses_dividend_divisor",
+          "note": "Divides smaller by larger by mistake",
+          "misconception_id": "3.OA.A.2.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L2_size_of_equal_groups",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.A.2.M01",
+        "3.OA.A.2.M02",
+        "3.OA.A.2.M03",
+        "3.OA.A.2.M04",
+        "3.OA.A.2.M05",
+        "3.OA.A.2.M06",
+        "3.OA.A.2.M07"
+      ]
+    },
+    {
+      "id": "UT_05",
+      "type": "mc",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
+      "explanation": "54 ÷ 6 = 9.",
+      "difficulty": 2,
+      "hints": [
+        "Draw 6 circles for 6 shelves. Share 54 cans equally.",
+        "Think: 6 × ? = 54. Since 6 × 9 = 54, then 54 ÷ 6 = 9."
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 9 = 54, so 54 ÷ 6 = 9 cans.",
+        "incorrect": "Use the related fact: 6 × 9 = 54, so 54 ÷ 6 = 9."
+      },
+      "question": "A store has 54 cans on 6 shelves equally. How many per shelf?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 6 × 9 = 54, so 54 ÷ 6 = 9 cans.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L1_model_division",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "array_dimension_swap",
+          "note": "Confusing rows and columns in arrays",
+          "misconception_id": "3.OA.A.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "skip_count_off_by_one",
+          "note": "Skip count makes wrong number of jumps on number line",
+          "misconception_id": "3.OA.A.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L1_model_division",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_06",
+      "type": "mc",
+      "choices": [
+        "A) 50",
+        "B) 54",
+        "C) 60",
+        "D) 66"
+      ],
+      "explanation": "48 ÷ 6 = 8 rows originally. 2 extra rows × 6 = 12 more seeds. 48 + 12 = 60.",
+      "difficulty": 3,
+      "hints": [
+        "Find original rows: 48 ÷ 6 = 8 rows. Add 2 rows of 6 each.",
+        "New total rows = 8 + 2 = 10. Multiply: 10 × 6 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 48 ÷ 6 = 8 rows, then 10 × 6 = 60 seeds total.",
+        "incorrect": "Not quite. 48 ÷ 6 = 8 rows → +2 rows → 10 rows × 6 = 60."
+      },
+      "question": "A farmer plants 48 seeds in an array with 6 seeds per row. She then adds 2 more rows of the same size. How many total seeds are in the new array?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 48 ÷ 6 = 8 rows, then 10 × 6 = 60 seeds total.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L6_model_with_arrays",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "array_dimension_swap",
+          "note": "Confusing rows and columns in arrays",
+          "misconception_id": "3.OA.A.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "skip_count_off_by_one",
+          "note": "Skip count makes wrong number of jumps on number line",
+          "misconception_id": "3.OA.A.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L6_model_with_arrays",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_07",
+      "type": "mc",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
+      "explanation": "63 ÷ 9 = 7.",
+      "difficulty": 1,
+      "hints": [
+        "Draw a bar labeled 63, split into 9 parts. Each = 63 ÷ 9.",
+        "Think: 9 × ? = 63. Since 9 × 7 = 63, the answer is 7."
+      ],
+      "feedback": {
+        "correct": "Right! 9 × 7 = 63, so 63 ÷ 9 = 7.",
+        "incorrect": "Draw the bar: 63 total, 9 parts. 9 × 7 = 63, so each part = 7."
+      },
+      "question": "63 ÷ 9 = ?",
+      "correct_answer": "B",
+      "feedback_correct": "Right! 9 × 7 = 63, so 63 ÷ 9 = 7.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L4_model_with_bar_models",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "array_dimension_swap",
+          "note": "Confusing rows and columns in arrays",
+          "misconception_id": "3.OA.A.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "skip_count_off_by_one",
+          "note": "Skip count makes wrong number of jumps on number line",
+          "misconception_id": "3.OA.A.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L4_model_with_bar_models",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_08",
+      "type": "input",
+      "explanation": "8 × 7 = 56, so 56 ÷ 7 = 8.",
+      "difficulty": 2,
+      "hints": [
+        "Find the missing factor: ? × 7 = 56. Count by 7s: 7, 14, 21, 28, 35, 42, 49, 56.",
+        "8 × 7 = 56 → 56 ÷ 7 = 8."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 7 = 56 → 56 ÷ 7 = 8.",
+        "incorrect": "Not quite. ? × 7 = 56 → 8 × 7 = 56 → 56 ÷ 7 = 8."
+      },
+      "solution_steps": [],
+      "question": "Think: ? × 7 = 56. What is 56 ÷ 7?",
+      "correct_answer": "8",
+      "feedback_correct": "Correct! 8 × 7 = 56 → 56 ÷ 7 = 8.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L7_relate_multiplication_and_division",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.B.6",
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "division_dividend_divisor_inverted",
+          "note": "Treats a÷b and b÷a as the same problem",
+          "misconception_id": "3.OA.B.6.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L7_relate_multiplication_and_division",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.B.6.M01",
+        "3.OA.B.6.M02",
+        "3.OA.B.6.M03",
+        "3.OA.B.6.M04",
+        "3.OA.B.6.M05",
+        "3.OA.B.6.M06",
+        "3.OA.B.6.M07",
+        "3.OA.B.6.M08"
+      ]
+    },
+    {
+      "id": "UT_09",
+      "type": "mc",
+      "choices": [
+        "A) 48 ÷ 8 = 6",
+        "B) 48 ÷ 8 = 8",
+        "C) 48 − 8 = 40",
+        "D) 6 + 8 = 14"
+      ],
+      "explanation": "48 ÷ 8 = 6 completes the family.",
+      "difficulty": 1,
+      "hints": [
+        "Three facts are written. The fourth divides 48 by the other factor (8).",
+        "48 ÷ 8 = ?. Think: 8 × 6 = 48 → 48 ÷ 8 = 6."
+      ],
+      "feedback": {
+        "correct": "Correct! The missing fact is 48 ÷ 8 = 6.",
+        "incorrect": "Not quite. The missing fact is 48 ÷ 8 = 6 (dividing by the other factor)."
+      },
+      "question": "Write the missing fact: 6 × 8 = 48, 8 × 6 = 48, 48 ÷ 6 = 8, __ = ?",
+      "correct_answer": "A",
+      "feedback_correct": "Correct! The missing fact is 48 ÷ 8 = 6.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L8_write_related_facts",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.B.6",
+      "expected_errors": {
+        "B": {
+          "error_type": "division_dividend_divisor_inverted",
+          "note": "Treats a÷b and b÷a as the same problem",
+          "misconception_id": "3.OA.B.6.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "no_connection_to_multiplication",
+          "note": "Cannot use known multiplication facts to solve division",
+          "misconception_id": "3.OA.B.6.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "division_as_subtraction_once",
+          "note": "Subtracts divisor once and reports difference",
+          "misconception_id": "3.OA.B.6.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L8_write_related_facts",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.B.6.M01",
+        "3.OA.B.6.M02",
+        "3.OA.B.6.M03",
+        "3.OA.B.6.M04",
+        "3.OA.B.6.M05",
+        "3.OA.B.6.M06",
+        "3.OA.B.6.M07",
+        "3.OA.B.6.M08"
+      ]
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "explanation": "7 × 8 = 56, so 56 ÷ 7 = 8 columns.",
+      "difficulty": 1,
+      "hints": [
+        "The array is 7 rows × 8 columns = 56 tiles. Divide by rows.",
+        "Think: 7 × ? = 56. Count by 7s: 7, 14, 21, 28, 35, 42, 49, 56 — that's 8."
+      ],
+      "feedback": {
+        "correct": "Correct! 56 ÷ 7 = 8. The array has 8 columns.",
+        "incorrect": "Not quite. 7 × 8 = 56, so 56 ÷ 7 = 8."
+      },
+      "solution_steps": [],
+      "question": "An array has 7 rows and 8 columns. What is 56 ÷ 7?",
+      "correct_answer": "8",
+      "feedback_correct": "Correct! 56 ÷ 7 = 8. The array has 8 columns.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L6_model_with_arrays",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L6_model_with_arrays",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_11",
+      "type": "mc",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 4",
+        "D) 5"
+      ],
+      "explanation": "5 ÷ 1 = 5.",
+      "difficulty": 1,
+      "hints": [
+        "The divisor is 1. Which rule applies?",
+        "Rule: n ÷ 1 = n. So 5 ÷ 1 = 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 5 ÷ 1 = 5. Any number ÷ 1 = itself.",
+        "incorrect": "Not quite. Rule: n ÷ 1 = n → 5 ÷ 1 = 5."
+      },
+      "question": "5 ÷ 1 = ?",
+      "correct_answer": "D",
+      "feedback_correct": "Correct! 5 ÷ 1 = 5. Any number ÷ 1 = itself.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L9_division_rules_for_1_and_0",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.B.5",
+      "expected_errors": {
+        "A": {
+          "error_type": "rejects_commutative",
+          "note": "Treats a × b and b × a as different problems",
+          "misconception_id": "3.OA.B.5.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "overgeneralized_commutative",
+          "note": "Applies commutative to subtraction or division",
+          "misconception_id": "3.OA.B.5.M02",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "distributive_partial_application",
+          "note": "Distributes only one part, forgets the other addend",
+          "misconception_id": "3.OA.B.5.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L9_division_rules_for_1_and_0",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.B.5.M01",
+        "3.OA.B.5.M02",
+        "3.OA.B.5.M03",
+        "3.OA.B.5.M04",
+        "3.OA.B.5.M05",
+        "3.OA.B.5.M06",
+        "3.OA.B.5.M07"
+      ]
+    },
+    {
+      "id": "UT_12",
+      "type": "mc",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
+      "explanation": "27 ÷ 3 = 9.",
+      "difficulty": 1,
+      "hints": [
+        "Circle groups of 3 from 27 counters. Write: 27 ÷ 3 = ?",
+        "Think: 3 × ? = 27. Since 3 × 9 = 27, the answer is 9."
+      ],
+      "feedback": {
+        "correct": "Correct! 3 × 9 = 27, so 27 ÷ 3 = 9.",
+        "incorrect": "Use the related fact: 3 × 9 = 27, so 27 ÷ 3 = 9."
+      },
+      "question": "27 ÷ 3 = ?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 3 × 9 = 27, so 27 ÷ 3 = 9.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.6 Lesson — U6_understand_division/L3_number_of_equal_groups",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U6_understand_division",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.2",
+      "expected_errors": {
+        "A": {
+          "error_type": "subtracts_instead_of_divides",
+          "note": "Subtracts the two numbers instead of dividing",
+          "misconception_id": "3.OA.A.2.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "partition_quotative_confusion",
+          "note": "Confuses 'how many in each group' vs 'how many groups'",
+          "misconception_id": "3.OA.A.2.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "reverses_dividend_divisor",
+          "note": "Divides smaller by larger by mistake",
+          "misconception_id": "3.OA.A.2.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L3_number_of_equal_groups",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.2.M01",
+        "3.OA.A.2.M02",
+        "3.OA.A.2.M03",
+        "3.OA.A.2.M04",
+        "3.OA.A.2.M05",
+        "3.OA.A.2.M06",
+        "3.OA.A.2.M07"
+      ]
+    }
+  ]
 }

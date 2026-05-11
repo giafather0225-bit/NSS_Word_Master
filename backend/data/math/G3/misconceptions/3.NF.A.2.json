@@ -1,0 +1,78 @@
+{
+  "standard": "3.NF.A.2",
+  "standard_description": "Understand a fraction as a number on the number line; represent fractions on a number line diagram. (a) Represent a fraction 1/b on a number line diagram by defining the interval from 0 to 1 as the whole and partitioning it into b equal parts. Recognize that each part has size 1/b and that the endpoint of the part based at 0 locates the number 1/b on the number line. (b) Represent a fraction a/b on a number line diagram by marking off a lengths 1/b from 0.",
+  "applies_to_substandards": ["3.NF.A.2a", "3.NF.A.2b"],
+  "sources": [
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Number and Operations, Fractions Grades 3-5, 2013",
+    "EngageNY Grade 3 Module 5 Teacher Edition — Topic B: Unit Fractions and Their Relation to the Whole, 2013",
+    "Lamon, S. J. (2007). Rational numbers and proportional reasoning: Toward a theoretical framework for research. In F. K. Lester (Ed.), Second Handbook of Research on Mathematics Teaching and Learning (pp. 629-667). NCTM.",
+    "Tzur, R. (1999). An integrated study of children's construction of improper fractions and the teacher's role in promoting that learning. Journal for Research in Mathematics Education, 30(4), 390-416.",
+    "Common Core State Standards Initiative (2010). CCSS for Mathematics — Grade 3 Number and Operations — Fractions."
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.NF.A.2.M01",
+      "error_type": "counts_tick_marks_not_intervals",
+      "short_label": "Counts tick marks instead of equal intervals",
+      "description": "Student names the fraction based on the number of tick marks visible rather than the number of equal-length pieces between 0 and 1. A line with 5 ticks (4 intervals) is mislabeled as fifths instead of fourths.",
+      "example": "Number line 0 to 1 with marks at 0, 1/4, 2/4, 3/4, 1 (5 tick marks total). Student says each piece is 1/5 because 'there are 5 marks'.",
+      "citation": "EngageNY G3 Module 5 Lesson 17 Teacher Edition — 'Count the spaces, not the marks; this is the most persistent error in fraction-on-number-line work.'"
+    },
+    {
+      "misconception_id": "3.NF.A.2.M02",
+      "error_type": "does_not_start_at_zero",
+      "short_label": "Begins counting from the first visible mark instead of 0",
+      "description": "Student locates a/b by counting jumps from the first visible tick mark (often 1/b itself), which under-counts by one and gives (a-1)/b instead of a/b.",
+      "example": "Asked to plot 3/4: student starts at the mark labeled 1/4 and counts three jumps, landing at the position of 1 instead of 3/4.",
+      "citation": "Lamon (2007), p.641 — 'The zero-origin convention is non-obvious; students treat the leftmost visible mark as the start.'"
+    },
+    {
+      "misconception_id": "3.NF.A.2.M03",
+      "error_type": "whole_is_entire_visible_line",
+      "short_label": "Treats the whole visible line as the unit instead of 0 to 1",
+      "description": "When a number line extends beyond 1 (e.g., 0 to 2), student partitions the entire visible segment into b parts and calls each one 1/b, ignoring the unit interval.",
+      "example": "Number line 0 to 2 with eight equal partitions. Student labels each piece as 1/8 instead of 1/4.",
+      "citation": "Tzur (1999), p.401 — 'Whole-unit identification on extended number lines requires deliberate instructional attention.'"
+    },
+    {
+      "misconception_id": "3.NF.A.2.M04",
+      "error_type": "unequal_partitions_accepted",
+      "short_label": "Accepts visibly unequal partitions as fractions",
+      "description": "Student does not insist on equal-size pieces when partitioning the unit interval; labels a line with uneven spacing as halves, thirds, etc., based on the count of pieces alone.",
+      "example": "Number line 0 to 1 split into three pieces of unequal length. Student labels them 1/3, 1/3, 1/3.",
+      "citation": "NCTM Progressions NF 3-5 (2013), p.7 — 'Equipartitioning must be insisted on; uneven partitions are a common drawing error that students rationalize.'"
+    },
+    {
+      "misconception_id": "3.NF.A.2.M05",
+      "error_type": "fractions_greater_than_one_misplaced",
+      "short_label": "Places fractions > 1 inside [0,1] instead of beyond",
+      "description": "Student believes all fractions must be between 0 and 1, so improper fractions are squeezed into the unit interval (often plotted at the numerator-th tick within [0,1]).",
+      "example": "Asked to plot 5/4: student plots the point at 1 (or at 'the fifth mark from 0' inside [0,1]) instead of 1/4 past 1.",
+      "citation": "EngageNY G3 Module 5 Lesson 30 — 'Fractions greater than 1 require explicit extension of the partitioning past the unit; students default to the unit interval.'"
+    },
+    {
+      "misconception_id": "3.NF.A.2.M06",
+      "error_type": "denominator_chosen_by_total_marks_outside_unit",
+      "short_label": "Names denominator from marks outside the unit interval",
+      "description": "Student counts all visible marks on a number line that extends past 1 and uses that total as the denominator, rather than the partitions of 0 to 1.",
+      "example": "Line from 0 to 2 partitioned in fourths (so 9 ticks total). Student labels the mark at 1/4 as 1/9.",
+      "citation": "Lamon (2007), p.645 — 'Conflation of total-mark count with denominator is a sign that the unit fraction concept has not yet been constructed.'"
+    },
+    {
+      "misconception_id": "3.NF.A.2.M07",
+      "error_type": "numerator_position_off_by_one",
+      "short_label": "Off-by-one when counting numerator jumps",
+      "description": "Student knows to count jumps of length 1/b but starts the count at 1 instead of 0 (or vice versa), producing a position one off.",
+      "example": "Asked to plot 2/3 on a line partitioned in thirds. Student lands at 1/3 (counted '1, 2' starting at 1/3) or at 3/3 (counted starting at 0 but stopped after the third mark).",
+      "citation": "EngageNY G3 Module 5 Lesson 18 — 'Number-of-jumps vs number-of-marks errors are routine; require students to verbalize 'starting at 0, jumping 2 times of length 1/3'.'"
+    },
+    {
+      "misconception_id": "3.NF.A.2.M08",
+      "error_type": "treats_fraction_as_two_separate_whole_numbers",
+      "short_label": "Reads a/b as two whole numbers and plots both",
+      "description": "Student does not perceive a/b as a single number; instead plots the numerator and denominator as separate points (e.g., plots 2 and 3 for 2/3) or asks 'which one do I plot?'.",
+      "example": "Asked to plot 2/3, student plots a point at 2 and another at 3 on the number line.",
+      "citation": "Tzur (1999), p.395 — 'The unitization of a/b into a single number is the central conceptual hurdle of fraction-on-number-line work.'"
+    }
+  ]
+}

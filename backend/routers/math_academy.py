@@ -72,11 +72,13 @@ try:
     from ..models import MathProblem, MathProgress, MathAttempt, MathWrongReview, MathSpacedReview
     from ..models.math import MathUnitTest
     from ..services import xp_engine, streak_engine
+    from ..services.math_diagnostic import diagnose as _diagnose_attempt
 except ImportError:
     from database import get_db
     from models import MathProblem, MathProgress, MathAttempt, MathWrongReview, MathSpacedReview
     from models.math import MathUnitTest
     from services import xp_engine, streak_engine
+    from services.math_diagnostic import diagnose as _diagnose_attempt
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -344,7 +346,8 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
     else:
         is_correct = _answers_equivalent(user_raw, correct_raw)
 
-    # Record attempt
+    # Record attempt — 진단 엔진으로 오답 분류
+    diag = _diagnose_attempt(problem, req.user_answer, grade=req.grade, is_correct=is_correct)
     attempt = MathAttempt(
         problem_id=req.problem_id,
         grade=req.grade,
@@ -353,9 +356,11 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
         stage=req.stage,
         is_correct=is_correct,
         user_answer=req.user_answer,
-        error_type="none" if is_correct else "concept_gap",
+        error_type=diag.get("error_type") or ("none" if is_correct else "concept_gap"),
         time_spent_sec=req.time_spent_sec,
         attempted_at=now,
+        misconception_id=diag.get("misconception_id"),
+        diagnostic_note=(diag.get("note") or "")[:500],
     )
     db.add(attempt)
 
@@ -424,6 +429,13 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
         "correct_answer": correct_display,
         "feedback": feedback_text,
         "solution_steps": problem.get("solution_steps", []),
+        # 진단 엔진 결과 (오답 시 채워짐, 정답 시 빈 값)
+        "diagnostic": {
+            "error_type": diag.get("error_type"),
+            "misconception_id": diag.get("misconception_id"),
+            "short_label": diag.get("short_label"),
+            "note": diag.get("note"),
+        } if not is_correct else None,
     }
 
 # @tag MATH @tag ACADEMY
@@ -658,7 +670,95 @@ class ExitQuizSubmitIn(BaseModel):
     answers: list[ExitQuizAnswerIn]
 
 
+class RoundCompleteIn(BaseModel):
+    """라운드(R1/R2/R3) 완료 보고 — Mastery Gating용."""
+    grade: str
+    unit: str
+    lesson: str
+    round: str   # "practice_r1" | "practice_r2" | "practice_r3"
+    score: int
+    total: int
+
+
 # ── v2.0 Endpoints ────────────────────────────────────────────
+
+
+def _decide_next_after_round(prog: "MathProgress", current_round: str,
+                             score: int, total: int) -> tuple[str, bool]:
+    """Mastery Gating 결정.
+
+    규칙
+    - R1 perfect (100%) AND PT mastery (PT 100%) → R2 skip → R3 직행
+    - 그 외 정상 진행: R1 → R2 → R3 → complete
+    - R3 직접 완료 시 → complete (XP는 complete-lesson에서 별도 처리)
+
+    반환 (next_stage, mastery_skip_applied)
+    """
+    r_pct = (score / total * 100) if total else 0
+    if current_round == "practice_r1":
+        if r_pct >= 100.0 and (prog.pretest_mastery or False):
+            return "practice_r3", True
+        return "practice_r2", False
+    if current_round == "practice_r2":
+        return "practice_r3", False
+    if current_round == "practice_r3":
+        return "complete", False
+    return current_round, False
+
+
+@router.post("/api/math/academy/round/complete")
+def complete_round(req: RoundCompleteIn, db: Session = Depends(get_db)):
+    """라운드 완료 보고 — best_score 갱신 + Mastery Gating 적용된 next_stage 반환.
+
+    프론트엔드 흐름
+    1) R1 5/5 풀고 → POST /round/complete {round:"practice_r1", score:5, total:5}
+    2) 응답: {next_stage:"practice_r3", mastery_skip_applied:true, skipped:["practice_r2"]}
+    3) 프론트엔드는 R2 화면을 건너뛰고 R3로 이동
+    """
+    import json as _json
+    now = datetime.now().isoformat()
+    prog = db.query(MathProgress).filter_by(grade=req.grade, unit=req.unit, lesson=req.lesson).first()
+    if not prog:
+        prog = MathProgress(grade=req.grade, unit=req.unit, lesson=req.lesson, last_accessed=now)
+        db.add(prog)
+        db.flush()
+    # best_score 갱신 (이전보다 높을 때만)
+    score_attr = {
+        "practice_r1": "best_score_r1",
+        "practice_r2": "best_score_r2",
+        "practice_r3": "best_score_r3",
+    }.get(req.round)
+    if score_attr:
+        prev = getattr(prog, score_attr, None)
+        if prev is None or req.score > prev:
+            setattr(prog, score_attr, req.score)
+    # 다음 stage 결정
+    next_stage, mastery_skip = _decide_next_after_round(prog, req.round, req.score, req.total)
+    # skipped_stages 추적
+    skipped = []
+    if prog.skipped_stages:
+        try:
+            skipped = _json.loads(prog.skipped_stages)
+            if not isinstance(skipped, list):
+                skipped = []
+        except Exception:
+            skipped = []
+    if mastery_skip and "practice_r2" not in skipped:
+        skipped.append("practice_r2")
+    prog.skipped_stages = _json.dumps(skipped)
+    prog.stage = next_stage
+    prog.last_accessed = now
+    db.commit()
+    return {
+        "status": "ok",
+        "next_stage": next_stage,
+        "mastery_skip_applied": mastery_skip,
+        "skipped": skipped,
+        "best_score_r1": prog.best_score_r1,
+        "best_score_r2": prog.best_score_r2,
+        "best_score_r3": prog.best_score_r3,
+    }
+
 
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/lesson/{grade}/{unit}/{lesson}/stage")
@@ -700,9 +800,17 @@ def submit_pre_test(req: PreTestSubmitIn, db: Session = Depends(get_db)):
     prog.pretest_score = req.score
     prog.pretest_passed = pct >= 80
     prog.pretest_skipped = req.skipped
+    # Mastery Gating: PT 만점이면 R2 면제 자격 부여 (R1 후 최종 결정)
+    prog.pretest_mastery = (pct >= 100.0)
     prog.stage = "learn"
     prog.last_accessed = now
     db.commit()
+
+    # 권장 학습 경로 — PT 만점 시 R2 미리 면제 안내 (R1 결과로 확정)
+    if prog.pretest_mastery:
+        recommended_path = ["learn", "try", "practice_r1", "practice_r3"]
+    else:
+        recommended_path = ["learn", "try", "practice_r1", "practice_r2", "practice_r3"]
 
     return {
         "status": "ok",
@@ -711,6 +819,9 @@ def submit_pre_test(req: PreTestSubmitIn, db: Session = Depends(get_db)):
         "total": req.total,
         "pct": round(pct, 1),
         "passed": prog.pretest_passed,
+        # Mastery Gating
+        "mastery": prog.pretest_mastery,
+        "recommended_path": recommended_path,
     }
 
 
@@ -748,13 +859,16 @@ def submit_try(req: TrySubmitIn, db: Session = Depends(get_db)):
 
     is_correct, correct_display = _grade_answer(problem, req.user_answer)
 
+    diag = _diagnose_attempt(problem, req.user_answer, grade=req.grade, is_correct=is_correct)
     attempt = MathAttempt(
         problem_id=req.problem_id, grade=req.grade, unit=req.unit,
         lesson=req.lesson, stage="try", is_correct=is_correct,
         user_answer=req.user_answer[:200],
-        error_type="none" if is_correct else "concept_gap",
+        error_type=diag.get("error_type") or ("none" if is_correct else "concept_gap"),
         time_spent_sec=req.time_spent_sec,
         attempted_at=now,
+        misconception_id=diag.get("misconception_id"),
+        diagnostic_note=(diag.get("note") or "")[:500],
     )
     db.add(attempt)
 
@@ -835,13 +949,16 @@ def submit_exit_quiz(req: ExitQuizSubmitIn, db: Session = Depends(get_db)):
         if is_correct:
             correct_count += 1
 
+        diag = _diagnose_attempt(problem, ans.user_answer, grade=req.grade, is_correct=is_correct)
         attempt = MathAttempt(
             problem_id=ans.problem_id, grade=req.grade, unit=req.unit,
             lesson=req.lesson, stage="exit_quiz", is_correct=is_correct,
             user_answer=ans.user_answer[:200],
-            error_type="none" if is_correct else "concept_gap",
+            error_type=diag.get("error_type") or ("none" if is_correct else "concept_gap"),
             time_spent_sec=ans.time_spent_sec,
             attempted_at=now,
+            misconception_id=diag.get("misconception_id"),
+            diagnostic_note=(diag.get("note") or "")[:500],
         )
         db.add(attempt)
 

@@ -42,6 +42,7 @@
 ### 2. Misconception 탐지율 (per misconception)
 - 실제 오답이 `expected_errors`에 명시된 misconception과 매칭되는 비율
 - 목표: 매칭률 ≥ 60%
+- **v2.1 (2026-05-11 패치)**: 모든 CCSS-태그 항목(1,225개)에 `misconception_candidates: [3.NBT.A.2.M01, ...]` 부착. 진단 엔진은 오답 발생 시 항목의 candidate 리스트를 `backend/data/math/G3/misconceptions/{ccss}.json`과 조인해 후보 분류 가능. CCSS 표기 정규화 완료 (`3.NBT.1`→`3.NBT.A.1`, `3.NF.A.3.A`→`3.NF.A.3a` 등 7개 코드). 조인 검증: broken refs 0건.
 
 ### 3. 학습 효과 (per lesson)
 - PT 점수 vs R3 점수 평균 차이

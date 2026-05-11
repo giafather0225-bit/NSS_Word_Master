@@ -554,6 +554,887 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "difficulty": 2,
+      "question": "Data: 187 new students. What is 187 rounded to the nearest ten?",
+      "choices": [
+        "A) 100",
+        "B) 180",
+        "C) 190",
+        "D) 200"
+      ],
+      "explanation": "187 → 7 in ones place ≥ 5 → round up to 190.",
+      "hints": [
+        "Think about what make bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how make bar graphs works."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L5_make_bar_graphs",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "tally_miscount",
+          "note": "Miscounting tally groups (𝍸 as 4)",
+          "misconception_id": "3.MD.B.3.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "wrong_row_column",
+          "note": "Reading the wrong category in a table",
+          "misconception_id": "3.MD.B.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "add_instead_of_subtract",
+          "note": "Adding instead of subtracting for 'how many more/fewer'",
+          "misconception_id": "3.MD.B.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L5_make_bar_graphs",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.MD.B.3.M01",
+        "3.MD.B.3.M02",
+        "3.MD.B.3.M03",
+        "3.MD.B.3.M04",
+        "3.MD.B.3.M05",
+        "3.MD.B.3.M06",
+        "3.MD.B.3.M07"
+      ]
+    },
+    {
+      "id": "UT_02",
+      "difficulty": 1,
+      "question": "Line plot: Value 5 has 6 Xs, Value 6 has 2 Xs, Value 7 has 4 Xs. Which value appears the most?",
+      "data_table": {
+        "title": "Number of Push-ups",
+        "type": "line_plot",
+        "categories": [
+          "5",
+          "6",
+          "7"
+        ],
+        "values": [
+          6,
+          2,
+          4
+        ],
+        "scale": 1,
+        "unit": "students"
+      },
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 7",
+        "D) All equal"
+      ],
+      "explanation": "Value 5 has the most Xs (6).",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how use and make line plots works."
+      },
+      "correct_answer": "A",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L7_use_and_make_line_plots",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.4",
+      "expected_errors": {
+        "B": {
+          "error_type": "value_vs_count_confusion",
+          "note": "Reading the axis value instead of counting Xs",
+          "misconception_id": "3.MD.B.4.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "boundary_inclusion_error",
+          "note": "Confusing 'less than' with 'less than or equal to'",
+          "misconception_id": "3.MD.B.4.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "total_reported_as_specific",
+          "note": "Reporting total X count for a specific value question",
+          "misconception_id": "3.MD.B.4.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L7_use_and_make_line_plots",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.MD.B.4.M01",
+        "3.MD.B.4.M02",
+        "3.MD.B.4.M03",
+        "3.MD.B.4.M04",
+        "3.MD.B.4.M05",
+        "3.MD.B.4.M06",
+        "3.MD.B.4.M07"
+      ]
+    },
+    {
+      "id": "UT_03",
+      "difficulty": 3,
+      "question": "Line plot: 5 in=2X, 5½ in=4X, 6 in=6X, 6½ in=3X, 7 in=1X. How many items are between 5½ and 6½ inches (inclusive)?",
+      "data_table": {
+        "title": "Ribbon Lengths",
+        "type": "line_plot",
+        "categories": [
+          "5",
+          "5½",
+          "6",
+          "6½",
+          "7"
+        ],
+        "values": [
+          2,
+          4,
+          6,
+          3,
+          1
+        ],
+        "scale": 1,
+        "unit": "ribbons"
+      },
+      "choices": [
+        "A) 6",
+        "B) 10",
+        "C) 13",
+        "D) 16"
+      ],
+      "explanation": "5½(4)+6(6)+6½(3) = 13.",
+      "hints": [
+        "Think about what use and make line plots means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use and make line plots works."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L7_use_and_make_line_plots",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.4",
+      "expected_errors": {
+        "A": {
+          "error_type": "value_vs_count_confusion",
+          "note": "Reading the axis value instead of counting Xs",
+          "misconception_id": "3.MD.B.4.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "boundary_inclusion_error",
+          "note": "Confusing 'less than' with 'less than or equal to'",
+          "misconception_id": "3.MD.B.4.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "total_reported_as_specific",
+          "note": "Reporting total X count for a specific value question",
+          "misconception_id": "3.MD.B.4.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L7_use_and_make_line_plots",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.MD.B.4.M01",
+        "3.MD.B.4.M02",
+        "3.MD.B.4.M03",
+        "3.MD.B.4.M04",
+        "3.MD.B.4.M05",
+        "3.MD.B.4.M06",
+        "3.MD.B.4.M07"
+      ]
+    },
+    {
+      "id": "UT_04",
+      "difficulty": 3,
+      "question": "Frequency table: Room A – 15, Room B – 12, Room C – 18. Room A and Room B collected cans together. Room C collected cans alone. Which group collected more and by how many?",
+      "data_table": {
+        "title": "Cans Collected",
+        "type": "frequency_table",
+        "categories": [
+          "Room A",
+          "Room B",
+          "Room C"
+        ],
+        "values": [
+          15,
+          12,
+          18
+        ],
+        "scale": 1,
+        "unit": "cans"
+      },
+      "choices": [
+        "A) Room C by 3",
+        "B) Rooms A+B by 9",
+        "C) Rooms A+B by 3",
+        "D) They are equal"
+      ],
+      "explanation": "A+B = 15+12 = 27. C = 18. 27 − 18 = 9. Rooms A+B by 9.",
+      "hints": [
+        "Think about what organize data means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how organize data works."
+      },
+      "correct_answer": "B",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L1_organize_data",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "tally_miscount",
+          "note": "Miscounting tally groups (𝍸 as 4)",
+          "misconception_id": "3.MD.B.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "wrong_row_column",
+          "note": "Reading the wrong category in a table",
+          "misconception_id": "3.MD.B.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "add_instead_of_subtract",
+          "note": "Adding instead of subtracting for 'how many more/fewer'",
+          "misconception_id": "3.MD.B.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L1_organize_data",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.MD.B.3.M01",
+        "3.MD.B.3.M02",
+        "3.MD.B.3.M03",
+        "3.MD.B.3.M04",
+        "3.MD.B.3.M05",
+        "3.MD.B.3.M06",
+        "3.MD.B.3.M07"
+      ]
+    },
+    {
+      "id": "UT_05",
+      "difficulty": 2,
+      "question": "Suppose 3 more friends chose Mushroom on a pizza graph. Mushroom currently has 1 vote. Where would the Mushroom bar end?",
+      "choices": [
+        "A) 2",
+        "B) 3",
+        "C) 4",
+        "D) 5"
+      ],
+      "explanation": "1 + 3 = 4.",
+      "hints": [
+        "Think about what make bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how make bar graphs works."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L5_make_bar_graphs",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "tally_miscount",
+          "note": "Miscounting tally groups (𝍸 as 4)",
+          "misconception_id": "3.MD.B.3.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "wrong_row_column",
+          "note": "Reading the wrong category in a table",
+          "misconception_id": "3.MD.B.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "add_instead_of_subtract",
+          "note": "Adding instead of subtracting for 'how many more/fewer'",
+          "misconception_id": "3.MD.B.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L5_make_bar_graphs",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.MD.B.3.M01",
+        "3.MD.B.3.M02",
+        "3.MD.B.3.M03",
+        "3.MD.B.3.M04",
+        "3.MD.B.3.M05",
+        "3.MD.B.3.M06",
+        "3.MD.B.3.M07"
+      ]
+    },
+    {
+      "id": "UT_06",
+      "difficulty": 1,
+      "question": "Each symbol = 4. What does half a symbol represent?",
+      "choices": [
+        "A) 1",
+        "B) 2",
+        "C) 4",
+        "D) 8"
+      ],
+      "explanation": "Half of 4 = 2.",
+      "hints": [
+        "Think about what use picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use picture graphs works."
+      },
+      "correct_answer": "B",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L2_use_picture_graphs",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "tally_miscount",
+          "note": "Miscounting tally groups (𝍸 as 4)",
+          "misconception_id": "3.MD.B.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "wrong_row_column",
+          "note": "Reading the wrong category in a table",
+          "misconception_id": "3.MD.B.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "add_instead_of_subtract",
+          "note": "Adding instead of subtracting for 'how many more/fewer'",
+          "misconception_id": "3.MD.B.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L2_use_picture_graphs",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.MD.B.3.M01",
+        "3.MD.B.3.M02",
+        "3.MD.B.3.M03",
+        "3.MD.B.3.M04",
+        "3.MD.B.3.M05",
+        "3.MD.B.3.M06",
+        "3.MD.B.3.M07"
+      ]
+    },
+    {
+      "id": "UT_07",
+      "difficulty": 3,
+      "question": "Frequency table: Fiction 16, Nonfiction 9, Poetry 5, Comics 10. The library wants each category to have at least 10 books. How many more books are needed in total?",
+      "data_table": {
+        "title": "Library Book Order",
+        "type": "frequency_table",
+        "categories": [
+          "Fiction",
+          "Nonfiction",
+          "Poetry",
+          "Comics"
+        ],
+        "values": [
+          16,
+          9,
+          5,
+          10
+        ],
+        "scale": 1,
+        "unit": "books"
+      },
+      "choices": [
+        "A) 5",
+        "B) 6",
+        "C) 1",
+        "D) 11"
+      ],
+      "explanation": "Fiction: OK. Nonfiction needs 1 more. Poetry needs 5 more. Comics: OK. Total = 1 + 5 = 6.",
+      "hints": [
+        "Think about what organize data means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how organize data works."
+      },
+      "correct_answer": "B",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L1_organize_data",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "tally_miscount",
+          "note": "Miscounting tally groups (𝍸 as 4)",
+          "misconception_id": "3.MD.B.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "wrong_row_column",
+          "note": "Reading the wrong category in a table",
+          "misconception_id": "3.MD.B.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "add_instead_of_subtract",
+          "note": "Adding instead of subtracting for 'how many more/fewer'",
+          "misconception_id": "3.MD.B.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L1_organize_data",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.MD.B.3.M01",
+        "3.MD.B.3.M02",
+        "3.MD.B.3.M03",
+        "3.MD.B.3.M04",
+        "3.MD.B.3.M05",
+        "3.MD.B.3.M06",
+        "3.MD.B.3.M07"
+      ]
+    },
+    {
+      "id": "UT_08",
+      "difficulty": 3,
+      "question": "Suppose all students who scored 85 and 90 retake the test and score 95. How many total stars would be next to 95 now? (Each ⭐ = 4 students)",
+      "data_table": {
+        "title": "Test Scores – Updated",
+        "type": "picture_graph",
+        "categories": [
+          "100",
+          "95",
+          "90",
+          "85"
+        ],
+        "values": [
+          20,
+          12,
+          8,
+          6
+        ],
+        "scale": 4,
+        "key": "Each ⭐ = 4 students",
+        "unit": "students"
+      },
+      "choices": [
+        "A) 5½",
+        "B) 6½",
+        "C) 7",
+        "D) 3½"
+      ],
+      "explanation": "Original 95: 12 students. Add 85+90: 6+8=14. New 95: 12+14=26. 26÷4=6½ stars.",
+      "hints": [
+        "Think about what use picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how use picture graphs works."
+      },
+      "correct_answer": "B",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L2_use_picture_graphs",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "tally_miscount",
+          "note": "Miscounting tally groups (𝍸 as 4)",
+          "misconception_id": "3.MD.B.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "wrong_row_column",
+          "note": "Reading the wrong category in a table",
+          "misconception_id": "3.MD.B.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "add_instead_of_subtract",
+          "note": "Adding instead of subtracting for 'how many more/fewer'",
+          "misconception_id": "3.MD.B.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L2_use_picture_graphs",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.MD.B.3.M01",
+        "3.MD.B.3.M02",
+        "3.MD.B.3.M03",
+        "3.MD.B.3.M04",
+        "3.MD.B.3.M05",
+        "3.MD.B.3.M06",
+        "3.MD.B.3.M07"
+      ]
+    },
+    {
+      "id": "UT_09",
+      "difficulty": 3,
+      "question": "Mia's picture graph uses each 🌸 = 4 students. She has 3½ flowers next to 'Park.' Later 6 more students vote for Park. How many flower symbols should be next to Park now?",
+      "choices": [
+        "A) 4½",
+        "B) 5",
+        "C) 5½",
+        "D) 6"
+      ],
+      "explanation": "Original: 3½ × 4 = 14 students. Add 6 → 20 students. 20 ÷ 4 = 5 symbols.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is B. Remember how make picture graphs works."
+      },
+      "correct_answer": "B",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L3_make_picture_graphs",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "tally_miscount",
+          "note": "Miscounting tally groups (𝍸 as 4)",
+          "misconception_id": "3.MD.B.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "wrong_row_column",
+          "note": "Reading the wrong category in a table",
+          "misconception_id": "3.MD.B.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "add_instead_of_subtract",
+          "note": "Adding instead of subtracting for 'how many more/fewer'",
+          "misconception_id": "3.MD.B.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L3_make_picture_graphs",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.MD.B.3.M01",
+        "3.MD.B.3.M02",
+        "3.MD.B.3.M03",
+        "3.MD.B.3.M04",
+        "3.MD.B.3.M05",
+        "3.MD.B.3.M06",
+        "3.MD.B.3.M07"
+      ]
+    },
+    {
+      "id": "UT_10",
+      "difficulty": 3,
+      "question": "Bar graph: Walk 10, Bus 12, Car 6, Bike 4. Is the number of students who get to school by Car and Bus greater than or less than Walk and Bike combined?",
+      "data_table": {
+        "title": "Getting to School",
+        "type": "bar_graph",
+        "categories": [
+          "Walk",
+          "Bus",
+          "Car",
+          "Bike"
+        ],
+        "values": [
+          10,
+          12,
+          6,
+          4
+        ],
+        "scale": 2,
+        "unit": "students",
+        "axis_label": {
+          "x": "Way",
+          "y": "Students"
+        }
+      },
+      "choices": [
+        "A) Greater, by 4",
+        "B) Less, by 4",
+        "C) Equal",
+        "D) Greater, by 2"
+      ],
+      "explanation": "Car + Bus = 6+12 = 18. Walk + Bike = 10+4 = 14. 18 > 14, by 4.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how use bar graphs works."
+      },
+      "correct_answer": "A",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L4_use_bar_graphs",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.3",
+      "expected_errors": {
+        "B": {
+          "error_type": "tally_miscount",
+          "note": "Miscounting tally groups (𝍸 as 4)",
+          "misconception_id": "3.MD.B.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "wrong_row_column",
+          "note": "Reading the wrong category in a table",
+          "misconception_id": "3.MD.B.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "add_instead_of_subtract",
+          "note": "Adding instead of subtracting for 'how many more/fewer'",
+          "misconception_id": "3.MD.B.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L4_use_bar_graphs",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.MD.B.3.M01",
+        "3.MD.B.3.M02",
+        "3.MD.B.3.M03",
+        "3.MD.B.3.M04",
+        "3.MD.B.3.M05",
+        "3.MD.B.3.M06",
+        "3.MD.B.3.M07"
+      ]
+    },
+    {
+      "id": "UT_11",
+      "difficulty": 1,
+      "question": "Tommy uses 1 music note = 2 people. He needs to show 4 people who chose country music. How many notes?",
+      "choices": [
+        "A) 2",
+        "B) 4",
+        "C) 6",
+        "D) 8"
+      ],
+      "explanation": "4 ÷ 2 = 2 notes.",
+      "hints": [
+        "Think about what make picture graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is A. Remember how make picture graphs works."
+      },
+      "correct_answer": "A",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L3_make_picture_graphs",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.3",
+      "expected_errors": {
+        "B": {
+          "error_type": "tally_miscount",
+          "note": "Miscounting tally groups (𝍸 as 4)",
+          "misconception_id": "3.MD.B.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "wrong_row_column",
+          "note": "Reading the wrong category in a table",
+          "misconception_id": "3.MD.B.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "add_instead_of_subtract",
+          "note": "Adding instead of subtracting for 'how many more/fewer'",
+          "misconception_id": "3.MD.B.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L3_make_picture_graphs",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.MD.B.3.M01",
+        "3.MD.B.3.M02",
+        "3.MD.B.3.M03",
+        "3.MD.B.3.M04",
+        "3.MD.B.3.M05",
+        "3.MD.B.3.M06",
+        "3.MD.B.3.M07"
+      ]
+    },
+    {
+      "id": "UT_12",
+      "difficulty": 3,
+      "question": "Bar graph: Bench Repair 4, Food Drive 14, Book Fair 10, Playground 6. How many fewer votes were for Bench Repair than Food Drive?",
+      "data_table": {
+        "title": "School Project Votes",
+        "type": "bar_graph",
+        "categories": [
+          "Bench Repair",
+          "Food Drive",
+          "Book Fair",
+          "Playground"
+        ],
+        "values": [
+          4,
+          14,
+          10,
+          6
+        ],
+        "scale": 2,
+        "unit": "votes",
+        "axis_label": {
+          "x": "Project",
+          "y": "Votes"
+        }
+      },
+      "choices": [
+        "A) 6",
+        "B) 8",
+        "C) 10",
+        "D) 14"
+      ],
+      "explanation": "14 − 4 = 10.",
+      "hints": [
+        "Think about what use bar graphs means.",
+        "Try drawing a picture or using a number line."
+      ],
+      "feedback": {
+        "correct": "Great job! You got it!",
+        "incorrect": "Not quite. The answer is C. Remember how use bar graphs works."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Great job! You got it!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.2 Lesson — U2_represent_interpret_data/L4_use_bar_graphs",
+        "procedure_source": "EngageNY Grade 3 Module 6 — U2_represent_interpret_data",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.MD.B.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "tally_miscount",
+          "note": "Miscounting tally groups (𝍸 as 4)",
+          "misconception_id": "3.MD.B.3.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "wrong_row_column",
+          "note": "Reading the wrong category in a table",
+          "misconception_id": "3.MD.B.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "add_instead_of_subtract",
+          "note": "Adding instead of subtracting for 'how many more/fewer'",
+          "misconception_id": "3.MD.B.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L4_use_bar_graphs",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.MD.B.3.M01",
+        "3.MD.B.3.M02",
+        "3.MD.B.3.M03",
+        "3.MD.B.3.M04",
+        "3.MD.B.3.M05",
+        "3.MD.B.3.M06",
+        "3.MD.B.3.M07"
+      ]
+    }
+  ]
 }

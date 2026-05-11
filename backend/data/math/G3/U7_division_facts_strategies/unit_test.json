@@ -518,6 +518,746 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "type": "mc",
+      "problem_id": "R3_03",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
+      "explanation": "64 ÷ 8 = 8 bracelets total. 8 − 3 = 5 bracelets kept.",
+      "difficulty": 3,
+      "id": "UT_01",
+      "hints": [
+        "Step 1: how many bracelets can she make? 64 ÷ 8 = ?",
+        "Step 2: she gives 3 away. How many does she keep?"
+      ],
+      "feedback": {
+        "correct": "Yes! 64÷8=8 bracelets. 8−3=5 bracelets she keeps.",
+        "incorrect": "64÷8=8 bracelets total. 8−3=5 bracelets she keeps."
+      },
+      "question": "Anna has 64 beads. She makes bracelets of 8 beads each, then gives 3 bracelets to friends. How many bracelets does she keep?",
+      "correct_answer": "B",
+      "feedback_correct": "Yes! 64÷8=8 bracelets. 8−3=5 bracelets she keeps.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L8_divide_by_8",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L8_divide_by_8",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
+      "explanation": "10 ÷ 2 = 5.",
+      "difficulty": 1,
+      "hints": [
+        "Half of 10 = ?",
+        "2 × 5 = 10, so 10 ÷ 2 = 5."
+      ],
+      "feedback": {
+        "correct": "Correct! 10 ÷ 2 = 5.",
+        "incorrect": "Not quite. Half of 10 is 5: 10 ÷ 2 = 5."
+      },
+      "question": "10 ÷ 2 = ?",
+      "correct_answer": "B",
+      "feedback_correct": "Correct! 10 ÷ 2 = 5.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L1_divide_by_2",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "array_dimension_swap",
+          "note": "Confusing rows and columns in arrays",
+          "misconception_id": "3.OA.A.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "skip_count_off_by_one",
+          "note": "Skip count makes wrong number of jumps on number line",
+          "misconception_id": "3.OA.A.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L1_divide_by_2",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "type": "mc",
+      "problem_id": "R2_07",
+      "choices": [
+        "A) 8 ÷ 4 = 2",
+        "B) 24 ÷ 4 = 6",
+        "C) 32 ÷ 4 = 7",
+        "D) 40 ÷ 4 = 10"
+      ],
+      "explanation": "32 ÷ 4 = 8, not 7. All others are correct.",
+      "difficulty": 2,
+      "id": "UT_03",
+      "hints": [
+        "Check each fact: does it match a 4× multiplication fact?",
+        "For 32 ÷ 4: halve twice — 32÷2=16, 16÷2=8. So 32 ÷ 4 = 8, not 7."
+      ],
+      "feedback": {
+        "correct": "Correct! 32 ÷ 4 = 8, not 7. Halve twice: 32÷2=16, 16÷2=8.",
+        "incorrect": "Check 32 ÷ 4: 4×7=28 ≠ 32, but 4×8=32. So 32 ÷ 4 = 8, not 7."
+      },
+      "question": "Which is NOT a correct ÷4 fact?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 32 ÷ 4 = 8, not 7. Halve twice: 32÷2=16, 16÷2=8.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L5_divide_by_4",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L5_divide_by_4",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_04",
+      "type": "mc",
+      "choices": [
+        "A) 7",
+        "B) 8",
+        "C) 9",
+        "D) 10"
+      ],
+      "explanation": "50 ÷ 5 = 10 teams. Two teams merge into 1: 10 − 1 = 9 teams.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: 50 ÷ 5 = ? teams. Step 2: two become one → subtract 1.",
+        "50 ÷ 5 = 10 teams. Then 10 − 1 = 9 teams after the merge."
+      ],
+      "feedback": {
+        "correct": "Correct! 50 ÷ 5 = 10, then 10 − 1 = 9 teams.",
+        "incorrect": "Not quite. 50 ÷ 5 = 10 teams. Two merge into one → 10 − 1 = 9."
+      },
+      "question": "50 students are divided into teams of 5. Then 2 teams combine into 1. How many teams are there now?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 50 ÷ 5 = 10, then 10 − 1 = 9 teams.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L3_divide_by_5",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L3_divide_by_5",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "type": "input",
+      "problem_id": "R1_09",
+      "explanation": "80 ÷ 8 = 10. Think: 8 × 10 = 80.",
+      "difficulty": 1,
+      "id": "UT_05",
+      "hints": [
+        "Use the 8× fact: 8 × ? = 80. Think: 80 ÷ 8 = ?",
+        "Try halving three times: 80÷2=40, 40÷2=20, 20÷2=10."
+      ],
+      "feedback": {
+        "correct": "Perfect! 8 × 10 = 80, so 80 ÷ 8 = 10.",
+        "incorrect": "Halve 80 three times: 80÷2=40, 40÷2=20, 20÷2=10. So 80 ÷ 8 = 10."
+      },
+      "question": "80 ÷ 8 = ___",
+      "correct_answer": "10",
+      "feedback_correct": "Perfect! 8 × 10 = 80, so 80 ÷ 8 = 10.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L8_divide_by_8",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L8_divide_by_8",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_06",
+      "type": "mc",
+      "choices": [
+        "A) 14",
+        "B) 18",
+        "C) 20",
+        "D) 22"
+      ],
+      "explanation": "4 + 5 = 9. 3 × 9 = 27. 27 − 7 = 20.",
+      "difficulty": 2,
+      "hints": [
+        "Start with the parentheses: 4 + 5 = ?",
+        "3 × 9 = 27. Then subtract 7."
+      ],
+      "feedback": {
+        "correct": "Excellent! 4+5=9, 3×9=27, 27−7=20.",
+        "incorrect": "Parentheses first: 4+5=9. Then 3×9=27. Then 27−7=20."
+      },
+      "question": "3 × (4 + 5) − 7 = ?",
+      "correct_answer": "C",
+      "feedback_correct": "Excellent! 4+5=9, 3×9=27, 27−7=20.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L11_order_of_operations",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.D.8",
+      "expected_errors": {
+        "A": {
+          "error_type": "partial_answer",
+          "note": "Stopping at intermediate result",
+          "misconception_id": "3.OA.D.8.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "irrelevant_info_used",
+          "note": "Using all numbers including irrelevant ones",
+          "misconception_id": "3.OA.D.8.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "operation_keyword_misread",
+          "note": "Misinterpreting relational language (more/fewer/less)",
+          "misconception_id": "3.OA.D.8.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L11_order_of_operations",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.D.8.M01",
+        "3.OA.D.8.M02",
+        "3.OA.D.8.M03",
+        "3.OA.D.8.M04",
+        "3.OA.D.8.M05",
+        "3.OA.D.8.M06",
+        "3.OA.D.8.M07",
+        "3.OA.D.8.M08"
+      ]
+    },
+    {
+      "type": "mc",
+      "problem_id": "R1_07",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
+      "explanation": "24 ÷ 3 = 8. Division undoes multiplication.",
+      "difficulty": 1,
+      "id": "UT_07",
+      "hints": [
+        "Multiplication and division are opposites: if 3 × 8 = 24, reverse it to divide.",
+        "3 × 8 = 24 means 24 shared into 3 groups gives 8 each. So 24 ÷ 3 = ?"
+      ],
+      "feedback": {
+        "correct": "Exactly! 3 × 8 = 24 tells you 24 ÷ 3 = 8.",
+        "incorrect": "Division reverses multiplication. 3 × 8 = 24, so 24 ÷ 3 = 8."
+      },
+      "question": "If 3 × 8 = 24, then 24 ÷ 3 = ?",
+      "correct_answer": "C",
+      "feedback_correct": "Exactly! 3 × 8 = 24 tells you 24 ÷ 3 = 8.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L4_divide_by_3",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L4_divide_by_3",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_08",
+      "type": "mc",
+      "choices": [
+        "A) 20 ÷ 10",
+        "B) 50 ÷ 10",
+        "C) 80 ÷ 10",
+        "D) 40 ÷ 10"
+      ],
+      "explanation": "80 ÷ 10 = 8 (greatest). Others: 2, 5, 4.",
+      "difficulty": 2,
+      "hints": [
+        "Drop the zero from each: 20→2, 50→5, 80→?, 40→4.",
+        "The larger the dividend, the larger the quotient. 80 ÷ 10 = 8 is greatest."
+      ],
+      "feedback": {
+        "correct": "Correct! 80 ÷ 10 = 8 is the greatest.",
+        "incorrect": "Not quite. 80 ÷ 10 = 8 — the others give 2, 5, and 4."
+      },
+      "question": "Which has the greatest quotient?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 80 ÷ 10 = 8 is the greatest.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L2_divide_by_10",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L2_divide_by_10",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_09",
+      "problem_id": "R1_03",
+      "type": "mc",
+      "choices": [
+        "A) $15",
+        "B) $16",
+        "C) $18",
+        "D) $20"
+      ],
+      "explanation": "5 × 6 = $30 earned. 30 − 12 = $18 left.",
+      "difficulty": 2,
+      "hints": [
+        "Step 1: multiply to find total earnings: 5 × 6 = ?",
+        "Step 2: subtract the toy's cost from the total."
+      ],
+      "feedback": {
+        "correct": "Yes! 5×6=$30, then 30−12=$18 left.",
+        "incorrect": "Step 1: 5×6=30. Step 2: 30−12=18. She has $18 left."
+      },
+      "question": "Lena earns $5 per chore. She does 6 chores and then buys a $12 toy. How much money does she have left?",
+      "correct_answer": "C",
+      "feedback_correct": "Yes! 5×6=$30, then 30−12=$18 left.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L10_two_step_problems",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.D.8",
+      "expected_errors": {
+        "A": {
+          "error_type": "partial_answer",
+          "note": "Stopping at intermediate result",
+          "misconception_id": "3.OA.D.8.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "irrelevant_info_used",
+          "note": "Using all numbers including irrelevant ones",
+          "misconception_id": "3.OA.D.8.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "operation_keyword_misread",
+          "note": "Misinterpreting relational language (more/fewer/less)",
+          "misconception_id": "3.OA.D.8.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L10_two_step_problems",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.D.8.M01",
+        "3.OA.D.8.M02",
+        "3.OA.D.8.M03",
+        "3.OA.D.8.M04",
+        "3.OA.D.8.M05",
+        "3.OA.D.8.M06",
+        "3.OA.D.8.M07",
+        "3.OA.D.8.M08"
+      ]
+    },
+    {
+      "id": "UT_10",
+      "problem_id": "R3_02",
+      "type": "mc",
+      "choices": [
+        "A) 8",
+        "B) 10",
+        "C) 12",
+        "D) 14"
+      ],
+      "explanation": "8 × 5 = 40 total. Given away: 7 × 4 = 28. Kept: 40 − 28 = 12.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: total apples = 8 × 5 = 40. Given away = 7 × 4 = ?",
+        "Step 2: subtract given away from total."
+      ],
+      "feedback": {
+        "correct": "Yes! 40 total, 7×4=28 given, 40−28=12 kept.",
+        "incorrect": "Total: 8×5=40. Given: 7×4=28. Kept: 40−28=12."
+      },
+      "question": "Amy picks 8 × 5 = 40 apples. She gives 4 apples to each of 7 friends. How many apples does she keep?",
+      "correct_answer": "C",
+      "feedback_correct": "Yes! 40 total, 7×4=28 given, 40−28=12 kept.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L10_two_step_problems",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.D.8",
+      "expected_errors": {
+        "A": {
+          "error_type": "partial_answer",
+          "note": "Stopping at intermediate result",
+          "misconception_id": "3.OA.D.8.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "irrelevant_info_used",
+          "note": "Using all numbers including irrelevant ones",
+          "misconception_id": "3.OA.D.8.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "operation_keyword_misread",
+          "note": "Misinterpreting relational language (more/fewer/less)",
+          "misconception_id": "3.OA.D.8.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L10_two_step_problems",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.D.8.M01",
+        "3.OA.D.8.M02",
+        "3.OA.D.8.M03",
+        "3.OA.D.8.M04",
+        "3.OA.D.8.M05",
+        "3.OA.D.8.M06",
+        "3.OA.D.8.M07",
+        "3.OA.D.8.M08"
+      ]
+    },
+    {
+      "id": "UT_11",
+      "type": "mc",
+      "choices": [
+        "A) 24",
+        "B) 36",
+        "C) 48",
+        "D) 54"
+      ],
+      "explanation": "Number = 2 × 8 = 16. 16 × 3 = 48.",
+      "difficulty": 3,
+      "hints": [
+        "Step 1: if ? ÷ 2 = 8, work backwards: ? = 2 × 8 = 16.",
+        "Step 2: multiply the number by 3: 16 × 3 = 48."
+      ],
+      "feedback": {
+        "correct": "Correct! 2 × 8 = 16. Then 16 × 3 = 48.",
+        "incorrect": "Not quite. ? ÷ 2 = 8 → ? = 2 × 8 = 16. Then 16 × 3 = 48."
+      },
+      "question": "A number ÷ 2 = 8. What is the number × 3?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 2 × 8 = 16. Then 16 × 3 = 48.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L1_divide_by_2",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "array_dimension_swap",
+          "note": "Confusing rows and columns in arrays",
+          "misconception_id": "3.OA.A.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "skip_count_off_by_one",
+          "note": "Skip count makes wrong number of jumps on number line",
+          "misconception_id": "3.OA.A.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L1_divide_by_2",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "type": "mc",
+      "problem_id": "R2_10",
+      "choices": [
+        "A) 4",
+        "B) 5",
+        "C) 6",
+        "D) 7"
+      ],
+      "explanation": "18÷9=2, 27÷9=3. 2+3=5.",
+      "difficulty": 2,
+      "id": "UT_12",
+      "hints": [
+        "Solve inside the parentheses first: 18÷9=? and 27÷9=?",
+        "After dividing: 18÷9=2, 27÷9=3. Now add those two quotients."
+      ],
+      "feedback": {
+        "correct": "Yes! 18÷9=2, 27÷9=3, and 2+3=5.",
+        "incorrect": "Step 1: 18÷9=2. Step 2: 27÷9=3. Step 3: 2+3=5."
+      },
+      "question": "(18 ÷ 9) + (27 ÷ 9) = ?",
+      "correct_answer": "B",
+      "feedback_correct": "Yes! 18÷9=2, 27÷9=3, and 2+3=5.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.7 Lesson — U7_division_facts_strategies/L9_divide_by_9",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U7_division_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L9_divide_by_9",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    }
+  ]
 }

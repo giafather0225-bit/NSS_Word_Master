@@ -530,6 +530,736 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "A coach buys 3 packs of baseballs. Each pack has 6 balls. How many balls total?",
+      "choices": [
+        "A) 9",
+        "B) 12",
+        "C) 15",
+        "D) 18"
+      ],
+      "explanation": "3 × 6 = 18 balls.",
+      "hints": [
+        "3 packs of 6 means 3 × 6.",
+        "Or 6 + 6 + 6."
+      ],
+      "feedback": {
+        "correct": "Right — 18 balls total.",
+        "incorrect": "3 × 6 = 18. Answer is D."
+      },
+      "correct_answer": "D",
+      "feedback_correct": "Right — 18 balls total.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L3_multiply_with_3_and_6",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L3_multiply_with_3_and_6",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "Emma counts 10 nickels. How many cents does she have?",
+      "choices": [
+        "A) 15",
+        "B) 20",
+        "C) 50",
+        "D) 100"
+      ],
+      "explanation": "A nickel is 5 cents. 10 × 5 = 50 cents.",
+      "hints": [
+        "A nickel = 5 cents.",
+        "10 nickels means 10 × 5."
+      ],
+      "feedback": {
+        "correct": "Right — 10 nickels = 50 cents.",
+        "incorrect": "Each nickel is 5 cents, so 10 × 5 = 50. Answer is C."
+      },
+      "correct_answer": "C",
+      "feedback_correct": "Right — 10 nickels = 50 cents.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L2_multiply_with_5_and_10",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L2_multiply_with_5_and_10",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_03",
+      "difficulty": 3,
+      "question": "2 × 5 × 6 = ? Group the two factors that make 10.",
+      "choices": [
+        "A) 30",
+        "B) 40",
+        "C) 60",
+        "D) 72"
+      ],
+      "explanation": "(2 × 5) × 6 = 10 × 6 = 60.",
+      "hints": [
+        "Which pair makes 10?",
+        "2 × 5 = 10. Then × 6."
+      ],
+      "feedback": {
+        "correct": "Smart — group for ×10.",
+        "incorrect": "Group (2×5) = 10 first, then 10 × 6 = 60."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Smart — group for ×10.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L6_associative_property",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.B.5",
+      "expected_errors": {
+        "A": {
+          "error_type": "rejects_commutative",
+          "note": "Treats a × b and b × a as different problems",
+          "misconception_id": "3.OA.B.5.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "overgeneralized_commutative",
+          "note": "Applies commutative to subtraction or division",
+          "misconception_id": "3.OA.B.5.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "distributive_partial_application",
+          "note": "Distributes only one part, forgets the other addend",
+          "misconception_id": "3.OA.B.5.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L6_associative_property",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.B.5.M01",
+        "3.OA.B.5.M02",
+        "3.OA.B.5.M03",
+        "3.OA.B.5.M04",
+        "3.OA.B.5.M05",
+        "3.OA.B.5.M06",
+        "3.OA.B.5.M07"
+      ]
+    },
+    {
+      "id": "UT_04",
+      "difficulty": 3,
+      "question": "Type the answer: How many legs total on 3 spiders (8 legs each) and 2 dogs (4 legs each)? ___",
+      "type": "input",
+      "explanation": "Spiders: 8 × 3 = 24. Dogs: 4 × 2 = 8. Total: 24 + 8 = 32.",
+      "hints": [
+        "Compute each group separately.",
+        "Spiders: 8 × 3. Dogs: 4 × 2."
+      ],
+      "feedback": {
+        "correct": "Exact — 32 legs!",
+        "incorrect": "8×3 = 24 spider legs. 4×2 = 8 dog legs. Total 32."
+      },
+      "correct_answer": "32",
+      "feedback_correct": "Exact — 32 legs!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L8_multiply_with_8",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L8_multiply_with_8",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_05",
+      "type": "mc",
+      "difficulty": 3,
+      "question": "If 2 × 6 = 12, what is 4 × 6?",
+      "choices": [
+        "A) 14",
+        "B) 18",
+        "C) 24",
+        "D) 36"
+      ],
+      "explanation": "4 × 6 is double of 2 × 6. 12 doubled = 24.",
+      "hints": [
+        "4 × 6 is twice 2 × 6.",
+        "Double 12."
+      ],
+      "feedback": {
+        "correct": "Right — 12 doubled is 24.",
+        "incorrect": "4 × 6 = 2 × (2 × 6) = 2 × 12 = 24. Answer is C."
+      },
+      "correct_answer": "C",
+      "feedback_correct": "Right — 12 doubled is 24.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L1_multiply_with_2_and_4",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L1_multiply_with_2_and_4",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_06",
+      "difficulty": 2,
+      "question": "Which expression equals 8 × 6?",
+      "choices": [
+        "A) (8 × 5) + 8",
+        "B) (8 × 5) + 6",
+        "C) (8 × 5) − 8",
+        "D) (8 × 5) × 2"
+      ],
+      "explanation": "8 × 6 is one more group of 8 than 8 × 5. (8 × 5) + 8 = 40 + 8 = 48.",
+      "hints": [
+        "One more group of 8, not 6.",
+        "(8 × 5) = 40, then + 8."
+      ],
+      "feedback": {
+        "correct": "Right — add one more group of 8.",
+        "incorrect": "One more group of 8 means + 8."
+      },
+      "correct_answer": "A",
+      "type": "mc",
+      "feedback_correct": "Right — add one more group of 8.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L8_multiply_with_8",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "B": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L8_multiply_with_8",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_07",
+      "difficulty": 1,
+      "question": "5 × 2 = ?",
+      "choices": [
+        "A) 7",
+        "B) 10",
+        "C) 12",
+        "D) 15"
+      ],
+      "explanation": "5 × 2 = 10.",
+      "hints": [
+        "Two 5s.",
+        "5 + 5 = 10."
+      ],
+      "feedback": {
+        "correct": "Right — two 5s make 10.",
+        "incorrect": "5 + 5 = 10. Answer is B."
+      },
+      "correct_answer": "B",
+      "type": "mc",
+      "feedback_correct": "Right — two 5s make 10.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L2_multiply_with_5_and_10",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L2_multiply_with_5_and_10",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_08",
+      "difficulty": 3,
+      "question": "How many products on a 1–10 multiplication table are odd?",
+      "choices": [
+        "A) 10",
+        "B) 25",
+        "C) 50",
+        "D) 75"
+      ],
+      "explanation": "Odd × odd = odd. There are 5 odd factors (1, 3, 5, 7, 9). 5 × 5 = 25 odd products.",
+      "hints": [
+        "Odd × odd is the only way to get odd.",
+        "5 odd numbers × 5 odd numbers = 25."
+      ],
+      "feedback": {
+        "correct": "Right — 25 odd products.",
+        "incorrect": "5 odd factors × 5 odd factors = 25 odd products."
+      },
+      "correct_answer": "B",
+      "type": "mc",
+      "feedback_correct": "Right — 25 odd products.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L7_patterns_multiplication_table",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.D.9",
+      "expected_errors": {
+        "A": {
+          "error_type": "commutative_confusion",
+          "note": "Commutative vs Identity Property confusion",
+          "misconception_id": "3.OA.D.9.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "odd_even_sum_rule",
+          "note": "Odd + even sum rule error",
+          "misconception_id": "3.OA.D.9.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "addition_table_row_pattern",
+          "note": "Row increment confused with row label",
+          "misconception_id": "3.OA.D.9.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L7_patterns_multiplication_table",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.D.9.M01",
+        "3.OA.D.9.M02",
+        "3.OA.D.9.M03",
+        "3.OA.D.9.M04",
+        "3.OA.D.9.M05",
+        "3.OA.D.9.M06",
+        "3.OA.D.9.M07",
+        "3.OA.D.9.M08"
+      ]
+    },
+    {
+      "id": "UT_09",
+      "difficulty": 3,
+      "question": "Sam finds 6 × 9 by computing 3 × 9 + 3 × 9. What does he get?",
+      "choices": [
+        "A) 42",
+        "B) 48",
+        "C) 54",
+        "D) 60"
+      ],
+      "explanation": "3 × 9 = 27. 27 + 27 = 54, which equals 6 × 9.",
+      "hints": [
+        "Split 6 into 3 + 3.",
+        "Find 3 × 9 and double it."
+      ],
+      "feedback": {
+        "correct": "Right — 27 + 27 = 54.",
+        "incorrect": "3 × 9 = 27, and 27 + 27 = 54. Answer is C."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Right — 27 + 27 = 54.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L3_multiply_with_3_and_6",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L3_multiply_with_3_and_6",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_10",
+      "difficulty": 1,
+      "question": "7 × 0 = ?",
+      "choices": [
+        "A) 0",
+        "B) 1",
+        "C) 7",
+        "D) 70"
+      ],
+      "explanation": "Any number × 0 is 0. Zero groups of 7 is nothing.",
+      "hints": [
+        "Zero groups means no items at all."
+      ],
+      "feedback": {
+        "correct": "Right — anything × 0 is 0.",
+        "incorrect": "7 × 0 = 0. Zero groups of 7 is nothing."
+      },
+      "correct_answer": "A",
+      "type": "mc",
+      "feedback_correct": "Right — anything × 0 is 0.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L5_multiply_with_7",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "B": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L5_multiply_with_7",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_11",
+      "difficulty": 3,
+      "question": "Digit-sum check: which of these could be a correct ×9 product?",
+      "choices": [
+        "A) 34",
+        "B) 48",
+        "C) 63",
+        "D) 71"
+      ],
+      "explanation": "Digits of a ×9 product must sum to 9. 6 + 3 = 9 ✓. (The others: 3+4=7, 4+8=12, 7+1=8.)",
+      "hints": [
+        "Which choice has digits summing to 9?",
+        "Check each: 3+4, 4+8, 6+3, 7+1."
+      ],
+      "feedback": {
+        "correct": "Right — 6 + 3 = 9.",
+        "incorrect": "Only 63 has digits summing to 9."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Right — 6 + 3 = 9.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L9_multiply_with_9",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L9_multiply_with_9",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    },
+    {
+      "id": "UT_12",
+      "difficulty": 4,
+      "question": "A garden has 4 rows of tomato plants with 7 plants per row. Half of the plants have ripe tomatoes. How many plants have ripe tomatoes?",
+      "choices": [
+        "A) 11",
+        "B) 14",
+        "C) 21",
+        "D) 28"
+      ],
+      "explanation": "4 × 7 = 28 plants. Half of 28 = 14.",
+      "hints": [
+        "Find the total number of plants first.",
+        "Half of the total is your answer."
+      ],
+      "feedback": {
+        "correct": "Right — half of 28 is 14.",
+        "incorrect": "4 × 7 = 28, and half of 28 is 14. Answer is B."
+      },
+      "correct_answer": "B",
+      "type": "mc",
+      "feedback_correct": "Right — half of 28 is 14.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.4 Lesson — U4_multiplication_facts_strategies/L1_multiply_with_2_and_4",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U4_multiplication_facts_strategies",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.C.7",
+      "expected_errors": {
+        "A": {
+          "error_type": "doubling_addition_error",
+          "note": "Adds instead of doubles for ×2 facts",
+          "misconception_id": "3.OA.C.7.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "skip_count_miscount",
+          "note": "Loses count during skip-counting for ×3, ×6, ×7",
+          "misconception_id": "3.OA.C.7.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "five_pattern_overgeneralized",
+          "note": "Thinks all ×5 products end in 5 (or 0) but applies wrong digit",
+          "misconception_id": "3.OA.C.7.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L1_multiply_with_2_and_4",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.C.7.M01",
+        "3.OA.C.7.M02",
+        "3.OA.C.7.M03",
+        "3.OA.C.7.M04",
+        "3.OA.C.7.M05",
+        "3.OA.C.7.M06",
+        "3.OA.C.7.M07"
+      ]
+    }
+  ]
 }

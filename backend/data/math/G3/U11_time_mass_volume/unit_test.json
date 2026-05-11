@@ -517,6 +517,578 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_logic",
+      "difficulty": 2,
+      "question": "True or False: 60 minutes = 1 hour.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "minute_hand_value",
+          "note": "Reading the minute hand as the number it points to",
+          "misconception_id": "3.MD.A.1.M01",
+          "synthesized": true
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "True."
+      },
+      "hints": [
+        "60=1 hr."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.1.M01",
+        "3.MD.A.1.M02",
+        "3.MD.A.1.M03",
+        "3.MD.A.1.M04",
+        "3.MD.A.1.M05",
+        "3.MD.A.1.M06",
+        "3.MD.A.1.M07"
+      ],
+      "source_lesson": "L2_elapsed_time_number_line",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_mass",
+      "difficulty": 2,
+      "question": "A textbook is about:",
+      "choices": [
+        "A) 1 g",
+        "B) 1 kg",
+        "C) 100 kg",
+        "D) 1000 kg"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "unit_size_estimation",
+          "note": "Wrong unit choice (gram vs kilogram, liter vs ml)",
+          "misconception_id": "3.MD.A.2.M01",
+          "synthesized": true
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L4_estimate_measure_mass",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "1 kg."
+      },
+      "hints": [
+        "Heavyish."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Textbook ≈ 1 kg."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.2.M01",
+        "3.MD.A.2.M02",
+        "3.MD.A.2.M03",
+        "3.MD.A.2.M04",
+        "3.MD.A.2.M05",
+        "3.MD.A.2.M06",
+        "3.MD.A.2.M07"
+      ],
+      "source_lesson": "L4_estimate_measure_mass",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "vol_word_complex",
+      "difficulty": 5,
+      "question": "A pot has 3 L of soup. Sara serves 5 bowls of 400 mL each. mL left in the pot?",
+      "correct_answer": "1000",
+      "solution_steps": [
+        "Total served: 5×400=2000 mL. 3 L=3000 mL. 3000-2000=1000."
+      ],
+      "expected_errors": {
+        "1500": {
+          "error_type": "careless",
+          "note": "5×400=2000"
+        },
+        "2000": {
+          "error_type": "concept_gap",
+          "note": "Subtract from 3000"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "3000-2000=1000 mL."
+      },
+      "three_read_prompt": "Total served, then subtract.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L8_mixed_time_mass_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "1000."
+      },
+      "hints": [
+        "5×400 served, subtract."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.2.M01",
+        "3.MD.A.2.M02",
+        "3.MD.A.2.M03",
+        "3.MD.A.2.M04",
+        "3.MD.A.2.M05",
+        "3.MD.A.2.M06",
+        "3.MD.A.2.M07"
+      ],
+      "source_lesson": "L8_mixed_time_mass_volume",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "mass_word_g",
+      "difficulty": 3,
+      "question": "8 cookies, each 50 g. Total mass?",
+      "correct_answer": "400",
+      "expected_errors": {
+        "58": {
+          "error_type": "unit_size_estimation",
+          "note": "Wrong unit choice (gram vs kilogram, liter vs ml)",
+          "misconception_id": "3.MD.A.2.M01",
+          "synthesized": true
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L5_mass_word_problems",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "400."
+      },
+      "hints": [
+        "8×50."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "400 g."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.2.M01",
+        "3.MD.A.2.M02",
+        "3.MD.A.2.M03",
+        "3.MD.A.2.M04",
+        "3.MD.A.2.M05",
+        "3.MD.A.2.M06",
+        "3.MD.A.2.M07"
+      ],
+      "source_lesson": "L5_mass_word_problems",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_05",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_mass",
+      "difficulty": 2,
+      "question": "Best for a car:",
+      "choices": [
+        "A) g",
+        "B) kg"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "unit_size_estimation",
+          "note": "Wrong unit choice (gram vs kilogram, liter vs ml)",
+          "misconception_id": "3.MD.A.2.M01",
+          "synthesized": true
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L4_estimate_measure_mass",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "kg."
+      },
+      "hints": [
+        "Heavy."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "kg."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.2.M01",
+        "3.MD.A.2.M02",
+        "3.MD.A.2.M03",
+        "3.MD.A.2.M04",
+        "3.MD.A.2.M05",
+        "3.MD.A.2.M06",
+        "3.MD.A.2.M07"
+      ],
+      "source_lesson": "L4_estimate_measure_mass",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "time_word_logic",
+      "difficulty": 4,
+      "question": "Tom starts 4:25 and works for 1 hr 15 min. End time?",
+      "correct_answer": "5:40",
+      "solution_steps": [
+        "4:25+1 hr=5:25. +15=5:40."
+      ],
+      "expected_errors": {
+        "5:25": {
+          "error_type": "minute_hand_value",
+          "note": "Reading the minute hand as the number it points to",
+          "misconception_id": "3.MD.A.1.M01",
+          "synthesized": true
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5:40."
+      },
+      "three_read_prompt": "Add 1 hr first.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L8_mixed_time_mass_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5:40."
+      },
+      "hints": [
+        "+1 hr 15."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.1.M01",
+        "3.MD.A.1.M02",
+        "3.MD.A.1.M03",
+        "3.MD.A.1.M04",
+        "3.MD.A.1.M05",
+        "3.MD.A.1.M06",
+        "3.MD.A.1.M07"
+      ],
+      "source_lesson": "L8_mixed_time_mass_volume",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_mL_L",
+      "difficulty": 2,
+      "question": "5000 mL = ___ L",
+      "correct_answer": "5",
+      "expected_errors": {
+        "50": {
+          "error_type": "unit_size_estimation",
+          "note": "Wrong unit choice (gram vs kilogram, liter vs ml)",
+          "misconception_id": "3.MD.A.2.M01",
+          "synthesized": true
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5."
+      },
+      "hints": [
+        "÷1000."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.2.M01",
+        "3.MD.A.2.M02",
+        "3.MD.A.2.M03",
+        "3.MD.A.2.M04",
+        "3.MD.A.2.M05",
+        "3.MD.A.2.M06",
+        "3.MD.A.2.M07"
+      ],
+      "source_lesson": "L6_estimate_measure_volume",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_08",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "mass_divide",
+      "difficulty": 3,
+      "question": "18 kg shared into 6 bags. Each?",
+      "correct_answer": "3",
+      "expected_errors": {
+        "24": {
+          "error_type": "unit_size_estimation",
+          "note": "Wrong unit choice (gram vs kilogram, liter vs ml)",
+          "misconception_id": "3.MD.A.2.M01",
+          "synthesized": true
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L5_mass_word_problems",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "3."
+      },
+      "hints": [
+        "18/6."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "3."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.2.M01",
+        "3.MD.A.2.M02",
+        "3.MD.A.2.M03",
+        "3.MD.A.2.M04",
+        "3.MD.A.2.M05",
+        "3.MD.A.2.M06",
+        "3.MD.A.2.M07"
+      ],
+      "source_lesson": "L5_mass_word_problems",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "vol_divide",
+      "difficulty": 3,
+      "question": "20 L into 4 jugs. Each?",
+      "correct_answer": "5",
+      "expected_errors": {
+        "16": {
+          "error_type": "unit_size_estimation",
+          "note": "Wrong unit choice (gram vs kilogram, liter vs ml)",
+          "misconception_id": "3.MD.A.2.M01",
+          "synthesized": true
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L7_volume_word_problems",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5."
+      },
+      "hints": [
+        "20/4."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5 L."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.2.M01",
+        "3.MD.A.2.M02",
+        "3.MD.A.2.M03",
+        "3.MD.A.2.M04",
+        "3.MD.A.2.M05",
+        "3.MD.A.2.M06",
+        "3.MD.A.2.M07"
+      ],
+      "source_lesson": "L7_volume_word_problems",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "vol_word",
+      "difficulty": 3,
+      "question": "Sara drinks 250 mL × 4 times a day. Total daily mL?",
+      "correct_answer": "1000",
+      "expected_errors": {
+        "254": {
+          "error_type": "unit_size_estimation",
+          "note": "Wrong unit choice (gram vs kilogram, liter vs ml)",
+          "misconception_id": "3.MD.A.2.M01",
+          "synthesized": true
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L7_volume_word_problems",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "1000."
+      },
+      "hints": [
+        "4×250."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "1000 mL."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.2.M01",
+        "3.MD.A.2.M02",
+        "3.MD.A.2.M03",
+        "3.MD.A.2.M04",
+        "3.MD.A.2.M05",
+        "3.MD.A.2.M06",
+        "3.MD.A.2.M07"
+      ],
+      "source_lesson": "L7_volume_word_problems",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_11",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_word",
+      "difficulty": 3,
+      "question": "Tom's bus ride starts 7:45 A.M. and ends 8:30 A.M. Minutes?",
+      "correct_answer": "45",
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "Cross hour"
+        },
+        "60": {
+          "error_type": "concept_gap",
+          "note": "Less than hour"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "15+30=45."
+      },
+      "hints": [
+        "15 to 8:00, +30."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "45 minutes."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.1.M01",
+        "3.MD.A.1.M02",
+        "3.MD.A.1.M03",
+        "3.MD.A.1.M04",
+        "3.MD.A.1.M05",
+        "3.MD.A.1.M06",
+        "3.MD.A.1.M07"
+      ],
+      "source_lesson": "L2_elapsed_time_number_line",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_12",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume",
+      "difficulty": 2,
+      "question": "A swimming pool is about:",
+      "choices": [
+        "A) 500 L",
+        "B) 50000 L",
+        "C) 5 mL",
+        "D) 5 L"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "unit_size_estimation",
+          "note": "Wrong unit choice (gram vs kilogram, liter vs ml)",
+          "misconception_id": "3.MD.A.2.M01",
+          "synthesized": true
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "50000 L."
+      },
+      "hints": [
+        "Huge."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Pool ≈ 50000 L."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.A.2.M01",
+        "3.MD.A.2.M02",
+        "3.MD.A.2.M03",
+        "3.MD.A.2.M04",
+        "3.MD.A.2.M05",
+        "3.MD.A.2.M06",
+        "3.MD.A.2.M07"
+      ],
+      "source_lesson": "L6_estimate_measure_volume",
+      "source_stage": "practice_r1"
+    }
+  ]
 }

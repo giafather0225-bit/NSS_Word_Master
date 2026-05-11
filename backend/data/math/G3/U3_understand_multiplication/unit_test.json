@@ -555,6 +555,668 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "difficulty": 1,
+      "question": "9 + 9 + 9 + 9 = ?",
+      "choices": [
+        "A) 27",
+        "B) 36",
+        "C) 45",
+        "D) 18"
+      ],
+      "explanation": "Four 9s = 4 × 9 = 36.",
+      "hints": [
+        "Count the 9s: four.",
+        "4 × 9 = 36 (or think 4 × 10 − 4 = 36)."
+      ],
+      "feedback": {
+        "correct": "Yes — 4 × 9 = 36.",
+        "incorrect": "Four 9s = 4 × 9 = 36."
+      },
+      "correct_answer": "B",
+      "type": "mc",
+      "feedback_correct": "Yes — 4 × 9 = 36.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L2_relate_addition_and_multiplication",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.1",
+      "expected_errors": {
+        "A": {
+          "error_type": "add_instead_of_multiply",
+          "note": "Adds the two numbers instead of multiplying",
+          "misconception_id": "3.OA.A.1.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "groups_size_confusion",
+          "note": "Confusing number of groups with size of each group",
+          "misconception_id": "3.OA.A.1.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "counts_only_one_dimension",
+          "note": "Counts only the groups OR only the items, not both",
+          "misconception_id": "3.OA.A.1.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L2_relate_addition_multiplication",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M02",
+        "3.OA.A.1.M03",
+        "3.OA.A.1.M04",
+        "3.OA.A.1.M05",
+        "3.OA.A.1.M06",
+        "3.OA.A.1.M07"
+      ]
+    },
+    {
+      "id": "UT_02",
+      "difficulty": 2,
+      "question": "Skip count by 6: 0, 6, 12, 18, 24, 30. What multiplication does this show?",
+      "choices": [
+        "A) 6 × 6 = 36",
+        "B) 5 × 6 = 30",
+        "C) 6 × 5 = 30",
+        "D) Both B and C"
+      ],
+      "explanation": "Five jumps of 6 land on 30. 5 × 6 = 6 × 5 = 30.",
+      "hints": [
+        "Count the jumps after 0.",
+        "5 jumps of 6 = 5 × 6. Also = 6 × 5 (same product)."
+      ],
+      "feedback": {
+        "correct": "Right — both B and C equal 30.",
+        "incorrect": "Five jumps of 6 = 5 × 6 = 6 × 5 = 30."
+      },
+      "correct_answer": "D",
+      "type": "mc",
+      "feedback_correct": "Right — both B and C equal 30.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L3_skip_count_on_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "array_dimension_swap",
+          "note": "Confusing rows and columns in arrays",
+          "misconception_id": "3.OA.A.3.M02",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "skip_count_off_by_one",
+          "note": "Skip count makes wrong number of jumps on number line",
+          "misconception_id": "3.OA.A.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L3_skip_count_number_line",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_03",
+      "difficulty": 1,
+      "type": "input",
+      "question": "1 × 0 = ? Enter the number.",
+      "explanation": "1 × 0 = 0. (Both Identity and Zero Property apply — Zero Property gives the product of 0.)",
+      "hints": [
+        "One factor is 0. The Zero Property says any number × 0 = 0.",
+        "Even though 1 is a factor, 0 is also a factor — and Zero Property always gives 0."
+      ],
+      "feedback": {
+        "correct": "Correct! 1 × 0 = 0. When 0 is a factor, the product is always 0.",
+        "incorrect": "1 × 0 = 0. The Zero Property: any number × 0 = 0."
+      },
+      "correct_answer": "0",
+      "feedback_correct": "Correct! 1 × 0 = 0. When 0 is a factor, the product is always 0.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L7_multiply_with_1_and_0",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.B.5",
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "rejects_commutative",
+          "note": "Treats a × b and b × a as different problems",
+          "misconception_id": "3.OA.B.5.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L7_multiply_with_1_and_0",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.B.5.M01",
+        "3.OA.B.5.M02",
+        "3.OA.B.5.M03",
+        "3.OA.B.5.M04",
+        "3.OA.B.5.M05",
+        "3.OA.B.5.M06",
+        "3.OA.B.5.M07"
+      ]
+    },
+    {
+      "id": "UT_04",
+      "difficulty": 3,
+      "question": "Sam makes an array of stickers: 6 rows of 5. He gives away 1 full row. How many stickers does he have now?",
+      "choices": [
+        "A) 20",
+        "B) 25",
+        "C) 29",
+        "D) 30"
+      ],
+      "explanation": "6×5=30 total. Remove 1 row of 5: 30−5=25.",
+      "hints": [
+        "First find the total: 6 rows of 5 = 6 × 5 = 30.",
+        "Then take away 1 full row of 5: 30 − 5 = ?"
+      ],
+      "feedback": {
+        "correct": "Great thinking! 6×5=30, then 30−5=25 stickers left.",
+        "incorrect": "Step 1: 6×5=30. Step 2: remove 1 row of 5: 30−5=25."
+      },
+      "correct_answer": "B",
+      "type": "mc",
+      "feedback_correct": "Great thinking! 6×5=30, then 30−5=25 stickers left.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L5_model_with_arrays",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        },
+        "C": {
+          "error_type": "array_dimension_swap",
+          "note": "Confusing rows and columns in arrays",
+          "misconception_id": "3.OA.A.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "skip_count_off_by_one",
+          "note": "Skip count makes wrong number of jumps on number line",
+          "misconception_id": "3.OA.A.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L5_model_with_arrays",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_05",
+      "difficulty": 2,
+      "question": "Which shows 5 × 4 correctly?",
+      "choices": [
+        "A) 5 groups of 4",
+        "B) 4 groups of 5",
+        "C) Either — both equal 20",
+        "D) None of these"
+      ],
+      "explanation": "5 × 4 = 4 × 5 = 20. The product is the same either way. (Strictly, 5 × 4 means '5 groups of 4,' but since 4 × 5 = 5 × 4, either interpretation gives the same total.)",
+      "hints": [
+        "Does the order of factors change the product?",
+        "5 × 4 = 20 and 4 × 5 = 20 — check."
+      ],
+      "feedback": {
+        "correct": "Right — both equal 20, because factor order doesn't matter.",
+        "incorrect": "Both 5 groups of 4 AND 4 groups of 5 give 20."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Right — both equal 20, because factor order doesn't matter.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L2_relate_addition_and_multiplication",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.1",
+      "expected_errors": {
+        "A": {
+          "error_type": "add_instead_of_multiply",
+          "note": "Adds the two numbers instead of multiplying",
+          "misconception_id": "3.OA.A.1.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "groups_size_confusion",
+          "note": "Confusing number of groups with size of each group",
+          "misconception_id": "3.OA.A.1.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "counts_only_one_dimension",
+          "note": "Counts only the groups OR only the items, not both",
+          "misconception_id": "3.OA.A.1.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L2_relate_addition_multiplication",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M02",
+        "3.OA.A.1.M03",
+        "3.OA.A.1.M04",
+        "3.OA.A.1.M05",
+        "3.OA.A.1.M06",
+        "3.OA.A.1.M07"
+      ]
+    },
+    {
+      "id": "UT_06",
+      "difficulty": 2,
+      "question": "An array has 6 rows of 5. What is the product?",
+      "choices": [
+        "A) 11",
+        "B) 25",
+        "C) 30",
+        "D) 36"
+      ],
+      "explanation": "6 × 5 = 30.",
+      "hints": [
+        "6 rows of 5: multiply the rows by the columns.",
+        "Count by 5 six times: 5, 10, 15, 20, 25, 30."
+      ],
+      "feedback": {
+        "correct": "Great! 6 × 5 = 30.",
+        "incorrect": "6 rows, 5 per row → 6 × 5 = 30. Count by 5s: 5, 10, 15, 20, 25, 30."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Great! 6 × 5 = 30.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L5_model_with_arrays",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "array_dimension_swap",
+          "note": "Confusing rows and columns in arrays",
+          "misconception_id": "3.OA.A.3.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "skip_count_off_by_one",
+          "note": "Skip count makes wrong number of jumps on number line",
+          "misconception_id": "3.OA.A.3.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L5_model_with_arrays",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_07",
+      "difficulty": 2,
+      "type": "input",
+      "question": "Draw a picture: 6 groups of 5. What is the product?",
+      "explanation": "6 × 5 = 30.",
+      "hints": [
+        "Draw 6 circles, 5 dots each.",
+        "6 × 5 = ?"
+      ],
+      "feedback": {
+        "correct": "Right — 30.",
+        "incorrect": "6 groups × 5 = 30."
+      },
+      "correct_answer": "30",
+      "feedback_correct": "Right — 30.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L4_model_multiplication",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L4_model_multiplication",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_08",
+      "difficulty": 2,
+      "type": "input",
+      "question": "Sam skip counts by 8 and makes 3 jumps. What number does he land on?",
+      "explanation": "8, 16, 24 — three jumps of 8.",
+      "hints": [
+        "8 × 3 = ?",
+        "8 → 16 → 24."
+      ],
+      "feedback": {
+        "correct": "Right — 24.",
+        "incorrect": "Three jumps of 8: 8→16→24."
+      },
+      "correct_answer": "24",
+      "feedback_correct": "Right — 24.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L3_skip_count_on_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L3_skip_count_number_line",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_09",
+      "difficulty": 2,
+      "question": "True or False: 9 × 0 = 0 × 9.",
+      "choices": [
+        "A) True",
+        "B) False"
+      ],
+      "explanation": "9×0=0 and 0×9=0. The Commutative Property works even when one factor is 0.",
+      "hints": [
+        "Calculate each side: 9×0=? and 0×9=?",
+        "The Commutative Property applies to all multiplication, including multiplying by 0."
+      ],
+      "feedback": {
+        "correct": "True! 9×0=0 and 0×9=0. Commutative Property holds even with 0.",
+        "incorrect": "9×0=0 and 0×9=0. They're equal — so the statement is True."
+      },
+      "correct_answer": "A",
+      "type": "mc",
+      "feedback_correct": "True! 9×0=0 and 0×9=0. Commutative Property holds even with 0.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L6_commutative_property",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.B.5",
+      "expected_errors": {
+        "B": {
+          "error_type": "rejects_commutative",
+          "note": "Treats a × b and b × a as different problems",
+          "misconception_id": "3.OA.B.5.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L6_commutative_property",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.B.5.M01",
+        "3.OA.B.5.M02",
+        "3.OA.B.5.M03",
+        "3.OA.B.5.M04",
+        "3.OA.B.5.M05",
+        "3.OA.B.5.M06",
+        "3.OA.B.5.M07"
+      ]
+    },
+    {
+      "id": "UT_10",
+      "difficulty": 1,
+      "question": "2 groups of 6. How many in all?",
+      "choices": [
+        "A) 8",
+        "B) 10",
+        "C) 12",
+        "D) 14"
+      ],
+      "explanation": "6 + 6 = 12.",
+      "hints": [
+        "Two 6s added.",
+        "6 + 6 = 12."
+      ],
+      "feedback": {
+        "correct": "Right — 12.",
+        "incorrect": "6 + 6 = 12."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Right — 12.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L1_count_equal_groups",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.1",
+      "expected_errors": {
+        "A": {
+          "error_type": "add_instead_of_multiply",
+          "note": "Adds the two numbers instead of multiplying",
+          "misconception_id": "3.OA.A.1.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "groups_size_confusion",
+          "note": "Confusing number of groups with size of each group",
+          "misconception_id": "3.OA.A.1.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "counts_only_one_dimension",
+          "note": "Counts only the groups OR only the items, not both",
+          "misconception_id": "3.OA.A.1.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L1_count_equal_groups",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.1.M01",
+        "3.OA.A.1.M02",
+        "3.OA.A.1.M03",
+        "3.OA.A.1.M04",
+        "3.OA.A.1.M05",
+        "3.OA.A.1.M06",
+        "3.OA.A.1.M07"
+      ]
+    },
+    {
+      "id": "UT_11",
+      "difficulty": 3,
+      "type": "input",
+      "question": "A picture shows 5 rows of 6 dots. Then 4 dots are crossed out. How many dots remain?",
+      "explanation": "5 × 6 = 30. 30 − 4 = 26.",
+      "hints": [
+        "First multiply: 5 × 6 = ?",
+        "Then subtract the crossed-out dots."
+      ],
+      "feedback": {
+        "correct": "Right — 26.",
+        "incorrect": "5 × 6 = 30. 30 − 4 = 26."
+      },
+      "correct_answer": "26",
+      "feedback_correct": "Right — 26.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L4_model_multiplication",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.3",
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "wrong_operation_choice",
+          "note": "Picks add/sub instead of multiplication for equal-groups word problem",
+          "misconception_id": "3.OA.A.3.M01",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L4_model_multiplication",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.A.3.M01",
+        "3.OA.A.3.M02",
+        "3.OA.A.3.M03",
+        "3.OA.A.3.M04",
+        "3.OA.A.3.M05",
+        "3.OA.A.3.M06",
+        "3.OA.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_12",
+      "difficulty": 3,
+      "question": "A teacher says: 'The product of any two whole numbers is always greater than each factor.' Is this true?",
+      "choices": [
+        "A) Always true",
+        "B) True, except when 0 is a factor",
+        "C) True, except when 0 or 1 is a factor",
+        "D) Never true"
+      ],
+      "explanation": "With 0: product = 0 (less than most factors). With 1: product = the other number (not greater). Both exceptions disprove the claim.",
+      "hints": [
+        "Test with 0: is 5 × 0 = 0 greater than 5? No.",
+        "Test with 1: is 4 × 1 = 4 greater than 4? No — it equals 4, not greater."
+      ],
+      "feedback": {
+        "correct": "Excellent! Both 0 and 1 break the rule. The claim is only true for factors ≥ 2.",
+        "incorrect": "5×0=0 (not greater than 5). 4×1=4 (not greater than 4). Both 0 and 1 are exceptions."
+      },
+      "correct_answer": "C",
+      "type": "mc",
+      "feedback_correct": "Excellent! Both 0 and 1 break the rule. The claim is only true for factors ≥ 2.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.3 Lesson — U3_understand_multiplication/L7_multiply_with_1_and_0",
+        "procedure_source": "EngageNY Grade 3 Module 1 — U3_understand_multiplication",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.B.5",
+      "expected_errors": {
+        "A": {
+          "error_type": "rejects_commutative",
+          "note": "Treats a × b and b × a as different problems",
+          "misconception_id": "3.OA.B.5.M01",
+          "synthesized": true
+        },
+        "B": {
+          "error_type": "overgeneralized_commutative",
+          "note": "Applies commutative to subtraction or division",
+          "misconception_id": "3.OA.B.5.M02",
+          "synthesized": true
+        },
+        "D": {
+          "error_type": "distributive_partial_application",
+          "note": "Distributes only one part, forgets the other addend",
+          "misconception_id": "3.OA.B.5.M03",
+          "synthesized": true
+        }
+      },
+      "source_lesson": "L7_multiply_with_1_and_0",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.B.5.M01",
+        "3.OA.B.5.M02",
+        "3.OA.B.5.M03",
+        "3.OA.B.5.M04",
+        "3.OA.B.5.M05",
+        "3.OA.B.5.M06",
+        "3.OA.B.5.M07"
+      ]
+    }
+  ]
 }
