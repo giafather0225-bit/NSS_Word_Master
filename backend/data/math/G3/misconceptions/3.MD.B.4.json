@@ -1,0 +1,96 @@
+{
+  "standard": "3.MD.B.4",
+  "standard_description": "Generate measurement data by measuring lengths using rulers marked with halves and fourths of an inch. Show the data by making a line plot where the horizontal scale is marked off in appropriate units—whole numbers, halves, or quarters.",
+  "sources": [
+    "Friel, S.N., Curcio, F.R., & Bright, G.W. (2001). Making sense of graphs: Critical factors influencing comprehension and instructional implications. Journal for Research in Mathematics Education, 32(2), 124–158.",
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Measurement and Data (MD) K–5, 2011",
+    "Van de Walle, J.A., Karp, K.S., & Bay-Williams, J.M. (2013). Elementary and Middle School Mathematics (8th ed.). Pearson.",
+    "EngageNY Grade 3 Module 6: Collecting and Displaying Data, Teacher Edition, 2013",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.MD.B.4.M01",
+      "error_type": "value_vs_count_confusion",
+      "short_label": "Reading the axis value instead of counting Xs",
+      "description": "Student reports the number line value (e.g., '$12' → 12, or '3 inches' → 3) instead of counting the Xs above that value. The student treats the label itself as the data count rather than reading how many Xs are stacked above it.",
+      "example": "Line plot: $12 has 4 Xs. Question: 'How many shirts sold for $12?' Student answers 12 (reads the price label) instead of 4 (counts the Xs).",
+      "citation": "Friel, Curcio, & Bright (2001) p.132 — 'Students frequently conflate the axis label with the frequency count, reporting the scale value rather than tallying the marks above it; this confusion is especially acute when the axis label is a large number.'",
+      "source": "Friel, Curcio, & Bright (2001)",
+      "remediation": "Point to the Xs and say: 'Each X is one item. Count the Xs above the number, not the number itself.' Cover the axis label with a finger and ask 'How many Xs do I see above this spot?'",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.B.4.M02",
+      "error_type": "boundary_inclusion_error",
+      "short_label": "Confusing 'less than' with 'less than or equal to'",
+      "description": "Student includes (or excludes) the boundary value when the question specifies 'less than,' 'more than,' 'fewer than,' or 'at least/at most.' Most commonly, the student includes the boundary value when the question says 'less than' (strict inequality), or excludes it when the question says 'less than or equal to.'",
+      "example": "Line plot: 1 in=2, 2 in=5, 3 in=4. Question: 'How many plants are less than 3 inches?' Student computes 2+5+4=11 (including 3 inches) instead of 2+5=7.",
+      "citation": "NCTM MD Progressions K-5 (2011) p.9 — 'Students regularly include the boundary value in \"less than\" queries and exclude it in \"less than or equal to\" queries; explicit instruction on the distinction between strict and non-strict inequalities is necessary at Grade 3.'",
+      "source": "NCTM Progressions MD K-5",
+      "remediation": "Draw a number line and mark the boundary with a circle: open circle = not included ('less than'), filled circle = included ('less than or equal to'). Have students physically cross out the values that are NOT included before counting.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.B.4.M03",
+      "error_type": "total_reported_as_specific",
+      "short_label": "Reporting total X count for a specific value question",
+      "description": "When asked for a specific value's frequency (e.g., 'How many items measured exactly 3 inches?'), the student counts ALL Xs on the line plot and reports the total. This is the inverse of M01 — instead of reading the label, the student collapses all data into one number.",
+      "example": "Line plot: 2 in=3, 3 in=5, 4 in=2. Total=10. Question: 'How many measured 3 inches?' Student answers 10 (total) instead of 5.",
+      "citation": "Van de Walle et al. (2013) p.393 — 'A common confusion when reading line plots is summing all Xs in response to a question about one specific value; students who rush skip the step of isolating the correct column before counting.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Before counting, place a finger directly above the target number on the number line. Count only the Xs in that single column. Physically cover all other columns.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.B.4.M04",
+      "error_type": "zero_gap_skip",
+      "short_label": "Omitting values with 0 Xs from the number line",
+      "description": "When making a line plot, the student skips values that have no data points, creating a gap in the number line. The number line must include every value in the range even if no item has that measurement. Also occurs when reading: the student skips a 0-X value and treats the next column as belonging to the skipped value.",
+      "example": "Data: 3 items at $5, 0 at $6, 4 at $7. Student draws number line: $5 … $7, omitting $6, so the line plot looks like only two values exist.",
+      "citation": "EngageNY G3 Module 6 Lesson 3 Teacher Edition — 'Students routinely omit values with zero frequency when constructing line plots, producing a discontinuous scale that misrepresents the data distribution; the number line must be continuous.'",
+      "source": "EngageNY Grade 3 Module 6",
+      "remediation": "Before plotting, write all values from minimum to maximum on the number line, then mark Xs (or leave blank for 0). Say: 'Every number between the smallest and largest data value must appear on the number line, even if no item has that value.'",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.B.4.M05",
+      "error_type": "plot_data_mismatch",
+      "short_label": "Plotting fewer Xs than data points collected",
+      "description": "After collecting measurement data, the student plots fewer Xs than the total number of data points — usually because they forgot to plot one or more items, or plotted a data point at the wrong location and did not correct it. The total Xs on the finished line plot does not match the number of measurements taken.",
+      "example": "Student measured 15 objects but only drew 13 Xs. When asked, the student says the line plot is correct without rechecking the count.",
+      "citation": "NCTM MD Progressions K-5 (2011) p.9 — 'Students frequently fail to verify that the number of Xs equals the number of data points; a simple count-check after plotting is a high-leverage habit that prevents silent omissions.'",
+      "source": "NCTM Progressions MD K-5",
+      "remediation": "After making the line plot, count all Xs and compare to the original data list. Say: 'Total Xs must equal total data points. If not, find the missing X.' Cross off each data value on the list as it is plotted.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.B.4.M06",
+      "error_type": "mode_identification_error",
+      "short_label": "Identifying wrong most-common value (mode error)",
+      "description": "Student identifies the wrong value as 'most common' on a line plot — typically choosing the first, last, or a visually prominent value rather than scanning all columns systematically to find the tallest stack. Also occurs when two values tie for the mode and the student reports only one.",
+      "example": "Line plot: $10=2, $11=3, $12=4, $13=1, $14=2. Most common = $12 (4 Xs). Student reports $11 (second from left, looks tall) or $10 (first).",
+      "citation": "Van de Walle et al. (2013) p.392 — 'Students identify the incorrect mode on line plots, particularly when the column with the most Xs is not the leftmost or rightmost; systematic left-to-right comparison with a running maximum prevents this error.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Teach 'champion scan' for line plots: start at the leftmost column, call it the current champion. Move right; if a taller stack is found, it becomes the new champion. At the end, the champion is the mode. When tied, report both values.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.B.4.M07",
+      "error_type": "half_quarter_misplacement",
+      "short_label": "Plotting half/quarter measurements at wrong tick mark",
+      "description": "When the number line includes halves (½) or quarters (¼, ¾), the student plots an X at the nearest whole number rather than the correct fractional tick mark. Conversely, the student may misread the tick mark and record the wrong measurement from a line plot.",
+      "example": "Data: ribbon = 4½ inches. Student plots X above '4' (whole number) instead of the ½ tick mark between 4 and 5. Or reads a ½-inch mark as the adjacent whole number.",
+      "citation": "EngageNY G3 Module 6 Lesson 4 Teacher Edition — 'Students consistently misplace Xs at whole-number marks when the data value falls on a half or quarter tick; explicit practice identifying fractional tick positions before plotting is required.'",
+      "source": "EngageNY Grade 3 Module 6",
+      "remediation": "Point to each tick mark and label it aloud before plotting: 'This is 4, this is 4½, this is 5.' Draw the fractional marks in a different color. For each data value, say the fraction aloud and find it on the number line before drawing the X.",
+      "bloom_level": 2
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-08",
+    "version": "1.0",
+    "lesson_uses": ["G3_U2_L7"],
+    "total_misconceptions": 7
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "standard": "3.OA.A.4",
+  "standard_description": "Determine the unknown whole number in a multiplication or division equation relating three whole numbers. For example, determine the unknown number that makes the equation true in each of the equations 8 × ? = 48, 5 = □ ÷ 3, 6 × 6 = ?",
+  "sources": [
+    "Carpenter, T.P., Fennema, E., Franke, M.L., Levi, L., & Empson, S.B. (2014). Children's Mathematics: Cognitively Guided Instruction (2nd ed.). Heinemann.",
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Operations and Algebraic Thinking (OA) K–5, 2011",
+    "Van de Walle, J.A., Karp, K.S., & Bay-Williams, J.M. (2013). Elementary and Middle School Mathematics (8th ed.). Pearson.",
+    "EngageNY Grade 3 Module 1 Topic E — Division as an Unknown-Factor Problem, 2013",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.OA.A.4.M01",
+      "error_type": "multiplies_given_two",
+      "short_label": "Multiplies the two given numbers instead of dividing",
+      "description": "Given a missing-factor equation like 6 × ? = 24, the student multiplies the two given numbers (6 × 24 = 144) instead of dividing 24 ÷ 6 = 4. Treats every '?' as 'compute with what's given,' missing the inverse-operation requirement.",
+      "example": "8 × ? = 56. Student answers 448 (= 8 × 56) instead of 7 (= 56 ÷ 8).",
+      "citation": "Carpenter et al. (2014) p.85 — 'When the unknown is a factor rather than the product, students often default to multiplying the visible numbers because that operation is more familiar; explicit instruction must reframe missing-factor equations as inverse-operation problems.'",
+      "source": "Carpenter et al. Children's Mathematics (2014)",
+      "remediation": "Always ask: 'Is the answer (product) showing? Then we divide.' Use a fact-family triangle: top = product, two bottom corners = factors. Cover any one corner — that's what we solve for. If product is given, divide.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.A.4.M02",
+      "error_type": "no_inverse_recognition",
+      "short_label": "Does not see missing-factor as a division situation",
+      "description": "Student does not yet recognize that ? × n = product is the same as product ÷ n. Tries to skip-count laboriously or guesses, instead of using the inverse multiplication-division relationship.",
+      "example": "9 × ? = 63. Student skip counts 9, 18, 27, 36, 45, 54, 63 — laboriously, with errors. Could have computed 63 ÷ 9 = 7 directly if division were recognized as the inverse.",
+      "citation": "EngageNY G3 Module 1 Topic E Teacher Edition — 'Division as an unknown-factor problem is a key Grade 3 conceptual leap; students who do not yet make this connection rely on counting strategies that fail for larger products.'",
+      "source": "EngageNY Grade 3 Module 1",
+      "remediation": "Build fact-family triangles for each new fact: 9, 7, 63 connected by ×/÷. Read it four ways: 9 × 7 = 63, 7 × 9 = 63, 63 ÷ 9 = 7, 63 ÷ 7 = 9. The unknown corner is whichever is missing.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.A.4.M03",
+      "error_type": "random_guess_no_check",
+      "short_label": "Guesses without verifying the equation is true",
+      "description": "Student picks a number that 'feels right' (often a familiar fact in the answer choices) without substituting it back to verify. Gets correct answers by luck on simple problems; fails on harder ones.",
+      "example": "7 × ? = 42. Student picks 5 (because 7 × 5 = 35 is a familiar fact) without checking that 7 × 5 = 35 ≠ 42. Correct answer is 6.",
+      "citation": "Van de Walle et al. (2013) p.165 — 'Verification is the missing step in many students' missing-factor work; teaching the substitution check transforms guess-and-check into a reliable strategy.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Make 'plug it back in' the explicit final step. For 7 × ? = 42, after picking ? = 6, compute 7 × 6 = 42 ✓. If answer doesn't equal 42, pick differently.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.OA.A.4.M04",
+      "error_type": "left_vs_right_unknown_confusion",
+      "short_label": "Treats ? on left differently from ? on right",
+      "description": "Student solves ? × 6 = 48 correctly (= 8) but freezes on 48 = ? × 6 (same equation rewritten). The visual position of the unknown causes confusion despite mathematical equivalence.",
+      "example": "8 × ? = 56 → student answers 7 ✓. But 56 = 8 × ? → student says 'I don't know' or guesses 64. Same equation, just rewritten.",
+      "citation": "NCTM OA Progressions K-5 (2011) p.31 — 'Students often anchor on equation form rather than mathematical structure; explicit practice with missing-value equations rewritten on both sides of the equals sign is required.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Practice rewriting equations: 8 × ? = 56 ↔ 56 = 8 × ? ↔ ? × 8 = 56. All ask the same question. Always identify: 'What's missing — a factor or the product?' Then apply the right operation.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.A.4.M05",
+      "error_type": "skip_count_miscount",
+      "short_label": "Skip-count miscount when finding missing factor",
+      "description": "Student knows to skip-count by the given factor until reaching the product, but loses track of the count. Particularly fails for 6, 7, 8, 9 multiplications where multiples are less familiar.",
+      "example": "8 × ? = 56. Student skip counts 8, 16, 24, 32, 40, 48, 56 and reports 6 jumps (correct: 7). Off-by-one error in counting.",
+      "citation": "EngageNY G3 Module 1 Topic E Teacher Edition — 'Skip-count tracking errors are the dominant source of missing-factor mistakes when students lack fluency; finger tracking enforces 1-to-1 correspondence between count and skip.'",
+      "source": "EngageNY Grade 3 Module 1",
+      "remediation": "Use finger tracking: raise one finger per skip. The number of fingers up = the missing factor. Or write tally marks beside each multiple.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.A.4.M06",
+      "error_type": "forgets_commutative",
+      "short_label": "Doesn't use known fact's commuted partner",
+      "description": "Student knows 7 × 9 = 63 but freezes on 9 × ? = 63 because they think of '9 times something' rather than 'something times 9.' Fails to recognize 9 × 7 = 7 × 9 = 63 implies the answer is 7.",
+      "example": "Student knows 6 × 8 = 48. Asked '8 × ? = 48,' student counts by 8s laboriously instead of recognizing 8 × 6 = 6 × 8 = 48 → ? = 6.",
+      "citation": "Van de Walle et al. (2013) p.166 — 'Strategic factor-swap is the fastest path to missing-factor solutions, but requires confident application of the commutative property in equation context.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "When stuck, swap the factor positions: 9 × ? = 63 → ? × 9 = 63. Then ask: 'What did I multiply by 9 to get 63?' Use the times-table familiar form.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.A.4.M07",
+      "error_type": "wrong_inverse_operation",
+      "short_label": "Applies subtraction instead of division",
+      "description": "Student recognizes that an inverse operation is needed but picks subtraction instead of division. For 6 × ? = 24, student computes 24 − 6 = 18 instead of 24 ÷ 6 = 4. Confuses additive inverse (subtraction) with multiplicative inverse (division).",
+      "example": "5 × ? = 35. Student answers 30 (= 35 − 5) instead of 7 (= 35 ÷ 5).",
+      "citation": "NCTM OA Progressions K-5 (2011) p.32 — 'The conceptual leap from additive inverse to multiplicative inverse is non-trivial; students apply the more familiar inverse (subtraction) and arrive at incorrect answers that look plausible.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Match operation pairs explicitly: addition ↔ subtraction; multiplication ↔ division. For × equations with missing factor, the inverse is ALWAYS division. Build a chart of the two pairs and reference it during practice.",
+      "bloom_level": 2
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-09",
+    "version": "1.0",
+    "lesson_uses": ["G3_U5_L2"],
+    "total_misconceptions": 7
+  }
+}

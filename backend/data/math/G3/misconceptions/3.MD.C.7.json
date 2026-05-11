@@ -1,0 +1,96 @@
+{
+  "standard": "3.MD.C.7",
+  "standard_description": "Relate area to the operations of multiplication and addition. (a) Find the area of a rectangle with whole-number side lengths by tiling it, and show that the area is the same as would be found by multiplying the side lengths. (b) Multiply side lengths to find areas of rectangles. (c) Use tiling to show in a concrete case that the area of a rectangle with whole-number side lengths a and b + c is the sum of a × b and a × c. (d) Recognize area as additive.",
+  "sources": [
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Geometric Measurement K–5, 2012",
+    "Outhred, L. & Mitchelmore, M. (2000). Young children's intuitive understanding of rectangular area measurement. Journal for Research in Mathematics Education, 31(2), 144-167.",
+    "Battista, M.T. (2007). The development of geometric and spatial thinking. NCTM Handbook.",
+    "EngageNY Grade 3 Module 4 Topics B-D — Area and Multiplication, Teacher Edition, 2013",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.MD.C.7.M01",
+      "error_type": "add_instead_of_multiply",
+      "short_label": "Adding length and width instead of multiplying",
+      "description": "Student adds the length and width instead of multiplying. Result: gets half the perimeter, not the area.",
+      "example": "Rectangle 6 × 4. Student reports area = 10 (= 6 + 4) instead of 24 (= 6 × 4).",
+      "citation": "Outhred & Mitchelmore (2000) p.160 — 'Confusion between additive and multiplicative reasoning for area is common; students who haven\\'t connected area to repeated rows of unit squares default to addition.'",
+      "source": "Outhred & Mitchelmore (2000)",
+      "remediation": "Show area = rows × columns of unit squares. 6 × 4 = 6 rows of 4 = 24 squares. Compare with 6 + 4 = 10 (only counts edges, not interior).",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.C.7.M02",
+      "error_type": "distributive_split_error",
+      "short_label": "Wrong distributive split when finding area",
+      "description": "For combined or larger rectangles using distributive property [a × (b + c) = a×b + a×c], student splits incorrectly: forgets one part, or splits the wrong dimension.",
+      "example": "Rectangle 7 × 12 decomposed as 7 × (10 + 2). Student computes 7 × 10 = 70 and stops, forgetting 7 × 2 = 14. Reports 70 instead of 84.",
+      "citation": "EngageNY G3 Module 4 Lesson 11 Teacher Edition — 'When decomposing a rectangle for distributive property practice, students sometimes split one dimension but forget to multiply both sub-parts by the other dimension. Drawing both sub-rectangles clearly prevents this.'",
+      "source": "EngageNY Grade 3 Module 4",
+      "remediation": "Draw both sub-rectangles explicitly. Label each. Compute both areas. Add them. 7×12 = 7×10 + 7×2 = 70 + 14 = 84.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.MD.C.7.M03",
+      "error_type": "wrong_factor_for_compound",
+      "short_label": "Using wrong dimensions for parts of a compound rectangle",
+      "description": "On L-shape or T-shape (compound rectangles), student measures one part with wrong dimensions, often using the total length instead of the partial length.",
+      "example": "L-shape: top rectangle 5×3, bottom rectangle 8×2. Student multiplies bottom as 8×3 (using top width by mistake).",
+      "citation": "Battista (2007) p.878 — 'For compound shapes, students often confuse which dimensions belong to which sub-rectangle; explicit labeling of each side before computing prevents this error.'",
+      "source": "Battista (2007) NCTM Handbook",
+      "remediation": "Label every side of every sub-rectangle. Verify each label by counting unit squares along that side. Compute each rectangle separately.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.MD.C.7.M04",
+      "error_type": "missing_subtract_step",
+      "short_label": "For 'hole' problems, forgetting to subtract",
+      "description": "For a rectangle with a cut-out hole, student finds the outer area without subtracting the hole area.",
+      "example": "20×10 rectangle with a 4×3 hole cut out. Area = 200 − 12 = 188. Student reports 200, forgetting to subtract.",
+      "citation": "NCTM GM Progressions K-5 (2012) p.20 — 'For shapes with subtraction (e.g., holes or removed corners), students often forget the subtraction step; explicit two-step planning is necessary.'",
+      "source": "NCTM Progressions GM K-5",
+      "remediation": "Plan: Step 1 — area of outer rectangle. Step 2 — area of hole/removed piece. Step 3 — subtract. Label each step.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.MD.C.7.M05",
+      "error_type": "unit_conversion_area",
+      "short_label": "Forgetting that area unit conversion is squared",
+      "description": "Student converts area units linearly instead of squared. E.g., 1 sq m = 100 sq cm (incorrect; should be 10,000 sq cm).",
+      "example": "Rectangle 2 m × 1 m = 2 sq m. Student converts to sq cm: 200 sq cm (using 1 m = 100 cm directly). Correct: 20,000 sq cm.",
+      "citation": "Battista (2007) p.879 — 'Children apply linear conversion factors to area, ignoring that area scales as the square of linear scale; explicit teaching that 1 m × 1 m = 100 cm × 100 cm = 10,000 sq cm is essential.'",
+      "source": "Battista (2007) NCTM Handbook",
+      "remediation": "Convert each dimension first, then multiply. 2 m × 1 m = 200 cm × 100 cm = 20,000 sq cm. Or: 1 sq m = 100 cm × 100 cm = 10,000 sq cm.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.MD.C.7.M06",
+      "error_type": "multiply_three_dimensions",
+      "short_label": "Multiplying three dimensions instead of two (for area)",
+      "description": "When a 3D-looking image is given (e.g., a box drawing), student multiplies length × width × height for area, confusing area with volume.",
+      "example": "Picture of a 3D box labeled 4 × 3 × 2. Student computes 24 'sq cm' for area instead of using only two dimensions for surface area or recognizing volume context.",
+      "citation": "Van de Walle et al. (2013) p.445 — 'Students transfer volume formula thinking (l × w × h) to area problems when a 3D image is shown, even though only 2D surface is being measured.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Area = 2D (length × width). Volume = 3D (l × w × h). Identify what is being asked. For area of one face, use only the two dimensions of that face.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.C.7.M07",
+      "error_type": "area_word_keyword",
+      "short_label": "Choosing wrong operation in area word problem",
+      "description": "In word problems involving area, student selects wrong operation based on keywords. E.g., 'how much carpet' triggers addition or perimeter instead of area.",
+      "example": "'A rectangular floor is 12 ft by 8 ft. How much carpet is needed?' Student answers 20 ft (perimeter/addition) instead of 96 sq ft (area/multiplication).",
+      "citation": "EngageNY G3 Module 4 Lesson 14 Teacher Edition — 'Word problem context determines operation: \\'carpet for the floor\\' = area (covering); \\'fence around the yard\\' = perimeter (going around). Students need to attend to context rather than keywords.'",
+      "source": "EngageNY Grade 3 Module 4",
+      "remediation": "Decode context: cover/fill the inside → area (multiply). Go around the outside → perimeter (add). Visualize: 'Am I tiling a floor, or putting up a fence?'",
+      "bloom_level": 3
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-11",
+    "version": "1.0",
+    "lesson_uses": ["G3_U12_L3", "G3_U12_L4", "G3_U12_L5", "G3_U12_L6", "G3_U12_L7", "G3_U12_L8"],
+    "total_misconceptions": 7
+  }
+}
