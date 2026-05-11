@@ -1,0 +1,107 @@
+{
+  "standard": "3.NBT.A.2",
+  "standard_description": "Fluently add and subtract within 1000 using strategies and algorithms based on place value, properties of operations, and/or the relationship between addition and subtraction.",
+  "sources": [
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Number and Operations in Base Ten K-5, 2011",
+    "EngageNY Grade 3 Module 2 Teacher Edition, 2013",
+    "Fuson, K. C., Wearne, D., Hiebert, J. C., Murray, H. G., Human, P. G., Olivier, A. I., Carpenter, T. P., & Fennema, E. (1997). Children's Conceptual Structures for Multiunit Numbers and the Teaching and Learning of Multidigit Addition and Subtraction. Journal for Research in Mathematics Education, 28(2), 130–162.",
+    "Carpenter, T. P., Franke, M. L., Jacobs, V. R., Fennema, E., & Empson, S. B. (1998). A Longitudinal Study of Invention and Understanding in Children's Multidigit Addition and Subtraction. Journal for Research in Mathematics Education, 29(1), 3–20.",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.NBT.2.M01",
+      "error_type": "friendly_number_wrong_adjustment_direction",
+      "short_label": "Adds back instead of subtracting when using friendly numbers",
+      "description": "After making a friendly number by adding x, student adds x again at the end instead of subtracting. The student correctly makes the friendly number but inverts the compensating step, producing an answer that is 2x too large.",
+      "example": "47 + 36: student adds 3 to get 50, computes 50+36=86, then adds 3 more → 89 (correct is 83). Or 199+364: student gets 200+364=564, then writes 564+1=565.",
+      "citation": "EngageNY G3 Module 2 Lesson 4 Teacher Edition — 'Students frequently apply the compensation in the same direction as the original adjustment; explicit instruction that compensation must oppose the adjustment is required.'",
+      "source": "EngageNY Grade 3 Module 2",
+      "remediation": "Use a balance-scale model: if you add 3 to one side (to make a ten), you must subtract 3 from the total to keep balance. Rehearse the mantra: 'Add to make friendly → subtract to fix.'",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.NBT.2.M02",
+      "error_type": "friendly_number_wrong_adjustment_amount",
+      "short_label": "Adjusts by wrong amount after making a friendly number",
+      "description": "Student makes a friendly number by adding x but then subtracts a different value y ≠ x at the end. The student understands the direction of adjustment but tracks the amount incorrectly.",
+      "example": "29+53: student adds 1 to get 30, computes 30+53=83, but subtracts 2 instead of 1 → 81 (correct is 82).",
+      "citation": "Fuson et al. (1997) p.143 — 'Compensation errors frequently involve the correct direction but an incorrect magnitude; students lose track of the amount added when their working memory is occupied with the addition itself.'",
+      "source": "Fuson et al. 1997",
+      "remediation": "Write the adjustment amount in a 'parking spot' before computing: '29 → 30 (+1)'. After getting the sum, look at the parking spot and subtract that exact number.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.NBT.2.M03",
+      "error_type": "break_apart_missing_partial_sum",
+      "short_label": "Omits one partial sum when using break-apart strategy",
+      "description": "Student correctly breaks numbers into place-value parts and adds some partial sums, but drops one part (most often the hundreds of the second addend) when reassembling. Results in an answer that is systematically 100 or 200 too small.",
+      "example": "145+232: student computes 45+232=277, forgetting the 100 from 145. Or 254+138: student writes 200+54+38=292 instead of 200+100+54+38=392.",
+      "citation": "Carpenter et al. (1998) p.12 — 'Children who use invented decomposition strategies sometimes lose track of a part during reassembly; the hundreds digit of the first addend is the most frequently omitted component.'",
+      "source": "Carpenter et al. 1998",
+      "remediation": "Write all partial sums in a vertical list before adding: 200 / 100 / 50 / 30 / 4 / 8. Cross off each as it is added. Never add mentally without first writing the list.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.NBT.2.M04",
+      "error_type": "break_apart_regroup_omission",
+      "short_label": "Forgets to regroup when combining partial sums",
+      "description": "Student correctly produces all partial sums but fails to regroup (carry) when the sum of a place exceeds 9. The error appears only in the final combination step, not in the partial sums themselves.",
+      "example": "254+138: partial sums 300, 80, 12 → student writes 382 instead of 392 (added 300+80+12 but treated 12 as '2', dropping the ten).",
+      "citation": "NCTM NBT Progressions p.11 — 'Even students who use correct decomposition strategies may revert to a digit-by-digit view when combining partial sums, omitting regrouping across the boundary.'",
+      "source": "NCTM Progressions NBT K-5",
+      "remediation": "When partial sums include a two-digit value (≥10 in the ones place), underline it and add its tens digit explicitly: 300+80+12 → 300+80+10+2 → 392.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.NBT.2.M05",
+      "error_type": "count_on_tens_count_error",
+      "short_label": "Counts wrong number of decades when counting by tens",
+      "description": "When using the count-by-tens-and-ones strategy, student miscounts the number of decades to add. Typically adds one extra ten (e.g., counts 3 hops for 2 tens) or confuses the tens digit with the number of hops needed.",
+      "example": "37+24: should hop 2 tens (37→47→57) then 4 ones → 61. Student hops 3 tens (37→47→57→67) then 4 ones → 71.",
+      "citation": "Fuson et al. (1997) p.140 — 'Decade-counting errors are common when the tens digit of the addend exceeds 2; students may map the tens digit directly onto number of hops rather than converting (e.g., 4 tens = 4 hops of 10).'",
+      "source": "Fuson et al. 1997",
+      "remediation": "Draw a number line. Mark the starting point. For each ten, make one arc and label it '+10'. Count arcs. Only then hop by ones. Physical tracking (finger arcs) reduces miscount.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.NBT.2.M06",
+      "error_type": "strategy_selection_mismatch",
+      "short_label": "Applies inefficient strategy to the wrong number type",
+      "description": "Student applies the count-by-tens strategy to 3-digit numbers where it is impractical, or applies break-apart to a number like 199 where friendly numbers is far more efficient. Student treats all strategies as interchangeable regardless of the number's structure.",
+      "example": "For 198+245, student says 'count by tens: 198, 208, 218 ...' requiring 24 hops instead of using the friendly-numbers shortcut (200+245-2).",
+      "citation": "Smarter Balanced G3 Item Specs 2015 — 'Strategy selection is explicitly tested at Grade 3; students must identify the most efficient strategy for a given number pair, not just apply any valid strategy.'",
+      "source": "Smarter Balanced Grade 3 Item Specifications",
+      "remediation": "Create a strategy-selection chart: if a number ends in 8 or 9 → friendly numbers; if a 3-digit problem → break apart. Practice labelling problems before solving: 'What strategy will be FASTEST?'",
+      "bloom_level": 4
+    },
+    {
+      "misconception_id": "3.NBT.2.M07",
+      "error_type": "multi_addend_partial_addition_omission",
+      "short_label": "Omits one addend in a multi-step addition problem",
+      "description": "When adding three or more numbers, student adds only two of them and presents the partial result as the final answer. The error is procedural: student stops too early in the sequence.",
+      "example": "186+212+198: student computes 186+212=398 and reports 398 as the answer, omitting 198.",
+      "citation": "EngageNY G3 Module 2 Lesson 6 — 'Multi-step addition problems consistently reveal that students terminate computation after the first pair is summed; explicit instruction to re-read the full problem after each step is necessary.'",
+      "source": "EngageNY Grade 3 Module 2",
+      "remediation": "Circle each addend before computing. After each addition, cross off the addends used. Check: are all circles crossed off? Only then write the final answer.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.NBT.2.M08",
+      "error_type": "concept_gap_word_problem_partial_answer",
+      "short_label": "Stops at an intermediate result in a two-step word problem",
+      "description": "In a word problem requiring two additions (find girls then add boys+girls), student finds only the first quantity (e.g., number of girls) and presents it as the answer. The student does not recognise that the question asks for the total, not the intermediate quantity.",
+      "example": "19 boys, 14 more girls: student computes 19+14=33 and writes 33 as the answer. The question asks for total students (19+33=52).",
+      "citation": "Carpenter et al. (1998) p.15 — 'Stopping at an intermediate result is the most common error in two-step word problems at Grade 3; students often answer the implicit sub-question rather than the stated question.'",
+      "source": "Carpenter et al. 1998",
+      "remediation": "Teach students to underline the question sentence before computing. After each computation ask: 'Did I answer the underlined question, or just a part of the problem?'",
+      "bloom_level": 3
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-06",
+    "version": "1.0",
+    "lesson_uses": ["G3_U1_L4"],
+    "total_misconceptions": 8
+  }
+}

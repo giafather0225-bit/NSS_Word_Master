@@ -1,0 +1,96 @@
+{
+  "standard": "3.OA.A.3",
+  "standard_description": "Use multiplication and division within 100 to solve word problems in situations involving equal groups, arrays, and measurement quantities, e.g., by using drawings and equations with a symbol for the unknown number to represent the problem.",
+  "sources": [
+    "Carpenter, T.P., Fennema, E., Franke, M.L., Levi, L., & Empson, S.B. (2014). Children's Mathematics: Cognitively Guided Instruction (2nd ed.). Heinemann.",
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Operations and Algebraic Thinking (OA) K–5, 2011",
+    "Van de Walle, J.A., Karp, K.S., & Bay-Williams, J.M. (2013). Elementary and Middle School Mathematics (8th ed.). Pearson.",
+    "EngageNY Grade 3 Module 1 Topic B–E: Division as an Unknown-Factor Problem; Multiplication Using Arrays, 2013",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.OA.A.3.M01",
+      "error_type": "wrong_operation_choice",
+      "short_label": "Picks add/sub instead of multiplication for equal-groups word problem",
+      "description": "Student reads a word problem with equal groups (e.g., '6 boxes with 4 cookies each') and chooses addition or subtraction rather than multiplication. The keyword 'each' / 'per' / 'every' is overlooked, and the student treats the two numbers as a join or separate problem.",
+      "example": "'There are 5 vases. Each vase has 6 flowers. How many flowers in all?' Student answers 11 (5+6) or 1 (6−5) instead of 30 (5×6).",
+      "citation": "Carpenter et al. (2014) p.61 — 'Operation selection in word problems hinges on detecting the equal-groups structure; students who default to addition for any \"how many in all\" question miss the multiplicative cue carried by per-unit language.'",
+      "source": "Carpenter et al. Children's Mathematics (2014)",
+      "remediation": "Underline 'each / every / per' in the problem and circle the two numbers. Ask: 'Are the groups all the same size?' If yes → multiply. If no → add or subtract. Build a chart of trigger words: 'each' = multiply, 'in all together' alone = could be either, check group equality first.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.A.3.M02",
+      "error_type": "array_dimension_swap",
+      "short_label": "Confusing rows and columns in arrays",
+      "description": "When working with arrays (rectangular arrangements), the student reverses rows and columns. For 'an array with 4 rows and 6 columns', the student draws/computes 6 rows × 4 columns. Although the product is the same numerically, the model is wrong, and follow-up questions ('how many in each row?') get reversed answers.",
+      "example": "Array with 4 rows of 6 stars (24 total). Student says '6 rows of 4' or describes a row as having 4 stars (the column count) instead of 6.",
+      "citation": "NCTM OA Progressions K-5 (2011) p.27 — 'Convention names rows first (horizontal) and columns second (vertical); reversing this leads to consistent off-axis errors when problems ask for row count vs column count separately.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Always say 'rows go ACROSS, columns go UP-DOWN.' Have the student trace each row with a horizontal finger swipe. For '4 rows of 6,' say '4 horizontal lines, each with 6 dots.' Practice on graph paper drawing arrays from verbal descriptions.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.A.3.M03",
+      "error_type": "skip_count_off_by_one",
+      "short_label": "Skip count makes wrong number of jumps on number line",
+      "description": "On a number line, the student makes one too many or one too few jumps. For 4 jumps of 5 starting at 0, the student lands at 25 (5 jumps) or 15 (3 jumps) instead of 20. Often arises when student counts the START position as a jump.",
+      "example": "'Show 3 × 5 with jumps on a number line.' Student starts at 0, jumps to 5 (counts as jump 1), then 10 (jump 2), then 15 (jump 3), then 20 (extra jump) → answers 20 instead of 15.",
+      "citation": "EngageNY G3 Module 1 Topic E Teacher Edition — 'A frequent number-line error is including the origin as a jump, producing answers consistently one factor unit too large; emphasize that the first jump LANDS on the first multiple, never starts there.'",
+      "source": "EngageNY Grade 3 Module 1",
+      "remediation": "Tap the starting point (0) and say 'zero is where we begin — not a jump.' Then count each ARC, not each landing dot. Use colored arcs of equal width on the number line.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.A.3.M04",
+      "error_type": "jump_size_confusion",
+      "short_label": "Uses wrong jump size on number line",
+      "description": "Student uses the number of jumps as the jump size, or vice versa. For 4 × 5 (4 jumps of 5), the student jumps by 4 instead of by 5, landing at 16 (4+4+4+4). Although 4×5=5×4 numerically by commutativity, the model is wrong and the student cannot reason about jump count vs jump size if asked.",
+      "example": "'Show 3 × 6 on a number line.' Student jumps by 3 six times (lands at 3, 6, 9, 12, 15, 18) instead of jumping by 6 three times (6, 12, 18). The final answer 18 is correct by accident.",
+      "citation": "Van de Walle et al. (2013) p.160 — 'Convention dictates that the number of jumps equals the first factor (number of groups) and the jump size equals the second factor (group size); reversing these on the number line creates a faulty mental model that fails for division and missing-factor problems.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Always identify the JUMP SIZE first (group size) and write it on each arc. Then count the JUMPS (number of groups). Use unequal factors (e.g., 2 × 7) so that jumping wrong is immediately visible.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.A.3.M05",
+      "error_type": "ignore_each_keyword",
+      "short_label": "Misses 'each / every / per' as the per-unit signal",
+      "description": "Student treats 'each / every / per' as decorative rather than as the explicit per-unit marker. Without recognizing this cue, the student cannot identify which number is the group size vs the number of groups, and may pick the wrong operation.",
+      "example": "'There are 6 students. Each student has 3 pencils.' Student treats 'each' as filler and answers 9 (6+3) or 6 (just student count), missing that 'each ... 3 pencils' specifies 3 per student → 6×3=18.",
+      "citation": "Carpenter et al. (2014) p.63 — 'The word \"each\" is the linguistic marker for the unit-rate factor in equal-groups problems; explicit attention to this word transforms students' problem comprehension.'",
+      "source": "Carpenter et al. Children's Mathematics (2014)",
+      "remediation": "Highlight 'each' in yellow whenever it appears. Read aloud: 'Each ___ has ___' and stop. Ask: 'How many ___s are there? How many in EACH? Multiply.' Build a per-unit reading habit before any computation.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.A.3.M06",
+      "error_type": "total_vs_unit_confusion",
+      "short_label": "Reports per-unit count when total is asked (or vice versa)",
+      "description": "Student computes correctly but answers the wrong question. Asked for 'total cookies', student reports cookies per box. Asked for 'per box', student reports total. The arithmetic is right but the answer is mismatched to what was asked.",
+      "example": "'4 boxes, 6 cookies each. How many cookies in all?' Student multiplies correctly (24) but writes the answer as 6 (per box) — failing to read the question carefully.",
+      "citation": "Smarter Balanced G3 Math Item Specs (2015) — 'Item-level error analysis shows ~12% of multiplication word-problem errors are correct computation paired with wrong target quantity reported; emphasize re-reading the question after computing.'",
+      "source": "Smarter Balanced Grade 3 Item Specifications",
+      "remediation": "After solving, draw an arrow from the question word back to the answer: 'Question asked TOTAL → my answer is the TOTAL.' Underline the question's target quantity twice before computing.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.OA.A.3.M07",
+      "error_type": "missing_factor_inversion",
+      "short_label": "Solves for wrong unknown in n × ? = total",
+      "description": "Given a missing-factor equation like 4 × ? = 20, student computes 4 × 20 = 80 (treating ? as the answer) or 20 + 4 = 24 (mixing operations). The inverse relationship (division) between multiplication and the unknown factor is not yet built.",
+      "example": "'A bag has some marbles. 5 bags have 35 marbles total. How many in each bag?' Student answers 175 (5 × 35) or 40 (35 + 5) instead of 7 (35 ÷ 5).",
+      "citation": "NCTM OA Progressions K-5 (2011) p.31 — 'Missing-factor problems are conceptually division problems; students who lack the multiplication-division inverse relationship default to multiplying the two given numbers, producing inflated answers.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Reframe missing-factor problems as 'count up' or 'skip count to the total.' For 5 × ? = 35: skip count by 5 — 5, 10, 15, 20, 25, 30, 35 — that's 7 skips, so ? = 7. Practice the inverse pair: 5 × 7 = 35 and 35 ÷ 5 = 7.",
+      "bloom_level": 3
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-09",
+    "version": "1.0",
+    "lesson_uses": ["G3_U3_L3", "G3_U3_L4", "G3_U3_L5"],
+    "total_misconceptions": 7
+  }
+}

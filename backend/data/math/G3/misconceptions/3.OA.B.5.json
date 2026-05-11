@@ -1,0 +1,97 @@
+{
+  "standard": "3.OA.B.5",
+  "standard_description": "Apply properties of operations as strategies to multiply and divide. Examples: If 6 × 4 = 24 is known, then 4 × 6 = 24 is also known (Commutative property). 3 × 5 × 2 can be found by 3 × 5 = 15, then 15 × 2 = 30, or by 5 × 2 = 10, then 3 × 10 = 30 (Associative property). Knowing that 8 × 5 = 40 and 8 × 2 = 16, one can find 8 × 7 as 8 × (5 + 2) = (8 × 5) + (8 × 2) = 40 + 16 = 56 (Distributive property).",
+  "sources": [
+    "Carpenter, T.P., Fennema, E., Franke, M.L., Levi, L., & Empson, S.B. (2014). Children's Mathematics: Cognitively Guided Instruction (2nd ed.). Heinemann.",
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Operations and Algebraic Thinking (OA) K–5, 2011",
+    "Van de Walle, J.A., Karp, K.S., & Bay-Williams, J.M. (2013). Elementary and Middle School Mathematics (8th ed.). Pearson.",
+    "EngageNY Grade 3 Module 1 Topic F: Distributive Property and Properties of Multiplication, 2013",
+    "Bay-Williams, J.M., & Kling, G. (2019). Math Fact Fluency. ASCD.",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.OA.B.5.M01",
+      "error_type": "rejects_commutative",
+      "short_label": "Treats a × b and b × a as different problems",
+      "description": "Student does not yet trust the Commutative Property and computes a × b and b × a separately, sometimes getting different answers due to fact-recall errors. Or, the student insists that 'order matters' because the GROUP/SIZE model is different — confusing model with computation.",
+      "example": "Asked '7 × 3 = ?' student answers 21. Asked '3 × 7 = ?' student says 'I don't know that one — let me skip count' and may answer 18 (miscounted). Does not use the known fact 7 × 3 = 21 to deduce 3 × 7 = 21.",
+      "citation": "Bay-Williams & Kling (2019) p.84 — 'Many third graders compute a × b and b × a as independent problems, doubling their fluency burden; explicit teaching that the product is invariant under factor swap halves the facts to memorize.'",
+      "source": "Bay-Williams & Kling, Math Fact Fluency",
+      "remediation": "Show the same array two ways (3 rows of 7 vs 7 rows of 3) — count both. Build a 'fact pair' chart: each row shows a × b = b × a = same product. Practice 'flip-and-find': given any fact, immediately state its commuted partner.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.B.5.M02",
+      "error_type": "overgeneralized_commutative",
+      "short_label": "Applies commutative to subtraction or division",
+      "description": "Student wrongly extends the Commutative Property from multiplication to subtraction or division. Believes 7 − 3 = 3 − 7 or 12 ÷ 3 = 3 ÷ 12. Has not yet distinguished which operations are commutative.",
+      "example": "Asked '8 − 3 = ?' student says 5. Asked '3 − 8 = ?' student also says 5 (or '5, but with a minus sign somewhere?'). Treats subtraction symmetrically.",
+      "citation": "NCTM OA Progressions K-5 (2011) p.34 — 'Students who learn that addition and multiplication are commutative often overgeneralize the property to subtraction and division; explicit counterexamples are needed to establish the asymmetric nature of these operations.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Use concrete counterexamples: 'You have 8 cookies. Take away 3. How many left? Now you have 3 cookies. Take away 8. Can you?' Make a chart: ✓ commutative for + and ×, ✗ for − and ÷. Always test with small numbers.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.B.5.M03",
+      "error_type": "distributive_partial_application",
+      "short_label": "Distributes only one part, forgets the other addend",
+      "description": "When breaking a × (b + c), student multiplies a × b correctly but forgets to also multiply a × c, OR adds b + c without multiplying. The 'distribute to BOTH parts' aspect is missed.",
+      "example": "8 × 7 = 8 × (5 + 2). Student computes 8 × 5 = 40 and stops, answering 40. Or computes 5 + 2 = 7 and answers 7. Does not complete: 40 + (8 × 2) = 40 + 16 = 56.",
+      "citation": "Van de Walle et al. (2013) p.165 — 'Partial distribution is the most common distributive-property error; students compute one of the two products and stop, treating the decomposition as a single-step operation rather than a two-product sum.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Use an area model: split a rectangle into two parts and shade each piece a different color. Compute each piece's area, then ADD. Always say aloud: 'distribute means both parts get the multiplier.'",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.B.5.M04",
+      "error_type": "associative_grouping_error",
+      "short_label": "Wrong grouping in three-factor product",
+      "description": "For products like 3 × 5 × 2, student multiplies in unhelpful order, makes arithmetic mistakes, or groups incorrectly (e.g., adds two factors and multiplies the third). Does not yet use the Associative Property strategically to group easier pairs first.",
+      "example": "3 × 5 × 2: student computes 3 × 5 = 15, then 15 × 2 by guessing → 25 or 35 (wrong). Did not regroup as (5 × 2) × 3 = 10 × 3 = 30 (which is much easier).",
+      "citation": "EngageNY G3 Module 1 Topic F Teacher Edition — 'Strategic grouping in three-factor products requires students to scan for friendly pairs (×2, ×5, ×10) before computing; without this habit, students multiply left-to-right and accumulate errors on the harder middle product.'",
+      "source": "EngageNY Grade 3 Module 1",
+      "remediation": "Teach 'friendly pairs first': scan factors for ×2, ×5, ×10 combinations and group those. For 3 × 5 × 2, point out that 5 × 2 = 10 is friendly. Practice on a set of three-factor problems where strategic grouping makes a clear difference.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.B.5.M05",
+      "error_type": "identity_confusion",
+      "short_label": "Confuses ×1 (identity) with ×0 or thinks 5×1 = 1",
+      "description": "Student thinks n × 1 = 1 (treating 1 as absorbing) or n × 1 = 0 (confusing with zero). Does not yet have the identity rule: any number times 1 = itself. Often appears when students mechanically translate '×1' as 'do nothing' but go too far and answer 0 or 1.",
+      "example": "5 × 1 = ? Student answers 1 (says 'one is just one'), or 0 (says 'multiplying by one means small'). Correct: 5 × 1 = 5 (one group of 5).",
+      "citation": "Carpenter et al. (2014) p.65 — 'The identity property of multiplication is conceptually simple but procedurally confusing: students often treat 1 as a special number that overrides the other factor, rather than as a factor that produces exactly one copy of the partner.'",
+      "source": "Carpenter et al. Children's Mathematics (2014)",
+      "remediation": "Model with concrete groups: '5 × 1 means 5 groups of 1 apple. How many apples? 5.' Or: '1 group of 5 apples. How many? 5.' Either way, 5 × 1 = 5. Build the rule explicitly: ANY number times 1 = ITSELF.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.OA.B.5.M06",
+      "error_type": "zero_property_confusion",
+      "short_label": "Confuses ×0 (zero) with +0 or thinks 5×0 = 5",
+      "description": "Student applies the additive identity (n + 0 = n) to multiplication and answers n × 0 = n. Or, student is unsure and guesses, sometimes correctly (0) and sometimes incorrectly. Has not yet built the rule: any number times 0 = 0, because '0 groups of n' or 'n groups of 0' means nothing at all.",
+      "example": "7 × 0 = ? Student answers 7 (transferring the additive 'zero does nothing' rule). Correct: 7 × 0 = 0.",
+      "citation": "NCTM OA Progressions K-5 (2011) p.35 — 'The zero property of multiplication is frequently confused with the additive identity; students need explicit attention to the meaning of \"0 groups\" and \"groups of 0\" to internalize that the product is always 0.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Model both directions: '7 × 0 = 7 groups of 0 cookies. How many cookies? 0.' And: '0 × 7 = 0 groups of 7 cookies. How many cookies? 0 — there are no groups.' Build the rule: ANY number times 0 = 0.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.OA.B.5.M07",
+      "error_type": "context_breaks_commutative",
+      "short_label": "Cannot apply commutativity to a word-problem context",
+      "description": "Student knows 4 × 6 = 6 × 4 = 24 abstractly but cannot use this to solve a word problem when only one direction is familiar. Worse, student insists the contexts are different ('4 boxes of 6 vs 6 boxes of 4 are different stories!') and refuses to swap factors even when computationally helpful.",
+      "example": "'8 vans, 7 students each. Total students?' Student says 'I don't know 8 × 7' and gives up — even though they know 7 × 8 = 56 from the times-7 family.",
+      "citation": "Bay-Williams & Kling (2019) p.91 — 'Strategic factor-swap requires confidence that the answer is invariant; students who treat context as binding miss opportunities to use known facts to solve unknown ones.'",
+      "source": "Bay-Williams & Kling, Math Fact Fluency",
+      "remediation": "Practice 'swap when stuck': any time a student doesn't recognize a × b, try b × a. Make this an explicit problem-solving step. Use a 'Two Ways' card: write the problem as a × b = b × a and compute the easier one.",
+      "bloom_level": 3
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-09",
+    "version": "1.0",
+    "lesson_uses": ["G3_U3_L6", "G3_U3_L7"],
+    "total_misconceptions": 7
+  }
+}

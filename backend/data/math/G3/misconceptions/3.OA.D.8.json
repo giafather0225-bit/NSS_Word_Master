@@ -1,0 +1,107 @@
+{
+  "standard": "3.OA.D.8",
+  "standard_description": "Solve two-step word problems using the four operations. Represent these problems using equations with a letter standing for the unknown quantity. Assess the reasonableness of answers using mental computation and estimation strategies.",
+  "sources": [
+    "Carpenter, T.P., Fennema, E., Franke, M.L., Levi, L., & Empson, S.B. (1999). Children's Mathematics: Cognitively Guided Instruction. Heinemann.",
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Operations and Algebraic Thinking (OA) K–5, 2011",
+    "Van de Walle, J.A., Karp, K.S., & Bay-Williams, J.M. (2013). Elementary and Middle School Mathematics (8th ed.). Pearson.",
+    "EngageNY Grade 3 Module 2 Teacher Edition, 2013",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.OA.D.8.M01",
+      "error_type": "partial_answer",
+      "short_label": "Stopping at intermediate result",
+      "description": "Student solves only the first step of a two-step problem and reports that intermediate result as the final answer. The student correctly computes the sub-question but fails to recognize that the stated question requires one more operation.",
+      "example": "Problem: 'Elena scored 127 in game 1 and 16 more in game 2. What was her total?' Student computes game 2 = 127+16 = 143 and reports 143 instead of 127+143 = 270.",
+      "citation": "Carpenter et al. (1999) p.13 — 'The most frequent error in two-step word problems is stopping at an intermediate result; this pattern affects 40–60% of Grade 3 students who solve problems without bar models.'",
+      "source": "Carpenter et al. Children's Mathematics",
+      "remediation": "After solving, re-read the question aloud and ask 'Did I answer exactly what was asked?' Use a bar model to make both steps visible before computing.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.D.8.M02",
+      "error_type": "irrelevant_info_used",
+      "short_label": "Using all numbers including irrelevant ones",
+      "description": "Student incorporates all numbers present in the problem regardless of relevance, computing with extra information that the question does not require. Common in problems with three or more numerical values where only two are needed.",
+      "example": "Problem: 'A zoo has 345 birds, 278 reptiles, and 189 mammals. How many more birds than mammals?' Student computes 345+278+189 = 812 instead of 345−189 = 156.",
+      "citation": "Van de Walle et al. (2013) p.167 — 'Students often incorporate all numbers present in a problem regardless of relevance, particularly in multi-part problems; explicit instruction on identifying needed vs. unneeded information is required.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Before solving, circle only the numbers the question asks about. Cross out irrelevant information. Ask 'Does this number help answer the question?'",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.D.8.M03",
+      "error_type": "operation_keyword_misread",
+      "short_label": "Misinterpreting relational language (more/fewer/less)",
+      "description": "Student misapplies relational language such as 'X more than Y' or 'X fewer than Y'. For 'A collected 145 fewer than B', the student adds instead of subtracts, or vice versa. Also occurs when 'more than' in an additive comparison is misread as simple addition without computing the reference quantity first.",
+      "example": "Problem: 'Lily collected 312 seashells. Her brother collected 145 fewer. How many together?' Student computes 312+145 = 457 (adds instead of subtracting to find brother's count).",
+      "citation": "NCTM OA Progressions (2011) p.9 — 'Relational language such as \"more than\" is frequently mis-mapped; students subtract when they should first add an extra amount, or vice versa, because they respond to the surface keyword rather than the underlying relationship.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Draw a comparison bar model: one bar for the larger quantity, one for the smaller, and a bracket showing the difference. The visual makes the direction of the relationship explicit.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.D.8.M04",
+      "error_type": "step_order_error",
+      "short_label": "Performing steps in wrong order",
+      "description": "Student performs the operations in the reverse order of what the problem requires. The student recognizes that two steps are needed but applies the second step before the first, producing an incorrect intermediate value.",
+      "example": "Problem: 'Sam had 500 points. He lost 175 and gained 230.' Student computes 500+230 = 730 first (gain), then 730−175 = 555, instead of 500−175 = 325 first (loss), then 325+230 = 555. (Same answer here by coincidence; in other problems the order matters.)",
+      "citation": "EngageNY G3 Module 2 Lesson 6 Teacher Edition — 'Students sometimes swap the sequence of operations, applying the second step before establishing the correct intermediate result, which produces wrong answers when the two operations are not interchangeable.'",
+      "source": "EngageNY Grade 3 Module 2",
+      "remediation": "Number the events in the problem 1, 2, 3... before solving. Use a bar model timeline: left to right = time order = computation order.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.D.8.M05",
+      "error_type": "missing_step_component",
+      "short_label": "Omitting one component in a multi-part group",
+      "description": "When a problem specifies multiple values to be combined (e.g., two types removed, two groups received), the student uses only one of the values, producing an answer that is off by the omitted component. This differs from M01 in that the student is on the final step but fails to include all required addends or subtrahends.",
+      "example": "Problem: 'A jar had 400 marbles. 156 red and 118 blue were removed.' Student computes 400−156 = 244 (forgets blue), answer should be 400−(156+118) = 126.",
+      "citation": "Carpenter et al. (1999) p.15 — 'Students undercount components when two or more groups are removed or added simultaneously; tracking multiple-part changes in one step is especially demanding at Grade 3.'",
+      "source": "Carpenter et al. Children's Mathematics",
+      "remediation": "Underline every quantity before solving. For removal problems, check: 'Are there more things being taken away that I haven't used yet?' Use a bar model with all parts labeled.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.D.8.M06",
+      "error_type": "single_step_applied",
+      "short_label": "Treating two-step problem as one-step",
+      "description": "Student who has mastered single-step problems applies only one operation even after re-reading confirms a second step is needed. The student correctly identifies one relevant operation but does not structure the full two-step plan.",
+      "example": "Problem with two additions needed: student adds only the first pair of numbers and stops, without recognizing the second required addition.",
+      "citation": "NCTM OA Progressions (2011) p.9 — 'Students who have mastered single-step problems frequently apply only one operation even when re-reading indicates a second step is needed; bar models that show both steps simultaneously are a key intervention.'",
+      "source": "NCTM Progressions OA K-5",
+      "remediation": "Before any computation, count the number of question marks the problem has (what is unknown). For two-step problems, draw two bar models — one per step — before writing any numbers.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.OA.D.8.M07",
+      "error_type": "bar_model_selection_error",
+      "short_label": "Choosing wrong bar model type (addition vs subtraction)",
+      "description": "Student confuses the bar model structure for addition (parts → total) with the structure for subtraction/missing-part (total → known part + unknown part). The student draws a model that doesn't match the problem's operation, or selects the wrong model from a set of choices.",
+      "example": "For 'Tom had 450 cards. He gave some away. Now he has 283.' Student selects a part-part model (labeled ?, 283; total ?) instead of the correct missing-part subtraction model (total 450; parts ?, 283).",
+      "citation": "EngageNY G3 Module 2 Lesson 5 Teacher Edition — 'Students conflate the addition and subtraction bar model structures; the most common error is selecting a part-part-whole addition model for a missing-part subtraction situation.'",
+      "source": "EngageNY Grade 3 Module 2",
+      "remediation": "Ask two questions before drawing: (1) 'Do I know the total?' → if YES, use subtraction model. (2) 'Do I know both parts?' → if YES, use addition model. Teach as a decision tree.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.OA.D.8.M08",
+      "error_type": "multi_step_tracking_error",
+      "short_label": "Losing track of running total in 3+ step problems",
+      "description": "In problems requiring three or more operations, the student correctly performs the first two steps but then applies a subsequent operation to the wrong intermediate value — either using the original quantity instead of the running total, or applying a new operation to a sub-result rather than the current running total.",
+      "example": "Problem with 3 steps (Mon+Tue sales, then Wed returns, then Thu new stock): student applies step 3 to the step 1 result instead of the step 2 running total.",
+      "citation": "Van de Walle et al. (2013) p.168 — 'In three-or-more-step problems, students lose track of the running total after the second operation, often resetting to the original starting value; explicit step-labeling on the bar model prevents this.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Write the running total after EACH step before proceeding. Draw a 'flow' bar model — horizontal sequence of boxes showing the value after each operation.",
+      "bloom_level": 4
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-07",
+    "version": "1.0",
+    "lesson_uses": ["G3_U1_L12"],
+    "total_misconceptions": 8
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "standard": "3.MD.B.3",
+  "standard_description": "Draw a scaled picture graph and a scaled bar graph to represent a data set with several categories. Solve one- and two-step 'how many more' and 'how many less' problems using information presented in scaled bar graphs.",
+  "sources": [
+    "Friel, S.N., Curcio, F.R., & Bright, G.W. (2001). Making sense of graphs: Critical factors influencing comprehension and instructional implications. Journal for Research in Mathematics Education, 32(2), 124–158.",
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Measurement and Data (MD) K–5, 2011",
+    "Van de Walle, J.A., Karp, K.S., & Bay-Williams, J.M. (2013). Elementary and Middle School Mathematics (8th ed.). Pearson.",
+    "EngageNY Grade 3 Module 6: Collecting and Displaying Data, Teacher Edition, 2013",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.MD.B.3.M01",
+      "error_type": "tally_miscount",
+      "short_label": "Miscounting tally groups (𝍸 as 4)",
+      "description": "Student counts each stroke in a tally group individually (treating the diagonal stroke as a fifth separate mark only by coincidence) OR miscounts 𝍸 as 4 instead of 5, typically because they recognize 4 vertical marks and forget that the diagonal stroke converts the group to 5.",
+      "example": "Tally: 𝍸|| — student reads this as 4+2=6 instead of 5+2=7, or counts 5 strokes correctly but then misgroups a second 𝍸 as 4.",
+      "citation": "Friel, Curcio, & Bright (2001) p.130 — 'Students often misinterpret conventional tally symbols, treating the diagonal stroke as a fifth independent mark rather than as a grouping indicator for the full cluster of five.'",
+      "source": "Friel, Curcio, & Bright (2001)",
+      "remediation": "Use physical tally practice: draw 4 vertical lines on paper, then physically cross them with 1 diagonal line to make a 'bundle of 5.' Count the bundle as a unit. Practice: 𝍸 = one hand = 5 fingers.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.B.3.M02",
+      "error_type": "wrong_row_column",
+      "short_label": "Reading the wrong category in a table",
+      "description": "Student selects data from an adjacent or visually similar category rather than the one specified by the question. Common when a table has four or more rows and the student reads one row too high or too low, or when two category names look similar (e.g., 'Cats' vs 'Cake').",
+      "example": "Table: Cats 9, Dogs 7, Fish 4. Question: 'How many chose Fish?' Student reads the Dogs row (7) instead of Fish (4) because Fish is below Dogs in the table.",
+      "citation": "Van de Walle et al. (2013) p.391 — 'Students frequently select data from the wrong row or column in a table, especially when categories are visually similar or adjacent; finger-tracking the row is a simple but effective remediation.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Teach 'finger reading': place one finger on the category name and slide it horizontally to the number column without lifting. Underline or circle the target category name before finding its value.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.B.3.M03",
+      "error_type": "add_instead_of_subtract",
+      "short_label": "Adding instead of subtracting for 'how many more/fewer'",
+      "description": "Student sees 'more' in 'how many more' and performs addition on the two category values instead of subtraction. This surface-keyword error is the most common error type for comparison questions in Grade 3 data units.",
+      "example": "Table: Soccer 10, Tennis 4. Question: 'How many more chose Soccer than Tennis?' Student computes 10 + 4 = 14 instead of 10 − 4 = 6.",
+      "citation": "NCTM MD Progressions K-5 (2011) p.9 — 'Students regularly add category frequencies when asked \"how many more,\" conflating the language of comparison (\"more\") with the operation of addition; this error persists unless students draw comparison bar models.'",
+      "source": "NCTM Progressions MD K-5",
+      "remediation": "Draw a comparison bar: one bar for the larger value, one for the smaller. Label the gap '?'. Ask: 'Do I know the total or the gap?' If the gap is unknown, use subtraction. Emphasize: 'more than' → find the difference → subtract.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.B.3.M04",
+      "error_type": "include_all_categories",
+      "short_label": "Adding all categories instead of isolating two",
+      "description": "When asked 'how many more' between two specific categories, the student sums all category values in the table (finding the grand total) rather than isolating the two being compared. Also occurs when asked for a specific subset: student includes irrelevant categories.",
+      "example": "Table: Red 8, Blue 5, Green 3. Question: 'How many more chose Red than Green?' Student computes 8+5+3=16 instead of 8−3=5.",
+      "citation": "Friel, Curcio, & Bright (2001) p.131 — 'When asked \"how many more\" between two specific categories, students often sum all table frequencies rather than isolating the pair being compared, suggesting they focus on the operation \"add\" without attending to which quantities to add.'",
+      "source": "Friel, Curcio, & Bright (2001)",
+      "remediation": "Before computing, circle ONLY the two categories the question asks about. Cross out all other rows. Ask: 'Do I need these crossed-out numbers?' This visual isolation prevents indiscriminate addition.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.B.3.M05",
+      "error_type": "total_as_comparison",
+      "short_label": "Reporting grand total as a comparison answer",
+      "description": "Student correctly computes the grand total of all categories but then reports that total as the answer to a 'how many more' question. This happens especially in multi-step problems where finding the total is step 1, and the student stops there.",
+      "example": "Table: Pizza 11, Tacos 7, Burgers 5, Salad 3. Question: 'How many did NOT choose Pizza?' Student computes 11+7+5+3=26 and reports 26 instead of 26−11=15.",
+      "citation": "EngageNY G3 Module 6 Lesson 2 Teacher Edition — 'Students conflate \"how many in all\" with \"how many more\" or \"how many did NOT,\" particularly when the total is a computed intermediate step; explicitly labeling each step prevents premature stopping.'",
+      "source": "EngageNY Grade 3 Module 6",
+      "remediation": "After computing the total, re-read the question. Ask: 'Is the question asking for the total, or for part of the total?' Label: 'Total = ___.' Then: 'NOT ___  = Total − that category.'",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.MD.B.3.M06",
+      "error_type": "category_identification_error",
+      "short_label": "Misidentifying most/least popular category",
+      "description": "Student identifies the wrong category as 'most' or 'least' when values are close together or when the student scans the table in an incorrect order. Often the student picks the first or last category in the table rather than scanning all values systematically.",
+      "example": "Table: Juice 9, Water 11, Milk 8, Soda 12. Question: 'Which drink was chosen the most?' Student answers 'Water' (2nd in list) instead of 'Soda' (largest value).",
+      "citation": "Van de Walle et al. (2013) p.391 — 'Students misidentify the maximum or minimum category in a table, particularly when the largest/smallest value is not in the first row; systematic row-by-row comparison with a running \"current best\" strategy prevents this error.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Teach 'champion scan': start with Row 1 as the current champion. Compare each subsequent row to the champion. Replace if larger (for most) or smaller (for least). This systematic scan prevents skipping rows.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.B.3.M07",
+      "error_type": "two_step_data_error",
+      "short_label": "Wrong second operation in two-step data problem",
+      "description": "In two-step problems involving table data, the student correctly extracts individual category values but then applies the wrong second operation. Common patterns: (1) computes total then forgets to subtract the specified category; (2) subtracts when the problem requires adding two sub-groups; (3) uses the original value instead of the modified value after a hypothetical change.",
+      "example": "Problem: 'Table shows 4 categories. How many students did NOT choose the most popular?' Student correctly identifies most popular (15) but computes total incorrectly, or subtracts the wrong category from the total.",
+      "citation": "NCTM MD Progressions K-5 (2011) p.10 — 'In multi-step data problems, students correctly extract individual values from the table but then apply an incorrect second operation, suggesting the difficulty lies in the logical structure of the problem rather than in table-reading skills per se.'",
+      "source": "NCTM Progressions MD K-5",
+      "remediation": "Write a 2-step plan before computing: Step 1: ___. Step 2: ___. Label what each computation produces. After Step 1, re-read the question to confirm what Step 2 should accomplish.",
+      "bloom_level": 3
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-07",
+    "version": "1.0",
+    "lesson_uses": ["G3_U2_L1"],
+    "total_misconceptions": 7
+  }
+}
