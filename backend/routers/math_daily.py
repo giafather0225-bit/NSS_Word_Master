@@ -17,6 +17,7 @@ from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 try:
@@ -308,8 +309,12 @@ def daily_today(db: Session = Depends(get_db)):
             completed=False,
         )
         db.add(row)
-        db.commit()
-        db.refresh(row)
+        try:
+            db.commit()
+            db.refresh(row)
+        except IntegrityError:
+            db.rollback()
+            row = db.query(MathDailyChallenge).filter_by(challenge_date=today).first()
 
     raw = json.loads(row.problems_json) if row.problems_json else []
     client_problems = [{
@@ -402,6 +407,15 @@ def daily_complete(req: DailyCompleteIn, db: Session = Depends(get_db)):
             challenge_date=today, score=req.score, total=req.total, completed=True,
         )
         db.add(row)
+        try:
+            db.commit()
+        except IntegrityError:
+            db.rollback()
+            row = db.query(MathDailyChallenge).filter_by(challenge_date=today).first()
+            if row:
+                row.score = req.score
+                row.total = req.total
+                row.completed = True
     else:
         row.score = req.score
         row.total = req.total
