@@ -148,6 +148,7 @@ async function wiStart(level = 'normal') {
     pool: words,
     active: [],
     particles: [],
+    floats: [],
     powerups: [],
     nextId: 1,
     score: 0,
@@ -258,6 +259,7 @@ function _wiKill(idx) {
   const base = 10 + Math.min(20, _wi.streak * 2);
   const gained = isBoss ? base + WI_CFG.bossScoreBonus : base;
   _wi.score += gained;
+  _wi.floats.push({ x: en.x, y: en.y, text: '+' + gained, color: isBoss ? WI_COLORS.boss : WI_COLORS.success, life: 0.9, maxLife: 0.9, vy: -80 });
   _wi.streak += 1;
   _wi.correct += 1;
   _wi.total += 1;
@@ -265,7 +267,11 @@ function _wiKill(idx) {
   _wi.killsThisWave += 1;
 
   if (typeof sfxHit === 'function') sfxHit(_wi.streak);
-  if (_wi.streak > 0 && _wi.streak % 5 === 0 && typeof sfxCombo === 'function') sfxCombo();
+  if (_wi.streak > 0 && _wi.streak % 5 === 0) {
+    if (typeof sfxCombo === 'function') sfxCombo();
+    const st = document.getElementById('wi-streak');
+    if (st) { st.classList.remove('combo-burst'); void st.offsetWidth; st.classList.add('combo-burst'); }
+  }
 
   // Maybe drop a power-up
   if (!isBoss && Math.random() < WI_CFG.powerupDropRate) {
@@ -440,6 +446,14 @@ function _wiLoop(ts) {
     if (p.life <= 0) _wi.particles.splice(i, 1);
   }
 
+  // Update floating score labels
+  for (let i = _wi.floats.length - 1; i >= 0; i--) {
+    const f = _wi.floats[i];
+    f.y += f.vy * dt;
+    f.life -= dt;
+    if (f.life <= 0) _wi.floats.splice(i, 1);
+  }
+
   _wiDraw(ts);
   requestAnimationFrame(_wiLoop);
 }
@@ -510,7 +524,7 @@ function _wiDraw(ts) {
       ctx.shadowColor = `rgba(255, 215, 0, ${pulseB})`;
       ctx.shadowBlur = 28;
       ctx.fillStyle = WI_COLORS.boss;
-      _wiRoundRect(ctx, x, y, w, h, 16);
+      _arcadeRoundRect(ctx, x, y, w, h, 16);
       ctx.fill();
       ctx.shadowBlur = 0;
       ctx.fillStyle = WI_COLORS.ink;
@@ -520,7 +534,7 @@ function _wiDraw(ts) {
       ctx.shadowColor = `hsl(${hue}, 85%, 60%)`;
       ctx.shadowBlur = 18;
       ctx.fillStyle = `hsl(${hue}, 75%, 55%)`;
-      _wiRoundRect(ctx, x, y, w, h, 14);
+      _arcadeRoundRect(ctx, x, y, w, h, 14);
       ctx.fill();
       ctx.shadowBlur = 0;
       ctx.fillStyle = WI_COLORS.white;
@@ -539,7 +553,7 @@ function _wiDraw(ts) {
     ctx.shadowColor = cfg.color;
     ctx.shadowBlur = 16;
     ctx.fillStyle = cfg.color;
-    _wiRoundRect(ctx, x, y + float, w, h, 10);
+    _arcadeRoundRect(ctx, x, y + float, w, h, 10);
     ctx.fill();
     ctx.shadowBlur = 0;
     ctx.fillStyle = WI_COLORS.bgBot;
@@ -554,6 +568,20 @@ function _wiDraw(ts) {
     ctx.beginPath();
     ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
     ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+
+  // Floating score labels
+  _wi.floats.forEach((f) => {
+    ctx.globalAlpha = Math.max(0, f.life / f.maxLife);
+    ctx.font = '700 20px -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = f.color;
+    ctx.shadowColor = f.color;
+    ctx.shadowBlur = 8;
+    ctx.fillText(f.text, f.x, f.y);
+    ctx.shadowBlur = 0;
   });
   ctx.globalAlpha = 1;
 
@@ -577,15 +605,6 @@ function _wiDraw(ts) {
   ctx.restore();
 }
 
-function _wiRoundRect(ctx, x, y, w, h, r) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.arcTo(x + w, y, x + w, y + h, r);
-  ctx.arcTo(x + w, y + h, x, y + h, r);
-  ctx.arcTo(x, y + h, x, y, r);
-  ctx.arcTo(x, y, x + w, y, r);
-  ctx.closePath();
-}
 
 async function _wiGameOver() {
   const state = _wi;

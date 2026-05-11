@@ -177,6 +177,8 @@ function _suRender() {
   body.querySelectorAll('.su-inp').forEach((el) => {
     el.addEventListener('input', _suOnInput);
     el.addEventListener('keydown', _suOnKey);
+    el.addEventListener('focus', _suOnFocus);
+    el.addEventListener('blur', _suOnBlur);
   });
   const first = body.querySelector('.su-inp');
   if (first) first.focus();
@@ -235,6 +237,28 @@ function _suFocus(r, c) {
   if (el) el.focus();
 }
 
+function _suOnFocus(e) {
+  if (!_su) return;
+  const r = Number(e.target.dataset.r), c = Number(e.target.dataset.c);
+  const { N, br, bc } = _su.lv;
+  const boxR = Math.floor(r / br) * br, boxC = Math.floor(c / bc) * bc;
+  const focusVal = _su.input[r][c];
+  document.querySelectorAll('.su-cell, .su-inp').forEach((el) => {
+    const er = Number(el.dataset.r), ec = Number(el.dataset.c);
+    const peer = er === r || ec === c ||
+      (er >= boxR && er < boxR + br && ec >= boxC && ec < boxC + bc);
+    el.classList.toggle('su-cell--peer', peer && el !== e.target);
+    const elVal = _su.input[er][ec];
+    el.classList.toggle('su-cell--same', !peer && el !== e.target && focusVal !== 0 && elVal === focusVal);
+  });
+}
+
+function _suOnBlur() {
+  document.querySelectorAll('.su-cell--peer, .su-cell--same').forEach((el) => {
+    el.classList.remove('su-cell--peer', 'su-cell--same');
+  });
+}
+
 function _suCheckComplete() {
   const { N } = _su.lv;
   for (let r = 0; r < N; r++)
@@ -260,16 +284,17 @@ async function _suFinish() {
   const accuracy = total > 0 ? correct / total : 1;
 
   const result = await _arcadeReportScore('sudoku', score, correct, total, accuracy, _suLevel);
+  const body = document.getElementById('arcade-body');
+  if (body) {
+    body.innerHTML = `
+      <div class="su-finish">
+        <h2>Solved!</h2>
+        <div class="stat">Time: <b>${seconds}s</b></div>
+        <div class="stat">Mistakes: <b>${state.mistakes}</b></div>
+      </div>`;
+  }
   _arcadeRenderGameOver({
     state: { score, correct, total },
     accuracy, result, replayFn: () => suStart(_suLevel),
   });
-  const body = document.getElementById('arcade-body');
-  const msg = `
-    <div class="su-finish">
-      <h2>Solved!</h2>
-      <div class="stat">Time: <b>${seconds}s</b></div>
-      <div class="stat">Mistakes: <b>${state.mistakes}</b></div>
-    </div>`;
-  if (body) body.insertAdjacentHTML('afterbegin', msg);
 }

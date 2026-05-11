@@ -8,7 +8,6 @@
 /** @tag ARCADE */
 const MK_CFG = {
   roundMs: 90000,
-  target: 24,
   solvePoints: 120,
   streakBonus: 20,
   streakCap: 8,
@@ -220,19 +219,65 @@ function _mkUpdateHUD() {
   if (st) st.textContent = String(_mk.streak);
 }
 
-/* ── Expression eval (safe) ──────────────────────────────────── */
+/* ── Expression eval (shunting-yard, no eval/Function) ──────── */
+
+function _mkApplyOp(a, op, b) {
+  if (op === '+') return a + b;
+  if (op === '-') return a - b;
+  if (op === '*') return a * b;
+  if (op === '/') return Math.abs(b) < 1e-10 ? null : a / b;
+  return null;
+}
 
 function _mkEval(tokens) {
-  // Build string "a + b * ( c - d )"
-  const str = tokens.map((t) => t.kind === 'num' ? `(${t.v})` : t.v).join(' ');
-  if (!/^[0-9+\-*/() .]+$/.test(str)) return null;
-  try {
-    // eslint-disable-next-line no-new-func
-    const v = Function(`"use strict"; return (${str});`)();
-    return Number.isFinite(v) ? v : null;
-  } catch {
-    return null;
+  const prec = { '+': 1, '-': 1, '*': 2, '/': 2 };
+  const output = [];
+  const opStack = [];
+
+  for (const tok of tokens) {
+    if (tok.kind === 'num') {
+      output.push(tok.v);
+    } else if (tok.v === '(') {
+      opStack.push('(');
+    } else if (tok.v === ')') {
+      while (opStack.length && opStack[opStack.length - 1] !== '(') {
+        output.push(opStack.pop());
+      }
+      if (!opStack.length) return null;
+      opStack.pop();
+    } else {
+      const op = tok.v;
+      while (
+        opStack.length &&
+        opStack[opStack.length - 1] !== '(' &&
+        (prec[opStack[opStack.length - 1]] || 0) >= (prec[op] || 0)
+      ) {
+        output.push(opStack.pop());
+      }
+      opStack.push(op);
+    }
   }
+  while (opStack.length) {
+    const op = opStack.pop();
+    if (op === '(') return null;
+    output.push(op);
+  }
+
+  const stack = [];
+  for (const item of output) {
+    if (typeof item === 'number') {
+      stack.push(item);
+    } else {
+      if (stack.length < 2) return null;
+      const b = stack.pop();
+      const a = stack.pop();
+      const r = _mkApplyOp(a, item, b);
+      if (r === null) return null;
+      stack.push(r);
+    }
+  }
+  if (stack.length !== 1) return null;
+  return Number.isFinite(stack[0]) ? stack[0] : null;
 }
 
 /* ── Solvable hand generator ─────────────────────────────────── */
@@ -249,22 +294,25 @@ function _mkGenSolvable() {
 }
 
 function _mkHasSolution(nums, ops, target) {
-  const perms = _perm(nums);
-  for (const [a, b, c, d] of perms) {
+  for (const [a, b, c, d] of _perm(nums)) {
     for (const o1 of ops) for (const o2 of ops) for (const o3 of ops) {
-      const exprs = [
-        `((${a}${o1}${b})${o2}${c})${o3}${d}`,
-        `(${a}${o1}(${b}${o2}${c}))${o3}${d}`,
-        `(${a}${o1}${b})${o2}(${c}${o3}${d})`,
-        `${a}${o1}((${b}${o2}${c})${o3}${d})`,
-        `${a}${o1}(${b}${o2}(${c}${o3}${d}))`,
-      ];
-      for (const e of exprs) {
-        try {
-          const v = Function(`"use strict"; return (${e});`)();
-          if (Number.isFinite(v) && Math.abs(v - target) < 1e-9) return true;
-        } catch {}
-      }
+      // ((a o1 b) o2 c) o3 d
+      const ab = _mkApplyOp(a, o1, b);
+      const abc1 = ab !== null ? _mkApplyOp(ab, o2, c) : null;
+      if (abc1 !== null) { const r = _mkApplyOp(abc1, o3, d); if (r !== null && Math.abs(r - target) < 1e-9) return true; }
+      // (a o1 (b o2 c)) o3 d
+      const bc = _mkApplyOp(b, o2, c);
+      const abc2 = bc !== null ? _mkApplyOp(a, o1, bc) : null;
+      if (abc2 !== null) { const r = _mkApplyOp(abc2, o3, d); if (r !== null && Math.abs(r - target) < 1e-9) return true; }
+      // (a o1 b) o2 (c o3 d)
+      const cd = _mkApplyOp(c, o3, d);
+      if (ab !== null && cd !== null) { const r = _mkApplyOp(ab, o2, cd); if (r !== null && Math.abs(r - target) < 1e-9) return true; }
+      // a o1 ((b o2 c) o3 d)
+      const bcd1 = bc !== null ? _mkApplyOp(bc, o3, d) : null;
+      if (bcd1 !== null) { const r = _mkApplyOp(a, o1, bcd1); if (r !== null && Math.abs(r - target) < 1e-9) return true; }
+      // a o1 (b o2 (c o3 d))
+      const bcd2 = cd !== null ? _mkApplyOp(b, o2, cd) : null;
+      if (bcd2 !== null) { const r = _mkApplyOp(a, o1, bcd2); if (r !== null && Math.abs(r - target) < 1e-9) return true; }
     }
   }
   return false;

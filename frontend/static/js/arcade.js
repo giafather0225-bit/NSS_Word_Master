@@ -28,6 +28,7 @@ const ARCADE_GAMES = [
   { id: 'definition_match', category: 'english', title: 'Match or Not',  icon: _SVG.helpCircle,  sub: 'Does the definition match? Tap Yes or No. 60 seconds.', enabled: true },
   { id: 'spell_rush',       category: 'english', title: 'Spell Rush',    icon: _SVG.keyboard,    sub: 'Spell each word letter-by-letter. Beat the clock.', enabled: true },
   { id: 'crossword',        category: 'english', title: 'Crossword',     icon: _SVG.layoutGrid,  sub: 'Fill the grid using definitions as clues.', enabled: true },
+  { id: 'word_builder',    category: 'english', title: 'Word Builder',  icon: _SVG.keyboard,    sub: 'Rearrange the scrambled tiles to spell the word. 60 seconds.', enabled: true },
   { id: 'math_invaders',    category: 'math',    title: 'Math Invaders', icon: _SVG.zap,         sub: 'Type the answer before the equation lands.', enabled: true },
   { id: 'sudoku',           category: 'math',    title: 'Sudoku',        icon: _SVG.hash,        sub: '4x4, 6x6, or 9x9 — classic number puzzle.', enabled: true },
   { id: 'make24',           category: 'math',    title: 'Make 24',       icon: _SVG.target,      sub: 'Combine four numbers to reach 24. 90 seconds.', enabled: true },
@@ -67,6 +68,7 @@ function closeArcade() {
   if (typeof miStop === 'function') miStop();
   if (typeof suStop === 'function') suStop();
   if (typeof mkStop === 'function') mkStop();
+  if (typeof wbStop === 'function') wbStop();
   const el = document.getElementById('arcade-overlay');
   if (el) el.classList.add('hidden');
 }
@@ -126,6 +128,7 @@ function _launchArcadeGame(id) {
   else if (id === 'math_invaders' && typeof miShowLevelPicker === 'function') miShowLevelPicker();
   else if (id === 'sudoku' && typeof suShowLevelPicker === 'function') suShowLevelPicker();
   else if (id === 'make24' && typeof mkShowLevelPicker === 'function') mkShowLevelPicker();
+  else if (id === 'word_builder' && typeof wbStart === 'function') wbStart();
 }
 
 /** Return to arcade lobby from a game. @tag ARCADE */
@@ -137,6 +140,7 @@ function arcadeReturnToLobby() {
   if (typeof miStop === 'function') miStop();
   if (typeof suStop === 'function') suStop();
   if (typeof mkStop === 'function') mkStop();
+  if (typeof wbStop === 'function') wbStop();
   _renderArcadeLobby();
 }
 
@@ -150,6 +154,7 @@ const _ARCADE_TIPS = {
   crossword: 'Click a square to highlight the word. Type letters in the boxes. Green = correct!',
   sudoku: 'Every row, column, and box must have each number once. Green cells are right, red are wrong.',
   make24: 'Tap numbers and operators to build an expression that equals the target. Use all four numbers.',
+  word_builder: 'Click the scrambled letter tiles in the right order to spell the word shown by its definition.',
 };
 
 /** Show a one-time tutorial banner above a game. Dismissed forever after tap. @tag ARCADE */
@@ -256,4 +261,15 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
   } else if (typeof sfxGameOver === 'function') {
     sfxGameOver();
   }
+}
+
+/** Shared canvas rounded-rect path helper. @tag ARCADE */
+function _arcadeRoundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
 }

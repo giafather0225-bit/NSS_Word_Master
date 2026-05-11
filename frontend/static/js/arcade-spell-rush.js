@@ -95,7 +95,10 @@ function _srTick() {
   const elapsed = performance.now() - _sr.startedAt;
   const remain = Math.max(0, SR_CFG.roundMs - elapsed);
   const el = document.getElementById('sr-time');
-  if (el) el.textContent = String(Math.ceil(remain / 1000));
+  if (el) {
+    el.textContent = String(Math.ceil(remain / 1000));
+    el.classList.toggle('sr-time--urgent', remain <= 10000);
+  }
   if (remain <= 0) {
     _srGameOver();
     return;
@@ -167,17 +170,28 @@ function _srSubmit() {
     const streakMult = 1 + Math.min(1.0, _sr.streak * 0.08); // up to 2x
     _sr.score += Math.round((SR_CFG.wordCompleteBase + letterPts) * streakMult);
     if (typeof sfxHit === 'function') sfxHit(_sr.streak);
-    if (_sr.streak > 0 && _sr.streak % 5 === 0 && typeof sfxCombo === 'function') sfxCombo();
+    if (_sr.streak > 0 && _sr.streak % 5 === 0) {
+      if (typeof sfxCombo === 'function') sfxCombo();
+      const st = document.getElementById('sr-streak');
+      if (st) { st.classList.remove('combo-burst'); void st.offsetWidth; st.classList.add('combo-burst'); }
+    }
   } else {
     _sr.streak = 0;
     _sr.score = Math.max(0, _sr.score - SR_CFG.wrongPenalty);
     if (typeof sfxMiss === 'function') sfxMiss();
-    // Flash the boxes red briefly
     const box = document.getElementById('sr-boxes');
     if (box) {
       box.classList.add('sr-shake');
       setTimeout(() => box.classList.remove('sr-shake'), 300);
+      // Show correct spelling for 900 ms
+      const { word } = _sr.current;
+      box.innerHTML = word.split('').map((ch) =>
+        `<span class="sr-cell sr-cell--ok">${ch.toUpperCase()}</span>`
+      ).join('');
     }
+    _srUpdateHUD();
+    setTimeout(() => { if (_sr && _sr.running) _srNextWord(); }, 900);
+    return;
   }
   _srUpdateHUD();
   _srNextWord();

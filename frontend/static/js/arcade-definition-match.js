@@ -35,6 +35,7 @@ async function dmStart() {
         <div class="dm-word" id="dm-word">—</div>
         <div class="dm-eq">=</div>
         <div class="dm-def" id="dm-def">—</div>
+        <div class="dm-reveal" id="dm-reveal"></div>
       </div>
       <div class="dm-buttons">
         <button type="button" class="dm-btn dm-btn--no" id="dm-no">No</button>
@@ -112,6 +113,7 @@ function _dmNextPair() {
   const shouldMatch = Math.random() < DM_CFG.matchProbability;
 
   let defText = wordEntry.definition;
+  let isMatch = true;
   if (!shouldMatch) {
     // pick a different entry whose definition clearly differs
     for (let i = 0; i < 8; i++) {
@@ -121,15 +123,18 @@ function _dmNextPair() {
         other.definition.toLowerCase() !== wordEntry.definition.toLowerCase()
       ) {
         defText = other.definition;
+        isMatch = false;
         break;
       }
     }
+    // if no differing def found, force-match so isMatch stays correct
   }
 
   _dm.current = {
     word: wordEntry.word,
     definition: defText,
-    isMatch: defText === wordEntry.definition,
+    correctDef: wordEntry.definition,
+    isMatch,
   };
   _dm.lock = false;
 
@@ -164,10 +169,16 @@ function _dmAnswer(saidYes) {
   _dmUpdateHUD();
 
   const card = document.getElementById('dm-card');
+  const reveal = document.getElementById('dm-reveal');
   if (card) {
     card.classList.add(correct ? 'dm-card--correct' : 'dm-card--wrong');
   }
+  if (!correct && reveal && !_dm.current.isMatch) {
+    reveal.textContent = `Correct: "${_dm.current.word}" = ${_dm.current.correctDef}`;
+    reveal.classList.add('dm-reveal--show');
+  }
   setTimeout(() => {
+    if (reveal) { reveal.textContent = ''; reveal.classList.remove('dm-reveal--show'); }
     if (_dm && _dm.running) _dmNextPair();
   }, correct ? DM_CFG.feedbackMs : DM_CFG.feedbackMs * 2);
 }

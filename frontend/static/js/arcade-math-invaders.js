@@ -74,7 +74,7 @@ function miStart(level = 'normal') {
   const canvas = document.getElementById('mi-canvas');
   _mi = {
     canvas, ctx: canvas.getContext('2d'),
-    active: [], particles: [], nextId: 1,
+    active: [], particles: [], floats: [], nextId: 1,
     score: 0, lives: MI_CFG.maxLives, streak: 0, correct: 0, total: 0,
     fallSpeed: lv.fall, lastTs: performance.now(), lastSpawnAt: 0, nextSpawnDelay: 800,
     running: true, startedAt: performance.now(), shakeUntil: 0,
@@ -134,10 +134,16 @@ function _miKeydown(e) {
     const en = _mi.active[hitIdx];
     _miBurst(en.x, en.y + 18, '#34C759');
     _mi.active.splice(hitIdx, 1);
-    _mi.score += 15 + Math.min(30, _mi.streak * 3);
+    const gained = 15 + Math.min(30, _mi.streak * 3);
+    _mi.score += gained;
+    _mi.floats.push({ x: en.x, y: en.y, text: '+' + gained, color: '#34C759', life: 0.9, maxLife: 0.9, vy: -80 });
     _mi.streak += 1; _mi.correct += 1; _mi.total += 1;
     if (typeof sfxHit === 'function') sfxHit(_mi.streak);
-    if (_mi.streak > 0 && _mi.streak % 5 === 0 && typeof sfxCombo === 'function') sfxCombo();
+    if (_mi.streak > 0 && _mi.streak % 5 === 0) {
+      if (typeof sfxCombo === 'function') sfxCombo();
+      const st = document.getElementById('mi-streak');
+      if (st) { st.classList.remove('combo-burst'); void st.offsetWidth; st.classList.add('combo-burst'); }
+    }
   } else {
     _mi.streak = 0;
     if (typeof sfxMiss === 'function') sfxMiss();
@@ -236,6 +242,12 @@ function _miLoop(ts) {
     p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 260 * dt; p.life -= dt;
     if (p.life <= 0) _mi.particles.splice(i, 1);
   }
+  for (let i = _mi.floats.length - 1; i >= 0; i--) {
+    const f = _mi.floats[i];
+    f.y += f.vy * dt;
+    f.life -= dt;
+    if (f.life <= 0) _mi.floats.splice(i, 1);
+  }
   _miDraw(ts);
   requestAnimationFrame(_miLoop);
 }
@@ -279,7 +291,7 @@ function _miDraw(ts) {
     const hue = 200 - danger * 200;
     ctx.shadowColor = `hsl(${hue}, 85%, 60%)`; ctx.shadowBlur = 18;
     ctx.fillStyle = `hsl(${hue}, 75%, 55%)`;
-    _miRoundRect(ctx, x, y, w, h, 14); ctx.fill();
+    _arcadeRoundRect(ctx, x, y, w, h, 14); ctx.fill();
     ctx.shadowBlur = 0;
     ctx.fillStyle = '#FFFFFF';
     ctx.fillText(text, x + w / 2, y + h / 2 + 1);
@@ -289,18 +301,21 @@ function _miDraw(ts) {
     ctx.fillStyle = p.color; ctx.globalAlpha = alpha;
     ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fill();
   });
+  ctx.globalAlpha = 1;
+  _mi.floats.forEach((f) => {
+    ctx.globalAlpha = Math.max(0, f.life / f.maxLife);
+    ctx.font = '700 20px -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = f.color;
+    ctx.shadowColor = f.color;
+    ctx.shadowBlur = 8;
+    ctx.fillText(f.text, f.x, f.y);
+    ctx.shadowBlur = 0;
+  });
   ctx.globalAlpha = 1; ctx.restore();
 }
 
-function _miRoundRect(ctx, x, y, w, h, r) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.arcTo(x + w, y, x + w, y + h, r);
-  ctx.arcTo(x + w, y + h, x, y + h, r);
-  ctx.arcTo(x, y + h, x, y, r);
-  ctx.arcTo(x, y, x + w, y, r);
-  ctx.closePath();
-}
 
 async function _miGameOver() {
   const state = _mi;

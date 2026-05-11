@@ -13,8 +13,8 @@ import logging
 import random
 from datetime import date, datetime
 
-from fastapi import APIRouter, Depends
-from pydantic import BaseModel
+from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
@@ -31,6 +31,11 @@ logger = logging.getLogger(__name__)
 
 _BEST_KEY_PREFIX = "arcade_best_"
 _DUE_BOOST = 3  # how many times a due word appears in the weighted pool
+_ALLOWED_GAMES = frozenset({
+    "word_invaders", "definition_match", "spell_rush",
+    "crossword", "math_invaders", "sudoku", "make24",
+    "word_builder",
+})
 
 
 def _short_def(text: str) -> str:
@@ -159,16 +164,18 @@ def arcade_words(count: int = 40, db: Session = Depends(get_db)) -> dict:
 @router.get("/api/arcade/best/{game}")
 def arcade_best(game: str, level: str = "", db: Session = Depends(get_db)) -> dict:
     """Return personal best score for a given arcade game (optionally per level)."""
+    if game not in _ALLOWED_GAMES:
+        raise HTTPException(status_code=422, detail=f"unknown game '{game}'")
     return _get_best(db, game, level)
 
 
 class ScoreRequest(BaseModel):
     """POST /api/arcade/score body."""
     game: str
-    score: int
-    correct: int
-    total: int
-    accuracy: float
+    score: int = Field(ge=0, le=999_999)
+    correct: int = Field(ge=0, le=10_000)
+    total: int = Field(ge=0, le=10_000)
+    accuracy: float = Field(ge=0.0, le=1.0)
     level: str = ""
 
 
@@ -179,6 +186,11 @@ def arcade_score(req: ScoreRequest, db: Session = Depends(get_db)) -> dict:
 
     XP tiers: 500+=1, 1000+=2, 2000+=3. Daily cap defined by ARCADE_DAILY_CAP.
     """
+    if req.game not in _ALLOWED_GAMES:
+        raise HTTPException(status_code=422, detail=f"unknown game '{req.game}'")
+    if req.correct > req.total:
+        raise HTTPException(status_code=422, detail="correct cannot exceed total")
+
     xp_result = award_arcade_xp(db, req.score, game=req.game)
 
     prev_best = _get_best(db, req.game, req.level)

@@ -247,12 +247,24 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
-  color: var(--color-warning);
-  padding: 8px 16px;
+  color: var(--arcade-ink);
+  padding: 10px 20px;
   border-radius: var(--radius-full);
-  background: var(--color-warning-light);
+  background: linear-gradient(135deg, var(--arcade-soft), var(--arcade-light));
+  border: 2px solid var(--arcade-primary);
+  box-shadow: 0 0 0 0 var(--arcade-primary);
+  animation: new-best-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.4) both,
+             new-best-glow 1.2s ease-in-out 0.5s infinite alternate;
+}
+@keyframes new-best-pop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+@keyframes new-best-glow {
+  from { box-shadow: 0 0 6px 0 var(--arcade-primary); }
+  to   { box-shadow: 0 0 18px 4px var(--arcade-primary); }
 }
 
 /* ── Match or Not ───────────────────────────────────────── */
@@ -303,6 +315,19 @@
   line-height: 1.4;
   max-width: 460px;
 }
+.dm-reveal {
+  display: none;
+  font-size: 13px;
+  color: var(--review-ink);
+  background: var(--review-light);
+  border: 1px solid var(--review-soft);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  text-align: center;
+  max-width: 460px;
+  line-height: 1.4;
+}
+.dm-reveal--show { display: block; }
 .dm-buttons {
   display: flex;
   gap: 16px;
@@ -389,11 +414,29 @@
   border-color: var(--color-error);
   color: var(--color-error);
 }
+.sr-time--urgent {
+  color: var(--color-error) !important;
+  animation: sr-time-pulse 0.6s ease-in-out infinite alternate;
+}
+@keyframes sr-time-pulse {
+  from { opacity: 1; }
+  to   { opacity: 0.45; }
+}
 .sr-shake { animation: sr-shake 0.3s ease; }
 @keyframes sr-shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-6px); }
   75% { transform: translateX(6px); }
+}
+
+.combo-burst {
+  animation: combo-burst 0.45s ease forwards;
+}
+@keyframes combo-burst {
+  0%   { transform: scale(1);    color: inherit; }
+  40%  { transform: scale(1.55); color: var(--arcade-primary); }
+  70%  { transform: scale(1.3);  color: var(--arcade-primary); }
+  100% { transform: scale(1);    color: inherit; }
 }
 
 /* ── Level picker (shared by all games) ──────────────────────── */
@@ -683,7 +726,9 @@
   .su-cell { font-size: 14px; }
 }
 .su-cell--given { background: var(--color-primary-light); color: var(--color-primary); }
-.su-inp:focus { background: var(--color-warning-light); }
+.su-cell--peer { background: var(--arcade-soft) !important; }
+.su-cell--same { background: var(--arcade-light) !important; color: var(--arcade-ink); font-weight: 800; }
+.su-inp:focus { background: var(--arcade-light) !important; outline: 2px solid var(--arcade-primary); }
 .su-inp--ok { color: var(--color-success); }
 .su-inp--bad { color: var(--color-error); background: var(--color-error-light); }
 .su-border-r { border-right: 2px solid var(--text-primary); }
@@ -749,3 +794,119 @@
 .mk-op:hover { background: var(--color-primary-light); border-color: var(--color-primary); }
 .mk-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .mk-shake { animation: sr-shake 0.3s ease; }
+
+/* ── Word Builder ────────────────────────────────────────────────── */
+.wb-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px 20px;
+  max-width: 560px;
+  margin: 0 auto;
+  width: 100%;
+}
+.wb-loading { color: var(--text-secondary); font-size: 15px; padding: 32px; }
+.wb-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 20px 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.wb-def {
+  font-size: 15px;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.5;
+  min-height: 44px;
+  padding: 0 8px;
+}
+.wb-answer-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 52px;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: background 0.12s;
+}
+.wb-answer-row.wb-answer--correct { background: rgba(52, 199, 89, 0.15); }
+.wb-answer-row.wb-answer--wrong   { animation: sr-shake 0.35s ease; background: rgba(255, 59, 48, 0.12); }
+.wb-divider {
+  width: 80%;
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 0;
+}
+.wb-tiles {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 52px;
+  padding: 4px;
+}
+.wb-tile {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-size: 18px;
+  font-weight: 800;
+  font-family: var(--font-family-display);
+  letter-spacing: 0.02em;
+  transition: transform 0.1s, background 0.1s, border-color 0.1s;
+  user-select: none;
+}
+.wb-pool-tile {
+  background: var(--english-light);
+  border: 2px solid var(--english-soft);
+  color: var(--english-ink);
+  cursor: pointer;
+}
+.wb-pool-tile:hover {
+  background: var(--english-soft);
+  border-color: var(--english-primary);
+  transform: translateY(-2px);
+}
+.wb-answer-tile {
+  background: var(--english-primary);
+  border: 2px solid var(--english-hover);
+  color: #fff;
+  cursor: pointer;
+}
+.wb-answer-tile:hover { background: var(--english-hover); transform: translateY(-2px); }
+.wb-tile--revealed {
+  background: var(--arcade-primary) !important;
+  border-color: var(--arcade-hover) !important;
+  color: #fff !important;
+}
+.wb-tile--burst {
+  animation: wb-burst 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.4) both;
+}
+@keyframes wb-burst {
+  0%   { transform: scale(1);    background: var(--bg-card); }
+  50%  { transform: scale(1.35); background: var(--math-light); border-color: var(--math-primary); color: var(--math-ink); }
+  100% { transform: scale(1);    background: var(--math-light); border-color: var(--math-primary); color: var(--math-ink); }
+}
+.wb-blank-tile {
+  background: transparent;
+  border: 2px dashed var(--border-default);
+  cursor: default;
+}
+.wb-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.wb-hint-btn:disabled { opacity: 0.45; cursor: not-allowed; }
