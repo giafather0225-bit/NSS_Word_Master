@@ -235,30 +235,49 @@ def get_domains(grade: int = Query(3), db: Session = Depends(get_db)):
     completed_lessons = len(completed_set)
     completion_pct = round(completed_lessons / total_lessons * 100) if total_lessons else 0
 
-    domain_list = [
-        {
+    # Read sequential-order config (default: free order)
+    order_cfg = db.query(AppConfig).filter_by(key=f"ckla_domain_order_fixed").first()
+    order_fixed = order_cfg and order_cfg.value == "true"
+
+    # Build all_complete set keyed by domain_num for sequential-lock check
+    all_complete_by_num: dict[int, bool] = {}
+    for d in domains:
+        ids = all_lesson_ids_by_domain[d.id]
+        all_complete_by_num[d.domain_num] = (
+            len(ids) > 0 and all(lid in completed_set for lid in ids)
+        )
+
+    domain_list = []
+    for d in domains:
+        ids = all_lesson_ids_by_domain[d.id]
+        is_all_complete = all_complete_by_num[d.domain_num]
+
+        # A domain is locked when sequential order is enforced AND
+        # the previous domain (domain_num - 1) exists but is not yet all_complete.
+        prev_num = d.domain_num - 1
+        locked = (
+            order_fixed
+            and prev_num in all_complete_by_num
+            and not all_complete_by_num[prev_num]
+        )
+
+        domain_list.append({
             "id":              d.id,
             "domain_num":      d.domain_num,
             "title":           d.title,
             "lesson_count":    d.lesson_count,
             "grade":           d.grade,
-            "completed_count": sum(
-                1 for lid in all_lesson_ids_by_domain[d.id] if lid in completed_set
-            ),
-            "all_complete": (
-                len(all_lesson_ids_by_domain[d.id]) > 0
-                and all(lid in completed_set for lid in all_lesson_ids_by_domain[d.id])
-            ),
-        }
-        for d in domains
-    ]
+            "completed_count": sum(1 for lid in ids if lid in completed_set),
+            "all_complete":    is_all_complete,
+            "locked":          locked,
+        })
 
     return {
-        "rank":            _grade_rank(completion_pct),
-        "completion_pct":  completion_pct,
-        "total_lessons":   total_lessons,
+        "rank":              _grade_rank(completion_pct),
+        "completion_pct":    completion_pct,
+        "total_lessons":     total_lessons,
         "completed_lessons": completed_lessons,
-        "domains":         domain_list,
+        "domains":           domain_list,
     }
 
 
@@ -269,6 +288,28 @@ def get_lessons(domain_num: int, grade: int = Query(3), db: Session = Depends(ge
     domain = db.query(CKLADomain).filter_by(domain_num=domain_num, grade=grade, is_active=True).first()
     if not domain:
         raise HTTPException(status_code=404, detail="Domain not found")
+
+    # Enforce sequential domain order if configured
+    order_cfg = db.query(AppConfig).filter_by(key="ckla_domain_order_fixed").first()
+    if order_cfg and order_cfg.value == "true" and domain_num > 1:
+        prev_domain = db.query(CKLADomain).filter_by(
+            domain_num=domain_num - 1, grade=grade, is_active=True
+        ).first()
+        if prev_domain:
+            prev_ids = [
+                r.id for r in
+                db.query(CKLALesson.id).filter_by(domain_id=prev_domain.id, is_active=True).all()
+            ]
+            if prev_ids:
+                prev_completed = db.query(CKLALessonProgress).filter(
+                    CKLALessonProgress.lesson_id.in_(prev_ids),
+                    CKLALessonProgress.completed == True,
+                ).count()
+                if prev_completed < len(prev_ids):
+                    raise HTTPException(
+                        status_code=403,
+                        detail=f"Complete Domain {domain_num - 1} first.",
+                    )
 
     lessons = (
         db.query(CKLALesson)

@@ -137,7 +137,14 @@ function _renderDomains(domains, rank, completionPct) {
       ${progressLine}
     </div>
     <div class="ckla-domain-grid">
-      ${domains.map(d => `
+      ${domains.map(d => d.locked ? `
+        <div class="ckla-domain-card ckla-domain-card--locked" title="Complete Domain ${d.domain_num - 1} first">
+          <div class="ckla-domain-lock-icon"><i data-lucide="lock" width="18" height="18"></i></div>
+          <div class="ckla-domain-num">Domain ${d.domain_num}</div>
+          <div class="ckla-domain-title">${d.title}</div>
+          <div class="ckla-domain-locked-hint">Complete Domain ${d.domain_num - 1} first</div>
+        </div>
+      ` : `
         <div class="ckla-domain-card" onclick="loadCKLALessons(${d.domain_num})">
           <div class="ckla-domain-num">Domain ${d.domain_num}</div>
           <div class="ckla-domain-title">${d.title}</div>
@@ -153,6 +160,7 @@ function _renderDomains(domains, rank, completionPct) {
         <div class="ckla-loading" style="font-size:.82rem">Checking final test status…</div>
       </div>` : ''}`;
 
+  if (typeof lucide !== 'undefined') lucide.createIcons();
   if (allComplete) _loadFinalTestRow();
 }
 
