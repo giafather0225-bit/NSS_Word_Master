@@ -1,65 +1,1419 @@
 {
   "lesson_id": "L6_estimate_measure_volume",
   "title": "Estimate and Measure Liquid Volume (Liters)",
-  "ccss": ["3.MD.A.2"],
+  "ccss": [
+    "3.MD.A.2"
+  ],
   "grade": "G3",
   "unit": "U11_time_mass_volume",
   "go_math_ref": "Chapter 10, Lesson 10.8",
   "essential_question": "How do you estimate and measure liquid volume?",
-  "key_vocabulary": ["liquid volume", "capacity", "liter", "L", "milliliter", "mL"],
+  "key_vocabulary": [
+    "liquid volume",
+    "capacity",
+    "liter",
+    "L",
+    "milliliter",
+    "mL"
+  ],
   "pretest": [
-    {"id": "PT_01", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "volume_definition", "difficulty": 1, "question": "LIQUID VOLUME measures:", "choices": ["A) How much liquid a container holds", "B) How heavy", "C) How long", "D) Time"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "That's mass"}, "C": {"error_type": "concept_gap", "note": "Length"}}, "verification": "Liquid volume = capacity.", "hints": ["Liquid amount."], "feedback": {"correct": "Right!", "incorrect": "Volume = how much liquid."}},
-    {"id": "PT_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "L_to_mL", "difficulty": 1, "question": "1 liter = ___ milliliters?", "correct_answer": "1000", "expected_errors": {"100": {"error_type": "concept_gap", "note": "1000"}}, "verification": "1 L = 1000 mL.", "hints": ["1000."], "feedback": {"correct": "Right!", "incorrect": "1 L = 1000 mL."}},
-    {"id": "PT_03", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume", "difficulty": 2, "question": "Best unit for a small medicine dropper:", "choices": ["A) liter", "B) milliliter", "C) gram", "D) kilogram"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Liter is big"}, "C": {"error_type": "concept_gap", "note": "Mass not volume"}}, "verification": "mL.", "hints": ["Small."], "feedback": {"correct": "Right!", "incorrect": "Dropper = mL (small)."}},
-    {"id": "PT_04", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume", "difficulty": 2, "question": "Best unit for a swimming pool:", "choices": ["A) milliliter", "B) liter", "C) gram"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Pool is big"}, "C": {"error_type": "concept_gap", "note": "Mass not volume"}}, "verification": "L.", "hints": ["Big."], "feedback": {"correct": "Right!", "incorrect": "Pool = L (big)."}},
-    {"id": "PT_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "convert_L_mL", "difficulty": 2, "question": "How many mL in 4 L?", "correct_answer": "4000", "expected_errors": {"400": {"error_type": "concept_gap", "note": "×1000"}}, "verification": "4000.", "hints": ["×1000."], "feedback": {"correct": "Right!", "incorrect": "4×1000=4000."}}
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "volume_definition",
+      "difficulty": 1,
+      "question": "LIQUID VOLUME measures:",
+      "choices": [
+        "A) How much liquid a container holds",
+        "B) How heavy",
+        "C) How long",
+        "D) Time"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "That's mass"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Length"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Liquid volume = capacity."
+      },
+      "hints": [
+        "Liquid amount."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Volume = how much liquid."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "L_to_mL",
+      "difficulty": 1,
+      "question": "1 liter = ___ milliliters?",
+      "correct_answer": "1000",
+      "expected_errors": {
+        "100": {
+          "error_type": "concept_gap",
+          "note": "1000"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "1 L = 1000 mL."
+      },
+      "hints": [
+        "1000."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "1 L = 1000 mL."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_03",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume",
+      "difficulty": 2,
+      "question": "Best unit for a small medicine dropper:",
+      "choices": [
+        "A) liter",
+        "B) milliliter",
+        "C) gram",
+        "D) kilogram"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Liter is big"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Mass not volume"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "mL."
+      },
+      "hints": [
+        "Small."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Dropper = mL (small)."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume",
+      "difficulty": 2,
+      "question": "Best unit for a swimming pool:",
+      "choices": [
+        "A) milliliter",
+        "B) liter",
+        "C) gram"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Pool is big"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Mass not volume"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "L."
+      },
+      "hints": [
+        "Big."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Pool = L (big)."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_L_mL",
+      "difficulty": 2,
+      "question": "How many mL in 4 L?",
+      "correct_answer": "4000",
+      "expected_errors": {
+        "400": {
+          "error_type": "concept_gap",
+          "note": "×1000"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4000."
+      },
+      "hints": [
+        "×1000."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4×1000=4000."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "learn": [
-    {"id": "LEARN_01", "type": "concept_card", "cpa_phase": "concrete", "title": "What Is Liquid Volume?", "content": "LIQUID VOLUME (or capacity) is how much LIQUID a container holds. We measure it in LITERS (L) and MILLILITERS (mL).", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.8."},
-    {"id": "LEARN_02", "type": "concept_card", "cpa_phase": "concrete", "title": "Milliliter", "content": "A MILLILITER (mL) is a small unit. Examples: a teaspoon ≈ 5 mL. A small medicine dose ≈ 10 mL. A juice box ≈ 200 mL.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.8."},
-    {"id": "LEARN_03", "type": "concept_card", "cpa_phase": "concrete", "title": "Liter", "content": "A LITER (L) is a bigger unit. 1 LITER = 1,000 MILLILITERS. Examples: a water bottle ≈ 1 L. A milk carton ≈ 2 L. A bathtub ≈ 200 L.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.8."},
-    {"id": "LEARN_04", "type": "concept_card", "cpa_phase": "pictorial", "title": "Choose the Right Unit", "content": "USE mL for: small amounts (dropper, spoon, juice box). USE L for: bigger amounts (water bottle, gas tank, swimming pool).", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.8."},
-    {"id": "LEARN_05", "type": "concept_card", "cpa_phase": "pictorial", "title": "Estimate Volume", "content": "Compare to known things: a teaspoon ≈ 5 mL. A glass of water ≈ 250 mL. A water bottle ≈ 1 L. A bathtub ≈ 200 L.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.8."},
-    {"id": "LEARN_06", "type": "concept_card", "cpa_phase": "abstract", "title": "Convert L to mL", "content": "TO CONVERT L TO mL: multiply by 1000. Example: 3 L = 3000 mL. TO CONVERT mL TO L: divide by 1000. Example: 5000 mL = 5 L.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.8."},
-    {"id": "LEARN_07", "type": "concept_card", "cpa_phase": "abstract", "title": "Use a Measuring Cup", "content": "A MEASURING CUP has marks for mL or L. Pour liquid in and read the level at the highest mark covered. The number tells you the volume.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.8."},
-    {"id": "LEARN_08", "type": "concept_card", "cpa_phase": "abstract", "title": "Lesson Summary", "content": "Today: (1) Liquid volume = how much liquid. (2) mL small, L big. (3) 1 L = 1000 mL. (4) Use mL for small, L for big. (5) Convert: L×1000=mL; mL÷1000=L.", "visual_type": "none", "visual_data": {}, "verification": "Summary."}
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "What Is Liquid Volume?",
+      "content": "LIQUID VOLUME (or capacity) is how much LIQUID a container holds. We measure it in LITERS (L) and MILLILITERS (mL).",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.8."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Milliliter",
+      "content": "A MILLILITER (mL) is a small unit. Examples: a teaspoon ≈ 5 mL. A small medicine dose ≈ 10 mL. A juice box ≈ 200 mL.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.8."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Liter",
+      "content": "A LITER (L) is a bigger unit. 1 LITER = 1,000 MILLILITERS. Examples: a water bottle ≈ 1 L. A milk carton ≈ 2 L. A bathtub ≈ 200 L.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.8."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Choose the Right Unit",
+      "content": "USE mL for: small amounts (dropper, spoon, juice box). USE L for: bigger amounts (water bottle, gas tank, swimming pool).",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.8."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Estimate Volume",
+      "content": "Compare to known things: a teaspoon ≈ 5 mL. A glass of water ≈ 250 mL. A water bottle ≈ 1 L. A bathtub ≈ 200 L.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.8."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Convert L to mL",
+      "content": "TO CONVERT L TO mL: multiply by 1000. Example: 3 L = 3000 mL. TO CONVERT mL TO L: divide by 1000. Example: 5000 mL = 5 L.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.8."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Use a Measuring Cup",
+      "content": "A MEASURING CUP has marks for mL or L. Pour liquid in and read the level at the highest mark covered. The number tells you the volume.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.8."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today: (1) Liquid volume = how much liquid. (2) mL small, L big. (3) 1 L = 1000 mL. (4) Use mL for small, L for big. (5) Convert: L×1000=mL; mL÷1000=L.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Summary."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    }
   ],
   "try": [
-    {"id": "TRY_01", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume", "difficulty": 1, "question": "Best for a juice box:", "choices": ["A) mL", "B) L", "C) g", "D) kg"], "correct_answer": "A", "solution_steps": ["Juice box ≈ 200 mL."], "expected_errors": {"B": {"error_type": "concept_gap", "note": "Too big"}}, "feedback": {"correct": "Right!", "incorrect": "Juice box = mL."}, "verification": "mL.", "hints": ["Small."]},
-    {"id": "TRY_02", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume", "difficulty": 2, "question": "Best for a milk carton:", "choices": ["A) mL", "B) L"], "correct_answer": "B", "solution_steps": ["Milk ≈ 1-2 L."], "expected_errors": {"A": {"error_type": "concept_gap", "note": "Too small"}}, "feedback": {"correct": "Right!", "incorrect": "Milk = L."}, "verification": "L.", "hints": ["Bigger."]},
-    {"id": "TRY_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "convert_L_mL", "difficulty": 2, "question": "6 L = ___ mL", "correct_answer": "6000", "solution_steps": ["6×1000=6000."], "expected_errors": {"600": {"error_type": "concept_gap", "note": "×1000"}}, "feedback": {"correct": "Right!", "incorrect": "6000."}, "verification": "6000.", "hints": ["×1000."]},
-    {"id": "TRY_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "convert_mL_L", "difficulty": 2, "question": "3000 mL = ___ L", "correct_answer": "3", "solution_steps": ["3000/1000=3."], "expected_errors": {"30": {"error_type": "concept_gap", "note": "÷1000"}}, "feedback": {"correct": "Right!", "incorrect": "3."}, "verification": "3.", "hints": ["÷1000."]},
-    {"id": "TRY_05", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "volume_logic", "difficulty": 2, "question": "True or False: 1 L = 100 mL.", "correct_answer": "false", "expected_errors": {"true": {"error_type": "concept_gap", "note": "1000"}}, "feedback": {"correct": "False!", "incorrect": "False. 1 L = 1000 mL."}, "verification": "1000.", "hints": ["Not 100."]}
+    {
+      "id": "TRY_01",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume",
+      "difficulty": 1,
+      "question": "Best for a juice box:",
+      "choices": [
+        "A) mL",
+        "B) L",
+        "C) g",
+        "D) kg"
+      ],
+      "correct_answer": "A",
+      "solution_steps": [
+        "Juice box ≈ 200 mL."
+      ],
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Too big"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Juice box = mL."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "mL."
+      },
+      "hints": [
+        "Small."
+      ],
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_02",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume",
+      "difficulty": 2,
+      "question": "Best for a milk carton:",
+      "choices": [
+        "A) mL",
+        "B) L"
+      ],
+      "correct_answer": "B",
+      "solution_steps": [
+        "Milk ≈ 1-2 L."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Too small"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Milk = L."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "L."
+      },
+      "hints": [
+        "Bigger."
+      ],
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_L_mL",
+      "difficulty": 2,
+      "question": "6 L = ___ mL",
+      "correct_answer": "6000",
+      "solution_steps": [
+        "6×1000=6000."
+      ],
+      "expected_errors": {
+        "600": {
+          "error_type": "concept_gap",
+          "note": "×1000"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "6000."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "6000."
+      },
+      "hints": [
+        "×1000."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_mL_L",
+      "difficulty": 2,
+      "question": "3000 mL = ___ L",
+      "correct_answer": "3",
+      "solution_steps": [
+        "3000/1000=3."
+      ],
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "÷1000"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "3."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "3."
+      },
+      "hints": [
+        "÷1000."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_05",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "volume_logic",
+      "difficulty": 2,
+      "question": "True or False: 1 L = 100 mL.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {
+          "error_type": "concept_gap",
+          "note": "1000"
+        }
+      },
+      "feedback": {
+        "correct": "False!",
+        "incorrect": "False. 1 L = 1000 mL."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "1000."
+      },
+      "hints": [
+        "Not 100."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "False!",
+      "math_note": ""
+    }
   ],
   "practice_r1": [
-    {"id": "R1_01", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume", "difficulty": 1, "question": "Best for a teaspoon:", "choices": ["A) mL", "B) L"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Tiny"}}, "verification": "mL.", "hints": ["Tiny."], "feedback": {"correct": "Right!", "incorrect": "mL."}},
-    {"id": "R1_02", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume", "difficulty": 1, "question": "Best for a bathtub:", "choices": ["A) mL", "B) L"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Big"}}, "verification": "L.", "hints": ["Big."], "feedback": {"correct": "Right!", "incorrect": "L."}},
-    {"id": "R1_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "convert_L_mL", "difficulty": 2, "question": "2 L = ___ mL", "correct_answer": "2000", "expected_errors": {"200": {"error_type": "concept_gap", "note": "×1000"}}, "verification": "2000.", "hints": ["×1000."], "feedback": {"correct": "Right!", "incorrect": "2000."}},
-    {"id": "R1_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "convert_mL_L", "difficulty": 2, "question": "5000 mL = ___ L", "correct_answer": "5", "expected_errors": {"50": {"error_type": "concept_gap", "note": "÷1000"}}, "verification": "5.", "hints": ["÷1000."], "feedback": {"correct": "Right!", "incorrect": "5."}},
-    {"id": "R1_05", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "volume_logic", "difficulty": 1, "question": "True or False: 1 L = 1000 mL.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "Yes"}}, "verification": "Yes.", "hints": ["1000."], "feedback": {"correct": "True!", "incorrect": "True."}},
-    {"id": "R1_06", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume", "difficulty": 2, "question": "Best for a water bottle:", "choices": ["A) 500 mL", "B) 5 L", "C) 50 mL", "D) 50 L"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Way too big"}}, "verification": "500 mL.", "hints": ["About half a liter."], "feedback": {"correct": "Right!", "incorrect": "Water bottle ≈ 500 mL."}},
-    {"id": "R1_07", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "convert_L_mL", "difficulty": 2, "question": "8 L = ___ mL", "correct_answer": "8000", "expected_errors": {"800": {"error_type": "concept_gap", "note": "×1000"}}, "verification": "8000.", "hints": ["×1000."], "feedback": {"correct": "Right!", "incorrect": "8000."}},
-    {"id": "R1_08", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume", "difficulty": 2, "question": "A swimming pool is about:", "choices": ["A) 500 L", "B) 50000 L", "C) 5 mL", "D) 5 L"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Too small"}}, "verification": "50000 L.", "hints": ["Huge."], "feedback": {"correct": "Right!", "incorrect": "Pool ≈ 50000 L."}},
-    {"id": "R1_09", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "convert_mL_L", "difficulty": 2, "question": "9000 mL = ___ L", "correct_answer": "9", "expected_errors": {"90": {"error_type": "concept_gap", "note": "÷1000"}}, "verification": "9.", "hints": ["÷1000."], "feedback": {"correct": "Right!", "incorrect": "9."}},
-    {"id": "R1_10", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume", "difficulty": 2, "question": "A glass of water is about:", "choices": ["A) 25 mL", "B) 250 mL", "C) 25 L", "D) 250 L"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Too small"}}, "verification": "250 mL.", "hints": ["About 1/4 L."], "feedback": {"correct": "Right!", "incorrect": "Glass ≈ 250 mL."}}
+    {
+      "id": "R1_01",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume",
+      "difficulty": 1,
+      "question": "Best for a teaspoon:",
+      "choices": [
+        "A) mL",
+        "B) L"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Tiny"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "mL."
+      },
+      "hints": [
+        "Tiny."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "mL."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_02",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume",
+      "difficulty": 1,
+      "question": "Best for a bathtub:",
+      "choices": [
+        "A) mL",
+        "B) L"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Big"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "L."
+      },
+      "hints": [
+        "Big."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "L."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_L_mL",
+      "difficulty": 2,
+      "question": "2 L = ___ mL",
+      "correct_answer": "2000",
+      "expected_errors": {
+        "200": {
+          "error_type": "concept_gap",
+          "note": "×1000"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "2000."
+      },
+      "hints": [
+        "×1000."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "2000."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_mL_L",
+      "difficulty": 2,
+      "question": "5000 mL = ___ L",
+      "correct_answer": "5",
+      "expected_errors": {
+        "50": {
+          "error_type": "concept_gap",
+          "note": "÷1000"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5."
+      },
+      "hints": [
+        "÷1000."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_05",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "volume_logic",
+      "difficulty": 1,
+      "question": "True or False: 1 L = 1000 mL.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "Yes"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Yes."
+      },
+      "hints": [
+        "1000."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume",
+      "difficulty": 2,
+      "question": "Best for a water bottle:",
+      "choices": [
+        "A) 500 mL",
+        "B) 5 L",
+        "C) 50 mL",
+        "D) 50 L"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Way too big"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "500 mL."
+      },
+      "hints": [
+        "About half a liter."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Water bottle ≈ 500 mL."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_L_mL",
+      "difficulty": 2,
+      "question": "8 L = ___ mL",
+      "correct_answer": "8000",
+      "expected_errors": {
+        "800": {
+          "error_type": "concept_gap",
+          "note": "×1000"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "8000."
+      },
+      "hints": [
+        "×1000."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "8000."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_08",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume",
+      "difficulty": 2,
+      "question": "A swimming pool is about:",
+      "choices": [
+        "A) 500 L",
+        "B) 50000 L",
+        "C) 5 mL",
+        "D) 5 L"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Too small"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "50000 L."
+      },
+      "hints": [
+        "Huge."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Pool ≈ 50000 L."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_mL_L",
+      "difficulty": 2,
+      "question": "9000 mL = ___ L",
+      "correct_answer": "9",
+      "expected_errors": {
+        "90": {
+          "error_type": "concept_gap",
+          "note": "÷1000"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "9."
+      },
+      "hints": [
+        "÷1000."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "9."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_10",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume",
+      "difficulty": 2,
+      "question": "A glass of water is about:",
+      "choices": [
+        "A) 25 mL",
+        "B) 250 mL",
+        "C) 25 L",
+        "D) 250 L"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Too small"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "250 mL."
+      },
+      "hints": [
+        "About 1/4 L."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Glass ≈ 250 mL."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "practice_r2": [
-    {"id": "R2_01", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume_word", "difficulty": 2, "question": "Sara fills a kettle with tea. About:", "choices": ["A) 1 L", "B) 1 mL", "C) 1 kg"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Too small"}}, "verification": "L.", "hints": ["Bigger than mL."], "feedback": {"correct": "Right!", "incorrect": "Kettle ≈ 1 L."}},
-    {"id": "R2_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "convert_L_mL", "difficulty": 2, "question": "1.5 L = ___ mL", "correct_answer": "1500", "expected_errors": {"15": {"error_type": "concept_gap", "note": "×1000"}}, "verification": "1500.", "hints": ["×1000."], "feedback": {"correct": "Right!", "incorrect": "1500."}},
-    {"id": "R2_03", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "volume_logic", "difficulty": 2, "question": "True or False: A teaspoon is about 5 L.", "correct_answer": "false", "expected_errors": {"true": {"error_type": "concept_gap", "note": "5 mL not 5 L"}}, "verification": "5 mL.", "hints": ["Tiny."], "feedback": {"correct": "False!", "incorrect": "False. Teaspoon ≈ 5 mL."}},
-    {"id": "R2_04", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume_word", "difficulty": 3, "question": "A medicine dose is about:", "choices": ["A) 5 mL", "B) 5 L", "C) 500 L"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Too big"}}, "verification": "5 mL.", "hints": ["Tiny."], "feedback": {"correct": "Right!", "incorrect": "Dose ≈ 5 mL."}},
-    {"id": "R2_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "compare_volume", "difficulty": 3, "question": "Which is bigger: 2 L or 1500 mL? (Write '2L' or '1500mL')", "correct_answer": "2L", "expected_errors": {"1500mL": {"error_type": "concept_gap", "note": "2L=2000mL>1500"}}, "verification": "2 L.", "hints": ["Convert."], "feedback": {"correct": "Right!", "incorrect": "2 L=2000 mL > 1500."}},
-    {"id": "R2_06", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume_word", "difficulty": 3, "question": "A garden hose pours water at:", "choices": ["A) 1 mL/min", "B) 10 L/min", "C) 1000 L/min"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Too slow"}, "C": {"error_type": "concept_gap", "note": "Way too much"}}, "verification": "About 10 L/min.", "hints": ["Several liters per minute."], "feedback": {"correct": "Right!", "incorrect": "About 10 L/min."}},
-    {"id": "R2_07", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "convert_L_mL", "difficulty": 2, "question": "12 L = ___ mL", "correct_answer": "12000", "expected_errors": {"1200": {"error_type": "concept_gap", "note": "×1000"}}, "verification": "12000.", "hints": ["×1000."], "feedback": {"correct": "Right!", "incorrect": "12000."}},
-    {"id": "R2_08", "type": "mc", "cpa_phase": "concrete", "ccss": "3.MD.A.2", "skill_tag": "estimate_volume_word", "difficulty": 3, "question": "A coffee mug is about:", "choices": ["A) 30 mL", "B) 300 mL", "C) 3 L"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Too small"}}, "verification": "300 mL.", "hints": ["A bit less than half a liter."], "feedback": {"correct": "Right!", "incorrect": "Mug ≈ 300 mL."}},
-    {"id": "R2_09", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "volume_logic", "difficulty": 3, "question": "True or False: 7000 mL is more than 6 L.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "7L>6L"}}, "verification": "Yes.", "hints": ["Convert."], "feedback": {"correct": "True!", "incorrect": "True. 7000 mL=7 L>6 L."}},
-    {"id": "R2_10", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "convert_mL_L", "difficulty": 3, "question": "How many L in 10000 mL?", "correct_answer": "10", "expected_errors": {"100": {"error_type": "concept_gap", "note": "÷1000"}}, "verification": "10.", "hints": ["÷1000."], "feedback": {"correct": "Right!", "incorrect": "10."}}
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume_word",
+      "difficulty": 2,
+      "question": "Sara fills a kettle with tea. About:",
+      "choices": [
+        "A) 1 L",
+        "B) 1 mL",
+        "C) 1 kg"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Too small"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "L."
+      },
+      "hints": [
+        "Bigger than mL."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Kettle ≈ 1 L."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_L_mL",
+      "difficulty": 2,
+      "question": "1.5 L = ___ mL",
+      "correct_answer": "1500",
+      "expected_errors": {
+        "15": {
+          "error_type": "concept_gap",
+          "note": "×1000"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "1500."
+      },
+      "hints": [
+        "×1000."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "1500."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_03",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "volume_logic",
+      "difficulty": 2,
+      "question": "True or False: A teaspoon is about 5 L.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {
+          "error_type": "concept_gap",
+          "note": "5 mL not 5 L"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5 mL."
+      },
+      "hints": [
+        "Tiny."
+      ],
+      "feedback": {
+        "correct": "False!",
+        "incorrect": "False. Teaspoon ≈ 5 mL."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "False!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_04",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume_word",
+      "difficulty": 3,
+      "question": "A medicine dose is about:",
+      "choices": [
+        "A) 5 mL",
+        "B) 5 L",
+        "C) 500 L"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Too big"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5 mL."
+      },
+      "hints": [
+        "Tiny."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Dose ≈ 5 mL."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "compare_volume",
+      "difficulty": 3,
+      "question": "Which is bigger: 2 L or 1500 mL? (Write '2L' or '1500mL')",
+      "correct_answer": "2L",
+      "expected_errors": {
+        "1500mL": {
+          "error_type": "concept_gap",
+          "note": "2L=2000mL>1500"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "2 L."
+      },
+      "hints": [
+        "Convert."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "2 L=2000 mL > 1500."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_06",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume_word",
+      "difficulty": 3,
+      "question": "A garden hose pours water at:",
+      "choices": [
+        "A) 1 mL/min",
+        "B) 10 L/min",
+        "C) 1000 L/min"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Too slow"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Way too much"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "About 10 L/min."
+      },
+      "hints": [
+        "Several liters per minute."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "About 10 L/min."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_L_mL",
+      "difficulty": 2,
+      "question": "12 L = ___ mL",
+      "correct_answer": "12000",
+      "expected_errors": {
+        "1200": {
+          "error_type": "concept_gap",
+          "note": "×1000"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "12000."
+      },
+      "hints": [
+        "×1000."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "12000."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_08",
+      "type": "mc",
+      "cpa_phase": "concrete",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "estimate_volume_word",
+      "difficulty": 3,
+      "question": "A coffee mug is about:",
+      "choices": [
+        "A) 30 mL",
+        "B) 300 mL",
+        "C) 3 L"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Too small"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "300 mL."
+      },
+      "hints": [
+        "A bit less than half a liter."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Mug ≈ 300 mL."
+      },
+      "cpa_stage": "concrete",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_09",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "volume_logic",
+      "difficulty": 3,
+      "question": "True or False: 7000 mL is more than 6 L.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "7L>6L"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Yes."
+      },
+      "hints": [
+        "Convert."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 7000 mL=7 L>6 L."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "convert_mL_L",
+      "difficulty": 3,
+      "question": "How many L in 10000 mL?",
+      "correct_answer": "10",
+      "expected_errors": {
+        "100": {
+          "error_type": "concept_gap",
+          "note": "÷1000"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "10."
+      },
+      "hints": [
+        "÷1000."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "10."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "practice_r3": [
-    {"id": "R3_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "compare_volume_word", "difficulty": 4, "question": "Tom drinks 1500 mL of water. Sara drinks 2 L. Who drinks MORE? (Tom or Sara)", "correct_answer": "Sara", "solution_steps": ["Tom: 1500 mL=1.5 L. Sara: 2 L. 2>1.5."], "expected_errors": {"Tom": {"error_type": "careless", "note": "Convert"}}, "feedback": {"correct": "Right!", "incorrect": "Sara 2 L > Tom 1.5 L."}, "three_react_prompt": "Convert and compare.", "verification": "Sara.", "hints": ["Convert mL to L."]},
-    {"id": "R3_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "volume_logic", "difficulty": 4, "question": "How many mL in 2 L 500 mL?", "correct_answer": "2500", "solution_steps": ["2×1000+500=2500."], "expected_errors": {"502": {"error_type": "concept_gap", "note": "Convert L"}}, "feedback": {"correct": "Right!", "incorrect": "2 L=2000 mL; +500=2500."}, "verification": "2500.", "hints": ["2000+500."]},
-    {"id": "R3_03", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "compare_volume", "difficulty": 4, "question": "Which is the LARGEST volume?", "choices": ["A) 800 mL", "B) 1 L", "C) 1500 mL", "D) 0.8 L"], "correct_answer": "C", "expected_errors": {"A": {"error_type": "concept_gap", "note": "1500>800"}}, "verification": "1500 mL=1.5 L is biggest.", "hints": ["Convert all."], "feedback": {"correct": "Right!", "incorrect": "1500 mL is biggest."}},
-    {"id": "R3_04", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "volume_logic", "difficulty": 4, "question": "True or False: 4 L 500 mL = 4500 mL.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "4×1000+500=4500"}}, "feedback": {"correct": "True!", "incorrect": "True. 4 L=4000 mL; +500=4500."}, "verification": "4500.", "hints": ["Convert."]},
-    {"id": "R3_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.2", "skill_tag": "volume_logic", "difficulty": 5, "question": "A jug holds 3 L of juice. Lily pours out 750 mL. mL left?", "correct_answer": "2250", "solution_steps": ["3 L=3000 mL. 3000-750=2250."], "expected_errors": {"2250": {"error_type": "concept_gap", "note": "Already correct"}, "747": {"error_type": "concept_gap", "note": "Convert L first"}}, "feedback": {"correct": "Right!", "incorrect": "3000-750=2250 mL."}, "three_read_prompt": "Convert L. Subtract.", "verification": "2250.", "hints": ["Convert 3 L."]}
-  ]
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "compare_volume_word",
+      "difficulty": 4,
+      "question": "Tom drinks 1500 mL of water. Sara drinks 2 L. Who drinks MORE? (Tom or Sara)",
+      "correct_answer": "Sara",
+      "solution_steps": [
+        "Tom: 1500 mL=1.5 L. Sara: 2 L. 2>1.5."
+      ],
+      "expected_errors": {
+        "Tom": {
+          "error_type": "careless",
+          "note": "Convert"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Sara 2 L > Tom 1.5 L."
+      },
+      "three_react_prompt": "Convert and compare.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Sara."
+      },
+      "hints": [
+        "Convert mL to L."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "volume_logic",
+      "difficulty": 4,
+      "question": "How many mL in 2 L 500 mL?",
+      "correct_answer": "2500",
+      "solution_steps": [
+        "2×1000+500=2500."
+      ],
+      "expected_errors": {
+        "502": {
+          "error_type": "concept_gap",
+          "note": "Convert L"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "2 L=2000 mL; +500=2500."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "2500."
+      },
+      "hints": [
+        "2000+500."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "compare_volume",
+      "difficulty": 4,
+      "question": "Which is the LARGEST volume?",
+      "choices": [
+        "A) 800 mL",
+        "B) 1 L",
+        "C) 1500 mL",
+        "D) 0.8 L"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "1500>800"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "1500 mL=1.5 L is biggest."
+      },
+      "hints": [
+        "Convert all."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "1500 mL is biggest."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_04",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "volume_logic",
+      "difficulty": 4,
+      "question": "True or False: 4 L 500 mL = 4500 mL.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "4×1000+500=4500"
+        }
+      },
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 4 L=4000 mL; +500=4500."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4500."
+      },
+      "hints": [
+        "Convert."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.2",
+      "skill_tag": "volume_logic",
+      "difficulty": 5,
+      "question": "A jug holds 3 L of juice. Lily pours out 750 mL. mL left?",
+      "correct_answer": "2250",
+      "solution_steps": [
+        "3 L=3000 mL. 3000-750=2250."
+      ],
+      "expected_errors": {
+        "2250": {
+          "error_type": "concept_gap",
+          "note": "Already correct"
+        },
+        "747": {
+          "error_type": "concept_gap",
+          "note": "Convert L first"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "3000-750=2250 mL."
+      },
+      "three_read_prompt": "Convert L. Subtract.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L6_estimate_measure_volume",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "2250."
+      },
+      "hints": [
+        "Convert 3 L."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U11_time_mass_volume/L5_mass_word_problems — Mass Word Problems (Add, Subtract, Multiply, Divide) (3.MD.A.2)",
+    "current": "G3 U11_time_mass_volume/L6_estimate_measure_volume — Estimate and Measure Liquid Volume (Liters) (3.MD.A.2)",
+    "successor": "G3 U11_time_mass_volume/L7_volume_word_problems — Liquid Volume Word Problems (3.MD.A.2)"
+  },
+  "metadata": {
+    "upgraded": true,
+    "upgrade_version": "2.0-on-main",
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
+  }
 }

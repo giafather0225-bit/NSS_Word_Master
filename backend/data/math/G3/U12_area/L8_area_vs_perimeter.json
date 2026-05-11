@@ -1,65 +1,1452 @@
 {
   "lesson_id": "L8_area_vs_perimeter",
   "title": "Compare Area and Perimeter",
-  "ccss": ["3.MD.C.7", "3.MD.D.8"],
+  "ccss": [
+    "3.MD.C.7",
+    "3.MD.D.8"
+  ],
   "grade": "G3",
   "unit": "U12_area",
   "go_math_ref": "Chapter 11, Lesson 11.11",
   "essential_question": "How are area and perimeter different, and how do you choose which to use?",
-  "key_vocabulary": ["area", "perimeter", "length", "width", "side"],
+  "key_vocabulary": [
+    "area",
+    "perimeter",
+    "length",
+    "width",
+    "side"
+  ],
   "pretest": [
-    {"id": "PT_01", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "area_vs_perimeter", "difficulty": 2, "question": "Which is the PERIMETER of a rectangle?", "choices": ["A) Length × Width", "B) Distance around the outside", "C) Number of unit squares inside", "D) Length only"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "That's area"}, "C": {"error_type": "concept_gap", "note": "That's area"}, "D": {"error_type": "concept_gap", "note": "Just one side"}}, "verification": "Perimeter = distance around.", "hints": ["Perimeter is the OUTLINE."], "feedback": {"correct": "Right!", "incorrect": "Perimeter = distance around the outside."}},
-    {"id": "PT_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_compute", "difficulty": 2, "question": "A rectangle is 5 cm × 3 cm. What is its perimeter?", "correct_answer": "16", "expected_errors": {"15": {"error_type": "concept_gap", "note": "That's area"}, "8": {"error_type": "concept_gap", "note": "Just two sides"}}, "verification": "5+3+5+3=16.", "hints": ["Add all 4 sides."], "feedback": {"correct": "Right!", "incorrect": "5+3+5+3=16 cm."}},
-    {"id": "PT_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "area_compute", "difficulty": 2, "question": "A rectangle is 5 cm × 3 cm. What is its area?", "correct_answer": "15", "expected_errors": {"16": {"error_type": "concept_gap", "note": "That's perimeter"}, "8": {"error_type": "concept_gap", "note": "5+3=8"}}, "verification": "5×3=15.", "hints": ["Length × width."], "feedback": {"correct": "Right!", "incorrect": "5×3=15 sq cm."}},
-    {"id": "PT_04", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "area_perimeter_choose", "difficulty": 3, "question": "You want to BUY CARPET for a floor. Should you measure area or perimeter?", "choices": ["A) Area", "B) Perimeter", "C) Both", "D) Neither"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Carpet covers floor → area"}, "C": {"error_type": "concept_gap", "note": "Just area for the carpet"}, "D": {"error_type": "concept_gap", "note": "Need a measurement"}}, "verification": "Carpet covers area.", "hints": ["What does carpet cover?"], "feedback": {"correct": "Right!", "incorrect": "Carpet covers the floor → use area."}},
-    {"id": "PT_05", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "area_perimeter_choose", "difficulty": 3, "question": "You want to BUY FENCE to go around a yard. Area or perimeter?", "choices": ["A) Area", "B) Perimeter", "C) Both", "D) Neither"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Fence is on the edges"}, "C": {"error_type": "concept_gap", "note": "Just perimeter"}, "D": {"error_type": "concept_gap", "note": "Need measurement"}}, "verification": "Fence = perimeter.", "hints": ["Fence is on the edge."], "feedback": {"correct": "Right!", "incorrect": "Fence goes AROUND → perimeter."}}
+    {
+      "id": "PT_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "area_vs_perimeter",
+      "difficulty": 2,
+      "question": "Which is the PERIMETER of a rectangle?",
+      "choices": [
+        "A) Length × Width",
+        "B) Distance around the outside",
+        "C) Number of unit squares inside",
+        "D) Length only"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "That's area"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "That's area"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Just one side"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Perimeter = distance around."
+      },
+      "hints": [
+        "Perimeter is the OUTLINE."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Perimeter = distance around the outside."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_compute",
+      "difficulty": 2,
+      "question": "A rectangle is 5 cm × 3 cm. What is its perimeter?",
+      "correct_answer": "16",
+      "expected_errors": {
+        "15": {
+          "error_type": "concept_gap",
+          "note": "That's area"
+        },
+        "8": {
+          "error_type": "concept_gap",
+          "note": "Just two sides"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5+3+5+3=16."
+      },
+      "hints": [
+        "Add all 4 sides."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5+3+5+3=16 cm."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "area_compute",
+      "difficulty": 2,
+      "question": "A rectangle is 5 cm × 3 cm. What is its area?",
+      "correct_answer": "15",
+      "expected_errors": {
+        "16": {
+          "error_type": "concept_gap",
+          "note": "That's perimeter"
+        },
+        "8": {
+          "error_type": "concept_gap",
+          "note": "5+3=8"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5×3=15."
+      },
+      "hints": [
+        "Length × width."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5×3=15 sq cm."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "area_perimeter_choose",
+      "difficulty": 3,
+      "question": "You want to BUY CARPET for a floor. Should you measure area or perimeter?",
+      "choices": [
+        "A) Area",
+        "B) Perimeter",
+        "C) Both",
+        "D) Neither"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Carpet covers floor → area"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Just area for the carpet"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Need a measurement"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Carpet covers area."
+      },
+      "hints": [
+        "What does carpet cover?"
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Carpet covers the floor → use area."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "area_perimeter_choose",
+      "difficulty": 3,
+      "question": "You want to BUY FENCE to go around a yard. Area or perimeter?",
+      "choices": [
+        "A) Area",
+        "B) Perimeter",
+        "C) Both",
+        "D) Neither"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Fence is on the edges"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Just perimeter"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Need measurement"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Fence = perimeter."
+      },
+      "hints": [
+        "Fence is on the edge."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Fence goes AROUND → perimeter."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "learn": [
-    {"id": "LEARN_01", "type": "concept_card", "cpa_phase": "concrete", "title": "Area vs Perimeter — The Big Difference", "content": "AREA = the SPACE INSIDE a shape. Measured in SQUARE units. Use multiplication. PERIMETER = the DISTANCE AROUND the outside. Measured in regular (length) units. Use addition.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.11."},
-    {"id": "LEARN_02", "type": "concept_card", "cpa_phase": "concrete", "title": "Different Units", "content": "Area: SQUARE units (sq cm, sq m). Perimeter: regular length units (cm, m). The two measurements answer different questions, so they use different units.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.11."},
-    {"id": "LEARN_03", "type": "concept_card", "cpa_phase": "pictorial", "title": "When to Use Area", "content": "Use AREA when the question is about COVERING or FILLING. Examples: How much paint to cover a wall? How big is the floor for carpet? How much grass on a field?", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.11."},
-    {"id": "LEARN_04", "type": "concept_card", "cpa_phase": "pictorial", "title": "When to Use Perimeter", "content": "Use PERIMETER when the question is about going AROUND or BORDERING. Examples: How much fence around a yard? How much string for a frame? How much trim around a window?", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.11."},
-    {"id": "LEARN_05", "type": "concept_card", "cpa_phase": "abstract", "title": "Same Shape, Different Measurements", "content": "A 5 × 3 rectangle has: AREA = 5 × 3 = 15 sq cm. PERIMETER = 5 + 3 + 5 + 3 = 16 cm. Both numbers describe the same rectangle but measure different things.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.11."},
-    {"id": "LEARN_06", "type": "concept_card", "cpa_phase": "abstract", "title": "Same Area, Different Perimeter", "content": "Two rectangles can have the SAME AREA but DIFFERENT PERIMETERS. Example: a 2 × 6 has area 12 sq, perimeter 16. A 3 × 4 has area 12 sq, perimeter 14. Same area, different perimeter!", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.11."},
-    {"id": "LEARN_07", "type": "concept_card", "cpa_phase": "abstract", "title": "Same Perimeter, Different Area", "content": "Two rectangles can have the SAME PERIMETER but DIFFERENT AREAS. Example: a 1 × 5 has perimeter 12, area 5. A 3 × 3 has perimeter 12, area 9. Same perimeter, different area!", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.11."},
-    {"id": "LEARN_08", "type": "concept_card", "cpa_phase": "abstract", "title": "Lesson Summary", "content": "Today: (1) AREA = space inside (square units). (2) PERIMETER = distance around (regular units). (3) Use AREA for covering/filling, PERIMETER for fences/borders. (4) Same shape can have area and perimeter as DIFFERENT numbers. (5) Same area ≠ same perimeter; same perimeter ≠ same area.", "visual_type": "none", "visual_data": {}, "verification": "Summary."}
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Area vs Perimeter — The Big Difference",
+      "content": "AREA = the SPACE INSIDE a shape. Measured in SQUARE units. Use multiplication. PERIMETER = the DISTANCE AROUND the outside. Measured in regular (length) units. Use addition.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.11."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Different Units",
+      "content": "Area: SQUARE units (sq cm, sq m). Perimeter: regular length units (cm, m). The two measurements answer different questions, so they use different units.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.11."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "When to Use Area",
+      "content": "Use AREA when the question is about COVERING or FILLING. Examples: How much paint to cover a wall? How big is the floor for carpet? How much grass on a field?",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.11."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "When to Use Perimeter",
+      "content": "Use PERIMETER when the question is about going AROUND or BORDERING. Examples: How much fence around a yard? How much string for a frame? How much trim around a window?",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.11."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Same Shape, Different Measurements",
+      "content": "A 5 × 3 rectangle has: AREA = 5 × 3 = 15 sq cm. PERIMETER = 5 + 3 + 5 + 3 = 16 cm. Both numbers describe the same rectangle but measure different things.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.11."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Same Area, Different Perimeter",
+      "content": "Two rectangles can have the SAME AREA but DIFFERENT PERIMETERS. Example: a 2 × 6 has area 12 sq, perimeter 16. A 3 × 4 has area 12 sq, perimeter 14. Same area, different perimeter!",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.11."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Same Perimeter, Different Area",
+      "content": "Two rectangles can have the SAME PERIMETER but DIFFERENT AREAS. Example: a 1 × 5 has perimeter 12, area 5. A 3 × 3 has perimeter 12, area 9. Same perimeter, different area!",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.11."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today: (1) AREA = space inside (square units). (2) PERIMETER = distance around (regular units). (3) Use AREA for covering/filling, PERIMETER for fences/borders. (4) Same shape can have area and perimeter as DIFFERENT numbers. (5) Same area ≠ same perimeter; same perimeter ≠ same area.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Summary."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    }
   ],
   "try": [
-    {"id": "TRY_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_compute", "difficulty": 2, "question": "Rectangle 4 × 6. Perimeter?", "correct_answer": "20", "solution_steps": ["4+6+4+6=20."], "expected_errors": {"24": {"error_type": "concept_gap", "note": "That's area"}, "10": {"error_type": "concept_gap", "note": "Just two sides"}}, "feedback": {"correct": "Right!", "incorrect": "4+6+4+6=20."}, "verification": "20.", "hints": ["Sum of all sides."]},
-    {"id": "TRY_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "area_compute", "difficulty": 2, "question": "Rectangle 4 × 6. Area?", "correct_answer": "24", "solution_steps": ["4×6=24."], "expected_errors": {"20": {"error_type": "concept_gap", "note": "That's perimeter"}, "10": {"error_type": "concept_gap", "note": "4+6"}}, "feedback": {"correct": "Right!", "incorrect": "4×6=24."}, "verification": "24.", "hints": ["Multiply."]},
-    {"id": "TRY_03", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "choose_measurement", "difficulty": 3, "question": "Tom needs to put TILE on the floor. Area or perimeter?", "choices": ["A) Area", "B) Perimeter", "C) Both", "D) Neither"], "correct_answer": "A", "solution_steps": ["Tile covers floor → area."], "expected_errors": {"B": {"error_type": "concept_gap", "note": "That's around"}}, "feedback": {"correct": "Right!", "incorrect": "Tile covers → area."}, "verification": "Area.", "hints": ["What does tile cover?"]},
-    {"id": "TRY_04", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "choose_measurement", "difficulty": 3, "question": "Lily wraps RIBBON around a gift box edge. Area or perimeter?", "choices": ["A) Area", "B) Perimeter", "C) Both", "D) Neither"], "correct_answer": "B", "solution_steps": ["Ribbon goes around → perimeter."], "expected_errors": {"A": {"error_type": "concept_gap", "note": "Around, not covering"}}, "feedback": {"correct": "Right!", "incorrect": "Ribbon goes around → perimeter."}, "verification": "Perimeter.", "hints": ["Around the edge."]},
-    {"id": "TRY_05", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "area_perimeter_logic", "difficulty": 3, "question": "True or False: Two rectangles can have the same area but different perimeters.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "2×6 (P=16) vs 3×4 (P=14), both area=12"}}, "feedback": {"correct": "True!", "incorrect": "True. 2×6 (P=16) and 3×4 (P=14), both area 12."}, "verification": "True.", "hints": ["Try 2×6 vs 3×4."]}
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_compute",
+      "difficulty": 2,
+      "question": "Rectangle 4 × 6. Perimeter?",
+      "correct_answer": "20",
+      "solution_steps": [
+        "4+6+4+6=20."
+      ],
+      "expected_errors": {
+        "24": {
+          "error_type": "concept_gap",
+          "note": "That's area"
+        },
+        "10": {
+          "error_type": "concept_gap",
+          "note": "Just two sides"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4+6+4+6=20."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20."
+      },
+      "hints": [
+        "Sum of all sides."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "area_compute",
+      "difficulty": 2,
+      "question": "Rectangle 4 × 6. Area?",
+      "correct_answer": "24",
+      "solution_steps": [
+        "4×6=24."
+      ],
+      "expected_errors": {
+        "20": {
+          "error_type": "concept_gap",
+          "note": "That's perimeter"
+        },
+        "10": {
+          "error_type": "concept_gap",
+          "note": "4+6"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4×6=24."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "24."
+      },
+      "hints": [
+        "Multiply."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "choose_measurement",
+      "difficulty": 3,
+      "question": "Tom needs to put TILE on the floor. Area or perimeter?",
+      "choices": [
+        "A) Area",
+        "B) Perimeter",
+        "C) Both",
+        "D) Neither"
+      ],
+      "correct_answer": "A",
+      "solution_steps": [
+        "Tile covers floor → area."
+      ],
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "That's around"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Tile covers → area."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Area."
+      },
+      "hints": [
+        "What does tile cover?"
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "choose_measurement",
+      "difficulty": 3,
+      "question": "Lily wraps RIBBON around a gift box edge. Area or perimeter?",
+      "choices": [
+        "A) Area",
+        "B) Perimeter",
+        "C) Both",
+        "D) Neither"
+      ],
+      "correct_answer": "B",
+      "solution_steps": [
+        "Ribbon goes around → perimeter."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Around, not covering"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Ribbon goes around → perimeter."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Perimeter."
+      },
+      "hints": [
+        "Around the edge."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_05",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "area_perimeter_logic",
+      "difficulty": 3,
+      "question": "True or False: Two rectangles can have the same area but different perimeters.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "2×6 (P=16) vs 3×4 (P=14), both area=12"
+        }
+      },
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 2×6 (P=16) and 3×4 (P=14), both area 12."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "True."
+      },
+      "hints": [
+        "Try 2×6 vs 3×4."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    }
   ],
   "practice_r1": [
-    {"id": "R1_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_compute", "difficulty": 1, "question": "Rectangle 3×5. Perimeter?", "correct_answer": "16", "expected_errors": {"15": {"error_type": "concept_gap", "note": "Area"}}, "verification": "3+5+3+5=16.", "hints": ["Sum 4 sides."], "feedback": {"correct": "Right!", "incorrect": "16."}},
-    {"id": "R1_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "area_compute", "difficulty": 1, "question": "Rectangle 3×5. Area?", "correct_answer": "15", "expected_errors": {"16": {"error_type": "concept_gap", "note": "Perimeter"}}, "verification": "15.", "hints": ["Multiply."], "feedback": {"correct": "Right!", "incorrect": "15."}},
-    {"id": "R1_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_compute", "difficulty": 2, "question": "Rectangle 7×2. Perimeter?", "correct_answer": "18", "expected_errors": {"14": {"error_type": "concept_gap", "note": "Area"}, "9": {"error_type": "concept_gap", "note": "Just two sides"}}, "verification": "7+2+7+2=18.", "hints": ["Sum."], "feedback": {"correct": "Right!", "incorrect": "18."}},
-    {"id": "R1_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "area_compute", "difficulty": 2, "question": "Rectangle 7×2. Area?", "correct_answer": "14", "expected_errors": {"18": {"error_type": "concept_gap", "note": "Perimeter"}}, "verification": "14.", "hints": ["7×2."], "feedback": {"correct": "Right!", "incorrect": "14."}},
-    {"id": "R1_05", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "choose_measurement", "difficulty": 2, "question": "PAINTING the inside of a wall. Area or perimeter?", "choices": ["A) Area", "B) Perimeter"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Painting covers"}}, "verification": "Cover = area.", "hints": ["Covers surface."], "feedback": {"correct": "Right!", "incorrect": "Area."}},
-    {"id": "R1_06", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "choose_measurement", "difficulty": 2, "question": "FENCE around a yard. Area or perimeter?", "choices": ["A) Area", "B) Perimeter"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Around = perimeter"}}, "verification": "Around = perimeter.", "hints": ["Around the edge."], "feedback": {"correct": "Right!", "incorrect": "Perimeter."}},
-    {"id": "R1_07", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "area_perimeter_logic", "difficulty": 2, "question": "True or False: Area uses square units; perimeter uses regular length units.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "Correct"}}, "verification": "Yes.", "hints": ["Different units."], "feedback": {"correct": "True!", "incorrect": "True."}},
-    {"id": "R1_08", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_square", "difficulty": 2, "question": "Square with side 4. Perimeter?", "correct_answer": "16", "expected_errors": {"8": {"error_type": "concept_gap", "note": "Need 4 sides"}}, "verification": "4×4=16.", "hints": ["4 × 4."], "feedback": {"correct": "Right!", "incorrect": "16."}},
-    {"id": "R1_09", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "area_square", "difficulty": 2, "question": "Square with side 4. Area?", "correct_answer": "16", "expected_errors": {"8": {"error_type": "concept_gap", "note": "Square sides"}}, "verification": "4×4=16.", "hints": ["Side × side."], "feedback": {"correct": "Right!", "incorrect": "16."}},
-    {"id": "R1_10", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_compute", "difficulty": 2, "question": "Rectangle 8×3. Perimeter?", "correct_answer": "22", "expected_errors": {"24": {"error_type": "concept_gap", "note": "Area"}}, "verification": "8+3+8+3=22.", "hints": ["Sum."], "feedback": {"correct": "Right!", "incorrect": "22."}}
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_compute",
+      "difficulty": 1,
+      "question": "Rectangle 3×5. Perimeter?",
+      "correct_answer": "16",
+      "expected_errors": {
+        "15": {
+          "error_type": "concept_gap",
+          "note": "Area"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "3+5+3+5=16."
+      },
+      "hints": [
+        "Sum 4 sides."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "16."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "area_compute",
+      "difficulty": 1,
+      "question": "Rectangle 3×5. Area?",
+      "correct_answer": "15",
+      "expected_errors": {
+        "16": {
+          "error_type": "concept_gap",
+          "note": "Perimeter"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "15."
+      },
+      "hints": [
+        "Multiply."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "15."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_compute",
+      "difficulty": 2,
+      "question": "Rectangle 7×2. Perimeter?",
+      "correct_answer": "18",
+      "expected_errors": {
+        "14": {
+          "error_type": "concept_gap",
+          "note": "Area"
+        },
+        "9": {
+          "error_type": "concept_gap",
+          "note": "Just two sides"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "7+2+7+2=18."
+      },
+      "hints": [
+        "Sum."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "18."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "area_compute",
+      "difficulty": 2,
+      "question": "Rectangle 7×2. Area?",
+      "correct_answer": "14",
+      "expected_errors": {
+        "18": {
+          "error_type": "concept_gap",
+          "note": "Perimeter"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "14."
+      },
+      "hints": [
+        "7×2."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "14."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "choose_measurement",
+      "difficulty": 2,
+      "question": "PAINTING the inside of a wall. Area or perimeter?",
+      "choices": [
+        "A) Area",
+        "B) Perimeter"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Painting covers"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Cover = area."
+      },
+      "hints": [
+        "Covers surface."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Area."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_06",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "choose_measurement",
+      "difficulty": 2,
+      "question": "FENCE around a yard. Area or perimeter?",
+      "choices": [
+        "A) Area",
+        "B) Perimeter"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Around = perimeter"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Around = perimeter."
+      },
+      "hints": [
+        "Around the edge."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Perimeter."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_07",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "area_perimeter_logic",
+      "difficulty": 2,
+      "question": "True or False: Area uses square units; perimeter uses regular length units.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "Correct"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Yes."
+      },
+      "hints": [
+        "Different units."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_08",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_square",
+      "difficulty": 2,
+      "question": "Square with side 4. Perimeter?",
+      "correct_answer": "16",
+      "expected_errors": {
+        "8": {
+          "error_type": "concept_gap",
+          "note": "Need 4 sides"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4×4=16."
+      },
+      "hints": [
+        "4 × 4."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "16."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "area_square",
+      "difficulty": 2,
+      "question": "Square with side 4. Area?",
+      "correct_answer": "16",
+      "expected_errors": {
+        "8": {
+          "error_type": "concept_gap",
+          "note": "Square sides"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4×4=16."
+      },
+      "hints": [
+        "Side × side."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "16."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_compute",
+      "difficulty": 2,
+      "question": "Rectangle 8×3. Perimeter?",
+      "correct_answer": "22",
+      "expected_errors": {
+        "24": {
+          "error_type": "concept_gap",
+          "note": "Area"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "8+3+8+3=22."
+      },
+      "hints": [
+        "Sum."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "22."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "practice_r2": [
-    {"id": "R2_01", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "choose_measurement", "difficulty": 3, "question": "Sara wants to put a BORDER around a poster. Area or perimeter?", "choices": ["A) Area", "B) Perimeter"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Border = around"}}, "verification": "Around = perimeter.", "hints": ["Border goes around."], "feedback": {"correct": "Right!", "incorrect": "Perimeter."}},
-    {"id": "R2_02", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "choose_measurement", "difficulty": 3, "question": "Tom wants to LAY GRASS on a yard. Area or perimeter?", "choices": ["A) Area", "B) Perimeter"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Grass covers"}}, "verification": "Cover = area.", "hints": ["Grass covers surface."], "feedback": {"correct": "Right!", "incorrect": "Area."}},
-    {"id": "R2_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_compute", "difficulty": 3, "question": "Rectangle 9×4. Perimeter?", "correct_answer": "26", "expected_errors": {"36": {"error_type": "concept_gap", "note": "Area"}}, "verification": "9+4+9+4=26.", "hints": ["Sum."], "feedback": {"correct": "Right!", "incorrect": "26."}},
-    {"id": "R2_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "area_compute", "difficulty": 3, "question": "Rectangle 9×4. Area?", "correct_answer": "36", "expected_errors": {"26": {"error_type": "concept_gap", "note": "Perimeter"}}, "verification": "36.", "hints": ["9×4."], "feedback": {"correct": "Right!", "incorrect": "36."}},
-    {"id": "R2_05", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "area_perimeter_logic", "difficulty": 3, "question": "True or False: Area and perimeter of the same shape are always the same number.", "correct_answer": "false", "expected_errors": {"true": {"error_type": "concept_gap", "note": "Different things"}}, "verification": "Usually different.", "hints": ["Different concepts."], "feedback": {"correct": "False!", "incorrect": "False. Different measurements."}},
-    {"id": "R2_06", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_compute", "difficulty": 3, "question": "Rectangle 6×6. Perimeter?", "correct_answer": "24", "expected_errors": {"36": {"error_type": "concept_gap", "note": "Area"}}, "verification": "6+6+6+6=24.", "hints": ["4 sides each 6."], "feedback": {"correct": "Right!", "incorrect": "24."}},
-    {"id": "R2_07", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "compare_a_p", "difficulty": 3, "question": "Rectangle 4×3 has area ___ and perimeter ___.", "choices": ["A) 12, 14", "B) 7, 12", "C) 14, 12", "D) 12, 12"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "Reversed"}, "C": {"error_type": "concept_gap", "note": "Reversed"}, "D": {"error_type": "concept_gap", "note": "Different numbers"}}, "verification": "Area=12, perimeter=14.", "hints": ["Compute each."], "feedback": {"correct": "Right!", "incorrect": "4×3=12 area; 4+3+4+3=14 perimeter."}},
-    {"id": "R2_08", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_compute", "difficulty": 3, "question": "Rectangle 10×5. Perimeter?", "correct_answer": "30", "expected_errors": {"50": {"error_type": "concept_gap", "note": "Area"}}, "verification": "10+5+10+5=30.", "hints": ["Sum."], "feedback": {"correct": "Right!", "incorrect": "30."}},
-    {"id": "R2_09", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_word", "difficulty": 3, "question": "Tom's garden is 6 m × 8 m. He needs fence around it. How many meters?", "correct_answer": "28", "expected_errors": {"48": {"error_type": "concept_gap", "note": "Area"}}, "verification": "6+8+6+8=28.", "hints": ["Around = perimeter."], "feedback": {"correct": "Right!", "incorrect": "28 m."}},
-    {"id": "R2_10", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "area_perimeter_logic", "difficulty": 3, "question": "True or False: A 4×5 rectangle has area 9.", "correct_answer": "false", "expected_errors": {"true": {"error_type": "concept_gap", "note": "4×5=20"}}, "verification": "4×5=20.", "hints": ["Multiply."], "feedback": {"correct": "False!", "incorrect": "False. 4×5=20."}}
+    {
+      "id": "R2_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "choose_measurement",
+      "difficulty": 3,
+      "question": "Sara wants to put a BORDER around a poster. Area or perimeter?",
+      "choices": [
+        "A) Area",
+        "B) Perimeter"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Border = around"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Around = perimeter."
+      },
+      "hints": [
+        "Border goes around."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Perimeter."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_02",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "choose_measurement",
+      "difficulty": 3,
+      "question": "Tom wants to LAY GRASS on a yard. Area or perimeter?",
+      "choices": [
+        "A) Area",
+        "B) Perimeter"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Grass covers"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Cover = area."
+      },
+      "hints": [
+        "Grass covers surface."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Area."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_compute",
+      "difficulty": 3,
+      "question": "Rectangle 9×4. Perimeter?",
+      "correct_answer": "26",
+      "expected_errors": {
+        "36": {
+          "error_type": "concept_gap",
+          "note": "Area"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "9+4+9+4=26."
+      },
+      "hints": [
+        "Sum."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "26."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "area_compute",
+      "difficulty": 3,
+      "question": "Rectangle 9×4. Area?",
+      "correct_answer": "36",
+      "expected_errors": {
+        "26": {
+          "error_type": "concept_gap",
+          "note": "Perimeter"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "36."
+      },
+      "hints": [
+        "9×4."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "36."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_05",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "area_perimeter_logic",
+      "difficulty": 3,
+      "question": "True or False: Area and perimeter of the same shape are always the same number.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {
+          "error_type": "concept_gap",
+          "note": "Different things"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Usually different."
+      },
+      "hints": [
+        "Different concepts."
+      ],
+      "feedback": {
+        "correct": "False!",
+        "incorrect": "False. Different measurements."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "False!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_compute",
+      "difficulty": 3,
+      "question": "Rectangle 6×6. Perimeter?",
+      "correct_answer": "24",
+      "expected_errors": {
+        "36": {
+          "error_type": "concept_gap",
+          "note": "Area"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "6+6+6+6=24."
+      },
+      "hints": [
+        "4 sides each 6."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "24."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_07",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "compare_a_p",
+      "difficulty": 3,
+      "question": "Rectangle 4×3 has area ___ and perimeter ___.",
+      "choices": [
+        "A) 12, 14",
+        "B) 7, 12",
+        "C) 14, 12",
+        "D) 12, 12"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Reversed"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Reversed"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Different numbers"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Area=12, perimeter=14."
+      },
+      "hints": [
+        "Compute each."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4×3=12 area; 4+3+4+3=14 perimeter."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_compute",
+      "difficulty": 3,
+      "question": "Rectangle 10×5. Perimeter?",
+      "correct_answer": "30",
+      "expected_errors": {
+        "50": {
+          "error_type": "concept_gap",
+          "note": "Area"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "10+5+10+5=30."
+      },
+      "hints": [
+        "Sum."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "30."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_word",
+      "difficulty": 3,
+      "question": "Tom's garden is 6 m × 8 m. He needs fence around it. How many meters?",
+      "correct_answer": "28",
+      "expected_errors": {
+        "48": {
+          "error_type": "concept_gap",
+          "note": "Area"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "6+8+6+8=28."
+      },
+      "hints": [
+        "Around = perimeter."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "28 m."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_10",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "area_perimeter_logic",
+      "difficulty": 3,
+      "question": "True or False: A 4×5 rectangle has area 9.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {
+          "error_type": "concept_gap",
+          "note": "4×5=20"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4×5=20."
+      },
+      "hints": [
+        "Multiply."
+      ],
+      "feedback": {
+        "correct": "False!",
+        "incorrect": "False. 4×5=20."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "False!",
+      "math_note": ""
+    }
   ],
   "practice_r3": [
-    {"id": "R3_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "perimeter_compute", "difficulty": 4, "question": "Rectangle has area 24 sq cm and length 6 cm. Find perimeter.", "correct_answer": "20", "solution_steps": ["Width = 24÷6 = 4. Perimeter = 6+4+6+4 = 20."], "expected_errors": {"24": {"error_type": "concept_gap", "note": "Area, not perimeter"}}, "feedback": {"correct": "Right!", "incorrect": "Width=4. Perimeter=20."}, "three_read_prompt": "Read 1: Find width. Read 2: Find perimeter.", "verification": "20.", "hints": ["First find width: 24÷6=4."]},
-    {"id": "R3_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "compare_a_p", "difficulty": 4, "question": "Two rectangles have area 12 sq cm. Rectangle A: 2×6. Rectangle B: 3×4. What is Rectangle A's perimeter MINUS Rectangle B's?", "correct_answer": "2", "solution_steps": ["A perim: 2+6+2+6=16. B perim: 3+4+3+4=14. 16-14=2."], "expected_errors": {"0": {"error_type": "concept_gap", "note": "Same area but different perimeters"}, "30": {"error_type": "concept_gap", "note": "Don't add"}}, "feedback": {"correct": "Right!", "incorrect": "16-14=2."}, "three_read_prompt": "Read 1: Each perimeter. Read 2: Subtract.", "verification": "2.", "hints": ["Compute each."]},
-    {"id": "R3_03", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "choose_measurement_logic", "difficulty": 4, "question": "Lily wants the LEAST FENCING for a 24 sq m rectangular garden. Which dimensions?", "choices": ["A) 1×24 (P=50)", "B) 2×12 (P=28)", "C) 3×8 (P=22)", "D) 4×6 (P=20)"], "correct_answer": "D", "solution_steps": ["Compute perimeters: 50, 28, 22, 20. 20 is least."], "expected_errors": {"A": {"error_type": "concept_gap", "note": "Long thin = most perimeter"}, "B": {"error_type": "concept_gap", "note": "28 > 20"}, "C": {"error_type": "concept_gap", "note": "22 > 20"}}, "feedback": {"correct": "Right!", "incorrect": "4×6 has the smallest perimeter (20)."}, "three_read_prompt": "Read 1: Compute each P. Read 2: Find smallest.", "verification": "4×6 P=20.", "hints": ["More square shape = less perimeter."]},
-    {"id": "R3_04", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "area_perimeter_logic", "difficulty": 4, "question": "True or False: Two rectangles with the same perimeter always have the same area.", "correct_answer": "false", "expected_errors": {"true": {"error_type": "concept_gap", "note": "1×5 (P=12, A=5) vs 3×3 (P=12, A=9)"}}, "feedback": {"correct": "False!", "incorrect": "False. 1×5 (P=12, A=5) ≠ 3×3 (P=12, A=9)."}, "three_read_prompt": "Read 1: Find counter-example.", "verification": "Different areas possible.", "hints": ["Try 1×5 and 3×3."]},
-    {"id": "R3_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.D.8", "skill_tag": "area_perimeter_word", "difficulty": 5, "question": "Tom's room is 8×6. He covers floor (area). She paints trim around top (perimeter). What is area + perimeter combined?", "correct_answer": "76", "solution_steps": ["Area: 8×6=48. Perimeter: 8+6+8+6=28. Sum: 76."], "expected_errors": {"48": {"error_type": "concept_gap", "note": "Forgot perimeter"}, "28": {"error_type": "concept_gap", "note": "Forgot area"}}, "feedback": {"correct": "Right!", "incorrect": "48+28=76."}, "three_read_prompt": "Read 1: Area? Read 2: Perimeter? Read 3: Sum.", "verification": "76.", "hints": ["Add area and perimeter."]}
-  ]
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "perimeter_compute",
+      "difficulty": 4,
+      "question": "Rectangle has area 24 sq cm and length 6 cm. Find perimeter.",
+      "correct_answer": "20",
+      "solution_steps": [
+        "Width = 24÷6 = 4. Perimeter = 6+4+6+4 = 20."
+      ],
+      "expected_errors": {
+        "24": {
+          "error_type": "concept_gap",
+          "note": "Area, not perimeter"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Width=4. Perimeter=20."
+      },
+      "three_read_prompt": "Read 1: Find width. Read 2: Find perimeter.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20."
+      },
+      "hints": [
+        "First find width: 24÷6=4."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "compare_a_p",
+      "difficulty": 4,
+      "question": "Two rectangles have area 12 sq cm. Rectangle A: 2×6. Rectangle B: 3×4. What is Rectangle A's perimeter MINUS Rectangle B's?",
+      "correct_answer": "2",
+      "solution_steps": [
+        "A perim: 2+6+2+6=16. B perim: 3+4+3+4=14. 16-14=2."
+      ],
+      "expected_errors": {
+        "0": {
+          "error_type": "concept_gap",
+          "note": "Same area but different perimeters"
+        },
+        "30": {
+          "error_type": "concept_gap",
+          "note": "Don't add"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "16-14=2."
+      },
+      "three_read_prompt": "Read 1: Each perimeter. Read 2: Subtract.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "2."
+      },
+      "hints": [
+        "Compute each."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "choose_measurement_logic",
+      "difficulty": 4,
+      "question": "Lily wants the LEAST FENCING for a 24 sq m rectangular garden. Which dimensions?",
+      "choices": [
+        "A) 1×24 (P=50)",
+        "B) 2×12 (P=28)",
+        "C) 3×8 (P=22)",
+        "D) 4×6 (P=20)"
+      ],
+      "correct_answer": "D",
+      "solution_steps": [
+        "Compute perimeters: 50, 28, 22, 20. 20 is least."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Long thin = most perimeter"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "28 > 20"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "22 > 20"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4×6 has the smallest perimeter (20)."
+      },
+      "three_read_prompt": "Read 1: Compute each P. Read 2: Find smallest.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4×6 P=20."
+      },
+      "hints": [
+        "More square shape = less perimeter."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_04",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "area_perimeter_logic",
+      "difficulty": 4,
+      "question": "True or False: Two rectangles with the same perimeter always have the same area.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {
+          "error_type": "concept_gap",
+          "note": "1×5 (P=12, A=5) vs 3×3 (P=12, A=9)"
+        }
+      },
+      "feedback": {
+        "correct": "False!",
+        "incorrect": "False. 1×5 (P=12, A=5) ≠ 3×3 (P=12, A=9)."
+      },
+      "three_read_prompt": "Read 1: Find counter-example.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Different areas possible."
+      },
+      "hints": [
+        "Try 1×5 and 3×3."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "False!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "area_perimeter_word",
+      "difficulty": 5,
+      "question": "Tom's room is 8×6. He covers floor (area). She paints trim around top (perimeter). What is area + perimeter combined?",
+      "correct_answer": "76",
+      "solution_steps": [
+        "Area: 8×6=48. Perimeter: 8+6+8+6=28. Sum: 76."
+      ],
+      "expected_errors": {
+        "48": {
+          "error_type": "concept_gap",
+          "note": "Forgot perimeter"
+        },
+        "28": {
+          "error_type": "concept_gap",
+          "note": "Forgot area"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "48+28=76."
+      },
+      "three_read_prompt": "Read 1: Area? Read 2: Perimeter? Read 3: Sum.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "76."
+      },
+      "hints": [
+        "Add area and perimeter."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U12_area/L7_area_word_problems — Area Word Problems (3.MD.C.7)",
+    "current": "G3 U12_area/L8_area_vs_perimeter — Compare Area and Perimeter (3.MD.C.7)",
+    "successor": "G3 U12_area/unit_test — Unit 12 Test: Area (3.MD.C.5)"
+  },
+  "metadata": {
+    "upgraded": true,
+    "upgrade_version": "2.0-on-main",
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
+  }
 }
