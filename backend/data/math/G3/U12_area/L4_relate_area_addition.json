@@ -1,65 +1,1482 @@
 {
   "lesson_id": "L4_relate_area_addition",
   "title": "Relate Area to Addition (Tiling and Arrays)",
-  "ccss": ["3.MD.C.7"],
+  "ccss": [
+    "3.MD.C.7"
+  ],
   "grade": "G3",
   "unit": "U12_area",
   "go_math_ref": "Chapter 11, Lesson 11.7",
   "essential_question": "How is finding area connected to addition?",
-  "key_vocabulary": ["area", "row", "column", "repeated addition", "array", "tile"],
+  "key_vocabulary": [
+    "area",
+    "row",
+    "column",
+    "repeated addition",
+    "array",
+    "tile"
+  ],
   "pretest": [
-    {"id": "PT_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "repeated_addition", "difficulty": 1, "question": "A rectangle has 4 rows of 5 unit squares. Use repeated addition: 5 + 5 + 5 + 5 = ?", "correct_answer": "20", "expected_errors": {"15": {"error_type": "careless", "note": "5×3=15, but 4 fives"}, "9": {"error_type": "concept_gap", "note": "5+4=9 — wrong"}}, "verification": "5+5+5+5=20.", "hints": ["Add 5 four times."], "feedback": {"correct": "Right!", "incorrect": "5+5+5+5=20."}},
-    {"id": "PT_02", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_multiplication", "difficulty": 2, "question": "Which is the same as 4 × 6?", "choices": ["A) 4 + 6", "B) 6 + 6 + 6 + 6", "C) 4 + 4 + 4", "D) 4 × 4"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Adding once = 10"}, "C": {"error_type": "concept_gap", "note": "3 fours = 12"}, "D": {"error_type": "concept_gap", "note": "16 ≠ 24"}}, "verification": "4×6 = 6 added 4 times.", "hints": ["4 groups of 6."], "feedback": {"correct": "Right!", "incorrect": "4×6 = 6 added 4 times = 24."}},
-    {"id": "PT_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 2, "question": "A rectangle is split into two parts: a 3×4 rectangle and a 3×2 rectangle. What is the total area?", "correct_answer": "18", "expected_errors": {"12": {"error_type": "concept_gap", "note": "Forgot one part"}, "6": {"error_type": "concept_gap", "note": "Just one part"}}, "verification": "12+6=18.", "hints": ["Add: 12 + 6."], "feedback": {"correct": "Right!", "incorrect": "12 + 6 = 18 sq units."}},
-    {"id": "PT_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "row_addition", "difficulty": 2, "question": "If each row has 7 unit squares and there are 5 rows, what is the area? (Show as 7+7+7+7+7 first.)", "correct_answer": "35", "expected_errors": {"12": {"error_type": "concept_gap", "note": "5+7=12"}, "28": {"error_type": "careless", "note": "4×7=28"}}, "verification": "7×5=35.", "hints": ["Add 7 five times."], "feedback": {"correct": "Right!", "incorrect": "7+7+7+7+7=35."}},
-    {"id": "PT_05", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_multiplication", "difficulty": 2, "question": "5 + 5 + 5 = ?", "choices": ["A) 8", "B) 10", "C) 15", "D) 20"], "correct_answer": "C", "expected_errors": {"A": {"error_type": "concept_gap", "note": "5+3=8"}, "B": {"error_type": "concept_gap", "note": "5+5=10, but 3 fives"}, "D": {"error_type": "concept_gap", "note": "4×5=20"}}, "verification": "5×3=15.", "hints": ["3 fives."], "feedback": {"correct": "Right!", "incorrect": "5+5+5 = 3×5 = 15."}}
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "repeated_addition",
+      "difficulty": 1,
+      "question": "A rectangle has 4 rows of 5 unit squares. Use repeated addition: 5 + 5 + 5 + 5 = ?",
+      "correct_answer": "20",
+      "expected_errors": {
+        "15": {
+          "error_type": "careless",
+          "note": "5×3=15, but 4 fives"
+        },
+        "9": {
+          "error_type": "concept_gap",
+          "note": "5+4=9 — wrong"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5+5+5+5=20."
+      },
+      "hints": [
+        "Add 5 four times."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5+5+5+5=20."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "PT_02",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_multiplication",
+      "difficulty": 2,
+      "question": "Which is the same as 4 × 6?",
+      "choices": [
+        "A) 4 + 6",
+        "B) 6 + 6 + 6 + 6",
+        "C) 4 + 4 + 4",
+        "D) 4 × 4"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Adding once = 10"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "3 fours = 12"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "16 ≠ 24"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4×6 = 6 added 4 times."
+      },
+      "hints": [
+        "4 groups of 6."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4×6 = 6 added 4 times = 24."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 2,
+      "question": "A rectangle is split into two parts: a 3×4 rectangle and a 3×2 rectangle. What is the total area?",
+      "correct_answer": "18",
+      "expected_errors": {
+        "12": {
+          "error_type": "concept_gap",
+          "note": "Forgot one part"
+        },
+        "6": {
+          "error_type": "concept_gap",
+          "note": "Just one part"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "12+6=18."
+      },
+      "hints": [
+        "Add: 12 + 6."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "12 + 6 = 18 sq units."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "PT_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "row_addition",
+      "difficulty": 2,
+      "question": "If each row has 7 unit squares and there are 5 rows, what is the area? (Show as 7+7+7+7+7 first.)",
+      "correct_answer": "35",
+      "expected_errors": {
+        "12": {
+          "error_type": "concept_gap",
+          "note": "5+7=12"
+        },
+        "28": {
+          "error_type": "careless",
+          "note": "4×7=28"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "7×5=35."
+      },
+      "hints": [
+        "Add 7 five times."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "7+7+7+7+7=35."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_multiplication",
+      "difficulty": 2,
+      "question": "5 + 5 + 5 = ?",
+      "choices": [
+        "A) 8",
+        "B) 10",
+        "C) 15",
+        "D) 20"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "5+3=8"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "5+5=10, but 3 fives"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "4×5=20"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5×3=15."
+      },
+      "hints": [
+        "3 fives."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5+5+5 = 3×5 = 15."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    }
   ],
   "learn": [
-    {"id": "LEARN_01", "type": "concept_card", "cpa_phase": "concrete", "title": "Area as Repeated Addition", "content": "When you cover a rectangle with unit squares, each ROW has the same number of squares. Adding the squares row by row is REPEATED ADDITION. Example: 4 rows of 5 squares each: 5 + 5 + 5 + 5 = 20.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.7."},
-    {"id": "LEARN_02", "type": "concept_card", "cpa_phase": "concrete", "title": "Repeated Addition Becomes Multiplication", "content": "Repeated addition is the same as multiplication. 5 + 5 + 5 + 5 = 4 × 5 = 20. Multiplication is just a faster way to write repeated addition.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.7."},
-    {"id": "LEARN_03", "type": "concept_card", "cpa_phase": "pictorial", "title": "Arrays of Unit Squares", "content": "An ARRAY is a rectangular arrangement of items in equal rows. The unit squares of a rectangle form an array. Counting an array by rows and adding gives the total = AREA.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.7."},
-    {"id": "LEARN_04", "type": "concept_card", "cpa_phase": "pictorial", "title": "Adding Areas of Two Rectangles", "content": "If a shape can be split into two rectangles (no overlap), find each area separately, then ADD them together. Total area = Area 1 + Area 2.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.7."},
-    {"id": "LEARN_05", "type": "concept_card", "cpa_phase": "abstract", "title": "Why Adding Works", "content": "Two rectangles side by side don't share unit squares. So if Rectangle 1 has 12 squares and Rectangle 2 has 8 squares, the total is 12+8=20 squares. Adding works whenever there are no overlaps.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.7."},
-    {"id": "LEARN_06", "type": "concept_card", "cpa_phase": "abstract", "title": "Tiling a Rectangle", "content": "TILING means covering a rectangle with unit squares (or square tiles) without gaps or overlaps. Tiling helps us see why area = rows × columns and why repeated addition works.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.7."},
-    {"id": "LEARN_07", "type": "concept_card", "cpa_phase": "abstract", "title": "Choose Your Tool", "content": "(1) Repeated addition: best for small numbers or when learning. (2) Multiplication: faster, especially for larger rectangles. (3) Split + add: best for irregular shapes that can be cut into rectangles.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 11.7."},
-    {"id": "LEARN_08", "type": "concept_card", "cpa_phase": "abstract", "title": "Lesson Summary", "content": "Today: (1) Area can be found by repeated addition (row + row + row...). (2) Repeated addition = multiplication. (3) Split irregular shapes into rectangles, find each area, then ADD. (4) Tiling is the visual model.", "visual_type": "none", "visual_data": {}, "verification": "Covers all Go Math 11.7."}
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Area as Repeated Addition",
+      "content": "When you cover a rectangle with unit squares, each ROW has the same number of squares. Adding the squares row by row is REPEATED ADDITION. Example: 4 rows of 5 squares each: 5 + 5 + 5 + 5 = 20.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.7."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Repeated Addition Becomes Multiplication",
+      "content": "Repeated addition is the same as multiplication. 5 + 5 + 5 + 5 = 4 × 5 = 20. Multiplication is just a faster way to write repeated addition.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.7."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Arrays of Unit Squares",
+      "content": "An ARRAY is a rectangular arrangement of items in equal rows. The unit squares of a rectangle form an array. Counting an array by rows and adding gives the total = AREA.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.7."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Adding Areas of Two Rectangles",
+      "content": "If a shape can be split into two rectangles (no overlap), find each area separately, then ADD them together. Total area = Area 1 + Area 2.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.7."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Why Adding Works",
+      "content": "Two rectangles side by side don't share unit squares. So if Rectangle 1 has 12 squares and Rectangle 2 has 8 squares, the total is 12+8=20 squares. Adding works whenever there are no overlaps.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.7."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Tiling a Rectangle",
+      "content": "TILING means covering a rectangle with unit squares (or square tiles) without gaps or overlaps. Tiling helps us see why area = rows × columns and why repeated addition works.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.7."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Choose Your Tool",
+      "content": "(1) Repeated addition: best for small numbers or when learning. (2) Multiplication: faster, especially for larger rectangles. (3) Split + add: best for irregular shapes that can be cut into rectangles.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 11.7."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today: (1) Area can be found by repeated addition (row + row + row...). (2) Repeated addition = multiplication. (3) Split irregular shapes into rectangles, find each area, then ADD. (4) Tiling is the visual model.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Covers all Go Math 11.7."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    }
   ],
   "try": [
-    {"id": "TRY_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "repeated_addition", "difficulty": 1, "question": "6 + 6 + 6 = ?", "correct_answer": "18", "solution_steps": ["6+6=12, +6=18."], "expected_errors": {"12": {"error_type": "careless", "note": "Only added 2 sixes"}}, "feedback": {"correct": "Right!", "incorrect": "6+6+6=18."}, "verification": "3×6=18.", "hints": ["3 sixes."]},
-    {"id": "TRY_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "row_addition", "difficulty": 2, "question": "A rectangle has 3 rows of 8 unit squares. Use addition: 8+8+8 = ?", "correct_answer": "24", "solution_steps": ["8+8=16, +8=24."], "expected_errors": {"16": {"error_type": "careless", "note": "Only 2 eights"}}, "feedback": {"correct": "Right!", "incorrect": "8+8+8=24."}, "verification": "3×8=24.", "hints": ["Add 8 three times."]},
-    {"id": "TRY_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 3, "question": "A shape splits into a 4×3 rectangle and a 2×3 rectangle. Total area in sq units?", "correct_answer": "18", "solution_steps": ["First: 4×3=12. Second: 2×3=6. Total: 12+6=18."], "expected_errors": {"12": {"error_type": "concept_gap", "note": "Forgot second"}}, "feedback": {"correct": "Right!", "incorrect": "12+6=18."}, "verification": "12+6=18.", "hints": ["Add the two areas."]},
-    {"id": "TRY_04", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_multiplication", "difficulty": 2, "question": "Which means the same as 7 + 7 + 7 + 7?", "choices": ["A) 7 × 4", "B) 7 + 4", "C) 7 × 7", "D) 4 + 4"], "correct_answer": "A", "solution_steps": ["4 sevens = 7 × 4 = 28."], "expected_errors": {"B": {"error_type": "concept_gap", "note": "11 ≠ 28"}, "C": {"error_type": "concept_gap", "note": "49 ≠ 28"}, "D": {"error_type": "concept_gap", "note": "8 ≠ 28"}}, "feedback": {"correct": "Right!", "incorrect": "7+7+7+7 = 4 sevens = 7 × 4."}, "verification": "Repeated addition = multiplication.", "hints": ["Count the 7s."]},
-    {"id": "TRY_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 3, "question": "A T-shape splits into 5×2 (top) and 1×4 (stem). Total area?", "correct_answer": "14", "solution_steps": ["Top: 5×2=10. Stem: 1×4=4. Total: 14."], "expected_errors": {"10": {"error_type": "concept_gap", "note": "Forgot stem"}, "20": {"error_type": "concept_gap", "note": "Don't multiply totals"}}, "feedback": {"correct": "Right!", "incorrect": "10+4=14."}, "verification": "10+4=14.", "hints": ["Top + stem."]}
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "repeated_addition",
+      "difficulty": 1,
+      "question": "6 + 6 + 6 = ?",
+      "correct_answer": "18",
+      "solution_steps": [
+        "6+6=12, +6=18."
+      ],
+      "expected_errors": {
+        "12": {
+          "error_type": "careless",
+          "note": "Only added 2 sixes"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "6+6+6=18."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "3×6=18."
+      },
+      "hints": [
+        "3 sixes."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "row_addition",
+      "difficulty": 2,
+      "question": "A rectangle has 3 rows of 8 unit squares. Use addition: 8+8+8 = ?",
+      "correct_answer": "24",
+      "solution_steps": [
+        "8+8=16, +8=24."
+      ],
+      "expected_errors": {
+        "16": {
+          "error_type": "careless",
+          "note": "Only 2 eights"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "8+8+8=24."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "3×8=24."
+      },
+      "hints": [
+        "Add 8 three times."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 3,
+      "question": "A shape splits into a 4×3 rectangle and a 2×3 rectangle. Total area in sq units?",
+      "correct_answer": "18",
+      "solution_steps": [
+        "First: 4×3=12. Second: 2×3=6. Total: 12+6=18."
+      ],
+      "expected_errors": {
+        "12": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "12+6=18."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "12+6=18."
+      },
+      "hints": [
+        "Add the two areas."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "TRY_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_multiplication",
+      "difficulty": 2,
+      "question": "Which means the same as 7 + 7 + 7 + 7?",
+      "choices": [
+        "A) 7 × 4",
+        "B) 7 + 4",
+        "C) 7 × 7",
+        "D) 4 + 4"
+      ],
+      "correct_answer": "A",
+      "solution_steps": [
+        "4 sevens = 7 × 4 = 28."
+      ],
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "11 ≠ 28"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "49 ≠ 28"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "8 ≠ 28"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "7+7+7+7 = 4 sevens = 7 × 4."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Repeated addition = multiplication."
+      },
+      "hints": [
+        "Count the 7s."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 3,
+      "question": "A T-shape splits into 5×2 (top) and 1×4 (stem). Total area?",
+      "correct_answer": "14",
+      "solution_steps": [
+        "Top: 5×2=10. Stem: 1×4=4. Total: 14."
+      ],
+      "expected_errors": {
+        "10": {
+          "error_type": "concept_gap",
+          "note": "Forgot stem"
+        },
+        "20": {
+          "error_type": "concept_gap",
+          "note": "Don't multiply totals"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "10+4=14."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "10+4=14."
+      },
+      "hints": [
+        "Top + stem."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    }
   ],
   "practice_r1": [
-    {"id": "R1_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "repeated_addition", "difficulty": 1, "question": "4+4+4=?", "correct_answer": "12", "expected_errors": {"8": {"error_type": "careless", "note": "Only 2 fours"}}, "verification": "12.", "hints": ["3 fours."], "feedback": {"correct": "Right!", "incorrect": "4+4+4=12."}},
-    {"id": "R1_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "repeated_addition", "difficulty": 1, "question": "5+5+5+5+5=?", "correct_answer": "25", "expected_errors": {"20": {"error_type": "careless", "note": "Only 4 fives"}}, "verification": "5×5=25.", "hints": ["5 fives."], "feedback": {"correct": "Right!", "incorrect": "5+5+5+5+5=25."}},
-    {"id": "R1_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "row_addition", "difficulty": 2, "question": "3 rows of 9. Use 9+9+9=?", "correct_answer": "27", "expected_errors": {"18": {"error_type": "careless", "note": "Only 2 nines"}}, "verification": "3×9=27.", "hints": ["3 nines."], "feedback": {"correct": "Right!", "incorrect": "9+9+9=27."}},
-    {"id": "R1_04", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_multiplication", "difficulty": 2, "question": "Which equals 6+6+6?", "choices": ["A) 6+3", "B) 6×3", "C) 6×6", "D) 3+3"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "9 ≠ 18"}, "C": {"error_type": "concept_gap", "note": "36 ≠ 18"}, "D": {"error_type": "concept_gap", "note": "6 ≠ 18"}}, "verification": "Same as 6×3.", "hints": ["3 sixes = 6×3."], "feedback": {"correct": "Right!", "incorrect": "6+6+6 = 6×3 = 18."}},
-    {"id": "R1_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 2, "question": "Areas: 6 and 4. Total?", "correct_answer": "10", "expected_errors": {"24": {"error_type": "concept_gap", "note": "Don't multiply"}}, "verification": "6+4=10.", "hints": ["Add."], "feedback": {"correct": "Right!", "incorrect": "6+4=10."}},
-    {"id": "R1_06", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "row_addition", "difficulty": 2, "question": "2 rows of 7. Total?", "correct_answer": "14", "expected_errors": {"9": {"error_type": "concept_gap", "note": "2+7=9"}}, "verification": "7+7=14.", "hints": ["7+7."], "feedback": {"correct": "Right!", "incorrect": "7+7=14."}},
-    {"id": "R1_07", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 2, "question": "Two rectangles: 3×4 and 2×4. Total area?", "correct_answer": "20", "expected_errors": {"12": {"error_type": "concept_gap", "note": "Forgot second"}, "24": {"error_type": "concept_gap", "note": "Don't multiply totals"}}, "verification": "12+8=20.", "hints": ["12 + 8."], "feedback": {"correct": "Right!", "incorrect": "12+8=20."}},
-    {"id": "R1_08", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_logic", "difficulty": 2, "question": "True or False: 8+8+8+8 = 4×8.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "Same"}}, "verification": "32 = 32.", "hints": ["Both = 32."], "feedback": {"correct": "True!", "incorrect": "True. Both = 32."}},
-    {"id": "R1_09", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "row_addition", "difficulty": 2, "question": "5 rows of 4. Use addition.", "correct_answer": "20", "expected_errors": {"9": {"error_type": "concept_gap", "note": "5+4=9"}}, "verification": "4+4+4+4+4=20.", "hints": ["Add 4 five times."], "feedback": {"correct": "Right!", "incorrect": "4+4+4+4+4=20."}},
-    {"id": "R1_10", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 3, "question": "L-shape: 3×3 + 2×1. Total area?", "correct_answer": "11", "expected_errors": {"9": {"error_type": "concept_gap", "note": "Forgot 2×1"}}, "verification": "9+2=11.", "hints": ["9 + 2."], "feedback": {"correct": "Right!", "incorrect": "9+2=11."}}
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "repeated_addition",
+      "difficulty": 1,
+      "question": "4+4+4=?",
+      "correct_answer": "12",
+      "expected_errors": {
+        "8": {
+          "error_type": "careless",
+          "note": "Only 2 fours"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "12."
+      },
+      "hints": [
+        "3 fours."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4+4+4=12."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "repeated_addition",
+      "difficulty": 1,
+      "question": "5+5+5+5+5=?",
+      "correct_answer": "25",
+      "expected_errors": {
+        "20": {
+          "error_type": "careless",
+          "note": "Only 4 fives"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "5×5=25."
+      },
+      "hints": [
+        "5 fives."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5+5+5+5+5=25."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "row_addition",
+      "difficulty": 2,
+      "question": "3 rows of 9. Use 9+9+9=?",
+      "correct_answer": "27",
+      "expected_errors": {
+        "18": {
+          "error_type": "careless",
+          "note": "Only 2 nines"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "3×9=27."
+      },
+      "hints": [
+        "3 nines."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "9+9+9=27."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_multiplication",
+      "difficulty": 2,
+      "question": "Which equals 6+6+6?",
+      "choices": [
+        "A) 6+3",
+        "B) 6×3",
+        "C) 6×6",
+        "D) 3+3"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "9 ≠ 18"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "36 ≠ 18"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "6 ≠ 18"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Same as 6×3."
+      },
+      "hints": [
+        "3 sixes = 6×3."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "6+6+6 = 6×3 = 18."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 2,
+      "question": "Areas: 6 and 4. Total?",
+      "correct_answer": "10",
+      "expected_errors": {
+        "24": {
+          "error_type": "concept_gap",
+          "note": "Don't multiply"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "6+4=10."
+      },
+      "hints": [
+        "Add."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "6+4=10."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "row_addition",
+      "difficulty": 2,
+      "question": "2 rows of 7. Total?",
+      "correct_answer": "14",
+      "expected_errors": {
+        "9": {
+          "error_type": "concept_gap",
+          "note": "2+7=9"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "7+7=14."
+      },
+      "hints": [
+        "7+7."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "7+7=14."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 2,
+      "question": "Two rectangles: 3×4 and 2×4. Total area?",
+      "correct_answer": "20",
+      "expected_errors": {
+        "12": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        },
+        "24": {
+          "error_type": "concept_gap",
+          "note": "Don't multiply totals"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "12+8=20."
+      },
+      "hints": [
+        "12 + 8."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "12+8=20."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_08",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_logic",
+      "difficulty": 2,
+      "question": "True or False: 8+8+8+8 = 4×8.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "Same"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "32 = 32."
+      },
+      "hints": [
+        "Both = 32."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. Both = 32."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "True!"
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "row_addition",
+      "difficulty": 2,
+      "question": "5 rows of 4. Use addition.",
+      "correct_answer": "20",
+      "expected_errors": {
+        "9": {
+          "error_type": "concept_gap",
+          "note": "5+4=9"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4+4+4+4+4=20."
+      },
+      "hints": [
+        "Add 4 five times."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4+4+4+4+4=20."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 3,
+      "question": "L-shape: 3×3 + 2×1. Total area?",
+      "correct_answer": "11",
+      "expected_errors": {
+        "9": {
+          "error_type": "concept_gap",
+          "note": "Forgot 2×1"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "9+2=11."
+      },
+      "hints": [
+        "9 + 2."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "9+2=11."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    }
   ],
   "practice_r2": [
-    {"id": "R2_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 2, "question": "Two rectangles: areas 15 and 10. Total?", "correct_answer": "25", "expected_errors": {"5": {"error_type": "concept_gap", "note": "15-10=5"}, "150": {"error_type": "concept_gap", "note": "Don't multiply"}}, "verification": "15+10=25.", "hints": ["Add."], "feedback": {"correct": "Right!", "incorrect": "15+10=25."}},
-    {"id": "R2_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "row_addition", "difficulty": 3, "question": "6 rows of 6. Use 6+6+6+6+6+6.", "correct_answer": "36", "expected_errors": {"30": {"error_type": "careless", "note": "Only 5 sixes"}}, "verification": "6×6=36.", "hints": ["6 sixes."], "feedback": {"correct": "Right!", "incorrect": "6+6+6+6+6+6=36."}},
-    {"id": "R2_03", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 3, "question": "A floor splits into 5×4 and 5×3 (no overlap). Total area in sq units?", "choices": ["A) 17", "B) 20", "C) 27", "D) 35"], "correct_answer": "D", "expected_errors": {"A": {"error_type": "concept_gap", "note": "5+4+5+3=17 — wrong"}, "B": {"error_type": "concept_gap", "note": "Just first"}, "C": {"error_type": "careless", "note": "Compute again: 20+15=35"}}, "verification": "20+15=35.", "hints": ["Add 20 + 15."], "feedback": {"correct": "Right!", "incorrect": "5×4=20. 5×3=15. Total: 35."}},
-    {"id": "R2_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_word", "difficulty": 3, "question": "Tom's room is 4 m × 5 m. Sara's room is 3 m × 4 m. Total area?", "correct_answer": "32", "expected_errors": {"17": {"error_type": "concept_gap", "note": "Don't add dimensions"}, "20": {"error_type": "concept_gap", "note": "Just Tom's"}}, "verification": "20+12=32.", "hints": ["Add Tom's 20 + Sara's 12."], "feedback": {"correct": "Right!", "incorrect": "Tom: 4×5=20. Sara: 3×4=12. Total: 32 sq m."}},
-    {"id": "R2_05", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_logic", "difficulty": 3, "question": "True or False: When two rectangles overlap, you can still add their areas to get the total.", "correct_answer": "false", "expected_errors": {"true": {"error_type": "concept_gap", "note": "Overlaps would double-count"}}, "verification": "Overlap = no simple addition.", "hints": ["What about overlap?"], "feedback": {"correct": "False!", "incorrect": "False. Overlap means double-counting — adding gives wrong answer."}},
-    {"id": "R2_06", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "row_addition", "difficulty": 2, "question": "4 rows of 8. Total?", "correct_answer": "32", "expected_errors": {"12": {"error_type": "concept_gap", "note": "4+8=12"}}, "verification": "4×8=32.", "hints": ["8+8+8+8."], "feedback": {"correct": "Right!", "incorrect": "8+8+8+8=32."}},
-    {"id": "R2_07", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 3, "question": "Two rectangles: 3×6 and 2×6. Total?", "correct_answer": "30", "expected_errors": {"18": {"error_type": "concept_gap", "note": "Just first"}, "12": {"error_type": "concept_gap", "note": "Just second"}}, "verification": "18+12=30.", "hints": ["Add 18 + 12."], "feedback": {"correct": "Right!", "incorrect": "18+12=30."}},
-    {"id": "R2_08", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_multiplication", "difficulty": 2, "question": "Which equals 9+9+9?", "choices": ["A) 9×3", "B) 9+3", "C) 3×3", "D) 9×9"], "correct_answer": "A", "expected_errors": {"B": {"error_type": "concept_gap", "note": "12 ≠ 27"}, "C": {"error_type": "concept_gap", "note": "9 ≠ 27"}, "D": {"error_type": "concept_gap", "note": "81 ≠ 27"}}, "verification": "9+9+9 = 9×3.", "hints": ["3 nines."], "feedback": {"correct": "Right!", "incorrect": "9+9+9=9×3=27."}},
-    {"id": "R2_09", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 3, "question": "A figure: 4×3 rectangle stacked on 4×2. Total?", "correct_answer": "20", "expected_errors": {"12": {"error_type": "concept_gap", "note": "Just first"}, "8": {"error_type": "concept_gap", "note": "Just second"}}, "verification": "12+8=20.", "hints": ["Stack means add."], "feedback": {"correct": "Right!", "incorrect": "12+8=20."}},
-    {"id": "R2_10", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_logic", "difficulty": 3, "question": "True or False: An L-shape area equals the sum of two rectangle areas (no overlap).", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "Yes — splitting works"}}, "verification": "Split + add.", "hints": ["L splits into 2 rectangles."], "feedback": {"correct": "True!", "incorrect": "True. Split L into 2 rectangles, find areas, add."}}
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 2,
+      "question": "Two rectangles: areas 15 and 10. Total?",
+      "correct_answer": "25",
+      "expected_errors": {
+        "5": {
+          "error_type": "concept_gap",
+          "note": "15-10=5"
+        },
+        "150": {
+          "error_type": "concept_gap",
+          "note": "Don't multiply"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "15+10=25."
+      },
+      "hints": [
+        "Add."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "15+10=25."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "row_addition",
+      "difficulty": 3,
+      "question": "6 rows of 6. Use 6+6+6+6+6+6.",
+      "correct_answer": "36",
+      "expected_errors": {
+        "30": {
+          "error_type": "careless",
+          "note": "Only 5 sixes"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "6×6=36."
+      },
+      "hints": [
+        "6 sixes."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "6+6+6+6+6+6=36."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 3,
+      "question": "A floor splits into 5×4 and 5×3 (no overlap). Total area in sq units?",
+      "choices": [
+        "A) 17",
+        "B) 20",
+        "C) 27",
+        "D) 35"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "5+4+5+3=17 — wrong"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Just first"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Compute again: 20+15=35"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20+15=35."
+      },
+      "hints": [
+        "Add 20 + 15."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5×4=20. 5×3=15. Total: 35."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_word",
+      "difficulty": 3,
+      "question": "Tom's room is 4 m × 5 m. Sara's room is 3 m × 4 m. Total area?",
+      "correct_answer": "32",
+      "expected_errors": {
+        "17": {
+          "error_type": "concept_gap",
+          "note": "Don't add dimensions"
+        },
+        "20": {
+          "error_type": "concept_gap",
+          "note": "Just Tom's"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20+12=32."
+      },
+      "hints": [
+        "Add Tom's 20 + Sara's 12."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Tom: 4×5=20. Sara: 3×4=12. Total: 32 sq m."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_05",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_logic",
+      "difficulty": 3,
+      "question": "True or False: When two rectangles overlap, you can still add their areas to get the total.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {
+          "error_type": "concept_gap",
+          "note": "Overlaps would double-count"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Overlap = no simple addition."
+      },
+      "hints": [
+        "What about overlap?"
+      ],
+      "feedback": {
+        "correct": "False!",
+        "incorrect": "False. Overlap means double-counting — adding gives wrong answer."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "False!"
+    },
+    {
+      "id": "R2_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "row_addition",
+      "difficulty": 2,
+      "question": "4 rows of 8. Total?",
+      "correct_answer": "32",
+      "expected_errors": {
+        "12": {
+          "error_type": "concept_gap",
+          "note": "4+8=12"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4×8=32."
+      },
+      "hints": [
+        "8+8+8+8."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "8+8+8+8=32."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 3,
+      "question": "Two rectangles: 3×6 and 2×6. Total?",
+      "correct_answer": "30",
+      "expected_errors": {
+        "18": {
+          "error_type": "concept_gap",
+          "note": "Just first"
+        },
+        "12": {
+          "error_type": "concept_gap",
+          "note": "Just second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "18+12=30."
+      },
+      "hints": [
+        "Add 18 + 12."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "18+12=30."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_08",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_multiplication",
+      "difficulty": 2,
+      "question": "Which equals 9+9+9?",
+      "choices": [
+        "A) 9×3",
+        "B) 9+3",
+        "C) 3×3",
+        "D) 9×9"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "12 ≠ 27"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "9 ≠ 27"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "81 ≠ 27"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "9+9+9 = 9×3."
+      },
+      "hints": [
+        "3 nines."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "9+9+9=9×3=27."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 3,
+      "question": "A figure: 4×3 rectangle stacked on 4×2. Total?",
+      "correct_answer": "20",
+      "expected_errors": {
+        "12": {
+          "error_type": "concept_gap",
+          "note": "Just first"
+        },
+        "8": {
+          "error_type": "concept_gap",
+          "note": "Just second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "12+8=20."
+      },
+      "hints": [
+        "Stack means add."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "12+8=20."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R2_10",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_logic",
+      "difficulty": 3,
+      "question": "True or False: An L-shape area equals the sum of two rectangle areas (no overlap).",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "Yes — splitting works"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Split + add."
+      },
+      "hints": [
+        "L splits into 2 rectangles."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. Split L into 2 rectangles, find areas, add."
+      },
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "True!"
+    }
   ],
   "practice_r3": [
-    {"id": "R3_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 4, "question": "An L-shape: 6×4 with a 2×2 square removed from one corner. Area in sq units?", "correct_answer": "20", "solution_steps": ["Step 1: Whole rectangle: 6×4=24.", "Step 2: Removed: 2×2=4.", "Step 3: 24-4=20."], "expected_errors": {"24": {"error_type": "concept_gap", "note": "Subtract removed"}, "28": {"error_type": "concept_gap", "note": "24-4=20, not 28"}}, "feedback": {"correct": "Right!", "incorrect": "24 - 4 = 20."}, "three_read_prompt": "Read 1: Whole? Read 2: Removed? Read 3: Subtract.", "verification": "24-4=20.", "hints": ["Whole minus removed."]},
-    {"id": "R3_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_word", "difficulty": 4, "question": "Lily's living room is 7×5 and her bedroom is 5×4. Total floor area in sq m?", "correct_answer": "55", "solution_steps": ["Step 1: Living: 7×5=35.", "Step 2: Bedroom: 5×4=20.", "Step 3: 35+20=55."], "expected_errors": {"35": {"error_type": "concept_gap", "note": "Just living"}, "21": {"error_type": "concept_gap", "note": "Don't add dimensions"}}, "feedback": {"correct": "Right!", "incorrect": "35+20=55."}, "three_read_prompt": "Read 1: Each room area? Read 2: Add. Read 3: Total.", "verification": "35+20=55.", "hints": ["Add the two areas."]},
-    {"id": "R3_03", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle", "difficulty": 4, "question": "A composite shape: 4×5 + 3×5 (side by side, sharing one edge). Total area?", "choices": ["A) 17", "B) 20", "C) 35", "D) 50"], "correct_answer": "C", "solution_steps": ["Step 1: Sharing an edge means the two rectangles don't overlap — they just touch.", "Step 2: 4×5=20. 3×5=15. Total area = 20+15 = 35."], "expected_errors": {"A": {"error_type": "concept_gap", "note": "Don't add dimensions"}, "B": {"error_type": "concept_gap", "note": "Just one"}, "D": {"error_type": "concept_gap", "note": "Wrong"}}, "feedback": {"correct": "Right!", "incorrect": "20+15=35."}, "three_read_prompt": "Read 1: Two rectangles' areas? Read 2: They share an edge but no overlap. Read 3: Total.", "verification": "20+15=35.", "hints": ["Add 20 + 15."]},
-    {"id": "R3_04", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "addition_logic", "difficulty": 4, "question": "True or False: 5+5+5+5+5+5+5 = 7×5.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "7 fives = 35"}}, "feedback": {"correct": "True!", "incorrect": "True. 7 fives = 7×5 = 35."}, "verification": "Both = 35.", "hints": ["Count the fives."]},
-    {"id": "R3_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.C.7", "skill_tag": "split_rectangle_logic", "difficulty": 5, "question": "A shape splits into THREE rectangles: 2×4, 3×2, and 1×5. Total area?", "correct_answer": "19", "solution_steps": ["Step 1: 2×4=8.", "Step 2: 3×2=6.", "Step 3: 1×5=5.", "Step 4: 8+6+5=19."], "expected_errors": {"14": {"error_type": "concept_gap", "note": "Forgot one"}, "13": {"error_type": "careless", "note": "8+6+5=19"}}, "feedback": {"correct": "Right!", "incorrect": "8+6+5=19."}, "three_read_prompt": "Read 1: 3 rectangles? Read 2: Each area? Read 3: Sum.", "verification": "8+6+5=19.", "hints": ["Add all three."]}
-  ]
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 4,
+      "question": "An L-shape: 6×4 with a 2×2 square removed from one corner. Area in sq units?",
+      "correct_answer": "20",
+      "solution_steps": [
+        "Step 1: Whole rectangle: 6×4=24.",
+        "Step 2: Removed: 2×2=4.",
+        "Step 3: 24-4=20."
+      ],
+      "expected_errors": {
+        "24": {
+          "error_type": "concept_gap",
+          "note": "Subtract removed"
+        },
+        "28": {
+          "error_type": "concept_gap",
+          "note": "24-4=20, not 28"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "24 - 4 = 20."
+      },
+      "three_read_prompt": "Read 1: Whole? Read 2: Removed? Read 3: Subtract.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "24-4=20."
+      },
+      "hints": [
+        "Whole minus removed."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_word",
+      "difficulty": 4,
+      "question": "Lily's living room is 7×5 and her bedroom is 5×4. Total floor area in sq m?",
+      "correct_answer": "55",
+      "solution_steps": [
+        "Step 1: Living: 7×5=35.",
+        "Step 2: Bedroom: 5×4=20.",
+        "Step 3: 35+20=55."
+      ],
+      "expected_errors": {
+        "35": {
+          "error_type": "concept_gap",
+          "note": "Just living"
+        },
+        "21": {
+          "error_type": "concept_gap",
+          "note": "Don't add dimensions"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "35+20=55."
+      },
+      "three_read_prompt": "Read 1: Each room area? Read 2: Add. Read 3: Total.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "35+20=55."
+      },
+      "hints": [
+        "Add the two areas."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R3_03",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle",
+      "difficulty": 4,
+      "question": "A composite shape: 4×5 + 3×5 (side by side, sharing one edge). Total area?",
+      "choices": [
+        "A) 17",
+        "B) 20",
+        "C) 35",
+        "D) 50"
+      ],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: Sharing an edge means the two rectangles don't overlap — they just touch.",
+        "Step 2: 4×5=20. 3×5=15. Total area = 20+15 = 35."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Don't add dimensions"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Just one"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Wrong"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "20+15=35."
+      },
+      "three_read_prompt": "Read 1: Two rectangles' areas? Read 2: They share an edge but no overlap. Read 3: Total.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20+15=35."
+      },
+      "hints": [
+        "Add 20 + 15."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    },
+    {
+      "id": "R3_04",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "addition_logic",
+      "difficulty": 4,
+      "question": "True or False: 5+5+5+5+5+5+5 = 7×5.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "7 fives = 35"
+        }
+      },
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 7 fives = 7×5 = 35."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Both = 35."
+      },
+      "hints": [
+        "Count the fives."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "True!"
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "split_rectangle_logic",
+      "difficulty": 5,
+      "question": "A shape splits into THREE rectangles: 2×4, 3×2, and 1×5. Total area?",
+      "correct_answer": "19",
+      "solution_steps": [
+        "Step 1: 2×4=8.",
+        "Step 2: 3×2=6.",
+        "Step 3: 1×5=5.",
+        "Step 4: 8+6+5=19."
+      ],
+      "expected_errors": {
+        "14": {
+          "error_type": "concept_gap",
+          "note": "Forgot one"
+        },
+        "13": {
+          "error_type": "careless",
+          "note": "8+6+5=19"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "8+6+5=19."
+      },
+      "three_read_prompt": "Read 1: 3 rectangles? Read 2: Each area? Read 3: Sum.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson 11.4 'Relate Area to Addition'",
+        "procedure_source": "EngageNY Grade 3 Module 4 Topic D — Area and Addition",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "8+6+5=19."
+      },
+      "hints": [
+        "Add all three."
+      ],
+      "cpa_stage": "abstract",
+      "math_note": "",
+      "feedback_correct": "Right!"
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U12 L3 — 넓이와 곱셈 (3.MD.C.7)",
+    "current": "G3 U12 L4 — 넓이와 덧셈 관계 (3.MD.C.7)",
+    "successor": "G3 U12 L5 — 결합 직사각형 (3.MD.C.7)"
+  },
+  "metadata": {
+    "total_items": 43,
+    "upgraded": true,
+    "upgrade_script": "scripts/upgrade_u12_l4.py"
+  }
 }
