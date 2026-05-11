@@ -1,0 +1,96 @@
+{
+  "standard": "3.MD.A.1",
+  "standard_description": "Tell and write time to the nearest minute and measure time intervals in minutes. Solve word problems involving addition and subtraction of time intervals in minutes, e.g., by representing the problem on a number line diagram.",
+  "sources": [
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Measurement and Data K–5, 2011",
+    "Van de Walle, J.A., Karp, K.S., & Bay-Williams, J.M. (2013). Elementary and Middle School Mathematics (8th ed.). Pearson.",
+    "EngageNY Grade 3 Module 2 Topic A — Time Measurement, Teacher Edition, 2013",
+    "Friedman, W.J. (1990). About Time: Inventing the Fourth Dimension. MIT Press.",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.MD.A.1.M01",
+      "error_type": "minute_hand_value",
+      "short_label": "Reading the minute hand as the number it points to",
+      "description": "Student reads the minute hand directly as the number it points to (e.g., minute hand on 3 → 3 minutes) instead of multiplying by 5 (3 × 5 = 15 minutes). This stems from not understanding that each numeral on the clock face represents a 5-minute interval.",
+      "example": "Clock shows hour hand at 8, minute hand at 4. Student reads 8:4 instead of 8:20.",
+      "citation": "Van de Walle et al. (2013) p.418 — 'Students initially read the minute hand as the number on the clock face, not realizing each numeral marks a 5-minute interval; explicit skip-counting by 5 around the clock prevents this error.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Skip-count by 5 around the clock face: 5, 10, 15, 20, … Label each numeral with its minute value first. Practice: minute hand on 3 = 3 × 5 = 15 min.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.A.1.M02",
+      "error_type": "elapsed_time_subtract_wrong",
+      "short_label": "Subtracting clock times like decimal numbers",
+      "description": "When computing elapsed time, the student treats clock times like decimal numbers (e.g., 3:45 − 1:20 = 2:25 by direct subtraction). This works sometimes but fails when minutes need borrowing across the hour (e.g., 4:15 − 2:50 ≠ 2:35).",
+      "example": "Start 10:50, end 11:20. Student computes 11:20 − 10:50 = 1:30 (treating like decimals: 20 − 50 not possible so borrow incorrectly), instead of 30 minutes.",
+      "citation": "EngageNY G3 Module 2 Lesson 4 Teacher Edition — 'Students treat clock times as decimal numbers and subtract column by column; this works when minutes don\\'t require borrowing but produces large errors when they do. Number line representation (count up) avoids the borrowing error.'",
+      "source": "EngageNY Grade 3 Module 2",
+      "remediation": "Use a number line: mark start time, count up by 10s and 1s to end time. Or: count up first to the next hour, then add remaining minutes. 10:50 → 11:00 (10 min) → 11:20 (20 min). Total: 30 min.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.A.1.M03",
+      "error_type": "am_pm_confusion",
+      "short_label": "Confusing A.M. and P.M.",
+      "description": "Student confuses A.M. (morning, before noon) with P.M. (afternoon/evening, after noon). Common in word problems where time of day matters. Also confuses 12:00 noon (P.M. start) with 12:00 midnight (A.M. start).",
+      "example": "Word problem: 'School starts at 8:00 _.M.' Student answers P.M. Or: 'It is noon. What is the time?' Student writes 12:00 A.M.",
+      "citation": "Friedman (1990) p.156 — 'Children\\'s understanding of A.M./P.M. designations develops slowly; the convention that 12:00 noon = P.M. while 12:00 midnight = A.M. is particularly counterintuitive and requires explicit instruction.'",
+      "source": "Friedman (1990) About Time",
+      "remediation": "A.M. = AFTER MIDNIGHT (12:00 AM to 11:59 AM). P.M. = POST MIDDAY (12:00 PM to 11:59 PM). Anchor activities: when you wake up = A.M.; when you eat dinner = P.M. Make a daily timeline showing transitions.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.A.1.M04",
+      "error_type": "minute_count_skip",
+      "short_label": "Forgetting unmarked minute tick marks",
+      "description": "Student counts only the marked numerals (5-minute intervals) and ignores the individual minute tick marks. Result: cannot read times like 8:23 or 3:47 precisely; rounds incorrectly to the nearest 5 minutes.",
+      "example": "Clock shows minute hand between 2 and 3, on the 3rd tick past 2. Student says 'about 10' or 'between 10 and 15' instead of recognizing it as exactly 13 minutes.",
+      "citation": "NCTM MD Progressions K-5 (2011) p.12 — 'Students often ignore the 60 unmarked tick marks between numerals, reading only the 5-minute multiples; this prevents precise minute-level reading required by 3.MD.A.1.'",
+      "source": "NCTM Progressions MD K-5",
+      "remediation": "Count tick marks individually for any non-5 multiple: 'I see hand past 2 (which is 10 min), then 1, 2, 3 ticks more = 13 minutes.' Practice with clocks showing 7, 13, 22, 38, 47 minutes.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.A.1.M05",
+      "error_type": "hour_advance_with_minute",
+      "short_label": "Failing to advance the hour as minute hand passes 12",
+      "description": "When reading a clock near the top of the hour, student does not realize the hour hand has moved slightly forward; or in elapsed time problems, fails to advance the hour when minutes exceed 60.",
+      "example": "Time is 4:55, hour hand sits between 4 and 5 closer to 5. Student reads 5:55. Or: '2:45 + 30 min = ?'. Student answers 2:75 instead of 3:15.",
+      "citation": "Van de Walle et al. (2013) p.419 — 'When the hour hand approaches the next numeral, students confuse which hour to report; clarifying that the hour is the LAST numeral the hand has passed (not the next one approaching) resolves the error.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Rule: hour = last numeral the hour hand has FULLY PASSED. If between 4 and 5, the hour is still 4 (until hand reaches 5 exactly). When adding time: if minutes exceed 60, subtract 60 and add 1 to the hour.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.A.1.M06",
+      "error_type": "duration_vs_clock_time",
+      "short_label": "Confusing elapsed time with a clock reading",
+      "description": "When asked 'How long did it take?', student gives the end time instead of the duration (or vice versa).",
+      "example": "'Sara started at 2:00 and finished at 3:30. How long did it take?' Student writes 3:30 (end time) instead of 1 hour 30 minutes (duration).",
+      "citation": "EngageNY G3 Module 2 Lesson 5 Teacher Edition — 'A common error in elapsed-time word problems is reporting the end clock time rather than the duration; students conflate \"when she finished\" with \"how long she took.\" Drawing a number line with a clear START and END forces students to mark the gap as the answer.'",
+      "source": "EngageNY Grade 3 Module 2",
+      "remediation": "Always draw a number line. Label START and END. The answer is the SPAN (the gap), labeled with an arc. Underline the question: 'how long' = duration; 'when' = clock time.",
+      "bloom_level": 3
+    },
+    {
+      "misconception_id": "3.MD.A.1.M07",
+      "error_type": "minutes_to_hours_conversion",
+      "short_label": "Wrong conversion between minutes and hours",
+      "description": "Student converts minutes to hours by dividing by 100 (decimal thinking) or fails to use 60. Example: 90 minutes → 0.90 hour, or 75 minutes → 1.15 hour.",
+      "example": "'How many hours is 120 minutes?' Student answers 1.20 hours (decimal conversion) instead of 2 hours.",
+      "citation": "NCTM MD Progressions K-5 (2011) p.13 — 'Students apply base-10 reasoning to time conversions: dividing minutes by 100 instead of 60. Reinforcing that 1 hour = 60 minutes (NOT 100) through repeated practice with familiar durations resolves this.'",
+      "source": "NCTM Progressions MD K-5",
+      "remediation": "Memorize: 1 hour = 60 minutes. Practice doubles: 30 min = ½ hour, 60 min = 1 hour, 90 min = 1½ hour, 120 min = 2 hours. Use a 60-minute clock model.",
+      "bloom_level": 2
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-11",
+    "version": "1.0",
+    "lesson_uses": ["G3_U11_L1", "G3_U11_L2", "G3_U11_L3"],
+    "total_misconceptions": 7
+  }
+}

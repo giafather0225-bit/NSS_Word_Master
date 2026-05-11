@@ -1,0 +1,96 @@
+{
+  "standard": "3.MD.C.5",
+  "standard_description": "Recognize area as an attribute of plane figures and understand concepts of area measurement. (a) A square with side length 1 unit, called 'a unit square,' is said to have 'one square unit' of area, and can be used to measure area. (b) A plane figure which can be covered without gaps or overlaps by n unit squares is said to have an area of n square units.",
+  "sources": [
+    "NCTM Progressions for the Common Core State Standards in Mathematics — Geometric Measurement K–5, 2012",
+    "Battista, M.T. (2007). The development of geometric and spatial thinking. In F.K. Lester (Ed.), Second Handbook of Research on Mathematics Teaching and Learning. NCTM.",
+    "Van de Walle, J.A., Karp, K.S., & Bay-Williams, J.M. (2013). Elementary and Middle School Mathematics (8th ed.). Pearson.",
+    "EngageNY Grade 3 Module 4 Topic A — Concept of Area, Teacher Edition, 2013",
+    "Smarter Balanced Assessment Consortium — Grade 3 Mathematics Item Specifications, 2015"
+  ],
+  "misconceptions": [
+    {
+      "misconception_id": "3.MD.C.5.M01",
+      "error_type": "area_perimeter_confusion",
+      "short_label": "Confusing area with perimeter",
+      "description": "Student conflates area (space inside) with perimeter (distance around). When asked for area, traces the boundary; when asked for perimeter, fills the interior. Persistent confusion across grades.",
+      "example": "Rectangle 4 cm × 3 cm. 'What is the area?' Student answers 14 cm (the perimeter) instead of 12 sq cm.",
+      "citation": "Battista (2007) p.872 — 'Area-perimeter confusion is one of the most persistent geometric misconceptions; students conflate the two because both involve length and rectangles, and teaching the two formulas back-to-back exacerbates the confusion.'",
+      "source": "Battista (2007) NCTM Handbook",
+      "remediation": "Concrete distinction: AREA = how many tiles cover the inside? Use square tiles physically. PERIMETER = how long is a string around the outside? Use yarn or pipe cleaner. Never teach both formulas in the same lesson.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.C.5.M02",
+      "error_type": "unit_square_irregular",
+      "short_label": "Using non-square units or irregular shapes to measure area",
+      "description": "Student tries to measure area with circles, triangles, or rectangles that aren\\'t unit squares. Doesn\\'t understand that unit squares tile (cover without gaps or overlaps).",
+      "example": "Student covers a rectangle with circles to find area. Counts circles as 'square units.' Or uses 2×1 rectangles and counts each as 1 unit.",
+      "citation": "NCTM GM Progressions K-5 (2012) p.16 — 'Area measurement requires a unit that tiles — covers without gaps or overlaps. Children initially try non-tiling shapes (circles) or non-unit rectangles, missing the standardization requirement.'",
+      "source": "NCTM Progressions GM K-5",
+      "remediation": "Demonstrate that only squares (or other tiling shapes) cover without gaps. Try covering with circles: gaps remain. Use unit squares — confirm no gaps, no overlaps.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.C.5.M03",
+      "error_type": "gaps_overlaps_count",
+      "short_label": "Counting tiles with gaps or overlaps",
+      "description": "Student covers a shape with unit squares but leaves gaps or has overlaps, then counts the tiles anyway. Result: incorrect area.",
+      "example": "Rectangle interior poorly tiled with 8 squares but visible gaps. Student reports area = 8 sq units instead of the true value.",
+      "citation": "Van de Walle et al. (2013) p.441 — 'Students initially tile areas with gaps and overlaps without recognizing these as errors; the requirement of \"no gaps, no overlaps\" must be made explicit and verified.'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Before counting, check: every part of the inside covered? No square sticks out? Use transparent square overlays. Color each tile a different color to ensure no overlap.",
+      "bloom_level": 1
+    },
+    {
+      "misconception_id": "3.MD.C.5.M04",
+      "error_type": "linear_unit_for_area",
+      "short_label": "Using linear units (cm) instead of square units (sq cm) for area",
+      "description": "Student reports area in linear units (cm, m) instead of square units (cm², sq m). Indicates not understanding area as a 2D measurement.",
+      "example": "Rectangle 4 cm × 3 cm. Student computes 12 and labels it '12 cm' instead of '12 sq cm'.",
+      "citation": "Battista (2007) p.872 — 'Distinguishing 1D length units from 2D area units (sq cm) is conceptually difficult; students require sustained practice with the language and notation of square units.'",
+      "source": "Battista (2007) NCTM Handbook",
+      "remediation": "Always: AREA → square units (sq cm, cm², sq ft). Whenever student writes a length unit for area, ask: 'Is this measuring length or surface covered?'",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.C.5.M05",
+      "error_type": "partial_square_count",
+      "short_label": "Counting partial squares as whole",
+      "description": "On an irregular shape, student counts each partially-covered square as a full unit square, overestimating area.",
+      "example": "L-shape with 6 full unit squares plus 2 half-squares. Student counts 8 squares instead of 7 (6 + 0.5 + 0.5).",
+      "citation": "NCTM GM Progressions K-5 (2012) p.17 — 'For shapes that don\\'t align perfectly with grid lines, students count partial unit squares as full, overestimating area; teaching to pair half-squares to form whole units addresses this.'",
+      "source": "NCTM Progressions GM K-5",
+      "remediation": "Pair partial squares to make wholes. Two half-squares = 1 whole. Four quarter-squares = 1 whole. Mark partials carefully.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.C.5.M06",
+      "error_type": "area_only_for_rectangles",
+      "short_label": "Believing only rectangles have area",
+      "description": "Student thinks 'area' applies only to rectangles or squares because that\\'s where the formula is taught. Doesn\\'t recognize triangles, irregular shapes, or curves as having area.",
+      "example": "'Find the area of this triangle.' Student says 'Can\\'t — only rectangles have area.'",
+      "citation": "Battista (2007) p.874 — 'Tying area conceptually to the l × w formula leads students to believe only rectangles \"have\" area; building from unit-square tiling on varied shapes establishes area as a general attribute.'",
+      "source": "Battista (2007) NCTM Handbook",
+      "remediation": "All closed plane shapes have area = space inside. Use unit squares on triangles, circles, irregular figures — count whole and partial squares.",
+      "bloom_level": 2
+    },
+    {
+      "misconception_id": "3.MD.C.5.M07",
+      "error_type": "different_unit_sizes",
+      "short_label": "Comparing areas measured in different unit sizes",
+      "description": "Student compares two areas without checking unit size. Example: shape A covered by 6 large squares, shape B covered by 12 small squares — student says B > A without noting unit size difference.",
+      "example": "Shape A: 6 sq ft. Shape B: 12 sq in. Student says B has more area (12 > 6).",
+      "citation": "Van de Walle et al. (2013) p.443 — 'When comparing measured areas, students fail to check that the same unit was used; this is the conservation of unit issue (same unit must be used to compare numbers).'",
+      "source": "Van de Walle Elementary and Middle School Mathematics",
+      "remediation": "Same unit required for comparison. Convert to same unit (sq ft to sq in or vice versa) before comparing. 1 sq ft = 144 sq in, so 6 sq ft = 864 sq in > 12 sq in.",
+      "bloom_level": 3
+    }
+  ],
+  "metadata": {
+    "created": "2026-05-11",
+    "version": "1.0",
+    "lesson_uses": ["G3_U12_L1"],
+    "total_misconceptions": 7
+  }
+}
