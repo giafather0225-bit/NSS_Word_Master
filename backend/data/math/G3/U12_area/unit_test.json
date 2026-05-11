@@ -3,29 +3,608 @@
   "title": "Unit 12 Test: Area",
   "grade": "G3",
   "unit": "U12_area",
-  "ccss": ["3.MD.C.5", "3.MD.C.6", "3.MD.C.7", "3.MD.D.8"],
+  "ccss": [
+    "3.MD.C.5",
+    "3.MD.C.6",
+    "3.MD.C.7",
+    "3.MD.D.8"
+  ],
   "pass_threshold": 0.8,
   "time_limit_min": 30,
   "problems": [
-    {"id": "UT_01", "type": "mc", "lesson_ref": "L1", "skill_tag": "area_definition", "difficulty": 1, "question": "What is the AREA of a flat shape?", "choices": ["A) Distance around it", "B) Number of unit squares that cover it", "C) Longest side", "D) Number of corners"], "correct_answer": "B", "feedback": {"correct": "Right!", "incorrect": "Area = number of unit squares covering."}, "hints": ["Inside, not around."]},
-    {"id": "UT_02", "type": "mc", "lesson_ref": "L1", "skill_tag": "area_units", "difficulty": 1, "question": "Which is a unit of AREA?", "choices": ["A) cm", "B) sq cm", "C) cm × ÷", "D) seconds"], "correct_answer": "B", "feedback": {"correct": "Right!", "incorrect": "Area uses 'square' units."}, "hints": ["'Square' something."]},
-    {"id": "UT_03", "type": "input", "lesson_ref": "L2", "skill_tag": "count_squares", "difficulty": 1, "question": "Rectangle has 5 rows × 3 columns of unit squares. Area in sq units?", "correct_answer": "15", "feedback": {"correct": "Right!", "incorrect": "5×3=15."}, "hints": ["Multiply."]},
-    {"id": "UT_04", "type": "input", "lesson_ref": "L3", "skill_tag": "area_formula", "difficulty": 1, "question": "Rectangle 6 cm × 7 cm. Area in sq cm?", "correct_answer": "42", "feedback": {"correct": "Right!", "incorrect": "6×7=42."}, "hints": ["Length × width."]},
-    {"id": "UT_05", "type": "input", "lesson_ref": "L3", "skill_tag": "square_area", "difficulty": 2, "question": "Square with side 8. Area?", "correct_answer": "64", "feedback": {"correct": "Right!", "incorrect": "8×8=64."}, "hints": ["Side × side."]},
-    {"id": "UT_06", "type": "input", "lesson_ref": "L3", "skill_tag": "missing_side", "difficulty": 2, "question": "Rectangle area 36 sq cm, length 6 cm. Width?", "correct_answer": "6", "feedback": {"correct": "Right!", "incorrect": "36÷6=6 cm."}, "hints": ["Area ÷ length."]},
-    {"id": "UT_07", "type": "tf", "lesson_ref": "L3", "skill_tag": "commutative", "difficulty": 2, "question": "True or False: 4×7 rectangle and 7×4 rectangle have same area.", "correct_answer": "true", "feedback": {"correct": "True!", "incorrect": "True. Same product."}, "hints": ["Order doesn't matter."]},
-    {"id": "UT_08", "type": "input", "lesson_ref": "L4", "skill_tag": "repeated_addition", "difficulty": 1, "question": "8 + 8 + 8 = ?", "correct_answer": "24", "feedback": {"correct": "Right!", "incorrect": "8+8+8=24."}, "hints": ["3 eights."]},
-    {"id": "UT_09", "type": "mc", "lesson_ref": "L4", "skill_tag": "addition_multiplication", "difficulty": 2, "question": "Which equals 6 + 6 + 6 + 6?", "choices": ["A) 6×4", "B) 6+4", "C) 6×6", "D) 4+4"], "correct_answer": "A", "feedback": {"correct": "Right!", "incorrect": "4 sixes = 6×4."}, "hints": ["Count the sixes."]},
-    {"id": "UT_10", "type": "input", "lesson_ref": "L4", "skill_tag": "split_rectangle", "difficulty": 2, "question": "Two rectangles: 4×3 and 2×3. Total area?", "correct_answer": "18", "feedback": {"correct": "Right!", "incorrect": "12+6=18."}, "hints": ["Add the two."]},
-    {"id": "UT_11", "type": "input", "lesson_ref": "L5", "skill_tag": "decompose_add", "difficulty": 2, "question": "L-shape splits into 5×4 and 2×3. Total area?", "correct_answer": "26", "feedback": {"correct": "Right!", "incorrect": "20+6=26."}, "hints": ["Add 20+6."]},
-    {"id": "UT_12", "type": "input", "lesson_ref": "L5", "skill_tag": "decompose_subtract", "difficulty": 3, "question": "Big rectangle 7×6=42. Removed corner 2×2=4. Remaining?", "correct_answer": "38", "feedback": {"correct": "Right!", "incorrect": "42-4=38."}, "hints": ["Subtract."]},
-    {"id": "UT_13", "type": "input", "lesson_ref": "L6", "skill_tag": "distributive_compute", "difficulty": 2, "question": "6 × 8 = 6 × (5+3). Compute (6×5)+(6×3).", "correct_answer": "48", "feedback": {"correct": "Right!", "incorrect": "30+18=48."}, "hints": ["30+18."]},
-    {"id": "UT_14", "type": "input", "lesson_ref": "L6", "skill_tag": "distributive_compute", "difficulty": 3, "question": "9 × 7 = 9 × (5+2). Compute.", "correct_answer": "63", "feedback": {"correct": "Right!", "incorrect": "45+18=63."}, "hints": ["45+18."]},
-    {"id": "UT_15", "type": "input", "lesson_ref": "L7", "skill_tag": "area_word", "difficulty": 2, "question": "Lily's bedroom 9×8 ft. Area?", "correct_answer": "72", "feedback": {"correct": "Right!", "incorrect": "9×8=72 sq ft."}, "hints": ["9×8."]},
-    {"id": "UT_16", "type": "input", "lesson_ref": "L7", "skill_tag": "missing_side_word", "difficulty": 3, "question": "Rug area 32 sq ft, width 4 ft. Length?", "correct_answer": "8", "feedback": {"correct": "Right!", "incorrect": "32÷4=8."}, "hints": ["32÷4."]},
-    {"id": "UT_17", "type": "input", "lesson_ref": "L8", "skill_tag": "perimeter_compute", "difficulty": 2, "question": "Rectangle 5×3. Perimeter?", "correct_answer": "16", "feedback": {"correct": "Right!", "incorrect": "5+3+5+3=16."}, "hints": ["Sum of sides."]},
-    {"id": "UT_18", "type": "mc", "lesson_ref": "L8", "skill_tag": "choose_measurement", "difficulty": 2, "question": "FENCE around a yard. Area or perimeter?", "choices": ["A) Area", "B) Perimeter", "C) Both", "D) Neither"], "correct_answer": "B", "feedback": {"correct": "Right!", "incorrect": "Around = perimeter."}, "hints": ["Around the edge."]},
-    {"id": "UT_19", "type": "tf", "lesson_ref": "L8", "skill_tag": "area_perimeter_logic", "difficulty": 3, "question": "True or False: Two rectangles can have the same area but different perimeters.", "correct_answer": "true", "feedback": {"correct": "True!", "incorrect": "True. 2×6 and 3×4 both 12 area but different perimeters."}, "hints": ["Try 2×6 vs 3×4."]},
-    {"id": "UT_20", "type": "input", "lesson_ref": "L7", "skill_tag": "area_word_logic", "difficulty": 4, "question": "Yard 10×6=60 sq m, with 3×2=6 garden. Yard area NOT in garden?", "correct_answer": "54", "feedback": {"correct": "Right!", "incorrect": "60-6=54."}, "hints": ["Subtract."]}
-  ]
+    {
+      "id": "UT_01",
+      "type": "mc",
+      "lesson_ref": "L1",
+      "skill_tag": "area_definition",
+      "difficulty": 1,
+      "question": "What is the AREA of a flat shape?",
+      "choices": [
+        "A) Distance around it",
+        "B) Number of unit squares that cover it",
+        "C) Longest side",
+        "D) Number of corners"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Area = number of unit squares covering."
+      },
+      "hints": [
+        "Inside, not around."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.5.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "lesson_ref": "L1",
+      "skill_tag": "area_units",
+      "difficulty": 1,
+      "question": "Which is a unit of AREA?",
+      "choices": [
+        "A) cm",
+        "B) sq cm",
+        "C) cm × ÷",
+        "D) seconds"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Area uses 'square' units."
+      },
+      "hints": [
+        "'Square' something."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.5.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_03",
+      "type": "input",
+      "lesson_ref": "L2",
+      "skill_tag": "count_squares",
+      "difficulty": 1,
+      "question": "Rectangle has 5 rows × 3 columns of unit squares. Area in sq units?",
+      "correct_answer": "15",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5×3=15."
+      },
+      "hints": [
+        "Multiply."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.6.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_04",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "area_formula",
+      "difficulty": 1,
+      "question": "Rectangle 6 cm × 7 cm. Area in sq cm?",
+      "correct_answer": "42",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "6×7=42."
+      },
+      "hints": [
+        "Length × width."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_05",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "square_area",
+      "difficulty": 2,
+      "question": "Square with side 8. Area?",
+      "correct_answer": "64",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "8×8=64."
+      },
+      "hints": [
+        "Side × side."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_06",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "missing_side",
+      "difficulty": 2,
+      "question": "Rectangle area 36 sq cm, length 6 cm. Width?",
+      "correct_answer": "6",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "36÷6=6 cm."
+      },
+      "hints": [
+        "Area ÷ length."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_07",
+      "type": "tf",
+      "lesson_ref": "L3",
+      "skill_tag": "commutative",
+      "difficulty": 2,
+      "question": "True or False: 4×7 rectangle and 7×4 rectangle have same area.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. Same product."
+      },
+      "hints": [
+        "Order doesn't matter."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "True!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_08",
+      "type": "input",
+      "lesson_ref": "L4",
+      "skill_tag": "repeated_addition",
+      "difficulty": 1,
+      "question": "8 + 8 + 8 = ?",
+      "correct_answer": "24",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "8+8+8=24."
+      },
+      "hints": [
+        "3 eights."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M02"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_09",
+      "type": "mc",
+      "lesson_ref": "L4",
+      "skill_tag": "addition_multiplication",
+      "difficulty": 2,
+      "question": "Which equals 6 + 6 + 6 + 6?",
+      "choices": [
+        "A) 6×4",
+        "B) 6+4",
+        "C) 6×6",
+        "D) 4+4"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4 sixes = 6×4."
+      },
+      "hints": [
+        "Count the sixes."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M02"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "lesson_ref": "L4",
+      "skill_tag": "split_rectangle",
+      "difficulty": 2,
+      "question": "Two rectangles: 4×3 and 2×3. Total area?",
+      "correct_answer": "18",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "12+6=18."
+      },
+      "hints": [
+        "Add the two."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M02"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_11",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "decompose_add",
+      "difficulty": 2,
+      "question": "L-shape splits into 5×4 and 2×3. Total area?",
+      "correct_answer": "26",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "20+6=26."
+      },
+      "hints": [
+        "Add 20+6."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M02"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_12",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "decompose_subtract",
+      "difficulty": 3,
+      "question": "Big rectangle 7×6=42. Removed corner 2×2=4. Remaining?",
+      "correct_answer": "38",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "42-4=38."
+      },
+      "hints": [
+        "Subtract."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M02"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_13",
+      "type": "input",
+      "lesson_ref": "L6",
+      "skill_tag": "distributive_compute",
+      "difficulty": 2,
+      "question": "6 × 8 = 6 × (5+3). Compute (6×5)+(6×3).",
+      "correct_answer": "48",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "30+18=48."
+      },
+      "hints": [
+        "30+18."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M02"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_14",
+      "type": "input",
+      "lesson_ref": "L6",
+      "skill_tag": "distributive_compute",
+      "difficulty": 3,
+      "question": "9 × 7 = 9 × (5+2). Compute.",
+      "correct_answer": "63",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "45+18=63."
+      },
+      "hints": [
+        "45+18."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M02"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_15",
+      "type": "input",
+      "lesson_ref": "L7",
+      "skill_tag": "area_word",
+      "difficulty": 2,
+      "question": "Lily's bedroom 9×8 ft. Area?",
+      "correct_answer": "72",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "9×8=72 sq ft."
+      },
+      "hints": [
+        "9×8."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_16",
+      "type": "input",
+      "lesson_ref": "L7",
+      "skill_tag": "missing_side_word",
+      "difficulty": 3,
+      "question": "Rug area 32 sq ft, width 4 ft. Length?",
+      "correct_answer": "8",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "32÷4=8."
+      },
+      "hints": [
+        "32÷4."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_17",
+      "type": "input",
+      "lesson_ref": "L8",
+      "skill_tag": "perimeter_compute",
+      "difficulty": 2,
+      "question": "Rectangle 5×3. Perimeter?",
+      "correct_answer": "16",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5+3+5+3=16."
+      },
+      "hints": [
+        "Sum of sides."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.D.8.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_18",
+      "type": "mc",
+      "lesson_ref": "L8",
+      "skill_tag": "choose_measurement",
+      "difficulty": 2,
+      "question": "FENCE around a yard. Area or perimeter?",
+      "choices": [
+        "A) Area",
+        "B) Perimeter",
+        "C) Both",
+        "D) Neither"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Around = perimeter."
+      },
+      "hints": [
+        "Around the edge."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.D.8.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_19",
+      "type": "tf",
+      "lesson_ref": "L8",
+      "skill_tag": "area_perimeter_logic",
+      "difficulty": 3,
+      "question": "True or False: Two rectangles can have the same area but different perimeters.",
+      "correct_answer": "true",
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 2×6 and 3×4 both 12 area but different perimeters."
+      },
+      "hints": [
+        "Try 2×6 vs 3×4."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.D.8.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "True!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_20",
+      "type": "input",
+      "lesson_ref": "L7",
+      "skill_tag": "area_word_logic",
+      "difficulty": 4,
+      "question": "Yard 10×6=60 sq m, with 3×2=6 garden. Yard area NOT in garden?",
+      "correct_answer": "54",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "60-6=54."
+      },
+      "hints": [
+        "Subtract."
+      ],
+      "cpa_stage": "abstract",
+      "expected_errors": [
+        "3.MD.C.7.M01"
+      ],
+      "math_note": "",
+      "feedback_correct": "Right!",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Unit Assessment 'Perimeter and Area'",
+        "procedure_source": "EngageNY Grade 3 Module 4 End-of-Module Assessment — Area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U12 L1~L8 — 넓이 (3.MD.C.5·6·7)",
+    "current": "G3 U12 unit_test — 넓이 단원 평가",
+    "successor": "G3 U13 — 도형 분류 (3.G.A.1·A.2)"
+  },
+  "metadata": {
+    "total_questions": 20,
+    "upgraded": true,
+    "upgrade_script": "scripts/upgrade_u12_unit_test.py"
+  }
 }
