@@ -954,17 +954,17 @@ def get_grade_final_test(grade: int = Query(3), db: Session = Depends(get_db)):
 
     # ── 10 Q&A: 1 per domain, balanced Literal/Inferential/Evaluative ──────────
     qa_questions: list[dict] = []
-    kind_counts: dict[str, int] = {"literal": 0, "inferential": 0, "evaluative": 0}
+    kind_counts: dict[str, int] = {"Literal": 0, "Inferential": 0, "Evaluative": 0}
     for domain in domains:
         d_lessons = [ls for ls in all_lessons if ls.domain_id == domain.id]
         # Prefer Evaluative if under quota (2), then Inferential (4), else Literal (4)
         preferred: list[str] = []
-        if kind_counts.get("evaluative", 0) < 2:
-            preferred = ["evaluative", "inferential", "literal"]
-        elif kind_counts.get("inferential", 0) < 4:
-            preferred = ["inferential", "literal", "evaluative"]
+        if kind_counts.get("Evaluative", 0) < 2:
+            preferred = ["Evaluative", "Inferential", "Literal"]
+        elif kind_counts.get("Inferential", 0) < 4:
+            preferred = ["Inferential", "Literal", "Evaluative"]
         else:
-            preferred = ["literal", "inferential", "evaluative"]
+            preferred = ["Literal", "Inferential", "Evaluative"]
 
         picked = None
         for kind in preferred:
