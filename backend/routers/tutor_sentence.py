@@ -103,7 +103,9 @@ Rules:
 # @tag AI @tag OLLAMA @tag EVALUATE
 async def _evaluate_with_ollama(word: str, sentence: str) -> dict:
     """Send sentence to Ollama for evaluation."""
-    prompt = _EVAL_PROMPT_TEMPLATE.format(word=word, sentence=sentence)
+    safe_word     = word.replace("{", "{{").replace("}", "}}")
+    safe_sentence = sentence.replace("{", "{{").replace("}", "}}")
+    prompt = _EVAL_PROMPT_TEMPLATE.format(word=safe_word, sentence=safe_sentence)
     async with httpx.AsyncClient(timeout=10) as client:
         resp = await client.post(
             f"{_OLLAMA_URL}/api/generate",
@@ -119,7 +121,9 @@ async def _evaluate_with_gemini(word: str, sentence: str) -> dict:
     """Send sentence to Gemini API for evaluation (fallback)."""
     if not _GEMINI_API_KEY:
         raise ValueError("GEMINI_API_KEY not set")
-    prompt = _EVAL_PROMPT_TEMPLATE.format(word=word, sentence=sentence)
+    safe_word     = word.replace("{", "{{").replace("}", "}}")
+    safe_sentence = sentence.replace("{", "{{").replace("}", "}}")
+    prompt = _EVAL_PROMPT_TEMPLATE.format(word=safe_word, sentence=safe_sentence)
     url = "https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent"
     async with httpx.AsyncClient(timeout=15) as client:
         resp = await client.post(

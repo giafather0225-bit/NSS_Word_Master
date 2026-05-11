@@ -156,11 +156,13 @@ async function _submitDailyAnswer(answer) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ index: dailyState.idx, answer: String(answer) }),
         });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         result = await res.json();
     } catch (err) {
         console.warn('[math] daily submit failed', err);
         return;
     }
+    if (!result || typeof result.is_correct === 'undefined') return;
     if (result.is_correct) dailyState.correct += 1;
 
     // Highlight selected / correct options

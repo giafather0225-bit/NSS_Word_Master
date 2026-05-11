@@ -172,7 +172,10 @@ async def grade_answer(
             provider="local",
         )
 
-    prompt = _build_prompt(question_text, kind, model_answer, passage, user_answer)
+    _VALID_KINDS = {"Literal", "Inferential", "Evaluative"}
+    safe_kind = kind if kind in _VALID_KINDS else "Literal"
+
+    prompt = _build_prompt(question_text, safe_kind, model_answer, passage, user_answer)
 
     # Ollama 먼저 시도 (지문은 PASSAGE_LIMIT으로 이미 잘림 — 프롬프트 크기 제어됨)
     try:

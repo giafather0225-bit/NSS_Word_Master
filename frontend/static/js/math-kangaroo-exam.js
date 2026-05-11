@@ -65,9 +65,9 @@ async function startKangarooExam(setId, mode) {
         stage.innerHTML = `
             <div class="kang-wrap">
                 <p class="kang-error">Couldn't load the set.</p>
-                <button class="kang-btn kang-btn-primary" id="kang-back-btn-67">← Back</button>
-            document.getElementById("kang-back-btn-67").addEventListener("click", () => startMathKangaroo());
+                <button class="kang-btn kang-btn-primary" id="kang-back-btn">← Back</button>
             </div>`;
+        stage.querySelector('#kang-back-btn').addEventListener('click', () => startMathKangaroo());
     }
 }
 
@@ -348,12 +348,14 @@ async function _examSubmit(autoSubmit) {
         if (typeof showKangarooResult === 'function') showKangarooResult(data);
     } catch (err) {
         console.warn('[kangaroo] submit failed', err);
-        if (stage) stage.innerHTML = `
-            <div class="kang-wrap">
-                <p class="kang-error">Submission failed. Please try again.</p>
-                <button class="kang-btn kang-btn-primary" id="kang-back-btn-353">← Back</button>
-            document.getElementById("kang-back-btn-353").addEventListener("click", () => startMathKangaroo());
-            </div>`;
+        if (stage) {
+            stage.innerHTML = `
+                <div class="kang-wrap">
+                    <p class="kang-error">Submission failed. Please try again.</p>
+                    <button class="kang-btn kang-btn-primary" id="kang-back-btn">← Back</button>
+                </div>`;
+            stage.querySelector('#kang-back-btn').addEventListener('click', () => startMathKangaroo());
+        }
     }
 }
 

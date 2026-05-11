@@ -178,14 +178,29 @@ function showKangarooPdfResult(data, setInfo) {
         if (d.is_correct) { icon = '<i data-lucide="check"></i>'; cls = 'correct'; }
         else if (d.student) { icon = '<i data-lucide="x"></i>'; cls = 'wrong'; }
         const you = d.student || '—';
+        const qLabel = /^[A-Za-z]/.test(String(d.question)) ? _mathEsc(d.question) : 'Q' + _mathEsc(d.question);
+        const hasSol = !!(d.solution || (d.solution_steps && d.solution_steps.length));
+        const stepsHtml = (d.solution_steps || []).map(s =>
+            `<div class="kang-pp-sol-step">${_mathEsc(s)}</div>`
+        ).join('');
+        const solRow = hasSol ? `
+            <tr class="kang-pp-sol-row">
+                <td colspan="6">
+                    <div class="kang-pp-sol-body">
+                        ${d.solution ? `<p>${_mathEsc(d.solution)}</p>` : ''}
+                        ${stepsHtml}
+                    </div>
+                </td>
+            </tr>` : '';
         return `
-            <tr class="kang-detail-${cls}">
-                <td>${/^[A-Za-z]/.test(String(d.question)) ? _mathEsc(d.question) : 'Q' + _mathEsc(d.question)}</td>
+            <tr class="kang-detail-${cls}${hasSol ? ' kang-pp-has-sol' : ''}">
+                <td>${qLabel}</td>
                 <td>${_mathEsc(you)}</td>
                 <td>${_mathEsc(d.correct)}</td>
                 <td>${icon}</td>
                 <td>${d.points} pts</td>
-            </tr>`;
+                <td class="kang-pp-sol-toggle">${hasSol ? '<i data-lucide="chevron-down"></i>' : ''}</td>
+            </tr>${solRow}`;
     }).join('');
 
     const pctClass = _resPctClass(pct);
@@ -225,7 +240,7 @@ function showKangarooPdfResult(data, setInfo) {
             <section class="kang-detail-review">
                 <h2>Answer Review</h2>
                 <table class="kang-result-table kang-detail-table">
-                    <thead><tr><th>#</th><th>You</th><th>Correct</th><th></th><th>Pts</th></tr></thead>
+                    <thead><tr><th>#</th><th>You</th><th>Correct</th><th></th><th>Pts</th><th></th></tr></thead>
                     <tbody>${detailRows}</tbody>
                 </table>
             </section>
@@ -238,6 +253,20 @@ function showKangarooPdfResult(data, setInfo) {
         </div>
     `;
     if (window.lucide) lucide.createIcons();
+
+    stage.querySelectorAll('.kang-pp-has-sol').forEach(row => {
+        row.style.cursor = 'pointer';
+        row.addEventListener('click', () => {
+            const solRow = row.nextElementSibling;
+            if (!solRow || !solRow.classList.contains('kang-pp-sol-row')) return;
+            const isOpen = solRow.classList.toggle('is-open');
+            const toggleIcon = row.querySelector('.kang-pp-sol-toggle i');
+            if (toggleIcon) {
+                toggleIcon.setAttribute('data-lucide', isOpen ? 'chevron-up' : 'chevron-down');
+                if (window.lucide) lucide.createIcons({ nodes: [toggleIcon] });
+            }
+        });
+    });
 
     const setId = (setInfo && setInfo.set_id) || data.set_id;
     document.getElementById('kang-pp-retry').addEventListener('click', () => {

@@ -684,7 +684,8 @@ function _maybeShowDifficultyPrompt(prog) {
   const burst = document.createElement('div');
   burst.id = 'ckla-complete-burst';
   burst.className = 'ckla-complete-burst';
-  burst.innerHTML = `<div class="ckla-burst-inner"><span class="ckla-burst-star">★</span><div class="ckla-burst-text">Lesson Complete!</div></div>`;
+  burst.innerHTML = `<div class="ckla-burst-inner"><i data-lucide="star" class="ckla-burst-star"></i><div class="ckla-burst-text">Lesson Complete!</div></div>`;
+  if (typeof lucide !== 'undefined') lucide.createIcons({ el: burst });
   view.appendChild(burst);
 
   setTimeout(() => {

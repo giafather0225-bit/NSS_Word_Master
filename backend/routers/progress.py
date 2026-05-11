@@ -131,6 +131,10 @@ def verify_answer(req: VerifyRequest, db: Session = Depends(get_db)):
 
     if not item or not progress:
         raise HTTPException(status_code=404, detail="Data not found")
+    if item.subject != req.subject or item.textbook != req.textbook or item.lesson != req.lesson:
+        raise HTTPException(status_code=403, detail="Item does not belong to the specified lesson")
+    if not item.answer:
+        raise HTTPException(status_code=422, detail="Study item has no answer")
 
     is_correct = req.user_input.strip().lower() == item.answer.strip().lower()
 

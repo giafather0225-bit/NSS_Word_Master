@@ -37,7 +37,7 @@ logger = logging.getLogger(__name__)
 _OLLAMA_HOST    = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
 _GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 _DATE_RE        = _re.compile(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$')
-_CANNED_FEEDBACK = "Great writing! Keep practicing every day. 📝"
+_CANNED_FEEDBACK = "Great writing! Keep practicing every day."
 
 
 # ── Pydantic Schemas ───────────────────────────────────────────
@@ -188,6 +188,7 @@ def list_diary_entries(
             raise HTTPException(status_code=400, detail="date must be YYYY-MM-DD")
         query = query.filter(DiaryEntry.entry_date == date.strip())
     total   = query.count()
+    limit   = min(limit, 500)
     entries = query.order_by(DiaryEntry.entry_date.desc()).offset(offset).limit(limit).all()
     return {
         "total":   total,

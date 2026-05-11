@@ -14,6 +14,7 @@ const kangPdfState = {
     remainingSec: 0,
     startedAt: 0,
     beforeUnloadHandler: null,
+    wrapEl: null,           // body-appended overlay element
 };
 
 /** @tag MATH @tag KANGAROO @tag PP */
@@ -82,50 +83,61 @@ function _ppRenderUnavailable(data) {
 }
 
 /** @tag MATH @tag KANGAROO @tag PP */
+function _ppCleanupWrap() {
+    if (kangPdfState.wrapEl) {
+        kangPdfState.wrapEl.remove();
+        kangPdfState.wrapEl = null;
+    }
+}
+
+/** @tag MATH @tag KANGAROO @tag PP */
 function _ppRenderExam() {
     const s = kangPdfState.set;
-    const stage = document.getElementById('stage');
-    const totalQ = s.total_questions || 0;
-    const timerHtml = `<span class="kang-timer" id="kang-pdf-timer">--:--</span>`;
+    _ppCleanupWrap();
 
     const pdfSrc = `${s.pdf_file}#toolbar=1&navpanes=0&view=FitH`;
-    stage.innerHTML = `
-        <div class="kang-pdf-wrap">
-            <header class="kang-pdf-header">
-                <div class="kang-pdf-title">${_ppEsc(s.title || '')}</div>
-                <div class="kang-pdf-controls">
-                    ${timerHtml}
-                    <button class="kang-quit-btn" id="kang-pdf-quit">Quit</button>
-                    <button class="kang-submit-btn kang-pdf-submit-top" id="kang-pdf-submit-top">Submit</button>
-                </div>
-            </header>
-            <div class="kang-pdf-exam">
-                <div class="kang-pdf-viewer-wrap">
-                    <iframe class="kang-pdf-viewer" id="kang-pdf-iframe"
-                        src="${_ppEsc(pdfSrc)}" type="application/pdf"
-                        title="Exam PDF"></iframe>
-                    <a class="kang-pdf-open-btn" id="kang-pdf-open-fallback"
-                       href="${_ppEsc(pdfSrc)}" target="_blank" rel="noopener"
-                       style="display:none">📄 Open Exam PDF in New Tab</a>
-                </div>
-                <aside class="kang-answer-panel" id="kang-answer-panel">
-                    ${_ppBuildPanelHtml(s)}
-                </aside>
+
+    // Append directly to <body> so position:fixed is always viewport-relative,
+    // unaffected by transform/overflow on #stage-card ancestors.
+    const wrap = document.createElement('div');
+    wrap.className = 'kang-pdf-wrap';
+    wrap.innerHTML = `
+        <header class="kang-pdf-header">
+            <div class="kang-pdf-title">${_ppEsc(s.title || '')}</div>
+            <div class="kang-pdf-controls">
+                <span class="kang-timer" id="kang-pdf-timer">--:--</span>
+                <button class="kang-quit-btn" id="kang-pdf-quit">Quit</button>
+                <button class="kang-submit-btn kang-pdf-submit-top" id="kang-pdf-submit-top">Submit</button>
             </div>
+        </header>
+        <div class="kang-pdf-exam">
+            <div class="kang-pdf-viewer-wrap">
+                <iframe class="kang-pdf-viewer" id="kang-pdf-iframe"
+                    src="${_ppEsc(pdfSrc)}" type="application/pdf"
+                    title="Exam PDF"></iframe>
+                <a class="kang-pdf-open-btn" id="kang-pdf-open-fallback"
+                   href="${_ppEsc(pdfSrc)}" target="_blank" rel="noopener"
+                   style="display:none">Open Exam PDF in New Tab</a>
+            </div>
+            <aside class="kang-answer-panel" id="kang-answer-panel">
+                ${_ppBuildPanelHtml(s)}
+            </aside>
         </div>`;
+
+    document.body.appendChild(wrap);
+    kangPdfState.wrapEl = wrap;
 
     // Detect iOS / broken iframe → fall back to open-in-new-tab link
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     if (isIOS) {
-        document.getElementById('kang-pdf-iframe').style.display = 'none';
-        document.getElementById('kang-pdf-open-fallback').style.display = 'flex';
+        wrap.querySelector('#kang-pdf-iframe').style.display = 'none';
+        wrap.querySelector('#kang-pdf-open-fallback').style.display = 'flex';
     }
 
     // Wire answer clicks
-    document.getElementById('kang-answer-panel')
-        .addEventListener('click', _ppPanelClick);
-    document.getElementById('kang-pdf-quit').addEventListener('click', _ppQuit);
-    document.getElementById('kang-pdf-submit-top').addEventListener('click', _ppSubmit);
+    wrap.querySelector('#kang-answer-panel').addEventListener('click', _ppPanelClick);
+    wrap.querySelector('#kang-pdf-quit').addEventListener('click', _ppQuit);
+    wrap.querySelector('#kang-pdf-submit-top').addEventListener('click', _ppSubmit);
 
     kangPdfState.remainingSec = (s.time_limit_minutes || 0) * 60;
     kangPdfState.startedAt = Date.now();
@@ -265,6 +277,7 @@ async function _ppSubmit(auto = false) {
         if (!res.ok) throw new Error('bad response');
         const data = await res.json();
         _ppDetachBeforeUnload();
+        _ppCleanupWrap();
         if (typeof showKangarooPdfResult === 'function') {
             showKangarooPdfResult(data, kangPdfState.set);
         } else if (typeof showKangarooResult === 'function') {
@@ -282,6 +295,7 @@ function _ppQuit() {
     if (!ok) return;
     _ppClearTimer();
     _ppDetachBeforeUnload();
+    _ppCleanupWrap();
     kangPdfState.answers = {};
     if (typeof startMathKangaroo === 'function') startMathKangaroo();
 }

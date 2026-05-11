@@ -21,7 +21,7 @@ from datetime import date as _date, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
-from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
 
 logger = logging.getLogger(__name__)
@@ -103,9 +103,13 @@ def _progress_to_dict(p: USAcademyWordProgress | None) -> dict:
 def _get_or_create_progress(db: Session, word_id: int, word: str) -> USAcademyWordProgress:
     prog = db.query(USAcademyWordProgress).filter_by(word_id=word_id).first()
     if not prog:
-        prog = USAcademyWordProgress(word_id=word_id, word=word)
-        db.add(prog)
-        db.flush()
+        try:
+            prog = USAcademyWordProgress(word_id=word_id, word=word)
+            db.add(prog)
+            db.flush()
+        except IntegrityError:
+            db.rollback()
+            prog = db.query(USAcademyWordProgress).filter_by(word_id=word_id).first()
     return prog
 
 
@@ -318,14 +322,14 @@ def save_review_result(req: ReviewResultRequest, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Progress not found")
 
     quality = quality_from_result(req.is_correct, req.attempts)
-    new_interval, new_easiness, new_reps = sm2_calculate(
+    new_reps, new_easiness, new_interval, _ = sm2_calculate(
         quality, prog.sm2_repetitions, prog.sm2_easiness, prog.sm2_interval
     )
 
     try:
-        prog.sm2_interval    = new_interval
-        prog.sm2_easiness    = new_easiness
         prog.sm2_repetitions = new_reps
+        prog.sm2_easiness    = new_easiness
+        prog.sm2_interval    = new_interval
         prog.next_review     = (_date.today() + timedelta(days=new_interval)).isoformat()
 
         if req.is_correct:

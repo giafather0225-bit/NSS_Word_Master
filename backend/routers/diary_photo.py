@@ -143,7 +143,8 @@ async def _stream_save_photo(file: UploadFile, dest: Path) -> int:
         raise
     except Exception as exc:
         dest.unlink(missing_ok=True)
-        raise HTTPException(status_code=500, detail=f"Upload save failed: {exc!s}") from exc
+        logger.error("Photo upload save failed for %s: %s", dest.name, exc)
+        raise HTTPException(status_code=500, detail="File upload failed. Please try again.") from exc
     if total == 0:
         dest.unlink(missing_ok=True)
         raise HTTPException(status_code=400, detail="Empty file")

@@ -276,10 +276,10 @@ def add_myword(lesson: str, body: dict, db: Session = Depends(get_db)):
     if not lesson_dir.exists():
         raise HTTPException(404, "Lesson not found")
 
-    word       = body.get("word", "").strip()
-    definition = body.get("definition", "").strip()
-    example    = body.get("example", "").strip()
-    pos        = body.get("pos", "").strip()
+    word       = (body.get("word", "") or "").strip()[:100]
+    definition = (body.get("definition", "") or "").strip()[:500]
+    example    = (body.get("example", "") or "").strip()[:500]
+    pos        = (body.get("pos", "") or "").strip()[:20]
 
     if not word:
         raise HTTPException(400, "Word is required")
@@ -346,16 +346,17 @@ def update_myword(lesson: str, word: str, body: dict, db: Session = Depends(get_
     if not json_path.exists():
         raise HTTPException(404, "Lesson not found")
 
+    new_def = (body.get("definition") or "").strip()[:500] or None
+    new_ex  = (body.get("example") or "").strip()[:500] or None
+    new_pos = (body.get("pos") or "").strip()[:20] or None
+
     items = json.loads(json_path.read_text(encoding="utf-8"))
     found = False
     for it in items:
         if it["word"].lower() == word.lower():
-            if body.get("definition"):
-                it["definition"] = body["definition"]
-            if body.get("example"):
-                it["example"] = body["example"]
-            if body.get("pos"):
-                it["pos"] = body["pos"]
+            if new_def: it["definition"] = new_def
+            if new_ex:  it["example"]    = new_ex
+            if new_pos: it["pos"]        = new_pos
             found = True
             break
     if not found:
@@ -370,17 +371,11 @@ def update_myword(lesson: str, word: str, body: dict, db: Session = Depends(get_
         StudyItem.answer == word,
     ).first()
     if row:
-        if body.get("definition"):
-            row.question = body["definition"]
-        if body.get("example"):
-            row.hint = (
-                body["example"].replace(word, "____")
-                if word in body["example"]
-                else body["example"]
-            )
-        if body.get("pos"):
+        if new_def: row.question = new_def
+        if new_ex:  row.hint = new_ex.replace(word, "____") if word in new_ex else new_ex
+        if new_pos:
             extra = json.loads(row.extra_data or "{}")
-            extra["pos"] = body["pos"]
+            extra["pos"] = new_pos
             row.extra_data = json.dumps(extra)
         db.commit()
 
@@ -421,18 +416,22 @@ def rename_mywords_lesson(lesson: str, body: dict, db: Session = Depends(get_db)
 @router.post("/api/mywords/ai-enrich")
 async def ai_enrich_word(body: dict):
     """Use Ollama (or fallback template) to generate a kid-friendly definition + example."""
-    word = body.get("word", "").strip()
-    pos  = body.get("pos", "").strip()
+    import re as _re
+    word = body.get("word", "").strip()[:80]
+    pos  = body.get("pos", "").strip()[:40]
     if not word:
         raise HTTPException(400, "Word is required")
+    # Strip any prompt-injection attempts (quotes, braces, newlines)
+    word_safe = _re.sub(r'["\n\r{}\\]', '', word)
+    pos_safe  = _re.sub(r'["\n\r{}\\]', '', pos) if pos else ""
 
     prompt = f"""You are a friendly English teacher for a 10-year-old Korean student.
-For the word "{word}" ({pos if pos else 'any part of speech'}):
+For the word "{word_safe}" ({pos_safe if pos_safe else 'any part of speech'}):
 1. Write a simple, clear definition (1 sentence, easy words)
 2. Write a fun, relatable example sentence using the word
 
 Reply in this exact JSON format only:
-{{"definition": "...", "example": "...", "pos": "{pos if pos else '...'}"}}"""
+{{"definition": "...", "example": "...", "pos": "{pos_safe if pos_safe else '...'}"}}"""
 
     try:
         async with httpx.AsyncClient(timeout=15) as client:

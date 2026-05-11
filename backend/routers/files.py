@@ -102,7 +102,8 @@ async def _stream_save_upload(
         raise
     except Exception as e:
         dest.unlink(missing_ok=True)
-        raise HTTPException(status_code=500, detail=f"Upload save failed: {e!s}") from e
+        logger.error("Upload save failed for %s: %s", dest.name, e)
+        raise HTTPException(status_code=500, detail="File upload failed. Please try again.") from e
 
     if total == 0:
         dest.unlink(missing_ok=True)
@@ -496,8 +497,6 @@ async def voca_folder_ocr(
     Uses extract_vocab_from_image() which sends each image directly to a
     vision model (Gemini or qwen2.5vl:3b), preventing definition-shift bugs.
     """
-    import re as _re2
-
     lesson_key = _validate_lesson(lesson)
     textbook   = _validate_name(textbook, "textbook")
     lesson_dir = LEARNING_ROOT / "English" / textbook / lesson_key
@@ -523,7 +522,7 @@ async def voca_folder_ocr(
                 if not key:
                     continue
                 defn = w.get("definition", "")
-                w["definition"] = _re2.sub(r"(too few samples\s*)+", "", defn).strip()
+                w["definition"] = _re.sub(r"(too few samples\s*)+", "", defn).strip()
                 if key not in all_words:
                     all_words[key] = w
             logger.info("%s: extracted %d words", img_path.name, len(words))

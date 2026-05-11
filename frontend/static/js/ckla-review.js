@@ -52,6 +52,7 @@ async function showCKLAReview() {
 
     if (_cklaRevWords.length === 0) {
       _cklaRenderReviewEmpty(content);
+      if (typeof lucide !== 'undefined') lucide.createIcons();
     } else {
       _renderReviewShell(content);
       _renderReviewCard();
@@ -72,7 +73,7 @@ function _cklaRenderReviewEmpty(container) {
       <h2 class="ckla-title">CKLA Review</h2>
     </div>
     <div class="ckla-review-empty">
-      <div class="ckla-review-empty-icon">🎉</div>
+      <div class="ckla-review-empty-icon"><i data-lucide="check-circle-2"></i></div>
       <div class="ckla-review-empty-text">No words to review today!</div>
       <div class="ckla-review-empty-sub">Keep studying lessons — new review words will appear tomorrow.</div>
     </div>`;
@@ -99,6 +100,7 @@ function _renderReviewCard() {
   // Summary screen
   if (_cklaRevIdx >= _cklaRevWords.length) {
     _cklaRenderReviewSummary(body);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     return;
   }
 
@@ -304,13 +306,13 @@ function _cklaRevAudio(url) {
 /** @tag ACADEMY CKLA SM2 */
 function _cklaRenderReviewSummary(body) {
   const pct = _cklaRevTotal > 0 ? Math.round((_cklaRevCorrect / _cklaRevTotal) * 100) : 0;
-  const emoji = pct >= 80 ? '🌟' : pct >= 50 ? '👍' : '💪';
+  const icon = pct >= 80 ? 'star' : pct >= 50 ? 'thumbs-up' : 'dumbbell';
   const msg = pct >= 80 ? 'Excellent work!' : pct >= 50 ? 'Good effort!' : 'Keep practicing!';
 
   body.innerHTML = `
     <div class="ckla-review-container">
       <div class="ckla-review-summary">
-        <div class="ckla-review-emoji">${emoji}</div>
+        <div class="ckla-review-emoji"><i data-lucide="${icon}"></i></div>
         <div class="ckla-review-score">${_cklaRevCorrect} / ${_cklaRevTotal}</div>
         <div class="ckla-review-detail">
           ${msg}<br>

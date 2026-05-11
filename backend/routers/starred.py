@@ -22,9 +22,9 @@ router = APIRouter()
 def _serialize(item: StudyItem) -> dict:
     return {
         "id":         item.id,
-        "word":       item.word,
-        "meaning":    item.meaning,
-        "example":    item.example,
+        "word":       item.answer   or "",  # answer = correct spelling
+        "meaning":    item.question or "",  # question = definition
+        "example":    item.hint     or "",  # hint = example sentence
         "lesson":     item.lesson,
         "textbook":   item.textbook,
         "is_starred": bool(item.is_starred),
@@ -49,7 +49,7 @@ def list_starred(db: Session = Depends(get_db)):
     items = (
         db.query(StudyItem)
         .filter(StudyItem.is_starred == 1)
-        .order_by(StudyItem.textbook, StudyItem.lesson, StudyItem.word)
+        .order_by(StudyItem.textbook, StudyItem.lesson, StudyItem.answer)
         .all()
     )
     return {"count": len(items), "items": [_serialize(i) for i in items]}

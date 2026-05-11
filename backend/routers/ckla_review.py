@@ -99,14 +99,14 @@ def save_review_result(req: ReviewResult, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Progress not found")
 
     quality = quality_from_result(req.is_correct, req.attempts)
-    new_interval, new_easiness, new_reps = sm2_calculate(
+    new_reps, new_easiness, new_interval, _ = sm2_calculate(
         quality, prog.sm2_repetitions, prog.sm2_easiness, prog.sm2_interval
     )
 
     try:
-        prog.sm2_interval    = new_interval
-        prog.sm2_easiness    = new_easiness
         prog.sm2_repetitions = new_reps
+        prog.sm2_easiness    = new_easiness
+        prog.sm2_interval    = new_interval
         prog.next_review     = (_date.today() + timedelta(days=new_interval)).isoformat()
 
         if req.is_correct:

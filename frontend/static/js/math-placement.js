@@ -27,6 +27,7 @@ async function startPlacementTest() {
     stage.innerHTML = `<div class="math-wrong-review"><p>Loading placement test…</p></div>`;
     try {
         const res = await fetch('/api/math/placement/start');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         placementState.domains = (data.domains || []).map(d => ({ domain: d.domain, label: d.label }));
         placementState.answers = {};
@@ -104,6 +105,7 @@ async function _fetchNextPlacementQ() {
                 history: placementState.history[d.domain] || [],
             }),
         });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         if (data.done || !data.question) {
             // Domain exhausted — move to next or finish.
@@ -253,6 +255,7 @@ async function _submitPlacement() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
         });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         _renderPlacementResults(data);
         if (typeof loadMathPlacementStatus === 'function') loadMathPlacementStatus();
