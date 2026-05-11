@@ -86,6 +86,19 @@ def build_library_index() -> dict:
     return idx
 
 # === 4. 항목 패치 ===
+def resolve_lib_entry(ccss: str, lib_idx: dict):
+    """exact match → 부모(말단 소문자/숫자 제거) fallback."""
+    if ccss in lib_idx:
+        return ccss, lib_idx[ccss]
+    # 자식 표준 (예: 3.NF.A.3a, 3.NF.A.2b) → 부모 (3.NF.A.3, 3.NF.A.2)
+    # 마지막 문자가 소문자면 그것만 떼고 재시도
+    if ccss and ccss[-1].isalpha() and ccss[-1].islower():
+        parent = ccss[:-1]
+        if parent in lib_idx:
+            return parent, lib_idx[parent]
+    return None, None
+
+
 def patch_item(item: dict, lib_idx: dict) -> bool:
     """단일 항목에 candidate IDs + exact-match misconception_id 부착. 변경 여부 반환."""
     if not isinstance(item, dict):
@@ -99,7 +112,7 @@ def patch_item(item: dict, lib_idx: dict) -> bool:
     if ccss != ccss_raw:
         item['ccss'] = ccss
         changed = True
-    lib_entry = lib_idx.get(ccss)
+    _, lib_entry = resolve_lib_entry(ccss, lib_idx)
     if not lib_entry:
         return changed  # 라이브러리에 없는 CCSS — 그냥 통과
     # candidate ids (CCSS 단위 soft link)
