@@ -43,6 +43,8 @@ if [ "$AUTO_UPDATE" = true ]; then
   else
     NEW_HEAD=$(git rev-parse HEAD 2>/dev/null)
     CHANGED=$(git diff --name-only "$OLD_HEAD" "$NEW_HEAD" 2>/dev/null)
+    CODE_UPDATED=false
+    [ "$OLD_HEAD" != "$NEW_HEAD" ] && CODE_UPDATED=true
 
     # Install deps if requirements.txt changed
     if echo "$CHANGED" | grep -q "requirements.txt"; then
@@ -60,6 +62,17 @@ if [ "$AUTO_UPDATE" = true ]; then
         echo "  → $(basename "$mig")" | tee -a "$LOG_FILE"
         python3 "$mig" 2>&1 | tee -a "$LOG_FILE"
       done
+    fi
+
+    # Restart server if code changed and server is already running
+    if [ "$CODE_UPDATED" = true ] && [ -f "$PID_FILE" ]; then
+      OLD_PID=$(cat "$PID_FILE")
+      if kill -0 "$OLD_PID" 2>/dev/null; then
+        echo -e "${YELLOW}🔄 New version detected — restarting server...${NC}"
+        kill "$OLD_PID" 2>/dev/null
+        rm -f "$PID_FILE"
+        sleep 1
+      fi
     fi
   fi
 fi
