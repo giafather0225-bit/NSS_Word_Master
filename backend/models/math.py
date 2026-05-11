@@ -68,6 +68,9 @@ class MathProgress(Base):
     exit_quiz_passed = Column(Boolean, default=False)
     exit_quiz_attempts = Column(Integer, default=0)
     completed_at = Column(String, nullable=True)
+    # Mastery Gating (migration 033) — PT 만점 시 R2 자동 면제
+    pretest_mastery = Column(Boolean, default=False)
+    skipped_stages = Column(String, nullable=True)  # JSON list, e.g. '["practice_r2"]'
 
     __table_args__ = (
         Index("ix_math_progress_grade_unit_lesson", "grade", "unit", "lesson"),
