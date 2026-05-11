@@ -1,65 +1,1400 @@
 {
   "lesson_id": "L2_elapsed_time_number_line",
   "title": "Elapsed Time on a Number Line",
-  "ccss": ["3.MD.A.1"],
+  "ccss": [
+    "3.MD.A.1"
+  ],
   "grade": "G3",
   "unit": "U11_time_mass_volume",
   "go_math_ref": "Chapter 10, Lesson 10.2",
   "essential_question": "How can you use a number line to find elapsed time?",
-  "key_vocabulary": ["elapsed time", "start time", "end time", "number line", "interval", "hop"],
+  "key_vocabulary": [
+    "elapsed time",
+    "start time",
+    "end time",
+    "number line",
+    "interval",
+    "hop"
+  ],
   "pretest": [
-    {"id": "PT_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_time_basic", "difficulty": 2, "question": "From 3:00 to 3:30, how many minutes have passed?", "correct_answer": "30", "expected_errors": {"3": {"error_type": "concept_gap", "note": "30 min"}, "60": {"error_type": "concept_gap", "note": "Half hour = 30"}}, "verification": "30.", "hints": ["Half hour = 30 min."], "feedback": {"correct": "Right!", "incorrect": "30 minutes."}},
-    {"id": "PT_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_time_hours", "difficulty": 2, "question": "From 2:00 to 5:00, how many hours have passed?", "correct_answer": "3", "expected_errors": {"2": {"error_type": "concept_gap", "note": "5-2=3"}, "5": {"error_type": "concept_gap", "note": "Subtract"}}, "verification": "3 hours.", "hints": ["5-2=3."], "feedback": {"correct": "Right!", "incorrect": "3 hours."}},
-    {"id": "PT_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_time_mixed", "difficulty": 3, "question": "From 1:15 to 1:45, how many minutes elapsed?", "correct_answer": "30", "expected_errors": {"1": {"error_type": "concept_gap", "note": "Subtract minutes: 45-15=30"}, "60": {"error_type": "concept_gap", "note": "30, not 60"}}, "verification": "45-15=30.", "hints": ["Just subtract minutes."], "feedback": {"correct": "Right!", "incorrect": "45-15=30 min."}},
-    {"id": "PT_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_time_cross_hour", "difficulty": 3, "question": "From 2:45 to 3:15, how many minutes elapsed? (Hint: count to 3:00 first.)", "correct_answer": "30", "expected_errors": {"30": {"error_type": "concept_gap", "note": "Just minutes don't work across hours"}, "15": {"error_type": "concept_gap", "note": "15 to 3:00, then 15 more"}}, "verification": "15+15=30.", "hints": ["15 min to 3:00, then 15 more."], "feedback": {"correct": "Right!", "incorrect": "From 2:45 to 3:00 = 15. From 3:00 to 3:15 = 15. Total: 30."}},
-    {"id": "PT_05", "type": "mc", "cpa_phase": "pictorial", "ccss": "3.MD.A.1", "skill_tag": "number_line_elapsed", "difficulty": 3, "question": "On a number line, the start is 4:00 and the end is 6:30. The total hops are 2 hours + 30 minutes. How many TOTAL minutes?", "choices": ["A) 30", "B) 90", "C) 120", "D) 150"], "correct_answer": "D", "expected_errors": {"A": {"error_type": "concept_gap", "note": "Total includes 2 hours"}, "B": {"error_type": "concept_gap", "note": "1.5 hours = 90"}, "C": {"error_type": "concept_gap", "note": "2 hours = 120 + 30 = 150"}}, "verification": "120+30=150.", "hints": ["2 hours = 120; +30 = 150."], "feedback": {"correct": "Right!", "incorrect": "2×60+30=150 minutes."}}
+    {
+      "id": "PT_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_time_basic",
+      "difficulty": 2,
+      "question": "From 3:00 to 3:30, how many minutes have passed?",
+      "correct_answer": "30",
+      "expected_errors": {
+        "3": {
+          "error_type": "concept_gap",
+          "note": "30 min"
+        },
+        "60": {
+          "error_type": "concept_gap",
+          "note": "Half hour = 30"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "30."
+      },
+      "hints": [
+        "Half hour = 30 min."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "30 minutes."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_time_hours",
+      "difficulty": 2,
+      "question": "From 2:00 to 5:00, how many hours have passed?",
+      "correct_answer": "3",
+      "expected_errors": {
+        "2": {
+          "error_type": "concept_gap",
+          "note": "5-2=3"
+        },
+        "5": {
+          "error_type": "concept_gap",
+          "note": "Subtract"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "3 hours."
+      },
+      "hints": [
+        "5-2=3."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "3 hours."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_time_mixed",
+      "difficulty": 3,
+      "question": "From 1:15 to 1:45, how many minutes elapsed?",
+      "correct_answer": "30",
+      "expected_errors": {
+        "1": {
+          "error_type": "concept_gap",
+          "note": "Subtract minutes: 45-15=30"
+        },
+        "60": {
+          "error_type": "concept_gap",
+          "note": "30, not 60"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "45-15=30."
+      },
+      "hints": [
+        "Just subtract minutes."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "45-15=30 min."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_time_cross_hour",
+      "difficulty": 3,
+      "question": "From 2:45 to 3:15, how many minutes elapsed? (Hint: count to 3:00 first.)",
+      "correct_answer": "30",
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "Just minutes don't work across hours"
+        },
+        "15": {
+          "error_type": "concept_gap",
+          "note": "15 to 3:00, then 15 more"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "15+15=30."
+      },
+      "hints": [
+        "15 min to 3:00, then 15 more."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "From 2:45 to 3:00 = 15. From 3:00 to 3:15 = 15. Total: 30."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "PT_05",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "number_line_elapsed",
+      "difficulty": 3,
+      "question": "On a number line, the start is 4:00 and the end is 6:30. The total hops are 2 hours + 30 minutes. How many TOTAL minutes?",
+      "choices": [
+        "A) 30",
+        "B) 90",
+        "C) 120",
+        "D) 150"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Total includes 2 hours"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "1.5 hours = 90"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "2 hours = 120 + 30 = 150"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "120+30=150."
+      },
+      "hints": [
+        "2 hours = 120; +30 = 150."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "2×60+30=150 minutes."
+      },
+      "cpa_stage": "pictorial",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "learn": [
-    {"id": "LEARN_01", "type": "concept_card", "cpa_phase": "concrete", "title": "What Is Elapsed Time?", "content": "ELAPSED TIME is how much time has PASSED between a START TIME and an END TIME. Example: a movie starts at 2:00 and ends at 3:30. Elapsed time = 1 hour and 30 minutes = 90 minutes.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.2."},
-    {"id": "LEARN_02", "type": "concept_card", "cpa_phase": "concrete", "title": "Use a Number Line", "content": "Draw a NUMBER LINE. Mark the START time on the left, END time on the right. HOP from start to end in friendly steps (hours or minutes). Add up the hops.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.2."},
-    {"id": "LEARN_03", "type": "concept_card", "cpa_phase": "pictorial", "title": "Hop Strategy", "content": "(1) HOP TO THE NEXT HOUR first. Example: 2:45 → 3:00 = 15 min. (2) HOP IN HOURS until close to the end. (3) HOP IN MINUTES the rest of the way.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.2."},
-    {"id": "LEARN_04", "type": "concept_card", "cpa_phase": "pictorial", "title": "Same Hour Strategy", "content": "If start and end are in the SAME hour, just SUBTRACT the minutes. Example: 4:10 to 4:35 → 35 - 10 = 25 minutes.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.2."},
-    {"id": "LEARN_05", "type": "concept_card", "cpa_phase": "abstract", "title": "Across Hours Strategy", "content": "When you cross hour boundaries, use 'count up' from start: minutes to next hour, plus full hours, plus minutes to end. Example: 1:50 to 3:10. 1:50 → 2:00 = 10 min. 2:00 → 3:00 = 60 min. 3:00 → 3:10 = 10 min. Total: 80 min.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.2."},
-    {"id": "LEARN_06", "type": "concept_card", "cpa_phase": "abstract", "title": "Convert Hours to Minutes", "content": "1 hour = 60 minutes. 2 hours = 120 minutes. 3 hours = 180 minutes. To convert: hours × 60.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.2."},
-    {"id": "LEARN_07", "type": "concept_card", "cpa_phase": "abstract", "title": "Total in Minutes or Hours+Minutes", "content": "An elapsed time of '1 hour 30 minutes' is the same as '90 minutes'. You can write the answer either way.", "visual_type": "none", "visual_data": {}, "verification": "Go Math 10.2."},
-    {"id": "LEARN_08", "type": "concept_card", "cpa_phase": "abstract", "title": "Lesson Summary", "content": "Today: (1) Elapsed time = end - start. (2) Use number line: hop in hours and minutes. (3) Same hour: subtract minutes. (4) Across hours: count up to next hour, then by hours, then minutes. (5) 1 hour = 60 minutes.", "visual_type": "none", "visual_data": {}, "verification": "Summary."}
+    {
+      "id": "LEARN_01",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "What Is Elapsed Time?",
+      "content": "ELAPSED TIME is how much time has PASSED between a START TIME and an END TIME. Example: a movie starts at 2:00 and ends at 3:30. Elapsed time = 1 hour and 30 minutes = 90 minutes.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.2."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_02",
+      "type": "concept_card",
+      "cpa_phase": "concrete",
+      "title": "Use a Number Line",
+      "content": "Draw a NUMBER LINE. Mark the START time on the left, END time on the right. HOP from start to end in friendly steps (hours or minutes). Add up the hops.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.2."
+      },
+      "cpa_stage": "concrete",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_03",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Hop Strategy",
+      "content": "(1) HOP TO THE NEXT HOUR first. Example: 2:45 → 3:00 = 15 min. (2) HOP IN HOURS until close to the end. (3) HOP IN MINUTES the rest of the way.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.2."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_04",
+      "type": "concept_card",
+      "cpa_phase": "pictorial",
+      "title": "Same Hour Strategy",
+      "content": "If start and end are in the SAME hour, just SUBTRACT the minutes. Example: 4:10 to 4:35 → 35 - 10 = 25 minutes.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.2."
+      },
+      "cpa_stage": "pictorial",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_05",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Across Hours Strategy",
+      "content": "When you cross hour boundaries, use 'count up' from start: minutes to next hour, plus full hours, plus minutes to end. Example: 1:50 to 3:10. 1:50 → 2:00 = 10 min. 2:00 → 3:00 = 60 min. 3:00 → 3:10 = 10 min. Total: 80 min.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.2."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_06",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Convert Hours to Minutes",
+      "content": "1 hour = 60 minutes. 2 hours = 120 minutes. 3 hours = 180 minutes. To convert: hours × 60.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.2."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_07",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Total in Minutes or Hours+Minutes",
+      "content": "An elapsed time of '1 hour 30 minutes' is the same as '90 minutes'. You can write the answer either way.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Go Math 10.2."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    },
+    {
+      "id": "LEARN_08",
+      "type": "concept_card",
+      "cpa_phase": "abstract",
+      "title": "Lesson Summary",
+      "content": "Today: (1) Elapsed time = end - start. (2) Use number line: hop in hours and minutes. (3) Same hour: subtract minutes. (4) Across hours: count up to next hour, then by hours, then minutes. (5) 1 hour = 60 minutes.",
+      "visual_type": "none",
+      "visual_data": {},
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Summary."
+      },
+      "cpa_stage": "abstract",
+      "math_note": ""
+    }
   ],
   "try": [
-    {"id": "TRY_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_same_hour", "difficulty": 2, "question": "From 5:10 to 5:40, how many minutes?", "correct_answer": "30", "solution_steps": ["40-10=30."], "expected_errors": {"50": {"error_type": "concept_gap", "note": "Subtract"}}, "feedback": {"correct": "Right!", "incorrect": "40-10=30."}, "verification": "30.", "hints": ["Subtract minutes."]},
-    {"id": "TRY_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_hours", "difficulty": 2, "question": "From 9:00 to 1:00, how many hours? (Same day; assume forward.)", "correct_answer": "4", "solution_steps": ["9 → 12 = 3. 12 → 1 = 1. Total 4."], "expected_errors": {"8": {"error_type": "concept_gap", "note": "Don't subtract directly across noon"}}, "feedback": {"correct": "Right!", "incorrect": "9→12=3, then 12→1=1. Total 4 hours."}, "verification": "4.", "hints": ["Hop through noon."]},
-    {"id": "TRY_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_cross_hour", "difficulty": 3, "question": "From 7:50 to 8:20, how many minutes?", "correct_answer": "30", "solution_steps": ["7:50→8:00=10. 8:00→8:20=20. Total 30."], "expected_errors": {"30": {"error_type": "concept_gap", "note": "Already correct"}, "10": {"error_type": "concept_gap", "note": "Forgot second part"}}, "feedback": {"correct": "Right!", "incorrect": "10+20=30."}, "verification": "30.", "hints": ["10 min to 8:00, then 20 more."]},
-    {"id": "TRY_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_hours_minutes", "difficulty": 3, "question": "Movie starts 2:15 P.M., ends 3:45 P.M. How many minutes long? (Total minutes.)", "correct_answer": "90", "solution_steps": ["2:15→3:15=60. 3:15→3:45=30. Total 90."], "expected_errors": {"30": {"error_type": "concept_gap", "note": "Don't forget the hour"}}, "feedback": {"correct": "Right!", "incorrect": "60+30=90 minutes."}, "verification": "90.", "hints": ["1 hour + 30 min = 90 min."]},
-    {"id": "TRY_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "convert_hours", "difficulty": 2, "question": "How many minutes in 1 hour 20 minutes?", "correct_answer": "80", "solution_steps": ["60+20=80."], "expected_errors": {"21": {"error_type": "concept_gap", "note": "Don't add 1+20"}}, "feedback": {"correct": "Right!", "incorrect": "60+20=80."}, "verification": "80.", "hints": ["60+20."]}
+    {
+      "id": "TRY_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_same_hour",
+      "difficulty": 2,
+      "question": "From 5:10 to 5:40, how many minutes?",
+      "correct_answer": "30",
+      "solution_steps": [
+        "40-10=30."
+      ],
+      "expected_errors": {
+        "50": {
+          "error_type": "concept_gap",
+          "note": "Subtract"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "40-10=30."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "30."
+      },
+      "hints": [
+        "Subtract minutes."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_hours",
+      "difficulty": 2,
+      "question": "From 9:00 to 1:00, how many hours? (Same day; assume forward.)",
+      "correct_answer": "4",
+      "solution_steps": [
+        "9 → 12 = 3. 12 → 1 = 1. Total 4."
+      ],
+      "expected_errors": {
+        "8": {
+          "error_type": "concept_gap",
+          "note": "Don't subtract directly across noon"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "9→12=3, then 12→1=1. Total 4 hours."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4."
+      },
+      "hints": [
+        "Hop through noon."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_cross_hour",
+      "difficulty": 3,
+      "question": "From 7:50 to 8:20, how many minutes?",
+      "correct_answer": "30",
+      "solution_steps": [
+        "7:50→8:00=10. 8:00→8:20=20. Total 30."
+      ],
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "Already correct"
+        },
+        "10": {
+          "error_type": "concept_gap",
+          "note": "Forgot second part"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "10+20=30."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "30."
+      },
+      "hints": [
+        "10 min to 8:00, then 20 more."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_hours_minutes",
+      "difficulty": 3,
+      "question": "Movie starts 2:15 P.M., ends 3:45 P.M. How many minutes long? (Total minutes.)",
+      "correct_answer": "90",
+      "solution_steps": [
+        "2:15→3:15=60. 3:15→3:45=30. Total 90."
+      ],
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "Don't forget the hour"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "60+30=90 minutes."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "90."
+      },
+      "hints": [
+        "1 hour + 30 min = 90 min."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "TRY_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "convert_hours",
+      "difficulty": 2,
+      "question": "How many minutes in 1 hour 20 minutes?",
+      "correct_answer": "80",
+      "solution_steps": [
+        "60+20=80."
+      ],
+      "expected_errors": {
+        "21": {
+          "error_type": "concept_gap",
+          "note": "Don't add 1+20"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "60+20=80."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "80."
+      },
+      "hints": [
+        "60+20."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "practice_r1": [
-    {"id": "R1_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_same_hour", "difficulty": 1, "question": "From 4:00 to 4:25. Minutes?", "correct_answer": "25", "expected_errors": {"35": {"error_type": "concept_gap", "note": "25"}}, "verification": "25.", "hints": ["Subtract."], "feedback": {"correct": "Right!", "incorrect": "25."}},
-    {"id": "R1_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_hours", "difficulty": 1, "question": "From 1:00 to 5:00. Hours?", "correct_answer": "4", "expected_errors": {"6": {"error_type": "concept_gap", "note": "5-1=4"}}, "verification": "4.", "hints": ["Subtract hours."], "feedback": {"correct": "Right!", "incorrect": "4."}},
-    {"id": "R1_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_same_hour", "difficulty": 2, "question": "From 6:20 to 6:55. Minutes?", "correct_answer": "35", "expected_errors": {"40": {"error_type": "concept_gap", "note": "55-20=35"}}, "verification": "35.", "hints": ["55-20."], "feedback": {"correct": "Right!", "incorrect": "35."}},
-    {"id": "R1_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_cross_hour", "difficulty": 3, "question": "From 3:50 to 4:10. Minutes?", "correct_answer": "20", "expected_errors": {"40": {"error_type": "concept_gap", "note": "Cross hour"}, "60": {"error_type": "concept_gap", "note": "Don't add full hour"}}, "verification": "10+10=20.", "hints": ["10 to 4:00, then 10 more."], "feedback": {"correct": "Right!", "incorrect": "20."}},
-    {"id": "R1_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "convert_hours", "difficulty": 2, "question": "How many minutes in 1 hour 15 min?", "correct_answer": "75", "expected_errors": {"16": {"error_type": "concept_gap", "note": "60+15=75"}}, "verification": "75.", "hints": ["60+15."], "feedback": {"correct": "Right!", "incorrect": "75."}},
-    {"id": "R1_06", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "convert_hours", "difficulty": 2, "question": "How many minutes in 2 hours?", "correct_answer": "120", "expected_errors": {"60": {"error_type": "concept_gap", "note": "2×60"}}, "verification": "120.", "hints": ["2×60."], "feedback": {"correct": "Right!", "incorrect": "120."}},
-    {"id": "R1_07", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_hours_minutes", "difficulty": 3, "question": "From 1:30 to 3:00. Minutes?", "correct_answer": "90", "expected_errors": {"30": {"error_type": "concept_gap", "note": "+1 hour"}}, "verification": "90.", "hints": ["1.5 hours."], "feedback": {"correct": "Right!", "incorrect": "1 hour 30 min = 90."}},
-    {"id": "R1_08", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_logic", "difficulty": 2, "question": "True or False: 1 hour 30 minutes = 90 minutes.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "60+30=90"}}, "verification": "True.", "hints": ["60+30=90."], "feedback": {"correct": "True!", "incorrect": "True."}},
-    {"id": "R1_09", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_same_hour", "difficulty": 2, "question": "From 9:05 to 9:55. Minutes?", "correct_answer": "50", "expected_errors": {"60": {"error_type": "concept_gap", "note": "55-5=50"}}, "verification": "50.", "hints": ["55-5."], "feedback": {"correct": "Right!", "incorrect": "50."}},
-    {"id": "R1_10", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_cross_hour", "difficulty": 3, "question": "From 11:40 to 12:10. Minutes?", "correct_answer": "30", "expected_errors": {"50": {"error_type": "concept_gap", "note": "20+10=30"}}, "verification": "20+10=30.", "hints": ["20 to 12, then 10 more."], "feedback": {"correct": "Right!", "incorrect": "30."}}
+    {
+      "id": "R1_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_same_hour",
+      "difficulty": 1,
+      "question": "From 4:00 to 4:25. Minutes?",
+      "correct_answer": "25",
+      "expected_errors": {
+        "35": {
+          "error_type": "concept_gap",
+          "note": "25"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "25."
+      },
+      "hints": [
+        "Subtract."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "25."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_hours",
+      "difficulty": 1,
+      "question": "From 1:00 to 5:00. Hours?",
+      "correct_answer": "4",
+      "expected_errors": {
+        "6": {
+          "error_type": "concept_gap",
+          "note": "5-1=4"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4."
+      },
+      "hints": [
+        "Subtract hours."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_same_hour",
+      "difficulty": 2,
+      "question": "From 6:20 to 6:55. Minutes?",
+      "correct_answer": "35",
+      "expected_errors": {
+        "40": {
+          "error_type": "concept_gap",
+          "note": "55-20=35"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "35."
+      },
+      "hints": [
+        "55-20."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "35."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_cross_hour",
+      "difficulty": 3,
+      "question": "From 3:50 to 4:10. Minutes?",
+      "correct_answer": "20",
+      "expected_errors": {
+        "40": {
+          "error_type": "concept_gap",
+          "note": "Cross hour"
+        },
+        "60": {
+          "error_type": "concept_gap",
+          "note": "Don't add full hour"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "10+10=20."
+      },
+      "hints": [
+        "10 to 4:00, then 10 more."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "20."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "convert_hours",
+      "difficulty": 2,
+      "question": "How many minutes in 1 hour 15 min?",
+      "correct_answer": "75",
+      "expected_errors": {
+        "16": {
+          "error_type": "concept_gap",
+          "note": "60+15=75"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "75."
+      },
+      "hints": [
+        "60+15."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "75."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "convert_hours",
+      "difficulty": 2,
+      "question": "How many minutes in 2 hours?",
+      "correct_answer": "120",
+      "expected_errors": {
+        "60": {
+          "error_type": "concept_gap",
+          "note": "2×60"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "120."
+      },
+      "hints": [
+        "2×60."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "120."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_hours_minutes",
+      "difficulty": 3,
+      "question": "From 1:30 to 3:00. Minutes?",
+      "correct_answer": "90",
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "+1 hour"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "90."
+      },
+      "hints": [
+        "1.5 hours."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "1 hour 30 min = 90."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_08",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_logic",
+      "difficulty": 2,
+      "question": "True or False: 1 hour 30 minutes = 90 minutes.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "60+30=90"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "True."
+      },
+      "hints": [
+        "60+30=90."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_same_hour",
+      "difficulty": 2,
+      "question": "From 9:05 to 9:55. Minutes?",
+      "correct_answer": "50",
+      "expected_errors": {
+        "60": {
+          "error_type": "concept_gap",
+          "note": "55-5=50"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "50."
+      },
+      "hints": [
+        "55-5."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "50."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R1_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_cross_hour",
+      "difficulty": 3,
+      "question": "From 11:40 to 12:10. Minutes?",
+      "correct_answer": "30",
+      "expected_errors": {
+        "50": {
+          "error_type": "concept_gap",
+          "note": "20+10=30"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20+10=30."
+      },
+      "hints": [
+        "20 to 12, then 10 more."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "30."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "practice_r2": [
-    {"id": "R2_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_word", "difficulty": 2, "question": "Sara starts homework at 4:00 and finishes at 4:35. How many minutes?", "correct_answer": "35", "expected_errors": {"40": {"error_type": "concept_gap", "note": "35"}}, "verification": "35.", "hints": ["Subtract."], "feedback": {"correct": "Right!", "incorrect": "35."}},
-    {"id": "R2_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_word", "difficulty": 3, "question": "Tom's bus ride starts 7:45 A.M. and ends 8:30 A.M. Minutes?", "correct_answer": "45", "expected_errors": {"30": {"error_type": "concept_gap", "note": "Cross hour"}, "60": {"error_type": "concept_gap", "note": "Less than hour"}}, "verification": "15+30=45.", "hints": ["15 to 8:00, +30."], "feedback": {"correct": "Right!", "incorrect": "45 minutes."}},
-    {"id": "R2_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_hours_word", "difficulty": 3, "question": "A movie starts at 2:00 P.M. and ends at 4:30 P.M. Total minutes?", "correct_answer": "150", "expected_errors": {"30": {"error_type": "concept_gap", "note": "Total includes 2 hours"}, "120": {"error_type": "concept_gap", "note": "+30"}}, "verification": "120+30=150.", "hints": ["2 hours + 30 = 150."], "feedback": {"correct": "Right!", "incorrect": "150 minutes."}},
-    {"id": "R2_04", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_word", "difficulty": 3, "question": "Lily reads from 6:15 P.M. to 6:50 P.M. Minutes?", "correct_answer": "35", "expected_errors": {"50": {"error_type": "concept_gap", "note": "50-15=35"}}, "verification": "35.", "hints": ["Subtract."], "feedback": {"correct": "Right!", "incorrect": "35."}},
-    {"id": "R2_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_cross_hour", "difficulty": 3, "question": "From 8:45 to 9:25. Minutes?", "correct_answer": "40", "expected_errors": {"60": {"error_type": "concept_gap", "note": "15+25=40"}}, "verification": "15+25=40.", "hints": ["15 to 9:00, +25."], "feedback": {"correct": "Right!", "incorrect": "40."}},
-    {"id": "R2_06", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_logic", "difficulty": 2, "question": "True or False: 60 minutes = 1 hour.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "Yes"}}, "verification": "True.", "hints": ["60=1 hr."], "feedback": {"correct": "True!", "incorrect": "True."}},
-    {"id": "R2_07", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "convert_minutes", "difficulty": 2, "question": "How many minutes in 3 hours?", "correct_answer": "180", "expected_errors": {"60": {"error_type": "concept_gap", "note": "3×60=180"}}, "verification": "180.", "hints": ["3×60."], "feedback": {"correct": "Right!", "incorrect": "180."}},
-    {"id": "R2_08", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_word", "difficulty": 3, "question": "Sara's nap is from 1:30 to 2:50. Minutes?", "correct_answer": "80", "expected_errors": {"20": {"error_type": "concept_gap", "note": "Cross hour"}, "60": {"error_type": "concept_gap", "note": "+20"}}, "verification": "30+50=80.", "hints": ["30 to 2:00, +50."], "feedback": {"correct": "Right!", "incorrect": "80."}},
-    {"id": "R2_09", "type": "mc", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_word", "difficulty": 3, "question": "Tom plays from 3:00 to 5:15 P.M. How long?", "choices": ["A) 1 hour 15 min", "B) 2 hours 15 min", "C) 2 hours 45 min", "D) 3 hours"], "correct_answer": "B", "expected_errors": {"A": {"error_type": "concept_gap", "note": "5-3=2 hours"}}, "verification": "2 hr 15 min.", "hints": ["From 3 to 5:15."], "feedback": {"correct": "Right!", "incorrect": "2 hours 15 min."}},
-    {"id": "R2_10", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_hours_minutes", "difficulty": 3, "question": "From 6:00 to 7:30. Total minutes?", "correct_answer": "90", "expected_errors": {"60": {"error_type": "concept_gap", "note": "+30"}}, "verification": "90.", "hints": ["60+30."], "feedback": {"correct": "Right!", "incorrect": "90."}}
+    {
+      "id": "R2_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_word",
+      "difficulty": 2,
+      "question": "Sara starts homework at 4:00 and finishes at 4:35. How many minutes?",
+      "correct_answer": "35",
+      "expected_errors": {
+        "40": {
+          "error_type": "concept_gap",
+          "note": "35"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "35."
+      },
+      "hints": [
+        "Subtract."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "35."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_word",
+      "difficulty": 3,
+      "question": "Tom's bus ride starts 7:45 A.M. and ends 8:30 A.M. Minutes?",
+      "correct_answer": "45",
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "Cross hour"
+        },
+        "60": {
+          "error_type": "concept_gap",
+          "note": "Less than hour"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "15+30=45."
+      },
+      "hints": [
+        "15 to 8:00, +30."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "45 minutes."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_hours_word",
+      "difficulty": 3,
+      "question": "A movie starts at 2:00 P.M. and ends at 4:30 P.M. Total minutes?",
+      "correct_answer": "150",
+      "expected_errors": {
+        "30": {
+          "error_type": "concept_gap",
+          "note": "Total includes 2 hours"
+        },
+        "120": {
+          "error_type": "concept_gap",
+          "note": "+30"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "120+30=150."
+      },
+      "hints": [
+        "2 hours + 30 = 150."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "150 minutes."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_04",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_word",
+      "difficulty": 3,
+      "question": "Lily reads from 6:15 P.M. to 6:50 P.M. Minutes?",
+      "correct_answer": "35",
+      "expected_errors": {
+        "50": {
+          "error_type": "concept_gap",
+          "note": "50-15=35"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "35."
+      },
+      "hints": [
+        "Subtract."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "35."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_cross_hour",
+      "difficulty": 3,
+      "question": "From 8:45 to 9:25. Minutes?",
+      "correct_answer": "40",
+      "expected_errors": {
+        "60": {
+          "error_type": "concept_gap",
+          "note": "15+25=40"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "15+25=40."
+      },
+      "hints": [
+        "15 to 9:00, +25."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "40."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_06",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_logic",
+      "difficulty": 2,
+      "question": "True or False: 60 minutes = 1 hour.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "Yes"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "True."
+      },
+      "hints": [
+        "60=1 hr."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "convert_minutes",
+      "difficulty": 2,
+      "question": "How many minutes in 3 hours?",
+      "correct_answer": "180",
+      "expected_errors": {
+        "60": {
+          "error_type": "concept_gap",
+          "note": "3×60=180"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "180."
+      },
+      "hints": [
+        "3×60."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "180."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_08",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_word",
+      "difficulty": 3,
+      "question": "Sara's nap is from 1:30 to 2:50. Minutes?",
+      "correct_answer": "80",
+      "expected_errors": {
+        "20": {
+          "error_type": "concept_gap",
+          "note": "Cross hour"
+        },
+        "60": {
+          "error_type": "concept_gap",
+          "note": "+20"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "30+50=80."
+      },
+      "hints": [
+        "30 to 2:00, +50."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "80."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_09",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_word",
+      "difficulty": 3,
+      "question": "Tom plays from 3:00 to 5:15 P.M. How long?",
+      "choices": [
+        "A) 1 hour 15 min",
+        "B) 2 hours 15 min",
+        "C) 2 hours 45 min",
+        "D) 3 hours"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "5-3=2 hours"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "2 hr 15 min."
+      },
+      "hints": [
+        "From 3 to 5:15."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "2 hours 15 min."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R2_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_hours_minutes",
+      "difficulty": 3,
+      "question": "From 6:00 to 7:30. Total minutes?",
+      "correct_answer": "90",
+      "expected_errors": {
+        "60": {
+          "error_type": "concept_gap",
+          "note": "+30"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "90."
+      },
+      "hints": [
+        "60+30."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "90."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
   ],
   "practice_r3": [
-    {"id": "R3_01", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_word_logic", "difficulty": 4, "question": "Mia starts at 2:50 P.M. and works for 25 minutes. End time? (Format: HH:MM)", "correct_answer": "3:15", "solution_steps": ["2:50+10=3:00. +15 more=3:15."], "expected_errors": {"2:75": {"error_type": "concept_gap", "note": "Roll over hour"}, "3:25": {"error_type": "concept_gap", "note": "10+15=25, not 35"}}, "feedback": {"correct": "Right!", "incorrect": "End time: 3:15."}, "three_read_prompt": "Read 1: Start? Read 2: Add 25 min. Read 3: Result.", "verification": "3:15.", "hints": ["10 to 3:00, then 15 more."]},
-    {"id": "R3_02", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_word_logic", "difficulty": 4, "question": "Tom finished at 5:10 P.M. He worked for 50 minutes. Start time? (Format: HH:MM)", "correct_answer": "4:20", "solution_steps": ["5:10-10=5:00. -40=4:20."], "expected_errors": {"5:00": {"error_type": "concept_gap", "note": "Subtract more"}, "4:60": {"error_type": "concept_gap", "note": "Roll back to hour"}}, "feedback": {"correct": "Right!", "incorrect": "Start: 4:20."}, "three_read_prompt": "Read 1: End? Read 2: Subtract 50 min. Read 3: Result.", "verification": "4:20.", "hints": ["10 back to 5:00, 40 more back."]},
-    {"id": "R3_03", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_word_long", "difficulty": 4, "question": "A trip starts at 9:30 A.M. and ends at 1:15 P.M. Total time in minutes? (Hint: count hours and minutes.)", "correct_answer": "225", "solution_steps": ["9:30→1:30 would be 4 hours = 240 min. But 1:15 is 15 min before 1:30, so 240-15=225."], "expected_errors": {"180": {"error_type": "concept_gap", "note": "Compute 4 hours - 15"}, "240": {"error_type": "concept_gap", "note": "End is 1:15"}}, "feedback": {"correct": "Right!", "incorrect": "9:30 to 1:15 = 3 hours 45 min = 225."}, "three_read_prompt": "Read 1: Start? Read 2: End? Read 3: Total.", "verification": "225.", "hints": ["3 hours 45 min."]},
-    {"id": "R3_04", "type": "tf", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_logic", "difficulty": 4, "question": "True or False: From 11:30 A.M. to 1:00 P.M. is 90 minutes.", "correct_answer": "true", "expected_errors": {"false": {"error_type": "concept_gap", "note": "1.5 hours = 90 min"}}, "feedback": {"correct": "True!", "incorrect": "True. 1.5 hours = 90 minutes."}, "verification": "90.", "hints": ["Cross noon. 1.5 hours."]},
-    {"id": "R3_05", "type": "input", "cpa_phase": "abstract", "ccss": "3.MD.A.1", "skill_tag": "elapsed_logic", "difficulty": 5, "question": "Lily's class starts at 8:45 A.M. and lasts 1 hour 20 minutes. End time? (Format: HH:MM)", "correct_answer": "10:05", "solution_steps": ["8:45+1 hour=9:45. +20 min: 9:45→9:55=10. +10 more=10:05."], "expected_errors": {"10:05": {"error_type": "concept_gap", "note": "Already correct"}, "9:65": {"error_type": "concept_gap", "note": "No 65 minutes"}}, "feedback": {"correct": "Right!", "incorrect": "8:45 + 1 hr = 9:45. +20 = 10:05."}, "three_read_prompt": "Read 1: Start? Read 2: Duration? Read 3: End.", "verification": "10:05.", "hints": ["Add 1 hr first, then 20 min."]}
-  ]
+    {
+      "id": "R3_01",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_word_logic",
+      "difficulty": 4,
+      "question": "Mia starts at 2:50 P.M. and works for 25 minutes. End time? (Format: HH:MM)",
+      "correct_answer": "3:15",
+      "solution_steps": [
+        "2:50+10=3:00. +15 more=3:15."
+      ],
+      "expected_errors": {
+        "2:75": {
+          "error_type": "concept_gap",
+          "note": "Roll over hour"
+        },
+        "3:25": {
+          "error_type": "concept_gap",
+          "note": "10+15=25, not 35"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "End time: 3:15."
+      },
+      "three_read_prompt": "Read 1: Start? Read 2: Add 25 min. Read 3: Result.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "3:15."
+      },
+      "hints": [
+        "10 to 3:00, then 15 more."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_02",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_word_logic",
+      "difficulty": 4,
+      "question": "Tom finished at 5:10 P.M. He worked for 50 minutes. Start time? (Format: HH:MM)",
+      "correct_answer": "4:20",
+      "solution_steps": [
+        "5:10-10=5:00. -40=4:20."
+      ],
+      "expected_errors": {
+        "5:00": {
+          "error_type": "concept_gap",
+          "note": "Subtract more"
+        },
+        "4:60": {
+          "error_type": "concept_gap",
+          "note": "Roll back to hour"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Start: 4:20."
+      },
+      "three_read_prompt": "Read 1: End? Read 2: Subtract 50 min. Read 3: Result.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4:20."
+      },
+      "hints": [
+        "10 back to 5:00, 40 more back."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_word_long",
+      "difficulty": 4,
+      "question": "A trip starts at 9:30 A.M. and ends at 1:15 P.M. Total time in minutes? (Hint: count hours and minutes.)",
+      "correct_answer": "225",
+      "solution_steps": [
+        "9:30→1:30 would be 4 hours = 240 min. But 1:15 is 15 min before 1:30, so 240-15=225."
+      ],
+      "expected_errors": {
+        "180": {
+          "error_type": "concept_gap",
+          "note": "Compute 4 hours - 15"
+        },
+        "240": {
+          "error_type": "concept_gap",
+          "note": "End is 1:15"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "9:30 to 1:15 = 3 hours 45 min = 225."
+      },
+      "three_read_prompt": "Read 1: Start? Read 2: End? Read 3: Total.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "225."
+      },
+      "hints": [
+        "3 hours 45 min."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_04",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_logic",
+      "difficulty": 4,
+      "question": "True or False: From 11:30 A.M. to 1:00 P.M. is 90 minutes.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "1.5 hours = 90 min"
+        }
+      },
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 1.5 hours = 90 minutes."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "90."
+      },
+      "hints": [
+        "Cross noon. 1.5 hours."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": ""
+    },
+    {
+      "id": "R3_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.A.1",
+      "skill_tag": "elapsed_logic",
+      "difficulty": 5,
+      "question": "Lily's class starts at 8:45 A.M. and lasts 1 hour 20 minutes. End time? (Format: HH:MM)",
+      "correct_answer": "10:05",
+      "solution_steps": [
+        "8:45+1 hour=9:45. +20 min: 9:45→9:55=10. +10 more=10:05."
+      ],
+      "expected_errors": {
+        "10:05": {
+          "error_type": "concept_gap",
+          "note": "Already correct"
+        },
+        "9:65": {
+          "error_type": "concept_gap",
+          "note": "No 65 minutes"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "8:45 + 1 hr = 9:45. +20 = 10:05."
+      },
+      "three_read_prompt": "Read 1: Start? Read 2: Duration? Read 3: End.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/L2_elapsed_time_number_line",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "10:05."
+      },
+      "hints": [
+        "Add 1 hr first, then 20 min."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": ""
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U11_time_mass_volume/L1_tell_time_nearest_minute — Tell Time to the Nearest Minute (3.MD.A.1)",
+    "current": "G3 U11_time_mass_volume/L2_elapsed_time_number_line — Elapsed Time on a Number Line (3.MD.A.1)",
+    "successor": "G3 U11_time_mass_volume/L3_time_word_problems — Time Word Problems (3.MD.A.1)"
+  },
+  "metadata": {
+    "upgraded": true,
+    "upgrade_version": "2.0-on-main",
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
+  }
 }

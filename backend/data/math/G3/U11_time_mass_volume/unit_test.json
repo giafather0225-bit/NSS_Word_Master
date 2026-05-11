@@ -3,29 +3,520 @@
   "title": "Unit 11 Test: Time, Mass, and Liquid Volume",
   "grade": "G3",
   "unit": "U11_time_mass_volume",
-  "ccss": ["3.MD.A.1", "3.MD.A.2"],
+  "ccss": [
+    "3.MD.A.1",
+    "3.MD.A.2"
+  ],
   "pass_threshold": 0.8,
   "time_limit_min": 30,
   "problems": [
-    {"id": "UT_01", "type": "input", "lesson_ref": "L1", "skill_tag": "minutes_per_hour", "difficulty": 1, "question": "How many minutes are in 1 hour?", "correct_answer": "60", "feedback": {"correct": "Right!", "incorrect": "1 hour = 60 minutes."}, "hints": ["60."]},
-    {"id": "UT_02", "type": "mc", "lesson_ref": "L1", "skill_tag": "read_clock", "difficulty": 2, "question": "Hour hand between 4 and 5. Minute hand on 6. Time?", "choices": ["A) 4:30", "B) 5:30", "C) 4:06", "D) 6:04"], "correct_answer": "A", "feedback": {"correct": "Right!", "incorrect": "4:30."}, "hints": ["6 = 30 min."]},
-    {"id": "UT_03", "type": "input", "lesson_ref": "L1", "skill_tag": "minutes_count", "difficulty": 2, "question": "Minute hand 2 ticks past 7. Minutes?", "correct_answer": "37", "feedback": {"correct": "Right!", "incorrect": "35+2=37."}, "hints": ["35+2."]},
-    {"id": "UT_04", "type": "input", "lesson_ref": "L2", "skill_tag": "elapsed_same_hour", "difficulty": 1, "question": "From 5:10 to 5:45. Minutes?", "correct_answer": "35", "feedback": {"correct": "Right!", "incorrect": "45-10=35."}, "hints": ["Subtract."]},
-    {"id": "UT_05", "type": "input", "lesson_ref": "L2", "skill_tag": "elapsed_cross_hour", "difficulty": 3, "question": "From 7:50 to 8:30. Minutes?", "correct_answer": "40", "feedback": {"correct": "Right!", "incorrect": "10+30=40."}, "hints": ["10 to 8:00, +30."]},
-    {"id": "UT_06", "type": "input", "lesson_ref": "L3", "skill_tag": "find_end_time", "difficulty": 2, "question": "Class starts 9:00 and lasts 45 min. End time?", "correct_answer": "9:45", "feedback": {"correct": "Right!", "incorrect": "9:45."}, "hints": ["+45."]},
-    {"id": "UT_07", "type": "input", "lesson_ref": "L3", "skill_tag": "find_start_time", "difficulty": 3, "question": "Movie ends 4:30 P.M. and was 90 min long. Start?", "correct_answer": "3:00", "feedback": {"correct": "Right!", "incorrect": "4:30-1:30=3:00."}, "hints": ["Subtract 1.5 hr."]},
-    {"id": "UT_08", "type": "input", "lesson_ref": "L4", "skill_tag": "convert_kg_g", "difficulty": 1, "question": "1 kg = ___ g", "correct_answer": "1000", "feedback": {"correct": "Right!", "incorrect": "1000."}, "hints": ["1000."]},
-    {"id": "UT_09", "type": "mc", "lesson_ref": "L4", "skill_tag": "estimate_mass", "difficulty": 2, "question": "Best unit for a backpack:", "choices": ["A) g", "B) kg", "C) L", "D) min"], "correct_answer": "B", "feedback": {"correct": "Right!", "incorrect": "kg."}, "hints": ["Heavy."]},
-    {"id": "UT_10", "type": "input", "lesson_ref": "L4", "skill_tag": "convert_g_kg", "difficulty": 2, "question": "5000 g = ___ kg", "correct_answer": "5", "feedback": {"correct": "Right!", "incorrect": "÷1000=5."}, "hints": ["÷1000."]},
-    {"id": "UT_11", "type": "input", "lesson_ref": "L5", "skill_tag": "mass_add", "difficulty": 2, "question": "200 g + 350 g?", "correct_answer": "550", "feedback": {"correct": "Right!", "incorrect": "550."}, "hints": ["Add."]},
-    {"id": "UT_12", "type": "input", "lesson_ref": "L5", "skill_tag": "mass_multiply", "difficulty": 2, "question": "4 boxes, each 5 kg. Total?", "correct_answer": "20", "feedback": {"correct": "Right!", "incorrect": "4×5=20."}, "hints": ["4×5."]},
-    {"id": "UT_13", "type": "input", "lesson_ref": "L5", "skill_tag": "mass_divide", "difficulty": 3, "question": "24 kg shared into 6 bags. Each?", "correct_answer": "4", "feedback": {"correct": "Right!", "incorrect": "24/6=4."}, "hints": ["24÷6."]},
-    {"id": "UT_14", "type": "input", "lesson_ref": "L6", "skill_tag": "convert_L_mL", "difficulty": 1, "question": "1 L = ___ mL", "correct_answer": "1000", "feedback": {"correct": "Right!", "incorrect": "1000."}, "hints": ["1000."]},
-    {"id": "UT_15", "type": "mc", "lesson_ref": "L6", "skill_tag": "estimate_volume", "difficulty": 2, "question": "Best unit for a bathtub:", "choices": ["A) mL", "B) L", "C) g", "D) kg"], "correct_answer": "B", "feedback": {"correct": "Right!", "incorrect": "L."}, "hints": ["Big."]},
-    {"id": "UT_16", "type": "input", "lesson_ref": "L7", "skill_tag": "vol_subtract", "difficulty": 2, "question": "1000 mL - 350 mL?", "correct_answer": "650", "feedback": {"correct": "Right!", "incorrect": "650."}, "hints": ["Subtract."]},
-    {"id": "UT_17", "type": "input", "lesson_ref": "L7", "skill_tag": "vol_multiply", "difficulty": 2, "question": "5 cups, each 200 mL. Total mL?", "correct_answer": "1000", "feedback": {"correct": "Right!", "incorrect": "5×200=1000."}, "hints": ["Multiply."]},
-    {"id": "UT_18", "type": "input", "lesson_ref": "L7", "skill_tag": "vol_divide", "difficulty": 3, "question": "2 L into 4 cups equally (mL each).", "correct_answer": "500", "feedback": {"correct": "Right!", "incorrect": "2000÷4=500."}, "hints": ["Convert L."]},
-    {"id": "UT_19", "type": "input", "lesson_ref": "L8", "skill_tag": "time_word_logic", "difficulty": 4, "question": "From 1:45 to 3:15. Total minutes?", "correct_answer": "90", "feedback": {"correct": "Right!", "incorrect": "15+60+15=90."}, "hints": ["1.5 hr."]},
-    {"id": "UT_20", "type": "input", "lesson_ref": "L8", "skill_tag": "vol_word_complex", "difficulty": 4, "question": "Pour 750 mL into a 2 L bottle. mL more to fill?", "correct_answer": "1250", "feedback": {"correct": "Right!", "incorrect": "2000-750=1250."}, "hints": ["Convert and subtract."]}
-  ]
+    {
+      "id": "UT_01",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "minutes_per_hour",
+      "difficulty": 1,
+      "question": "How many minutes are in 1 hour?",
+      "correct_answer": "60",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "1 hour = 60 minutes."
+      },
+      "hints": [
+        "60."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "lesson_ref": "L1",
+      "skill_tag": "read_clock",
+      "difficulty": 2,
+      "question": "Hour hand between 4 and 5. Minute hand on 6. Time?",
+      "choices": [
+        "A) 4:30",
+        "B) 5:30",
+        "C) 4:06",
+        "D) 6:04"
+      ],
+      "correct_answer": "A",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4:30."
+      },
+      "hints": [
+        "6 = 30 min."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_03",
+      "type": "input",
+      "lesson_ref": "L1",
+      "skill_tag": "minutes_count",
+      "difficulty": 2,
+      "question": "Minute hand 2 ticks past 7. Minutes?",
+      "correct_answer": "37",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "35+2=37."
+      },
+      "hints": [
+        "35+2."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_04",
+      "type": "input",
+      "lesson_ref": "L2",
+      "skill_tag": "elapsed_same_hour",
+      "difficulty": 1,
+      "question": "From 5:10 to 5:45. Minutes?",
+      "correct_answer": "35",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "45-10=35."
+      },
+      "hints": [
+        "Subtract."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_05",
+      "type": "input",
+      "lesson_ref": "L2",
+      "skill_tag": "elapsed_cross_hour",
+      "difficulty": 3,
+      "question": "From 7:50 to 8:30. Minutes?",
+      "correct_answer": "40",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "10+30=40."
+      },
+      "hints": [
+        "10 to 8:00, +30."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_06",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "find_end_time",
+      "difficulty": 2,
+      "question": "Class starts 9:00 and lasts 45 min. End time?",
+      "correct_answer": "9:45",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "9:45."
+      },
+      "hints": [
+        "+45."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_07",
+      "type": "input",
+      "lesson_ref": "L3",
+      "skill_tag": "find_start_time",
+      "difficulty": 3,
+      "question": "Movie ends 4:30 P.M. and was 90 min long. Start?",
+      "correct_answer": "3:00",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4:30-1:30=3:00."
+      },
+      "hints": [
+        "Subtract 1.5 hr."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_08",
+      "type": "input",
+      "lesson_ref": "L4",
+      "skill_tag": "convert_kg_g",
+      "difficulty": 1,
+      "question": "1 kg = ___ g",
+      "correct_answer": "1000",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "1000."
+      },
+      "hints": [
+        "1000."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_09",
+      "type": "mc",
+      "lesson_ref": "L4",
+      "skill_tag": "estimate_mass",
+      "difficulty": 2,
+      "question": "Best unit for a backpack:",
+      "choices": [
+        "A) g",
+        "B) kg",
+        "C) L",
+        "D) min"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "kg."
+      },
+      "hints": [
+        "Heavy."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "lesson_ref": "L4",
+      "skill_tag": "convert_g_kg",
+      "difficulty": 2,
+      "question": "5000 g = ___ kg",
+      "correct_answer": "5",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "÷1000=5."
+      },
+      "hints": [
+        "÷1000."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_11",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "mass_add",
+      "difficulty": 2,
+      "question": "200 g + 350 g?",
+      "correct_answer": "550",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "550."
+      },
+      "hints": [
+        "Add."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_12",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "mass_multiply",
+      "difficulty": 2,
+      "question": "4 boxes, each 5 kg. Total?",
+      "correct_answer": "20",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4×5=20."
+      },
+      "hints": [
+        "4×5."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_13",
+      "type": "input",
+      "lesson_ref": "L5",
+      "skill_tag": "mass_divide",
+      "difficulty": 3,
+      "question": "24 kg shared into 6 bags. Each?",
+      "correct_answer": "4",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "24/6=4."
+      },
+      "hints": [
+        "24÷6."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_14",
+      "type": "input",
+      "lesson_ref": "L6",
+      "skill_tag": "convert_L_mL",
+      "difficulty": 1,
+      "question": "1 L = ___ mL",
+      "correct_answer": "1000",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "1000."
+      },
+      "hints": [
+        "1000."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_15",
+      "type": "mc",
+      "lesson_ref": "L6",
+      "skill_tag": "estimate_volume",
+      "difficulty": 2,
+      "question": "Best unit for a bathtub:",
+      "choices": [
+        "A) mL",
+        "B) L",
+        "C) g",
+        "D) kg"
+      ],
+      "correct_answer": "B",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "L."
+      },
+      "hints": [
+        "Big."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_16",
+      "type": "input",
+      "lesson_ref": "L7",
+      "skill_tag": "vol_subtract",
+      "difficulty": 2,
+      "question": "1000 mL - 350 mL?",
+      "correct_answer": "650",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "650."
+      },
+      "hints": [
+        "Subtract."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_17",
+      "type": "input",
+      "lesson_ref": "L7",
+      "skill_tag": "vol_multiply",
+      "difficulty": 2,
+      "question": "5 cups, each 200 mL. Total mL?",
+      "correct_answer": "1000",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "5×200=1000."
+      },
+      "hints": [
+        "Multiply."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_18",
+      "type": "input",
+      "lesson_ref": "L7",
+      "skill_tag": "vol_divide",
+      "difficulty": 3,
+      "question": "2 L into 4 cups equally (mL each).",
+      "correct_answer": "500",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "2000÷4=500."
+      },
+      "hints": [
+        "Convert L."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_19",
+      "type": "input",
+      "lesson_ref": "L8",
+      "skill_tag": "time_word_logic",
+      "difficulty": 4,
+      "question": "From 1:45 to 3:15. Total minutes?",
+      "correct_answer": "90",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "15+60+15=90."
+      },
+      "hints": [
+        "1.5 hr."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    },
+    {
+      "id": "UT_20",
+      "type": "input",
+      "lesson_ref": "L8",
+      "skill_tag": "vol_word_complex",
+      "difficulty": 4,
+      "question": "Pour 750 mL into a 2 L bottle. mL more to fill?",
+      "correct_answer": "1250",
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "2000-750=1250."
+      },
+      "hints": [
+        "Convert and subtract."
+      ],
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.11 Lesson — U11_time_mass_volume/unit_test",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U11_time_mass_volume",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      }
+    }
+  ],
+  "vertical_alignment": {
+    "prerequisite": "G3 U11_time_mass_volume/L8_mixed_time_mass_volume — Mixed Practice — Time, Mass, and Volume (3.MD.A.1)",
+    "current": "G3 U11_time_mass_volume/unit_test — Unit 11 Test: Time, Mass, and Liquid Volume (3.MD.A.1)",
+    "successor": "G3 U12_area/L1_understand_area — Understand Area as Covering with Unit Squares (3.MD.C.5)"
+  },
+  "metadata": {
+    "upgraded": true,
+    "upgrade_version": "2.0-on-main",
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
+  }
 }
