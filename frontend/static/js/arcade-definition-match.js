@@ -38,10 +38,10 @@ async function dmStart() {
         <div class="dm-reveal" id="dm-reveal"></div>
       </div>
       <div class="dm-buttons">
-        <button type="button" class="dm-btn dm-btn--no" id="dm-no">No</button>
-        <button type="button" class="dm-btn dm-btn--yes" id="dm-yes">Yes</button>
+        <button type="button" class="dm-btn dm-btn--no" id="dm-no"><span class="dm-btn-key">←</span> No</button>
+        <button type="button" class="dm-btn dm-btn--yes" id="dm-yes">Yes <span class="dm-btn-key">→</span></button>
       </div>
-      <div class="dm-hint">Tap Yes if the definition matches, No if it doesn't.<br>Keys: ← No · → Yes</div>
+      <div class="dm-hint">Tap Yes if the definition matches, No if it doesn't.</div>
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Quit</button>
     </div>`;
 
