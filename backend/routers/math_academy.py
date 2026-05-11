@@ -106,7 +106,11 @@ class SubmitAnswerIn(BaseModel):
 @lru_cache(maxsize=512)
 def _read_json_cached(path_str: str, mtime: float) -> dict:
     """Parse JSON keyed by (path, mtime) — file edits auto-invalidate."""
-    return json.loads(Path(path_str).read_text("utf-8"))
+    try:
+        return json.loads(Path(path_str).read_text("utf-8"))
+    except (json.JSONDecodeError, OSError) as exc:
+        logger.warning("Failed to parse lesson JSON %s: %s", path_str, exc)
+        return {}
 
 # @tag MATH @tag ACADEMY
 def _load_lesson_json(grade: str, unit: str, lesson: str) -> dict:
@@ -755,7 +759,8 @@ def submit_try(req: TrySubmitIn, db: Session = Depends(get_db)):
     db.add(attempt)
 
     if not is_correct:
-        wr = db.query(MathWrongReview).filter_by(problem_id=req.problem_id, is_mastered=False).first()
+        # Lookup any existing row (mastered or not) — UNIQUE(problem_id) means only one can exist.
+        wr = db.query(MathWrongReview).filter_by(problem_id=req.problem_id).first()
         if not wr:
             wr = MathWrongReview(
                 problem_id=req.problem_id,
@@ -769,6 +774,7 @@ def submit_try(req: TrySubmitIn, db: Session = Depends(get_db)):
             db.flush()
             wr.original_attempt_id = attempt.id
         else:
+            wr.is_mastered = False
             wr.source_stage = "try"
             wr.attempt_count = (wr.attempt_count or 0) + 1
             wr.consecutive_correct = 0
@@ -840,7 +846,8 @@ def submit_exit_quiz(req: ExitQuizSubmitIn, db: Session = Depends(get_db)):
         db.add(attempt)
 
         if not is_correct:
-            wr = db.query(MathWrongReview).filter_by(problem_id=ans.problem_id, is_mastered=False).first()
+            # Lookup any existing row (mastered or not) — UNIQUE(problem_id) means only one can exist.
+            wr = db.query(MathWrongReview).filter_by(problem_id=ans.problem_id).first()
             if not wr:
                 wr = MathWrongReview(
                     problem_id=ans.problem_id,
@@ -854,6 +861,7 @@ def submit_exit_quiz(req: ExitQuizSubmitIn, db: Session = Depends(get_db)):
                 db.flush()
                 wr.original_attempt_id = attempt.id
             else:
+                wr.is_mastered = False
                 wr.source_stage = "exit_quiz"
                 wr.attempt_count = (wr.attempt_count or 0) + 1
                 wr.consecutive_correct = 0
