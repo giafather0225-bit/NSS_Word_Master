@@ -413,6 +413,9 @@ function exitSessionSidebar() {
     const info = $("sb-session-info");
     if (sel)  sel.classList.remove("hidden");
     if (info) info.classList.add("hidden");
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) sidebar.classList.remove('collapsed');
+    localStorage.removeItem('sb_collapsed');
     updateHints();
 }
 

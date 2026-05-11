@@ -76,13 +76,17 @@ async function updateCKLATitle(grade) {
 
 /** Show the CKLA view and render domain list. @tag ACADEMY CKLA */
 function showCKLAView() {
-  ['idle-wrapper', 'stage-card', 'daily-words-view'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
+  // switchView('english') clears idle-wrapper's inline style, so use .hidden
+  // class which survives that clearing (display:none !important via legacy-app.css).
+  if (typeof switchView === 'function') switchView('english');
+  const iw = document.getElementById('idle-wrapper');
+  if (iw) iw.classList.add('hidden');
+  const sc = document.getElementById('stage-card');
+  if (sc) sc.classList.add('hidden');
+  const dw = document.getElementById('daily-words-view');
+  if (dw) dw.style.display = 'none';
   const view = document.getElementById('ckla-view');
   if (view) { view.style.display = 'flex'; }
-  if (typeof switchView === 'function') switchView('english');
   const sidebar = document.getElementById('sidebar');
   if (sidebar) { sidebar.classList.add('collapsed'); localStorage.setItem('sb_collapsed', '1'); }
   loadCKLADomains();
@@ -92,6 +96,9 @@ function showCKLAView() {
 function hideCKLAView() {
   const view = document.getElementById('ckla-view');
   if (view) view.style.display = 'none';
+  // Remove .hidden added by showCKLAView so switchView can restore idle-wrapper.
+  const iw = document.getElementById('idle-wrapper');
+  if (iw) iw.classList.remove('hidden');
   if (typeof switchView === 'function') switchView('english');
 }
 
