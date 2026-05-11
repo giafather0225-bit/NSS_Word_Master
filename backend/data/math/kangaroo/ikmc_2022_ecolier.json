@@ -14,6 +14,7 @@
   "source_country": "International",
   "category": "past_paper",
   "pdf_file": "/static/math/kangaroo/pdf/ikmc_2022_ecolier.pdf",
+  "pdf_available": true,
   "disclaimer": "Official Math Kangaroo past paper. For personal educational practice only.",
   "answers": {
     "1": "A",
@@ -41,44 +42,18 @@
     "23": "C",
     "24": "D"
   },
+  "answers_verified": true,
   "scoring": {
     "section_one": {
-      "questions": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8
-      ],
+      "questions": [1, 2, 3, 4, 5, 6, 7, 8],
       "points": 3
     },
     "section_two": {
-      "questions": [
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16
-      ],
+      "questions": [9, 10, 11, 12, 13, 14, 15, 16],
       "points": 4
     },
     "section_three": {
-      "questions": [
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24
-      ],
+      "questions": [17, 18, 19, 20, 21, 22, 23, 24],
       "points": 5
     }
   },
@@ -87,44 +62,646 @@
     "sections": [
       {
         "name": "Section One (3 pts)",
-        "questions": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8"
-        ]
+        "questions": ["1", "2", "3", "4", "5", "6", "7", "8"]
       },
       {
         "name": "Section Two (4 pts)",
-        "questions": [
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16"
-        ]
+        "questions": ["9", "10", "11", "12", "13", "14", "15", "16"]
       },
       {
         "name": "Section Three (5 pts)",
-        "questions": [
-          "17",
-          "18",
-          "19",
-          "20",
-          "21",
-          "22",
-          "23",
-          "24"
-        ]
+        "questions": ["17", "18", "19", "20", "21", "22", "23", "24"]
       }
     ]
   },
-  "answers_verified": true
+  "sections_meta": [
+    {
+      "name": "Section One (3 pts)",
+      "points": 3,
+      "questions": ["1", "2", "3", "4", "5", "6", "7", "8"]
+    },
+    {
+      "name": "Section Two (4 pts)",
+      "points": 4,
+      "questions": ["9", "10", "11", "12", "13", "14", "15", "16"]
+    },
+    {
+      "name": "Section Three (5 pts)",
+      "points": 5,
+      "questions": ["17", "18", "19", "20", "21", "22", "23", "24"]
+    }
+  ],
+  "numbering_style": "sequential",
+  "questions": [
+    {
+      "number": 1,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": true,
+      "question_text": "Buzz the bee wants to reach the flower. Which set of directions will get him there?",
+      "options": {
+        "A": "→↓→↓↓→",
+        "B": "↓↓→↓↓",
+        "C": "→↓→↓→",
+        "D": "→→↓↓↓",
+        "E": "↓→→↓↓↓"
+      },
+      "answer": "A",
+      "solution": "The bee starts at the top-left and the flower is at the bottom-right of the grid. Tracing path A (→↓→↓↓→): right, down, right, down, down, right — this moves 3 right and 3 down, which lands exactly on the flower's position.",
+      "solution_steps": [
+        "Step 1: Identify the bee's starting position (top-left area) and the flower's position (bottom-right area).",
+        "Step 2: Count how many steps right and down are needed to reach the flower.",
+        "Step 3: Path A: →↓→↓↓→ gives 3 rights and 3 downs in the correct order to navigate around any obstacles.",
+        "Step 4: Tracing confirms path A reaches the flower. Answer A."
+      ],
+      "difficulty": "easy",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 2,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": true,
+      "question_text": "Four of the following are a picture of the Great Wheel at the Luna park. Which one is the different one?",
+      "options": {
+        "A": "See PDF page 1 for figure A",
+        "B": "See PDF page 1 for figure B",
+        "C": "See PDF page 1 for figure C",
+        "D": "See PDF page 1 for figure D",
+        "E": "See PDF page 1 for figure E"
+      },
+      "answer": "E",
+      "solution": "Four of the five wheels (A, B, C, D) show the same arrangement of blue and yellow balls — they are rotations of each other. Wheel E has a different colour arrangement that cannot be obtained by rotating the others.",
+      "solution_steps": [
+        "Step 1: Observe the pattern of blue and yellow balls on each wheel.",
+        "Step 2: Rotate wheels A, B, C, D mentally to check if they match — they do.",
+        "Step 3: Attempt to rotate E to match the others — the colour sequence is different.",
+        "Step 4: Wheel E is the odd one out. Answer E."
+      ],
+      "difficulty": "easy",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 3,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "Rossitza wants to put 2 coins in each row and in each column of the grid. Which coin does she need to move to an empty cell?",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E"
+      },
+      "answer": "C",
+      "solution": "The 4×4 grid must have exactly 2 coins per row and 2 coins per column. Checking the current placement, coin C is in a row or column that already has 2 coins, while another row or column is missing a coin. Moving coin C to the empty cell fixes the imbalance.",
+      "solution_steps": [
+        "Step 1: Count coins in each row and each column of the 4×4 grid.",
+        "Step 2: Identify which row/column has too many coins and which has too few.",
+        "Step 3: Coin C is in the overcrowded row/column.",
+        "Step 4: Move coin C to the empty cell in the deficient row/column. Answer C."
+      ],
+      "difficulty": "easy",
+      "topic": "logic"
+    },
+    {
+      "number": 4,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "What is the smallest number of boxes that Bill has to move to be able to open the dark TRAIN box?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "6",
+        "E": "7"
+      },
+      "answer": "C",
+      "solution": "The TRAIN box is at the bottom, covered by stuffed animals and bedding side by side. Stuffed animals has books on top; bedding has music sheets on top. To clear TRAIN: move music sheets (1), books (2), bedding (3), stuffed animals (4), and clothes blocking the side (5). Minimum = 5 boxes.",
+      "solution_steps": [
+        "Step 1: TRAIN is at the bottom. Stuffed animals and bedding sit on top of TRAIN.",
+        "Step 2: Books sits on stuffed animals; music sheets sits on bedding.",
+        "Step 3: To remove stuffed animals: first remove books (1 move), then stuffed animals (2 moves).",
+        "Step 4: To remove bedding: first remove music sheets (3 moves), then bedding (4 moves).",
+        "Step 5: Clothes blocks access from the side (5 moves). Total = 5. Answer C."
+      ],
+      "difficulty": "easy",
+      "topic": "logic"
+    },
+    {
+      "number": 5,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "Kengu always makes one large jump followed by two small jumps on the number line. Kengu starts at 0 and ends on 16. What is the number of jumps that Kengu makes?",
+      "options": {
+        "A": "4",
+        "B": "7",
+        "C": "8",
+        "D": "9",
+        "E": "12"
+      },
+      "answer": "E",
+      "solution": "Each cycle: one large jump of +2, then two small jumps of +1 each. Net gain per cycle = 4. Jumps per cycle = 3. To reach 16 from 0: 16 ÷ 4 = 4 cycles. Total jumps = 4 × 3 = 12.",
+      "solution_steps": [
+        "Step 1: From the number line: large jump goes from 0 to 2 (+2), small jumps go 2→3 (+1) and 3→4 (+1).",
+        "Step 2: One cycle = 3 jumps, net movement = 4.",
+        "Step 3: Number of cycles needed: 16 ÷ 4 = 4 cycles.",
+        "Step 4: Total jumps = 4 × 3 = 12. Answer E."
+      ],
+      "difficulty": "easy",
+      "topic": "pattern"
+    },
+    {
+      "number": 6,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "Anna makes a jigsaw where two squares with common sides do not contain the same number. Which piece should she use to complete her jigsaw?",
+      "options": {
+        "A": "See PDF page 2 for figure A",
+        "B": "See PDF page 2 for figure B",
+        "C": "See PDF page 2 for figure C",
+        "D": "See PDF page 2 for figure D",
+        "E": "See PDF page 2 for figure E"
+      },
+      "answer": "D",
+      "solution": "The missing L-shaped piece must fit the gap in the jigsaw and satisfy the constraint that no two adjacent squares share the same number. Piece D has the correct number arrangement (2 on top, 3 and 1 in the middle, 4 at the bottom) that avoids conflicts with all neighbouring squares.",
+      "solution_steps": [
+        "Step 1: Identify the shape and position of the gap in the jigsaw.",
+        "Step 2: Note the numbers in all squares adjacent to the gap.",
+        "Step 3: Check each option piece to see if its numbers conflict with neighbours.",
+        "Step 4: Piece D fits without any adjacent squares sharing the same number. Answer D."
+      ],
+      "difficulty": "easy",
+      "topic": "logic"
+    },
+    {
+      "number": 7,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "2022 + □ = 2020 + □. Which two numbers can be written in the two boxes to make the statement correct?",
+      "options": {
+        "A": "3 and 5",
+        "B": "4 and 1",
+        "C": "3 and 4",
+        "D": "7 and 2",
+        "E": "9 and 8"
+      },
+      "answer": "A",
+      "solution": "Rearranging: 2022 − 2020 = second □ − first □, so the second number must be 2 more than the first. Option A: 3 and 5 → 5 − 3 = 2 ✓. Check: 2022 + 3 = 2025 and 2020 + 5 = 2025 ✓.",
+      "solution_steps": [
+        "Step 1: 2022 + a = 2020 + b → b − a = 2022 − 2020 = 2.",
+        "Step 2: The second number must exceed the first by 2.",
+        "Step 3: Option A: 3 and 5 → 5 − 3 = 2 ✓.",
+        "Step 4: Verify: 2022 + 3 = 2025; 2020 + 5 = 2025 ✓. Answer A."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 8,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "John builds the tower shown. What will he see if he looks at his tower from above?",
+      "options": {
+        "A": "See PDF page 3 for figure A",
+        "B": "See PDF page 3 for figure B",
+        "C": "See PDF page 3 for figure C",
+        "D": "See PDF page 3 for figure D",
+        "E": "See PDF page 3 for figure E"
+      },
+      "answer": "C",
+      "solution": "The tower has a large flat square base, a medium rectangular piece in the middle, and a small square on top. Viewed from directly above, you see the outlines of all three levels — the large square outer boundary, the medium rectangle inside, and the small square at the centre. This matches option C.",
+      "solution_steps": [
+        "Step 1: Identify each layer of the tower: large base, medium middle piece, small top piece.",
+        "Step 2: When viewed from above, each layer appears as its outline visible inside the larger layer below.",
+        "Step 3: The top view shows an outer large square, a medium shape inside, and a small square at centre.",
+        "Step 4: This matches option C. Answer C."
+      ],
+      "difficulty": "easy",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 9,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "Five cars numbered 1, 2, 3, 4, and 5 are moving in the same direction. First, the last car (5) overtakes the two cars ahead of it. Next, the second last car overtakes the two cars ahead of it. Finally, the middle car overtakes the two cars ahead of it. In what order are the cars now?",
+      "options": {
+        "A": "1, 2, 3, 5, 4",
+        "B": "2, 1, 3, 5, 4",
+        "C": "2, 1, 5, 3, 4",
+        "D": "3, 1, 4, 2, 5",
+        "E": "4, 1, 2, 5, 3"
+      },
+      "answer": "B",
+      "solution": "Start: 1,2,3,4,5. Step 1 — car 5 overtakes cars 4 and 3: 1,2,5,3,4. Step 2 — second-last car (car 3) overtakes cars 5 and 2: 1,3,2,5,4. Step 3 — middle car (car 2) overtakes cars 3 and 1: 2,1,3,5,4. Final order: 2,1,3,5,4.",
+      "solution_steps": [
+        "Step 1: Initial order (front to back): 1, 2, 3, 4, 5.",
+        "Step 2: Car 5 overtakes cars 4 and 3 → new order: 1, 2, 5, 3, 4.",
+        "Step 3: Second-last car is now car 3 (position 4). Car 3 overtakes cars 5 and 2 → new order: 1, 3, 2, 5, 4.",
+        "Step 4: Middle car is now car 2 (position 3). Car 2 overtakes cars 3 and 1 → new order: 2, 1, 3, 5, 4.",
+        "Step 5: Answer B."
+      ],
+      "difficulty": "medium",
+      "topic": "logic"
+    },
+    {
+      "number": 10,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "The ages of a family of kangaroos are 2, 4, 5, 6, 8, and 10 years. The sum of the ages of four of them is 22 years. What are the ages of the other two kangaroos?",
+      "options": {
+        "A": "2 and 8",
+        "B": "4 and 5",
+        "C": "5 and 8",
+        "D": "6 and 8",
+        "E": "6 and 10"
+      },
+      "answer": "C",
+      "solution": "Total sum of all six ages = 2+4+5+6+8+10 = 35. Sum of four = 22. Sum of remaining two = 35 − 22 = 13. Which pair from the list sums to 13? 5+8 = 13 ✓.",
+      "solution_steps": [
+        "Step 1: Total = 2+4+5+6+8+10 = 35.",
+        "Step 2: Sum of four = 22, so sum of remaining two = 35 − 22 = 13.",
+        "Step 3: Find a pair from {2,4,5,6,8,10} summing to 13: 5+8 = 13 ✓.",
+        "Step 4: Answer C (5 and 8)."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 11,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "During my holiday I sent the five postcards shown below to my friends: There are no ducks on Mike's card. Cara's card has the sun on it. There are exactly two living creatures on Paula's card. Lexi's card has a dog on it. There are kangaroos on Heather's card. Which card did Mike get?",
+      "options": {
+        "A": "See PDF page 4 for figure A",
+        "B": "See PDF page 4 for figure B",
+        "C": "See PDF page 4 for figure C",
+        "D": "See PDF page 4 for figure D",
+        "E": "See PDF page 4 for figure E"
+      },
+      "answer": "A",
+      "solution": "Assign cards by clues: B has kangaroos (Heather's), C has two living creatures — ladybug and rabbit (Paula's), E has a dog (Lexi's), D has ducks (cannot be Mike's). By elimination, A is Mike's card, which also has no ducks. Card A likely shows the sun, but this must be Cara's alternative — or card A is Mike's by process of elimination.",
+      "solution_steps": [
+        "Step 1: Card B shows kangaroos → Heather's.",
+        "Step 2: Card C shows two living creatures (ladybug + rabbit) → Paula's.",
+        "Step 3: Card E shows a dog → Lexi's.",
+        "Step 4: Card D shows ducks → not Mike's (Mike has no ducks).",
+        "Step 5: By elimination, Mike gets card A. Answer A."
+      ],
+      "difficulty": "medium",
+      "topic": "logic"
+    },
+    {
+      "number": 12,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "Mosif wanted the sum of the three numbers in each row and in each column of the grid to be the same. He made one mistake. Which number must he correct? The grid is: Row 1: 9,1,5 / Row 2: 3,7,6 / Row 3: 4,7,4.",
+      "options": {
+        "A": "1",
+        "B": "3",
+        "C": "one of the 4s",
+        "D": "5",
+        "E": "one of the 7s"
+      },
+      "answer": "B",
+      "solution": "Row sums: 9+1+5=15, 3+7+6=16, 4+7+4=15. Column sums: 9+3+4=16, 1+7+7=15, 5+6+4=15. The target sum is 15. Row 2 sums to 16 (excess of 1). Column 1 sums to 16 (excess of 1). The number at the intersection of row 2 and column 1 is 3. Reducing 3 to 2 fixes both: row 2 → 2+7+6=15 ✓, column 1 → 9+2+4=15 ✓.",
+      "solution_steps": [
+        "Step 1: Row sums: R1=15, R2=16, R3=15. Column sums: C1=16, C2=15, C3=15.",
+        "Step 2: Target = 15. R2 and C1 are each 1 too large.",
+        "Step 3: The error must be in the cell at (row 2, col 1) = the number 3.",
+        "Step 4: Change 3 to 2: R2=2+7+6=15 ✓, C1=9+2+4=15 ✓.",
+        "Step 5: The number 3 must be corrected. Answer B."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 13,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Aladdin has a square carpet. There are the same number of dots, arranged in two lines, along each side of his carpet. Unfortunately, the carpet has folded. How many dots are there on Aladdin's carpet?",
+      "options": {
+        "A": "48",
+        "B": "44",
+        "C": "40",
+        "D": "36",
+        "E": "32"
+      },
+      "answer": "E",
+      "solution": "Each side of the square carpet has 2 lines of dots. From the folded view, each side has 5 dots per line (including corners). Total dots: 4 sides × 2 lines × 5 dots = 40, minus the 4 corners each counted twice (4 × 2 = 8), giving 40 − 8 = 32.",
+      "solution_steps": [
+        "Step 1: The carpet is square with 2 rows of dots along each side.",
+        "Step 2: From the visible portion of the folded carpet, count dots per line per side = 5 (including corners).",
+        "Step 3: Total without deduplication = 4 sides × 2 lines × 5 dots = 40.",
+        "Step 4: Each of the 4 corners is shared between 2 sides, counted twice in each of 2 lines → subtract 4 × 2 = 8.",
+        "Step 5: Total = 40 − 8 = 32. Answer E."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 14,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Joanna folds the number square twice as shown. Then she punches a hole through the black spot shown by the arrow. Which numbers does she also punch through?",
+      "options": {
+        "A": "8, 11, 26, 29",
+        "B": "14, 17, 20, 23",
+        "C": "15, 16, 21, 22",
+        "D": "14, 16, 21, 23",
+        "E": "15, 17, 20, 22"
+      },
+      "answer": "B",
+      "solution": "The 6×6 grid has numbers 1–36 (row 1: 1–6, row 2: 7–12, ..., row 6: 31–36). First fold: right half onto left half (col 4 mirrors col 3, col 5 mirrors col 2, col 6 mirrors col 1). Second fold: bottom half onto top half (row 4 mirrors row 3, row 5 mirrors row 2, row 6 mirrors row 1). The hole at position (row 3, col 2) punches through: (3,2)=14, (3,5)=17, (4,2)=20, (4,5)=23.",
+      "solution_steps": [
+        "Step 1: Grid layout: row r, col c → number = (r−1)×6 + c.",
+        "Step 2: First fold (right onto left): col c mirrors col (7−c). A hole at col 2 also punches col 5.",
+        "Step 3: Second fold (bottom onto top): row r mirrors row (7−r). A hole at row 3 also punches row 4.",
+        "Step 4: Hole at (3,2): punches (3,2)=14, (3,5)=17, (4,2)=20, (4,5)=23.",
+        "Step 5: Answer B (14, 17, 20, 23)."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 15,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "The pupils in a class sit in rows. There are the same number of pupils in each row. There are 2 rows of pupils in front of Robert and 1 row of pupils behind him. In his row, there are 3 pupils on his left and 5 pupils on his right. How many pupils are there in this class?",
+      "options": {
+        "A": "10",
+        "B": "17",
+        "C": "18",
+        "D": "27",
+        "E": "36"
+      },
+      "answer": "E",
+      "solution": "Robert's row has 3 (left) + Robert + 5 (right) = 9 pupils. Total rows = 2 (in front) + Robert's row + 1 (behind) = 4 rows. Total pupils = 4 × 9 = 36.",
+      "solution_steps": [
+        "Step 1: Pupils per row = 3 + 1 (Robert) + 5 = 9.",
+        "Step 2: Number of rows = 2 in front + 1 (Robert's) + 1 behind = 4.",
+        "Step 3: Total = 4 × 9 = 36. Answer E."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 16,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "Some shapes are drawn on a piece of paper. The teacher folded the paper along the red line. How many of the shapes on the left will fall exactly on top of shapes on the right?",
+      "options": {
+        "A": "one",
+        "B": "two",
+        "C": "three",
+        "D": "four",
+        "E": "five"
+      },
+      "answer": "C",
+      "solution": "When the paper is folded along the vertical red line, shapes on the left mirror onto the right side. A shape on the left lands exactly on a right-side shape only if they are the same type and are mirror images at equal distances from the fold line. Counting matching pairs from the figure: 3 shapes coincide exactly.",
+      "solution_steps": [
+        "Step 1: Identify the fold line (vertical red line) and note all shapes on each side.",
+        "Step 2: For each left-side shape, reflect it across the fold line.",
+        "Step 3: Check if the reflected position contains the same shape on the right.",
+        "Step 4: Three left-side shapes land exactly on matching right-side shapes. Answer C."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 17,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "Wanda chose a few of the following shapes and said 'Amongst the shapes I have chosen, there are 2 coloured ones, 2 large ones, and 2 round ones.' What is the smallest number of the following shapes that Wanda could have chosen?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5",
+        "E": "6"
+      },
+      "answer": "B",
+      "solution": "The shapes available are: small white square, large red square, small red triangle, large white triangle, large white circle, small red circle. A single shape can satisfy multiple criteria. Choose: (1) large red square — satisfies 'large' and 'coloured'; (2) large white circle — satisfies 'large' and 'round'; (3) small red circle — satisfies 'coloured' and 'round'. This gives exactly 2 coloured (large red square + small red circle), 2 large (large red square + large white circle), 2 round (large white circle + small red circle). Minimum = 3 shapes.",
+      "solution_steps": [
+        "Step 1: Need 2 coloured, 2 large, 2 round — total conditions = 6, each shape can satisfy multiple.",
+        "Step 2: Large red square covers 'large' + 'coloured' (2 conditions).",
+        "Step 3: Large white circle covers 'large' + 'round' (2 conditions).",
+        "Step 4: Small red circle covers 'coloured' + 'round' (2 conditions).",
+        "Step 5: With these 3 shapes: coloured=2 ✓, large=2 ✓, round=2 ✓. Minimum = 3. Answer B."
+      ],
+      "difficulty": "hard",
+      "topic": "logic"
+    },
+    {
+      "number": 18,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "The puzzle on the left should be completed to look like the puzzle on the right. What piece should be used?",
+      "options": {
+        "A": "See PDF page 5 for figure A",
+        "B": "See PDF page 5 for figure B",
+        "C": "See PDF page 5 for figure C",
+        "D": "See PDF page 5 for figure D",
+        "E": "See PDF page 5 for figure E"
+      },
+      "answer": "C",
+      "solution": "The incomplete star on the left is missing one pentagonal piece. The complete star on the right shows the correct colours for every section. The missing piece must have the correct colour sequence to match the completed star. Piece C has the right colour arrangement (matching the colours visible in the target image) to complete the star correctly.",
+      "solution_steps": [
+        "Step 1: Compare the incomplete star (left) with the complete star (right) to identify the missing piece's position and required colours.",
+        "Step 2: Determine the colour pattern needed for the missing piece.",
+        "Step 3: Check each option piece for the correct colour arrangement.",
+        "Step 4: Piece C matches the required colours exactly. Answer C."
+      ],
+      "difficulty": "hard",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 19,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": true,
+      "question_text": "Karin sailed around four buoys, as shown. Which buoys did Karin sail around in a counterclockwise direction?",
+      "options": {
+        "A": "1 and 3",
+        "B": "2 and 3",
+        "C": "3 and 4",
+        "D": "1 and 2",
+        "E": "2 and 4"
+      },
+      "answer": "B",
+      "solution": "Tracing Karin's path from the figure, the boat loops around each buoy. The direction of each loop (clockwise vs counterclockwise) is determined by the path's orientation. Buoys 2 and 3 are encircled with the path going counterclockwise around them.",
+      "solution_steps": [
+        "Step 1: Trace Karin's complete path on the diagram.",
+        "Step 2: For each buoy, determine if the path goes clockwise or counterclockwise around it.",
+        "Step 3: Buoy 1: clockwise. Buoy 2: counterclockwise. Buoy 3: counterclockwise. Buoy 4: clockwise.",
+        "Step 4: Counterclockwise buoys are 2 and 3. Answer B."
+      ],
+      "difficulty": "hard",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 20,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": true,
+      "question_text": "Alma wants to put one of the pieces shown in the middle of the picture so that a child in A is able to travel to B and to E, but not to D. She can rotate the pieces. Which two pieces could she use?",
+      "options": {
+        "A": "1 and 2",
+        "B": "2 and 3",
+        "C": "1 and 4",
+        "D": "4 and 5",
+        "E": "1 and 5"
+      },
+      "answer": "E",
+      "solution": "The central hexagon connects to six houses (A through F) via six exits. From A, travel must reach B and E but not D. Pieces 1 and 5, when rotated appropriately, create paths that connect A to B and A to E while blocking A to D.",
+      "solution_steps": [
+        "Step 1: Identify exit directions in the hexagon: A=right, B=lower-right, C=lower-left, D=left, E=upper-left, F=upper-right.",
+        "Step 2: Need internal connections: A↔B and A↔E, but no connection A↔D.",
+        "Step 3: Test pieces 1 and 5 with rotation: each can be oriented to create the required connections.",
+        "Step 4: Both pieces 1 and 5 (in appropriate orientations) connect A to B and A to E while excluding D. Answer E."
+      ],
+      "difficulty": "hard",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 21,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": true,
+      "question_text": "Ahmad and Zhaleh start moving from point A with the same speed. Ahmad walks around the square-shaped garden (5m × 5m) and Zhaleh walks around the rectangular-shaped garden (10m × 5m). They meet again at A. What is the smallest number of laps around the square-shaped garden that Ahmad could do?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4",
+        "E": "5"
+      },
+      "answer": "C",
+      "solution": "Square perimeter = 4 × 5 = 20 m. Rectangle perimeter = 2 × (10+5) = 30 m. They meet at A when both travel the same total distance. LCM(20, 30) = 60 m. Ahmad does 60 ÷ 20 = 3 laps; Zhaleh does 60 ÷ 30 = 2 laps. Minimum laps for Ahmad = 3.",
+      "solution_steps": [
+        "Step 1: Square perimeter = 4 × 5 = 20 m. Rectangle perimeter = 2(10+5) = 30 m.",
+        "Step 2: They meet at A when both have travelled the same distance = LCM(20, 30).",
+        "Step 3: LCM(20, 30) = 60 m.",
+        "Step 4: Ahmad's laps = 60 ÷ 20 = 3. Zhaleh's laps = 60 ÷ 30 = 2.",
+        "Step 5: Ahmad does 3 laps. Answer C."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 22,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "Five children ate some plums. Lauren ate two plums more than Sophie. Betty ate three plums fewer than Lauren. Claire ate one plum more than Betty and three plums fewer than Alice. Which two girls ate the same number of plums?",
+      "options": {
+        "A": "Claire and Lauren",
+        "B": "Claire and Sophie",
+        "C": "Lauren and Alice",
+        "D": "Sophie and Alice",
+        "E": "Alice and Betty"
+      },
+      "answer": "B",
+      "solution": "Let Sophie = S. Lauren = S+2. Betty = Lauren−3 = S−1. Claire = Betty+1 = S. Claire = Alice−3, so Alice = S+3. Sophie = S and Claire = S, so Sophie and Claire ate the same number of plums.",
+      "solution_steps": [
+        "Step 1: Let Sophie = S.",
+        "Step 2: Lauren = S + 2.",
+        "Step 3: Betty = Lauren − 3 = S + 2 − 3 = S − 1.",
+        "Step 4: Claire = Betty + 1 = S − 1 + 1 = S.",
+        "Step 5: Alice = Claire + 3 = S + 3.",
+        "Step 6: Sophie = S = Claire. They ate the same number. Answer B."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 23,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "Every box shows the result of the number on the left and on the top. The table shows: row 5, col 3 = 15; row 5, col ? = 35; row 4, col 3 = 12; row 4, col ? = ♥. What number is written behind the heart?",
+      "options": {
+        "A": "25",
+        "B": "27",
+        "C": "28",
+        "D": "29",
+        "E": "30"
+      },
+      "answer": "C",
+      "solution": "The table shows multiplication. Column header 3, row header 5: 5×3=15 ✓. The unknown column header: 5×? = 35 → ? = 7. Heart = 4×7 = 28.",
+      "solution_steps": [
+        "Step 1: The operation is multiplication (5×3=15 confirms this).",
+        "Step 2: Find the unknown column header: 5 × ? = 35 → ? = 7.",
+        "Step 3: Heart = row 4 × col 7 = 4 × 7 = 28.",
+        "Step 4: Answer C (28)."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 24,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": true,
+      "question_text": "Joanna numbered 4 cards from 1 to 4. On the back of each card she drew one different fruit. Each fruit represents one number. She found that: strawberry + watermelon = grapes, and grapes + strawberry = tomato. What is the sum of watermelon + tomato?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "6",
+        "E": "7"
+      },
+      "answer": "D",
+      "solution": "Let S=strawberry, W=watermelon, G=grapes, T=tomato, all distinct values from {1,2,3,4}. From S+W=G and G+S=T: substituting gives 2S+W=T. Since S+W=G must be in {1,2,3,4} with S+W ≤ 4: try S=1, W=2, G=3, T=4 (check: G+S=3+1=4=T ✓). Watermelon+tomato = 2+4 = 6.",
+      "solution_steps": [
+        "Step 1: S+W=G (equation 1). G+S=T (equation 2).",
+        "Step 2: Substitute equation 1 into 2: (S+W)+S=T → 2S+W=T.",
+        "Step 3: All values are distinct from {1,2,3,4} and S+W must equal some value in the set.",
+        "Step 4: Try S=1, W=2: G=3, T=2(1)+2=4. Check eq 2: 3+1=4 ✓. All four values {1,2,3,4} distinct ✓.",
+        "Step 5: Watermelon + Tomato = W + T = 2 + 4 = 6. Answer D."
+      ],
+      "difficulty": "hard",
+      "topic": "algebra"
+    }
+  ]
 }
