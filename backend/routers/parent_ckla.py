@@ -4,6 +4,7 @@ Section: Parent
 Dependencies: models/ckla, models/gamification (XPLog)
 API:
   GET /api/parent/ckla-summary — CKLA overview for parent dashboard
+  GET /api/parent/ckla-chart   — Lightweight lesson-completion chart (week/month/full)
 """
 
 import json
@@ -220,3 +221,85 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
         "final_test_retry_after":   final_test_retry_after,
         "start_time_pattern":       start_time_pattern,
     }
+
+
+@router.get("/ckla-chart")
+def ckla_chart(
+    range: str = Query("week", pattern="^(week|month|full)$"),
+    grade: int = Query(3),
+    db: Session = Depends(get_db),
+):
+    """Lightweight lesson-completion chart for interactive range toggle.
+
+    range=week  → last 7 days  (daily bars)
+    range=month → last 30 days (daily bars)
+    range=full  → all weeks since first completion (weekly bars)
+
+    Returns: {"chart": [{"date": str, "label": str, "count": int}], "grouped_by": "day"|"week"}
+    """
+    today = _date.today()
+
+    # ── Fetch all completed progress for this grade ────────────
+    domains = (
+        db.query(CKLADomain)
+        .filter_by(is_active=True, grade=grade)
+        .all()
+    )
+    all_lesson_ids: list[int] = []
+    for d in domains:
+        ids = [r.id for r in db.query(CKLALesson.id).filter_by(domain_id=d.id, is_active=True).all()]
+        all_lesson_ids.extend(ids)
+
+    completed_progress: list[CKLALessonProgress] = []
+    if all_lesson_ids:
+        completed_progress = (
+            db.query(CKLALessonProgress)
+            .filter(
+                CKLALessonProgress.lesson_id.in_(all_lesson_ids),
+                CKLALessonProgress.completed.is_(True),
+                CKLALessonProgress.completed_at.isnot(None),
+            )
+            .all()
+        )
+
+    # ── Build date → count index ───────────────────────────────
+    date_counts: Counter = Counter()
+    for p in completed_progress:
+        if p.completed_at:
+            date_counts[p.completed_at[:10]] += 1
+
+    # ── Daily range (week / month) ─────────────────────────────
+    if range in ("week", "month"):
+        days_back = 7 if range == "week" else 30
+        chart = []
+        for i in range(days_back - 1, -1, -1):
+            d_str = (today - timedelta(days=i)).isoformat()
+            label = (today - timedelta(days=i)).strftime("%-m/%-d")
+            chart.append({"date": d_str, "label": label, "count": date_counts.get(d_str, 0)})
+        return {"chart": chart, "grouped_by": "day"}
+
+    # ── Full range (weekly buckets) ────────────────────────────
+    if not date_counts:
+        return {"chart": [], "grouped_by": "week"}
+
+    all_dates = [_date.fromisoformat(d) for d in date_counts]
+    first_date = min(all_dates)
+    # Round down to Monday of first week
+    week_start = first_date - timedelta(days=first_date.weekday())
+    chart = []
+    current = week_start
+    while current <= today:
+        week_end = current + timedelta(days=6)
+        count = sum(
+            cnt for d_str, cnt in date_counts.items()
+            if current <= _date.fromisoformat(d_str) <= min(week_end, today)
+        )
+        label = f"{current.month}/{current.day}"
+        chart.append({
+            "date":  current.isoformat(),
+            "label": label,
+            "count": count,
+        })
+        current += timedelta(days=7)
+
+    return {"chart": chart, "grouped_by": "week"}

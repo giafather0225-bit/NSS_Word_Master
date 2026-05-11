@@ -2,11 +2,15 @@
    parent-ckla.js — Parent Dashboard: CKLA progress tab
    Section: Parent
    Dependencies: parent-panel.js (_ppFetch, _ppEmpty)
-   API endpoints: /api/parent/ckla-summary
+   API endpoints: /api/parent/ckla-summary, /api/parent/ckla-chart
    ================================================================ */
+
+/** @type {string} Active chart range: week | month | full */
+let _ppCKLAChartRange = "week";
 
 /** Render the CKLA parent summary tab. @tag PARENT CKLA */
 async function _ppCKLA(body) {
+    _ppCKLAChartRange = "week";      // reset on tab open
     try {
         const d = await window._ppFetch("/api/parent/ckla-summary?grade=3").then(r => r.json());
 
@@ -92,8 +96,8 @@ async function _ppCKLA(body) {
                 </div>`;
         }).join('');
 
-        // ── Weekly chart (last 14 days) ────────────────────────
-        const chart = _ppCKLAChart(d.weekly_chart || []);
+        // ── Activity chart (range toggle: week / month / full) ─
+        const chart = _ppCKLAChartShell();
 
         // ── Difficulty breakdown ───────────────────────────────
         const diff = d.difficulty_breakdown || {};
@@ -168,8 +172,18 @@ async function _ppCKLA(body) {
                     <i data-lucide="layers" style="width:15px;height:15px"></i> Domains
                 </div>
                 <div>${domainRows || '<div style="color:var(--text-hint);font-size:.85rem">No domain data yet.</div>'}</div>
-                <div class="pp-section-title" style="margin:24px 0 10px">
-                    <i data-lucide="calendar-days" style="width:15px;height:15px"></i> Last 14 Days
+                <div class="pp-section-title" style="margin:24px 0 6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+                    <span style="display:flex;align-items:center;gap:6px">
+                        <i data-lucide="calendar-days" style="width:15px;height:15px"></i> Activity Chart
+                    </span>
+                    <span id="pp-ckla-chart-toggle" style="display:flex;gap:4px">
+                        ${['week','month','full'].map(r => `
+                            <button onclick="_ppCKLASetRange('${r}')"
+                                    id="pp-ckla-range-${r}"
+                                    style="font-size:.75rem;padding:3px 10px;border-radius:var(--radius-full);border:1px solid var(--border-default);cursor:pointer;background:${r === 'week' ? 'var(--english-primary)' : 'var(--bg-card)'};color:${r === 'week' ? 'var(--text-on-primary)' : 'var(--text-secondary)'};font-weight:600;transition:background .15s">
+                                ${r === 'week' ? '7d' : r === 'month' ? '30d' : 'All'}
+                            </button>`).join('')}
+                    </span>
                 </div>
                 ${chart}
                 ${diffSection}
@@ -180,6 +194,8 @@ async function _ppCKLA(body) {
             </div>`;
 
         if (typeof lucide !== "undefined") lucide.createIcons();
+        // Load initial chart after DOM is ready
+        _ppCKLALoadChart("week");
     } catch (e) {
         console.error("_ppCKLA failed:", e);
         body.innerHTML = _ppEmpty("alert-triangle", "Could not load CKLA data", "Check the server logs.");
@@ -187,24 +203,71 @@ async function _ppCKLA(body) {
     }
 }
 
-/** Render a simple bar chart for the weekly lesson chart. @tag PARENT CKLA */
-function _ppCKLAChart(days) {
-    if (!days.length) return '<div style="color:var(--text-hint);font-size:.85rem">No data.</div>';
+/** Return the placeholder container for the interactive chart. @tag PARENT CKLA */
+function _ppCKLAChartShell() {
+    return `<div id="pp-ckla-chart-wrap" style="min-height:72px;display:flex;align-items:center;justify-content:center">
+        <span style="font-size:.8rem;color:var(--text-hint)">Loading chart…</span>
+    </div>`;
+}
+
+/** Fetch chart data and re-render for the given range. @tag PARENT CKLA */
+async function _ppCKLALoadChart(range) {
+    _ppCKLAChartRange = range;
+    const wrap = document.getElementById("pp-ckla-chart-wrap");
+    if (!wrap) return;
+    wrap.innerHTML = `<span style="font-size:.8rem;color:var(--text-hint)">Loading…</span>`;
+
+    // Update toggle button styles
+    ["week", "month", "full"].forEach(r => {
+        const btn = document.getElementById(`pp-ckla-range-${r}`);
+        if (!btn) return;
+        const active = r === range;
+        btn.style.background = active ? "var(--english-primary)" : "var(--bg-card)";
+        btn.style.color      = active ? "var(--text-on-primary)" : "var(--text-secondary)";
+    });
+
+    try {
+        const res = await window._ppFetch(`/api/parent/ckla-chart?range=${range}&grade=3`);
+        if (!res.ok) throw new Error(res.status);
+        const data = await res.json();
+        wrap.innerHTML = _ppCKLAChart(data.chart || [], data.grouped_by || "day");
+    } catch (e) {
+        wrap.innerHTML = `<span style="font-size:.8rem;color:var(--review-ink)">Could not load chart.</span>`;
+    }
+}
+
+/** Called by range toggle buttons. @tag PARENT CKLA */
+function _ppCKLASetRange(range) {
+    if (range !== _ppCKLAChartRange) _ppCKLALoadChart(range);
+}
+
+/** Render a simple bar chart for the lesson activity chart. @tag PARENT CKLA */
+function _ppCKLAChart(days, groupedBy) {
+    if (!days.length) return '<div style="color:var(--text-hint);font-size:.85rem;padding:12px 0">No data yet.</div>';
     const max = Math.max(...days.map(d => d.count), 1);
+    const todayStr = new Date().toISOString().slice(0, 10);
+    // For many bars (month=30, full=many weeks), shrink bar gap
+    const gap = days.length > 20 ? 2 : 3;
     const bars = days.map(d => {
-        const h = Math.round((d.count / max) * 48);
-        const label = d.date.slice(5); // MM-DD
-        const isToday = d.date === new Date().toISOString().slice(0, 10);
+        const h       = Math.round((d.count / max) * 56);
+        const label   = d.label || d.date.slice(5);   // use pre-computed label if available
+        const isToday = d.date === todayStr;
+        const barColor = d.count > 0
+            ? (isToday ? 'var(--english-primary)' : 'var(--english-soft)')
+            : 'var(--bg-surface)';
         return `
-            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1">
-                <span style="font-size:.68rem;color:var(--text-hint)">${d.count || ''}</span>
-                <div style="width:100%;display:flex;align-items:flex-end;height:48px">
-                    <div style="width:100%;height:${h || 2}px;background:${isToday ? 'var(--english-primary)' : 'var(--english-soft)'};border-radius:3px 3px 0 0"></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;min-width:0">
+                <span style="font-size:.62rem;color:var(--text-hint);height:14px;line-height:14px">${d.count > 0 ? d.count : ''}</span>
+                <div style="width:100%;display:flex;align-items:flex-end;height:56px">
+                    <div style="width:100%;height:${Math.max(h, d.count > 0 ? 4 : 1)}px;background:${barColor};border-radius:3px 3px 0 0"></div>
                 </div>
-                <span style="font-size:.65rem;color:${isToday ? 'var(--english-ink)' : 'var(--text-hint)'};font-weight:${isToday ? 700 : 400}">${label}</span>
+                <span style="font-size:.6rem;color:${isToday ? 'var(--english-ink)' : 'var(--text-hint)'};font-weight:${isToday ? 700 : 400};white-space:nowrap;overflow:hidden;max-width:100%;text-overflow:ellipsis">${label}</span>
             </div>`;
     }).join('');
-    return `<div style="display:flex;gap:3px;align-items:flex-end;padding:8px 0">${bars}</div>`;
+    const typeLabel = groupedBy === "week" ? "Weekly totals" : "Daily lessons";
+    return `
+        <div style="display:flex;gap:${gap}px;align-items:flex-end;padding:8px 0">${bars}</div>
+        <div style="font-size:.7rem;color:var(--text-hint);margin-top:2px">${typeLabel}</div>`;
 }
 
 /** Difficulty chip helper. @tag PARENT CKLA */
