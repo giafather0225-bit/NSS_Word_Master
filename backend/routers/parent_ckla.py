@@ -41,12 +41,18 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
         .all()
     )
 
+    # Bulk-fetch all lessons for this grade's domains in one query (avoids N+1)
+    domain_ids = [d.id for d in domains]
     all_lesson_ids: list[int] = []
     domain_lesson_map: dict[int, list[int]] = {}  # domain.id → [lesson_id]
-    for d in domains:
-        ids = [r.id for r in db.query(CKLALesson.id).filter_by(domain_id=d.id, is_active=True).all()]
-        domain_lesson_map[d.id] = ids
-        all_lesson_ids.extend(ids)
+    if domain_ids:
+        for lid, did in (
+            db.query(CKLALesson.id, CKLALesson.domain_id)
+            .filter(CKLALesson.domain_id.in_(domain_ids), CKLALesson.is_active == True)
+            .all()
+        ):
+            domain_lesson_map.setdefault(did, []).append(lid)
+            all_lesson_ids.append(lid)
 
     # Bulk-fetch completed progress
     completed_map: dict[int, CKLALessonProgress] = {}
@@ -73,22 +79,33 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
     domain_test_passed: set[str] = {r.detail for r in domain_test_logs if r.detail}
 
     # ── Domain test consecutive fail counts + history (from AppConfig) ──
+    # Bulk-fetch all relevant AppConfig rows in one query (avoids 2×N queries)
+    ckla_cfg_prefix = f"ckla_domain_test_"
+    ckla_cfg_suffix = f"_g{grade}"
+    ckla_cfgs = {
+        cfg.key: cfg.value
+        for cfg in db.query(AppConfig)
+        .filter(
+            AppConfig.key.like(f"{ckla_cfg_prefix}%{ckla_cfg_suffix}")
+        )
+        .all()
+        if cfg.value
+    }
+
     fail_configs: dict[int, int] = {}
     domain_test_history: dict[int, list] = {}
     for d in domains:
         fail_key = f"ckla_domain_test_consec_fails_d{d.domain_num}_g{grade}"
-        fail_cfg = db.query(AppConfig).filter_by(key=fail_key).first()
-        if fail_cfg and fail_cfg.value:
+        if fail_key in ckla_cfgs:
             try:
-                fail_configs[d.domain_num] = int(fail_cfg.value)
+                fail_configs[d.domain_num] = int(ckla_cfgs[fail_key])
             except ValueError:
                 pass
 
         hist_key = f"ckla_domain_test_history_d{d.domain_num}_g{grade}"
-        hist_cfg = db.query(AppConfig).filter_by(key=hist_key).first()
-        if hist_cfg and hist_cfg.value:
+        if hist_key in ckla_cfgs:
             try:
-                domain_test_history[d.domain_num] = json.loads(hist_cfg.value)
+                domain_test_history[d.domain_num] = json.loads(ckla_cfgs[hist_key])
             except (json.JSONDecodeError, ValueError):
                 pass
 
@@ -239,16 +256,20 @@ def ckla_chart(
     """
     today = _date.today()
 
-    # ── Fetch all completed progress for this grade ────────────
+    # ── Fetch all completed progress for this grade (no N+1) ─────
     domains = (
         db.query(CKLADomain)
         .filter_by(is_active=True, grade=grade)
         .all()
     )
+    domain_ids = [d.id for d in domains]
     all_lesson_ids: list[int] = []
-    for d in domains:
-        ids = [r.id for r in db.query(CKLALesson.id).filter_by(domain_id=d.id, is_active=True).all()]
-        all_lesson_ids.extend(ids)
+    if domain_ids:
+        all_lesson_ids = [
+            lid for lid, in db.query(CKLALesson.id)
+            .filter(CKLALesson.domain_id.in_(domain_ids), CKLALesson.is_active == True)
+            .all()
+        ]
 
     completed_progress: list[CKLALessonProgress] = []
     if all_lesson_ids:

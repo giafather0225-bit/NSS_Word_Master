@@ -682,6 +682,28 @@ def check_and_award_badges(grade: int = Query(3), db: Session = Depends(get_db))
     earned_keys = {ub.badge_key for ub in db.query(CKLAUserBadge).all()}
     badges = db.query(CKLABadge).all()
 
+    # Pre-load all domains + lesson IDs + completed lesson IDs in bulk (avoid N+1)
+    all_domains = db.query(CKLADomain).filter_by(is_active=True).all()
+    domain_by_num_grade: dict[tuple, CKLADomain] = {(d.domain_num, d.grade): d for d in all_domains}
+
+    all_lessons = db.query(CKLALesson.id, CKLALesson.domain_id).filter_by(is_active=True).all()
+    domain_lesson_ids: dict[int, list[int]] = {}  # domain.id → [lesson_id]
+    for lid, did in all_lessons:
+        domain_lesson_ids.setdefault(did, []).append(lid)
+
+    all_lesson_ids_flat = [lid for lid, _ in all_lessons]
+    completed_ids: set[int] = set()
+    if all_lesson_ids_flat:
+        completed_ids = {
+            p.lesson_id
+            for p in db.query(CKLALessonProgress.lesson_id)
+            .filter(
+                CKLALessonProgress.lesson_id.in_(all_lesson_ids_flat),
+                CKLALessonProgress.completed.is_(True),
+            )
+            .all()
+        }
+
     for badge in badges:
         if badge.badge_key in earned_keys:
             continue
@@ -689,43 +711,20 @@ def check_and_award_badges(grade: int = Query(3), db: Session = Depends(get_db))
         earned = False
         if badge.condition_type == "domain_complete":
             domain_num = badge.condition_value
-            domain = db.query(CKLADomain).filter_by(domain_num=domain_num, grade=grade).first()
+            domain = domain_by_num_grade.get((domain_num, grade))
             if domain:
-                lesson_ids = [
-                    l.id for l in
-                    db.query(CKLALesson).filter_by(domain_id=domain.id, is_active=True).all()
-                ]
-                if lesson_ids:
-                    completed_count = (
-                        db.query(CKLALessonProgress)
-                        .filter(
-                            CKLALessonProgress.lesson_id.in_(lesson_ids),
-                            CKLALessonProgress.completed == True,
-                        )
-                        .count()
-                    )
-                    earned = (completed_count == len(lesson_ids))
+                lesson_ids = domain_lesson_ids.get(domain.id, [])
+                earned = bool(lesson_ids) and all(lid in completed_ids for lid in lesson_ids)
 
         elif badge.condition_type == "grade_complete":
             target_grade = badge.condition_value
-            domains = db.query(CKLADomain).filter_by(grade=target_grade, is_active=True).all()
-            if domains:
-                all_lesson_ids = []
-                for d in domains:
-                    all_lesson_ids.extend(
-                        l.id for l in
-                        db.query(CKLALesson).filter_by(domain_id=d.id, is_active=True).all()
-                    )
-                if all_lesson_ids:
-                    completed_count = (
-                        db.query(CKLALessonProgress)
-                        .filter(
-                            CKLALessonProgress.lesson_id.in_(all_lesson_ids),
-                            CKLALessonProgress.completed == True,
-                        )
-                        .count()
-                    )
-                    earned = (completed_count == len(all_lesson_ids))
+            grade_domains = [d for d in all_domains if d.grade == target_grade]
+            if grade_domains:
+                grade_lesson_ids = [
+                    lid for d in grade_domains
+                    for lid in domain_lesson_ids.get(d.id, [])
+                ]
+                earned = bool(grade_lesson_ids) and all(lid in completed_ids for lid in grade_lesson_ids)
 
         if earned:
             db.add(CKLAUserBadge(badge_key=badge.badge_key, earned_at=now))
@@ -763,11 +762,21 @@ def get_domain_test(
     lesson_ids = [l.id for l in lessons]
 
     # ── Q&A questions (5) — one per lesson, shuffled ──────────────────────────
+    # Bulk-fetch all questions for all lessons at once (avoids N+1)
+    all_qs = (
+        db.query(CKLAQuestion)
+        .filter(CKLAQuestion.lesson_id.in_(lesson_ids))
+        .all()
+    ) if lesson_ids else []
+    qs_by_lesson: dict[int, list] = {}
+    for q in all_qs:
+        qs_by_lesson.setdefault(q.lesson_id, []).append(q)
+
     qa_questions: list[dict] = []
     shuffled_lessons = lessons[:]
     random.shuffle(shuffled_lessons)
     for lesson in shuffled_lessons:
-        qs = db.query(CKLAQuestion).filter_by(lesson_id=lesson.id).all()
+        qs = qs_by_lesson.get(lesson.id, [])
         if qs:
             q = random.choice(qs)
             qa_questions.append({
@@ -1008,6 +1017,19 @@ def get_grade_final_test(grade: int = Query(3), db: Session = Depends(get_db)):
     lesson_ids = [ls.id for ls in all_lessons]
 
     # ── 10 Q&A: 1 per domain, balanced Literal/Inferential/Evaluative ──────────
+    # Bulk-fetch all questions for all lessons at once (avoids N×M queries)
+    all_questions_raw = (
+        db.query(CKLAQuestion)
+        .filter(CKLAQuestion.lesson_id.in_(lesson_ids))
+        .all()
+    ) if lesson_ids else []
+
+    # Index by (lesson_id, kind) for O(1) lookup
+    qs_by_lesson_kind: dict[tuple, list] = {}
+    for q in all_questions_raw:
+        key = (q.lesson_id, q.kind)
+        qs_by_lesson_kind.setdefault(key, []).append(q)
+
     qa_questions: list[dict] = []
     kind_counts: dict[str, int] = {"Literal": 0, "Inferential": 0, "Evaluative": 0}
     for domain in domains:
@@ -1023,9 +1045,10 @@ def get_grade_final_test(grade: int = Query(3), db: Session = Depends(get_db)):
 
         picked = None
         for kind in preferred:
-            candidates = []
-            for ls in d_lessons:
-                candidates += db.query(CKLAQuestion).filter_by(lesson_id=ls.id, kind=kind).all()
+            candidates = [
+                q for ls in d_lessons
+                for q in qs_by_lesson_kind.get((ls.id, kind), [])
+            ]
             if candidates:
                 picked_q = random.choice(candidates)
                 picked_lesson = lesson_map.get(picked_q.lesson_id)
