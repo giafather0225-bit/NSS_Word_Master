@@ -89,6 +89,9 @@ class MathAttempt(Base):
     error_type = Column(String, default="concept_gap")
     time_spent_sec = Column(Integer, default=0)
     attempted_at = Column(String)
+    # 진단 엔진 (migration 032): 오답 시 misconception 라이브러리 매칭 결과
+    misconception_id = Column(String, nullable=True, index=True)
+    diagnostic_note = Column(String, nullable=True)
 
 
 class MathWrongReview(Base):

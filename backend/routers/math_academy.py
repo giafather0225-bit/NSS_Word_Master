@@ -72,11 +72,13 @@ try:
     from ..models import MathProblem, MathProgress, MathAttempt, MathWrongReview, MathSpacedReview
     from ..models.math import MathUnitTest
     from ..services import xp_engine, streak_engine
+    from ..services.math_diagnostic import diagnose as _diagnose_attempt
 except ImportError:
     from database import get_db
     from models import MathProblem, MathProgress, MathAttempt, MathWrongReview, MathSpacedReview
     from models.math import MathUnitTest
     from services import xp_engine, streak_engine
+    from services.math_diagnostic import diagnose as _diagnose_attempt
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -340,7 +342,8 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
     else:
         is_correct = _answers_equivalent(user_raw, correct_raw)
 
-    # Record attempt
+    # Record attempt — 진단 엔진으로 오답 분류
+    diag = _diagnose_attempt(problem, req.user_answer, grade=req.grade, is_correct=is_correct)
     attempt = MathAttempt(
         problem_id=req.problem_id,
         grade=req.grade,
@@ -349,9 +352,11 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
         stage=req.stage,
         is_correct=is_correct,
         user_answer=req.user_answer,
-        error_type="none" if is_correct else "concept_gap",
+        error_type=diag.get("error_type") or ("none" if is_correct else "concept_gap"),
         time_spent_sec=req.time_spent_sec,
         attempted_at=now,
+        misconception_id=diag.get("misconception_id"),
+        diagnostic_note=(diag.get("note") or "")[:500],
     )
     db.add(attempt)
 
@@ -420,6 +425,13 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
         "correct_answer": correct_display,
         "feedback": feedback_text,
         "solution_steps": problem.get("solution_steps", []),
+        # 진단 엔진 결과 (오답 시 채워짐, 정답 시 빈 값)
+        "diagnostic": {
+            "error_type": diag.get("error_type"),
+            "misconception_id": diag.get("misconception_id"),
+            "short_label": diag.get("short_label"),
+            "note": diag.get("note"),
+        } if not is_correct else None,
     }
 
 # @tag MATH @tag ACADEMY
@@ -744,13 +756,16 @@ def submit_try(req: TrySubmitIn, db: Session = Depends(get_db)):
 
     is_correct, correct_display = _grade_answer(problem, req.user_answer)
 
+    diag = _diagnose_attempt(problem, req.user_answer, grade=req.grade, is_correct=is_correct)
     attempt = MathAttempt(
         problem_id=req.problem_id, grade=req.grade, unit=req.unit,
         lesson=req.lesson, stage="try", is_correct=is_correct,
         user_answer=req.user_answer[:200],
-        error_type="none" if is_correct else "concept_gap",
+        error_type=diag.get("error_type") or ("none" if is_correct else "concept_gap"),
         time_spent_sec=req.time_spent_sec,
         attempted_at=now,
+        misconception_id=diag.get("misconception_id"),
+        diagnostic_note=(diag.get("note") or "")[:500],
     )
     db.add(attempt)
 
@@ -829,13 +844,16 @@ def submit_exit_quiz(req: ExitQuizSubmitIn, db: Session = Depends(get_db)):
         if is_correct:
             correct_count += 1
 
+        diag = _diagnose_attempt(problem, ans.user_answer, grade=req.grade, is_correct=is_correct)
         attempt = MathAttempt(
             problem_id=ans.problem_id, grade=req.grade, unit=req.unit,
             lesson=req.lesson, stage="exit_quiz", is_correct=is_correct,
             user_answer=ans.user_answer[:200],
-            error_type="none" if is_correct else "concept_gap",
+            error_type=diag.get("error_type") or ("none" if is_correct else "concept_gap"),
             time_spent_sec=ans.time_spent_sec,
             attempted_at=now,
+            misconception_id=diag.get("misconception_id"),
+            diagnostic_note=(diag.get("note") or "")[:500],
         )
         db.add(attempt)
 
