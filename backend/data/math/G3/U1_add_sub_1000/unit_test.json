@@ -603,6 +603,683 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "type": "mc",
+      "question": "Sarah says 500−263=247. Tim says 500−263=237. Who is correct?",
+      "choices": [
+        "A) Sarah",
+        "B) Tim",
+        "C) Neither",
+        "D) Both"
+      ],
+      "solution_steps": [
+        "500 = 4h 9t 10o. 10−3=7, 9−6=3, 4−2=2 → 237",
+        "Check: 237+263=500 ✓",
+        "Tim is correct"
+      ],
+      "difficulty": 5,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "combine_subtract_error_analysis",
+      "expected_errors": [
+        "Choosing Sarah"
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Calculate it yourself."
+      ],
+      "feedback": {
+        "correct": "Great! The answer is B (Tim).",
+        "incorrect": "The answer is B (Tim). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Great! The answer is B (Tim).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L11_combine_place_values_to_subtract",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.NBT.A.2.M01",
+        "3.NBT.A.2.M02",
+        "3.NBT.A.2.M03",
+        "3.NBT.A.2.M04",
+        "3.NBT.A.2.M05",
+        "3.NBT.A.2.M06",
+        "3.NBT.A.2.M07",
+        "3.NBT.A.2.M08"
+      ],
+      "source_lesson": "L11_combine_place_values_to_subtract",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "question": "There are 383 books. 165 are fiction. How many are NOT fiction?",
+      "choices": [
+        "A) 208",
+        "B) 218",
+        "C) 228",
+        "D) 212"
+      ],
+      "solution_steps": [
+        "383−165: 383−170=213, +5=218",
+        "Check: 218+165=383 ✓"
+      ],
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_word_problem",
+      "expected_errors": [
+        "383−165=208 (subtracting 175)"
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Round 165 to 170, then adjust."
+      ],
+      "feedback": {
+        "correct": "Good job! The answer is B (218).",
+        "incorrect": "The answer is B (218). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Good job! The answer is B (218).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L9_mental_math_subtraction",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.NBT.A.2.M01",
+        "3.NBT.A.2.M02",
+        "3.NBT.A.2.M03",
+        "3.NBT.A.2.M04",
+        "3.NBT.A.2.M05",
+        "3.NBT.A.2.M06",
+        "3.NBT.A.2.M07",
+        "3.NBT.A.2.M08"
+      ],
+      "source_lesson": "L9_mental_math_subtraction",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_03",
+      "type": "mc",
+      "question": "783 − 456 =",
+      "choices": [
+        "A) 317",
+        "B) 327",
+        "C) 337",
+        "D) 323"
+      ],
+      "solution_steps": [
+        "Ones: 3−6→13−6=7",
+        "Tens: 7−5=2",
+        "Hundreds: 7−4=3",
+        "327"
+      ],
+      "difficulty": 2,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "subtract_regrouping_ones",
+      "expected_errors": [
+        "783−456=337"
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Regroup for ones only."
+      ],
+      "feedback": {
+        "correct": "Correct! The answer is B (327).",
+        "incorrect": "The answer is B (327). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Correct! The answer is B (327).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L10_use_place_value_to_subtract",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.NBT.A.2.M01",
+        "3.NBT.A.2.M02",
+        "3.NBT.A.2.M03",
+        "3.NBT.A.2.M04",
+        "3.NBT.A.2.M05",
+        "3.NBT.A.2.M06",
+        "3.NBT.A.2.M07",
+        "3.NBT.A.2.M08"
+      ],
+      "source_lesson": "L10_use_place_value_to_subtract",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_04",
+      "type": "mc",
+      "question": "Which strategy is best for 601 − 598?",
+      "choices": [
+        "A) Take away tens and ones",
+        "B) Friendly numbers",
+        "C) Count up",
+        "D) Break apart"
+      ],
+      "solution_steps": [
+        "The numbers are very close (only 3 apart)",
+        "Count up: 598→599→600→601 = 3"
+      ],
+      "difficulty": 3,
+      "ccss": "3.NBT.A.2",
+      "cpa_phase": "abstract",
+      "skill_tag": "mental_subtraction_strategy_choice",
+      "expected_errors": [
+        "Choosing friendly numbers"
+      ],
+      "correct_answer": "C",
+      "hints": [
+        "When numbers are very close, counting up is quickest."
+      ],
+      "feedback": {
+        "correct": "Correct! The answer is C (Count up).",
+        "incorrect": "The answer is C (Count up). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Correct! The answer is C (Count up).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L9_mental_math_subtraction",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.NBT.A.2.M01",
+        "3.NBT.A.2.M02",
+        "3.NBT.A.2.M03",
+        "3.NBT.A.2.M04",
+        "3.NBT.A.2.M05",
+        "3.NBT.A.2.M06",
+        "3.NBT.A.2.M07",
+        "3.NBT.A.2.M08"
+      ],
+      "source_lesson": "L9_mental_math_subtraction",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_05",
+      "type": "mc",
+      "question": "A train had 325 passengers. 198 got off. Then 147 got on. How many are on the train?",
+      "choices": [
+        "A) 264",
+        "B) 274",
+        "C) 284",
+        "D) 127"
+      ],
+      "solution_steps": [
+        "After off: 325−198=127",
+        "After on: 127+147=274"
+      ],
+      "difficulty": 3,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "325−198=127 (stopping)"
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Subtract first, then add."
+      ],
+      "feedback": {
+        "correct": "Good job! The answer is B (274).",
+        "incorrect": "The answer is B (274). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Good job! The answer is B (274).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L12_problem_solving_model_addition_subtraction",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.OA.D.8.M01",
+        "3.OA.D.8.M02",
+        "3.OA.D.8.M03",
+        "3.OA.D.8.M04",
+        "3.OA.D.8.M05",
+        "3.OA.D.8.M06",
+        "3.OA.D.8.M07",
+        "3.OA.D.8.M08"
+      ],
+      "source_lesson": "L12_problem_solving_model_addition_subtraction",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_06",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_choose_method",
+      "difficulty": 4,
+      "question": "Estimate 145 + 358. Which method gives an estimate closest to the exact answer (503)?",
+      "choices": [
+        "A) Rounding to hundreds: 100 + 400 = 500",
+        "B) Rounding to hundreds: 200 + 400 = 600",
+        "C) Compatible: 150 + 350 = 500",
+        "D) Compatible: 100 + 400 = 500"
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "careless",
+          "note": "Rounded 145 down to 100 — gets 500 by luck"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "145→200 is wrong rounding. 200+400=600"
+        },
+        "D": {
+          "error_type": "careless",
+          "note": "100 is not a good compatible number for 145"
+        }
+      },
+      "solution_steps": [
+        "Compatible: 150 + 350 = 500",
+        "Exact: 145 + 358 = 503",
+        "500 is very close to 503"
+      ],
+      "correct_answer": "C",
+      "hints": [
+        "Which replacement numbers are closest to the originals?"
+      ],
+      "feedback": {
+        "correct": "Exactly! The answer is C (Compatible: 150 + 350 = 500).",
+        "incorrect": "The answer is C (Compatible: 150 + 350 = 500). Round each number first, then do the operation."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Exactly! The answer is C (Compatible: 150 + 350 = 500).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L3_estimate_sums",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.NBT.A.1.M01",
+        "3.NBT.A.1.M02",
+        "3.NBT.A.1.M03",
+        "3.NBT.A.1.M04",
+        "3.NBT.A.1.M05",
+        "3.NBT.A.1.M06",
+        "3.NBT.A.1.M07",
+        "3.NBT.A.1.M08"
+      ],
+      "source_lesson": "L3_estimate_sums",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_07",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "estimate_sum_rounding_hundreds",
+      "difficulty": 3,
+      "question": "Use rounding to estimate. 348 + 429 = ?",
+      "choices": [
+        "A) about 700",
+        "B) about 800",
+        "C) about 600",
+        "D) about 900"
+      ],
+      "expected_errors": {
+        "B": {
+          "error_type": "careless",
+          "note": "400+400=800"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "300+300=600"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "400+500=900"
+        }
+      },
+      "solution_steps": [
+        "Round 348 → 300",
+        "Round 429 → 400",
+        "300 + 400 = 700"
+      ],
+      "correct_answer": "A",
+      "hints": [
+        "Round each number to the nearest hundred."
+      ],
+      "feedback": {
+        "correct": "Right! The answer is A (about 700).",
+        "incorrect": "The answer is A (about 700). Round each number first, then do the operation."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! The answer is A (about 700).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L3_estimate_sums",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.NBT.A.1.M01",
+        "3.NBT.A.1.M02",
+        "3.NBT.A.1.M03",
+        "3.NBT.A.1.M04",
+        "3.NBT.A.1.M05",
+        "3.NBT.A.1.M06",
+        "3.NBT.A.1.M07",
+        "3.NBT.A.1.M08"
+      ],
+      "source_lesson": "L3_estimate_sums",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_08",
+      "type": "mc",
+      "question": "Jake's class collected 412 cans. Emma's class collected 389 cans. Together they gave 215 cans to charity. How many are left for recycling?",
+      "choices": [
+        "A) 576",
+        "B) 586",
+        "C) 596",
+        "D) 801"
+      ],
+      "solution_steps": [
+        "Total: 412+389=801",
+        "After charity: 801−215=586"
+      ],
+      "difficulty": 4,
+      "ccss": "3.OA.D.8",
+      "cpa_phase": "abstract",
+      "skill_tag": "two_step_mixed",
+      "expected_errors": [
+        "412+389=801 (not subtracting)"
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Combine both classes, then subtract charity donation."
+      ],
+      "feedback": {
+        "correct": "Nice work! The answer is B (586).",
+        "incorrect": "The answer is B (586). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Nice work! The answer is B (586).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L12_problem_solving_model_addition_subtraction",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.OA.D.8.M01",
+        "3.OA.D.8.M02",
+        "3.OA.D.8.M03",
+        "3.OA.D.8.M04",
+        "3.OA.D.8.M05",
+        "3.OA.D.8.M06",
+        "3.OA.D.8.M07",
+        "3.OA.D.8.M08"
+      ],
+      "source_lesson": "L12_problem_solving_model_addition_subtraction",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_09",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.NBT.A.2",
+      "skill_tag": "properties_word_problem",
+      "difficulty": 5,
+      "question": "Five friends collected stickers: Ana 45, Ben 78, Cal 55, Dee 22, Eve 100. They want to count the total quickly. What is the best way to group them?",
+      "choices": [
+        "A) (45+55) + (78+22) + 100 = 100+100+100 = 300",
+        "B) 45+78+55+22+100 = add left to right = 300",
+        "C) (45+78) + (55+22) + 100 = 123+77+100 = 300",
+        "D) 100+78+55+45+22 = just start with the biggest"
+      ],
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Works but not the 'best' mental math strategy"
+        },
+        "C": {
+          "error_type": "careless",
+          "note": "Works but harder: 123+77=200, 200+100=300"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Starting with the biggest doesn't make friendly pairs"
+        }
+      },
+      "solution_steps": [
+        "Look for pairs making 100: 45+55=100, 78+22=100",
+        "Group: (45+55)+(78+22)+100",
+        "100+100+100 = 300",
+        "This is the easiest mental math approach"
+      ],
+      "correct_answer": "A",
+      "hints": [
+        "Which pairs of numbers add up to exactly 100?"
+      ],
+      "feedback": {
+        "correct": "Exactly! The answer is A ((45+55) + (78+22) + 100 = 100+100+100 = 300).",
+        "incorrect": "The answer is A ((45+55) + (78+22) + 100 = 100+100+100 = 300). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Exactly! The answer is A ((45+55) + (78+22) + 100 = 100+100+100 = 300).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L5_use_properties_to_add",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.NBT.A.2.M01",
+        "3.NBT.A.2.M02",
+        "3.NBT.A.2.M03",
+        "3.NBT.A.2.M04",
+        "3.NBT.A.2.M05",
+        "3.NBT.A.2.M06",
+        "3.NBT.A.2.M07",
+        "3.NBT.A.2.M08"
+      ],
+      "source_lesson": "L5_use_properties_to_add",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.NBT.A.1",
+      "skill_tag": "rounding_reverse",
+      "difficulty": 4,
+      "question": "What is the GREATEST whole number that rounds to 800 when rounded to the nearest hundred?",
+      "correct_answer": "849",
+      "solution_steps": [
+        "Step 1: Numbers that round to 800: from 750 to 849.",
+        "Step 2: 850 has tens=5 and rounds UP to 900.",
+        "Step 3: So the greatest number is 849."
+      ],
+      "expected_errors": {
+        "850": {
+          "error_type": "concept_gap",
+          "note": "850 rounds UP to 900"
+        },
+        "899": {
+          "error_type": "concept_gap",
+          "note": "899 rounds UP to 900"
+        },
+        "800": {
+          "error_type": "careless",
+          "note": "Found the round value itself"
+        }
+      },
+      "feedback": {
+        "correct": "849 has tens=4 and rounds DOWN to 800. 850 would round UP to 900. So 849 is the greatest!",
+        "incorrect": "850 has tens=5 and rounds UP to 900. The biggest number rounding to 800 is 849 (tens=4)."
+      },
+      "three_read_prompt": "Read 1: What does greatest mean? Read 2: What hundred does it round to? Read 3: What digit makes it switch?",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L2_round_nearest_ten_hundred",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "849: tens=4 to 800. 850: tens=5 to 900. Greatest=849."
+      },
+      "hints": [
+        "What is the biggest number that still rounds DOWN to 800? What happens at 850?"
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "849 has tens=4 and rounds DOWN to 800. 850 would round UP to 900. So 849 is the greatest!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.NBT.A.1.M01",
+        "3.NBT.A.1.M02",
+        "3.NBT.A.1.M03",
+        "3.NBT.A.1.M04",
+        "3.NBT.A.1.M05",
+        "3.NBT.A.1.M06",
+        "3.NBT.A.1.M07",
+        "3.NBT.A.1.M08"
+      ],
+      "source_lesson": "L2_round_nearest_ten_hundred",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_11",
+      "type": "mc",
+      "question": "Estimate 622 − 307 by rounding to the nearest hundred.",
+      "choices": [
+        "A) 200",
+        "B) 300",
+        "C) 400",
+        "D) 100"
+      ],
+      "solution_steps": [
+        "Round 622 → 600",
+        "Round 307 → 300",
+        "600 − 300 = 300"
+      ],
+      "difficulty": 2,
+      "ccss": "3.NBT.A.1",
+      "cpa_phase": "abstract",
+      "skill_tag": "estimate_difference_rounding_hundreds",
+      "expected_errors": [
+        "Rounding 622→700: 700−300=400"
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Round to hundreds, then subtract."
+      ],
+      "feedback": {
+        "correct": "Good job! The answer is B (300).",
+        "incorrect": "The answer is B (300). Look at the tens digit. If it's 5 or more, round up; otherwise round down."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Good job! The answer is B (300).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L8_estimate_differences",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.NBT.A.1.M01",
+        "3.NBT.A.1.M02",
+        "3.NBT.A.1.M03",
+        "3.NBT.A.1.M04",
+        "3.NBT.A.1.M05",
+        "3.NBT.A.1.M06",
+        "3.NBT.A.1.M07",
+        "3.NBT.A.1.M08"
+      ],
+      "source_lesson": "L8_estimate_differences",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_12",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.NBT.A.2",
+      "skill_tag": "mental_math_explain",
+      "difficulty": 5,
+      "question": "Show two different strategies to solve 199 + 364. Which gives the same answer?",
+      "choices": [
+        "A) Friendly: 200+364=564, 564-1=563. Break apart: 100+300=400, 99+64=163, 400+163=563. Both = 563.",
+        "B) Friendly: 200+364=564. Break apart: 100+300=400, 99+64=163, 400+163=563. Different answers.",
+        "C) Friendly: 200+364=564, 564+1=565. Break apart: 100+300=400, 99+64=163, 400+163=563.",
+        "D) Both strategies always give different answers."
+      ],
+      "expected_errors": {
+        "B": {
+          "error_type": "careless",
+          "note": "Friendly method forgot to subtract 1"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Added 1 instead of subtracting — wrong adjustment"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "All strategies should give the same correct answer"
+        }
+      },
+      "solution_steps": [
+        "Friendly: 199+1=200, 200+364=564, 564-1=563",
+        "Break apart: 100+300=400, 90+60=150, 9+4=13, 400+150+13=563",
+        "Both give 563 ✓",
+        "Different strategies, same answer!"
+      ],
+      "correct_answer": "A",
+      "hints": [
+        "Try both strategies carefully. Do you get the same number?"
+      ],
+      "feedback": {
+        "correct": "Good job! The answer is A (Friendly: 200+364=564, 564-1=563. Break apart: 100+300=400, 99+64=163, 400+163=563. Both = 563.).",
+        "incorrect": "The answer is A (Friendly: 200+364=564, 564-1=563. Break apart: 100+300=400, 99+64=163, 400+163=563. Both = 563.). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Good job! The answer is A (Friendly: 200+364=564, 564-1=563. Break apart: 100+300=400, 99+64=163, 400+163=563. Both = 563.).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.1 Lesson — U1_add_sub_1000/L4_mental_math_addition",
+        "procedure_source": "EngageNY Grade 3 Module 2 — U1_add_sub_1000",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "misconception_candidates": [
+        "3.NBT.A.2.M01",
+        "3.NBT.A.2.M02",
+        "3.NBT.A.2.M03",
+        "3.NBT.A.2.M04",
+        "3.NBT.A.2.M05",
+        "3.NBT.A.2.M06",
+        "3.NBT.A.2.M07",
+        "3.NBT.A.2.M08"
+      ],
+      "source_lesson": "L4_mental_math_addition",
+      "source_stage": "practice_r3"
+    }
+  ]
 }

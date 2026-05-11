@@ -539,6 +539,402 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "type": "input",
+      "question": "An irregular hexagon has a perimeter of 42 cm. Five sides measure 6, 8, 7, 9, and 5 cm. What is the sixth side? Explain.",
+      "correct_answer": "Sixth side = 7 cm. Add known sides: 6+8+7+9+5 = 35. Missing = 42 − 35 = 7 cm.",
+      "hints": [
+        "Perimeter is the distance ALL the way around. Add every side."
+      ],
+      "feedback": {
+        "correct": "Right! The answer is Sixth side = 7 cm. Add known sides: 6+8+7+9+5 = 35. Missing = 42 − 35 = 7 cm.",
+        "incorrect": "The answer is Sixth side = 7 cm. Add known sides: 6+8+7+9+5 = 35. Missing = 42 − 35 = 7 cm. Perimeter is the distance ALL the way around. Add every side."
+      },
+      "feedback_correct": "Right! The answer is Sixth side = 7 cm. Add known sides: 6+8+7+9+5 = 35. Missing = 42 − 35 = 7 cm.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L3_unknown_side_lengths",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "concept_gap",
+          "note": "The answer is Sixth side = 7 cm. Add known sides: 6+8+7+9+5 = 35. Missing = 42 − 35 = 7 cm. Perimeter is the distance ALL the way around. Add every side."
+        }
+      },
+      "source_lesson": "g3_u10_l3",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_02",
+      "type": "input",
+      "question": "A square and a rectangle both have a perimeter of 24 cm. The rectangle is 8 cm long. What is the side length of the square? What is the width of the rectangle?",
+      "correct_answer": "Square side = 6 cm (24 ÷ 4 = 6). Rectangle width: (8 + w) × 2 = 24 → 8 + w = 12 → w = 4 cm.",
+      "hints": [
+        "Perimeter is the distance ALL the way around. Add every side."
+      ],
+      "feedback": {
+        "correct": "Yes! The answer is Square side = 6 cm (24 ÷ 4 = 6). Rectangle width: (8 + w) × 2 = 24 → 8 + w = 12 → w = 4 cm.",
+        "incorrect": "The answer is Square side = 6 cm (24 ÷ 4 = 6). Rectangle width: (8 + w) × 2 = 24 → 8 + w = 12 → w = 4 cm. Perimeter is the distance ALL the way around. Add every side."
+      },
+      "feedback_correct": "Yes! The answer is Square side = 6 cm (24 ÷ 4 = 6). Rectangle width: (8 + w) × 2 = 24 → 8 + w = 12 → w = 4 cm.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L2_find_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "concept_gap",
+          "note": "The answer is Square side = 6 cm (24 ÷ 4 = 6). Rectangle width: (8 + w) × 2 = 24 → 8 + w = 12 → w = 4 cm. Perimeter is the distance ALL the way around. Add every side."
+        }
+      },
+      "source_lesson": "g3_u10_l2",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_03",
+      "type": "input",
+      "question": "Perimeter = 22 cm. Rectangle is 9×2. Area = __ sq cm.",
+      "accept": [
+        "18",
+        "18 sq cm"
+      ],
+      "correct_answer": "18",
+      "hints": [
+        "Multiplication is repeated addition. Use known facts when possible."
+      ],
+      "feedback": {
+        "correct": "Good job! The answer is 18.",
+        "incorrect": "The answer is 18. Multiplication is repeated addition. Use known facts when possible."
+      },
+      "feedback_correct": "Good job! The answer is 18.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L5_same_perimeter_different_areas",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "concept_gap",
+          "note": "The answer is 18. Multiplication is repeated addition. Use known facts when possible."
+        }
+      },
+      "source_lesson": "g3_u10_l5",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_04",
+      "type": "input",
+      "question": "A shape on a grid has sides: 3, 2, 1, 1, 2, 4 units. Perimeter = __ units.",
+      "accept": [
+        "13",
+        "13 units"
+      ],
+      "correct_answer": "13",
+      "hints": [
+        "Perimeter is the distance ALL the way around. Add every side."
+      ],
+      "feedback": {
+        "correct": "Nice work! The answer is 13.",
+        "incorrect": "The answer is 13. Perimeter is the distance ALL the way around. Add every side."
+      },
+      "feedback_correct": "Nice work! The answer is 13.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L1_model_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "concept_gap",
+          "note": "The answer is 13. Perimeter is the distance ALL the way around. Add every side."
+        }
+      },
+      "source_lesson": "g3_u10_l1",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_05",
+      "type": "input",
+      "question": "Why does the square always have the greatest area among rectangles with the same perimeter? Explain using an example.",
+      "correct_answer": "The square has sides as equal as possible, making it most compact. Example P=16: 7×1=7, 6×2=12, 5×3=15, 4×4=16. As sides get closer to equal, area increases.",
+      "hints": [
+        "Perimeter is the distance ALL the way around. Add every side."
+      ],
+      "feedback": {
+        "correct": "Yes! The answer is The square has sides as equal as possible, making it most compact. Example P=16: 7×1=7, 6×2=12, 5×3=15, 4×4=16. As sides get closer to equal, area increases.",
+        "incorrect": "The answer is The square has sides as equal as possible, making it most compact. Example P=16: 7×1=7, 6×2=12, 5×3=15, 4×4=16. As sides get closer to equal, area increases. Perimeter is the distance ALL the way around. Add every side."
+      },
+      "feedback_correct": "Yes! The answer is The square has sides as equal as possible, making it most compact. Example P=16: 7×1=7, 6×2=12, 5×3=15, 4×4=16. As sides get closer to equal, area increases.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L5_same_perimeter_different_areas",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "concept_gap",
+          "note": "The answer is The square has sides as equal as possible, making it most compact. Example P=16: 7×1=7, 6×2=12, 5×3=15, 4×4=16. As sides get closer to equal, area increases. Perimeter is the distance ALL the way around. Add every side."
+        }
+      },
+      "source_lesson": "g3_u10_l5",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_06",
+      "type": "mc",
+      "question": "A triangle has sides 9 ft, 12 ft, and 15 ft. What is the perimeter?",
+      "choices": [
+        "A) 34 ft",
+        "B) 36 ft",
+        "C) 38 ft"
+      ],
+      "correct_answer": "B",
+      "hints": [
+        "Perimeter is the distance ALL the way around. Add every side."
+      ],
+      "feedback": {
+        "correct": "Exactly! The answer is B (36 ft).",
+        "incorrect": "The answer is B (36 ft). Perimeter is the distance ALL the way around. Add every side."
+      },
+      "feedback_correct": "Exactly! The answer is B (36 ft).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L2_find_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "The answer is B (36 ft). Perimeter is the distance ALL the way around. Add every side."
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "The answer is B (36 ft). Perimeter is the distance ALL the way around. Add every side."
+        }
+      },
+      "source_lesson": "g3_u10_l2",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_07",
+      "type": "mc",
+      "question": "Tom walks around a triangular park with sides 100 m, 80 m, and 120 m. How far does he walk?",
+      "choices": [
+        "A) 200 m",
+        "B) 280 m",
+        "C) 300 m"
+      ],
+      "correct_answer": "C",
+      "hints": [
+        "Add every side length to find the total distance around the shape."
+      ],
+      "feedback": {
+        "correct": "Correct! The answer is C (300 m).",
+        "incorrect": "The answer is C (300 m). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+      },
+      "feedback_correct": "Correct! The answer is C (300 m).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L1_model_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "The answer is C (300 m). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "The answer is C (300 m). Read the problem twice. Identify what's given and what's asked, then choose an operation."
+        }
+      },
+      "source_lesson": "g3_u10_l1",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_08",
+      "type": "mc",
+      "question": "A triangle has sides 7 cm and 9 cm. Its perimeter is 23 cm. What is the third side?",
+      "choices": [
+        "A) 5 cm",
+        "B) 6 cm",
+        "C) 7 cm"
+      ],
+      "correct_answer": "C",
+      "hints": [
+        "Perimeter is the distance ALL the way around. Add every side."
+      ],
+      "feedback": {
+        "correct": "Yes! The answer is C (7 cm).",
+        "incorrect": "The answer is C (7 cm). Perimeter is the distance ALL the way around. Add every side."
+      },
+      "feedback_correct": "Yes! The answer is C (7 cm).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L3_unknown_side_lengths",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "The answer is C (7 cm). Perimeter is the distance ALL the way around. Add every side."
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "The answer is C (7 cm). Perimeter is the distance ALL the way around. Add every side."
+        }
+      },
+      "source_lesson": "g3_u10_l3",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_09",
+      "type": "mc",
+      "question": "A(12×2) and B(8×3) both have area 24 sq cm. How much greater is A's perimeter than B's?",
+      "choices": [
+        "A) 6 cm",
+        "B) 8 cm",
+        "C) 10 cm"
+      ],
+      "correct_answer": "A",
+      "hints": [
+        "Multiplication is repeated addition. Use known facts when possible."
+      ],
+      "feedback": {
+        "correct": "Good job! The answer is A (6 cm).",
+        "incorrect": "The answer is A (6 cm). Multiplication is repeated addition. Use known facts when possible."
+      },
+      "feedback_correct": "Good job! The answer is A (6 cm).",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L6_same_area_different_perimeters",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "The answer is A (6 cm). Multiplication is repeated addition. Use known facts when possible."
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "The answer is A (6 cm). Multiplication is repeated addition. Use known facts when possible."
+        }
+      },
+      "source_lesson": "g3_u10_l6",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "question": "Explain in your own words why perimeter and area are different. Why can two shapes have the same perimeter but different areas?",
+      "correct_answer": "Perimeter measures distance around (linear). Area measures space inside (square units). Shapes can be stretched differently — a long thin rectangle and a squarish rectangle can have the same perimeter but different amounts of space inside.",
+      "hints": [
+        "Perimeter is the distance ALL the way around. Add every side."
+      ],
+      "feedback": {
+        "correct": "Great! The answer is Perimeter measures distance around (linear). Area measures space inside (square units). Shapes can be stretched differently — a long thin rectangle and a squarish rectangle can have the same perimeter but different amounts of space inside.",
+        "incorrect": "The answer is Perimeter measures distance around (linear). Area measures space inside (square units). Shapes can be stretched differently — a long thin rectangle and a squarish rectangle can have the same perimeter but different amounts of space inside. Perimeter is the distance ALL the way around. Add every side."
+      },
+      "feedback_correct": "Great! The answer is Perimeter measures distance around (linear). Area measures space inside (square units). Shapes can be stretched differently — a long thin rectangle and a squarish rectangle can have the same perimeter but different amounts of space inside.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L4_perimeter_and_area",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "concept_gap",
+          "note": "The answer is Perimeter measures distance around (linear). Area measures space inside (square units). Shapes can be stretched differently — a long thin rectangle and a squarish rectangle can have the same perimeter but different amounts of space inside. Perimeter is the distance ALL the way around. Add every side."
+        }
+      },
+      "source_lesson": "g3_u10_l4",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_11",
+      "type": "input",
+      "question": "List ALL whole-number rectangles with area 24 sq cm. Calculate the perimeter of each. Which has the smallest perimeter?",
+      "correct_answer": "Factor pairs: (24,1)→P=50, (12,2)→P=28, (8,3)→P=22, (6,4)→P=20. Smallest: 6×4=20 cm.",
+      "hints": [
+        "Perimeter is the distance ALL the way around. Add every side."
+      ],
+      "feedback": {
+        "correct": "Yes! The answer is Factor pairs: (24,1)→P=50, (12,2)→P=28, (8,3)→P=22, (6,4)→P=20. Smallest: 6×4=20 cm.",
+        "incorrect": "The answer is Factor pairs: (24,1)→P=50, (12,2)→P=28, (8,3)→P=22, (6,4)→P=20. Smallest: 6×4=20 cm. Perimeter is the distance ALL the way around. Add every side."
+      },
+      "feedback_correct": "Yes! The answer is Factor pairs: (24,1)→P=50, (12,2)→P=28, (8,3)→P=22, (6,4)→P=20. Smallest: 6×4=20 cm.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L6_same_area_different_perimeters",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "concept_gap",
+          "note": "The answer is Factor pairs: (24,1)→P=50, (12,2)→P=28, (8,3)→P=22, (6,4)→P=20. Smallest: 6×4=20 cm. Perimeter is the distance ALL the way around. Add every side."
+        }
+      },
+      "source_lesson": "g3_u10_l6",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_12",
+      "type": "input",
+      "question": "Find two different rectangles that each have an area of 36 sq cm. Calculate the perimeter of each. Which has the smaller perimeter?",
+      "correct_answer": "Example: 9×4 → Area=36, P=26. 6×6 → Area=36, P=24. The square (6×6) has the smaller perimeter.",
+      "hints": [
+        "Perimeter is the distance ALL the way around. Add every side."
+      ],
+      "feedback": {
+        "correct": "Correct! The answer is Example: 9×4 → Area=36, P=26. 6×6 → Area=36, P=24. The square (6×6) has the smaller perimeter.",
+        "incorrect": "The answer is Example: 9×4 → Area=36, P=26. 6×6 → Area=36, P=24. The square (6×6) has the smaller perimeter. Perimeter is the distance ALL the way around. Add every side."
+      },
+      "feedback_correct": "Correct! The answer is Example: 9×4 → Area=36, P=26. 6×6 → Area=36, P=24. The square (6×6) has the smaller perimeter.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.10 Lesson — U10_perimeter/L4_perimeter_and_area",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U10_perimeter",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "concept_gap",
+          "note": "The answer is Example: 9×4 → Area=36, P=26. 6×6 → Area=36, P=24. The square (6×6) has the smaller perimeter. Perimeter is the distance ALL the way around. Add every side."
+        }
+      },
+      "source_lesson": "g3_u10_l4",
+      "source_stage": "practice_r3"
+    }
+  ]
 }

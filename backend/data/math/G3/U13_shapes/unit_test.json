@@ -565,6 +565,675 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "right_angle",
+      "difficulty": 3,
+      "question": "Which polygon has 0 right angles?",
+      "choices": [
+        "A) A square",
+        "B) A rectangle",
+        "C) A regular pentagon",
+        "D) A figure shaped like the letter L"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "A square has 4 right angles"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "A rectangle has 4 right angles"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "An L-shape has right angles at its corners"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L1_describe_polygons",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Regular pentagon: 0 right angles."
+      },
+      "hints": [
+        "Which choice has no square corners?"
+      ],
+      "feedback": {
+        "correct": "Yes! A regular pentagon has 5 angles, but none of them are right angles.",
+        "incorrect": "A regular pentagon has 0 right angles. Squares, rectangles, and L-shapes all have right angles."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Yes! A regular pentagon has 5 angles, but none of them are right angles.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.1.M01",
+        "3.G.A.1.M02",
+        "3.G.A.1.M03",
+        "3.G.A.1.M04",
+        "3.G.A.1.M05",
+        "3.G.A.1.M06",
+        "3.G.A.1.M07"
+      ],
+      "source_lesson": "L1_describe_polygons",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "compare_size",
+      "difficulty": 3,
+      "question": "On the same whole, which is the SMALLEST piece?",
+      "choices": [
+        "A) 1/2",
+        "B) 1/4",
+        "C) 1/6",
+        "D) 1/8"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "1/2 is the biggest"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "1/8 is smaller than 1/4"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "1/8 is smaller than 1/6"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L5_partition_shapes",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Most parts = smallest pieces. 1/8 smallest."
+      },
+      "hints": [
+        "Which has the most equal parts?"
+      ],
+      "feedback": {
+        "correct": "Right! 1/8 has the most equal parts, so each piece is the smallest.",
+        "incorrect": "1/8 is the smallest. More parts = smaller pieces."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! 1/8 has the most equal parts, so each piece is the smallest.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.2.M01",
+        "3.G.A.2.M02",
+        "3.G.A.2.M03",
+        "3.G.A.2.M04",
+        "3.G.A.2.M05",
+        "3.G.A.2.M06",
+        "3.G.A.2.M07"
+      ],
+      "source_lesson": "L5_partition_shapes",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_03",
+      "type": "mc",
+      "cpa_phase": "pictorial",
+      "ccss": "3.G.A.2",
+      "skill_tag": "name_parts",
+      "difficulty": 1,
+      "question": "A rectangle is divided into 6 equal parts. Each part is a __",
+      "choices": [
+        "A) Half",
+        "B) Third",
+        "C) Sixth",
+        "D) Eighth"
+      ],
+      "correct_answer": "C",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Halves = 2 parts"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Thirds = 3 parts"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Eighths = 8 parts"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L5_partition_shapes",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "6 parts → sixths."
+      },
+      "hints": [
+        "6 parts has a name ending in 'th'."
+      ],
+      "feedback": {
+        "correct": "Right! 6 equal parts = sixths.",
+        "incorrect": "6 equal parts are called sixths. Each is 1/6."
+      },
+      "cpa_stage": "pictorial",
+      "feedback_correct": "Right! 6 equal parts = sixths.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.2.M01",
+        "3.G.A.2.M02",
+        "3.G.A.2.M03",
+        "3.G.A.2.M04",
+        "3.G.A.2.M05",
+        "3.G.A.2.M06",
+        "3.G.A.2.M07"
+      ],
+      "source_lesson": "L5_partition_shapes",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_04",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_definition",
+      "difficulty": 1,
+      "question": "Which is a unit fraction?",
+      "choices": [
+        "A) 3/4",
+        "B) 1/8",
+        "C) 5/6",
+        "D) 7/10"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Unit fractions have 1 on top"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Unit fractions have 1 on top"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Unit fractions have 1 on top"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L6_unit_fractions_area",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "1/8: numerator 1."
+      },
+      "hints": [
+        "Top number must be 1."
+      ],
+      "feedback": {
+        "correct": "Right! 1/8 has 1 as the numerator — it is a unit fraction.",
+        "incorrect": "Unit fractions need 1 on top. 1/8 fits."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! 1/8 has 1 as the numerator — it is a unit fraction.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.2.M01",
+        "3.G.A.2.M02",
+        "3.G.A.2.M03",
+        "3.G.A.2.M04",
+        "3.G.A.2.M05",
+        "3.G.A.2.M06",
+        "3.G.A.2.M07"
+      ],
+      "source_lesson": "L6_unit_fractions_area",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_05",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_reasoning",
+      "difficulty": 4,
+      "question": "Lily says, 'My polygon has more sides than a pentagon but fewer sides than an octagon.' Which polygon could Lily have drawn? (Choose any one that fits.)",
+      "choices": [
+        "A) Triangle",
+        "B) Quadrilateral",
+        "C) Hexagon",
+        "D) Octagon"
+      ],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: Pentagon has 5 sides; octagon has 8 sides.",
+        "Step 2: Lily's polygon has more than 5 and fewer than 8 — so 6 or 7.",
+        "Step 3: Among the choices, only hexagon (6 sides) fits."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Triangle = 3 sides, fewer than 5"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Quadrilateral = 4 sides, fewer than 5"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Octagon = 8 sides — not fewer than 8"
+        }
+      },
+      "feedback": {
+        "correct": "Right! Hexagon has 6 sides, which is between 5 and 8.",
+        "incorrect": "Lily's polygon has between 5 and 8 sides. Only the hexagon (6 sides) fits."
+      },
+      "three_read_prompt": "Read 1: How many sides do pentagon and octagon have? Read 2: What range fits 'more than 5 but fewer than 8'? Read 3: Which choice has that many sides?",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L1_describe_polygons",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Pentagon=5, octagon=8. Range: 6 or 7. Hexagon=6."
+      },
+      "hints": [
+        "How many sides do pentagon and octagon have? What numbers fit between them?"
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! Hexagon has 6 sides, which is between 5 and 8.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.1.M01",
+        "3.G.A.1.M02",
+        "3.G.A.1.M03",
+        "3.G.A.1.M04",
+        "3.G.A.1.M05",
+        "3.G.A.1.M06",
+        "3.G.A.1.M07"
+      ],
+      "source_lesson": "L1_describe_polygons",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_06",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "unit_fraction_area",
+      "difficulty": 4,
+      "question": "A rectangle is partitioned into 4 equal parts. The area of EACH part is 7 sq cm. What is the area of the WHOLE rectangle?",
+      "correct_answer": "28",
+      "solution_steps": [
+        "Step 1: 4 equal parts.",
+        "Step 2: Each = 7 sq cm.",
+        "Step 3: Whole = 4 × 7 = 28 sq cm."
+      ],
+      "expected_errors": {
+        "11": {
+          "error_type": "concept_gap",
+          "note": "Multiply, don't add"
+        },
+        "7": {
+          "error_type": "concept_gap",
+          "note": "7 is one part; whole = 4 × 7"
+        }
+      },
+      "feedback": {
+        "correct": "Right! 4 × 7 = 28 sq cm.",
+        "incorrect": "Whole = parts × part area = 4 × 7 = 28 sq cm."
+      },
+      "three_read_prompt": "Read 1: How many parts? Read 2: How big is each part? Read 3: How big is the whole?",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L6_unit_fractions_area",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4 × 7 = 28."
+      },
+      "hints": [
+        "Multiply parts by area of each."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! 4 × 7 = 28 sq cm.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.2.M01",
+        "3.G.A.2.M02",
+        "3.G.A.2.M03",
+        "3.G.A.2.M04",
+        "3.G.A.2.M05",
+        "3.G.A.2.M06",
+        "3.G.A.2.M07"
+      ],
+      "source_lesson": "L6_unit_fractions_area",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_07",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "polygon_attribute",
+      "difficulty": 2,
+      "question": "True or False: All triangles have at least one right angle.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {
+          "error_type": "concept_gap",
+          "note": "Only RIGHT triangles have a right angle. Equilateral triangles have none."
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L2_classify_polygons",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Equilateral triangle has 0 right angles."
+      },
+      "hints": [
+        "Think about an equilateral triangle. Does it have a right angle?"
+      ],
+      "feedback": {
+        "correct": "False! Only right triangles have a right angle. Equilateral triangles have none.",
+        "incorrect": "False. Some triangles have no right angles — for example, equilateral triangles."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "False! Only right triangles have a right angle. Equilateral triangles have none.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.1.M01",
+        "3.G.A.1.M02",
+        "3.G.A.1.M03",
+        "3.G.A.1.M04",
+        "3.G.A.1.M05",
+        "3.G.A.1.M06",
+        "3.G.A.1.M07"
+      ],
+      "source_lesson": "L2_classify_polygons",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_08",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "classify_attribute",
+      "difficulty": 3,
+      "question": "Which group of polygons all share the attribute 'all sides equal'?",
+      "choices": [
+        "A) Square, equilateral triangle, rhombus",
+        "B) Rectangle, scalene triangle, trapezoid",
+        "C) Square, rectangle, scalene triangle",
+        "D) Rhombus, rectangle, trapezoid"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Scalene triangle has all DIFFERENT sides"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Rectangle and scalene triangle do not have all equal sides"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Rectangle and trapezoid do not have all equal sides"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L2_classify_polygons",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Square, equilateral triangle, rhombus: all equal sides."
+      },
+      "hints": [
+        "Which group has every shape with all sides matching?"
+      ],
+      "feedback": {
+        "correct": "Right! Squares (4=), equilateral triangles (3=), and rhombuses (4=) all have equal sides.",
+        "incorrect": "All members must have all equal sides. Only choice A — square, equilateral triangle, rhombus — qualifies."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! Squares (4=), equilateral triangles (3=), and rhombuses (4=) all have equal sides.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.1.M01",
+        "3.G.A.1.M02",
+        "3.G.A.1.M03",
+        "3.G.A.1.M04",
+        "3.G.A.1.M05",
+        "3.G.A.1.M06",
+        "3.G.A.1.M07"
+      ],
+      "source_lesson": "L2_classify_polygons",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_09",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "quadrilateral_review",
+      "difficulty": 2,
+      "question": "Which quadrilateral has 4 right angles AND 2 long sides + 2 short sides?",
+      "choices": [
+        "A) Square",
+        "B) Rectangle (not square)",
+        "C) Rhombus",
+        "D) Trapezoid"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Square has all sides equal"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Rhombus has all sides equal"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Trapezoid doesn't need 4 right angles"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L7_mixed_shapes_fractions",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Rectangle (not square): 2 pairs of equal opposite sides."
+      },
+      "hints": [
+        "4 right angles, sides not all equal — what is it?"
+      ],
+      "feedback": {
+        "correct": "Right! That's a non-square rectangle.",
+        "incorrect": "Non-square rectangle: 4 right angles + 2 long & 2 short sides."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! That's a non-square rectangle.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.1.M01",
+        "3.G.A.1.M02",
+        "3.G.A.1.M03",
+        "3.G.A.1.M04",
+        "3.G.A.1.M05",
+        "3.G.A.1.M06",
+        "3.G.A.1.M07"
+      ],
+      "source_lesson": "L7_mixed_shapes_fractions",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_10",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "compare_word_problem",
+      "difficulty": 5,
+      "question": "Lily makes a chart comparing 4 shapes: square, rectangle, rhombus, parallelogram. She lists 'has 4 right angles.' Which TWO shapes get a YES?",
+      "choices": [
+        "A) Rectangle and parallelogram",
+        "B) Square and rhombus",
+        "C) Square and rectangle",
+        "D) All four"
+      ],
+      "correct_answer": "C",
+      "solution_steps": [
+        "Step 1: Square — 4 right angles. YES.",
+        "Step 2: Rectangle — 4 right angles. YES.",
+        "Step 3: Rhombus (non-square) — 0 right angles. NO.",
+        "Step 4: Parallelogram (non-rectangle) — 0 right angles. NO."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Parallelogram does not always have right angles"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Non-square rhombus has no right angles"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Only square and rectangle always have right angles"
+        }
+      },
+      "feedback": {
+        "correct": "Right! Square and rectangle always have 4 right angles. The other two do not.",
+        "incorrect": "Square and rectangle always have 4 right angles. Rhombus and parallelogram do not (unless they ARE rectangles)."
+      },
+      "three_read_prompt": "Read 1: Which 4 shapes is Lily checking? Read 2: Which always have 4 right angles? Read 3: Which two shapes match?",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L4_compare_quadrilaterals",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Square + rectangle: always 4 right angles."
+      },
+      "hints": [
+        "Test each shape against the rule '4 right angles always'."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! Square and rectangle always have 4 right angles. The other two do not.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.1.M01",
+        "3.G.A.1.M02",
+        "3.G.A.1.M03",
+        "3.G.A.1.M04",
+        "3.G.A.1.M05",
+        "3.G.A.1.M06",
+        "3.G.A.1.M07"
+      ],
+      "source_lesson": "L4_compare_quadrilaterals",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_11",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.1",
+      "skill_tag": "nested_quadrilateral",
+      "difficulty": 3,
+      "question": "True or False: Every quadrilateral is a parallelogram.",
+      "correct_answer": "false",
+      "expected_errors": {
+        "true": {
+          "error_type": "concept_gap",
+          "note": "Some quadrilaterals (like trapezoids) are NOT parallelograms"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L3_identify_quadrilaterals",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Trapezoids are quadrilaterals but not parallelograms."
+      },
+      "hints": [
+        "Are trapezoids parallelograms?"
+      ],
+      "feedback": {
+        "correct": "False! Some quadrilaterals — like trapezoids with only 1 pair of parallel sides — are NOT parallelograms.",
+        "incorrect": "False. Not every quadrilateral is a parallelogram. A trapezoid with only 1 pair of parallel sides is not."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "False! Some quadrilaterals — like trapezoids with only 1 pair of parallel sides — are NOT parallelograms.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.1.M01",
+        "3.G.A.1.M02",
+        "3.G.A.1.M03",
+        "3.G.A.1.M04",
+        "3.G.A.1.M05",
+        "3.G.A.1.M06",
+        "3.G.A.1.M07"
+      ],
+      "source_lesson": "L3_identify_quadrilaterals",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_12",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.G.A.2",
+      "skill_tag": "fraction_compare",
+      "difficulty": 3,
+      "question": "Anna's pizza has 4 equal slices. Lily's same-size pizza has 8 equal slices. Whose slice is BIGGER?",
+      "choices": [
+        "A) Anna's (1/4)",
+        "B) Lily's (1/8)",
+        "C) Equal",
+        "D) Cannot tell"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "More slices = smaller pieces"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Different denominators → different sizes"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Same-size pizzas — comparable"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.13 Lesson — U13_shapes/L7_mixed_shapes_fractions",
+        "procedure_source": "EngageNY Grade 3 Module 7 — U13_shapes",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "1/4 > 1/8."
+      },
+      "hints": [
+        "Anna has fewer slices."
+      ],
+      "feedback": {
+        "correct": "Right! Anna's slice (1/4) is bigger than Lily's (1/8).",
+        "incorrect": "Anna's slice is bigger. Fewer slices = bigger pieces."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! Anna's slice (1/4) is bigger than Lily's (1/8).",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.G.A.2.M01",
+        "3.G.A.2.M02",
+        "3.G.A.2.M03",
+        "3.G.A.2.M04",
+        "3.G.A.2.M05",
+        "3.G.A.2.M06",
+        "3.G.A.2.M07"
+      ],
+      "source_lesson": "L7_mixed_shapes_fractions",
+      "source_stage": "practice_r2"
+    }
+  ]
 }

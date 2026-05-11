@@ -525,6 +525,613 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "area_logic",
+      "difficulty": 4,
+      "question": "True or False: Two rectangles can have the same area but DIFFERENT side lengths.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "2×6 and 3×4 both = 12"
+        }
+      },
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. Example: 2×6 and 3×4 both have area 12."
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L3_area_multiplication",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "2×6=3×4=12."
+      },
+      "hints": [
+        "Try 2×6 and 3×4."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.7.M01",
+        "3.MD.C.7.M02",
+        "3.MD.C.7.M03",
+        "3.MD.C.7.M04",
+        "3.MD.C.7.M05",
+        "3.MD.C.7.M06",
+        "3.MD.C.7.M07"
+      ],
+      "source_lesson": "L3_area_multiplication",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.5",
+      "skill_tag": "area_units",
+      "difficulty": 2,
+      "question": "Which is the BEST unit to measure the area of a notebook cover?",
+      "choices": [
+        "A) sq m",
+        "B) sq cm",
+        "C) sq km",
+        "D) miles"
+      ],
+      "correct_answer": "B",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "sq m is too big"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "sq km is huge"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "miles is for length"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L1_understand_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Notebook ≈ small → sq cm."
+      },
+      "hints": [
+        "Notebooks are small. What's a small unit?"
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "Notebooks use sq cm — a small area unit."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.5.M01",
+        "3.MD.C.5.M02",
+        "3.MD.C.5.M03",
+        "3.MD.C.5.M04",
+        "3.MD.C.5.M05",
+        "3.MD.C.5.M06",
+        "3.MD.C.5.M07"
+      ],
+      "source_lesson": "L1_understand_area",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_03",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "area_word_complex",
+      "difficulty": 5,
+      "question": "Lily's L-room: living 6×5=30 + kitchen 4×3=12. She covers everything with a rug except a 2×2=4 corner. Rug area?",
+      "correct_answer": "38",
+      "solution_steps": [
+        "Total: 30+12=42. Rug: 42-4=38."
+      ],
+      "expected_errors": {
+        "42": {
+          "error_type": "concept_gap",
+          "note": "Subtract corner"
+        },
+        "46": {
+          "error_type": "concept_gap",
+          "note": "Subtract"
+        }
+      },
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "42-4=38."
+      },
+      "three_read_prompt": "Read 1: Total floor? Read 2: Excluded corner? Read 3: Rug.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L7_area_word_problems",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "38."
+      },
+      "hints": [
+        "Total minus uncovered."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.7.M01",
+        "3.MD.C.7.M02",
+        "3.MD.C.7.M03",
+        "3.MD.C.7.M04",
+        "3.MD.C.7.M05",
+        "3.MD.C.7.M06",
+        "3.MD.C.7.M07"
+      ],
+      "source_lesson": "L7_area_word_problems",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_04",
+      "type": "tf",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_logic",
+      "difficulty": 3,
+      "question": "True or False: 5 × (3+4) = (5×3) + (5×4) = 35.",
+      "correct_answer": "true",
+      "expected_errors": {
+        "false": {
+          "error_type": "concept_gap",
+          "note": "15+20=35"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "35."
+      },
+      "hints": [
+        "15+20=35."
+      ],
+      "feedback": {
+        "correct": "True!",
+        "incorrect": "True. 15+20=35."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "True!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.7.M01",
+        "3.MD.C.7.M02",
+        "3.MD.C.7.M03",
+        "3.MD.C.7.M04",
+        "3.MD.C.7.M05",
+        "3.MD.C.7.M06",
+        "3.MD.C.7.M07"
+      ],
+      "source_lesson": "L6_distributive_property_area",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_05",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "distributive_area",
+      "difficulty": 3,
+      "question": "A 4×11 rectangle splits into 4×5 and 4×6. Total area?",
+      "correct_answer": "44",
+      "expected_errors": {
+        "20": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L6_distributive_property_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "20+24=44."
+      },
+      "hints": [
+        "20+24."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "20+24=44."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.7.M01",
+        "3.MD.C.7.M02",
+        "3.MD.C.7.M03",
+        "3.MD.C.7.M04",
+        "3.MD.C.7.M05",
+        "3.MD.C.7.M06",
+        "3.MD.C.7.M07"
+      ],
+      "source_lesson": "L6_distributive_property_area",
+      "source_stage": "practice_r2"
+    },
+    {
+      "id": "UT_06",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.5",
+      "skill_tag": "area_word_problem",
+      "difficulty": 5,
+      "question": "Mia's poster is 4 unit squares wide and 6 unit squares tall. She buys a frame that covers an extra 1 unit square all around. What is the area of the framed poster (poster + frame)?",
+      "choices": [
+        "A) 24 sq units",
+        "B) 30 sq units",
+        "C) 35 sq units",
+        "D) 48 sq units"
+      ],
+      "correct_answer": "D",
+      "solution_steps": [
+        "Step 1: Without frame: 4 × 6 = 24.",
+        "Step 2: With 1 unit on every side: width becomes 4 + 2 = 6.",
+        "Step 3: Height becomes 6 + 2 = 8.",
+        "Step 4: New area = 6 × 8 = 48 sq units."
+      ],
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "That is the poster only — add frame"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Frame adds 2 to each dimension"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "5×7=35 but width and height each grow by 2 not 1"
+        }
+      },
+      "feedback": {
+        "correct": "Right! New dimensions: (4+2) × (6+2) = 6 × 8 = 48.",
+        "incorrect": "Frame adds 1 unit on EACH side — both dimensions grow by 2. (4+2)×(6+2)=48."
+      },
+      "three_read_prompt": "Read 1: Original size? Read 2: Frame adds how much? Read 3: New size and area?",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L1_understand_area",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "(4+2) × (6+2) = 48."
+      },
+      "hints": [
+        "Frame adds 1 on each side — total +2 per dimension."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! New dimensions: (4+2) × (6+2) = 6 × 8 = 48.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.5.M01",
+        "3.MD.C.5.M02",
+        "3.MD.C.5.M03",
+        "3.MD.C.5.M04",
+        "3.MD.C.5.M05",
+        "3.MD.C.5.M06",
+        "3.MD.C.5.M07"
+      ],
+      "source_lesson": "L1_understand_area",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_07",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "row_addition",
+      "difficulty": 2,
+      "question": "5 rows of 4. Use addition.",
+      "correct_answer": "20",
+      "expected_errors": {
+        "9": {
+          "error_type": "concept_gap",
+          "note": "5+4=9"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L4_relate_area_addition",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4+4+4+4+4=20."
+      },
+      "hints": [
+        "Add 4 five times."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4+4+4+4+4=20."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.7.M01",
+        "3.MD.C.7.M02",
+        "3.MD.C.7.M03",
+        "3.MD.C.7.M04",
+        "3.MD.C.7.M05",
+        "3.MD.C.7.M06",
+        "3.MD.C.7.M07"
+      ],
+      "source_lesson": "L4_relate_area_addition",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_08",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "combined_word",
+      "difficulty": 2,
+      "question": "Two flower beds: 3×4 and 2×4. Total area in sq m?",
+      "correct_answer": "20",
+      "expected_errors": {
+        "12": {
+          "error_type": "concept_gap",
+          "note": "Forgot second"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L7_area_word_problems",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "12+8=20."
+      },
+      "hints": [
+        "12+8."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "12+8=20."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.7.M01",
+        "3.MD.C.7.M02",
+        "3.MD.C.7.M03",
+        "3.MD.C.7.M04",
+        "3.MD.C.7.M05",
+        "3.MD.C.7.M06",
+        "3.MD.C.7.M07"
+      ],
+      "source_lesson": "L7_area_word_problems",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_09",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.7",
+      "skill_tag": "area_formula",
+      "difficulty": 2,
+      "question": "Rectangle: 10×4. Area?",
+      "correct_answer": "40",
+      "expected_errors": {
+        "14": {
+          "error_type": "concept_gap",
+          "note": "10+4=14"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L3_area_multiplication",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "10×4=40."
+      },
+      "hints": [
+        "10 × 4."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "10 × 4 = 40."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.7.M01",
+        "3.MD.C.7.M02",
+        "3.MD.C.7.M03",
+        "3.MD.C.7.M04",
+        "3.MD.C.7.M05",
+        "3.MD.C.7.M06",
+        "3.MD.C.7.M07"
+      ],
+      "source_lesson": "L3_area_multiplication",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_10",
+      "type": "input",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.6",
+      "skill_tag": "area_logic",
+      "difficulty": 5,
+      "question": "A rectangle has area 32 sq units. The number of rows is DOUBLE the number of columns. Find rows + columns.",
+      "correct_answer": "12",
+      "solution_steps": [
+        "Step 1: rows = 2 × cols.",
+        "Step 2: rows × cols = 32. So 2 × cols × cols = 32.",
+        "Step 3: cols × cols = 16. So cols = 4.",
+        "Step 4: rows = 2 × 4 = 8.",
+        "Step 5: rows + cols = 8 + 4 = 12."
+      ],
+      "expected_errors": {
+        "6": {
+          "error_type": "concept_gap",
+          "note": "That's just cols × something wrong"
+        },
+        "16": {
+          "error_type": "concept_gap",
+          "note": "16 is cols squared, not rows + cols"
+        },
+        "10": {
+          "error_type": "careless",
+          "note": "8+4=12, not 10"
+        }
+      },
+      "feedback": {
+        "correct": "Right! cols=4, rows=8, sum=12.",
+        "incorrect": "cols × cols = 16 → cols=4. rows = 8. Sum = 12."
+      },
+      "three_read_prompt": "Read 1: What's the relationship between rows and cols? Read 2: What's the area? Read 3: Find cols, then rows, then sum.",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L2_measure_area_count",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "4 × 8 = 32; 4 + 8 = 12."
+      },
+      "hints": [
+        "If rows = 2 × cols and rows × cols = 32, find cols × cols."
+      ],
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right! cols=4, rows=8, sum=12.",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.6.M01",
+        "3.MD.C.6.M02",
+        "3.MD.C.6.M03",
+        "3.MD.C.6.M04",
+        "3.MD.C.6.M05",
+        "3.MD.C.6.M06",
+        "3.MD.C.6.M07"
+      ],
+      "source_lesson": "L2_measure_area_count",
+      "source_stage": "practice_r3"
+    },
+    {
+      "id": "UT_11",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.C.6",
+      "skill_tag": "area_logic",
+      "difficulty": 2,
+      "question": "Which rectangle has the BIGGEST area?",
+      "choices": [
+        "A) 3 rows × 4 cols",
+        "B) 5 rows × 3 cols",
+        "C) 6 rows × 2 cols",
+        "D) 4 rows × 4 cols"
+      ],
+      "correct_answer": "D",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "12 < 16"
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "15 < 16"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "12 < 16"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L2_measure_area_count",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "16 > 15 > 12."
+      },
+      "hints": [
+        "Compute each area."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4×4=16 is the biggest."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.C.6.M01",
+        "3.MD.C.6.M02",
+        "3.MD.C.6.M03",
+        "3.MD.C.6.M04",
+        "3.MD.C.6.M05",
+        "3.MD.C.6.M06",
+        "3.MD.C.6.M07"
+      ],
+      "source_lesson": "L2_measure_area_count",
+      "source_stage": "practice_r1"
+    },
+    {
+      "id": "UT_12",
+      "type": "mc",
+      "cpa_phase": "abstract",
+      "ccss": "3.MD.D.8",
+      "skill_tag": "compare_a_p",
+      "difficulty": 3,
+      "question": "Rectangle 4×3 has area ___ and perimeter ___.",
+      "choices": [
+        "A) 12, 14",
+        "B) 7, 12",
+        "C) 14, 12",
+        "D) 12, 12"
+      ],
+      "correct_answer": "A",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Reversed"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Reversed"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Different numbers"
+        }
+      },
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.12 Lesson — U12_area/L8_area_vs_perimeter",
+        "procedure_source": "EngageNY Grade 3 Module 4 — U12_area",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": "Area=12, perimeter=14."
+      },
+      "hints": [
+        "Compute each."
+      ],
+      "feedback": {
+        "correct": "Right!",
+        "incorrect": "4×3=12 area; 4+3+4+3=14 perimeter."
+      },
+      "cpa_stage": "abstract",
+      "feedback_correct": "Right!",
+      "math_note": "",
+      "misconception_candidates": [
+        "3.MD.D.8.M01",
+        "3.MD.D.8.M02",
+        "3.MD.D.8.M03",
+        "3.MD.D.8.M04",
+        "3.MD.D.8.M05",
+        "3.MD.D.8.M06",
+        "3.MD.D.8.M07"
+      ],
+      "source_lesson": "L8_area_vs_perimeter",
+      "source_stage": "practice_r2"
+    }
+  ]
 }

@@ -537,6 +537,534 @@
   "metadata": {
     "upgraded": true,
     "upgrade_version": "2.0-on-main",
-    "upgrade_script": "scripts/upgrade_g3_meta_v2.py"
-  }
+    "upgrade_script": "scripts/upgrade_g3_meta_v2.py",
+    "unit_test_synthesized": true,
+    "unit_test_synthesizer": "scripts/fix_g3_root_v3.py"
+  },
+  "pretest": [
+    {
+      "id": "UT_01",
+      "type": "mc",
+      "choices": [
+        "A) True",
+        "B) False"
+      ],
+      "explanation": "0 × 4 = 0. The Zero Property says any number times 0 equals 0.",
+      "difficulty": 2,
+      "hints": [
+        "Multiply: 0 × 4 = ?",
+        "Zero multiplied by any number always equals zero."
+      ],
+      "feedback": {
+        "correct": "Correct! 0 × 4 = 0 — the Zero Property.",
+        "incorrect": "Not quite. 0 × 4 = 0, so the output is 0. True."
+      },
+      "question": "True or False: If the rule is Multiply by 4 and the input is 0, the output is 0.",
+      "correct_answer": "A",
+      "feedback_correct": "Correct! 0 × 4 = 0 — the Zero Property.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson — U5_use_multiplication_facts/L1_describe_patterns",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U5_use_multiplication_facts",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.D.9",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Not quite. 0 × 4 = 0, so the output is 0. True."
+        }
+      },
+      "source_lesson": "L1_describe_patterns",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.D.9.M01",
+        "3.OA.D.9.M02",
+        "3.OA.D.9.M03",
+        "3.OA.D.9.M04",
+        "3.OA.D.9.M05",
+        "3.OA.D.9.M06",
+        "3.OA.D.9.M07",
+        "3.OA.D.9.M08"
+      ]
+    },
+    {
+      "id": "UT_02",
+      "type": "mc",
+      "choices": [
+        "A) 3 × 60",
+        "B) 3 × 30",
+        "C) 6 × 60",
+        "D) 6 × 20"
+      ],
+      "explanation": "6 × 30 = 180 and 3 × 60 = 180.",
+      "difficulty": 2,
+      "hints": [
+        "Calculate 6 × 30 using the basic fact: 6 × 3 = 18, so 6 × 30 = 180.",
+        "Now check each choice: which one also equals 180?"
+      ],
+      "feedback": {
+        "correct": "Right! Both 6 × 30 and 3 × 60 equal 180.",
+        "incorrect": "6 × 30 = 180. Check each choice: 3 × 60 = 3 × 6 tens = 18 tens = 180. That matches!"
+      },
+      "question": "Which has the same product as 6 × 30?",
+      "correct_answer": "A",
+      "feedback_correct": "Right! Both 6 × 30 and 3 × 60 equal 180.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson — U5_use_multiplication_facts/L4_multiplication_strategies_multiples_of_10",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U5_use_multiplication_facts",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.NBT.A.3",
+      "expected_errors": {
+        "B": {
+          "error_type": "concept_gap",
+          "note": "6 × 30 = 180. Check each choice: 3 × 60 = 3 × 6 tens = 18 tens = 180. That matches!"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "6 × 30 = 180. Check each choice: 3 × 60 = 3 × 6 tens = 18 tens = 180. That matches!"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "6 × 30 = 180. Check each choice: 3 × 60 = 3 × 6 tens = 18 tens = 180. That matches!"
+        }
+      },
+      "source_lesson": "L4_multiplication_strategies_multiples_of_10",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.NBT.A.3.M01",
+        "3.NBT.A.3.M02",
+        "3.NBT.A.3.M03",
+        "3.NBT.A.3.M04",
+        "3.NBT.A.3.M05",
+        "3.NBT.A.3.M06",
+        "3.NBT.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_03",
+      "type": "mc",
+      "choices": [
+        "A) 240",
+        "B) 260",
+        "C) 280",
+        "D) 300"
+      ],
+      "explanation": "7 tens × 4 = 28 tens = 280.",
+      "difficulty": 1,
+      "hints": [
+        "Think of 70 as 7 tens. What is 7 × 4?",
+        "7 × 4 = 28, so 7 tens × 4 = 28 tens = 280."
+      ],
+      "feedback": {
+        "correct": "Right! 7 × 4 = 28, so 70 × 4 = 280.",
+        "incorrect": "Use the basic fact: 7 × 4 = 28. Then 70 × 4 = 28 tens = 280."
+      },
+      "question": "70 × 4 = ?",
+      "correct_answer": "C",
+      "feedback_correct": "Right! 7 × 4 = 28, so 70 × 4 = 280.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson — U5_use_multiplication_facts/L5_multiply_1digit_by_multiples_of_10",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U5_use_multiplication_facts",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.NBT.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Use the basic fact: 7 × 4 = 28. Then 70 × 4 = 28 tens = 280."
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Use the basic fact: 7 × 4 = 28. Then 70 × 4 = 28 tens = 280."
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Use the basic fact: 7 × 4 = 28. Then 70 × 4 = 28 tens = 280."
+        }
+      },
+      "source_lesson": "L5_multiply_1digit_by_multiples_of_10",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.NBT.A.3.M01",
+        "3.NBT.A.3.M02",
+        "3.NBT.A.3.M03",
+        "3.NBT.A.3.M04",
+        "3.NBT.A.3.M05",
+        "3.NBT.A.3.M06",
+        "3.NBT.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_04",
+      "type": "mc",
+      "choices": [
+        "A) 6",
+        "B) 7",
+        "C) 8",
+        "D) 9"
+      ],
+      "explanation": "8 × 7 = 56, so t = 7.",
+      "difficulty": 1,
+      "hints": [
+        "Ask: '8 × ? = 56'. Which multiplication fact fits?",
+        "Use division: 56 ÷ 8 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 7 = 56, so t = 7.",
+        "incorrect": "Not quite. 56 ÷ 8 = 7. Check: 8 × 7 = 56 ✓"
+      },
+      "question": "56 = 8 × t. What is t?",
+      "correct_answer": "B",
+      "feedback_correct": "Correct! 8 × 7 = 56, so t = 7.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson — U5_use_multiplication_facts/L2_find_unknown_factors",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U5_use_multiplication_facts",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.4",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Not quite. 56 ÷ 8 = 7. Check: 8 × 7 = 56 ✓"
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Not quite. 56 ÷ 8 = 7. Check: 8 × 7 = 56 ✓"
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Not quite. 56 ÷ 8 = 7. Check: 8 × 7 = 56 ✓"
+        }
+      },
+      "source_lesson": "L2_find_unknown_factors",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.A.4.M01",
+        "3.OA.A.4.M02",
+        "3.OA.A.4.M03",
+        "3.OA.A.4.M04",
+        "3.OA.A.4.M05",
+        "3.OA.A.4.M06",
+        "3.OA.A.4.M07"
+      ]
+    },
+    {
+      "id": "UT_05",
+      "type": "input",
+      "explanation": "6 × 8 = 48, so z = 6.",
+      "difficulty": 2,
+      "hints": [
+        "Ask: '? × 8 = 48'. Use division: 48 ÷ 8 = ?",
+        "Skip count by 8: 8, 16, 24, 32, 40, 48 — how many jumps?"
+      ],
+      "feedback": {
+        "correct": "Correct! 6 × 8 = 48, so z = 6.",
+        "incorrect": "Not quite. 48 ÷ 8 = 6. Check: 6 × 8 = 48 ✓"
+      },
+      "question": "z × 8 = 48. What is z? Enter the number.",
+      "correct_answer": "6",
+      "feedback_correct": "Correct! 6 × 8 = 48, so z = 6.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson — U5_use_multiplication_facts/L2_find_unknown_factors",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U5_use_multiplication_facts",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.A.4",
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "concept_gap",
+          "note": "Not quite. 48 ÷ 8 = 6. Check: 6 × 8 = 48 ✓"
+        }
+      },
+      "source_lesson": "L2_find_unknown_factors",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.A.4.M01",
+        "3.OA.A.4.M02",
+        "3.OA.A.4.M03",
+        "3.OA.A.4.M04",
+        "3.OA.A.4.M05",
+        "3.OA.A.4.M06",
+        "3.OA.A.4.M07"
+      ]
+    },
+    {
+      "id": "UT_06",
+      "type": "mc",
+      "choices": [
+        "A) 180",
+        "B) 200",
+        "C) 210",
+        "D) 240"
+      ],
+      "explanation": "3 × 70 = 210. Basic fact: 3 × 7 = 21, so 3 × 70 = 21 tens = 210.",
+      "difficulty": 1,
+      "hints": [
+        "Write the equation: 3 shipments × 70 boxes each.",
+        "Basic fact: 3 × 7 = 21, so 3 × 70 = 21 tens = 210."
+      ],
+      "feedback": {
+        "correct": "Correct! 3 × 7 = 21, so 3 × 70 = 210 boxes.",
+        "incorrect": "Use the basic fact: 3 × 7 = 21. Then 3 × 70 = 21 tens = 210."
+      },
+      "question": "A store receives 3 shipments. Each shipment has 70 boxes. How many boxes in all?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 3 × 7 = 21, so 3 × 70 = 210 boxes.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson — U5_use_multiplication_facts/L4_multiplication_strategies_multiples_of_10",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U5_use_multiplication_facts",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.NBT.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Use the basic fact: 3 × 7 = 21. Then 3 × 70 = 21 tens = 210."
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Use the basic fact: 3 × 7 = 21. Then 3 × 70 = 21 tens = 210."
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Use the basic fact: 3 × 7 = 21. Then 3 × 70 = 21 tens = 210."
+        }
+      },
+      "source_lesson": "L4_multiplication_strategies_multiples_of_10",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.NBT.A.3.M01",
+        "3.NBT.A.3.M02",
+        "3.NBT.A.3.M03",
+        "3.NBT.A.3.M04",
+        "3.NBT.A.3.M05",
+        "3.NBT.A.3.M06",
+        "3.NBT.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_07",
+      "type": "mc",
+      "choices": [
+        "A) 210",
+        "B) 220",
+        "C) 240",
+        "D) 280"
+      ],
+      "explanation": "3 tens × 8 = 24 tens = 240.",
+      "difficulty": 1,
+      "hints": [
+        "Think of 30 as 3 tens. What is 3 × 8?",
+        "3 × 8 = 24, so 3 tens × 8 = 24 tens = 240."
+      ],
+      "feedback": {
+        "correct": "Correct! 3 × 8 = 24, so 30 × 8 = 240.",
+        "incorrect": "Use the basic fact: 3 × 8 = 24. Then 30 × 8 = 24 tens = 240."
+      },
+      "question": "30 × 8 = ?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 3 × 8 = 24, so 30 × 8 = 240.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson — U5_use_multiplication_facts/L5_multiply_1digit_by_multiples_of_10",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U5_use_multiplication_facts",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.NBT.A.3",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Use the basic fact: 3 × 8 = 24. Then 30 × 8 = 24 tens = 240."
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Use the basic fact: 3 × 8 = 24. Then 30 × 8 = 24 tens = 240."
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Use the basic fact: 3 × 8 = 24. Then 30 × 8 = 24 tens = 240."
+        }
+      },
+      "source_lesson": "L5_multiply_1digit_by_multiples_of_10",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.NBT.A.3.M01",
+        "3.NBT.A.3.M02",
+        "3.NBT.A.3.M03",
+        "3.NBT.A.3.M04",
+        "3.NBT.A.3.M05",
+        "3.NBT.A.3.M06",
+        "3.NBT.A.3.M07"
+      ]
+    },
+    {
+      "id": "UT_08",
+      "type": "mc",
+      "choices": [
+        "A) 3",
+        "B) 4",
+        "C) 5",
+        "D) 6"
+      ],
+      "explanation": "The pattern shows × 6. 24 ÷ 6 = 4, so the missing input is 4.",
+      "difficulty": 2,
+      "hints": [
+        "The output is 24 and the rule is ×6. What input × 6 = 24?",
+        "Reverse the rule: 24 ÷ 6 = ?"
+      ],
+      "feedback": {
+        "correct": "Correct! 24 ÷ 6 = 4 — the missing input is 4.",
+        "incorrect": "Not quite. Reverse the rule: 24 ÷ 6 = 4, so the missing input is 4."
+      },
+      "question": "| Bouquets | 1 | 2 | 3 | ? | 5 |\n|---|---|---|---|---|---|\n| Roses | 6 | 12 | 18 | 24 | 30 |\n\nWhat input is missing?",
+      "correct_answer": "B",
+      "feedback_correct": "Correct! 24 ÷ 6 = 4 — the missing input is 4.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson — U5_use_multiplication_facts/L1_describe_patterns",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U5_use_multiplication_facts",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.D.9",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Not quite. Reverse the rule: 24 ÷ 6 = 4, so the missing input is 4."
+        },
+        "C": {
+          "error_type": "concept_gap",
+          "note": "Not quite. Reverse the rule: 24 ÷ 6 = 4, so the missing input is 4."
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Not quite. Reverse the rule: 24 ÷ 6 = 4, so the missing input is 4."
+        }
+      },
+      "source_lesson": "L1_describe_patterns",
+      "source_stage": "practice_r2",
+      "misconception_candidates": [
+        "3.OA.D.9.M01",
+        "3.OA.D.9.M02",
+        "3.OA.D.9.M03",
+        "3.OA.D.9.M04",
+        "3.OA.D.9.M05",
+        "3.OA.D.9.M06",
+        "3.OA.D.9.M07",
+        "3.OA.D.9.M08"
+      ]
+    },
+    {
+      "id": "UT_09",
+      "type": "input",
+      "explanation": "8 × 3 tens = 24 tens = 240.",
+      "difficulty": 1,
+      "hints": [
+        "Think of 30 as 3 tens. 8 × 3 tens = ? tens.",
+        "8 × 3 = 24, so 8 × 30 = 240."
+      ],
+      "feedback": {
+        "correct": "Correct! 8 × 3 = 24, so 8 × 30 = 240.",
+        "incorrect": "Not quite. 8 × 3 = 24, so 8 × 30 = 240."
+      },
+      "question": "8 × 30 = ? Enter the number.",
+      "correct_answer": "240",
+      "feedback_correct": "Correct! 8 × 3 = 24, so 8 × 30 = 240.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson — U5_use_multiplication_facts/L3_use_distributive_property",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U5_use_multiplication_facts",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.B.5",
+      "expected_errors": {
+        "_wrong": {
+          "error_type": "concept_gap",
+          "note": "Not quite. 8 × 3 = 24, so 8 × 30 = 240."
+        }
+      },
+      "source_lesson": "L3_use_distributive_property",
+      "source_stage": "practice_r1",
+      "misconception_candidates": [
+        "3.OA.B.5.M01",
+        "3.OA.B.5.M02",
+        "3.OA.B.5.M03",
+        "3.OA.B.5.M04",
+        "3.OA.B.5.M05",
+        "3.OA.B.5.M06",
+        "3.OA.B.5.M07"
+      ]
+    },
+    {
+      "id": "UT_10",
+      "type": "mc",
+      "choices": [
+        "A) 9 × 30",
+        "B) 6 × 50",
+        "C) 4 × 80",
+        "D) 7 × 40"
+      ],
+      "explanation": "9×30=270, 6×50=300, 4×80=320, 7×40=280. The greatest is 4×80=320.",
+      "difficulty": 3,
+      "hints": [
+        "Calculate each product using the tens strategy: factor × tens digit, then attach zero.",
+        "Compare: 9×30=270, 6×50=300, 4×80=?, 7×40=280."
+      ],
+      "feedback": {
+        "correct": "Correct! 4 × 80 = 320 is the greatest.",
+        "incorrect": "Not quite. Check each: 9×30=270, 6×50=300, 4×80=320, 7×40=280. Greatest is 320."
+      },
+      "question": "Which has the GREATEST product?",
+      "correct_answer": "C",
+      "feedback_correct": "Correct! 4 × 80 = 320 is the greatest.",
+      "math_note": "",
+      "verification": {
+        "concept_source": "Go Math Grade 3 Ch.5 Lesson — U5_use_multiplication_facts/L3_use_distributive_property",
+        "procedure_source": "EngageNY Grade 3 Module 3 — U5_use_multiplication_facts",
+        "assessment_source": "Smarter Balanced Grade 3 Mathematics Item Specifications 2015",
+        "original_ref": ""
+      },
+      "ccss": "3.OA.B.5",
+      "expected_errors": {
+        "A": {
+          "error_type": "concept_gap",
+          "note": "Not quite. Check each: 9×30=270, 6×50=300, 4×80=320, 7×40=280. Greatest is 320."
+        },
+        "B": {
+          "error_type": "concept_gap",
+          "note": "Not quite. Check each: 9×30=270, 6×50=300, 4×80=320, 7×40=280. Greatest is 320."
+        },
+        "D": {
+          "error_type": "concept_gap",
+          "note": "Not quite. Check each: 9×30=270, 6×50=300, 4×80=320, 7×40=280. Greatest is 320."
+        }
+      },
+      "source_lesson": "L3_use_distributive_property",
+      "source_stage": "practice_r3",
+      "misconception_candidates": [
+        "3.OA.B.5.M01",
+        "3.OA.B.5.M02",
+        "3.OA.B.5.M03",
+        "3.OA.B.5.M04",
+        "3.OA.B.5.M05",
+        "3.OA.B.5.M06",
+        "3.OA.B.5.M07"
+      ]
+    }
+  ]
 }
