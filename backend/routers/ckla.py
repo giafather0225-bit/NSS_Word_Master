@@ -481,7 +481,7 @@ def update_lesson_progress(
 
             # Check daily lesson goal
             today_str = _date.today().isoformat()
-            daily_goal_cfg = db.query(AppConfig).filter_by(key="ckla_lessons_per_day").first()
+            daily_goal_cfg = db.query(AppConfig).filter_by(key="ckla_daily_goal").first()
             daily_goal = int(daily_goal_cfg.value) if daily_goal_cfg else 1
             today_done = (
                 db.query(CKLALessonProgress)
