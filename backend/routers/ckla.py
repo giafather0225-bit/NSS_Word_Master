@@ -955,7 +955,8 @@ async def submit_domain_test(
     fail_key = f"ckla_domain_test_consec_fails_d{domain_num}_g{grade}"
     fail_cfg = db.query(AppConfig).filter_by(key=fail_key).first()
     if passed:
-        xp_awarded = award_xp(db, "ckla_domain_test_pass", detail=f"domain_{domain_num}_grade_{grade}")
+        # commit=False: XP + fail_cfg reset + time + history committed atomically at db.commit() below.
+        xp_awarded = award_xp(db, "ckla_domain_test_pass", detail=f"domain_{domain_num}_grade_{grade}", commit=False)
         if fail_cfg:
             fail_cfg.value = "0"
     else:
@@ -1300,7 +1301,8 @@ async def submit_grade_final_test(
     xp_awarded = 0
     retry_after_str: str | None = None
     if passed:
-        xp_awarded = award_xp(db, "ckla_grade_final_pass", detail=f"grade_{grade}")
+        # commit=False: XP + cooldown-clear committed atomically at db.commit() below.
+        xp_awarded = award_xp(db, "ckla_grade_final_pass", detail=f"grade_{grade}", commit=False)
         if cfg:
             cfg.value = ""
     else:

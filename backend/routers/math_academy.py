@@ -528,7 +528,8 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
     _xp_awarded = 0
     if passed:
         try:
-            _xp_awarded = xp_engine.award_xp(db, "math_unit_test_pass", detail=f"{req.grade}/{req.unit}")
+            # commit=False: keep MathProgress updates + XP + MathUnitTest in one transaction.
+            _xp_awarded = xp_engine.award_xp(db, "math_unit_test_pass", detail=f"{req.grade}/{req.unit}", commit=False)
         except Exception as e:
             logger.warning("XP award failed: %s", e)
         try:

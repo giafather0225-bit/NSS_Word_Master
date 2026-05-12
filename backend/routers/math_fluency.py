@@ -203,13 +203,14 @@ def submit_round(req: RoundResultIn, db: Session = Depends(get_db)):
             row.current_phase = "C"
 
     # XP: base completion award + personal best bonus
+    # commit=False: fluency row + XP + streak flushed together by db.commit() below.
     try:
-        xp_engine.award_xp(db, "math_fluency_complete", detail=f"Fluency {req.fact_set}")
+        xp_engine.award_xp(db, "math_fluency_complete", detail=f"Fluency {req.fact_set}", commit=False)
     except Exception as e:
         logger.warning("XP award (fluency complete) failed: %s", e)
     if new_best:
         try:
-            xp_engine.award_xp(db, "math_fluency_best", detail=f"Fluency {req.fact_set}")
+            xp_engine.award_xp(db, "math_fluency_best", detail=f"Fluency {req.fact_set}", commit=False)
         except Exception as e:
             logger.warning("XP award (fluency best) failed: %s", e)
 

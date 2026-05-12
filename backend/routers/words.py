@@ -580,7 +580,8 @@ def mywords_weekly_test_result(
     xp_awarded = 0
 
     if passed:
-        xp_awarded = xp_engine.award_xp(db, "mywords_weekly_test_pass", "my_words")
+        # commit=False: XP + GrowthEvent committed together in db.commit() below.
+        xp_awarded = xp_engine.award_xp(db, "mywords_weekly_test_pass", "my_words", commit=False)
         if xp_awarded > 0:
             now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
             today_iso = date.today().isoformat()
