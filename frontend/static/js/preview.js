@@ -53,7 +53,7 @@ function openPreviewModal(item, onClose) {
         ${item.question ? `<p class="pm-meaning" id="pm-meaning">${escapeHtml(item.question)}</p>` : ''}
         ${item.hint ? `<div class="pm-example" id="pm-example">"${escapeHtml(item.hint)}"</div>` : ''}
         <div class="pm-divider"></div>
-        <button type="button" class="pm-listen-btn" id="pm-listen">🔊 Listen</button>
+        <button type="button" class="pm-listen-btn" id="pm-listen"><i data-lucide="volume-2"></i> Listen</button>
         <p class="pm-listen-hint hidden" id="pm-listen-hint">Press the mic and repeat the word</p>
         <p class="pm-shadow-label locked" id="pm-shadow-label">SHADOW (Repeat 3×)</p>
         <div class="pm-shadow-rows" id="pm-shadow-rows"></div>
@@ -61,6 +61,7 @@ function openPreviewModal(item, onClose) {
         <p class="pm-spell-label locked" id="pm-spell-label">SPELL (Type 3×)</p>
         <div class="pm-spell-rows locked" id="pm-spell-rows"></div>
         <div class="pm-verdict" id="pm-verdict"></div>`;
+    if (window.lucide) lucide.createIcons();
 
     modal.classList.remove('hidden'); modal.hidden = false; modal.style.display = '';
 
@@ -91,7 +92,7 @@ function openPreviewModal(item, onClose) {
             const mic = document.createElement('button'); mic.type = 'button';
             mic.className = 'pm-mic-btn'+(rec?' recording':done?' done':'');
             if (autoPassed) mic.classList.add('auto-passed');
-            mic.innerHTML = rec ? '&#9209;' : '🎤'; mic.disabled = done || !listenDone;
+            mic.innerHTML = rec ? '<i data-lucide="square"></i>' : '<i data-lucide="mic"></i>'; mic.disabled = done || !listenDone;
             if (!done && !rec && listenDone) mic.addEventListener('click', () => startShadow(i));
             const icon = document.createElement('span'); icon.className = 'pm-row-icon';
             icon.textContent = done ? '✓' : '○';
@@ -101,6 +102,7 @@ function openPreviewModal(item, onClose) {
             if (autoPassed) scoreEl.style.color = 'var(--color-warning)';
             row.append(mic, icon, scoreEl); el.appendChild(row);
         });
+        if (window.lucide) lucide.createIcons();
     }
 
     const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -259,7 +261,7 @@ function openPreviewModal(item, onClose) {
 
     $('pm-listen').addEventListener('click', async () => {
         const btn=$('pm-listen'), wordEl=$('pm-word'), meaningEl=$('pm-meaning'), exampleEl=$('pm-example');
-        btn.disabled=true; btn.classList.add('playing'); btn.textContent='🎵 Playing…';
+        btn.disabled=true; btn.classList.add('playing'); btn.innerHTML='<i data-lucide="loader-2"></i> Playing…'; if (window.lucide) lucide.createIcons();
         const hl=(el,on)=>el&&el.classList.toggle('tts-hl',on);
         try {
             for (let j=0;j<3;j++) {
@@ -278,7 +280,7 @@ function openPreviewModal(item, onClose) {
         } catch(e) { if (e.name!=='AbortError') console.warn('[TTS]',e); }
         finally {
             hl(wordEl,false); hl(meaningEl,false); hl(exampleEl,false);
-            btn.disabled=false; btn.classList.remove('playing'); btn.textContent='🔊 Listen';
+            btn.disabled=false; btn.classList.remove('playing'); btn.innerHTML='<i data-lucide="volume-2"></i> Listen'; if (window.lucide) lucide.createIcons();
             ttsAbort=null; listenDone=true;
             const sl=$('pm-shadow-label'); if(sl) sl.classList.remove('locked');
             const lh=$('pm-listen-hint'); if(lh) lh.classList.remove('hidden');
