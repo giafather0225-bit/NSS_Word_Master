@@ -14,6 +14,7 @@
   let badgeTimer = null;
   let badgeInFlight = false;
   let openReviewInFlight = false;
+  let submitInFlight = false;
 
   function escapeHtml(s) {
     return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -238,6 +239,8 @@
 
   /* ── Submit rating ── */
   async function submitRating(quality) {
+    if (submitInFlight) return;
+    submitInFlight = true;
     var item = reviewWords[currentIdx];
     sessionTotal++;
     if (quality >= 3) sessionCorrect++;
@@ -257,6 +260,8 @@
       });
     } catch (e) {
       console.error("Review submit error:", e);
+    } finally {
+      submitInFlight = false;
     }
 
     currentIdx++;
@@ -272,13 +277,18 @@
 
     if (sessionTotal > 0) {
       try {
-        await fetch("/api/xp/award", {
+        const xpRes = await fetch("/api/xp/award", {
           method: "POST",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({action: "review_complete", detail: ""})
         });
+        if (!xpRes.ok) {
+          console.warn("[review] XP award non-OK:", xpRes.status);
+          if (window.toast) window.toast("XP could not be saved — try again later.", "error");
+        }
       } catch (e) {
         console.warn("[review] XP award failed:", e);
+        if (window.toast) window.toast("XP could not be saved — check connection.", "error");
       }
     }
 

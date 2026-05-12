@@ -124,7 +124,7 @@ def mark_ckla_done(db: Session, day: str | None = None, commit: bool = True) -> 
         log.ckla_done = True
         if commit:
             db.commit()
-    _evaluate_streak(db, log)
+    _evaluate_streak(db, log, commit=commit)
 
 
 # ─── Island lumi for streak ───────────────────────────────────
@@ -178,7 +178,7 @@ def _ckla_ok(db: Session, log: StreakLog) -> bool:
 
 
 # @tag STREAK
-def _evaluate_streak(db: Session, log: StreakLog) -> None:
+def _evaluate_streak(db: Session, log: StreakLog, commit: bool = True) -> None:
     """Determine if streak is maintained for log's date, honoring AppConfig rule.
 
     Rules:
@@ -189,6 +189,11 @@ def _evaluate_streak(db: Session, log: StreakLog) -> None:
 
     Both branches share a single db.commit() at the end so the Day-Off case
     and the normal evaluation case are each one atomic write.
+
+    Args:
+        commit: If False, skip db.commit() and lumi side-effects — caller is
+                responsible for committing the session atomically. Lumi award
+                is omitted in this path to avoid a premature inner commit.
     """
     was_maintained = bool(log.streak_maintained)
     today_str = date.today().isoformat()
@@ -215,9 +220,10 @@ def _evaluate_streak(db: Session, log: StreakLog) -> None:
         else:
             log.streak_maintained = all(required)
 
-    db.commit()
-    if not was_maintained and log.streak_maintained and log.date == today_str:
-        _award_streak_lumi(db)
+    if commit:
+        db.commit()
+        if not was_maintained and log.streak_maintained and log.date == today_str:
+            _award_streak_lumi(db)
 
 
 # @tag STREAK

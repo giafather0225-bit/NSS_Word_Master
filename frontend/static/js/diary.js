@@ -149,9 +149,12 @@ function _showJournalPhoto(filename) {
 }
 
 /** Upload a journal photo. @tag DIARY JOURNAL */
+let _photoUploadInFlight = false;
 async function _uploadJournalPhoto(input) {
+    if (_photoUploadInFlight) return;
     const file = input.files && input.files[0];
     if (!file) return;
+    _photoUploadInFlight = true;
     const date   = input.dataset.date;
     const status = document.getElementById("journal-photo-status");
     if (status) status.textContent = "Uploading…";
@@ -170,7 +173,10 @@ async function _uploadJournalPhoto(input) {
         if (data.photo_path) _showJournalPhoto(data.photo_path);
     } catch (_) {
         if (status) status.textContent = "Upload failed.";
-    } finally { input.value = ""; }
+    } finally {
+        input.value = "";
+        _photoUploadInFlight = false;
+    }
 }
 
 /** Delete the journal photo. @tag DIARY JOURNAL */
@@ -339,7 +345,10 @@ function closeDiaryOverlay() {
 }
 
 /** @tag DIARY TTS */
+let _ttsInFlight = false;
 async function _diaryPlayTTS(sentence) {
+    if (_ttsInFlight) return;
+    _ttsInFlight = true;
     try {
         const res = await fetch("/api/tts/example_full", {
             method: "POST",
@@ -348,19 +357,23 @@ async function _diaryPlayTTS(sentence) {
         });
         if (!res.ok) {
             if (window.toast) window.toast("Could not play audio — try again.", "error");
+            _ttsInFlight = false;
             return;
         }
         const blob  = await res.blob();
         const url   = URL.createObjectURL(blob);
         const audio = new Audio(url);
-        audio.onended = () => URL.revokeObjectURL(url);
+        // Flag released when playback ends or fails — not in finally (would fire too early)
+        audio.onended = () => { URL.revokeObjectURL(url); _ttsInFlight = false; };
         audio.play().catch((err) => {
             console.warn("[diary] TTS playback failed:", err);
             if (window.toast) window.toast("Audio playback blocked by browser.", "error");
+            _ttsInFlight = false;
         });
     } catch (e) {
         console.warn("[diary] TTS request failed:", e);
         if (window.toast) window.toast("Could not play audio — check connection.", "error");
+        _ttsInFlight = false;
     }
 }
 
