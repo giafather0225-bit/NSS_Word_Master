@@ -213,7 +213,7 @@ function renderMeaningMatch(el) {
     el.querySelectorAll(".wm-meaning-btn:not([disabled])").forEach(function (btn) {
         btn.addEventListener("click", async function () {
             if (wmState.selectedWordIdx === null) {
-                setStatus("👈 Click a word first!");
+                setStatus("Click a word first!");
                 return;
             }
             const mi = Number(btn.dataset.idx);

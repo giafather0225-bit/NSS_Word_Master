@@ -351,17 +351,17 @@
 
         var html = '<div class="ut-result-wrap">' +
             '<div class="ut-result ' + (passed ? 'ut-result-pass' : 'ut-result-fail') + '">' +
-                '<div class="ut-result-icon">' + (passed ? '✓' : '✕') + '</div>' +
+                '<div class="ut-result-icon">' + (passed ? '<i data-lucide="check" style="width:32px;height:32px;stroke-width:2.5"></i>' : '<i data-lucide="x" style="width:32px;height:32px;stroke-width:2.5"></i>') + '</div>' +
                 '<div class="ut-result-score">' + pct + '%</div>' +
                 '<div class="ut-result-detail">' + correct + ' / ' + total + ' correct</div>' +
                 '<div class="ut-result-lessons">Lessons: ' + esc(lessonsStr) + '</div>' +
                 '<div class="ut-result-status">' + (passed ? 'PASSED!' : 'Need 90% to pass') + '</div>' +
                 '<div class="ut-result-btns">';
 
-        html += '<button class="ut-retry-btn ut-retry-all" id="ut-retry-all">🔄 Retry All</button>';
+        html += '<button class="ut-retry-btn ut-retry-all" id="ut-retry-all"><i data-lucide="refresh-cw" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Retry All</button>';
 
         if (wrongWords.length > 0) {
-            html += '<button class="ut-retry-btn ut-retry-wrong" id="ut-retry-wrong">❌ Retry Wrong (' + wrongWords.length + ')</button>';
+            html += '<button class="ut-retry-btn ut-retry-wrong" id="ut-retry-wrong"><i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Retry Wrong (' + wrongWords.length + ')</button>';
         }
 
         html += '</div></div>' +
@@ -370,6 +370,7 @@
         '</div>';
 
         body.innerHTML = html;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
 
         // Update progress bar to 100%
         var bar = $id('ut-progress-bar');

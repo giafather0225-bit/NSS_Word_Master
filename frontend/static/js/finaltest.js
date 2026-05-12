@@ -369,6 +369,7 @@
         if (passed) savePass(ctx);
 
         eo('body').innerHTML = buildResultsHTML(mcCorrect, fillCorrect, total, maxPts, pct, passed, missed);
+        if (typeof lucide !== 'undefined') lucide.createIcons();
 
         $id('eo-action-btn').addEventListener('click', function() {
             if (passed) {
@@ -411,14 +412,14 @@
         var icon, headline, msg, btnLabel, btnClass;
 
         if (passed) {
-            icon     = '✓';
+            icon     = '<i data-lucide="check-circle" style="width:48px;height:48px;stroke-width:1.5"></i>';
             headline = 'Congratulations! You passed!';
             msg      = 'You scored <strong>' + pct + '%</strong> on ' + esc(ctx.lesson) + '.<br>' +
                        'This lesson is permanently marked as passed. Well done!';
             btnLabel = 'Back to Lessons';
             btnClass = 'eo-btn-primary';
         } else {
-            icon     = '💪';
+            icon     = '<i data-lucide="target" style="width:48px;height:48px;stroke-width:1.5"></i>';
             headline = 'Almost there — you\'ve got this!';
             msg      = 'You scored <strong>' + pct + '%</strong>. You need <strong>90%</strong> to pass.<br>' +
                        'Here are the words to review before your next try:';
@@ -441,7 +442,7 @@
             }).join('');
             missedHtml =
                 '<div class="eo-miss-block">' +
-                    '<div class="eo-miss-title">📝 ' + missed.length + ' word' + (missed.length === 1 ? '' : 's') + ' to review</div>' +
+                    '<div class="eo-miss-title"><i data-lucide="file-text" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> ' + missed.length + ' word' + (missed.length === 1 ? '' : 's') + ' to review</div>' +
                     '<ul class="eo-miss-list">' + rows + '</ul>' +
                 '</div>';
         }
@@ -467,7 +468,7 @@
             '</div>' +
             missedHtml +
             '<button class="' + btnClass + '" id="eo-action-btn">' + btnLabel + '</button>' +
-            '<button class="eo-chunk-btn" id="eo-chunk-btn" style="display:none">✦ Chunk Challenge</button>' +
+            '<button class="eo-chunk-btn" id="eo-chunk-btn" style="display:none"><i data-lucide="sparkles" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Chunk Challenge</button>' +
         '</div>';
     }
 

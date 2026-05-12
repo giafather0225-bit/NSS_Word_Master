@@ -161,7 +161,7 @@ function _examRenderNav() {
             flagged ? 'is-flagged' : '',
             cur ? 'is-current' : '',
         ].filter(Boolean).join(' ');
-        html += `<button class="${cls}" data-i="${i}" aria-label="Question ${q.number}">${q.number}${flagged?'<span class="kang-flag-icon">⚑</span>':''}</button>`;
+        html += `<button class="${cls}" data-i="${i}" aria-label="Question ${q.number}">${q.number}${flagged?'<span class="kang-flag-icon"><i data-lucide="flag" style="width:10px;height:10px;stroke-width:1.5"></i></span>':''}</button>`;
     });
     nav.innerHTML = html;
     nav.querySelectorAll('.kang-nav-btn').forEach(btn => {
@@ -214,7 +214,7 @@ function _examRenderQuestion() {
         <div class="kang-q-head">
             <div class="kang-q-id">Q${q.number} · ${pts} pts</div>
             <div class="kang-q-topic">${_mathEsc(q.topic || '')}</div>
-            <button class="kang-flag ${flagged ? 'is-on' : ''}" id="kang-flag-btn">⚑ Flag</button>
+            <button class="kang-flag ${flagged ? 'is-on' : ''}" id="kang-flag-btn"><i data-lucide="flag" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Flag</button>
         </div>
         ${qTextHtml}
         ${imgHtml}
@@ -222,6 +222,7 @@ function _examRenderQuestion() {
         ${checkHtml}
     `;
     if (pos) pos.textContent = `Question ${examState.idx + 1} of ${examState.questions.length}`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     host.querySelectorAll('.kang-opt').forEach(btn => {
         btn.addEventListener('click', () => {
             examState.answers[q.id] = btn.dataset.opt;
@@ -271,13 +272,14 @@ function _examShowFeedback(data) {
     const fb = document.getElementById('kang-feedback');
     if (!fb) return;
     const cls = data.is_correct ? 'kang-fb-ok' : 'kang-fb-no';
-    const head = data.is_correct ? '✓ Correct!' : `✗ Not quite — correct answer is (${_mathEsc(data.correct_answer)})`;
+    const head = data.is_correct ? '<i data-lucide="check-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Correct!' : `<i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Not quite — correct answer is (${_mathEsc(data.correct_answer)})`;
     fb.innerHTML = `
         <div class="kang-fb ${cls}">
             <div class="kang-fb-head">${head}</div>
             ${data.solution ? `<div class="kang-fb-sol">${_mathEsc(data.solution)}</div>` : ''}
         </div>
     `;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /** @tag MATH @tag KANGAROO */

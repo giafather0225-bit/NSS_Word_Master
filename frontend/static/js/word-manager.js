@@ -95,7 +95,7 @@
         const canLearn = wordCount > 0;
         card.innerHTML =
           '<div class="wm-lesson-info" data-lesson="' + name + '">' +
-            '<span class="wm-lesson-icon">📝</span>' +
+            '<span class="wm-lesson-icon"><i data-lucide="file-text" style="width:16px;height:16px;stroke-width:1.5"></i></span>' +
             '<div class="wm-lesson-meta">' +
               '<span class="wm-lesson-name">' + name.replace(/_/g, " ") + '</span>' +
               '<span class="wm-lesson-count">' + wordCount + ' words</span>' +
@@ -104,8 +104,8 @@
           '<div class="wm-lesson-actions">' +
             '<button class="wm-lesson-learn" data-lesson="' + name + '" title="Learn"' +
               (canLearn ? '' : ' disabled') + '>▶ Learn</button>' +
-            '<button class="wm-lesson-rename" data-lesson="' + name + '" title="Rename">✏️</button>' +
-            '<button class="wm-lesson-del" data-lesson="' + name + '" title="Delete">✕</button>' +
+            '<button class="wm-lesson-rename" data-lesson="' + name + '" title="Rename"><i data-lucide="pencil" style="width:14px;height:14px;pointer-events:none"></i></button>' +
+            '<button class="wm-lesson-del" data-lesson="' + name + '" title="Delete"><i data-lucide="x" style="width:14px;height:14px;pointer-events:none"></i></button>' +
           '</div>';
         card.querySelector(".wm-lesson-info").onclick = () => openLesson(name);
         const learnBtn = card.querySelector(".wm-lesson-learn");
@@ -123,6 +123,7 @@
         };
         container.appendChild(card);
       }
+      if (typeof lucide !== 'undefined') lucide.createIcons();
     } catch (err) {
       $("wm-lessons-container").innerHTML = '<div class="wm-empty">No word lists yet.<br>Create one to get started!</div>';
     }
@@ -175,7 +176,7 @@
         '<div class="wm-detail-title">' + name.replace(/_/g, " ") + '</div>' +
 
         '<div class="wm-mode-toggle">' +
-          '<button class="wm-mode-btn active" data-mode="manual">✏️ Direct Input</button>' +
+          '<button class="wm-mode-btn active" data-mode="manual"><i data-lucide="pencil" style="width:13px;height:13px;vertical-align:-2px;stroke-width:1.5"></i> Direct Input</button>' +
           '<button class="wm-mode-btn" data-mode="ai">AI Assist</button>' +
         '</div>' +
 
@@ -200,6 +201,7 @@
       '</div>';
 
     $("wm-back").onclick = () => renderLessonList();
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     body.querySelectorAll(".wm-mode-btn").forEach((btn) => {
       btn.onclick = () => {
@@ -369,13 +371,14 @@
           '<div class="wm-word-def">' + w.definition + '</div>' +
           (w.example ? '<div class="wm-word-ex">' + w.example + '</div>' : '') +
         '</div>' +
-        '<button class="wm-word-del" data-word="' + w.word.replace(/"/g, '&quot;') + '" title="Delete">✕</button>' +
+        '<button class="wm-word-del" data-word="' + w.word.replace(/"/g, '&quot;') + '" title="Delete"><i data-lucide="x" style="width:14px;height:14px;pointer-events:none"></i></button>' +
       '</div>';
     }).join("");
 
     list.querySelectorAll(".wm-word-del").forEach(function(btn) {
       btn.onclick = function() { deleteWord(btn.dataset.word); };
     });
+    if (typeof lucide !== 'undefined') lucide.createIcons();
   }
 
   async function deleteWord(word) {
@@ -545,10 +548,10 @@
         if (ans === truth) {
           correct++;
           fb.className = "wm-wt-fb ok";
-          fb.textContent = "✓ Correct!";
+          fb.textContent = "Correct!";
         } else {
           fb.className = "wm-wt-fb ng";
-          fb.textContent = "✗ Answer: " + w.word;
+          fb.textContent = "Answer: " + w.word;
         }
         input.disabled = true;
         $("wm-wt-submit").textContent = "Next →";
@@ -569,7 +572,7 @@
 
       body.innerHTML =
         '<div class="wm-detail" style="text-align:center;">' +
-          '<div class="wm-detail-title">' + (result.passed ? "🎉 Passed!" : "Keep practicing") + '</div>' +
+          '<div class="wm-detail-title">' + (result.passed ? "Passed!" : "Keep practicing") + '</div>' +
           '<div style="font-size:48px;font-weight:700;margin:20px 0;">' +
             correct + ' / ' + words.length + '</div>' +
           '<div style="color:var(--text-secondary);margin-bottom:16px;">' +
