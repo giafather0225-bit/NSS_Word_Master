@@ -81,9 +81,12 @@ function renderExam(el) {
                     const audio = new Audio(url);
                     audio.onended = () => URL.revokeObjectURL(url);
                     audio.onerror = () => URL.revokeObjectURL(url);
-                    audio.play().catch(() => URL.revokeObjectURL(url));
+                    audio.play().catch(err => {
+                        console.warn('[exam-tts] audio.play() failed:', err.message || err);
+                        URL.revokeObjectURL(url);
+                    });
                 })
-                .catch(() => {});
+                .catch(err => console.warn('[exam-tts] TTS fetch failed:', err.message || err));
             inp.value = "";
             setTimeout(async () => {
                 hideMagicOverlay();

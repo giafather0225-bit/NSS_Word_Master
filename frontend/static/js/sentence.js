@@ -21,7 +21,8 @@ async function evaluateSentence(word, sentence) {
         if (!res.ok) throw new Error(`evaluate ${res.status}`);
         const result = await res.json();
         return { structured: true, data: result };
-    } catch {
+    } catch (err) {
+        console.warn('[sentence] evaluate-sentence endpoint failed, falling back to tutor:', err.message || err);
         const feedback = await apiTutorReply(word, sentence);
         return { structured: false, data: feedback };
     }
@@ -334,6 +335,7 @@ function renderSentenceItem(el, item) {
                 setStatus("Here's a hint — give it another try!");
             }
         } catch(e) {
+            console.warn('[sentence] AI evaluation failed:', e.message || e);
             if (loadingEl) loadingEl.style.display = "none";
             if (inp) inp.disabled = false;
             si.disabled = false;
