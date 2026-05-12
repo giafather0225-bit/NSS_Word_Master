@@ -371,7 +371,7 @@
             new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 15000)),
         ]).catch(err => {
             console.warn('[collocation] submitAnswers timed out or failed:', err.message || err);
-            return { correct_count: 0, total: userAnswers.length, xp_earned: 0, perfect: false };
+            return { correct_count: 0, total: answers.length, xp_earned: 0, perfect: false };
         });
 
         var correctCount = result.correct_count;

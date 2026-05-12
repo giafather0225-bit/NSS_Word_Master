@@ -93,8 +93,8 @@
 
 /* ── Mic recording → Lavender pulse ── */
 @keyframes mic-pulse-lavender {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(184, 164, 220, 0.55); }
-    50%      { box-shadow: 0 0 0 10px rgba(184, 164, 220, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--rewards-primary) 55%, transparent); }
+    50%      { box-shadow: 0 0 0 10px color-mix(in srgb, var(--rewards-primary) 0%, transparent); }
 }
 .pm-mic-btn.recording {
     background: var(--rewards-primary);
