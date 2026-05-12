@@ -73,6 +73,8 @@ function switchView(view) {
     const _engSb = document.getElementById('sidebar');
     if (_engSb) _engSb.classList.remove('collapsed');
     localStorage.removeItem('sb_collapsed');
+    // H1: reset any in-progress lesson state so the idle card renders cleanly
+    if (typeof window._clearEnglishSessionState === 'function') window._clearEnglishSessionState();
     if (typeof initCKLA === 'function') initCKLA();
     if (typeof lucide !== 'undefined') lucide.createIcons();
   } else if (view === 'diary') {

@@ -380,13 +380,12 @@
             // child.js's own nav flow take over (idle card / hero CTA re-renders).
             clearStages(ctx);
             closeExam();
+            // H3/H4: child.js uses let-scoped vars not on window — use the
+            // dedicated cleanup helper so stage/sessionActive are properly reset.
             setTimeout(function() {
-                if (typeof window.renderStage === 'function') {
-                    // Reset in-memory stage state so the idle card shows
-                    if (typeof window.stage !== 'undefined') window.stage = null;
-                    window.renderStage();
+                if (typeof window._clearEnglishSessionState === 'function') {
+                    window._clearEnglishSessionState();
                 } else {
-                    // Absolute fallback — rare
                     location.reload();
                 }
             }, 300);

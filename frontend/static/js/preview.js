@@ -317,10 +317,10 @@ function openPreviewModal(item, onClose) {
             badge.textContent=effectiveStatus==='ok'?'✓':'~';
             card.appendChild(badge);
         }
-        if (previewDoneMap.size>=items.length) {
+        if (items.length > 0 && stage === STAGE.PREVIEW && previewDoneMap.size>=items.length) {
             const m=$('preview-modal'); if(m){m.classList.add('hidden');m.hidden=true;}
             stageFxCorrect(); setStatus("Preview complete!");
-            setTimeout(()=>{ if(stage===STAGE.PREVIEW||stage===null) advanceToNextStage(); },800);
+            setTimeout(()=>{ advanceToNextStage(); },800);
         } else {
             setStatus(`${[...previewDoneMap.values()].filter(v=>v==="ok").length} / ${items.length} done`);
         }

@@ -298,7 +298,9 @@ function renderSentenceItem(el, item) {
                          && !/perfect sentence|correct|great!/i.test(feedbackText.slice(0, 80));
             }
 
-            if (!hasError || attempt >= 2) {
+            // H9: read live state (not the stale closure value) to detect 2nd attempt
+            const currentAttempt = smState.attempt[item.id] || 1;
+            if (!hasError || currentAttempt >= 2) {
                 // OK or 2nd attempt → advance
                 stageFxCorrect();
                 starCount++;

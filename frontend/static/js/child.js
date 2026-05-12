@@ -432,6 +432,9 @@ async function startLessonAt(stageKey) {
     examIndex      = 0;
     wordVaultSet.clear();
     renderWordVault();
+    // H2: force-close any lingering preview modal before the new stage renders
+    const _pm = document.getElementById('preview-modal');
+    if (_pm) { _pm.classList.add('hidden'); _pm.hidden = true; _pm.style.display = 'none'; }
 
     const ex0 = $("btn-exam");
     if (ex0) ex0.disabled = !allStagesDone();
@@ -521,6 +524,24 @@ function wireStartButtons() {
 // Keyboard shortcuts and openParentDashboard moved to child-keyboard.js
 
 // Text-replacement pass moved to child-text.js
+
+/**
+ * H1: Reset all in-memory English session state and return to the idle card.
+ * Called by home.js switchView('english') and finaltest.js fail path so
+ * let-scoped variables (not on window) are properly cleared.
+ * @tag NAVIGATION ENGLISH
+ */
+window._clearEnglishSessionState = function() {
+    if (window.TTS && typeof window.TTS.stop === 'function') window.TTS.stop();
+    stage         = null;
+    sessionActive = false;
+    stageIndex    = 0;
+    if (typeof exitSessionSidebar === 'function') exitSessionSidebar();
+    const pm = document.getElementById('preview-modal');
+    if (pm) { pm.classList.add('hidden'); pm.hidden = true; pm.style.display = 'none'; }
+    renderIdleStage();
+    updateRoadmapUI();
+};
 
 // Sidebar Mini Calendar moved to child-calendar.js
 

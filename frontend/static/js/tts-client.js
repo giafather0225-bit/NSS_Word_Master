@@ -11,6 +11,8 @@
 // as local variables; these module-level ones serve the global helpers.
 /** @tag TTS */
 let _globalCurrentAudio = null;
+// H7/H8: store the pending Promise resolve so TTS.stop() can unblock callers
+let _globalAudioResolve = null;
 
 window.TTS = {
     stop: () => {
@@ -18,6 +20,10 @@ window.TTS = {
             _globalCurrentAudio.pause();
             _globalCurrentAudio.currentTime = 0;
             _globalCurrentAudio = null;
+        }
+        if (_globalAudioResolve) {
+            _globalAudioResolve();
+            _globalAudioResolve = null;
         }
         if (window.speechSynthesis?.speaking) {
             window.speechSynthesis.cancel();
@@ -84,8 +90,9 @@ async function apiPreviewTTS(item) {
         const audio = new Audio(url);
         _globalCurrentAudio = audio;
         await new Promise((resolve, reject) => {
-            audio.onended = () => { URL.revokeObjectURL(url); _globalCurrentAudio = null; resolve(); };
-            audio.onerror = (e) => { URL.revokeObjectURL(url); _globalCurrentAudio = null; reject(e); };
+            _globalAudioResolve = resolve;
+            audio.onended = () => { URL.revokeObjectURL(url); _globalCurrentAudio = null; _globalAudioResolve = null; resolve(); };
+            audio.onerror = (e) => { URL.revokeObjectURL(url); _globalCurrentAudio = null; _globalAudioResolve = null; reject(e); };
             audio.play().catch(reject);
         });
     } catch (err) {
@@ -128,8 +135,9 @@ async function apiWordOnly(word) {
         const audio = new Audio(url);
         _globalCurrentAudio = audio;
         await new Promise((resolve, reject) => {
-            audio.onended = () => { URL.revokeObjectURL(url); _globalCurrentAudio = null; resolve(); };
-            audio.onerror = (e) => { URL.revokeObjectURL(url); _globalCurrentAudio = null; reject(e); };
+            _globalAudioResolve = resolve;
+            audio.onended = () => { URL.revokeObjectURL(url); _globalCurrentAudio = null; _globalAudioResolve = null; resolve(); };
+            audio.onerror = (e) => { URL.revokeObjectURL(url); _globalCurrentAudio = null; _globalAudioResolve = null; reject(e); };
             audio.play().catch(reject);
         });
     } catch (err) {
@@ -175,8 +183,9 @@ async function apiExampleFull(sentence) {
         const audio = new Audio(url);
         _globalCurrentAudio = audio;
         await new Promise((resolve, reject) => {
-            audio.onended = () => { URL.revokeObjectURL(url); _globalCurrentAudio = null; resolve(); };
-            audio.onerror = (e) => { URL.revokeObjectURL(url); _globalCurrentAudio = null; reject(e); };
+            _globalAudioResolve = resolve;
+            audio.onended = () => { URL.revokeObjectURL(url); _globalCurrentAudio = null; _globalAudioResolve = null; resolve(); };
+            audio.onerror = (e) => { URL.revokeObjectURL(url); _globalCurrentAudio = null; _globalAudioResolve = null; reject(e); };
             audio.play().catch(reject);
         });
     } catch (err) {
