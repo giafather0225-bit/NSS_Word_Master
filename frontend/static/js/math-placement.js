@@ -122,7 +122,8 @@ async function _fetchNextPlacementQ() {
     } catch (err) {
         console.warn('[placement] next failed', err);
         stage.innerHTML = `<div class="math-wrong-review"><p>Hmm, that didn't load. Let's try again!</p>
-            <button class="math-btn-primary" id="math-placement-retry">↻ Try Again</button></div>`;
+            <button class="math-btn-primary" id="math-placement-retry"><i data-lucide="rotate-ccw" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Try Again</button></div>`;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
         const retryBtn = document.getElementById('math-placement-retry');
         if (retryBtn) retryBtn.addEventListener('click', () => _fetchNextPlacementQ());
     }

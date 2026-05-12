@@ -59,12 +59,13 @@ function _mathRenderReviewEmpty() {
     if (!stage) return;
     stage.innerHTML = `
         <div class="math-wrong-review">
-            <div class="math-feedback-icon">🎉</div>
+            <div class="math-feedback-icon"><i data-lucide="check-circle" style="width:48px;height:48px;stroke-width:1.5;color:var(--math-primary)"></i></div>
             <h2>All caught up!</h2>
             <p>No problems due for review today.</p>
             <p class="math-wrong-list">New wrong answers get scheduled automatically after each lesson.</p>
         </div>
     `;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 // ── Problem renderer (reuse problem-ui renderers) ─────────
@@ -88,7 +89,7 @@ function _renderReviewProblem() {
     stage.innerHTML = `
         <div class="math-problem-wrap">
             <div class="math-problem-header">
-                <span class="math-problem-stage">🔁 Review</span>
+                <span class="math-problem-stage"><i data-lucide="refresh-cw" style="width:13px;height:13px;vertical-align:-2px;stroke-width:1.5"></i> Review</span>
                 <span class="math-problem-counter">${idx + 1} / ${total}</span>
             </div>
             <div class="math-problem-card">
@@ -101,6 +102,7 @@ function _renderReviewProblem() {
         </div>
     `;
 
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     const body = document.getElementById('math-problem-body');
     const onSubmit = async function (_problem, answer) {
         const bodyEl = document.getElementById('math-problem-body');
@@ -151,8 +153,8 @@ function _showReviewFeedback(data, onContinue) {
     if (!stage) return;
     const klass = data.is_correct ? 'math-feedback-correct' : 'math-feedback-wrong';
     const label = data.is_correct
-        ? (data.is_mastered ? '✓ Mastered!' : '✓ Correct')
-        : '❌ Try again next time';
+        ? (data.is_mastered ? '<i data-lucide="check-circle" style="width:16px;height:16px;vertical-align:-2px;stroke-width:1.5"></i> Mastered!' : '<i data-lucide="check" style="width:16px;height:16px;vertical-align:-2px;stroke-width:2"></i> Correct')
+        : '<i data-lucide="x-circle" style="width:16px;height:16px;vertical-align:-2px;stroke-width:1.5"></i> Try again next time';
     const sub = data.is_correct
         ? (data.is_mastered ? 'Removed from review list.' : 'Nice — keep it up.')
         : `Answer: ${_mathEsc(data.correct_answer || '')}`;
@@ -168,6 +170,7 @@ function _showReviewFeedback(data, onContinue) {
         </div>
     `;
     stage.appendChild(overlay);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     document.getElementById('math-review-continue').addEventListener('click', () => {
         overlay.remove();
         onContinue();
@@ -185,7 +188,7 @@ function _mathRenderReviewSummary() {
     const pct = total ? Math.round((correct / total) * 100) : 0;
     stage.innerHTML = `
         <div class="math-round-summary">
-            <div class="math-summary-icon">🎯</div>
+            <div class="math-summary-icon"><i data-lucide="target" style="width:48px;height:48px;stroke-width:1.5;color:var(--math-primary)"></i></div>
             <h2 class="math-summary-title">Review Complete</h2>
             <div class="math-summary-score">${correct} / ${total}</div>
             <div class="math-summary-pct">${pct}% correct today</div>
@@ -195,13 +198,14 @@ function _mathRenderReviewSummary() {
             <div class="math-summary-weak">
                 <div class="math-summary-weak-label">Result</div>
                 <div class="math-summary-weak-list">
-                    <span class="math-summary-chip">✓ Mastered: ${mathReviewState.mastered}</span>
-                    <span class="math-summary-chip">🔁 Scheduled again: ${mathReviewState.advanced}</span>
+                    <span class="math-summary-chip"><i data-lucide="check" style="width:12px;height:12px;vertical-align:-1px;stroke-width:2.5"></i> Mastered: ${mathReviewState.mastered}</span>
+                    <span class="math-summary-chip"><i data-lucide="rotate-ccw" style="width:12px;height:12px;vertical-align:-1px;stroke-width:2"></i> Scheduled again: ${mathReviewState.advanced}</span>
                 </div>
             </div>
             <button class="math-btn-primary math-summary-cta" id="math-review-done">Back</button>
         </div>
     `;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     document.getElementById('math-review-done').addEventListener('click', () => {
         if (typeof loadMathSidebarStatus === 'function') loadMathSidebarStatus();
         if (typeof hideLessonStage === 'function') hideLessonStage();

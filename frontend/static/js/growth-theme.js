@@ -35,10 +35,11 @@ async function gtRenderTheme() {
         if (!data.active) {
             display.innerHTML = `
                 <div class="theme-placeholder gt-empty" onclick="event.stopPropagation(); gtOpenSelector()">
-                    <div>🌱</div>
+                    <div><i data-lucide="sprout" style="width:28px;height:28px;stroke-width:1.5"></i></div>
                     <div class="gt-empty-title">Choose a Theme</div>
                     <div class="gt-empty-sub">Tap to start growing!</div>
                 </div>`;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             return;
         }
 
@@ -62,7 +63,8 @@ async function gtRenderTheme() {
 
     } catch (_) {
         const display2 = document.getElementById("growth-theme-display");
-        if (display2) display2.innerHTML = `<div class="theme-placeholder" style="padding:12px;text-align:center;color:var(--text-secondary)">🌱</div>`;
+        if (display2) display2.innerHTML = `<div class="theme-placeholder" style="padding:12px;text-align:center;color:var(--text-secondary)"><i data-lucide="sprout" style="width:24px;height:24px;stroke-width:1.5"></i></div>`;
+        if (display2 && typeof lucide !== 'undefined') lucide.createIcons();
     }
 }
 
@@ -91,7 +93,7 @@ async function gtOpenThemeDetail() {
     const label = GT_LABELS[t.theme] || t.theme;
     const stepXpNeed = nextXp ? (nextXp - totalXp) : 0;
     const hintText = t.is_completed
-        ? "✓ Theme complete!"
+        ? "Theme complete!"
         : (nextXp ? `${stepXpNeed} XP until Step ${t.current_step + 1}` : "Max step reached");
 
     const bg = document.createElement("div");
@@ -100,7 +102,7 @@ async function gtOpenThemeDetail() {
     bg.onclick = (e) => { if (e.target === bg) bg.remove(); };
     bg.innerHTML = `
         <div class="gt-detail-modal">
-            <button class="gt-detail-close" onclick="document.getElementById('gt-detail-modal-bg').remove()">✕</button>
+            <button class="gt-detail-close" onclick="document.getElementById('gt-detail-modal-bg').remove()"><i data-lucide="x" style="width:16px;height:16px"></i></button>
             <img src="${t.img_url}" alt="${label}" class="gt-detail-img" onerror="this.style.display='none'">
             <div class="gt-detail-title">${label}</div>
             <div class="gt-detail-sub">Growth Theme · Step ${t.current_step} / 5</div>
@@ -126,6 +128,7 @@ async function gtOpenThemeDetail() {
             </div>
         </div>`;
     document.body.appendChild(bg);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 // ─── Advance ──────────────────────────────────────────────────
@@ -141,7 +144,7 @@ async function gtAdvance() {
             const data = await res.json();
             if (data.advanced && data.advanced.length > 0) {
                 data.advanced.forEach(step => {
-                    const msg = step === 5 ? "✓ Theme Complete!" : `✦ Step ${step} Unlocked!`;
+                    const msg = step === 5 ? "Theme Complete!" : `Step ${step} Unlocked!`;
                     if (typeof _showXPToast === "function") _showXPToast(msg);
                 });
             }
@@ -170,7 +173,7 @@ async function gtOpenSelector() {
     const cards = GT_THEMES.map(key => {
         const info = themeData.find(t => t.theme === key) || {};
         const step = info.current_step || 0;
-        const done = info.is_completed ? "✓" : "";
+        const done = info.is_completed ? `<i data-lucide="check" style="width:12px;height:12px;vertical-align:-1px;stroke-width:2.5"></i>` : "";
         return `<div class="gt-sel-card" onclick="gtSelectTheme('${key}')">
             <img src="/static/img/themes/${key}/step_${step}_v1.svg"
                  style="width:80px;height:80px;border-radius:var(--radius-md);object-fit:cover"
@@ -190,12 +193,13 @@ async function gtOpenSelector() {
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
                 <span style="font-size:16px;font-weight:700;color:var(--text-primary)">Choose a Theme</span>
                 <button onclick="document.getElementById('gt-modal-bg').remove()"
-                        style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-secondary)">✕</button>
+                        style="background:none;border:none;cursor:pointer;color:var(--text-secondary);display:flex;align-items:center"><i data-lucide="x" style="width:18px;height:18px"></i></button>
             </div>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">${cards}</div>
             <p style="font-size:11px;color:var(--text-secondary);margin-top:12px;text-align:center">Select a theme to grow with your XP!</p>
         </div>`;
     document.body.appendChild(bg);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /**

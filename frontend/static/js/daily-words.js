@@ -158,13 +158,14 @@ function _dwRenderPlacementIntro() {
     view.innerHTML = `
         ${_dwHeader("Daily Words", _dwGradeLabel(dwState.grade))}
         <div class="dw-placement-intro">
-            <h2>📋 Placement Test</h2>
+            <h2><i data-lucide="clipboard-list" style="width:20px;height:20px;vertical-align:-3px;stroke-width:1.5"></i> Placement Test</h2>
             <p>${dwState.words.length} words. Choose the correct meaning for each.<br>
                Words you miss become your <strong>study list</strong> for this week.</p>
             <div class="dw-btn-row">
                 <button class="dw-btn dw-btn-primary" onclick="_dwPlacementNext()">Start →</button>
             </div>
         </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /**

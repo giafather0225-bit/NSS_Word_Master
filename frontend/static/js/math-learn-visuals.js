@@ -157,7 +157,7 @@ function _lvIllustration(d) {
     if (!desc) return '';
     return _lvWrap(`
         <div class="math-lv-illus">
-            <span class="math-lv-illus-icon">🎨</span>
+            <span class="math-lv-illus-icon"><i data-lucide="palette" style="width:18px;height:18px;stroke-width:1.5"></i></span>
             <span class="math-lv-illus-text">${_mathEsc(desc)}</span>
         </div>
     `);

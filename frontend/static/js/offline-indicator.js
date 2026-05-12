@@ -36,7 +36,7 @@
             'z-index:9999', 'display:none',
             'font-family:-apple-system,BlinkMacSystemFont,sans-serif',
         ].join(';');
-        el.textContent = '⚡ Offline — showing cached content';
+        el.textContent = 'Offline — showing cached content';
         document.body.appendChild(el);
     };
 

@@ -49,7 +49,8 @@ async function startMathDaily() {
         }
     } catch (err) {
         console.warn('[math] daily load failed', err);
-        stage.innerHTML = `<div class="math-daily"><p class="math-err">Hmm, that didn't load. Let's try again!</p><button class="math-btn-primary" onclick="startMathDaily()">↻ Try Again</button></div>`;
+        stage.innerHTML = `<div class="math-daily"><p class="math-err">Hmm, that didn't load. Let's try again!</p><button class="math-btn-primary" onclick="startMathDaily()"><i data-lucide="rotate-ccw" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Try Again</button></div>`;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
     }
 }
 
@@ -68,7 +69,7 @@ function _renderDailyIntro() {
     if (!stage) return;
     stage.innerHTML = `
         <div class="math-daily math-daily-intro">
-            <h2 class="math-daily-title">🌞 Daily Challenge</h2>
+            <h2 class="math-daily-title"><i data-lucide="sun" style="width:20px;height:20px;vertical-align:-3px;stroke-width:1.5"></i> Daily Challenge</h2>
             <p class="math-daily-sub">${_mathEsc(dailyState.date)}</p>
             <p class="math-daily-desc">
                 ${dailyState.problems.length} quick problems.<br>
@@ -76,6 +77,7 @@ function _renderDailyIntro() {
             </p>
             <button class="math-btn-primary" id="math-daily-go">Start</button>
         </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     document.getElementById('math-daily-go').addEventListener('click', () => {
         dailyState.idx = 0;
         dailyState.correct = 0;
@@ -178,9 +180,10 @@ async function _submitDailyAnswer(answer) {
     if (fb) {
         fb.className = `math-daily-feedback ${result.is_correct ? 'math-fb-ok' : 'math-fb-no'}`;
         fb.innerHTML = `
-            <div class="math-fb-line">${result.is_correct ? '✓ Correct!' : `✗ Answer: <strong>${_mathEsc(result.correct_answer)}</strong>`}</div>
+            <div class="math-fb-line">${result.is_correct ? '<i data-lucide="check-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Correct!' : `<i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Answer: <strong>${_mathEsc(result.correct_answer)}</strong>`}</div>
             ${result.feedback ? `<div class="math-fb-hint">${_mathEsc(result.feedback)}</div>` : ''}
             <button class="math-btn-primary math-daily-next" id="math-daily-next">Next →</button>`;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
         const nextBtn = document.getElementById('math-daily-next');
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {

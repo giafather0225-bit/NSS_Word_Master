@@ -740,9 +740,10 @@ async function _renderTimeline() {
         const events = data.events || [];
         if (!events.length) {
             body.innerHTML = `<div class="ds-empty">
-                <span class="ds-empty-icon">🌱</span>
+                <span class="ds-empty-icon"><i data-lucide="sprout" style="width:24px;height:24px;stroke-width:1.5"></i></span>
                 Keep learning to unlock milestones!
             </div>`;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             return;
         }
         const KIND = {
@@ -830,7 +831,7 @@ async function _submitDayOff(e) {
         });
         if (res.ok) {
             const data = await res.json().catch(() => ({}));
-            if (btn) btn.textContent = data.email_queued ? "Sent ✓ (parent notified)" : "Sent ✓";
+            if (btn) btn.textContent = data.email_queued ? "Sent (parent notified)" : "Sent";
             _loadDayOffStatus();
         } else {
             const err = await res.json().catch(() => ({}));
@@ -854,9 +855,10 @@ async function _loadDayOffStatus() {
         const rows = data.requests || [];
         if (!rows.length) {
             el.innerHTML = `<div class="ds-empty">
-                <span class="ds-empty-icon">☕</span>
+                <span class="ds-empty-icon"><i data-lucide="coffee" style="width:24px;height:24px;stroke-width:1.5"></i></span>
                 No requests yet.
             </div>`;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             return;
         }
         const LABEL = { pending: "Pending", approved: "Approved", denied: "Denied" };
@@ -906,9 +908,10 @@ async function _renderSentences() {
         const lessons = data.lessons || [];
         if (!lessons.length || data.total_sentences === 0) {
             body.innerHTML = `<div class="ds-empty">
-                <span class="ds-empty-icon">📝</span>
+                <span class="ds-empty-icon"><i data-lucide="file-text" style="width:24px;height:24px;stroke-width:1.5"></i></span>
                 No sentences yet. Finish Step 5 of a lesson to start collecting them.
             </div>`;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             return;
         }
         const now   = Date.now();
@@ -955,9 +958,10 @@ async function _renderWorlds() {
         const body = document.getElementById("ds-worlds-body");
         if (!done.length) {
             body.innerHTML = `<div class="ds-empty">
-                <span class="ds-empty-icon">🌱</span>
+                <span class="ds-empty-icon"><i data-lucide="sprout" style="width:24px;height:24px;stroke-width:1.5"></i></span>
                 Finish a Growth Theme to plant your first world here.
             </div>`;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             return;
         }
         body.innerHTML = `<div class="ds-worlds-grid">${done.map(t => `
