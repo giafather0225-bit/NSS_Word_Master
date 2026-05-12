@@ -21,7 +21,7 @@ function renderPreview(el) {
             card.className = `preview-card${st === "ok" ? " done" : st === "miss" ? " failed" : ""}`;
             card.dataset.id = item.id;
             card.innerHTML = `<div class="pc-word">${escapeHtml(item.answer)}</div>
-                ${st === "ok" ? '<span class="pc-badge ok">✓</span>' : ""}
+                ${st === "ok" ? '<span class="pc-badge ok">done</span>' : ""}
                 ${st === "miss" ? '<span class="pc-badge miss">~</span>' : ""}`;
             card.addEventListener("click", () => openPreviewModal(item, buildGrid));
             grid.appendChild(card);
@@ -95,7 +95,7 @@ function openPreviewModal(item, onClose) {
             mic.innerHTML = rec ? '<i data-lucide="square"></i>' : '<i data-lucide="mic"></i>'; mic.disabled = done || !listenDone;
             if (!done && !rec && listenDone) mic.addEventListener('click', () => startShadow(i));
             const icon = document.createElement('span'); icon.className = 'pm-row-icon';
-            icon.textContent = done ? '✓' : '○';
+            icon.textContent = done ? 'done' : '○';
             icon.style.color = autoPassed ? 'var(--color-warning)' : passed ? 'var(--color-success)' : 'var(--text-hint)';
             const scoreEl = document.createElement('span'); scoreEl.className = 'pm-score-text';
             scoreEl.textContent = autoPassed ? 'auto' : (score!==null ? score+'%' : '');
@@ -177,7 +177,7 @@ function openPreviewModal(item, onClose) {
             inp.disabled=locked||result!==null;
             if (result===true) inp.value=word;
             const icon=document.createElement('span'); icon.className='pm-row-icon';
-            icon.textContent=result===true?'✓':result===false?'✗':'○';
+            icon.textContent=result===true?'done':result===false?'×':'○';
             icon.style.color=result===true?'var(--color-success)':result===false?'var(--color-error)':'var(--text-hint)';
             const btn=document.createElement('button'); btn.type='button'; btn.className='pm-chk-btn'; btn.textContent='Check';
             btn.disabled=locked||result!==null;
@@ -316,7 +316,7 @@ function openPreviewModal(item, onClose) {
             const old=card.querySelector('.pc-badge'); if(old) old.remove();
             const badge=document.createElement('span');
             badge.className=`pc-badge ${effectiveStatus==='ok'?'ok':'miss'}`;
-            badge.textContent=effectiveStatus==='ok'?'✓':'~';
+            badge.textContent=effectiveStatus==='ok'?'done':'~';
             card.appendChild(badge);
         }
         if (items.length > 0 && stage === STAGE.PREVIEW && previewDoneMap.size>=items.length) {

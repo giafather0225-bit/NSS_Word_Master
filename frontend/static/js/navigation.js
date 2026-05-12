@@ -99,7 +99,7 @@ async function loadLessons(subject, textbook) {
         opt.value = l;
         const done = isLessonComplete(subject, textbook, l);
         const label = l.replace(/_/g, ' ');
-        opt.textContent = `${done ? "✓ " : ""}${label}${ready ? "" : " ·"}`;
+        opt.textContent = `${done ? "[done] " : ""}${label}${ready ? "" : " ·"}`;
         opt.dataset.ready = ready ? "true" : "false";
         if (l === selectedLesson) opt.selected = true;
         sel.appendChild(opt);
@@ -240,7 +240,7 @@ function updateRoadmapUI() {
 
         // Base label: strip "N. " numeric prefix
         const rawLabel = ROADMAP_LABELS[i] || "";
-        let label = rawLabel.replace(/^\d+\.\s*/, '').replace(/^✓\s*/, '').trim();
+        let label = rawLabel.replace(/^\d+\.\s*/, '').replace(/^\[done\]\s*/, '').trim();
 
         // Append progress info for the current stage
         if (isCurrent) {
@@ -439,7 +439,7 @@ function initLessonDropdownUI() {
     const nameEl = display.querySelector('.sb-tb-name-text');
 
     function cleanText(t) {
-        return t.replace(/^✓\s*/, '').replace(/\s*·\s*$/, '').trim();
+        return t.replace(/^\[done\]\s*/, '').replace(/\s*·\s*$/, '').trim();
     }
 
     function sync() {

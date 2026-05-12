@@ -430,7 +430,7 @@ function refreshLessonCompletion() {
     Array.from(sel.options).forEach(opt => {
         if (!opt.value) return;
         const done = isLessonComplete(currentSubject, currentTextbook, opt.value);
-        opt.textContent = (done ? "✓ " : "") + opt.value + (opt.dataset.ready === "false" ? " ·" : "");
+        opt.textContent = (done ? "[done] " : "") + opt.value + (opt.dataset.ready === "false" ? " ·" : "");
     });
 }
 
