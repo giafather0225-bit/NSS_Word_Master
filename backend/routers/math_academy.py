@@ -262,7 +262,8 @@ def get_stage_problems(grade: str, unit: str, lesson: str, stage: str, db: Sessi
 
     Stages: pre_test, learn, try, exit_quiz, practice_r1, practice_r2, practice_r3
     """
-    valid_stages = {"pre_test", "learn", "try", "exit_quiz", "practice_r1", "practice_r2", "practice_r3"}
+    # Accept both "pretest" (JSON file key / frontend URL) and "pre_test" (DB canonical)
+    valid_stages = {"pretest", "pre_test", "learn", "try", "exit_quiz", "practice_r1", "practice_r2", "practice_r3"}
     if stage not in valid_stages:
         raise HTTPException(status_code=400, detail=f"Invalid stage: {stage}")
 
@@ -652,15 +653,15 @@ class TrySubmitIn(BaseModel):
     grade: str
     unit: str
     lesson: str
-    problem_id: str
-    user_answer: str
+    problem_id: str = Field(..., max_length=80)
+    user_answer: str = Field("", max_length=200)
     time_spent_sec: int = 0
     attempt_number: int = 1  # 1 = first attempt, 2 = retry (2-stage feedback)
 
 
 class ExitQuizAnswerIn(BaseModel):
-    problem_id: str
-    user_answer: str
+    problem_id: str = Field(..., max_length=80)
+    user_answer: str = Field("", max_length=200)
     time_spent_sec: int = 0
 
 
@@ -668,7 +669,7 @@ class ExitQuizSubmitIn(BaseModel):
     grade: str
     unit: str
     lesson: str
-    answers: list[ExitQuizAnswerIn]
+    answers: list[ExitQuizAnswerIn] = Field(..., max_length=20)
 
 
 class RoundCompleteIn(BaseModel):
@@ -1195,6 +1196,15 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
 
     all_problems: list[dict] = []
 
+    # Pre-fetch all spaced review rows + wrong review counts once — avoids N+1 inside the loop.
+    all_sr_rows = db.query(MathSpacedReview).all() if due_lessons else []
+    all_wrong_pids_global = (
+        db.query(MathWrongReview.problem_id)
+        .filter(MathWrongReview.is_mastered.is_(False))
+        .all()
+        if due_lessons else []
+    )
+
     for sr in due_lessons:
         data = _load_lesson_json(sr.grade, sr.unit_id, _lesson_name(sr.lesson_id))
         if not data:
@@ -1212,28 +1222,17 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
             for p in sampled:
                 lesson_problems.append(_build_sr_problem(p, sr.lesson_id, sr.unit_id, sr.grade, lesson_title))
 
-            # 2 interleaved from weakest prior lesson
-            prior_srs = (
-                db.query(MathSpacedReview)
-                .filter(
-                    MathSpacedReview.grade == sr.grade,
-                    MathSpacedReview.id != sr.id,
-                    MathSpacedReview.unit_id < sr.unit_id,
-                )
-                .all()
-            )
-            earlier = [p for p in prior_srs if _unit_number(p.unit_id) < unit_num]
+            # 2 interleaved from weakest prior lesson (Python-side filter — no extra DB query)
+            earlier = [
+                p for p in all_sr_rows
+                if p.id != sr.id
+                and p.grade == sr.grade
+                and _unit_number(p.unit_id) < unit_num
+            ]
             if earlier:
-                # Pre-fetch all wrong review problem_ids in one query, then count in Python
-                # (problem_id LIKE %lesson_id% requires Python-side matching for batch)
                 lesson_ids = {p.lesson_id for p in earlier}
-                all_wrong_pids = (
-                    db.query(MathWrongReview.problem_id)
-                    .filter(MathWrongReview.is_mastered.is_(False))
-                    .all()
-                )
                 wrong_counts: dict[str, int] = {}
-                for (pid,) in all_wrong_pids:
+                for (pid,) in all_wrong_pids_global:
                     for lid in lesson_ids:
                         if lid in pid:
                             wrong_counts[lid] = wrong_counts.get(lid, 0) + 1
