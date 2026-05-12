@@ -50,9 +50,6 @@ from .assistant import AssistantLog, AiCallLog
 from .us_academy import (
     USAcademyWord,
     USAcademyWordProgress,
-    USAcademyPassage,
-    USAcademySession,
-    USAcademyUnitResult,
 )
 from .ckla import (
     CKLADomain,
@@ -86,9 +83,8 @@ __all__ = [
     "MathSpacedReview", "MathUnitTest", "MathPlacementTest",
     # assistant / ai audit
     "AssistantLog", "AiCallLog",
-    # us academy (word-first, SM-2)
-    "USAcademyWord", "USAcademyWordProgress", "USAcademyPassage",
-    "USAcademySession", "USAcademyUnitResult",
+    # us academy words (active — used by CKLA)
+    "USAcademyWord", "USAcademyWordProgress",
     # ckla (passage-centric)
     "CKLADomain", "CKLALesson", "CKLAQuestion",
     "CKLAWordLesson", "CKLALessonProgress", "CKLAQuestionResponse",
