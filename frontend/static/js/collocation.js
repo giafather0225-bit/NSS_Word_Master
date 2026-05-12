@@ -366,7 +366,13 @@
         setProgress(1);
         setBody('<div class="coll-loading"><div class="coll-spinner"></div><p>Calculating score…</p></div>');
 
-        var result = await submitAnswers();
+        var result = await Promise.race([
+            submitAnswers(),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 15000)),
+        ]).catch(err => {
+            console.warn('[collocation] submitAnswers timed out or failed:', err.message || err);
+            return { correct_count: 0, total: userAnswers.length, xp_earned: 0, perfect: false };
+        });
 
         var correctCount = result.correct_count;
         var total        = result.total;

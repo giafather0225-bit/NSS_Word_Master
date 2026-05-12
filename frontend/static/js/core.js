@@ -354,7 +354,11 @@ function markStageComplete(stageKey) {
     if (!stageKey) return;
     const done = getCompletedStages();
     done.add(stageKey);
-    localStorage.setItem(stageStorageKey(), JSON.stringify([...done]));
+    try {
+        localStorage.setItem(stageStorageKey(), JSON.stringify([...done]));
+    } catch (e) {
+        console.warn('[core] localStorage.setItem failed (QuotaExceeded?):', e.message || e);
+    }
     if (window.ReviewModule && typeof window.ReviewModule.registerLesson === "function") {
         try { window.ReviewModule.registerLesson(currentSubject, currentTextbook, selectedLesson); } catch(e) { console.warn("[SM2] registerLesson error:", e); }
     }

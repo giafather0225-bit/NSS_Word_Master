@@ -263,7 +263,8 @@ function renderSentenceItem(el, item) {
 
     si.addEventListener("click", async () => {
         const sentence = (inp ? inp.value || "" : "").trim();
-        if (!sentence || sentence.split(/\s+/).length < 2) {
+        const wordTokens = sentence.split(/\s+/).filter(w => /[a-zA-Z0-9]/.test(w));
+        if (!sentence || wordTokens.length < 2) {
             setStatus("Write a full sentence (at least 2 words)!");
             return;
         }
