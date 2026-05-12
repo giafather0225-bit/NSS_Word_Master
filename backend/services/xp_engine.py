@@ -159,6 +159,7 @@ def award_xp(
     detail: str = "",
     earned_date: str | None = None,
     source: str = "",
+    commit: bool = True,
 ) -> int:
     """Award XP for an action. Returns actual XP awarded (0 if already awarded today).
 
@@ -171,6 +172,9 @@ def award_xp(
         detail: Optional extra context (word string for word_correct).
         earned_date: ISO date string override; defaults to today.
         source: Module that triggered the award (e.g. "ckla", "math", "english").
+        commit: If False, only db.add() — caller is responsible for db.commit().
+                Use commit=False when award_xp is called inside a larger transaction
+                so that XP and the surrounding changes are committed atomically.
 
     Returns:
         XP points actually inserted, or 0 if deduped / unknown action.
@@ -207,7 +211,8 @@ def award_xp(
     )
     db.add(log)
     _award_lumi_for_action(db, action)
-    db.commit()
+    if commit:
+        db.commit()
     return xp_amount
 
 

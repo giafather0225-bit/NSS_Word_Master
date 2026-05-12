@@ -538,8 +538,11 @@ def update_lesson_progress(
                 and not prog.completed):
             prog.completed    = True
             prog.completed_at = now
-            award_xp(db, "ckla_lesson_complete", detail=str(lesson_id))
-            mark_ckla_done(db)
+            # commit=False: keep prog + xp_log + streak in one transaction.
+            # _evaluate_streak (called inside mark_ckla_done) still issues its
+            # own db.commit(), which flushes everything pending at that point.
+            award_xp(db, "ckla_lesson_complete", detail=str(lesson_id), commit=False)
+            mark_ckla_done(db, commit=False)
 
             # Check daily lesson goal
             today_str = _date.today().isoformat()
@@ -561,7 +564,7 @@ def update_lesson_progress(
                     XPLog.detail == today_str,
                 ).first()
                 if not already_awarded:
-                    award_xp(db, "ckla_daily_goal", detail=today_str)
+                    award_xp(db, "ckla_daily_goal", detail=today_str, commit=False)
 
         db.commit()
         return _progress_dict(prog)

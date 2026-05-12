@@ -104,12 +104,20 @@ def mark_game_done(db: Session, day: str | None = None) -> None:
 
 
 # @tag STREAK @tag CKLA
-def mark_ckla_done(db: Session, day: str | None = None) -> None:
-    """Mark CKLA lesson completed for the day and re-evaluate streak."""
+def mark_ckla_done(db: Session, day: str | None = None, commit: bool = True) -> None:
+    """Mark CKLA lesson completed for the day and re-evaluate streak.
+
+    Args:
+        commit: If False, only db.add() mutations — caller is responsible for
+                db.commit(). Pass commit=False when called inside a larger
+                transaction (e.g. update_lesson_progress) to keep all writes
+                atomic.
+    """
     log = get_or_create_streak_log(db, day)
     if not log.ckla_done:
         log.ckla_done = True
-        db.commit()
+        if commit:
+            db.commit()
     _evaluate_streak(db, log)
 
 
