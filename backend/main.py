@@ -88,6 +88,19 @@ async def lifespan(application: FastAPI):
     global _folder_observer
     _folder_observer = start_watcher(VOCA_ROOT)
 
+    # Auto-run all DB migrations on startup (all migrations are idempotent)
+    _mig_dir = Path(__file__).parent / "migrations"
+    for _mig in sorted(_mig_dir.glob("[0-9]*.py")):
+        try:
+            import importlib.util as _ilu
+            _spec = _ilu.spec_from_file_location(_mig.stem, _mig)
+            _mod = _ilu.module_from_spec(_spec)
+            _spec.loader.exec_module(_mod)
+            if hasattr(_mod, "migrate"):
+                _mod.migrate()
+        except Exception as _e:
+            logger.warning("[migration] %s failed: %s", _mig.name, _e)
+
     # Phase 10: auto-backup DB (idempotent — no-op if today's snapshot exists)
     try:
         result = backup_engine.backup_database()
