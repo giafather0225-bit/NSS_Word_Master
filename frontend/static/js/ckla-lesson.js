@@ -434,7 +434,7 @@ function _renderVocab() {
       <div class="ckla-vocab-top">
         <span class="ckla-vocab-word">${_esc(w.word)}</span>
         ${w.part_of_speech ? `<span class="ckla-pos-pill">${_esc(w.part_of_speech)}</span>` : ''}
-        ${w.audio_url ? `<button class="ckla-audio-btn" data-audio-url="${_esc(w.audio_url)}" title="Listen"><i data-lucide="volume-2" style="width:14px;height:14px"></i></button>` : ''}
+        <button class="ckla-audio-btn" data-audio-url="${_esc(w.audio_url || '')}" data-word="${_esc(w.word)}" title="Listen"><i data-lucide="volume-2" style="width:14px;height:14px"></i></button>
       </div>
       <div class="ckla-vocab-def">${_esc(w.definition) || '<em>No definition available</em>'}</div>
       ${w.example_1 ? `<div class="ckla-vocab-ex">"${_esc(w.example_1)}"</div>` : ''}
@@ -451,8 +451,8 @@ function _renderVocab() {
             : `<button class="ckla-primary-btn" style="opacity:.5" title="Swipe through all words first" disabled>Take Quiz</button>`
           )}
     </div>`;
-  el.querySelectorAll('.ckla-audio-btn[data-audio-url]').forEach(btn => {
-    btn.addEventListener('click', () => _cklaAudio(btn.dataset.audioUrl));
+  el.querySelectorAll('.ckla-audio-btn').forEach(btn => {
+    btn.addEventListener('click', () => _cklaAudio(btn.dataset.audioUrl, btn.dataset.word));
   });
   if (typeof lucide !== 'undefined') lucide.createIcons();
 }
@@ -463,9 +463,26 @@ function _cklaVocabNav(dir) {
   _renderVocab();
 }
 
-/** @tag ACADEMY CKLA */
-function _cklaAudio(url) {
-  try { new Audio(url).play(); } catch (e) { console.warn('CKLA audio failed:', e); }
+/** @tag ACADEMY CKLA
+ * Play audio for a CKLA word.  Static MP3 first, edge-tts fallback when url is absent.
+ * @param {string} url  - /static/audio/ckla/{id}.mp3 (may be empty string)
+ * @param {string} word - raw word text for TTS fallback
+ */
+async function _cklaAudio(url, word) {
+  if (url) {
+    try { new Audio(url).play(); return; } catch (e) { /* fall through to TTS */ }
+  }
+  // Fallback: generate via edge-tts on the server
+  try {
+    const res = await fetch('/api/tts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: word }),
+    });
+    if (!res.ok) return;
+    const blob = await res.blob();
+    new Audio(URL.createObjectURL(blob)).play();
+  } catch (e) { console.warn('CKLA audio fallback failed:', e); }
 }
 
 /** @tag ACADEMY CKLA */
@@ -600,7 +617,7 @@ function _renderWordWork() {
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
         <div class="ckla-ww-word">${_esc(vw.word)}</div>
         ${vw.part_of_speech ? `<span class="ckla-pos-pill">${_esc(vw.part_of_speech)}</span>` : ''}
-        ${vw.audio_url ? `<button class="ckla-audio-btn" data-audio-url="${_esc(vw.audio_url)}" title="Listen"><i data-lucide="volume-2" style="width:14px;height:14px"></i></button>` : ''}
+        <button class="ckla-audio-btn" data-audio-url="${_esc(vw.audio_url || '')}" data-word="${_esc(vw.word)}" title="Listen"><i data-lucide="volume-2" style="width:14px;height:14px"></i></button>
         ${!prog.word_work_done ? `<button class="ckla-hint-btn" id="ckla-hint-btn" onclick="_cklaToggleHint()">${_cklaHintVisible ? 'Hide Hint' : 'Hint'}</button>` : ''}
       </div>
       <div class="ckla-ww-hint${_cklaHintVisible ? ' visible' : ''}" id="ckla-ww-hint">${hintContent}</div>
@@ -621,8 +638,8 @@ function _renderWordWork() {
     <div class="ckla-action-bar">
       <button class="ckla-primary-btn" id="ckla-ww-submit" onclick="_markWordWorkDone()">Submit</button>
     </div>` : ''}`;
-  el.querySelectorAll('.ckla-audio-btn[data-audio-url]').forEach(btn => {
-    btn.addEventListener('click', () => _cklaAudio(btn.dataset.audioUrl));
+  el.querySelectorAll('.ckla-audio-btn').forEach(btn => {
+    btn.addEventListener('click', () => _cklaAudio(btn.dataset.audioUrl, btn.dataset.word));
   });
   if (typeof lucide !== 'undefined') lucide.createIcons();
 }
