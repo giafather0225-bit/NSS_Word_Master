@@ -177,15 +177,32 @@ async def evaluate_sentence(req: EvaluateSentenceRequest):
 # @tag PRACTICE
 @router.post("/api/practice/sentence")
 def save_practice_sentence(req: PracticeSentenceCreate, db: Session = Depends(get_db)):
-    """Save a student's practice sentence from Step 5."""
+    """Save a student's practice sentence from Step 5 (upsert by item_id)."""
     req.clean()
+    now_iso = datetime.now(timezone.utc).isoformat()
+    existing = (
+        db.query(UserPracticeSentence)
+        .filter(
+            UserPracticeSentence.subject == req.subject,
+            UserPracticeSentence.textbook == req.textbook,
+            UserPracticeSentence.lesson == req.lesson,
+            UserPracticeSentence.item_id == req.item_id,
+        )
+        .first()
+    )
+    if existing:
+        existing.sentence = req.sentence
+        existing.created_at = now_iso
+        db.commit()
+        db.refresh(existing)
+        return {"id": existing.id, "status": "updated"}
     row = UserPracticeSentence(
         subject=req.subject,
         textbook=req.textbook,
         lesson=req.lesson,
         item_id=req.item_id,
         sentence=req.sentence,
-        created_at=datetime.now(timezone.utc).isoformat(),
+        created_at=now_iso,
     )
     db.add(row)
     db.commit()

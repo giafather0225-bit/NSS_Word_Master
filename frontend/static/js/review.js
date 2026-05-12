@@ -104,8 +104,10 @@
 
   /* ── Convert API response to Preview-compatible item ── */
   function toPreviewItem(r) {
+    var id = r.study_item_id || r.review_id || null;
+    if (id == null) console.warn("[review] toPreviewItem: missing study_item_id and review_id", r);
     return {
-      id: r.study_item_id || r.review_id,
+      id: id,
       question: r.question || "",
       answer: r.answer || r.word || "",
       hint: r.hint || "",

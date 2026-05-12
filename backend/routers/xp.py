@@ -126,16 +126,20 @@ def award_xp_endpoint(
     if body.action not in XP_RULES:
         raise HTTPException(status_code=400, detail=f"Unknown action: {body.action}")
 
-    xp = award_xp(db, body.action, body.detail)
+    # award_xp deferred so XP log + streak update commit atomically.
+    xp = award_xp(db, body.action, body.detail, commit=False)
 
-    # Handle side-effects
+    # Side-effects: mark streak activity flags (no commit yet).
     today = date.today().isoformat()
     if body.action == "review_complete":
         mark_review_done(db, today)
     elif body.action == "daily_words_complete":
         mark_daily_words_done(db, today)
+    else:
+        # No streak side-effect — commit the deferred XP log now.
+        db.commit()
 
-    # Check streak bonus
+    # Check streak bonus (independent award — own commit is fine).
     bonus_xp = 0
     streak = get_current_streak(db)
     bonus_action = check_streak_bonus(db, streak)
