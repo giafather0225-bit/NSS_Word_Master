@@ -18,7 +18,7 @@ function dwRenderWeeklyIntro() {
     view.innerHTML = `
         ${_dwHeader("Weekly Test", _dwGradeLabel(dwState.grade))}
         <div class="dw-placement-intro">
-            <h2>📝 Weekly Test</h2>
+            <h2><i data-lucide="file-text" style="width:20px;height:20px;vertical-align:-3px;stroke-width:1.5"></i> Weekly Test</h2>
             <p>Type the correct word for each definition.<br>
                You need <strong>90%</strong> to pass and earn +10 XP.</p>
             <p style="font-size:13px;">${dwState.words.length} words • Type to answer</p>
@@ -26,6 +26,7 @@ function dwRenderWeeklyIntro() {
                 <button class="dw-btn dw-btn-primary" onclick="dwWeeklyNext()">Start →</button>
             </div>
         </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 // ─── Weekly Test Question ─────────────────────────────────────
@@ -129,7 +130,7 @@ function _dwRenderWeeklyResult(correct, total, passed, xpAwarded, newGrade) {
     view.innerHTML = `
         ${_dwHeader("Weekly Test", "Result")}
         <div class="dw-result">
-            <div class="dw-result-emoji">${passed ? "🏆" : "📚"}</div>
+            <div class="dw-result-emoji">${passed ? '<i data-lucide="trophy" style="width:32px;height:32px;stroke-width:1.5"></i>' : '<i data-lucide="book-open" style="width:32px;height:32px;stroke-width:1.5"></i>'}</div>
             <div class="dw-result-title">${passed ? "Test Passed!" : "Keep Practicing"}</div>
             <div class="dw-result-sub">${passed
                 ? `New cycle starts with ${glabel}.`
@@ -144,4 +145,5 @@ function _dwRenderWeeklyResult(correct, total, passed, xpAwarded, newGrade) {
                 <button class="dw-btn dw-btn-secondary" onclick="hideDailyWordsView()">← Back to Home</button>
             </div>
         </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }

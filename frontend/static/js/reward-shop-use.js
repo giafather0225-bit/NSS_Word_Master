@@ -46,7 +46,7 @@ function _renderMyRewards(rewards) {
             <div class="my-reward-actions">
                 ${equipBtn}
                 <button class="my-reward-use-btn" onclick="_shopOpenPin(${r.id})"
-                        ${r.is_used ? "disabled" : ""}>${r.is_used ? "Used ✓" : "Use"}</button>
+                        ${r.is_used ? "disabled" : ""}>${r.is_used ? "Used" : "Use"}</button>
             </div>
         </div>`;
     };

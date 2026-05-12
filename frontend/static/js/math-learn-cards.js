@@ -92,7 +92,7 @@ function _renderCurrentLearnCard() {
                         ← Back
                     </button>
                     <button class="math-btn-primary" id="math-learn-next">
-                        ${num === total ? 'Done ✓' : 'Next →'}
+                        ${num === total ? 'Done <i data-lucide="check" style="width:14px;height:14px;vertical-align:-2px;stroke-width:2.5"></i>' : 'Next →'}
                     </button>
                 </div>
             </div>

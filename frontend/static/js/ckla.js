@@ -691,13 +691,14 @@ function _renderLessons(data) {
             <div class="ckla-lesson-meta">
               <span class="ckla-lesson-num">Lesson ${l.lesson_num}</span>
               ${diffLabel ? `<span class="ckla-lesson-diff ckla-diff-${diff}">${diffLabel}</span>` : ''}
-              ${l.word_work_word ? `<span class="ckla-lesson-ww">★ ${l.word_work_word}</span>` : ''}
+              ${l.word_work_word ? `<span class="ckla-lesson-ww"><i data-lucide="star" style="width:12px;height:12px;vertical-align:-1px;stroke-width:1.5"></i> ${l.word_work_word}</span>` : ''}
             </div>
             <div class="ckla-lesson-title">${l.title}</div>
             <div class="ckla-lesson-chips">${chips}</div>
           </div>`;
       }).join('')}
     </div>`;
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 

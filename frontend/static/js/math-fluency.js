@@ -29,7 +29,10 @@ async function startMathFluency() {
     if (!stage) return;
     stage.innerHTML = `<div class="math-wrong-review"><p>Loading fact sets…</p></div>`;
     try {
-        const res = await fetch('/api/math/fluency/catalog');
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 8000);
+        const res = await fetch('/api/math/fluency/catalog', { signal: ctrl.signal });
+        clearTimeout(timer);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         _renderFluencyPicker(data.fact_sets || []);
@@ -85,7 +88,10 @@ function _renderFluencyPicker(factSets) {
 /** @tag MATH @tag FLUENCY */
 async function _startRound(factSet) {
     try {
-        const res = await fetch(`/api/math/fluency/start-round?fact_set=${encodeURIComponent(factSet)}&count=10`);
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 8000);
+        const res = await fetch(`/api/math/fluency/start-round?fact_set=${encodeURIComponent(factSet)}&count=10`, { signal: ctrl.signal });
+        clearTimeout(timer);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         fluencyState.factSet = factSet;
@@ -257,6 +263,8 @@ async function _finishRound(aborted) {
     let submitData = null;
     if (!aborted && fluencyState.answered > 0) {
         try {
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), 8000);
             const res = await fetch('/api/math/fluency/submit-round', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -266,7 +274,9 @@ async function _finishRound(aborted) {
                     total,
                     time_sec: elapsed,
                 }),
+                signal: ctrl.signal,
             });
+            clearTimeout(timer);
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             submitData = await res.json();
         } catch (err) {

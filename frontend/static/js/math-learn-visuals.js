@@ -31,10 +31,10 @@ function renderLearnStaticVisual(vtype, vdata, card) {
         case 'bar_model':        return _lvStaticBarModel(d);
         case 'summary_card':     return _lvSummaryCard(d, card);
         case 'keyword_table':    return _lvKeywordTable(d);
-        case 'text':             return _lvTextBlock(d, '📝');
-        case 'text_with_icon':   return _lvTextBlock(d, d.icon || '💡');
-        case 'warning_example':  return _lvTextBlock(d, '⚠️', 'math-lv-warn');
-        case 'error_highlight':  return _lvTextBlock(d, '❌', 'math-lv-err');
+        case 'text':             return _lvTextBlock(d, '<i data-lucide="file-text" style="width:16px;height:16px;stroke-width:1.5"></i>');
+        case 'text_with_icon':   return _lvTextBlock(d, '<i data-lucide="lightbulb" style="width:16px;height:16px;stroke-width:1.5"></i>');
+        case 'warning_example':  return _lvTextBlock(d, '<i data-lucide="alert-triangle" style="width:16px;height:16px;stroke-width:1.5"></i>', 'math-lv-warn');
+        case 'error_highlight':  return _lvTextBlock(d, '<i data-lucide="x-circle" style="width:16px;height:16px;stroke-width:1.5"></i>', 'math-lv-err');
         case 'word_problem':     return _lvWordProblem(d);
         case 'none':             return '';
         default:                 return '';
@@ -213,7 +213,7 @@ function _lvPlaceValueChart(d) {
         const body = cols.map(c => `<td>${_mathEsc(cells[c])}</td>`).join('');
         return _lvWrap(`<table class="math-lv-pvc"><thead><tr>${head}</tr></thead><tbody><tr>${body}</tr></tbody></table>`);
     }
-    if (d.description) return _lvTextBlock(d, '🔢');
+    if (d.description) return _lvTextBlock(d, '<i data-lucide="hash" style="width:16px;height:16px;stroke-width:1.5"></i>');
     return '';
 }
 
@@ -233,7 +233,7 @@ function _lvSummaryCard(d, card) {
     if (!body) return '';
     return _lvWrap(`
         <div class="math-lv-summary">
-            <div class="math-lv-summary-icon">⭐</div>
+            <div class="math-lv-summary-icon"><i data-lucide="star" style="width:20px;height:20px;stroke-width:1.5"></i></div>
             <div class="math-lv-summary-text">${_mathEsc(body)}</div>
         </div>
     `);
@@ -248,7 +248,7 @@ function _lvKeywordTable(d) {
         const body = rows.map(r => `<tr>${keys.map(k => `<td>${_mathEsc(r[k])}</td>`).join('')}</tr>`).join('');
         return _lvWrap(`<table class="math-lv-cmp"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`);
     }
-    if (d.description) return _lvTextBlock(d, '🔑');
+    if (d.description) return _lvTextBlock(d, '<i data-lucide="key" style="width:16px;height:16px;stroke-width:1.5"></i>');
     return '';
 }
 

@@ -490,7 +490,7 @@ function _renderQuestions() {
   const q    = qs[_cklaQIdx];
   const resp = _cklaResponses[q.id];
   const kindCls = { Literal: 'kind-lit', Inferential: 'kind-inf', Evaluative: 'kind-eva' };
-  const scoreIcon = ['✗', '△', '✓'];
+  const scoreIcon = ['<i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i>', '△', '<i data-lucide="check-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i>'];
 
   el.innerHTML = `
     ${(allAnswered || qaDone) ? '<div class="ckla-done-badge" style="margin-bottom:12px">Q&amp;A complete</div>' : ''}
@@ -520,6 +520,7 @@ function _renderQuestions() {
           : `<button class="ckla-submit-btn" id="ckla-sub-btn" onclick="_submitAnswer(${q.id})">Submit →</button>`}
       </div>
     </div>`;
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /** @tag ACADEMY CKLA */

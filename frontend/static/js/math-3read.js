@@ -29,19 +29,19 @@ function isWordProblem(text) {
 function show3ReadModal(questionText, onDone) {
     const steps = [
         {
-            icon: '📖',
+            icon: '<i data-lucide="book-open" style="width:16px;height:16px;vertical-align:-2px;stroke-width:1.5"></i>',
             label: 'Read 1',
             prompt: 'What is happening in this problem?',
             hint: 'Read slowly. Picture it in your mind. Who or what is in the story?',
         },
         {
-            icon: '❓',
+            icon: '<i data-lucide="help-circle" style="width:16px;height:16px;vertical-align:-2px;stroke-width:1.5"></i>',
             label: 'Read 2',
             prompt: 'What is the question asking?',
             hint: 'Find the sentence that asks something. What do you need to find?',
         },
         {
-            icon: '🔢',
+            icon: '<i data-lucide="hash" style="width:16px;height:16px;vertical-align:-2px;stroke-width:1.5"></i>',
             label: 'Read 3',
             prompt: 'What numbers and information are important?',
             hint: 'Look for the numbers and what they mean. Which ones will you use?',
@@ -62,11 +62,12 @@ function show3ReadModal(questionText, onDone) {
             <blockquote class="math-3read-question" id="math-3read-question"></blockquote>
             <div class="math-3read-step" id="math-3read-step"></div>
             <div class="math-3read-actions">
-                <button class="math-btn-ghost" id="math-3read-tts">🔊 Listen</button>
+                <button class="math-btn-ghost" id="math-3read-tts"><i data-lucide="volume-2" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Listen</button>
                 <button class="math-btn-primary" id="math-3read-next">Next read →</button>
             </div>
         </div>`;
     document.body.appendChild(overlay);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     const cleanup = () => {
         overlay.remove();
@@ -92,6 +93,7 @@ function show3ReadModal(questionText, onDone) {
             <div class="math-3read-label"><span class="math-3read-icon">${s.icon}</span> ${s.label}</div>
             <div class="math-3read-prompt">${s.prompt}</div>
             <div class="math-3read-hint">${s.hint}</div>`;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
 
         const dots = overlay.querySelector('#math-3read-dots');
         dots.innerHTML = steps.map((_, i) =>
@@ -99,7 +101,7 @@ function show3ReadModal(questionText, onDone) {
         ).join('');
 
         const nextBtn = overlay.querySelector('#math-3read-next');
-        nextBtn.textContent = stepIdx === steps.length - 1 ? 'Solve! ✓' : 'Next read →';
+        nextBtn.textContent = stepIdx === steps.length - 1 ? 'Solve!' : 'Next read →';
 
         // Autoplay TTS for the question + prompt on each step
         _play3ReadTTS(questionText, s.prompt);

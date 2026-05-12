@@ -116,7 +116,7 @@ function _renderReviewCard() {
           <div class="ckla-review-bar">
             <div class="ckla-review-bar-fill" style="width:${pct}%"></div>
           </div>
-          <span>${_cklaRevCorrect} ✓</span>
+          <span>${_cklaRevCorrect} <i data-lucide="check" style="width:12px;height:12px;vertical-align:-1px;stroke-width:2.5"></i></span>
         </div>
         <div class="ckla-review-card">
           <div class="ckla-review-word">${_escRev(w.word)}</div>
@@ -154,13 +154,13 @@ function _renderReviewCard() {
           <div class="ckla-review-bar">
             <div class="ckla-review-bar-fill" style="width:${pct}%"></div>
           </div>
-          <span>${_cklaRevCorrect} ✓</span>
+          <span>${_cklaRevCorrect} <i data-lucide="check" style="width:12px;height:12px;vertical-align:-1px;stroke-width:2.5"></i></span>
         </div>
         <div class="ckla-review-card">
           <div class="ckla-review-word">${_escRev(w.word)}</div>
           ${w.part_of_speech ? `<div class="ckla-review-pos">${_escRev(w.part_of_speech)}</div>` : ''}
           <div class="ckla-review-result ${isCorrect ? 'ckla-review-correct' : 'ckla-review-wrong'}">
-            <div class="ckla-review-result-word">${isCorrect ? '✓ Correct!' : '✗ Not quite'}</div>
+            <div class="ckla-review-result-word">${isCorrect ? '<i data-lucide="check-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Correct!' : '<i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Not quite'}</div>
             <div class="ckla-review-result-def">${_escRev(w.definition)}</div>
           </div>
           ${w.example_1 ? `<div class="ckla-vocab-ex" style="text-align:center">"${_escRev(w.example_1)}"</div>` : ''}
@@ -169,6 +169,7 @@ function _renderReviewCard() {
           </button>
         </div>
       </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
   }
 }
 

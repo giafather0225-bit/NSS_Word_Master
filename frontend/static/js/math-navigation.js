@@ -111,7 +111,7 @@ async function loadMathLessons(grade, unit) {
         (data.lessons || []).forEach(l => {
             const opt = document.createElement('option');
             opt.value = l.name;
-            const prefix = l.is_completed ? '✓ ' : '';
+            const prefix = l.is_completed ? '[done] ' : '';
             opt.textContent = prefix + l.name.replace(/_/g, ' ');
             sel.appendChild(opt);
         });
@@ -176,7 +176,7 @@ async function loadMathSidebarStatus() {
         const el = document.getElementById('math-daily-status');
         if (el) {
             if (!data.exists) el.textContent = 'Not available';
-            else if (data.completed) el.textContent = `✓ ${data.score}/${data.total}`;
+            else if (data.completed) el.textContent = `${data.score}/${data.total} done`;
             else el.textContent = `${data.total} problems`;
         }
     } catch (e) { /* silent */ }

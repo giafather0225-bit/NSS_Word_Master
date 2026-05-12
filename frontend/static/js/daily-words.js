@@ -231,7 +231,7 @@ async function _dwFinishPlacement() {
     view.innerHTML = `
         ${_dwHeader("Daily Words", "Day 1 Done")}
         <div class="dw-result">
-            <div class="dw-result-emoji">${pct >= 90 ? "✦" : pct >= 70 ? "✓" : "↺"}</div>
+            <div class="dw-result-emoji">${pct >= 90 ? '<i data-lucide="sparkles" style="width:32px;height:32px;stroke-width:1.5"></i>' : pct >= 70 ? '<i data-lucide="check" style="width:32px;height:32px;stroke-width:2"></i>' : '<i data-lucide="rotate-ccw" style="width:32px;height:32px;stroke-width:1.5"></i>'}</div>
             <div class="dw-result-title">Placement Done!</div>
             <div class="dw-result-sub">${wrong > 0 ? `${wrong} words in your study list this week.` : "Perfect! All words known."}</div>
             <div class="dw-result-stats">
@@ -241,6 +241,7 @@ async function _dwFinishPlacement() {
             </div>
             <div class="dw-btn-row"><button class="dw-btn dw-btn-secondary" onclick="hideDailyWordsView()">← Back</button></div>
         </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     loadDailyWordsSection();
 }
 
@@ -353,12 +354,13 @@ async function _dwFinishStudy() {
     view.innerHTML = `
         ${_dwHeader("Daily Words", `Day ${dwState.cycleDay} Done`)}
         <div class="dw-result">
-            <div class="dw-result-emoji">✓</div>
+            <div class="dw-result-emoji"><i data-lucide="check" style="width:32px;height:32px;stroke-width:2"></i></div>
             <div class="dw-result-title">Day ${dwState.cycleDay} Complete!</div>
             <div class="dw-result-sub">${dwState.words.length} words studied today.</div>
             ${xpAwarded > 0 ? `<div style="font-size:18px;font-weight:700;color:var(--color-primary);margin-bottom:16px;">+${xpAwarded} XP</div>` : ""}
             <div class="dw-btn-row"><button class="dw-btn dw-btn-secondary" onclick="hideDailyWordsView()">← Back</button></div>
         </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     loadDailyWordsSection();
 }
 
