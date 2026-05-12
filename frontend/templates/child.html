@@ -903,13 +903,10 @@
   <div class="wm-body" id="wm-body"></div>
 </div>
 
-<!-- PWA Service Worker -->
+<!-- PWA Service Worker — disabled; unregister any existing SW -->
 <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(reg => console.log('SW registered:', reg.scope))
-      .catch(err => console.log('SW registration failed:', err));
-  }
+  if ('serviceWorker' in navigator)
+    navigator.serviceWorker.getRegistrations().then(r => r.forEach(x => x.unregister()));
 </script>
 </body>
 </html>

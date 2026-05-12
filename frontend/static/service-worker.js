@@ -41,25 +41,14 @@ const APP_SHELL = [
     '/static/js/math-navigation.js?v=5',
 ];
 
-// ── Install: pre-cache app shell ───────────────────────────
-self.addEventListener('install', (event) => {
-    event.waitUntil(
-        caches.open(STATIC_CACHE)
-            .then((cache) => cache.addAll(APP_SHELL).catch(() => Promise.resolve()))
-            .then(() => self.skipWaiting())
-    );
-});
+// NUCLEAR CACHE CLEAR: unregister self and wipe all caches immediately
+self.addEventListener('install', () => self.skipWaiting());
 
-// ── Activate: clean old caches ─────────────────────────────
 self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.keys().then((keys) =>
-            Promise.all(
-                keys
-                    .filter((k) => !k.startsWith(SW_VERSION))
-                    .map((k) => caches.delete(k))
-            )
-        ).then(() => self.clients.claim())
+        caches.keys()
+            .then((keys) => Promise.all(keys.map((k) => caches.delete(k))))
+            .then(() => self.clients.claim())
     );
 });
 
