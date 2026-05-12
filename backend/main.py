@@ -63,7 +63,6 @@ from backend.routers import rewards as rewards_router
 from backend.routers import schedules as schedules_router
 from backend.routers import dashboard as dashboard_router
 from backend.routers import tutor_sentence as tutor_sentence_router
-from backend.routers import us_academy as us_academy_router
 from backend.routers import ckla as ckla_router
 from backend.routers import ckla_review as ckla_review_router
 from backend.routers import island as island_router
@@ -285,7 +284,6 @@ app.include_router(rewards_router.router)
 app.include_router(schedules_router.router)
 app.include_router(dashboard_router.router)
 app.include_router(tutor_sentence_router.router)
-app.include_router(us_academy_router.router)
 app.include_router(ckla_router.router)
 app.include_router(ckla_review_router.router)
 app.include_router(parent_ckla_router.router)
