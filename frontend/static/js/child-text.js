@@ -35,7 +35,7 @@ function replaceDescriptionTexts() {
     document.querySelectorAll('.st-sub').forEach(el => {
         const roundMatch = el.textContent.match(roundRegex);
         if (roundMatch) {
-            el.innerHTML = `Round ${roundMatch[1]}/${roundMatch[2]} · Words ${roundMatch[3]}–${roundMatch[4]} · Tap a word, then find its meaning! 👉`;
+            el.innerHTML = `Round ${roundMatch[1]}/${roundMatch[2]} · Words ${roundMatch[3]}–${roundMatch[4]} · Tap a word, then find its meaning!`;
             return;
         }
         for (const [original, replacement] of Object.entries(TEXT_REPLACEMENTS)) {

@@ -251,13 +251,22 @@ async function renderReminders() {
   if (!container) return;
   container.innerHTML = '';
   try {
-    const res = await fetch('/api/reminders/today');
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch('/api/reminders/today', { signal: ctrl.signal });
+    clearTimeout(timer);
     if (!res.ok) return;
     const banners = await res.json();
     banners.forEach(b => {
       const div = document.createElement('div');
       div.className = 'reminder-banner' + (b.severity === 'danger' ? ' danger' : '');
-      div.innerHTML = `<span>${b.message}</span><button class="reminder-close" onclick="this.parentElement.remove()">×</button>`;
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'reminder-close';
+      closeBtn.setAttribute('aria-label', 'Dismiss');
+      closeBtn.addEventListener('click', () => div.remove());
+      closeBtn.textContent = '×';
+      div.appendChild(document.createTextNode(b.message || ''));
+      div.appendChild(closeBtn);
       container.appendChild(div);
     });
   } catch { /* no reminders */ }
@@ -311,7 +320,10 @@ async function renderTodayTasks() {
   ];
 
   try {
-    const res = await fetch('/api/tasks/today');
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch('/api/tasks/today', { signal: ctrl.signal });
+    clearTimeout(timer);
     if (res.ok) {
       const data = await res.json();
       if (data && data.length) tasks.splice(0, tasks.length, ...data);
@@ -406,7 +418,10 @@ async function renderWeeklyStrip() {
   // Fetch real 7-day activity. On failure, fall back to an empty week.
   let days = Array.from({ length: 7 }, () => ({ label: '·', value: 0 }));
   try {
-    const res = await fetch('/api/xp/weekly');
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch('/api/xp/weekly', { signal: ctrl.signal });
+    clearTimeout(timer);
     if (res.ok) {
       const data = await res.json();
       if (Array.isArray(data) && data.length) {
@@ -532,7 +547,10 @@ function renderGrowthTheme() {
  */
 async function renderSummaryBar() {
   try {
-    const res = await fetch('/api/xp/summary');
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch('/api/xp/summary', { signal: ctrl.signal });
+    clearTimeout(timer);
     if (res.ok) {
       const d = await res.json();
       const xpEl = document.getElementById('summary-xp');
@@ -633,7 +651,10 @@ function toggleAccordion(key) {
 async function refreshHomeStats() {
     await renderSummaryBar();
     try {
-        const res = await fetch('/api/xp/summary');
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 8000);
+        const res = await fetch('/api/xp/summary', { signal: ctrl.signal });
+        clearTimeout(timer);
         if (res.ok) {
             const d = await res.json();
             _updateTopBarXP(d);

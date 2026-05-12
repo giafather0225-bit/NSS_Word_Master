@@ -86,13 +86,14 @@
     doneOverlay.className = "review-done-overlay";
     doneOverlay.innerHTML = [
       '<div class="review-done-content">',
-      '  <div class="review-done-icon">✓</div>',
+      '  <div class="review-done-icon"><i data-lucide="check-circle"></i></div>',
       '  <h2>All Done!</h2>',
       '  <p id="review-done-summary"></p>',
       '  <button class="review-done-btn" id="review-done-close">Back to Study</button>',
       '</div>'
     ].join("\n");
     document.body.appendChild(doneOverlay);
+    if (typeof lucide !== "undefined") lucide.createIcons();
     document.getElementById("review-done-close").addEventListener("click", function() {
       doneOverlay.classList.remove("active");
       reopenSidebar();

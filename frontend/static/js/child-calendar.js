@@ -81,9 +81,16 @@ function renderMonthlyCalendar() {
  * @tag SYSTEM
  */
 function loadMonthlyStudyData() {
-    fetch("/api/dashboard/analytics")
-        .then(function(res) { return res.json(); })
+    const ctrl = new AbortController();
+    const timer = setTimeout(function() { ctrl.abort(); }, 8000);
+    fetch("/api/dashboard/analytics", { signal: ctrl.signal })
+        .then(function(res) {
+            clearTimeout(timer);
+            if (!res.ok) return null;
+            return res.json();
+        })
         .then(function(data) {
+            if (!data) return;
             const sessions = data.daily_sessions || data.sessions || [];
             const studiedDates = new Set();
             sessions.forEach(function(s) {
@@ -98,5 +105,5 @@ function loadMonthlyStudyData() {
                 }
             });
         })
-        .catch(function() {});
+        .catch(function() { clearTimeout(timer); });
 }

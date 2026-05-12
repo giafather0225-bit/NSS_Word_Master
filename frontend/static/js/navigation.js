@@ -617,12 +617,14 @@ function initOcrButton() {
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.detail || 'OCR failed');
-            ocrBtn.textContent = `✓ ${data.words} words registered!`;
+            ocrBtn.innerHTML = `<i data-lucide="check"></i> ${data.words} words registered!`;
             ocrBtn.style.borderColor = 'var(--color-success)';
             ocrBtn.style.color = 'var(--color-success-ink)';
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             setTimeout(() => { window.location.reload(); }, 1500);
         } catch (err) {
-            ocrBtn.textContent = `❌ Error: ${err.message}`;
+            ocrBtn.innerHTML = `<i data-lucide="x-circle"></i> Error: ${escapeHtml(err.message || 'Unknown error')}`;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             ocrBtn.classList.remove('loading');
             ocrBtn.disabled = false;
         }
