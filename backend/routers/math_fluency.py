@@ -12,7 +12,7 @@ import random
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 try:
@@ -30,10 +30,10 @@ logger = logging.getLogger(__name__)
 
 class RoundResultIn(BaseModel):
     """Submit result of one fluency round."""
-    fact_set: str
-    score: int
-    total: int
-    time_sec: int
+    fact_set: str = Field(..., max_length=80)
+    score: int = Field(..., ge=0)
+    total: int = Field(..., ge=1, le=50)
+    time_sec: int = Field(..., ge=0)
 
 
 # ── Fact set catalog ─────────────────────────────────────────
@@ -122,7 +122,10 @@ def start_round(fact_set: str, count: int = 10, db: Session = Depends(get_db)):
     tries = 0
     while len(questions) < count and tries < count * 6:
         tries += 1
-        q, a = _generate_question(fact_set)
+        result = _generate_question(fact_set)
+        if result is None:
+            break
+        q, a = result
         if q in seen:
             continue
         seen.add(q)
