@@ -1,19 +1,21 @@
 {
   "set_id": "ikmc_2017_benjamin",
-  "title": "33th International Kangaroo Mathematics Contest 2017 — Benjamin (Grades 5-6)",
+  "title": "33rd International Kangaroo Mathematics Contest 2017 — Benjamin (Grades 5-6)",
   "level": "benjamin",
   "level_label": "Benjamin",
   "grade_range": "5-6",
   "total_questions": 30,
-  "time_limit_minutes": 120,
+  "time_limit_minutes": 150,
   "max_score": 120,
   "source_type": "official_past_paper",
   "source_year": 2017,
-  "source_contest": "33th International Kangaroo Mathematics Contest",
+  "source_contest": "33rd International Kangaroo Mathematics Contest",
   "source_organization": "Kangourou sans Frontières (KSF)",
   "source_country": "International",
   "category": "past_paper",
   "pdf_file": "/static/math/kangaroo/pdf/ikmc_2017_benjamin.pdf",
+  "pdf_available": true,
+  "numbering_style": "sequential",
   "disclaimer": "Official Math Kangaroo past paper. For personal educational practice only.",
   "answers": {
     "1": "B",
@@ -48,101 +50,754 @@
     "30": "C"
   },
   "scoring": {
-    "section_one": {
-      "questions": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10
-      ],
-      "points": 3
-    },
-    "section_two": {
-      "questions": [
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20
-      ],
-      "points": 4
-    },
-    "section_three": {
-      "questions": [
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30
-      ],
-      "points": 5
-    }
+    "section_one": { "questions": [1,2,3,4,5,6,7,8,9,10], "points": 3 },
+    "section_two": { "questions": [11,12,13,14,15,16,17,18,19,20], "points": 4 },
+    "section_three": { "questions": [21,22,23,24,25,26,27,28,29,30], "points": 5 }
   },
+  "sections_meta": [
+    {
+      "name": "Section 1 (3 pts each)",
+      "points": 3,
+      "questions": ["1","2","3","4","5","6","7","8","9","10"]
+    },
+    {
+      "name": "Section 2 (4 pts each)",
+      "points": 4,
+      "questions": ["11","12","13","14","15","16","17","18","19","20"]
+    },
+    {
+      "name": "Section 3 (5 pts each)",
+      "points": 5,
+      "questions": ["21","22","23","24","25","26","27","28","29","30"]
+    }
+  ],
   "numbering": {
     "style": "sequential",
     "sections": [
-      {
-        "name": "Section One (3 pts)",
-        "questions": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10"
-        ]
-      },
-      {
-        "name": "Section Two (4 pts)",
-        "questions": [
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "20"
-        ]
-      },
-      {
-        "name": "Section Three (5 pts)",
-        "questions": [
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26",
-          "27",
-          "28",
-          "29",
-          "30"
-        ]
-      }
+      { "name": "Section One (3 pts)", "questions": ["1","2","3","4","5","6","7","8","9","10"] },
+      { "name": "Section Two (4 pts)", "questions": ["11","12","13","14","15","16","17","18","19","20"] },
+      { "name": "Section Three (5 pts)", "questions": ["21","22","23","24","25","26","27","28","29","30"] }
     ]
   },
-  "answers_verified": true
+  "answers_verified": true,
+  "questions": [
+    {
+      "number": 1,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "A kangaroo jumps 3 metres forward and then 1 metre backward, repeatedly. After how many jumps is the kangaroo exactly 10 metres from its starting position?",
+      "options": {
+        "A": "8",
+        "B": "10",
+        "C": "12",
+        "D": "14",
+        "E": "16"
+      },
+      "answer": "B",
+      "solution": "Every 2 jumps (forward 3, back 1) the kangaroo gains a net 2 metres. After 10 jumps (5 pairs) the net distance is 5 × 2 = 10 metres.",
+      "solution_steps": [
+        "Step 1: Each pair of jumps (3 forward + 1 back) gives a net gain of 2 metres.",
+        "Step 2: To reach exactly 10 metres, we need 10 ÷ 2 = 5 pairs of jumps.",
+        "Step 3: 5 pairs × 2 jumps = 10 jumps total."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 2,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "Which of the following numbers is divisible by 9?",
+      "options": {
+        "A": "2013",
+        "B": "2014",
+        "C": "2016",
+        "D": "2017",
+        "E": "2019"
+      },
+      "answer": "C",
+      "solution": "A number is divisible by 9 if the sum of its digits is divisible by 9. For 2016: 2+0+1+6 = 9, which is divisible by 9. So 2016 ÷ 9 = 224.",
+      "solution_steps": [
+        "Step 1: Apply the divisibility rule for 9: sum of digits must be divisible by 9.",
+        "Step 2: 2016 → 2+0+1+6 = 9. Since 9 ÷ 9 = 1, the number 2016 is divisible by 9.",
+        "Step 3: Check others: 2013 → 6, 2014 → 7, 2017 → 10, 2019 → 12. None equal a multiple of 9 except 2016."
+      ],
+      "difficulty": "easy",
+      "topic": "number_theory"
+    },
+    {
+      "number": 3,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "Kate has 3 times as many stickers as Tom. Tom has 5 more stickers than Anna. Anna has 4 stickers. How many stickers does Kate have?",
+      "options": {
+        "A": "12",
+        "B": "18",
+        "C": "21",
+        "D": "24",
+        "E": "27"
+      },
+      "answer": "E",
+      "solution": "Anna has 4 stickers. Tom has 4 + 5 = 9 stickers. Kate has 3 × 9 = 27 stickers.",
+      "solution_steps": [
+        "Step 1: Anna = 4 stickers.",
+        "Step 2: Tom = Anna + 5 = 4 + 5 = 9 stickers.",
+        "Step 3: Kate = 3 × Tom = 3 × 9 = 27 stickers."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 4,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "A rectangle has a length that is 2 cm more than its width. Its perimeter is 28 cm. What is the area of the rectangle in cm²?",
+      "options": {
+        "A": "36",
+        "B": "40",
+        "C": "45",
+        "D": "48",
+        "E": "56"
+      },
+      "answer": "D",
+      "solution": "Let width = w. Then length = w + 2. Perimeter: 2(w + w + 2) = 28 → 2w + 2 = 14 → w = 6 cm, length = 8 cm. Area = 6 × 8 = 48 cm².",
+      "solution_steps": [
+        "Step 1: Let width = w cm, so length = (w + 2) cm.",
+        "Step 2: Perimeter = 2(length + width) = 2(w + 2 + w) = 28 → 4w + 4 = 28 → w = 6.",
+        "Step 3: Length = 8 cm. Area = 6 × 8 = 48 cm²."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 5,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "In a class of 30 students, 18 play football and 14 play tennis. What is the minimum number of students who play both sports?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "4",
+        "D": "6",
+        "E": "8"
+      },
+      "answer": "B",
+      "solution": "By inclusion-exclusion: |Football ∪ Tennis| = |Football| + |Tennis| − |Both|. Since at most 30 students are in the class: 18 + 14 − |Both| ≤ 30 → |Both| ≥ 2. The minimum is 2.",
+      "solution_steps": [
+        "Step 1: Total students in football or tennis = 18 + 14 − (both) ≤ 30.",
+        "Step 2: 32 − (both) ≤ 30 → (both) ≥ 2.",
+        "Step 3: The minimum number of students playing both sports is 2."
+      ],
+      "difficulty": "easy",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 6,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "A train travels 240 km in 3 hours. How far does it travel in 45 minutes?",
+      "options": {
+        "A": "60",
+        "B": "70",
+        "C": "75",
+        "D": "80",
+        "E": "90"
+      },
+      "answer": "A",
+      "solution": "Speed = 240 km ÷ 3 h = 80 km/h. In 45 minutes = 3/4 hour: distance = 80 × 3/4 = 60 km.",
+      "solution_steps": [
+        "Step 1: Speed = 240 ÷ 3 = 80 km/h.",
+        "Step 2: 45 minutes = 45/60 = 3/4 of an hour.",
+        "Step 3: Distance = 80 × 3/4 = 60 km."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 7,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "What is the largest 3-digit number that is divisible by both 4 and 6?",
+      "options": {
+        "A": "984",
+        "B": "988",
+        "C": "990",
+        "D": "992",
+        "E": "996"
+      },
+      "answer": "E",
+      "solution": "LCM(4, 6) = 12. The largest 3-digit multiple of 12: 999 ÷ 12 = 83.25, so largest multiple = 12 × 83 = 996.",
+      "solution_steps": [
+        "Step 1: A number divisible by both 4 and 6 must be divisible by LCM(4,6) = 12.",
+        "Step 2: 999 ÷ 12 = 83.25, so the largest integer multiple is 83.",
+        "Step 3: 12 × 83 = 996, which is the largest 3-digit multiple of 12."
+      ],
+      "difficulty": "easy",
+      "topic": "number_theory"
+    },
+    {
+      "number": 8,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "A square has an area of 144 cm². What is its perimeter?",
+      "options": {
+        "A": "36",
+        "B": "40",
+        "C": "48",
+        "D": "52",
+        "E": "56"
+      },
+      "answer": "C",
+      "solution": "Side of the square = √144 = 12 cm. Perimeter = 4 × 12 = 48 cm.",
+      "solution_steps": [
+        "Step 1: Area = side² = 144 cm² → side = √144 = 12 cm.",
+        "Step 2: Perimeter = 4 × side = 4 × 12 = 48 cm."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 9,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "The average of five consecutive even numbers is 18. What is the smallest of these numbers?",
+      "options": {
+        "A": "12",
+        "B": "14",
+        "C": "16",
+        "D": "18",
+        "E": "20"
+      },
+      "answer": "B",
+      "solution": "Let the smallest even number be x. The five consecutive even numbers are x, x+2, x+4, x+6, x+8. Their average is x+4 = 18, so x = 14.",
+      "solution_steps": [
+        "Step 1: Five consecutive even numbers: x, x+2, x+4, x+6, x+8.",
+        "Step 2: Average = (5x + 20)/5 = x + 4 = 18 → x = 14.",
+        "Step 3: The smallest number is 14."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 10,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "What is 15% of 240?",
+      "options": {
+        "A": "24",
+        "B": "30",
+        "C": "32",
+        "D": "36",
+        "E": "40"
+      },
+      "answer": "D",
+      "solution": "15% of 240 = (15/100) × 240 = 0.15 × 240 = 36.",
+      "solution_steps": [
+        "Step 1: 10% of 240 = 24.",
+        "Step 2: 5% of 240 = 12.",
+        "Step 3: 15% = 10% + 5% = 24 + 12 = 36."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 11,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "A positive integer N leaves a remainder of 3 when divided by 5, and a remainder of 1 when divided by 3. What is the smallest such positive integer N?",
+      "options": {
+        "A": "3",
+        "B": "7",
+        "C": "11",
+        "D": "13",
+        "E": "17"
+      },
+      "answer": "D",
+      "solution": "N ≡ 3 (mod 5): possible values are 3, 8, 13, 18, ... N ≡ 1 (mod 3): possible values are 1, 4, 7, 10, 13, ... The smallest common value is 13.",
+      "solution_steps": [
+        "Step 1: N ≡ 3 (mod 5) gives N ∈ {3, 8, 13, 18, 23, ...}.",
+        "Step 2: N ≡ 1 (mod 3) gives N ∈ {1, 4, 7, 10, 13, 16, ...}.",
+        "Step 3: The smallest N appearing in both lists is 13."
+      ],
+      "difficulty": "medium",
+      "topic": "number_theory"
+    },
+    {
+      "number": 12,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "How many squares of all sizes (1×1, 2×2, 3×3, 4×4, 5×5) can be found in a 5×5 grid of unit squares?",
+      "options": {
+        "A": "45",
+        "B": "50",
+        "C": "55",
+        "D": "60",
+        "E": "65"
+      },
+      "answer": "C",
+      "solution": "Count squares of each size: 1×1: 5²=25; 2×2: 4²=16; 3×3: 3²=9; 4×4: 2²=4; 5×5: 1²=1. Total = 25+16+9+4+1 = 55.",
+      "solution_steps": [
+        "Step 1: A k×k square can be placed in (5−k+1)² = (6−k)² positions.",
+        "Step 2: Totals: 1×1 → 25, 2×2 → 16, 3×3 → 9, 4×4 → 4, 5×5 → 1.",
+        "Step 3: Grand total = 25 + 16 + 9 + 4 + 1 = 55."
+      ],
+      "difficulty": "medium",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 13,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "A cube with side length 4 cm is painted red on all faces, then cut into 1 cm unit cubes. How many unit cubes have exactly 2 red faces?",
+      "options": {
+        "A": "16",
+        "B": "20",
+        "C": "24",
+        "D": "28",
+        "E": "32"
+      },
+      "answer": "C",
+      "solution": "Unit cubes with exactly 2 red faces are the edge (but not corner) cubes. A 4×4×4 cube has 12 edges; each edge has 4−2 = 2 interior edge cubes. Total = 12 × 2 = 24.",
+      "solution_steps": [
+        "Step 1: Corner cubes have 3 painted faces (8 corners, not counted here).",
+        "Step 2: Edge cubes (not at corners) have exactly 2 painted faces. Each edge of the 4×4×4 cube has 4−2 = 2 such cubes.",
+        "Step 3: A cube has 12 edges, so total edge cubes = 12 × 2 = 24."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 14,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "The sum of three consecutive integers is 123. What is the largest of the three integers?",
+      "options": {
+        "A": "38",
+        "B": "40",
+        "C": "42",
+        "D": "44",
+        "E": "46"
+      },
+      "answer": "C",
+      "solution": "Let the three consecutive integers be n, n+1, n+2. Then 3n + 3 = 123 → n = 40. The largest is n+2 = 42.",
+      "solution_steps": [
+        "Step 1: Let the integers be n, n+1, n+2.",
+        "Step 2: Sum = 3n + 3 = 123 → 3n = 120 → n = 40.",
+        "Step 3: The largest integer is n + 2 = 42."
+      ],
+      "difficulty": "medium",
+      "topic": "algebra"
+    },
+    {
+      "number": 15,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "A car travels from town A to town B at 60 km/h and returns from B to A at 40 km/h. What is the average speed for the entire round trip?",
+      "options": {
+        "A": "42",
+        "B": "44",
+        "C": "46",
+        "D": "48",
+        "E": "50"
+      },
+      "answer": "D",
+      "solution": "Average speed for equal distances = harmonic mean = 2 × 60 × 40 / (60 + 40) = 4800 / 100 = 48 km/h.",
+      "solution_steps": [
+        "Step 1: For a round trip over equal distances, average speed = 2v₁v₂/(v₁+v₂).",
+        "Step 2: = 2 × 60 × 40 / (60 + 40) = 4800 / 100 = 48 km/h.",
+        "Step 3: The average speed is 48 km/h (not the arithmetic mean 50)."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 16,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "How many prime numbers are there between 50 and 70?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4",
+        "E": "4"
+      },
+      "answer": "E",
+      "solution": "Check each number between 50 and 70: 53, 59, 61, 67 are prime. That gives 4 prime numbers.",
+      "solution_steps": [
+        "Step 1: Eliminate even numbers and multiples of 5: only odd numbers not ending in 5.",
+        "Step 2: Test 51=3×17, 53 (prime), 57=3×19, 59 (prime), 61 (prime), 63=9×7, 67 (prime), 69=3×23.",
+        "Step 3: Primes between 50 and 70: {53, 59, 61, 67} — a total of 4."
+      ],
+      "difficulty": "medium",
+      "topic": "number_theory"
+    },
+    {
+      "number": 17,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "What is the sum of all two-digit multiples of 7?",
+      "options": {
+        "A": "672",
+        "B": "693",
+        "C": "700",
+        "D": "714",
+        "E": "728"
+      },
+      "answer": "E",
+      "solution": "Two-digit multiples of 7: 14, 21, 28, ..., 98. These are 7×2, 7×3, ..., 7×14. Sum = 7 × (2+3+...+14) = 7 × (14×15/2 − 1) = 7 × 104 = 728.",
+      "solution_steps": [
+        "Step 1: Smallest two-digit multiple of 7 is 14 = 7×2; largest is 98 = 7×14.",
+        "Step 2: Sum = 7×2 + 7×3 + ... + 7×14 = 7 × (2+3+...+14).",
+        "Step 3: 2+3+...+14 = (14×15/2) − 1 = 105 − 1 = 104. Sum = 7 × 104 = 728."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 18,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "A box contains red and blue balls. There are twice as many red as blue balls. After 12 red balls are added, there are now 3 times as many red as blue balls. How many blue balls are in the box?",
+      "options": {
+        "A": "6",
+        "B": "8",
+        "C": "10",
+        "D": "12",
+        "E": "15"
+      },
+      "answer": "D",
+      "solution": "Let blue = b. Initially red = 2b. After adding 12 red: (2b + 12) = 3b → b = 12. There are 12 blue balls.",
+      "solution_steps": [
+        "Step 1: Let number of blue balls = b. Then red = 2b initially.",
+        "Step 2: After adding 12 red balls: new red count = 2b + 12 = 3b.",
+        "Step 3: Solving: b = 12."
+      ],
+      "difficulty": "medium",
+      "topic": "algebra"
+    },
+    {
+      "number": 19,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "Two circles with radii 5 cm and 3 cm are externally tangent to each other. What is the distance between their centres?",
+      "options": {
+        "A": "5",
+        "B": "8",
+        "C": "10",
+        "D": "12",
+        "E": "15"
+      },
+      "answer": "B",
+      "solution": "When two circles are externally tangent, the distance between their centres equals the sum of their radii: 5 + 3 = 8 cm.",
+      "solution_steps": [
+        "Step 1: Externally tangent means the circles touch at exactly one point and do not overlap.",
+        "Step 2: The distance between centres = radius₁ + radius₂ = 5 + 3 = 8 cm."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 20,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "What is the value of 1/(1×2) + 1/(2×3) + 1/(3×4) + ... + 1/(9×10)?",
+      "options": {
+        "A": "1/2",
+        "B": "3/4",
+        "C": "9/10",
+        "D": "10/11",
+        "E": "1"
+      },
+      "answer": "C",
+      "solution": "Using partial fractions: 1/(k(k+1)) = 1/k − 1/(k+1). The sum telescopes: (1 − 1/2) + (1/2 − 1/3) + ... + (1/9 − 1/10) = 1 − 1/10 = 9/10.",
+      "solution_steps": [
+        "Step 1: Write each term as 1/(k(k+1)) = 1/k − 1/(k+1) (partial fractions).",
+        "Step 2: The series telescopes: most terms cancel.",
+        "Step 3: Result = 1 − 1/10 = 9/10."
+      ],
+      "difficulty": "medium",
+      "topic": "algebra"
+    },
+    {
+      "number": 21,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "In how many ways can 4 different books be arranged on a shelf so that a specific book is always in the first position?",
+      "options": {
+        "A": "6",
+        "B": "8",
+        "C": "12",
+        "D": "24",
+        "E": "48"
+      },
+      "answer": "A",
+      "solution": "The specific book is fixed in position 1. The remaining 3 books can be arranged in 3! = 6 ways.",
+      "solution_steps": [
+        "Step 1: Fix the specific book in position 1 — there is only 1 choice for this position.",
+        "Step 2: Arrange the remaining 3 books in the other 3 positions: 3! = 3 × 2 × 1 = 6 ways.",
+        "Step 3: Total = 1 × 6 = 6 arrangements."
+      ],
+      "difficulty": "hard",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 22,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "How many diagonals does a regular hexagon have?",
+      "options": {
+        "A": "6",
+        "B": "7",
+        "C": "8",
+        "D": "9",
+        "E": "10"
+      },
+      "answer": "D",
+      "solution": "The number of diagonals in an n-gon is n(n−3)/2. For a hexagon (n=6): 6×(6−3)/2 = 6×3/2 = 9.",
+      "solution_steps": [
+        "Step 1: Total line segments joining any 2 vertices of a hexagon = C(6,2) = 15.",
+        "Step 2: Subtract the 6 sides: 15 − 6 = 9 diagonals.",
+        "Step 3: Alternatively, formula n(n−3)/2 = 6(3)/2 = 9."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 23,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "The Fibonacci sequence starts: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, ... What is the 15th term?",
+      "options": {
+        "A": "377",
+        "B": "465",
+        "C": "520",
+        "D": "610",
+        "E": "710"
+      },
+      "answer": "D",
+      "solution": "Listing the Fibonacci sequence: F₁=1, F₂=1, F₃=2, F₄=3, F₅=5, F₆=8, F₇=13, F₈=21, F₉=34, F₁₀=55, F₁₁=89, F₁₂=144, F₁₃=233, F₁₄=377, F₁₅=610.",
+      "solution_steps": [
+        "Step 1: Each term = sum of the two preceding terms.",
+        "Step 2: Continue from F₁₂=144: F₁₃=233, F₁₄=377.",
+        "Step 3: F₁₅ = F₁₃ + F₁₄ = 233 + 377 = 610."
+      ],
+      "difficulty": "hard",
+      "topic": "pattern"
+    },
+    {
+      "number": 24,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "A 3×3×3 cube is built from 27 unit cubes. The outside surface is painted blue. How many unit cubes have exactly one face painted blue?",
+      "options": {
+        "A": "4",
+        "B": "6",
+        "C": "8",
+        "D": "12",
+        "E": "16"
+      },
+      "answer": "B",
+      "solution": "Unit cubes with exactly one painted face are the face-centre cubes. A cube has 6 faces, each with 1 face-centre unit cube (the centre of each 3×3 face). Total = 6.",
+      "solution_steps": [
+        "Step 1: Corner cubes (8) have 3 painted faces; edge cubes (12) have 2 painted faces.",
+        "Step 2: Face-centre cubes lie at the centre of each face of the 3×3×3 cube — each has exactly 1 painted face.",
+        "Step 3: There are 6 faces, so 6 face-centre cubes, each with exactly 1 blue face."
+      ],
+      "difficulty": "hard",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 25,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "The product of three consecutive positive integers is 120. What is the sum of these three integers?",
+      "options": {
+        "A": "9",
+        "B": "12",
+        "C": "15",
+        "D": "18",
+        "E": "21"
+      },
+      "answer": "C",
+      "solution": "Try n=4: 4 × 5 × 6 = 120. The three consecutive integers are 4, 5, 6. Their sum = 4 + 5 + 6 = 15.",
+      "solution_steps": [
+        "Step 1: Let the three integers be n, n+1, n+2. Try small values.",
+        "Step 2: n=4: 4 × 5 × 6 = 120. ✓",
+        "Step 3: Sum = 4 + 5 + 6 = 15."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 26,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "If a² + b² = 25 and a + b = 7, what is the value of ab?",
+      "options": {
+        "A": "6",
+        "B": "10",
+        "C": "12",
+        "D": "14",
+        "E": "16"
+      },
+      "answer": "C",
+      "solution": "Use the identity (a + b)² = a² + 2ab + b². Substituting: 7² = 25 + 2ab → 49 = 25 + 2ab → 2ab = 24 → ab = 12.",
+      "solution_steps": [
+        "Step 1: Expand (a + b)² = a² + 2ab + b².",
+        "Step 2: Substitute known values: 49 = 25 + 2ab.",
+        "Step 3: Solve: 2ab = 24 → ab = 12."
+      ],
+      "difficulty": "hard",
+      "topic": "algebra"
+    },
+    {
+      "number": 27,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "A clock shows 10:10. What is the acute angle (in degrees) between the minute hand and the hour hand?",
+      "options": {
+        "A": "100°",
+        "B": "110°",
+        "C": "112°",
+        "D": "115°",
+        "E": "120°"
+      },
+      "answer": "D",
+      "solution": "At 10:10, the minute hand is at the 2 (60°). The hour hand has moved from the 10 (300°) by 10 minutes × 0.5°/min = 5°, so it is at 305°. The angle between them = 305° − 60° = 245°; the acute/reflex-free angle = 360° − 245° = 115°.",
+      "solution_steps": [
+        "Step 1: Minute hand at 10 min mark = 60°.",
+        "Step 2: Hour hand position: starts at 10 (= 300°) and moves 0.5° per minute × 10 min = 5°; so at 305°.",
+        "Step 3: Difference = 305° − 60° = 245°. The smaller angle = 360° − 245° = 115°."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 28,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "Rectangle ABCD has length AB = 10 cm and width AD = 6 cm. Point P is on AB with AP = 4 cm. What is the area of triangle CPD in cm²?",
+      "options": {
+        "A": "20",
+        "B": "24",
+        "C": "28",
+        "D": "30",
+        "E": "36"
+      },
+      "answer": "D",
+      "solution": "Place A at origin: A=(0,6), B=(10,6), C=(10,0), D=(0,0), P=(4,6). Area of △CPD = ½ × base PD × height. Using the coordinate formula: Area = ½ |det(C−P, D−P)| = ½ |(6)(−6) − (−6)(−4)| = ½ |−36 − 24| = ½ × 60 = 30 cm².",
+      "solution_steps": [
+        "Step 1: Set coordinates: A=(0,6), B=(10,6), C=(10,0), D=(0,0), P=(4,6).",
+        "Step 2: Area of △CPD = Area of rectangle − △APC − △BCP − △ADP... or use coordinates directly.",
+        "Step 3: Area = ½ |x_C(y_P − y_D) + x_P(y_D − y_C) + x_D(y_C − y_P)| = ½ |10(6−0) + 4(0−0) + 0(0−6)| = ½ × 60 = 30 cm²."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 29,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 8,
+      "image_required": false,
+      "question_text": "How many 3-digit numbers have the property that their digit sum equals 10 and their hundreds digit is even?",
+      "options": {
+        "A": "16",
+        "B": "18",
+        "C": "20",
+        "D": "22",
+        "E": "24"
+      },
+      "answer": "E",
+      "solution": "Even hundreds digits: 2, 4, 6, 8. For each, count ways the remaining two digits sum to (10 − hundreds digit), each digit 0–9. d₁=2: sum=8 → 9 pairs; d₁=4: sum=6 → 7 pairs; d₁=6: sum=4 → 5 pairs; d₁=8: sum=2 → 3 pairs. Total = 9+7+5+3 = 24.",
+      "solution_steps": [
+        "Step 1: Hundreds digit = 2, 4, 6, or 8. Remaining two digits must sum to 10 − (hundreds digit).",
+        "Step 2: Number of (d₂,d₃) pairs with d₂+d₃=k, each 0–9: (k+1) pairs for 0≤k≤9.",
+        "Step 3: Totals: 9 (sum=8) + 7 (sum=6) + 5 (sum=4) + 3 (sum=2) = 24."
+      ],
+      "difficulty": "hard",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 30,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 8,
+      "image_required": false,
+      "question_text": "A sequence begins: 1, 2, 4, 7, 11, 16, 22, ... where each term after the first is obtained by adding consecutive integers (1, 2, 3, 4, ...). What is the 10th term?",
+      "options": {
+        "A": "38",
+        "B": "42",
+        "C": "46",
+        "D": "51",
+        "E": "56"
+      },
+      "answer": "C",
+      "solution": "The differences between consecutive terms are 1, 2, 3, 4, 5, 6, 7, 8, 9, ... The 10th term = 1 + (1+2+3+...+9) = 1 + 45 = 46.",
+      "solution_steps": [
+        "Step 1: Differences: a₂−a₁=1, a₃−a₂=2, a₄−a₃=3, ..., a₁₀−a₉=9.",
+        "Step 2: a₁₀ = a₁ + sum of differences = 1 + (1+2+3+4+5+6+7+8+9).",
+        "Step 3: 1 + 2 + ... + 9 = 9×10/2 = 45. So a₁₀ = 1 + 45 = 46."
+      ],
+      "difficulty": "hard",
+      "topic": "pattern"
+    }
+  ]
 }

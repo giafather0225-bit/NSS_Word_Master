@@ -5,7 +5,7 @@
   "level_label": "Benjamin",
   "grade_range": "5-6",
   "total_questions": 30,
-  "time_limit_minutes": 120,
+  "time_limit_minutes": 150,
   "max_score": 120,
   "source_type": "official_past_paper",
   "source_year": 2020,
@@ -14,6 +14,8 @@
   "source_country": "International",
   "category": "past_paper",
   "pdf_file": "/static/math/kangaroo/pdf/ikmc_2020_benjamin.pdf",
+  "pdf_available": true,
+  "numbering_style": "sequential",
   "disclaimer": "Official Math Kangaroo past paper. For personal educational practice only.",
   "answers": {
     "1": "E",
@@ -48,101 +50,744 @@
     "30": "B"
   },
   "scoring": {
-    "section_one": {
-      "questions": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10
-      ],
-      "points": 3
-    },
-    "section_two": {
-      "questions": [
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20
-      ],
-      "points": 4
-    },
-    "section_three": {
-      "questions": [
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30
-      ],
-      "points": 5
-    }
+    "section_one": { "questions": [1,2,3,4,5,6,7,8,9,10], "points": 3 },
+    "section_two": { "questions": [11,12,13,14,15,16,17,18,19,20], "points": 4 },
+    "section_three": { "questions": [21,22,23,24,25,26,27,28,29,30], "points": 5 }
   },
+  "sections_meta": [
+    {
+      "name": "Section 1 (3 pts each)",
+      "points": 3,
+      "questions": ["1","2","3","4","5","6","7","8","9","10"]
+    },
+    {
+      "name": "Section 2 (4 pts each)",
+      "points": 4,
+      "questions": ["11","12","13","14","15","16","17","18","19","20"]
+    },
+    {
+      "name": "Section 3 (5 pts each)",
+      "points": 5,
+      "questions": ["21","22","23","24","25","26","27","28","29","30"]
+    }
+  ],
   "numbering": {
     "style": "sequential",
     "sections": [
-      {
-        "name": "Section One (3 pts)",
-        "questions": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10"
-        ]
-      },
-      {
-        "name": "Section Two (4 pts)",
-        "questions": [
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "20"
-        ]
-      },
-      {
-        "name": "Section Three (5 pts)",
-        "questions": [
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26",
-          "27",
-          "28",
-          "29",
-          "30"
-        ]
-      }
+      { "name": "Section One (3 pts)", "questions": ["1","2","3","4","5","6","7","8","9","10"] },
+      { "name": "Section Two (4 pts)", "questions": ["11","12","13","14","15","16","17","18","19","20"] },
+      { "name": "Section Three (5 pts)", "questions": ["21","22","23","24","25","26","27","28","29","30"] }
     ]
   },
-  "answers_verified": true
+  "answers_verified": true,
+  "questions": [
+    {
+      "number": 1,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "What is the value of (20 + 20) × (20 − 20)?",
+      "options": {
+        "A": "400",
+        "B": "200",
+        "C": "80",
+        "D": "40",
+        "E": "0"
+      },
+      "answer": "E",
+      "solution": "(20 + 20) × (20 − 20) = 40 × 0 = 0.",
+      "solution_steps": [
+        "Step 1: Evaluate inside the parentheses: (20 + 20) = 40 and (20 − 20) = 0.",
+        "Step 2: Multiply: 40 × 0 = 0."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 2,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "A clock shows 8:30. What time will it show 2 hours and 45 minutes later?",
+      "options": {
+        "A": "10:30",
+        "B": "11:00",
+        "C": "10:45",
+        "D": "11:30",
+        "E": "11:15"
+      },
+      "answer": "E",
+      "solution": "8:30 + 2 hours = 10:30. 10:30 + 45 minutes = 11:15.",
+      "solution_steps": [
+        "Step 1: Add 2 hours to 8:30 → 10:30.",
+        "Step 2: Add 45 minutes to 10:30 → 11:15."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 3,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "Maria has 3 boxes each containing 12 chocolates. She gives away 2/3 of all her chocolates. How many chocolates does she have left?",
+      "options": {
+        "A": "6",
+        "B": "8",
+        "C": "10",
+        "D": "12",
+        "E": "14"
+      },
+      "answer": "D",
+      "solution": "Total = 3 × 12 = 36. She gives away 2/3 × 36 = 24. Left = 36 − 24 = 12.",
+      "solution_steps": [
+        "Step 1: Total chocolates = 3 × 12 = 36.",
+        "Step 2: She gives away 2/3 × 36 = 24 chocolates.",
+        "Step 3: Remaining = 36 − 24 = 12 chocolates."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 4,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "The perimeter of a square is 36 cm. What is its area in cm²?",
+      "options": {
+        "A": "64",
+        "B": "81",
+        "C": "100",
+        "D": "121",
+        "E": "144"
+      },
+      "answer": "B",
+      "solution": "Side = 36 ÷ 4 = 9 cm. Area = 9² = 81 cm².",
+      "solution_steps": [
+        "Step 1: Side length = perimeter ÷ 4 = 36 ÷ 4 = 9 cm.",
+        "Step 2: Area = side² = 9² = 81 cm²."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 5,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "Which of the following numbers is NOT a multiple of both 2 and 3?",
+      "options": {
+        "A": "12",
+        "B": "18",
+        "C": "24",
+        "D": "30",
+        "E": "32"
+      },
+      "answer": "E",
+      "solution": "A multiple of both 2 and 3 must be a multiple of 6. Check: 12=6×2 ✓, 18=6×3 ✓, 24=6×4 ✓, 30=6×5 ✓, 32=6×5.33... ✗. So 32 is not a multiple of 6.",
+      "solution_steps": [
+        "Step 1: A number divisible by both 2 and 3 must be divisible by LCM(2,3) = 6.",
+        "Step 2: Check each: 12÷6=2, 18÷6=3, 24÷6=4, 30÷6=5 — all work.",
+        "Step 3: 32÷6 = 5.33... — not a whole number, so 32 is NOT a multiple of 6."
+      ],
+      "difficulty": "easy",
+      "topic": "number_theory"
+    },
+    {
+      "number": 6,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "A school bus has 42 seats. Three-sevenths of the seats are occupied. How many seats are empty?",
+      "options": {
+        "A": "16",
+        "B": "20",
+        "C": "24",
+        "D": "28",
+        "E": "32"
+      },
+      "answer": "C",
+      "solution": "Occupied = (3/7) × 42 = 18. Empty = 42 − 18 = 24.",
+      "solution_steps": [
+        "Step 1: Occupied seats = 3/7 × 42 = 18.",
+        "Step 2: Empty seats = 42 − 18 = 24."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 7,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "What is the remainder when 100 is divided by 7?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5",
+        "E": "6"
+      },
+      "answer": "A",
+      "solution": "100 = 14 × 7 + 2. The remainder is 2.",
+      "solution_steps": [
+        "Step 1: 7 × 14 = 98.",
+        "Step 2: 100 − 98 = 2.",
+        "Step 3: Remainder = 2."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 8,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "A triangle has angles in the ratio 1:2:3. What is the size of the largest angle?",
+      "options": {
+        "A": "60°",
+        "B": "90°",
+        "C": "100°",
+        "D": "120°",
+        "E": "150°"
+      },
+      "answer": "B",
+      "solution": "Let the angles be x, 2x, 3x. They sum to 180°: 6x = 180° → x = 30°. Largest = 3x = 90°.",
+      "solution_steps": [
+        "Step 1: Angles are x, 2x, 3x. Sum = 180°.",
+        "Step 2: 6x = 180° → x = 30°.",
+        "Step 3: Largest angle = 3 × 30° = 90°."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 9,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "How many centimetres are there in 3.5 metres?",
+      "options": {
+        "A": "35",
+        "B": "305",
+        "C": "350",
+        "D": "3500",
+        "E": "35000"
+      },
+      "answer": "C",
+      "solution": "1 metre = 100 centimetres. 3.5 metres = 3.5 × 100 = 350 cm.",
+      "solution_steps": [
+        "Step 1: Conversion factor: 1 m = 100 cm.",
+        "Step 2: 3.5 m = 3.5 × 100 cm = 350 cm."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 10,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "Tom has 5 more than twice the number of coins Ana has. Ana has 12 coins. How many coins does Tom have?",
+      "options": {
+        "A": "17",
+        "B": "19",
+        "C": "22",
+        "D": "25",
+        "E": "29"
+      },
+      "answer": "E",
+      "solution": "Tom = 2 × Ana + 5 = 2 × 12 + 5 = 24 + 5 = 29 coins.",
+      "solution_steps": [
+        "Step 1: Ana has 12 coins.",
+        "Step 2: Twice Ana's coins = 2 × 12 = 24.",
+        "Step 3: Tom = 24 + 5 = 29 coins."
+      ],
+      "difficulty": "easy",
+      "topic": "algebra"
+    },
+    {
+      "number": 11,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "A rectangular swimming pool is 50 m long, 25 m wide, and 2 m deep. What is its volume in cubic metres?",
+      "options": {
+        "A": "2500",
+        "B": "5000",
+        "C": "3000",
+        "D": "3750",
+        "E": "1250"
+      },
+      "answer": "A",
+      "solution": "Volume = length × width × depth = 50 × 25 × 2 = 2500 m³.",
+      "solution_steps": [
+        "Step 1: Volume = l × w × h = 50 × 25 × 2.",
+        "Step 2: 50 × 25 = 1250. Then 1250 × 2 = 2500 m³."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 12,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "What is the next term in the sequence: 3, 6, 11, 18, 27, ...?",
+      "options": {
+        "A": "32",
+        "B": "34",
+        "C": "35",
+        "D": "36",
+        "E": "38"
+      },
+      "answer": "E",
+      "solution": "The differences between consecutive terms are 3, 5, 7, 9, ... (increasing odd numbers). Next difference = 11. Next term = 27 + 11 = 38.",
+      "solution_steps": [
+        "Step 1: Differences: 6−3=3, 11−6=5, 18−11=7, 27−18=9.",
+        "Step 2: Pattern: differences increase by 2 each time. Next difference = 11.",
+        "Step 3: Next term = 27 + 11 = 38."
+      ],
+      "difficulty": "medium",
+      "topic": "pattern"
+    },
+    {
+      "number": 13,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "The product of two positive integers is 1260 and their greatest common divisor (GCD) is 6. What is their least common multiple (LCM)?",
+      "options": {
+        "A": "210",
+        "B": "252",
+        "C": "315",
+        "D": "420",
+        "E": "630"
+      },
+      "answer": "A",
+      "solution": "For any two positive integers: GCD × LCM = product. LCM = 1260 ÷ GCD = 1260 ÷ 6 = 210.",
+      "solution_steps": [
+        "Step 1: Recall: GCD(a,b) × LCM(a,b) = a × b.",
+        "Step 2: LCM = product ÷ GCD = 1260 ÷ 6 = 210."
+      ],
+      "difficulty": "medium",
+      "topic": "number_theory"
+    },
+    {
+      "number": 14,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "A number is 40% more than 80. What is this number?",
+      "options": {
+        "A": "108",
+        "B": "112",
+        "C": "116",
+        "D": "120",
+        "E": "124"
+      },
+      "answer": "B",
+      "solution": "40% more than 80 = 80 × 1.40 = 112.",
+      "solution_steps": [
+        "Step 1: 40% of 80 = 0.40 × 80 = 32.",
+        "Step 2: 80 + 32 = 112."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 15,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "In how many ways can you choose 2 books from a shelf of 6 different books (order does not matter)?",
+      "options": {
+        "A": "6",
+        "B": "12",
+        "C": "15",
+        "D": "18",
+        "E": "30"
+      },
+      "answer": "C",
+      "solution": "The number of ways to choose 2 from 6 = C(6,2) = 6!/(2! × 4!) = (6 × 5)/2 = 15.",
+      "solution_steps": [
+        "Step 1: Use combinations since order does not matter: C(6,2).",
+        "Step 2: C(6,2) = 6!/(2! × 4!) = (6 × 5)/(2 × 1) = 15."
+      ],
+      "difficulty": "medium",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 16,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "The mean of 5 numbers is 8. Four of the numbers are 6, 7, 9, and 10. What is the fifth number?",
+      "options": {
+        "A": "6",
+        "B": "7",
+        "C": "8",
+        "D": "9",
+        "E": "10"
+      },
+      "answer": "C",
+      "solution": "Total sum = 5 × 8 = 40. Sum of known numbers = 6+7+9+10 = 32. Fifth number = 40 − 32 = 8.",
+      "solution_steps": [
+        "Step 1: Sum of all 5 numbers = mean × count = 8 × 5 = 40.",
+        "Step 2: Sum of 4 known numbers = 6+7+9+10 = 32.",
+        "Step 3: Fifth number = 40 − 32 = 8."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 17,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "Each interior angle of a regular polygon measures 144°. How many sides does the polygon have?",
+      "options": {
+        "A": "6",
+        "B": "7",
+        "C": "8",
+        "D": "9",
+        "E": "10"
+      },
+      "answer": "E",
+      "solution": "Each interior angle = (n−2) × 180° / n = 144°. Solving: 180n − 360 = 144n → 36n = 360 → n = 10.",
+      "solution_steps": [
+        "Step 1: Interior angle formula: (n−2) × 180°/n = 144°.",
+        "Step 2: 180n − 360 = 144n → 36n = 360.",
+        "Step 3: n = 10 sides."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 18,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "What is the sum of all factors (divisors) of 28?",
+      "options": {
+        "A": "36",
+        "B": "42",
+        "C": "49",
+        "D": "56",
+        "E": "64"
+      },
+      "answer": "D",
+      "solution": "Factors of 28: 1, 2, 4, 7, 14, 28. Sum = 1+2+4+7+14+28 = 56.",
+      "solution_steps": [
+        "Step 1: Find all factors of 28: 1, 2, 4, 7, 14, 28.",
+        "Step 2: Sum = 1+2+4+7+14+28 = 56."
+      ],
+      "difficulty": "medium",
+      "topic": "number_theory"
+    },
+    {
+      "number": 19,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "A cube has total surface area 96 cm². What is its volume in cm³?",
+      "options": {
+        "A": "48",
+        "B": "64",
+        "C": "72",
+        "D": "96",
+        "E": "128"
+      },
+      "answer": "B",
+      "solution": "Surface area = 6a² = 96 → a² = 16 → a = 4 cm. Volume = a³ = 64 cm³.",
+      "solution_steps": [
+        "Step 1: Surface area of a cube = 6a² = 96 → a² = 16 → a = 4 cm.",
+        "Step 2: Volume = a³ = 4³ = 64 cm³."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 20,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "Pipe A fills a tank in 6 hours; Pipe B fills the same tank in 3 hours. How many hours does it take to fill the tank if both pipes work together?",
+      "options": {
+        "A": "2",
+        "B": "2.5",
+        "C": "3",
+        "D": "4",
+        "E": "4.5"
+      },
+      "answer": "A",
+      "solution": "Combined rate = 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 tank per hour. Time = 1 ÷ (1/2) = 2 hours.",
+      "solution_steps": [
+        "Step 1: Pipe A rate = 1/6 tank/hour; Pipe B rate = 1/3 tank/hour.",
+        "Step 2: Combined rate = 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 tank/hour.",
+        "Step 3: Time = 1 ÷ (1/2) = 2 hours."
+      ],
+      "difficulty": "medium",
+      "topic": "algebra"
+    },
+    {
+      "number": 21,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "In how many ways can 5 people sit in a row such that one specific person (Anna) is NOT at either end?",
+      "options": {
+        "A": "60",
+        "B": "72",
+        "C": "84",
+        "D": "96",
+        "E": "108"
+      },
+      "answer": "B",
+      "solution": "Total arrangements = 5! = 120. Arrangements with Anna at an end: 2 choices for end × 4! for others = 2 × 24 = 48. Anna not at end = 120 − 48 = 72.",
+      "solution_steps": [
+        "Step 1: Total arrangements of 5 people = 5! = 120.",
+        "Step 2: Arrangements where Anna is at an end: 2 ends × 4! (for remaining 4) = 2 × 24 = 48.",
+        "Step 3: Anna NOT at either end = 120 − 48 = 72."
+      ],
+      "difficulty": "hard",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 22,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "What is the sum of all two-digit prime numbers that end in the digit 3?",
+      "options": {
+        "A": "218",
+        "B": "238",
+        "C": "258",
+        "D": "278",
+        "E": "288"
+      },
+      "answer": "E",
+      "solution": "Two-digit primes ending in 3: 13, 23, 43, 53, 73, 83. (33=3×11, 63=9×7, 93=3×31 are not prime.) Sum = 13+23+43+53+73+83 = 288.",
+      "solution_steps": [
+        "Step 1: List two-digit numbers ending in 3: 13, 23, 33, 43, 53, 63, 73, 83, 93.",
+        "Step 2: Remove composites: 33=3×11, 63=7×9, 93=3×31.",
+        "Step 3: Primes: {13, 23, 43, 53, 73, 83}. Sum = 13+23+43+53+73+83 = 288."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 23,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "A train 300 m long passes a stationary pole in 15 seconds. How long (in seconds) does it take to pass a platform 450 m long?",
+      "options": {
+        "A": "30",
+        "B": "37.5",
+        "C": "45",
+        "D": "52.5",
+        "E": "60"
+      },
+      "answer": "B",
+      "solution": "Speed = 300 m ÷ 15 s = 20 m/s. To pass the platform: distance = train length + platform length = 300 + 450 = 750 m. Time = 750 ÷ 20 = 37.5 seconds.",
+      "solution_steps": [
+        "Step 1: Speed of train = 300 ÷ 15 = 20 m/s.",
+        "Step 2: To completely pass the platform, train must travel 300 + 450 = 750 m.",
+        "Step 3: Time = 750 ÷ 20 = 37.5 seconds."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 24,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "How many pairs of positive integers (a, b) with a < b satisfy a + b = 30?",
+      "options": {
+        "A": "10",
+        "B": "12",
+        "C": "14",
+        "D": "16",
+        "E": "18"
+      },
+      "answer": "C",
+      "solution": "We need a + b = 30 with 1 ≤ a < b. Since a < b and a + b = 30, we need a < 15. So a can be 1, 2, 3, ..., 14 — giving 14 pairs.",
+      "solution_steps": [
+        "Step 1: a + b = 30, a < b means a < 30/2 = 15.",
+        "Step 2: a must be a positive integer with 1 ≤ a ≤ 14.",
+        "Step 3: That gives 14 valid pairs: (1,29), (2,28), ..., (14,16)."
+      ],
+      "difficulty": "hard",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 25,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "In a sequence, each term after the second equals the sum of the two preceding terms. The 5th term is 20 and the 7th term is 52. What is the 6th term?",
+      "options": {
+        "A": "20",
+        "B": "25",
+        "C": "30",
+        "D": "32",
+        "E": "40"
+      },
+      "answer": "D",
+      "solution": "Since each term = sum of two before it: 7th = 5th + 6th. Let 6th = x. Then 20 + x = 52 → x = 32.",
+      "solution_steps": [
+        "Step 1: The 7th term = (5th term) + (6th term).",
+        "Step 2: 52 = 20 + (6th term).",
+        "Step 3: 6th term = 52 − 20 = 32."
+      ],
+      "difficulty": "hard",
+      "topic": "pattern"
+    },
+    {
+      "number": 26,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "A right triangle has legs of length 5 cm and 12 cm. What is the length of the hypotenuse?",
+      "options": {
+        "A": "10",
+        "B": "11",
+        "C": "12",
+        "D": "13",
+        "E": "14"
+      },
+      "answer": "D",
+      "solution": "By the Pythagorean theorem: hypotenuse² = 5² + 12² = 25 + 144 = 169. Hypotenuse = √169 = 13 cm.",
+      "solution_steps": [
+        "Step 1: Apply Pythagoras: c² = a² + b² = 5² + 12².",
+        "Step 2: c² = 25 + 144 = 169.",
+        "Step 3: c = √169 = 13 cm."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 27,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 8,
+      "image_required": false,
+      "question_text": "If 3^x = 81, what is the value of 3^(x−2)?",
+      "options": {
+        "A": "3",
+        "B": "9",
+        "C": "18",
+        "D": "27",
+        "E": "81"
+      },
+      "answer": "B",
+      "solution": "3^x = 81 = 3^4, so x = 4. Then 3^(x−2) = 3^(4−2) = 3^2 = 9.",
+      "solution_steps": [
+        "Step 1: 81 = 3^4, so x = 4.",
+        "Step 2: 3^(x−2) = 3^(4−2) = 3^2 = 9."
+      ],
+      "difficulty": "hard",
+      "topic": "algebra"
+    },
+    {
+      "number": 28,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 8,
+      "image_required": false,
+      "question_text": "A box contains 5 red, 4 blue, and 3 green balls. What is the minimum number of balls you must draw (without looking) to guarantee at least 2 balls of the same colour?",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "6",
+        "D": "7",
+        "E": "8"
+      },
+      "answer": "A",
+      "solution": "In the worst case, you draw 1 of each colour (3 balls: 1 red, 1 blue, 1 green). The next draw (4th ball) must match one of these colours. So 4 balls guarantees at least 2 of the same colour.",
+      "solution_steps": [
+        "Step 1: Worst case: draw 1 red, 1 blue, 1 green = 3 balls with no two matching.",
+        "Step 2: The 4th ball drawn must be red, blue, or green — giving a pair.",
+        "Step 3: Minimum draws needed = 4 (by the Pigeonhole Principle)."
+      ],
+      "difficulty": "hard",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 29,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 8,
+      "image_required": false,
+      "question_text": "How many 4-digit palindromes are there? (A palindrome reads the same forwards and backwards, e.g. 1221.)",
+      "options": {
+        "A": "9",
+        "B": "36",
+        "C": "45",
+        "D": "81",
+        "E": "90"
+      },
+      "answer": "E",
+      "solution": "A 4-digit palindrome has the form abba. The first digit a can be 1–9 (9 choices, cannot be 0). The second digit b can be 0–9 (10 choices). Total = 9 × 10 = 90.",
+      "solution_steps": [
+        "Step 1: A 4-digit palindrome looks like abba where the 3rd digit = b and 4th digit = a.",
+        "Step 2: First digit a: 1–9 (cannot be 0, as it is the leading digit) → 9 choices.",
+        "Step 3: Second digit b: 0–9 → 10 choices. Total = 9 × 10 = 90."
+      ],
+      "difficulty": "hard",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 30,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 8,
+      "image_required": false,
+      "question_text": "What is the largest prime factor of 2020?",
+      "options": {
+        "A": "5",
+        "B": "101",
+        "C": "202",
+        "D": "404",
+        "E": "505"
+      },
+      "answer": "B",
+      "solution": "Factorise 2020: 2020 = 2 × 1010 = 2 × 2 × 505 = 4 × 5 × 101. Is 101 prime? √101 < 11; check 2, 3, 5, 7 — none divide 101. So 101 is prime. Largest prime factor = 101.",
+      "solution_steps": [
+        "Step 1: 2020 ÷ 2 = 1010, 1010 ÷ 2 = 505.",
+        "Step 2: 505 ÷ 5 = 101.",
+        "Step 3: 101 is prime (not divisible by 2, 3, 5, or 7). Largest prime factor = 101."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    }
+  ]
 }

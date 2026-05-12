@@ -14,7 +14,14 @@
   "source_country": "International",
   "category": "past_paper",
   "pdf_file": "/static/math/kangaroo/pdf/ikmc_2014_ecolier.pdf",
+  "pdf_available": true,
   "disclaimer": "Official Math Kangaroo past paper. For personal educational practice only.",
+  "numbering_style": "sequential",
+  "sections_meta": [
+    {"name": "Section 1", "points": 3, "questions": ["1","2","3","4","5","6","7","8"]},
+    {"name": "Section 2", "points": 4, "questions": ["9","10","11","12","13","14","15","16"]},
+    {"name": "Section 3", "points": 5, "questions": ["17","18","19","20","21","22","23","24"]}
+  ],
   "answers": {
     "1": "D",
     "2": "D",
@@ -42,89 +49,596 @@
     "24": "D"
   },
   "scoring": {
-    "section_one": {
-      "questions": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8
-      ],
-      "points": 3
-    },
-    "section_two": {
-      "questions": [
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16
-      ],
-      "points": 4
-    },
-    "section_three": {
-      "questions": [
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24
-      ],
-      "points": 5
-    }
+    "section_one": {"questions": [1,2,3,4,5,6,7,8], "points": 3},
+    "section_two": {"questions": [9,10,11,12,13,14,15,16], "points": 4},
+    "section_three": {"questions": [17,18,19,20,21,22,23,24], "points": 5}
   },
   "numbering": {
     "style": "sequential",
     "sections": [
-      {
-        "name": "Section One (3 pts)",
-        "questions": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8"
-        ]
-      },
-      {
-        "name": "Section Two (4 pts)",
-        "questions": [
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16"
-        ]
-      },
-      {
-        "name": "Section Three (5 pts)",
-        "questions": [
-          "17",
-          "18",
-          "19",
-          "20",
-          "21",
-          "22",
-          "23",
-          "24"
-        ]
-      }
+      {"name": "Section One (3 pts)", "questions": ["1","2","3","4","5","6","7","8"]},
+      {"name": "Section Two (4 pts)", "questions": ["9","10","11","12","13","14","15","16"]},
+      {"name": "Section Three (5 pts)", "questions": ["17","18","19","20","21","22","23","24"]}
     ]
   },
-  "answers_verified": true
+  "answers_verified": true,
+  "questions": [
+    {
+      "number": 1,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": true,
+      "question_text": "Which drawing is the central part of the picture with the star?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "D",
+      "solution": "See PDF page 1 for the star picture. The correct central portion is option D.",
+      "solution_steps": [
+        "Step 1: Examine the central region of the star picture.",
+        "Step 2: Match the cropped region to the five answer options.",
+        "Step 3: Option D matches the central part exactly."
+      ],
+      "difficulty": "easy",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 2,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": false,
+      "question_text": "Jacky wants to insert the digit 3 somewhere in the number 2014. Where should she insert the digit 3 if she wants her five-digit number to be as small as possible?",
+      "options": {
+        "A": "in front of 2014",
+        "B": "between the 2 and the 0",
+        "C": "between the 0 and the 1",
+        "D": "between the 1 and the 4",
+        "E": "behind 2014"
+      },
+      "answer": "D",
+      "solution": "Inserting 3 between the 1 and the 4 gives 20134, which is the smallest possible five-digit number.",
+      "solution_steps": [
+        "Step 1: List all five positions and the resulting numbers: 32014 (A), 23014 (B), 20314 (C), 20134 (D), 20143 (E).",
+        "Step 2: Compare them in order: 20134 < 20143 < 20314 < 23014 < 32014.",
+        "Step 3: The smallest is 20134, formed by inserting 3 between 1 and 4."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 3,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": true,
+      "question_text": "Which houses are made using exactly the same pieces of triangular or rectangular shape?",
+      "options": {
+        "A": "1, 4",
+        "B": "3, 4",
+        "C": "1, 4, 5",
+        "D": "3, 4, 5",
+        "E": "1, 2, 4, 5"
+      },
+      "answer": "A",
+      "solution": "See PDF page 1 for the house figures. Houses 1 and 4 are built from exactly the same set of triangular and rectangular pieces.",
+      "solution_steps": [
+        "Step 1: Identify the triangular and rectangular pieces used in each of the five houses.",
+        "Step 2: Compare piece sets pairwise.",
+        "Step 3: Houses 1 and 4 share the identical piece collection."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 4,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": false,
+      "question_text": "When Koko the Koala does not sleep, he eats 50 grams of leaves per hour. Yesterday, he slept 20 hours. How many grams of leaves did he eat yesterday?",
+      "options": {
+        "A": "0",
+        "B": "50",
+        "C": "100",
+        "D": "200",
+        "E": "400"
+      },
+      "answer": "D",
+      "solution": "Koko was awake for 24 − 20 = 4 hours and ate 4 × 50 = 200 grams.",
+      "solution_steps": [
+        "Step 1: Hours awake = 24 − 20 = 4 hours.",
+        "Step 2: Leaves eaten = 4 × 50 = 200 grams."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 5,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": true,
+      "question_text": "Maria subtracts and gets as results the numbers from zero to five: 2−2=0, 6−5=1, 8−6=2, 11−8=3, 13−9=4, 17−12=5. She connects the dots starting at result 0 and ending at result 5. Which figure does she get?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "A",
+      "solution": "See PDF page 1 for the dot grid. Plotting the six points (using the subtraction expressions as coordinates) and connecting them in order from 0 to 5 produces figure A.",
+      "solution_steps": [
+        "Step 1: Identify the grid positions of the six dots labeled 0 through 5.",
+        "Step 2: Draw line segments connecting consecutive dots: 0→1→2→3→4→5.",
+        "Step 3: The resulting shape matches option A."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 6,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "Adam built fewer sandcastles than Martin but more than Susan. Lucy built more sandcastles than Adam and more than Martin. Dana built more sandcastles than Martin but fewer than Lucy. Who of them built the most sandcastles?",
+      "options": {
+        "A": "Martin",
+        "B": "Adam",
+        "C": "Susan",
+        "D": "Dana",
+        "E": "Lucy"
+      },
+      "answer": "E",
+      "solution": "Ordering from fewest to most: Susan < Adam < Martin < Dana < Lucy. Lucy built the most.",
+      "solution_steps": [
+        "Step 1: From the clues — Susan < Adam < Martin (Adam fewer than Martin, more than Susan).",
+        "Step 2: Lucy > Martin and Lucy > Adam, so Lucy is above Martin.",
+        "Step 3: Dana > Martin but Dana < Lucy, so Martin < Dana < Lucy.",
+        "Step 4: Full order: Susan < Adam < Martin < Dana < Lucy. Lucy is first."
+      ],
+      "difficulty": "easy",
+      "topic": "logic"
+    },
+    {
+      "number": 7,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "Monica writes numbers in the diagram so that each number is the product of the two numbers below it. The top cell contains 64; the bottom row contains 1, [grey], 1. Which number should she write in the grey cell?",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "4",
+        "E": "8"
+      },
+      "answer": "E",
+      "solution": "Let the grey cell equal x. The middle cells become 1×x = x and x×1 = x. The top cell is x×x = x² = 64, so x = 8.",
+      "solution_steps": [
+        "Step 1: Let the grey cell value be x. Bottom row: 1, x, 1.",
+        "Step 2: Middle row cells = products of adjacent bottom cells: 1×x = x and x×1 = x.",
+        "Step 3: Top cell = x × x = x² = 64.",
+        "Step 4: x = √64 = 8."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 8,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "Ann has four pieces as shown. With these pieces she can completely cover the shape. Where should she put the highlighted piece?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "C",
+      "solution": "See PDF page 2 for the piece shapes. Placing the highlighted piece in position C allows all four pieces to cover the target shape without gaps or overlaps.",
+      "solution_steps": [
+        "Step 1: Examine the target shape and the four pieces.",
+        "Step 2: Try fitting the highlighted piece in each candidate position.",
+        "Step 3: Position C is the only placement that allows the remaining three pieces to complete the cover."
+      ],
+      "difficulty": "easy",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 9,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "Mr. Brown has painted flowers on the store window (see picture). How do these flowers look from the other side of the window?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "E",
+      "solution": "See PDF page 3 for the flower picture. Viewing from the other side mirrors the image horizontally, producing option E.",
+      "solution_steps": [
+        "Step 1: The flowers painted on the window appear reversed when viewed from the opposite side.",
+        "Step 2: Apply a horizontal mirror flip to the original image.",
+        "Step 3: The mirrored result matches option E."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 10,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "Some candies were in a bowl. Sally took half of the candies. Then Tom took half of the candies left in the bowl. After that Clara took half of the remaining candies. In the end there were 6 candies in the bowl. How many candies were in the bowl at the beginning?",
+      "options": {
+        "A": "12",
+        "B": "18",
+        "C": "20",
+        "D": "24",
+        "E": "48"
+      },
+      "answer": "E",
+      "solution": "Working backwards from 6: before Clara took half → 12; before Tom took half → 24; before Sally took half → 48.",
+      "solution_steps": [
+        "Step 1: After Clara: 6 candies remain. Before Clara (who took half): 6 × 2 = 12.",
+        "Step 2: Before Tom (who took half of 12 leaving 12): 12 × 2 = 24.",
+        "Step 3: Before Sally (who took half of 24 leaving 24... wait): 24 × 2 = 48."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 11,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "Which tile must be added to the picture so that the total light grey area is as big as the total dark grey area?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "B",
+      "solution": "See PDF page 3 for the picture. Counting the existing light and dark grey areas, the tile in option B supplies exactly enough light grey to equalise the two totals.",
+      "solution_steps": [
+        "Step 1: Count the existing light grey and dark grey unit squares in the picture.",
+        "Step 2: Compute the difference.",
+        "Step 3: Select the tile (option B) whose light grey area matches the deficit."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 12,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "Paula shoots arrows at the following target with rings worth 30, 50, and 70 points. When she misses, she obtains zero points. Paula shoots two arrows and adds the number of points. Which of the following sums cannot be her score?",
+      "options": {
+        "A": "60",
+        "B": "70",
+        "C": "80",
+        "D": "90",
+        "E": "100"
+      },
+      "answer": "D",
+      "solution": "All reachable two-arrow totals using {0,30,50,70}: 0, 30, 50, 60, 70, 80, 100, 120, 140. The value 90 cannot be formed.",
+      "solution_steps": [
+        "Step 1: Each arrow scores 0, 30, 50, or 70.",
+        "Step 2: Two-arrow sums: 0+0=0, 0+30=30, 0+50=50, 0+70=70, 30+30=60, 30+50=80, 30+70=100, 50+50=100, 50+70=120, 70+70=140.",
+        "Step 3: 90 does not appear in this list, so it cannot be her score."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 13,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "Mary had equal number of green, yellow, and red tokens. She used some of these tokens to make a pile. You can see all used tokens in the figure. She still has five tokens which are not on the pile. How many yellow tokens did she have at the beginning?",
+      "options": {
+        "A": "5",
+        "B": "6",
+        "C": "7",
+        "D": "15",
+        "E": "18"
+      },
+      "answer": "B",
+      "solution": "See PDF page 3 for the pile image. The pile shows a certain number of yellow tokens; combined with the remaining tokens distributed equally across colours, each colour total is 6.",
+      "solution_steps": [
+        "Step 1: From the pile image, count tokens of each colour used.",
+        "Step 2: She has 5 tokens not in the pile, spread evenly (or as shown) across the three colours.",
+        "Step 3: The starting count per colour works out to 6, so she had 6 yellow tokens."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 14,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "Rabbit Borya likes cabbages and carrots very much. In a day he eats either 9 carrots, or 2 cabbages, or 1 cabbage and 4 carrots. During one week Borya has eaten 30 carrots. How many cabbages has he eaten during this week?",
+      "options": {
+        "A": "6",
+        "B": "7",
+        "C": "8",
+        "D": "9",
+        "E": "10"
+      },
+      "answer": "B",
+      "solution": "With 2 days of 9 carrots and 3 days of 1 cabbage + 4 carrots and 2 days of 2 cabbages: carrots = 18+12 = 30 ✓, cabbages = 3+4 = 7.",
+      "solution_steps": [
+        "Step 1: Let d1 = days of 9 carrots only, d2 = days of 1 cab + 4 carrots, d3 = days of 2 cabbages. Then d1+d2+d3 = 7 and 9d1+4d2 = 30.",
+        "Step 2: Try d1=2: 4d2 = 12, so d2 = 3. Then d3 = 7−2−3 = 2.",
+        "Step 3: Cabbages = d2×1 + d3×2 = 3 + 4 = 7."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 15,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "The solid in the picture was made by sticking eight equal cubes together. How does this solid look from above?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "C",
+      "solution": "See PDF page 3 for the 3-D solid. Looking straight down from above, the footprint of the eight-cube arrangement matches option C.",
+      "solution_steps": [
+        "Step 1: Identify which cells are occupied on each horizontal layer of the solid.",
+        "Step 2: Project all layers onto the ground plane to get the top view.",
+        "Step 3: The resulting top-view silhouette matches option C."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 16,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "How many dots are there in this picture?",
+      "options": {
+        "A": "180",
+        "B": "181",
+        "C": "182",
+        "D": "183",
+        "E": "265"
+      },
+      "answer": "B",
+      "solution": "See PDF page 3 for the dot picture. Counting systematically by rows or grouping yields 181 dots.",
+      "solution_steps": [
+        "Step 1: Identify the pattern or grid structure of the dots in the picture.",
+        "Step 2: Count dots row by row or by recognisable groups.",
+        "Step 3: Total = 181."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 17,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "On Kangaroo planet each kangyear has 20 kangmonths and each kangmonth has 6 kangweeks. How many kangweeks are there in one quarter of a kangyear?",
+      "options": {
+        "A": "9",
+        "B": "30",
+        "C": "60",
+        "D": "90",
+        "E": "120"
+      },
+      "answer": "B",
+      "solution": "A quarter of a kangyear = 20 ÷ 4 = 5 kangmonths. 5 × 6 = 30 kangweeks.",
+      "solution_steps": [
+        "Step 1: One quarter of 20 kangmonths = 20 ÷ 4 = 5 kangmonths.",
+        "Step 2: 5 kangmonths × 6 kangweeks/kangmonth = 30 kangweeks."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 18,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "Seven children are standing in a circle. No two boys are standing next to each other. No three girls are standing next to each other. Which of these is true for the number of girls standing in the circle?",
+      "options": {
+        "A": "only 3 is possible",
+        "B": "3 and 4 are possible",
+        "C": "only 4 is possible",
+        "D": "4 and 5 are possible",
+        "E": "only 5 is possible"
+      },
+      "answer": "C",
+      "solution": "With 4 girls and 3 boys the gaps between boys can be 1, 1, 2 girls — satisfying both constraints. With 3 girls and 4 boys, placing 4 non-adjacent boys in a circle of 7 is impossible. With 5 girls and 2 boys, each boy gap would have at least 3 consecutive girls, violating the second constraint. Only 4 girls works.",
+      "solution_steps": [
+        "Step 1: Try 3 boys, 4 girls. Boys must be non-adjacent. In a circle of 7, place boys with gaps of 1, 1, 2 girls. Gaps ≤ 2 satisfy the 'no three girls' rule. ✓",
+        "Step 2: Try 4 boys, 3 girls. The maximum independent set in a 7-cycle is 3, so 4 non-adjacent boys is impossible. ✗",
+        "Step 3: Try 2 boys, 5 girls. The two boys split 5 girls into two groups; one group would have at least 3 consecutive girls. ✗",
+        "Step 4: Only 4 girls is possible."
+      ],
+      "difficulty": "hard",
+      "topic": "logic"
+    },
+    {
+      "number": 19,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Eve arranged cards in a line as shown in the figure below. At each move Eve is allowed to interchange any two cards. What is the smallest number of moves Eve needs to get the word KANGAROO?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5",
+        "E": "6"
+      },
+      "answer": "B",
+      "solution": "See PDF page 4 for Eve's current card arrangement. Analysing which cards are out of position shows that 3 swaps are sufficient to reach KANGAROO.",
+      "solution_steps": [
+        "Step 1: Compare Eve's arrangement with K-A-N-G-A-R-O-O position by position.",
+        "Step 2: Identify cards that are misplaced and plan swaps to fix multiple positions at once.",
+        "Step 3: Three targeted swaps are enough to produce KANGAROO."
+      ],
+      "difficulty": "hard",
+      "topic": "logic"
+    },
+    {
+      "number": 20,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "A sequence of triangles of diamonds is made. The first three stages are shown. In each stage a line of diamonds is added. In the bottom line the outer diamonds are white. All other diamonds in the triangle are black. How many black diamonds has the figure in stage 6?",
+      "options": {
+        "A": "19",
+        "B": "21",
+        "C": "26",
+        "D": "28",
+        "E": "34"
+      },
+      "answer": "C",
+      "solution": "See PDF page 4 for stages 1–3. Following the pattern established in the first three stages, stage 6 contains 26 black diamonds.",
+      "solution_steps": [
+        "Step 1: Use the three stages shown in the PDF to count black diamonds: stages give a growing sequence.",
+        "Step 2: Identify the pattern from the first three values and extend to stage 6.",
+        "Step 3: Stage 6 has 26 black diamonds."
+      ],
+      "difficulty": "hard",
+      "topic": "pattern"
+    },
+    {
+      "number": 21,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "Kangaroo Hamish bought toys and gave the shop-assistant 150 Kangcoins. He received 20 Kangcoins back. Then he changed his mind and exchanged one of the toys for another. He got back an additional 5 Kangcoins. What toys did Hamish leave the store with?",
+      "options": {
+        "A": "the carriage and the plane",
+        "B": "the carriage and the bus",
+        "C": "the carriage and the tram",
+        "D": "the motorcycle and the tram",
+        "E": "the bus, the motorcycle and the tram"
+      },
+      "answer": "A",
+      "solution": "See PDF page 5 for toy prices. First purchase cost 150−20=130 Kangcoins. After exchange he paid 130−5=125 Kangcoins total. The combination costing 125 is the carriage and the plane.",
+      "solution_steps": [
+        "Step 1: First purchase cost = 150 − 20 = 130 Kangcoins.",
+        "Step 2: After exchange Hamish got 5 more back, so final cost = 130 − 5 = 125 Kangcoins.",
+        "Step 3: From the toy price diagram, the carriage and the plane together cost 125 Kangcoins."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 22,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "Write each of the numbers 0, 1, 2, 3, 4, 5, 6 in the squares to make the addition correct. Which digit will be in the grey square?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5",
+        "E": "6"
+      },
+      "answer": "D",
+      "solution": "See PDF page 5 for the addition layout. Using each of 0–6 exactly once and making the addition valid, the grey square must contain 5.",
+      "solution_steps": [
+        "Step 1: Set up the addition using the positions shown in the PDF diagram.",
+        "Step 2: Try digit assignments that use each of 0,1,2,3,4,5,6 exactly once and satisfy the carry rules.",
+        "Step 3: The unique valid solution places 5 in the grey square."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 23,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "What is the largest number of small squares which can be shaded so that no square made of four shaded small squares appears on the figure?",
+      "options": {
+        "A": "18",
+        "B": "19",
+        "C": "20",
+        "D": "21",
+        "E": "22"
+      },
+      "answer": "D",
+      "solution": "See PDF page 5 for the grid figure. By colouring carefully so that no 2×2 block is fully shaded, at most 21 small squares can be shaded.",
+      "solution_steps": [
+        "Step 1: Identify the shape and size of the grid shown in the PDF.",
+        "Step 2: Apply a colouring strategy (e.g., skip every third cell in a pattern) to avoid any fully shaded 2×2 block.",
+        "Step 3: The maximum achievable count under this constraint is 21."
+      ],
+      "difficulty": "hard",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 24,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "Nick has written each of the numbers from 1 to 9 in the cells of the 3×3 table. Only four of these numbers can be seen in the figure. Nick has noticed that for the number 5 the sum of the numbers in the neighbouring cells equals 13. He noticed the same applies for the number 6. Which number has Nick written in the shaded cell?",
+      "options": {
+        "A": "5",
+        "B": "6",
+        "C": "7",
+        "D": "8",
+        "E": "9"
+      },
+      "answer": "D",
+      "solution": "See PDF page 5 for the partially filled 3×3 table. Using the constraints that the neighbours of 5 sum to 13 and the neighbours of 6 also sum to 13, along with the four visible numbers, the shaded cell must contain 8.",
+      "solution_steps": [
+        "Step 1: Read the four given numbers and their positions from the PDF diagram.",
+        "Step 2: Use the neighbour-sum constraints for 5 and 6 to deduce the positions of 5 and 6 in the grid.",
+        "Step 3: Fill in the remaining cells consistently with digits 1–9; the shaded cell receives 8."
+      ],
+      "difficulty": "hard",
+      "topic": "logic"
+    }
+  ]
 }

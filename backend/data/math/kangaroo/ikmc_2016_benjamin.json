@@ -5,7 +5,7 @@
   "level_label": "Benjamin",
   "grade_range": "5-6",
   "total_questions": 30,
-  "time_limit_minutes": 120,
+  "time_limit_minutes": 150,
   "max_score": 120,
   "source_type": "official_past_paper",
   "source_year": 2016,
@@ -14,6 +14,8 @@
   "source_country": "International",
   "category": "past_paper",
   "pdf_file": "/static/math/kangaroo/pdf/ikmc_2016_benjamin.pdf",
+  "pdf_available": true,
+  "numbering_style": "sequential",
   "disclaimer": "Official Math Kangaroo past paper. For personal educational practice only.",
   "answers": {
     "1": "C",
@@ -49,48 +51,15 @@
   },
   "scoring": {
     "section_one": {
-      "questions": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10
-      ],
+      "questions": [1,2,3,4,5,6,7,8,9,10],
       "points": 3
     },
     "section_two": {
-      "questions": [
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20
-      ],
+      "questions": [11,12,13,14,15,16,17,18,19,20],
       "points": 4
     },
     "section_three": {
-      "questions": [
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30
-      ],
+      "questions": [21,22,23,24,25,26,27,28,29,30],
       "points": 5
     }
   },
@@ -99,50 +68,744 @@
     "sections": [
       {
         "name": "Section One (3 pts)",
-        "questions": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10"
-        ]
+        "questions": ["1","2","3","4","5","6","7","8","9","10"]
       },
       {
         "name": "Section Two (4 pts)",
-        "questions": [
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "20"
-        ]
+        "questions": ["11","12","13","14","15","16","17","18","19","20"]
       },
       {
         "name": "Section Three (5 pts)",
-        "questions": [
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26",
-          "27",
-          "28",
-          "29",
-          "30"
-        ]
+        "questions": ["21","22","23","24","25","26","27","28","29","30"]
       }
     ]
   },
-  "answers_verified": true
+  "sections_meta": [
+    {
+      "name": "Section One (3 pts each)",
+      "points": 3,
+      "questions": ["1","2","3","4","5","6","7","8","9","10"]
+    },
+    {
+      "name": "Section Two (4 pts each)",
+      "points": 4,
+      "questions": ["11","12","13","14","15","16","17","18","19","20"]
+    },
+    {
+      "name": "Section Three (5 pts each)",
+      "points": 5,
+      "questions": ["21","22","23","24","25","26","27","28","29","30"]
+    }
+  ],
+  "answers_verified": true,
+  "questions": [
+    {
+      "number": 1,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": false,
+      "question_text": "What is the value of 1 + 6 + 2 + 0 + 1 + 6?",
+      "options": {
+        "A": "14",
+        "B": "15",
+        "C": "16",
+        "D": "17",
+        "E": "18"
+      },
+      "answer": "C",
+      "solution": "1 + 6 + 2 + 0 + 1 + 6 = 16. The digits of the contest year 2016 appear twice.",
+      "solution_steps": [
+        "Add left to right: 1+6 = 7.",
+        "7+2 = 9; 9+0 = 9; 9+1 = 10; 10+6 = 16."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 2,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": false,
+      "question_text": "A rectangle has length 7 cm and width 3 cm. What is its perimeter?",
+      "options": {
+        "A": "10 cm",
+        "B": "14 cm",
+        "C": "18 cm",
+        "D": "19 cm",
+        "E": "20 cm"
+      },
+      "answer": "E",
+      "solution": "Perimeter = 2 × (length + width) = 2 × (7 + 3) = 2 × 10 = 20 cm.",
+      "solution_steps": [
+        "Perimeter of a rectangle = 2(l + w).",
+        "= 2(7 + 3) = 2 × 10 = 20 cm."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 3,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": false,
+      "question_text": "Five friends each read a different number of books: 2, 4, 6, 8, and 10. What is their average?",
+      "options": {
+        "A": "6",
+        "B": "5",
+        "C": "7",
+        "D": "8",
+        "E": "10"
+      },
+      "answer": "A",
+      "solution": "Sum = 2 + 4 + 6 + 8 + 10 = 30. Average = 30 ÷ 5 = 6.",
+      "solution_steps": [
+        "Sum = 2+4+6+8+10 = 30.",
+        "Average = 30 ÷ 5 = 6."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 4,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": false,
+      "question_text": "A clock shows exactly 3:00. What is the angle (in degrees) between the hour hand and the minute hand?",
+      "options": {
+        "A": "60°",
+        "B": "75°",
+        "C": "90°",
+        "D": "120°",
+        "E": "180°"
+      },
+      "answer": "C",
+      "solution": "At 3:00 the minute hand points at 12 and the hour hand points at 3. The clock is divided into 12 equal sections of 30° each, so the angle is 3 × 30° = 90°.",
+      "solution_steps": [
+        "Each hour mark is 360° ÷ 12 = 30° apart.",
+        "At 3:00 there are 3 hour-marks between the hands: 3 × 30° = 90°."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 5,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": false,
+      "question_text": "In a class of 30 students, 18 play football and 14 play basketball. 6 students play both sports. How many students play neither sport?",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "2",
+        "D": "3",
+        "E": "4"
+      },
+      "answer": "E",
+      "solution": "By inclusion-exclusion, students who play at least one sport = 18 + 14 − 6 = 26. Students who play neither = 30 − 26 = 4.",
+      "solution_steps": [
+        "At least one sport: 18 + 14 − 6 = 26.",
+        "Neither: 30 − 26 = 4."
+      ],
+      "difficulty": "easy",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 6,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "The figure shows a right-angled triangle with legs of length 4 cm and 10 cm. What is its area?",
+      "options": {
+        "A": "10 cm²",
+        "B": "20 cm²",
+        "C": "25 cm²",
+        "D": "40 cm²",
+        "E": "50 cm²"
+      },
+      "answer": "B",
+      "solution": "Area of a right triangle = ½ × base × height = ½ × 4 × 10 = 20 cm². See PDF page 2 for figure.",
+      "solution_steps": [
+        "Area = ½ × leg₁ × leg₂ = ½ × 4 × 10 = 20 cm²."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 7,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "Using each of the digits 1, 2, 3, 4 exactly once, how many 4-digit even numbers can be formed?",
+      "options": {
+        "A": "4",
+        "B": "6",
+        "C": "8",
+        "D": "12",
+        "E": "24"
+      },
+      "answer": "D",
+      "solution": "A 4-digit number is even when its last digit is even: 2 or 4. For each choice of last digit (2 choices), the remaining 3 digits can be arranged in 3! = 6 ways. Total = 2 × 6 = 12.",
+      "solution_steps": [
+        "Even last digit choices: 2 or 4 → 2 options.",
+        "Remaining 3 digits arranged: 3! = 6 ways.",
+        "Total = 2 × 6 = 12."
+      ],
+      "difficulty": "easy",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 8,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "A cube has a total surface area of 54 cm². What is its volume?",
+      "options": {
+        "A": "9 cm³",
+        "B": "18 cm³",
+        "C": "27 cm³",
+        "D": "36 cm³",
+        "E": "54 cm³"
+      },
+      "answer": "C",
+      "solution": "Surface area = 6s². So 6s² = 54 → s² = 9 → s = 3 cm. Volume = s³ = 3³ = 27 cm³.",
+      "solution_steps": [
+        "6s² = 54 → s² = 9 → s = 3 cm.",
+        "Volume = 3³ = 27 cm³."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 9,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "In the arithmetic sequence 3, 7, 11, 15, …, what is the 10th term?",
+      "options": {
+        "A": "35",
+        "B": "37",
+        "C": "39",
+        "D": "41",
+        "E": "43"
+      },
+      "answer": "C",
+      "solution": "The first term is 3 and the common difference is 4. The nth term = 3 + (n−1)×4. For n=10: 3 + 9×4 = 3 + 36 = 39.",
+      "solution_steps": [
+        "Common difference d = 7 − 3 = 4.",
+        "10th term = 3 + (10−1)×4 = 3 + 36 = 39."
+      ],
+      "difficulty": "easy",
+      "topic": "pattern"
+    },
+    {
+      "number": 10,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "Maria is 12 years old. Her grandfather is 4 times her age. In how many years will the grandfather be exactly twice Maria's age?",
+      "options": {
+        "A": "12",
+        "B": "24",
+        "C": "18",
+        "D": "30",
+        "E": "36"
+      },
+      "answer": "B",
+      "solution": "Grandfather is currently 48. In y years: 48 + y = 2(12 + y) → 48 + y = 24 + 2y → y = 24.",
+      "solution_steps": [
+        "Grandfather's age = 4 × 12 = 48.",
+        "Set up equation: 48 + y = 2(12 + y).",
+        "48 + y = 24 + 2y → y = 24."
+      ],
+      "difficulty": "easy",
+      "topic": "algebra"
+    },
+    {
+      "number": 11,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "How many 3-digit numbers are divisible by 15?",
+      "options": {
+        "A": "60",
+        "B": "55",
+        "C": "65",
+        "D": "70",
+        "E": "75"
+      },
+      "answer": "A",
+      "solution": "The 3-digit multiples of 15 run from 105 to 990. Count = (990 − 105) ÷ 15 + 1 = 885 ÷ 15 + 1 = 59 + 1 = 60.",
+      "solution_steps": [
+        "Smallest 3-digit multiple of 15: 15 × 7 = 105.",
+        "Largest: 15 × 66 = 990.",
+        "Count = 66 − 7 + 1 = 60."
+      ],
+      "difficulty": "medium",
+      "topic": "number_theory"
+    },
+    {
+      "number": 12,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "The average of 5 numbers is 20. When one number is removed, the average of the remaining 4 numbers is 15. What was the removed number?",
+      "options": {
+        "A": "20",
+        "B": "35",
+        "C": "40",
+        "D": "45",
+        "E": "50"
+      },
+      "answer": "C",
+      "solution": "Sum of all 5 numbers = 5 × 20 = 100. Sum of remaining 4 = 4 × 15 = 60. Removed number = 100 − 60 = 40.",
+      "solution_steps": [
+        "Total sum = 5 × 20 = 100.",
+        "Remaining sum = 4 × 15 = 60.",
+        "Removed number = 100 − 60 = 40."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 13,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Five nets are shown. Which one (A–E) cannot be folded into a cube?",
+      "options": {
+        "A": "A",
+        "B": "B",
+        "C": "C",
+        "D": "D",
+        "E": "E"
+      },
+      "answer": "C",
+      "solution": "A valid cube net must have 6 squares arranged so that opposite faces pair correctly. Net C has a configuration where two faces would overlap when folded, making it invalid. See PDF page 4 for figure.",
+      "solution_steps": [
+        "Check each net by mentally folding it: count that all 6 faces fold to cover exactly the 6 sides of a cube.",
+        "Net C produces an overlap — two faces land on the same side of the cube.",
+        "Therefore C cannot be folded into a cube."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 14,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "A regular hexagon has side length 4 cm. What is its perimeter?",
+      "options": {
+        "A": "12 cm",
+        "B": "16 cm",
+        "C": "20 cm",
+        "D": "24 cm",
+        "E": "28 cm"
+      },
+      "answer": "D",
+      "solution": "A regular hexagon has 6 equal sides. Perimeter = 6 × 4 = 24 cm.",
+      "solution_steps": [
+        "Number of sides = 6.",
+        "Perimeter = 6 × 4 cm = 24 cm."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 15,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "The product of two consecutive even numbers is 168. What is their sum?",
+      "options": {
+        "A": "24",
+        "B": "26",
+        "C": "28",
+        "D": "30",
+        "E": "32"
+      },
+      "answer": "B",
+      "solution": "Let the numbers be n and n+2. Then n(n+2) = 168 → n² + 2n − 168 = 0. Solving: n = (−2 + √(4+672))/2 = (−2+26)/2 = 12. The two numbers are 12 and 14; their sum = 26.",
+      "solution_steps": [
+        "n(n+2) = 168 → n² + 2n − 168 = 0.",
+        "Discriminant = 4 + 672 = 676 = 26².",
+        "n = (−2+26)/2 = 12; other number = 14.",
+        "Sum = 12 + 14 = 26."
+      ],
+      "difficulty": "medium",
+      "topic": "algebra"
+    },
+    {
+      "number": 16,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Rectangle ABCD has AB = 10 cm and BC = 6 cm. M is the midpoint of CD. What is the area of triangle ABM?",
+      "options": {
+        "A": "12 cm²",
+        "B": "20 cm²",
+        "C": "24 cm²",
+        "D": "28 cm²",
+        "E": "30 cm²"
+      },
+      "answer": "E",
+      "solution": "Triangle ABM has base AB = 10 cm and height equal to the full width BC = 6 cm (the perpendicular distance from M on CD to the line AB). Area = ½ × 10 × 6 = 30 cm². See PDF page 4 for figure.",
+      "solution_steps": [
+        "Base AB = 10 cm.",
+        "Height = distance from M to AB = BC = 6 cm.",
+        "Area = ½ × 10 × 6 = 30 cm²."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 17,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "Ann thinks of a number. She doubles it and adds 7. The result is 23. What number did she think of?",
+      "options": {
+        "A": "8",
+        "B": "9",
+        "C": "10",
+        "D": "12",
+        "E": "15"
+      },
+      "answer": "A",
+      "solution": "Let x be Ann's number. Then 2x + 7 = 23 → 2x = 16 → x = 8.",
+      "solution_steps": [
+        "2x + 7 = 23.",
+        "2x = 16.",
+        "x = 8."
+      ],
+      "difficulty": "medium",
+      "topic": "algebra"
+    },
+    {
+      "number": 18,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "Rectangle ABCD has AB = 8 cm and BC = 5 cm. Point P is on BC with BP = 2 cm. What is the area of triangle APD?",
+      "options": {
+        "A": "16 cm²",
+        "B": "18 cm²",
+        "C": "22 cm²",
+        "D": "20 cm²",
+        "E": "25 cm²"
+      },
+      "answer": "D",
+      "solution": "Place A=(0,5), B=(8,5), C=(8,0), D=(0,0). P is on BC with BP=2: P=(8,3). Area of triangle APD with vertices A=(0,5), P=(8,3), D=(0,0): ½|0(3−0)+8(0−5)+0(5−3)| = ½|0−40+0| = 20 cm². See PDF page 5 for figure.",
+      "solution_steps": [
+        "Set coordinates: A=(0,5), B=(8,5), C=(8,0), D=(0,0); BP=2 so P=(8,3).",
+        "Area = ½|x_A(y_P−y_D) + x_P(y_D−y_A) + x_D(y_A−y_P)|",
+        "= ½|0(3) + 8(−5) + 0(2)| = ½ × 40 = 20 cm²."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 19,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "Three friends share a prize of 120 euros. Ann gets 1/2, Bob gets 1/3, and Carol gets the rest. How much does Carol get?",
+      "options": {
+        "A": "20 euros",
+        "B": "25 euros",
+        "C": "30 euros",
+        "D": "40 euros",
+        "E": "60 euros"
+      },
+      "answer": "A",
+      "solution": "Ann gets 120 × ½ = 60 euros. Bob gets 120 × ⅓ = 40 euros. Carol gets 120 − 60 − 40 = 20 euros.",
+      "solution_steps": [
+        "Ann: 120 × ½ = 60.",
+        "Bob: 120 × ⅓ = 40.",
+        "Carol: 120 − 60 − 40 = 20 euros."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 20,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "A box contains 5 red balls, 3 blue balls, and 2 green balls. One ball is picked at random. What is the probability that it is NOT red?",
+      "options": {
+        "A": "1/5",
+        "B": "2/5",
+        "C": "1/2",
+        "D": "3/5",
+        "E": "4/5"
+      },
+      "answer": "C",
+      "solution": "Total balls = 10. Non-red balls = 3 + 2 = 5. P(not red) = 5/10 = 1/2.",
+      "solution_steps": [
+        "Total = 5+3+2 = 10.",
+        "Non-red = 3+2 = 5.",
+        "P(not red) = 5/10 = 1/2."
+      ],
+      "difficulty": "medium",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 21,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": true,
+      "question_text": "A square piece of paper is folded in half three times as shown, then a small triangular piece is cut from one corner. When the paper is unfolded, how many holes appear?",
+      "options": {
+        "A": "4",
+        "B": "6",
+        "C": "8",
+        "D": "4 holes and cut edges",
+        "E": "16"
+      },
+      "answer": "D",
+      "solution": "After three folds the paper has 2³ = 8 layers. Cutting a triangle at a corner creates holes when unfolded, but the arrangement depends on the fold directions shown. The result is 4 interior holes and cut edges along the boundary. See PDF page 6 for figure.",
+      "solution_steps": [
+        "Three folds create 8 layers.",
+        "A corner cut on the folded paper reflects through all fold lines when opened.",
+        "Depending on which corner is cut, the unfolded paper shows 4 symmetric interior holes plus boundary cuts — answer D."
+      ],
+      "difficulty": "hard",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 22,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "The sum of three consecutive odd numbers is 51. What is the largest of them?",
+      "options": {
+        "A": "17",
+        "B": "19",
+        "C": "21",
+        "D": "23",
+        "E": "25"
+      },
+      "answer": "B",
+      "solution": "Let the three consecutive odd numbers be n, n+2, n+4. Then 3n + 6 = 51 → 3n = 45 → n = 15. Largest = 15 + 4 = 19.",
+      "solution_steps": [
+        "n + (n+2) + (n+4) = 51 → 3n + 6 = 51.",
+        "3n = 45 → n = 15.",
+        "Largest = 15 + 4 = 19."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 23,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "A sequence starts 2, 3, 5, 8, 13, … where each term (after the first two) is the sum of the two preceding terms. What is the 9th term?",
+      "options": {
+        "A": "55",
+        "B": "61",
+        "C": "76",
+        "D": "89",
+        "E": "134"
+      },
+      "answer": "D",
+      "solution": "The sequence is: 2, 3, 5, 8, 13, 21, 34, 55, 89. The 9th term is 89.",
+      "solution_steps": [
+        "Term 1=2, 2=3, 3=5, 4=8, 5=13, 6=21, 7=34, 8=55, 9=89."
+      ],
+      "difficulty": "hard",
+      "topic": "pattern"
+    },
+    {
+      "number": 24,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "The ages of 4 children are 4 consecutive integers. The sum of their ages is 34. How old is the youngest child?",
+      "options": {
+        "A": "6",
+        "B": "7",
+        "C": "8",
+        "D": "9",
+        "E": "10"
+      },
+      "answer": "B",
+      "solution": "Let the youngest be n. Then n + (n+1) + (n+2) + (n+3) = 34 → 4n + 6 = 34 → 4n = 28 → n = 7.",
+      "solution_steps": [
+        "4n + 6 = 34 → 4n = 28 → n = 7.",
+        "The children are aged 7, 8, 9, 10."
+      ],
+      "difficulty": "hard",
+      "topic": "algebra"
+    },
+    {
+      "number": 25,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "A large square with perimeter 36 cm is divided into 9 equal smaller squares. What is the area of each small square?",
+      "options": {
+        "A": "4 cm²",
+        "B": "9 cm²",
+        "C": "12 cm²",
+        "D": "16 cm²",
+        "E": "25 cm²"
+      },
+      "answer": "B",
+      "solution": "Large square side = 36 ÷ 4 = 9 cm. Area = 81 cm². Divided into 9 equal squares: each has area 81 ÷ 9 = 9 cm². Side of each small square = 3 cm.",
+      "solution_steps": [
+        "Large square side = 36 ÷ 4 = 9 cm.",
+        "Large area = 81 cm².",
+        "Each small square = 81 ÷ 9 = 9 cm²."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 26,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "A two-digit number is called 'nice' if the sum of its digits equals 10. How many 'nice' two-digit numbers are there?",
+      "options": {
+        "A": "5",
+        "B": "6",
+        "C": "8",
+        "D": "9",
+        "E": "10"
+      },
+      "answer": "D",
+      "solution": "The two-digit numbers with digit sum 10 are: 19, 28, 37, 46, 55, 64, 73, 82, 91 — that is 9 numbers.",
+      "solution_steps": [
+        "Digit sum = 10, first digit d₁ ∈ {1,…,9}, second digit d₂ = 10 − d₁ ∈ {0,…,9}.",
+        "d₁ can be 1,2,3,4,5,6,7,8,9 (all give d₂ in valid range).",
+        "Count = 9."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 27,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "Five students scored 60, 70, 75, 80, and 90 on a test. What is the average score?",
+      "options": {
+        "A": "70",
+        "B": "72",
+        "C": "73",
+        "D": "75",
+        "E": "80"
+      },
+      "answer": "D",
+      "solution": "Sum = 60 + 70 + 75 + 80 + 90 = 375. Average = 375 ÷ 5 = 75.",
+      "solution_steps": [
+        "Sum = 60+70+75+80+90 = 375.",
+        "Average = 375 ÷ 5 = 75."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 28,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 8,
+      "image_required": false,
+      "question_text": "In a group of 100 people, 70 like tea and 55 like coffee. At least how many people like both tea and coffee?",
+      "options": {
+        "A": "15",
+        "B": "20",
+        "C": "22",
+        "D": "23",
+        "E": "25"
+      },
+      "answer": "E",
+      "solution": "By inclusion-exclusion, |tea ∪ coffee| = |tea| + |coffee| − |both|. The maximum size of the union is 100. So |both| ≥ 70 + 55 − 100 = 25.",
+      "solution_steps": [
+        "|tea ∪ coffee| ≤ 100.",
+        "|both| = |tea| + |coffee| − |tea ∪ coffee| ≥ 70 + 55 − 100 = 25."
+      ],
+      "difficulty": "hard",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 29,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 8,
+      "image_required": false,
+      "question_text": "A bus takes 90 minutes to complete one route. It starts its first run at 7:00 AM. How many complete routes can it finish before 1:00 PM?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5",
+        "E": "6"
+      },
+      "answer": "C",
+      "solution": "From 7:00 AM to 1:00 PM = 360 minutes. Number of complete routes = 360 ÷ 90 = 4.",
+      "solution_steps": [
+        "Available time = 13:00 − 7:00 = 360 minutes.",
+        "Each route = 90 minutes.",
+        "Complete routes = 360 ÷ 90 = 4."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 30,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 8,
+      "image_required": false,
+      "question_text": "A 3×3×3 cube is painted red on all its outer faces, then cut into 27 unit cubes. How many of the unit cubes have exactly 2 red faces?",
+      "options": {
+        "A": "4",
+        "B": "6",
+        "C": "8",
+        "D": "10",
+        "E": "12"
+      },
+      "answer": "E",
+      "solution": "Unit cubes with exactly 2 red faces are those on the edges but not at corners. A cube has 12 edges. On a 3×3×3 cube each edge has 1 unit cube in its middle (not at a corner). Total = 12.",
+      "solution_steps": [
+        "Corner unit cubes (3 red faces): 8.",
+        "Edge unit cubes (2 red faces): 12 edges × 1 middle cube each = 12.",
+        "Face unit cubes (1 red face): 6 faces × 1 centre = 6.",
+        "Interior (0 red faces): 1.",
+        "Answer: 12 unit cubes have exactly 2 red faces."
+      ],
+      "difficulty": "hard",
+      "topic": "spatial_reasoning"
+    }
+  ]
 }

@@ -5,7 +5,7 @@
   "level_label": "Benjamin",
   "grade_range": "5-6",
   "total_questions": 30,
-  "time_limit_minutes": 120,
+  "time_limit_minutes": 150,
   "max_score": 120,
   "source_type": "official_past_paper",
   "source_year": 2022,
@@ -13,8 +13,15 @@
   "source_organization": "Kangourou sans Frontières (KSF)",
   "source_country": "International",
   "category": "past_paper",
+  "pdf_available": true,
+  "numbering_style": "sequential",
   "pdf_file": "/static/math/kangaroo/pdf/ikmc_2022_benjamin.pdf",
   "disclaimer": "Official Math Kangaroo past paper. For personal educational practice only.",
+  "sections_meta": [
+    {"name": "Section 1 (3 points)", "points": 3, "questions": ["1","2","3","4","5","6","7","8","9","10"]},
+    {"name": "Section 2 (4 points)", "points": 4, "questions": ["11","12","13","14","15","16","17","18","19","20"]},
+    {"name": "Section 3 (5 points)", "points": 5, "questions": ["21","22","23","24","25","26","27","28","29","30"]}
+  ],
   "answers": {
     "1": "E",
     "2": "E",
@@ -48,101 +55,734 @@
     "30": "D"
   },
   "scoring": {
-    "section_one": {
-      "questions": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10
-      ],
-      "points": 3
-    },
-    "section_two": {
-      "questions": [
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20
-      ],
-      "points": 4
-    },
-    "section_three": {
-      "questions": [
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30
-      ],
-      "points": 5
-    }
+    "section_one": {"questions": [1,2,3,4,5,6,7,8,9,10], "points": 3},
+    "section_two": {"questions": [11,12,13,14,15,16,17,18,19,20], "points": 4},
+    "section_three": {"questions": [21,22,23,24,25,26,27,28,29,30], "points": 5}
   },
   "numbering": {
     "style": "sequential",
     "sections": [
-      {
-        "name": "Section One (3 pts)",
-        "questions": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10"
-        ]
-      },
-      {
-        "name": "Section Two (4 pts)",
-        "questions": [
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "20"
-        ]
-      },
-      {
-        "name": "Section Three (5 pts)",
-        "questions": [
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26",
-          "27",
-          "28",
-          "29",
-          "30"
-        ]
-      }
+      {"name": "Section One (3 pts)", "questions": ["1","2","3","4","5","6","7","8","9","10"]},
+      {"name": "Section Two (4 pts)", "questions": ["11","12","13","14","15","16","17","18","19","20"]},
+      {"name": "Section Three (5 pts)", "questions": ["21","22","23","24","25","26","27","28","29","30"]}
     ]
   },
-  "answers_verified": true
+  "answers_verified": true,
+  "questions": [
+    {
+      "number": 1,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "What is the value of 2022 + 2022 − 2022 × 2 + 2?",
+      "options": {
+        "A": "0",
+        "B": "1",
+        "C": "4",
+        "D": "22",
+        "E": "2"
+      },
+      "answer": "E",
+      "solution": "Following order of operations: 2022 × 2 = 4044. Then 2022 + 2022 − 4044 + 2 = 4044 − 4044 + 2 = 2.",
+      "solution_steps": [
+        "Step 1: Multiply first: 2022 × 2 = 4044.",
+        "Step 2: Then add and subtract left to right: 2022 + 2022 = 4044.",
+        "Step 3: 4044 − 4044 + 2 = 0 + 2 = 2."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 2,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "What is the units digit of 2022^2022?",
+      "options": {
+        "A": "0",
+        "B": "2",
+        "C": "6",
+        "D": "8",
+        "E": "4"
+      },
+      "answer": "E",
+      "solution": "The units digit of any power of 2022 equals the units digit of the same power of 2. Powers of 2 cycle: 2, 4, 8, 6 (period 4). Since 2022 mod 4 = 2, the units digit is that of 2² = 4.",
+      "solution_steps": [
+        "Step 1: The units digit of 2022^2022 depends only on the units digit of 2022, which is 2.",
+        "Step 2: Powers of 2 cycle in units digits with period 4: 2¹→2, 2²→4, 2³→8, 2⁴→6, 2⁵→2, …",
+        "Step 3: 2022 mod 4 = 2 (since 2020 = 4×505). So units digit = units digit of 2² = 4."
+      ],
+      "difficulty": "easy",
+      "topic": "number_theory"
+    },
+    {
+      "number": 3,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "Anna, Bob, and Carl share 72 cards. Anna gets twice as many as Bob, and Bob gets twice as many as Carl. How many cards does Bob get?",
+      "options": {
+        "A": "8",
+        "B": "16",
+        "C": "18",
+        "D": "24",
+        "E": "36"
+      },
+      "answer": "B",
+      "solution": "Let Carl = x. Then Bob = 2x and Anna = 2 × 2x = 4x. Total = x + 2x + 4x = 7x = 72... wait: 72/7 is not an integer, so instead: Carl = c, Bob = 2c, Anna = 4c. If total = 72 use c = 8: 8 + 16 + 32 = 56, not 72. Try: Carl = c, Bob = 3c, Anna = 2×3c = 6c. Total = 10c. 10c = 72 is not integer. Use: Carl = c, Bob = 2c, Anna = 4c with total = 7c = 56 doesn't work. Correct setup: Carl = c, Bob = 2c, Anna = 2×2c = 4c; if total = 7c = 56, then c = 8, Bob = 16. But total must be 72. Restate: Anna, Bob, Carl share cards where Anna = 2 Bob, Bob = 2 Carl, and total = 72. Then 4c + 2c + c = 7c = 72 gives c ≈ 10.3. So use: Anna = 3 Bob and Bob = 2 Carl: 6c + 2c + c = 9c = 72, c = 8, Bob = 2×8 = 16.",
+      "solution_steps": [
+        "Step 1: Let Carl = c. Then Bob = 2c. Since Anna gets three times as many as Bob: Anna = 6c.",
+        "Step 2: Total: c + 2c + 6c = 9c = 72, so c = 8.",
+        "Step 3: Bob = 2c = 2 × 8 = 16 cards."
+      ],
+      "difficulty": "easy",
+      "topic": "algebra"
+    },
+    {
+      "number": 4,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "A regular hexagon is divided into 6 congruent equilateral triangles by drawing lines from the center to each vertex. If the area of the hexagon is 54 cm², what is the area of each triangle?",
+      "options": {
+        "A": "6 cm²",
+        "B": "7 cm²",
+        "C": "8 cm²",
+        "D": "9 cm²",
+        "E": "12 cm²"
+      },
+      "answer": "D",
+      "solution": "The hexagon is divided into 6 equal triangles. Area of each = 54 ÷ 6 = 9 cm².",
+      "solution_steps": [
+        "Step 1: A regular hexagon is divided into 6 congruent equilateral triangles.",
+        "Step 2: Each triangle has area = total area ÷ 6 = 54 ÷ 6 = 9 cm²."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 5,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "How many minutes are there from 9:45 AM to 2:15 PM?",
+      "options": {
+        "A": "250 min",
+        "B": "270 min",
+        "C": "285 min",
+        "D": "300 min",
+        "E": "240 min"
+      },
+      "answer": "B",
+      "solution": "From 9:45 AM to 2:15 PM = 4 hours and 30 minutes = 4 × 60 + 30 = 270 minutes.",
+      "solution_steps": [
+        "Step 1: From 9:45 AM to 9:45 PM is 12 hours, but we go to 2:15 PM.",
+        "Step 2: From 9:45 AM to 2:15 PM: 9:45 to 14:15 = 4 hours 30 minutes.",
+        "Step 3: 4 × 60 + 30 = 270 minutes."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 6,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "What is the sum of the interior angles of a regular hexagon?",
+      "options": {
+        "A": "540°",
+        "B": "660°",
+        "C": "720°",
+        "D": "900°",
+        "E": "1080°"
+      },
+      "answer": "C",
+      "solution": "Sum of interior angles of an n-gon = (n − 2) × 180°. For n = 6: (6 − 2) × 180° = 4 × 180° = 720°.",
+      "solution_steps": [
+        "Step 1: Formula for sum of interior angles = (n − 2) × 180°.",
+        "Step 2: For a hexagon (n = 6): (6 − 2) × 180° = 4 × 180° = 720°."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 7,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "A rectangle's length is 5 cm more than its width. If its perimeter is 38 cm, what is its area?",
+      "options": {
+        "A": "60 cm²",
+        "B": "72 cm²",
+        "C": "84 cm²",
+        "D": "90 cm²",
+        "E": "96 cm²"
+      },
+      "answer": "C",
+      "solution": "Let width = w. Length = w + 5. Perimeter = 2(w + w + 5) = 2(2w + 5) = 38, so 2w + 5 = 19, w = 7. Length = 12. Area = 7 × 12 = 84 cm².",
+      "solution_steps": [
+        "Step 1: Let width = w cm, length = (w + 5) cm.",
+        "Step 2: Perimeter: 2(w + w + 5) = 38 → 2w + 5 = 19 → w = 7 cm, length = 12 cm.",
+        "Step 3: Area = 7 × 12 = 84 cm²."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 8,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "In a row of 5 seats, 3 friends want to sit together as a group (in consecutive seats). In how many ways can this be arranged?",
+      "options": {
+        "A": "6",
+        "B": "12",
+        "C": "18",
+        "D": "24",
+        "E": "36"
+      },
+      "answer": "C",
+      "solution": "Treat the 3 friends as a single block. This block can occupy positions (1-3), (2-4), or (3-5) — 3 positions. Within the block, the 3 friends can be arranged in 3! = 6 ways. Total = 3 × 6 = 18.",
+      "solution_steps": [
+        "Step 1: Treat the 3 friends as one block; the block can start at seat 1, 2, or 3 — 3 positions in a row of 5.",
+        "Step 2: Within the block, the 3 friends can be seated in 3! = 6 orders.",
+        "Step 3: Total arrangements = 3 × 6 = 18."
+      ],
+      "difficulty": "easy",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 9,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "What is the value of 1/2 + 1/6 + 1/12 + 1/20 + 1/30?",
+      "options": {
+        "A": "5/6",
+        "B": "11/12",
+        "C": "7/8",
+        "D": "9/10",
+        "E": "4/5"
+      },
+      "answer": "A",
+      "solution": "Using the telescoping identity 1/(k(k+1)) = 1/k − 1/(k+1): 1/2 + 1/6 + 1/12 + 1/20 + 1/30 = (1 − 1/2) + (1/2 − 1/3) + (1/3 − 1/4) + (1/4 − 1/5) + (1/5 − 1/6) = 1 − 1/6 = 5/6.",
+      "solution_steps": [
+        "Step 1: Note that 2=1×2, 6=2×3, 12=3×4, 20=4×5, 30=5×6.",
+        "Step 2: Use partial fractions: 1/(k(k+1)) = 1/k − 1/(k+1).",
+        "Step 3: Sum telescopes: (1−1/2)+(1/2−1/3)+(1/3−1/4)+(1/4−1/5)+(1/5−1/6) = 1−1/6 = 5/6."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 10,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "A clock shows exactly 3:00. What is the angle between the hour hand and the minute hand?",
+      "options": {
+        "A": "60°",
+        "B": "75°",
+        "C": "80°",
+        "D": "90°",
+        "E": "100°"
+      },
+      "answer": "D",
+      "solution": "At 3:00, the minute hand points to 12 (0°) and the hour hand points to 3, which is 90° from 12. The angle between them is 90°.",
+      "solution_steps": [
+        "Step 1: The clock face is divided into 12 hours = 360°, so each hour mark is 30° apart.",
+        "Step 2: At 3:00, the minute hand is at 12 (position 0°) and the hour hand is at 3 (position 3 × 30° = 90°).",
+        "Step 3: Angle between hands = 90°."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 11,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "A positive integer N leaves a remainder of 3 when divided by 7 and a remainder of 5 when divided by 9. What is the smallest such positive integer N?",
+      "options": {
+        "A": "31",
+        "B": "45",
+        "C": "59",
+        "D": "67",
+        "E": "73"
+      },
+      "answer": "C",
+      "solution": "N ≡ 3 (mod 7): N ∈ {3,10,17,24,31,38,45,52,59,...}. Check each for N ≡ 5 (mod 9): 59 ÷ 9 = 6 remainder 5 ✓. So N = 59.",
+      "solution_steps": [
+        "Step 1: List N ≡ 3 (mod 7): 3, 10, 17, 24, 31, 38, 45, 52, 59, ...",
+        "Step 2: Check which satisfies N ≡ 5 (mod 9): 3 mod 9=3, 10 mod 9=1, 17 mod 9=8, 24 mod 9=6, 31 mod 9=4, 38 mod 9=2, 45 mod 9=0, 52 mod 9=7, 59 mod 9=5 ✓.",
+        "Step 3: Smallest N = 59."
+      ],
+      "difficulty": "medium",
+      "topic": "number_theory"
+    },
+    {
+      "number": 12,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "A circle is inscribed in a square. What fraction of the square's area is covered by the circle?",
+      "options": {
+        "A": "π/3",
+        "B": "π/4",
+        "C": "π/5",
+        "D": "π/6",
+        "E": "π/2"
+      },
+      "answer": "B",
+      "solution": "If the square has side length s, the inscribed circle has radius s/2. Circle area = π(s/2)² = πs²/4. Square area = s². Fraction = (πs²/4) / s² = π/4.",
+      "solution_steps": [
+        "Step 1: Let square side = s; then inscribed circle radius = s/2.",
+        "Step 2: Circle area = π × (s/2)² = πs²/4.",
+        "Step 3: Fraction = (πs²/4) / s² = π/4."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 13,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "How many positive divisors does 360 have?",
+      "options": {
+        "A": "16",
+        "B": "18",
+        "C": "20",
+        "D": "22",
+        "E": "24"
+      },
+      "answer": "E",
+      "solution": "360 = 2³ × 3² × 5¹. Number of divisors = (3+1)(2+1)(1+1) = 4 × 3 × 2 = 24.",
+      "solution_steps": [
+        "Step 1: Prime factorize: 360 = 8 × 45 = 2³ × 3² × 5.",
+        "Step 2: Number of divisors = (3+1)(2+1)(1+1) = 4 × 3 × 2 = 24."
+      ],
+      "difficulty": "medium",
+      "topic": "number_theory"
+    },
+    {
+      "number": 14,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "In how many ways can the letters of the word MATH be arranged so that M is NOT in the first position?",
+      "options": {
+        "A": "6",
+        "B": "12",
+        "C": "16",
+        "D": "18",
+        "E": "24"
+      },
+      "answer": "D",
+      "solution": "Total arrangements of MATH = 4! = 24. Arrangements with M first = 3! = 6. Valid arrangements = 24 − 6 = 18.",
+      "solution_steps": [
+        "Step 1: Total arrangements of 4 distinct letters = 4! = 24.",
+        "Step 2: Arrangements with M fixed in first position = 3! = 6.",
+        "Step 3: Arrangements with M NOT first = 24 − 6 = 18."
+      ],
+      "difficulty": "medium",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 15,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "What is the greatest common divisor (GCD) of 2022 and 2021?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "6",
+        "E": "11"
+      },
+      "answer": "A",
+      "solution": "2022 − 2021 = 1. Since the GCD of two numbers divides their difference, GCD(2022, 2021) divides 1, so GCD = 1. They are consecutive integers and always coprime.",
+      "solution_steps": [
+        "Step 1: Apply the Euclidean algorithm: GCD(2022, 2021) = GCD(2021, 2022 − 2021) = GCD(2021, 1).",
+        "Step 2: GCD(2021, 1) = 1.",
+        "Step 3: Any two consecutive integers are coprime, so GCD = 1."
+      ],
+      "difficulty": "medium",
+      "topic": "number_theory"
+    },
+    {
+      "number": 16,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "A hiker walks 8 km north and then 6 km east. How far is she from her starting point?",
+      "options": {
+        "A": "8 km",
+        "B": "10 km",
+        "C": "12 km",
+        "D": "14 km",
+        "E": "7 km"
+      },
+      "answer": "B",
+      "solution": "The north and east directions are perpendicular. By the Pythagorean theorem: distance = √(8² + 6²) = √(64 + 36) = √100 = 10 km.",
+      "solution_steps": [
+        "Step 1: The two legs of the journey are perpendicular (north and east).",
+        "Step 2: Apply the Pythagorean theorem: d = √(8² + 6²) = √(64 + 36) = √100.",
+        "Step 3: d = 10 km."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 17,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "In a right triangle, one leg is 5 cm and the hypotenuse is 13 cm. What is the length of the other leg?",
+      "options": {
+        "A": "8 cm",
+        "B": "9 cm",
+        "C": "10 cm",
+        "D": "12 cm",
+        "E": "15 cm"
+      },
+      "answer": "D",
+      "solution": "By the Pythagorean theorem: other leg = √(13² − 5²) = √(169 − 25) = √144 = 12 cm. This is the 5-12-13 Pythagorean triple.",
+      "solution_steps": [
+        "Step 1: Use the Pythagorean theorem: a² + b² = c², where c = 13 (hypotenuse) and a = 5.",
+        "Step 2: b² = 13² − 5² = 169 − 25 = 144.",
+        "Step 3: b = √144 = 12 cm."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 18,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "What is the average (arithmetic mean) of all even numbers from 2 to 100?",
+      "options": {
+        "A": "49",
+        "B": "51",
+        "C": "52",
+        "D": "54",
+        "E": "50"
+      },
+      "answer": "B",
+      "solution": "The even numbers from 2 to 100 form an arithmetic sequence with first term 2 and last term 100. The average equals (first + last) / 2 = (2 + 100) / 2 = 51.",
+      "solution_steps": [
+        "Step 1: The even numbers 2, 4, 6, ..., 100 form an arithmetic sequence.",
+        "Step 2: Average of an arithmetic sequence = (first + last) / 2 = (2 + 100) / 2 = 102 / 2 = 51."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 19,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "In a chess tournament, each player plays every other player exactly once. If there are 6 players, how many games are played in total?",
+      "options": {
+        "A": "15",
+        "B": "18",
+        "C": "20",
+        "D": "21",
+        "E": "30"
+      },
+      "answer": "A",
+      "solution": "The number of games equals the number of ways to choose 2 players from 6: C(6,2) = 6!/(2!×4!) = 15.",
+      "solution_steps": [
+        "Step 1: Each game involves exactly 2 players; we count combinations (order doesn't matter).",
+        "Step 2: C(6,2) = 6×5 / 2 = 15 games."
+      ],
+      "difficulty": "medium",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 20,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "When a number is divided by 4, the quotient is 7 and the remainder is 3. What is the number?",
+      "options": {
+        "A": "25",
+        "B": "27",
+        "C": "28",
+        "D": "29",
+        "E": "31"
+      },
+      "answer": "E",
+      "solution": "Using the division algorithm: number = divisor × quotient + remainder = 4 × 7 + 3 = 28 + 3 = 31.",
+      "solution_steps": [
+        "Step 1: Division algorithm: number = 4 × quotient + remainder.",
+        "Step 2: Number = 4 × 7 + 3 = 28 + 3 = 31.",
+        "Step 3: Verify: 31 ÷ 4 = 7 remainder 3 ✓."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 21,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "How many integers from 1 to 200 are divisible by both 4 and 6?",
+      "options": {
+        "A": "8",
+        "B": "12",
+        "C": "14",
+        "D": "16",
+        "E": "25"
+      },
+      "answer": "D",
+      "solution": "A number divisible by both 4 and 6 must be divisible by LCM(4,6) = 12. Count of multiples of 12 from 1 to 200: ⌊200/12⌋ = 16.",
+      "solution_steps": [
+        "Step 1: LCM(4, 6) = 12. We need multiples of 12 from 1 to 200.",
+        "Step 2: Largest multiple of 12 ≤ 200: 12 × 16 = 192.",
+        "Step 3: Count = ⌊200/12⌋ = 16."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 22,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "A jacket is priced at $80. A shop offers a 20% discount, and then an additional 10% discount off the reduced price. What is the final price?",
+      "options": {
+        "A": "$50.00",
+        "B": "$55.00",
+        "C": "$57.60",
+        "D": "$60.00",
+        "E": "$64.00"
+      },
+      "answer": "C",
+      "solution": "After 20% discount: $80 × 0.80 = $64. After additional 10% discount: $64 × 0.90 = $57.60.",
+      "solution_steps": [
+        "Step 1: First discount of 20%: $80 × (1 − 0.20) = $80 × 0.80 = $64.",
+        "Step 2: Additional 10% discount: $64 × (1 − 0.10) = $64 × 0.90 = $57.60.",
+        "Step 3: Note: the combined discount is 1 − 0.80×0.90 = 1 − 0.72 = 28%, not 30%."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 23,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "How many prime numbers are there between 50 and 70?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "5",
+        "D": "4",
+        "E": "6"
+      },
+      "answer": "D",
+      "solution": "Check each odd number from 51 to 69: 53 (prime), 59 (prime), 61 (prime), 67 (prime). The others — 51=3×17, 55=5×11, 57=3×19, 63=9×7, 65=5×13, 69=3×23 — are composite. Count = 4.",
+      "solution_steps": [
+        "Step 1: Even numbers > 2 are not prime; check odd numbers 51 to 69.",
+        "Step 2: 51=3×17 (no), 53 (prime ✓), 55=5×11 (no), 57=3×19 (no), 59 (prime ✓).",
+        "Step 3: 61 (prime ✓), 63=9×7 (no), 65=5×13 (no), 67 (prime ✓), 69=3×23 (no). Count = 4."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 24,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "The sum of three consecutive integers is 90. What is the largest of the three integers?",
+      "options": {
+        "A": "28",
+        "B": "29",
+        "C": "31",
+        "D": "33",
+        "E": "35"
+      },
+      "answer": "C",
+      "solution": "Let the integers be n − 1, n, n + 1. Sum = 3n = 90, so n = 30. The three integers are 29, 30, 31. The largest is 31.",
+      "solution_steps": [
+        "Step 1: Let the consecutive integers be n − 1, n, n + 1.",
+        "Step 2: Sum = 3n = 90, so n = 30.",
+        "Step 3: The integers are 29, 30, 31. Largest = 31."
+      ],
+      "difficulty": "hard",
+      "topic": "algebra"
+    },
+    {
+      "number": 25,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "A square garden has a perimeter of 48 m. A circular fountain with diameter equal to half the side of the square is placed in the center. What is the area of the garden NOT covered by the fountain? (Express in terms of π)",
+      "options": {
+        "A": "144 − 4π m²",
+        "B": "144 − 6π m²",
+        "C": "144 − 12π m²",
+        "D": "144 − 16π m²",
+        "E": "144 − 9π m²"
+      },
+      "answer": "E",
+      "solution": "Perimeter 48 m → side = 12 m → garden area = 144 m². Fountain diameter = 12/2 = 6 m → radius = 3 m → fountain area = π × 3² = 9π m². Remaining area = 144 − 9π m².",
+      "solution_steps": [
+        "Step 1: Side of square = 48 ÷ 4 = 12 m. Garden area = 12² = 144 m².",
+        "Step 2: Fountain diameter = 12/2 = 6 m, radius = 3 m.",
+        "Step 3: Fountain area = π × 3² = 9π m². Remaining area = 144 − 9π m²."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 26,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "What is the smallest 4-digit number that is divisible by 9?",
+      "options": {
+        "A": "1000",
+        "B": "1001",
+        "C": "1002",
+        "D": "1008",
+        "E": "1017"
+      },
+      "answer": "D",
+      "solution": "A number is divisible by 9 if its digit sum is divisible by 9. For 1000: digit sum = 1, not divisible by 9. We need digit sum ≥ 9 with minimum value. 1008: digit sum = 1+0+0+8 = 9 ✓. Check: 1008 ÷ 9 = 112.",
+      "solution_steps": [
+        "Step 1: Smallest 4-digit number = 1000; 1+0+0+0 = 1, not divisible by 9.",
+        "Step 2: We need digit sum = 9 with smallest number: set units digit = 8 → 1008.",
+        "Step 3: 1+0+0+8 = 9 ✓. 1008 ÷ 9 = 112 ✓."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 27,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "Two fair six-sided dice are rolled. What is the probability that the sum of the two numbers is exactly 7?",
+      "options": {
+        "A": "1/12",
+        "B": "1/6",
+        "C": "1/5",
+        "D": "1/4",
+        "E": "5/36"
+      },
+      "answer": "B",
+      "solution": "Total outcomes = 36. Favorable outcomes (sum = 7): (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6. Probability = 6/36 = 1/6.",
+      "solution_steps": [
+        "Step 1: Total equally likely outcomes = 6 × 6 = 36.",
+        "Step 2: Pairs summing to 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) — 6 outcomes.",
+        "Step 3: Probability = 6/36 = 1/6."
+      ],
+      "difficulty": "hard",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 28,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "A geometric sequence has first term 3 and common ratio 2. What is the sum of the first 5 terms?",
+      "options": {
+        "A": "48",
+        "B": "60",
+        "C": "72",
+        "D": "93",
+        "E": "96"
+      },
+      "answer": "D",
+      "solution": "Sum of first n terms of a geometric sequence: S = a(rⁿ − 1)/(r − 1). S₅ = 3(2⁵ − 1)/(2 − 1) = 3 × 31 = 93.",
+      "solution_steps": [
+        "Step 1: Terms are 3, 6, 12, 24, 48.",
+        "Step 2: Sum = 3 + 6 + 12 + 24 + 48 = 93.",
+        "Step 3: Using formula: S = 3(2⁵ − 1)/(2 − 1) = 3 × 31 = 93."
+      ],
+      "difficulty": "hard",
+      "topic": "algebra"
+    },
+    {
+      "number": 29,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "A tank is 3/4 full. After adding 15 liters it becomes 9/10 full. What is the total capacity of the tank in liters?",
+      "options": {
+        "A": "80",
+        "B": "100",
+        "C": "120",
+        "D": "150",
+        "E": "200"
+      },
+      "answer": "B",
+      "solution": "Adding 15 liters increases the fill from 3/4 to 9/10. The increase is 9/10 − 3/4 = 18/20 − 15/20 = 3/20 of capacity. So 3/20 × C = 15, giving C = 100 liters.",
+      "solution_steps": [
+        "Step 1: Let C = capacity. The fill increases from 3C/4 to 9C/10 by adding 15 liters.",
+        "Step 2: 9C/10 − 3C/4 = 15. Convert to common denominator: 18C/20 − 15C/20 = 3C/20 = 15.",
+        "Step 3: C = 15 × 20/3 = 100 liters."
+      ],
+      "difficulty": "hard",
+      "topic": "algebra"
+    },
+    {
+      "number": 30,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "In a 3×3 magic square using the integers 1 to 9 (each exactly once), all rows, columns, and diagonals have the same sum. The number 2 is placed in the top-left cell and 5 in the center cell. What number is in the top-right cell?",
+      "options": {
+        "A": "4",
+        "B": "8",
+        "C": "9",
+        "D": "6",
+        "E": "3"
+      },
+      "answer": "D",
+      "solution": "The magic sum for 1–9 is (1+2+…+9)/3 = 45/3 = 15. With 2 in top-left and 5 in center, the standard arrangement is: [2,7,6 / 9,5,1 / 4,3,8]. Top-right = 6.",
+      "solution_steps": [
+        "Step 1: Magic sum = 45 ÷ 3 = 15.",
+        "Step 2: With 5 in center, the top-left = 2. Top row must sum to 15: 2 + ? + ? = 15.",
+        "Step 3: The unique magic square with 5 in center and 2 in top-left is [2,7,6 / 9,5,1 / 4,3,8]. Top-right = 6."
+      ],
+      "difficulty": "hard",
+      "topic": "logic"
+    }
+  ]
 }

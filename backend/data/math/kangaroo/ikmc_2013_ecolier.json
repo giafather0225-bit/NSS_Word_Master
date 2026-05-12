@@ -14,7 +14,14 @@
   "source_country": "International",
   "category": "past_paper",
   "pdf_file": "/static/math/kangaroo/pdf/ikmc_2013_ecolier.pdf",
+  "pdf_available": true,
   "disclaimer": "Official Math Kangaroo past paper. For personal educational practice only.",
+  "numbering_style": "sequential",
+  "sections_meta": [
+    {"name": "Section 1", "points": 3, "questions": ["1","2","3","4","5","6","7","8"]},
+    {"name": "Section 2", "points": 4, "questions": ["9","10","11","12","13","14","15","16"]},
+    {"name": "Section 3", "points": 5, "questions": ["17","18","19","20","21","22","23","24"]}
+  ],
   "answers": {
     "1": "D",
     "2": "D",
@@ -42,89 +49,598 @@
     "24": "B"
   },
   "scoring": {
-    "section_one": {
-      "questions": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8
-      ],
-      "points": 3
-    },
-    "section_two": {
-      "questions": [
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16
-      ],
-      "points": 4
-    },
-    "section_three": {
-      "questions": [
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24
-      ],
-      "points": 5
-    }
+    "section_one": {"questions": [1,2,3,4,5,6,7,8], "points": 3},
+    "section_two": {"questions": [9,10,11,12,13,14,15,16], "points": 4},
+    "section_three": {"questions": [17,18,19,20,21,22,23,24], "points": 5}
   },
   "numbering": {
     "style": "sequential",
     "sections": [
-      {
-        "name": "Section One (3 pts)",
-        "questions": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8"
-        ]
-      },
-      {
-        "name": "Section Two (4 pts)",
-        "questions": [
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16"
-        ]
-      },
-      {
-        "name": "Section Three (5 pts)",
-        "questions": [
-          "17",
-          "18",
-          "19",
-          "20",
-          "21",
-          "22",
-          "23",
-          "24"
-        ]
-      }
+      {"name": "Section One (3 pts)", "questions": ["1","2","3","4","5","6","7","8"]},
+      {"name": "Section Two (4 pts)", "questions": ["9","10","11","12","13","14","15","16"]},
+      {"name": "Section Three (5 pts)", "questions": ["17","18","19","20","21","22","23","24"]}
     ]
   },
-  "answers_verified": true
+  "answers_verified": true,
+  "questions": [
+    {
+      "number": 1,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": true,
+      "question_text": "In which figure is the number of black kangaroos bigger than the number of white kangaroos?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "D",
+      "solution": "See PDF page 1 for the five kangaroo figures. In figure D, black kangaroos outnumber white kangaroos.",
+      "solution_steps": [
+        "Step 1: Count the black and white kangaroos in each of the five figures.",
+        "Step 2: Identify the figure where black > white.",
+        "Step 3: Figure D is the only one satisfying this condition."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 2,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": true,
+      "question_text": "Aline writes a correct calculation. Then she covers two digits which are the same with a sticker. Which digit is under the stickers?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "D",
+      "solution": "See PDF page 1 for the calculation. The digit shown in option D makes the covered calculation correct when substituted for both stickers.",
+      "solution_steps": [
+        "Step 1: Read the visible parts of the calculation from the PDF.",
+        "Step 2: Let x be the hidden digit and solve the equation.",
+        "Step 3: The unique solution is the digit shown in option D."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 3,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": true,
+      "question_text": "How does the row of circles continue?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "E",
+      "solution": "See PDF page 1 for the circle pattern. The next four circles in the sequence match option E.",
+      "solution_steps": [
+        "Step 1: Identify the repeating pattern in the row of circles (colour, size, or arrangement).",
+        "Step 2: Extend the pattern to the four missing circles.",
+        "Step 3: Option E matches the extended pattern."
+      ],
+      "difficulty": "easy",
+      "topic": "pattern"
+    },
+    {
+      "number": 4,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": true,
+      "question_text": "How many triangles can be seen in the picture below?",
+      "options": {
+        "A": "9",
+        "B": "10",
+        "C": "11",
+        "D": "13",
+        "E": "12"
+      },
+      "answer": "B",
+      "solution": "See PDF page 1 for the figure. Counting all triangles of every size — single units and composites — gives a total of 10.",
+      "solution_steps": [
+        "Step 1: Count the smallest unit triangles.",
+        "Step 2: Count triangles made of 2, 3, and 4 smaller triangles.",
+        "Step 3: Add all counts: total = 10."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 5,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 1,
+      "image_required": false,
+      "question_text": "In London 2012, the USA won the most medals: 46 gold, 29 silver and 29 bronze. China was second with 38 gold, 27 silver and 23 bronze. How many more medals did the USA win than China?",
+      "options": {
+        "A": "6",
+        "B": "14",
+        "C": "16",
+        "D": "24",
+        "E": "26"
+      },
+      "answer": "C",
+      "solution": "USA total = 46+29+29 = 104. China total = 38+27+23 = 88. Difference = 104 − 88 = 16.",
+      "solution_steps": [
+        "Step 1: USA medals = 46 + 29 + 29 = 104.",
+        "Step 2: China medals = 38 + 27 + 23 = 88.",
+        "Step 3: 104 − 88 = 16."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 6,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "Daniel had a package of 36 candies. He divided all the candies equally among all his friends. Which of the following was definitely not the number of friends?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5",
+        "E": "6"
+      },
+      "answer": "D",
+      "solution": "36 must be divisible by the number of friends. 36 ÷ 5 = 7.2, so 5 is not a divisor of 36.",
+      "solution_steps": [
+        "Step 1: Factorise 36 = 2² × 3². Its divisors include 1, 2, 3, 4, 6, 9, 12, 18, 36.",
+        "Step 2: Check 5: 36 ÷ 5 = 7 remainder 1. Not a divisor.",
+        "Step 3: 5 is the only option that does not divide 36 evenly."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 7,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "Veronika's mum prepares sandwiches with two slices of bread each. A package of bread has 24 slices. How many sandwiches can she prepare from two and a half packages of bread?",
+      "options": {
+        "A": "24",
+        "B": "30",
+        "C": "48",
+        "D": "34",
+        "E": "26"
+      },
+      "answer": "B",
+      "solution": "Total slices = 2.5 × 24 = 60. Sandwiches = 60 ÷ 2 = 30.",
+      "solution_steps": [
+        "Step 1: Total slices = 2.5 × 24 = 60 slices.",
+        "Step 2: Each sandwich uses 2 slices, so sandwiches = 60 ÷ 2 = 30."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 8,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "About the number 325, five boys said: Andrei: 'This is a 3-digit number.' Boris: 'All digits are distinct.' Vitya: 'The sum of the digits is 10.' Grisha: 'The units digit is 5.' Danya: 'All digits are odd.' Which of the boys was wrong?",
+      "options": {
+        "A": "Andrei",
+        "B": "Boris",
+        "C": "Vitya",
+        "D": "Grisha",
+        "E": "Danya"
+      },
+      "answer": "E",
+      "solution": "The digit 2 is even, so not all digits of 325 are odd. Danya was wrong.",
+      "solution_steps": [
+        "Step 1: 325 is a 3-digit number ✓ (Andrei correct).",
+        "Step 2: Digits 3, 2, 5 are all different ✓ (Boris correct).",
+        "Step 3: Sum = 3+2+5 = 10 ✓ (Vitya correct). Units digit = 5 ✓ (Grisha correct).",
+        "Step 4: 2 is even, so not all digits are odd ✗ (Danya wrong)."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 9,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 2,
+      "image_required": true,
+      "question_text": "The rectangular mirror was broken. Which of the following pieces is missing in the given figure of the broken mirror?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "B",
+      "solution": "See PDF page 2 for the broken mirror figure. The gap in the broken mirror is filled exactly by piece B.",
+      "solution_steps": [
+        "Step 1: Examine the shape of the gap in the broken mirror.",
+        "Step 2: Compare the gap outline with each of the five candidate pieces.",
+        "Step 3: Piece B matches the missing fragment exactly."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 10,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "When Pinocchio lies, his nose gets 6 cm longer. When he tells the truth, his nose gets 2 cm shorter. When his nose was 9 cm long, he told three lies and made two true statements. How long was Pinocchio's nose afterwards?",
+      "options": {
+        "A": "14 cm",
+        "B": "15 cm",
+        "C": "19 cm",
+        "D": "23 cm",
+        "E": "31 cm"
+      },
+      "answer": "D",
+      "solution": "Start at 9 cm. Three lies: +3×6 = +18 cm. Two truths: −2×2 = −4 cm. Final = 9+18−4 = 23 cm.",
+      "solution_steps": [
+        "Step 1: Three lies add 3 × 6 = 18 cm.",
+        "Step 2: Two true statements subtract 2 × 2 = 4 cm.",
+        "Step 3: Final length = 9 + 18 − 4 = 23 cm."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 11,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "In a shop you can buy oranges in boxes of three different sizes: with 5 oranges, with 9 oranges or with 10 oranges. Pedro wants to buy exactly 48 oranges. What is the smallest number of boxes he can buy?",
+      "options": {
+        "A": "8",
+        "B": "7",
+        "C": "6",
+        "D": "5",
+        "E": "4"
+      },
+      "answer": "D",
+      "solution": "3×10 + 2×9 = 30+18 = 48, using 5 boxes total. Fewer than 5 is impossible since the maximum from 4 boxes is 4×10=40 < 48.",
+      "solution_steps": [
+        "Step 1: Check 4 boxes: maximum = 4×10 = 40 < 48. Cannot reach 48 with 4 boxes.",
+        "Step 2: Try 5 boxes: 3×10 + 2×9 = 30+18 = 48 ✓.",
+        "Step 3: Minimum is 5 boxes."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 12,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": true,
+      "question_text": "Ann starts walking in the direction of the arrow. At every intersection she turns either right or left: right, left, left, right, left, left. In which direction is Ann finally walking?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "A",
+      "solution": "See PDF page 3 for the street grid and starting direction. Following right, left, left, right, left, left through six intersections, Ann ends up walking in direction A.",
+      "solution_steps": [
+        "Step 1: Note Ann's initial direction from the arrow in the figure.",
+        "Step 2: Apply each turn in sequence: R, L, L, R, L, L.",
+        "Step 3: Track the final bearing — it matches direction A."
+      ],
+      "difficulty": "medium",
+      "topic": "spatial_reasoning"
+    },
+    {
+      "number": 13,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "Schoolmates Andy, Betty, Cathie and Dannie were born in the same year. Their birthdays were on February 20th, April 12th, May 12th and May 25th. Betty and Andy were born in the same month. Andy and Cathie were born on the same day of different months. Who is the oldest?",
+      "options": {
+        "A": "Andy",
+        "B": "Betty",
+        "C": "Cathie",
+        "D": "Dannie",
+        "E": "impossible to determine"
+      },
+      "answer": "D",
+      "solution": "Betty and Andy share a month → both in May (May 12 and May 25). Andy and Cathie share a day → Andy is May 12 so Cathie is April 12. Dannie gets February 20. The earliest birthday is February 20 — Dannie is oldest.",
+      "solution_steps": [
+        "Step 1: Betty and Andy are in the same month. The only month with two dates is May (12th and 25th), so Betty and Andy are born in May.",
+        "Step 2: Andy and Cathie share the same day. Among {Feb 20, Apr 12, May 12, May 25}, the repeated day is 12. Andy = May 12, Cathie = April 12.",
+        "Step 3: Betty = May 25, Dannie = February 20.",
+        "Step 4: Earliest birthday = February 20 → Dannie is oldest."
+      ],
+      "difficulty": "medium",
+      "topic": "logic"
+    },
+    {
+      "number": 14,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "30 children from Adventure Park took part in events. 15 of them took part in the 'moving bridge' contest, and 20 of them went down the zip-wire. How many children from Adventure Park took part in both events?",
+      "options": {
+        "A": "25",
+        "B": "15",
+        "C": "30",
+        "D": "10",
+        "E": "5"
+      },
+      "answer": "E",
+      "solution": "All 30 children participated in at least one event. By inclusion-exclusion: both = 15 + 20 − 30 = 5.",
+      "solution_steps": [
+        "Step 1: Total participants in at least one event = 30 (all children).",
+        "Step 2: Inclusion-exclusion: |bridge ∩ zip| = |bridge| + |zip| − |total| = 15 + 20 − 30 = 5.",
+        "Step 3: Exactly 5 children participated in both events."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 15,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Which of the following pieces fits with the piece in the picture such that together they form a rectangle?",
+      "options": {
+        "A": "See PDF option A",
+        "B": "See PDF option B",
+        "C": "See PDF option C",
+        "D": "See PDF option D",
+        "E": "See PDF option E"
+      },
+      "answer": "B",
+      "solution": "See PDF page 4 for the given piece. Piece B has the complementary shape that, when placed alongside the given piece, fills a complete rectangle.",
+      "solution_steps": [
+        "Step 1: Identify the outline of the given piece.",
+        "Step 2: Determine what complementary shape would complete a rectangle.",
+        "Step 3: Piece B has that exact complementary shape."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 16,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "The number 35 has the property that it is divisible by the digit in the units position, because 35 ÷ 5 = 7. How many numbers greater than 21 and smaller than 30 have this property?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5",
+        "E": "6"
+      },
+      "answer": "B",
+      "solution": "Check 22–29: 22÷2=11 ✓, 24÷4=6 ✓, 25÷5=5 ✓. The others do not divide evenly. Total = 3.",
+      "solution_steps": [
+        "Step 1: Check each number 22 to 29 for divisibility by its units digit.",
+        "Step 2: 22÷2=11 ✓; 23÷3≈7.67 ✗; 24÷4=6 ✓; 25÷5=5 ✓; 26÷6≈4.33 ✗; 27÷7≈3.86 ✗; 28÷8=3.5 ✗; 29÷9≈3.22 ✗.",
+        "Step 3: Three numbers qualify: 22, 24, 25."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 17,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "Joining the midpoints of the sides of a triangle we obtain a smaller triangle. We repeat this one more time with the smaller triangle. How many triangles of the same size as the smallest resulting triangle fit in the original triangle?",
+      "options": {
+        "A": "5",
+        "B": "8",
+        "C": "10",
+        "D": "16",
+        "E": "32"
+      },
+      "answer": "D",
+      "solution": "Each midpoint triangle has 1/4 the area of its parent. After two iterations the smallest triangle has area 1/16 of the original, so 16 such triangles fit.",
+      "solution_steps": [
+        "Step 1: Joining midpoints divides any triangle into 4 congruent triangles, each with 1/4 the area.",
+        "Step 2: First iteration: smallest triangle = 1/4 of original.",
+        "Step 3: Second iteration on that inner triangle: new smallest = 1/4 × 1/4 = 1/16 of original.",
+        "Step 4: Number that fit = 1 ÷ (1/16) = 16."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 18,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "After the First of January 2013, how many years will pass before the following event happens for the first time: the product of digits in the notation of the year is greater than the sum of these digits?",
+      "options": {
+        "A": "87",
+        "B": "98",
+        "C": "101",
+        "D": "102",
+        "E": "103"
+      },
+      "answer": "D",
+      "solution": "Any year containing a 0 has digit product = 0. The first four-digit year after 2013 with no zero digit where product > sum is 2115: product = 2×1×1×5 = 10, sum = 9. Years elapsed = 2115 − 2013 = 102.",
+      "solution_steps": [
+        "Step 1: Years 2014–2099 all contain at least one 0 digit, so their digit product = 0. Skip all of them.",
+        "Step 2: Years 2100–2110 also contain 0. Check from 2111: 2111 → prod=2, sum=5 (no); 2112 → prod=4, sum=6 (no); 2113 → prod=6, sum=7 (no); 2114 → prod=8, sum=8 (not greater); 2115 → prod=10, sum=9 (10>9 ✓).",
+        "Step 3: First qualifying year = 2115. Years elapsed after 2013 = 2115 − 2013 = 102."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 19,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "In December Tosha the cat slept for exactly 3 weeks. How many minutes did he stay awake during this month?",
+      "options": {
+        "A": "(31 − 7) × 3 × 24 × 60",
+        "B": "(31 − 7 × 3) × 24 × 60",
+        "C": "(30 − 7 × 3) × 24 × 60",
+        "D": "(31 − 7) × 24 × 60",
+        "E": "(31 − 7 × 3) × 24 × 60 × 60"
+      },
+      "answer": "B",
+      "solution": "December has 31 days. Tosha slept 3 × 7 = 21 days. Awake days = 31 − 21 = 31 − 7×3. Awake minutes = (31 − 7×3) × 24 × 60.",
+      "solution_steps": [
+        "Step 1: December has 31 days.",
+        "Step 2: 3 weeks = 3 × 7 = 21 days sleeping.",
+        "Step 3: Awake days = 31 − 7×3 = 10 days.",
+        "Step 4: Awake minutes = 10 × 24 × 60, i.e., (31 − 7×3) × 24 × 60."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 20,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 4,
+      "image_required": true,
+      "question_text": "Basil has several domino tiles as shown in the figure. He wants to arrange them in a line so that in any two neighbouring tiles the touching squares have the same number of points. What is the largest number of tiles he can arrange in this way?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "6",
+        "E": "7"
+      },
+      "answer": "C",
+      "solution": "See PDF page 4 for the domino tiles. Using the domino-matching rule (adjacent squares must share the same number of dots), the longest valid chain uses 5 tiles.",
+      "solution_steps": [
+        "Step 1: List the available domino tiles from the figure.",
+        "Step 2: Model the problem as a path in a graph where nodes are dot-values and each tile is an edge.",
+        "Step 3: Find the longest path through the graph that uses available tiles without repetition — the answer is 5."
+      ],
+      "difficulty": "hard",
+      "topic": "logic"
+    },
+    {
+      "number": 21,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "Cristi has to sell 10 glass bells priced 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 euros. In how many ways can Cristi divide all the glass bells into three packages so that all packages have the same price?",
+      "options": {
+        "A": "1",
+        "B": "2",
+        "C": "3",
+        "D": "4",
+        "E": "Such a division is not possible."
+      },
+      "answer": "E",
+      "solution": "Total price = 1+2+…+10 = 55 euros. For three equal packages each would need 55/3 ≈ 18.33 euros, which is not a whole number. Equal division is impossible.",
+      "solution_steps": [
+        "Step 1: Total value = 1+2+3+4+5+6+7+8+9+10 = 55 euros.",
+        "Step 2: For three equal packages, each must contain 55 ÷ 3 euros.",
+        "Step 3: 55 is not divisible by 3 (55 = 18×3+1), so equal division is impossible."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 22,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "Peter bought a carpet 36 dm wide and 60 dm long. The carpet has a pattern of small squares containing either a sun or a moon. Along the width there are 9 squares. When the carpet is fully unrolled, how many moons can be seen?",
+      "options": {
+        "A": "68",
+        "B": "67",
+        "C": "65",
+        "D": "63",
+        "E": "60"
+      },
+      "answer": "B",
+      "solution": "Each small square is 36÷9 = 4 dm wide. Along the length: 60÷4 = 15 squares. Grid = 9×15 = 135 squares. See PDF for the sun/moon pattern. Counting moons in the pattern gives 67.",
+      "solution_steps": [
+        "Step 1: Square size = 36÷9 = 4 dm. Squares along length = 60÷4 = 15.",
+        "Step 2: Total squares = 9 × 15 = 135.",
+        "Step 3: From the carpet pattern in the PDF, count moons — the total is 67."
+      ],
+      "difficulty": "hard",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 23,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "Baby Roo wrote down several numbers using only the digits 0 and 1. The sum of these numbers is 2013. It is impossible to get the same sum with a smaller number of such summands. How many numbers were written by Baby Roo?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "4",
+        "D": "5",
+        "E": "204"
+      },
+      "answer": "B",
+      "solution": "1001 + 1001 + 11 = 2013, using 3 numbers with only digits 0 and 1. Two numbers cannot sum to 2013 because 2013 minus any valid number leaves a remainder containing a forbidden digit. Minimum is 3.",
+      "solution_steps": [
+        "Step 1: Try 2 summands. 2013 − 1111 = 902 (digit 9 forbidden); 2013 − 1100 = 913 (9 forbidden); all pairs fail.",
+        "Step 2: Try 3 summands: 1001 + 1001 + 11 = 2013. All three use only digits 0 and 1. ✓",
+        "Step 3: Since 2 is impossible and 3 works, the minimum is 3."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 24,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 5,
+      "image_required": true,
+      "question_text": "Beatrice has a lot of pieces like the grey one in the picture. At least how many of these grey pieces do you need to make a grey square?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "6",
+        "D": "8",
+        "E": "16"
+      },
+      "answer": "B",
+      "solution": "See PDF page 5 for the grey piece shape. Four copies of the piece can be arranged to form a square.",
+      "solution_steps": [
+        "Step 1: Identify the shape of the grey piece from the PDF.",
+        "Step 2: Determine the smallest square that can be tiled by copies of this piece.",
+        "Step 3: Four copies suffice to form a square."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    }
+  ]
 }

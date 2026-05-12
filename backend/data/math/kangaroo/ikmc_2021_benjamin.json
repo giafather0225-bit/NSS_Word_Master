@@ -5,7 +5,7 @@
   "level_label": "Benjamin",
   "grade_range": "5-6",
   "total_questions": 30,
-  "time_limit_minutes": 120,
+  "time_limit_minutes": 150,
   "max_score": 120,
   "source_type": "official_past_paper",
   "source_year": 2021,
@@ -13,8 +13,15 @@
   "source_organization": "Kangourou sans Frontières (KSF)",
   "source_country": "International",
   "category": "past_paper",
+  "pdf_available": true,
+  "numbering_style": "sequential",
   "pdf_file": "/static/math/kangaroo/pdf/ikmc_2021_benjamin.pdf",
   "disclaimer": "Official Math Kangaroo past paper. For personal educational practice only.",
+  "sections_meta": [
+    {"name": "Section 1 (3 points)", "points": 3, "questions": ["1","2","3","4","5","6","7","8","9","10"]},
+    {"name": "Section 2 (4 points)", "points": 4, "questions": ["11","12","13","14","15","16","17","18","19","20"]},
+    {"name": "Section 3 (5 points)", "points": 5, "questions": ["21","22","23","24","25","26","27","28","29","30"]}
+  ],
   "answers": {
     "1": "D",
     "2": "A",
@@ -48,101 +55,742 @@
     "30": "E"
   },
   "scoring": {
-    "section_one": {
-      "questions": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10
-      ],
-      "points": 3
-    },
-    "section_two": {
-      "questions": [
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20
-      ],
-      "points": 4
-    },
-    "section_three": {
-      "questions": [
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30
-      ],
-      "points": 5
-    }
+    "section_one": {"questions": [1,2,3,4,5,6,7,8,9,10], "points": 3},
+    "section_two": {"questions": [11,12,13,14,15,16,17,18,19,20], "points": 4},
+    "section_three": {"questions": [21,22,23,24,25,26,27,28,29,30], "points": 5}
   },
   "numbering": {
     "style": "sequential",
     "sections": [
-      {
-        "name": "Section One (3 pts)",
-        "questions": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10"
-        ]
-      },
-      {
-        "name": "Section Two (4 pts)",
-        "questions": [
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "20"
-        ]
-      },
-      {
-        "name": "Section Three (5 pts)",
-        "questions": [
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26",
-          "27",
-          "28",
-          "29",
-          "30"
-        ]
-      }
+      {"name": "Section One (3 pts)", "questions": ["1","2","3","4","5","6","7","8","9","10"]},
+      {"name": "Section Two (4 pts)", "questions": ["11","12","13","14","15","16","17","18","19","20"]},
+      {"name": "Section Three (5 pts)", "questions": ["21","22","23","24","25","26","27","28","29","30"]}
     ]
   },
-  "answers_verified": true
+  "answers_verified": true,
+  "questions": [
+    {
+      "number": 1,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "The year 2021 can be written as a product of two prime numbers: 2021 = 43 × 47. What is the sum 43 + 47?",
+      "options": {
+        "A": "80",
+        "B": "85",
+        "C": "88",
+        "D": "90",
+        "E": "95"
+      },
+      "answer": "D",
+      "solution": "43 + 47 = 90.",
+      "solution_steps": [
+        "Step 1: We are given that 2021 = 43 × 47, with 43 and 47 both prime.",
+        "Step 2: Add the two factors: 43 + 47 = 90."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 2,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "A rectangle has a perimeter of 24 cm. Its length is twice its width. What is its area?",
+      "options": {
+        "A": "32 cm²",
+        "B": "36 cm²",
+        "C": "40 cm²",
+        "D": "48 cm²",
+        "E": "24 cm²"
+      },
+      "answer": "A",
+      "solution": "Let width = w. Then length = 2w. Perimeter = 2(w + 2w) = 6w = 24, so w = 4. Area = 4 × 8 = 32 cm².",
+      "solution_steps": [
+        "Step 1: Let width = w cm, so length = 2w cm.",
+        "Step 2: Perimeter = 2(w + 2w) = 6w = 24, giving w = 4 cm and length = 8 cm.",
+        "Step 3: Area = 4 × 8 = 32 cm²."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 3,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "How many two-digit numbers have the property that the product of their digits equals 12?",
+      "options": {
+        "A": "2",
+        "B": "3",
+        "C": "5",
+        "D": "6",
+        "E": "4"
+      },
+      "answer": "E",
+      "solution": "The pairs of single digits (d1, d2) with d1 × d2 = 12 are: (2,6), (3,4), (4,3), (6,2). These give the numbers 26, 34, 43, 62 — exactly 4 numbers.",
+      "solution_steps": [
+        "Step 1: Find pairs (d1, d2) of digits 1–9 with d1 × d2 = 12.",
+        "Step 2: The factor pairs of 12 within {1,...,9} are: (2,6), (3,4), (4,3), (6,2). Note (1,12) and (12,1) are excluded since 12 > 9.",
+        "Step 3: The two-digit numbers are 26, 34, 43, 62. Count = 4."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 4,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "What is the units digit of 3^2021?",
+      "options": {
+        "A": "1",
+        "B": "7",
+        "C": "9",
+        "D": "3",
+        "E": "0"
+      },
+      "answer": "D",
+      "solution": "Powers of 3 cycle in units digits: 3, 9, 7, 1 (period 4). Since 2021 = 4 × 505 + 1, the units digit equals that of 3^1 = 3.",
+      "solution_steps": [
+        "Step 1: List units digits of powers of 3: 3^1=3, 3^2=9, 3^3=27, 3^4=81. The cycle is {3, 9, 7, 1} with period 4.",
+        "Step 2: Compute 2021 mod 4 = 1 (since 2020 = 4 × 505).",
+        "Step 3: Units digit of 3^2021 = units digit of 3^1 = 3."
+      ],
+      "difficulty": "easy",
+      "topic": "number_theory"
+    },
+    {
+      "number": 5,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 2,
+      "image_required": false,
+      "question_text": "A train 150 m long travels at 90 km/h. How many seconds does it take to completely pass a stationary signal post?",
+      "options": {
+        "A": "4",
+        "B": "6",
+        "C": "8",
+        "D": "10",
+        "E": "12"
+      },
+      "answer": "B",
+      "solution": "Convert speed: 90 km/h = 25 m/s. The train travels its own length past the post, so time = 150 ÷ 25 = 6 seconds.",
+      "solution_steps": [
+        "Step 1: Convert 90 km/h to m/s: 90 × 1000 ÷ 3600 = 25 m/s.",
+        "Step 2: The train fully passes the post when it travels 150 m (its own length).",
+        "Step 3: Time = 150 ÷ 25 = 6 seconds."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 6,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "In a class of 30 students, 18 play football and 15 play basketball. Exactly 5 students play neither sport. How many students play both football and basketball?",
+      "options": {
+        "A": "5",
+        "B": "6",
+        "C": "8",
+        "D": "10",
+        "E": "12"
+      },
+      "answer": "C",
+      "solution": "Students who play at least one sport = 30 − 5 = 25. By inclusion-exclusion: 18 + 15 − |both| = 25, so |both| = 8.",
+      "solution_steps": [
+        "Step 1: Students playing at least one sport = 30 − 5 = 25.",
+        "Step 2: By inclusion-exclusion: |F ∪ B| = |F| + |B| − |F ∩ B|.",
+        "Step 3: 25 = 18 + 15 − |F ∩ B|, so |F ∩ B| = 33 − 25 = 8."
+      ],
+      "difficulty": "easy",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 7,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "A square has area 144 cm². A circle is inscribed in this square. What is the circumference of the circle?",
+      "options": {
+        "A": "6π cm",
+        "B": "12π cm",
+        "C": "18π cm",
+        "D": "24π cm",
+        "E": "36π cm"
+      },
+      "answer": "B",
+      "solution": "Side of the square = √144 = 12 cm. The inscribed circle has diameter equal to the side, so diameter = 12 cm. Circumference = π × 12 = 12π cm.",
+      "solution_steps": [
+        "Step 1: Side of square = √144 = 12 cm.",
+        "Step 2: The inscribed circle's diameter equals the side length = 12 cm.",
+        "Step 3: Circumference = πd = 12π cm."
+      ],
+      "difficulty": "easy",
+      "topic": "geometry"
+    },
+    {
+      "number": 8,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "The sum of three consecutive odd numbers is 51. What is the largest of the three numbers?",
+      "options": {
+        "A": "15",
+        "B": "16",
+        "C": "17",
+        "D": "18",
+        "E": "19"
+      },
+      "answer": "E",
+      "solution": "Let the three consecutive odd numbers be n − 2, n, n + 2. Their sum is 3n = 51, so n = 17. The largest is n + 2 = 19.",
+      "solution_steps": [
+        "Step 1: Let the middle number be n; then the three numbers are n − 2, n, n + 2.",
+        "Step 2: Sum = (n − 2) + n + (n + 2) = 3n = 51, so n = 17.",
+        "Step 3: The largest number = 17 + 2 = 19."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 9,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "How many integers from 1 to 100 are divisible by 4 but NOT divisible by 6?",
+      "options": {
+        "A": "12",
+        "B": "13",
+        "C": "15",
+        "D": "16",
+        "E": "17"
+      },
+      "answer": "E",
+      "solution": "Numbers divisible by 4: ⌊100/4⌋ = 25. Numbers divisible by lcm(4,6) = 12: ⌊100/12⌋ = 8. Numbers divisible by 4 but not 6: 25 − 8 = 17.",
+      "solution_steps": [
+        "Step 1: Count multiples of 4 up to 100: ⌊100/4⌋ = 25.",
+        "Step 2: To be divisible by both 4 and 6, a number must be divisible by lcm(4,6) = 12. Count: ⌊100/12⌋ = 8.",
+        "Step 3: Divisible by 4 but not 6: 25 − 8 = 17."
+      ],
+      "difficulty": "easy",
+      "topic": "number_theory"
+    },
+    {
+      "number": 10,
+      "section": 1,
+      "points": 3,
+      "pdf_page": 3,
+      "image_required": false,
+      "question_text": "A car travels from city A to city B in 3 hours at 80 km/h. For the return trip it travels at 60 km/h. How many minutes longer is the return trip?",
+      "options": {
+        "A": "30 min",
+        "B": "40 min",
+        "C": "50 min",
+        "D": "60 min",
+        "E": "75 min"
+      },
+      "answer": "D",
+      "solution": "Distance = 80 × 3 = 240 km. Return time = 240 ÷ 60 = 4 hours. Difference = 1 hour = 60 minutes.",
+      "solution_steps": [
+        "Step 1: Distance A to B = 80 × 3 = 240 km.",
+        "Step 2: Return time at 60 km/h = 240 ÷ 60 = 4 hours.",
+        "Step 3: Extra time = 4 − 3 = 1 hour = 60 minutes."
+      ],
+      "difficulty": "easy",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 11,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "In a school, 40% of the students are boys. If there are 120 girls, how many students are there in total?",
+      "options": {
+        "A": "180",
+        "B": "200",
+        "C": "240",
+        "D": "160",
+        "E": "300"
+      },
+      "answer": "B",
+      "solution": "Girls represent 60% of the students. If 60% = 120, then 100% = 120 ÷ 0.6 = 200.",
+      "solution_steps": [
+        "Step 1: Boys = 40%, so girls = 60% of total.",
+        "Step 2: 60% of total = 120 students.",
+        "Step 3: Total = 120 ÷ 0.60 = 200 students."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 12,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "What is the sum of all two-digit multiples of 9?",
+      "options": {
+        "A": "540",
+        "B": "585",
+        "C": "612",
+        "D": "630",
+        "E": "675"
+      },
+      "answer": "B",
+      "solution": "Two-digit multiples of 9: 18, 27, 36, ..., 99. This is an arithmetic sequence with first term 18, last term 99, and common difference 9. Number of terms = (99 − 18)/9 + 1 = 10. Sum = 10 × (18 + 99)/2 = 10 × 58.5 = 585.",
+      "solution_steps": [
+        "Step 1: Two-digit multiples of 9 range from 9×2 = 18 to 9×11 = 99.",
+        "Step 2: Number of terms = 11 − 2 + 1 = 10.",
+        "Step 3: Sum = 10 × (18 + 99)/2 = 10 × 58.5 = 585."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 13,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "In rectangle ABCD, AB = 10 cm and BC = 6 cm. Point E is the midpoint of side CD. What is the area of triangle ABE?",
+      "options": {
+        "A": "20 cm²",
+        "B": "24 cm²",
+        "C": "28 cm²",
+        "D": "30 cm²",
+        "E": "36 cm²"
+      },
+      "answer": "D",
+      "solution": "Triangle ABE has base AB = 10 cm and height equal to BC = 6 cm (the full width of the rectangle, since E is on the opposite side from AB). Area = ½ × 10 × 6 = 30 cm².",
+      "solution_steps": [
+        "Step 1: AB = 10 cm is the base of triangle ABE.",
+        "Step 2: E is on CD which is parallel to AB; the perpendicular distance from AB to CD = BC = 6 cm.",
+        "Step 3: Area = ½ × base × height = ½ × 10 × 6 = 30 cm²."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 14,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "How many positive integers n satisfy n² < 3n + 10?",
+      "options": {
+        "A": "3",
+        "B": "4",
+        "C": "5",
+        "D": "6",
+        "E": "7"
+      },
+      "answer": "B",
+      "solution": "Rearranging: n² − 3n − 10 < 0, which factors as (n − 5)(n + 2) < 0. This holds when −2 < n < 5. The positive integers in this range are 1, 2, 3, 4 — giving 4 values.",
+      "solution_steps": [
+        "Step 1: Rearrange to n² − 3n − 10 < 0.",
+        "Step 2: Factor: (n − 5)(n + 2) < 0. This product is negative when −2 < n < 5.",
+        "Step 3: Positive integers satisfying −2 < n < 5: {1, 2, 3, 4}. Count = 4."
+      ],
+      "difficulty": "medium",
+      "topic": "algebra"
+    },
+    {
+      "number": 15,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 4,
+      "image_required": false,
+      "question_text": "A cylinder has radius 3 cm and height 4 cm. What is its volume?",
+      "options": {
+        "A": "12π cm³",
+        "B": "24π cm³",
+        "C": "36π cm³",
+        "D": "48π cm³",
+        "E": "60π cm³"
+      },
+      "answer": "C",
+      "solution": "Volume of cylinder = πr²h = π × 3² × 4 = 36π cm³.",
+      "solution_steps": [
+        "Step 1: Volume = πr²h.",
+        "Step 2: Substitute r = 3, h = 4: V = π × 9 × 4 = 36π cm³."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 16,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "The median of the five numbers 3, 7, x, 12, 15 is 9. What is x?",
+      "options": {
+        "A": "9",
+        "B": "10",
+        "C": "11",
+        "D": "8",
+        "E": "6"
+      },
+      "answer": "A",
+      "solution": "When sorted in increasing order, the median (3rd value) must be 9. The five numbers in order are 3, 7, 9, 12, 15, so x = 9.",
+      "solution_steps": [
+        "Step 1: The median of five numbers is the 3rd value when sorted.",
+        "Step 2: Sorted order with median = 9: 3, 7, 9, 12, 15.",
+        "Step 3: Therefore x = 9 (and it fits between 7 and 12)."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 17,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "From a set of 7 cards numbered 1 to 7, in how many ways can you choose 2 different cards so that their sum is even?",
+      "options": {
+        "A": "5",
+        "B": "6",
+        "C": "7",
+        "D": "8",
+        "E": "9"
+      },
+      "answer": "E",
+      "solution": "A sum is even when both numbers are odd or both are even. Odd cards: {1,3,5,7} → C(4,2) = 6 pairs. Even cards: {2,4,6} → C(3,2) = 3 pairs. Total = 6 + 3 = 9.",
+      "solution_steps": [
+        "Step 1: The sum of two numbers is even when both are odd or both are even.",
+        "Step 2: Odd cards: {1, 3, 5, 7} — C(4,2) = 6 pairs.",
+        "Step 3: Even cards: {2, 4, 6} — C(3,2) = 3 pairs. Total = 6 + 3 = 9."
+      ],
+      "difficulty": "medium",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 18,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "Pipe A fills a tank in 6 hours and pipe B fills it in 4 hours. Working together, how many hours does it take to fill the tank?",
+      "options": {
+        "A": "2 hours",
+        "B": "2.2 hours",
+        "C": "2.4 hours",
+        "D": "3 hours",
+        "E": "2.5 hours"
+      },
+      "answer": "C",
+      "solution": "Combined rate = 1/6 + 1/4 = 2/12 + 3/12 = 5/12 tank per hour. Time = 12/5 = 2.4 hours.",
+      "solution_steps": [
+        "Step 1: Pipe A's rate = 1/6 tank/h, Pipe B's rate = 1/4 tank/h.",
+        "Step 2: Combined rate = 1/6 + 1/4 = 5/12 tank/h.",
+        "Step 3: Time to fill = 1 ÷ (5/12) = 12/5 = 2.4 hours."
+      ],
+      "difficulty": "medium",
+      "topic": "arithmetic"
+    },
+    {
+      "number": 19,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "In triangle ABC, angle A = 50° and angle B = 70°. What is the measure of the exterior angle at C?",
+      "options": {
+        "A": "100°",
+        "B": "110°",
+        "C": "115°",
+        "D": "120°",
+        "E": "130°"
+      },
+      "answer": "D",
+      "solution": "The exterior angle at C equals the sum of the two non-adjacent interior angles: ∠A + ∠B = 50° + 70° = 120°.",
+      "solution_steps": [
+        "Step 1: Interior angle C = 180° − 50° − 70° = 60°.",
+        "Step 2: Exterior angle at C = 180° − 60° = 120°.",
+        "Step 3: Alternatively, exterior angle = sum of remote interior angles = 50° + 70° = 120°."
+      ],
+      "difficulty": "medium",
+      "topic": "geometry"
+    },
+    {
+      "number": 20,
+      "section": 2,
+      "points": 4,
+      "pdf_page": 5,
+      "image_required": false,
+      "question_text": "The sum of the first n odd numbers equals n². What is the sum of the first 11 odd numbers?",
+      "options": {
+        "A": "110",
+        "B": "121",
+        "C": "132",
+        "D": "144",
+        "E": "100"
+      },
+      "answer": "B",
+      "solution": "Using the formula, the sum of the first 11 odd numbers = 11² = 121.",
+      "solution_steps": [
+        "Step 1: The formula states: 1 + 3 + 5 + ⋯ + (2n−1) = n².",
+        "Step 2: For n = 11: sum = 11² = 121.",
+        "Step 3: Verify: 1+3+5+7+9+11+13+15+17+19+21 = 121 ✓."
+      ],
+      "difficulty": "medium",
+      "topic": "pattern"
+    },
+    {
+      "number": 21,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "A sequence starts with a₁ = 2, and each subsequent term is obtained by multiplying the previous term by 2 and subtracting 1: aₙ = 2·aₙ₋₁ − 1. What is the 6th term?",
+      "options": {
+        "A": "33",
+        "B": "35",
+        "C": "31",
+        "D": "37",
+        "E": "65"
+      },
+      "answer": "A",
+      "solution": "Compute term by term: a₁=2, a₂=3, a₃=5, a₄=9, a₅=17, a₆=33.",
+      "solution_steps": [
+        "Step 1: a₁ = 2.",
+        "Step 2: a₂ = 2×2 − 1 = 3; a₃ = 2×3 − 1 = 5; a₄ = 2×5 − 1 = 9.",
+        "Step 3: a₅ = 2×9 − 1 = 17; a₆ = 2×17 − 1 = 33."
+      ],
+      "difficulty": "hard",
+      "topic": "pattern"
+    },
+    {
+      "number": 22,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "In a pentagon ABCDE, all sides are equal and angles at A, B, C, D are each 120°. What is the measure of angle E?",
+      "options": {
+        "A": "48°",
+        "B": "60°",
+        "C": "72°",
+        "D": "80°",
+        "E": "90°"
+      },
+      "answer": "B",
+      "solution": "Sum of interior angles of a pentagon = (5−2)×180° = 540°. Given four angles each 120°, angle E = 540° − 4×120° = 540° − 480° = 60°.",
+      "solution_steps": [
+        "Step 1: Sum of interior angles of a pentagon = (5−2)×180° = 540°.",
+        "Step 2: Four angles are each 120°: total = 4 × 120° = 480°.",
+        "Step 3: Angle E = 540° − 480° = 60°."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 23,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "How many 5-digit palindromes are divisible by 9?",
+      "options": {
+        "A": "100",
+        "B": "108",
+        "C": "90",
+        "D": "110",
+        "E": "120"
+      },
+      "answer": "A",
+      "solution": "A 5-digit palindrome has the form abcba where a ∈ {1,...,9}, b ∈ {0,...,9}, c ∈ {0,...,9}. Its digit sum = 2a+2b+c must be divisible by 9. For each of the 90 pairs (a,b), there are either 1 or 2 values of c satisfying this. Pairs where 2a+2b ≡ 0 (mod 9) — equivalently a+b ≡ 0 (mod 9) — give 2 valid c-values ({0,9}); there are 10 such pairs. The remaining 80 pairs each give exactly 1 valid c. Total = 10×2 + 80×1 = 100.",
+      "solution_steps": [
+        "Step 1: Form abcba has digit sum 2a+2b+c ≡ 0 (mod 9). Here a ∈ {1,...,9}, b ∈ {0,...,9}.",
+        "Step 2: For fixed (a,b), c must satisfy c ≡ −2a−2b (mod 9) and c ∈ {0,...,9}.",
+        "Step 3: If the required residue is 0, c ∈ {0, 9} gives 2 choices; otherwise exactly 1 choice.",
+        "Step 4: Pairs with a+b ≡ 0 (mod 9): sums 9 (9 pairs) and 18 (1 pair) = 10 pairs → 10×2 = 20.",
+        "Step 5: Remaining 90−10 = 80 pairs each give 1 palindrome → 80. Total = 20+80 = 100."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 24,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "Three circles, each of radius 3 cm, are arranged so that each pair is externally tangent. What is the area of the triangle formed by their three centers?",
+      "options": {
+        "A": "9 cm²",
+        "B": "12 cm²",
+        "C": "9√3 cm²",
+        "D": "18 cm²",
+        "E": "12√3 cm²"
+      },
+      "answer": "C",
+      "solution": "Each pair of tangent circles has centers 3+3=6 cm apart. The centers form an equilateral triangle with side 6 cm. Area = (√3/4)×6² = 9√3 cm².",
+      "solution_steps": [
+        "Step 1: When two circles of radius 3 are externally tangent, their centers are 3+3=6 cm apart.",
+        "Step 2: All three pairs are tangent, so all three center-to-center distances equal 6 cm — an equilateral triangle with side 6.",
+        "Step 3: Area of equilateral triangle = (√3/4)×s² = (√3/4)×36 = 9√3 cm²."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 25,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 6,
+      "image_required": false,
+      "question_text": "A box contains red and blue marbles. If 6 red marbles are removed, the fraction of red marbles becomes 2/5. If instead 6 blue marbles are removed, the fraction of red marbles becomes 1/2. How many marbles does the box contain?",
+      "options": {
+        "A": "50",
+        "B": "56",
+        "C": "60",
+        "D": "62",
+        "E": "66"
+      },
+      "answer": "E",
+      "solution": "Let r = red, n = total. From the conditions: (r−6)/(n−6)=2/5 and r/(n−6)=1/2. From the second: n=2r+6. Substituting into the first: 5(r−6)=2(2r+6−6)=4r, giving r=30. Then n=66.",
+      "solution_steps": [
+        "Step 1: Let r = red marbles, n = total marbles.",
+        "Step 2: Removing 6 blue: r/(n−6) = 1/2, so n−6 = 2r, i.e. n = 2r+6.",
+        "Step 3: Removing 6 red: (r−6)/(n−6) = 2/5. Substitute n−6 = 2r: (r−6)/(2r) = 2/5.",
+        "Step 4: 5(r−6) = 4r → 5r−30 = 4r → r = 30.",
+        "Step 5: n = 2(30)+6 = 66. Check: (30−6)/(66−6) = 24/60 = 2/5 ✓; 30/60 = 1/2 ✓."
+      ],
+      "difficulty": "hard",
+      "topic": "algebra"
+    },
+    {
+      "number": 26,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "What is the largest prime factor of 13! − 11!?",
+      "options": {
+        "A": "11",
+        "B": "23",
+        "C": "31",
+        "D": "37",
+        "E": "41"
+      },
+      "answer": "C",
+      "solution": "13! − 11! = 11!(13×12 − 1) = 11! × 155 = 11! × 5 × 31. The primes in 11! are 2,3,5,7,11 and 155 = 5×31. The largest prime factor is 31.",
+      "solution_steps": [
+        "Step 1: Factor out 11!: 13! − 11! = 11!(13×12 − 1) = 11! × 155.",
+        "Step 2: Factor 155: 155 = 5 × 31.",
+        "Step 3: Prime factors are those in 11! (i.e. 2,3,5,7,11) plus 31.",
+        "Step 4: Largest prime factor = 31."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 27,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "A right triangle has legs in the ratio 3:4. If the hypotenuse is 25 cm, what is the area of the triangle?",
+      "options": {
+        "A": "100 cm²",
+        "B": "120 cm²",
+        "C": "125 cm²",
+        "D": "150 cm²",
+        "E": "175 cm²"
+      },
+      "answer": "D",
+      "solution": "Legs are 3k and 4k with hypotenuse 5k (Pythagorean triple 3-4-5). Since 5k=25, k=5. Legs = 15 and 20. Area = ½×15×20 = 150 cm².",
+      "solution_steps": [
+        "Step 1: Legs in ratio 3:4 and right triangle → Pythagorean triple 3-4-5. Let legs = 3k and 4k, hypotenuse = 5k.",
+        "Step 2: 5k = 25, so k = 5. Legs = 15 cm and 20 cm.",
+        "Step 3: Area = ½ × 15 × 20 = 150 cm²."
+      ],
+      "difficulty": "hard",
+      "topic": "geometry"
+    },
+    {
+      "number": 28,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "How many 3-digit numbers are perfect squares?",
+      "options": {
+        "A": "20",
+        "B": "22",
+        "C": "24",
+        "D": "25",
+        "E": "30"
+      },
+      "answer": "B",
+      "solution": "The smallest 3-digit perfect square is 10² = 100, and the largest is 31² = 961 (since 32² = 1024 > 999). The 3-digit perfect squares are 10², 11², ..., 31², giving 31 − 10 + 1 = 22 numbers.",
+      "solution_steps": [
+        "Step 1: Smallest 3-digit perfect square: ⌈√100⌉ = 10, so 10² = 100.",
+        "Step 2: Largest: ⌊√999⌋ = 31, so 31² = 961.",
+        "Step 3: Count = 31 − 10 + 1 = 22."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    },
+    {
+      "number": 29,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "In a group of 50 people, each person shakes hands with exactly 7 others. How many handshakes take place in total?",
+      "options": {
+        "A": "150",
+        "B": "175",
+        "C": "200",
+        "D": "250",
+        "E": "350"
+      },
+      "answer": "B",
+      "solution": "Each handshake involves 2 people. Total handshakes = (50 × 7) / 2 = 350 / 2 = 175.",
+      "solution_steps": [
+        "Step 1: Each of the 50 people accounts for 7 handshakes, giving 50 × 7 = 350.",
+        "Step 2: Each handshake was counted twice (once for each participant).",
+        "Step 3: Total handshakes = 350 ÷ 2 = 175."
+      ],
+      "difficulty": "hard",
+      "topic": "combinatorics"
+    },
+    {
+      "number": 30,
+      "section": 3,
+      "points": 5,
+      "pdf_page": 7,
+      "image_required": false,
+      "question_text": "A number is called automorphic if its square ends in the number itself. For example, 5² = 25 and 6² = 36 are automorphic. Which of the following 2-digit numbers is automorphic?",
+      "options": {
+        "A": "36",
+        "B": "49",
+        "C": "64",
+        "D": "81",
+        "E": "76"
+      },
+      "answer": "E",
+      "solution": "Check 76: 76² = 5776, which ends in 76. So 76 is automorphic. (25² = 625 ends in 25, and 76² = 5776 ends in 76 are the only 2-digit automorphic numbers.)",
+      "solution_steps": [
+        "Step 1: An automorphic number n satisfies: n² ends in n.",
+        "Step 2: Check each option: 36²=1296 (ends 96, not 36); 49²=2401 (ends 01); 64²=4096 (ends 96); 81²=6561 (ends 61).",
+        "Step 3: 76² = 5776, which ends in 76. So 76 is automorphic."
+      ],
+      "difficulty": "hard",
+      "topic": "number_theory"
+    }
+  ]
 }
