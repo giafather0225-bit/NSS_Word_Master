@@ -27,7 +27,7 @@
 ## Work Principles (MUST FOLLOW)
 
 1. 수정 전 반드시 기존 코드 읽기. 기존 기능 절대 파괴 금지.
-2. 파일당 최대 ~300줄. 초과 시 모듈 분리 (예: `child.js` → `child-{calendar,exam,keyboard,text}.js`).
+2. 파일당 최대 ~500줄. 초과 시 모듈 분리 (예: `child.js` → `child-{calendar,exam,keyboard,text}.js`).
 3. CSS: `theme.css` 변수만 사용. 컴포넌트 CSS에 hex 직접 사용 금지.
 4. 모든 API: 적절한 에러 핸들링 + HTTP 상태코드. `RequestValidationError` 는 `main.py` 에서 child-friendly 422 JSON 으로 자동 변환됨.
 5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~017).

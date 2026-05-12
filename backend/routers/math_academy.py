@@ -240,7 +240,7 @@ def get_lessons(grade: str, unit: str, db: Session = Depends(get_db)) -> dict:
         result.append({
             "name": l,
             "is_completed": prog.is_completed if prog else False,
-            "stage": prog.stage if prog else "pretest",
+            "stage": prog.stage if prog else "pre_test",
             "pretest_skipped": prog.pretest_skipped if prog else False,
         })
 
@@ -260,9 +260,9 @@ def get_lessons(grade: str, unit: str, db: Session = Depends(get_db)) -> dict:
 def get_stage_problems(grade: str, unit: str, lesson: str, stage: str, db: Session = Depends(get_db)) -> dict:
     """Return problems for a specific lesson stage.
 
-    Stages: pretest, learn, try, exit_quiz, practice_r1, practice_r2, practice_r3
+    Stages: pre_test, learn, try, exit_quiz, practice_r1, practice_r2, practice_r3
     """
-    valid_stages = {"pretest", "pre_test", "learn", "try", "exit_quiz", "practice_r1", "practice_r2", "practice_r3"}
+    valid_stages = {"pre_test", "learn", "try", "exit_quiz", "practice_r1", "practice_r2", "practice_r3"}
     if stage not in valid_stages:
         raise HTTPException(status_code=400, detail=f"Invalid stage: {stage}")
 
@@ -385,10 +385,10 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
         pass
 
     # NOTE: per-problem XP intentionally not awarded — XP is granted at lesson_complete
-    # (math_lesson_complete: +10) and unit_test_pass (+25) per CLAUDE.md spec.
+    # (math_lesson_complete: +15) and unit_test_pass (+15) per CLAUDE.md spec.
     if not is_correct:
-        # Register wrong answer for spaced-repetition review (skip pretest — diagnostic only)
-        if req.stage != "pretest":
+        # Register wrong answer for spaced-repetition review (skip pre_test — diagnostic only)
+        if req.stage != "pre_test":
             existing = (
                 db.query(MathWrongReview)
                 .filter_by(problem_id=req.problem_id, is_mastered=False)
@@ -772,8 +772,7 @@ def get_lesson_stage(grade: str, unit: str, lesson: str, db: Session = Depends(g
             "stage": "pre_test", "is_completed": False,
             "exit_quiz_attempts": 0, "exit_quiz_score": None, "pretest_skipped": False,
         }
-    # Normalize legacy stage name
-    stage = "pre_test" if prog.stage == "pretest" else (prog.stage or "pre_test")
+    stage = prog.stage or "pre_test"
     return {
         "grade": grade, "unit": unit, "lesson": lesson,
         "stage": stage,
@@ -1117,15 +1116,13 @@ def _answer_display(problem: dict) -> str:
     return correct_raw
 
 
-def _weakness_score(sr: MathSpacedReview, db: Session) -> int:
-    """Weakness score = (100 - exit_quiz_pct) + wrong_review_count × 10."""
+def _weakness_score(sr: MathSpacedReview, wrong_counts: dict[str, int]) -> int:
+    """Weakness score = (100 - exit_quiz_pct) + wrong_review_count × 10.
+
+    wrong_counts: pre-fetched {lesson_id: count} to avoid N+1 queries.
+    """
     eq_pct = int(round((sr.exit_quiz_score / 5) * 100)) if sr.exit_quiz_score else 50
-    wc = (
-        db.query(func.count(MathWrongReview.id))
-        .filter(MathWrongReview.problem_id.like(f"%{sr.lesson_id}%"))
-        .scalar()
-        or 0
-    )
+    wc = wrong_counts.get(sr.lesson_id, 0)
     return max(0, 100 - eq_pct) + wc * 10
 
 
@@ -1221,12 +1218,26 @@ def get_spaced_review_today(db: Session = Depends(get_db)) -> dict:
                 .filter(
                     MathSpacedReview.grade == sr.grade,
                     MathSpacedReview.id != sr.id,
+                    MathSpacedReview.unit_id < sr.unit_id,
                 )
                 .all()
             )
             earlier = [p for p in prior_srs if _unit_number(p.unit_id) < unit_num]
             if earlier:
-                weakest_sr = max(earlier, key=lambda p: _weakness_score(p, db))
+                # Pre-fetch all wrong review problem_ids in one query, then count in Python
+                # (problem_id LIKE %lesson_id% requires Python-side matching for batch)
+                lesson_ids = {p.lesson_id for p in earlier}
+                all_wrong_pids = (
+                    db.query(MathWrongReview.problem_id)
+                    .filter(MathWrongReview.is_mastered.is_(False))
+                    .all()
+                )
+                wrong_counts: dict[str, int] = {}
+                for (pid,) in all_wrong_pids:
+                    for lid in lesson_ids:
+                        if lid in pid:
+                            wrong_counts[lid] = wrong_counts.get(lid, 0) + 1
+                weakest_sr = max(earlier, key=lambda p: _weakness_score(p, wrong_counts))
                 w_data = _load_lesson_json(weakest_sr.grade, weakest_sr.unit_id, _lesson_name(weakest_sr.lesson_id))
                 if w_data:
                     w_pool = _stage_problems(w_data, "practice_r1")
