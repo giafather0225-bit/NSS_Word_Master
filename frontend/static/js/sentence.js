@@ -49,11 +49,15 @@ function formatStructuredFeedback(result) {
  */
 async function savePracticeSentence(itemId, sentence, lesson) {
     try {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 8000);
         await fetch("/api/practice/sentence", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ subject: currentSubject, textbook: currentTextbook, lesson, item_id: itemId, sentence }),
+            signal: ctrl.signal,
         });
+        clearTimeout(timer);
     } catch (err) {
         console.warn('[save] Practice sentence not saved:', err.message || err);
     }
@@ -66,7 +70,10 @@ async function savePracticeSentence(itemId, sentence, lesson) {
  */
 async function loadOwnSentences(lesson) {
     try {
-        const res = await fetch(`/api/practice/sentences/${encodeURIComponent(currentSubject)}/${encodeURIComponent(currentTextbook)}/${encodeURIComponent(lesson)}`);
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 8000);
+        const res = await fetch(`/api/practice/sentences/${encodeURIComponent(currentSubject)}/${encodeURIComponent(currentTextbook)}/${encodeURIComponent(lesson)}`, { signal: ctrl.signal });
+        clearTimeout(timer);
         if (!res.ok) return {};
         const data = await res.json();
         return data.by_item_id || {};
@@ -238,7 +245,8 @@ function renderSentenceItem(el, item) {
         <div id="sm-ai-loading" class="sm-ai-loading" style="display:none;">AI is reading your sentence…</div>
         <div class="st-input-row" id="sm-input-row">
             <textarea class="sm-textarea" id="sentence-input" rows="3"
-                      autocomplete="off" spellcheck="false" placeholder="Your sentence…"></textarea>
+                      autocomplete="off" spellcheck="false"
+                      aria-label="Your sentence" placeholder="Your sentence…"></textarea>
             <button type="button" class="st-btn" id="sent-submit">Submit</button>
         </div>
         <p class="st-prog">${current} / ${total}</p>

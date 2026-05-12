@@ -69,10 +69,13 @@ function renderExam(el) {
             magicFailCount++;
             showMagicOverlay();
             await apiSpartaReset();
+            var _ttsCtrl = new AbortController();
+            setTimeout(function () { _ttsCtrl.abort(); }, 8000);
             fetch("/api/tts", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ text: "Magic broke! Reset to the beginning!" }),
+                signal: _ttsCtrl.signal,
             })
                 .then(r => r.ok ? r.blob() : null)
                 .then(blob => {

@@ -43,7 +43,10 @@
      */
     async function fetchItems() {
         try {
-            var res = await fetch('/api/collocation/today');
+            var ctrl = new AbortController();
+            var timer = setTimeout(function () { ctrl.abort(); }, 8000);
+            var res = await fetch('/api/collocation/today', { signal: ctrl.signal });
+            clearTimeout(timer);
             if (!res.ok) return [];
             var data = await res.json();
             return Array.isArray(data.items) ? data.items : [];
@@ -135,7 +138,7 @@
         var isLast = cardIndex === items.length - 1;
 
         var dotsHTML = items.map(function (_, i) {
-            return '<div class="coll-dot' + (i === cardIndex ? ' active' : '') + '"></div>';
+            return '<div class="coll-dot' + (i === cardIndex ? ' active' : '') + '" role="img" aria-label="Card ' + (i + 1) + ' of ' + items.length + '"></div>';
         }).join('');
 
         var navHTML = isLast
@@ -153,7 +156,7 @@
                     '<div class="coll-card-collocation">' + colHTML + '</div>' +
                     (item.example ? '<div class="coll-card-example">' + exHTML + '</div>' : '') +
                 '</div>' +
-                '<div class="coll-dots">' + dotsHTML + '</div>' +
+                '<div class="coll-dots" role="group" aria-label="Card progress">' + dotsHTML + '</div>' +
                 navHTML +
             '</div>'
         );
@@ -271,7 +274,7 @@
 
         var q = quizItems[quizIndex];
         var promptHTML = esc(q.blank).replace('___',
-            '<span class="coll-blank" aria-label="blank"></span>');
+            '<span class="coll-blank" role="img" aria-label="blank"></span>');
 
         setBody(
             '<div class="coll-quiz-area">' +
@@ -335,12 +338,17 @@
 
         if (isCorrect) {
             inp.classList.add('correct');
-            if (fb) { fb.textContent = '✓ Correct!'; fb.className = 'coll-quiz-feedback correct'; }
+            if (fb) {
+                fb.innerHTML = '<i data-lucide="check"></i> Correct!';
+                fb.className = 'coll-quiz-feedback correct';
+                if (window.lucide) lucide.createIcons();
+            }
         } else {
             inp.classList.add('wrong');
             if (fb) {
-                fb.textContent = '✕  Answer: ' + q.answer;
+                fb.innerHTML = '<i data-lucide="x"></i> Answer: ' + esc(q.answer);
                 fb.className = 'coll-quiz-feedback wrong';
+                if (window.lucide) lucide.createIcons();
             }
         }
 
@@ -379,7 +387,9 @@
         var xpEarned     = result.xp_earned;
         var perfect      = result.perfect;
 
-        var icon = perfect ? '✦' : (correctCount >= Math.ceil(total / 2) ? '✓' : '✕');
+        var icon = perfect
+            ? '<i data-lucide="sparkles"></i>'
+            : (correctCount >= Math.ceil(total / 2) ? '<i data-lucide="check-circle"></i>' : '<i data-lucide="x-circle"></i>');
 
         setBody(
             '<div class="coll-result-area">' +
@@ -392,11 +402,12 @@
                     ? '<div class="coll-result-xp">+' + xpEarned + ' XP earned!</div>'
                     : '') +
                 (perfect
-                    ? '<div class="coll-result-perfect-msg">✦ Perfect score! Keep it up!</div>'
+                    ? '<div class="coll-result-perfect-msg"><i data-lucide="sparkles"></i> Perfect score! Keep it up!</div>'
                     : '') +
                 '<button class="coll-btn-home" id="coll-home-btn">Back to Home</button>' +
             '</div>'
         );
+        if (window.lucide) lucide.createIcons();
 
         var homeBtn = $id('coll-home-btn');
         if (homeBtn) {
