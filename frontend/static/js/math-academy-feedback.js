@@ -131,7 +131,7 @@ function showMathFeedback(result, problem, onNext, onRetry) {
         ${confettiHtml}
         <div class="math-sr-only" role="status" aria-live="polite">${liveMsg}</div>
         <div class="math-feedback-card">
-            <div class="math-feedback-result" id="${titleId}">${result.is_correct ? '\u2713 Correct!' : '\u2717 Not quite'}</div>
+            <div class="math-feedback-result" id="${titleId}">${result.is_correct ? '<i data-lucide="check-circle"></i> Correct!' : '<i data-lucide="x-circle"></i> Not quite'}</div>
             ${!result.is_correct ? `<div class="math-feedback-answer">Answer: ${result.correct_answer}</div>` : ''}
             ${result.feedback ? `<div class="math-feedback-text">${_mathEsc(result.feedback)}</div>` : ''}
             ${interactiveHtml}
@@ -142,6 +142,7 @@ function showMathFeedback(result, problem, onNext, onRetry) {
     `;
 
     stage.appendChild(overlay);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     // KaTeX: render math in feedback answer, feedback text, and any solution steps
     if (typeof window.mathRenderIn === 'function') window.mathRenderIn(overlay);
@@ -224,18 +225,19 @@ function _wireInteractiveSteps(overlay) {
             }
             anyFilled = true;
             if (got === want) {
-                if (mark) mark.textContent = '\u2713';
+                if (mark) { mark.innerHTML = '<i data-lucide="check"></i>'; if (typeof lucide !== 'undefined') lucide.createIcons(); }
                 f.classList.add('math-istep-ok');
                 f.classList.remove('math-istep-bad');
             } else {
-                if (mark) mark.textContent = '\u2717';
+                if (mark) { mark.innerHTML = '<i data-lucide="x"></i>'; if (typeof lucide !== 'undefined') lucide.createIcons(); }
                 f.classList.add('math-istep-bad');
                 f.classList.remove('math-istep-ok');
                 allRight = false;
             }
         });
         if (anyFilled && allRight && checkBtn) {
-            checkBtn.textContent = '\u2713 All steps correct';
+            checkBtn.innerHTML = '<i data-lucide="check"></i> All steps correct';
+            if (typeof lucide !== 'undefined') lucide.createIcons();
             checkBtn.disabled = true;
         }
     };

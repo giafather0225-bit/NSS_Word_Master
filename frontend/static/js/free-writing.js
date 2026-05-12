@@ -21,7 +21,7 @@ async function _renderFreeWriting() {
                 <textarea id="fw-content" class="freewrite-textarea"
                           placeholder="Write your story, poem, or anything you like…"></textarea>
                 <button class="journal-submit-btn" id="fw-submit-btn"
-                        onclick="_submitFreeWriting()">Save & Get Feedback ✨</button>
+                        onclick="_submitFreeWriting()">Save &amp; Get Feedback</button>
                 <p id="fw-msg" class="diary-state-msg compact"></p>
             </div>
             <div class="freewrite-section-title">My Entries</div>
@@ -37,11 +37,15 @@ async function _loadFreeWritingList() {
     const list = document.getElementById("fw-list");
     if (!list) return;
     try {
-        const res  = await fetch("/api/free-writing/entries");
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 8000);
+        const res  = await fetch("/api/free-writing/entries", { signal: ctrl.signal });
+        clearTimeout(timer);
+        if (!res.ok) return;
         const data = await res.json();
         const rows = data.entries || [];
         if (rows.length === 0) {
-            list.innerHTML = `<p class="diary-state-msg">No entries yet. Write your first one above! ✨</p>`;
+            list.innerHTML = `<p class="diary-state-msg">No entries yet. Write your first one above!</p>`;
             return;
         }
         list.innerHTML = rows.map(e => {
@@ -54,7 +58,7 @@ async function _loadFreeWritingList() {
                 <div class="freewrite-card-body">${escapeHtml(e.content || "")}</div>
                 ${e.ai_feedback
                     ? `<div class="ai-feedback-box">
-                            <div class="ai-feedback-label">✨ GIA says:</div>
+                            <div class="ai-feedback-label"><i data-lucide="sparkles"></i> GIA says:</div>
                             <div class="ai-feedback-text">${escapeHtml(e.ai_feedback)}</div>
                        </div>`
                     : ""}

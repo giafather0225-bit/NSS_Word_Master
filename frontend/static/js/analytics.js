@@ -64,6 +64,8 @@ function _trackStageComplete(completedStage) {
         return it ? (it.answer || it.word || k) : k;
     });
 
+    const logCtrl = new AbortController();
+    setTimeout(() => logCtrl.abort(), 8000);
     fetch("/api/learning/log", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -77,14 +79,18 @@ function _trackStageComplete(completedStage) {
             started_at: _stageStartTime || "",
             completed_at: now,
             duration_sec: durationSec
-        })
+        }),
+        signal: logCtrl.signal
     }).catch(() => {});
 
     if (_stageAttempts.length > 0) {
+        const batchCtrl = new AbortController();
+        setTimeout(() => batchCtrl.abort(), 8000);
         fetch("/api/learning/word-attempts-batch", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ attempts: _stageAttempts })
+            body: JSON.stringify({ attempts: _stageAttempts }),
+            signal: batchCtrl.signal
         }).catch(() => {});
     }
 

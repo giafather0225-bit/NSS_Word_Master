@@ -127,7 +127,7 @@ function _renderRoundFrame(label) {
                 </div>
                 ${untimed
                     ? `<div class="math-fluency-timer-ring untimed">
-                           <span class="math-fluency-timer-text">∞</span>
+                           <span class="math-fluency-timer-text"><i data-lucide="infinity"></i></span>
                        </div>`
                     : `<div class="math-fluency-timer-ring" id="math-fluency-ring-wrap">
                            <svg class="math-fluency-ring-svg" viewBox="0 0 80 80">

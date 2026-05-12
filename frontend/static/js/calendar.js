@@ -124,10 +124,13 @@ async function _openCalendarDay(dateStr) {
     overlay.classList.remove("hidden");
 
     try {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 8000);
         const [entryRes, dayOffRes] = await Promise.all([
-            fetch(`/api/diary/entries?date=${dateStr}`),
-            fetch(`/api/day-off/requests`),
+            fetch(`/api/diary/entries?date=${dateStr}`, { signal: ctrl.signal }),
+            fetch(`/api/day-off/requests`, { signal: ctrl.signal }),
         ]);
+        clearTimeout(timer);
         const entryData  = entryRes.ok  ? await entryRes.json()  : { entries: [] };
         const dayOffData = dayOffRes.ok ? await dayOffRes.json() : { requests: [] };
         const entry  = (entryData.entries || [])[0];

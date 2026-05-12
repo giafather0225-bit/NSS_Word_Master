@@ -260,7 +260,7 @@ function advanceToNextStage() {
         const chipHtml = items.map(it => {
             const isMiss = wrongMap[it.id] > 0;
             const cls = isMiss ? 'sc-chip sc-chip-miss' : 'sc-chip sc-chip-ok';
-            const mark = isMiss ? '~' : '\u2713';
+            const mark = isMiss ? '~' : '<i data-lucide="check"></i>';
             return `<span class="${cls}"><span class="sc-chip-mark">${mark}</span>${escapeHtml(it.answer)}</span>`;
         }).join('');
 
@@ -291,6 +291,7 @@ function advanceToNextStage() {
                 <div class="sc-island-update" id="sc-island-update"></div>
             </div>
         `;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
         if (typeof _appendIslandUpdate === 'function') {
             _appendIslandUpdate(stageEl.querySelector('#sc-island-update'));
         }
@@ -487,7 +488,8 @@ async function startLessonAt(stageKey) {
     const btn = document.createElement('button');
     btn.id = 'english-lesson-header';
     btn.className = 'eng-exit-btn';
-    btn.textContent = '✕ Exit';
+    btn.innerHTML = '<i data-lucide="x"></i> Exit';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     btn.addEventListener('click', function() {
       if (typeof exitEnglishLesson === 'function') exitEnglishLesson();
       else if (typeof switchView === 'function') switchView('home');
