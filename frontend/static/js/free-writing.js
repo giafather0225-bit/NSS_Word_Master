@@ -94,16 +94,16 @@ async function _submitFreeWriting() {
         if (!res.ok) {
             const err = await res.json().catch(() => ({}));
             if (msg) { msg.textContent = err.detail || "Failed to save."; msg.classList.add("error"); }
-            if (btn) { btn.disabled = false; btn.textContent = "Save & Get Feedback ✨"; }
+            if (btn) { btn.disabled = false; btn.textContent = "Save & Get Feedback"; }
             return;
         }
         if (titleEl)   titleEl.value   = "";
         if (contentEl) contentEl.value = "";
-        if (btn) { btn.disabled = false; btn.textContent = "Save & Get Feedback ✨"; }
+        if (btn) { btn.disabled = false; btn.textContent = "Save & Get Feedback"; }
         _loadFreeWritingList();
     } catch (_) {
         if (msg) { msg.textContent = "Network error."; msg.classList.add("error"); }
-        if (btn) { btn.disabled = false; btn.textContent = "Save & Get Feedback ✨"; }
+        if (btn) { btn.disabled = false; btn.textContent = "Save & Get Feedback"; }
     }
 }
 

@@ -167,8 +167,9 @@ function _arcadeShowTutorialOnce(gameId) {
     if (!body || !tip) return;
     const el = document.createElement('div');
     el.className = 'arcade-tip';
-    el.innerHTML = `<span class="arcade-tip-icon">${_SVG.lightbulb}</span><span class="arcade-tip-text">${tip}</span><button type="button" class="arcade-tip-x" aria-label="Dismiss">✕</button>`;
+    el.innerHTML = `<span class="arcade-tip-icon">${_SVG.lightbulb}</span><span class="arcade-tip-text">${tip}</span><button type="button" class="arcade-tip-x" aria-label="Dismiss"><i data-lucide="x"></i></button>`;
     body.insertBefore(el, body.firstChild);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     const dismiss = () => {
       try { localStorage.setItem(key, '1'); } catch (_) {}
       el.remove();

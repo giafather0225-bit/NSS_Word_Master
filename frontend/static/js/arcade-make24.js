@@ -157,7 +157,7 @@ function _mkRenderExpr() {
   const val = _mkEval(_mk.expr);
   const target = MK_LEVELS[_mkLevel].target;
   if (val === null) prev.textContent = '…';
-  else if (Math.abs(val - target) < 1e-9) prev.textContent = `= ${val} ✓`;
+  else if (Math.abs(val - target) < 1e-9) { prev.innerHTML = `= ${val} <i data-lucide="check" style="width:14px;height:14px;vertical-align:-2px;stroke-width:2.5"></i>`; if (typeof lucide !== 'undefined') lucide.createIcons(); }
   else prev.textContent = `= ${Math.round(val * 100) / 100}`;
 }
 

@@ -58,7 +58,7 @@ function miStart(level = 'normal') {
         <div class="wi-hud-item"><span class="wi-hud-label">SCORE</span><b id="mi-score">0</b></div>
         <div class="wi-hud-item"><span class="wi-hud-label">COMBO</span><b id="mi-streak">0</b>x</div>
         <div class="wi-hud-item wi-hud-lives" id="mi-lives"><span class="wi-life"></span><span class="wi-life"></span><span class="wi-life"></span></div>
-        <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit">✕</button>
+        <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit"><i data-lucide="x"></i></button>
       </div>
       <div class="wi-canvas-wrap">
         <canvas id="mi-canvas"></canvas>
@@ -68,6 +68,7 @@ function miStart(level = 'normal') {
         </div>
       </div>
     </div>`;
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 
   if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('math_invaders');
 

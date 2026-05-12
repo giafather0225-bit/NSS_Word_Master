@@ -70,7 +70,7 @@ async function renderMathComplete() {
                     ${midStat}
                     <div class="math-complete-stat">
                         <div class="math-complete-stat-label">Mastery</div>
-                        <div class="math-complete-stat-val">✓</div>
+                        <div class="math-complete-stat-val"><i data-lucide="check" style="width:18px;height:18px;stroke-width:2.5"></i></div>
                         <div class="math-complete-stat-sub">Unlocked</div>
                     </div>
                 </div>

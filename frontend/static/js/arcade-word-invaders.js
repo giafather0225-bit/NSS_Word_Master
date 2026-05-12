@@ -116,7 +116,7 @@ async function wiStart(level = 'normal') {
         <div class="wi-hud-item"><span class="wi-hud-label">COMBO</span><b id="wi-streak">0</b>x</div>
         <div class="wi-hud-item" id="wi-shield-slot"><span class="wi-hud-label">SHIELD</span><b id="wi-shield">0</b></div>
         <div class="wi-hud-item wi-hud-lives" id="wi-lives"><span class="wi-life"></span><span class="wi-life"></span><span class="wi-life"></span></div>
-        <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit">✕</button>
+        <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit"><i data-lucide="x"></i></button>
       </div>
       <div class="wi-canvas-wrap">
         <canvas id="wi-canvas"></canvas>
@@ -127,6 +127,7 @@ async function wiStart(level = 'normal') {
         </div>
       </div>
     </div>`;
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 
   if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('word_invaders');
 

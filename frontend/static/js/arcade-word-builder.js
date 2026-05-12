@@ -32,7 +32,7 @@ async function wbStart() {
         <div class="wi-hud-item"><span class="wi-hud-label">SCORE</span><b id="wb-score">0</b></div>
         <div class="wi-hud-item"><span class="wi-hud-label">TIME</span><b id="wb-time">60</b>s</div>
         <div class="wi-hud-item"><span class="wi-hud-label">STREAK</span><b id="wb-streak">0</b>x</div>
-        <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit">✕</button>
+        <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit"><i data-lucide="x"></i></button>
       </div>
       <div class="wb-loading">Loading words…</div>
     </div>`;
@@ -101,7 +101,7 @@ function _wbRenderShell() {
         <div class="wi-hud-item"><span class="wi-hud-label">SCORE</span><b id="wb-score">0</b></div>
         <div class="wi-hud-item"><span class="wi-hud-label">TIME</span><b id="wb-time">60</b>s</div>
         <div class="wi-hud-item"><span class="wi-hud-label">STREAK</span><b id="wb-streak">0</b>x</div>
-        <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit">✕</button>
+        <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit"><i data-lucide="x"></i></button>
       </div>
       <div class="wb-card">
         <div class="wb-def" id="wb-def">—</div>
@@ -117,6 +117,7 @@ function _wbRenderShell() {
         </div>
       </div>
     </div>`;
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 function _wbNextWord() {

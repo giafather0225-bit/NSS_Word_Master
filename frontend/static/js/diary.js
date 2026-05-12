@@ -206,7 +206,7 @@ async function _submitJournal(date) {
             body: JSON.stringify({ content: ta.value, entry_date: date, feedback_requested: false }),
         });
         if (res.ok) {
-            if (btn) { btn.disabled = false; btn.textContent = "Saved ✓"; }
+            if (btn) { btn.disabled = false; btn.textContent = "Saved"; }
             _showFeedbackPrompt(date);
             return;
         }
