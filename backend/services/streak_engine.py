@@ -5,9 +5,12 @@ Dependencies: models.py (StreakLog, DayOffRequest, AppConfig, WordReview)
 API: called by routers/xp.py, routers/arcade.py, routers/*math*.py
 """
 
+import logging
 from datetime import date, timedelta
 from sqlalchemy.orm import Session
 from backend.models import StreakLog, DayOffRequest, WordReview, AppConfig
+
+logger = logging.getLogger(__name__)
 
 
 # ─── Config helpers ───────────────────────────────────────────
@@ -29,9 +32,12 @@ def get_streak_config(db: Session) -> tuple[set[str], str]:
     raw = (sub_row.value if sub_row else "") or ""
     subjects = {s.strip() for s in raw.split(",") if s.strip() in _VALID_SUBJECTS}
     if not subjects:
+        if raw.strip():
+            logger.warning("streak_subjects config %r has no valid subjects; using defaults", raw)
         subjects = set(_DEFAULT_SUBJECTS)
     mode = (mode_row.value if mode_row else "") or _DEFAULT_MODE
     if mode not in ("all", "any"):
+        logger.warning("streak_mode config %r is invalid; using default %r", mode, _DEFAULT_MODE)
         mode = _DEFAULT_MODE
     return subjects, mode
 
@@ -156,6 +162,8 @@ def _reviews_were_due(db: Session, day: str) -> bool:
 # @tag STREAK @tag ENGLISH
 def _english_ok(db: Session, log: StreakLog) -> bool:
     """English subject requirement: review+daily_words (or daily_words alone when no reviews due)."""
+    if log is None:
+        return False
     if log.review_done and log.daily_words_done:
         return True
     if log.daily_words_done and not _reviews_were_due(db, log.date):
@@ -178,6 +186,9 @@ def _evaluate_streak(db: Session, log: StreakLog) -> None:
     - Otherwise: per-subject flags evaluated against (subjects, mode) config.
       mode="all": every configured subject must be satisfied.
       mode="any": at least one configured subject must be satisfied.
+
+    Both branches share a single db.commit() at the end so the Day-Off case
+    and the normal evaluation case are each one atomic write.
     """
     was_maintained = bool(log.streak_maintained)
     today_str = date.today().isoformat()
@@ -188,25 +199,22 @@ def _evaluate_streak(db: Session, log: StreakLog) -> None:
     ).first()
     if day_off:
         log.streak_maintained = True
-        db.commit()
-        if not was_maintained and log.date == today_str:
-            _award_streak_lumi(db)
-        return
-
-    subjects, mode = get_streak_config(db)
-    flags = {
-        "ckla":    _ckla_ok(db, log),
-        "english": _english_ok(db, log),
-        "math":    bool(log.math_done),
-        "game":    bool(log.game_done),
-    }
-    required = [flags[s] for s in subjects]
-    if not required:
-        log.streak_maintained = False
-    elif mode == "any":
-        log.streak_maintained = any(required)
     else:
-        log.streak_maintained = all(required)
+        subjects, mode = get_streak_config(db)
+        flags = {
+            "ckla":    _ckla_ok(db, log),
+            "english": _english_ok(db, log),
+            "math":    bool(log.math_done),
+            "game":    bool(log.game_done),
+        }
+        required = [flags[s] for s in subjects]
+        if not required:
+            log.streak_maintained = False
+        elif mode == "any":
+            log.streak_maintained = any(required)
+        else:
+            log.streak_maintained = all(required)
+
     db.commit()
     if not was_maintained and log.streak_maintained and log.date == today_str:
         _award_streak_lumi(db)

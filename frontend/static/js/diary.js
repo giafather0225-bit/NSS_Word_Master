@@ -174,11 +174,16 @@ async function _uploadJournalPhoto(input) {
 }
 
 /** Delete the journal photo. @tag DIARY JOURNAL */
+let _photoRemoveInFlight = false;
 async function _removeJournalPhoto(filename) {
+    if (_photoRemoveInFlight) return;
+    _photoRemoveInFlight = true;
     try {
         await fetch(`/api/diary/photo/${encodeURIComponent(filename)}`, { method: "DELETE" });
     } catch (e) {
         console.warn("[diary] photo DELETE failed:", filename, e);
+    } finally {
+        _photoRemoveInFlight = false;
     }
     const el = document.getElementById("journal-photo-preview");
     if (el) el.innerHTML = "";
@@ -246,10 +251,13 @@ async function _requestFeedback(date) {
         if (res.ok) {
             const data = await res.json();
             if (data.ai_feedback) _showFeedback(data.ai_feedback);
+            else _showFeedback("Couldn't get feedback right now — try again later.");
         } else {
             _showFeedback("Couldn't get feedback right now — try again later.");
         }
     } catch (_) {
+        _showFeedback("Couldn't get feedback right now — check your connection.");
+    } finally {
         if (askBtn) { askBtn.disabled = false; askBtn.textContent = "Get writing tips"; }
     }
 }
@@ -338,14 +346,21 @@ async function _diaryPlayTTS(sentence) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ sentence }),
         });
-        if (!res.ok) return;
+        if (!res.ok) {
+            if (window.toast) window.toast("Could not play audio — try again.", "error");
+            return;
+        }
         const blob  = await res.blob();
         const url   = URL.createObjectURL(blob);
         const audio = new Audio(url);
         audio.onended = () => URL.revokeObjectURL(url);
-        audio.play().catch((err) => console.warn("[diary] TTS playback failed:", err));
+        audio.play().catch((err) => {
+            console.warn("[diary] TTS playback failed:", err);
+            if (window.toast) window.toast("Audio playback blocked by browser.", "error");
+        });
     } catch (e) {
         console.warn("[diary] TTS request failed:", e);
+        if (window.toast) window.toast("Could not play audio — check connection.", "error");
     }
 }
 

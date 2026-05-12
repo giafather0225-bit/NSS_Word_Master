@@ -264,11 +264,24 @@
   }
 
   /* ── Done ── */
-  function showDone() {
+  async function showDone() {
     var pct = sessionTotal > 0 ? Math.round((sessionCorrect / sessionTotal) * 100) : 0;
     document.getElementById("review-done-summary").textContent =
       sessionCorrect + " / " + sessionTotal + " correct (" + pct + "%)";
     doneOverlay.classList.add("active");
+
+    if (sessionTotal > 0) {
+      try {
+        await fetch("/api/xp/award", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({action: "review_complete", detail: ""})
+        });
+      } catch (e) {
+        console.warn("[review] XP award failed:", e);
+      }
+    }
+
     var islandSlot = doneOverlay.querySelector("#rv-island-update");
     if (!islandSlot) {
       islandSlot = document.createElement("div");

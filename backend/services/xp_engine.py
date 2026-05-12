@@ -152,6 +152,21 @@ def _infer_source(action: str) -> str:
     return _SOURCE_MAP.get(action, "")
 
 
+# Dedup policy for award_xp():
+#   _NO_DEDUP    — no dedup at all (action allowed multiple times per day, e.g. individual words)
+#   _DETAIL_DEDUP — dedup by (action + date + detail) so the same item can't be awarded twice
+#                   but different items of the same action type can each earn once
+#   all others   — dedup by (action + date) — awarded at most once per day globally
+_NO_DEDUP: frozenset[str] = frozenset({"word_correct"})
+_DETAIL_DEDUP: frozenset[str] = frozenset({
+    "ckla_lesson_complete",   # once per lesson (detail = lesson_id)
+    "ckla_domain_test_pass",  # once per domain (detail = domain_num)
+    "ckla_grade_final_pass",  # once per grade (detail = grade)
+    "ckla_daily_goal",        # once per goal threshold hit (detail = target count)
+    "math_unit_test_pass",    # once per unit (detail = grade/unit), not per day globally
+})
+
+
 # @tag XP @tag AWARD
 def award_xp(
     db: Session,
@@ -184,16 +199,6 @@ def award_xp(
     if xp_amount == 0:
         return 0
 
-    # Dedup check
-    # - word_correct: no dedup (multiple words per day)
-    # - ckla_* actions: dedup by action + date + detail (레슨별 1회)
-    # - all others:  dedup by action + date only
-    _NO_DEDUP  = {"word_correct"}
-    _DETAIL_DEDUP = {
-        "ckla_lesson_complete", "ckla_domain_test_pass",
-        "ckla_grade_final_pass", "ckla_daily_goal",
-        "math_unit_test_pass",  # dedup per unit (grade/unit detail), not per day globally
-    }
     if action not in _NO_DEDUP:
         filters = [XPLog.action == action, XPLog.earned_date == today]
         if action in _DETAIL_DEDUP:
