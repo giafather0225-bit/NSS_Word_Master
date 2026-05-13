@@ -90,12 +90,12 @@ _DATA_DIR = Path(__file__).parent.parent / "data" / "math"
 
 class SubmitAnswerIn(BaseModel):
     """Submit a single answer for a math problem."""
-    problem_id: str
-    grade: str
-    unit: str
-    lesson: str
-    stage: str
-    user_answer: str
+    problem_id: str = Field(..., max_length=80)
+    grade: str = Field(..., max_length=10)
+    unit: str = Field(..., max_length=80)
+    lesson: str = Field(..., max_length=80)
+    stage: str = Field(..., max_length=20)
+    user_answer: str = Field("", max_length=200)
     time_spent_sec: int = 0
 
     def clean(self):
@@ -404,6 +404,7 @@ def submit_answer(req: SubmitAnswerIn, db: Session = Depends(get_db)):
                     interval_days=1,
                     times_reviewed=0,
                     is_mastered=False,
+                    source_stage=req.stage,
                 )
                 db.add(wrong)
                 db.flush()
@@ -499,10 +500,10 @@ async def complete_lesson(req: CompleteLessonIn, db: Session = Depends(get_db)):
 
 class SubmitUnitTestIn(BaseModel):
     """Unit test result via JSON body."""
-    grade: str
-    unit: str
-    score: int
-    total: int
+    grade: str = Field(..., max_length=10)
+    unit: str = Field(..., max_length=80)
+    score: int = Field(..., ge=0)
+    total: int = Field(..., ge=1)
 
 @router.post("/api/math/academy/unit-test/submit")
 async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get_db)):
@@ -533,10 +534,6 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
             _xp_awarded = xp_engine.award_xp(db, "math_unit_test_pass", detail=f"{req.grade}/{req.unit}", commit=False)
         except Exception as e:
             logger.warning("XP award failed: %s", e)
-        try:
-            streak_engine.mark_math_done(db)
-        except Exception as e:
-            logger.warning("Streak math mark failed: %s", e)
     # Record MathUnitTest row for parent dashboard history
     try:
         _attempt_num = db.query(MathUnitTest).filter_by(grade=req.grade, unit_id=req.unit).count() + 1
@@ -551,6 +548,12 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
     except Exception as e:
         logger.warning("MathUnitTest record failed: %s", e)
     db.commit()
+    # mark_math_done after commit: avoids premature inner commit breaking atomicity above.
+    if passed:
+        try:
+            streak_engine.mark_math_done(db)
+        except Exception as e:
+            logger.warning("Streak math mark failed: %s", e)
     result = {
         "status": "ok", "passed": passed,
         "score": req.score, "total": req.total,
@@ -635,24 +638,24 @@ def _grade_answer(problem: dict, user_answer: str) -> tuple[bool, str]:
 # ── v2.0 Pydantic schemas ─────────────────────────────────────
 
 class PreTestSubmitIn(BaseModel):
-    grade: str
-    unit: str
-    lesson: str
-    score: int
-    total: int = 5
+    grade: str = Field(..., max_length=10)
+    unit: str = Field(..., max_length=80)
+    lesson: str = Field(..., max_length=80)
+    score: int = Field(..., ge=0)
+    total: int = Field(5, ge=1)
     skipped: bool = False
 
 
 class LearnCompleteIn(BaseModel):
-    grade: str
-    unit: str
-    lesson: str
+    grade: str = Field(..., max_length=10)
+    unit: str = Field(..., max_length=80)
+    lesson: str = Field(..., max_length=80)
 
 
 class TrySubmitIn(BaseModel):
-    grade: str
-    unit: str
-    lesson: str
+    grade: str = Field(..., max_length=10)
+    unit: str = Field(..., max_length=80)
+    lesson: str = Field(..., max_length=80)
     problem_id: str = Field(..., max_length=80)
     user_answer: str = Field("", max_length=200)
     time_spent_sec: int = 0
@@ -666,20 +669,20 @@ class ExitQuizAnswerIn(BaseModel):
 
 
 class ExitQuizSubmitIn(BaseModel):
-    grade: str
-    unit: str
-    lesson: str
+    grade: str = Field(..., max_length=10)
+    unit: str = Field(..., max_length=80)
+    lesson: str = Field(..., max_length=80)
     answers: list[ExitQuizAnswerIn] = Field(..., max_length=20)
 
 
 class RoundCompleteIn(BaseModel):
     """라운드(R1/R2/R3) 완료 보고 — Mastery Gating용."""
-    grade: str
-    unit: str
-    lesson: str
-    round: str   # "practice_r1" | "practice_r2" | "practice_r3"
-    score: int
-    total: int
+    grade: str = Field(..., max_length=10)
+    unit: str = Field(..., max_length=80)
+    lesson: str = Field(..., max_length=80)
+    round: str = Field(..., max_length=20)
+    score: int = Field(..., ge=0)
+    total: int = Field(..., ge=1)
 
 
 # ── v2.0 Endpoints ────────────────────────────────────────────
