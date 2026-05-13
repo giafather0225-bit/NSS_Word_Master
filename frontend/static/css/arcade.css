@@ -504,6 +504,7 @@
 .wi-level-icon--normal { background: color-mix(in srgb, var(--color-primary) 15%, var(--bg-card)); color: var(--color-primary); border: 2px solid var(--color-primary); }
 .wi-level-icon--medium { background: color-mix(in srgb, var(--color-warning) 15%, var(--bg-card)); color: var(--color-warning); border: 2px solid var(--color-warning); }
 .wi-level-icon--hard   { background: color-mix(in srgb, var(--color-error) 15%, var(--bg-card)); color: var(--color-error); border: 2px solid var(--color-error); }
+.wi-level-icon--xhard  { background: color-mix(in srgb, var(--rewards-primary) 15%, var(--bg-card)); color: var(--rewards-primary); border: 2px solid var(--rewards-primary); }
 .wi-level-name {
   font-weight: 700;
   font-size: 16px;
@@ -582,6 +583,20 @@
 .cw-inp:focus { background: var(--color-primary-light); }
 .cw-inp--ok { color: var(--color-success); }
 .cw-inp--bad { color: var(--color-error); }
+.cw-inp--hint { color: var(--arcade-ink); background: var(--arcade-soft) !important; font-weight: 800; }
+.cw-hint-btn {
+  margin-top: 4px;
+  font-size: 13px;
+  padding: 6px 16px;
+  border: 1px solid var(--arcade-primary);
+  background: var(--arcade-light);
+  color: var(--arcade-ink);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.cw-hint-btn:hover { background: var(--arcade-soft); }
+.cw-hint-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .cw-active {
   background: var(--bg-card);
   border-radius: var(--radius-sm);
@@ -742,6 +757,7 @@
 .su-inp:focus { background: var(--arcade-light) !important; outline: 2px solid var(--arcade-primary); }
 .su-inp--ok { color: var(--color-success); }
 .su-inp--bad { color: var(--color-error); background: var(--color-error-light); }
+.su-cell--conflict { background: color-mix(in srgb, var(--color-error) 15%, var(--bg-card)) !important; color: var(--color-error); font-weight: 800; }
 .su-border-r { border-right: 2px solid var(--text-primary); }
 .su-border-b { border-bottom: 2px solid var(--text-primary); }
 .su-hint { color: var(--text-secondary); font-size: 13px; }
@@ -922,6 +938,39 @@
 }
 .wb-hint-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
+/* Fix #18: Word Builder history panel */
+.wb-history {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 14px 12px;
+}
+.wb-history-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-hint);
+  margin-bottom: 2px;
+}
+.wb-history-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+}
+.wb-history--ok  { background: color-mix(in srgb, var(--color-success) 12%, var(--bg-card)); color: var(--text-primary); }
+.wb-history--miss { background: color-mix(in srgb, var(--color-error) 10%, var(--bg-card)); color: var(--text-secondary); }
+.wb-history-word { letter-spacing: 0.04em; }
+.wb-history-pts  { font-size: 12px; font-weight: 700; color: var(--text-secondary); }
+.wb-history--ok .wb-history-pts { color: var(--color-success); }
+
 /* ── Memory Card Match ─────────────────────────────────────────── */
 .mm-loading {
   text-align: center;
@@ -972,6 +1021,7 @@
   max-width: 620px;
   width: 100%;
   padding: 4px 16px 0;
+  container-type: inline-size;  /* Fix #5: enable container queries for responsive cards */
 }
 
 /* ── Card shell + 3-D flip ──────────────────────────────────────── */

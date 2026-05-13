@@ -25,15 +25,15 @@ const _SVG = {
 
 /** @tag ARCADE */
 const ARCADE_GAMES = [
-  { id: 'word_invaders',    category: 'english', title: 'Word Invaders', icon: _SVG.crosshair,   sub: 'Type the falling word before it hits the ground', enabled: true },
-  { id: 'definition_match', category: 'english', title: 'Match or Not',  icon: _SVG.helpCircle,  sub: 'Does the definition match? Tap Yes or No. 60 seconds.', enabled: true },
+  { id: 'word_invaders',    category: 'english', title: 'Word Invaders', icon: _SVG.crosshair,   sub: 'Type the falling word before it hits the ground', enabled: true,  defaultLevel: 'normal' },
+  { id: 'definition_match', category: 'english', title: 'Match or Not',  icon: _SVG.helpCircle,  sub: 'Does the definition match? Tap Yes or No. 90 seconds.', enabled: true },
   { id: 'spell_rush',       category: 'english', title: 'Spell Rush',    icon: _SVG.keyboard,    sub: 'Spell each word letter-by-letter. Beat the clock.', enabled: true },
   { id: 'crossword',        category: 'english', title: 'Crossword',     icon: _SVG.layoutGrid,  sub: 'Fill the grid using definitions as clues.', enabled: true },
-  { id: 'word_builder',    category: 'english', title: 'Word Builder',  icon: _SVG.keyboard,    sub: 'Rearrange the scrambled tiles to spell the word. 60 seconds.', enabled: true },
-  { id: 'memory_match',   category: 'english', title: 'Memory Match',  icon: _SVG.layers,      sub: 'Flip cards to pair each word with its definition.', enabled: true },
+  { id: 'word_builder',     category: 'english', title: 'Word Builder',  icon: _SVG.keyboard,    sub: 'Rearrange the scrambled tiles to spell the word. 60 seconds.', enabled: true },
+  { id: 'memory_match',     category: 'english', title: 'Memory Match',  icon: _SVG.layers,      sub: 'Flip cards to pair each word with its definition.', enabled: true,  defaultLevel: 'easy' },
   { id: 'math_invaders',    category: 'math',    title: 'Math Invaders', icon: _SVG.zap,         sub: 'Type the answer before the equation lands.', enabled: true },
-  { id: 'sudoku',           category: 'math',    title: 'Sudoku',        icon: _SVG.hash,        sub: '4x4, 6x6, or 9x9 — classic number puzzle.', enabled: true },
-  { id: 'make24',           category: 'math',    title: 'Make 24',       icon: _SVG.target,      sub: 'Combine four numbers to reach 24. 90 seconds.', enabled: true },
+  { id: 'sudoku',           category: 'math',    title: 'Sudoku',        icon: _SVG.hash,        sub: '4x4, 6x6, or 9x9 — classic number puzzle.', enabled: true,  defaultLevel: 'easy' },
+  { id: 'make24',           category: 'math',    title: 'Make 24',       icon: _SVG.target,      sub: 'Combine four numbers to reach 24. 90 seconds.', enabled: true,  defaultLevel: 'normal' },
 ];
 
 /**
@@ -82,11 +82,13 @@ async function _renderArcadeLobby() {
   if (!body) return;
 
   const bests = await Promise.all(
-    ARCADE_GAMES.map((g) =>
-      g.enabled
-        ? fetch(`/api/arcade/best/${g.id}`).then((r) => r.ok ? r.json() : { score: 0 }).catch(() => ({ score: 0 }))
-        : Promise.resolve({ score: 0 })
-    )
+    ARCADE_GAMES.map((g) => {
+      if (!g.enabled) return Promise.resolve({ score: 0 });
+      const lvParam = g.defaultLevel ? `?level=${g.defaultLevel}` : '';
+      return fetch(`/api/arcade/best/${g.id}${lvParam}`)
+        .then((r) => r.ok ? r.json() : { score: 0 })
+        .catch(() => ({ score: 0 }));
+    })
   );
 
   const cardFor = (g, i) => {

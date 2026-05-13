@@ -23,6 +23,9 @@ const MK_LEVELS = {
 let _mk = null;
 let _mkLevel = 'normal';
 
+// Fix #25: memoize solution checks (sorted-nums key → bool)
+const _mkSolveCache = new Map();
+
 /** Show Make 24 level picker. @tag ARCADE */
 async function mkShowLevelPicker() {
   mkStop();
@@ -63,6 +66,9 @@ function mkStart(level = 'normal') {
     score: 0, streak: 0, correct: 0, total: 0,
     startedAt: performance.now(), running: true,
     current: null, expr: [],
+    tickHandle: null,
+    handStartedAt: null,  // Fix #31: track per-hand start time for hint
+    hintShown: false,
   };
 
   body.innerHTML = `
@@ -90,6 +96,7 @@ function mkStart(level = 'normal') {
           <button type="button" class="wi-btn" id="mk-clear">Clear</button>
           <button type="button" class="wi-btn" id="mk-submit">Submit</button>
           <button type="button" class="wi-btn secondary" id="mk-skip">Skip (−${MK_CFG.skipPenalty})</button>
+          <button type="button" class="wi-btn secondary" id="mk-hint-btn" style="display:none">Hint</button>
         </div>
         <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Quit</button>
       </div>
@@ -99,35 +106,53 @@ function mkStart(level = 'normal') {
   document.getElementById('mk-clear').addEventListener('click', _mkClear);
   document.getElementById('mk-submit').addEventListener('click', _mkSubmit);
   document.getElementById('mk-skip').addEventListener('click', _mkSkip);
+  document.getElementById('mk-hint-btn').addEventListener('click', _mkShowHint);  // Fix #31
   document.querySelectorAll('.mk-op').forEach((b) => b.addEventListener('click', () => _mkPush({ kind: 'op', v: b.dataset.op })));
 
   if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('make24');
 
   if (typeof sfxStart === 'function') sfxStart();
   _mkNextHand();
-  _mkTick();
+  _mk.tickHandle = setInterval(_mkTick, 500);  // Fix #19: setInterval instead of rAF
 }
 
 /** Stop. @tag ARCADE */
 function mkStop() {
-  if (_mk) _mk.running = false;
+  if (_mk) {
+    _mk.running = false;
+    if (_mk.tickHandle) { clearInterval(_mk.tickHandle); _mk.tickHandle = null; }
+  }
   _mk = null;
 }
 
+// Fix #19: setInterval-based tick (500ms) — no rAF waste
 function _mkTick() {
   if (!_mk || !_mk.running) return;
-  if (document.hidden) { requestAnimationFrame(_mkTick); return; }
+  if (document.hidden) return;
   const remain = Math.max(0, MK_CFG.roundMs - (performance.now() - _mk.startedAt));
   const el = document.getElementById('mk-time');
   if (el) el.textContent = String(Math.ceil(remain / 1000));
-  if (remain <= 0) { _mkGameOver(); return; }
-  requestAnimationFrame(_mkTick);
+
+  // Fix #31: show hint button 30s after hand started
+  if (_mk.handStartedAt && !_mk.hintShown &&
+      performance.now() - _mk.handStartedAt >= 30000) {
+    _mk.hintShown = true;
+    const hintEl = document.getElementById('mk-hint-btn');
+    if (hintEl) hintEl.style.display = '';
+  }
+
+  if (remain <= 0) {
+    if (_mk.tickHandle) { clearInterval(_mk.tickHandle); _mk.tickHandle = null; }
+    _mkGameOver();
+  }
 }
 
 function _mkNextHand() {
   if (!_mk) return;
   _mk.current = _mkGenSolvable();
   _mk.expr = [];
+  _mk.handStartedAt = performance.now();  // Fix #31: reset per-hand timer
+  _mk.hintShown = false;
   _mkRender();
 }
 
@@ -139,11 +164,14 @@ function _mkRender() {
     return `<button type="button" class="mk-num ${used ? 'used' : ''}" data-i="${i}">${n}</button>`;
   }).join('');
   nums.querySelectorAll('.mk-num').forEach((b) => {
-    b.addEventListener('click', () => {
+    const handler = () => {
       const i = Number(b.dataset.i);
       if (_mk.expr.some((t) => t.kind === 'num' && t.i === i)) return;
       _mkPush({ kind: 'num', i, v: _mk.current[i] });
-    });
+    };
+    b.addEventListener('click', handler);
+    // Fix #16: touch support for mobile drag/tap
+    b.addEventListener('touchend', (e) => { e.preventDefault(); handler(); }, { passive: false });
   });
   _mkRenderExpr();
 }
@@ -302,28 +330,33 @@ function _mkGenSolvable() {
 }
 
 function _mkHasSolution(nums, ops, target) {
-  for (const [a, b, c, d] of _perm(nums)) {
+  // Fix #25: memoize by sorted nums + ops + target to avoid repeated permutation search
+  const key = [...nums].sort((a, b) => a - b).join(',') + '|' + ops.join('') + '|' + target;
+  if (_mkSolveCache.has(key)) return _mkSolveCache.get(key);
+  let found = false;
+  outer: for (const [a, b, c, d] of _perm(nums)) {
     for (const o1 of ops) for (const o2 of ops) for (const o3 of ops) {
       // ((a o1 b) o2 c) o3 d
       const ab = _mkApplyOp(a, o1, b);
       const abc1 = ab !== null ? _mkApplyOp(ab, o2, c) : null;
-      if (abc1 !== null) { const r = _mkApplyOp(abc1, o3, d); if (r !== null && Math.abs(r - target) < 1e-9) return true; }
+      if (abc1 !== null) { const r = _mkApplyOp(abc1, o3, d); if (r !== null && Math.abs(r - target) < 1e-9) { found = true; break outer; } }
       // (a o1 (b o2 c)) o3 d
       const bc = _mkApplyOp(b, o2, c);
       const abc2 = bc !== null ? _mkApplyOp(a, o1, bc) : null;
-      if (abc2 !== null) { const r = _mkApplyOp(abc2, o3, d); if (r !== null && Math.abs(r - target) < 1e-9) return true; }
+      if (abc2 !== null) { const r = _mkApplyOp(abc2, o3, d); if (r !== null && Math.abs(r - target) < 1e-9) { found = true; break outer; } }
       // (a o1 b) o2 (c o3 d)
       const cd = _mkApplyOp(c, o3, d);
-      if (ab !== null && cd !== null) { const r = _mkApplyOp(ab, o2, cd); if (r !== null && Math.abs(r - target) < 1e-9) return true; }
+      if (ab !== null && cd !== null) { const r = _mkApplyOp(ab, o2, cd); if (r !== null && Math.abs(r - target) < 1e-9) { found = true; break outer; } }
       // a o1 ((b o2 c) o3 d)
       const bcd1 = bc !== null ? _mkApplyOp(bc, o3, d) : null;
-      if (bcd1 !== null) { const r = _mkApplyOp(a, o1, bcd1); if (r !== null && Math.abs(r - target) < 1e-9) return true; }
+      if (bcd1 !== null) { const r = _mkApplyOp(a, o1, bcd1); if (r !== null && Math.abs(r - target) < 1e-9) { found = true; break outer; } }
       // a o1 (b o2 (c o3 d))
       const bcd2 = cd !== null ? _mkApplyOp(b, o2, cd) : null;
-      if (bcd2 !== null) { const r = _mkApplyOp(a, o1, bcd2); if (r !== null && Math.abs(r - target) < 1e-9) return true; }
+      if (bcd2 !== null) { const r = _mkApplyOp(a, o1, bcd2); if (r !== null && Math.abs(r - target) < 1e-9) { found = true; break outer; } }
     }
   }
-  return false;
+  _mkSolveCache.set(key, found);  // Fix #25: cache result
+  return found;
 }
 
 function _perm(arr) {
@@ -334,6 +367,30 @@ function _perm(arr) {
     for (const p of _perm(rest)) out.push([arr[i], ...p]);
   }
   return out;
+}
+
+/** Fix #31: reveal one solution step as a text hint. @tag ARCADE */
+function _mkShowHint() {
+  if (!_mk || !_mk.current) return;
+  const lv = MK_LEVELS[_mkLevel];
+  // Find one valid expression and show its first step
+  const nums = _mk.current;
+  for (const [a, b, c, d] of _perm(nums)) {
+    for (const o1 of lv.ops) for (const o2 of lv.ops) for (const o3 of lv.ops) {
+      const ab = _mkApplyOp(a, o1, b);
+      if (ab === null) continue;
+      const abc = _mkApplyOp(ab, o2, c);
+      if (abc === null) continue;
+      const r = _mkApplyOp(abc, o3, d);
+      if (r !== null && Math.abs(r - lv.target) < 1e-9) {
+        const op1 = o1 === '*' ? '×' : o1 === '/' ? '÷' : o1 === '-' ? '−' : o1;
+        const hint = `Try: ${a} ${op1} ${b} = ${Math.round(ab * 100) / 100}`;
+        const prev = document.getElementById('mk-preview');
+        if (prev) { prev.textContent = `Hint: ${hint}`; prev.style.color = 'var(--arcade-ink)'; }
+        return;
+      }
+    }
+  }
 }
 
 async function _mkGameOver() {

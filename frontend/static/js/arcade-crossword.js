@@ -11,9 +11,10 @@ const CW_CFG = {
   minLen: 3,
   maxLen: 10,
   internalSize: 15,       // working grid before crop
-  pointsPerWord: 40,      // on word complete
-  pointsPerLetter: 8,
-  fullBonus: 300,
+  pointsPerWord: 80,      // on word complete (was 40)
+  pointsPerLetter: 15,    // per letter on complete (was 8)
+  fullBonus: 500,         // all words done bonus (was 300)
+  hintThreshold: 2,       // wrong entries per word before hint appears
 };
 
 let _cw = null;
@@ -28,11 +29,11 @@ async function cwStart() {
 
   const pool = await _arcadeFetchWords(120);
   const puzzle = _cwGenerate(pool);
-  if (!puzzle || puzzle.placed.length < 3) {
+  if (!puzzle || puzzle.placed.length < 4) {
     body.innerHTML = `
       <div class="wi-gameover">
         <h2>Not enough words</h2>
-        <div class="stat">Need more 3–10 letter words in the pool.</div>
+        <div class="stat">Need at least 4 words with 3–10 letters in the pool.</div>
         <button class="wi-btn" onclick="arcadeReturnToLobby()">Back</button>
       </div>`;
     return;
@@ -48,6 +49,7 @@ async function cwStart() {
     total: 0,
     completed: 0,
     activeWord: 0,
+    wrongAttempts: new Array(puzzle.placed.length).fill(0), // Fix #15: per-word wrong count
     startedAt: performance.now(),
     running: true,
   };
@@ -331,7 +333,38 @@ function _cwHighlight() {
   const clue = document.querySelector(`.cw-clues-list li[data-idx="${_cw.activeWord}"]`);
   if (clue) clue.classList.add('active');
   const bar = document.getElementById('cw-active');
-  if (bar) bar.innerHTML = `<b>${p.num} ${p.dir === 'H' ? 'Across' : 'Down'}:</b> ${_cwEscape(p.def)} <span class="cw-len">(${p.len})</span>`;
+  if (bar) {
+    const wrongCount = _cw.wrongAttempts[_cw.activeWord] || 0;
+    const hintBtn = (!p.completed && wrongCount >= CW_CFG.hintThreshold)
+      ? `<button class="cw-hint-btn" onclick="_cwHint(${_cw.activeWord})">Hint</button>`
+      : '';
+    bar.innerHTML = `<b>${p.num} ${p.dir === 'H' ? 'Across' : 'Down'}:</b> ${_cwEscape(p.def)} <span class="cw-len">(${p.len})</span>${hintBtn}`;
+  }
+}
+
+/** Reveal + lock the first unresolved letter of the active word. @tag ARCADE */
+function _cwHint(wordIdx) {
+  if (!_cw) return;
+  const p = _cw.placed[wordIdx];
+  if (!p || p.completed) return;
+  // Find first cell that isn't correct yet
+  for (let k = 0; k < p.len; k++) {
+    const rr = p.r + (p.dir === 'V' ? k : 0);
+    const cc = p.c + (p.dir === 'H' ? k : 0);
+    const cell = _cw.grid[rr][cc];
+    if (cell.input === cell.ans) continue;
+    // Reveal this letter
+    cell.input = cell.ans;
+    const el = document.querySelector(`.cw-inp[data-r="${rr}"][data-c="${cc}"]`);
+    if (el) {
+      el.value = cell.ans.toUpperCase();
+      el.classList.add('cw-inp--ok', 'cw-inp--hint');
+      el.disabled = true; // lock the hinted cell
+    }
+    _cwCheckWord(rr, cc);
+    break;
+  }
+  _cwHighlight();
 }
 
 function _cwOnInput(e) {
@@ -343,6 +376,15 @@ function _cwOnInput(e) {
   _cw.grid[r][c].input = ch;
   _cwValidateCell(r, c, e.target);
   if (ch) {
+    // Fix #15: track wrong attempts per word
+    const cell = _cw.grid[r][c];
+    if (ch !== cell.ans) {
+      const wordsHere = cell.wordsAt || [];
+      if (wordsHere.includes(_cw.activeWord)) {
+        _cw.wrongAttempts[_cw.activeWord] = (_cw.wrongAttempts[_cw.activeWord] || 0) + 1;
+        _cwHighlight(); // refresh bar to maybe show hint button
+      }
+    }
     _cwAdvance(r, c, +1);
     _cwCheckWord(r, c);
   }

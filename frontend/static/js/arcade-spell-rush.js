@@ -64,6 +64,7 @@ async function srStart() {
     running: true,
     startedAt: performance.now(),
     current: null,
+    tickHandle: null,
   };
 
   if (typeof sfxStart === 'function') sfxStart();
@@ -75,13 +76,14 @@ async function srStart() {
   input.addEventListener('input', _srOnInput);
   input.addEventListener('keydown', _srOnKeydown);
 
-  _srTick();
+  _sr.tickHandle = setInterval(_srTick, 500);  // Fix #19: setInterval instead of rAF
 }
 
 /** Stop Spell Rush. @tag ARCADE */
 function srStop() {
   if (!_sr) return;
   _sr.running = false;
+  if (_sr.tickHandle) { clearInterval(_sr.tickHandle); _sr.tickHandle = null; }
   const input = document.getElementById('sr-input');
   if (input) {
     input.removeEventListener('input', _srOnInput);
@@ -90,9 +92,10 @@ function srStop() {
   _sr = null;
 }
 
+// Fix #19: setInterval-based tick (500ms) — no rAF waste
 function _srTick() {
   if (!_sr || !_sr.running) return;
-  if (document.hidden) { requestAnimationFrame(_srTick); return; }
+  if (document.hidden) return;
   const elapsed = performance.now() - _sr.startedAt;
   const remain = Math.max(0, SR_CFG.roundMs - elapsed);
   const el = document.getElementById('sr-time');
@@ -101,10 +104,9 @@ function _srTick() {
     el.classList.toggle('sr-time--urgent', remain <= 10000);
   }
   if (remain <= 0) {
+    if (_sr.tickHandle) { clearInterval(_sr.tickHandle); _sr.tickHandle = null; }
     _srGameOver();
-    return;
   }
-  requestAnimationFrame(_srTick);
 }
 
 function _srNextWord() {
@@ -168,7 +170,7 @@ function _srSubmit() {
     _sr.correct += 1;
     _sr.streak += 1;
     const letterPts = word.length * SR_CFG.perLetterPoints;
-    const streakMult = 1 + Math.min(1.0, _sr.streak * 0.08); // up to 2x
+    const streakMult = 1 + Math.min(1.0, _sr.streak * 0.08); // Fix #10: capped at 2× (streak≥13)
     _sr.score += Math.round((SR_CFG.wordCompleteBase + letterPts) * streakMult);
     if (typeof sfxHit === 'function') sfxHit(_sr.streak);
     if (_sr.streak > 0 && _sr.streak % 5 === 0) {
@@ -180,6 +182,7 @@ function _srSubmit() {
     _sr.streak = 0;
     _sr.score = Math.max(0, _sr.score - SR_CFG.wrongPenalty);
     if (typeof sfxMiss === 'function') sfxMiss();
+    if (navigator.vibrate) navigator.vibrate(80);  // Fix #14: haptic feedback on wrong
     const box = document.getElementById('sr-boxes');
     if (box) {
       box.classList.add('sr-shake');

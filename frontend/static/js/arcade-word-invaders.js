@@ -221,18 +221,7 @@ function _wiKeydown(e) {
   input.value = '';
   if (!typed) return;
 
-  // 1) Power-up keyword collected?
-  if (WI_POWERUPS[typed]) {
-    const puIdx = _wi.powerups.findIndex((p) => p.type === typed);
-    if (puIdx >= 0) {
-      const pu = _wi.powerups[puIdx];
-      _wi.powerups.splice(puIdx, 1);
-      _wiActivatePowerup(pu.type, pu.x, pu.y);
-      return;
-    }
-  }
-
-  // 2) Match lowest active enemy
+  // 1) Match lowest active enemy first (prevents powerup keyword collisions)
   let hitIdx = -1;
   let lowestY = -1;
   _wi.active.forEach((en, i) => {
@@ -244,11 +233,24 @@ function _wiKeydown(e) {
 
   if (hitIdx >= 0) {
     _wiKill(hitIdx);
-  } else {
-    _wi.streak = 0;
-    if (typeof sfxMiss === 'function') sfxMiss();
-    _wiUpdateHUD();
+    return;
   }
+
+  // 2) Power-up keyword — only if no enemy matched
+  if (WI_POWERUPS[typed]) {
+    const puIdx = _wi.powerups.findIndex((p) => p.type === typed);
+    if (puIdx >= 0) {
+      const pu = _wi.powerups[puIdx];
+      _wi.powerups.splice(puIdx, 1);
+      _wiActivatePowerup(pu.type, pu.x, pu.y);
+      return;
+    }
+  }
+
+  // 3) Miss
+  _wi.streak = 0;
+  if (typeof sfxMiss === 'function') sfxMiss();
+  _wiUpdateHUD();
 }
 
 function _wiKill(idx) {
@@ -313,6 +315,10 @@ function _wiActivatePowerup(type, x, y) {
     const count = _wi.active.length;
     _wi.active.forEach((en) => _wiBurst(en.x, en.y + 18, WI_COLORS.bombRed));
     _wi.score += count * 15;
+    _wi.correct += count;  // bomb kills count as correct answers
+    _wi.total   += count;
+    _wi.kills   += count;
+    _wi.killsThisWave += count;
     _wi.active = [];
     _wi.banner = { text: `BOOM! +${count * 15}`, until: performance.now() + 1000 };
   } else if (type === 'shield') {

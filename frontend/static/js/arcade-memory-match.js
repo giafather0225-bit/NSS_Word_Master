@@ -7,11 +7,12 @@
 
 /** @tag ARCADE */
 const MM_CFG = {
-  easy: { rows: 4, cols: 4, timeMs: 120_000, pairs: 8,  label: 'Easy', spec: '8 pairs · 2 min' },
-  hard: { rows: 4, cols: 6, timeMs: 180_000, pairs: 12, label: 'Hard', spec: '12 pairs · 3 min' },
+  easy:  { rows: 4, cols: 4, timeMs: 120_000, pairs: 8,  label: 'Easy',   spec: '8 pairs · 2 min' },
+  hard:  { rows: 4, cols: 6, timeMs: 180_000, pairs: 12, label: 'Hard',   spec: '12 pairs · 3 min' },
+  xhard: { rows: 5, cols: 6, timeMs: 240_000, pairs: 15, label: 'Expert', spec: '15 pairs · 4 min' },
   flipCloseMs:     750,  // delay before a non-matching flip closes
-  matchPoints:     100,  // points per matched pair
-  timeBonusPerSec:   3,  // bonus points per remaining second at completion
+  matchPoints:     150,  // points per matched pair (was 100)
+  timeBonusPerSec:   5,  // bonus points per remaining second at completion (was 3)
   extraFlipPenalty:  5,  // penalty per flip above the theoretical minimum
   defMaxLen:        42,  // characters to show on a definition card
 };
@@ -24,11 +25,12 @@ let _mm = null;
 function mmShowLevelPicker() {
   const body = document.getElementById('arcade-body');
   if (!body) return;
+  // Fix #29: show Easy + Hard + Expert (xhard) levels
   body.innerHTML = `
     <div class="wi-level-picker">
       <h2 class="wi-level-title">Memory Card Match</h2>
       <p class="wi-level-sub">Flip cards to match each word with its definition.</p>
-      <div class="wi-level-list" style="grid-template-columns: repeat(2,1fr); max-width:400px;">
+      <div class="wi-level-list" style="grid-template-columns: repeat(3,1fr); max-width:540px;">
         <div class="wi-level-card" onclick="mmStart('easy')">
           <div class="wi-level-icon wi-level-icon--easy">4×4</div>
           <div class="wi-level-name">Easy</div>
@@ -38,6 +40,11 @@ function mmShowLevelPicker() {
           <div class="wi-level-icon wi-level-icon--hard">4×6</div>
           <div class="wi-level-name">Hard</div>
           <div class="wi-level-spec">12 pairs · 3 min</div>
+        </div>
+        <div class="wi-level-card" onclick="mmStart('xhard')">
+          <div class="wi-level-icon wi-level-icon--xhard">5×6</div>
+          <div class="wi-level-name">Expert</div>
+          <div class="wi-level-spec">15 pairs · 4 min</div>
         </div>
       </div>
       <button type="button" class="wi-btn secondary" style="margin-top:12px"
@@ -99,18 +106,22 @@ async function mmStart(level = 'easy') {
     running: true,
     locked: false,            // prevents clicks while flip-back is pending
     startedAt: performance.now(),
+    tickHandle: null,
   };
 
   if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('memory_match');
   if (typeof sfxStart === 'function') sfxStart();
 
   _mmRender();
-  _mmTick();
+  _mm.tickHandle = setInterval(_mmTick, 500);  // Fix #19: setInterval instead of rAF
 }
 
 /** Stop Memory Card Match (called by hub on close/lobby return). @tag ARCADE */
 function mmStop() {
-  if (_mm) _mm.running = false;
+  if (_mm) {
+    _mm.running = false;
+    if (_mm.tickHandle) { clearInterval(_mm.tickHandle); _mm.tickHandle = null; }
+  }
   _mm = null;
 }
 
@@ -232,16 +243,22 @@ function _mmFlip(idx) {
 
 function _mmUpdateScore() {
   if (!_mm) return;
-  const elapsed   = performance.now() - _mm.startedAt;
-  const remainMs  = Math.max(0, _mm.cfg.timeMs - elapsed);
-  const remSec    = remainMs / 1000;
+  // Fix #12: live score = base only (no time bonus) — prevents visible score decreasing
   const minFlips  = _mm.correct * 2;                            // perfect = 2 per pair
   const extra     = Math.max(0, _mm.flips - minFlips);
   _mm.score = Math.max(0,
-    _mm.correct * MM_CFG.matchPoints +
-    Math.round(remSec * MM_CFG.timeBonusPerSec) -
+    _mm.correct * MM_CFG.matchPoints -
     extra * MM_CFG.extraFlipPenalty
   );
+}
+
+function _mmFinalScore() {
+  // Fix #12: add time bonus only at game-end (complete or time-up)
+  if (!_mm) return _mm?.score ?? 0;
+  const elapsed  = performance.now() - _mm.startedAt;
+  const remainMs = Math.max(0, _mm.cfg.timeMs - elapsed);
+  const remSec   = remainMs / 1000;
+  return Math.max(0, _mm.score + Math.round(remSec * MM_CFG.timeBonusPerSec));
 }
 
 function _mmUpdateHUD() {
@@ -256,9 +273,10 @@ function _mmUpdateHUD() {
 
 /* ── Tick / timer ──────────────────────────────────────────────── */
 
+// Fix #19: setInterval-based tick (500ms) — no rAF waste when board is idle
 function _mmTick() {
   if (!_mm || !_mm.running) return;
-  if (document.hidden) { requestAnimationFrame(_mmTick); return; }
+  if (document.hidden) return;  // skip hidden tab ticks
 
   const elapsed = performance.now() - _mm.startedAt;
   const remain  = Math.max(0, _mm.cfg.timeMs - elapsed);
@@ -271,10 +289,9 @@ function _mmTick() {
   _mmUpdateHUD();
 
   if (remain <= 0) {
+    if (_mm.tickHandle) { clearInterval(_mm.tickHandle); _mm.tickHandle = null; }
     _mmGameOver();
-    return;
   }
-  requestAnimationFrame(_mmTick);
 }
 
 /* ── Game-over screens ─────────────────────────────────────────── */
@@ -283,6 +300,8 @@ function _mmTick() {
 async function _mmComplete() {
   if (!_mm) return;
   _mmUpdateScore();
+  const finalScore = _mmFinalScore();   // Fix #12: apply time bonus at completion only
+  _mm.score = finalScore;
   const snap = { score: _mm.score, correct: _mm.correct, total: _mm.total, level: _mm.level };
   _mm.running = false;
   const accuracy = snap.correct / snap.total;
@@ -294,6 +313,7 @@ async function _mmComplete() {
 async function _mmGameOver() {
   if (!_mm) return;
   _mmUpdateScore();
+  // Fix #12: no time bonus on timeout (time already 0)
   const snap = { score: _mm.score, correct: _mm.correct, total: _mm.total, level: _mm.level };
   _mm.running = false;
   const accuracy = snap.total > 0 ? snap.correct / snap.total : 0;

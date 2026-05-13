@@ -7,9 +7,9 @@
 
 /** @tag ARCADE */
 const SU_LEVELS = {
-  easy:    { label: '4×4', N: 4, br: 2, bc: 2, holes: 6,  baseScore: 500,  timeBonus: 4 },
-  medium:  { label: '6×6', N: 6, br: 2, bc: 3, holes: 18, baseScore: 800,  timeBonus: 3 },
-  hard:    { label: '9×9', N: 9, br: 3, bc: 3, holes: 40, baseScore: 1500, timeBonus: 2 },
+  easy:    { label: '4×4', N: 4, br: 2, bc: 2, holes: 6,  baseScore: 1500, timeBonus: 4 },
+  medium:  { label: '6×6', N: 6, br: 2, bc: 3, holes: 18, baseScore: 2500, timeBonus: 3 },
+  hard:    { label: '9×9', N: 9, br: 3, bc: 3, holes: 40, baseScore: 4000, timeBonus: 2 },
 };
 
 let _su = null;
@@ -201,13 +201,18 @@ function _suOnInput(e) {
     e.target.value = '';
     _su.input[r][c] = 0;
     e.target.classList.remove('su-inp--ok', 'su-inp--bad');
+    _suClearConflicts();
     return;
   }
   e.target.value = String(n);
+  // Constraint-based validation: temporarily clear cell then check
+  _su.input[r][c] = 0;
+  const valid = _suCanPlace(_su.input, r, c, n, _su.lv);
   _su.input[r][c] = n;
-  if (n === _su.solution[r][c]) {
+  if (valid) {
     e.target.classList.remove('su-inp--bad');
     e.target.classList.add('su-inp--ok');
+    _suClearConflicts();
     if (typeof sfxHit === 'function') sfxHit(1);
   } else {
     e.target.classList.remove('su-inp--ok');
@@ -215,9 +220,33 @@ function _suOnInput(e) {
     _su.mistakes += 1;
     const m = document.getElementById('su-miss');
     if (m) m.textContent = String(_su.mistakes);
+    _suHighlightConflicts(r, c, n);  // Fix #17: highlight conflicting peers
     if (typeof sfxMiss === 'function') sfxMiss();
   }
   _suCheckComplete();
+}
+
+/** Highlight peers that conflict with value n at (r,c). @tag ARCADE */
+function _suHighlightConflicts(r, c, n) {
+  _suClearConflicts();
+  const { br, bc } = _su.lv;
+  const boxR = Math.floor(r / br) * br;
+  const boxC = Math.floor(c / bc) * bc;
+  document.querySelectorAll('.su-cell, .su-inp').forEach((el) => {
+    if (el.dataset.r === undefined) return;
+    const er = Number(el.dataset.r), ec = Number(el.dataset.c);
+    if (er === r && ec === c) return;
+    const inRow = er === r, inCol = ec === c;
+    const inBox = er >= boxR && er < boxR + br && ec >= boxC && ec < boxC + bc;
+    if ((inRow || inCol || inBox) && _su.input[er][ec] === n) {
+      el.classList.add('su-cell--conflict');
+    }
+  });
+}
+
+function _suClearConflicts() {
+  document.querySelectorAll('.su-cell--conflict')
+    .forEach((el) => el.classList.remove('su-cell--conflict'));
 }
 
 function _suOnKey(e) {
@@ -261,9 +290,20 @@ function _suOnBlur() {
 
 function _suCheckComplete() {
   const { N } = _su.lv;
+  // All cells must be filled
   for (let r = 0; r < N; r++)
     for (let c = 0; c < N; c++)
-      if (_su.input[r][c] !== _su.solution[r][c]) return;
+      if (!_su.input[r][c]) return;
+  // No constraint violations (allows valid alternative solutions)
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) {
+      const n = _su.input[r][c];
+      _su.input[r][c] = 0;
+      const ok = _suCanPlace(_su.input, r, c, n, _su.lv);
+      _su.input[r][c] = n;
+      if (!ok) return;
+    }
+  }
   _su.completed = true;
   setTimeout(_suFinish, 200);
 }

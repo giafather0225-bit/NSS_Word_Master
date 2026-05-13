@@ -7,10 +7,10 @@
 
 /** @tag ARCADE */
 const DM_CFG = {
-  roundMs: 60000,
+  roundMs: 90000,         // Fix #11: 90 s (was 60 s)
   matchProbability: 0.5,
-  basePoints: 30,
-  streakBonus: 8,
+  basePoints: 40,         // Fix #11: was 30
+  streakBonus: 10,        // Fix #11: was 8
   streakCap: 12,
   wrongPenalty: 20,
   feedbackMs: 180,
@@ -28,7 +28,7 @@ async function dmStart() {
     <div class="dm-view">
       <div class="wi-hud">
         <span>Score: <b id="dm-score">0</b></span>
-        <span>Time: <b id="dm-time">60</b>s</span>
+        <span>Time: <b id="dm-time">90</b>s</span>
         <span>Streak: <b id="dm-streak">0</b></span>
       </div>
       <div class="dm-card" id="dm-card">
@@ -68,6 +68,7 @@ async function dmStart() {
     startedAt: performance.now(),
     current: null,
     lock: false,
+    tickHandle: null,
   };
 
   document.getElementById('dm-yes').addEventListener('click', () => _dmAnswer(true));
@@ -76,12 +77,15 @@ async function dmStart() {
 
   if (typeof sfxStart === 'function') sfxStart();
   _dmNextPair();
-  _dmTick();
+  _dm.tickHandle = setInterval(_dmTick, 500);  // Fix #19: setInterval instead of rAF
 }
 
 /** Stop the round. @tag ARCADE */
 function dmStop() {
-  if (_dm) _dm.running = false;
+  if (_dm) {
+    _dm.running = false;
+    if (_dm.tickHandle) { clearInterval(_dm.tickHandle); _dm.tickHandle = null; }
+  }
   document.removeEventListener('keydown', _dmKeydown);
   _dm = null;
 }
@@ -92,18 +96,18 @@ function _dmKeydown(e) {
   else if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'n') _dmAnswer(false);
 }
 
+// Fix #19: setInterval-based tick (500ms) — no rAF waste
 function _dmTick() {
   if (!_dm || !_dm.running) return;
-  if (document.hidden) { requestAnimationFrame(_dmTick); return; }
+  if (document.hidden) return;
   const elapsed = performance.now() - _dm.startedAt;
   const remain = Math.max(0, DM_CFG.roundMs - elapsed);
   const el = document.getElementById('dm-time');
   if (el) el.textContent = String(Math.ceil(remain / 1000));
   if (remain <= 0) {
+    if (_dm.tickHandle) { clearInterval(_dm.tickHandle); _dm.tickHandle = null; }
     _dmGameOver();
-    return;
   }
-  requestAnimationFrame(_dmTick);
 }
 
 function _dmNextPair() {
@@ -199,6 +203,7 @@ async function _dmGameOver() {
   if (!_dm) return;
   const state = _dm;
   _dm.running = false;
+  if (_dm.tickHandle) { clearInterval(_dm.tickHandle); _dm.tickHandle = null; }
   document.removeEventListener('keydown', _dmKeydown);
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('definition_match', state.score, state.correct, state.total, accuracy);

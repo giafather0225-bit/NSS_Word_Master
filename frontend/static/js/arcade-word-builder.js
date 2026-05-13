@@ -66,30 +66,36 @@ async function wbStart() {
     startedAt: performance.now(),
     current: null,
     lock: false,
+    wordHistory: [],   // Fix #18: track {word, correct, pts}
+    tickHandle: null,
   };
 
   if (typeof sfxStart === 'function') sfxStart();
   _wbRenderShell();
   _wbNextWord();
-  _wbTick();
+  _wb.tickHandle = setInterval(_wbTick, 500);  // Fix #19: setInterval instead of rAF
 }
 
 /** Stop Word Builder. @tag ARCADE */
 function wbStop() {
   if (!_wb) return;
   _wb.running = false;
+  if (_wb.tickHandle) { clearInterval(_wb.tickHandle); _wb.tickHandle = null; }
   _wb = null;
 }
 
+// Fix #19: setInterval-based tick (500ms) — no rAF waste
 function _wbTick() {
   if (!_wb || !_wb.running) return;
-  if (document.hidden) { requestAnimationFrame(_wbTick); return; }
+  if (document.hidden) return;
   const elapsed = performance.now() - _wb.startedAt;
   const remain = Math.max(0, WB_CFG.roundMs - elapsed);
   const el = document.getElementById('wb-time');
   if (el) el.textContent = String(Math.ceil(remain / 1000));
-  if (remain <= 0) { _wbGameOver(); return; }
-  requestAnimationFrame(_wbTick);
+  if (remain <= 0) {
+    if (_wb.tickHandle) { clearInterval(_wb.tickHandle); _wb.tickHandle = null; }
+    _wbGameOver();
+  }
 }
 
 function _wbRenderShell() {
@@ -260,9 +266,9 @@ function _wbCheck() {
   if (correct) {
     _wb.correct += 1;
     _wb.streak += 1;
-    const mult = _wbStreakMult(_wb.streak);
-    const pts = Math.round(_wb.current.tiles.length * WB_CFG.baseScore * mult);
+    const pts = _wbCalcScore(_wb.current.tiles.length, _wb.streak);  // Fix #26
     _wb.score += pts;
+    _wb.wordHistory.push({ word: _wb.current.word, correct: true, pts });  // Fix #18
     if (answerRow) {
       answerRow.classList.add('wb-answer--correct');
       answerRow.querySelectorAll('.wb-answer-tile').forEach((el, i) => {
@@ -273,6 +279,7 @@ function _wbCheck() {
     if (typeof sfxHit === 'function') sfxHit(_wb.streak);
     if (_wb.streak > 0 && _wb.streak % 5 === 0 && typeof sfxCombo === 'function') sfxCombo();
     _wbUpdateHUD();
+    _wbRenderHistory();  // Fix #18
     setTimeout(() => {
       if (!_wb || !_wb.running) return;
       _wbRenderShell();
@@ -281,6 +288,7 @@ function _wbCheck() {
   } else {
     _wb.streak = 0;
     _wb.score = Math.max(0, _wb.score - WB_CFG.wrongPenalty);
+    _wb.wordHistory.push({ word: _wb.current.word, correct: false, pts: 0 });  // Fix #18
     if (answerRow) {
       answerRow.classList.add('wb-answer--wrong');
       setTimeout(() => {
@@ -294,6 +302,7 @@ function _wbCheck() {
     }
     if (typeof sfxMiss === 'function') sfxMiss();
     _wbUpdateHUD();
+    _wbRenderHistory();  // Fix #18
   }
 }
 
@@ -304,6 +313,31 @@ function _wbStreakMult(streak) {
     if (streak >= streakLevels[i]) mult = streakMults[i];
   }
   return mult;
+}
+
+/** Fix #26: centralized score calculation for a solved word. @tag ARCADE */
+function _wbCalcScore(wordLen, streak) {
+  return Math.round(wordLen * WB_CFG.baseScore * _wbStreakMult(streak));
+}
+
+/** Fix #18: render word history panel below the card. @tag ARCADE */
+function _wbRenderHistory() {
+  const body = document.getElementById('arcade-body');
+  if (!body || !_wb || _wb.wordHistory.length === 0) return;
+  let panel = document.getElementById('wb-history');
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.id = 'wb-history';
+    panel.className = 'wb-history';
+    body.querySelector('.wb-view')?.appendChild(panel);
+  }
+  panel.innerHTML = `<div class="wb-history-title">Recent</div>` +
+    _wb.wordHistory.slice(-6).reverse().map((h) =>
+      `<div class="wb-history-row ${h.correct ? 'wb-history--ok' : 'wb-history--miss'}">
+        <span class="wb-history-word">${h.word}</span>
+        <span class="wb-history-pts">${h.correct ? `+${h.pts}` : '—'}</span>
+      </div>`
+    ).join('');
 }
 
 function _wbUpdateHUD() {
