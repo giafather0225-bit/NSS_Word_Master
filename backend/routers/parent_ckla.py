@@ -28,7 +28,7 @@ router = APIRouter(prefix="/api/parent", tags=["parent"])
 
 
 @router.get("/ckla-summary")
-def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
+def ckla_summary(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):
     """Full CKLA progress summary for the parent dashboard."""
     today = _date.today()
     today_str = today.isoformat()
@@ -243,7 +243,7 @@ def ckla_summary(grade: int = Query(3), db: Session = Depends(get_db)):
 @router.get("/ckla-chart")
 def ckla_chart(
     range: str = Query("week", pattern="^(week|month|full)$"),
-    grade: int = Query(3),
+    grade: int = Query(3, ge=3, le=8),
     db: Session = Depends(get_db),
 ):
     """Lightweight lesson-completion chart for interactive range toggle.

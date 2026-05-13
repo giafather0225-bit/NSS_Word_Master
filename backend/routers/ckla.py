@@ -206,7 +206,7 @@ def get_grades(db: Session = Depends(get_db)):
 
 @router.get("/title")
 # @tag ACADEMY CKLA
-def get_title(grade: int = Query(3), db: Session = Depends(get_db)):
+def get_title(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):
     """Return localized title string for the given grade."""
     if grade not in _SUPPORTED_GRADES:
         raise HTTPException(status_code=404, detail="Grade not available")
@@ -215,7 +215,7 @@ def get_title(grade: int = Query(3), db: Session = Depends(get_db)):
 
 @router.get("/domains")
 # @tag ACADEMY CKLA
-def get_domains(grade: int = Query(3), db: Session = Depends(get_db)):
+def get_domains(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):
     """Domain list for the given grade, with all_complete flag."""
     domains = (
         db.query(CKLADomain)
@@ -300,7 +300,7 @@ def get_domains(grade: int = Query(3), db: Session = Depends(get_db)):
 
 @router.get("/domains/{domain_num}/lessons")
 # @tag ACADEMY CKLA
-def get_lessons(domain_num: int, grade: int = Query(3), db: Session = Depends(get_db)):
+def get_lessons(domain_num: int, grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):
     """Lesson list for domain (passage excluded, progress included)."""
     domain = db.query(CKLADomain).filter_by(domain_num=domain_num, grade=grade, is_active=True).first()
     if not domain:
@@ -689,7 +689,7 @@ def get_word(word_id: int, db: Session = Depends(get_db)):
 
 @router.get("/badges")
 # @tag ACADEMY CKLA
-def get_badges(grade: int = Query(3), db: Session = Depends(get_db)):
+def get_badges(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):
     """Badge gallery: all badges (earned flag included)."""
     badges = db.query(CKLABadge).order_by(CKLABadge.condition_value).all()
     earned_map = {
@@ -701,7 +701,7 @@ def get_badges(grade: int = Query(3), db: Session = Depends(get_db)):
 
 @router.post("/badges/check")
 # @tag ACADEMY CKLA XP
-def check_and_award_badges(grade: int = Query(3), db: Session = Depends(get_db)):
+def check_and_award_badges(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):
     """Check progress against badge conditions and award any newly earned badges.
 
     Returns list of newly awarded badge_keys (empty if none new).
@@ -771,7 +771,7 @@ def check_and_award_badges(grade: int = Query(3), db: Session = Depends(get_db))
 @router.get("/domain-test/{domain_num}")
 # @tag ACADEMY CKLA
 def get_domain_test(
-    domain_num: int, grade: int = Query(3), db: Session = Depends(get_db)
+    domain_num: int, grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)
 ):
     """Return 10 domain test questions: 3 vocab_mc + 2 vocab_fill + 5 Q&A.
 
@@ -883,7 +883,7 @@ def get_domain_test(
 async def submit_domain_test(
     domain_num: int,
     req: DomainTestSubmit,
-    grade: int = Query(3),
+    grade: int = Query(3, ge=3, le=8),
     db: Session = Depends(get_db),
 ):
     """Grade domain test answers. Vocab (MC/fill) graded locally; Q&A via AI.
@@ -1027,7 +1027,7 @@ async def submit_domain_test(
 
 @router.get("/grade-final-test")
 # @tag ACADEMY CKLA
-def get_grade_final_test(grade: int = Query(3), db: Session = Depends(get_db)):
+def get_grade_final_test(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):
     """Return 27 grade final test questions: 15 vocab_mc + 10 Q&A + 2 word_work.
 
     ID scheme (no schema change):
@@ -1164,7 +1164,7 @@ def get_grade_final_test(grade: int = Query(3), db: Session = Depends(get_db)):
 
 @router.get("/grade-final-test/status")
 # @tag ACADEMY CKLA
-def get_grade_final_test_status(grade: int = Query(3), db: Session = Depends(get_db)):
+def get_grade_final_test_status(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):
     """Check if grade final test is locked (24h cooldown after a failed attempt)."""
     cooldown_key = f"ckla_final_test_last_fail_grade_{grade}"
     cfg = db.query(AppConfig).filter_by(key=cooldown_key).first()
@@ -1183,7 +1183,7 @@ def get_grade_final_test_status(grade: int = Query(3), db: Session = Depends(get
 # @tag ACADEMY CKLA XP
 async def submit_grade_final_test(
     req: GradeFinalTestSubmit,
-    grade: int = Query(3),
+    grade: int = Query(3, ge=3, le=8),
     db: Session = Depends(get_db),
 ):
     """Grade 27 final test answers by ID range, award XP on pass (>=80%).
