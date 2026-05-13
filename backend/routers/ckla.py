@@ -52,6 +52,7 @@ from backend.models.system import AppConfig
 from backend.services.ckla_grader import grade_answer
 from backend.services.xp_engine import award_xp
 from backend.services.streak_engine import mark_ckla_done
+from backend.services.island_care_engine import apply_subject_gain as _island_apply_gain
 
 router = APIRouter(prefix="/api/academy/ckla", tags=["ckla"])
 
@@ -543,6 +544,11 @@ def update_lesson_progress(
             # own db.commit(), which flushes everything pending at that point.
             award_xp(db, "ckla_lesson_complete", detail=str(lesson_id), commit=False)
             mark_ckla_done(db, commit=False)
+            # Island: CKLA lesson → Forest character gauge gain
+            try:
+                _island_apply_gain(db, "english", "english_stage")
+            except Exception:
+                pass  # island is non-critical
 
             # Check daily lesson goal
             today_str = _date.today().isoformat()
@@ -957,6 +963,11 @@ async def submit_domain_test(
     if passed:
         # commit=False: XP + fail_cfg reset + time + history committed atomically at db.commit() below.
         xp_awarded = award_xp(db, "ckla_domain_test_pass", detail=f"domain_{domain_num}_grade_{grade}", commit=False)
+        # Island: Domain Test pass → Forest character final-test gain
+        try:
+            _island_apply_gain(db, "english", "english_final_test")
+        except Exception:
+            pass
         if fail_cfg:
             fail_cfg.value = "0"
     else:
@@ -1303,6 +1314,11 @@ async def submit_grade_final_test(
     if passed:
         # commit=False: XP + cooldown-clear committed atomically at db.commit() below.
         xp_awarded = award_xp(db, "ckla_grade_final_pass", detail=f"grade_{grade}", commit=False)
+        # Island: Grade Final Test pass → Forest character final-test gain
+        try:
+            _island_apply_gain(db, "english", "english_final_test")
+        except Exception:
+            pass
         if cfg:
             cfg.value = ""
     else:

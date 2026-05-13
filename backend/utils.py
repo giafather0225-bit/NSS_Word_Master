@@ -13,6 +13,21 @@ from fastapi import HTTPException
 
 _SAFE_LESSON_RE = re.compile(r'^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$')
 _SAFE_NAME_RE   = re.compile(r'^[A-Za-z0-9][A-Za-z0-9_\- ]{0,49}$')
+_SAFE_ID_RE     = re.compile(r'^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$')
+
+
+def validate_safe_id(value: str, field: str, max_len: int = 80) -> str:
+    """Validate a generic path-safe identifier (grade/unit/set_id/etc).
+
+    Blocks '..', '/', '\\', spaces, and other dangerous chars.
+    Allowed: leading alphanumeric, then alphanumeric + underscore + hyphen.
+    """
+    v = (value or "").strip()
+    if not v:
+        raise HTTPException(status_code=400, detail=f"{field} required")
+    if len(v) > max_len or not _SAFE_ID_RE.match(v):
+        raise HTTPException(status_code=400, detail=f"Invalid {field}")
+    return v
 
 
 def validate_name(name: str, field: str) -> str:

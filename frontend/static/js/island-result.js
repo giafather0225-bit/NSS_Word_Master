@@ -20,15 +20,19 @@ async function _appendIslandUpdate(containerEl) {
         const d = await apiFetchJSON('/api/island/notifications');
         if (!d) return;
 
-        const lumiEarned = d.lumi_earned  ?? 0;
-        const xpGained   = d.xp_gained   ?? 0;
-        const charName   = d.char_name   ?? '';
-        const levelUp    = d.level_up    ?? false;
-        const evolved    = d.evolved     ?? false;
-        const hunger     = d.hunger      ?? null;
-        const happiness  = d.happiness   ?? null;
+        // Server shape: {hungry:[…], evolvable:[…], lumi_earned:int, active_char:{name,hunger,happiness}|null}
+        const lumiEarned = d.lumi_earned         ?? 0;
+        const ac         = d.active_char         ?? null;
+        const charName   = ac?.name              ?? '';
+        const hunger     = ac?.hunger            ?? null;
+        const happiness  = ac?.happiness         ?? null;
+        // xp_gained / level_up / evolved are session-specific events not tracked by notifications;
+        // they are intentionally suppressed here until a dedicated session endpoint is added.
+        const xpGained   = 0;
+        const levelUp    = false;
+        const evolved    = false;
 
-        const hasUpdate  = lumiEarned > 0 || xpGained > 0 || levelUp || evolved;
+        const hasUpdate  = lumiEarned > 0;
         if (!hasUpdate && !charName) return;
 
         const card = document.createElement('div');

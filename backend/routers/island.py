@@ -6,8 +6,11 @@ API endpoints: /api/island/*
 """
 
 import json
+import logging
 from datetime import date, datetime, timedelta, timezone
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
@@ -42,6 +45,10 @@ _ISLAND_CONFIG_KEYS = {
 }
 
 _FOOD_XP = {"Small Food": 50, "Big Food": 150, "Special Food": 300}
+
+# Zone sequential unlock chain (ISLAND_SPEC §Zone).
+# When a character in zone[i] reaches is_completed, zone[i+1] auto-unlocks.
+_ZONE_UNLOCK_CHAIN = ["forest", "ocean", "savanna", "space"]
 
 # Subject detection from XPLog action for legend daily check.
 _SUBJECT_ACTIONS: dict[str, set[str]] = {
@@ -247,16 +254,29 @@ def character_catalog(zone: Optional[str] = None, db: Session = Depends(get_db))
     if zone:
         q = q.filter(IslandCharacter.zone == zone)
     chars = q.order_by(IslandCharacter.zone, IslandCharacter.order_index).all()
+
+    # Load all progress rows in one query, then group by character_id (avoids N+1).
+    char_ids = [c.id for c in chars]
+    all_progs = (
+        db.query(IslandCharacterProgress)
+        .filter(IslandCharacterProgress.character_id.in_(char_ids))
+        .all()
+    ) if char_ids else []
+    progs_by_char: dict[int, list] = {}
+    for p in all_progs:
+        progs_by_char.setdefault(p.character_id, []).append(p)
+
+    char_map = {c.id: c for c in chars}
     result = []
     for char in chars:
-        progs = db.query(IslandCharacterProgress).filter_by(character_id=char.id).all()
+        progs = progs_by_char.get(char.id, [])
         result.append({
             "id": char.id, "name": char.name, "zone": char.zone,
             "subject": char.subject, "order_index": char.order_index,
             "description": char.description, "is_legend": char.is_legend,
             "lumi_production": char.lumi_production, "is_available": char.is_available,
             "evo_first_xp": char.evo_first_xp, "evo_second_xp": char.evo_second_xp,
-            "progress": [_prog_dict(p, char) for p in progs],
+            "progress": [_prog_dict(p, char_map[p.character_id]) for p in progs],
         })
     return {"characters": result}
 
@@ -291,20 +311,36 @@ def character_completed(db: Session = Depends(get_db)):
 # @tag ISLAND
 @router.get("/character/silhouette")
 def character_silhouette(db: Session = Depends(get_db)):
-    """Return all characters with adoptable/silhouette/locked status."""
+    """Return all characters with adoptable/silhouette/locked status.
+
+    Optimised: loads zone_status and completed-character sets in two bulk queries
+    instead of one query per character (avoids N+1 on a 25-row catalog).
+    """
     chars = db.query(IslandCharacter).order_by(
         IslandCharacter.zone, IslandCharacter.order_index).all()
+
+    # Bulk-load zone unlock status → {zone: bool}
+    zone_unlocked_map: dict[str, bool] = {
+        row.zone: bool(row.is_unlocked)
+        for row in db.query(IslandZoneStatus).all()
+    }
+
+    # Bulk-load all completed character_ids → set (used for prereq check)
+    completed_char_ids: set[int] = {
+        row.character_id
+        for row in db.query(IslandCharacterProgress.character_id)
+        .filter(IslandCharacterProgress.is_completed == True)
+        .all()
+    }
+
     result = []
     for char in chars:
-        has_prereq = True
-        if char.unlock_requires_character_id:
-            done = db.query(IslandCharacterProgress).filter(
-                IslandCharacterProgress.character_id == char.unlock_requires_character_id,
-                IslandCharacterProgress.is_completed == True,
-            ).first()
-            has_prereq = done is not None
-        zone_unlocked = db.query(IslandZoneStatus).filter_by(
-            zone=char.zone, is_unlocked=True).first() is not None
+        has_prereq = (
+            char.unlock_requires_character_id in completed_char_ids
+            if char.unlock_requires_character_id
+            else True
+        )
+        zone_unlocked = zone_unlocked_map.get(char.zone, False)
         result.append({
             "character_id": char.id, "name": char.name, "zone": char.zone,
             "order_index": char.order_index, "is_available": char.is_available,
@@ -364,6 +400,31 @@ def character_evolve(body: EvolveBranchBody, db: Session = Depends(get_db)):
                 "second"
     try:
         result = svc.execute_evolution(db, body.character_progress_id, stone)
+
+        # ── Legend zone unlock: all 4 main zones need ≥1 first-evolution char ──
+        # Zones 1-4 are unlocked sequentially during onboarding (character adoption).
+        # Legend unlocks automatically the moment every main zone has a character
+        # that has completed its first evolution (stage = mid_a or mid_b or beyond).
+        new_stage = result.get("new_stage", "")
+        _FIRST_EVO_STAGES = {"mid_a", "mid_b", "final_a", "final_b"}
+        if new_stage in _FIRST_EVO_STAGES and not prog.is_legend_type:
+            legend_row = db.query(IslandZoneStatus).filter_by(zone="legend").first()
+            if legend_row and not legend_row.is_unlocked:
+                all_first_evo = all(
+                    db.query(IslandCharacterProgress)
+                      .join(IslandCharacter, IslandCharacter.id == IslandCharacterProgress.character_id)
+                      .filter(
+                          IslandCharacter.zone == z,
+                          IslandCharacterProgress.stage.in_(list(_FIRST_EVO_STAGES)),
+                      ).count() >= 1
+                    for z in _ZONE_UNLOCK_CHAIN  # ["forest","ocean","savanna","space"]
+                )
+                if all_first_evo:
+                    legend_row.is_unlocked = True
+                    legend_row.unlocked_at = datetime.now(timezone.utc)
+                    result["zone_unlocked"] = "legend"
+                    logger.info("Legend zone unlocked — all 4 main zones have first-evolution characters")
+
         db.commit()
         return result
     except EvolutionError as e:
@@ -525,7 +586,11 @@ def care_feed(body: FeedBody, db: Session = Depends(get_db)):
     if used_today:
         raise HTTPException(400, f"{shop_item.name} already used on this character today.")
 
-    xp_gain = _FOOD_XP.get(shop_item.name, 50)
+    xp_gain = _FOOD_XP.get(shop_item.name)
+    if xp_gain is None:
+        logger.warning("Unknown food item name %r (id=%s) — defaulting to 50 XP. "
+                       "Update _FOOD_XP if the shop catalog changed.", shop_item.name, shop_item.id)
+        xp_gain = 50
     prog = db.get(IslandCharacterProgress, body.character_progress_id)
     if prog is None:
         raise HTTPException(404, "Character progress not found.")
@@ -922,15 +987,21 @@ def boost_status(db: Session = Depends(get_db)):
 def notifications(db: Session = Depends(get_db)):
     """Derive notifications: hungry/unhappy chars, evolvable chars, today's lumi production.
 
+    Also exposes `active_char` — the first non-completed active character's current state —
+    so that the post-study island-result card (island-result.js) can display gauge values
+    and character name without a second API call.
+
     Returns:
         {
-          hungry:    [{nickname, name, hunger, happiness}, ...],
-          evolvable: [{nickname, name}, ...],
-          lumi_earned: int
+          hungry:      [{nickname, name, hunger, happiness}, ...],
+          evolvable:   [{nickname, name}, ...],
+          lumi_earned: int,
+          active_char: {name, hunger, happiness} | null
         }
     """
     hungry: list[dict] = []
     evolvable: list[dict] = []
+    active_char: dict | None = None
 
     active = (
         db.query(IslandCharacterProgress, IslandCharacter)
@@ -942,6 +1013,14 @@ def notifications(db: Session = Depends(get_db)):
         .all()
     )
     for prog, char in active:
+        # Capture first non-legend raising character for island-result card
+        if active_char is None and not prog.is_legend_type:
+            active_char = {
+                "name":      prog.nickname or char.name,
+                "hunger":    prog.hunger,
+                "happiness": prog.happiness,
+            }
+
         # Hunger / happiness alerts
         if (not prog.is_legend_type) and (prog.hunger < 40 or prog.happiness < 40):
             hungry.append({
@@ -961,7 +1040,12 @@ def notifications(db: Session = Depends(get_db)):
                     evolvable.append({"nickname": prog.nickname or char.name, "name": char.name})
 
     lumi_earned = prod.get_production_summary(db)["today"]
-    return {"hungry": hungry, "evolvable": evolvable, "lumi_earned": lumi_earned}
+    return {
+        "hungry":      hungry,
+        "evolvable":   evolvable,
+        "lumi_earned": lumi_earned,
+        "active_char": active_char,
+    }
 
 
 # @tag ISLAND

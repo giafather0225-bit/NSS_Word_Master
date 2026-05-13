@@ -34,7 +34,7 @@ async function _loadIslandCurrency() {
 /** @tag SHOP */
 function _updateIslandCurrencyDisplay() {
     const el = document.getElementById("shop-xp-display");
-    if (el) el.textContent = `💎 ${_islandLumi}  ✨ ${_islandLegendLumi}`;
+    if (el) el.textContent = `Lumi: ${_islandLumi}  Legend: ${_islandLegendLumi}`;
 }
 
 // ─── Tab Entry Point ──────────────────────────────────────────
@@ -55,6 +55,22 @@ async function _loadIslandTab(tab) {
     }
 }
 
+// ─── Icon render helper ───────────────────────────────────────
+
+/**
+ * Render a shop item's image. Server returns `image` (PNG path) not `icon`.
+ * Falls back to the provided emoji default when image is absent or blank.
+ * @tag SHOP
+ * @param {string} imagePath  — value of item.image from the server
+ * @param {string} fallback   — emoji/text fallback (e.g. "gem" icon char)
+ */
+function _islandItemIcon(imagePath, fallback) {
+    if (imagePath && imagePath.trim()) {
+        return `<img src="${escapeHtml(imagePath)}" class="shop-item-img" alt="" loading="lazy">`;
+    }
+    return `<span class="shop-item-icon">${fallback}</span>`;
+}
+
 // ─── Card listener helper ────────────────────────────────────
 
 /** Attach click listeners to island shop cards that carry data-item-id. @tag SHOP */
@@ -64,7 +80,7 @@ function _attachIslandCardListeners(container) {
             _islandConfirmBuy(
                 Number(card.dataset.itemId),
                 card.dataset.itemName,
-                card.dataset.itemIcon,
+                card.dataset.itemImage,
                 Number(card.dataset.itemPrice),
                 card.dataset.currency
             );
@@ -86,14 +102,14 @@ async function _renderEvolutionTab(body) {
     const cards = items.map(item => {
         const isLegend    = item.is_legend_currency;
         const balance     = isLegend ? _islandLegendLumi : _islandLumi;
-        const symbol      = isLegend ? "✨" : "💎";
+        const symbol      = isLegend ? "LL" : "Lumi";
         const affordable  = balance >= item.price;
         const currencyStr = isLegend ? "legend_lumi" : "lumi";
         const dataAttrs   = affordable
-            ? `data-item-id="${item.id}" data-item-name="${escapeHtml(item.name)}" data-item-icon="${escapeHtml(item.icon || "")}" data-item-price="${item.price}" data-currency="${currencyStr}"`
+            ? `data-item-id="${item.id}" data-item-name="${escapeHtml(item.name)}" data-item-image="${escapeHtml(item.image || "")}" data-item-price="${item.price}" data-currency="${currencyStr}"`
             : "";
         return `<div class="shop-item-card${affordable ? "" : " unaffordable"}" ${dataAttrs}>
-            <span class="shop-item-icon">${item.icon || "🧬"}</span>
+            ${_islandItemIcon(item.image, "+")}
             <div class="shop-item-name">${escapeHtml(item.name)}</div>
             <div class="shop-item-price-row"><span class="shop-item-price">${item.price} ${symbol}</span></div>
         </div>`;
@@ -117,13 +133,13 @@ async function _renderFoodTab(body) {
         const affordable = _islandLumi >= item.price;
         const desc       = item.description ? `<div class="shop-item-desc">${escapeHtml(item.description)}</div>` : "";
         const dataAttrs  = affordable
-            ? `data-item-id="${item.id}" data-item-name="${escapeHtml(item.name)}" data-item-icon="${escapeHtml(item.icon || "")}" data-item-price="${item.price}" data-currency="lumi"`
+            ? `data-item-id="${item.id}" data-item-name="${escapeHtml(item.name)}" data-item-image="${escapeHtml(item.image || "")}" data-item-price="${item.price}" data-currency="lumi"`
             : "";
         return `<div class="shop-item-card${affordable ? "" : " unaffordable"}" ${dataAttrs}>
-            <span class="shop-item-icon">${item.icon || "🍖"}</span>
+            ${_islandItemIcon(item.image, "+")}
             <div class="shop-item-name">${escapeHtml(item.name)}</div>
             ${desc}
-            <div class="shop-item-price-row"><span class="shop-item-price">${item.price} 💎</span></div>
+            <div class="shop-item-price-row"><span class="shop-item-price">${item.price} Lumi</span></div>
         </div>`;
     }).join("");
     body.innerHTML = `<div class="shop-grid">${cards}</div>`;
@@ -165,10 +181,10 @@ async function _renderDecorTab(body) {
             ? `<span class="shop-item-cat" style="background:var(--math-soft);color:var(--math-ink)">Owned</span>`
             : "";
         const dataAttrs  = (affordable && !owned)
-            ? `data-item-id="${item.id}" data-item-name="${escapeHtml(item.name)}" data-item-icon="${escapeHtml(item.icon || "")}" data-item-price="${item.price}" data-currency="${currency}"`
+            ? `data-item-id="${item.id}" data-item-name="${escapeHtml(item.name)}" data-item-image="${escapeHtml(item.image || "")}" data-item-price="${item.price}" data-currency="${currency}"`
             : "";
         return `<div class="shop-item-card${affordable ? "" : " unaffordable"}" ${dataAttrs}>
-            <span class="shop-item-icon">${item.icon || "🌿"}</span>
+            ${_islandItemIcon(item.image, "+")}
             <div class="shop-item-name">${escapeHtml(item.name)}</div>
             <div class="shop-item-price-row"><span class="shop-item-price">${owned ? "—" : `${item.price} ${symbol}`}</span></div>
             ${ownedBadge}
@@ -200,12 +216,12 @@ function _renderExchangeTab(body) {
     const maxExch = Math.floor(_islandLumi / 100);
     body.innerHTML = `
         <div style="max-width:360px;margin:32px auto;text-align:center">
-            <div style="font-size:48px;margin-bottom:16px">💱</div>
+            <div style="margin-bottom:16px"><i data-lucide="arrow-left-right" style="width:48px;height:48px;stroke:var(--arcade-primary)"></i></div>
             <div style="font-size:var(--font-size-lg);font-weight:700;margin-bottom:8px">Lumi Exchange</div>
-            <div style="color:var(--text-secondary);margin-bottom:24px">100 💎 = 1 ✨ Legend Lumi</div>
+            <div style="color:var(--text-secondary);margin-bottom:24px">100 Lumi = 1 Legend Lumi</div>
             <div style="background:var(--bg-surface);border-radius:var(--radius-md);padding:16px;margin-bottom:20px">
-                <div>Your Lumi: <strong id="exch-lumi">${_islandLumi} 💎</strong></div>
-                <div>Legend Lumi: <strong id="exch-legend">${_islandLegendLumi} ✨</strong></div>
+                <div>Your Lumi: <strong id="exch-lumi">${_islandLumi}</strong></div>
+                <div>Legend Lumi: <strong id="exch-legend">${_islandLegendLumi}</strong></div>
                 <div style="margin-top:8px;color:var(--text-hint)">You can exchange up to <strong>${maxExch}</strong> Legend Lumi</div>
             </div>
             <div style="display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:20px">
@@ -263,15 +279,16 @@ async function _doExchange() {
 // ─── Island Buy Flow ──────────────────────────────────────────
 
 /** @tag SHOP */
-function _islandConfirmBuy(itemId, name, icon, price, currency) {
+function _islandConfirmBuy(itemId, name, image, price, currency) {
     _closePopup();
-    const symbol = currency === "legend_lumi" ? "✨" : "💎";
+    const symbol  = currency === "legend_lumi" ? "Legend Lumi" : "Lumi";
+    const iconHtml = _islandItemIcon(image, "+");
     const bg = document.createElement("div");
     bg.className = "shop-popup-bg";
     bg.id        = "shop-popup-bg";
     bg.innerHTML = `
         <div class="shop-popup">
-            <div class="shop-popup-icon">${icon}</div>
+            <div class="shop-popup-icon">${iconHtml}</div>
             <div class="shop-popup-title">${escapeHtml(name)}</div>
             <div class="shop-popup-sub">${price} ${symbol} will be used.</div>
             <div class="shop-popup-btns">
