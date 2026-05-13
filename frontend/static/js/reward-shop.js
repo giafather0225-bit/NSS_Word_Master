@@ -146,7 +146,7 @@ function _renderShopGrid(items, totalXp) {
         return `<div class="shop-item-card${affordable ? "" : " unaffordable"}"
                      onclick="${affordable ? `_shopConfirmBuy(${item.id},'${escapeHtml(item.name)}','${escapeHtml(item.icon)}',${item.final_price})` : ""}">
             ${discBadge}
-            <span class="shop-item-icon">${item.icon}</span>
+            <span class="shop-item-icon">${escapeHtml(item.icon || "")}</span>
             <div class="shop-item-name">${escapeHtml(item.name)}</div>
             ${desc}
             <div class="shop-item-price-row">${priceHTML}</div>

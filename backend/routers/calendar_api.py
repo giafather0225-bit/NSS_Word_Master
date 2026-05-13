@@ -105,7 +105,7 @@ def get_calendar_month(year: int, month: int, db: Session = Depends(get_db)):
         .filter(TaskSetting.is_active == True)
         .all()
     }
-    derivable = active_keys & {"review", "daily_words", "academy", "journal"}
+    derivable = active_keys & {"review", "daily_words", "academy", "journal", "ckla"}
 
     academy_done_days: set[str] = set()
     if "academy" in derivable:
@@ -120,7 +120,7 @@ def get_calendar_month(year: int, month: int, db: Session = Depends(get_db)):
         }
 
     streak_full_map: dict[str, "StreakLog"] = {}
-    if {"review", "daily_words"} & derivable:
+    if {"review", "daily_words", "ckla"} & derivable:
         streak_full_map = {
             row.date: row
             for row in db.query(StreakLog)
@@ -137,6 +137,7 @@ def get_calendar_month(year: int, month: int, db: Session = Depends(get_db)):
             if key == "daily_words" and not (sl and sl.daily_words_done):  return False
             if key == "academy"     and date_str not in academy_done_days: return False
             if key == "journal"     and date_str not in journal_days:      return False
+            if key == "ckla"        and not (sl and sl.ckla_done):         return False
         return True
 
     result = []

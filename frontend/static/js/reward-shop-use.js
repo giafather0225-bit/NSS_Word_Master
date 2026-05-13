@@ -37,7 +37,7 @@ function _renderMyRewards(rewards) {
                        onclick="_shopToggleEquip(${r.id}, ${!r.is_equipped})">${r.is_equipped ? "Equipped" : "Equip"}</button>`
             : "";
         return `<div class="my-reward-row${r.is_used ? " used" : ""}${r.is_equipped ? " equipped" : ""}">
-            <span class="my-reward-icon">${r.icon}</span>
+            <span class="my-reward-icon">${escapeHtml(r.icon || "")}</span>
             <div class="my-reward-info">
                 <div class="my-reward-name">${escapeHtml(r.name)}</div>
                 ${desc}

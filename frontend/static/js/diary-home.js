@@ -964,9 +964,16 @@ async function _renderWorlds() {
             if (typeof lucide !== 'undefined') lucide.createIcons();
             return;
         }
+        const _safeImgSrc = (url) => {
+            try {
+                const u = new URL(url, location.origin);
+                return (u.protocol === "https:" || u.protocol === "http:" || u.protocol === "data:")
+                    ? escapeHtml(url) : "";
+            } catch (_) { return ""; }
+        };
         body.innerHTML = `<div class="ds-worlds-grid">${done.map(t => `
             <div class="ds-world-card">
-                <img class="ds-world-img" src="${t.img_url}"
+                <img class="ds-world-img" src="${_safeImgSrc(t.img_url || "")}"
                      alt="${escapeHtml(t.label || t.theme)}"
                      onerror="this.classList.add('broken')">
                 <div class="ds-world-title">${escapeHtml(t.label || t.theme)}</div>

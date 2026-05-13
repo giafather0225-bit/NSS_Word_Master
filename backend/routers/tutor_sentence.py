@@ -58,9 +58,9 @@ class EvaluateSentenceRequest(BaseModel):
 
 
 class PracticeSentenceCreate(BaseModel):
-    subject: str
-    textbook: str = ""
-    lesson: str
+    subject: Str80
+    textbook: Str80 = ""
+    lesson: Str80
     item_id: int
     sentence: Str500
 

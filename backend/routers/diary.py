@@ -265,7 +265,7 @@ async def create_or_update_diary_entry(
     # Award XP (deduped by date — same day = one award even across mode/edit).
     # Failures here must not break the save, so swallow exceptions.
     try:
-        award_xp(db, "journal_complete", detail=f"diary_{req.entry_date}", earned_date=req.entry_date)
+        award_xp(db, "journal_complete", detail=f"diary_{req.entry_date}")
     except Exception as exc:  # noqa: BLE001
         logger.warning("Diary XP award failed: %s", exc)
 
@@ -285,18 +285,22 @@ async def create_or_update_diary_entry(
 @router.post("/api/diary/feedback")
 async def get_diary_feedback(
     entry_date: str,
+    mode: str | None = None,
     db: Session = Depends(get_db),
 ):
     """Return AI grammar feedback for an existing entry (opt-in, child-triggered).
 
-    Fetches the entry by date, runs _get_grammar_feedback, persists the result,
-    and returns {"ai_feedback": "..."}. Called only when the child taps the
-    'Get writing tips' button — never automatically on save.
+    Fetches the entry by date (and optional mode), runs _get_grammar_feedback,
+    persists the result, and returns {"ai_feedback": "..."}. Called only when
+    the child taps the 'Get writing tips' button — never automatically on save.
     """
     if not _DATE_RE.match(entry_date):
         raise HTTPException(status_code=400, detail="entry_date must be YYYY-MM-DD")
 
-    entry = db.query(DiaryEntry).filter(DiaryEntry.entry_date == entry_date).first()
+    q = db.query(DiaryEntry).filter(DiaryEntry.entry_date == entry_date)
+    if mode is not None:
+        q = q.filter(DiaryEntry.mode == mode)
+    entry = q.first()
     if not entry:
         raise HTTPException(status_code=404, detail="No diary entry found for that date.")
 

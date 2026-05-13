@@ -148,10 +148,10 @@ def daily_words_complete(body: DailyCompleteIn, db: Session = Depends(get_db)):
         # Register today's studied words into the unified SM-2 Review queue.
         _register_daily_words_for_review(db, today_payload)
 
-        # Award XP
-        xp_awarded = xp_engine.award_xp(db, "daily_words_complete", "daily_words")
+        # Award XP (commit=False so XP log and streak mark commit atomically)
+        xp_awarded = xp_engine.award_xp(db, "daily_words_complete", "daily_words", commit=False)
 
-        # Mark streak
+        # Mark streak (commits both XPLog and StreakLog together)
         streak_engine.mark_daily_words_done(db)
 
         return {"ok": True, "xp_awarded": xp_awarded}
@@ -192,14 +192,15 @@ def daily_words_weekly_test_result(body: WeeklyTestResultIn, db: Session = Depen
         xp_awarded = 0
 
         if passed:
-            xp_awarded = xp_engine.award_xp(db, "weekly_test_pass", "daily_words")
+            # commit=False so XP log and streak mark commit atomically
+            xp_awarded = xp_engine.award_xp(db, "weekly_test_pass", "daily_words", commit=False)
 
         # Advance cycle (grade may advance based on accuracy or explicit flag)
         adjustment = dwe.check_grade_adjustment(db, accuracy)
         should_advance_grade = body.advance_grade or (adjustment == "advance")
         new_grade = dwe.advance_cycle(db) if should_advance_grade else _advance_cycle_same_grade(db)
 
-        # Mark daily words done for streak
+        # Mark daily words done for streak (commits both XPLog and StreakLog together)
         streak_engine.mark_daily_words_done(db)
 
         return {

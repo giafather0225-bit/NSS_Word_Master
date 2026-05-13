@@ -192,11 +192,25 @@ def xp_weekly(db: Session = Depends(get_db)) -> list[dict]:
         List of dicts: {date, label, value, maintained}.
     """
     today = date.today()
+    start = (today - timedelta(days=6)).isoformat()
+
+    # Batch-load 7-day StreakLogs and DiaryEntries (2 queries instead of 14)
+    streak_map: dict[str, StreakLog] = {
+        row.date: row
+        for row in db.query(StreakLog).filter(StreakLog.date >= start).all()
+    }
+    journal_days: set[str] = {
+        row.entry_date
+        for row in db.query(DiaryEntry.entry_date)
+        .filter(DiaryEntry.entry_date >= start)
+        .all()
+    }
+
     out: list[dict] = []
     for i in range(6, -1, -1):
         d = today - timedelta(days=i)
         ds = d.isoformat()
-        log = db.query(StreakLog).filter(StreakLog.date == ds).first()
+        log = streak_map.get(ds)
         if log is None:
             value = 0.0
             maintained = False
@@ -209,12 +223,7 @@ def xp_weekly(db: Session = Depends(get_db)) -> list[dict]:
             ]
             value = sum(1 for f in flags if f) / len(flags)
             # Bonus: journal completion for the date
-            journal = (
-                db.query(DiaryEntry)
-                .filter(DiaryEntry.entry_date == ds)
-                .first()
-            ) is not None
-            if journal:
+            if ds in journal_days:
                 value = min(1.0, value + 0.15)
             maintained = bool(log.streak_maintained)
         out.append({

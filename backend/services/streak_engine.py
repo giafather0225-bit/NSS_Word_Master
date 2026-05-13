@@ -248,16 +248,30 @@ def re_evaluate_range(db: Session, days: int = 7) -> int:
 
 # @tag STREAK
 def get_current_streak(db: Session) -> int:
-    """Consecutive maintained days ending today-or-yesterday (max 365 lookback)."""
+    """Consecutive maintained days ending today-or-yesterday (max 365 lookback).
+
+    Batch-loads up to 365 StreakLog rows ordered DESC (1 query) instead of
+    issuing one query per day (N+1 pattern).
+    """
+    today = date.today()
+    cutoff = (today - timedelta(days=364)).isoformat()
+    rows = (
+        db.query(StreakLog)
+        .filter(StreakLog.date >= cutoff)
+        .order_by(StreakLog.date.desc())
+        .all()
+    )
+    maintained_days: set[str] = {r.date for r in rows if r.streak_maintained}
+
     streak = 0
-    check_date = date.today()
+    check_date = today
     for _ in range(365):
         day_str = check_date.isoformat()
-        log = db.query(StreakLog).filter(StreakLog.date == day_str).first()
-        if log and log.streak_maintained:
+        if day_str in maintained_days:
             streak += 1
             check_date -= timedelta(days=1)
-        elif check_date == date.today():
+        elif check_date == today:
+            # Today not yet maintained — check yesterday
             check_date -= timedelta(days=1)
         else:
             break

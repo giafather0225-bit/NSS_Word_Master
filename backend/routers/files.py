@@ -320,6 +320,9 @@ async def voca_ocr_preview(files: list[UploadFile] = File(...)):
         f_ext = Path(f.filename or "").suffix.lower()
         if f_ext not in ALLOWED_UPLOAD_EXTS:
             continue
+        # Pre-check Content-Length before reading to avoid large in-memory reads
+        if f.size and f.size > MAX_UPLOAD_BYTES:
+            continue
         raw = await f.read()
         if len(raw) > MAX_UPLOAD_BYTES:
             continue

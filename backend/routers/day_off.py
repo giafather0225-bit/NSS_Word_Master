@@ -129,12 +129,14 @@ def create_day_off_request(
     parent_email = _get_parent_email(db)
     email_sent   = False
     if parent_email:
+        # Strip CRLF from user-supplied reason to prevent header/body injection.
+        safe_reason = (day_off.reason or "").replace("\r", "").replace("\n", " ").strip()
         subject = f"[GIA's Diary] Day Off Request — {day_off.request_date}"
         body = (
             "Hi,\n\n"
             "GIA submitted a Day Off request through the learning app.\n\n"
             f"Date:   {day_off.request_date}\n"
-            f"Reason: {day_off.reason}\n\n"
+            f"Reason: {safe_reason}\n\n"
             "Open the Parent Dashboard to approve or deny this request.\n\n"
             "— GIA Learning App"
         )

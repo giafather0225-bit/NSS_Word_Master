@@ -257,13 +257,16 @@ def delete_mywords_lesson(lesson: str, db: Session = Depends(get_db)):
     lesson_dir = LEARNING_ROOT / "English" / "My_Words" / safe
     if not lesson_dir.exists():
         raise HTTPException(404, "Lesson not found")
-    shutil.rmtree(lesson_dir)
     db.query(StudyItem).filter(
         StudyItem.subject == "English",
         StudyItem.textbook == "My_Words",
         StudyItem.lesson == safe,
     ).delete()
     db.commit()
+    try:
+        shutil.rmtree(lesson_dir)
+    except OSError as e:
+        logger.error("delete_mywords_lesson: rmtree failed for %s: %s", safe, e)
     return {"deleted": safe}
 
 
@@ -323,8 +326,6 @@ def delete_myword(lesson: str, word: str, db: Session = Depends(get_db)):
     if len(new_items) == len(items):
         raise HTTPException(404, f"Word '{word}' not found")
 
-    json_path.write_text(json.dumps(new_items, indent=2, ensure_ascii=False), encoding="utf-8")
-
     db.query(StudyItem).filter(
         StudyItem.subject == "English",
         StudyItem.textbook == "My_Words",
@@ -332,6 +333,10 @@ def delete_myword(lesson: str, word: str, db: Session = Depends(get_db)):
         StudyItem.answer == word,
     ).delete()
     db.commit()
+    try:
+        json_path.write_text(json.dumps(new_items, indent=2, ensure_ascii=False), encoding="utf-8")
+    except OSError as e:
+        logger.error("delete_myword: write_text failed for %s/%s: %s", safe, word, e)
     return {"deleted": word}
 
 
@@ -362,8 +367,6 @@ def update_myword(lesson: str, word: str, body: dict, db: Session = Depends(get_
     if not found:
         raise HTTPException(404, f"Word '{word}' not found")
 
-    json_path.write_text(json.dumps(items, indent=2, ensure_ascii=False), encoding="utf-8")
-
     row = db.query(StudyItem).filter(
         StudyItem.subject == "English",
         StudyItem.textbook == "My_Words",
@@ -378,6 +381,10 @@ def update_myword(lesson: str, word: str, body: dict, db: Session = Depends(get_
             extra["pos"] = new_pos
             row.extra_data = json.dumps(extra)
         db.commit()
+    try:
+        json_path.write_text(json.dumps(items, indent=2, ensure_ascii=False), encoding="utf-8")
+    except OSError as e:
+        logger.error("update_myword: write_text failed for %s/%s: %s", safe, word, e)
 
     return {"updated": word}
 
@@ -400,14 +407,16 @@ def rename_mywords_lesson(lesson: str, body: dict, db: Session = Depends(get_db)
     if new_dir.exists() and old_safe != new_name:
         raise HTTPException(409, f"Lesson '{new_name}' already exists")
 
-    old_dir.rename(new_dir)
-
     db.query(StudyItem).filter(
         StudyItem.subject == "English",
         StudyItem.textbook == "My_Words",
         StudyItem.lesson == old_safe,
     ).update({"lesson": new_name})
     db.commit()
+    try:
+        old_dir.rename(new_dir)
+    except OSError as e:
+        logger.error("rename_mywords_lesson: rename failed %s→%s: %s", old_safe, new_name, e)
 
     return {"old": old_safe, "new": new_name}
 

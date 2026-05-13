@@ -100,7 +100,7 @@ class TTSExampleFullRequest(BaseModel):
 # ── Routes ─────────────────────────────────────────────────
 
 async def _run(fn, *args):
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     return await loop.run_in_executor(_executor, lambda: fn(*args))
 
 

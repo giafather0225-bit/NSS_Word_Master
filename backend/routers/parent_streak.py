@@ -55,18 +55,22 @@ def parent_streak(db: Session = Depends(get_db)):
     start = (today - timedelta(days=29)).isoformat()
     rows = db.query(StreakLog).filter(StreakLog.date >= start).all()
     by_date = {r.date: r for r in rows}
+    # Batch-load all approved day-offs in the 30-day window (1 query instead of 30)
+    approved_day_offs = {
+        row.request_date
+        for row in db.query(DayOffRequest).filter(
+            DayOffRequest.request_date >= start,
+            DayOffRequest.status == "approved",
+        ).all()
+    }
     last_30 = []
     for i in range(29, -1, -1):
         d = (today - timedelta(days=i)).isoformat()
         r = by_date.get(d)
-        day_off = db.query(DayOffRequest).filter(
-            DayOffRequest.request_date == d,
-            DayOffRequest.status == "approved",
-        ).first()
         last_30.append({
             "date": d,
             "maintained": bool(r and r.streak_maintained),
-            "day_off": bool(day_off),
+            "day_off": d in approved_day_offs,
             "english": bool(r and (r.review_done and r.daily_words_done)),
             "math":    bool(r and r.math_done),
             "game":    bool(r and r.game_done),
