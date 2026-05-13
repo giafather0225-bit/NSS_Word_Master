@@ -59,16 +59,23 @@ async function _loadIslandTab(tab) {
 
 // ─── Icon render helper ───────────────────────────────────────
 
+/** Base path for island asset PNGs (matches FastAPI static mount + img dir). @tag SHOP */
+const _ISLAND_IMG_BASE = "/static/img/island/";
+
 /**
- * Render a shop item's image. Server returns `image` (PNG path) not `icon`.
- * Falls back to the provided emoji default when image is absent or blank.
+ * Render a shop item's image. Server returns a relative path such as
+ * "items/evo_stone_a.png" or "decor/forest_cabin.png". Prepend the island
+ * static base so the browser resolves /static/img/island/… — consistent
+ * with how Island JSX components build their src URLs.
+ * Falls back to the provided text when image path is absent or blank.
  * @tag SHOP
- * @param {string} imagePath  — value of item.image from the server
- * @param {string} fallback   — emoji/text fallback (e.g. "gem" icon char)
+ * @param {string} imagePath  — relative image value from the server
+ * @param {string} fallback   — text fallback (e.g. "+")
  */
 function _islandItemIcon(imagePath, fallback) {
     if (imagePath && imagePath.trim()) {
-        return `<img src="${escapeHtml(imagePath)}" class="shop-item-img" alt="" loading="lazy">`;
+        const src = escapeHtml(_ISLAND_IMG_BASE + imagePath.trim());
+        return `<img src="${src}" class="shop-item-img" alt="" loading="lazy">`;
     }
     return `<span class="shop-item-icon">${fallback}</span>`;
 }
