@@ -103,6 +103,68 @@
 }
 .iob-back-link:hover { color: var(--text-primary); }
 
+/* ── Round progress bar ── */
+.iob-round-progress {
+    display: flex; align-items: center;
+    gap: 0; margin-bottom: 20px;
+    width: 100%;
+}
+.iob-rp-step {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 4px; flex: 1; min-width: 0;
+}
+.iob-rp-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: var(--font-size-sm); font-weight: 700;
+    border: 2px solid var(--border-default);
+    background: var(--bg-card);
+    color: var(--text-hint);
+    transition: all var(--transition-normal);
+}
+.iob-rp-dot i { width: 14px; height: 14px; }
+.iob-rp-step--done .iob-rp-dot {
+    background: var(--math-primary); border-color: var(--math-primary);
+    color: #fff;
+}
+.iob-rp-step--active .iob-rp-dot {
+    background: var(--rewards-primary); border-color: var(--rewards-primary);
+    color: #fff; box-shadow: 0 0 0 3px var(--rewards-soft);
+}
+.iob-rp-label {
+    font-size: 10px; color: var(--text-hint); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 64px;
+}
+.iob-rp-step--done  .iob-rp-label { color: var(--math-ink); }
+.iob-rp-step--active .iob-rp-label { color: var(--rewards-ink); }
+.iob-rp-line {
+    height: 2px; background: var(--border-subtle);
+    flex: 1; margin-bottom: 18px;
+}
+
+/* ── Unlock banner (rounds 1-3) ── */
+.iob-unlock-banner {
+    display: flex; align-items: center; gap: 8px;
+    justify-content: center;
+    background: var(--arcade-light);
+    border: 1px solid var(--arcade-soft);
+    border-radius: var(--radius-md);
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    font-weight: 700; color: var(--arcade-ink);
+    font-size: var(--font-size-md);
+    animation: iob-banner-pop 0.35s var(--ease-calm);
+}
+.iob-unlock-banner i { width: 18px; height: 18px; color: var(--arcade-primary); }
+
+@keyframes iob-banner-pop {
+    0%   { opacity: 0; transform: scale(0.88) translateY(-6px); }
+    60%  { transform: scale(1.03) translateY(0); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
 /* Zone grid */
 .iob-zone-grid {
     display: grid;
@@ -115,8 +177,10 @@
     padding: 16px 12px;
     text-align: center;
     cursor: pointer;
-    transition: border-color var(--transition-fast), background var(--transition-fast);
+    transition: border-color var(--transition-fast), background var(--transition-fast),
+                opacity var(--transition-fast);
     background: var(--bg-page);
+    position: relative;
 }
 .iob-zone-card:hover { border-color: var(--rewards-primary); background: var(--rewards-light); }
 .iob-zone-card--selected {
@@ -124,9 +188,52 @@
     background: var(--rewards-light);
     box-shadow: 0 0 0 3px var(--rewards-soft);
 }
+
+/* Done (already picked) zone */
+.iob-zone-card--done {
+    opacity: 0.55; cursor: default; pointer-events: none;
+    border-color: var(--math-soft);
+    background: var(--math-light);
+}
+.iob-zone-check {
+    position: absolute; top: 8px; right: 8px;
+    color: var(--math-primary);
+}
+.iob-zone-check i { width: 16px; height: 16px; }
+
+/* New (freshly revealed) zone animation */
+.iob-zone-card--new {
+    animation: iob-zone-reveal 0.4s var(--ease-calm);
+}
+@keyframes iob-zone-reveal {
+    0%   { opacity: 0; transform: translateY(10px) scale(0.94); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 .iob-zone-emoji { font-size: 32px; margin-bottom: 6px; }
 .iob-zone-name  { font-weight: 700; color: var(--text-primary); font-size: var(--font-size-md); }
 .iob-zone-desc  { font-size: var(--font-size-xs); color: var(--text-secondary); margin-top: 4px; }
+
+/* ── Char zone label ── */
+.iob-char-zone-label {
+    display: flex; align-items: center; gap: 6px;
+    justify-content: center;
+    font-size: var(--font-size-sm); font-weight: 700;
+    color: var(--rewards-ink);
+    background: var(--rewards-light);
+    border-radius: var(--radius-full);
+    padding: 4px 14px;
+    margin-bottom: 12px;
+    align-self: center;
+}
+.iob-char-zone-label i { width: 14px; height: 14px; }
+
+/* Char row (back + next) */
+.iob-char-row {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    gap: 12px; margin-top: 4px;
+}
 
 /* Char grid */
 .iob-char-grid {
@@ -154,9 +261,27 @@
 .iob-char-name { font-size: var(--font-size-sm); font-weight: 600; color: var(--text-primary); }
 .iob-empty { text-align: center; color: var(--text-hint); padding: 24px; }
 
+/* ── Name screen — team summary row ── */
+.iob-summary-row {
+    display: flex; gap: 10px; justify-content: center;
+    flex-wrap: wrap; margin-bottom: 20px;
+}
+.iob-summary-card {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    background: var(--bg-surface); border-radius: var(--radius-md);
+    padding: 10px 14px; font-size: var(--font-size-xs);
+    color: var(--text-secondary); font-weight: 600;
+}
+.iob-summary-card i { width: 20px; height: 20px; color: var(--rewards-primary); }
+.iob-name-section { width: 100%; margin-bottom: 8px; }
+.iob-name-label {
+    font-size: var(--font-size-sm); font-weight: 700;
+    color: var(--text-primary); text-align: center; margin-bottom: 4px;
+}
+
 /* Name input */
-.iob-stage--name { max-width: 400px; }
-.iob-name-hint   { font-size: var(--font-size-sm); color: var(--text-hint); text-align: center; }
+.iob-stage--name { max-width: 440px; }
+.iob-name-hint   { font-size: var(--font-size-sm); color: var(--text-hint); text-align: center; margin-bottom: 10px; }
 .iob-name-input {
     width: 100%; padding: 12px 16px;
     font-size: var(--font-size-lg); font-weight: 700;

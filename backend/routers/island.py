@@ -209,7 +209,18 @@ def onboarding_status(db: Session = Depends(get_db)):
 # @tag ISLAND
 @router.post("/onboarding/complete")
 def onboarding_complete(db: Session = Depends(get_db)):
+    """Mark island as initialized and unlock all 4 main zones.
+
+    Zone 1-4 sequential opening is a UX-only onboarding effect; all main zones
+    must be playable immediately after onboarding completes.
+    """
     _set_cfg(db, "island_initialized", "true")
+    now = datetime.now(timezone.utc)
+    for zone in _ZONE_UNLOCK_CHAIN:   # ["forest","ocean","savanna","space"]
+        row = db.query(IslandZoneStatus).filter_by(zone=zone).first()
+        if row and not row.is_unlocked:
+            row.is_unlocked = True
+            row.unlocked_at = now
     db.commit()
     return {"ok": True}
 
