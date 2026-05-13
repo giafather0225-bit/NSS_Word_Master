@@ -359,6 +359,12 @@ def character_adopt(body: AdoptBody, db: Session = Depends(get_db)):
         raise HTTPException(404, "Character not found.")
     if not char.is_available:
         raise HTTPException(400, "This character is not yet available.")
+    # Prevent duplicate adoption.
+    already = db.query(IslandCharacterProgress).filter_by(
+        character_id=char.id
+    ).first()
+    if already:
+        raise HTTPException(400, "This character has already been adopted.")
     # Verify prerequisite.
     if char.unlock_requires_character_id:
         done = db.query(IslandCharacterProgress).filter(
@@ -1252,8 +1258,9 @@ def daily_claim(db: Session = Depends(get_db)):
 # ── Dev Tools (dev_mode only) ─────────────────────────────────────────────────
 
 def _require_dev_mode(db: Session) -> None:
+    """Block dev endpoints unless app_config dev_mode = 'true' (whitelist)."""
     cfg = db.query(AppConfig).filter_by(key="dev_mode").first()
-    if cfg and cfg.value == "false":
+    if not cfg or cfg.value != "true":
         raise HTTPException(status_code=403, detail="Dev mode is disabled.")
 
 
