@@ -6,6 +6,31 @@
                   /api/parent/word-stats, /api/parent/stage-stats
    ================================================================ */
 
+// ─── PIN closure ──────────────────────────────────────────────
+// Keeps the verified PIN off window so it isn't trivially readable from
+// the browser console. Exposes only a setter + clearer + the fetch wrapper.
+// parent-settings.js also calls window._ppSetPin() after a successful
+// PIN change to keep the in-memory value in sync.
+(function () {
+    let _pin = null;
+
+    /** Store the verified parent PIN (called once after successful verify). @tag PARENT PIN */
+    window._ppSetPin   = p  => { _pin = p; };
+    /** Erase the verified PIN on panel close. @tag PARENT PIN */
+    window._ppClearPin = () => { _pin = null; };
+
+    /**
+     * Authenticated fetch wrapper — injects X-Parent-Pin header automatically.
+     * All parent mutation endpoints require this header for server-side auth.
+     * @tag PARENT PIN
+     */
+    window._ppFetch = function (url, opts = {}) {
+        const headers = Object.assign({}, opts.headers || {});
+        if (_pin) headers["X-Parent-Pin"] = _pin;
+        return fetch(url, Object.assign({}, opts, { headers }));
+    };
+}());
+
 // ─── State ────────────────────────────────────────────────────
 let _ppTab = "home";
 
@@ -21,7 +46,7 @@ function closeParentPanel() {
     const el = document.getElementById("parent-overlay");
     if (el) el.classList.add("hidden");
     _ppRemovePin();
-    window._ppVerifiedPin = null;
+    window._ppClearPin();
     window._ppDigits = "";
 }
 
@@ -82,7 +107,7 @@ async function _ppVerifyPin() {
             body: JSON.stringify({ pin: enteredPin }),
         });
         if (res.ok) {
-            window._ppVerifiedPin = enteredPin;
+            window._ppSetPin(enteredPin);
             _ppRemovePin();
             _ppRenderShell();
             _ppLoadTab("home");
@@ -94,16 +119,6 @@ async function _ppVerifyPin() {
         }
     } catch (_) { window._ppDigits = ""; _ppUpdateDots(); }
 }
-
-/**
- * PIN-authenticated fetch for all parent mutation calls.
- * @tag PARENT PIN
- */
-window._ppFetch = function(url, opts = {}) {
-    const headers = Object.assign({}, opts.headers || {});
-    if (window._ppVerifiedPin) headers["X-Parent-Pin"] = window._ppVerifiedPin;
-    return fetch(url, Object.assign({}, opts, { headers }));
-};
 
 /** @tag PARENT */
 function _ppRemovePin() {

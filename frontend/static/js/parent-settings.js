@@ -417,7 +417,7 @@ async function _ppSavePin() {
             body: JSON.stringify({ key: "pin", value: newPin }),
         });
         // Update the in-memory verified PIN so subsequent calls keep working
-        if (res.ok) window._ppVerifiedPin = newPin;
+        if (res.ok) window._ppSetPin(newPin);   // keep closure PIN in sync
         setMsg(res.ok ? "PIN changed successfully!" : "Failed to save.", res.ok ? "success" : "error");
         if (res.ok) {
             ["pp-new-pin", "pp-confirm-pin"].forEach(id => {

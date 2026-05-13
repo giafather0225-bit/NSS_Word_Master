@@ -69,19 +69,25 @@ def get_or_create_streak_log(db: Session, day: str | None = None) -> StreakLog:
 
 # @tag STREAK
 def mark_review_done(db: Session, day: str | None = None) -> None:
-    """Mark review as done and re-evaluate streak. @tag ENGLISH"""
+    """Mark review as done and re-evaluate streak. @tag ENGLISH
+
+    No intermediate db.commit() — _evaluate_streak issues the single
+    atomic commit that writes both the flag and streak_maintained together.
+    """
     log = get_or_create_streak_log(db, day)
     log.review_done = True
-    db.commit()
     _evaluate_streak(db, log)
 
 
 # @tag STREAK
 def mark_daily_words_done(db: Session, day: str | None = None) -> None:
-    """Mark daily words as done and re-evaluate streak. @tag ENGLISH"""
+    """Mark daily words as done and re-evaluate streak. @tag ENGLISH
+
+    No intermediate db.commit() — _evaluate_streak issues the single
+    atomic commit that writes both the flag and streak_maintained together.
+    """
     log = get_or_create_streak_log(db, day)
     log.daily_words_done = True
-    db.commit()
     _evaluate_streak(db, log)
 
 
@@ -91,21 +97,25 @@ def mark_math_done(db: Session, day: str | None = None) -> None:
 
     Called from any meaningful math completion (academy unit test pass,
     daily challenge finish, fact fluency round, kangaroo set complete).
+    No intermediate db.commit() — _evaluate_streak writes flag +
+    streak_maintained atomically.
     """
     log = get_or_create_streak_log(db, day)
     if not log.math_done:
         log.math_done = True
-        db.commit()
     _evaluate_streak(db, log)
 
 
 # @tag STREAK @tag ARCADE
 def mark_game_done(db: Session, day: str | None = None) -> None:
-    """Mark arcade/game activity as done and re-evaluate streak."""
+    """Mark arcade/game activity as done and re-evaluate streak.
+
+    No intermediate db.commit() — _evaluate_streak writes flag +
+    streak_maintained atomically.
+    """
     log = get_or_create_streak_log(db, day)
     if not log.game_done:
         log.game_done = True
-        db.commit()
     _evaluate_streak(db, log)
 
 

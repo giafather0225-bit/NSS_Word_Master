@@ -17,6 +17,7 @@ API: POST /api/parent/verify-pin
 """
 
 import logging
+import os
 import re
 from datetime import datetime
 
@@ -36,7 +37,8 @@ except ImportError:
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
-DEFAULT_PIN = "0000"
+# Prefer the same env var as reward_shop.py so both routers share one override.
+DEFAULT_PIN = os.getenv("DEFAULT_PIN", "0000")
 DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 
