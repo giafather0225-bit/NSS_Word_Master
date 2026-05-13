@@ -73,12 +73,14 @@ try:
     from ..models.math import MathUnitTest
     from ..services import xp_engine, streak_engine
     from ..services.math_diagnostic import diagnose as _diagnose_attempt
+    from ..utils import validate_safe_id as _validate_safe_id
 except ImportError:
     from database import get_db
     from models import MathProblem, MathProgress, MathAttempt, MathWrongReview, MathSpacedReview
     from models.math import MathUnitTest
     from services import xp_engine, streak_engine
     from services.math_diagnostic import diagnose as _diagnose_attempt
+    from utils import validate_safe_id as _validate_safe_id
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -115,9 +117,34 @@ def _read_json_cached(path_str: str, mtime: float) -> dict:
         return {}
 
 # @tag MATH @tag ACADEMY
+def _safe_math_path(*parts: str) -> Path:
+    """Resolve a path under _DATA_DIR after validating each component is path-safe.
+
+    Each part is validated against path traversal — only alphanumeric + `_-` allowed,
+    optionally with a single `.json` suffix on the last segment. After joining,
+    the resolved path must still live under _DATA_DIR (symlink-escape guard).
+    Raises HTTPException(400) on any violation.
+    """
+    for p in parts:
+        # Strip a single trailing .json for validation purposes only
+        base = p[:-5] if p.endswith(".json") else p
+        _validate_safe_id(base, "math path component", max_len=80)
+    candidate = _DATA_DIR.joinpath(*parts)
+    try:
+        resolved = candidate.resolve()
+        resolved.relative_to(_DATA_DIR.resolve())
+    except (ValueError, OSError):
+        raise HTTPException(status_code=400, detail="Invalid math path")
+    return candidate
+
+
+# @tag MATH @tag ACADEMY
 def _load_lesson_json(grade: str, unit: str, lesson: str) -> dict:
-    """Load a lesson JSON file from data/math/{grade}/{unit}/{lesson}.json (cached)."""
-    path = _DATA_DIR / grade / unit / f"{lesson}.json"
+    """Load a lesson JSON file from data/math/{grade}/{unit}/{lesson}.json (cached).
+
+    All three components are validated against path traversal.
+    """
+    path = _safe_math_path(grade, unit, f"{lesson}.json")
     if not path.exists():
         return {}
     return _read_json_cached(str(path), path.stat().st_mtime)
@@ -211,14 +238,17 @@ def get_grades() -> dict:
 @router.get("/api/math/academy/{grade}/units")
 def get_units(grade: str) -> dict:
     """Return available units for a grade."""
-    units = _list_dirs(_DATA_DIR / grade)
+    grade = _validate_safe_id(grade, "grade", max_len=10)
+    units = _list_dirs(_safe_math_path(grade))
     return {"grade": grade, "units": units}
 
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/{grade}/{unit}/lessons")
 def get_lessons(grade: str, unit: str, db: Session = Depends(get_db)) -> dict:
     """Return available lessons for a unit, with progress info."""
-    lesson_names = _list_json_files(_DATA_DIR / grade / unit)
+    grade = _validate_safe_id(grade, "grade", max_len=10)
+    unit = _validate_safe_id(unit, "unit", max_len=80)
+    lesson_names = _list_json_files(_safe_math_path(grade, unit))
     # Filter out unit_test from lesson list
     lessons = [l for l in lesson_names if l != "unit_test"]
 
@@ -246,7 +276,7 @@ def get_lessons(grade: str, unit: str, db: Session = Depends(get_db)) -> dict:
 
     # Check if unit test is available
     all_done = all(r["is_completed"] for r in result) if result else False
-    has_unit_test = (_DATA_DIR / grade / unit / "unit_test.json").exists()
+    has_unit_test = _safe_math_path(grade, unit, "unit_test.json").exists()
 
     return {
         "grade": grade,
@@ -266,6 +296,9 @@ def get_stage_problems(grade: str, unit: str, lesson: str, stage: str, db: Sessi
     valid_stages = {"pretest", "pre_test", "learn", "try", "exit_quiz", "practice_r1", "practice_r2", "practice_r3"}
     if stage not in valid_stages:
         raise HTTPException(status_code=400, detail=f"Invalid stage: {stage}")
+    grade = _validate_safe_id(grade, "grade", max_len=10)
+    unit = _validate_safe_id(unit, "unit", max_len=80)
+    lesson = _validate_safe_id(lesson, "lesson", max_len=80)
 
     data = _load_lesson_json(grade, unit, lesson)
     if not data:
@@ -290,7 +323,9 @@ def get_stage_problems(grade: str, unit: str, lesson: str, stage: str, db: Sessi
 @router.get("/api/math/academy/{grade}/{unit}/unit-test")
 def get_unit_test(grade: str, unit: str) -> dict:
     """Return unit test problems."""
-    path = _DATA_DIR / grade / unit / "unit_test.json"
+    grade = _validate_safe_id(grade, "grade", max_len=10)
+    unit = _validate_safe_id(unit, "unit", max_len=80)
+    path = _safe_math_path(grade, unit, "unit_test.json")
     if not path.exists():
         raise HTTPException(status_code=404, detail="Unit test not found")
     data = _read_json_cached(str(path), path.stat().st_mtime)
@@ -509,7 +544,7 @@ class SubmitUnitTestIn(BaseModel):
 async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get_db)):
     pct = (req.score / req.total * 100) if req.total else 0
     # Read pass_threshold from data file (default 0.8 = 80%)
-    unit_path = _DATA_DIR / req.grade / req.unit / "unit_test.json"
+    unit_path = _safe_math_path(req.grade, req.unit, "unit_test.json")
     threshold = 0.8
     if unit_path.exists():
         try:
@@ -1062,9 +1097,9 @@ def submit_exit_quiz(req: ExitQuizSubmitIn, db: Session = Depends(get_db)):
     unit_test_ready = False
     if passed:
         try:
-            unit_test_path = _DATA_DIR / req.grade / req.unit / "unit_test.json"
+            unit_test_path = _safe_math_path(req.grade, req.unit, "unit_test.json")
             if unit_test_path.exists():
-                all_lesson_names = [l for l in _list_json_files(_DATA_DIR / req.grade / req.unit) if l != "unit_test"]
+                all_lesson_names = [l for l in _list_json_files(_safe_math_path(req.grade, req.unit)) if l != "unit_test"]
                 if all_lesson_names:
                     done_count = db.query(MathProgress).filter(
                         MathProgress.grade == req.grade,

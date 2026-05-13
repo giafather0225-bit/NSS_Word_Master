@@ -26,10 +26,12 @@ try:
     from ..database import get_db
     from ..models import MathKangarooProgress, XPLog
     from ..services import streak_engine
+    from ..utils import validate_safe_id as _validate_safe_id
 except ImportError:  # pragma: no cover — fallback for direct execution
     from database import get_db
     from models import MathKangarooProgress, XPLog
     from services import streak_engine
+    from utils import validate_safe_id as _validate_safe_id
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -160,8 +162,17 @@ def _read_set_cached(path_str: str, mtime: float) -> dict[str, Any]:
 
 # @tag MATH @tag KANGAROO
 def _load_set(set_id: str) -> dict[str, Any]:
-    """Load a Kangaroo set JSON by id or raise 404 (cached by mtime)."""
+    """Load a Kangaroo set JSON by id or raise 404 (cached by mtime).
+
+    set_id is validated against path traversal — only alphanumeric+underscore+hyphen.
+    """
+    set_id = _validate_safe_id(set_id, "set_id", max_len=80)
     path = _KANGAROO_DIR / f"{set_id}.json"
+    # Double-check resolved path is under _KANGAROO_DIR
+    try:
+        path.resolve().relative_to(_KANGAROO_DIR.resolve())
+    except (ValueError, OSError):
+        raise HTTPException(status_code=400, detail="Invalid set_id")
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"Set {set_id} not found")
     try:

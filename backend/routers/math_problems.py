@@ -19,10 +19,12 @@ try:
     from ..database import get_db
     from ..models import MathWrongReview, MathAttempt
     from ..services import xp_engine, streak_engine
+    from ..utils import validate_safe_id as _validate_safe_id
 except ImportError:
     from database import get_db
     from models import MathWrongReview, MathAttempt
     from services import xp_engine, streak_engine
+    from utils import validate_safe_id as _validate_safe_id
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -37,10 +39,24 @@ _DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "math"
 # ── Helpers ──────────────────────────────────────────────────
 
 def _load_problem(attempt: MathAttempt):
-    """Look up the full problem JSON from the originating lesson file."""
+    """Look up the full problem JSON from the originating lesson file.
+
+    Defends against path traversal even if DB values were tampered with —
+    grade/unit/lesson must match _SAFE_ID_RE and resolve under _DATA_DIR.
+    """
     if not attempt:
         return None
-    lesson_file = _DATA_DIR / attempt.grade / attempt.unit / f"{attempt.lesson}.json"
+    try:
+        g = _validate_safe_id(attempt.grade or "", "grade", max_len=10)
+        u = _validate_safe_id(attempt.unit or "", "unit", max_len=80)
+        l = _validate_safe_id(attempt.lesson or "", "lesson", max_len=80)
+    except Exception:
+        return None
+    lesson_file = _DATA_DIR / g / u / f"{l}.json"
+    try:
+        lesson_file.resolve().relative_to(_DATA_DIR.resolve())
+    except (ValueError, OSError):
+        return None
     if not lesson_file.exists():
         return None
     try:
