@@ -77,12 +77,13 @@ def _log(
 
 # @tag ISLAND @tag XP @tag AWARD
 def get_balance(db: Session) -> dict:
-    """Return current lumi and legend_lumi balances."""
+    """Return current lumi, legend_lumi balances and the current exchange rate."""
     row = _get_currency(db)
     return {
         "lumi": row.lumi,
         "legend_lumi": row.legend_lumi,
         "total_earned": row.total_earned,
+        "exchange_rate": _get_exchange_rate(db),
     }
 
 

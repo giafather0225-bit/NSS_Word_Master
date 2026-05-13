@@ -11,6 +11,7 @@
 /** @tag SHOP */
 let _islandLumi = 0;
 let _islandLegendLumi = 0;
+let _islandExchRate = 100;   // overwritten by /api/island/currency response
 let _islandDecorZone = "all";
 let _islandBuyInFlight = false;
 let _exchAmount = 1;
@@ -25,8 +26,9 @@ async function _loadIslandCurrency() {
         const res = await fetch("/api/island/currency");
         if (!res.ok) return;
         const d = await res.json();
-        _islandLumi       = d.lumi        ?? 0;
-        _islandLegendLumi = d.legend_lumi ?? 0;
+        _islandLumi       = d.lumi          ?? 0;
+        _islandLegendLumi = d.legend_lumi   ?? 0;
+        _islandExchRate   = d.exchange_rate ?? 100;
         _updateIslandCurrencyDisplay();
     } catch (_) {}
 }
@@ -213,12 +215,13 @@ function _islandSetDecorZone(zone) {
 
 /** @tag SHOP */
 function _renderExchangeTab(body) {
-    const maxExch = Math.floor(_islandLumi / 100);
+    const rate    = _islandExchRate;
+    const maxExch = Math.floor(_islandLumi / rate);
     body.innerHTML = `
         <div style="max-width:360px;margin:32px auto;text-align:center">
             <div style="margin-bottom:16px"><i data-lucide="arrow-left-right" style="width:48px;height:48px;stroke:var(--arcade-primary)"></i></div>
             <div style="font-size:var(--font-size-lg);font-weight:700;margin-bottom:8px">Lumi Exchange</div>
-            <div style="color:var(--text-secondary);margin-bottom:24px">100 Lumi = 1 Legend Lumi</div>
+            <div style="color:var(--text-secondary);margin-bottom:24px">${rate} Lumi = 1 Legend Lumi</div>
             <div style="background:var(--bg-surface);border-radius:var(--radius-md);padding:16px;margin-bottom:20px">
                 <div>Your Lumi: <strong id="exch-lumi">${_islandLumi}</strong></div>
                 <div>Legend Lumi: <strong id="exch-legend">${_islandLegendLumi}</strong></div>
@@ -229,7 +232,7 @@ function _renderExchangeTab(body) {
                 <span id="exch-amount" style="font-size:var(--font-size-xl);font-weight:700;min-width:40px">1</span>
                 <button class="shop-popup-btn secondary" onclick="_islandExchangeAdj(1)" style="padding:8px 16px">+</button>
             </div>
-            <div style="color:var(--text-secondary);margin-bottom:20px">Cost: <span id="exch-cost">100</span> 💎</div>
+            <div style="color:var(--text-secondary);margin-bottom:20px">Cost: <span id="exch-cost">${rate}</span> Lumi</div>
             <button class="shop-popup-btn primary" id="exch-btn" onclick="_doExchange()"
                 ${maxExch < 1 ? "disabled" : ""}>Exchange</button>
         </div>`;
@@ -238,12 +241,13 @@ function _renderExchangeTab(body) {
 
 /** @tag SHOP */
 function _islandExchangeAdj(delta) {
-    const max = Math.floor(_islandLumi / 100);
+    const rate = _islandExchRate;
+    const max  = Math.floor(_islandLumi / rate);
     _exchAmount = Math.max(1, Math.min(max, _exchAmount + delta));
     const amtEl  = document.getElementById("exch-amount");
     const costEl = document.getElementById("exch-cost");
     if (amtEl)  amtEl.textContent  = _exchAmount;
-    if (costEl) costEl.textContent = _exchAmount * 100;
+    if (costEl) costEl.textContent = _exchAmount * rate;
 }
 
 /** @tag SHOP */
@@ -254,7 +258,7 @@ async function _doExchange() {
         const res = await fetch("/api/island/lumi/exchange", {
             method:  "POST",
             headers: { "Content-Type": "application/json" },
-            body:    JSON.stringify({ lumi_amount: _exchAmount * 100 }),
+            body:    JSON.stringify({ lumi_amount: _exchAmount * _islandExchRate }),
         });
         if (res.ok) {
             const d = await res.json();

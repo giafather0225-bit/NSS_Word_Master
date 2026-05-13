@@ -604,12 +604,14 @@ def care_feed(body: FeedBody, db: Session = Depends(get_db)):
     inv.quantity -= 1
     inv.used_on_character_progress_id = body.character_progress_id
 
+    # Food gives XP (not hunger/happiness). Encode xp_gained in source so
+    # the care history view can display it meaningfully.
     db.add(IslandCareLog(
         character_progress_id=body.character_progress_id,
         action="feed",
         hunger_change=0,
         happiness_change=0,
-        source=f"food_{shop_item.id}",
+        source=f"food_{shop_item.id}_xp{xp_gain}",
         logged_at=datetime.now(timezone.utc),
     ))
     db.commit()
@@ -1045,7 +1047,18 @@ def notifications(db: Session = Depends(get_db)):
                 if (prog.current_xp or 0) >= xp_needed and prog.hunger >= 20 and prog.happiness >= 20:
                     evolvable.append({"nickname": prog.nickname or char.name, "name": char.name})
 
-    lumi_earned = prod.get_production_summary(db)["today"]
+    # lumi_earned = lumi gained from study activity today (not passive production).
+    # Sum all today's lumi_log entries whose source is not production/dev/exchange.
+    _PASSIVE_PREFIXES = ("production", "dev_", "exchange", "daily_attendance")
+    today_logs = (
+        db.query(IslandLumiLog)
+        .filter(IslandLumiLog.earned_date == date.today())
+        .all()
+    )
+    lumi_earned = sum(
+        lg.amount for lg in today_logs
+        if not any(lg.source.startswith(p) for p in _PASSIVE_PREFIXES)
+    )
     return {
         "hungry":      hungry,
         "evolvable":   evolvable,
