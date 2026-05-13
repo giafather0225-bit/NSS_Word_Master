@@ -227,7 +227,12 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
         if row.consecutive_correct >= 2:
             row.is_mastered = True
             try:
-                xp_earned = xp_engine.award_xp(db, "math_problem_mastered", detail=row.problem_id)
+                # commit=False — let the final db.commit() bundle mastery + XP
+                xp_earned = xp_engine.award_xp(
+                    db, "math_problem_mastered",
+                    detail=row.problem_id,
+                    commit=False,
+                )
             except Exception as e:
                 logger.warning("XP award failed: %s", e)
         else:
