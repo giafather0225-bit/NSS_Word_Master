@@ -70,6 +70,7 @@ async function srStart() {
   _srNextWord();
 
   const input = document.getElementById('sr-input');
+  if (!input) return;
   input.focus();
   input.addEventListener('input', _srOnInput);
   input.addEventListener('keydown', _srOnKeydown);
@@ -190,7 +191,12 @@ function _srSubmit() {
       ).join('');
     }
     _srUpdateHUD();
-    setTimeout(() => { if (_sr && _sr.running) _srNextWord(); }, 900);
+    setTimeout(() => {
+      if (!_sr || !_sr.running) return;
+      _srNextWord();
+      const inp = document.getElementById('sr-input');
+      if (inp) inp.focus();
+    }, 900);
     return;
   }
   _srUpdateHUD();

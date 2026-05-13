@@ -190,6 +190,11 @@ def arcade_score(req: ScoreRequest, db: Session = Depends(get_db)) -> dict:
         raise HTTPException(status_code=422, detail=f"unknown game '{req.game}'")
     if req.correct > req.total:
         raise HTTPException(status_code=422, detail="correct cannot exceed total")
+    # Accuracy must match correct/total ratio within 1% tolerance
+    if req.total > 0:
+        expected = req.correct / req.total
+        if abs(req.accuracy - expected) > 0.01:
+            raise HTTPException(status_code=422, detail="accuracy inconsistent with correct/total")
 
     xp_result = award_arcade_xp(db, req.score, game=req.game)
 

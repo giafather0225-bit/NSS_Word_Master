@@ -173,14 +173,19 @@ function _dmAnswer(saidYes) {
   if (card) {
     card.classList.add(correct ? 'dm-card--correct' : 'dm-card--wrong');
   }
-  if (!correct && reveal && !_dm.current.isMatch) {
-    reveal.textContent = `Correct: "${_dm.current.word}" = ${_dm.current.correctDef}`;
+  if (!correct && reveal) {
+    // Always show the correct definition on wrong answer so the user learns
+    if (_dm.current.isMatch) {
+      reveal.textContent = `Yes — "${_dm.current.word}" = ${_dm.current.correctDef}`;
+    } else {
+      reveal.textContent = `No — "${_dm.current.word}" = ${_dm.current.correctDef}`;
+    }
     reveal.classList.add('dm-reveal--show');
   }
   setTimeout(() => {
     if (reveal) { reveal.textContent = ''; reveal.classList.remove('dm-reveal--show'); }
     if (_dm && _dm.running) _dmNextPair();
-  }, correct ? DM_CFG.feedbackMs : DM_CFG.feedbackMs * 2);
+  }, correct ? DM_CFG.feedbackMs : DM_CFG.feedbackMs * 3);
 }
 
 function _dmUpdateHUD() {
