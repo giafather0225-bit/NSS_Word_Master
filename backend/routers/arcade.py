@@ -66,8 +66,12 @@ def _get_best(db: Session, game: str, level: str = "") -> dict:
         return {"score": 0, "date": ""}
 
 
-def _set_best(db: Session, game: str, score: int, level: str = "") -> None:
-    """Persist a new personal-best entry (scoped by level when provided)."""
+def _set_best(db: Session, game: str, score: int, level: str = "", commit: bool = True) -> None:
+    """Persist a new personal-best entry (scoped by level when provided).
+
+    Pass commit=False when called inside a larger transaction so the caller
+    bundles XP + best-score + streak into a single commit.
+    """
     key = _best_key(game, level)
     payload = json.dumps({"score": score, "date": date.today().isoformat()})
     now = datetime.now().isoformat()
@@ -77,7 +81,8 @@ def _set_best(db: Session, game: str, score: int, level: str = "") -> None:
         row.updated_at = now
     else:
         db.add(AppConfig(key=key, value=payload, updated_at=now))
-    db.commit()
+    if commit:
+        db.commit()
 
 
 def _fallback_words(db: Session) -> list[dict]:
@@ -196,12 +201,17 @@ def arcade_score(req: ScoreRequest, db: Session = Depends(get_db)) -> dict:
         if abs(req.accuracy - expected) > 0.01:
             raise HTTPException(status_code=422, detail="accuracy inconsistent with correct/total")
 
-    xp_result = award_arcade_xp(db, req.score, game=req.game)
+    # Atomic transaction: XP log + best-score in a single commit.
+    # Streak mark fires after commit (it's an independent side-effect that
+    # touches a separate table and shouldn't roll back the score persistence).
+    xp_result = award_arcade_xp(db, req.score, game=req.game, commit=False)
 
     prev_best = _get_best(db, req.game, req.level)
     new_best = req.score > prev_best["score"]
     if new_best:
-        _set_best(db, req.game, req.score, req.level)
+        _set_best(db, req.game, req.score, req.level, commit=False)
+
+    db.commit()
 
     try:
         streak_engine.mark_game_done(db)

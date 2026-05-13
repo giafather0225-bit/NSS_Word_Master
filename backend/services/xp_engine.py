@@ -378,11 +378,24 @@ def get_arcade_xp_today(db: Session) -> int:
 
 
 # @tag XP @tag ARCADE
-def award_arcade_xp(db: Session, score: int, game: str = "word_invaders") -> dict:
+def award_arcade_xp(
+    db: Session,
+    score: int,
+    game: str = "word_invaders",
+    commit: bool = True,
+) -> dict:
     """Award tier-based arcade XP, respecting ARCADE_DAILY_CAP.
 
     Tiers: 500+ = 1 XP, 1000+ = 2 XP, 2000+ = 3 XP. Partial awards allowed
     (e.g. if 2 XP remaining in cap and tier grants 3, award 2).
+
+    Args:
+        db: SQLAlchemy session.
+        score: Round score.
+        game: Game identifier (logged in detail field).
+        commit: Whether to call db.commit() after inserting the XPLog row.
+                Set to False when called inside a larger transaction so the
+                caller can bundle XP + best-score + streak into one commit.
 
     Returns:
         {"tier": int, "xp_awarded": int, "daily_total": int, "daily_cap": int}
@@ -402,7 +415,8 @@ def award_arcade_xp(db: Session, score: int, game: str = "word_invaders") -> dic
             created_at=datetime.now().isoformat(),
         )
         db.add(log)
-        db.commit()
+        if commit:
+            db.commit()
 
     return {
         "tier": tier,
