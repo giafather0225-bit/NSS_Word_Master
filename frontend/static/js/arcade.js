@@ -11,6 +11,7 @@ const _SVG = {
   helpCircle: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>`,
   keyboard: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" ry="2"/><path d="M6 8h.001"/><path d="M10 8h.001"/><path d="M14 8h.001"/><path d="M18 8h.001"/><path d="M8 12h.001"/><path d="M12 12h.001"/><path d="M16 12h.001"/><path d="M7 16h10"/></svg>`,
   layoutGrid: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>`,
+  layers: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`,
   zap: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
   hash: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></svg>`,
   target: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
@@ -29,6 +30,7 @@ const ARCADE_GAMES = [
   { id: 'spell_rush',       category: 'english', title: 'Spell Rush',    icon: _SVG.keyboard,    sub: 'Spell each word letter-by-letter. Beat the clock.', enabled: true },
   { id: 'crossword',        category: 'english', title: 'Crossword',     icon: _SVG.layoutGrid,  sub: 'Fill the grid using definitions as clues.', enabled: true },
   { id: 'word_builder',    category: 'english', title: 'Word Builder',  icon: _SVG.keyboard,    sub: 'Rearrange the scrambled tiles to spell the word. 60 seconds.', enabled: true },
+  { id: 'memory_match',   category: 'english', title: 'Memory Match',  icon: _SVG.layers,      sub: 'Flip cards to pair each word with its definition.', enabled: true },
   { id: 'math_invaders',    category: 'math',    title: 'Math Invaders', icon: _SVG.zap,         sub: 'Type the answer before the equation lands.', enabled: true },
   { id: 'sudoku',           category: 'math',    title: 'Sudoku',        icon: _SVG.hash,        sub: '4x4, 6x6, or 9x9 — classic number puzzle.', enabled: true },
   { id: 'make24',           category: 'math',    title: 'Make 24',       icon: _SVG.target,      sub: 'Combine four numbers to reach 24. 90 seconds.', enabled: true },
@@ -69,6 +71,7 @@ function closeArcade() {
   if (typeof suStop === 'function') suStop();
   if (typeof mkStop === 'function') mkStop();
   if (typeof wbStop === 'function') wbStop();
+  if (typeof mmStop === 'function') mmStop();
   const el = document.getElementById('arcade-overlay');
   if (el) el.classList.add('hidden');
 }
@@ -129,6 +132,7 @@ function _launchArcadeGame(id) {
   else if (id === 'sudoku' && typeof suShowLevelPicker === 'function') suShowLevelPicker();
   else if (id === 'make24' && typeof mkShowLevelPicker === 'function') mkShowLevelPicker();
   else if (id === 'word_builder' && typeof wbStart === 'function') wbStart();
+  else if (id === 'memory_match' && typeof mmShowLevelPicker === 'function') mmShowLevelPicker();
 }
 
 /** Return to arcade lobby from a game. @tag ARCADE */
@@ -141,6 +145,7 @@ function arcadeReturnToLobby() {
   if (typeof suStop === 'function') suStop();
   if (typeof mkStop === 'function') mkStop();
   if (typeof wbStop === 'function') wbStop();
+  if (typeof mmStop === 'function') mmStop();
   _renderArcadeLobby();
 }
 
@@ -155,6 +160,7 @@ const _ARCADE_TIPS = {
   sudoku: 'Every row, column, and box must have each number once. Green cells are right, red are wrong.',
   make24: 'Tap numbers and operators to build an expression that equals the target. Use all four numbers.',
   word_builder: 'Click the scrambled letter tiles in the right order to spell the word shown by its definition.',
+  memory_match: 'Flip cards to find matching word and definition pairs. Fewer flips = higher score.',
 };
 
 /** Show a one-time tutorial banner above a game. Dismissed forever after tap. @tag ARCADE */

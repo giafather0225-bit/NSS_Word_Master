@@ -34,7 +34,7 @@ _DUE_BOOST = 3  # how many times a due word appears in the weighted pool
 _ALLOWED_GAMES = frozenset({
     "word_invaders", "definition_match", "spell_rush",
     "crossword", "math_invaders", "sudoku", "make24",
-    "word_builder",
+    "word_builder", "memory_match",
 })
 
 

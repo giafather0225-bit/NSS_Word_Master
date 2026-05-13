@@ -921,3 +921,162 @@
   justify-content: center;
 }
 .wb-hint-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ── Memory Card Match ─────────────────────────────────────────── */
+.mm-loading {
+  text-align: center;
+  padding: 48px;
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+.mm-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding-bottom: 20px;
+}
+.mm-hud {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.mm-hud-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-family);
+}
+.mm-hud-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-hint);
+}
+.mm-hud-item b {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.mm-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--mm-cols, 4), 1fr);
+  gap: 10px;
+  max-width: 620px;
+  width: 100%;
+  padding: 4px 16px 0;
+}
+
+/* ── Card shell + 3-D flip ──────────────────────────────────────── */
+.mm-card {
+  aspect-ratio: 3 / 4.2;
+  perspective: 900px;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+.mm-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.35s ease;
+  border-radius: var(--radius-md);
+}
+/* Face-up states */
+.mm-card--flipped .mm-card-inner,
+.mm-card--matched .mm-card-inner {
+  transform: rotateY(180deg);
+}
+/* Hover hint (face-down only) */
+.mm-card:not(.mm-card--flipped):not(.mm-card--matched):hover .mm-card-inner {
+  transform: rotateY(12deg) scale(1.04);
+}
+
+/* ── Card faces ─────────────────────────────────────────────────── */
+.mm-card-back,
+.mm-card-front {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  text-align: center;
+  overflow: hidden;
+}
+/* Back face (face-down) — same for every card */
+.mm-card-back {
+  background: var(--english-light);
+  border: 2px solid var(--english-soft);
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 5px,
+      rgba(127, 168, 204, 0.10) 5px,
+      rgba(127, 168, 204, 0.10) 10px
+    );
+}
+/* Front face — rotated so it shows when card is flipped */
+.mm-card-front {
+  transform: rotateY(180deg);
+  font-family: var(--font-family);
+  line-height: 1.35;
+}
+/* Word card front */
+.mm-card--word .mm-card-front {
+  background: var(--english-primary);
+  border: 2px solid var(--english-hover);
+  color: #fff;
+  font-size: clamp(11px, 2.2cqw, 16px);
+  font-weight: 800;
+  font-family: var(--font-family-display);
+  letter-spacing: 0.01em;
+}
+/* Definition card front */
+.mm-card--def .mm-card-front {
+  background: var(--bg-card);
+  border: 2px solid var(--review-soft);
+  color: var(--text-primary);
+  font-size: clamp(9px, 1.7cqw, 12px);
+  font-weight: 500;
+}
+
+/* ── Matched state ──────────────────────────────────────────────── */
+.mm-card--matched.mm-card--word .mm-card-front {
+  background: var(--color-success);
+  border-color: var(--color-success);
+}
+.mm-card--matched.mm-card--def .mm-card-front {
+  background: var(--color-success-light);
+  border-color: var(--color-success);
+  color: var(--color-success);
+  font-weight: 600;
+}
+/* Pop animation when pair is found */
+.mm-card--matched .mm-card-inner {
+  animation: mm-match-pop 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.4) both;
+}
+@keyframes mm-match-pop {
+  0%   { transform: rotateY(180deg) scale(0.82); }
+  60%  { transform: rotateY(180deg) scale(1.06); }
+  100% { transform: rotateY(180deg) scale(1);    }
+}
+
+.mm-quit-btn {
+  margin-top: 4px;
+}
+
+@media (max-width: 540px) {
+  .mm-grid { gap: 6px; padding: 0 8px; }
+  .mm-hud-item b { font-size: 18px; }
+}

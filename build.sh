@@ -120,6 +120,7 @@ cat \
   $JS/arcade-sudoku.js \
   $JS/arcade-make24.js \
   $JS/arcade-word-builder.js \
+  $JS/arcade-memory-match.js \
   | npx esbuild --minify --legal-comments=none --loader=js > $OUT/bundle-c.min.js
 echo "  bundle-c.min.js done ($(wc -c < $OUT/bundle-c.min.js) bytes)"
 
