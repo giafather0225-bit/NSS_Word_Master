@@ -217,7 +217,6 @@ async function loadMathSidebarStatus() {
         if (startBtn) {
             startBtn.addEventListener('click', () => {
                 if (!mathGrade || !mathUnit || !mathLesson) return;
-                console.log(`[math] Starting lesson: ${mathGrade}/${mathUnit}/${mathLesson}`);
                 startMathLesson(mathGrade, mathUnit, mathLesson);
             });
         }
