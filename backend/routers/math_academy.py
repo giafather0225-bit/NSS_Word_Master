@@ -154,6 +154,39 @@ def clear_caches() -> None:
     """Drop cached lesson JSON (call from admin/reload endpoints if added)."""
     _read_json_cached.cache_clear()
 
+
+# @tag MATH @tag ACADEMY
+def _get_or_create_progress(
+    db: Session,
+    grade: str,
+    unit: str,
+    lesson: str,
+    **defaults,
+) -> "MathProgress":
+    """Fetch or atomically create MathProgress(grade, unit, lesson).
+
+    Handles the TOCTOU race: if two concurrent requests both see no row and
+    both try to INSERT, the second hits the UNIQUE(grade, unit, lesson)
+    constraint.  We catch IntegrityError, rollback to release the lock, and
+    re-fetch — guaranteeing exactly one row regardless of concurrency.
+
+    All extra keyword args are applied as attribute overrides on *newly created*
+    rows only (ignored when the row already exists).
+    """
+    from sqlalchemy.exc import IntegrityError
+
+    prog = db.query(MathProgress).filter_by(grade=grade, unit=unit, lesson=lesson).first()
+    if prog:
+        return prog
+    try:
+        prog = MathProgress(grade=grade, unit=unit, lesson=lesson, **defaults)
+        db.add(prog)
+        db.flush()   # write within current transaction to detect constraint violation
+    except IntegrityError:
+        db.rollback()
+        prog = db.query(MathProgress).filter_by(grade=grade, unit=unit, lesson=lesson).first()
+    return prog
+
 # @tag MATH @tag ACADEMY
 def _normalize_item(item: dict) -> dict:
     """Normalize item field aliases (U8 uses `question` + lowercase `type`)."""
@@ -496,12 +529,17 @@ def get_grade_progress(grade: str, db: Session = Depends(get_db)):
 
 class CompleteLessonIn(BaseModel):
     """Mark a lesson as completed."""
-    grade: str
-    unit: str
-    lesson: str
+    grade: str = Field(..., max_length=10)
+    unit: str = Field(..., max_length=80)
+    lesson: str = Field(..., max_length=80)
 
 @router.post("/api/math/academy/complete-lesson")
 async def complete_lesson(req: CompleteLessonIn, db: Session = Depends(get_db)):
+    # Defend against path-traversal-style values reaching DB layer
+    _validate_safe_id(req.grade, "grade", max_len=10)
+    _validate_safe_id(req.unit, "unit", max_len=80)
+    _validate_safe_id(req.lesson, "lesson", max_len=80)
+
     prog = (
         db.query(MathProgress)
         .filter_by(grade=req.grade, unit=req.unit, lesson=req.lesson)
@@ -516,15 +554,27 @@ async def complete_lesson(req: CompleteLessonIn, db: Session = Depends(get_db)):
     else:
         prog.is_completed = True
         prog.stage = "complete"
+
+    # Atomic write: progress + XP in one transaction, then streak after commit.
+    # award_xp(commit=False) avoids splitting this into multiple sub-commits.
     try:
-        xp_engine.award_xp(db, "math_lesson_complete", detail=f"{req.grade}/{req.unit}/{req.lesson}")
+        xp_engine.award_xp(
+            db, "math_lesson_complete",
+            detail=f"{req.grade}/{req.unit}/{req.lesson}",
+            commit=False,
+        )
     except Exception as e:
         logger.warning("XP award failed: %s", e)
+
+    db.commit()
+
+    # Streak mark + island gain are independent side-effects, run after
+    # the main transaction has been durably committed.
     try:
         streak_engine.mark_math_done(db)
     except Exception as e:
         logger.warning("Streak math mark failed: %s", e)
-    db.commit()
+
     island = {"xp_multiplier": 1.0}
     try:
         from backend.services import island_care_engine as _care
@@ -757,11 +807,7 @@ def complete_round(req: RoundCompleteIn, db: Session = Depends(get_db)):
     """
     import json as _json
     now = datetime.now().isoformat()
-    prog = db.query(MathProgress).filter_by(grade=req.grade, unit=req.unit, lesson=req.lesson).first()
-    if not prog:
-        prog = MathProgress(grade=req.grade, unit=req.unit, lesson=req.lesson, last_accessed=now)
-        db.add(prog)
-        db.flush()
+    prog = _get_or_create_progress(db, req.grade, req.unit, req.lesson, last_accessed=now)
     # best_score 갱신 (이전보다 높을 때만)
     score_attr = {
         "practice_r1": "best_score_r1",
@@ -830,10 +876,7 @@ def submit_pre_test(req: PreTestSubmitIn, db: Session = Depends(get_db)):
     Pre-test is diagnostic only — stage always advances to 'learn' regardless of score.
     """
     now = datetime.now().isoformat()
-    prog = db.query(MathProgress).filter_by(grade=req.grade, unit=req.unit, lesson=req.lesson).first()
-    if not prog:
-        prog = MathProgress(grade=req.grade, unit=req.unit, lesson=req.lesson, last_accessed=now)
-        db.add(prog)
+    prog = _get_or_create_progress(db, req.grade, req.unit, req.lesson, last_accessed=now)
 
     pct = (req.score / req.total * 100) if req.total else 0
     prog.pretest_score = req.score
@@ -869,13 +912,9 @@ def submit_pre_test(req: PreTestSubmitIn, db: Session = Depends(get_db)):
 def complete_learn_stage(req: LearnCompleteIn, db: Session = Depends(get_db)):
     """Mark learn stage complete and advance to 'try' (v2.0)."""
     now = datetime.now().isoformat()
-    prog = db.query(MathProgress).filter_by(grade=req.grade, unit=req.unit, lesson=req.lesson).first()
-    if not prog:
-        prog = MathProgress(grade=req.grade, unit=req.unit, lesson=req.lesson, stage="try", last_accessed=now)
-        db.add(prog)
-    else:
-        prog.stage = "try"
-        prog.last_accessed = now
+    prog = _get_or_create_progress(db, req.grade, req.unit, req.lesson, stage="try", last_accessed=now)
+    prog.stage = "try"
+    prog.last_accessed = now
     db.commit()
     return {"status": "ok", "next_stage": "try"}
 
@@ -1028,10 +1067,7 @@ def submit_exit_quiz(req: ExitQuizSubmitIn, db: Session = Depends(get_db)):
     pct = correct_count / total * 100
     passed = pct >= 80
 
-    prog = db.query(MathProgress).filter_by(grade=req.grade, unit=req.unit, lesson=req.lesson).first()
-    if not prog:
-        prog = MathProgress(grade=req.grade, unit=req.unit, lesson=req.lesson, last_accessed=now)
-        db.add(prog)
+    prog = _get_or_create_progress(db, req.grade, req.unit, req.lesson, last_accessed=now)
 
     prog.exit_quiz_score = correct_count
     prog.exit_quiz_attempts = (prog.exit_quiz_attempts or 0) + 1

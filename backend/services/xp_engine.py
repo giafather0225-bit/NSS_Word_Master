@@ -6,11 +6,35 @@ API: called by routers/xp.py
 """
 
 import logging
+import time
 from datetime import datetime, date
 from sqlalchemy.orm import Session
 from backend.models import XPLog, WordReview, AppConfig
 
 logger = logging.getLogger(__name__)
+
+# ── AppConfig TTL cache ──────────────────────────────────────────
+# get_xp_rules() and get_arcade_daily_cap() are called on every XP award.
+# Caching for 30 s avoids repeated full-table scans of app_config on the
+# hot study path. Cache is module-level (shared across requests in the
+# same process) and is invalidated when the parent changes XP rules via
+# the Settings UI (the PUT endpoint calls invalidate_xp_cache()).
+_XP_RULES_TTL   = 30.0   # seconds
+_xp_rules_cache: dict | None = None
+_xp_rules_at:    float  = 0.0
+
+_ARCADE_CAP_TTL  = 30.0
+_arcade_cap_cache: int | None = None
+_arcade_cap_at:    float      = 0.0
+
+
+def invalidate_xp_cache() -> None:
+    """Drop cached XP rules and arcade cap (call from Settings PUT endpoints)."""
+    global _xp_rules_cache, _xp_rules_at, _arcade_cap_cache, _arcade_cap_at
+    _xp_rules_cache  = None
+    _xp_rules_at     = 0.0
+    _arcade_cap_cache = None
+    _arcade_cap_at    = 0.0
 
 # XP awarded per action — defaults. Parent can override via app_config
 # keys of the form `xp_rule_<action>`. See get_xp_rules().
@@ -97,7 +121,14 @@ ARCADE_DAILY_CAP = ARCADE_DAILY_CAP_DEFAULT  # back-compat alias
 
 # @tag XP @tag SETTINGS
 def get_xp_rules(db: Session) -> dict[str, int]:
-    """Merge XP_RULES_DEFAULT with app_config overrides keyed `xp_rule_<action>`."""
+    """Merge XP_RULES_DEFAULT with app_config overrides keyed `xp_rule_<action>`.
+
+    Result is cached for _XP_RULES_TTL seconds to avoid a DB round-trip on
+    every XP award. Call invalidate_xp_cache() after the parent saves new rules.
+    """
+    global _xp_rules_cache, _xp_rules_at
+    if _xp_rules_cache is not None and time.monotonic() - _xp_rules_at < _XP_RULES_TTL:
+        return _xp_rules_cache
     rules = dict(XP_RULES_DEFAULT)
     rows = (
         db.query(AppConfig)
@@ -111,19 +142,30 @@ def get_xp_rules(db: Session) -> dict[str, int]:
                 rules[action] = int(r.value)
             except (TypeError, ValueError):
                 pass
+    _xp_rules_cache = rules
+    _xp_rules_at    = time.monotonic()
     return rules
 
 
 # @tag XP @tag ARCADE @tag SETTINGS
 def get_arcade_daily_cap(db: Session) -> int:
-    """Read arcade daily cap from app_config, falling back to default."""
+    """Read arcade daily cap from app_config, falling back to default.
+
+    Cached for _ARCADE_CAP_TTL seconds; invalidated by invalidate_xp_cache().
+    """
+    global _arcade_cap_cache, _arcade_cap_at
+    if _arcade_cap_cache is not None and time.monotonic() - _arcade_cap_at < _ARCADE_CAP_TTL:
+        return _arcade_cap_cache
     row = db.query(AppConfig).filter(AppConfig.key == "arcade_daily_cap").first()
+    cap = ARCADE_DAILY_CAP_DEFAULT
     if row:
         try:
-            return max(0, int(row.value))
+            cap = max(0, int(row.value))
         except (TypeError, ValueError):
             pass
-    return ARCADE_DAILY_CAP_DEFAULT
+    _arcade_cap_cache = cap
+    _arcade_cap_at    = time.monotonic()
+    return cap
 
 
 _SOURCE_MAP: dict[str, str] = {

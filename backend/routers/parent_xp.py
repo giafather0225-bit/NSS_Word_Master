@@ -72,6 +72,7 @@ def parent_xp_rules_save(
         _upsert_app_config(db, "arcade_daily_cap", str(cap), now)
 
     db.commit()
+    xp_engine.invalidate_xp_cache()   # drop TTL cache so next award picks up new rules
     return {"ok": True}
 
 
@@ -85,6 +86,7 @@ def parent_xp_rules_reset(
        .filter((AppConfig.key.like("xp_rule_%")) | (AppConfig.key == "arcade_daily_cap"))
        .delete(synchronize_session=False))
     db.commit()
+    xp_engine.invalidate_xp_cache()   # drop TTL cache so defaults take effect immediately
     return {"ok": True}
 
 

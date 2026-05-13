@@ -114,6 +114,7 @@ def parent_set_streak_rule(
     _upsert_app_config(db, "streak_subjects", ",".join(sorted(subjects)), now)
     _upsert_app_config(db, "streak_mode", body.mode, now)
     db.commit()
+    streak_engine.invalidate_streak_config_cache()
     return {"ok": True, "subjects": sorted(subjects), "mode": body.mode}
 
 

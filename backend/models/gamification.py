@@ -4,7 +4,7 @@ Section: System
 Dependencies: ._base.Base
 """
 
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from sqlalchemy import Column, Index, Integer, String, Boolean, ForeignKey
 
 from ._base import Base
 
@@ -19,6 +19,13 @@ class XPLog(Base):
     earned_date = Column(String)
     created_at = Column(String)
     source = Column(String)  # e.g. "ckla", "math", "english", "diary"
+
+    # Composite index for the daily-dedup query in xp_engine.award_xp():
+    # WHERE action = ? AND earned_date = ? [AND detail = ?]
+    # Without this index every award_xp() call scans the full xp_logs table.
+    __table_args__ = (
+        Index("ix_xplog_action_date", "action", "earned_date"),
+    )
 
 
 class StreakLog(Base):

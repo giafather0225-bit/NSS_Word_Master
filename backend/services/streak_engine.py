@@ -6,6 +6,7 @@ API: called by routers/xp.py, routers/arcade.py, routers/*math*.py
 """
 
 import logging
+import time
 from datetime import date, timedelta
 from sqlalchemy.orm import Session
 from backend.models import StreakLog, DayOffRequest, WordReview, AppConfig
@@ -19,6 +20,22 @@ _VALID_SUBJECTS = {"ckla", "english", "math", "game"}
 _DEFAULT_SUBJECTS = {"ckla", "math", "game"}
 _DEFAULT_MODE = "all"
 
+# ── Streak-config TTL cache ──────────────────────────────────────────────────
+# get_streak_config() is called on every streak evaluation (mark_*_done,
+# _evaluate_streak). Caching for 30 s avoids two AppConfig queries per XP
+# award on the hot study path.  Invalidated by invalidate_streak_config_cache()
+# which is called from the parent Streak Rule PUT endpoint.
+_STREAK_CFG_TTL = 30.0
+_streak_cfg_cache: tuple[frozenset[str], str] | None = None
+_streak_cfg_at: float = 0.0
+
+
+def invalidate_streak_config_cache() -> None:
+    """Drop cached streak config (call from parent Streak Rule PUT endpoint)."""
+    global _streak_cfg_cache, _streak_cfg_at
+    _streak_cfg_cache = None
+    _streak_cfg_at    = 0.0
+
 
 # @tag STREAK
 def get_streak_config(db: Session) -> tuple[set[str], str]:
@@ -26,7 +43,15 @@ def get_streak_config(db: Session) -> tuple[set[str], str]:
 
     subjects: set of {"ckla","english","math","game"} that count toward streak.
     mode: "all" (every selected subject required) or "any" (at least one).
+
+    Result is cached for _STREAK_CFG_TTL seconds.  Call
+    invalidate_streak_config_cache() after the parent saves new rules.
     """
+    global _streak_cfg_cache, _streak_cfg_at
+    if _streak_cfg_cache is not None and time.monotonic() - _streak_cfg_at < _STREAK_CFG_TTL:
+        subjects_frozen, mode = _streak_cfg_cache
+        return set(subjects_frozen), mode
+
     sub_row = db.query(AppConfig).filter(AppConfig.key == "streak_subjects").first()
     mode_row = db.query(AppConfig).filter(AppConfig.key == "streak_mode").first()
     raw = (sub_row.value if sub_row else "") or ""
@@ -39,6 +64,9 @@ def get_streak_config(db: Session) -> tuple[set[str], str]:
     if mode not in ("all", "any"):
         logger.warning("streak_mode config %r is invalid; using default %r", mode, _DEFAULT_MODE)
         mode = _DEFAULT_MODE
+
+    _streak_cfg_cache = (frozenset(subjects), mode)
+    _streak_cfg_at    = time.monotonic()
     return subjects, mode
 
 
