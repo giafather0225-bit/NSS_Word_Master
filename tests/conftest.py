@@ -48,6 +48,53 @@ def client(db_session):
 
 
 @pytest.fixture
+def ckla_seed(db_session):
+    """Seed a minimal CKLA G3 domain + lesson + 3 questions.
+
+    Returns a dict {domain, lesson, questions} for tests that need real
+    referenced rows (e.g. lesson detail endpoint, question submission).
+    """
+    from datetime import datetime, timezone
+    from backend.models import CKLADomain, CKLALesson, CKLAQuestion
+
+    domain = CKLADomain(
+        domain_num=1,
+        title="Test Domain — Classic Tales",
+        source_pdf="test.pdf",
+        lesson_count=1,
+        is_active=True,
+        grade=3,
+    )
+    db_session.add(domain)
+    db_session.flush()
+
+    lesson = CKLALesson(
+        domain_id=domain.id,
+        domain_num=1,
+        lesson_num=1,
+        title="Test Lesson 1",
+        passage="Once upon a time, there was a smoke test passage. " * 5,
+        passage_chars=250,
+        word_work_word="test",
+        is_active=True,
+        grade=3,
+    )
+    db_session.add(lesson)
+    db_session.flush()
+
+    questions = [
+        CKLAQuestion(lesson_id=lesson.id, question_num=i + 1,
+                     kind=kind, question_text=f"Test Q{i+1}",
+                     model_answer="answer")
+        for i, kind in enumerate(("literal", "literal", "inferential"))
+    ]
+    db_session.add_all(questions)
+    db_session.commit()
+
+    return {"domain": domain, "lesson": lesson, "questions": questions}
+
+
+@pytest.fixture
 def sample_lesson(db_session) -> Lesson:
     """테스트용 Lesson 레코드."""
     from datetime import datetime, timezone

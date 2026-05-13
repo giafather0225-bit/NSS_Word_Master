@@ -137,3 +137,92 @@ def test_parent_ckla_summary_grade_validation(client):
     resp = client.get("/api/parent/ckla-summary?grade=2")
     # Either 422 (validation first) or 401/403 (auth first)
     assert resp.status_code in (401, 403, 422)
+
+
+# ═════════════════════════════════════════════════════════════════════
+# Deeper integration tests — seeded G3 domain/lesson/questions
+# ═════════════════════════════════════════════════════════════════════
+
+def test_domains_with_seeded_domain(client, ckla_seed):
+    """A seeded G3 domain shows up in /domains list."""
+    resp = client.get("/api/academy/ckla/domains?grade=3")
+    assert resp.status_code == 200
+    body = resp.json()
+    domain_nums = [d["domain_num"] for d in body["domains"]]
+    assert 1 in domain_nums
+    seeded = next(d for d in body["domains"] if d["domain_num"] == 1)
+    assert seeded["title"] == "Test Domain — Classic Tales"
+    assert seeded["grade"] == 3
+    # Single lesson, not yet completed
+    assert seeded["completed_count"] == 0
+    assert seeded["all_complete"] is False
+
+
+def test_domains_completion_percentage_zero_initially(client, ckla_seed):
+    resp = client.get("/api/academy/ckla/domains?grade=3")
+    body = resp.json()
+    assert body["completion_pct"] == 0
+    assert body["completed_lessons"] == 0
+    assert body["total_lessons"] >= 1
+
+
+def test_lessons_for_seeded_domain(client, ckla_seed):
+    """Listing lessons for the seeded domain returns the seeded lesson."""
+    resp = client.get("/api/academy/ckla/domains/1/lessons?grade=3")
+    assert resp.status_code == 200
+    body = resp.json()
+    assert "lessons" in body
+    titles = [l.get("title") for l in body["lessons"]]
+    assert "Test Lesson 1" in titles
+
+
+def test_lesson_detail_returns_passage_and_questions(client, ckla_seed):
+    """GET /lessons/{id} returns full passage + sampled questions."""
+    lesson_id = ckla_seed["lesson"].id
+    resp = client.get(f"/api/academy/ckla/lessons/{lesson_id}")
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["id"] == lesson_id
+    assert body["title"] == "Test Lesson 1"
+    assert body["domain_num"] == 1
+    assert body["grade"] == 3
+    assert body["word_work_word"] == "test"
+    assert "Once upon a time" in body["passage"]
+    # 3 questions seeded — sampled list is non-empty
+    assert isinstance(body["questions"], list)
+    assert len(body["questions"]) >= 1
+    # Each question carries required fields
+    for q in body["questions"]:
+        for field in ("id", "num", "kind", "question"):
+            assert field in q
+
+
+def test_lesson_progress_initial_state(client, ckla_seed):
+    """Progress endpoint returns a defaulted shape when no row exists."""
+    lesson_id = ckla_seed["lesson"].id
+    resp = client.get(f"/api/academy/ckla/lessons/{lesson_id}/progress")
+    assert resp.status_code == 200
+    prog = resp.json()
+    # Either {completed: False, ...} or null/empty shape
+    assert isinstance(prog, dict)
+
+
+def test_lesson_detail_inactive_404(client, ckla_seed, db_session):
+    """Deactivating a lesson makes the detail endpoint 404."""
+    from backend.models import CKLALesson
+    lesson_id = ckla_seed["lesson"].id
+    lesson = db_session.query(CKLALesson).filter_by(id=lesson_id).first()
+    lesson.is_active = False
+    db_session.commit()
+
+    resp = client.get(f"/api/academy/ckla/lessons/{lesson_id}")
+    assert resp.status_code == 404
+
+
+def test_grades_lesson_count_reflects_seed(client, ckla_seed):
+    """/grades shows lesson count for G3 ≥ 1 after seeding."""
+    resp = client.get("/api/academy/ckla/grades")
+    assert resp.status_code == 200
+    g3 = next((g for g in resp.json() if g["grade"] == 3), None)
+    assert g3 is not None
+    assert g3["lesson_count"] >= 1
