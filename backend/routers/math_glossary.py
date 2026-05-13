@@ -9,6 +9,7 @@ API: GET /api/math/glossary/grades
 
 import json
 import logging
+import re
 from functools import lru_cache
 from pathlib import Path
 
@@ -26,8 +27,19 @@ def _read_json_cached(path_str: str, mtime: float) -> dict:
     return json.loads(Path(path_str).read_text("utf-8"))
 
 
+_SAFE_GRADE_RE = re.compile(r"^[a-zA-Z0-9_-]{1,20}$")
+
+
 def _load_grade(grade: str) -> dict:
+    if not _SAFE_GRADE_RE.match(grade):
+        raise HTTPException(status_code=400, detail="Invalid grade identifier")
     path = _GLOSSARY_DIR / f"{grade.lower()}.json"
+    # Resolve symlinks and verify the file is inside the glossary directory
+    try:
+        resolved = path.resolve()
+        resolved.relative_to(_GLOSSARY_DIR.resolve())
+    except (ValueError, OSError):
+        raise HTTPException(status_code=400, detail="Invalid grade identifier")
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"Glossary for {grade} not found")
     return _read_json_cached(str(path), path.stat().st_mtime)

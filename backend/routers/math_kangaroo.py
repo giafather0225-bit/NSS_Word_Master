@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 try:
@@ -209,24 +209,28 @@ def _format_time(seconds: int | None) -> str:
 
 
 # @tag MATH @tag KANGAROO @tag XP
-def _award_kangaroo_xp(db: Session, set_id: str, amount: int, label: str) -> int:
-    """Insert an XPLog row directly (bypasses daily action dedup so each set counts)."""
+def _award_kangaroo_xp(db: Session, set_id: str, action: str, amount: int) -> int:
+    """Insert an XPLog row directly (per-set dedup so each set awards once per tier).
+
+    Uses the correct action key per tier so XP_RULES overrides and source attribution work.
+    """
     if amount <= 0:
         return 0
     today = date.today().isoformat()
-    detail = f"kangaroo:{set_id}:{label}"
+    detail = f"kangaroo:{set_id}"
     existing = db.query(XPLog).filter(
-        XPLog.action == "math_kangaroo_complete",
+        XPLog.action == action,
         XPLog.detail == detail,
         XPLog.earned_date == today,
     ).first()
     if existing:
         return 0
     db.add(XPLog(
-        action="math_kangaroo_complete",
+        action=action,
         xp_amount=amount,
         detail=detail,
         earned_date=today,
+        source="math",
         created_at=datetime.now().isoformat(),
     ))
     return amount
@@ -355,13 +359,13 @@ def kangaroo_set(set_id: str) -> dict[str, Any]:
 # ── POST /submit ─────────────────────────────────────────────
 
 class KangarooAnswerItem(BaseModel):
-    question_id: str | None = None
+    question_id: str | None = Field(None, max_length=40)
     question_number: int | None = None
-    answer: str | None = None
+    answer: str | None = Field(None, max_length=10)
 
 
 class KangarooSubmitIn(BaseModel):
-    set_id: str
+    set_id: str = Field(..., max_length=80)
     answers: list[KangarooAnswerItem] | dict[str, str] = []
     time_spent_seconds: int | None = None
 
@@ -466,20 +470,20 @@ def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
 
     awarded = 0
     try:
-        awarded += _award_kangaroo_xp(db, req.set_id, 5, "complete")
+        awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_complete", 5)
         if percentage >= 80:
-            awarded += _award_kangaroo_xp(db, req.set_id, 5, "score80")
+            awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_80", 5)
         if perfect:
-            awarded += _award_kangaroo_xp(db, req.set_id, 10, "perfect")
+            awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_perfect", 10)
     except Exception as exc:
         logger.warning("Kangaroo XP award failed: %s", exc)
+
+    db.commit()
 
     try:
         streak_engine.mark_math_done(db)
     except Exception as exc:
         logger.warning("Streak math mark failed: %s", exc)
-
-    db.commit()
 
     return {
         "score": total_score,
@@ -616,20 +620,20 @@ def kangaroo_submit(req: KangarooSubmitIn, db: Session = Depends(get_db)) -> dic
     # ── XP awards ────────────────────────────────────────────
     awarded = 0
     try:
-        awarded += _award_kangaroo_xp(db, req.set_id, 5, "complete")
+        awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_complete", 5)
         if percentage >= 80:
-            awarded += _award_kangaroo_xp(db, req.set_id, 5, "score80")
+            awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_80", 5)
         if perfect:
-            awarded += _award_kangaroo_xp(db, req.set_id, 10, "perfect")
+            awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_perfect", 10)
     except Exception as exc:
         logger.warning("Kangaroo XP award failed: %s", exc)
+
+    db.commit()
 
     try:
         streak_engine.mark_math_done(db)
     except Exception as exc:
         logger.warning("Streak math mark failed: %s", exc)
-
-    db.commit()
 
     topic_breakdown = [
         {

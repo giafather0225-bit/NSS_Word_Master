@@ -137,7 +137,7 @@ def problems_review(db: Session = Depends(get_db)):
 
 
 class ReviewSubmitIn(BaseModel):
-    review_id: int
+    review_id: int = Field(..., ge=1)
     user_answer: str = Field(default="", max_length=200)
 
 
@@ -204,9 +204,10 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
         row.consecutive_correct = 0
 
     xp_earned = 0
+    _mark_streak = False
     if is_correct:
         row.consecutive_correct = (row.consecutive_correct or 0) + 1
-        streak_engine.mark_math_done(db)
+        _mark_streak = True
         if row.consecutive_correct >= 2:
             row.is_mastered = True
             try:
@@ -241,6 +242,13 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
         ).strftime("%Y-%m-%d")
 
     db.commit()
+
+    if _mark_streak:
+        try:
+            streak_engine.mark_math_done(db)
+        except Exception as e:
+            logger.warning("Streak math mark failed: %s", e)
+
     return {
         "is_correct": is_correct,
         "correct_answer": correct_answer,
