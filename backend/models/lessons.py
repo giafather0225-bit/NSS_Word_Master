@@ -39,6 +39,7 @@ class StudyItem(Base):
     answer      = Column(String, index=True)              # correct spelling or math solution
     hint        = Column(String)                          # example sentence with blank
     extra_data  = Column(String)                          # JSON: pos, image, etc.
+    is_starred  = Column(Integer, nullable=False, default=0)  # migration 015 — favourite flag
 
     __table_args__ = (
         Index("ix_study_items_subject_textbook_lesson", "subject", "textbook", "lesson"),
