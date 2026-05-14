@@ -357,8 +357,10 @@ function _wbUpdateHUD() {
 
 async function _wbGameOver() {
   if (!_wb) return;
-  const state = _wb;
   _wb.running = false;
+  if (_wb.tickHandle) { clearInterval(_wb.tickHandle); _wb.tickHandle = null; }  // H-1: clear interval
+  const state = { ..._wb };  // H-1: snapshot before null
+  _wb = null;                 // H-1: null immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('word_builder', state.score, state.correct, state.total, accuracy);
   _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => wbStart() });

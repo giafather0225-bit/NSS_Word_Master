@@ -151,7 +151,7 @@ function _suRender() {
       const borderR = (c + 1) % bc === 0 && c !== N - 1 ? ' su-border-r' : '';
       const borderB = (r + 1) % br === 0 && r !== N - 1 ? ' su-border-b' : '';
       if (given) {
-        cells.push(`<div class="su-cell su-cell--given${borderR}${borderB}">${val}</div>`);
+        cells.push(`<div class="su-cell su-cell--given${borderR}${borderB}" data-r="${r}" data-c="${c}">${val}</div>`);  // M-6: add data-r/data-c for peer highlighting
       } else {
         cells.push(`<input class="su-cell su-inp${borderR}${borderB}" maxlength="1" inputmode="numeric"
           data-r="${r}" data-c="${c}" value="${val || ''}">`);
@@ -276,6 +276,7 @@ function _suOnFocus(e) {
   const focusVal = _su.input[r][c];
   document.querySelectorAll('.su-cell, .su-inp').forEach((el) => {
     const er = Number(el.dataset.r), ec = Number(el.dataset.c);
+    if (isNaN(er) || isNaN(ec)) return;  // M-6: guard against elements missing data-r/data-c
     const peer = er === r || ec === c ||
       (er >= boxR && er < boxR + br && ec >= boxC && ec < boxC + bc);
     el.classList.toggle('su-cell--peer', peer && el !== e.target);
@@ -316,9 +317,10 @@ function _suCheckComplete() {
 
 async function _suFinish() {
   if (!_su) return;
-  const state = _su;
   _su.running = false;
-  if (_su.tickHandle) clearInterval(_su.tickHandle);
+  if (_su.tickHandle) { clearInterval(_su.tickHandle); _su.tickHandle = null; }
+  const state = { ..._su, wrongCells: new Set(_su.wrongCells) };  // M-3: snapshot (clone Set) before null
+  _su = null;                                                       // M-3: null immediately
 
   const seconds = Math.floor((performance.now() - state.startedAt) / 1000);
   // W2: use wrongCells.size (unique cells, bounded by holes) instead of raw mistakes counter

@@ -456,8 +456,9 @@ function _mkShowHint() {
 
 async function _mkGameOver() {
   if (!_mk) return;
-  const state = _mk;
   _mk.running = false;
+  const state = { ..._mk };  // M-4: snapshot before null
+  _mk = null;                 // M-4: null immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('make24', state.score, state.correct, state.total, accuracy, _mkLevel);
   _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => mkStart(_mkLevel) });

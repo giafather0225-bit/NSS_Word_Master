@@ -290,7 +290,7 @@ function _wiKill(idx) {
     _wi.killsThisWave = 0;
     _wi.wave += 1;
     _wi.score += WI_CFG.waveBonus;
-    _wi.banner = { text: `WAVE ${_wi.wave - 1} CLEARED  +${WI_CFG.waveBonus}`, until: performance.now() + 1500 };
+    _wi.banner = { text: `WAVE ${_wi.wave - 1} CLEARED  +${WI_CFG.waveBonus}`, until: performance.now() + 1500, duration: 1500 };
     if (_wi.wave % WI_CFG.bossEveryWaves === 0) {
       _wi.bossQueued = true;
     }
@@ -320,7 +320,16 @@ function _wiActivatePowerup(type, x, y) {
     _wi.kills     += count;
     _wi.killsThisWave += count;
     _wi.active = [];
-    _wi.banner = { text: `BOOM! +${count * 15}`, until: performance.now() + 1000 };
+    _wi.banner = { text: `BOOM! +${count * 15}`, until: performance.now() + 1500, duration: 1500 };  // L-1: match 1500ms so alpha starts at 1.0
+    // H-2: bomb may clear the wave — check completion same as _wiKill
+    if (count > 0 && _wi.killsThisWave >= WI_CFG.waveSize) {
+      _wi.killsThisWave = 0;
+      _wi.wave += 1;
+      _wi.score += WI_CFG.waveBonus;
+      _wi.banner = { text: `WAVE ${_wi.wave - 1} CLEARED  +${WI_CFG.waveBonus}`, until: performance.now() + 1500, duration: 1500 };
+      if (_wi.wave % WI_CFG.bossEveryWaves === 0) _wi.bossQueued = true;
+      if (typeof sfxCombo === 'function') sfxCombo();
+    }
   } else if (type === 'shield') {
     _wi.shieldCharges += 1;
   }
@@ -420,7 +429,7 @@ function _wiLoop(ts) {
       if (_wi.shieldCharges > 0) {
         _wi.shieldCharges -= 1;
         _wiBurst(en.x, floorY, WI_COLORS.success);
-        _wi.banner = { text: 'SHIELD ACTIVE', until: ts + 900 };
+        _wi.banner = { text: 'SHIELD ACTIVE', until: ts + 900, duration: 900 };
         if (typeof sfxCombo === 'function') sfxCombo();
       } else {
         _wiBurst(en.x, floorY, WI_COLORS.error);
@@ -594,7 +603,7 @@ function _wiDraw(ts) {
 
   // Banner (wave/bomb/shield notifications)
   if (_wi.banner && ts < _wi.banner.until) {
-    const remain = (_wi.banner.until - ts) / 1500;
+    const remain = (_wi.banner.until - ts) / (_wi.banner.duration || 1500);  // L-1: per-banner duration for correct alpha
     ctx.globalAlpha = Math.min(1, remain * 2);
     ctx.font = '800 34px -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif';
     ctx.textAlign = 'center';

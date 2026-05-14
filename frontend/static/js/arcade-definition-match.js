@@ -201,10 +201,11 @@ function _dmUpdateHUD() {
 
 async function _dmGameOver() {
   if (!_dm) return;
-  const state = _dm;
   _dm.running = false;
   if (_dm.tickHandle) { clearInterval(_dm.tickHandle); _dm.tickHandle = null; }
   document.removeEventListener('keydown', _dmKeydown);
+  const state = { ..._dm };  // M-1: snapshot before null
+  _dm = null;                 // M-1: null immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('definition_match', state.score, state.correct, state.total, accuracy);
   _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => dmStart() });

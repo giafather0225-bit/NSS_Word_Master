@@ -23,6 +23,15 @@ const MM_CFG = {
 
 let _mm = null;
 
+/** L-4: Fisher-Yates shuffle — unbiased, in-place. Returns same array. @tag ARCADE */
+function _mmShuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 /* ── Level picker ──────────────────────────────────────────────── */
 
 /** Show level picker for Memory Card Match. @tag ARCADE */
@@ -89,7 +98,7 @@ async function mmStart(level = 'easy') {
   }
 
   // Pick the required number of word pairs at random
-  const picks = [...pool].sort(() => Math.random() - 0.5).slice(0, cfg.pairs);
+  const picks = _mmShuffle([...pool]).slice(0, cfg.pairs);  // L-4: Fisher-Yates (unbiased)
 
   // Each pair produces two cards: one 'word' card and one 'def' card
   const cards = [];
@@ -101,7 +110,7 @@ async function mmStart(level = 'easy') {
     cards.push({ pairId, type: 'def',  text: def });
   });
   // Shuffle
-  cards.sort(() => Math.random() - 0.5);
+  _mmShuffle(cards);  // L-4: Fisher-Yates (unbiased)
 
   _mm = {
     level,
@@ -264,7 +273,7 @@ function _mmUpdateScore() {
 
 function _mmFinalScore() {
   // Fix #12: add time bonus only at game-end (complete or time-up)
-  if (!_mm) return _mm?.score ?? 0;
+  if (!_mm) return 0;  // L-3: simplified null guard
   const elapsed  = performance.now() - _mm.startedAt;
   const remainMs = Math.max(0, _mm.cfg.timeMs - elapsed);
   const remSec   = remainMs / 1000;
@@ -312,8 +321,9 @@ async function _mmComplete() {
   _mmUpdateScore();
   const finalScore = _mmFinalScore();   // Fix #12: apply time bonus at completion only
   _mm.score = finalScore;
-  const snap = { score: _mm.score, correct: _mm.correct, total: _mm.total, level: _mm.level };
   _mm.running = false;
+  const snap = { score: _mm.score, correct: _mm.correct, total: _mm.total, level: _mm.level };
+  _mm = null;  // M-5: null immediately to prevent stale callbacks / double-call from tick
   const accuracy = snap.correct / snap.total;
   const result   = await _arcadeReportScore('memory_match', snap.score, snap.correct, snap.total, accuracy, snap.level);
   _arcadeRenderGameOver({ state: snap, accuracy, result, replayFn: () => mmStart(snap.level) });
@@ -324,8 +334,9 @@ async function _mmGameOver() {
   if (!_mm) return;
   _mmUpdateScore();
   // Fix #12: no time bonus on timeout (time already 0)
-  const snap = { score: _mm.score, correct: _mm.correct, total: _mm.total, level: _mm.level };
   _mm.running = false;
+  const snap = { score: _mm.score, correct: _mm.correct, total: _mm.total, level: _mm.level };
+  _mm = null;  // M-5: null immediately to prevent stale callbacks
   const accuracy = snap.total > 0 ? snap.correct / snap.total : 0;
   const result   = await _arcadeReportScore('memory_match', snap.score, snap.correct, snap.total, accuracy, snap.level);
   _arcadeRenderGameOver({ state: snap, accuracy, result, replayFn: () => mmStart(snap.level) });

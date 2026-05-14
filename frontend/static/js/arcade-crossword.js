@@ -481,8 +481,9 @@ function _cwUpdateHUD() {
 
 async function _cwFinish() {
   if (!_cw) return;
-  const state = _cw;
   _cw.running = false;
+  const state = { ..._cw };  // M-2: snapshot before null
+  _cw = null;                 // M-2: null immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('crossword', state.score, state.correct, state.total, accuracy);
   _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => cwStart() });
