@@ -11,7 +11,7 @@
   OLLAMA_HOST    — Ollama 서버 (기본: http://127.0.0.1:11434)
   OLLAMA_OCR_MODEL — 정제용 모델 (기본: gemma2:2b)
 """
-from __future__ import annotations
+from typing import Optional
 
 import io
 import json
@@ -267,7 +267,7 @@ async def run_ocr_pipeline(
     lesson_id: int,
     db,
     lang: str = "eng",
-    model: str | None = None,
+    model: Optional[str] = None,
 ) -> dict:
     """저장된 파일들에 OCR을 실행하고 DB에 저장하는 메인 파이프라인.
 

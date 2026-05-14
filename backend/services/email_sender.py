@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 services/email_sender.py — Minimal SMTP email sender for parent notifications.
 Section: System
 Dependencies: stdlib (smtplib, ssl, email)
@@ -18,6 +17,7 @@ Optional env:
   SMTP_FROM       defaults to SMTP_USER
   SMTP_USE_SSL    "1" to use SMTP_SSL on port 465
 """
+from typing import Optional
 
 import logging
 import os
@@ -28,7 +28,7 @@ from email.message import EmailMessage
 logger = logging.getLogger(__name__)
 
 
-def _smtp_config() -> dict | None:
+def _smtp_config() -> Optional[dict]:
     """Return SMTP config dict if all required vars set, else None."""
     host = os.environ.get("SMTP_HOST", "").strip()
     user = os.environ.get("SMTP_USER", "").strip()

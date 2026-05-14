@@ -21,7 +21,7 @@ Limits (deliberately lenient for a family app):
   - MAX_ATTEMPTS = 5 failures
   - LOCKOUT_SECONDS = 300s (5 min)
 """
-from __future__ import annotations
+from typing import Optional
 
 import json
 from datetime import datetime
@@ -67,7 +67,7 @@ def _save(db: Session, scope: str, state: dict) -> None:
     db.commit()
 
 
-def _window_expired(first_at: str | None) -> bool:
+def _window_expired(first_at: Optional[str]) -> bool:
     if not first_at:
         return True
     try:

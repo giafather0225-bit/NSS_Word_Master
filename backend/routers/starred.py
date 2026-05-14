@@ -5,7 +5,6 @@ Dependencies: models (StudyItem), database
 API: PATCH /api/study-items/{item_id}/star   — toggle star
      GET   /api/study-items/starred          — list all starred items
 """
-from __future__ import annotations
 
 import logging
 

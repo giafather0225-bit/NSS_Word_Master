@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/growth_theme.py — Growth Theme progress API
 Section: Growth Theme
 Dependencies: models.py (GrowthThemeProgress, GrowthEvent),
@@ -7,6 +6,7 @@ Dependencies: models.py (GrowthThemeProgress, GrowthEvent),
 API: GET /api/growth/theme, GET /api/growth/theme/all,
      POST /api/growth/theme/select, POST /api/growth/theme/advance
 """
+from typing import Optional
 
 import logging
 from datetime import datetime, date
@@ -59,7 +59,7 @@ class SelectThemeIn(BaseModel):
 
 # ─── Helpers ──────────────────────────────────────────────────
 
-def _get_active(db: Session) -> GrowthThemeProgress | None:
+def _get_active(db: Session) -> Optional[GrowthThemeProgress]:
     """Return the currently active theme row. @tag GROWTH_THEME"""
     return db.query(GrowthThemeProgress).filter(GrowthThemeProgress.is_active == True).first()
 

@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/study.py — Study session data and learning analytics logging routes
 Section: English
 Dependencies: database, models, voca_sync
@@ -9,6 +8,7 @@ API:
   POST /api/learning/word-attempt
   POST /api/learning/word-attempts-batch
 """
+from typing import Optional
 
 import json
 import logging
@@ -74,7 +74,7 @@ class LearningLogCreate(BaseModel):
 
 
 class WordAttemptCreate(BaseModel):
-    study_item_id: int | None = None
+    study_item_id: Optional[int] = None
     textbook: str = ""
     lesson: str = ""
     word: str = ""

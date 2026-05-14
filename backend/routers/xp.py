@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/xp.py — XP system, Streak, and Today's Tasks API
 Section: System
 Dependencies: services/xp_engine.py, services/streak_engine.py,
@@ -11,6 +10,7 @@ API:
   GET  /api/xp/weekly
   GET  /api/tasks/today
 """
+from typing import Optional
 
 from datetime import date, datetime, timedelta
 from fastapi import APIRouter, Depends, HTTPException
@@ -76,7 +76,7 @@ def xp_summary(db: Session = Depends(get_db)) -> dict:
     )
     best = 0
     run = 0
-    prev: date | None = None
+    prev: Optional[date] = None
     for lg in logs:
         try:
             d = date.fromisoformat(lg.date)

@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/math_academy_spaced.py — Math Spaced Review endpoints
 Section: Math
 Dependencies: models.py (MathProgress, MathAttempt, MathWrongReview, MathSpacedReview),
@@ -8,6 +7,7 @@ API: GET  /api/math/spaced-review/count
      GET  /api/math/spaced-review/today
      POST /api/math/spaced-review/submit
 """
+from typing import Optional
 
 import logging
 import random
@@ -243,7 +243,7 @@ def submit_spaced_review(req: SpacedReviewSubmitIn, db: Session = Depends(get_db
 
     for ans in req.answers:
         data = _load_lesson_json(ans.grade, ans.unit_id, _lesson_name(ans.lesson_id))
-        problem: dict | None = None
+        problem: Optional[dict] = None
         if data:
             pool = _stage_problems(data, "practice_r1") or _stage_problems(data, "exit_quiz")
             problem = next((p for p in pool if p.get("id") == ans.problem_id), None)

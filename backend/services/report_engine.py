@@ -5,7 +5,6 @@ Dependencies: models (LearningLog, WordAttempt, XPLog, MathAttempt, MathDailyCha
               MathWrongReview, MathFactFluency), services/xp_engine, services/streak_engine,
               services/report_engine_html (HTML builder)
 """
-from __future__ import annotations
 
 import logging
 import smtplib

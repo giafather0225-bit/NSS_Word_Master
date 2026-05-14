@@ -4,7 +4,6 @@ Section: Parent
 Dependencies: none (standalone template helpers)
 API: called by services/report_engine.py (build_html_report)
 """
-from __future__ import annotations
 
 # ── Email palette (theme.css hex equivalents — CSS vars not allowed in email) ──
 _C = {

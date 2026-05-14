@@ -10,11 +10,10 @@ Edge-case hardening (Phase 10+):
   - Structured return with skipped-row reasons so routers can raise 422 on
     fail-open / garbage-only results.
 """
-from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import TypedDict
+from typing import TypedDict, Optional
 
 from sqlalchemy.orm import Session
 
@@ -58,7 +57,7 @@ def lesson_json_path(voca_root: Path, lesson: str) -> Path:
     return voca_root / lesson / "data.json"
 
 
-def load_lesson_json(voca_root: Path, lesson: str) -> list[dict] | None:
+def load_lesson_json(voca_root: Path, lesson: str) -> Optional[list[dict]]:
     p = lesson_json_path(voca_root, lesson)
     if not p.is_file():
         return None

@@ -6,7 +6,6 @@ Dependencies: models/goals.py, models (XPLog, WordAttempt, LearningLog),
 API: GET  /api/goals/weekly          — 목표 + 현재 달성도
      PUT  /api/goals/weekly/{key}    — 목표 수정 (PIN)
 """
-from __future__ import annotations
 
 import logging
 from datetime import date, timedelta

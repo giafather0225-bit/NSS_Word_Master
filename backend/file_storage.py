@@ -4,7 +4,6 @@
 HEIC → JPG 변환: macOS sips (기본) / pillow-heif (선택적 fallback)
 PDF: 스캔본으로 저장, 페이지 수 메타데이터 포함
 """
-from __future__ import annotations
 
 import io
 import json
@@ -13,7 +12,7 @@ import subprocess
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import TypedDict
+from typing import TypedDict, Optional
 
 from backend.database import LEARNING_ROOT
 
@@ -36,7 +35,7 @@ class FileRecord(TypedDict):
     content_type: str      # 저장된 파일의 MIME
     size: int              # 저장된 파일 크기 (bytes)
     converted: bool        # HEIC→JPG 변환 여부
-    pages: int | None      # PDF 페이지 수 (이미지는 None)
+    pages: Optional[int]      # PDF 페이지 수 (이미지는 None)
     path: str              # 절대 경로
 
 
@@ -88,7 +87,7 @@ def _heic_to_jpg(raw: bytes) -> bytes:
         return _heic_to_jpg_sips(raw)
 
 
-def _pdf_page_count(raw: bytes) -> int | None:
+def _pdf_page_count(raw: bytes) -> Optional[int]:
     """PDF 페이지 수 반환. pymupdf 없거나 파싱 불가 시 None."""
     try:
         import fitz                                 # type: ignore[import]
@@ -151,7 +150,7 @@ def save_lesson_file(lesson_id: int, raw: bytes, original_name: str) -> FileReco
 
     stem = _safe_stem(original_name)
     converted = False
-    pages: int | None = None
+    pages: Optional[int] = None
     content_type: str
 
     if ext in ALLOWED_IMAGE_EXTS:

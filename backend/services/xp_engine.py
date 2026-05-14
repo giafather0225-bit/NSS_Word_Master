@@ -1,10 +1,10 @@
 """
-from __future__ import annotations
 services/xp_engine.py — XP calculation and award logic
 Section: System
 Dependencies: models.py (XPLog, WordReview)
 API: called by routers/xp.py
 """
+from typing import Optional
 
 import logging
 import time
@@ -21,19 +21,19 @@ logger = logging.getLogger(__name__)
 # same process) and is invalidated when the parent changes XP rules via
 # the Settings UI (the PUT endpoint calls invalidate_xp_cache()).
 _XP_RULES_TTL   = 30.0   # seconds
-_xp_rules_cache: dict | None = None
+_xp_rules_cache: Optional[dict] = None
 _xp_rules_at:    float  = 0.0
 
 _ARCADE_CAP_TTL  = 30.0
-_arcade_cap_cache: int | None = None
+_arcade_cap_cache: Optional[int] = None
 _arcade_cap_at:    float      = 0.0
 
 _LUMI_RULES_TTL  = 30.0
-_lumi_rules_cache: dict[str, int] | None = None
+_lumi_rules_cache: Optional[dict[str, int]] = None
 _lumi_rules_at:    float               = 0.0
 
 _BOOST_TTL  = 30.0
-_boost_cache: dict[str, float] | None = None
+_boost_cache: Optional[dict[str, float]] = None
 _boost_at:    float                   = 0.0
 
 
@@ -306,7 +306,7 @@ def award_xp(
     db: Session,
     action: str,
     detail: str = "",
-    earned_date: str | None = None,
+    earned_date: Optional[str] = None,
     source: str = "",
     commit: bool = True,
 ) -> int:

@@ -12,7 +12,6 @@ backend/services/math_diagnostic.py — 수학 오답 진단 엔진.
 - 라이브러리는 모듈 임포트 시 한 번 로드 후 LRU 캐싱
 - 매칭 실패 시 안전한 fallback (error_type='concept_gap', misconception_id=None)
 """
-from __future__ import annotations
 
 import json
 import logging

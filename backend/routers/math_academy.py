@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/math_academy.py — Math Academy API (grades, units, lessons, stages)
 Section: Math
 Dependencies: models.py (MathProblem, MathProgress, MathAttempt), services/xp_engine.py
@@ -1356,7 +1355,7 @@ def submit_spaced_review(req: SpacedReviewSubmitIn, db: Session = Depends(get_db
 
     for ans in req.answers:
         data = _load_lesson_json(ans.grade, ans.unit_id, _lesson_name(ans.lesson_id))
-        problem: dict | None = None
+        problem: Optional[dict] = None
         if data:
             pool = _stage_problems(data, "practice_r1") or _stage_problems(data, "exit_quiz")
             problem = next((p for p in pool if p.get("id") == ans.problem_id), None)

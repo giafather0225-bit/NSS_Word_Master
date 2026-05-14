@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/island.py — Island system REST API (34 endpoints).
 Section: Island
 Dependencies: services.lumi_engine, island_care_engine, island_production_engine, island_service
@@ -1134,7 +1133,7 @@ def notifications(db: Session = Depends(get_db)):
     """
     hungry: list[dict] = []
     evolvable: list[dict] = []
-    active_char: dict | None = None
+    active_char: Optional[dict] = None
 
     active = (
         db.query(IslandCharacterProgress, IslandCharacter)

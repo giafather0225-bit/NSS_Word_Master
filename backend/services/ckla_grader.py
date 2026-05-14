@@ -20,8 +20,8 @@ question kind별 전략:
   Inferential → 지문을 바탕으로 한 추론. 논리적 과정 평가.
   Evaluative  → 의견 + 지문 근거. 근거 없는 의견은 점수 1.
 """
+from typing import Optional
 
-from __future__ import annotations
 
 import json
 import logging
@@ -118,7 +118,7 @@ def _build_prompt(
     )
 
 
-def _parse_result(raw: str) -> dict | None:
+def _parse_result(raw: str) -> Optional[dict]:
     """JSON 파싱. 마크다운 펜스 있어도 허용."""
     raw = re.sub(r"```(?:json)?", "", raw).strip().strip("`")
     # 첫 번째 { ... } 블록 추출

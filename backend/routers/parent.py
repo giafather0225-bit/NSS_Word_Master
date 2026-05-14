@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/parent.py — Parent Dashboard core: PIN, task settings, schedule,
                     config, day-off, shared helpers.
 
@@ -16,6 +15,7 @@ API: POST /api/parent/verify-pin
      GET /api/parent/config/{key}, POST /api/parent/config
      GET/PUT /api/parent/day-off-requests[/{id}]
 """
+from typing import Optional
 
 import logging
 import os
@@ -50,12 +50,12 @@ DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 # or a weekday number of 99).
 
 class TaskSettingUpdate(BaseModel):
-    is_required: bool | None = None
+    is_required: Optional[bool] = None
     # XP for any single task is bounded [0, 1000]. Zero disables rewarding
     # without deleting the row; 1000 is a soft upper bound well above the
     # highest documented rule (streak_30_bonus = 200).
-    xp_value:    int  | None = Field(default=None, ge=0, le=1000)
-    is_active:   bool | None = None
+    xp_value:    Optional[int] = Field(default=None, ge=0, le=1000)
+    is_active:   Optional[bool] = None
 
 
 class AcademyScheduleIn(BaseModel):
@@ -110,7 +110,7 @@ def _upgrade_pin_if_plaintext(db: Session, verified_pin: str) -> None:
 
 # @tag PARENT PIN
 def require_parent_pin(
-    x_parent_pin: str | None = Header(default=None, alias="X-Parent-Pin"),
+    x_parent_pin: Optional[str] = Header(default=None, alias="X-Parent-Pin"),
     db: Session = Depends(get_db),
 ) -> bool:
     """

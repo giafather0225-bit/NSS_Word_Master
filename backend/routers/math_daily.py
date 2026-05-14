@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/math_daily.py — Math Daily Challenge API
 Section: Math
 Dependencies: models.py (MathDailyChallenge), services/xp_engine.py
@@ -7,6 +6,7 @@ API: GET  /api/math/daily/today
      POST /api/math/daily/submit-answer
      POST /api/math/daily/complete
 """
+from typing import Optional
 
 import hashlib
 import json
@@ -160,7 +160,7 @@ def _parse_problem_id(pid: str) -> tuple[str, str, str]:
 
 
 # @tag MATH @tag DAILY
-def _pick_daily_problems(date_str: str, db: Session | None = None) -> list[dict]:
+def _pick_daily_problems(date_str: str, db: Optional[Session] = None) -> list[dict]:
     """Compose daily challenge per spec: 50% current unit + 30% spaced + 20% spiral.
 
     Falls back gracefully when a bucket is empty (e.g., new user with no

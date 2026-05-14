@@ -1,10 +1,10 @@
 """
-from __future__ import annotations
 services/streak_engine.py — Streak tracking and calculation
 Section: System
 Dependencies: models.py (StreakLog, DayOffRequest, AppConfig, WordReview)
 API: called by routers/xp.py, routers/arcade.py, routers/*math*.py
 """
+from typing import Optional
 
 import logging
 import time
@@ -27,7 +27,7 @@ _DEFAULT_MODE = "all"
 # award on the hot study path.  Invalidated by invalidate_streak_config_cache()
 # which is called from the parent Streak Rule PUT endpoint.
 _STREAK_CFG_TTL = 30.0
-_streak_cfg_cache: tuple[frozenset[str], str] | None = None
+_streak_cfg_cache: Optional[tuple[frozenset[str], str]] = None
 _streak_cfg_at: float = 0.0
 
 
@@ -74,7 +74,7 @@ def get_streak_config(db: Session) -> tuple[set[str], str]:
 # ─── Log access ───────────────────────────────────────────────
 
 # @tag STREAK
-def get_or_create_streak_log(db: Session, day: str | None = None) -> StreakLog:
+def get_or_create_streak_log(db: Session, day: Optional[str] = None) -> StreakLog:
     """Get or create a StreakLog for the given date (defaults to today)."""
     day = day or date.today().isoformat()
     log = db.query(StreakLog).filter(StreakLog.date == day).first()
@@ -97,7 +97,7 @@ def get_or_create_streak_log(db: Session, day: str | None = None) -> StreakLog:
 # ─── Mark activity ────────────────────────────────────────────
 
 # @tag STREAK
-def mark_review_done(db: Session, day: str | None = None) -> None:
+def mark_review_done(db: Session, day: Optional[str] = None) -> None:
     """Mark review as done and re-evaluate streak. @tag ENGLISH
 
     No intermediate db.commit() — _evaluate_streak issues the single
@@ -109,7 +109,7 @@ def mark_review_done(db: Session, day: str | None = None) -> None:
 
 
 # @tag STREAK
-def mark_daily_words_done(db: Session, day: str | None = None) -> None:
+def mark_daily_words_done(db: Session, day: Optional[str] = None) -> None:
     """Mark daily words as done and re-evaluate streak. @tag ENGLISH
 
     No intermediate db.commit() — _evaluate_streak issues the single
@@ -121,7 +121,7 @@ def mark_daily_words_done(db: Session, day: str | None = None) -> None:
 
 
 # @tag STREAK @tag MATH
-def mark_math_done(db: Session, day: str | None = None) -> None:
+def mark_math_done(db: Session, day: Optional[str] = None) -> None:
     """Mark math activity as done and re-evaluate streak.
 
     Called from any meaningful math completion (academy unit test pass,
@@ -136,7 +136,7 @@ def mark_math_done(db: Session, day: str | None = None) -> None:
 
 
 # @tag STREAK @tag ARCADE
-def mark_game_done(db: Session, day: str | None = None) -> None:
+def mark_game_done(db: Session, day: Optional[str] = None) -> None:
     """Mark arcade/game activity as done and re-evaluate streak.
 
     No intermediate db.commit() — _evaluate_streak writes flag +
@@ -149,7 +149,7 @@ def mark_game_done(db: Session, day: str | None = None) -> None:
 
 
 # @tag STREAK @tag CKLA
-def mark_ckla_done(db: Session, day: str | None = None, commit: bool = True) -> None:
+def mark_ckla_done(db: Session, day: Optional[str] = None, commit: bool = True) -> None:
     """Mark CKLA lesson completed for the day and re-evaluate streak.
 
     Args:
@@ -348,7 +348,7 @@ def check_streak_bonus(
     db: Session,
     current_streak: int,
     action_prefix: str = "",
-) -> str | None:
+) -> Optional[str]:
     """7-day/30-day milestone bonus action key, or None."""
     if current_streak > 0 and current_streak % 30 == 0:
         return "streak_30_bonus"

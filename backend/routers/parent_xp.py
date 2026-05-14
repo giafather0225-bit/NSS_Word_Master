@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/parent_xp.py — Parent Dashboard XP Rules & Report endpoints
 Section: Parent
 Dependencies: models.py (AppConfig, XPLog), services/xp_engine.py,
@@ -9,6 +8,7 @@ API: GET  /api/parent/xp-rules
      POST /api/parent/xp-rules/reset  (PIN)
      GET  /api/parent/xp-report
 """
+from typing import Optional
 
 from datetime import datetime, date, timedelta
 
@@ -33,8 +33,8 @@ router = APIRouter()
 
 
 class XPRulesIn(BaseModel):
-    rules:            dict[str, int] | None = None
-    arcade_daily_cap: int            | None = None
+    rules:            Optional[dict[str, int]] = None
+    arcade_daily_cap: Optional[int] = None
 
 
 @router.get("/api/parent/xp-rules")

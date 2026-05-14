@@ -6,7 +6,6 @@ Override with TTS_VOICE_EDGE env var.
 All output is returned as in-memory MP3 bytes for the browser to play
 via fetch → Blob → Audio. No server-side speaker playback (no `say`, no `afplay`).
 """
-from __future__ import annotations
 
 import asyncio
 import io

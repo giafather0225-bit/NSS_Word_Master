@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 services/backup_engine.py — SQLite DB auto-backup with rolling retention
 Section: System
 Dependencies: shutil, pathlib (stdlib only)
@@ -10,7 +9,7 @@ import shutil
 import sqlite3
 from datetime import datetime
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 try:
     from ..database import DB_PATH, LEARNING_ROOT
@@ -33,7 +32,7 @@ def backup_database() -> dict:
     Uses sqlite3 .backup() API for a consistent snapshot even while the DB is
     open in WAL mode. If today's backup already exists, this is a no-op.
 
-    Returns: {"created": bool, "path": str|None, "pruned": [filenames]}
+    Returns: {"created": bool, "path": Optional[str], "pruned": [filenames]}
     """
     if not Path(DB_PATH).exists():
         return {"created": False, "path": None, "pruned": [], "reason": "source db missing"}
@@ -108,7 +107,7 @@ def restore_backup(filename: str) -> dict:
     Restore a backup file over the live DB. The current DB is first copied to
     voca_pre-restore_<timestamp>.db so the operation is reversible.
 
-    Returns: {"restored": bool, "from": filename, "safety_copy": str|None}
+    Returns: {"restored": bool, "from": filename, "safety_copy": Optional[str]}
     """
     src = (BACKUP_DIR / filename).resolve()
     if not str(src).startswith(str(BACKUP_DIR.resolve())) or not src.exists() \

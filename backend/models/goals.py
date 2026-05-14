@@ -2,7 +2,6 @@
 models/goals.py — WeeklyGoal ORM model
 Section: Parent
 """
-from __future__ import annotations
 from sqlalchemy import Column, Integer, String
 from backend.database import Base
 

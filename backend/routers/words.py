@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/words.py — Word CRUD, lesson word retrieval, and My Words routes
 Section: English
 Dependencies: database, models
@@ -16,6 +15,7 @@ API:
   PUT    /api/mywords/lessons/{lesson}/rename
   POST   /api/mywords/ai-enrich
 """
+from typing import Optional
 
 import json
 import logging
@@ -57,9 +57,9 @@ class ManualWordCreate(BaseModel):
 
 
 class ManualWordUpdate(BaseModel):
-    definition: Str500 | None = None
-    example:    Str500 | None = None
-    pos:        Str20  | None = None
+    definition: Optional[Str500] = None
+    example:    Optional[Str500] = None
+    pos:        Optional[Str20] = None
 
     def clean(self):
         """No-op — length/strip enforced by Pydantic (422 on overflow)."""

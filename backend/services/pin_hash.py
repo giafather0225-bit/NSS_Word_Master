@@ -22,7 +22,6 @@ Strategy:
 
 Never log PIN values or the stored hash; treat both as secrets.
 """
-from __future__ import annotations
 
 import hashlib
 import hmac

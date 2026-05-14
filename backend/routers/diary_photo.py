@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/diary_photo.py — Diary photo upload / serve / delete.
 Section: Diary
 Dependencies: models.py (DiaryEntry), database.py (LEARNING_ROOT)
@@ -11,6 +10,7 @@ The literal `photo` segment must beat the catch-all
 `/api/diary/{subject}/{textbook}` route, so this router MUST be registered
 before routers/diary_sentences.py in main.py.
 """
+from typing import Optional
 
 import logging
 import re as _re
@@ -58,7 +58,7 @@ _PHOTO_NAME_RE    = _re.compile(r"^[A-Za-z0-9._-]+$")
 _DATE_RE          = _re.compile(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$')
 
 
-def _normalize_and_thumbnail(src: Path) -> Path | None:
+def _normalize_and_thumbnail(src: Path) -> Optional[Path]:
     """
     Apply EXIF orientation + write a 256×256 thumbnail next to ``src``.
 

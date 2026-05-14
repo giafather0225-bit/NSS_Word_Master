@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/ckla.py — CKLA grade-aware reading curriculum API
 Section: Academy
 Dependencies: models/ckla, models/us_academy, database, services/ckla_grader
@@ -27,6 +26,7 @@ API:
 
 SM-2 review: unified routers/review.py — GET /api/review/today?source=ckla
 """
+from typing import Optional
 
 import json
 import logging
@@ -89,11 +89,11 @@ def _grade_rank(completion_pct: float) -> str:
 # ── Pydantic Schemas ──────────────────────────────────────────────────────────
 
 class ProgressUpdate(BaseModel):
-    reading_done:     bool | None = None
-    vocab_done:       bool | None = None
-    qa_done:          bool | None = None
-    word_work_done:   bool | None = None
-    word_work_answer: str | None = Field(default=None, max_length=2000)
+    reading_done:     Optional[bool] = None
+    vocab_done:       Optional[bool] = None
+    qa_done:          Optional[bool] = None
+    word_work_done:   Optional[bool] = None
+    word_work_answer: Optional[str] = Field(default=None, max_length=2000)
 
 
 class AnswerSubmit(BaseModel):
@@ -106,7 +106,7 @@ class DifficultyRating(BaseModel):
 
 class DomainTestSubmit(BaseModel):
     answers: dict[int, str]   # {question_id: user_answer}
-    time_taken_seconds: int | None = None
+    time_taken_seconds: Optional[int] = None
 
 
 class GradeFinalTestSubmit(BaseModel):
@@ -135,7 +135,7 @@ def _get_or_create_progress(db: Session, lesson_id: int) -> CKLALessonProgress:
 
 
 # @tag ACADEMY CKLA
-def _progress_dict(p: CKLALessonProgress | None) -> dict:
+def _progress_dict(p: Optional[CKLALessonProgress]) -> dict:
     if not p:
         return {
             "reading_done": False, "reading_done_at": None,
@@ -175,7 +175,7 @@ def _word_dict(w: USAcademyWord) -> dict:
 
 
 # @tag ACADEMY CKLA
-def _badge_dict(b: CKLABadge, earned_at: str | None = None) -> dict:
+def _badge_dict(b: CKLABadge, earned_at: Optional[str] = None) -> dict:
     return {
         "badge_key":       b.badge_key,
         "badge_name":      b.badge_name,
@@ -1339,7 +1339,7 @@ async def submit_grade_final_test(
     passed = pct >= _grade_pass_pct
 
     xp_awarded = 0
-    retry_after_str: str | None = None
+    retry_after_str: Optional[str] = None
     if passed:
         # commit=False: XP + cooldown-clear committed atomically at db.commit() below.
         xp_awarded = award_xp(db, "ckla_grade_final_pass", detail=f"grade_{grade}", commit=False)

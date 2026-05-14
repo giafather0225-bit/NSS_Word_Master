@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 NSS Word Master — Vision LLM Direct Extraction Pipeline v2.
 ============================================================
 Single-pass: image → Vision LLM → structured JSON.
@@ -22,6 +21,7 @@ STRUCTURED OUTPUT:
   Uses Ollama's format parameter with a JSON schema to enforce output shape.
   This eliminates markdown fences, parsing errors, and format inconsistencies.
 """
+from typing import Optional
 
 import asyncio
 import base64
@@ -125,7 +125,7 @@ def _bytes_to_base64(data: bytes) -> str:
 
 # ── Strategy 1: Gemini 2.0 Flash ───────────────────────────────
 
-async def _extract_via_gemini(b64_image: str, mime: str = "image/jpeg") -> list[dict] | None:
+async def _extract_via_gemini(b64_image: str, mime: str = "image/jpeg") -> Optional[list[dict]]:
     """Cloud extraction via Gemini. Returns vocab list or None on failure."""
     if not _GEMINI_KEY:
         return None
@@ -168,7 +168,7 @@ async def _extract_via_gemini(b64_image: str, mime: str = "image/jpeg") -> list[
 
 # ── Strategy 2: Ollama Vision (qwen2.5vl:3b) ──────────────────
 
-async def _extract_via_ollama(b64_image: str) -> list[dict] | None:
+async def _extract_via_ollama(b64_image: str) -> Optional[list[dict]]:
     """Local extraction via qwen2.5vl:3b with enforced JSON schema."""
     try:
         async with httpx.AsyncClient(timeout=180) as client:
@@ -300,7 +300,7 @@ async def extract_vocab_from_image(image_path: Path) -> list[dict]:
 async def extract_vocab_from_bytes(
     image_bytes: bytes,
     filename: str = "upload.jpg",
-    prompt: str | None = None,          # kept for backward compat, ignored
+    prompt: Optional[str] = None,          # kept for backward compat, ignored
 ) -> list[dict]:
     """Public API: image bytes → list[dict].
 

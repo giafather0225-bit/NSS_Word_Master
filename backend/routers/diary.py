@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/diary.py — GIA's Daily Journal + Growth Timeline.
 Section: Diary
 Dependencies: models.py (DiaryEntry, GrowthEvent)
@@ -13,6 +12,7 @@ Sister modules (split from this file to honor the 300-line ceiling):
   - routers/free_writing.py    — Free Writing entries (imports
                                  _get_grammar_feedback from this module)
 """
+from typing import Optional
 
 import asyncio
 import json
@@ -52,12 +52,12 @@ class DiaryEntryCreate(BaseModel):
     """
     content: Str5000
     entry_date: Str30
-    title:  str | None = None
-    mode:   str | None = None
-    mood:   str | None = None
-    prompt: str | None = None
-    style:  dict | None = None
-    photos: list | None = None
+    title:  Optional[str] = None
+    mode:   Optional[str] = None
+    mood:   Optional[str] = None
+    prompt: Optional[str] = None
+    style:  Optional[dict] = None
+    photos: Optional[list] = None
     feedback_requested: bool = False
 
     def clean(self) -> "DiaryEntryCreate":
@@ -170,7 +170,7 @@ def _entry_to_dict(e: DiaryEntry) -> dict:
 # @tag DIARY @tag JOURNAL
 @router.get("/api/diary/entries")
 def list_diary_entries(
-    date:   str | None = None,
+    date:   Optional[str] = None,
     limit:  int = 100,
     offset: int = 0,
     db:     Session = Depends(get_db),
@@ -286,7 +286,7 @@ async def create_or_update_diary_entry(
 @router.post("/api/diary/feedback")
 async def get_diary_feedback(
     entry_date: str,
-    mode: str | None = None,
+    mode: Optional[str] = None,
     db: Session = Depends(get_db),
 ):
     """Return AI grammar feedback for an existing entry (opt-in, child-triggered).

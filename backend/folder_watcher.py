@@ -1,5 +1,4 @@
 """폴더 감시 — Voca_8000/Lesson_XX/ 에 이미지 추가 시 자동 OCR 실행."""
-from __future__ import annotations
 
 import logging
 import threading

@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/reward_shop.py — Reward Shop API
 Section: System / Shop
 Dependencies: models.py (RewardItem, PurchasedReward, AppConfig),
@@ -9,6 +8,7 @@ API: GET /api/shop/items, POST /api/shop/buy,
      POST /api/shop/equip/{id},
      GET /api/shop/pin-status, POST /api/shop/set-pin
 """
+from typing import Optional
 
 import logging
 import os
@@ -84,7 +84,7 @@ class UseRewardIn(BaseModel):
 
 class SetPinIn(BaseModel):
     pin: str
-    current_pin: str | None = None
+    current_pin: Optional[str] = None
 
 
 class EquipIn(BaseModel):
@@ -120,7 +120,7 @@ def _item_dict(item: RewardItem) -> dict:
     }
 
 
-def _purchase_dict(pr: PurchasedReward, item: RewardItem | None) -> dict:
+def _purchase_dict(pr: PurchasedReward, item: Optional[RewardItem]) -> dict:
     """Serialize a PurchasedReward with item info. @tag SHOP"""
     return {
         "id": pr.id,
@@ -141,7 +141,7 @@ def _purchase_dict(pr: PurchasedReward, item: RewardItem | None) -> dict:
 
 @router.get("/api/shop/items")
 def shop_items(
-    category: str | None = Query(default=None),
+    category: Optional[str] = Query(default=None),
     db: Session = Depends(get_db),
 ):
     """

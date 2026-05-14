@@ -1,7 +1,7 @@
 """
 utils.py — shared helpers (LLM/OCR parsing + path-safety validators).
 """
-from __future__ import annotations
+from typing import Optional
 
 import json
 import re
@@ -60,7 +60,7 @@ def strip_json_fences(text: str) -> str:
     return t.strip()
 
 
-def parse_json_array(text: str) -> list[dict] | None:
+def parse_json_array(text: str) -> Optional[list[dict]]:
     """Parse a JSON array out of possibly-noisy text — robust to leading/trailing junk."""
     clean = strip_json_fences(text)
     try:

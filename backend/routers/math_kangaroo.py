@@ -9,14 +9,13 @@ API:
   POST /api/math/kangaroo/submit           (Entire set, weighted scoring)
 """
 
-from __future__ import annotations
 
 import json
 import logging
 from datetime import date, datetime
 from functools import lru_cache
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
@@ -140,7 +139,7 @@ def _past_paper_sections(data: dict[str, Any]) -> list[dict[str, Any]]:
     return out
 
 
-def _pdf_available(pdf_file: str | None) -> bool:
+def _pdf_available(pdf_file: Optional[str]) -> bool:
     """Check whether the local PDF file exists (PDFs not committed to git)."""
     if not pdf_file:
         return False
@@ -213,7 +212,7 @@ def _grade_label(percentage: float) -> str:
 
 
 # @tag MATH @tag KANGAROO
-def _format_time(seconds: int | None) -> str:
+def _format_time(seconds: Optional[int]) -> str:
     """Format seconds as mm:ss."""
     s = max(0, int(seconds or 0))
     return f"{s // 60:02d}:{s % 60:02d}"
@@ -370,15 +369,15 @@ def kangaroo_set(set_id: str) -> dict[str, Any]:
 # ── POST /submit ─────────────────────────────────────────────
 
 class KangarooAnswerItem(BaseModel):
-    question_id: str | None = Field(None, max_length=40)
-    question_number: int | None = None
-    answer: str | None = Field(None, max_length=10)
+    question_id: Optional[str] = Field(None, max_length=40)
+    question_number: Optional[int] = None
+    answer: Optional[str] = Field(None, max_length=10)
 
 
 class KangarooSubmitIn(BaseModel):
     set_id: str = Field(..., max_length=80)
     answers: list[KangarooAnswerItem] | dict[str, str] = []
-    time_spent_seconds: int | None = None
+    time_spent_seconds: Optional[int] = None
 
 
 def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:

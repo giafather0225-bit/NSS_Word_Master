@@ -9,7 +9,6 @@ raises `RequestValidationError` → HTTP 422 (handled in main.py with a
 child-friendly JSON shape). Replaces the previous `self.x = self.x.strip()[:N]`
 pattern which silently truncated data.
 """
-from __future__ import annotations
 
 from typing import Annotated
 

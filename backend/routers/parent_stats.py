@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/parent_stats.py — Parent Dashboard read-only stats endpoints
 Section: Parent
 Dependencies: models.py (LearningLog, WordAttempt, XPLog, Progress),
@@ -10,6 +9,7 @@ API: GET /api/parent/overview
      GET /api/parent/stage-stats
      GET /api/parent/word-stats
 """
+from typing import Optional
 
 from datetime import date, timedelta
 
@@ -32,7 +32,7 @@ router = APIRouter()
 
 # ─── Overview ─────────────────────────────────────────────────
 
-def _subject_of_action(action: str) -> str | None:
+def _subject_of_action(action: str) -> Optional[str]:
     """Map an XPLog action to a Home-tab subject bucket.
 
     Returns one of {"english", "math", "diary"} or None for actions that

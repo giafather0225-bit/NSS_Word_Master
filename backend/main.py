@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 main.py — GIA Learning App entry point
 Mounts static files, registers all API routers, and serves HTML page routes.
 """

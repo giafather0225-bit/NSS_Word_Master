@@ -17,7 +17,6 @@ Gemini를 직접 사용하는 경우:
   OLLAMA_HOST     — Ollama 서버 URL (기본 http://127.0.0.1:11434)
   OLLAMA_OCR_MODEL — 텍스트 정제 모델 (기본 gemma2:2b)
 """
-from __future__ import annotations
 
 import json
 import logging
@@ -26,7 +25,7 @@ import re
 import sqlite3
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 import httpx
 from dotenv import load_dotenv
@@ -66,9 +65,9 @@ def _log_ai_call(
     response: str,
     success: bool,
     latency_ms: int,
-    quality_score: float | None = None,
+    quality_score: Optional[float] = None,
     fallback_used: bool = False,
-    error_message: str | None = None,
+    error_message: Optional[str] = None,
 ) -> None:
     """ai_call_log 테이블에 fire-and-forget insert. 절대 예외를 올리지 않음."""
     try:
@@ -191,7 +190,7 @@ Reply with ONLY the sentence, no quotes, no explanation.
 """
 
 
-async def _ollama_chat(prompt: str, model: str | None = None, timeout: float = 90.0) -> str:
+async def _ollama_chat(prompt: str, model: Optional[str] = None, timeout: float = 90.0) -> str:
     """Ollama /api/chat 호출 → 응답 문자열 반환."""
     url = f"{OLLAMA_HOST.rstrip('/')}/api/chat"
     payload = {

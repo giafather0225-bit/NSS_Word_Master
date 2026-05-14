@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/reminder.py — Home dashboard reminder banners
 Section: Home
 Dependencies: models.py (StreakLog, WordReview, AcademySession, GrowthEvent, DayOffRequest)
@@ -7,7 +6,7 @@ API: GET /api/reminders/today
 """
 
 from datetime import date, datetime, timedelta
-from typing import List
+from typing import List, Optional
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
@@ -53,7 +52,7 @@ def _streak_at_risk(db: Session, today_iso: str) -> bool:
 
 
 # @tag REMINDER HOME_DASHBOARD
-def _stale_lesson(db: Session) -> AcademySession | None:
+def _stale_lesson(db: Session) -> Optional[AcademySession]:
     """
     Return any in-progress AcademySession whose last activity was 2+ days ago.
     Used to warn that a session is approaching the auto-reset boundary.
@@ -74,7 +73,7 @@ def _stale_lesson(db: Session) -> AcademySession | None:
 
 
 # @tag REMINDER HOME_DASHBOARD
-def _pending_day_off(db: Session) -> DayOffRequest | None:
+def _pending_day_off(db: Session) -> Optional[DayOffRequest]:
     """Return the most recent pending Day Off request, if any."""
     try:
         return (
@@ -88,7 +87,7 @@ def _pending_day_off(db: Session) -> DayOffRequest | None:
 
 
 # @tag REMINDER HOME_DASHBOARD
-def _recent_lesson_reset(db: Session) -> GrowthEvent | None:
+def _recent_lesson_reset(db: Session) -> Optional[GrowthEvent]:
     """Return the most recent lesson_reset event from the last 24h."""
     cutoff = (datetime.now() - timedelta(days=1)).isoformat(timespec="seconds")
     try:

@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/files.py — Lesson file upload, storage, and OCR-trigger routes
 Section: English / System
 Dependencies: database, models, file_storage, ocr_pipeline, ocr_vision, ai_tutor,
@@ -16,6 +15,7 @@ Voca-folder ingestion + OCR-pipeline routes (/api/voca/*, /api/ocr/*,
 when this module exceeded the ~500-line limit. Shared helpers live in
 routers/files_common.py.
 """
+from typing import Optional
 
 import json
 import tempfile
@@ -207,7 +207,7 @@ def remove_lesson_file(lesson_id: int, filename: str, db: Session = Depends(get_
 async def trigger_ocr(
     lesson_id: int,
     lang: str = "eng",
-    model: str | None = None,
+    model: Optional[str] = None,
     db: Session = Depends(get_db),
 ):
     """Run Tesseract OCR + Ollama refinement on stored files and save to words/study_items.

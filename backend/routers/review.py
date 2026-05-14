@@ -1,5 +1,4 @@
 """
-from __future__ import annotations
 routers/review.py — SM-2 spaced repetition review routes
 Section: English / CKLA (shared SM-2 infrastructure)
 Dependencies: database, models, sm2
