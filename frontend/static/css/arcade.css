@@ -908,14 +908,14 @@
 .wb-answer-tile {
   background: var(--english-primary);
   border: 2px solid var(--english-hover);
-  color: #fff;
+  color: var(--text-on-primary);
   cursor: pointer;
 }
 .wb-answer-tile:hover { background: var(--english-hover); transform: translateY(-2px); }
 .wb-tile--revealed {
   background: var(--arcade-primary) !important;
   border-color: var(--arcade-hover) !important;
-  color: #fff !important;
+  color: var(--text-on-primary) !important;
 }
 .wb-tile--burst {
   animation: wb-burst 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.4) both;
@@ -1086,7 +1086,7 @@
 .mm-card--word .mm-card-front {
   background: var(--english-primary);
   border: 2px solid var(--english-hover);
-  color: #fff;
+  color: var(--text-on-primary);
   font-size: clamp(11px, 2.2cqw, 16px);
   font-weight: 800;
   font-family: var(--font-family-display);

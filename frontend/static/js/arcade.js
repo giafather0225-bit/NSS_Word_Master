@@ -83,13 +83,16 @@ async function _renderArcadeLobby() {
 
   const bests = await Promise.all(
     ARCADE_GAMES.map((g) => {
-      if (!g.enabled) return Promise.resolve({ score: 0 });
+      if (!g.enabled) return Promise.resolve({ score: 0, daily_cap: 10 });
       const lvParam = g.defaultLevel ? `?level=${g.defaultLevel}` : '';
       return fetch(`/api/arcade/best/${g.id}${lvParam}`)
-        .then((r) => r.ok ? r.json() : { score: 0 })
-        .catch(() => ({ score: 0 }));
+        .then((r) => r.ok ? r.json() : { score: 0, daily_cap: 10 })
+        .catch(() => ({ score: 0, daily_cap: 10 }));
     })
   );
+
+  // daily_cap is included in every best response — read from first enabled game result.
+  const dailyCap = (bests.find((b) => b.daily_cap != null) || {}).daily_cap ?? 10;
 
   const cardFor = (g, i) => {
     const catCls = g.category === 'math' ? 'cat-math' : 'cat-english';
@@ -115,7 +118,7 @@ async function _renderArcadeLobby() {
 
   body.innerHTML = `
     <div class="arcade-xp-note">
-      XP per round — 500+: <b>+1</b>, 1000+: <b>+2</b>, 2000+: <b>+3</b>. Daily max 10 XP.
+      XP per round — 500+: <b>+1</b>, 1000+: <b>+2</b>, 2000+: <b>+3</b>. Daily max <b>${dailyCap}</b> XP.
     </div>
     <div class="arcade-section-label">${_SVG.bookOpen} English</div>
     <div class="arcade-list">${byCat('english')}</div>
@@ -156,7 +159,7 @@ function arcadeReturnToLobby() {
 const _ARCADE_TIPS = {
   word_invaders: 'Type the falling word before it hits the ground. Power-ups drop in gold pills — type their keyword to use them.',
   math_invaders: 'Type the answer to the falling equation, then press Enter.',
-  definition_match: 'Tap Yes if the definition matches the word, No if it does not. 60 seconds.',
+  definition_match: 'Tap Yes if the definition matches the word, No if it does not. 90 seconds.',
   spell_rush: 'Type each word letter-by-letter. Press Enter to submit.',
   crossword: 'Click a square to highlight the word. Type letters in the boxes. Green = correct!',
   sudoku: 'Every row, column, and box must have each number once. Green cells are right, red are wrong.',

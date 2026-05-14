@@ -23,6 +23,7 @@ from backend.services.xp_engine import (
     award_arcade_xp,
     score_to_arcade_tier,
     ARCADE_DAILY_CAP,
+    get_arcade_daily_cap,
 )
 from backend.services import streak_engine
 
@@ -168,10 +169,16 @@ def arcade_words(count: int = 40, db: Session = Depends(get_db)) -> dict:
 # @tag ARCADE
 @router.get("/api/arcade/best/{game}")
 def arcade_best(game: str, level: str = "", db: Session = Depends(get_db)) -> dict:
-    """Return personal best score for a given arcade game (optionally per level)."""
+    """Return personal best score for a given arcade game (optionally per level).
+
+    Also returns ``daily_cap`` so the lobby can display the live configured value
+    without a separate config endpoint.
+    """
     if game not in _ALLOWED_GAMES:
         raise HTTPException(status_code=422, detail=f"unknown game '{game}'")
-    return _get_best(db, game, level)
+    result = _get_best(db, game, level)
+    result["daily_cap"] = get_arcade_daily_cap(db)
+    return result
 
 
 class ScoreRequest(BaseModel):

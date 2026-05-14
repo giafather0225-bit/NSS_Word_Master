@@ -5,6 +5,25 @@
    API endpoints: POST /api/arcade/score
    ================================================================ */
 
+/** Read a CSS custom property from :root (same helper pattern as _wiCssVar). @tag ARCADE @tag THEME */
+function _miCssVar(name, fallback) {
+  try {
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return v || fallback;
+  } catch (_e) { return fallback; }
+}
+
+/** Centralized color palette — semantic tokens from theme.css; canvas-only
+ * game tokens (deep-space bg) kept as named exemptions (no theme equivalent). @tag ARCADE @tag THEME */
+const MI_COLORS = {
+  success: _miCssVar('--color-success', '#34C759'),
+  error:   _miCssVar('--color-error',   '#FF3B30'),
+  white:   '#FFFFFF',
+  // arcade-only canvas palette (space background — no theme equivalent)
+  bgTop:   '#0B1E3F',
+  bgBot:   '#060B1A',
+};
+
 /** @tag ARCADE */
 const MI_LEVELS = {
   easy:   { label: 'Easy',   ops: ['+','-'],            max: 10, fall: 22, spawnMin: 3200, spawnMax: 5000, ramp: 0.10, maxActive: 3 },
@@ -133,11 +152,11 @@ function _miKeydown(e) {
 
   if (hitIdx >= 0) {
     const en = _mi.active[hitIdx];
-    _miBurst(en.x, en.y + 18, '#34C759');
+    _miBurst(en.x, en.y + 18, MI_COLORS.success);
     _mi.active.splice(hitIdx, 1);
     const gained = 15 + Math.min(30, _mi.streak * 3);
     _mi.score += gained;
-    _mi.floats.push({ x: en.x, y: en.y, text: '+' + gained, color: '#34C759', life: 0.9, maxLife: 0.9, vy: -80 });
+    _mi.floats.push({ x: en.x, y: en.y, text: '+' + gained, color: MI_COLORS.success, life: 0.9, maxLife: 0.9, vy: -80 });
     _mi.streak += 1; _mi.correct += 1; _mi.total += 1;
     if (typeof sfxHit === 'function') sfxHit(_mi.streak);
     if (_mi.streak > 0 && _mi.streak % 5 === 0) {
@@ -229,7 +248,7 @@ function _miLoop(ts) {
     const en = _mi.active[i];
     en.y += _mi.fallSpeed * dt;
     if (en.y >= floorY) {
-      _miBurst(en.x, floorY, '#FF3B30');
+      _miBurst(en.x, floorY, MI_COLORS.error);
       _mi.active.splice(i, 1);
       _mi.lives -= 1; _mi.streak = 0; _mi.total += 1;
       _mi.shakeUntil = ts + 280;
@@ -263,7 +282,7 @@ function _miDraw(ts) {
   }
   ctx.save(); ctx.translate(sx, sy);
   const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, '#0B1E3F'); grad.addColorStop(1, '#060B1A');
+  grad.addColorStop(0, MI_COLORS.bgTop); grad.addColorStop(1, MI_COLORS.bgBot);
   ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
 
   ctx.fillStyle = 'rgba(255,255,255,0.18)';
@@ -274,10 +293,11 @@ function _miDraw(ts) {
   }
   const floorY = H - 60;
   const pulse = 0.5 + 0.5 * Math.sin(ts / 200);
-  ctx.strokeStyle = `rgba(255, 59, 48, ${0.35 + pulse * 0.25})`;
+  ctx.globalAlpha = 0.35 + pulse * 0.25;
+  ctx.strokeStyle = MI_COLORS.error;
   ctx.lineWidth = 2; ctx.setLineDash([8, 6]);
   ctx.beginPath(); ctx.moveTo(0, floorY); ctx.lineTo(W, floorY); ctx.stroke();
-  ctx.setLineDash([]);
+  ctx.setLineDash([]); ctx.globalAlpha = 1;
 
   ctx.font = '700 22px -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif';
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
@@ -294,7 +314,7 @@ function _miDraw(ts) {
     ctx.fillStyle = `hsl(${hue}, 75%, 55%)`;
     _arcadeRoundRect(ctx, x, y, w, h, 14); ctx.fill();
     ctx.shadowBlur = 0;
-    ctx.fillStyle = '#FFFFFF';
+    ctx.fillStyle = MI_COLORS.white;
     ctx.fillText(text, x + w / 2, y + h / 2 + 1);
   });
   _mi.particles.forEach((p) => {
