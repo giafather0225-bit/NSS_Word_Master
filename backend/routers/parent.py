@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/parent.py — Parent Dashboard core: PIN, task settings, schedule,
                     config, day-off, shared helpers.
 

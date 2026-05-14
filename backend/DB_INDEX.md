@@ -138,7 +138,7 @@ SM-2 spaced repetition review records.
 | subject | String | |
 | textbook | String | |
 | lesson | String | |
-| easiness | String | SM-2 factor, default "2.5" |
+| easiness | Float | SM-2 factor, default 2.5 (migration 056) |
 | interval | Integer | days until next review |
 | repetitions | Integer | total correct streak |
 | next_review | String | YYYY-MM-DD |

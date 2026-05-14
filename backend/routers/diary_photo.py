@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/diary_photo.py — Diary photo upload / serve / delete.
 Section: Diary
 Dependencies: models.py (DiaryEntry), database.py (LEARNING_ROOT)

@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 services/streak_engine.py — Streak tracking and calculation
 Section: System
 Dependencies: models.py (StreakLog, DayOffRequest, AppConfig, WordReview)

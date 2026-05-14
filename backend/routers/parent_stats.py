@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/parent_stats.py — Parent Dashboard read-only stats endpoints
 Section: Parent
 Dependencies: models.py (LearningLog, WordAttempt, XPLog, Progress),

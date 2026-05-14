@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/reward_shop.py — Reward Shop API
 Section: System / Shop
 Dependencies: models.py (RewardItem, PurchasedReward, AppConfig),

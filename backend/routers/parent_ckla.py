@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/parent_ckla.py — Parent Dashboard: CKLA progress summary
 Section: Parent
 Dependencies: models/ckla, models/gamification (XPLog)

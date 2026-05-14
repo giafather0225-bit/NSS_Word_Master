@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/xp.py — XP system, Streak, and Today's Tasks API
 Section: System
 Dependencies: services/xp_engine.py, services/streak_engine.py,

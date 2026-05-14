@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/diary.py — GIA's Daily Journal + Growth Timeline.
 Section: Diary
 Dependencies: models.py (DiaryEntry, GrowthEvent)

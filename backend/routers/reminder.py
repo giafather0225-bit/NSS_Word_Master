@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/reminder.py — Home dashboard reminder banners
 Section: Home
 Dependencies: models.py (StreakLog, WordReview, AcademySession, GrowthEvent, DayOffRequest)

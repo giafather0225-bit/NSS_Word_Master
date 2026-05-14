@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/growth_theme.py — Growth Theme progress API
 Section: Growth Theme
 Dependencies: models.py (GrowthThemeProgress, GrowthEvent),

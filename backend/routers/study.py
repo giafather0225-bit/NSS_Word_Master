@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/study.py — Study session data and learning analytics logging routes
 Section: English
 Dependencies: database, models, voca_sync

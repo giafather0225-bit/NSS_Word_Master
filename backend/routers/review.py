@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/review.py — SM-2 spaced repetition review routes
 Section: English / CKLA (shared SM-2 infrastructure)
 Dependencies: database, models, sm2
@@ -96,7 +97,7 @@ def register_lesson_for_review(
                 subject=req.subject,
                 textbook=req.textbook,
                 lesson=req.lesson,
-                easiness="2.5",
+                easiness=2.5,
                 interval=0,
                 repetitions=0,
                 next_review=tomorrow,
@@ -163,7 +164,7 @@ def get_today_reviews(
             "answer":         answer,
             "hint":           hint,
             "extra_data":     extra,
-            "easiness":       float(wr.easiness),
+            "easiness":       wr.easiness,
             "interval":       wr.interval,
             "repetitions":    wr.repetitions,
             "total_reviews":  wr.total_reviews,
@@ -207,7 +208,7 @@ def register_words_for_review(req: RegisterWordsRequest, db: Session = Depends(g
                 subject="English",
                 textbook="",
                 lesson="",
-                easiness="2.5",
+                easiness=2.5,
                 interval=0,
                 repetitions=0,
                 next_review=tomorrow,
@@ -243,13 +244,13 @@ def submit_review_result(req: ReviewResultRequest, db: Session = Depends(get_db)
     new_reps, new_ease, new_interval, next_date = sm2_calculate(
         quality=quality,
         repetitions=wr.repetitions,
-        easiness=float(wr.easiness),
+        easiness=wr.easiness,
         interval=wr.interval,
     )
 
     try:
         wr.repetitions   = new_reps
-        wr.easiness      = str(round(new_ease, 2))
+        wr.easiness      = round(new_ease, 2)
         wr.interval      = new_interval
         wr.next_review   = next_date.isoformat()
         wr.last_review   = _date.today().isoformat()
@@ -283,7 +284,7 @@ def submit_review_result(req: ReviewResultRequest, db: Session = Depends(get_db)
             "review_id":    wr.id,
             "word":         wr.word,
             "quality":      quality,
-            "new_easiness": float(wr.easiness),
+            "new_easiness": wr.easiness,
             "new_interval": wr.interval,
             "next_review":  wr.next_review,
             "repetitions":  wr.repetitions,
@@ -321,7 +322,7 @@ def get_review_stats(db: Session = Depends(get_db)):
         "struggling_words": [
             {
                 "word":          w.word,
-                "easiness":      float(w.easiness),
+                "easiness":      w.easiness,
                 "interval":      w.interval,
                 "total_reviews": w.total_reviews,
                 "accuracy":      round(w.total_correct / max(1, w.total_reviews) * 100),

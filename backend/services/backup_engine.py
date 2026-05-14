@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 services/backup_engine.py — SQLite DB auto-backup with rolling retention
 Section: System
 Dependencies: shutil, pathlib (stdlib only)

@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/ckla.py — CKLA grade-aware reading curriculum API
 Section: Academy
 Dependencies: models/ckla, models/us_academy, database, services/ckla_grader
@@ -501,7 +502,7 @@ def update_lesson_progress(
                     subject="English",
                     textbook="CKLA",
                     lesson=str(lesson_id),
-                    easiness="2.5",
+                    easiness=2.5,
                     interval=0,
                     repetitions=0,
                     next_review=tomorrow,

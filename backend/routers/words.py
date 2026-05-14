@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/words.py — Word CRUD, lesson word retrieval, and My Words routes
 Section: English
 Dependencies: database, models

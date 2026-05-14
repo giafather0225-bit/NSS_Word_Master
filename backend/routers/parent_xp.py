@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/parent_xp.py — Parent Dashboard XP Rules & Report endpoints
 Section: Parent
 Dependencies: models.py (AppConfig, XPLog), services/xp_engine.py,

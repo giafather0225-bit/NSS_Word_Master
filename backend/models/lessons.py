@@ -4,7 +4,7 @@ Section: English
 Dependencies: ._base.Base
 """
 
-from sqlalchemy import Column, Integer, String, ForeignKey, Index
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Index
 
 from ._base import Base
 
@@ -110,7 +110,7 @@ class WordReview(Base):
     textbook       = Column(String, default="")
     lesson         = Column(String, default="")
 
-    easiness       = Column(String, default="2.5")
+    easiness       = Column(Float, default=2.5)
     interval       = Column(Integer, default=0)
     repetitions    = Column(Integer, default=0)
     next_review    = Column(String)

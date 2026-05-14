@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/math_daily.py — Math Daily Challenge API
 Section: Math
 Dependencies: models.py (MathDailyChallenge), services/xp_engine.py

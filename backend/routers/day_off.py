@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/day_off.py — GIA's Day Off requests (child-side submission + listing).
 Section: Diary
 Dependencies: models.py (AppConfig, DayOffRequest), services/email_sender.py

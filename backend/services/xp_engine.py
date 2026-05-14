@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 services/xp_engine.py — XP calculation and award logic
 Section: System
 Dependencies: models.py (XPLog, WordReview)

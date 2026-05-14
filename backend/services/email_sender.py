@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 services/email_sender.py — Minimal SMTP email sender for parent notifications.
 Section: System
 Dependencies: stdlib (smtplib, ssl, email)

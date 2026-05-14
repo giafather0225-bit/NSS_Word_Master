@@ -64,7 +64,7 @@ def _register_daily_words_for_review(db: Session, today_payload: dict) -> None:
         db.add(WordReview(
             study_item_id=None, word=name,
             subject="English", textbook="", lesson="",
-            easiness="2.5", interval=0, repetitions=0,
+            easiness=2.5, interval=0, repetitions=0,
             next_review=tomorrow, last_review="",
             total_reviews=0, total_correct=0,
             source="daily",

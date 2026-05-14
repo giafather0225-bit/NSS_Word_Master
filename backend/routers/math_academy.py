@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/math_academy.py — Math Academy API (grades, units, lessons, stages)
 Section: Math
 Dependencies: models.py (MathProblem, MathProgress, MathAttempt), services/xp_engine.py

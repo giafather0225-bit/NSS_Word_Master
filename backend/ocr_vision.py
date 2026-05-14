@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 NSS Word Master — Vision LLM Direct Extraction Pipeline v2.
 ============================================================
 Single-pass: image → Vision LLM → structured JSON.

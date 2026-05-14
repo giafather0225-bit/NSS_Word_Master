@@ -1,4 +1,5 @@
 """
+from __future__ import annotations
 routers/files.py — Lesson file upload, storage, and OCR-trigger routes
 Section: English / System
 Dependencies: database, models, file_storage, ocr_pipeline, ocr_vision, ai_tutor,
