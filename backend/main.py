@@ -113,6 +113,19 @@ async def lifespan(application: FastAPI):
 
     # Ollama starts lazily on first AI request (see ollama_manager.ensure_ollama_once)
 
+    # Auto-run all DB migrations on startup
+    _mig_dir = Path(__file__).parent / "migrations"
+    for _mig in sorted(_mig_dir.glob("[0-9]*.py")):
+        try:
+            import importlib.util as _ilu
+            _spec = _ilu.spec_from_file_location(_mig.stem, _mig)
+            _mod = _ilu.module_from_spec(_spec)
+            _spec.loader.exec_module(_mod)
+            if hasattr(_mod, "migrate"):
+                _mod.migrate()
+        except Exception as _e:
+            logger.warning("[migration] %s failed: %s", _mig.name, _e)
+
     # Auto-rebuild JS bundles so JS edits take effect on server restart
     _build_sh = Path(__file__).parent.parent / "build.sh"
     if _build_sh.exists():
