@@ -168,7 +168,7 @@ async def lifespan(application: FastAPI):
             _track.commit()
             _applied += 1
             logger.info("[migration] applied %s", _mig.name)
-        except Exception as _e:
+        except (Exception, SystemExit) as _e:
             _failed += 1
             logger.warning("[migration] %s failed: %s", _mig.name, _e)
 

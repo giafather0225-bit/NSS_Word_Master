@@ -116,7 +116,7 @@ def run(db_path: str = str(DB_PATH)) -> None:
 
     print(f"\n[050] Done — generated {ok}, skipped {skip} (already existed), failed {fail}.")
     if fail:
-        sys.exit(1)
+        print(f"[050] Warning: {fail} audio files could not be generated (TTS unavailable at startup).")
 
 
 if __name__ == "__main__":
