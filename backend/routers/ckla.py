@@ -961,11 +961,17 @@ async def submit_domain_test(
     fail_key = f"ckla_domain_test_consec_fails_d{domain_num}_g{grade}"
     fail_cfg = db.query(AppConfig).filter_by(key=fail_key).first()
     if passed:
-        # commit=False: XP + fail_cfg reset + time + history committed atomically at db.commit() below.
+        # commit=False: XP + streak + fail_cfg reset + time + history committed atomically at db.commit() below.
         xp_awarded = award_xp(db, "ckla_domain_test_pass", detail=f"domain_{domain_num}_grade_{grade}", commit=False)
         # Island: Domain Test pass → Forest character final-test gain
         try:
             _island_apply_gain(db, "english", "english_final_test")
+        except Exception:
+            pass
+        # Streak: Domain Test counts as meaningful CKLA study for the day.
+        # commit=False so it joins the single db.commit() below (atomic with XPLog).
+        try:
+            mark_ckla_done(db, commit=False)
         except Exception:
             pass
         if fail_cfg:

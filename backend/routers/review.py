@@ -265,6 +265,15 @@ def submit_review_result(req: ReviewResultRequest, db: Session = Depends(get_db)
         except Exception:
             pass
 
+        # Mark review_done on today's StreakLog so the "english" streak subject
+        # (_english_ok) is satisfied when reviews were due.  Silently ignored on
+        # any error so a streak-engine failure never blocks a review submission.
+        try:
+            from backend.services import streak_engine as _streak
+            _streak.mark_review_done(db)
+        except Exception:
+            logger.warning("mark_review_done failed silently after review submission", exc_info=True)
+
         return {
             "review_id":    wr.id,
             "word":         wr.word,

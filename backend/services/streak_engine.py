@@ -156,13 +156,25 @@ def mark_ckla_done(db: Session, day: str | None = None, commit: bool = True) -> 
                 db.commit(). Pass commit=False when called inside a larger
                 transaction (e.g. update_lesson_progress) to keep all writes
                 atomic.
+
+    Note: Streak Lumi is always awarded when the streak transitions to maintained
+    for the first time today — even in the commit=False path.  _evaluate_streak
+    skips lumi to avoid a premature inner commit, so we re-check streak state
+    here after evaluation and award directly.  _award_streak_lumi is silent on
+    errors and has its own internal commit, which is safe in SQLite WAL mode.
     """
     log = get_or_create_streak_log(db, day)
+    was_maintained = bool(log.streak_maintained)
+    today_str = date.today().isoformat()
     if not log.ckla_done:
         log.ckla_done = True
         if commit:
             db.commit()
     _evaluate_streak(db, log, commit=commit)
+    # commit=False path: _evaluate_streak skipped lumi to avoid a premature inner
+    # commit. The streak state is already resolved in-memory — award lumi now.
+    if not commit and not was_maintained and log.streak_maintained and log.date == today_str:
+        _award_streak_lumi(db)
 
 
 # ─── Island lumi for streak ───────────────────────────────────
@@ -270,6 +282,10 @@ def re_evaluate_range(db: Session, days: int = 7) -> int:
 
     Used when the parent changes the streak rule and wants retroactive recalc.
     Returns the number of logs re-evaluated.
+
+    All per-day evaluations run with commit=False; a single db.commit() is
+    issued at the end so the entire re-evaluation is one atomic write
+    (avoids N individual round-trips to SQLite).
     """
     today = date.today()
     count = 0
@@ -277,8 +293,10 @@ def re_evaluate_range(db: Session, days: int = 7) -> int:
         d = (today - timedelta(days=i)).isoformat()
         log = db.query(StreakLog).filter(StreakLog.date == d).first()
         if log:
-            _evaluate_streak(db, log)
+            _evaluate_streak(db, log, commit=False)
             count += 1
+    if count:
+        db.commit()
     return count
 
 

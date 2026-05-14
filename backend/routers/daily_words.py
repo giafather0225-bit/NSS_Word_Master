@@ -200,8 +200,12 @@ def daily_words_weekly_test_result(body: WeeklyTestResultIn, db: Session = Depen
         should_advance_grade = body.advance_grade or (adjustment == "advance")
         new_grade = dwe.advance_cycle(db) if should_advance_grade else _advance_cycle_same_grade(db)
 
-        # Mark daily words done for streak (commits both XPLog and StreakLog together)
-        streak_engine.mark_daily_words_done(db)
+        # Streak: only award when the test is passed. A failed weekly test means
+        # the student did not meet the weekly goal, so daily_words_done stays False.
+        # On pass: commits both XPLog (award_xp commit=False above) + StreakLog atomically.
+        # On fail: cycle advance already committed above; no XPLog pending.
+        if passed:
+            streak_engine.mark_daily_words_done(db)
 
         return {
             "ok": True,

@@ -115,6 +115,32 @@ def save_review_result(req: ReviewResult, db: Session = Depends(get_db)):
             prog.wrong_count = (prog.wrong_count or 0) + 1
 
         db.commit()
+
+        # Island care: apply gain when all CKLA word reviews for today are done.
+        try:
+            from backend.services import island_care_engine as _care
+            today = TODAY()
+            ckla_ids = _ckla_word_ids(db)
+            due_remaining = (
+                db.query(USAcademyWordProgress)
+                .filter(
+                    USAcademyWordProgress.word_id.in_(ckla_ids),
+                    USAcademyWordProgress.next_review <= today,
+                )
+                .count()
+            ) if ckla_ids else 0
+            if due_remaining == 0:
+                _care.apply_subject_gain(db, "english", "review")
+        except Exception:
+            pass
+
+        # Streak: mark review_done so the "english" streak subject is satisfied.
+        try:
+            from backend.services import streak_engine as _streak
+            _streak.mark_review_done(db)
+        except Exception:
+            pass
+
         return {"next_review": prog.next_review, "interval_days": new_interval}
     except SQLAlchemyError as e:
         db.rollback()
