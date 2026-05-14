@@ -88,7 +88,10 @@ async def lifespan(application: FastAPI):
     global _folder_observer
     _folder_observer = start_watcher(VOCA_ROOT)
 
-    # Auto-run all DB migrations on startup (all migrations are idempotent)
+    # Auto-run all DB migrations on startup
+    # Tracking table `migrations_applied` ensures each file runs exactly once.
+    # On first boot after this change, all existing migrations re-run once (safe —
+    # every migration is idempotent), then are recorded and skipped forever after.
     import importlib.util as _ilu
     import inspect as _inspect
     import sqlite3 as _sqlite3
@@ -97,15 +100,14 @@ async def lifespan(application: FastAPI):
     _mig_dir = Path(__file__).parent / "migrations"
 
     def _call_migration(_mod) -> bool:
-        """Call whichever entry-point function the migration file defines.
+        """Dispatch to whichever entry-point function the migration file defines.
 
-        Handles all naming/signature conventions in use:
-          migrate()            run_migration()         → no-arg call
-          run()                                        → no-arg call
-          run(conn)            (sqlite3.Connection)    → open conn, pass it
-          run(db_path)         (Path)                  → pass Path object
-          run(db_path)         (str)                   → pass str(DB_PATH)
-        Returns True if a function was found and called, False if skipped.
+        Handles all naming/signature conventions:
+          migrate() / run_migration() / run() / main()  → no-arg
+          run(conn: sqlite3.Connection)                  → open conn, pass it
+          run(db_path: Path)                             → pass Path object
+          run(db_path: str)                              → pass str(DB_PATH)
+        Returns True if dispatched, False if no entry point found.
         """
         for _fname in ("migrate", "run_migration", "run", "main"):
             _fn = getattr(_mod, _fname, None)
@@ -114,38 +116,67 @@ async def lifespan(application: FastAPI):
             _params = list(_inspect.signature(_fn).parameters.values())
             _required = [p for p in _params if p.default is _inspect.Parameter.empty]
             if not _params or not _required:
-                # No params (or all have defaults) — call with no args
                 _fn()
                 return True
-            # Single required param — inspect annotation / name to decide type
             _p = _required[0]
             _ann = _p.annotation
-            _name = _p.name.lower()
-            if _ann is _sqlite3.Connection or "conn" in _name:
-                _conn = _sqlite3.connect(str(_DB_PATH))
+            _pname = _p.name.lower()
+            if _ann is _sqlite3.Connection or "conn" in _pname:
+                _c = _sqlite3.connect(str(_DB_PATH))
                 try:
-                    _fn(_conn)
-                    _conn.commit()
+                    _fn(_c)
+                    _c.commit()
                 finally:
-                    _conn.close()
+                    _c.close()
                 return True
-            if _ann is Path or "path" in _name:
+            if _ann is Path or "path" in _pname:
                 _fn(_DB_PATH)
                 return True
-            # Fallback: pass str path
             _fn(str(_DB_PATH))
             return True
         return False
 
+    # Bootstrap tracking table (runs before any migration)
+    _track = _sqlite3.connect(str(_DB_PATH))
+    _track.execute("""
+        CREATE TABLE IF NOT EXISTS migrations_applied (
+            filename   TEXT PRIMARY KEY,
+            applied_at TEXT NOT NULL DEFAULT (datetime('now'))
+        )
+    """)
+    _track.commit()
+
+    _applied = _skipped = _failed = 0
     for _mig in sorted(_mig_dir.glob("[0-9]*.py")):
+        # Skip if already recorded
+        if _track.execute(
+            "SELECT 1 FROM migrations_applied WHERE filename = ?", (_mig.name,)
+        ).fetchone():
+            _skipped += 1
+            continue
         try:
             _spec = _ilu.spec_from_file_location(_mig.stem, _mig)
             _mod = _ilu.module_from_spec(_spec)
             _spec.loader.exec_module(_mod)
             if not _call_migration(_mod):
                 logger.debug("[migration] %s — no entry point, skipped", _mig.name)
+                continue
+            _track.execute(
+                "INSERT OR IGNORE INTO migrations_applied (filename) VALUES (?)",
+                (_mig.name,),
+            )
+            _track.commit()
+            _applied += 1
+            logger.info("[migration] applied %s", _mig.name)
         except Exception as _e:
+            _failed += 1
             logger.warning("[migration] %s failed: %s", _mig.name, _e)
+
+    _track.close()
+    logger.info(
+        "[migration] done — applied=%d  skipped=%d  failed=%d",
+        _applied, _skipped, _failed,
+    )
 
     # Phase 10: auto-backup DB (idempotent — no-op if today's snapshot exists)
     try:
