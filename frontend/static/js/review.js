@@ -15,6 +15,7 @@
   let badgeInFlight = false;
   let openReviewInFlight = false;
   let submitInFlight = false;
+  let _lastIslandData = null;   // island gain from the last /api/review/result response
 
   function escapeHtml(s) {
     return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -251,7 +252,7 @@
     var attempts = quality <= 1 ? 3 : quality <= 3 ? 2 : 1;
 
     try {
-      await fetch("/api/review/result", {
+      const res = await fetch("/api/review/result", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -260,6 +261,14 @@
           attempts: attempts
         })
       });
+      if (res.ok) {
+        try {
+          const d = await res.json();
+          // Store island gain data; only the last response that triggers gain
+          // (when due_remaining == 0) will have level_up/char_xp_gained.
+          if (d?.island) _lastIslandData = d.island;
+        } catch (_) {}
+      }
     } catch (e) {
       console.error("Review submit error:", e);
     } finally {
@@ -301,7 +310,7 @@
       var content = doneOverlay.querySelector(".review-done-content");
       if (content) content.appendChild(islandSlot);
     }
-    if (typeof _appendIslandUpdate === "function") _appendIslandUpdate(islandSlot);
+    if (typeof _appendIslandUpdate === "function") _appendIslandUpdate(islandSlot, _lastIslandData);
   }
 
   /* ── Init ── */

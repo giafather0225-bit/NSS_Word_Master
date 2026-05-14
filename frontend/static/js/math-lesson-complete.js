@@ -86,7 +86,7 @@ async function renderMathComplete() {
     document.getElementById('math-complete-back-btn')
         .addEventListener('click', () => exitMathLesson());
     if (typeof _appendIslandUpdate === 'function') {
-        _appendIslandUpdate(document.getElementById('math-island-update'));
+        _appendIslandUpdate(document.getElementById('math-island-update'), mathState.islandData ?? null);
     }
     if (typeof lucide !== 'undefined') lucide.createIcons();
 }

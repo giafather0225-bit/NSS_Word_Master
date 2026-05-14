@@ -845,7 +845,7 @@ async function _dwSave() {
             islandSlot.id = "dw-island-update";
             const saveBtn = document.getElementById("dw-save");
             if (saveBtn && saveBtn.parentElement) saveBtn.parentElement.appendChild(islandSlot);
-            _appendIslandUpdate(islandSlot);
+            _appendIslandUpdate(islandSlot, data?.island ?? null);
         }
         _dwOnSaveSuccess(today);
     } catch (err) {

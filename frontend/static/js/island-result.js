@@ -13,8 +13,11 @@
  * No-op if island is off, no char is active, or fetch fails.
  * @tag SHOP
  * @param {HTMLElement} containerEl  — element to append card into
+ * @param {Object}      [islandExtra] — session-specific island data from the study API response.
+ *   Shape: {level_up:bool, new_level:int, char_xp_gained:int}.
+ *   When provided, level-up and XP rows are shown; otherwise those rows are suppressed.
  */
-async function _appendIslandUpdate(containerEl) {
+async function _appendIslandUpdate(containerEl, islandExtra) {
     if (!containerEl) return;
     try {
         const d = await apiFetchJSON('/api/island/notifications');
@@ -26,13 +29,13 @@ async function _appendIslandUpdate(containerEl) {
         const charName   = ac?.name              ?? '';
         const hunger     = ac?.hunger            ?? null;
         const happiness  = ac?.happiness         ?? null;
-        // xp_gained / level_up / evolved are session-specific events not tracked by notifications;
-        // they are intentionally suppressed here until a dedicated session endpoint is added.
-        const xpGained   = 0;
-        const levelUp    = false;
-        const evolved    = false;
+        // Session-specific events come from the study completion response (islandExtra).
+        const xpGained   = islandExtra?.char_xp_gained ?? 0;
+        const levelUp    = islandExtra?.level_up        ?? false;
+        const newLevel   = islandExtra?.new_level       ?? null;
+        const evolved    = false; // evolution is player-triggered via evo stone, never automatic
 
-        const hasUpdate  = lumiEarned > 0;
+        const hasUpdate  = lumiEarned > 0 || xpGained > 0 || levelUp;
         if (!hasUpdate && !charName) return;
 
         const card = document.createElement('div');
@@ -44,11 +47,11 @@ async function _appendIslandUpdate(containerEl) {
                 ${charName ? `<span class="ir-char">${escapeHtml(charName)}</span>` : ''}
             </div>
             <div class="ir-rows">
-                ${xpGained   > 0    ? `<div class="ir-row"><i data-lucide="zap"></i><span>+${xpGained} XP earned</span></div>` : ''}
+                ${xpGained   > 0    ? `<div class="ir-row"><i data-lucide="zap"></i><span>+${xpGained} Char XP</span></div>` : ''}
                 ${lumiEarned > 0    ? `<div class="ir-row"><i data-lucide="gem"></i><span>+${lumiEarned} Lumi earned</span></div>` : ''}
                 ${hunger !== null   ? `<div class="ir-row ir-row--gauge"><i data-lucide="apple"></i><span>Hunger ${hunger}%</span>${_irGaugeBar(hunger)}</div>` : ''}
                 ${happiness !== null? `<div class="ir-row ir-row--gauge"><i data-lucide="heart"></i><span>Mood ${happiness}%</span>${_irGaugeBar(happiness)}</div>` : ''}
-                ${levelUp           ? `<div class="ir-row ir-row--event"><i data-lucide="trending-up"></i><span>Level Up!</span></div>` : ''}
+                ${levelUp           ? `<div class="ir-row ir-row--event"><i data-lucide="trending-up"></i><span>Level Up!${newLevel ? ` → Lv ${newLevel}` : ''}</span></div>` : ''}
                 ${evolved           ? `<div class="ir-row ir-row--event"><i data-lucide="sparkles"></i><span>Evolved!</span></div>` : ''}
             </div>`;
         containerEl.appendChild(card);

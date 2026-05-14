@@ -384,10 +384,12 @@ def apply_subject_gain(db: Session, subject: str, source: str) -> dict:
     xp_multiplier = 1.0
     aggregated_level_up = False
     aggregated_new_level = 1
+    aggregated_char_xp = 0
 
     for prog in active_progs:
         try:
             result = apply_study_gain(db, prog.id, source)
+            aggregated_char_xp += result.get("xp_gained", 0)
             if result.get("level_up"):
                 aggregated_level_up = True
                 aggregated_new_level = result.get("new_level", 1)
@@ -405,4 +407,5 @@ def apply_subject_gain(db: Session, subject: str, source: str) -> dict:
         "xp_multiplier": xp_multiplier,
         "level_up": aggregated_level_up,
         "new_level": aggregated_new_level,
+        "char_xp_gained": aggregated_char_xp,
     }

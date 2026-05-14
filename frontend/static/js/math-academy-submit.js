@@ -304,6 +304,7 @@ function _renderExitQuizResult(data) {
             mathState.correct = score;
             mathState.spacedReviewDate = reviewDate;
             mathState.xpEarned = xp;
+            mathState.islandData = data.island ?? null;  // passed to _appendIslandUpdate
             loadMathStage('complete');
         }
         return;
