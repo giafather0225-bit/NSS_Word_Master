@@ -489,7 +489,6 @@ async function startLessonAt(stageKey) {
     btn.id = 'english-lesson-header';
     btn.className = 'eng-exit-btn';
     btn.innerHTML = '<i data-lucide="x"></i> Exit';
-    if (typeof lucide !== 'undefined') lucide.createIcons();
     btn.addEventListener('click', function() {
       if (typeof exitEnglishLesson === 'function') exitEnglishLesson();
       else if (typeof switchView === 'function') switchView('home');
@@ -500,6 +499,9 @@ async function startLessonAt(stageKey) {
       btn.style.cssText = 'position:fixed;top:12px;right:16px;z-index:9999;';
       document.body.appendChild(btn);
     }
+    // createIcons() must run after the button is in the DOM, else the
+    // <i data-lucide="x"> placeholder is left unconverted.
+    if (typeof lucide !== 'undefined') lucide.createIcons();
   })();
     enterSessionSidebar();
     setStatus(`${stageTitle()} — start!`);

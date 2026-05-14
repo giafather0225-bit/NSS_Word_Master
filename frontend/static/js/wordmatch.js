@@ -197,8 +197,10 @@ function renderMeaningMatch(el) {
     scheduleWmDraw();
 
     wmState.scrollHandler = function () { scheduleWmDraw(); };
+    // Both registered with capture:true so clearWmScrollHandler()'s
+    // removeEventListener(..., true) matches and actually detaches them.
     window.addEventListener("scroll", wmState.scrollHandler, { passive: true, capture: true });
-    window.addEventListener("resize", wmState.scrollHandler, { passive: true });
+    window.addEventListener("resize", wmState.scrollHandler, { passive: true, capture: true });
 
     // Wire word buttons
     el.querySelectorAll(".wm-word-btn:not([disabled])").forEach(function (btn) {

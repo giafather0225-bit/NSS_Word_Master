@@ -172,8 +172,9 @@ def lesson_lookup(
 @router.post("/api/voca/create-lesson/{lesson}")
 def create_voca_lesson(lesson: str, textbook: str = "Voca_8000"):
     """Create an empty lesson folder under English/{textbook}/."""
-    lesson_key = _validate_lesson(lesson)
-    lesson_dir = LEARNING_ROOT / "English" / textbook / lesson_key
+    lesson_key   = _validate_lesson(lesson)
+    textbook_key = _validate_name(textbook, "textbook")
+    lesson_dir = LEARNING_ROOT / "English" / textbook_key / lesson_key
     lesson_dir.mkdir(parents=True, exist_ok=True)
     return {"created": True, "lesson": lesson_key, "path": str(lesson_dir)}
 
@@ -182,7 +183,8 @@ def create_voca_lesson(lesson: str, textbook: str = "Voca_8000"):
 @router.get("/api/voca/folders")
 def list_voca_folders(textbook: str = "Voca_8000"):
     """Return folder list with image counts and word counts for English/{textbook}/."""
-    root = LEARNING_ROOT / "English" / textbook
+    textbook_key = _validate_name(textbook, "textbook")
+    root = LEARNING_ROOT / "English" / textbook_key
     if not root.is_dir():
         return {"folders": []}
     folders = []
@@ -212,8 +214,9 @@ def list_voca_folders(textbook: str = "Voca_8000"):
 @router.get("/api/voca/folder-detail/{lesson}")
 def voca_folder_detail(lesson: str, textbook: str = "Voca_8000"):
     """Return images and words for a specific lesson folder."""
-    lesson_key = _validate_lesson(lesson)
-    lesson_dir = LEARNING_ROOT / "English" / textbook / lesson_key
+    lesson_key   = _validate_lesson(lesson)
+    textbook_key = _validate_name(textbook, "textbook")
+    lesson_dir = LEARNING_ROOT / "English" / textbook_key / lesson_key
     if not lesson_dir.is_dir():
         lesson_dir.mkdir(parents=True, exist_ok=True)
 
@@ -252,8 +255,9 @@ def voca_folder_detail(lesson: str, textbook: str = "Voca_8000"):
 @router.delete("/api/voca/folder/{lesson}")
 def delete_voca_folder(lesson: str, textbook: str = "Voca_8000", db: Session = Depends(get_db)):
     """Delete a lesson folder and its DB records."""
-    lesson_key = _validate_lesson(lesson)
-    lesson_dir = LEARNING_ROOT / "English" / textbook / lesson_key
+    lesson_key   = _validate_lesson(lesson)
+    textbook_key = _validate_name(textbook, "textbook")
+    lesson_dir = LEARNING_ROOT / "English" / textbook_key / lesson_key
     if not lesson_dir.is_dir():
         raise HTTPException(status_code=404, detail="Folder not found")
     shutil.rmtree(lesson_dir)
