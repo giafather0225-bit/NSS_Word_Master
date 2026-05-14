@@ -260,7 +260,8 @@ function renderMeaningMatch(el) {
                         advanceToNextStage();
                     }
                 } else {
-                    renderMeaningMatch(el);
+                    // In-batch progress — update states in place, no full re-render.
+                    updateWmButtonStates(el);
                 }
             } else {
                 // Wrong match — flash BOTH the picked word and the clicked meaning
@@ -274,7 +275,7 @@ function renderMeaningMatch(el) {
                 btn.classList.remove("wm-shake", "wm-wrong");
                 if (wrongWordBtn) wrongWordBtn.classList.remove("wm-wrong");
                 wmState.selectedWordIdx = null;
-                renderMeaningMatch(el);
+                updateWmButtonStates(el);
             }
         });
     });

@@ -18,11 +18,20 @@ function renderContextFill(el) {
         fbState.retryIndex   = 0;
         fbState.initialized  = true;
         stageIndex = 0;
+        // Stable word-bank order — shuffled once per stage so re-renders
+        // (e.g. after a wrong answer) don't disorient with a reshuffled bank.
+        fbState.bankOrder = items.map((_, i) => i);
+        for (let k = fbState.bankOrder.length - 1; k > 0; k--) {
+            const j = Math.floor(Math.random() * (k + 1));
+            [fbState.bankOrder[k], fbState.bankOrder[j]] = [fbState.bankOrder[j], fbState.bankOrder[k]];
+        }
     }
 
     if (fbState.retryMode) {
         if (fbState.retryIndex >= fbState.retryQueue.length) {
             fbState.initialized = false;
+            // Stage complete via retry path — track words that were never wrong.
+            items.forEach(it => { if (!wrongMap[it.id]) _trackWordAttempt(it, true, it.answer); });
             advanceToNextStage();
             return;
         }
@@ -59,12 +68,9 @@ function renderFillItem(el, item, isRetry) {
     const total    = isRetry ? fbState.retryQueue.length : items.length;
     const current  = isRetry ? fbState.retryIndex + 1 : stageIndex + 1;
 
-    // Word-chip list (shuffled; already-used ones get fb-used)
-    const displayOrder = items.map((it, i) => ({ it, i }));
-    for (let k = displayOrder.length - 1; k > 0; k--) {
-        const j = Math.floor(Math.random() * (k + 1));
-        [displayOrder[k], displayOrder[j]] = [displayOrder[j], displayOrder[k]];
-    }
+    // Word-chip list — stable shuffled order (fbState.bankOrder); used ones get fb-used
+    const bankOrder = fbState.bankOrder || items.map((_, i) => i);
+    const displayOrder = bankOrder.map(i => ({ it: items[i], i }));
     const usedCount = isRetry ? 0 : stageIndex;
     const leftCount = isRetry
         ? (fbState.retryQueue.length - fbState.retryIndex)

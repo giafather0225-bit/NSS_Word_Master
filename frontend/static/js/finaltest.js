@@ -159,8 +159,9 @@
     }
     function onTimeUp() {
         if (phase === 'mc') {
-            // Fill remaining MC with null, jump to Part 2
-            while (mcAnswers.length < words.length) mcAnswers.push(null);
+            // Time's up during Part 1 — jump straight to Part 2.
+            // mcAnswers is an id-keyed object; unanswered questions simply stay
+            // absent and score as wrong in showResults().
             mcIndex = words.length;
             showFill();
         } else if (phase === 'fill') {
@@ -266,6 +267,9 @@
         eo('body').querySelectorAll('.eo-mc-opt').forEach(function(b) { b.disabled = true; });
 
         setTimeout(function() {
+            // Guard: timer may have expired during this delay and moved us to
+            // Part 2 / results — don't render a stale MC page over it.
+            if (phase !== 'mc') return;
             mcIndex++;
             if (mcIndex >= words.length) showFill();
             else showMC();

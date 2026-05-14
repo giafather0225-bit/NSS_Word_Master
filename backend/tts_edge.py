@@ -21,6 +21,10 @@ RATE_WORD    = os.environ.get("TTS_EDGE_RATE_WORD",    "-5%")
 RATE_MEANING = os.environ.get("TTS_EDGE_RATE_MEANING", "-12%")
 RATE_EXAMPLE = os.environ.get("TTS_EDGE_RATE_EXAMPLE", "-8%")
 
+# Hard cap on a single edge-tts network call. Without this a hung connection
+# pins an executor thread forever, eventually exhausting the TTS thread pool.
+TTS_TIMEOUT = float(os.environ.get("TTS_EDGE_TIMEOUT", "20"))
+
 # Friendly phrases per repetition (0-indexed)
 _PREVIEW_SETS = [
     ("",                  "This means"),
@@ -36,9 +40,13 @@ _EXAMPLE_INTRO = "Now let me show you this word in a real sentence."
 async def _generate_mp3_bytes(text: str, rate: str) -> bytes:
     communicate = edge_tts.Communicate(text, VOICE, rate=rate)
     buf = io.BytesIO()
-    async for chunk in communicate.stream():
-        if chunk["type"] == "audio":
-            buf.write(chunk["data"])
+
+    async def _consume() -> None:
+        async for chunk in communicate.stream():
+            if chunk["type"] == "audio":
+                buf.write(chunk["data"])
+
+    await asyncio.wait_for(_consume(), timeout=TTS_TIMEOUT)
     return buf.getvalue()
 
 

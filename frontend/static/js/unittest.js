@@ -304,6 +304,9 @@
         pageAnswered++;
         if (pageAnswered >= pageTotal) {
             setTimeout(function() {
+                // Guard: timer may have expired during this delay and already
+                // rendered the results screen — don't draw a stale question page.
+                if (timerID === null) return;
                 mcIndex += pageTotal;
                 if (mcIndex >= words.length) showResults();
                 else showMC();

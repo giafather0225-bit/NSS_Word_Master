@@ -316,6 +316,7 @@ function renderSentenceItem(el, item) {
                 starCount++;
                 updateStars();
                 addWordVault(item.answer);
+                _trackWordAttempt && _trackWordAttempt(item, !hasError, "sentence:write");
 
                 const feedbackEl = el.querySelector("#sm-feedback-area");
                 if (feedbackEl) {
@@ -330,7 +331,7 @@ function renderSentenceItem(el, item) {
                 }
                 const inputRow = el.querySelector("#sm-input-row");
                 if (inputRow) inputRow.remove();
-                setStatus(attempt >= 2 ? "Nice effort! Moving on." : "Great sentence!");
+                setStatus(currentAttempt >= 2 ? "Nice effort! Moving on." : "Great sentence!");
             } else {
                 // Error on 1st attempt → show feedback, allow retry
                 smState.attempt[item.id] = 2;

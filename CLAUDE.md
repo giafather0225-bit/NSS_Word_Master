@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-14 — review.py DUX freeze 해제 (범용 SM-2 인프라로 분류) + ckla_review → review 통합 (WordReview 테이블 일원화)
+> Last updated: 2026-05-14 — DUX freeze 전면 해제 (학습 플로우 파일 수정 허용) + review.py 범용 SM-2 인프라 분류 + ckla_review → review 통합 (WordReview 테이블 일원화)
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -41,18 +41,18 @@
     → Confirmed fixes applied 2026-04-30: spelling.js / sentence.js / fillblank.js 이모지 전체 제거, sentence.js 한국어 로딩 텍스트 영문화, fillblank.js retry 카운터 UX 개선.
 12. class/ID 변경 시 모든 참조 동시 업데이트 (3 bundles 모두 영향).
 13. 응답 마지막에 수정된 파일 목록 기재.
-14. DUX 절대 수정 금지 파일 (학습 플로우 UI — 완성, 건드릴 이유 없음):
+14. DUX freeze 해제 (2026-05-14). 기존 "절대 수정 금지" 정책은 폐지됨.
+    아래 DUX 학습 플로우 파일들도 이제 수정 가능 — 단 규칙 #1(수정 전 기존 코드
+    읽기, 기존 기능 파괴 금지) + #10(스모크 테스트)를 반드시 준수:
     `routers/lessons.py`, `routers/study.py`, `routers/finaltest.py`,
-    `routers/unittest.py`, `routers/daily_words.py`,
-    `routers/collocation.py`,
-    `static/js/child.js`, `static/js/navigation.js`,
-    `static/js/preview.js`, `static/js/wordmatch.js`,
-    `static/js/fillblank.js`, `static/js/spelling.js`,
-    `static/js/sentence.js`, `static/js/finaltest.js`,
-    `static/js/unittest.js`, `static/js/home.js`
-    → `routers/review.py`는 범용 SM-2 인프라이므로 freeze 제외 (2026-05-14)
-15. CKLA는 DUX와 완전히 분리된 독립 모듈이다.
-    CKLA 작업 시 위 파일들을 절대 수정하지 않는다.
+    `routers/unittest.py`, `routers/daily_words.py`, `routers/collocation.py`,
+    `static/js/child.js`, `static/js/navigation.js`, `static/js/preview.js`,
+    `static/js/wordmatch.js`, `static/js/fillblank.js`, `static/js/spelling.js`,
+    `static/js/sentence.js`, `static/js/finaltest.js`, `static/js/unittest.js`,
+    `static/js/home.js`
+    → `routers/review.py`는 범용 SM-2 인프라 (영어+CKLA 공용).
+15. CKLA는 DUX와 분리된 독립 모듈이다. 모듈 경계를 존중하되, 공용
+    인프라(`review.py` 등) 수정은 양쪽 영향도를 함께 검토한다.
 
 ---
 
