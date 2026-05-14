@@ -167,7 +167,16 @@ def get_study_data(subject: str, textbook: str, lesson: str, db: Session = Depen
     # @tag ACADEMY — ensure an in-progress AcademySession tracks this lesson
     academy_sess.upsert_session(db, subject, textbook, lesson)
 
-    return {"items": [serialize_item(r) for r in rows], "progress": progress}
+    # Serialize progress explicitly — returning the raw ORM object makes
+    # FastAPI emit `{}` (no Pydantic model), so the items-present branch
+    # would silently drop current_index/best_streak. Match the empty-case shape.
+    return {
+        "items": [serialize_item(r) for r in rows],
+        "progress": {
+            "current_index": progress.current_index,
+            "best_streak": progress.best_streak,
+        },
+    }
 
 
 # @tag STUDY @tag ANALYTICS
