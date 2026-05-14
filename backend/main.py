@@ -28,6 +28,7 @@ from backend.database import Base, LEARNING_ROOT, SessionLocal, engine
 from backend.folder_watcher import start_watcher
 
 from backend.routers import lessons, study, progress, words, files, tts, review, ai_coach
+from backend.routers import files_voca as files_voca_router
 from backend.routers import xp as xp_router
 from backend.routers import daily_words as daily_words_router
 from backend.routers import reward_shop as reward_shop_router
@@ -64,7 +65,6 @@ from backend.routers import schedules as schedules_router
 from backend.routers import dashboard as dashboard_router
 from backend.routers import tutor_sentence as tutor_sentence_router
 from backend.routers import ckla as ckla_router
-from backend.routers import ckla_review as ckla_review_router
 from backend.routers import island as island_router
 from backend.services import ollama_manager, backup_engine
 from backend.services import island_care_engine as care
@@ -260,6 +260,7 @@ app.include_router(study.router)
 app.include_router(progress.router)
 app.include_router(words.router)
 app.include_router(files.router)
+app.include_router(files_voca_router.router)
 app.include_router(tts.router)
 app.include_router(review.router)
 app.include_router(ai_coach.router)
@@ -298,7 +299,6 @@ app.include_router(schedules_router.router)
 app.include_router(dashboard_router.router)
 app.include_router(tutor_sentence_router.router)
 app.include_router(ckla_router.router)
-app.include_router(ckla_review_router.router)
 app.include_router(parent_ckla_router.router)
 app.include_router(island_router.router)
 
