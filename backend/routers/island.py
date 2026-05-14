@@ -659,9 +659,18 @@ def care_feed(body: FeedBody, db: Session = Depends(get_db)):
     prog = db.get(IslandCharacterProgress, body.character_progress_id)
     if prog is None:
         raise HTTPException(404, "Character progress not found.")
-    prog.current_xp += xp_gain
+
+    level_before = care._calc_level(prog.current_xp or 0)
+    prog.current_xp = (prog.current_xp or 0) + xp_gain
+    level_after  = care._calc_level(prog.current_xp)
+    if level_after != prog.level:
+        prog.level = level_after
+
+    # Consume inventory: decrement quantity and remove row when exhausted.
     inv.quantity -= 1
     inv.used_on_character_progress_id = body.character_progress_id
+    if inv.quantity <= 0:
+        db.delete(inv)
 
     # Food gives XP (not hunger/happiness). Encode xp_gained in source so
     # the care history view can display it meaningfully.
@@ -674,8 +683,10 @@ def care_feed(body: FeedBody, db: Session = Depends(get_db)):
         logged_at=datetime.now(timezone.utc),
     ))
     db.commit()
+    level_up = level_after > level_before
     return {"ok": True, "xp_gained": xp_gain, "current_xp": prog.current_xp,
-            "item_name": shop_item.name}
+            "item_name": shop_item.name,
+            "level_up": level_up, "new_level": level_after}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -836,8 +847,11 @@ def shop_buy(body: BuyBody, db: Session = Depends(get_db)):
 # @tag ISLAND
 @router.get("/inventory")
 def inventory(category: Optional[str] = None, db: Session = Depends(get_db)):
-    q = db.query(IslandInventory, IslandShopItem).join(
-        IslandShopItem, IslandInventory.shop_item_id == IslandShopItem.id)
+    q = (
+        db.query(IslandInventory, IslandShopItem)
+        .join(IslandShopItem, IslandInventory.shop_item_id == IslandShopItem.id)
+        .filter(IslandInventory.quantity > 0)
+    )
     if category:
         q = q.filter(IslandInventory.item_type == category)
     rows = q.all()

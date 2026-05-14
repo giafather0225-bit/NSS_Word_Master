@@ -167,6 +167,7 @@ function _ifdResultHTML() {
             <i data-lucide="${ok ? 'check-circle' : 'alert-circle'}" class="ifd-result-icon"></i>
             <p class="ifd-result-msg">${ok ? `Loved the ${escapeHtml(r.item_name || 'food')}!` : escapeHtml(r.detail || 'Something went wrong.')}</p>
             ${ok ? `<div class="ifd-result-xp">+${r.xp_gained ?? 0} XP</div>` : ''}
+            ${ok && r.level_up ? `<div class="ifd-result-levelup"><i data-lucide="trending-up"></i> Level Up! Now Lv.${r.new_level}</div>` : ''}
             <button class="ifd-feed-btn" onclick="_ifdClose()">
                 <i data-lucide="arrow-left"></i> Back to island
             </button>

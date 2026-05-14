@@ -89,9 +89,11 @@ function _invSetTab(tab) {
 
 /** @tag SHOP */
 function _invGridHTML() {
+    // Guard: hide zero-quantity items (server also filters, but belt-and-suspenders).
+    const positive = _invItems.filter(i => (i.quantity ?? 1) > 0);
     const filtered = _invTab === 'all'
-        ? _invItems
-        : _invItems.filter(i => {
+        ? positive
+        : positive.filter(i => {
             const cat = (i.category || i.item_category || '').toLowerCase();
             return _invTab === 'evolution' ? cat === 'evolution'
                  : _invTab === 'food'      ? cat === 'food'
