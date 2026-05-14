@@ -363,12 +363,51 @@ async function _ppSettings(body) {
     if (typeof lucide !== "undefined") lucide.createIcons();
 }
 
-/** Render Island ON/OFF toggle card. @tag PARENT SETTINGS SHOP */
+/** Render Island ON/OFF toggle + active character summary. @tag PARENT SETTINGS SHOP */
 async function _ppIslandToggle(el) {
     if (!el) return;
     try {
-        const cfg = await apiFetchJSON("/api/island/config");
-        const on  = cfg.config?.island_on !== "false";
+        const [cfg, status] = await Promise.all([
+            apiFetchJSON("/api/island/config"),
+            apiFetchJSON("/api/island/status"),
+        ]);
+        const on     = cfg.config?.island_on !== "false";
+        const chars  = status.active_characters || [];
+        const lumi   = status.currency?.lumi ?? 0;
+
+        const charCards = chars.map(c => {
+            const hunger    = c.hunger    ?? 0;
+            const happiness = c.happiness ?? 0;
+            const hColor    = hunger    < 20 ? "var(--review-primary)" : hunger    < 60 ? "var(--arcade-primary)" : "var(--math-primary)";
+            const hpColor   = happiness < 20 ? "var(--review-primary)" : happiness < 60 ? "var(--arcade-primary)" : "var(--math-primary)";
+            return `
+                <div class="pp-island-char-card">
+                    <div class="pp-island-char-name">${escapeHtml(c.name || "?")} <span class="pp-island-char-zone">${escapeHtml(c.zone || "")}</span></div>
+                    <div class="pp-island-char-meta">Lv.${c.level ?? 1} · ${escapeHtml(c.stage || "baby")}</div>
+                    <div class="pp-island-char-gauges">
+                        <div class="pp-island-gauge">
+                            <i data-lucide="utensils" style="width:12px;height:12px;color:var(--text-hint)"></i>
+                            <div class="pp-island-gauge-bar">
+                                <div class="pp-island-gauge-fill" style="width:${hunger}%;background:${hColor}"></div>
+                            </div>
+                            <span class="pp-island-gauge-val">${hunger}</span>
+                        </div>
+                        <div class="pp-island-gauge">
+                            <i data-lucide="smile" style="width:12px;height:12px;color:var(--text-hint)"></i>
+                            <div class="pp-island-gauge-bar">
+                                <div class="pp-island-gauge-fill" style="width:${happiness}%;background:${hpColor}"></div>
+                            </div>
+                            <span class="pp-island-gauge-val">${happiness}</span>
+                        </div>
+                    </div>
+                </div>`;
+        }).join('');
+
+        const completedCount = status.completed_count ?? 0;
+        const summaryLine = chars.length
+            ? `<div class="pp-island-summary">Lumi: ${lumi} &nbsp;|&nbsp; Completed: ${completedCount}</div>`
+            : `<div class="pp-island-summary" style="color:var(--text-hint)">No active characters yet.</div>`;
+
         el.innerHTML = `
             <div class="pp-toggle-row">
                 <div>
@@ -380,7 +419,9 @@ async function _ppIslandToggle(el) {
                            onchange="_ppSaveIslandToggle(this.checked)">
                     <span class="pp-toggle-track"></span>
                 </label>
-            </div>`;
+            </div>
+            ${summaryLine}
+            ${charCards ? `<div class="pp-island-char-list">${charCards}</div>` : ''}`;
     } catch (_) {
         el.innerHTML = `<p style="color:var(--text-hint);font-size:13px;padding:8px 0">Island config unavailable.</p>`;
     }
