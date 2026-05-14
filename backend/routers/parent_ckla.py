@@ -242,7 +242,7 @@ def ckla_summary(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db
 
 @router.get("/ckla-chart")
 def ckla_chart(
-    range: str = Query("week", pattern="^(week|month|full)$"),
+    range_: str = Query("week", alias="range", pattern="^(week|month|full)$"),
     grade: int = Query(3, ge=3, le=8),
     db: Session = Depends(get_db),
 ):
@@ -290,8 +290,8 @@ def ckla_chart(
             date_counts[p.completed_at[:10]] += 1
 
     # ── Daily range (week / month) ─────────────────────────────
-    if range in ("week", "month"):
-        days_back = 7 if range == "week" else 30
+    if range_ in ("week", "month"):
+        days_back = 7 if range_ == "week" else 30
         chart = []
         for i in range(days_back - 1, -1, -1):
             d_str = (today - timedelta(days=i)).isoformat()
