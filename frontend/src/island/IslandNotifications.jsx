@@ -146,7 +146,7 @@ async function _inDismiss() {
     const popup = document.getElementById('isl-notify-popup');
     if (popup) popup.remove();
     try {
-        await fetch('/api/island/notifications/read', {
+        await apiFetchJSON('/api/island/notifications/read', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
         });

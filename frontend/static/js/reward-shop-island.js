@@ -23,9 +23,7 @@ const _DECOR_ZONES = ["all", "forest", "ocean", "savanna", "space", "legend"];
 /** @tag SHOP */
 async function _loadIslandCurrency() {
     try {
-        const res = await fetch("/api/island/currency");
-        if (!res.ok) return;
-        const d = await res.json();
+        const d = await apiFetchJSON("/api/island/currency");
         _islandLumi       = d.lumi          ?? 0;
         _islandLegendLumi = d.legend_lumi   ?? 0;
         _islandExchRate   = d.exchange_rate ?? 100;
@@ -101,8 +99,7 @@ function _attachIslandCardListeners(container) {
 
 /** @tag SHOP */
 async function _renderEvolutionTab(body) {
-    const res = await fetch("/api/island/shop?category=evolution");
-    const data = await res.json();
+    const data = await apiFetchJSON("/api/island/shop?category=evolution");
     const items = data.items || [];
     if (!items.length) {
         body.innerHTML = `<p style="text-align:center;padding:40px;color:var(--text-secondary);">No evolution stones available.</p>`;
@@ -131,8 +128,7 @@ async function _renderEvolutionTab(body) {
 
 /** @tag SHOP */
 async function _renderFoodTab(body) {
-    const res = await fetch("/api/island/shop?category=food");
-    const data = await res.json();
+    const data = await apiFetchJSON("/api/island/shop?category=food");
     const items = data.items || [];
     if (!items.length) {
         body.innerHTML = `<p style="text-align:center;padding:40px;color:var(--text-secondary);">No food items available.</p>`;
@@ -160,8 +156,7 @@ async function _renderFoodTab(body) {
 /** @tag SHOP */
 async function _renderDecorTab(body) {
     const zoneParam = _islandDecorZone !== "all" ? `&zone=${_islandDecorZone}` : "";
-    const res  = await fetch(`/api/island/shop?category=decoration${zoneParam}`);
-    const data = await res.json();
+    const data = await apiFetchJSON(`/api/island/shop?category=decoration${zoneParam}`);
     const items    = data.items    || [];
     const ownedIds = new Set(data.owned_ids || []);
 
@@ -182,7 +177,7 @@ async function _renderDecorTab(body) {
     const cards = items.map(item => {
         const owned      = ownedIds.has(item.id);
         const isLegend   = item.zone === "legend";
-        const symbol     = isLegend ? "✨" : "💎";
+        const symbol     = isLegend ? "LL" : "Lumi";
         const balance    = isLegend ? _islandLegendLumi : _islandLumi;
         const affordable = !owned && balance >= item.price;
         const currency   = isLegend ? "legend_lumi" : "lumi";
@@ -262,26 +257,20 @@ async function _doExchange() {
     if (_islandBuyInFlight) return;
     _islandBuyInFlight = true;
     try {
-        const res = await fetch("/api/island/lumi/exchange", {
+        const d = await apiFetchJSON("/api/island/lumi/exchange", {
             method:  "POST",
             headers: { "Content-Type": "application/json" },
             body:    JSON.stringify({ lumi_amount: _exchAmount * _islandExchRate }),
         });
-        if (res.ok) {
-            const d = await res.json();
-            const bal = d.currency ?? d;
-            _islandLumi       = bal.lumi        ?? _islandLumi;
-            _islandLegendLumi = bal.legend_lumi ?? _islandLegendLumi;
-            _updateIslandCurrencyDisplay();
-            _showShopToast(`+${_exchAmount} Legend Lumi`);
-            const body = document.getElementById("shop-body");
-            if (body) _renderExchangeTab(body);
-        } else {
-            const err = await res.json().catch(() => ({}));
-            _showShopToast(err.detail || "Exchange failed.", true);
-        }
-    } catch (_) {
-        _showShopToast("Network error.", true);
+        const bal = d.currency ?? d;
+        _islandLumi       = bal.lumi        ?? _islandLumi;
+        _islandLegendLumi = bal.legend_lumi ?? _islandLegendLumi;
+        _updateIslandCurrencyDisplay();
+        _showShopToast(`+${_exchAmount} Legend Lumi`);
+        const body = document.getElementById("shop-body");
+        if (body) _renderExchangeTab(body);
+    } catch (err) {
+        _showShopToast(err?.message || "Exchange failed.", true);
     } finally {
         _islandBuyInFlight = false;
     }
@@ -316,27 +305,21 @@ async function _doIslandBuy(itemId) {
     _islandBuyInFlight = true;
     _closePopup();
     try {
-        const res = await fetch("/api/island/shop/buy", {
+        const d = await apiFetchJSON("/api/island/shop/buy", {
             method:  "POST",
             headers: { "Content-Type": "application/json" },
             body:    JSON.stringify({ shop_item_id: itemId, quantity: 1 }),
         });
-        if (res.ok) {
-            const d = await res.json();
-            const bal = d.currency ?? d;
-            _islandLumi       = bal.lumi        ?? _islandLumi;
-            _islandLegendLumi = bal.legend_lumi ?? _islandLegendLumi;
-            _updateIslandCurrencyDisplay();
-            _shopConfetti();
-            _showShopToast("Added to Inventory!");
-            // Refresh current island tab
-            if (typeof _shopTab !== "undefined") _loadIslandTab(_shopTab);
-        } else {
-            const err = await res.json().catch(() => ({}));
-            _showShopToast(err.detail || "Purchase failed.", true);
-        }
-    } catch (_) {
-        _showShopToast("Network error.", true);
+        const bal = d.currency ?? d;
+        _islandLumi       = bal.lumi        ?? _islandLumi;
+        _islandLegendLumi = bal.legend_lumi ?? _islandLegendLumi;
+        _updateIslandCurrencyDisplay();
+        _shopConfetti();
+        _showShopToast("Added to Inventory!");
+        // Refresh current island tab
+        if (typeof _shopTab !== "undefined") _loadIslandTab(_shopTab);
+    } catch (err) {
+        _showShopToast(err?.message || "Purchase failed.", true);
     } finally {
         _islandBuyInFlight = false;
     }

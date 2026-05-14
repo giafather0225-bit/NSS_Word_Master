@@ -81,7 +81,11 @@ def _set_cfg(db: Session, key: str, value: str) -> None:
         db.add(AppConfig(key=key, value=value))
 
 
-def _prog_dict(prog: IslandCharacterProgress, char: IslandCharacter) -> dict:
+def _prog_dict(
+    prog: IslandCharacterProgress,
+    char: IslandCharacter,
+    consecutive_days: int = 0,
+) -> dict:
     stage = prog.stage or "baby"
     is_mid   = stage in ("mid_a", "mid_b")
     is_final = stage in ("final_a", "final_b")
@@ -115,6 +119,9 @@ def _prog_dict(prog: IslandCharacterProgress, char: IslandCharacter) -> dict:
         "pos_x": prog.pos_x,
         "pos_y": prog.pos_y,
         "images": char.images or "{}",
+        # For legend characters: days in current evolution streak.
+        # Populated by callers that batch-load IslandLegendProgress; 0 for non-legend.
+        "consecutive_days": consecutive_days,
     }
 
 
@@ -303,7 +310,24 @@ def character_active(zone: Optional[str] = None, db: Session = Depends(get_db)):
     if zone:
         q = q.filter(IslandCharacter.zone == zone)
     rows = q.all()
-    return {"characters": [_prog_dict(p, c) for p, c in rows]}
+
+    # Batch-load legend progress for any legend-type characters (avoids N+1).
+    prog_ids = [p.id for p, _ in rows if p.is_legend_type]
+    legend_days: dict[int, int] = {}
+    if prog_ids:
+        legend_rows = (
+            db.query(IslandLegendProgress)
+            .filter(IslandLegendProgress.character_progress_id.in_(prog_ids))
+            .all()
+        )
+        legend_days = {lr.character_progress_id: lr.consecutive_days for lr in legend_rows}
+
+    return {
+        "characters": [
+            _prog_dict(p, c, consecutive_days=legend_days.get(p.id, 0))
+            for p, c in rows
+        ]
+    }
 
 
 # @tag ISLAND
@@ -979,14 +1003,13 @@ def legend_unlock_status(db: Session = Depends(get_db)):
         zone_status[zone] = count > 0
 
     all_unlocked = all(zone_status.values())
-    if all_unlocked:
-        legend_zone = db.query(IslandZoneStatus).filter_by(zone="legend").first()
-        if legend_zone and not legend_zone.is_unlocked:
-            legend_zone.is_unlocked = True
-            legend_zone.unlocked_at = datetime.now(timezone.utc)
-            db.commit()
+    # NOTE: Do NOT auto-unlock here — this is a read-only GET endpoint.
+    # Legend zone unlocking is handled by /character/evolve (see lines ~420-440).
+    # Auto-unlock in a GET causes side-effects and violates REST semantics.
+    legend_zone = db.query(IslandZoneStatus).filter_by(zone="legend").first()
+    legend_in_db = bool(legend_zone and legend_zone.is_unlocked)
 
-    return {"zones": zone_status, "legend_unlocked": all_unlocked}
+    return {"zones": zone_status, "legend_unlocked": legend_in_db}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1063,7 +1086,7 @@ def notifications(db: Session = Depends(get_db)):
     _PASSIVE_PREFIXES = ("production", "dev_", "exchange", "daily_attendance")
     today_logs = (
         db.query(IslandLumiLog)
-        .filter(IslandLumiLog.earned_date == date.today())
+        .filter(IslandLumiLog.earned_date == _today())
         .all()
     )
     lumi_earned = sum(

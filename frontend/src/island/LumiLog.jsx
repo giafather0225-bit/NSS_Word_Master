@@ -77,7 +77,7 @@ function _llRender(el) {
         return `
             <div class="ill-row ${cls}">
                 <div class="ill-row-left">
-                    <div class="ill-row-reason">${escapeHtml(row.reason || row.action || '—')}</div>
+                    <div class="ill-row-reason">${escapeHtml(row.source || row.action || '—')}</div>
                     <div class="ill-row-date">${dateStr}</div>
                 </div>
                 <div class="ill-row-right">

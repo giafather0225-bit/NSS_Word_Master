@@ -103,7 +103,13 @@ function _cdRender(el) {
     const p      = prog.happiness ?? 100;
     const canEvo = d.can_evolve   ?? false;
     const stoneRaw = d.evolution_stone ?? 'None';
-    const _stoneLabels = { first_a:'1st Stone (A)', first_b:'1st Stone (B)', second_a:'2nd Stone (A)', second_b:'2nd Stone (B)' };
+    const _stoneLabels = {
+        first_a: '1st Stone (A)', first_b: '1st Stone (B)',
+        second: '2nd Stone',
+        second_a: '2nd Stone (A)', second_b: '2nd Stone (B)',
+        legend_first_a: 'Legend Stone (A)', legend_first_b: 'Legend Stone (B)',
+        legend_second: 'Legend Stone (2nd)',
+    };
     const stone  = escapeHtml(_stoneLabels[stoneRaw] || (stoneRaw === 'None' ? '—' : stoneRaw));
 
     const animCls = (h < 20 || p < 20) ? 'icd-avatar--sad'

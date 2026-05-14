@@ -64,7 +64,7 @@ function _ilsInner() {
 function _ilsSplashHTML() {
     return `
         <div class="ils-logo-wrap">
-            <i data-lucide="island" class="ils-logo-icon"></i>
+            <i data-lucide="map" class="ils-logo-icon"></i>
             <span class="ils-logo-name">Gia's Island</span>
         </div>
         <div class="ils-dots" aria-label="Loading" role="status">

@@ -188,7 +188,7 @@ function _issAboutPanel() {
     const ver = _issSettings.app_version || '1.0';
     return `
         <h2 class="iss-panel-title">About</h2>
-        ${_issRow("Gia's Island", 'island', `v${ver}`, '')}
+        ${_issRow("Gia's Island", 'map', `v${ver}`, '')}
         ${_issRow('Open source licenses', 'file-text', '', 'chevron-right')}
         ${_issRow('Privacy policy',        'shield',    '', 'chevron-right')}`;
 }

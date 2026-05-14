@@ -1,10 +1,10 @@
 export const ISLAND_CONFIG = {
   zones: {
-    forest:  { label: 'Forest',  emoji: '🌳', subject: 'english' },
-    ocean:   { label: 'Ocean',   emoji: '🌊', subject: 'math' },
-    savanna: { label: 'Savanna', emoji: '🦁', subject: 'diary' },
-    space:   { label: 'Space',   emoji: '🚀', subject: 'review' },
-    legend:  { label: 'Legend',  emoji: '✨', subject: 'all' },
+    forest:  { label: 'Forest',  lucideIcon: 'tree-pine',  subject: 'english' },
+    ocean:   { label: 'Ocean',   lucideIcon: 'waves',      subject: 'math' },
+    savanna: { label: 'Savanna', lucideIcon: 'paw-print',  subject: 'diary' },
+    space:   { label: 'Space',   lucideIcon: 'rocket',     subject: 'review' },
+    legend:  { label: 'Legend',  lucideIcon: 'sparkles',   subject: 'all' },
   },
   ui: {
     lockScreen: {

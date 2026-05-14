@@ -252,7 +252,13 @@ function _zdHudPanel(prog, isLegend) {
     const maxXp  = _zdCareData?.xp_to_next_level  ?? 100;
     const xpPct  = Math.min(100, Math.round(xp / maxXp * 100));
     const stoneRaw = _zdCareData?.evolution_stone ?? 'None';
-    const stoneLabels = { first_a: '1st Stone (A)', first_b: '1st Stone (B)', second_a: '2nd Stone (A)', second_b: '2nd Stone (B)' };
+    const stoneLabels = {
+        first_a: '1st Stone (A)', first_b: '1st Stone (B)',
+        second: '2nd Stone',
+        second_a: '2nd Stone (A)', second_b: '2nd Stone (B)',
+        legend_first_a: 'Legend Stone (A)', legend_first_b: 'Legend Stone (B)',
+        legend_second: 'Legend Stone (2nd)',
+    };
     const stone = stoneLabels[stoneRaw] || (stoneRaw === 'None' ? '—' : stoneRaw);
     const canEvo = _zdCareData?.can_evolve        ?? false;
     const lumiPd = cat.lumi_production            ?? 0;

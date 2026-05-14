@@ -51,6 +51,10 @@ def _last_study_date(db: Session, character_progress_id: int) -> Optional[date]:
         .filter(
             IslandCareLog.character_progress_id == character_progress_id,
             IslandCareLog.action.in_(["feed", "play"]),
+            # Exclude shop-food events: they log action="feed" with source="food_{id}_xp{n}".
+            # Those are XP boosts from inventory, not study-based feeding → must not count
+            # as a "study happened" signal for happiness decay purposes.
+            ~IslandCareLog.source.like("food_%"),
         )
         .order_by(IslandCareLog.logged_at.desc())
         .first()
