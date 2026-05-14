@@ -2,7 +2,8 @@
    Inventory.jsx — Island inventory: owned items by category.
    Section: Shop (Island)
    Dependencies: core.js (escapeHtml, apiFetchJSON), IslandMain.jsx
-   API endpoints: GET /api/island/inventory
+   API endpoints: GET /api/island/inventory,
+                  POST /api/island/inventory/sell
    ================================================================ */
 
 // ─── State ─────────────────────────────────────────────────────
@@ -108,17 +109,52 @@ function _invGridHTML() {
     }
 
     return `<div class="iiv-grid">${filtered.map(item => {
-        const qty  = item.quantity ?? 1;
-        const name = escapeHtml(item.name || item.item_name || '?');
-        const cat  = (item.category || item.item_category || '').toLowerCase();
-        const icon = cat === 'evolution' ? 'sparkles' : cat === 'food' ? 'apple' : 'image';
+        const qty     = item.quantity ?? 1;
+        const name    = escapeHtml(item.name || item.item_name || '?');
+        const cat     = (item.category || item.item_category || '').toLowerCase();
+        const isDecor = cat === 'decoration' || cat === 'decor';
+        const icon    = cat === 'evolution' ? 'sparkles' : cat === 'food' ? 'apple' : 'image';
+        const price   = item.price ?? 0;
+        const refund  = Math.max(1, Math.floor(price * 0.5));
+        const sellBtn = isDecor
+            ? `<button class="iiv-sell-btn" onclick="_invSell(${item.id}, '${name}', ${refund})">
+                   <i data-lucide="tag"></i> Sell (+${refund})
+               </button>`
+            : '';
         return `
             <div class="iiv-item">
                 <div class="iiv-item-icon"><i data-lucide="${icon}"></i></div>
                 <div class="iiv-item-name">${name}</div>
                 ${qty > 1 ? `<div class="iiv-item-qty">x${qty}</div>` : ''}
+                ${sellBtn}
             </div>`;
     }).join('')}</div>`;
+}
+
+// ─── Sell ─────────────────────────────────────────────────────────
+
+/** Confirm and sell one decoration for 50% Lumi refund. @tag SHOP */
+async function _invSell(inventoryId, itemName, refund) {
+    const ok = confirm(`Sell "${itemName}" for ${refund} Lumi?\n(50% of original price — cannot be undone)`);
+    if (!ok) return;
+    try {
+        const res = await fetch('/api/island/inventory/sell', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ inventory_id: inventoryId }),
+        });
+        const d = await res.json();
+        if (!res.ok) {
+            alert(d.detail || 'Could not sell item.');
+            return;
+        }
+        if (window.toast) window.toast(`Sold "${itemName}" for +${d.refund} Lumi!`, 'success');
+        // Refresh inventory in-place.
+        openInventory();
+    } catch (err) {
+        console.error('[island] sell failed:', err);
+        alert('Network error. Please try again.');
+    }
 }
 
 /** @tag SHOP */

@@ -174,6 +174,9 @@ class MoveBody(BaseModel):
     pos_x: int = 0
     pos_y: int = 0
 
+class SellBody(BaseModel):
+    inventory_id: int
+
 class ConfigUpdateBody(BaseModel):
     key: str = Field(max_length=100)
     value: str = Field(max_length=200)
@@ -910,6 +913,55 @@ def decorate_remove(body: RemoveBody, db: Session = Depends(get_db)):
         ))
     db.commit()
     return {"ok": True}
+
+
+# @tag ISLAND
+@router.post("/inventory/sell")
+def inventory_sell(body: SellBody, db: Session = Depends(get_db)):
+    """
+    Sell a decoration from inventory for 50% Lumi refund.
+
+    Rules:
+    - Only category='decoration' items can be sold.
+    - Cannot sell if the item is currently placed on the island.
+    - Refund = floor(shop_item.price * 0.5), minimum 1 Lumi.
+    - Decrements inventory quantity by 1; deletes row if quantity reaches 0.
+    """
+    inv = db.get(IslandInventory, body.inventory_id)
+    if inv is None or inv.quantity <= 0:
+        raise HTTPException(404, "Inventory item not found.")
+    if inv.item_type != "decoration":
+        raise HTTPException(400, "Only decoration items can be sold.")
+
+    # Block sell if this decoration is currently placed.
+    placed = db.query(IslandPlacedItem).filter_by(
+        shop_item_id=inv.shop_item_id, is_placed=True,
+    ).first()
+    if placed:
+        raise HTTPException(400, "Remove the decoration from your island before selling it.")
+
+    si = db.get(IslandShopItem, inv.shop_item_id)
+    if si is None:
+        raise HTTPException(500, "Shop item data missing.")
+
+    refund = max(1, int(si.price * 0.5))
+
+    # Decrement inventory.
+    inv.quantity -= 1
+    if inv.quantity <= 0:
+        db.delete(inv)
+
+    # Credit Lumi.
+    balance = le.earn_lumi(db, refund, source=f"sell_decor_{si.id}")
+
+    db.commit()
+    return {
+        "ok": True,
+        "item_name": si.name,
+        "refund": refund,
+        "lumi": balance["lumi"],
+        "legend_lumi": balance["legend_lumi"],
+    }
 
 
 # ─────────────────────────────────────────────────────────────────────────────
