@@ -339,11 +339,13 @@ function _miDraw(ts) {
 
 
 async function _miGameOver() {
-  const state = _mi;
+  if (!_mi) return;
   _mi.running = false;
   window.removeEventListener('resize', _miResizeCanvas);
   const body = document.getElementById('arcade-body');
   if (body) body.classList.remove('arcade-body--game');
+  const state = { ..._mi };
+  _mi = null;  // M5: null state immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('math_invaders', state.score, state.correct, state.total, accuracy, _miLevel);
   _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => miStart(_miLevel) });

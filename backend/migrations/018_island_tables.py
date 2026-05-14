@@ -173,11 +173,11 @@ _DDL = [
 # ─────────────────────────────────────────────────────────────────────────────
 
 _ZONE_STATUS_SEED = [
-    # (zone, is_unlocked)
+    # (zone, is_unlocked)  — only forest starts unlocked; others unlock sequentially
     ("forest",  1),
-    ("ocean",   1),
-    ("savanna", 1),
-    ("space",   1),
+    ("ocean",   0),
+    ("savanna", 0),
+    ("space",   0),
     ("legend",  0),
 ]
 
@@ -428,8 +428,8 @@ def _seed_shop_items(conn: sqlite3.Connection) -> None:
         """
         INSERT INTO island_shop_items
             (name, category, sub_category, zone, evolution_type,
-             price, is_legend_currency, description)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+             price, is_legend_currency, description, image)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, '')
         """,
         _SHOP_SEED,
     )

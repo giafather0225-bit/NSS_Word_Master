@@ -62,6 +62,7 @@ async function srStart() {
     correct: 0,
     total: 0,
     running: true,
+    lock: false,       // C1: prevents _srOnInput + Enter double-submit
     startedAt: performance.now(),
     current: null,
     tickHandle: null,
@@ -111,6 +112,7 @@ function _srTick() {
 
 function _srNextWord() {
   if (!_sr) return;
+  _sr.lock = false;   // C1: release submit lock for the next word
   const pick = _sr.pool[Math.floor(Math.random() * _sr.pool.length)];
   _sr.current = { word: pick.word.toLowerCase(), def: pick.definition, typed: '' };
 
@@ -162,7 +164,8 @@ function _srOnKeydown(e) {
 }
 
 function _srSubmit() {
-  if (!_sr || !_sr.running) return;
+  if (!_sr || !_sr.running || _sr.lock) return;  // C1: lock prevents double-submit
+  _sr.lock = true;
   const { word, typed } = _sr.current;
   _sr.total += 1;
 
@@ -214,9 +217,17 @@ function _srUpdateHUD() {
 }
 
 async function _srGameOver() {
-  if (!_sr) return;
-  const state = _sr;
+  if (!_sr || !_sr.running) return;
+  // C2: mirror srStop() cleanup — clear interval + remove listeners before nulling state
   _sr.running = false;
+  if (_sr.tickHandle) { clearInterval(_sr.tickHandle); _sr.tickHandle = null; }
+  const input = document.getElementById('sr-input');
+  if (input) {
+    input.removeEventListener('input', _srOnInput);
+    input.removeEventListener('keydown', _srOnKeydown);
+  }
+  const state = { ..._sr };
+  _sr = null;
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('spell_rush', state.score, state.correct, state.total, accuracy);
   _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => srStart() });

@@ -37,14 +37,11 @@ def migrate() -> None:
         conn.commit()
         added = []
         for key, label, target in _DEFAULTS:
-            exists = conn.execute(
-                "SELECT 1 FROM weekly_goals WHERE key = ?", (key,)
-            ).fetchone()
-            if not exists:
-                conn.execute(
-                    "INSERT INTO weekly_goals (key, label, target, is_active) VALUES (?, ?, ?, 1)",
-                    (key, label, target),
-                )
+            cur = conn.execute(
+                "INSERT OR IGNORE INTO weekly_goals (key, label, target, is_active) VALUES (?, ?, ?, 1)",
+                (key, label, target),
+            )
+            if cur.rowcount:
                 added.append(key)
         conn.commit()
         if added:

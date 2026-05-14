@@ -26,34 +26,40 @@ let _mm = null;
 /* ── Level picker ──────────────────────────────────────────────── */
 
 /** Show level picker for Memory Card Match. @tag ARCADE */
-function mmShowLevelPicker() {
+async function mmShowLevelPicker() {
+  mmStop();  // W3: stop any running game before showing picker
   const body = document.getElementById('arcade-body');
   if (!body) return;
-  // Fix #29: show Easy + Hard + Expert (xhard) levels
+  // W4: show per-level best scores (same pattern as suShowLevelPicker)
   body.innerHTML = `
     <div class="wi-level-picker">
       <h2 class="wi-level-title">Memory Card Match</h2>
       <p class="wi-level-sub">Flip cards to match each word with its definition.</p>
-      <div class="wi-level-list" style="grid-template-columns: repeat(3,1fr); max-width:540px;">
-        <div class="wi-level-card" onclick="mmStart('easy')">
-          <div class="wi-level-icon wi-level-icon--easy">4×4</div>
-          <div class="wi-level-name">Easy</div>
-          <div class="wi-level-spec">8 pairs · 2 min</div>
-        </div>
-        <div class="wi-level-card" onclick="mmStart('hard')">
-          <div class="wi-level-icon wi-level-icon--hard">4×6</div>
-          <div class="wi-level-name">Hard</div>
-          <div class="wi-level-spec">12 pairs · 3 min</div>
-        </div>
-        <div class="wi-level-card" onclick="mmStart('xhard')">
-          <div class="wi-level-icon wi-level-icon--xhard">5×6</div>
-          <div class="wi-level-name">Expert</div>
-          <div class="wi-level-spec">15 pairs · 4 min</div>
-        </div>
-      </div>
+      <div class="wi-level-list" id="mm-level-list" style="grid-template-columns: repeat(3,1fr); max-width:540px;">Loading…</div>
       <button type="button" class="wi-btn secondary" style="margin-top:12px"
               onclick="arcadeReturnToLobby()">Back</button>
     </div>`;
+  const levels = [
+    { key: 'easy',  icon: '4×4', name: 'Easy',   spec: '8 pairs · 2 min' },
+    { key: 'hard',  icon: '4×6', name: 'Hard',   spec: '12 pairs · 3 min' },
+    { key: 'xhard', icon: '5×6', name: 'Expert', spec: '15 pairs · 4 min' },
+  ];
+  const bests = await Promise.all(
+    levels.map((lv) =>
+      fetch(`/api/arcade/best/memory_match?level=${lv.key}`)
+        .then((r) => r.ok ? r.json() : { score: 0 })
+        .catch(() => ({ score: 0 }))
+    )
+  );
+  const list = document.getElementById('mm-level-list');
+  if (!list) return;
+  list.innerHTML = levels.map((lv, i) => `
+    <div class="wi-level-card" onclick="mmStart('${lv.key}')">
+      <div class="wi-level-icon wi-level-icon--${lv.key}">${lv.icon}</div>
+      <div class="wi-level-name">${lv.name}</div>
+      <div class="wi-level-spec">${lv.spec}</div>
+      <div class="wi-level-pb">Best: ${bests[i].score || 0}</div>
+    </div>`).join('');
 }
 
 /* ── Game start / stop ─────────────────────────────────────────── */

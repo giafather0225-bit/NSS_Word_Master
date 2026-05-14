@@ -260,7 +260,7 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
       <div class="stat">Accuracy: <b>${pct}%</b></div>
       ${tierLine}
       ${xpLine}
-      <div style="display:flex; gap:12px; margin-top:8px;">
+      <div class="wi-gameover-actions">
         <button class="wi-btn" id="arcade-replay-btn">Play again</button>
         <button class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
       </div>

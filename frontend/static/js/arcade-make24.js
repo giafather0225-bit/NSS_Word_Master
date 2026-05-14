@@ -57,6 +57,7 @@ async function mkShowLevelPicker() {
 /** Start Make 24. @tag ARCADE */
 function mkStart(level = 'normal') {
   mkStop();
+  _mkSolveCache.clear();  // M2: clear solve cache between sessions (stale entries from prev level)
   _mkLevel = MK_LEVELS[level] ? level : 'normal';
   const lv = MK_LEVELS[_mkLevel];
   const body = document.getElementById('arcade-body');
@@ -370,27 +371,86 @@ function _perm(arr) {
   return out;
 }
 
-/** Fix #31: reveal one solution step as a text hint. @tag ARCADE */
-function _mkShowHint() {
-  if (!_mk || !_mk.current) return;
+/**
+ * Format a number for display (strip floating-point noise).
+ * @param {number} v
+ * @returns {string}
+ */
+function _mkFmt(v) { return String(Math.round(v * 10000) / 10000); }
+
+/**
+ * Search all 5 parenthesization structures for a valid solution.
+ * Returns { hint: string } on success, or null if none found.
+ * @param {number[]} nums
+ * @returns {{hint: string}|null}
+ */
+function _mkFindHint(nums) {
   const lv = MK_LEVELS[_mkLevel];
-  // Find one valid expression and show its first step
-  const nums = _mk.current;
+  const fmtOp = (o) => o === '*' ? '×' : o === '/' ? '÷' : o === '-' ? '−' : o;
   for (const [a, b, c, d] of _perm(nums)) {
     for (const o1 of lv.ops) for (const o2 of lv.ops) for (const o3 of lv.ops) {
       const ab = _mkApplyOp(a, o1, b);
-      if (ab === null) continue;
-      const abc = _mkApplyOp(ab, o2, c);
-      if (abc === null) continue;
-      const r = _mkApplyOp(abc, o3, d);
-      if (r !== null && Math.abs(r - lv.target) < 1e-9) {
-        const op1 = o1 === '*' ? '×' : o1 === '/' ? '÷' : o1 === '-' ? '−' : o1;
-        const hint = `Try: ${a} ${op1} ${b} = ${Math.round(ab * 100) / 100}`;
-        const prev = document.getElementById('mk-preview');
-        if (prev) { prev.textContent = `Hint: ${hint}`; prev.style.color = 'var(--arcade-ink)'; }
-        return;
+      const bc = _mkApplyOp(b, o2, c);
+      const cd = _mkApplyOp(c, o3, d);
+      // 1: ((a o1 b) o2 c) o3 d
+      if (ab !== null) {
+        const abc = _mkApplyOp(ab, o2, c);
+        if (abc !== null) {
+          const r = _mkApplyOp(abc, o3, d);
+          if (r !== null && Math.abs(r - lv.target) < 1e-9)
+            return { hint: `Try: ${a} ${fmtOp(o1)} ${b} = ${_mkFmt(ab)}` };
+        }
+      }
+      // 2: (a o1 (b o2 c)) o3 d
+      if (bc !== null) {
+        const abc = _mkApplyOp(a, o1, bc);
+        if (abc !== null) {
+          const r = _mkApplyOp(abc, o3, d);
+          if (r !== null && Math.abs(r - lv.target) < 1e-9)
+            return { hint: `Try: ${b} ${fmtOp(o2)} ${c} = ${_mkFmt(bc)}` };
+        }
+      }
+      // 3: (a o1 b) o2 (c o3 d)
+      if (ab !== null && cd !== null) {
+        const r = _mkApplyOp(ab, o2, cd);
+        if (r !== null && Math.abs(r - lv.target) < 1e-9)
+          return { hint: `Try: ${a} ${fmtOp(o1)} ${b} = ${_mkFmt(ab)}` };
+      }
+      // 4: a o1 ((b o2 c) o3 d)
+      if (bc !== null) {
+        const bcd = _mkApplyOp(bc, o3, d);
+        if (bcd !== null) {
+          const r = _mkApplyOp(a, o1, bcd);
+          if (r !== null && Math.abs(r - lv.target) < 1e-9)
+            return { hint: `Try: ${b} ${fmtOp(o2)} ${c} = ${_mkFmt(bc)}` };
+        }
+      }
+      // 5: a o1 (b o2 (c o3 d))
+      if (cd !== null) {
+        const bcd = _mkApplyOp(b, o2, cd);
+        if (bcd !== null) {
+          const r = _mkApplyOp(a, o1, bcd);
+          if (r !== null && Math.abs(r - lv.target) < 1e-9)
+            return { hint: `Try: ${c} ${fmtOp(o3)} ${d} = ${_mkFmt(cd)}` };
+        }
       }
     }
+  }
+  return null;
+}
+
+/** Fix #31: reveal one solution step as a text hint (all 5 structures). @tag ARCADE */
+function _mkShowHint() {
+  if (!_mk || !_mk.current) return;
+  const found = _mkFindHint(_mk.current);
+  const prev = document.getElementById('mk-preview');
+  if (!prev) return;
+  if (found) {
+    prev.textContent = `Hint: ${found.hint}`;
+    prev.style.color = 'var(--arcade-ink)';
+  } else {
+    prev.textContent = 'No hint available';
+    prev.style.color = 'var(--text-hint)';
   }
 }
 

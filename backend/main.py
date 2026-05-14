@@ -89,15 +89,61 @@ async def lifespan(application: FastAPI):
     _folder_observer = start_watcher(VOCA_ROOT)
 
     # Auto-run all DB migrations on startup (all migrations are idempotent)
+    import importlib.util as _ilu
+    import inspect as _inspect
+    import sqlite3 as _sqlite3
+
+    _DB_PATH = Path.home() / "NSS_Learning" / "database" / "voca.db"
     _mig_dir = Path(__file__).parent / "migrations"
+
+    def _call_migration(_mod) -> bool:
+        """Call whichever entry-point function the migration file defines.
+
+        Handles all naming/signature conventions in use:
+          migrate()            run_migration()         → no-arg call
+          run()                                        → no-arg call
+          run(conn)            (sqlite3.Connection)    → open conn, pass it
+          run(db_path)         (Path)                  → pass Path object
+          run(db_path)         (str)                   → pass str(DB_PATH)
+        Returns True if a function was found and called, False if skipped.
+        """
+        for _fname in ("migrate", "run_migration", "run", "main"):
+            _fn = getattr(_mod, _fname, None)
+            if _fn is None or not callable(_fn):
+                continue
+            _params = list(_inspect.signature(_fn).parameters.values())
+            _required = [p for p in _params if p.default is _inspect.Parameter.empty]
+            if not _params or not _required:
+                # No params (or all have defaults) — call with no args
+                _fn()
+                return True
+            # Single required param — inspect annotation / name to decide type
+            _p = _required[0]
+            _ann = _p.annotation
+            _name = _p.name.lower()
+            if _ann is _sqlite3.Connection or "conn" in _name:
+                _conn = _sqlite3.connect(str(_DB_PATH))
+                try:
+                    _fn(_conn)
+                    _conn.commit()
+                finally:
+                    _conn.close()
+                return True
+            if _ann is Path or "path" in _name:
+                _fn(_DB_PATH)
+                return True
+            # Fallback: pass str path
+            _fn(str(_DB_PATH))
+            return True
+        return False
+
     for _mig in sorted(_mig_dir.glob("[0-9]*.py")):
         try:
-            import importlib.util as _ilu
             _spec = _ilu.spec_from_file_location(_mig.stem, _mig)
             _mod = _ilu.module_from_spec(_spec)
             _spec.loader.exec_module(_mod)
-            if hasattr(_mod, "migrate"):
-                _mod.migrate()
+            if not _call_migration(_mod):
+                logger.debug("[migration] %s — no entry point, skipped", _mig.name)
         except Exception as _e:
             logger.warning("[migration] %s failed: %s", _mig.name, _e)
 
@@ -112,19 +158,6 @@ async def lifespan(application: FastAPI):
         logger.warning("[backup] startup backup failed: %s", e)
 
     # Ollama starts lazily on first AI request (see ollama_manager.ensure_ollama_once)
-
-    # Auto-run all DB migrations on startup
-    _mig_dir = Path(__file__).parent / "migrations"
-    for _mig in sorted(_mig_dir.glob("[0-9]*.py")):
-        try:
-            import importlib.util as _ilu
-            _spec = _ilu.spec_from_file_location(_mig.stem, _mig)
-            _mod = _ilu.module_from_spec(_spec)
-            _spec.loader.exec_module(_mod)
-            if hasattr(_mod, "migrate"):
-                _mod.migrate()
-        except Exception as _e:
-            logger.warning("[migration] %s failed: %s", _mig.name, _e)
 
     # Auto-rebuild JS bundles so JS edits take effect on server restart
     _build_sh = Path(__file__).parent.parent / "build.sh"

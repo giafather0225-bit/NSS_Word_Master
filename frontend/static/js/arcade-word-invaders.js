@@ -158,6 +158,7 @@ async function wiStart(level = 'normal') {
     correct: 0,
     total: 0,
     kills: 0,
+    bombKills: 0,    // M1: bomb kills tracked separately, not added to correct/total
     wave: 1,
     killsThisWave: 0,
     bossQueued: false,
@@ -315,9 +316,8 @@ function _wiActivatePowerup(type, x, y) {
     const count = _wi.active.length;
     _wi.active.forEach((en) => _wiBurst(en.x, en.y + 18, WI_COLORS.bombRed));
     _wi.score += count * 15;
-    _wi.correct += count;  // bomb kills count as correct answers
-    _wi.total   += count;
-    _wi.kills   += count;
+    _wi.bombKills += count;  // M1: bomb kills tracked separately, excluded from accuracy
+    _wi.kills     += count;
     _wi.killsThisWave += count;
     _wi.active = [];
     _wi.banner = { text: `BOOM! +${count * 15}`, until: performance.now() + 1000 };
@@ -614,11 +614,13 @@ function _wiDraw(ts) {
 
 
 async function _wiGameOver() {
-  const state = _wi;
+  if (!_wi) return;
   _wi.running = false;
   window.removeEventListener('resize', _wiResizeCanvas);
   const body = document.getElementById('arcade-body');
   if (body) body.classList.remove('arcade-body--game');
+  const state = { ..._wi };
+  _wi = null;  // M5: null state immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('word_invaders', state.score, state.correct, state.total, accuracy, _wiLevel);
   _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => wiStart(_wiLevel) });

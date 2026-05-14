@@ -290,6 +290,7 @@ function _wbCheck() {
       if (!_wb || !_wb.running) return;
       _wbRenderShell();
       _wbNextWord();
+      _wbRenderHistory();  // M4: re-render history after shell rebuild (shell wipes arcade-body)
     }, WB_CFG.feedbackMs);
   } else {
     _wb.streak = 0;

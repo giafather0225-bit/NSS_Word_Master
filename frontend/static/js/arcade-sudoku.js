@@ -58,7 +58,7 @@ function suStart(level = 'easy') {
     solution, puzzle,
     input: puzzle.map((row) => row.slice()),
     lv, startedAt: performance.now(),
-    running: true, mistakes: 0, completed: false,
+    running: true, mistakes: 0, wrongCells: new Set(), completed: false,
     tickHandle: null,
   };
 
@@ -217,7 +217,9 @@ function _suOnInput(e) {
   } else {
     e.target.classList.remove('su-inp--ok');
     e.target.classList.add('su-inp--bad');
-    _su.mistakes += 1;
+    // W2: track unique wrong cells (Set) — repeated wrong inputs in the same cell count once
+    _su.wrongCells.add(`${r},${c}`);
+    _su.mistakes = _su.wrongCells.size;
     const m = document.getElementById('su-miss');
     if (m) m.textContent = String(_su.mistakes);
     _suHighlightConflicts(r, c, n);  // Fix #17: highlight conflicting peers
@@ -319,12 +321,14 @@ async function _suFinish() {
   if (_su.tickHandle) clearInterval(_su.tickHandle);
 
   const seconds = Math.floor((performance.now() - state.startedAt) / 1000);
+  // W2: use wrongCells.size (unique cells, bounded by holes) instead of raw mistakes counter
+  const uniqueWrong = Math.min(state.wrongCells.size, state.lv.holes);
   const timePenalty = seconds * state.lv.timeBonus;
-  const missPenalty = state.mistakes * 25;
+  const missPenalty = uniqueWrong * 25;
   const score = Math.max(50, state.lv.baseScore - timePenalty - missPenalty);
 
   const total = state.lv.holes;
-  const correct = Math.max(0, total - state.mistakes);
+  const correct = total - uniqueWrong;   // always in [0, total]
   const accuracy = total > 0 ? correct / total : 1;
 
   const result = await _arcadeReportScore('sudoku', score, correct, total, accuracy, _suLevel);
@@ -334,7 +338,7 @@ async function _suFinish() {
       <div class="su-finish">
         <h2>Solved!</h2>
         <div class="stat">Time: <b>${seconds}s</b></div>
-        <div class="stat">Mistakes: <b>${state.mistakes}</b></div>
+        <div class="stat">Mistakes: <b>${uniqueWrong}</b></div>
       </div>`;
   }
   _arcadeRenderGameOver({

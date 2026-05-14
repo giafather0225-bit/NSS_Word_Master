@@ -4,8 +4,12 @@
    Dependencies: theme.css
    ================================================================ */
 
-/* Game-only palette — canvas games can't use var(), so these
-   deep-space colors are documented exemptions from the hex ban.   */
+/* Game-only palette — canvas games can't use var(), so these deep-space colors
+   are documented exemptions from the hex ban. Additionally, DOM elements that
+   appear *inside* the dark canvas overlay (wi-hud-label, wi-life--lost,
+   wi-input, wi-hud-quit base state) use semi-transparent white/black rgba
+   values because no theme token maps to "white at N% on deep-space bg".
+   These rgba exemptions are intentional; do not replace with color-mix tokens. */
 :root {
   --wi-game-bg-top:        #1A1033;
   --wi-game-bg-bot:        #0A0818;
@@ -238,6 +242,7 @@
 .wi-gameover h2 { margin: 0; font-size: 24px; }
 .wi-gameover .stat { font-size: 15px; color: var(--text-secondary); }
 .wi-gameover .stat b { color: var(--text-primary); font-size: 18px; }
+.wi-gameover-actions { display: flex; gap: 12px; margin-top: 8px; }  /* M3: replaces inline style */
 .wi-gameover .xp-line {
   font-size: 16px;
   font-weight: 700;
@@ -666,8 +671,8 @@
   transition: background 0.12s, border-color 0.12s;
 }
 .wi-hud-quit:hover {
-  background: rgba(255, 59, 48, 0.7);
-  border-color: rgba(255, 255, 255, 0.6);
+  background: color-mix(in srgb, var(--color-error) 70%, transparent);
+  border-color: color-mix(in srgb, var(--text-on-primary) 60%, transparent);
 }
 
 /* ── First-play tutorial banner ───────────────────────────────── */
@@ -864,8 +869,8 @@
   border-radius: var(--radius-sm);
   transition: background 0.12s;
 }
-.wb-answer-row.wb-answer--correct { background: rgba(52, 199, 89, 0.15); }
-.wb-answer-row.wb-answer--wrong   { animation: sr-shake 0.35s ease; background: rgba(255, 59, 48, 0.12); }
+.wb-answer-row.wb-answer--correct { background: var(--color-success-light); }
+.wb-answer-row.wb-answer--wrong   { animation: sr-shake 0.35s ease; background: var(--color-error-light); }
 .wb-divider {
   width: 80%;
   height: 1px;
@@ -1072,8 +1077,8 @@
       45deg,
       transparent,
       transparent 5px,
-      rgba(127, 168, 204, 0.10) 5px,
-      rgba(127, 168, 204, 0.10) 10px
+      color-mix(in srgb, var(--english-primary) 10%, transparent) 5px,
+      color-mix(in srgb, var(--english-primary) 10%, transparent) 10px
     );
 }
 /* Front face — rotated so it shows when card is flipped */
