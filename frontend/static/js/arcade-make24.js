@@ -180,7 +180,7 @@ function _mkRender() {
 function _mkRenderExpr() {
   const exprEl = document.getElementById('mk-expr');
   const prev = document.getElementById('mk-preview');
-  if (!exprEl || !_mk) return;
+  if (!exprEl || !prev || !_mk) return;  // C: guard prev (mk-preview) against null
   if (!_mk.expr.length) { exprEl.textContent = '—'; prev.textContent = ''; return; }
   exprEl.textContent = _mk.expr.map((t) => t.v === '*' ? '×' : t.v === '/' ? '÷' : t.v === '-' ? '−' : t.v).join(' ');
   const val = _mkEval(_mk.expr);

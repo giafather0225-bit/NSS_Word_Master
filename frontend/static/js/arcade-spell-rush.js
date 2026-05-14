@@ -143,7 +143,7 @@ function _srRenderBoxes() {
 }
 
 function _srOnInput(e) {
-  if (!_sr || !_sr.running) return;
+  if (!_sr || !_sr.running || _sr.lock) return;  // A: block input during lock (prevents overwriting correct/wrong feedback)
   const value = e.target.value.toLowerCase().replace(/[^a-z]/g, '');
   _sr.current.typed = value.slice(0, _sr.current.word.length);
   e.target.value = _sr.current.typed;

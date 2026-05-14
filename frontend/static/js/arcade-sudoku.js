@@ -333,7 +333,7 @@ async function _suFinish() {
   const correct = total - uniqueWrong;   // always in [0, total]
   const accuracy = total > 0 ? correct / total : 1;
 
-  const result = await _arcadeReportScore('sudoku', score, correct, total, accuracy, _suLevel);
+  // B: show "Solved!" first — then report score in background — then transition to game-over
   const body = document.getElementById('arcade-body');
   if (body) {
     body.innerHTML = `
@@ -343,8 +343,11 @@ async function _suFinish() {
         <div class="stat">Mistakes: <b>${uniqueWrong}</b></div>
       </div>`;
   }
-  _arcadeRenderGameOver({
-    state: { score, correct, total },
-    accuracy, result, replayFn: () => suStart(_suLevel),
-  });
+  const result = await _arcadeReportScore('sudoku', score, correct, total, accuracy, _suLevel);
+  setTimeout(() => {
+    _arcadeRenderGameOver({
+      state: { score, correct, total },
+      accuracy, result, replayFn: () => suStart(_suLevel),
+    });
+  }, 1500);  // B: give player 1.5s to see the Solved screen before game-over panel
 }

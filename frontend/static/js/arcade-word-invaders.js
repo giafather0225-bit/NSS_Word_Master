@@ -626,6 +626,8 @@ async function _wiGameOver() {
   if (!_wi) return;
   _wi.running = false;
   window.removeEventListener('resize', _wiResizeCanvas);
+  const inp = document.getElementById('wi-input');
+  if (inp) inp.removeEventListener('keydown', _wiKeydown);  // D: mirror wiStop() cleanup
   const body = document.getElementById('arcade-body');
   if (body) body.classList.remove('arcade-body--game');
   const state = { ..._wi };

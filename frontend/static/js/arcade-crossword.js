@@ -62,6 +62,12 @@ async function cwStart() {
 function cwStop() {
   if (!_cw) return;
   _cw.running = false;
+  // E: explicitly remove per-cell listeners to mirror addEventListener calls in _cwRenderGrid
+  document.querySelectorAll('.cw-inp').forEach((el) => {
+    el.removeEventListener('input', _cwOnInput);
+    el.removeEventListener('keydown', _cwOnKey);
+    el.removeEventListener('focus', _cwOnFocus);
+  });
   _cw = null;
 }
 
