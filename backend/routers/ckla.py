@@ -24,7 +24,7 @@ API:
   GET  /api/academy/ckla/grammar/{unit}               — grammar topics for a unit
   GET  /api/academy/ckla/morphology/{unit}            — morphology topics for a unit
 
-SM-2 review: routers/ckla_review.py
+SM-2 review: unified routers/review.py — GET /api/review/today?source=ckla
 """
 
 import json
@@ -47,7 +47,8 @@ from backend.models.ckla import (
     CKLABadge, CKLAUserBadge,
     CKLASpelling, CKLAGrammar, CKLAMorphology,
 )
-from backend.models.us_academy import USAcademyWord, USAcademyWordProgress
+from backend.models.us_academy import USAcademyWord
+from backend.models import WordReview
 from backend.models.system import AppConfig
 from backend.services.ckla_grader import grade_answer
 from backend.services.xp_engine import award_xp
@@ -473,24 +474,45 @@ def update_lesson_progress(
             tomorrow   = (_date.today() + timedelta(days=1)).isoformat()
             today_str  = _date.today().isoformat()
 
-            existing_ids = {
-                p.word_id for p in
-                db.query(USAcademyWordProgress)
-                .filter(USAcademyWordProgress.word_id.in_(word_ids))
-                .all()
-            }
+            source_ref = f"lesson_{lesson_id}"
             word_map = {
                 w.id: w for w in
                 db.query(USAcademyWord).filter(USAcademyWord.id.in_(word_ids)).all()
             }
+            word_names = [word_map[wid].word for wid in word_ids if wid in word_map]
+            existing_words = {
+                row.word for row in
+                db.query(WordReview.word)
+                .filter(
+                    WordReview.source == "ckla",
+                    WordReview.source_ref == source_ref,
+                    WordReview.word.in_(word_names),
+                ).all()
+            }
             for wid in word_ids:
-                if wid not in existing_ids and wid in word_map:
-                    db.add(USAcademyWordProgress(
-                        word_id=wid,
-                        word=word_map[wid].word,
-                        next_review=tomorrow,
-                        last_studied=today_str,
-                    ))
+                if wid not in word_map:
+                    continue
+                w = word_map[wid]
+                if w.word in existing_words:
+                    continue
+                db.add(WordReview(
+                    study_item_id=None,
+                    word=w.word,
+                    subject="English",
+                    textbook="CKLA",
+                    lesson=str(lesson_id),
+                    easiness="2.5",
+                    interval=0,
+                    repetitions=0,
+                    next_review=tomorrow,
+                    last_review="",
+                    total_reviews=0,
+                    total_correct=0,
+                    source="ckla",
+                    source_ref=source_ref,
+                    question=w.definition or "",
+                    hint=w.example_1 or "",
+                ))
 
         if req.qa_done is True and not prog.qa_done:
             prog.qa_done = True

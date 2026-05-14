@@ -1,18 +1,19 @@
 """
 routers/review.py — SM-2 spaced repetition review routes
-Section: English
+Section: English / CKLA (shared SM-2 infrastructure)
 Dependencies: database, models, sm2
 API:
   POST /api/review/register-lesson
-  GET  /api/review/today
+  GET  /api/review/today          — optional ?source=ckla|daily|my|academy
   POST /api/review/result
   GET  /api/review/stats
 """
 
 import logging
 from datetime import date as _date, timedelta
+from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
@@ -116,16 +117,20 @@ def register_lesson_for_review(
 
 # @tag REVIEW @tag SM2
 @router.get("/api/review/today")
-def get_today_reviews(db: Session = Depends(get_db)):
-    """Return all words due for review today across Academy/Daily/My sources."""
+def get_today_reviews(
+    source: Optional[str] = Query(None, description="Filter by source: ckla|daily|my|academy"),
+    db: Session = Depends(get_db),
+):
+    """Return all words due for review today across Academy/Daily/My/CKLA sources.
+
+    Optional ?source= query param to filter by a single source type.
+    """
     today_str = _date.today().isoformat()
 
-    reviews = (
-        db.query(WordReview)
-        .filter(WordReview.next_review <= today_str)
-        .order_by(WordReview.next_review)
-        .all()
-    )
+    q = db.query(WordReview).filter(WordReview.next_review <= today_str)
+    if source:
+        q = q.filter(WordReview.source == source)
+    reviews = q.order_by(WordReview.next_review).all()
 
     academy_ids = [wr.study_item_id for wr in reviews
                    if (wr.source or "academy") == "academy" and wr.study_item_id]

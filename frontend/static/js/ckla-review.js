@@ -2,8 +2,8 @@
    ckla-review.js — CKLA SM-2 vocabulary review UI
    Section: Academy
    Dependencies: ckla.js, tts-client.js
-   API endpoints: /api/academy/ckla/review/due,
-                  /api/academy/ckla/review/result
+   API endpoints: /api/review/today?source=ckla  (GET),
+                  /api/review/result              (POST)
    ================================================================ */
 
 /** @type {object[]} Words due for review */
@@ -45,10 +45,10 @@ async function showCKLAReview() {
   content.innerHTML = '<div class="ckla-loading">Loading review…</div>';
 
   try {
-    const res = await fetch('/api/academy/ckla/review/due');
+    const res = await fetch('/api/review/today?source=ckla');
     if (!res.ok) throw new Error('Failed to load');
     const data = await res.json();
-    _cklaRevWords = data.words || [];
+    _cklaRevWords = data.reviews || [];
 
     if (_cklaRevWords.length === 0) {
       _cklaRenderReviewEmpty(content);
@@ -161,9 +161,9 @@ function _renderReviewCard() {
           ${w.part_of_speech ? `<div class="ckla-review-pos">${_escRev(w.part_of_speech)}</div>` : ''}
           <div class="ckla-review-result ${isCorrect ? 'ckla-review-correct' : 'ckla-review-wrong'}">
             <div class="ckla-review-result-word">${isCorrect ? '<i data-lucide="check-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Correct!' : '<i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Not quite'}</div>
-            <div class="ckla-review-result-def">${_escRev(w.definition)}</div>
+            <div class="ckla-review-result-def">${_escRev(w.question)}</div>
           </div>
-          ${w.example_1 ? `<div class="ckla-vocab-ex" style="text-align:center">"${_escRev(w.example_1)}"</div>` : ''}
+          ${w.hint ? `<div class="ckla-vocab-ex" style="text-align:center">"${_escRev(w.hint)}"</div>` : ''}
           <button class="ckla-review-next-btn" onclick="_cklaRevNext()">
             ${_cklaRevIdx + 1 >= _cklaRevWords.length ? 'See Results' : 'Next Word →'}
           </button>
@@ -189,18 +189,18 @@ async function _cklaRevCheck() {
   _cklaRevAttempts++;
 
   // Simple match: check if user answer contains key words from definition
-  const isCorrect = _cklaRevMatchAnswer(userAnswer, w.definition, w.word);
+  const isCorrect = _cklaRevMatchAnswer(userAnswer, w.question, w.word);
 
   _cklaRevTotal++;
   if (isCorrect) _cklaRevCorrect++;
 
   // Save to server
   try {
-    await fetch('/api/academy/ckla/review/result', {
+    await fetch('/api/review/result', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        word_id: w.id,
+        review_id: w.review_id,
         is_correct: isCorrect,
         attempts: _cklaRevAttempts,
       }),
@@ -268,11 +268,11 @@ async function _cklaRevShowAnswer() {
 
   // Save as wrong
   try {
-    await fetch('/api/academy/ckla/review/result', {
+    await fetch('/api/review/result', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        word_id: w.id,
+        review_id: w.review_id,
         is_correct: false,
         attempts: _cklaRevAttempts,
       }),
