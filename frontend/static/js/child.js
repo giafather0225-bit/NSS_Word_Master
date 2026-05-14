@@ -76,13 +76,6 @@ function renderStage() {
     const mo = $("magic-overlay");
     if (mo) mo.classList.add("hidden");
 
-    if (stage === STAGE.EXAM) {
-        renderExam(stageEl);
-        updateRoadmapUI();
-        updateProgressPct();
-        return;
-    }
-
     if (roadmapComplete && !sessionActive) {
         renderRoadmapComplete();
         updateRoadmapUI();
@@ -349,41 +342,8 @@ function advanceToNextStage() {
     }, CONF.STAGE_CLEAR_DELAY);
 }
 
-/**
- * Return true if the Final Test button is currently enabled.
- * @tag FINAL_TEST
- */
-function canStartExamNow() {
-    const ex = $("btn-exam");
-    return ex && !ex.disabled;
-}
-
-/**
- * Build the exam question queue from wrong-answer history and own sentences.
- * @tag FINAL_TEST
- */
-function buildExamQueue() {
-    const wrongSorted = items.map((it) => ({ it, n: wrongMap[it.id] || 0 })).sort((a, b) => b.n - a.n);
-    const topWrong = wrongSorted.filter((x) => x.n > 0).slice(0, CONF.EXAM_POOL_SIZE).map((x) => x.it);
-    const pool = topWrong.length ? topWrong : shuffle(items).slice(0, Math.min(CONF.EXAM_POOL_SIZE, items.length));
-    const queue = [];
-
-    for (const it of pool) {
-        const hasOwn = ownSentencesByItemId[it.id] && String(ownSentencesByItemId[it.id]).trim().length > 0;
-        if (hasOwn && Math.random() < 0.5) {
-            queue.push({ item: it, mode: EXAM_MODE.OWN_SENTENCE_BLANK, sentence: ownSentencesByItemId[it.id] });
-        } else {
-            queue.push({ item: it, mode: EXAM_MODE.EXAMPLE_BLANK });
-        }
-    }
-
-    const finalQ = queue.length
-        ? shuffle(queue)
-        : shuffle(items).slice(0, CONF.EXAM_POOL_SIZE).map((it) => ({ item: it, mode: EXAM_MODE.EXAMPLE_BLANK }));
-    return finalQ.slice(0, Math.min(CONF.EXAM_MAX_QUESTIONS, finalQ.length));
-}
-
-// Exam renderer + Perfect Challenge flow moved to child-exam.js
+// Final Test is owned entirely by finaltest.js (MC + Fill-in overlay).
+// The legacy Perfect Challenge flow (child-exam.js) was removed 2026-05-15.
 
 // ─── Tutor modal wiring ───────────────────────────────────────
 /**
@@ -512,19 +472,6 @@ async function startLessonAt(stageKey) {
     refreshStartLabel();
 }
 
-/**
- * Wire the Final Test button. The legacy Start button is gone — the
- * Hero card handles lesson entry now.
- * @tag NAVIGATION
- */
-function wireStartButtons() {
-    const ex = $("btn-exam");
-    if (ex) ex.addEventListener("click", async () => {
-        if (!canStartExamNow()) return;
-        await startPerfectChallenge();
-    });
-}
-
 // Keyboard shortcuts and openParentDashboard moved to child-keyboard.js
 
 // Text-replacement pass moved to child-text.js
@@ -587,7 +534,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // XP is now fetched from API via renderSummaryBar → _updateTopBarXP (home.js)
 
     wireTutorModal();
-    wireStartButtons();
 
     const btnParent = $("btn-parent");
     if (btnParent) {

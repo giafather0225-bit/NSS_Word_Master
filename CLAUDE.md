@@ -393,8 +393,8 @@ Listen button uses `<i data-lucide="volume-2">` icon.
 **Step 5 — Make a Sentence**
 Stage 1 drag-and-drop word scramble. Stage 2 free writing → AI grade (grammar+spelling, Ollama → Gemini fallback).
 
-**Final Test (Perfect Challenge)**
-MC 20 + Fill-in 20. 30-min timer. Pass = 90%. Pass → XP +10 + GrowthEvent("lesson_pass"). Fail → re-learn required. Retry pass = +10. Implementation: `child-exam.js` (extracted from `child.js`).
+**Final Test**
+MC 20 + Fill-in 20. 30-min timer. Pass = 90%. Pass → XP +10 + GrowthEvent("lesson_pass"). Fail → re-learn required. Retry pass = +10. Implementation: `finaltest.js` (standalone overlay controller; the legacy `child-exam.js` Perfect Challenge flow was removed 2026-05-15).
 
 ---
 
