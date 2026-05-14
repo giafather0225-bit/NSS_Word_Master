@@ -21,7 +21,13 @@ from backend.services.xp_engine import (
 
 @pytest.fixture(autouse=True)
 def _clean_xp_tables(db_session):
-    """xp_engine commits to the shared in-memory DB; wipe tables each test."""
+    """xp_engine commits to the shared in-memory DB; wipe tables each test.
+
+    Also invalidates the module-level TTL caches (xp_rules, arcade_cap,
+    lumi_rules) so stale AppConfig values from a previous test cannot bleed
+    into the next one via the 30-second in-process cache.
+    """
+    xp_engine.invalidate_xp_cache()
     for model in (XPLog, AppConfig, WordReview):
         db_session.query(model).delete()
     db_session.commit()
@@ -29,6 +35,7 @@ def _clean_xp_tables(db_session):
     for model in (XPLog, AppConfig, WordReview):
         db_session.query(model).delete()
     db_session.commit()
+    xp_engine.invalidate_xp_cache()
 
 
 def _set_config(db, key: str, value: str) -> None:

@@ -27,14 +27,21 @@ _ARCADE_CAP_TTL  = 30.0
 _arcade_cap_cache: int | None = None
 _arcade_cap_at:    float      = 0.0
 
+_LUMI_RULES_TTL  = 30.0
+_lumi_rules_cache: dict[str, int] | None = None
+_lumi_rules_at:    float               = 0.0
+
 
 def invalidate_xp_cache() -> None:
-    """Drop cached XP rules and arcade cap (call from Settings PUT endpoints)."""
+    """Drop cached XP rules, arcade cap, and lumi rules (call from Settings PUT endpoints)."""
     global _xp_rules_cache, _xp_rules_at, _arcade_cap_cache, _arcade_cap_at
+    global _lumi_rules_cache, _lumi_rules_at
     _xp_rules_cache  = None
     _xp_rules_at     = 0.0
     _arcade_cap_cache = None
     _arcade_cap_at    = 0.0
+    _lumi_rules_cache = None
+    _lumi_rules_at    = 0.0
 
 # XP awarded per action — defaults. Parent can override via app_config
 # keys of the form `xp_rule_<action>`. See get_xp_rules().
@@ -58,16 +65,45 @@ _LUMI_DEFAULTS: dict[str, int] = {
 }
 
 
+def _get_lumi_rules(db: Session) -> dict[str, int]:
+    """Return all lumi_rule_* AppConfig values, cached for _LUMI_RULES_TTL seconds.
+
+    Falls back to _LUMI_DEFAULTS for any key not present in app_config.
+    Cache is invalidated by invalidate_xp_cache() (called from parent Settings PUT).
+    """
+    global _lumi_rules_cache, _lumi_rules_at
+    if _lumi_rules_cache is not None and time.monotonic() - _lumi_rules_at < _LUMI_RULES_TTL:
+        return _lumi_rules_cache
+    rows = (
+        db.query(AppConfig)
+        .filter(AppConfig.key.like("lumi_rule_%"))
+        .all()
+    )
+    merged = dict(_LUMI_DEFAULTS)
+    for row in rows:
+        try:
+            merged[row.key] = max(0, int(row.value))
+        except (TypeError, ValueError):
+            pass
+    _lumi_rules_cache = merged
+    _lumi_rules_at    = time.monotonic()
+    return merged
+
+
 def _award_lumi_for_action(db: Session, action: str) -> None:
-    """Award Lumi alongside XP for supported study actions. Silent on any error."""
+    """Award Lumi alongside XP for supported study actions. Silent on any error.
+
+    Uses a TTL-cached bulk fetch of all lumi_rule_* AppConfig rows instead
+    of one query per action — avoids repeated round-trips on the hot study path.
+    """
     entry = _LUMI_ACTION_MAP.get(action)
     if entry is None:
         return
     cfg_key, earn_source = entry
     try:
-        cfg = db.query(AppConfig).filter_by(key=cfg_key).first()
-        amount = max(0, int(cfg.value)) if cfg else _LUMI_DEFAULTS.get(cfg_key, 0)
-    except (TypeError, ValueError):
+        rules  = _get_lumi_rules(db)
+        amount = rules.get(cfg_key, _LUMI_DEFAULTS.get(cfg_key, 0))
+    except Exception:
         amount = _LUMI_DEFAULTS.get(cfg_key, 0)
     if amount <= 0:
         return
