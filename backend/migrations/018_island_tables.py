@@ -428,8 +428,8 @@ def _seed_shop_items(conn: sqlite3.Connection) -> None:
         """
         INSERT INTO island_shop_items
             (name, category, sub_category, zone, evolution_type,
-             price, is_legend_currency, description, image)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, '')
+             price, is_legend_currency, description, image, is_active)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, '', 1)
         """,
         _SHOP_SEED,
     )
