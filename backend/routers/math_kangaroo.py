@@ -15,7 +15,7 @@ import logging
 from datetime import date, datetime
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
@@ -376,7 +376,7 @@ class KangarooAnswerItem(BaseModel):
 
 class KangarooSubmitIn(BaseModel):
     set_id: str = Field(..., max_length=80)
-    answers: list[KangarooAnswerItem] | dict[str, str] = []
+    answers: Union[List[KangarooAnswerItem], Dict[str, str]] = []
     time_spent_seconds: Optional[int] = None
 
 
