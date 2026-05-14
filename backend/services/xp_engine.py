@@ -31,17 +31,23 @@ _LUMI_RULES_TTL  = 30.0
 _lumi_rules_cache: dict[str, int] | None = None
 _lumi_rules_at:    float               = 0.0
 
+_BOOST_TTL  = 30.0
+_boost_cache: dict[str, float] | None = None
+_boost_at:    float                   = 0.0
+
 
 def invalidate_xp_cache() -> None:
-    """Drop cached XP rules, arcade cap, and lumi rules (call from Settings PUT endpoints)."""
+    """Drop cached XP rules, arcade cap, lumi rules, and boost (call from Settings PUT endpoints)."""
     global _xp_rules_cache, _xp_rules_at, _arcade_cap_cache, _arcade_cap_at
-    global _lumi_rules_cache, _lumi_rules_at
+    global _lumi_rules_cache, _lumi_rules_at, _boost_cache, _boost_at
     _xp_rules_cache  = None
     _xp_rules_at     = 0.0
     _arcade_cap_cache = None
     _arcade_cap_at    = 0.0
     _lumi_rules_cache = None
     _lumi_rules_at    = 0.0
+    _boost_cache      = None
+    _boost_at         = 0.0
 
 # XP awarded per action — defaults. Parent can override via app_config
 # keys of the form `xp_rule_<action>`. See get_xp_rules().
@@ -88,6 +94,50 @@ def _get_lumi_rules(db: Session) -> dict[str, int]:
     _lumi_rules_cache = merged
     _lumi_rules_at    = time.monotonic()
     return merged
+
+
+def _get_boost_pct(db: Session) -> dict[str, float]:
+    """Return cached lumi_boost_* percentages from app_config.
+
+    Keys: english, math, diary, review, total.
+    All default to 0.0 if not set. Cache TTL = _BOOST_TTL seconds.
+    Invalidated by invalidate_xp_cache().
+    """
+    global _boost_cache, _boost_at
+    if _boost_cache is not None and time.monotonic() - _boost_at < _BOOST_TTL:
+        return _boost_cache
+    keys = ("lumi_boost_total", "lumi_boost_english", "lumi_boost_math",
+            "lumi_boost_diary", "lumi_boost_review")
+    rows = db.query(AppConfig).filter(AppConfig.key.in_(keys)).all()
+    result: dict[str, float] = {
+        "total": 0.0, "english": 0.0, "math": 0.0, "diary": 0.0, "review": 0.0,
+    }
+    for row in rows:
+        short = row.key.replace("lumi_boost_", "")
+        try:
+            result[short] = float(row.value)
+        except (TypeError, ValueError):
+            pass
+    _boost_cache = result
+    _boost_at    = time.monotonic()
+    return result
+
+
+def _apply_boost(xp: int, action: str, db: Session) -> int:
+    """Return XP after applying completed-character boost for this action's subject.
+
+    Boost = floor(xp × (1 + (subject_pct + total_pct) / 100)).
+    No-op if island is off or no completed characters boosting.
+    """
+    try:
+        boosts  = _get_boost_pct(db)
+        subject = _infer_source(action)  # english/math/diary/review/""
+        pct     = boosts.get(subject, 0.0) + boosts.get("total", 0.0)
+        if pct <= 0:
+            return xp
+        return int(xp * (1.0 + pct / 100.0))
+    except Exception:
+        return xp
 
 
 def _award_lumi_for_action(db: Session, action: str) -> None:
@@ -281,6 +331,10 @@ def award_xp(
     xp_amount = get_xp_rules(db).get(action, 0)
     if xp_amount == 0:
         return 0
+    # Apply completed-character XP boost (ISLAND_SPEC §4.6).
+    # word_correct is excluded — per-word micro-awards should not compound.
+    if action not in _NO_DEDUP:
+        xp_amount = _apply_boost(xp_amount, action, db)
 
     if action not in _NO_DEDUP:
         filters = [XPLog.action == action, XPLog.earned_date == today]
