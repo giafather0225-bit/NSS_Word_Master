@@ -468,6 +468,27 @@ def character_evolve(body: EvolveBranchBody, db: Session = Depends(get_db)):
                     result["zone_unlocked"] = "legend"
                     logger.info("Legend zone unlocked — all 4 main zones have first-evolution characters")
 
+        # ── Sequential zone unlock: completing zone[i] → unlock zone[i+1] ──
+        # A character is "completed" when it reaches final_a or final_b (is_completed=True).
+        # This triggers the next zone in _ZONE_UNLOCK_CHAIN to open for new adoption.
+        if result.get("is_completed") and not prog.is_legend_type:
+            char = db.get(IslandCharacter, prog.character_id)
+            if char and char.zone in _ZONE_UNLOCK_CHAIN:
+                idx = _ZONE_UNLOCK_CHAIN.index(char.zone)
+                if idx + 1 < len(_ZONE_UNLOCK_CHAIN):
+                    next_zone = _ZONE_UNLOCK_CHAIN[idx + 1]
+                    next_row = db.query(IslandZoneStatus).filter_by(zone=next_zone).first()
+                    if next_row and not next_row.is_unlocked:
+                        next_row.is_unlocked = True
+                        next_row.unlocked_at = datetime.now(timezone.utc)
+                        # Only overwrite if legend hasn't already claimed this key.
+                        if "zone_unlocked" not in result:
+                            result["zone_unlocked"] = next_zone
+                        logger.info(
+                            "Zone '%s' unlocked — character '%s' completed in zone '%s'",
+                            next_zone, char.name, char.zone,
+                        )
+
         db.commit()
         return result
     except EvolutionError as e:
