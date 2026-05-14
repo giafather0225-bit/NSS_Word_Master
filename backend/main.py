@@ -209,9 +209,10 @@ async def lifespan(application: FastAPI):
             decay_result = care.run_daily_batch(db)
             prod_result = prod.run_daily_production(db)
             db.commit()
+            broken = decay_result.get("legend_streak_broken", [])
             logger.info(
-                "[island] decay processed=%d skipped=%d | lumi produced=%d characters=%d",
-                decay_result["processed"], decay_result["skipped"],
+                "[island] decay processed=%d skipped=%d legend_breaks=%d | lumi produced=%d characters=%d",
+                decay_result["processed"], decay_result["skipped"], len(broken),
                 prod_result["produced"], prod_result["characters"],
             )
         except Exception as e:

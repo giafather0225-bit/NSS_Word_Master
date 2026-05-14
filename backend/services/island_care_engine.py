@@ -5,12 +5,14 @@ Dependencies: models.island
 API endpoints: called by study/math/diary/review routers + main.py lifespan
 """
 
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from typing import Optional
 
 from sqlalchemy.orm import Session
 
-from backend.models.island import IslandCharacter, IslandCharacterProgress, IslandCareLog
+from backend.models.island import (
+    IslandCharacter, IslandCharacterProgress, IslandCareLog, IslandLegendProgress,
+)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Study-gain table (ISLAND_SPEC §5.2)
@@ -339,7 +341,8 @@ def run_daily_batch(db: Session) -> dict:
 
     processed = 0
     skipped = 0
-    today_str = str(_today())
+    today = _today()
+    today_str = str(today)
 
     for prog in active_chars:
         # Skip if decay already ran today.
@@ -353,7 +356,57 @@ def run_daily_batch(db: Session) -> dict:
             skipped += 1
 
     db.flush()
-    return {"processed": processed, "skipped": skipped}
+
+    # ── Legend streak break detection (ISLAND_SPEC §Legend) ──────────────────
+    # If a legend character's last_completed_date was > 1 day ago, the
+    # consecutive_days counter resets to 0 and happiness drops by 10.
+    # This mirrors the normal-character gauge decay, but for legend chars.
+    legend_broken: list[dict] = []
+    yesterday = _today() - timedelta(days=1)
+
+    legend_progs = (
+        db.query(IslandLegendProgress)
+        .filter(
+            IslandLegendProgress.consecutive_days > 0,
+            IslandLegendProgress.last_completed_date.isnot(None),
+            IslandLegendProgress.last_completed_date < yesterday,
+        )
+        .all()
+    )
+    for lp in legend_progs:
+        days_missed = (today - lp.last_completed_date).days - 1 if lp.last_completed_date else 0
+        if days_missed <= 0:
+            continue
+        lp.consecutive_days = 0
+        # Apply happiness -10 to the associated legend character progress row.
+        char_prog = (
+            db.query(IslandCharacterProgress)
+            .filter(
+                IslandCharacterProgress.character_id == lp.character_id,
+                IslandCharacterProgress.is_legend_type == True,
+                IslandCharacterProgress.is_active == True,
+            )
+            .first()
+        )
+        if char_prog:
+            new_hp = max(0, (char_prog.happiness or 0) - 10)
+            char_prog.happiness = new_hp
+            _log_care(
+                db,
+                character_progress_id=char_prog.id,
+                source="legend_streak_break",
+                hunger_change=0,
+                happiness_change=-10,
+            )
+        legend_broken.append({
+            "character_id": lp.character_id,
+            "days_missed": days_missed,
+        })
+
+    if legend_broken:
+        db.flush()
+
+    return {"processed": processed, "skipped": skipped, "legend_streak_broken": legend_broken}
 
 
 # @tag ISLAND

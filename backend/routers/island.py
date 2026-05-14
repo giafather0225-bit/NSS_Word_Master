@@ -1046,8 +1046,11 @@ def legend_daily(db: Session = Depends(get_db)):
         if lp.last_completed_date == today:
             continue  # already counted today
 
-        # Reset streak if missed yesterday.
+        # Reset streak if missed yesterday; apply happiness -10 on break.
         if lp.last_completed_date and (today - lp.last_completed_date).days > 1:
+            if lp.consecutive_days > 0:
+                # Happiness penalty — only when streak was actually active.
+                prog.happiness = max(0, (prog.happiness or 0) - 10)
             lp.consecutive_days = 0
 
         lp.consecutive_days += 1
