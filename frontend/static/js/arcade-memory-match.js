@@ -5,14 +5,18 @@
    API endpoints: GET /api/arcade/words, POST /api/arcade/score
    ================================================================ */
 
-/** @tag ARCADE */
-const MM_CFG = {
+/** Level configs for Memory Card Match. @tag ARCADE */
+const MM_LEVELS = {
   easy:  { rows: 4, cols: 4, timeMs: 120_000, pairs: 8,  label: 'Easy',   spec: '8 pairs · 2 min' },
   hard:  { rows: 4, cols: 6, timeMs: 180_000, pairs: 12, label: 'Hard',   spec: '12 pairs · 3 min' },
   xhard: { rows: 5, cols: 6, timeMs: 240_000, pairs: 15, label: 'Expert', spec: '15 pairs · 4 min' },
+};
+
+/** Game-wide constants for Memory Card Match. @tag ARCADE */
+const MM_CFG = {
   flipCloseMs:     750,  // delay before a non-matching flip closes
-  matchPoints:     150,  // points per matched pair (was 100)
-  timeBonusPerSec:   5,  // bonus points per remaining second at completion (was 3)
+  matchPoints:     150,  // points per matched pair
+  timeBonusPerSec:   5,  // bonus points per remaining second at completion
   extraFlipPenalty:  5,  // penalty per flip above the theoretical minimum
   defMaxLen:        42,  // characters to show on a definition card
 };
@@ -57,7 +61,7 @@ function mmShowLevelPicker() {
 /** Start a Memory Card Match round. @tag ARCADE */
 async function mmStart(level = 'easy') {
   mmStop();
-  const cfg = MM_CFG[level] || MM_CFG.easy;
+  const cfg = MM_LEVELS[level] || MM_LEVELS.easy;
   const body = document.getElementById('arcade-body');
   if (!body) return;
 

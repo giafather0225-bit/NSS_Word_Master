@@ -294,7 +294,11 @@ function _suCheckComplete() {
   for (let r = 0; r < N; r++)
     for (let c = 0; c < N; c++)
       if (!_su.input[r][c]) return;
-  // No constraint violations (allows valid alternative solutions)
+  // Validate by constraint check, not by comparing to the stored solution.
+  // This intentionally accepts any valid alternative solution: the simple
+  // backtracking generator (_suGenSolved) does not guarantee a unique
+  // solution for all hole counts, so constraint-validity is the correct
+  // acceptance criterion.
   for (let r = 0; r < N; r++) {
     for (let c = 0; c < N; c++) {
       const n = _su.input[r][c];

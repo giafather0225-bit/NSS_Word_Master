@@ -157,6 +157,12 @@ function _wbNextWord() {
   _wbUpdateBoard();
 }
 
+/**
+ * Shuffle array in place using Fisher-Yates algorithm.
+ * Also returns the same array for convenience (mirrors Array.prototype.sort).
+ * @param {Array} arr - mutated in place
+ * @returns {Array} the same arr reference
+ */
 function _wbFisherYates(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));

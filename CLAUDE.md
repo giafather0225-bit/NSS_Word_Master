@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-07 — CKLA redesign spec (66 decisions) + DUX freeze rules + streak subject change + migrations 018-024 + Math Module v2.0 (MATH_SPEC.md) + Island System (Scene-Stage decorate flow + drag-to-reposition + auto cache-bust)
+> Last updated: 2026-05-14 — review.py DUX freeze 해제 (범용 SM-2 인프라로 분류) + ckla_review → review 통합 (WordReview 테이블 일원화)
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -41,15 +41,16 @@
     → Confirmed fixes applied 2026-04-30: spelling.js / sentence.js / fillblank.js 이모지 전체 제거, sentence.js 한국어 로딩 텍스트 영문화, fillblank.js retry 카운터 UX 개선.
 12. class/ID 변경 시 모든 참조 동시 업데이트 (3 bundles 모두 영향).
 13. 응답 마지막에 수정된 파일 목록 기재.
-14. DUX 절대 수정 금지 파일:
+14. DUX 절대 수정 금지 파일 (학습 플로우 UI — 완성, 건드릴 이유 없음):
     `routers/lessons.py`, `routers/study.py`, `routers/finaltest.py`,
     `routers/unittest.py`, `routers/daily_words.py`,
-    `routers/collocation.py`, `routers/review.py`,
+    `routers/collocation.py`,
     `static/js/child.js`, `static/js/navigation.js`,
     `static/js/preview.js`, `static/js/wordmatch.js`,
     `static/js/fillblank.js`, `static/js/spelling.js`,
     `static/js/sentence.js`, `static/js/finaltest.js`,
     `static/js/unittest.js`, `static/js/home.js`
+    → `routers/review.py`는 범용 SM-2 인프라이므로 freeze 제외 (2026-05-14)
 15. CKLA는 DUX와 완전히 분리된 독립 모듈이다.
     CKLA 작업 시 위 파일들을 절대 수정하지 않는다.
 
@@ -779,6 +780,8 @@ questions 배열 내 각 문제 필드:
 | Sudoku | `arcade-sudoku.js` |
 | Make 24 | `arcade-make24.js` |
 | Math Invaders | `arcade-math-invaders.js` |
+| Word Builder | `arcade-word-builder.js` |
+| Memory Match | `arcade-memory-match.js` |
 
 Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only inside games. Daily XP cap configurable.
 

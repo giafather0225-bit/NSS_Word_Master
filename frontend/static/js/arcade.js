@@ -1,8 +1,13 @@
 /* ================================================================
    arcade.js — Arcade overlay shell + game lobby
    Section: Arcade
-   Dependencies: core.js, arcade-word-invaders.js
-   API endpoints: GET /api/arcade/words, POST /api/arcade/score
+   Dependencies: core.js, arcade-sfx.js, arcade-word-invaders.js,
+                 arcade-definition-match.js, arcade-spell-rush.js,
+                 arcade-crossword.js, arcade-math-invaders.js,
+                 arcade-sudoku.js, arcade-make24.js,
+                 arcade-word-builder.js, arcade-memory-match.js
+   API endpoints: GET /api/arcade/words, GET /api/arcade/best/{game},
+                  POST /api/arcade/score
    ================================================================ */
 
 /* Lucide SVG strings (stroke-width 1.5, currentColor) */

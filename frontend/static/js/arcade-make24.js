@@ -227,6 +227,7 @@ function _mkSubmit() {
 
 function _mkSkip() {
   if (!_mk || !_mk.running) return;
+  _mk.total += 1;          // skipped puzzle counts as an attempt (not correct)
   _mk.score = Math.max(0, _mk.score - MK_CFG.skipPenalty);
   _mk.streak = 0;
   _mkUpdateHUD();
