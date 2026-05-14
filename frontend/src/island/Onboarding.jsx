@@ -347,17 +347,25 @@ async function _obConfirm() {
 
     try {
         // Adopt each character in order; first gets the custom nickname.
+        // Idempotent: if a character was already adopted (e.g. from a partial retry),
+        // the 400 "already adopted" response is treated as success.
         for (let i = 0; i < _obSelections.length; i++) {
             const sel  = _obSelections[i];
             const char = _obChars.find(c => c.id === sel.charId) || {};
-            await apiFetchJSON('/api/island/character/adopt', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    character_id: sel.charId,
-                    nickname: i === 0 ? firstNick : char.name || 'Friend',
-                }),
-            });
+            try {
+                await apiFetchJSON('/api/island/character/adopt', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        character_id: sel.charId,
+                        nickname: i === 0 ? firstNick : char.name || 'Friend',
+                    }),
+                });
+            } catch (adoptErr) {
+                // Skip if already adopted (idempotent retry safety).
+                if (String(adoptErr.message).toLowerCase().includes('already')) continue;
+                throw adoptErr; // re-raise any other error
+            }
         }
 
         // Mark onboarding complete.

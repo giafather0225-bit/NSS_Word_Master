@@ -541,11 +541,11 @@ def care_status(character_progress_id: int, db: Session = Depends(get_db)):
     elif prog.is_legend_type:
         stone_needed = "legend_first_a" if stage == "baby" else "legend_second"
         min_level = 10 if is_mid else 5
-        can_evolve = current_xp >= xp_to_next and prog.level >= min_level and prog.hunger >= 20 and prog.happiness >= 20
+        can_evolve = current_xp >= xp_to_next and (prog.level or 1) >= min_level and prog.hunger >= 20 and prog.happiness >= 20
     else:
         stone_needed = ("first_a" if stage == "baby" else "second")
         min_level = 10 if is_mid else 5
-        can_evolve = current_xp >= xp_to_next and prog.level >= min_level and prog.hunger >= 20 and prog.happiness >= 20
+        can_evolve = current_xp >= xp_to_next and (prog.level or 1) >= min_level and prog.hunger >= 20 and prog.happiness >= 20
 
     # Legend streak
     legend_prog = None
@@ -594,9 +594,10 @@ def care_feed(body: FeedBody, db: Session = Depends(get_db)):
         raise HTTPException(400, "Shop item not found.")
 
     # Daily limit: 1 use per food type per character per day.
+    # Source is logged as "food_{id}_xp{gain}" so match with LIKE prefix.
     used_today = db.query(IslandCareLog).filter(
         IslandCareLog.character_progress_id == body.character_progress_id,
-        IslandCareLog.source == f"food_{shop_item.id}",
+        IslandCareLog.source.like(f"food_{shop_item.id}_%"),
         IslandCareLog.logged_at >= _today_start(),
     ).first()
     if used_today:

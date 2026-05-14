@@ -248,7 +248,10 @@ def execute_evolution(
     prog.stage = next_stage
 
     # Consume stone from inventory.
+    # Re-query after validate_evolution; if another request consumed it, raise early.
     inv_row = _get_inventory_stone(db, stone_type)
+    if inv_row is None:
+        raise EvolutionError(f"Evolution stone '{stone_type}' was consumed by another request.")
     inv_row.quantity -= 1
     inv_row.used_on_character_progress_id = character_progress_id
 
