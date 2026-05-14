@@ -788,13 +788,13 @@ function getBadgeIcon(badgeKey) {
 /** Load due-review count and update sidebar badge. @tag ACADEMY CKLA SM2 */
 async function loadCKLAReviewBadge() {
   try {
-    const res = await fetch('/api/academy/ckla/review/due');
+    const res = await fetch('/api/review/today?source=ckla');
     if (!res.ok) return;
     const data = await res.json();
     const badge = document.getElementById('ckla-review-badge');
     if (!badge) return;
-    if (data.due_count > 0) {
-      badge.textContent = data.due_count;
+    if (data.count > 0) {
+      badge.textContent = data.count;
       badge.style.display = 'inline-flex';
     } else {
       badge.style.display = 'none';

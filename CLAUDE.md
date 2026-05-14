@@ -132,7 +132,7 @@ NSS_Word_Master/
 
 ---
 
-## Backend Routers (45)
+## Backend Routers (44)
 
 > Order in `main.py` matters — `diary_photo` must be registered **before** `diary_sentences` so literal `/photo` wins over `/{subject}/{textbook}` matching.
 
@@ -203,7 +203,6 @@ NSS_Word_Master/
 |---|---|
 | `us_academy` | Word-first SM-2 system, sessions, mini-quiz, unit tests, passages |
 | `ckla` | CKLA G3 reading curriculum (Read / Words / Q&A / Word Work) |
-| `ckla_review` | CKLA review queue |
 | `parent_ckla` | Parent dashboard CKLA stats (progress, Q&A accuracy, weekly graph) |
 
 ---
@@ -882,7 +881,7 @@ New module for US-school vocab prep.
 `CKLABadge` (신규), `CKLAUserBadge` (신규)
 
 ### Routers
-`ckla` (메인), `ckla_review` (삭제 예정 → review로 통합)
+`ckla` (메인) — SM-2 복습은 `review` 라우터로 통합 (`source=ckla`)
 
 ### Service
 `services/ckla_grader.py`
