@@ -109,8 +109,9 @@ class WordAttemptsBatch(BaseModel):
 def get_study_data(subject: str, textbook: str, lesson: str, db: Session = Depends(get_db)):
     """Return study items and progress for a lesson; auto-syncs from data.json if DB is empty."""
     from backend.utils import validate_name as _validate_name
-    subject = _validate_name(subject, "subject")
-    lesson  = _validate_lesson(lesson)
+    subject  = _validate_name(subject, "subject")
+    textbook = _validate_name(textbook, "textbook")
+    lesson   = _validate_lesson(lesson)
     rows = (
         db.query(StudyItem)
         .filter(
