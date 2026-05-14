@@ -180,7 +180,7 @@ def mark_ckla_done(db: Session, day: str | None = None, commit: bool = True) -> 
 # ─── Island lumi for streak ───────────────────────────────────
 
 def _award_streak_lumi(db: Session) -> None:
-    """Award Lumi when today's streak is first confirmed maintained. Silent on any error."""
+    """Award Lumi + island character streak bonus when today's streak is first confirmed maintained."""
     try:
         cfg = db.query(AppConfig).filter_by(key="lumi_rule_streak").first()
         try:
@@ -191,6 +191,14 @@ def _award_streak_lumi(db: Session) -> None:
             return
         from backend.services.lumi_engine import earn_lumi
         earn_lumi(db, source="streak", amount=amount)
+    except Exception:
+        pass
+
+    # Apply streak study gain to all active island characters (ISLAND_SPEC §4.3).
+    # Happiness +10, XP +10 for every active character (source="streak").
+    try:
+        from backend.services.island_care_engine import apply_subject_gain
+        apply_subject_gain(db, subject="all", source="streak")
     except Exception:
         pass
 

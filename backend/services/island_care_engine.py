@@ -28,6 +28,23 @@ _STUDY_GAINS: dict[str, tuple[int, int]] = {
     "legend_4subject":    ( 0, 20),   # applied to legend characters only
 }
 
+# Character XP awarded per study activity (ISLAND_SPEC §4.3).
+# Legend characters use consecutive_days instead of XP → 0 here.
+_CHAR_XP_GAINS: dict[str, int] = {
+    "english_stage":       10,
+    "english_final_test":  30,
+    "math_lesson":         20,
+    "math_unit_test":      50,
+    "diary":               15,
+    "review":              10,
+    "streak":              10,
+    "legend_4subject":      0,
+}
+
+# Cumulative XP thresholds per level (ISLAND_SPEC §4.2).
+# Index i → Level (i+1). Lv5 = evo_first ready; Lv10 = evo_second ready.
+_LEVEL_XP_THRESHOLDS: list[int] = [0, 100, 250, 450, 750, 850, 1000, 1200, 1500, 1900]
+
 _HUNGER_DECAY_PER_DAY = 15
 _HAPPINESS_DECAY_PER_NO_STUDY_BLOCK = 20  # once per 2-day block of no study
 
@@ -38,6 +55,17 @@ _HAPPINESS_DECAY_PER_NO_STUDY_BLOCK = 20  # once per 2-day block of no study
 
 def _clamp(value: int) -> int:
     return max(0, min(100, value))
+
+
+def _calc_level(current_xp: int) -> int:
+    """Return character level (1-10) for the given cumulative XP."""
+    level = 1
+    for i, threshold in enumerate(_LEVEL_XP_THRESHOLDS):
+        if current_xp >= threshold:
+            level = i + 1
+        else:
+            break
+    return level
 
 
 def _today() -> date:
@@ -205,7 +233,8 @@ def apply_study_gain(
     # Legend characters ignore hunger/happiness — gauge ops are no-ops.
     if prog.is_legend_type:
         return {"hunger": prog.hunger, "happiness": prog.happiness,
-                "hunger_change": 0, "happiness_change": 0}
+                "hunger_change": 0, "happiness_change": 0,
+                "xp_gained": 0, "level_up": False, "new_level": prog.level or 1}
 
     # Completed characters keep their gauges maxed; gains still apply (no decay).
     hunger_delta, happiness_delta = gains
@@ -231,12 +260,32 @@ def apply_study_gain(
         source=source,
     )
 
+    # ── Character XP update (ISLAND_SPEC §4.3) ───────────────────────────
+    # Completed characters are permanent residents — no further XP needed.
+    xp_gained = 0
+    level_up = False
+    new_level = prog.level or 1
+
+    if not prog.is_completed:
+        char_xp = _CHAR_XP_GAINS.get(source, 0)
+        if char_xp > 0:
+            old_level = _calc_level(prog.current_xp or 0)
+            prog.current_xp = (prog.current_xp or 0) + char_xp
+            xp_gained = char_xp
+            new_level = _calc_level(prog.current_xp)
+            if new_level > old_level:
+                level_up = True
+                prog.level = new_level
+
     db.flush()
     return {
         "hunger": new_hunger,
         "happiness": new_happiness,
         "hunger_change": actual_hunger_change,
         "happiness_change": actual_happiness_change,
+        "xp_gained": xp_gained,
+        "level_up": level_up,
+        "new_level": new_level,
     }
 
 
@@ -316,7 +365,7 @@ def apply_subject_gain(db: Session, subject: str, source: str) -> dict:
     Returns the XP multiplier for the currently-raising (non-completed) character.
 
     Returns:
-        {"xp_multiplier": float}
+        {"xp_multiplier": float, "level_up": bool, "new_level": int}
     """
     try:
         subjects = [subject, "all"] if subject != "all" else ["all"]
@@ -330,18 +379,30 @@ def apply_subject_gain(db: Session, subject: str, source: str) -> dict:
             .all()
         )
     except Exception:
-        return {"xp_multiplier": 1.0}
+        return {"xp_multiplier": 1.0, "level_up": False, "new_level": 1}
 
     xp_multiplier = 1.0
+    aggregated_level_up = False
+    aggregated_new_level = 1
+
     for prog in active_progs:
         try:
-            apply_study_gain(db, prog.id, source)
+            result = apply_study_gain(db, prog.id, source)
+            if result.get("level_up"):
+                aggregated_level_up = True
+                aggregated_new_level = result.get("new_level", 1)
         except Exception:
             pass
         if not prog.is_completed and not prog.is_legend_type:
             try:
                 xp_multiplier = get_xp_multiplier(db, prog.id)
+                if not aggregated_level_up:
+                    aggregated_new_level = prog.level or 1
             except Exception:
                 pass
 
-    return {"xp_multiplier": xp_multiplier}
+    return {
+        "xp_multiplier": xp_multiplier,
+        "level_up": aggregated_level_up,
+        "new_level": aggregated_new_level,
+    }
