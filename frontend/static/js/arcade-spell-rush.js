@@ -13,6 +13,7 @@ const SR_CFG = {
   perLetterPoints: 8,
   wordCompleteBase: 60,
   wrongPenalty: 10,
+  hintPenalty: 20,
 };
 
 const SR_LEVELS = {
@@ -78,6 +79,7 @@ async function srStart(level = 'normal') {
       </div>
       <div class="sr-definition" id="sr-definition">Loading…</div>
       <div class="sr-boxes" id="sr-boxes"></div>
+      <button type="button" class="sr-hint-btn" id="sr-hint-btn" onclick="_srHint()">? Hint <span class="sr-hint-cost">−${SR_CFG.hintPenalty} pts</span></button>
       <input type="text" id="sr-input" class="wi-input" autocomplete="off"
              autocapitalize="off" spellcheck="false"
              placeholder="Type the word" maxlength="20">
@@ -107,6 +109,7 @@ async function srStart(level = 'normal') {
     streak: 0,
     correct: 0,
     total: 0,
+    hints: 0,
     running: true,
     lock: false,       // C1: prevents _srOnInput + Enter double-submit
     startedAt: performance.now(),
@@ -161,7 +164,7 @@ function _srNextWord() {
   if (!_sr) return;
   _sr.lock = false;   // C1: release submit lock for the next word
   const pick = _sr.pool[Math.floor(Math.random() * _sr.pool.length)];
-  _sr.current = { word: pick.word.toLowerCase(), def: pick.definition, typed: '' };
+  _sr.current = { word: pick.word.toLowerCase(), def: pick.definition, typed: '', hintUsed: false };
 
   const defEl = document.getElementById('sr-definition');
   if (defEl) defEl.textContent = pick.definition;
@@ -169,6 +172,9 @@ function _srNextWord() {
   _srRenderBoxes();
   const input = document.getElementById('sr-input');
   if (input) input.value = '';
+
+  const hintBtn = document.getElementById('sr-hint-btn');
+  if (hintBtn) { hintBtn.disabled = false; hintBtn.classList.remove('sr-hint-btn--used'); }
 }
 
 function _srRenderBoxes() {
@@ -264,6 +270,24 @@ function _srUpdateHUD() {
   const st = document.getElementById('sr-streak');
   if (s) s.textContent = String(_sr.score);
   if (st) { st.textContent = String(_sr.streak); if (typeof _arcadeApplyStreakStyle === 'function') _arcadeApplyStreakStyle(st, _sr.streak); }
+}
+
+function _srHint() {
+  if (!_sr || !_sr.running || _sr.lock || _sr.current.hintUsed) return;
+  _sr.current.hintUsed = true;
+  _sr.hints += 1;
+  _sr.streak = 0;
+  _sr.score = Math.max(0, _sr.score - SR_CFG.hintPenalty);
+  _srUpdateHUD();
+
+  // Reveal first letter into typed + input
+  _sr.current.typed = _sr.current.word[0];
+  const input = document.getElementById('sr-input');
+  if (input) { input.value = _sr.current.word[0]; input.focus(); }
+  _srRenderBoxes();
+
+  const btn = document.getElementById('sr-hint-btn');
+  if (btn) { btn.disabled = true; btn.classList.add('sr-hint-btn--used'); }
 }
 
 async function _srGameOver() {
