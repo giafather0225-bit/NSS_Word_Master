@@ -138,12 +138,14 @@ function _renderDomains(domains, rank, completionPct) {
     : '';
   view.innerHTML = `
     <div class="ckla-header">
-      <button class="ckla-back-btn" onclick="hideCKLAView()">← Back</button>
-      <div class="ckla-header-title-row">
-        <h2 class="ckla-title">CKLA Grade ${cklaNav.grade}</h2>
-        ${rankPill}
+      <div class="ckla-header-info">
+        <div class="ckla-header-title-row">
+          <h2 class="ckla-title">CKLA Grade ${cklaNav.grade}</h2>
+          ${rankPill}
+        </div>
+        ${progressLine}
       </div>
-      ${progressLine}
+      <button class="eng-exit-btn" onclick="hideCKLAView()"><i data-lucide="x"></i> Exit</button>
     </div>
     <div class="ckla-domain-grid">
       ${domains.map(d => d.locked ? `

@@ -107,12 +107,12 @@ async function _dwLoadAndRender() {
 
 // ─── Shared UI builders ───────────────────────────────────────
 
-/** Build the HTML header bar with a back button. @tag DAILY_WORDS */
+/** Build the HTML header bar with an exit button. @tag DAILY_WORDS */
 function _dwHeader(title, sub) {
     return `<div class="dw-header">
-        <button class="dw-header-back" onclick="hideDailyWordsView()">←</button>
         <span class="dw-header-title">${escapeHtml(title)}</span>
         <span class="dw-header-sub">${escapeHtml(sub)}</span>
+        <button class="eng-exit-btn" onclick="hideDailyWordsView()"><i data-lucide="x"></i> Exit</button>
     </div>`;
 }
 
@@ -142,9 +142,10 @@ function _dwRenderAlreadyDone() {
             <div class="dw-result-title">Done for today!</div>
             <div class="dw-result-sub">Day ${dwState.cycleDay} complete. Come back tomorrow.</div>
             <div class="dw-btn-row">
-                <button class="dw-btn dw-btn-secondary" onclick="hideDailyWordsView()">← Back</button>
+                <button class="eng-exit-btn" onclick="hideDailyWordsView()"><i data-lucide="x"></i> Exit</button>
             </div>
         </div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 // ─── Placement Test (Day 1) ───────────────────────────────────
@@ -240,7 +241,7 @@ async function _dwFinishPlacement() {
                 <div class="dw-stat"><span class="dw-stat-num">${wrong}</span><span class="dw-stat-label">To Study</span></div>
                 <div class="dw-stat"><span class="dw-stat-num">${pct}%</span><span class="dw-stat-label">Score</span></div>
             </div>
-            <div class="dw-btn-row"><button class="dw-btn dw-btn-secondary" onclick="hideDailyWordsView()">← Back</button></div>
+            <div class="dw-btn-row"><button class="eng-exit-btn" onclick="hideDailyWordsView()"><i data-lucide="x"></i> Exit</button></div>
         </div>`;
     if (typeof lucide !== 'undefined') lucide.createIcons();
     loadDailyWordsSection();
@@ -359,7 +360,7 @@ async function _dwFinishStudy() {
             <div class="dw-result-title">Day ${dwState.cycleDay} Complete!</div>
             <div class="dw-result-sub">${dwState.words.length} words studied today.</div>
             ${xpAwarded > 0 ? `<div style="font-size:18px;font-weight:700;color:var(--color-primary);margin-bottom:16px;">+${xpAwarded} XP</div>` : ""}
-            <div class="dw-btn-row"><button class="dw-btn dw-btn-secondary" onclick="hideDailyWordsView()">← Back</button></div>
+            <div class="dw-btn-row"><button class="eng-exit-btn" onclick="hideDailyWordsView()"><i data-lucide="x"></i> Exit</button></div>
         </div>`;
     if (typeof lucide !== 'undefined') lucide.createIcons();
     loadDailyWordsSection();

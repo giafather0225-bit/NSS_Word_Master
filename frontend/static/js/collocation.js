@@ -404,7 +404,7 @@
                 (perfect
                     ? '<div class="coll-result-perfect-msg"><i data-lucide="sparkles"></i> Perfect score! Keep it up!</div>'
                     : '') +
-                '<button class="coll-btn-home" id="coll-home-btn">Back to Home</button>' +
+                '<button class="eng-exit-btn" id="coll-home-btn" style="margin:0 auto"><i data-lucide="x"></i> Exit</button>' +
             '</div>'
         );
         if (window.lucide) lucide.createIcons();

@@ -25,11 +25,15 @@
 /* ── Shared header ──────────────────────────────────────────── */
 .ckla-header, .ckla-lesson-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   padding: 14px 20px;
   border-bottom: 1px solid var(--border-default);
   flex-shrink: 0;
+}
+.ckla-header-info {
+  flex: 1;
+  min-width: 0;
 }
 .ckla-back-btn {
   background: none;

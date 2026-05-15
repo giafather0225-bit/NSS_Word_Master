@@ -369,7 +369,7 @@
 
         html += '</div></div>' +
             '<div class="ut-result-divider"></div>' +
-            '<button class="ut-back-btn" id="ut-back-btn">← Select Lessons</button>' +
+            '<button class="eng-exit-btn" id="ut-back-btn"><i data-lucide="arrow-left"></i> Lessons</button>' +
         '</div>';
 
         body.innerHTML = html;
