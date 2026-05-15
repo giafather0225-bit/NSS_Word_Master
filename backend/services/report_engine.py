@@ -265,7 +265,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
     ckla_qa_rows = (
         db.query(
             func.count(CKLAQuestionResponse.id).label("total"),
-            func.sum(case((CKLAQuestionResponse.score >= 2, 1), else_=0)).label("correct"),
+            func.sum(case((CKLAQuestionResponse.ai_score >= 2, 1), else_=0)).label("correct"),
         )
         .filter(func.substr(CKLAQuestionResponse.created_at, 1, 10) >= start)
         .one()
