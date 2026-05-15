@@ -140,11 +140,34 @@ async function _renderArcadeLobby() {
     .filter(Boolean)
     .join('');
 
+  // Popular section: top 3 most-played games (localStorage play counts)
+  let playCounts;
+  try {
+    playCounts = ARCADE_GAMES.map((g) =>
+      parseInt(localStorage.getItem(`arcade_plays_${g.id}`) || '0', 10)
+    );
+  } catch (_) {
+    playCounts = ARCADE_GAMES.map(() => 0);
+  }
+  const popularGames = ARCADE_GAMES
+    .map((g, i) => ({ g, i, plays: playCounts[i] }))
+    .filter(({ g, plays }) => g.enabled && plays > 0)
+    .sort((a, b) => b.plays - a.plays)
+    .slice(0, 3);
+  const popularSection = popularGames.length >= 2
+    ? `<div class="arcade-section-label arcade-section-label--popular">
+         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+         Popular
+       </div>
+       <div class="arcade-list">${popularGames.map(({ g, i }) => cardFor(g, i)).join('')}</div>`
+    : '';
+
   body.innerHTML = `
     ${todayBanner}
     <div class="arcade-xp-note">
       XP per round — 500+: <b>+1</b>, 1000+: <b>+2</b>, 2000+: <b>+3</b>. Daily max <b>${dailyCap}</b> XP.
     </div>
+    ${popularSection}
     <div class="arcade-section-label">${_SVG.bookOpen} English</div>
     <div class="arcade-list">${byCat('english')}</div>
     <div class="arcade-section-label">${_SVG.calculator} Math</div>
@@ -155,6 +178,10 @@ async function _renderArcadeLobby() {
 /** @tag ARCADE */
 function _launchArcadeGame(id) {
   _arcadeInGame = true;
+  try {
+    const key = `arcade_plays_${id}`;
+    localStorage.setItem(key, String((parseInt(localStorage.getItem(key) || '0', 10) + 1)));
+  } catch (_) {}
   if (id === 'word_invaders' && typeof wiShowLevelPicker === 'function') wiShowLevelPicker();
   else if (id === 'definition_match' && typeof dmShowLevelPicker === 'function') dmShowLevelPicker();
   else if (id === 'spell_rush' && typeof srShowLevelPicker === 'function') srShowLevelPicker();
