@@ -14,6 +14,7 @@ let _emEvoStage  = null;
 let _emCharName  = null;
 let _emSelection = null;   // 'a' | 'b' | null
 let _emValidData = null;   // validate response
+let _iccZone     = null;   // zone for completion overlay (needed by _closeCharCompletion)
 
 // ─── Open / Close ─────────────────────────────────────────────
 
@@ -480,6 +481,7 @@ function _showMidEvoReveal(result, zone, charName, progId) {
 function _closeMidEvoReveal(progId, zone) {
     const el = document.getElementById('imer-overlay');
     if (el) el.remove();
+    _refreshIslandHomeUI(zone);
     // Set _zdZone so that CharacterDetail's Back button returns to ZoneDetail
     // instead of dropping the user at the island map root.
     _zdZone = zone;
@@ -499,6 +501,7 @@ const _ZONE_PARTICLE_COLORS = {
 
 /** Show full-screen completion celebration. @tag SHOP */
 function _showCharCompletion(result, zone, charName) {
+    _iccZone = zone;
     const overlay = document.createElement('div');
     overlay.id    = 'icc-overlay';
     overlay.className = `icc-overlay icc-${zone}`;
@@ -557,8 +560,34 @@ function _showCharCompletion(result, zone, charName) {
 function _closeCharCompletion() {
     const el = document.getElementById('icc-overlay');
     if (el) el.remove();
+    _refreshIslandHomeUI(_iccZone);
+    _iccZone = null;
     // Reload island map so boost/lumi production is reflected.
     if (typeof openIslandMain === 'function') openIslandMain();
+}
+
+// ─── Home UI Refresh After Evolution ─────────────────────────
+
+/**
+ * Refresh the home board island card and the subject-view mini widget
+ * for the evolved zone so they reflect the new character stage immediately.
+ * @tag SHOP
+ */
+function _refreshIslandHomeUI(zone) {
+    // Refresh home board island card.
+    if (typeof _loadIslandCard === 'function') _loadIslandCard();
+
+    // Refresh the subject-view mini widget for the evolved zone.
+    const zoneWidgetMap = {
+        forest:  { id: 'island-widget-english', zone: 'forest'  },
+        ocean:   { id: 'island-widget-math',    zone: 'ocean'   },
+        savanna: { id: 'island-widget-diary',   zone: 'savanna' },
+        space:   { id: 'island-widget-english', zone: 'space'   }, // space uses review — no dedicated widget yet
+    };
+    const entry = zone ? zoneWidgetMap[zone] : null;
+    if (entry && typeof _renderIslandSubjectWidget === 'function') {
+        _renderIslandSubjectWidget(entry.id, entry.zone);
+    }
 }
 
 // ─── Legend Zone Unlock Animation ─────────────────────────────
