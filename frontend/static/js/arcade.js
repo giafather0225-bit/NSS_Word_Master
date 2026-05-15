@@ -102,6 +102,22 @@ async function _renderArcadeLobby() {
   // daily_cap is included in every best response — read from first enabled game result.
   const dailyCap = (bests.find((b) => b.daily_cap != null) || {}).daily_cap ?? 10;
 
+  // Today's best: find the highest-scoring game played today
+  const todayStr = new Date().toISOString().slice(0, 10);
+  let todayBest = null;
+  ARCADE_GAMES.forEach((g, i) => {
+    if (!g.enabled) return;
+    const b = bests[i];
+    if (b && b.date === todayStr && b.score > 0) {
+      if (!todayBest || b.score > todayBest.score) {
+        todayBest = { title: g.title, score: b.score };
+      }
+    }
+  });
+  const todayBanner = todayBest
+    ? `<div class="arcade-today-best">${_SVG.trophy} Today's Best — <b>${todayBest.title}</b>: <b>${todayBest.score.toLocaleString()}</b> pts</div>`
+    : '';
+
   const cardFor = (g, i) => {
     const catCls = g.category === 'math' ? 'cat-math' : 'cat-english';
     const cls = `arcade-game-card ${catCls}${g.enabled ? '' : ' disabled'}`;
@@ -125,6 +141,7 @@ async function _renderArcadeLobby() {
     .join('');
 
   body.innerHTML = `
+    ${todayBanner}
     <div class="arcade-xp-note">
       XP per round — 500+: <b>+1</b>, 1000+: <b>+2</b>, 2000+: <b>+3</b>. Daily max <b>${dailyCap}</b> XP.
     </div>
