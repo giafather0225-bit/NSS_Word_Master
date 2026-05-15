@@ -225,6 +225,13 @@ function _issDevPanel() {
                     <span class="iss-dev-btn-sub">Forest, Ocean, Savanna, Space, Legend</span>
                 </div>
             </button>
+            <button class="iss-dev-btn" onclick="_issPreviewHomeCard()">
+                <i data-lucide="layout-panel-left"></i>
+                <div>
+                    <span class="iss-dev-btn-label">Preview Home Card Pets</span>
+                    <span class="iss-dev-btn-sub">Re-render #island-home-pets with current data</span>
+                </div>
+            </button>
         </div>`;
 }
 
@@ -239,6 +246,25 @@ async function _issDevAction(action) {
         if (typeof _showShopToast === 'function') _showShopToast(err?.detail || 'Dev action failed.', true);
     } finally {
         btns.forEach(b => { b.disabled = false; });
+    }
+}
+
+/** Re-fetch /api/island/status and re-render home card pets for quick visual check. @tag HOME_DASHBOARD */
+async function _issPreviewHomeCard() {
+    try {
+        const d = await apiFetchJSON('/api/island/status');
+        const chars = [...(d.active_characters || []), ...(d.completed_characters || [])];
+        if (typeof _renderHomePets === 'function') {
+            _renderHomePets(chars);
+            if (typeof _showShopToast === 'function')
+                _showShopToast(`Home card refreshed — ${chars.length} character(s) rendered`);
+        } else {
+            if (typeof _showShopToast === 'function')
+                _showShopToast('_renderHomePets not available (open home first)', true);
+        }
+    } catch (err) {
+        if (typeof _showShopToast === 'function')
+            _showShopToast(err?.detail || 'Preview failed', true);
     }
 }
 

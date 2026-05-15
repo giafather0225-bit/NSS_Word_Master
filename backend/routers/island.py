@@ -198,14 +198,20 @@ def island_status(db: Session = Depends(get_db)):
                 IslandCharacterProgress.is_completed == False)
         .all()
     )
+    completed = (
+        db.query(IslandCharacterProgress, IslandCharacter)
+        .join(IslandCharacter, IslandCharacterProgress.character_id == IslandCharacter.id)
+        .filter(IslandCharacterProgress.is_completed == True)
+        .all()
+    )
     return {
         "island_on": _cfg(db, "island_on", "true") == "true",
         "initialized": _cfg(db, "island_initialized") == "true",
         "currency": le.get_balance(db),
         "zones": [{"zone": z.zone, "is_unlocked": z.is_unlocked} for z in zones],
         "active_characters": [_prog_dict(p, c) for p, c in active],
-        "completed_count": db.query(IslandCharacterProgress)
-            .filter(IslandCharacterProgress.is_completed == True).count(),
+        "completed_characters": [_prog_dict(p, c) for p, c in completed],
+        "completed_count": len(completed),
     }
 
 

@@ -559,6 +559,59 @@ function _openIslandCollection() { if (typeof openCollection === 'function') ope
 
 // ─── Home card loader ─────────────────────────────────────────────
 
+const _IH_SLOT_ORDER  = ['forest', 'ocean', 'legend', 'savanna', 'space'];
+const _IH_ZONE_FOLDER = { forest: 'Forest', ocean: 'Ocean', savanna: 'Savanna', space: 'Space', legend: 'Legend' };
+const _IH_ZONE_ICON   = { forest: 'tree-pine', ocean: 'waves', savanna: 'sun', space: 'sparkles', legend: 'crown' };
+
+/** Resolve PNG src from API char object (images JSON → guess path → lower fallback). */
+function _ihImgSrc(c, zone, stage) {
+    const folder = _IH_ZONE_FOLDER[zone];
+    const name   = (c.name || '').trim();
+    // images is a JSON string: {"baby":"path","mid_a":"path",...}
+    try {
+        const imgs = JSON.parse(c.images || '{}');
+        const rel  = imgs[stage] || imgs['baby'];
+        if (rel) return `/static/img/island/${rel}`;
+    } catch (_) {}
+    return folder && name ? `/static/img/island/${folder}/${name}_${stage}.png` : '';
+}
+
+/** Render character PNG slots into #island-home-pets. @tag HOME_DASHBOARD */
+function _renderHomePets(chars) {
+    const host = document.getElementById('island-home-pets');
+    if (!host) return;
+    const byZone = {};
+    (chars || []).forEach(c => { byZone[c.zone] = c; });
+    const html = _IH_SLOT_ORDER.map(zone => {
+        const c = byZone[zone];
+        if (!c) return '';
+        const isLegend = zone === 'legend';
+        const folder   = _IH_ZONE_FOLDER[zone];
+        const stage    = c.stage || 'baby';
+        const name     = (c.name || '').trim();
+        const primary  = _ihImgSrc(c, zone, stage);
+        const lower    = folder && name
+            ? `/static/img/island/${folder}/${name.toLowerCase()}_${stage}.png`
+            : '';
+        const icon     = _IH_ZONE_ICON[zone];
+        const crown = isLegend ? `<svg class="ih-crown" viewBox="0 0 32 22" fill="none">
+            <path d="M3 19 L5 7 L11 13 L16 4 L21 13 L27 7 L29 19 Z" fill="#f5d97c" stroke="#a88860" stroke-width="1.4" stroke-linejoin="round"/>
+            <circle cx="16" cy="14" r="1.3" fill="#ea4f6e"/>
+        </svg>` : '';
+        const zoneDot = isLegend ? '' : `<span class="ih-zone" data-zone="${zone}"></span>`;
+        return `<div class="ih-pet ih-pet--${isLegend ? 'legend' : 'normal'}" data-zone="${zone}">
+            ${crown}
+            <div class="ih-img">
+                <img src="${primary}" alt="${escapeHtml(name)}"
+                     onerror="if(this.src&&'${lower}'&&this.src!=='${lower}'){this.src='${lower}';}else{this.outerHTML='<i data-lucide=\\'${icon}\\'></i>';if(window.lucide)lucide.createIcons();}">
+            </div>
+            ${zoneDot}
+        </div>`;
+    }).join('');
+    host.innerHTML = html;
+    if (html && window.lucide) lucide.createIcons({ el: host });
+}
+
 /** Populate island home card with live data. @tag HOME_DASHBOARD */
 async function _loadIslandCard() {
     const charEl  = document.getElementById('island-home-chars');
@@ -571,9 +624,20 @@ async function _loadIslandCard() {
             if (cardEl) cardEl.style.display = 'none';
             return;
         }
-        const cnt  = (d.active_characters || []).length + (d.completed_count || 0);
+        // Merge active + completed so graduated characters stay visible in slots.
+        // Zone collision: active takes priority (active char may be in same zone as a
+        // completed one if the player started a second character in the same zone).
+        const active    = d.active_characters    || [];
+        const completed = d.completed_characters || [];
+        const allChars  = [...active, ...completed];
+        const cnt  = allChars.length;
         const lumi = d.currency?.lumi ?? 0;
-        if (charEl) charEl.textContent = `${cnt} character${cnt === 1 ? '' : 's'}`;
+        if (allChars.length > 0) {
+            _renderHomePets(allChars);
+        } else {
+            if (charEl) charEl.textContent = 'Your island awaits';
+        }
+        if (charEl && allChars.length > 0) charEl.textContent = `${cnt} character${cnt === 1 ? '' : 's'}`;
         if (lumiEl) lumiEl.textContent = lumi.toLocaleString();
     } catch (_) {
         if (charEl) charEl.textContent = 'Your island awaits';

@@ -379,6 +379,88 @@
     margin-top: 8px;
 }
 
+/* ── Home card pet slots (ih-*) ─────────────────────────────── */
+
+.ih-pets {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 14px;
+    position: relative;
+}
+.ih-pet {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ih-pet .ih-img {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.ih-pet .ih-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 8px rgba(122, 80, 20, 0.22));
+    animation: ih-bob 2.8s ease-in-out infinite;
+}
+@keyframes ih-bob {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-6px); }
+}
+.ih-pet--normal .ih-img { width: 78px; height: 78px; }
+.ih-pet--legend .ih-img {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    z-index: 1;
+}
+.ih-pet--legend .ih-img img { animation-duration: 3.4s; }
+.ih-pet--legend::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 145px; height: 145px;
+    border-radius: 50%;
+    transform: translate(-50%, -58%);
+    background: radial-gradient(circle, rgba(212,169,58,.22) 0%, rgba(212,169,58,0) 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+.ih-pet--legend::after {
+    content: "";
+    position: absolute;
+    left: 50%; bottom: 0;
+    transform: translateX(-50%);
+    width: 104px; height: 11px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(212,169,58,.55) 0%, rgba(212,169,58,0) 70%);
+    z-index: 0;
+}
+.ih-crown {
+    position: absolute;
+    left: 50%; top: -4px;
+    transform: translateX(-50%);
+    width: 28px; height: 20px;
+    z-index: 3;
+    filter: drop-shadow(0 2px 2px rgba(122,80,20,.28));
+}
+.ih-zone {
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #fff;
+}
+.ih-zone[data-zone="forest"]  { background: #86d3a0; }
+.ih-zone[data-zone="ocean"]   { background: #9fdde0; }
+.ih-zone[data-zone="savanna"] { background: #f6c1a7; }
+.ih-zone[data-zone="space"]   { background: #c9b3e6; }
+
 /* ════════════════════════════════════════════════════════════════
    GIM — Full-bleed Island Map (Screen ①)
    Prefix: .gim-*   Does NOT conflict with .isl-* screens above.
