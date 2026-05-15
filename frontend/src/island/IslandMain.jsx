@@ -476,7 +476,7 @@ async function _claimDailyAttendance() {
             _islandDaily.can_claim_today = false;
         }
 
-        showIslandLumiToast(result.lumi_earned ?? 30);
+        _claimCelebrate(result.lumi_earned ?? 30);
     } catch (e) {
         btn.disabled = false;
         btn.innerHTML = '<i data-lucide="gem"></i> Claim 30 Lumi';
@@ -551,6 +551,35 @@ function _scheduleNightSwitch() {
 function _isDay() { const h = new Date().getHours(); return h >= 6 && h < 18; }
 
 // ─── Lumi toast ───────────────────────────────────────────────────
+
+/** Full-screen celebration when daily Lumi is claimed. @tag SHOP */
+function _claimCelebrate(amount) {
+    const screen = document.getElementById('gim-screen');
+    if (!screen) { showIslandLumiToast(amount); return; }
+
+    const coins = Array.from({ length: 10 }).map(() => {
+        const x   = 20 + Math.random() * 60;
+        const del = (Math.random() * 0.45).toFixed(2);
+        const dur = (0.65 + Math.random() * 0.55).toFixed(2);
+        return `<div class="gim-claim-coin" style="left:${x}%;animation-delay:${del}s;animation-duration:${dur}s"><i data-lucide="gem"></i></div>`;
+    }).join('');
+
+    const div = document.createElement('div');
+    div.className = 'gim-claim-splash';
+    div.innerHTML = `
+        ${coins}
+        <div class="gim-claim-splash-inner">
+            <div class="gim-claim-amount">+${amount}</div>
+            <div class="gim-claim-label"><i data-lucide="gem"></i> Lumi earned!</div>
+        </div>`;
+    screen.appendChild(div);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    setTimeout(() => {
+        div.classList.add('gim-claim-splash--out');
+        setTimeout(() => div.remove(), 400);
+    }, 1800);
+}
 
 /** Show +N Lumi earned toast. @tag SHOP */
 function showIslandLumiToast(amount) {
