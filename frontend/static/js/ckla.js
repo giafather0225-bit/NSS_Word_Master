@@ -89,6 +89,8 @@ function showCKLAView() {
   if (view) { view.style.display = 'flex'; }
   const sidebar = document.getElementById('sidebar');
   if (sidebar) { sidebar.classList.add('collapsed'); localStorage.setItem('sb_collapsed', '1'); }
+  const toggle = document.getElementById('sidebar-toggle');
+  if (toggle) toggle.style.display = 'none';
   loadCKLADomains();
 }
 
@@ -99,6 +101,8 @@ function hideCKLAView() {
   // Remove .hidden added by showCKLAView so switchView can restore idle-wrapper.
   const iw = document.getElementById('idle-wrapper');
   if (iw) iw.classList.remove('hidden');
+  const toggle = document.getElementById('sidebar-toggle');
+  if (toggle) toggle.style.display = '';
   if (typeof switchView === 'function') switchView('english');
 }
 

@@ -690,7 +690,7 @@ function exitEnglishLesson() {
   if (typeof sessionActive !== 'undefined') { window.sessionActive = false; }
   const hdr = document.getElementById('english-lesson-header');
   if (hdr) hdr.remove();
-  if (typeof switchView === 'function') switchView('home');
+  if (typeof switchView === 'function') switchView('english');
   else showIdleCard();
 }
 function showIdleCard() {
