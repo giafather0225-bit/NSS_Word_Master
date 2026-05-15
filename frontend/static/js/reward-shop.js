@@ -67,7 +67,7 @@ function _renderShopFrame() {
             </button>
             <span class="shop-title">Shop</span>
             <span class="shop-xp-badge" id="shop-xp-display" style="display:${isIslandTab ? 'none' : ''}">… XP</span>
-            <span class="shop-lumi-badge hidden" id="shop-lumi-display">
+            <span class="shop-lumi-badge${isIslandTab ? '' : ' hidden'}" id="shop-lumi-display">
                 <span class="shop-cur"><i data-lucide="gem"></i><span id="shop-lumi-val">0</span></span>
                 <span class="shop-cur"><i data-lucide="sparkles"></i><span id="shop-ll-val">0</span></span>
             </span>
