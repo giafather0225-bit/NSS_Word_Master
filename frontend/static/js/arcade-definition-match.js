@@ -198,7 +198,9 @@ function _dmNextPair() {
   if (wEl) wEl.textContent = wordEntry.word;
   if (dEl) dEl.textContent = defText;
   if (card) {
-    card.classList.remove('dm-card--correct', 'dm-card--wrong');
+    card.classList.remove('dm-card--correct', 'dm-card--wrong', 'dm-card--slide-in');
+    void card.offsetWidth;  // force reflow so animation restarts
+    card.classList.add('dm-card--slide-in');
   }
 }
 
