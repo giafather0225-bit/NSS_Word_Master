@@ -831,6 +831,37 @@
     40%       { transform: scale(1.25); }
 }
 
+/* ── Bubble gauge bars (hunger / happiness) ──────────────────── */
+
+.gim-bubble-gauges {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 72px;
+}
+
+.gim-bubble-gauge {
+    height: 5px;
+    border-radius: var(--radius-full);
+    background: rgba(255,255,255,.45);
+    overflow: hidden;
+    position: relative;
+}
+
+.gim-bubble-gauge::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: var(--g-pct, 100%);
+    border-radius: inherit;
+    transition: width .4s ease;
+}
+
+.gim-bubble-gauge--hunger::after { background: var(--arcade-primary); }
+.gim-bubble-gauge--happy::after  { background: var(--diary-primary); }
+.gim-bubble-gauge.gim-gauge--warn::after { background: var(--color-error, #D97A7A); }
+
 /* ── Streak panel ────────────────────────────────────────────── */
 
 .gim-streak-panel {

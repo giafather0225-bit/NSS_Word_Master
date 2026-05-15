@@ -306,8 +306,10 @@ function _bubblesHTML(charsByZone) {
         const char  = chars[0];
         if (!char) return '';
         const meta  = _ZONE_META[b.zone] || {};
-        const name  = escapeHtml((char.nickname || char.name || '').substring(0, 10));
-        const stage = char.stage || 'baby';
+        const name   = escapeHtml((char.nickname || char.name || '').substring(0, 10));
+        const stage  = char.stage || 'baby';
+        const hunger = char.hunger  ?? 100;
+        const happy  = char.happiness ?? 100;
 
         // 1) DB의 character.images JSON에서 stage별 경로 시도
         let imgRel = '';
@@ -339,9 +341,12 @@ function _bubblesHTML(charsByZone) {
                   onerror="${onErr}">`
             : `<i data-lucide="${lucideName}" style="width:36px;height:36px;color:#7a5a9e"></i>`;
 
+        const hungerWarn = hunger < 30 ? ' gim-gauge--warn' : '';
+        const happyWarn  = happy  < 30 ? ' gim-gauge--warn' : '';
+
         return `
             <button class="gim-bubble gim-float"
-                    style="left:${b.left};top:${b.top};width:96px;height:120px;animation-delay:${b.delay};display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;padding:0;cursor:pointer;pointer-events:auto"
+                    style="left:${b.left};top:${b.top};width:96px;height:auto;animation-delay:${b.delay};display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;padding:0 0 4px;cursor:pointer;pointer-events:auto"
                     onclick="_bubbleClick(this, '${escapeHtml(name)}', '${b.zone}')"
                     aria-label="${name}" title="${name}">
                 <span class="gim-bubble-dot"
@@ -349,6 +354,10 @@ function _bubblesHTML(charsByZone) {
                     ${imgHTML}
                 </span>
                 <span style="background:rgba(255,255,255,.95);border-radius:999px;padding:2px 10px;font-size:11px;font-weight:800;color:#2a1f3d;white-space:nowrap;box-shadow:0 2px 6px rgba(40,20,80,.18);letter-spacing:.01em">${name}</span>
+                <div class="gim-bubble-gauges">
+                    <div class="gim-bubble-gauge gim-bubble-gauge--hunger${hungerWarn}" style="--g-pct:${Math.round(hunger)}%"></div>
+                    <div class="gim-bubble-gauge gim-bubble-gauge--happy${happyWarn}"   style="--g-pct:${Math.round(happy)}%"></div>
+                </div>
             </button>`;
     }).join('');
 }
