@@ -232,6 +232,15 @@ async function _arcadeReportScore(game, score, correct, total, accuracy, level =
   }
 }
 
+/** Compute S/A/B/C grade and message from accuracy. @tag ARCADE */
+function _arcadeGrade(accuracy) {
+  const pct = accuracy * 100;
+  if (pct >= 90) return { grade: 'S', cls: 'grade--s', msg: 'Outstanding! You\'re unstoppable!' };
+  if (pct >= 75) return { grade: 'A', cls: 'grade--a', msg: 'Great work! Keep it up!' };
+  if (pct >= 60) return { grade: 'B', cls: 'grade--b', msg: 'Good effort! Practice makes perfect.' };
+  return          { grade: 'C', cls: 'grade--c', msg: 'Keep going! You\'re getting better!' };
+}
+
 /** Render the shared game-over panel. @tag ARCADE */
 function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
   const body = document.getElementById('arcade-body');
@@ -256,9 +265,12 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
     ? `<div class="wi-new-best">${_SVG.trophy} New Personal Best!</div>`
     : `<div class="stat">Best: <b>${result.best_score}</b></div>`;
 
+  const { grade, cls, msg } = _arcadeGrade(accuracy);
+
   body.innerHTML = `
     <div class="wi-gameover">
-      <h2>Game Over</h2>
+      <div class="arcade-grade ${cls}">${grade}</div>
+      <div class="arcade-grade-msg">${msg}</div>
       ${bestBanner}
       <div class="stat">Score: <b>${state.score}</b></div>
       <div class="stat">Correct: <b>${state.correct}</b> / ${state.total}</div>
@@ -283,6 +295,30 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
   } else if (typeof sfxGameOver === 'function') {
     sfxGameOver();
   }
+}
+
+/** Float a "+N pts" text upward in the active game view. @tag ARCADE */
+function _arcadeFloatScore(pts) {
+  const body = document.getElementById('arcade-body');
+  if (!body) return;
+  const el = document.createElement('div');
+  el.className = 'arcade-float-score';
+  el.textContent = `+${pts}`;
+  body.appendChild(el);
+  setTimeout(() => el.remove(), 750);
+}
+
+/** Flash a big "COMBO ×N!" overlay in the center of the game view. @tag ARCADE */
+function _arcadeShowCombo(n) {
+  const body = document.getElementById('arcade-body');
+  if (!body) return;
+  const existing = body.querySelector('.arcade-combo');
+  if (existing) existing.remove();
+  const el = document.createElement('div');
+  el.className = 'arcade-combo';
+  el.textContent = `COMBO ×${n}!`;
+  body.appendChild(el);
+  setTimeout(() => el.remove(), 900);
 }
 
 /** Shared canvas rounded-rect path helper. @tag ARCADE */

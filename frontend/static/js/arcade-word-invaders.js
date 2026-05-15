@@ -273,6 +273,7 @@ function _wiKill(idx) {
   if (typeof sfxHit === 'function') sfxHit(_wi.streak);
   if (_wi.streak > 0 && _wi.streak % 5 === 0) {
     if (typeof sfxCombo === 'function') sfxCombo();
+    if (typeof _arcadeShowCombo === 'function') _arcadeShowCombo(_wi.streak);
     const st = document.getElementById('wi-streak');
     if (st) { st.classList.remove('combo-burst'); void st.offsetWidth; st.classList.add('combo-burst'); }
   }

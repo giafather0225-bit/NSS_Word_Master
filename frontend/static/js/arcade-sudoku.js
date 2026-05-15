@@ -215,6 +215,7 @@ function _suOnInput(e) {
     e.target.classList.add('su-inp--ok');
     _suClearConflicts();
     if (typeof sfxHit === 'function') sfxHit(1);
+    if (typeof _arcadeFloatScore === 'function') _arcadeFloatScore(10);
   } else {
     e.target.classList.remove('su-inp--ok');
     e.target.classList.add('su-inp--bad');

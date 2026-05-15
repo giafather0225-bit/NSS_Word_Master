@@ -212,9 +212,14 @@ function _dmAnswer(saidYes) {
     _dm.correct += 1;
     _dm.streak += 1;
     const bonus = Math.min(DM_CFG.streakCap, _dm.streak) * DM_CFG.streakBonus;
-    _dm.score += DM_CFG.basePoints + bonus;
+    const gained = DM_CFG.basePoints + bonus;
+    _dm.score += gained;
+    if (typeof _arcadeFloatScore === 'function') _arcadeFloatScore(gained);
     if (typeof sfxHit === 'function') sfxHit(_dm.streak);
-    if (_dm.streak > 0 && _dm.streak % 5 === 0 && typeof sfxCombo === 'function') sfxCombo();
+    if (_dm.streak > 0 && _dm.streak % 5 === 0) {
+      if (typeof sfxCombo === 'function') sfxCombo();
+      if (typeof _arcadeShowCombo === 'function') _arcadeShowCombo(_dm.streak);
+    }
   } else {
     _dm.streak = 0;
     _dm.score = Math.max(0, _dm.score - DM_CFG.wrongPenalty);

@@ -505,7 +505,9 @@ function _cwCheckWord(r, c) {
       _cw.completed += 1;
       _cw.correct += 1;
       _cw.total += 1;
-      _cw.score += CW_CFG.pointsPerWord + p.len * CW_CFG.pointsPerLetter;
+      const cwGained = CW_CFG.pointsPerWord + p.len * CW_CFG.pointsPerLetter;
+      _cw.score += cwGained;
+      if (typeof _arcadeFloatScore === 'function') _arcadeFloatScore(cwGained);
       for (let k = 0; k < p.len; k++) {
         const rr = p.r + (p.dir === 'V' ? k : 0);
         const cc = p.c + (p.dir === 'H' ? k : 0);

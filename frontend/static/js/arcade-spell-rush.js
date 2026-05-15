@@ -221,10 +221,13 @@ function _srSubmit() {
     _sr.streak += 1;
     const letterPts = word.length * SR_CFG.perLetterPoints;
     const streakMult = 1 + Math.min(1.0, _sr.streak * 0.08); // Fix #10: capped at 2× (streak≥13)
-    _sr.score += Math.round((SR_CFG.wordCompleteBase + letterPts) * streakMult);
+    const gained = Math.round((SR_CFG.wordCompleteBase + letterPts) * streakMult);
+    _sr.score += gained;
+    if (typeof _arcadeFloatScore === 'function') _arcadeFloatScore(gained);
     if (typeof sfxHit === 'function') sfxHit(_sr.streak);
     if (_sr.streak > 0 && _sr.streak % 5 === 0) {
       if (typeof sfxCombo === 'function') sfxCombo();
+      if (typeof _arcadeShowCombo === 'function') _arcadeShowCombo(_sr.streak);
       const st = document.getElementById('sr-streak');
       if (st) { st.classList.remove('combo-burst'); void st.offsetWidth; st.classList.add('combo-burst'); }
     }

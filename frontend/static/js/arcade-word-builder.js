@@ -332,8 +332,12 @@ function _wbCheck() {
         el.classList.add('wb-tile--burst');
       });
     }
+    if (typeof _arcadeFloatScore === 'function') _arcadeFloatScore(pts);
     if (typeof sfxHit === 'function') sfxHit(_wb.streak);
-    if (_wb.streak > 0 && _wb.streak % 5 === 0 && typeof sfxCombo === 'function') sfxCombo();
+    if (_wb.streak > 0 && _wb.streak % 5 === 0) {
+      if (typeof sfxCombo === 'function') sfxCombo();
+      if (typeof _arcadeShowCombo === 'function') _arcadeShowCombo(_wb.streak);
+    }
     _wbUpdateHUD();
     _wbRenderHistory();  // Fix #18
     setTimeout(() => {

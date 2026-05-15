@@ -862,6 +862,69 @@
 .mk-hint-note { font-size: 12px; color: var(--text-hint); text-align: center; margin-top: 2px; }
 .mk-shake { animation: sr-shake 0.3s ease; }
 
+/* ── Shared fun feedback ─────────────────────────────────────────── */
+.arcade-float-score {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-family-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--arcade-ink);
+  pointer-events: none;
+  z-index: 900;
+  animation: arcade-float-up 0.75s ease-out forwards;
+}
+@keyframes arcade-float-up {
+  0%   { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -120%); }
+}
+
+.arcade-combo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  font-family: var(--font-family-display);
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--arcade-primary);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  pointer-events: none;
+  z-index: 1100;
+  animation: arcade-combo-pop 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.4) forwards;
+}
+@keyframes arcade-combo-pop {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+  30%  { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+  60%  { transform: translate(-50%, -50%) scale(1.0); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -60%) scale(0.9); }
+}
+
+/* ── Game-over grade badge ───────────────────────────────────────── */
+.arcade-grade {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-family-display);
+  font-size: 32px; font-weight: 900;
+  margin: 0 auto 8px;
+  border: 3px solid transparent;
+}
+.grade--s { background: var(--arcade-soft); color: var(--arcade-ink); border-color: var(--arcade-primary); }
+.grade--a { background: var(--math-soft);   color: var(--math-ink);   border-color: var(--math-primary); }
+.grade--b { background: var(--english-soft); color: var(--english-ink); border-color: var(--english-primary); }
+.grade--c { background: var(--bg-surface);  color: var(--text-secondary); border-color: var(--border-default); }
+
+.arcade-grade-msg {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
 /* ── Word Builder ────────────────────────────────────────────────── */
 .wb-view {
   display: flex;
