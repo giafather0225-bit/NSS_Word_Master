@@ -591,7 +591,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     const _sidebar = document.getElementById('sidebar');
     const _toggle  = document.getElementById('sidebar-toggle');
     if (_toggle && _sidebar) {
-        _toggle.addEventListener('click', () => _sidebar.classList.toggle('collapsed'));
+        _toggle.addEventListener('click', () => {
+            if (document.body.classList.contains('ckla-active')) {
+                if (typeof hideCKLAView === 'function') hideCKLAView();
+            } else {
+                _sidebar.classList.toggle('collapsed');
+            }
+        });
     }
 
     // Restore subject

@@ -152,6 +152,8 @@ body.sb-collapsed .sidebar-toggle--floating {
 
 /* Hide on Home view (no sidebar shown there) */
 body[data-view="home"] .sidebar-toggle--floating { display: none; }
+/* Hide while CKLA view is active (body gets .ckla-active class) */
+body.ckla-active .sidebar-toggle--floating { display: none !important; }
 
 /* Hide top-xp-meta (Lv.1 · 0d) injected by home.js in English view */
 body[data-view="english"] #top-xp-meta,
