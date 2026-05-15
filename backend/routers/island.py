@@ -390,6 +390,7 @@ def character_silhouette(db: Session = Depends(get_db)):
             "zone_unlocked": zone_unlocked, "prereq_met": has_prereq,
             "adoptable": char.is_available and zone_unlocked and has_prereq,
             "images": char.images or "{}",
+            "lumi_production": char.lumi_production or 0,
         })
     return {"characters": result}
 

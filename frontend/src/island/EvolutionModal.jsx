@@ -367,7 +367,6 @@ function _showCharCompletion(result, zone, charName) {
 function _closeCharCompletion() {
     const el = document.getElementById('icc-overlay');
     if (el) el.remove();
-    _emRefreshBack();
     // Reload island map so boost/lumi production is reflected.
     if (typeof openIslandMain === 'function') openIslandMain();
 }

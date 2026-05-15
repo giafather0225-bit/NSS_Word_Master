@@ -716,7 +716,8 @@ function _zdAdopt() {
         const fb = (meta.lucideIcon || 'heart');
         const adoptVisual = _charImg(c.name || '', 'baby', c.images || '{}', fb);
         return `
-        <div class="izd-adopt-card" onclick="_zdAdoptStart(${c.character_id})"
+        <div class="izd-adopt-card" data-char-id="${c.character_id}"
+             onclick="_zdAdoptSelect(${c.character_id})"
              role="button" tabindex="0">
             <div class="izd-adopt-emoji">${adoptVisual}</div>
             <div class="izd-adopt-name">${escapeHtml(c.name)}</div>
@@ -730,11 +731,36 @@ function _zdAdopt() {
         <div class="izd-adopt-panel">
             <div class="izd-adopt-title">Choose your companion</div>
             <div class="izd-adopt-grid">${cards}</div>
-            <button class="izd-back-link" onclick="openZoneDetail('${_zdZone}')">
-                <i data-lucide="x"></i> Cancel
-            </button>
+            <div class="izd-adopt-actions">
+                <button id="izd-adopt-next" class="izd-btn izd-btn--feed" disabled
+                        onclick="_zdAdoptStartSelected()">
+                    <i data-lucide="arrow-right"></i> Next
+                </button>
+                <button class="izd-back-link" onclick="openZoneDetail('${_zdZone}')">
+                    <i data-lucide="x"></i> Cancel
+                </button>
+            </div>
         </div>`);
     if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+/** Highlight selected adopt card and enable the Next button. @tag SHOP */
+function _zdAdoptSelect(charId) {
+    document.querySelectorAll('.izd-adopt-card').forEach(el => {
+        el.classList.toggle('izd-adopt-card--selected', el.dataset.charId == charId);
+    });
+    const nextBtn = document.getElementById('izd-adopt-next');
+    if (nextBtn) {
+        nextBtn.disabled = false;
+        nextBtn.onclick = () => _zdAdoptStart(charId);
+    }
+}
+
+/** Proceed to name input for the currently selected character. @tag SHOP */
+function _zdAdoptStartSelected() {
+    const sel = document.querySelector('.izd-adopt-card--selected');
+    if (!sel) return;
+    _zdAdoptStart(Number(sel.dataset.charId));
 }
 
 /** Show nickname input for chosen character. @tag SHOP */
