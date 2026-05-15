@@ -68,6 +68,7 @@ function switchView(view) {
     if (typeof loadMathGrades === 'function') loadMathGrades();
     if (typeof loadMathSidebarStatus === 'function') loadMathSidebarStatus();
     if (typeof lucide !== 'undefined') lucide.createIcons();
+    _renderIslandSubjectWidget('island-widget-math', 'ocean');
   } else if (view === 'english') {
     // English idle 진입: 사이드바 항상 열기
     const _engSb = document.getElementById('sidebar');
@@ -77,6 +78,7 @@ function switchView(view) {
     if (typeof window._clearEnglishSessionState === 'function') window._clearEnglishSessionState();
     if (typeof initCKLA === 'function') initCKLA();
     if (typeof lucide !== 'undefined') lucide.createIcons();
+    _renderIslandSubjectWidget('island-widget-english', 'forest');
   } else if (view === 'diary') {
     if (typeof openDiarySection === 'function') openDiarySection('today');
   }
@@ -539,6 +541,75 @@ function renderSectionCards() {
  */
 function renderGrowthTheme() {
   if (typeof _loadIslandCard === 'function') _loadIslandCard();
+}
+
+/**
+ * Load and render the mini island character widget into a subject-view container.
+ * Shows the active (non-completed) character for the given zone.
+ * Clicking the widget navigates to the island main screen.
+ * @tag ISLAND
+ * @param {string} containerId - DOM element id to populate
+ * @param {string} zone - island zone name (forest / ocean / savanna / space)
+ */
+async function _renderIslandSubjectWidget(containerId, zone) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  try {
+    const res = await fetch(`/api/island/character/active?zone=${encodeURIComponent(zone)}`);
+    if (!res.ok) { el.style.display = 'none'; return; }
+    const data = await res.json();
+    const chars = data.characters || [];
+    const char = chars.find(c => !c.is_completed) || chars[0];
+    if (!char) { el.style.display = 'none'; return; }
+
+    let imgSrc = '';
+    try {
+      const imgs = JSON.parse(char.images || '{}');
+      const imgPath = imgs[char.stage] || imgs['baby'] || '';
+      if (imgPath) imgSrc = `/static/img/island/${imgPath}`;
+    } catch (_) {}
+
+    const hunger = Math.max(0, Math.min(100, char.hunger || 0));
+    const happy  = Math.max(0, Math.min(100, char.happiness || 0));
+    const name   = char.nickname || char.name || 'Character';
+    const level  = char.level || 1;
+
+    el.innerHTML = `
+      <div class="isw-card" role="button" tabindex="0"
+           aria-label="My Island — ${escapeHtml(name)}, Level ${level}">
+        <div class="isw-char-wrap">
+          ${imgSrc ? `<img src="${imgSrc}" class="isw-img" alt="${escapeHtml(name)}" />` : ''}
+          <span class="isw-level">Lv.${level}</span>
+        </div>
+        <div class="isw-body">
+          <div class="isw-eyebrow">My Island</div>
+          <div class="isw-name">${escapeHtml(name)}</div>
+          ${char.ready_to_evolve ? '<div class="isw-evo-badge">Ready to Evolve!</div>' : ''}
+          <div class="isw-gauges">
+            <div class="isw-gauge" title="Hunger">
+              <div class="isw-gauge-fill isw-gauge-fill--hunger" style="width:${hunger}%"></div>
+            </div>
+            <div class="isw-gauge" title="Happiness">
+              <div class="isw-gauge-fill isw-gauge-fill--happy" style="width:${happy}%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="isw-arrow"><i data-lucide="chevron-right" width="16" height="16"></i></div>
+      </div>`;
+
+    el.querySelector('.isw-card').addEventListener('click', () => {
+      if (typeof openIslandMain === 'function') openIslandMain();
+    });
+    el.querySelector('.isw-card').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (typeof openIslandMain === 'function') openIslandMain();
+      }
+    });
+    if (typeof lucide !== 'undefined') lucide.createIcons({ nodes: [el] });
+  } catch (_) {
+    el.style.display = 'none';
+  }
 }
 
 /**

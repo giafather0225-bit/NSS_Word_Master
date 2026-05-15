@@ -413,12 +413,13 @@ def character_adopt(body: AdoptBody, db: Session = Depends(get_db)):
         raise HTTPException(404, "Character not found.")
     if not char.is_available:
         raise HTTPException(400, "This character is not yet available.")
-    # Prevent duplicate adoption.
-    already = db.query(IslandCharacterProgress).filter_by(
-        character_id=char.id
+    # Prevent duplicate active adoption (block only if a non-completed record exists).
+    already_active = db.query(IslandCharacterProgress).filter(
+        IslandCharacterProgress.character_id == char.id,
+        IslandCharacterProgress.is_completed == False,
     ).first()
-    if already:
-        raise HTTPException(400, "This character has already been adopted.")
+    if already_active:
+        raise HTTPException(400, "This character is already being raised.")
     # Verify prerequisite.
     if char.unlock_requires_character_id:
         done = db.query(IslandCharacterProgress).filter(
@@ -431,6 +432,7 @@ def character_adopt(body: AdoptBody, db: Session = Depends(get_db)):
         character_id=char.id,
         nickname=body.nickname or char.name,
         is_legend_type=char.is_legend,
+        is_active=True,
         adopted_at=datetime.now(timezone.utc),
     )
     db.add(prog)

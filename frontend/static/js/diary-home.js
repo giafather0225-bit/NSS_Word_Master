@@ -89,6 +89,8 @@ async function _renderDiaryHome() {
                 </div>
             </header>
 
+            <div id="island-widget-diary"></div>
+
             <div class="dh-grid">
                 <!-- Top-left: Mode CTAs -->
                 <div class="dh-modes">
@@ -171,6 +173,9 @@ async function _renderDiaryHome() {
     _dhRefreshIcons();
     _dhFillStaticBits();
     _dhLoadHomeData();
+    if (typeof _renderIslandSubjectWidget === 'function') {
+        _renderIslandSubjectWidget('island-widget-diary', 'savanna');
+    }
 }
 
 /** Render an empty stat tile placeholder. */

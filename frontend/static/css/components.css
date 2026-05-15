@@ -197,3 +197,116 @@ a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
     transition: all var(--transition-fast);
 }
 .tag:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+/* ═══ Island Subject Mini Widget (P1) ═══ */
+#island-widget-english,
+#island-widget-math,
+#island-widget-diary { display: none; }
+
+body[data-view="english"] #island-widget-english { display: block; }
+body[data-view="math"]    #island-widget-math    { display: block; }
+body[data-view="diary"]   #island-widget-diary   { display: block; }
+
+.isw-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px 10px 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    max-width: 300px;
+    margin: 0 auto 16px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.isw-card:hover {
+    box-shadow: 0 4px 16px rgba(120,90,60,0.12);
+    border-color: var(--border-default);
+    transform: translateY(-1px);
+}
+.isw-card:active { transform: translateY(0); }
+
+.isw-char-wrap {
+    position: relative;
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+}
+.isw-img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    display: block;
+}
+.isw-level {
+    position: absolute;
+    bottom: -3px;
+    right: -8px;
+    background: var(--arcade-primary);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1;
+    padding: 2px 5px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+}
+
+.isw-body {
+    flex: 1;
+    min-width: 0;
+}
+.isw-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-hint);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+.isw-name {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.isw-evo-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--rewards-ink);
+    background: var(--rewards-soft);
+    border-radius: var(--radius-full);
+    padding: 1px 7px;
+    margin-bottom: 5px;
+}
+.isw-gauges { display: flex; flex-direction: column; gap: 3px; }
+.isw-gauge {
+    height: 4px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    width: 100%;
+}
+.isw-gauge-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
+}
+.isw-gauge-fill--hunger { background: var(--arcade-primary); }
+.isw-gauge-fill--happy  { background: var(--diary-primary); }
+
+.isw-arrow {
+    flex-shrink: 0;
+    color: var(--text-hint);
+    display: flex;
+    align-items: center;
+}

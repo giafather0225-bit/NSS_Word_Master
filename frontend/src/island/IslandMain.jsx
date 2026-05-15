@@ -628,7 +628,8 @@ function _renderHomePets(chars) {
             <path d="M3 19 L5 7 L11 13 L16 4 L21 13 L27 7 L29 19 Z" fill="#f5d97c" stroke="#a88860" stroke-width="1.4" stroke-linejoin="round"/>
             <circle cx="16" cy="14" r="1.3" fill="#ea4f6e"/>
         </svg>` : '';
-        const zoneDot = isLegend ? '' : `<span class="ih-zone" data-zone="${zone}"></span>`;
+        const lvText = c.level ? `Lv.${c.level}` : '';
+        const zoneDot = `<span class="ih-lv">${lvText}</span>`;
         return `<div class="ih-pet ih-pet--${isLegend ? 'legend' : 'normal'}" data-zone="${zone}">
             ${crown}
             <div class="ih-img">
@@ -659,16 +660,36 @@ async function _loadIslandCard() {
         const active    = d.active_characters    || [];
         const completed = d.completed_characters || [];
         const allChars  = [...active, ...completed];
-        const cnt  = allChars.length;
         const lumi = d.currency?.lumi ?? 0;
         if (allChars.length > 0) {
             _renderHomePets(allChars);
-            if (charEl) charEl.textContent = `${cnt} character${cnt === 1 ? '' : 's'}`;
+            // Count unique zones actually rendered (zone-dedup, same as _renderHomePets logic)
+            const byZone = {};
+            allChars.forEach(c => { byZone[c.zone] = c; });
+            const cnt = Object.keys(byZone).length;
+            if (charEl) charEl.textContent = `${cnt} / 5 characters`;
         } else {
             _renderHomePetsEmpty();
-            if (charEl) charEl.textContent = 'Your island awaits';
+            if (charEl) charEl.textContent = '0 / 5 characters';
         }
         if (lumiEl) lumiEl.textContent = lumi.toLocaleString();
+
+        // P2: "Ready to Evolve!" badge — show if any active character can evolve
+        const anyReady = active.some(c => c.ready_to_evolve);
+        let evoBadge = document.getElementById('island-home-evo-badge');
+        if (anyReady) {
+            if (!evoBadge && cardEl) {
+                evoBadge = document.createElement('div');
+                evoBadge.id = 'island-home-evo-badge';
+                evoBadge.className = 'island-home-evo-badge';
+                evoBadge.textContent = 'Ready to Evolve!';
+                cardEl.insertBefore(evoBadge, cardEl.firstChild);
+            } else if (evoBadge) {
+                evoBadge.style.display = '';
+            }
+        } else if (evoBadge) {
+            evoBadge.style.display = 'none';
+        }
     } catch (_) {
         if (charEl) charEl.textContent = 'Your island awaits';
         if (lumiEl) lumiEl.textContent = '';
