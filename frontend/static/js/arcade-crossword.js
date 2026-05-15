@@ -473,7 +473,20 @@ function _cwAdvance(r, c, dir) {
   const p = _cw.placed[_cw.activeWord];
   const dr = p.dir === 'V' ? dir : 0;
   const dc = p.dir === 'H' ? dir : 0;
-  _cwMove(r, c, dr, dc);
+  if (dir <= 0) { _cwMove(r, c, dr, dc); return; }
+  // Forward: skip cells already correctly filled
+  let nr = r + dr, nc = c + dc;
+  while (nr >= 0 && nr < _cw.rows && nc >= 0 && nc < _cw.cols) {
+    const cell = _cw.grid[nr]?.[nc];
+    if (!cell) break;
+    const inWord = p.dir === 'H'
+      ? (nr === p.r && nc >= p.c && nc < p.c + p.len)
+      : (nc === p.c && nr >= p.r && nr < p.r + p.len);
+    if (inWord && cell.input && cell.input === cell.ans) { nr += dr; nc += dc; continue; }
+    const el = document.querySelector(`.cw-inp[data-r="${nr}"][data-c="${nc}"]`);
+    if (el && !el.disabled) el.focus();
+    return;
+  }
 }
 
 function _cwMove(r, c, dr, dc) {

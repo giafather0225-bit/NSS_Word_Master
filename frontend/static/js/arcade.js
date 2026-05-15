@@ -311,6 +311,16 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
 
   const { grade, cls, msg } = _arcadeGrade(accuracy);
 
+  const flipLine = state.flips != null
+    ? (() => {
+        const minFlips = state.correct * 2;
+        const extra = Math.max(0, state.flips - minFlips);
+        const effPct = state.flips > 0 ? Math.round((minFlips / state.flips) * 100) : 100;
+        const effLabel = effPct >= 90 ? 'Perfect' : effPct >= 70 ? 'Great' : 'Keep practicing';
+        return `<div class="stat">Flip efficiency: <b>${effPct}%</b> <span class="stat-sub">${effLabel} (${extra} extra)</span></div>`;
+      })()
+    : '';
+
   body.innerHTML = `
     <div class="wi-gameover">
       <div class="arcade-grade ${cls}">${grade}</div>
@@ -319,6 +329,7 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
       <div class="stat">Score: <b>${state.score}</b></div>
       <div class="stat">Correct: <b>${state.correct}</b> / ${state.total}</div>
       <div class="stat">Accuracy: <b>${pct}%</b></div>
+      ${flipLine}
       ${tierLine}
       ${xpLine}
       <div class="wi-gameover-actions">
@@ -336,8 +347,26 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
 
   if (result.new_best && typeof sfxNewBest === 'function') {
     sfxNewBest();
+    _arcadeConfetti();
   } else if (typeof sfxGameOver === 'function') {
     sfxGameOver();
+  }
+}
+
+/** Burst confetti particles over the game-over screen when a new personal best is set. @tag ARCADE */
+function _arcadeConfetti() {
+  const body = document.getElementById('arcade-body');
+  if (!body) return;
+  const colors = ['var(--arcade-primary)', 'var(--rewards-primary)', 'var(--english-primary)', 'var(--math-primary)', 'var(--diary-primary)'];
+  for (let i = 0; i < 36; i++) {
+    const el = document.createElement('div');
+    el.className = 'arcade-confetti-piece';
+    el.style.setProperty('--x', `${Math.random() * 100}%`);
+    el.style.setProperty('--delay', `${(Math.random() * 0.5).toFixed(2)}s`);
+    el.style.setProperty('--color', colors[i % colors.length]);
+    el.style.setProperty('--rot', `${Math.floor(Math.random() * 720)}deg`);
+    body.appendChild(el);
+    setTimeout(() => el.remove(), 1600);
   }
 }
 

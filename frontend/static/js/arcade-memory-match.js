@@ -322,7 +322,7 @@ async function _mmComplete() {
   const finalScore = _mmFinalScore();   // Fix #12: apply time bonus at completion only
   _mm.score = finalScore;
   _mm.running = false;
-  const snap = { score: _mm.score, correct: _mm.correct, total: _mm.total, level: _mm.level };
+  const snap = { score: _mm.score, correct: _mm.correct, total: _mm.total, level: _mm.level, flips: _mm.flips };
   _mm = null;  // M-5: null immediately to prevent stale callbacks / double-call from tick
   const accuracy = snap.correct / snap.total;
   const result   = await _arcadeReportScore('memory_match', snap.score, snap.correct, snap.total, accuracy, snap.level);
@@ -335,7 +335,7 @@ async function _mmGameOver() {
   _mmUpdateScore();
   // Fix #12: no time bonus on timeout (time already 0)
   _mm.running = false;
-  const snap = { score: _mm.score, correct: _mm.correct, total: _mm.total, level: _mm.level };
+  const snap = { score: _mm.score, correct: _mm.correct, total: _mm.total, level: _mm.level, flips: _mm.flips };
   _mm = null;  // M-5: null immediately to prevent stale callbacks
   const accuracy = snap.total > 0 ? snap.correct / snap.total : 0;
   const result   = await _arcadeReportScore('memory_match', snap.score, snap.correct, snap.total, accuracy, snap.level);

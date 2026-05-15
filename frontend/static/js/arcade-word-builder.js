@@ -121,6 +121,7 @@ async function wbStart(level = 'normal') {
   _wbRenderShell();
   _wbNextWord();
   _wb.tickHandle = setInterval(_wbTick, 500);  // Fix #19: setInterval instead of rAF
+  document.addEventListener('keydown', _wbKeydown);
 }
 
 /** Stop Word Builder. @tag ARCADE */
@@ -128,7 +129,23 @@ function wbStop() {
   if (!_wb) return;
   _wb.running = false;
   if (_wb.tickHandle) { clearInterval(_wb.tickHandle); _wb.tickHandle = null; }
+  document.removeEventListener('keydown', _wbKeydown);
   _wb = null;
+}
+
+function _wbKeydown(e) {
+  if (!_wb || !_wb.running || _wb.lock) return;
+  if (e.key === 'Backspace') {
+    e.preventDefault();
+    for (let i = _wb.current.answer.length - 1; i >= 0; i--) {
+      if (!_wb.current.answer[i].revealed) { _wbReturnTile(_wb.current.answer[i].id); return; }
+    }
+    return;
+  }
+  if (e.key.length !== 1 || !/^[a-zA-Z]$/.test(e.key)) return;
+  const letter = e.key.toUpperCase();
+  const tile = _wb.current.tiles.find((t) => !t.placed && t.letter === letter);
+  if (tile) _wbPlaceTile(tile.id);
 }
 
 // Fix #19: setInterval-based tick (500ms) — no rAF waste

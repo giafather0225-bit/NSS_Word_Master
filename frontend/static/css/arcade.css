@@ -1291,3 +1291,29 @@
   .mm-grid { gap: 6px; padding: 0 8px; }
   .mm-hud-item b { font-size: 18px; }
 }
+
+/* ── Confetti burst (new personal best) ────────────────────────── */
+.arcade-confetti-piece {
+  position: absolute;
+  top: -12px;
+  left: var(--x, 50%);
+  width: 8px;
+  height: 8px;
+  background: var(--color, var(--arcade-primary));
+  border-radius: 2px;
+  pointer-events: none;
+  animation: confetti-fall 1.4s var(--delay, 0s) ease-in forwards;
+}
+
+@keyframes confetti-fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(360px) rotate(var(--rot, 360deg)); opacity: 0; }
+}
+
+/* ── Game-over stat sub-label ───────────────────────────────────── */
+.stat-sub {
+  font-size: var(--font-size-xs);
+  color: var(--text-hint);
+  font-weight: 400;
+}
