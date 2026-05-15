@@ -251,7 +251,7 @@ function _dmUpdateHUD() {
   const s = document.getElementById('dm-score');
   const st = document.getElementById('dm-streak');
   if (s) s.textContent = String(_dm.score);
-  if (st) st.textContent = String(_dm.streak);
+  if (st) { st.textContent = String(_dm.streak); if (typeof _arcadeApplyStreakStyle === 'function') _arcadeApplyStreakStyle(st, _dm.streak); }
 }
 
 async function _dmGameOver() {

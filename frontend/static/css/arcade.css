@@ -862,6 +862,11 @@
 .mk-hint-note { font-size: 12px; color: var(--text-hint); text-align: center; margin-top: 2px; }
 .mk-shake { animation: sr-shake 0.3s ease; }
 
+/* ── Streak heat colors (5 warm · 10 hot · 15 fire) ─────────────── */
+.streak--warm { color: var(--arcade-primary); transition: color 0.2s ease; }
+.streak--hot  { color: var(--review-primary); transition: color 0.2s ease; }
+.streak--fire { color: var(--color-error);    transition: color 0.2s ease; font-weight: 900; }
+
 /* ── Shared fun feedback ─────────────────────────────────────────── */
 .arcade-float-score {
   position: absolute;

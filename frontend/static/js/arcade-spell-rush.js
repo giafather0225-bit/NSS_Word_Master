@@ -263,7 +263,7 @@ function _srUpdateHUD() {
   const s = document.getElementById('sr-score');
   const st = document.getElementById('sr-streak');
   if (s) s.textContent = String(_sr.score);
-  if (st) st.textContent = String(_sr.streak);
+  if (st) { st.textContent = String(_sr.streak); if (typeof _arcadeApplyStreakStyle === 'function') _arcadeApplyStreakStyle(st, _sr.streak); }
 }
 
 async function _srGameOver() {

@@ -321,6 +321,15 @@ function _arcadeShowCombo(n) {
   setTimeout(() => el.remove(), 900);
 }
 
+/** Apply streak heat color to a streak HUD element. @tag ARCADE */
+function _arcadeApplyStreakStyle(el, n) {
+  if (!el) return;
+  el.classList.remove('streak--warm', 'streak--hot', 'streak--fire');
+  if (n >= 15) el.classList.add('streak--fire');
+  else if (n >= 10) el.classList.add('streak--hot');
+  else if (n >= 5)  el.classList.add('streak--warm');
+}
+
 /** Shared canvas rounded-rect path helper. @tag ARCADE */
 function _arcadeRoundRect(ctx, x, y, w, h, r) {
   ctx.beginPath();

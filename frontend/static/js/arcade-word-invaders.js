@@ -360,7 +360,7 @@ function _wiUpdateHUD() {
   const sh = document.getElementById('wi-shield');
   if (s) s.textContent = String(_wi.score);
   if (l) { l.innerHTML = Array.from({ length: WI_CFG.maxLives }, (_, i) => `<span class="wi-life${i >= _wi.lives ? ' wi-life--lost' : ''}"></span>`).join(''); }
-  if (st) st.textContent = String(_wi.streak);
+  if (st) { st.textContent = String(_wi.streak); if (typeof _arcadeApplyStreakStyle === 'function') _arcadeApplyStreakStyle(st, _wi.streak); }
   if (wv) wv.textContent = String(_wi.wave);
   if (sh) sh.textContent = String(_wi.shieldCharges);
 }

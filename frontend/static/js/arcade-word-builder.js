@@ -406,7 +406,7 @@ function _wbUpdateHUD() {
   const s = document.getElementById('wb-score');
   const st = document.getElementById('wb-streak');
   if (s) s.textContent = String(_wb.score);
-  if (st) st.textContent = String(_wb.streak);
+  if (st) { st.textContent = String(_wb.streak); if (typeof _arcadeApplyStreakStyle === 'function') _arcadeApplyStreakStyle(st, _wb.streak); }
 }
 
 async function _wbGameOver() {
