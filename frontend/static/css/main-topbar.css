@@ -150,6 +150,11 @@ body.sb-collapsed .sidebar-toggle--floating {
     left: 14px;
 }
 
+/* Icon state: panel-left-close when open, panel-left-open when collapsed */
+.sidebar-toggle--floating .sb-icon-closed { display: none; }
+body.sb-collapsed .sidebar-toggle--floating .sb-icon-open  { display: none; }
+body.sb-collapsed .sidebar-toggle--floating .sb-icon-closed { display: flex; }
+
 /* Hide on Home view (no sidebar shown there) */
 body[data-view="home"] .sidebar-toggle--floating { display: none; }
 /* Hide while CKLA view is active (body gets .ckla-active class) */
