@@ -233,9 +233,10 @@ function renderMathRoadmap() {
         const item = document.createElement('div');
         item.className = 'math-rail-item';
         item.dataset.key = s.key;
+        const _testMode = typeof isTestMode === 'function' && isTestMode();
         if (done)    item.classList.add('done');
         if (current) item.classList.add('current');
-        if (!done && !current) item.classList.add('locked');
+        if (!done && !current && !_testMode) item.classList.add('locked');
 
         // Badge (circle with number or checkmark)
         const badge = document.createElement('div');

@@ -71,6 +71,7 @@ try:
     from ..database import get_db
     from ..models import MathProblem, MathProgress, MathAttempt, MathWrongReview, MathSpacedReview
     from ..models.math import MathUnitTest
+    from ..models.system import AppConfig
     from ..services import xp_engine, streak_engine
     from ..services.math_diagnostic import diagnose as _diagnose_attempt
     from ..utils import validate_safe_id as _validate_safe_id
@@ -78,6 +79,7 @@ except ImportError:
     from database import get_db
     from models import MathProblem, MathProgress, MathAttempt, MathWrongReview, MathSpacedReview
     from models.math import MathUnitTest
+    from models.system import AppConfig
     from services import xp_engine, streak_engine
     from services.math_diagnostic import diagnose as _diagnose_attempt
     from utils import validate_safe_id as _validate_safe_id
@@ -311,11 +313,14 @@ def get_lessons(grade: str, unit: str, db: Session = Depends(get_db)) -> dict:
     all_done = all(r["is_completed"] for r in result) if result else False
     has_unit_test = _safe_math_path(grade, unit, "unit_test.json").exists()
 
+    tm_row = db.query(AppConfig).filter_by(key="test_mode").first()
+    is_test = tm_row and tm_row.value == "true"
+
     return {
         "grade": grade,
         "unit": unit,
         "lessons": result,
-        "unit_test_unlocked": all_done and has_unit_test,
+        "unit_test_unlocked": has_unit_test and (all_done or is_test),
     }
 
 # @tag MATH @tag ACADEMY
@@ -1440,17 +1445,12 @@ def submit_spaced_review(req: SpacedReviewSubmitIn, db: Session = Depends(get_db
             "review_accuracy": round(review_pct, 1),
         })
 
-    xp_earned = 0
-    try:
-        xp_earned = xp_engine.award_xp(db, "math_spaced_review")
-    except Exception as e:
-        logger.warning("Spaced review XP award failed: %s", e)
-
     db.commit()
 
+    # XP and streak are awarded by POST /api/review/session-complete (Review Hub).
     return {
         "status": "ok",
         "results": results,
         "lessons_updated": updated_lessons,
-        "xp_earned": xp_earned,
+        "xp_earned": 0,
     }

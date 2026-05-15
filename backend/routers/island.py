@@ -411,7 +411,8 @@ def character_adopt(body: AdoptBody, db: Session = Depends(get_db)):
     char = db.get(IslandCharacter, body.character_id)
     if char is None:
         raise HTTPException(404, "Character not found.")
-    if not char.is_available:
+    test_mode = _cfg(db, "test_mode") == "true"
+    if not char.is_available and not test_mode:
         raise HTTPException(400, "This character is not yet available.")
     # Prevent duplicate active adoption (block only if a non-completed record exists).
     already_active = db.query(IslandCharacterProgress).filter(
@@ -420,8 +421,8 @@ def character_adopt(body: AdoptBody, db: Session = Depends(get_db)):
     ).first()
     if already_active:
         raise HTTPException(400, "This character is already being raised.")
-    # Verify prerequisite.
-    if char.unlock_requires_character_id:
+    # Verify prerequisite (bypassed in test mode).
+    if char.unlock_requires_character_id and not test_mode:
         done = db.query(IslandCharacterProgress).filter(
             IslandCharacterProgress.character_id == char.unlock_requires_character_id,
             IslandCharacterProgress.is_completed == True,
@@ -1561,3 +1562,40 @@ def dev_evolve_char(progress_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"ok": True, "progress_id": progress_id, "new_stage": prog.stage,
             "is_completed": prog.is_completed, "name": char.name if char else "?"}
+
+
+# @tag ISLAND
+@router.post("/dev/delete-char/{progress_id}")
+def dev_delete_char(progress_id: int, db: Session = Depends(get_db)):
+    """Hard-delete a character progress record so it can be re-adopted. Test mode only."""
+    _require_dev_mode(db)
+    prog = db.get(IslandCharacterProgress, progress_id)
+    if not prog:
+        raise HTTPException(404, "Character progress not found.")
+    char_name = db.get(IslandCharacter, prog.character_id)
+    name = char_name.name if char_name else "?"
+    db.query(IslandCareLog).filter_by(character_progress_id=progress_id).delete()
+    db.delete(prog)
+    db.commit()
+    return {"ok": True, "deleted_progress_id": progress_id, "name": name}
+
+
+# @tag ISLAND
+@router.post("/dev/reset-char/{progress_id}")
+def dev_reset_char(progress_id: int, db: Session = Depends(get_db)):
+    """Reset a character back to baby stage, level 1, full gauges. Test mode only."""
+    _require_dev_mode(db)
+    prog = db.get(IslandCharacterProgress, progress_id)
+    if not prog:
+        raise HTTPException(404, "Character progress not found.")
+    prog.stage = "baby"
+    prog.level = 1
+    prog.current_xp = 0
+    prog.hunger = 100
+    prog.happiness = 100
+    prog.is_completed = False
+    prog.completed_at = None
+    prog.lumi_production = 0
+    db.commit()
+    char = db.get(IslandCharacter, prog.character_id)
+    return {"ok": True, "progress_id": progress_id, "name": char.name if char else "?"}

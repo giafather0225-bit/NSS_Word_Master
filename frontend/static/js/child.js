@@ -165,9 +165,9 @@ function renderIdleStage() {
         const label    = ROADMAP_LABELS[i] || '';
         const done     = doneSet.has(s);
         const isNext   = !done && s === next;
-        const unlocked = done || isNext;
-        const cls      = done ? 'done' : (isNext ? 'current' : 'locked');
-        const iconName = done ? 'check' : (isNext ? 'circle-dot' : 'lock');
+        const unlocked = done || isNext || (typeof isTestMode === 'function' && isTestMode());
+        const cls      = done ? 'done' : (isNext ? 'current' : (unlocked ? 'current' : 'locked'));
+        const iconName = done ? 'check' : (isNext || unlocked ? 'circle-dot' : 'lock');
         const attrs    = unlocked ? `data-stage="${s}"` : 'disabled';
         return `<button type="button" class="hero-chip ${cls}" ${attrs}>
             <span class="hero-chip-icon">${lucideIcon(iconName)}</span>

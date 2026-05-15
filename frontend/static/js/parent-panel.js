@@ -340,7 +340,10 @@ async function _ppSettings(body) {
         <div id="pp-settings-island"></div>
 
         <div class="pp-section-title" style="margin-top:24px">CKLA Settings</div>
-        <div id="pp-settings-ckla"></div>`;
+        <div id="pp-settings-ckla"></div>
+
+        <div class="pp-section-title" style="margin-top:24px">Developer / Test Mode</div>
+        <div id="pp-settings-testmode"></div>`;
 
     const tasksEl     = document.getElementById("pp-settings-tasks");
     const scheduleEl  = document.getElementById("pp-settings-schedule");
@@ -350,6 +353,7 @@ async function _ppSettings(body) {
     const xpEl        = document.getElementById("pp-settings-xp");
     const islandEl    = document.getElementById("pp-settings-island");
     const cklaEl      = document.getElementById("pp-settings-ckla");
+    const testModeEl  = document.getElementById("pp-settings-testmode");
 
     if (typeof ppRenderTasks         === "function") await ppRenderTasks(tasksEl);
     if (typeof ppRenderSchedule      === "function") await ppRenderSchedule(scheduleEl);
@@ -359,8 +363,62 @@ async function _ppSettings(body) {
     if (typeof _ppXP                 === "function") await _ppXP(xpEl);
     _ppIslandToggle(islandEl);
     if (typeof ppRenderCKLASettings  === "function") await ppRenderCKLASettings(cklaEl);
+    await _ppTestModeSection(testModeEl);
 
     if (typeof lucide !== "undefined") lucide.createIcons();
+}
+
+/** Render Test Mode (God Mode) toggle. PIN-gated on save. @tag PARENT SETTINGS */
+async function _ppTestModeSection(el) {
+    if (!el) return;
+    let active = false;
+    try {
+        const d = await apiFetchJSON("/api/parent/test-mode");
+        active = !!d.test_mode;
+    } catch (_) {}
+
+    el.innerHTML = `
+        <div class="pp-toggle-row">
+            <div>
+                <div class="pp-toggle-label">Test Mode (God Mode)</div>
+                <div class="pp-toggle-hint">Bypasses all progression locks, enables free shop purchases and character level/evolution buttons. Disable before real sessions.</div>
+            </div>
+            <label class="pp-toggle-switch" title="Toggle Test Mode">
+                <input type="checkbox" id="pp-testmode-chk" ${active ? "checked" : ""}
+                       onchange="_ppSaveTestMode(this.checked)">
+                <span class="pp-toggle-track"></span>
+            </label>
+        </div>
+        <p id="pp-testmode-status" style="font-size:12px;color:var(--text-hint);margin:4px 0 0 0">
+            ${active ? '<span style="color:var(--arcade-ink);font-weight:700">TEST MODE is ON</span> — progression locks are disabled.' : 'Real mode active.'}
+        </p>`;
+}
+
+/** @tag PARENT SETTINGS */
+async function _ppSaveTestMode(checked) {
+    const chk = document.getElementById("pp-testmode-chk");
+    const status = document.getElementById("pp-testmode-status");
+    try {
+        const res = await window._ppFetch("/api/parent/test-mode", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ enabled: checked }),
+        });
+        if (res.ok) {
+            // Update global flag and badge
+            if (typeof _loadTestMode === "function") await _loadTestMode();
+            window.toast && window.toast(`Test mode ${checked ? "enabled" : "disabled"}.`, "success");
+            if (status) status.innerHTML = checked
+                ? '<span style="color:var(--arcade-ink);font-weight:700">TEST MODE is ON</span> — progression locks are disabled.'
+                : 'Real mode active.';
+        } else {
+            window.toast && window.toast("Could not save Test Mode setting.", "error");
+            if (chk) chk.checked = !checked;
+        }
+    } catch (_) {
+        window.toast && window.toast("Network error.", "error");
+        if (chk) chk.checked = !checked;
+    }
 }
 
 /** Render Island ON/OFF toggle + active character summary. @tag PARENT SETTINGS SHOP */

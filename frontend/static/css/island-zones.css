@@ -798,6 +798,31 @@
 .izd-btn--evo   { background: var(--rewards-light);  color: var(--rewards-ink); }
 .izd-btn--shop  { background: var(--arcade-light);   color: var(--arcade-ink); }
 .izd-btn--decor { background: var(--diary-light);    color: var(--diary-ink); }
+.izd-btn--dev      { background: var(--arcade-soft);   color: var(--arcade-ink); font-size: 12px; padding: 6px 12px; }
+.izd-btn--dev-del  { background: var(--review-soft);   color: var(--review-ink); }
+
+.icd-dev-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--arcade-light);
+    border: 1px dashed var(--arcade-primary);
+    border-radius: var(--radius-md);
+    margin-top: 4px;
+}
+.icd-dev-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--arcade-ink);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    text-transform: uppercase;
+}
+.icd-dev-label i { width: 12px; height: 12px; }
 
 /* HUD action buttons should be slightly more compact than the centered izd-actions */
 .izd-hud-actions .izd-btn {

@@ -116,11 +116,12 @@ async function loadMathLessons(grade, unit) {
             sel.appendChild(opt);
         });
 
-        // Unit test button
+        // Unit test button — always unlocked in test mode
         const utBtn = document.getElementById('math-btn-unit-test');
         if (utBtn) {
             const badge = utBtn.querySelector('.sb-card-badge');
-            if (data.unit_test_unlocked) {
+            const utUnlocked = data.unit_test_unlocked || (typeof isTestMode === 'function' && isTestMode());
+            if (utUnlocked) {
                 utBtn.disabled = false;
                 if (badge) badge.textContent = '→';
             } else {

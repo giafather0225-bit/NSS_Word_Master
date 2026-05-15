@@ -310,6 +310,40 @@ def parent_day_off_list(db: Session = Depends(get_db)):
     ]}
 
 
+@router.get("/api/parent/test-mode")
+def get_test_mode(db: Session = Depends(get_db)):
+    """Return current test_mode state. @tag PARENT SETTINGS"""
+    row = db.query(AppConfig).filter_by(key="test_mode").first()
+    return {"test_mode": row.value == "true" if row else False}
+
+
+class TestModeIn(BaseModel):
+    enabled: bool
+
+
+@router.post("/api/parent/test-mode")
+def set_test_mode(
+    body: TestModeIn,
+    db: Session = Depends(get_db),
+    _pin: bool = Depends(require_parent_pin),
+):
+    """Enable or disable test mode (God Mode). PIN-protected. @tag PARENT SETTINGS"""
+    val = "true" if body.enabled else "false"
+    row = db.query(AppConfig).filter_by(key="test_mode").first()
+    if row:
+        row.value = val
+    else:
+        db.add(AppConfig(key="test_mode", value=val))
+    # Sync island dev_mode to same value so island dev endpoints work
+    row2 = db.query(AppConfig).filter_by(key="dev_mode").first()
+    if row2:
+        row2.value = val
+    else:
+        db.add(AppConfig(key="dev_mode", value=val))
+    db.commit()
+    return {"ok": True, "test_mode": body.enabled}
+
+
 @router.put("/api/parent/day-off-requests/{req_id}")
 def parent_decide_day_off(
     req_id: int,

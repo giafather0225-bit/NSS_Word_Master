@@ -506,23 +506,12 @@ function renderSectionCards() {
     };
   }
 
-  // Review card — route by what's due:
-  //   Math only  → start MathSpacedReview overlay directly
-  //   English (or both) → English view + btn-review (chain hook handles math after)
-  //   Nothing due → English view anyway (review.js shows "nothing due" state)
+  // Review card — always opens the unified Review Hub overlay
   const reviewCard = document.getElementById('section-card-review');
   if (reviewCard) {
     reviewCard.disabled = false;
     reviewCard.onclick = () => {
-      if (_mathReviewDue > 0 && _englishReviewDue === 0) {
-        if (typeof MathSpacedReview !== 'undefined') MathSpacedReview.start();
-      } else {
-        switchView('english');
-        setTimeout(() => {
-          const btn = document.getElementById('btn-review');
-          if (btn) btn.click();
-        }, 300);
-      }
+      if (typeof ReviewHub !== 'undefined') ReviewHub.open();
     };
   }
 

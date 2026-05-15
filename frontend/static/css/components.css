@@ -310,3 +310,25 @@ body[data-view="diary"]   #island-widget-diary   { display: block; }
     display: flex;
     align-items: center;
 }
+
+/* ─── Test Mode badge ──────────────────────────────────────────── */
+.test-mode-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5001;
+    background: var(--arcade-primary);
+    color: var(--arcade-ink);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    pointer-events: none;
+    text-transform: uppercase;
+}

@@ -159,6 +159,22 @@ function _cdRender(el) {
                         <i data-lucide="sparkles"></i> Evolve
                     </button>
                 </div>
+                ${(typeof isTestMode === 'function' && isTestMode()) ? `
+                <div class="icd-dev-actions">
+                    <span class="icd-dev-label"><i data-lucide="flask-conical"></i> Dev</span>
+                    <button class="izd-btn izd-btn--dev" onclick="_cdDevLevelUp(${prog.id})">
+                        <i data-lucide="plus"></i> +Lv
+                    </button>
+                    <button class="izd-btn izd-btn--dev" onclick="_cdDevEvolve(${prog.id})">
+                        <i data-lucide="zap"></i> Evolve
+                    </button>
+                    <button class="izd-btn izd-btn--dev" onclick="_cdDevReset(${prog.id})">
+                        <i data-lucide="rotate-ccw"></i> Reset
+                    </button>
+                    <button class="izd-btn izd-btn--dev izd-btn--dev-del" onclick="_cdDevDelete(${prog.id})">
+                        <i data-lucide="trash-2"></i> Delete
+                    </button>
+                </div>` : ''}
             </div>
         </div>`;
     _cdAttachEsc();
@@ -290,6 +306,65 @@ function _cdBounce() {
     av.classList.remove('icd-bounce');
     void av.offsetWidth; // reflow to restart animation
     av.classList.add('icd-bounce');
+}
+
+// ─── Dev actions (Test Mode only) ─────────────────────────────
+
+/** Force +1 level on character. @tag SHOP */
+async function _cdDevLevelUp(progId) {
+    try {
+        const res = await fetch(`/api/island/dev/level-up-char/${progId}`, { method: 'POST' });
+        if (res.ok) {
+            _showShopToast('Dev: +1 level!');
+            openCharacterDetail(progId, _cdZone);
+        } else {
+            const err = await res.json().catch(() => ({}));
+            _showShopToast(err.detail || 'Level-up failed.', true);
+        }
+    } catch (_) { _showShopToast('Level-up failed.', true); }
+}
+
+/** Reset character to baby lv1. @tag SHOP */
+async function _cdDevReset(progId) {
+    try {
+        const res = await fetch(`/api/island/dev/reset-char/${progId}`, { method: 'POST' });
+        if (res.ok) {
+            _showShopToast('Dev: reset to baby lv1.');
+            openCharacterDetail(progId, _cdZone);
+        } else {
+            const err = await res.json().catch(() => ({}));
+            _showShopToast(err.detail || 'Reset failed.', true);
+        }
+    } catch (_) { _showShopToast('Reset failed.', true); }
+}
+
+/** Hard-delete character progress (allows re-adopt). @tag SHOP */
+async function _cdDevDelete(progId) {
+    if (!confirm('Delete this character? This cannot be undone.')) return;
+    try {
+        const res = await fetch(`/api/island/dev/delete-char/${progId}`, { method: 'POST' });
+        if (res.ok) {
+            _showShopToast('Dev: character deleted.');
+            _closeCharDetail();
+        } else {
+            const err = await res.json().catch(() => ({}));
+            _showShopToast(err.detail || 'Delete failed.', true);
+        }
+    } catch (_) { _showShopToast('Delete failed.', true); }
+}
+
+/** Force-evolve character. @tag SHOP */
+async function _cdDevEvolve(progId) {
+    try {
+        const res = await fetch(`/api/island/dev/evolve-char/${progId}`, { method: 'POST' });
+        if (res.ok) {
+            _showShopToast('Dev: evolved!');
+            openCharacterDetail(progId, _cdZone);
+        } else {
+            const err = await res.json().catch(() => ({}));
+            _showShopToast(err.detail || 'Evolution failed.', true);
+        }
+    } catch (_) { _showShopToast('Evolution failed.', true); }
 }
 
 // ─── ESC key ──────────────────────────────────────────────────
