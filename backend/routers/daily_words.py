@@ -186,6 +186,13 @@ def daily_words_weekly_test_result(body: WeeklyTestResultIn, db: Session = Depen
     Fail → advance cycle at same grade.
     @tag DAILY_WORDS XP STREAK
     """
+    # Validate before the try block — the broad `except Exception` below would
+    # otherwise swallow these 400s and re-raise them as 500s.
+    if body.total_count <= 0:
+        raise HTTPException(status_code=400, detail="total_count must be > 0")
+    if body.correct_count < 0 or body.correct_count > body.total_count:
+        raise HTTPException(status_code=400, detail="correct_count out of range")
+
     try:
         accuracy = body.correct_count / max(body.total_count, 1)
         passed = accuracy >= dwe.WEEKLY_PASS_PCT
