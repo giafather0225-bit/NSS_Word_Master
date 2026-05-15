@@ -461,6 +461,38 @@
 .ih-zone[data-zone="savanna"] { background: #f6c1a7; }
 .ih-zone[data-zone="space"]   { background: #c9b3e6; }
 
+/* ── Empty state ─────────────────────────────────────────────── */
+
+.ih-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0 2px;
+}
+.ih-empty-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.ih-empty > .ih-empty-icon {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+.ih-empty-icon i {
+    width: 26px;
+    height: 26px;
+    color: var(--arcade-ink);
+    opacity: 0.45;
+}
+.ih-empty-hint {
+    font-size: 11px;
+    color: var(--arcade-ink);
+    opacity: 0.55;
+    font-style: italic;
+}
+
 /* ════════════════════════════════════════════════════════════════
    GIM — Full-bleed Island Map (Screen ①)
    Prefix: .gim-*   Does NOT conflict with .isl-* screens above.

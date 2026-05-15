@@ -342,7 +342,7 @@ function _bubblesHTML(charsByZone) {
         return `
             <button class="gim-bubble gim-float"
                     style="left:${b.left};top:${b.top};width:96px;height:120px;animation-delay:${b.delay};display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;padding:0;cursor:pointer;pointer-events:auto"
-                    onclick="_bubbleClick(this, '${escapeHtml(name)}')"
+                    onclick="_bubbleClick(this, '${escapeHtml(name)}', '${b.zone}')"
                     aria-label="${name}" title="${name}">
                 <span class="gim-bubble-dot"
                       style="width:84px;height:84px;background:rgba(255,255,255,.92);border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:8px;box-shadow:0 6px 18px rgba(40,20,80,.30);overflow:hidden">
@@ -486,14 +486,17 @@ function _islandZoneClick(zone) {
 /** @tag SHOP */
 function _islandLockedClick(zone) {
     if (typeof _showShopToast === 'function') {
-        _showShopToast('Complete all 4 zones to unlock Legend');
+        _showShopToast('Evolve 1 character in each zone to unlock Legend');
     }
 }
 
-/** Pulse + tooltip on bubble tap. @tag SHOP */
-function _bubbleClick(el, name) {
+/** Pulse animation then open ZoneDetail for that zone. @tag SHOP */
+function _bubbleClick(el, name, zone) {
     el.classList.add('gim-bubble--pulse');
-    setTimeout(() => el.classList.remove('gim-bubble--pulse'), 600);
+    setTimeout(() => {
+        el.classList.remove('gim-bubble--pulse');
+        if (zone && typeof openZoneDetail === 'function') openZoneDetail(zone);
+    }, 300);
 }
 
 // ─── Night stars ─────────────────────────────────────────────────
@@ -563,17 +566,45 @@ const _IH_SLOT_ORDER  = ['forest', 'ocean', 'legend', 'savanna', 'space'];
 const _IH_ZONE_FOLDER = { forest: 'Forest', ocean: 'Ocean', savanna: 'Savanna', space: 'Space', legend: 'Legend' };
 const _IH_ZONE_ICON   = { forest: 'tree-pine', ocean: 'waves', savanna: 'sun', space: 'sparkles', legend: 'crown' };
 
-/** Resolve PNG src from API char object (images JSON → guess path → lower fallback). */
+/**
+ * Resolve PNG src for home-card slot.
+ * Priority: images JSON[stage] → images JSON[baby] → lowercase guess → original-case guess.
+ * Returns { primary, fallback } where primary is the first URL to try and fallback is the
+ * onerror URL (original case, for Sprout-style uppercase filenames).
+ */
 function _ihImgSrc(c, zone, stage) {
     const folder = _IH_ZONE_FOLDER[zone];
     const name   = (c.name || '').trim();
-    // images is a JSON string: {"baby":"path","mid_a":"path",...}
+    // 1. DB images JSON (most reliable — set during character seeding)
     try {
         const imgs = JSON.parse(c.images || '{}');
         const rel  = imgs[stage] || imgs['baby'];
-        if (rel) return `/static/img/island/${rel}`;
+        if (rel) return { primary: `/static/img/island/${rel}`, fallback: '' };
     } catch (_) {}
-    return folder && name ? `/static/img/island/${folder}/${name}_${stage}.png` : '';
+    // 2. Lowercase first (majority of files: blossie_baby.png etc.)
+    //    onerror fallback tries original case (Sprout_baby.png etc.)
+    const lower    = folder && name ? `/static/img/island/${folder}/${name.toLowerCase()}_${stage}.png` : '';
+    const original = folder && name ? `/static/img/island/${folder}/${name}_${stage}.png` : '';
+    return { primary: lower, fallback: original !== lower ? original : '' };
+}
+
+/** Render empty-state placeholder (no characters yet) into #island-home-pets. @tag HOME_DASHBOARD */
+function _renderHomePetsEmpty() {
+    const host = document.getElementById('island-home-pets');
+    if (!host) return;
+    const icons = [
+        { icon: 'tree-pine',  zone: 'forest' },
+        { icon: 'sparkles',   zone: 'legend' },
+        { icon: 'waves',      zone: 'ocean'  },
+    ];
+    host.innerHTML = `
+        <div class="ih-empty">
+            ${icons.map(({ icon, zone }) =>
+                `<span class="ih-empty-icon" data-zone="${zone}"><i data-lucide="${icon}"></i></span>`
+            ).join('')}
+            <span class="ih-empty-hint">Adopt your first character</span>
+        </div>`;
+    if (window.lucide) lucide.createIcons({ el: host });
 }
 
 /** Render character PNG slots into #island-home-pets. @tag HOME_DASHBOARD */
@@ -585,15 +616,14 @@ function _renderHomePets(chars) {
     const html = _IH_SLOT_ORDER.map(zone => {
         const c = byZone[zone];
         if (!c) return '';
-        const isLegend = zone === 'legend';
-        const folder   = _IH_ZONE_FOLDER[zone];
-        const stage    = c.stage || 'baby';
-        const name     = (c.name || '').trim();
-        const primary  = _ihImgSrc(c, zone, stage);
-        const lower    = folder && name
-            ? `/static/img/island/${folder}/${name.toLowerCase()}_${stage}.png`
-            : '';
-        const icon     = _IH_ZONE_ICON[zone];
+        const isLegend         = zone === 'legend';
+        const stage            = c.stage || 'baby';
+        const name             = (c.name || '').trim();
+        const { primary, fallback } = _ihImgSrc(c, zone, stage);
+        const icon             = _IH_ZONE_ICON[zone];
+        const onerr = fallback
+            ? `if(this.src!=='${fallback}'){this.src='${fallback}';}else{this.outerHTML='<i data-lucide=\\'${icon}\\'></i>';if(window.lucide)lucide.createIcons();}`
+            : `this.outerHTML='<i data-lucide=\\'${icon}\\'></i>';if(window.lucide)lucide.createIcons();`;
         const crown = isLegend ? `<svg class="ih-crown" viewBox="0 0 32 22" fill="none">
             <path d="M3 19 L5 7 L11 13 L16 4 L21 13 L27 7 L29 19 Z" fill="#f5d97c" stroke="#a88860" stroke-width="1.4" stroke-linejoin="round"/>
             <circle cx="16" cy="14" r="1.3" fill="#ea4f6e"/>
@@ -602,8 +632,7 @@ function _renderHomePets(chars) {
         return `<div class="ih-pet ih-pet--${isLegend ? 'legend' : 'normal'}" data-zone="${zone}">
             ${crown}
             <div class="ih-img">
-                <img src="${primary}" alt="${escapeHtml(name)}"
-                     onerror="if(this.src&&'${lower}'&&this.src!=='${lower}'){this.src='${lower}';}else{this.outerHTML='<i data-lucide=\\'${icon}\\'></i>';if(window.lucide)lucide.createIcons();}">
+                <img src="${primary}" alt="${escapeHtml(name)}" onerror="${onerr}">
             </div>
             ${zoneDot}
         </div>`;
@@ -634,10 +663,11 @@ async function _loadIslandCard() {
         const lumi = d.currency?.lumi ?? 0;
         if (allChars.length > 0) {
             _renderHomePets(allChars);
+            if (charEl) charEl.textContent = `${cnt} character${cnt === 1 ? '' : 's'}`;
         } else {
+            _renderHomePetsEmpty();
             if (charEl) charEl.textContent = 'Your island awaits';
         }
-        if (charEl && allChars.length > 0) charEl.textContent = `${cnt} character${cnt === 1 ? '' : 's'}`;
         if (lumiEl) lumiEl.textContent = lumi.toLocaleString();
     } catch (_) {
         if (charEl) charEl.textContent = 'Your island awaits';

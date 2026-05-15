@@ -376,6 +376,14 @@ def character_silhouette(db: Session = Depends(get_db)):
         .all()
     }
 
+    # Bulk-load character_ids that have an active (non-completed) progress → block re-adoption
+    active_char_ids: set[int] = {
+        row.character_id
+        for row in db.query(IslandCharacterProgress.character_id)
+        .filter(IslandCharacterProgress.is_completed == False)
+        .all()
+    }
+
     result = []
     for char in chars:
         has_prereq = (
@@ -384,11 +392,13 @@ def character_silhouette(db: Session = Depends(get_db)):
             else True
         )
         zone_unlocked = zone_unlocked_map.get(char.zone, False)
+        not_active = char.id not in active_char_ids
         result.append({
             "character_id": char.id, "name": char.name, "zone": char.zone,
             "order_index": char.order_index, "is_available": char.is_available,
             "zone_unlocked": zone_unlocked, "prereq_met": has_prereq,
-            "adoptable": char.is_available and zone_unlocked and has_prereq,
+            "adoptable": char.is_available and zone_unlocked and has_prereq and not_active,
+            "already_active": not not_active,
             "images": char.images or "{}",
             "lumi_production": char.lumi_production or 0,
         })

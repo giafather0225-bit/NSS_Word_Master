@@ -225,7 +225,7 @@ async function _emConfirm() {
         }
     } catch (err) {
         if (btn) { btn.disabled = false; btn.textContent = 'Confirm Evolution'; }
-        _showShopToast(err?.detail || 'Evolution failed.', true);
+        _showShopToast(err?.message || err?.detail || 'Evolution failed.', true);
     }
 }
 
@@ -293,6 +293,9 @@ function _showMidEvoReveal(result, zone, charName, progId) {
 function _closeMidEvoReveal(progId, zone) {
     const el = document.getElementById('imer-overlay');
     if (el) el.remove();
+    // Set _zdZone so that CharacterDetail's Back button returns to ZoneDetail
+    // instead of dropping the user at the island map root.
+    _zdZone = zone;
     if (typeof openIslandMain === 'function') openIslandMain();
     openCharacterDetail(progId, zone);
 }

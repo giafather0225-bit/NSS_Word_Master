@@ -708,7 +708,11 @@ function _zdOpenEvolution(progId) {
 function _zdAdopt() {
     const adoptable = Object.values(_zdCatalog).filter(c => c.zone === _zdZone && c.adoptable);
     if (!adoptable.length) {
-        _showShopToast('Complete a previous zone to unlock characters here.', true);
+        const hasActive = Object.values(_zdCatalog).some(c => c.zone === _zdZone && c.already_active);
+        const msg = hasActive
+            ? 'A character from this zone is already being raised.'
+            : 'Complete a previous zone to unlock characters here.';
+        _showShopToast(msg, true);
         return;
     }
     const meta  = _ZONE_META[_zdZone] || {};
@@ -805,9 +809,13 @@ async function _zdAdoptConfirm(charId) {
         });
         _showShopToast(`${escapeHtml(nickname)} joined your island!`);
         openZoneDetail(_zdZone);
-    } catch (_) {
+    } catch (err) {
         if (btn) btn.disabled = false;
-        _showShopToast('Could not adopt. Please try again.', true);
+        const msg = err?.detail || err?.message || '';
+        const friendlyMsg = msg.toLowerCase().includes('already')
+            ? 'This character is already being raised.'
+            : 'Could not adopt. Please try again.';
+        _showShopToast(friendlyMsg, true);
     }
 }
 
