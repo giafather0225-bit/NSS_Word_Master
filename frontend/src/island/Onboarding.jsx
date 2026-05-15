@@ -378,6 +378,7 @@ async function _obConfirm() {
         // Hide and open island.
         const el = document.getElementById('isl-onboarding');
         if (el) el.classList.add('hidden');
+        if (typeof _loadIslandCard === 'function') _loadIslandCard();
         if (typeof openIslandMain === 'function') openIslandMain();
     } catch (err) {
         _obSaving = false;

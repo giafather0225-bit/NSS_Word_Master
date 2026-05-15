@@ -808,6 +808,7 @@ async function _zdAdoptConfirm(charId) {
             body: JSON.stringify({ character_id: charId, nickname }),
         });
         _showShopToast(`${escapeHtml(nickname)} joined your island!`);
+        if (typeof _loadIslandCard === 'function') _loadIslandCard();
         openZoneDetail(_zdZone);
     } catch (err) {
         if (btn) btn.disabled = false;
