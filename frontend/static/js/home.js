@@ -456,8 +456,7 @@ async function renderWeeklyStrip() {
 function _navigateTask(key) {
   switch (key) {
     case 'review':
-      switchView('english');
-      setTimeout(() => { const btn = document.getElementById('btn-review'); if (btn) btn.click(); }, 300);
+      if (typeof ReviewHub !== 'undefined') ReviewHub.open();
       break;
     case 'daily_words':
       switchView('english');

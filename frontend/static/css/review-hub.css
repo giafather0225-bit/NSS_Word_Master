@@ -1,0 +1,289 @@
+/* ================================================================
+   review-hub.css — Review Hub full-screen overlay
+   Section: Review
+   Dependencies: theme.css
+   ================================================================ */
+
+/* ── Overlay ──────────────────────────────────────────────────── */
+
+#review-hub-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+#review-hub-overlay.hidden {
+  display: none;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+
+.rh-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 28px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+}
+
+.rh-header-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--review-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--review-ink);
+  flex-shrink: 0;
+}
+
+.rh-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.rh-est-time {
+  font-size: var(--font-size-sm);
+  color: var(--text-hint);
+}
+
+.rh-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-hint);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.rh-close-btn:hover {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+/* ── Body ───────────────────────────────────────────────────── */
+
+.rh-body {
+  flex: 1;
+  padding: 28px;
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Session card ──────────────────────────────────────────── */
+
+.rh-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: opacity var(--transition-normal);
+}
+
+.rh-card--done {
+  opacity: 0.65;
+}
+
+.rh-card--empty {
+  opacity: 0.45;
+}
+
+.rh-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rh-card--english .rh-card-icon {
+  background: var(--english-light);
+  color: var(--english-ink);
+}
+
+.rh-card--math .rh-card-icon {
+  background: var(--math-light);
+  color: var(--math-ink);
+}
+
+.rh-card--done .rh-card-icon {
+  background: var(--bg-surface);
+  color: var(--text-hint);
+}
+
+.rh-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.rh-card-label {
+  font-weight: 700;
+  font-size: var(--font-size-md);
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.rh-card-count {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.rh-card-count--done {
+  color: var(--math-primary);
+}
+
+/* Source tag pills (academy, ckla, daily, my) */
+.rh-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.rh-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: var(--english-soft);
+  color: var(--english-ink);
+}
+
+.rh-tag--ckla    { background: var(--rewards-soft); color: var(--rewards-ink); }
+.rh-tag--daily   { background: var(--arcade-soft);  color: var(--arcade-ink); }
+.rh-tag--my      { background: var(--review-soft);  color: var(--review-ink); }
+.rh-tag--academy { background: var(--english-soft); color: var(--english-ink); }
+
+/* ── Start / Done button ────────────────────────────────────── */
+
+.rh-start-btn {
+  background: var(--review-primary);
+  color: var(--text-on-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px 20px;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition-fast);
+}
+
+.rh-start-btn:hover {
+  background: var(--review-hover);
+}
+
+.rh-start-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.rh-done-checkmark {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--math-primary);
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+}
+
+/* ── All-done banner ─────────────────────────────────────────── */
+
+.rh-all-done {
+  background: var(--math-light);
+  border: 1px solid var(--math-soft);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.rh-all-done-icon {
+  color: var(--math-primary);
+  width: 40px;
+  height: 40px;
+}
+
+.rh-all-done-title {
+  font-family: var(--font-family-display);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  color: var(--text-primary);
+}
+
+.rh-all-done-xp {
+  font-size: var(--font-size-md);
+  color: var(--arcade-ink);
+  font-weight: 700;
+}
+
+.rh-all-done-sub {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.rh-back-btn {
+  margin-top: 8px;
+  background: var(--math-primary);
+  color: var(--text-on-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px 28px;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.rh-back-btn:hover {
+  background: var(--math-hover);
+}
+
+/* ── Loading state ──────────────────────────────────────────── */
+
+.rh-loading {
+  text-align: center;
+  color: var(--text-hint);
+  font-size: var(--font-size-sm);
+  padding: 40px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 540px) {
+  .rh-header { padding: 16px 16px 12px; }
+  .rh-body   { padding: 16px; }
+  .rh-card   { padding: 16px; flex-wrap: wrap; }
+  .rh-start-btn { width: 100%; text-align: center; }
+}

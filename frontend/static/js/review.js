@@ -98,7 +98,11 @@
     if (typeof lucide !== "undefined") lucide.createIcons();
     document.getElementById("review-done-close").addEventListener("click", function() {
       doneOverlay.classList.remove("active");
-      reopenSidebar();
+      if (typeof window._reviewHubOnClose === "function") {
+        window._reviewHubOnClose();
+      } else {
+        reopenSidebar();
+      }
       updateBadge();
     });
   }
@@ -286,21 +290,10 @@
       sessionCorrect + " / " + sessionTotal + " correct (" + pct + "%)";
     doneOverlay.classList.add("active");
 
-    if (sessionTotal > 0) {
-      try {
-        const xpRes = await fetch("/api/xp/award", {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({action: "review_complete", detail: ""})
-        });
-        if (!xpRes.ok) {
-          console.warn("[review] XP award non-OK:", xpRes.status);
-          if (window.toast) window.toast("XP could not be saved — try again later.", "error");
-        }
-      } catch (e) {
-        console.warn("[review] XP award failed:", e);
-        if (window.toast) window.toast("XP could not be saved — check connection.", "error");
-      }
+    // XP + streak are awarded by ReviewHub via POST /api/review/session-complete.
+    // Notify the hub so it can mark the English session complete.
+    if (typeof window._reviewHubOnDone === "function") {
+      window._reviewHubOnDone({ correct: sessionCorrect, total: sessionTotal });
     }
 
     var islandSlot = doneOverlay.querySelector("#rv-island-update");
@@ -348,6 +341,8 @@
       }
     });
   }
+
+  window.openReview = openReview;
 
   window.ReviewModule = {
     updateBadge: updateBadge,

@@ -283,31 +283,11 @@
     const doneBtn = body.querySelector('#math-sr-done');
     if (doneBtn) doneBtn.addEventListener('click', () => {
       _removeOverlay();
-      if (typeof renderTodayTasks === 'function') renderTodayTasks();
-    });
-  }
-
-  // ── Hook: chain after English review done overlay ──────────────────
-
-  /**
-   * @tag MATH @tag REVIEW
-   * Intercept the English review done-overlay close button.
-   * If math reviews are due, auto-start math review after English review closes.
-   */
-  function _installReviewChainHook() {
-    document.addEventListener('click', async function (e) {
-      const closeBtn = e.target.closest('#review-done-close');
-      if (!closeBtn) return;
-      // Check if math review is due
-      try {
-        const res = await fetch('/api/math/spaced-review/count');
-        if (!res.ok) return;
-        const { count } = await res.json();
-        if (count > 0) {
-          // Small delay so the English overlay finishes closing
-          setTimeout(() => startMathReview(), 350);
-        }
-      } catch { /* no-op */ }
+      if (typeof window._reviewHubOnMathDone === 'function') {
+        window._reviewHubOnMathDone();
+      } else if (typeof renderTodayTasks === 'function') {
+        renderTodayTasks();
+      }
     });
   }
 
@@ -328,18 +308,6 @@
     t.textContent = msg;
     document.body.appendChild(t);
     setTimeout(() => t.remove(), 3000);
-  }
-
-  // ── Init ──────────────────────────────────────────────────────────
-
-  function _init() {
-    _installReviewChainHook();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', _init);
-  } else {
-    _init();
   }
 
   // Public API

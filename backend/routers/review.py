@@ -4,9 +4,11 @@ Section: English / CKLA (shared SM-2 infrastructure)
 Dependencies: database, models, sm2
 API:
   POST /api/review/register-lesson
-  GET  /api/review/today          — optional ?source=ckla|daily|my|academy
-  POST /api/review/result
+  GET  /api/review/today            — optional ?source=ckla|daily|my|academy
+  POST /api/review/result           — per-word SM-2 update only (no XP/streak)
   GET  /api/review/stats
+  GET  /api/review/hub-status       — english + math due counts for Review Hub
+  POST /api/review/session-complete — award XP + streak when a session finishes
 """
 
 import logging
@@ -15,6 +17,7 @@ from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
+from sqlalchemy import func
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -52,6 +55,10 @@ class RegisterWordsRequest(BaseModel):
     source: str                   # 'daily' | 'my'
     source_ref: str = ""          # e.g. 'grade_3/week_2' or list name
     words: list[WordEntry]
+
+
+class SessionCompleteRequest(BaseModel):
+    type: str  # 'english' | 'math'
 
 
 # ── Routes ─────────────────────────────────────────────────
@@ -260,25 +267,6 @@ def submit_review_result(req: ReviewResultRequest, db: Session = Depends(get_db)
         db.commit()
         db.refresh(wr)
 
-        island = {"xp_multiplier": 1.0}
-        try:
-            from backend.services import island_care_engine as _care
-            today_str = _date.today().isoformat()
-            due_remaining = db.query(WordReview).filter(WordReview.next_review <= today_str).count()
-            if due_remaining == 0:
-                island = _care.apply_subject_gain(db, "review", "review")
-        except Exception:
-            pass
-
-        # Mark review_done on today's StreakLog so the "english" streak subject
-        # (_english_ok) is satisfied when reviews were due.  Silently ignored on
-        # any error so a streak-engine failure never blocks a review submission.
-        try:
-            from backend.services import streak_engine as _streak
-            _streak.mark_review_done(db)
-        except Exception:
-            logger.warning("mark_review_done failed silently after review submission", exc_info=True)
-
         return {
             "review_id":    wr.id,
             "word":         wr.word,
@@ -287,7 +275,6 @@ def submit_review_result(req: ReviewResultRequest, db: Session = Depends(get_db)
             "new_interval": wr.interval,
             "next_review":  wr.next_review,
             "repetitions":  wr.repetitions,
-            "island":       island,
         }
     except SQLAlchemyError as e:
         db.rollback()
@@ -328,4 +315,108 @@ def get_review_stats(db: Session = Depends(get_db)):
             }
             for w in struggling
         ],
+    }
+
+
+# @tag REVIEW @tag HOME_DASHBOARD
+@router.get("/api/review/hub-status")
+def get_hub_status(db: Session = Depends(get_db)):
+    """Return due counts for the Review Hub (English SM-2 + Math spaced review)."""
+    today_str = _date.today().isoformat()
+
+    english_due = db.query(WordReview).filter(WordReview.next_review <= today_str).count()
+
+    breakdown_rows = (
+        db.query(WordReview.source, func.count(WordReview.id))
+        .filter(WordReview.next_review <= today_str)
+        .group_by(WordReview.source)
+        .all()
+    )
+    breakdown = {(src or "academy"): cnt for src, cnt in breakdown_rows}
+
+    math_due = 0
+    try:
+        from backend.models.math import MathSpacedReview as _MSR
+        math_due = db.query(_MSR).filter(_MSR.next_review_date <= today_str).count()
+    except Exception:
+        pass
+
+    total_items = english_due + math_due
+    est_minutes = max(1, round((english_due * 30 + math_due * 90) / 60)) if total_items else 0
+
+    return {
+        "english": {
+            "due":       english_due,
+            "breakdown": breakdown,
+        },
+        "math": {
+            "due": math_due,
+        },
+        "total_due":         total_items,
+        "all_done":          total_items == 0,
+        "estimated_minutes": est_minutes,
+    }
+
+
+# @tag REVIEW @tag XP @tag STREAK
+@router.post("/api/review/session-complete")
+def complete_review_session(req: SessionCompleteRequest, db: Session = Depends(get_db)):
+    """Called by Review Hub when a full English or Math review session ends.
+
+    Awards XP and updates streak for the completed session type.
+    When both English and Math queues are empty, triggers island care gain.
+    """
+    if req.type not in ("english", "math"):
+        raise HTTPException(status_code=400, detail="type must be 'english' or 'math'")
+
+    today_str = _date.today().isoformat()
+    xp_earned = 0
+
+    if req.type == "english":
+        try:
+            from backend.services import xp_engine as _xp
+            xp_earned = _xp.award_xp(db, "review_complete")
+        except Exception as e:
+            logger.warning("review_complete XP failed: %s", e)
+        try:
+            from backend.services import streak_engine as _streak
+            _streak.mark_review_done(db)
+        except Exception as e:
+            logger.warning("mark_review_done failed: %s", e)
+
+    elif req.type == "math":
+        try:
+            from backend.services import xp_engine as _xp
+            xp_earned = _xp.award_xp(db, "math_spaced_review")
+        except Exception as e:
+            logger.warning("math_spaced_review XP failed: %s", e)
+        try:
+            from backend.services import streak_engine as _streak
+            _streak.mark_math_done(db)
+        except Exception as e:
+            logger.warning("mark_math_done failed: %s", e)
+
+    # Check if both queues are now empty → island care
+    english_due = db.query(WordReview).filter(WordReview.next_review <= today_str).count()
+    math_due = 0
+    try:
+        from backend.models.math import MathSpacedReview as _MSR
+        math_due = db.query(_MSR).filter(_MSR.next_review_date <= today_str).count()
+    except Exception:
+        pass
+
+    island = {"xp_multiplier": 1.0}
+    all_done = english_due == 0 and math_due == 0
+    if all_done:
+        try:
+            from backend.services import island_care_engine as _care
+            island = _care.apply_subject_gain(db, "review", "review")
+        except Exception:
+            pass
+
+    return {
+        "type":      req.type,
+        "xp_earned": xp_earned,
+        "island":    island,
+        "all_done":  all_done,
     }
