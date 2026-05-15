@@ -204,15 +204,16 @@ async function _emConfirm() {
             }),
         });
         // Capture these before _closeEvoModal clears module state.
-        const zone = _cdZone || _zdZone || 'forest';
+        // Capture all needed state before _closeEvoModal wipes _em* vars.
+        const zone     = _cdZone || _zdZone || 'forest';
         const charName = _emCharName || 'Character';
+        const progId   = _emProgId;
         _closeEvoModal();
 
         if (result.is_completed) {
             _showCharCompletion(result, zone, charName);
         } else {
-            _showShopToast('Evolution complete!');
-            _emRefreshBack();
+            _showMidEvoReveal(result, zone, charName, progId);
         }
 
         // Check if legend zone just unlocked via this evolution.
@@ -235,6 +236,65 @@ function _emRefreshBack() {
     } else if (_zdZone) {
         openZoneDetail(_zdZone);
     }
+}
+
+// ─── Mid-stage Evolution Reveal ───────────────────────────────
+
+/** Show full-screen reveal when baby evolves to mid_a or mid_b. @tag SHOP */
+function _showMidEvoReveal(result, zone, charName, progId) {
+    const overlay = document.createElement('div');
+    overlay.id    = 'imer-overlay';
+    overlay.className = `icc-overlay icc-${zone}`;
+
+    const icon       = (_ZONE_META?.[zone] || {}).lucideIcon || 'star';
+    const newStage   = result.new_stage || '';
+    const stageLabel = {
+        mid_a: 'Mid Form A', mid_b: 'Mid Form B',
+        final_a: 'Final Form A', final_b: 'Final Form B',
+    }[newStage] || newStage;
+
+    overlay.innerHTML = `
+        <div class="icc-bloom"></div>
+        <div class="icc-particles" id="imer-particles"></div>
+        <div class="icc-content">
+            <div class="icc-char-emoji"><i data-lucide="${icon}"></i></div>
+            <div class="icc-badge">EVOLVED!</div>
+            <div class="icc-name">${escapeHtml(charName)}</div>
+            <div class="icc-subtitle">grew into ${escapeHtml(stageLabel)}!</div>
+            <button class="icc-continue-btn" onclick="_closeMidEvoReveal(${progId},'${zone}')">
+                <i data-lucide="arrow-right"></i> Continue
+            </button>
+        </div>`;
+
+    document.body.appendChild(overlay);
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    const colors = _ZONE_PARTICLE_COLORS[zone] || _ZONE_PARTICLE_COLORS.forest;
+    const pEl = document.getElementById('imer-particles');
+    if (pEl) {
+        for (let i = 0; i < 14; i++) {
+            const p = document.createElement('div');
+            p.className = 'icc-particle';
+            p.style.cssText = [
+                `left:${5 + Math.random() * 90}%`,
+                `bottom:${Math.random() * 40}%`,
+                `background:${colors[i % colors.length]}`,
+                `--dur:${1.4 + Math.random() * 1.2}s`,
+                `--delay:${Math.random() * 1.2}s`,
+                `width:${5 + Math.random() * 7}px`,
+                `height:${5 + Math.random() * 7}px`,
+            ].join(';');
+            pEl.appendChild(p);
+        }
+    }
+}
+
+/** Dismiss mid-evolution reveal, refresh island map, open evolved character's detail. @tag SHOP */
+function _closeMidEvoReveal(progId, zone) {
+    const el = document.getElementById('imer-overlay');
+    if (el) el.remove();
+    if (typeof openIslandMain === 'function') openIslandMain();
+    openCharacterDetail(progId, zone);
 }
 
 // ─── Character Completion Celebration ─────────────────────────

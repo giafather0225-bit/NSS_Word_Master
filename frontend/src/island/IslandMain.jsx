@@ -20,20 +20,20 @@ const _ZONE_META = {
 // cx/cy = circle center, r = radius. Label pill is always rendered BELOW the circle.
 // Update cx/cy to reposition; update r to resize the clickable/visual area.
 const _ZONE_CIRCLES = {
-    forest:  { cx: 255, cy: 305, r: 85 },
-    space:   { cx: 685, cy: 155, r: 85 },
-    legend:  { cx: 690, cy: 375, r: 85 },
-    ocean:   { cx: 1195, cy: 400, r: 85 },
-    savanna: { cx: 685, cy: 615, r: 85 },
+    forest:  { cx: 345,  cy: 215, r: 78 },   // 좌상단 분홍꽃 숲
+    space:   { cx: 1075, cy: 195, r: 80 },   // 우상단 라벤더 + 행성
+    legend:  { cx: 660,  cy: 385, r: 70 },   // 중앙 분홍 수정/돌기둥
+    ocean:   { cx: 345,  cy: 475, r: 80 },   // 좌하단 청록 만
+    savanna: { cx: 1030, cy: 465, r: 80 },   // 우하단 노란 풌밭
 };
 
 
 // Char bubble anchor positions near artwork features
 const _CHAR_BUBBLES = [
-    { zone: 'forest',  left: '12%', top: '56%', delay: '0s'   },
-    { zone: 'ocean',   left: '80%', top: '52%', delay: '.5s'  },
-    { zone: 'savanna', left: '62%', top: '88%', delay: '.8s'  },
-    { zone: 'space',   left: '58%', top: '24%', delay: '1.2s' },
+    { zone: 'forest',  left: '16%', top: '42%', delay: '0s'   },
+    { zone: 'space',   left: '86%', top: '40%', delay: '.5s'  },
+    { zone: 'ocean',   left: '16%', top: '78%', delay: '.8s'  },
+    { zone: 'savanna', left: '83%', top: '60%', delay: '1.2s' },
 ];
 
 // ─── State ──────────────────────────────────────────────────────
@@ -144,7 +144,7 @@ function _renderIslandMap() {
 
             <!-- Full-bleed backdrop -->
             <img class="gim-backdrop${isNight ? ' gim-backdrop--night' : ''}"
-                 src="/static/img/island/bg_island.png"
+                 src="/static/img/island/bg_island_v5.png"
                  alt="Gia's Island" draggable="false">
 
             ${isNight ? `
@@ -295,18 +295,60 @@ function _svgZonesHTML(charsByZone, completedZones, legendLocked) {
 
 /** @tag SHOP */
 function _bubblesHTML(charsByZone) {
+    // zone -> 폴더명 매핑 (Forest, Ocean, Savanna, Space, Legend)
+    const ZONE_FOLDER = {
+        forest: 'Forest', ocean: 'Ocean', savanna: 'Savanna',
+        space: 'Space',   legend: 'Legend'
+    };
+
     return _CHAR_BUBBLES.map((b, i) => {
         const chars = charsByZone[b.zone] || [];
         const char  = chars[0];
         if (!char) return '';
         const meta  = _ZONE_META[b.zone] || {};
-        const name  = escapeHtml((char.nickname || char.name || '').substring(0, 8));
+        const name  = escapeHtml((char.nickname || char.name || '').substring(0, 10));
+        const stage = char.stage || 'baby';
+
+        // 1) DB의 character.images JSON에서 stage별 경로 시도
+        let imgRel = '';
+        try {
+            const imgs = JSON.parse(char.images || '{}');
+            imgRel = imgs[stage] || imgs['baby'] || '';
+        } catch (_) {}
+
+        // 2) JSON에 없으면 표준 경로 추정
+        const baseName = (char.name || '').trim();
+        const folder = ZONE_FOLDER[b.zone] || '';
+        const guessSrc = folder && baseName
+            ? `/static/img/island/${folder}/${baseName}_${stage}.png`
+            : '';
+        const guessLower = folder && baseName
+            ? `/static/img/island/${folder}/${baseName.toLowerCase()}_${stage}.png`
+            : '';
+        const finalSrc = imgRel ? `/static/img/island/${imgRel}` : guessSrc;
+
+        // 폴백 체인: imgRel → guessLower → Lucide
+        const lucideName = meta.lucideIcon || 'smile';
+        const onErr = guessLower && guessLower !== finalSrc
+            ? `this.onerror=function(){this.outerHTML='<i data-lucide=\\'${lucideName}\\' style=\\'width:36px;height:36px;color:#7a5a9e\\'></i>';if(typeof lucide!=='undefined')lucide.createIcons();};this.src='${guessLower}'`
+            : `this.outerHTML='<i data-lucide=\\'${lucideName}\\' style=\\'width:36px;height:36px;color:#7a5a9e\\'></i>';if(typeof lucide!=='undefined')lucide.createIcons();`;
+
+        const imgHTML = finalSrc
+            ? `<img src="${finalSrc}" alt="${name}" draggable="false"
+                  style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 8px rgba(80,40,120,.25))"
+                  onerror="${onErr}">`
+            : `<i data-lucide="${lucideName}" style="width:36px;height:36px;color:#7a5a9e"></i>`;
+
         return `
             <button class="gim-bubble gim-float"
-                    style="left:${b.left};top:${b.top};animation-delay:${b.delay}"
+                    style="left:${b.left};top:${b.top};width:96px;height:120px;animation-delay:${b.delay};display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;padding:0;cursor:pointer;pointer-events:auto"
                     onclick="_bubbleClick(this, '${escapeHtml(name)}')"
                     aria-label="${name}" title="${name}">
-                <span class="gim-bubble-dot"><i data-lucide="${meta.lucideIcon || 'smile'}"></i></span>
+                <span class="gim-bubble-dot"
+                      style="width:84px;height:84px;background:rgba(255,255,255,.92);border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:8px;box-shadow:0 6px 18px rgba(40,20,80,.30);overflow:hidden">
+                    ${imgHTML}
+                </span>
+                <span style="background:rgba(255,255,255,.95);border-radius:999px;padding:2px 10px;font-size:11px;font-weight:800;color:#2a1f3d;white-space:nowrap;box-shadow:0 2px 6px rgba(40,20,80,.18);letter-spacing:.01em">${name}</span>
             </button>`;
     }).join('');
 }
