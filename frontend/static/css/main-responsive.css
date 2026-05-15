@@ -21,15 +21,8 @@ body.math-mode {
 #sb-selection-area { display: block !important; }
 #sb-session-info { display: none !important; }
 
-/* Lesson dropdown */
+/* Lesson dropdown — styled by .sb-tb-dropdown in main-shell.css */
 #lesson-section-display { position: relative; }
-#sb-lesson-dropdown {
-    display: none; position: absolute; left: 0; right: 0; top: calc(100% + 4px);
-    background: var(--bg-card); border: 1px solid var(--border-default); border-radius: 8px;
-    padding: 4px 0; z-index: 30;
-    box-shadow: none; max-height: 200px; overflow-y: auto;
-}
-#sb-lesson-dropdown.open { display: block; }
 
 /* ── Preview Modal: Shadow mic states ──────────────────── */
 .pm-mic-btn.done {

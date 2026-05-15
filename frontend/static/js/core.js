@@ -688,9 +688,10 @@ function addWordVault(word) {
 function exitEnglishLesson() {
   if (window.speechSynthesis) window.speechSynthesis.cancel();
   if (typeof sessionActive !== 'undefined') { window.sessionActive = false; }
-  if (typeof showIdleCard === 'function') showIdleCard();
   const hdr = document.getElementById('english-lesson-header');
   if (hdr) hdr.remove();
+  if (typeof switchView === 'function') switchView('home');
+  else showIdleCard();
 }
 function showIdleCard() {
   const _engHdr = document.getElementById('english-lesson-header');

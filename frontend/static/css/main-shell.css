@@ -222,15 +222,13 @@ body {
 /* ── Dropdown ─────────────────────────── */
 
 .sb-tb-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 12px;
-    right: 12px;
+    /* fixed so it escapes .sidebar { overflow: hidden } clipping */
+    position: fixed;
     background: var(--bg-card, #fff);
     border: 1.5px solid var(--border-default, var(--border-default));
     border-radius: var(--radius-md, 12px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    z-index: 200;
+    z-index: 500;
     max-height: min(360px, calc(100vh - 240px));
     overflow-y: auto;
     overscroll-behavior: contain;

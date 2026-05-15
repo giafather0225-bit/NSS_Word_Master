@@ -463,8 +463,16 @@ function initLessonDropdownUI() {
         });
     }
 
+    function positionDropdown() {
+        const rect = display.getBoundingClientRect();
+        dropdown.style.top   = (rect.bottom + 4) + 'px';
+        dropdown.style.left  = rect.left + 'px';
+        dropdown.style.width = rect.width + 'px';
+    }
+
     function openDropdown() {
         buildDropdown();
+        positionDropdown();
         dropdown.classList.add('open');
         display.classList.add('open');
     }
@@ -557,8 +565,16 @@ function initTextbookDropdownUI() {
         });
     }
 
+    function positionDropdown() {
+        const rect = display.getBoundingClientRect();
+        dropdown.style.top   = (rect.bottom + 4) + 'px';
+        dropdown.style.left  = rect.left + 'px';
+        dropdown.style.width = rect.width + 'px';
+    }
+
     function openDropdown() {
         buildDropdown();
+        positionDropdown();
         dropdown.classList.add('open');
         display.classList.add('open');
     }

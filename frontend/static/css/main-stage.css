@@ -240,8 +240,14 @@ body[data-view="math"]    .stage-area { background: var(--math-light); }
 }
 .preview-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 12px;
+}
+@media (max-width: 720px) {
+    .preview-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+    .preview-grid { grid-template-columns: repeat(2, 1fr); }
 }
 .preview-card {
     position: relative;
@@ -631,17 +637,22 @@ body[data-view="math"]    .stage-area { background: var(--math-light); }
   margin-left: auto;
   flex-shrink: 0;
   padding: 6px 16px;
-  border: none;
-  border-radius: 6px;
-  background: var(--color-primary, #2196f3);
-  color: #fff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
   font-size: 0.82rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
   white-space: nowrap;
   align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .eng-exit-btn:hover {
-  background: var(--english-dark, #1565c0);
+  background: var(--color-error-light);
+  color: var(--color-error-ink);
+  border-color: var(--color-error);
 }
