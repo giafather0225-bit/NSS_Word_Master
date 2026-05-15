@@ -139,8 +139,14 @@
     if (badgeInFlight) return;
     badgeInFlight = true;
     try {
-      var words = await fetchDueWords();
-      var count = words.length;
+      var count = 0;
+      try {
+        var res = await fetch("/api/review/hub-status");
+        if (res.ok) {
+          var data = await res.json();
+          count = data.total_due || 0;
+        }
+      } catch (_) {}
       var badges = [
         document.getElementById("review-badge"),
         document.getElementById("section-card-review-badge")

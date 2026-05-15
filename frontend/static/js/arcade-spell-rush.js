@@ -113,6 +113,8 @@ async function srStart(level = 'normal') {
     running: true,
     lock: false,       // C1: prevents _srOnInput + Enter double-submit
     startedAt: performance.now(),
+    wordStartedAt: performance.now(),
+    avgWordMs: 0,      // QW4: rolling avg solve time (ms) for speed bonus
     current: null,
     tickHandle: null,
     level,
@@ -163,6 +165,7 @@ function _srTick() {
 function _srNextWord() {
   if (!_sr) return;
   _sr.lock = false;   // C1: release submit lock for the next word
+  _sr.wordStartedAt = performance.now();
   const pick = _sr.pool[Math.floor(Math.random() * _sr.pool.length)];
   _sr.current = { word: pick.word.toLowerCase(), def: pick.definition, typed: '', hintUsed: false };
 
@@ -227,9 +230,24 @@ function _srSubmit() {
     _sr.streak += 1;
     const letterPts = word.length * SR_CFG.perLetterPoints;
     const streakMult = 1 + Math.min(1.0, _sr.streak * 0.08); // Fix #10: capped at 2× (streak≥13)
-    const gained = Math.round((SR_CFG.wordCompleteBase + letterPts) * streakMult);
+    let gained = Math.round((SR_CFG.wordCompleteBase + letterPts) * streakMult);
+
+    // QW4: speed bonus — if solved faster than 70% of rolling avg, award +FAST!
+    const solveMs = performance.now() - (_sr.wordStartedAt || performance.now());
+    if (_sr.avgWordMs > 0 && solveMs < _sr.avgWordMs * 0.70) {
+      const fastBonus = Math.round(gained * 0.25);
+      gained += fastBonus;
+      if (typeof _arcadeFloatScore === 'function') {
+        _arcadeFloatScore(`+${fastBonus} FAST!`);
+        setTimeout(() => _arcadeFloatScore(gained), 250);
+      }
+    } else {
+      if (typeof _arcadeFloatScore === 'function') _arcadeFloatScore(gained);
+    }
+    // Update rolling average (exponential moving avg, α=0.3)
+    _sr.avgWordMs = _sr.avgWordMs === 0 ? solveMs : _sr.avgWordMs * 0.7 + solveMs * 0.3;
+
     _sr.score += gained;
-    if (typeof _arcadeFloatScore === 'function') _arcadeFloatScore(gained);
     if (typeof sfxHit === 'function') sfxHit(_sr.streak);
     if (_sr.streak > 0 && _sr.streak % 5 === 0) {
       if (typeof sfxCombo === 'function') sfxCombo();
@@ -246,9 +264,11 @@ function _srSubmit() {
     if (box) {
       box.classList.add('sr-shake');
       setTimeout(() => box.classList.remove('sr-shake'), 300);
-      // Show correct spelling for 900 ms
-      const { word } = _sr.current;
-      box.innerHTML = word.split('').map((ch) =>
+      // QW1: "Almost!" if only 1 letter wrong
+      const diff = typeof _arcadeLetterDiff === 'function' ? _arcadeLetterDiff(typed, word) : Infinity;
+      const almostLabel = diff === 1 ? `<span class="sr-almost">Almost!</span>` : '';
+      const { word: w } = _sr.current;
+      box.innerHTML = almostLabel + w.split('').map((ch) =>
         `<span class="sr-cell sr-cell--ok">${ch.toUpperCase()}</span>`
       ).join('');
     }

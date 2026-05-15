@@ -306,8 +306,21 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
   }
 
   const bestBanner = result.new_best
-    ? `<div class="wi-new-best">${_SVG.trophy} New Personal Best!</div>`
+    ? (() => {
+        const delta = result.prev_best > 0 ? state.score - result.prev_best : 0;
+        const deltaStr = delta > 0 ? ` (+${delta})` : '';
+        return `<div class="wi-new-best">${_SVG.trophy} New Personal Best!${deltaStr}</div>`;
+      })()
     : `<div class="stat">Best: <b>${result.best_score}</b></div>`;
+
+  const nudgeLine = !result.new_best && result.best_score > 0
+    ? (() => {
+        const gap = result.best_score - state.score;
+        if (gap > 0 && gap < result.best_score * 0.20)
+          return `<div class="stat wi-nudge">Only <b>${gap} pts</b> from your best — play again!</div>`;
+        return '';
+      })()
+    : '';
 
   const { grade, cls, msg } = _arcadeGrade(accuracy);
 
@@ -326,6 +339,7 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
       <div class="arcade-grade ${cls}">${grade}</div>
       <div class="arcade-grade-msg">${msg}</div>
       ${bestBanner}
+      ${nudgeLine}
       <div class="stat">Score: <b>${state.score}</b></div>
       <div class="stat">Correct: <b>${state.correct}</b> / ${state.total}</div>
       <div class="stat">Accuracy: <b>${pct}%</b></div>
@@ -392,6 +406,14 @@ function _arcadeShowCombo(n) {
   el.textContent = `COMBO ×${n}!`;
   body.appendChild(el);
   setTimeout(() => el.remove(), 900);
+}
+
+/** Count positional letter mismatches between two same-length strings. @tag ARCADE */
+function _arcadeLetterDiff(a, b) {
+  if (a.length !== b.length) return Infinity;
+  let d = 0;
+  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) d++;
+  return d;
 }
 
 /** Apply streak heat color to a streak HUD element. @tag ARCADE */

@@ -1317,3 +1317,27 @@
   color: var(--text-hint);
   font-weight: 400;
 }
+
+/* ── End-screen play-again nudge (within 20% of PB) ────────────── */
+.wi-nudge {
+  color: var(--arcade-ink);
+  background: var(--arcade-soft);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  font-size: var(--font-size-sm);
+}
+
+/* ── "Almost!" near-miss label in Spell Rush ────────────────────── */
+.sr-almost {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--arcade-ink);
+  margin-bottom: 4px;
+  animation: sr-almost-pop 0.3s ease;
+}
+@keyframes sr-almost-pop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.1); }
+  100% { transform: scale(1);   opacity: 1; }
+}

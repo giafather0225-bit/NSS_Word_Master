@@ -379,6 +379,11 @@ function _wbCheck() {
       }, WB_CFG.feedbackMs * 1.5);
     }
     if (typeof sfxMiss === 'function') sfxMiss();
+    // QW1: "Almost!" toast if only 1 letter wrong
+    if (typeof _arcadeLetterDiff === 'function') {
+      const diff = _arcadeLetterDiff(built.toLowerCase(), _wb.current.word.toLowerCase());
+      if (diff === 1 && typeof _arcadeFloatScore === 'function') _arcadeFloatScore('Almost!');
+    }
     _wbUpdateHUD();
     _wbRenderHistory();  // Fix #18
   }

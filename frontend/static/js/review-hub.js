@@ -16,6 +16,7 @@
   var _status = null;   // last hub-status response
   var _englishDone = false;
   var _mathDone = false;
+  var _islandData = null;  // island gain from the final session-complete
 
   // ── DOM helpers ───────────────────────────────────────────────────
 
@@ -88,6 +89,10 @@
       if (body) body.innerHTML = '<div class="rh-loading">Could not load review status. Please try again.</div>';
       return;
     }
+
+    // P3: restore completed-today state so reopening the hub shows correct status
+    if (_status.english && _status.english.completed_today) _englishDone = true;
+    if (_status.math && _status.math.completed_today) _mathDone = true;
 
     _render();
   }
@@ -244,8 +249,18 @@
       '<i data-lucide="star" class="rh-all-done-icon"></i>',
       '<div class="rh-all-done-title">All Reviews Complete!</div>',
       '<div class="rh-all-done-sub">Great job! Come back tomorrow for your next session.</div>',
+      '<div id="rh-island-slot"></div>',
       '<button class="rh-back-btn" id="rh-all-done-back">Back to Home</button>',
     ].join("\n");
+
+    // Attach island update card if available
+    setTimeout(function () {
+      var slot = document.getElementById("rh-island-slot");
+      if (slot && typeof _appendIslandUpdate === "function") {
+        _appendIslandUpdate(slot, _islandData);
+      }
+    }, 0);
+
     return banner;
   }
 
@@ -303,6 +318,7 @@
         if (result.xp_earned > 0 && typeof window.showToast === "function") {
           window.showToast("+" + result.xp_earned + " XP — English review complete!", "success");
         }
+        if (result.island) _islandData = result.island;
         if (result.all_done) {
           _englishDone = true;
           _mathDone = true;
@@ -334,6 +350,7 @@
         if (result.xp_earned > 0 && typeof window.showToast === "function") {
           window.showToast("+" + result.xp_earned + " XP — Math review complete!", "success");
         }
+        if (result.island) _islandData = result.island;
       }
     } catch (e) {
       console.warn("[ReviewHub] session-complete math failed:", e);

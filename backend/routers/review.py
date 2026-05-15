@@ -24,7 +24,7 @@ from sqlalchemy.orm import Session
 logger = logging.getLogger(__name__)
 
 from backend.database import get_db
-from backend.models import StudyItem, WordReview
+from backend.models import StudyItem, WordReview, XPLog
 from backend.sm2 import sm2_calculate, quality_from_result
 
 router = APIRouter()
@@ -341,16 +341,28 @@ def get_hub_status(db: Session = Depends(get_db)):
     except Exception:
         pass
 
+    # Detect sessions completed today via XPLog
+    english_done_today = db.query(XPLog).filter(
+        XPLog.action == "review_complete",
+        XPLog.created_at >= today_str,
+    ).first() is not None
+    math_done_today = db.query(XPLog).filter(
+        XPLog.action == "math_spaced_review",
+        XPLog.created_at >= today_str,
+    ).first() is not None
+
     total_items = english_due + math_due
     est_minutes = max(1, round((english_due * 30 + math_due * 90) / 60)) if total_items else 0
 
     return {
         "english": {
-            "due":       english_due,
-            "breakdown": breakdown,
+            "due":            english_due,
+            "breakdown":      breakdown,
+            "completed_today": english_done_today,
         },
         "math": {
-            "due": math_due,
+            "due":            math_due,
+            "completed_today": math_done_today,
         },
         "total_due":         total_items,
         "all_done":          total_items == 0,
