@@ -421,7 +421,7 @@ function isLessonComplete(subject, textbook, lesson) {
 }
 
 /**
- * Re-render lesson dropdown option text to show ✓ for completed lessons.
+ * Re-render lesson dropdown option text to mark completed lessons.
  * @tag NAVIGATION SIDEBAR
  */
 function refreshLessonCompletion() {

@@ -148,7 +148,7 @@ function openPreviewModal(item, onClose) {
         const verdict = $('pm-verdict');
         if (verdict) {
             verdict.className = 'pm-verdict auto-pass';
-            verdict.textContent = "Good try! Let's move on \uD83D\uDCAA";
+            verdict.textContent = "Good try! Let's move on!";
             setTimeout(() => { verdict.className = 'pm-verdict'; verdict.textContent = ''; }, 2000);
         }
         // Analytics safety net: 3 prior is_correct=false entries would mark the word
@@ -215,7 +215,7 @@ function openPreviewModal(item, onClose) {
         const hadAutoPass = shadowState.some(s => s === -1);
         const msgs = hadAutoPass
             ? ["Nice effort! Keep it up!", "Good job finishing!"]
-            : ['Perfect! You nailed it!', 'Amazing! All three! ⭐', "That's the way!"];
+            : ['Perfect! You nailed it!', 'Amazing! All three!', "That's the way!"];
         const verdict=$('pm-verdict');
         verdict.className='pm-verdict pass';
         verdict.innerHTML=msgs[Math.floor(Math.random()*msgs.length)]+'<br><button type="button" class="pm-next-btn" id="pm-next">Next word →</button>';

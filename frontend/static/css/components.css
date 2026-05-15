@@ -26,7 +26,7 @@
 }
 .nav-btn.active { background: var(--color-primary); color: white; }
 a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
-.admin-btn { background: var(--color-warning-light); color: var(--color-error); border: 2px solid #ffeaa7;}
+.admin-btn { background: var(--color-warning-light); color: var(--color-error); border: 2px solid var(--arcade-soft);}
 .nav-btn:hover { transform: scale(1.05) translateY(-2px); box-shadow: none;}
 
 /* Pill Buttons */
@@ -40,7 +40,7 @@ a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
 .pill-btn:active { transform: scale(0.95); }
 .pill-btn.primary { background: var(--color-primary); color: white; }
 .pill-btn.primary:hover { background: var(--color-primary-hover); transform: translateY(-4px) scale(1.02); box-shadow: none;}
-.pill-btn.secondary { background: rgba(255,255,255,0.9); color: var(--color-primary); border: 2px solid rgba(155, 137, 248, 0.7); }
+.pill-btn.secondary { background: var(--bg-card); color: var(--color-primary); border: 2px solid var(--rewards-soft); }
 .pill-btn.secondary:hover { transform: translateY(-4px) scale(1.02); box-shadow: none; }
 .pill-btn.exam { background: var(--color-primary); color: white; }
 
@@ -76,7 +76,7 @@ a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
     background: white; border-radius: 15px; padding: 18px; display: flex; flex-direction: column; gap: 5px; cursor: pointer;
     border: 2px solid transparent; transition: all 0.2s; position: relative; box-shadow: none;
 }
-.reward-item:hover { transform: translateY(-2px); border-color: rgba(155, 137, 248, 0.5); }
+.reward-item:hover { transform: translateY(-2px); border-color: var(--rewards-soft); }
 .reward-item h4 { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 2px;}
 .reward-item p { font-size: 0.9rem; color: var(--text-secondary); width: 85%; }
 .reward-item.earned { background: var(--color-warning-light); border-color: var(--color-warning); overflow: hidden; }
@@ -88,8 +88,8 @@ a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
 }
 
 .reward-item.earned::after {
-    content: "💯 달성!"; position: absolute; right: 10px; top: 50%;
-    font-weight: 900; font-size: 1.8rem; color: var(--color-error);
+    content: "EARNED"; position: absolute; right: 10px; top: 50%;
+    font-weight: 900; font-size: 1.3rem; letter-spacing: 0.06em; color: var(--color-error);
     border: 4px solid var(--color-error); padding: 5px 15px; border-radius: 10px;
     background: rgba(255,255,255,0.85); box-shadow: none;
     animation: stampSlam 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
@@ -117,7 +117,7 @@ a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
 .modal-content { width: 500px; max-width: 90%; max-height: 90vh; overflow-y: auto; position: relative;}
 .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2.5rem; cursor: pointer; color: var(--text-hint); transition: color 0.2s; line-height: 1;}
 .close-btn:hover { color: var(--color-error); }
-.admin-section { padding: 25px; background: rgba(255,255,255,0.7); border-radius: 20px; border: 2px dashed rgba(155, 137, 248, 0.4);}
+.admin-section { padding: 25px; background: var(--bg-card); border-radius: 20px; border: 2px dashed var(--rewards-soft);}
 
 /* ══════════════════════════════════════════
    Apple Design System — Component Classes
@@ -125,7 +125,7 @@ a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
 
 /* Card */
 .card {
-    background: var(--surface);
+    background: var(--bg-surface);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-default);
     padding: var(--space-lg) var(--space-xl);
@@ -178,7 +178,7 @@ a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
     font-family: inherit;
     outline: none;
     transition: border-color var(--transition-base);
-    background: var(--surface);
+    background: var(--bg-surface);
     color: var(--text-primary);
 }
 .input:focus { border-color: var(--color-primary); }
@@ -191,7 +191,7 @@ a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
     border-radius: var(--radius-full);
     font-size: var(--font-sm);
     border: 1px solid var(--border-default);
-    background: var(--surface);
+    background: var(--bg-surface);
     color: var(--text-primary);
     cursor: pointer;
     transition: all var(--transition-fast);

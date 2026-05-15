@@ -244,7 +244,7 @@ function renderMeaningMatch(el) {
                         wmState.batchIdx++;
                         wmState.selectedWordIdx = null;
                         wmState.shuffleOrder    = null;
-                        setStatus("Great! Keep going \u2014 next group! \ud83d\udcaa");
+                        setStatus("Great! Keep going \u2014 next group!");
                         renderMeaningMatch(el);
                     } else if (wmState.round < 2) {
                         wmState.round++;
@@ -252,7 +252,7 @@ function renderMeaningMatch(el) {
                         wmState.matched         = new Set();
                         wmState.selectedWordIdx = null;
                         wmState.shuffleOrder    = null;
-                        setStatus("Round " + (wmState.round + 1) + " \u2014 go! \ud83d\udd04");
+                        setStatus("Round " + (wmState.round + 1) + " \u2014 go!");
                         renderMeaningMatch(el);
                     } else {
                         items.forEach(it => { if (!wrongMap[it.id]) _trackWordAttempt(it, true, it.answer); });

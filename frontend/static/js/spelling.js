@@ -177,7 +177,7 @@ function renderSpellItem(el, item, isRetry) {
                 inp.style.borderColor = "var(--color-success)";
                 inp.style.boxShadow   = "0 0 0 4px var(--color-success-light)";
                 feedback.style.color  = "var(--color-success-ink)";
-                feedback.textContent  = "Pass " + pass + " \u2713";
+                feedback.textContent  = "Pass " + pass + " complete";
                 spState.pass++;
                 setStatus("Pass " + pass + " done! Now pass " + spState.pass + "\u2026");
                 await new Promise(r => setTimeout(r, 600));
