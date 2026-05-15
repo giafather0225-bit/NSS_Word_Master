@@ -547,18 +547,52 @@ def evolve_validate(body: EvolveBranchBody, db: Session = Depends(get_db)):
     target_a = "mid_a" if not is_mid else "final_a"
     target_b = "mid_b" if not is_mid else "final_b"
 
+    # Build rich branch descriptions with real boost values.
+    subject_label = (char.subject or "study").capitalize() if char else "Study"
+    xp_base  = round(char.xp_boost_pct, 1)    if char else 1.5
+    xp_a_add = round(char.xp_boost_a_pct, 1)  if char else 3.0
+    lumi_b   = round(char.xp_boost_b_pct, 1)  if char else 3.0
+    lumi_prod = int(char.lumi_production)      if char else 5
+
+    # Character images JSON for the UI to show target-form previews.
+    images = char.images if char else "{}"
+
+    if is_mid:
+        # 2nd evolution: final abilities are activated now.
+        branch_a_ability  = "XP Champion"
+        branch_a_desc     = f"+{xp_base + xp_a_add}% {subject_label} XP boost — active immediately after evolution."
+        branch_a_boost    = f"+{xp_base + xp_a_add}% {subject_label} XP"
+        branch_b_ability  = "Lumi Producer"
+        branch_b_desc     = f"Produces {lumi_prod + lumi_b:.0f} Lumi/day — stacks with other completed characters."
+        branch_b_boost    = f"{lumi_prod + lumi_b:.0f} Lumi / day"
+    else:
+        # 1st evolution: hint at what the final form will give.
+        branch_a_ability  = "XP Path"
+        branch_a_desc     = f"Grows into the XP branch. Final form gives +{xp_base + xp_a_add}% {subject_label} XP."
+        branch_a_boost    = f"+{xp_base + xp_a_add}% XP (final form)"
+        branch_b_ability  = "Lumi Path"
+        branch_b_desc     = f"Grows into the Lumi branch. Final form produces {lumi_prod + lumi_b:.0f} Lumi/day."
+        branch_b_boost    = f"{lumi_prod + lumi_b:.0f} Lumi/day (final form)"
+
     return {
         "valid": True,
         "stage": stage,
+        "images": images,
         "branch_a": {
             "stone": stone_a,
             "target_stage": target_a,
-            "description": f"Evolve into {target_a} form.",
+            "ability": branch_a_ability,
+            "description": branch_a_desc,
+            "boost_preview": branch_a_boost,
+            "boost_icon": "zap",
         },
         "branch_b": {
             "stone": stone_b,
             "target_stage": target_b,
-            "description": f"Evolve into {target_b} form.",
+            "ability": branch_b_ability,
+            "description": branch_b_desc,
+            "boost_preview": branch_b_boost,
+            "boost_icon": "gem",
         },
     }
 
@@ -833,14 +867,16 @@ def shop_buy(body: BuyBody, db: Session = Depends(get_db)):
         if existing_placed:
             raise HTTPException(400, f"You already placed '{item.name}' in your island.")
 
+    test_mode = _cfg(db, "test_mode") == "true"
     total_cost = item.price * body.quantity
-    try:
-        if item.is_legend_currency:
-            le.spend_legend_lumi(db, total_cost, source="shop")
-        else:
-            le.spend_lumi(db, total_cost, source="shop")
-    except le.InsufficientLumiError as e:
-        raise HTTPException(400, str(e))
+    if not test_mode:
+        try:
+            if item.is_legend_currency:
+                le.spend_legend_lumi(db, total_cost, source="shop")
+            else:
+                le.spend_lumi(db, total_cost, source="shop")
+        except le.InsufficientLumiError as e:
+            raise HTTPException(400, str(e))
 
     # Upsert inventory row.
     inv = db.query(IslandInventory).filter_by(
@@ -1468,3 +1504,60 @@ def dev_unlock_zones(db: Session = Depends(get_db)):
         z.is_unlocked = True
     db.commit()
     return {"ok": True, "zones_unlocked": len(zones)}
+
+
+# @tag ISLAND
+@router.post("/dev/level-up-char/{progress_id}")
+def dev_level_up_char(progress_id: int, db: Session = Depends(get_db)):
+    """Increment a single character's level by 1 (capped at stage max). Test mode only."""
+    _require_dev_mode(db)
+    prog = db.get(IslandCharacterProgress, progress_id)
+    if not prog:
+        raise HTTPException(404, "Character progress not found.")
+    if prog.is_completed:
+        raise HTTPException(400, "Character is already completed.")
+    stage = prog.stage or "baby"
+    max_level = 10 if stage in ("mid_a", "mid_b") else 5
+    if (prog.level or 1) >= max_level:
+        xp_needed = 1900 if stage in ("mid_a", "mid_b") else 750
+        prog.current_xp = xp_needed
+    else:
+        prog.level = (prog.level or 1) + 1
+        prog.hunger = min(100, (prog.hunger or 0) + 10)
+        prog.happiness = min(100, (prog.happiness or 0) + 10)
+    db.commit()
+    char = db.get(IslandCharacter, prog.character_id)
+    return {"ok": True, "progress_id": progress_id, "level": prog.level,
+            "current_xp": prog.current_xp, "stage": prog.stage,
+            "name": char.name if char else "?"}
+
+
+# @tag ISLAND
+@router.post("/dev/evolve-char/{progress_id}")
+def dev_evolve_char(progress_id: int, db: Session = Depends(get_db)):
+    """Force-evolve a character to next stage, ignoring stone requirement. Test mode only."""
+    _require_dev_mode(db)
+    prog = db.get(IslandCharacterProgress, progress_id)
+    if not prog:
+        raise HTTPException(404, "Character progress not found.")
+    if prog.is_completed:
+        raise HTTPException(400, "Character already at final stage.")
+    char = db.get(IslandCharacter, prog.character_id)
+    stage = prog.stage or "baby"
+    if stage == "baby":
+        prog.stage = "mid_a"
+        prog.level = 6
+        prog.current_xp = 0
+    elif stage in ("mid_a", "mid_b"):
+        prog.stage = "final_a" if stage == "mid_a" else "final_b"
+        prog.level = 10
+        prog.is_completed = True
+        prog.completed_at = datetime.now(timezone.utc)
+        prog.lumi_production = (char.lumi_production or 5) if char else 5
+    else:
+        raise HTTPException(400, f"Cannot evolve from stage '{stage}'.")
+    prog.hunger = 100
+    prog.happiness = 100
+    db.commit()
+    return {"ok": True, "progress_id": progress_id, "new_stage": prog.stage,
+            "is_completed": prog.is_completed, "name": char.name if char else "?"}

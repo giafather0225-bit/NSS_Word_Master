@@ -733,10 +733,45 @@ async function refreshHomeStats() {
     } catch (_) {}
 }
 
+// ─── Test Mode (God Mode) global utility ────────────────────────────────────
+// Cached value. Updated by _loadTestMode() on app start and by parent toggle.
+let _testModeActive = (localStorage.getItem('gia_test_mode') === 'true');
+
+/**
+ * Returns true when Test Mode is active.
+ * Other modules (child.js, math-academy-shell.js, etc.) call this function
+ * to bypass progression locks during development/testing.
+ * @tag SETTINGS PARENT
+ */
+function isTestMode() { return _testModeActive; }
+
+/**
+ * Fetch the authoritative value from the server and apply it.
+ * Called once at DOMContentLoaded; can be re-called after the parent toggle.
+ * @tag SETTINGS PARENT
+ */
+async function _loadTestMode() {
+    try {
+        const d = await fetch('/api/parent/test-mode').then(r => r.json());
+        _testModeActive = !!d.test_mode;
+        localStorage.setItem('gia_test_mode', _testModeActive ? 'true' : 'false');
+    } catch (_) {
+        _testModeActive = localStorage.getItem('gia_test_mode') === 'true';
+    }
+    _applyTestModeBadge();
+}
+
+/** Show or hide the TEST badge in the topbar. @tag SETTINGS */
+function _applyTestModeBadge() {
+    const badge = document.getElementById('test-mode-badge');
+    if (badge) badge.style.display = _testModeActive ? 'inline-flex' : 'none';
+}
+
 // Initialize home view on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   switchView('home');
   // renderHomeDashboard() is already called inside switchView('home') — removed duplicate
   // Load Daily Words sidebar if function is available (daily-words.js)
   if (typeof loadDailyWordsSection === 'function') loadDailyWordsSection();
+  _loadTestMode();
 });

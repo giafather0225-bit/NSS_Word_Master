@@ -1155,6 +1155,55 @@
 .iem-branch--selected .iem-branch-check { color: var(--rewards-primary); }
 .iem-branch-check i { width: 18px; height: 18px; }
 
+/* ── Evolution branch redesign (P3) ── */
+.iem-branch-preview {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-surface);
+    flex-shrink: 0;
+}
+.iem-branch-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.iem-branch-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-hint);
+}
+.iem-branch-img-placeholder i { width: 32px; height: 32px; }
+
+.iem-branch-ability {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: var(--font-size-sm);
+    font-weight: 800;
+    color: var(--rewards-ink);
+    font-family: var(--font-family-display);
+    text-align: center;
+}
+.iem-branch-ability i { width: 14px; height: 14px; flex-shrink: 0; }
+
+.iem-branch-boost {
+    font-size: var(--font-size-md);
+    font-weight: 800;
+    color: var(--text-primary);
+    font-family: var(--font-family-display);
+    text-align: center;
+    letter-spacing: -0.01em;
+}
+
+/* Keep avatar for backward compat (not used in P3 render) */
 .iem-branch-avatar {
     width: 60px;
     height: 60px;
@@ -1334,3 +1383,155 @@
 }
 .izd-back-link:hover { color: var(--text-primary); }
 .izd-back-link i { width: 14px; height: 14px; }
+
+/* ── P4: Evolution 3-step sequence ─────────────────────────────── */
+
+/* Step 1 — flash overlay */
+.iem-flash-overlay {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 3100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+.iem-flash-overlay--in  { opacity: 1; pointer-events: all; }
+.iem-flash-overlay--out { opacity: 0; pointer-events: none; }
+
+/* Step 2 — before / after panel */
+.iem-ba-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(43, 39, 34, 0.82);
+    z-index: 3100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    cursor: pointer;
+}
+.iem-ba-box {
+    background: var(--bg-card);
+    border-radius: var(--radius-2xl);
+    padding: 28px 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: var(--shadow-modal);
+    cursor: default;
+}
+.iem-ba-title {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+    color: var(--text-primary);
+    text-align: center;
+    letter-spacing: -0.01em;
+}
+.iem-ba-cards {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.iem-ba-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 10px;
+    border-radius: var(--radius-xl);
+}
+.iem-ba-card--before {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-subtle);
+}
+.iem-ba-card--after {
+    background: var(--rewards-light);
+    border: 2px solid var(--rewards-primary);
+    box-shadow: 0 0 0 3px rgba(184, 164, 220, 0.2);
+}
+.iem-ba-img-wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-page);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.iem-ba-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.iem-ba-img-wrap--before { filter: grayscale(40%) opacity(0.7); }
+.iem-ba-img-placeholder {
+    color: var(--text-hint);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.iem-ba-img-placeholder i { width: 36px; height: 36px; }
+.iem-ba-stage {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-hint);
+}
+.iem-ba-card--after .iem-ba-stage { color: var(--rewards-ink); }
+.iem-ba-ability {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--rewards-ink);
+    text-align: center;
+    background: var(--rewards-soft);
+    border-radius: var(--radius-full);
+    padding: 2px 8px;
+}
+.iem-ba-arrow {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--rewards-primary);
+}
+.iem-ba-arrow i { width: 22px; height: 22px; }
+.iem-ba-tap-hint {
+    font-size: var(--font-size-xs);
+    color: var(--text-hint);
+    text-align: center;
+}
+.iem-ba-continue-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    background: var(--rewards-primary);
+    color: var(--text-on-primary);
+    border: none;
+    border-radius: var(--radius-full);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity var(--transition-fast);
+}
+.iem-ba-continue-btn:hover { opacity: 0.87; }
+.iem-ba-continue-btn i { width: 14px; height: 14px; }
+
+@keyframes iem-ba-pop {
+    0%   { transform: scale(0.85); opacity: 0; }
+    100% { transform: scale(1);    opacity: 1; }
+}
+.iem-ba-box { animation: iem-ba-pop 0.3s var(--ease-calm) forwards; }

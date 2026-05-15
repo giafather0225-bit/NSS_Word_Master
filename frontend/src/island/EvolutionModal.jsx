@@ -96,17 +96,35 @@ const _EM_STONE_LABELS = {
 
 /** @tag SHOP */
 function _emRenderModal(el, d) {
-    const nameHtml = escapeHtml(_emCharName || 'Character');
-    const rawStoneA = d.branch_a?.stone || '';
-    const rawStoneB = d.branch_b?.stone || '';
-    const rawTargetA = d.branch_a?.target_stage || 'mid_a';
-    const rawTargetB = d.branch_b?.target_stage || 'mid_b';
-    const stoneA   = escapeHtml(_EM_STONE_LABELS[rawStoneA] || rawStoneA || 'Stone A');
-    const stoneB   = escapeHtml(_EM_STONE_LABELS[rawStoneB] || rawStoneB || 'Stone B');
-    const targetA  = escapeHtml(_EM_STAGE_LABELS[rawTargetA] || rawTargetA);
-    const targetB  = escapeHtml(_EM_STAGE_LABELS[rawTargetB] || rawTargetB);
-    const descA    = escapeHtml(`Evolve into ${_EM_STAGE_LABELS[rawTargetA] || rawTargetA} form.`);
-    const descB    = escapeHtml(`Evolve into ${_EM_STAGE_LABELS[rawTargetB] || rawTargetB} form.`);
+    const nameHtml   = escapeHtml(_emCharName || 'Character');
+    const ba         = d.branch_a || {};
+    const bb         = d.branch_b || {};
+    const rawStoneA  = ba.stone || '';
+    const rawStoneB  = bb.stone || '';
+    const rawTargetA = ba.target_stage || 'mid_a';
+    const rawTargetB = bb.target_stage || 'mid_b';
+    const stoneA     = escapeHtml(_EM_STONE_LABELS[rawStoneA] || rawStoneA || 'Stone A');
+    const stoneB     = escapeHtml(_EM_STONE_LABELS[rawStoneB] || rawStoneB || 'Stone B');
+    const abilityA   = escapeHtml(ba.ability || (_EM_STAGE_LABELS[rawTargetA] || rawTargetA));
+    const abilityB   = escapeHtml(bb.ability || (_EM_STAGE_LABELS[rawTargetB] || rawTargetB));
+    const descA      = escapeHtml(ba.description || `Evolve into ${rawTargetA} form.`);
+    const descB      = escapeHtml(bb.description || `Evolve into ${rawTargetB} form.`);
+    const boostA     = escapeHtml(ba.boost_preview || '');
+    const boostB     = escapeHtml(bb.boost_preview || '');
+    const iconA      = ba.boost_icon || 'zap';
+    const iconB      = bb.boost_icon || 'gem';
+
+    // Build target-stage image preview from images JSON.
+    let imgA = '', imgB = '';
+    try {
+        const imgs = JSON.parse(d.images || '{}');
+        if (imgs[rawTargetA]) imgA = `/static/img/island/${imgs[rawTargetA]}`;
+        if (imgs[rawTargetB]) imgB = `/static/img/island/${imgs[rawTargetB]}`;
+    } catch (_) {}
+
+    const _branchImg = (src, alt) => src
+        ? `<img src="${src}" class="iem-branch-img" alt="${alt}" />`
+        : `<div class="iem-branch-img-placeholder"><i data-lucide="sparkles"></i></div>`;
 
     el.innerHTML = `
         <div class="iem-backdrop" onclick="_closeEvoModal()">
@@ -114,7 +132,7 @@ function _emRenderModal(el, d) {
                 <div class="iem-header">
                     <div class="iem-title">
                         <i data-lucide="sparkles"></i>
-                        ${nameHtml} — Choose Evolution
+                        ${nameHtml} — Choose a Path
                     </div>
                     <button class="iem-close" onclick="_closeEvoModal()" aria-label="Close">
                         <i data-lucide="x"></i>
@@ -122,35 +140,48 @@ function _emRenderModal(el, d) {
                 </div>
                 <div class="iem-stone-row">
                     <i data-lucide="gem"></i>
-                    <span>Use evolution stone to evolve. <strong>This choice cannot be undone.</strong></span>
+                    <span>This choice is <strong>permanent</strong> — pick the ability that fits your style.</span>
                 </div>
                 <div class="iem-branches">
                     <div class="iem-branch" id="iem-branch-a" onclick="_emSelectBranch('a')">
                         <div class="iem-branch-check" id="iem-check-a">
                             <i data-lucide="circle"></i>
                         </div>
-                        <div class="iem-branch-avatar iem-branch-avatar--a">A</div>
-                        <div class="iem-branch-label">${targetA}</div>
-                        <div class="iem-branch-stone">${stoneA}</div>
+                        <div class="iem-branch-preview">
+                            ${_branchImg(imgA, abilityA)}
+                        </div>
+                        <div class="iem-branch-ability">
+                            <i data-lucide="${iconA}"></i>
+                            ${abilityA}
+                        </div>
+                        <div class="iem-branch-boost">${boostA}</div>
                         <div class="iem-branch-desc">${descA}</div>
+                        <div class="iem-branch-stone">${stoneA}</div>
                     </div>
-                    <div class="iem-vs">VS</div>
+                    <div class="iem-vs">OR</div>
                     <div class="iem-branch" id="iem-branch-b" onclick="_emSelectBranch('b')">
                         <div class="iem-branch-check" id="iem-check-b">
                             <i data-lucide="circle"></i>
                         </div>
-                        <div class="iem-branch-avatar iem-branch-avatar--b">B</div>
-                        <div class="iem-branch-label">${targetB}</div>
-                        <div class="iem-branch-stone">${stoneB}</div>
+                        <div class="iem-branch-preview">
+                            ${_branchImg(imgB, abilityB)}
+                        </div>
+                        <div class="iem-branch-ability">
+                            <i data-lucide="${iconB}"></i>
+                            ${abilityB}
+                        </div>
+                        <div class="iem-branch-boost">${boostB}</div>
                         <div class="iem-branch-desc">${descB}</div>
+                        <div class="iem-branch-stone">${stoneB}</div>
                     </div>
                 </div>
                 <div class="iem-warning">
                     <i data-lucide="alert-triangle"></i>
-                    Once you choose a path, the other branch will be locked forever.
+                    The other path will be locked forever once you choose.
                 </div>
                 <button class="iem-confirm-btn" id="iem-confirm-btn"
                         onclick="_emConfirm()" disabled>
+                    <i data-lucide="sparkles"></i>
                     Confirm Evolution
                 </button>
             </div>
@@ -189,6 +220,19 @@ async function _emConfirm() {
     const btn = document.getElementById('iem-confirm-btn');
     if (btn) { btn.disabled = true; btn.textContent = 'Evolving…'; }
 
+    // Capture before-state while _emValidData is still populated.
+    const beforeStage = _emEvoStage || 'baby';
+    const chosenBranch = _emSelection === 'a' ? (_emValidData?.branch_a || {}) : (_emValidData?.branch_b || {});
+    const afterStage   = chosenBranch.target_stage || '';
+    const chosenAbility = chosenBranch.ability || '';
+    const chosenBoost   = chosenBranch.boost_preview || '';
+    let beforeImgSrc = '', afterImgSrc = '';
+    try {
+        const imgs = JSON.parse(_emValidData?.images || '{}');
+        if (imgs[beforeStage]) beforeImgSrc = `/static/img/island/${imgs[beforeStage]}`;
+        if (imgs[afterStage])  afterImgSrc  = `/static/img/island/${imgs[afterStage]}`;
+    } catch (_) {}
+
     // Snapshot legend unlock state before evolution to detect a new unlock.
     const legendWasUnlocked = _islandStatus?.zones
         ? !!_islandStatus.zones.find(z => z.zone === 'legend')?.is_unlocked
@@ -203,18 +247,19 @@ async function _emConfirm() {
                 branch: _emSelection,
             }),
         });
-        // Capture these before _closeEvoModal clears module state.
-        // Capture all needed state before _closeEvoModal wipes _em* vars.
+        // Capture zone/name/progId before _closeEvoModal wipes _em* vars.
         const zone     = _cdZone || _zdZone || 'forest';
         const charName = _emCharName || 'Character';
         const progId   = _emProgId;
         _closeEvoModal();
 
-        if (result.is_completed) {
-            _showCharCompletion(result, zone, charName);
-        } else {
-            _showMidEvoReveal(result, zone, charName, progId);
-        }
+        // P4: 3-step evolution sequence instead of jumping straight to celebration.
+        _runEvoSequence({
+            beforeImgSrc, afterImgSrc,
+            beforeStage, afterStage,
+            chosenAbility, chosenBoost,
+            result, zone, charName, progId,
+        });
 
         // Check if legend zone just unlocked via this evolution.
         if (!legendWasUnlocked) {
@@ -236,6 +281,148 @@ function _emRefreshBack() {
     } else if (_zdZone) {
         openZoneDetail(_zdZone);
     }
+}
+
+// ─── P4: 3-step Evolution Sequence ────────────────────────────
+
+/**
+ * Orchestrate 3-step evolution: flash → before/after → celebration.
+ * @tag SHOP
+ */
+function _runEvoSequence({ beforeImgSrc, afterImgSrc, beforeStage, afterStage,
+                            chosenAbility, chosenBoost, result, zone, charName, progId }) {
+    // Step 1: white flash (auto-advance after 700ms)
+    const flash = document.createElement('div');
+    flash.id = 'iem-flash-overlay';
+    flash.className = 'iem-flash-overlay';
+    document.body.appendChild(flash);
+
+    // Trigger paint then add --in to animate opacity.
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            flash.classList.add('iem-flash-overlay--in');
+        });
+    });
+
+    setTimeout(() => {
+        // Fade flash out.
+        flash.classList.remove('iem-flash-overlay--in');
+        flash.classList.add('iem-flash-overlay--out');
+
+        // Step 2: show before/after panel while flash is fading.
+        _showEvoBeforeAfter({
+            beforeImgSrc, afterImgSrc, beforeStage, afterStage,
+            chosenAbility, chosenBoost, result, zone, charName, progId,
+        });
+
+        setTimeout(() => flash.remove(), 400);
+    }, 700);
+}
+
+/** Build an img or placeholder div for before/after panel. @tag SHOP */
+function _baImg(src, className = '') {
+    const wrap = document.createElement('div');
+    wrap.className = `iem-ba-img-wrap ${className}`;
+    if (src) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        wrap.appendChild(img);
+    } else {
+        const ph = document.createElement('div');
+        ph.className = 'iem-ba-img-placeholder';
+        ph.innerHTML = '<i data-lucide="sparkles"></i>';
+        wrap.appendChild(ph);
+    }
+    return wrap;
+}
+
+/** Step 2: full-screen before/after comparison panel. @tag SHOP */
+function _showEvoBeforeAfter({ beforeImgSrc, afterImgSrc, beforeStage, afterStage,
+                                chosenAbility, chosenBoost, result, zone, charName, progId }) {
+    const stageLabel = s => ({ baby:'Baby', mid_a:'Mid A', mid_b:'Mid B',
+                                final_a:'Final A', final_b:'Final B' }[s] || s);
+
+    const overlay = document.createElement('div');
+    overlay.id = 'iem-ba-overlay';
+    overlay.className = 'iem-ba-overlay';
+
+    const box = document.createElement('div');
+    box.className = 'iem-ba-box';
+
+    // Title
+    const title = document.createElement('div');
+    title.className = 'iem-ba-title';
+    title.textContent = 'Look at the change!';
+    box.appendChild(title);
+
+    // Cards row
+    const cards = document.createElement('div');
+    cards.className = 'iem-ba-cards';
+
+    // Before card
+    const cBefore = document.createElement('div');
+    cBefore.className = 'iem-ba-card iem-ba-card--before';
+    cBefore.appendChild(_baImg(beforeImgSrc, 'iem-ba-img-wrap--before'));
+    const stBefore = document.createElement('div');
+    stBefore.className = 'iem-ba-stage';
+    stBefore.textContent = stageLabel(beforeStage);
+    cBefore.appendChild(stBefore);
+    cards.appendChild(cBefore);
+
+    // Arrow
+    const arrow = document.createElement('div');
+    arrow.className = 'iem-ba-arrow';
+    arrow.innerHTML = '<i data-lucide="arrow-right"></i>';
+    cards.appendChild(arrow);
+
+    // After card
+    const cAfter = document.createElement('div');
+    cAfter.className = 'iem-ba-card iem-ba-card--after';
+    cAfter.appendChild(_baImg(afterImgSrc));
+    const stAfter = document.createElement('div');
+    stAfter.className = 'iem-ba-stage';
+    stAfter.textContent = stageLabel(afterStage);
+    cAfter.appendChild(stAfter);
+    if (chosenAbility) {
+        const ab = document.createElement('div');
+        ab.className = 'iem-ba-ability';
+        ab.textContent = chosenAbility;
+        cAfter.appendChild(ab);
+    }
+    cards.appendChild(cAfter);
+
+    box.appendChild(cards);
+
+    // Boost line (if available)
+    if (chosenBoost) {
+        const bl = document.createElement('div');
+        bl.className = 'iem-ba-tap-hint';
+        bl.style.fontWeight = '700';
+        bl.style.color = 'var(--rewards-ink)';
+        bl.textContent = chosenBoost;
+        box.appendChild(bl);
+    }
+
+    // Continue button
+    const continueBtn = document.createElement('button');
+    continueBtn.className = 'iem-ba-continue-btn';
+    continueBtn.innerHTML = '<i data-lucide="sparkles"></i> See the celebration!';
+    continueBtn.onclick = () => {
+        overlay.remove();
+        // Step 3: existing celebration
+        if (result.is_completed) {
+            _showCharCompletion(result, zone, charName);
+        } else {
+            _showMidEvoReveal(result, zone, charName, progId);
+        }
+    };
+    box.appendChild(continueBtn);
+
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 // ─── Mid-stage Evolution Reveal ───────────────────────────────

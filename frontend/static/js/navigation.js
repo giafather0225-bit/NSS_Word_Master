@@ -465,9 +465,11 @@ function initLessonDropdownUI() {
 
     function positionDropdown() {
         const rect = display.getBoundingClientRect();
-        dropdown.style.top   = (rect.bottom + 4) + 'px';
-        dropdown.style.left  = rect.left + 'px';
-        dropdown.style.width = rect.width + 'px';
+        const availableBelow = window.innerHeight - rect.bottom - 8;
+        dropdown.style.top       = (rect.bottom + 4) + 'px';
+        dropdown.style.left      = rect.left + 'px';
+        dropdown.style.width     = rect.width + 'px';
+        dropdown.style.maxHeight = Math.min(360, availableBelow) + 'px';
     }
 
     function openDropdown() {
@@ -567,9 +569,11 @@ function initTextbookDropdownUI() {
 
     function positionDropdown() {
         const rect = display.getBoundingClientRect();
-        dropdown.style.top   = (rect.bottom + 4) + 'px';
-        dropdown.style.left  = rect.left + 'px';
-        dropdown.style.width = rect.width + 'px';
+        const availableBelow = window.innerHeight - rect.bottom - 8;
+        dropdown.style.top       = (rect.bottom + 4) + 'px';
+        dropdown.style.left      = rect.left + 'px';
+        dropdown.style.width     = rect.width + 'px';
+        dropdown.style.maxHeight = Math.min(360, availableBelow) + 'px';
     }
 
     function openDropdown() {
