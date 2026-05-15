@@ -33,8 +33,13 @@ async function _loadIslandCurrency() {
 
 /** @tag SHOP */
 function _updateIslandCurrencyDisplay() {
-    const el = document.getElementById("shop-xp-display");
-    if (el) el.textContent = `Lumi: ${_islandLumi}  Legend: ${_islandLegendLumi}`;
+    const lumiEl = document.getElementById("shop-lumi-val");
+    const llEl   = document.getElementById("shop-ll-val");
+    if (lumiEl) lumiEl.textContent = _islandLumi.toLocaleString();
+    if (llEl)   llEl.textContent   = _islandLegendLumi.toLocaleString();
+    // Also keep legacy element in sync in case it's visible
+    const legacy = document.getElementById("shop-xp-display");
+    if (legacy && legacy.style.display === "none") return;
 }
 
 // ─── Tab Entry Point ──────────────────────────────────────────

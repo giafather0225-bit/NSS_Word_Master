@@ -24,65 +24,92 @@
   gap: 12px;
   padding: 16px 20px;
   background: var(--bg-card);
-  box-shadow: none;
-  border: 1px solid var(--border-card);
+  border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
 
 .shop-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
-  font-size: 20px;
   cursor: pointer;
   color: var(--text-secondary);
-  padding: 4px 8px;
+  padding: 4px;
   border-radius: var(--radius-sm);
+  transition: color var(--transition-fast);
 }
-
-.shop-close-btn:hover { background: var(--color-primary-light); }
+.shop-close-btn i { width: 20px; height: 20px; }
+.shop-close-btn:hover { color: var(--text-primary); }
 
 .shop-title {
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   font-weight: 700;
+  font-family: var(--font-family-display);
   color: var(--text-primary);
   flex: 1;
 }
 
 .shop-xp-badge {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: 700;
-  color: var(--color-primary);
-  background: var(--color-primary-light);
+  color: var(--rewards-ink);
+  background: var(--rewards-soft);
   padding: 4px 12px;
   border-radius: var(--radius-full);
 }
 
+/* Lumi currency display (island tabs) */
+.shop-lumi-badge {
+  display: flex;
+  gap: 12px;
+}
+.shop-lumi-badge.hidden { display: none; }
+.shop-cur {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.shop-cur i { width: 14px; height: 14px; }
+
 /* ─── Tabs ────────────────────────────────────────────────────── */
 .shop-tabs {
   display: flex;
-  gap: 0;
+  gap: 6px;
+  padding: 10px 16px;
   background: var(--bg-card);
-  border-bottom: 1px solid var(--color-primary-light);
+  border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
+  overflow-x: auto;
 }
 
 .shop-tab {
-  flex: 1;
-  padding: 12px 0;
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  font-size: var(--font-size-sm);
   font-weight: 600;
-  text-align: center;
+  white-space: nowrap;
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
   background: none;
   color: var(--text-secondary);
-  border-bottom: 2px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
+.shop-tab i { width: 14px; height: 14px; }
+.shop-tab:hover { border-color: var(--rewards-primary); color: var(--rewards-primary); }
 
 .shop-tab.active {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  background: var(--rewards-primary);
+  border-color: var(--rewards-primary);
+  color: var(--text-on-primary);
 }
 
 /* ─── Category Filter Bar ────────────────────────────────────── */

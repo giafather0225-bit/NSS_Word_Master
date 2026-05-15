@@ -35,7 +35,6 @@ cat \
   frontend/src/island/CharacterDetail.jsx \
   frontend/src/island/EvolutionModal.jsx \
   frontend/src/island/Onboarding.jsx \
-  frontend/src/island/IslandShop.jsx \
   frontend/src/island/Inventory.jsx \
   frontend/src/island/Collection.jsx \
   frontend/src/island/LumiLog.jsx \

@@ -162,7 +162,7 @@ async function _invSell(inventoryId, itemName, refund) {
 /** @tag SHOP */
 function _invGoShop() {
     _closeInventory();
-    if (typeof openIslandShop === 'function') openIslandShop();
+    if (typeof openRewardShop === 'function') openRewardShop('evolution');
 }
 
 // ─── ESC ─────────────────────────────────────────────────────────

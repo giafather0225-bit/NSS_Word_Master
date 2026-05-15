@@ -21,14 +21,16 @@ let _buyInFlight = false;
 
 // ─── Open / Close ─────────────────────────────────────────────
 
-/** Open the Reward Shop overlay and load items. @tag SHOP */
-function openRewardShop() {
+/** Open the Reward Shop overlay and load items.
+ *  @param {string} [tab="shop"] - Initial tab: "shop"|"my-rewards"|"evolution"|"food"|"decor"|"exchange"
+ *  @tag SHOP */
+function openRewardShop(tab) {
     const el = document.getElementById("shop-overlay");
     if (!el) return;
     el.classList.remove("hidden");
-    _shopTab = "shop";
+    _shopTab = tab || "shop";
     _renderShopFrame();
-    _loadShopTab("shop");
+    _loadShopTab(_shopTab);
 }
 
 /** Close the Reward Shop overlay. @tag SHOP */
@@ -44,21 +46,34 @@ function closeRewardShop() {
 function _renderShopFrame() {
     const el = document.getElementById("shop-overlay");
     if (!el) return;
+    const isIslandTab = ["evolution", "food", "decor", "exchange"].includes(_shopTab);
+    const TAB_META = [
+        { key: "shop",       icon: "shopping-bag",    label: "Rewards"   },
+        { key: "my-rewards", icon: "package",         label: "My Rewards"},
+        { key: "evolution",  icon: "sparkles",        label: "Evolution" },
+        { key: "food",       icon: "apple",           label: "Food"      },
+        { key: "decor",      icon: "image",           label: "Decor"     },
+        { key: "exchange",   icon: "arrow-left-right", label: "Exchange" },
+    ];
+    const tabsHTML = TAB_META.map(t => `
+        <button class="shop-tab${_shopTab === t.key ? ' active' : ''}" id="tab-${t.key}"
+                onclick="_shopSwitchTab('${t.key}')">
+            <i data-lucide="${t.icon}"></i>${t.label}
+        </button>`).join('');
     el.innerHTML = `
         <div class="shop-header">
-            <button class="shop-close-btn" onclick="closeRewardShop()">←</button>
-            <span class="shop-title">Reward Shop</span>
-            <span class="shop-xp-badge" id="shop-xp-display">… XP</span>
+            <button class="shop-close-btn" onclick="closeRewardShop()">
+                <i data-lucide="arrow-left"></i>
+            </button>
+            <span class="shop-title">Shop</span>
+            <span class="shop-xp-badge" id="shop-xp-display" style="display:${isIslandTab ? 'none' : ''}">… XP</span>
+            <span class="shop-lumi-badge hidden" id="shop-lumi-display">
+                <span class="shop-cur"><i data-lucide="gem"></i><span id="shop-lumi-val">0</span></span>
+                <span class="shop-cur"><i data-lucide="sparkles"></i><span id="shop-ll-val">0</span></span>
+            </span>
         </div>
-        <div class="shop-tabs">
-            <button class="shop-tab active" id="tab-shop"       onclick="_shopSwitchTab('shop')">Rewards</button>
-            <button class="shop-tab"        id="tab-my-rewards" onclick="_shopSwitchTab('my-rewards')">My Rewards</button>
-            <button class="shop-tab"        id="tab-evolution"  onclick="_shopSwitchTab('evolution')">Evolution</button>
-            <button class="shop-tab"        id="tab-food"       onclick="_shopSwitchTab('food')">Food</button>
-            <button class="shop-tab"        id="tab-decor"      onclick="_shopSwitchTab('decor')">Decor</button>
-            <button class="shop-tab"        id="tab-exchange"   onclick="_shopSwitchTab('exchange')">Exchange</button>
-        </div>
-        <div class="shop-cat-bar" id="shop-cat-bar">
+        <div class="shop-tabs">${tabsHTML}</div>
+        <div class="shop-cat-bar" id="shop-cat-bar" style="display:${isIslandTab ? 'none' : 'flex'}">
             <button class="shop-cat active" data-cat="all" onclick="_shopFilterCat('all')">All</button>
             <button class="shop-cat" data-cat="badge" onclick="_shopFilterCat('badge')">Badges</button>
             <button class="shop-cat" data-cat="theme" onclick="_shopFilterCat('theme')">Themes</button>
@@ -66,6 +81,7 @@ function _renderShopFrame() {
             <button class="shop-cat" data-cat="real" onclick="_shopFilterCat('real')">Real</button>
         </div>
         <div id="shop-body"><p style="text-align:center;padding:40px;color:var(--text-secondary);">Loading…</p></div>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /** Filter shop items by category. @tag SHOP */
@@ -75,19 +91,19 @@ function _shopFilterCat(cat) {
     _loadShopTab("shop");
 }
 
-/** Switch between Shop and My Rewards tabs. @tag SHOP */
+/** Switch between shop tabs. @tag SHOP */
 function _shopSwitchTab(tab) {
     _shopTab = tab;
     document.querySelectorAll(".shop-tab").forEach(b => b.classList.remove("active"));
     const active = document.getElementById("tab-" + tab);
     if (active) active.classList.add("active");
-    const catBar = document.getElementById("shop-cat-bar");
-    if (catBar) catBar.style.display = tab === "shop" ? "flex" : "none";
-    // Restore XP display when leaving island tabs
-    if (tab === "shop" || tab === "my-rewards") {
-        const xpEl = document.getElementById("shop-xp-display");
-        if (xpEl) xpEl.textContent = "… XP";
-    }
+    const catBar   = document.getElementById("shop-cat-bar");
+    const xpBadge  = document.getElementById("shop-xp-display");
+    const lumiDsp  = document.getElementById("shop-lumi-display");
+    const isIsland = ["evolution", "food", "decor", "exchange"].includes(tab);
+    if (catBar)  catBar.style.display  = tab === "shop" ? "flex" : "none";
+    if (xpBadge) xpBadge.style.display = isIsland ? "none" : "";
+    if (lumiDsp) lumiDsp.classList.toggle("hidden", !isIsland);
     _loadShopTab(tab);
 }
 

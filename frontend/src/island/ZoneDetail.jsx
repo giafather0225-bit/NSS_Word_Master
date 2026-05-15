@@ -283,7 +283,7 @@ function _zdHudPanel(prog, isLegend) {
                         ${canEvo ? '' : 'disabled title="Not ready yet"'}>
                     <i data-lucide="sparkles"></i> Evolve
                 </button>
-                <button class="izd-btn izd-btn--shop" onclick="openIslandShop()">
+                <button class="izd-btn izd-btn--shop" onclick="openRewardShop('evolution')">
                     <i data-lucide="shopping-bag"></i> Shop
                 </button>
                 <button class="izd-btn izd-btn--decor" onclick="_zdOpenDecorate()">
