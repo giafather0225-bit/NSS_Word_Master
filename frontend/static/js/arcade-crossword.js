@@ -17,11 +17,57 @@ const CW_CFG = {
   hintThreshold: 2,       // wrong entries per word before hint appears
 };
 
+const CW_LEVELS = {
+  easy:   { label: 'Easy',   targetWords:  8, spec: '8 words' },
+  normal: { label: 'Normal', targetWords: 10, spec: '10 words' },
+  hard:   { label: 'Hard',   targetWords: 12, spec: '12 words' },
+};
+
 let _cw = null;
 
-/** Start Crossword. @tag ARCADE */
-async function cwStart() {
+/** Level picker for Crossword. @tag ARCADE */
+async function cwShowLevelPicker() {
   cwStop();
+  const body = document.getElementById('arcade-body');
+  if (!body) return;
+
+  body.innerHTML = `
+    <div class="wi-level-picker">
+      <h2 class="wi-level-title">Select Difficulty</h2>
+      <div class="wi-level-sub">Crossword</div>
+      <div class="wi-level-list" id="cw-level-list">Loading…</div>
+      <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
+    </div>`;
+
+  const bests = await Promise.all(
+    Object.keys(CW_LEVELS).map((lv) =>
+      fetch(`/api/arcade/best/crossword?level=${lv}`)
+        .then((r) => (r.ok ? r.json() : { score: 0 }))
+        .catch(() => ({ score: 0 }))
+    )
+  );
+
+  const list = document.getElementById('cw-level-list');
+  if (!list) return;
+  list.innerHTML = Object.entries(CW_LEVELS)
+    .map(([key, cfg], i) => {
+      const pb = bests[i].score || 0;
+      return `
+        <div class="wi-level-card" onclick="cwStart('${key}')">
+          <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
+          <div class="wi-level-name">${cfg.label}</div>
+          <div class="wi-level-spec">${cfg.spec}</div>
+          <div class="wi-level-pb">Best: ${pb}</div>
+        </div>`;
+    })
+    .join('');
+}
+
+/** Start Crossword. @tag ARCADE */
+async function cwStart(level = 'normal') {
+  cwStop();
+  const lv = CW_LEVELS[level] || CW_LEVELS.normal;
+  CW_CFG.targetWords = lv.targetWords;
   const body = document.getElementById('arcade-body');
   if (!body) return;
 
@@ -52,6 +98,7 @@ async function cwStart() {
     wrongAttempts: new Array(puzzle.placed.length).fill(0), // Fix #15: per-word wrong count
     startedAt: performance.now(),
     running: true,
+    level,
   };
 
   _cwRender();
@@ -472,10 +519,21 @@ function _cwCheckWord(r, c) {
       if (_cw.completed === _cw.placed.length) {
         _cw.score += CW_CFG.fullBonus;
         _cwUpdateHUD();
-        setTimeout(_cwFinish, 300);
+        _cwCelebrate();
+        setTimeout(_cwFinish, 1200);
       }
     }
   });
+}
+
+function _cwCelebrate() {
+  const view = document.querySelector('.cw-view');
+  if (!view) return;
+  const overlay = document.createElement('div');
+  overlay.className = 'cw-celebrate';
+  overlay.textContent = 'Puzzle Complete!';
+  view.appendChild(overlay);
+  if (typeof sfxHit === 'function') sfxHit(10);
 }
 
 function _cwUpdateHUD() {
@@ -491,6 +549,6 @@ async function _cwFinish() {
   const state = { ..._cw };  // M-2: snapshot before null
   _cw = null;                 // M-2: null immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
-  const result = await _arcadeReportScore('crossword', state.score, state.correct, state.total, accuracy);
-  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => cwStart() });
+  const result = await _arcadeReportScore('crossword', state.score, state.correct, state.total, accuracy, state.level || 'normal');
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => cwStart(state.level || 'normal') });
 }

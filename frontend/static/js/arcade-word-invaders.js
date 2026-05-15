@@ -34,17 +34,17 @@ function _wiCssVar(name, fallback) {
   } catch (_e) { return fallback; }
 }
 
-/** Centralized color palette — semantic tokens read from theme.css, arcade-only
- * game tokens (boss gold, deep-space bg, ice blue) kept named as exemptions
- * since the Apple-minimal theme has no equivalents. @tag ARCADE @tag THEME */
+/** Centralized color palette — semantic tokens read from theme.css via getComputedStyle.
+ * Genuine canvas-only exemptions (no theme equivalent): bgTop/bgBot (space bg),
+ * boss (game-mechanic gold), bombRed/ice (power-up indicators). @tag ARCADE @tag THEME */
 const WI_COLORS = {
-  success: _wiCssVar('--color-success', '#34C759'),
-  error:   _wiCssVar('--color-error',   '#FF3B30'),
-  white:   '#FFFFFF',
-  // arcade-only game palette
+  success: _wiCssVar('--color-success',    '#8FBF87'),
+  error:   _wiCssVar('--color-error',      '#D97A7A'),
+  white:   _wiCssVar('--text-on-primary',  '#FFFFFF'),
+  ink:     _wiCssVar('--text-primary',     '#2B2722'),
+  // canvas-only exemptions — no theme token equivalent
   bgTop:   '#1A1033',
   bgBot:   '#0A0818',
-  ink:     '#1A1033',
   boss:    '#FFD700',
   bombRed: '#FF6B6B',
   ice:     '#4FC3F7',

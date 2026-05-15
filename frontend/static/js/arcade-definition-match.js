@@ -18,9 +18,55 @@ const DM_CFG = {
 
 let _dm = null;
 
-/** Start a Match-or-Not round. @tag ARCADE */
-async function dmStart() {
+const DM_LEVELS = {
+  easy:   { label: 'Easy',   roundMs: 120000, timeLabel: '120s' },
+  normal: { label: 'Normal', roundMs:  90000, timeLabel:  '90s' },
+  hard:   { label: 'Hard',   roundMs:  60000, timeLabel:  '60s' },
+};
+
+/** Level picker for Definition Match. @tag ARCADE */
+async function dmShowLevelPicker() {
   dmStop();
+  const body = document.getElementById('arcade-body');
+  if (!body) return;
+
+  body.innerHTML = `
+    <div class="wi-level-picker">
+      <h2 class="wi-level-title">Select Difficulty</h2>
+      <div class="wi-level-sub">Definition Match</div>
+      <div class="wi-level-list" id="dm-level-list">Loading…</div>
+      <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
+    </div>`;
+
+  const bests = await Promise.all(
+    Object.keys(DM_LEVELS).map((lv) =>
+      fetch(`/api/arcade/best/definition_match?level=${lv}`)
+        .then((r) => (r.ok ? r.json() : { score: 0 }))
+        .catch(() => ({ score: 0 }))
+    )
+  );
+
+  const list = document.getElementById('dm-level-list');
+  if (!list) return;
+  list.innerHTML = Object.entries(DM_LEVELS)
+    .map(([key, cfg], i) => {
+      const pb = bests[i].score || 0;
+      return `
+        <div class="wi-level-card" onclick="dmStart('${key}')">
+          <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
+          <div class="wi-level-name">${cfg.label}</div>
+          <div class="wi-level-spec">${cfg.timeLabel} round</div>
+          <div class="wi-level-pb">Best: ${pb}</div>
+        </div>`;
+    })
+    .join('');
+}
+
+/** Start a Match-or-Not round. @tag ARCADE */
+async function dmStart(level = 'normal') {
+  dmStop();
+  const lv = DM_LEVELS[level] || DM_LEVELS.normal;
+  DM_CFG.roundMs = lv.roundMs;
   const body = document.getElementById('arcade-body');
   if (!body) return;
 
@@ -28,7 +74,7 @@ async function dmStart() {
     <div class="dm-view">
       <div class="wi-hud">
         <span>Score: <b id="dm-score">0</b></span>
-        <span>Time: <b id="dm-time">90</b>s</span>
+        <span>Time: <b id="dm-time">${Math.round(lv.roundMs / 1000)}</b>s</span>
         <span>Streak: <b id="dm-streak">0</b></span>
       </div>
       <div class="dm-card" id="dm-card">
@@ -69,6 +115,7 @@ async function dmStart() {
     current: null,
     lock: false,
     tickHandle: null,
+    level,
   };
 
   document.getElementById('dm-yes').addEventListener('click', () => _dmAnswer(true));
@@ -103,7 +150,10 @@ function _dmTick() {
   const elapsed = performance.now() - _dm.startedAt;
   const remain = Math.max(0, DM_CFG.roundMs - elapsed);
   const el = document.getElementById('dm-time');
-  if (el) el.textContent = String(Math.ceil(remain / 1000));
+  if (el) {
+    el.textContent = String(Math.ceil(remain / 1000));
+    el.classList.toggle('dm-time--urgent', remain <= 10000);
+  }
   if (remain <= 0) {
     if (_dm.tickHandle) { clearInterval(_dm.tickHandle); _dm.tickHandle = null; }
     _dmGameOver();
@@ -207,6 +257,6 @@ async function _dmGameOver() {
   const state = { ..._dm };  // M-1: snapshot before null
   _dm = null;                 // M-1: null immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
-  const result = await _arcadeReportScore('definition_match', state.score, state.correct, state.total, accuracy);
-  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => dmStart() });
+  const result = await _arcadeReportScore('definition_match', state.score, state.correct, state.total, accuracy, state.level || 'normal');
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => dmStart(state.level || 'normal') });
 }

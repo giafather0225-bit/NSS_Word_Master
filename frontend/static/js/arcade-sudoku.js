@@ -59,7 +59,7 @@ function suStart(level = 'easy') {
     input: puzzle.map((row) => row.slice()),
     lv, startedAt: performance.now(),
     running: true, mistakes: 0, wrongCells: new Set(), completed: false,
-    tickHandle: null,
+    hints: 0, tickHandle: null,
   };
 
   _suRender();
@@ -166,6 +166,7 @@ function _suRender() {
         <div class="wi-hud-item"><span class="wi-hud-label">SIZE</span><b>${_su.lv.label}</b></div>
         <div class="wi-hud-item"><span class="wi-hud-label">TIME</span><b id="su-time">0</b>s</div>
         <div class="wi-hud-item"><span class="wi-hud-label">MISS</span><b id="su-miss">0</b></div>
+        <button type="button" class="wi-btn secondary" id="su-hint-btn" onclick="_suHint()">Hint (3)</button>
         <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Quit</button>
       </div>
       <div class="su-grid" style="grid-template-columns:repeat(${N},var(--su-cell,40px))">
@@ -291,6 +292,49 @@ function _suOnBlur() {
   });
 }
 
+/** Reveal one correct cell (prefer wrong cells; max 3 hints; -200 pts each). @tag ARCADE */
+function _suHint() {
+  if (!_su || !_su.running) return;
+  if (_su.hints >= 3) return;
+  const { N } = _su.lv;
+
+  // Prefer incorrectly filled cells; fall back to empty cells
+  const bad = [], empty = [];
+  for (let r = 0; r < N; r++) {
+    for (let c = 0; c < N; c++) {
+      if (_su.puzzle[r][c] !== 0) continue;
+      if (_su.input[r][c] === 0) empty.push([r, c]);
+      else if (_su.input[r][c] !== _su.solution[r][c]) bad.push([r, c]);
+    }
+  }
+  const pool = bad.length > 0 ? bad : empty;
+  if (pool.length === 0) return;
+
+  const [r, c] = pool[Math.floor(Math.random() * pool.length)];
+  const correct = _su.solution[r][c];
+  _su.input[r][c] = correct;
+  _su.hints += 1;
+
+  const el = document.querySelector(`.su-inp[data-r="${r}"][data-c="${c}"]`);
+  if (el) {
+    el.value = String(correct);
+    el.classList.remove('su-inp--ok', 'su-inp--bad');
+    el.classList.add('su-inp--hint');
+    el.readOnly = true;
+  }
+  _suClearConflicts();
+
+  const btn = document.getElementById('su-hint-btn');
+  const left = 3 - _su.hints;
+  if (btn) {
+    btn.textContent = left > 0 ? `Hint (${left})` : 'No hints left';
+    if (left <= 0) btn.disabled = true;
+  }
+
+  if (typeof sfxHit === 'function') sfxHit(1);
+  _suCheckComplete();
+}
+
 function _suCheckComplete() {
   const { N } = _su.lv;
   // All cells must be filled
@@ -327,7 +371,8 @@ async function _suFinish() {
   const uniqueWrong = Math.min(state.wrongCells.size, state.lv.holes);
   const timePenalty = seconds * state.lv.timeBonus;
   const missPenalty = uniqueWrong * 25;
-  const score = Math.max(50, state.lv.baseScore - timePenalty - missPenalty);
+  const hintPenalty = (state.hints || 0) * 200;
+  const score = Math.max(50, state.lv.baseScore - timePenalty - missPenalty - hintPenalty);
 
   const total = state.lv.holes;
   const correct = total - uniqueWrong;   // always in [0, total]
@@ -336,11 +381,13 @@ async function _suFinish() {
   // B: show "Solved!" first — then report score in background — then transition to game-over
   const body = document.getElementById('arcade-body');
   if (body) {
+    const hintsUsed = state.hints || 0;
     body.innerHTML = `
       <div class="su-finish">
         <h2>Solved!</h2>
         <div class="stat">Time: <b>${seconds}s</b></div>
         <div class="stat">Mistakes: <b>${uniqueWrong}</b></div>
+        ${hintsUsed > 0 ? `<div class="stat su-finish--hint">Hints used: <b>${hintsUsed}</b> (−${hintsUsed * 200} pts)</div>` : ''}
       </div>`;
   }
   const result = await _arcadeReportScore('sudoku', score, correct, total, accuracy, _suLevel);

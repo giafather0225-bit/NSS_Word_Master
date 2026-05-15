@@ -97,8 +97,9 @@ function mkStart(level = 'normal') {
           <button type="button" class="wi-btn" id="mk-clear">Clear</button>
           <button type="button" class="wi-btn" id="mk-submit">Submit</button>
           <button type="button" class="wi-btn secondary" id="mk-skip">Skip (−${MK_CFG.skipPenalty})</button>
-          <button type="button" class="wi-btn secondary" id="mk-hint-btn" style="display:none">Hint</button>
+          <button type="button" class="wi-btn secondary" id="mk-hint-btn" style="display:none" title="Shows one step toward the solution">Hint</button>
         </div>
+        <div class="mk-hint-note" id="mk-hint-note">Stuck? A hint appears after 30 seconds.</div>
         <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Quit</button>
       </div>
     </div>`;
@@ -132,7 +133,10 @@ function _mkTick() {
   if (document.hidden) return;
   const remain = Math.max(0, MK_CFG.roundMs - (performance.now() - _mk.startedAt));
   const el = document.getElementById('mk-time');
-  if (el) el.textContent = String(Math.ceil(remain / 1000));
+  if (el) {
+    el.textContent = String(Math.ceil(remain / 1000));
+    el.classList.toggle('mk-time--urgent', remain <= 10000);
+  }
 
   // Fix #31: show hint button 30s after hand started
   if (_mk.handStartedAt && !_mk.hintShown &&
@@ -140,6 +144,8 @@ function _mkTick() {
     _mk.hintShown = true;
     const hintEl = document.getElementById('mk-hint-btn');
     if (hintEl) hintEl.style.display = '';
+    const noteEl = document.getElementById('mk-hint-note');
+    if (noteEl) noteEl.style.display = 'none';
   }
 
   if (remain <= 0) {

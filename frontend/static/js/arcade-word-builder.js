@@ -18,11 +18,57 @@ const WB_CFG = {
   maxLen: 9,
 };
 
+const WB_LEVELS = {
+  easy:   { label: 'Easy',   roundMs: 90000, timeLabel: '90s' },
+  normal: { label: 'Normal', roundMs: 60000, timeLabel: '60s' },
+  hard:   { label: 'Hard',   roundMs: 45000, timeLabel: '45s' },
+};
+
 let _wb = null;
 
-/** Start Word Builder. @tag ARCADE */
-async function wbStart() {
+/** Level picker for Word Builder. @tag ARCADE */
+async function wbShowLevelPicker() {
   wbStop();
+  const body = document.getElementById('arcade-body');
+  if (!body) return;
+
+  body.innerHTML = `
+    <div class="wi-level-picker">
+      <h2 class="wi-level-title">Select Difficulty</h2>
+      <div class="wi-level-sub">Word Builder</div>
+      <div class="wi-level-list" id="wb-level-list">Loading…</div>
+      <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
+    </div>`;
+
+  const bests = await Promise.all(
+    Object.keys(WB_LEVELS).map((lv) =>
+      fetch(`/api/arcade/best/word_builder?level=${lv}`)
+        .then((r) => (r.ok ? r.json() : { score: 0 }))
+        .catch(() => ({ score: 0 }))
+    )
+  );
+
+  const list = document.getElementById('wb-level-list');
+  if (!list) return;
+  list.innerHTML = Object.entries(WB_LEVELS)
+    .map(([key, cfg], i) => {
+      const pb = bests[i].score || 0;
+      return `
+        <div class="wi-level-card" onclick="wbStart('${key}')">
+          <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
+          <div class="wi-level-name">${cfg.label}</div>
+          <div class="wi-level-spec">${cfg.timeLabel} round</div>
+          <div class="wi-level-pb">Best: ${pb}</div>
+        </div>`;
+    })
+    .join('');
+}
+
+/** Start Word Builder. @tag ARCADE */
+async function wbStart(level = 'normal') {
+  wbStop();
+  const lv = WB_LEVELS[level] || WB_LEVELS.normal;
+  WB_CFG.roundMs = lv.roundMs;
   const body = document.getElementById('arcade-body');
   if (!body) return;
 
@@ -30,7 +76,7 @@ async function wbStart() {
     <div class="wb-view">
       <div class="wi-hud">
         <div class="wi-hud-item"><span class="wi-hud-label">SCORE</span><b id="wb-score">0</b></div>
-        <div class="wi-hud-item"><span class="wi-hud-label">TIME</span><b id="wb-time">60</b>s</div>
+        <div class="wi-hud-item"><span class="wi-hud-label">TIME</span><b id="wb-time">${Math.round(lv.roundMs / 1000)}</b>s</div>
         <div class="wi-hud-item"><span class="wi-hud-label">STREAK</span><b id="wb-streak">0</b>x</div>
         <button type="button" class="wi-hud-quit" onclick="arcadeReturnToLobby()" aria-label="Quit"><i data-lucide="x"></i></button>
       </div>
@@ -68,6 +114,7 @@ async function wbStart() {
     lock: false,
     wordHistory: [],   // Fix #18: track {word, correct, pts}
     tickHandle: null,
+    level,
   };
 
   if (typeof sfxStart === 'function') sfxStart();
@@ -91,7 +138,10 @@ function _wbTick() {
   const elapsed = performance.now() - _wb.startedAt;
   const remain = Math.max(0, WB_CFG.roundMs - elapsed);
   const el = document.getElementById('wb-time');
-  if (el) el.textContent = String(Math.ceil(remain / 1000));
+  if (el) {
+    el.textContent = String(Math.ceil(remain / 1000));
+    el.classList.toggle('wb-time--urgent', remain <= 10000);
+  }
   if (remain <= 0) {
     if (_wb.tickHandle) { clearInterval(_wb.tickHandle); _wb.tickHandle = null; }
     _wbGameOver();
@@ -362,6 +412,6 @@ async function _wbGameOver() {
   const state = { ..._wb };  // H-1: snapshot before null
   _wb = null;                 // H-1: null immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
-  const result = await _arcadeReportScore('word_builder', state.score, state.correct, state.total, accuracy);
-  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => wbStart() });
+  const result = await _arcadeReportScore('word_builder', state.score, state.correct, state.total, accuracy, state.level || 'normal');
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => wbStart(state.level || 'normal') });
 }

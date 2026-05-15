@@ -15,11 +15,57 @@ const SR_CFG = {
   wrongPenalty: 10,
 };
 
+const SR_LEVELS = {
+  easy:   { label: 'Easy',   roundMs: 90000, timeLabel: '90s' },
+  normal: { label: 'Normal', roundMs: 60000, timeLabel: '60s' },
+  hard:   { label: 'Hard',   roundMs: 45000, timeLabel: '45s' },
+};
+
 let _sr = null;
 
-/** Start Spell Rush. @tag ARCADE */
-async function srStart() {
+/** Level picker for Spell Rush. @tag ARCADE */
+async function srShowLevelPicker() {
   srStop();
+  const body = document.getElementById('arcade-body');
+  if (!body) return;
+
+  body.innerHTML = `
+    <div class="wi-level-picker">
+      <h2 class="wi-level-title">Select Difficulty</h2>
+      <div class="wi-level-sub">Spell Rush</div>
+      <div class="wi-level-list" id="sr-level-list">Loading…</div>
+      <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
+    </div>`;
+
+  const bests = await Promise.all(
+    Object.keys(SR_LEVELS).map((lv) =>
+      fetch(`/api/arcade/best/spell_rush?level=${lv}`)
+        .then((r) => (r.ok ? r.json() : { score: 0 }))
+        .catch(() => ({ score: 0 }))
+    )
+  );
+
+  const list = document.getElementById('sr-level-list');
+  if (!list) return;
+  list.innerHTML = Object.entries(SR_LEVELS)
+    .map(([key, cfg], i) => {
+      const pb = bests[i].score || 0;
+      return `
+        <div class="wi-level-card" onclick="srStart('${key}')">
+          <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
+          <div class="wi-level-name">${cfg.label}</div>
+          <div class="wi-level-spec">${cfg.timeLabel} round</div>
+          <div class="wi-level-pb">Best: ${pb}</div>
+        </div>`;
+    })
+    .join('');
+}
+
+/** Start Spell Rush. @tag ARCADE */
+async function srStart(level = 'normal') {
+  srStop();
+  const lv = SR_LEVELS[level] || SR_LEVELS.normal;
+  SR_CFG.roundMs = lv.roundMs;
   const body = document.getElementById('arcade-body');
   if (!body) return;
 
@@ -27,7 +73,7 @@ async function srStart() {
     <div class="sr-view">
       <div class="wi-hud">
         <span>Score: <b id="sr-score">0</b></span>
-        <span>Time: <b id="sr-time">60</b>s</span>
+        <span>Time: <b id="sr-time">${Math.round(lv.roundMs / 1000)}</b>s</span>
         <span>Streak: <b id="sr-streak">0</b></span>
       </div>
       <div class="sr-definition" id="sr-definition">Loading…</div>
@@ -66,6 +112,7 @@ async function srStart() {
     startedAt: performance.now(),
     current: null,
     tickHandle: null,
+    level,
   };
 
   if (typeof sfxStart === 'function') sfxStart();
@@ -229,6 +276,6 @@ async function _srGameOver() {
   const state = { ..._sr };
   _sr = null;
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
-  const result = await _arcadeReportScore('spell_rush', state.score, state.correct, state.total, accuracy);
-  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => srStart() });
+  const result = await _arcadeReportScore('spell_rush', state.score, state.correct, state.total, accuracy, state.level || 'normal');
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => srStart(state.level || 'normal') });
 }

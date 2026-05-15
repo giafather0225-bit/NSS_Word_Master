@@ -13,13 +13,13 @@ function _miCssVar(name, fallback) {
   } catch (_e) { return fallback; }
 }
 
-/** Centralized color palette — semantic tokens from theme.css; canvas-only
- * game tokens (deep-space bg) kept as named exemptions (no theme equivalent). @tag ARCADE @tag THEME */
+/** Centralized color palette — semantic tokens from theme.css via getComputedStyle.
+ * Canvas-only exemptions (no theme equivalent): bgTop/bgBot (space background). @tag ARCADE @tag THEME */
 const MI_COLORS = {
-  success: _miCssVar('--color-success', '#34C759'),
-  error:   _miCssVar('--color-error',   '#FF3B30'),
-  white:   '#FFFFFF',
-  // arcade-only canvas palette (space background — no theme equivalent)
+  success: _miCssVar('--color-success',   '#8FBF87'),
+  error:   _miCssVar('--color-error',     '#D97A7A'),
+  white:   _miCssVar('--text-on-primary', '#FFFFFF'),
+  // canvas-only exemptions — no theme token equivalent
   bgTop:   '#0B1E3F',
   bgBot:   '#060B1A',
 };

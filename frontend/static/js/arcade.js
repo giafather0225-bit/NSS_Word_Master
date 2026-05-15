@@ -31,15 +31,17 @@ const _SVG = {
 /** @tag ARCADE */
 const ARCADE_GAMES = [
   { id: 'word_invaders',    category: 'english', title: 'Word Invaders', icon: _SVG.crosshair,   sub: 'Type the falling word before it hits the ground', enabled: true,  defaultLevel: 'normal' },
-  { id: 'definition_match', category: 'english', title: 'Match or Not',  icon: _SVG.helpCircle,  sub: 'Does the definition match? Tap Yes or No. 90 seconds.', enabled: true },
-  { id: 'spell_rush',       category: 'english', title: 'Spell Rush',    icon: _SVG.keyboard,    sub: 'Spell each word letter-by-letter. Beat the clock.', enabled: true },
-  { id: 'crossword',        category: 'english', title: 'Crossword',     icon: _SVG.layoutGrid,  sub: 'Fill the grid using definitions as clues.', enabled: true },
-  { id: 'word_builder',     category: 'english', title: 'Word Builder',  icon: _SVG.keyboard,    sub: 'Rearrange the scrambled tiles to spell the word. 60 seconds.', enabled: true },
+  { id: 'definition_match', category: 'english', title: 'Match or Not',  icon: _SVG.helpCircle,  sub: 'Does the definition match? Tap Yes or No.', enabled: true, defaultLevel: 'normal' },
+  { id: 'spell_rush',       category: 'english', title: 'Spell Rush',    icon: _SVG.keyboard,    sub: 'Spell each word letter-by-letter. Beat the clock.', enabled: true, defaultLevel: 'normal' },
+  { id: 'crossword',        category: 'english', title: 'Crossword',     icon: _SVG.layoutGrid,  sub: 'Fill the grid using definitions as clues.', enabled: true, defaultLevel: 'normal' },
+  { id: 'word_builder',     category: 'english', title: 'Word Builder',  icon: _SVG.keyboard,    sub: 'Rearrange the scrambled tiles to spell the word.', enabled: true, defaultLevel: 'normal' },
   { id: 'memory_match',     category: 'english', title: 'Memory Match',  icon: _SVG.layers,      sub: 'Flip cards to pair each word with its definition.', enabled: true,  defaultLevel: 'easy' },
   { id: 'math_invaders',    category: 'math',    title: 'Math Invaders', icon: _SVG.zap,         sub: 'Type the answer before the equation lands.', enabled: true },
   { id: 'sudoku',           category: 'math',    title: 'Sudoku',        icon: _SVG.hash,        sub: '4x4, 6x6, or 9x9 — classic number puzzle.', enabled: true,  defaultLevel: 'easy' },
   { id: 'make24',           category: 'math',    title: 'Make 24',       icon: _SVG.target,      sub: 'Combine four numbers to reach 24. 90 seconds.', enabled: true,  defaultLevel: 'normal' },
 ];
+
+let _arcadeInGame = false;
 
 /**
  * Open the arcade overlay and show the game lobby.
@@ -68,6 +70,7 @@ function _updateMuteButton() {
 
 /** Close arcade and stop any running game. @tag ARCADE */
 function closeArcade() {
+  if (_arcadeInGame) { arcadeReturnToLobby(); return; }
   if (typeof wiStop === 'function') wiStop();
   if (typeof dmStop === 'function') dmStop();
   if (typeof srStop === 'function') srStop();
@@ -134,19 +137,21 @@ async function _renderArcadeLobby() {
 
 /** @tag ARCADE */
 function _launchArcadeGame(id) {
+  _arcadeInGame = true;
   if (id === 'word_invaders' && typeof wiShowLevelPicker === 'function') wiShowLevelPicker();
-  else if (id === 'definition_match' && typeof dmStart === 'function') dmStart();
-  else if (id === 'spell_rush' && typeof srStart === 'function') srStart();
-  else if (id === 'crossword' && typeof cwStart === 'function') cwStart();
+  else if (id === 'definition_match' && typeof dmShowLevelPicker === 'function') dmShowLevelPicker();
+  else if (id === 'spell_rush' && typeof srShowLevelPicker === 'function') srShowLevelPicker();
+  else if (id === 'crossword' && typeof cwShowLevelPicker === 'function') cwShowLevelPicker();
   else if (id === 'math_invaders' && typeof miShowLevelPicker === 'function') miShowLevelPicker();
   else if (id === 'sudoku' && typeof suShowLevelPicker === 'function') suShowLevelPicker();
   else if (id === 'make24' && typeof mkShowLevelPicker === 'function') mkShowLevelPicker();
-  else if (id === 'word_builder' && typeof wbStart === 'function') wbStart();
+  else if (id === 'word_builder' && typeof wbShowLevelPicker === 'function') wbShowLevelPicker();
   else if (id === 'memory_match' && typeof mmShowLevelPicker === 'function') mmShowLevelPicker();
 }
 
 /** Return to arcade lobby from a game. @tag ARCADE */
 function arcadeReturnToLobby() {
+  _arcadeInGame = false;
   if (typeof wiStop === 'function') wiStop();
   if (typeof dmStop === 'function') dmStop();
   if (typeof srStop === 'function') srStop();
@@ -162,13 +167,13 @@ function arcadeReturnToLobby() {
 /* ── Shared helpers for all arcade games ─────────────────────── */
 
 const _ARCADE_TIPS = {
-  word_invaders: 'Type the falling word before it hits the ground. Power-ups drop in gold pills — type their keyword to use them.',
+  word_invaders: 'Type the falling word before it lands. Hit multiple words in a row to build a COMBO multiplier — higher combos = more points! Power-ups drop in gold pills; type their keyword to use them.',
   math_invaders: 'Type the answer to the falling equation, then press Enter.',
-  definition_match: 'Tap Yes if the definition matches the word, No if it does not. 90 seconds.',
-  spell_rush: 'Type each word letter-by-letter. Press Enter to submit.',
-  crossword: 'Click a square to highlight the word. Type letters in the boxes. Green = correct!',
+  definition_match: 'Tap Yes if the definition matches the word, No if it does not. Build streaks for bonus points!',
+  spell_rush: 'Type each word letter-by-letter. Press Enter to submit. Correct answers build streaks for bonus points!',
+  crossword: 'Click a square to highlight the word. Type letters in the boxes. Green = correct! Fill all words for a bonus.',
   sudoku: 'Every row, column, and box must have each number once. Green cells are right, red are wrong.',
-  make24: 'Tap numbers and operators to build an expression that equals the target. Use all four numbers.',
+  make24: 'Build an expression using all four numbers that equals the target. A hint appears after 30 seconds if you are stuck.',
   word_builder: 'Click the scrambled letter tiles in the right order to spell the word shown by its definition.',
   memory_match: 'Flip cards to find matching word and definition pairs. Fewer flips = higher score.',
 };
