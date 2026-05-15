@@ -118,6 +118,7 @@ async function srStart(level = 'normal') {
     current: null,
     tickHandle: null,
     level,
+    milestonesHit: new Set(),
   };
 
   if (typeof sfxStart === 'function') sfxStart();
@@ -247,7 +248,9 @@ function _srSubmit() {
     // Update rolling average (exponential moving avg, α=0.3)
     _sr.avgWordMs = _sr.avgWordMs === 0 ? solveMs : _sr.avgWordMs * 0.7 + solveMs * 0.3;
 
+    const prevScore = _sr.score;
     _sr.score += gained;
+    if (typeof _arcadeCheckMilestone === 'function') _arcadeCheckMilestone(_sr.milestonesHit, prevScore, _sr.score, _sr.streak);
     if (typeof sfxHit === 'function') sfxHit(_sr.streak);
     if (_sr.streak > 0 && _sr.streak % 5 === 0) {
       if (typeof sfxCombo === 'function') sfxCombo();

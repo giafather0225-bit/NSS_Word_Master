@@ -172,6 +172,7 @@ async function wiStart(level = 'normal') {
     running: true,
     startedAt: performance.now(),
     shakeUntil: 0,
+    milestonesHit: new Set(),
   };
 
   _wiResizeCanvas();
@@ -261,10 +262,16 @@ function _wiKill(idx) {
   _wi.active.splice(idx, 1);
 
   const base = 10 + Math.min(20, _wi.streak * 2);
-  const gained = isBoss ? base + WI_CFG.bossScoreBonus : base;
+  const killMs = performance.now() - (en.spawnTs || performance.now());
+  const fastKill = killMs < 3000 && !isBoss;
+  const gained = (isBoss ? base + WI_CFG.bossScoreBonus : base) + (fastKill ? Math.round(base * 0.5) : 0);
+  const prevScore = _wi.score;
   _wi.score += gained;
-  _wi.floats.push({ x: en.x, y: en.y, text: '+' + gained, color: isBoss ? WI_COLORS.boss : WI_COLORS.success, life: 0.9, maxLife: 0.9, vy: -80 });
+  const floatColor = fastKill ? '#FFD700' : (isBoss ? WI_COLORS.boss : WI_COLORS.success);
+  const floatText  = fastKill ? `+${gained} FAST!` : `+${gained}`;
+  _wi.floats.push({ x: en.x, y: en.y, text: floatText, color: floatColor, life: 0.9, maxLife: 0.9, vy: -80 });
   _wi.streak += 1;
+  if (typeof _arcadeCheckMilestone === 'function') _arcadeCheckMilestone(_wi.milestonesHit, prevScore, _wi.score, _wi.streak);
   _wi.correct += 1;
   _wi.total += 1;
   _wi.kills += 1;
@@ -391,6 +398,7 @@ function _wiSpawn() {
     x,
     y: -30,
     isBoss,
+    spawnTs: performance.now(),
   });
 }
 

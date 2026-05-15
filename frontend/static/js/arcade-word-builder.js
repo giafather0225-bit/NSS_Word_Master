@@ -115,6 +115,7 @@ async function wbStart(level = 'normal') {
     wordHistory: [],   // Fix #18: track {word, correct, pts}
     tickHandle: null,
     level,
+    milestonesHit: new Set(),
   };
 
   if (typeof sfxStart === 'function') sfxStart();
@@ -340,7 +341,9 @@ function _wbCheck() {
     _wb.correct += 1;
     _wb.streak += 1;
     const pts = _wbCalcScore(_wb.current.tiles.length, _wb.streak);  // Fix #26
+    const prevScore = _wb.score;
     _wb.score += pts;
+    if (typeof _arcadeCheckMilestone === 'function') _arcadeCheckMilestone(_wb.milestonesHit, prevScore, _wb.score, _wb.streak);
     _wb.wordHistory.push({ word: _wb.current.word, correct: true, pts });  // Fix #18
     if (answerRow) {
       answerRow.classList.add('wb-answer--correct');

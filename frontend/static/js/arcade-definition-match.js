@@ -116,6 +116,7 @@ async function dmStart(level = 'normal') {
     lock: false,
     tickHandle: null,
     level,
+    milestonesHit: new Set(),
   };
 
   document.getElementById('dm-yes').addEventListener('click', () => _dmAnswer(true));
@@ -215,8 +216,10 @@ function _dmAnswer(saidYes) {
     _dm.streak += 1;
     const bonus = Math.min(DM_CFG.streakCap, _dm.streak) * DM_CFG.streakBonus;
     const gained = DM_CFG.basePoints + bonus;
+    const prevScore = _dm.score;
     _dm.score += gained;
     if (typeof _arcadeFloatScore === 'function') _arcadeFloatScore(gained);
+    if (typeof _arcadeCheckMilestone === 'function') _arcadeCheckMilestone(_dm.milestonesHit, prevScore, _dm.score, _dm.streak);
     if (typeof sfxHit === 'function') sfxHit(_dm.streak);
     if (_dm.streak > 0 && _dm.streak % 5 === 0) {
       if (typeof sfxCombo === 'function') sfxCombo();

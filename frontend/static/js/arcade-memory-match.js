@@ -126,6 +126,7 @@ async function mmStart(level = 'easy') {
     locked: false,            // prevents clicks while flip-back is pending
     startedAt: performance.now(),
     tickHandle: null,
+    milestonesHit: new Set(),
   };
 
   if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('memory_match');
@@ -233,8 +234,10 @@ function _mmFlip(idx) {
     if (typeof sfxHit === 'function') sfxHit(_mm.correct);
     if (_mm.correct > 0 && _mm.correct % 4 === 0 && typeof sfxCombo === 'function') sfxCombo();
 
+    const prevScore = _mm.score;
     _mmUpdateScore();
     _mmUpdateHUD();
+    if (typeof _arcadeCheckMilestone === 'function') _arcadeCheckMilestone(_mm.milestonesHit, prevScore, _mm.score, 0);
 
     if (_mm.matched.size === _mm.total) {
       setTimeout(() => _mmComplete(), 400);

@@ -425,6 +425,47 @@ function _arcadeApplyStreakStyle(el, n) {
   else if (n >= 5)  el.classList.add('streak--warm');
 }
 
+const _SCORE_MILESTONES  = [100, 250, 500, 1000, 2000];
+const _STREAK_MILESTONES = [10, 20, 30];
+
+/** Show a temporary achievement banner over the game area. @tag ARCADE */
+function _arcadeMilestone(text) {
+  const body = document.getElementById('arcade-body');
+  if (!body) return;
+  const existing = body.querySelector('.arcade-milestone');
+  if (existing) existing.remove();
+  const el = document.createElement('div');
+  el.className = 'arcade-milestone';
+  el.textContent = text;
+  body.appendChild(el);
+  setTimeout(() => el.remove(), 1800);
+}
+
+/**
+ * Fire a milestone banner the first time a score/streak threshold is crossed.
+ * Call after every correct answer.  milestonesHit is a Set stored on the game state.
+ * @tag ARCADE
+ */
+function _arcadeCheckMilestone(milestonesHit, prevScore, newScore, streak) {
+  if (!milestonesHit) return;
+  for (const m of _SCORE_MILESTONES) {
+    const key = `score_${m}`;
+    if (!milestonesHit.has(key) && prevScore < m && newScore >= m) {
+      milestonesHit.add(key);
+      _arcadeMilestone(`${m} pts reached!`);
+      return;
+    }
+  }
+  for (const s of _STREAK_MILESTONES) {
+    const key = `streak_${s}`;
+    if (!milestonesHit.has(key) && streak >= s) {
+      milestonesHit.add(key);
+      _arcadeMilestone(`${s}x streak!`);
+      return;
+    }
+  }
+}
+
 /** Shared canvas rounded-rect path helper. @tag ARCADE */
 function _arcadeRoundRect(ctx, x, y, w, h, r) {
   ctx.beginPath();

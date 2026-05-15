@@ -1327,6 +1327,32 @@
   font-size: var(--font-size-sm);
 }
 
+/* ── Achievement milestone banner (score/streak threshold crossed) ── */
+.arcade-milestone {
+  position: fixed;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--arcade-primary);
+  color: var(--arcade-ink);
+  font-family: var(--font-family-display);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  padding: 12px 28px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-modal);
+  z-index: 2100;
+  pointer-events: none;
+  white-space: nowrap;
+  animation: milestone-pop 1.8s ease forwards;
+}
+@keyframes milestone-pop {
+  0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  18%  { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+  70%  { transform: translate(-50%, -50%) scale(1);    opacity: 1; }
+  100% { transform: translate(-50%, -62%) scale(0.9);  opacity: 0; }
+}
+
 /* ── "Almost!" near-miss label in Spell Rush ────────────────────── */
 .sr-almost {
   display: block;
