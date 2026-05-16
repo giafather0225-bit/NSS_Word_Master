@@ -1169,3 +1169,16 @@
     pointer-events: none;
 }
 .gim-claim-coin i { width: 22px; height: 22px; display: block; }
+
+/* ── Evolution-ready pulse ring ──────────────────────────────── */
+
+@keyframes gim-evo-ring {
+    0%   { box-shadow: 0 6px 18px rgba(40,20,80,.30), 0 0 0 0   rgba(184,164,220,.90), 0 0 0 0   rgba(184,164,220,.45); }
+    50%  { box-shadow: 0 6px 18px rgba(40,20,80,.30), 0 0 0 7px rgba(184,164,220,.55), 0 0 0 14px rgba(184,164,220,.18); }
+    100% { box-shadow: 0 6px 18px rgba(40,20,80,.30), 0 0 0 0   rgba(184,164,220,.90), 0 0 0 0   rgba(184,164,220,.45); }
+}
+
+.gim-bubble-dot--evo {
+    border-color: var(--rewards-primary) !important;
+    animation: gim-evo-ring 1.8s ease-in-out infinite;
+}

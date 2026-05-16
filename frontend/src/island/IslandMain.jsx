@@ -343,13 +343,14 @@ function _bubblesHTML(charsByZone) {
 
         const hungerWarn = hunger < 30 ? ' gim-gauge--warn' : '';
         const happyWarn  = happy  < 30 ? ' gim-gauge--warn' : '';
+        const evoCls     = char.ready_to_evolve ? ' gim-bubble-dot--evo' : '';
 
         return `
             <button class="gim-bubble gim-float"
                     style="left:${b.left};top:${b.top};width:96px;height:auto;animation-delay:${b.delay};display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;padding:0 0 4px;cursor:pointer;pointer-events:auto"
                     onclick="_bubbleClick(this, '${escapeHtml(name)}', '${b.zone}')"
                     aria-label="${name}" title="${name}">
-                <span class="gim-bubble-dot"
+                <span class="gim-bubble-dot${evoCls}"
                       style="width:84px;height:84px;background:rgba(255,255,255,.92);border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:8px;box-shadow:0 6px 18px rgba(40,20,80,.30);overflow:hidden">
                     ${imgHTML}
                 </span>
