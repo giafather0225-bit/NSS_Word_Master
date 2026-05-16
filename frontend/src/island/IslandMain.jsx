@@ -188,7 +188,7 @@ function _renderIslandMap() {
             <div class="gim-map-stage" id="gim-map-stage">
 
                 <!-- Zone polygons (SVG) + HTML label pills -->
-                ${_svgZonesHTML(charsByZone, completedZones, legendLocked)}
+                ${_svgZonesHTML(charsByZone, completedZones, zoneUnlock)}
 
                 <!-- Floating character bubbles -->
                 ${_bubblesHTML(charsByZone)}
@@ -223,12 +223,12 @@ function _renderIslandMap() {
 // ─── SVG zone circles ─────────────────────────────────────────────
 
 /** Render one SVG <circle> per zone + HTML label pills below each circle. @tag SHOP */
-function _svgZonesHTML(charsByZone, completedZones, legendLocked) {
+function _svgZonesHTML(charsByZone, completedZones, zoneUnlock) {
     const W = 1376, H = 768;
 
     const circles = Object.entries(_ZONE_CIRCLES).map(([zone, cfg]) => {
         const meta   = _ZONE_META[zone];
-        const locked = zone === 'legend' && legendLocked;
+        const locked = !zoneUnlock[zone];
         const cls    = locked ? 'gim-circle gim-circle--locked' : `gim-circle gim-circle--${meta.varPfx}`;
         const click  = locked
             ? `onclick="_islandLockedClick('${zone}')" aria-label="Enter ${meta.label} zone (locked)"`
@@ -236,22 +236,25 @@ function _svgZonesHTML(charsByZone, completedZones, legendLocked) {
         return `<circle class="${cls}" cx="${cfg.cx}" cy="${cfg.cy}" r="${cfg.r}" ${click} />`;
     }).join('');
 
-    // Lock overlay centered on circle (only for locked Legend)
+    // Lock overlay centered on each locked circle
     const lockOverlays = Object.entries(_ZONE_CIRCLES).map(([zone, cfg]) => {
-        if (!(zone === 'legend' && legendLocked)) return '';
+        if (zoneUnlock[zone]) return '';
         const lx = `${(cfg.cx / W * 100).toFixed(2)}%`;
         const ly = `${(cfg.cy / H * 100).toFixed(2)}%`;
+        const sub = zone === 'legend'
+            ? `<span>${completedZones} / 4</span>`
+            : '';
         return `
-            <div class="gim-lock-center" style="left:${lx};top:${ly}" onclick="_islandLockedClick('legend')">
+            <div class="gim-lock-center" style="left:${lx};top:${ly}" onclick="_islandLockedClick('${zone}')">
                 <i data-lucide="lock" style="width:24px;height:24px;color:rgba(255,255,255,.9)"></i>
-                <span>${completedZones} / 4</span>
+                ${sub}
             </div>`;
     }).join('');
 
     // Label pills — always below the circle
     const labels = Object.entries(_ZONE_CIRCLES).map(([zone, cfg]) => {
         const meta   = _ZONE_META[zone];
-        const locked = zone === 'legend' && legendLocked;
+        const locked = !zoneUnlock[zone];
         const chars  = charsByZone[zone] || [];
         const hasWarn  = chars.some(c => (c.hunger  ?? 100) < 30 || (c.happiness ?? 100) < 30);
         const hasReady = chars.some(c => c.ready_to_evolve);
@@ -348,7 +351,7 @@ function _bubblesHTML(charsByZone) {
         return `
             <button class="gim-bubble gim-float"
                     style="left:${b.left};top:${b.top};width:96px;height:auto;animation-delay:${b.delay};display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;padding:0 0 4px;cursor:pointer;pointer-events:auto"
-                    onclick="_bubbleClick(this, '${escapeHtml(name)}', '${b.zone}')"
+                    onclick="_bubbleClick(this, '${escapeHtml(name)}', '${b.zone}', ${char.id || 0}, '${char.stage || 'baby'}', ${!!char.ready_to_evolve})"
                     aria-label="${name}" title="${name}">
                 <span class="gim-bubble-dot${evoCls}"
                       style="width:84px;height:84px;background:rgba(255,255,255,.92);border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:8px;box-shadow:0 6px 18px rgba(40,20,80,.30);overflow:hidden">
@@ -495,18 +498,80 @@ function _islandZoneClick(zone) {
 
 /** @tag SHOP */
 function _islandLockedClick(zone) {
-    if (typeof _showShopToast === 'function') {
-        _showShopToast('Evolve 1 character in each zone to unlock Legend');
-    }
+    if (typeof _showShopToast !== 'function') return;
+    const msg = zone === 'legend'
+        ? 'Evolve 1 character in each zone to unlock Legend'
+        : `Complete a character in the previous zone to unlock ${_ZONE_META[zone]?.label || 'this zone'}`;
+    _showShopToast(msg);
 }
 
-/** Pulse animation then open ZoneDetail for that zone. @tag SHOP */
-function _bubbleClick(el, name, zone) {
+/** Bubble click → small care popup with Feed / Evolve / Zone buttons. @tag SHOP */
+function _bubbleClick(el, name, zone, progId, stage, canEvolve) {
+    // Remove any existing popup
+    const existing = document.getElementById('gim-care-popup');
+    if (existing) { existing.remove(); return; }
+
     el.classList.add('gim-bubble--pulse');
+    setTimeout(() => el.classList.remove('gim-bubble--pulse'), 300);
+
+    const evolveBtn = canEvolve
+        ? `<button class="gim-care-btn gim-care-btn--evo" onclick="_careBubbleEvolve(${progId},'${stage}','${escapeHtml(name)}')">
+               <i data-lucide="sparkles"></i> Evolve
+           </button>`
+        : '';
+
+    const popup = document.createElement('div');
+    popup.id = 'gim-care-popup';
+    popup.className = 'gim-care-popup';
+    popup.innerHTML = `
+        <div class="gim-care-popup-name">${escapeHtml(name)}</div>
+        <div class="gim-care-popup-btns">
+            <button class="gim-care-btn gim-care-btn--feed" onclick="_careBubbleFeed(${progId})">
+                <i data-lucide="utensils"></i> Feed
+            </button>
+            ${evolveBtn}
+            <button class="gim-care-btn gim-care-btn--zone" onclick="_careBubbleZone('${zone}')">
+                <i data-lucide="map"></i> Zone
+            </button>
+        </div>`;
+
+    // Position near the bubble
+    const rect = el.getBoundingClientRect();
+    const screen = document.getElementById('gim-screen');
+    const sRect = screen ? screen.getBoundingClientRect() : { left: 0, top: 0 };
+    popup.style.left = `${rect.left - sRect.left + rect.width / 2}px`;
+    popup.style.top  = `${rect.top  - sRect.top  - 8}px`;
+
+    (screen || document.body).appendChild(popup);
+    if (typeof lucide !== 'undefined') lucide.createIcons({ el: popup });
+
+    // Close on outside click
     setTimeout(() => {
-        el.classList.remove('gim-bubble--pulse');
-        if (zone && typeof openZoneDetail === 'function') openZoneDetail(zone);
-    }, 300);
+        document.addEventListener('click', function _closePopup(e) {
+            if (!popup.contains(e.target) && e.target !== el) {
+                popup.remove();
+                document.removeEventListener('click', _closePopup);
+            }
+        });
+    }, 0);
+}
+
+function _careBubbleFeed(progId) {
+    const p = document.getElementById('gim-care-popup');
+    if (p) p.remove();
+    if (progId && typeof openFeedScreen === 'function') openFeedScreen(progId);
+}
+
+function _careBubbleEvolve(progId, stage, name) {
+    const p = document.getElementById('gim-care-popup');
+    if (p) p.remove();
+    if (progId && typeof openEvolutionModal === 'function') openEvolutionModal(progId, stage, name);
+}
+
+function _careBubbleZone(zone) {
+    const p = document.getElementById('gim-care-popup');
+    if (p) p.remove();
+    if (zone && typeof openZoneDetail === 'function') openZoneDetail(zone);
 }
 
 // ─── Night stars ─────────────────────────────────────────────────
@@ -713,7 +778,7 @@ async function _loadIslandCard() {
         }
         if (lumiEl) lumiEl.textContent = lumi.toLocaleString();
 
-        // P2: "Ready to Evolve!" badge — show if any active character can evolve
+        // Evo badge — show if any active character can evolve
         const anyReady = active.some(c => c.ready_to_evolve);
         let evoBadge = document.getElementById('island-home-evo-badge');
         if (anyReady) {
@@ -728,6 +793,23 @@ async function _loadIslandCard() {
             }
         } else if (evoBadge) {
             evoBadge.style.display = 'none';
+        }
+
+        // P3: warn badge — red dot if any active character has hunger or happiness < 30
+        const anyWarn = active.some(c => (c.hunger ?? 100) < 30 || (c.happiness ?? 100) < 30);
+        let warnBadge = document.getElementById('island-home-warn-badge');
+        if (anyWarn) {
+            if (!warnBadge && cardEl) {
+                warnBadge = document.createElement('div');
+                warnBadge.id = 'island-home-warn-badge';
+                warnBadge.className = 'island-home-warn-badge';
+                warnBadge.title = 'A character needs care!';
+                cardEl.insertBefore(warnBadge, cardEl.firstChild);
+            } else if (warnBadge) {
+                warnBadge.style.display = '';
+            }
+        } else if (warnBadge) {
+            warnBadge.style.display = 'none';
         }
     } catch (_) {
         if (charEl) charEl.textContent = 'Your island awaits';
