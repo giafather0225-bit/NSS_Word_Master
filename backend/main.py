@@ -64,6 +64,9 @@ from backend.routers import schedules as schedules_router
 from backend.routers import dashboard as dashboard_router
 from backend.routers import tutor_sentence as tutor_sentence_router
 from backend.routers import ckla as ckla_router
+from backend.routers import ckla_progress as ckla_progress_router
+from backend.routers import ckla_domain_test as ckla_domain_test_router
+from backend.routers import ckla_grade_test as ckla_grade_test_router
 from backend.routers import island as island_router
 from backend.routers import island_character as island_character_router
 from backend.routers import island_shop as island_shop_router
@@ -379,6 +382,9 @@ app.include_router(schedules_router.router)
 app.include_router(dashboard_router.router)
 app.include_router(tutor_sentence_router.router)
 app.include_router(ckla_router.router)
+app.include_router(ckla_progress_router.router)
+app.include_router(ckla_domain_test_router.router)
+app.include_router(ckla_grade_test_router.router)
 app.include_router(parent_ckla_router.router)
 app.include_router(island_router.router)
 app.include_router(island_character_router.router)
