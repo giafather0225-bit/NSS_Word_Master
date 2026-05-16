@@ -534,11 +534,23 @@ def update_lesson_progress(
                         detail="Write a full sentence using the word, not just the word itself.",
                     )
                 # Reject if answer ≥80% similar to hint (definition or example) — spec §Word Work
-                focus_word_rec = (
-                    db.query(USAcademyWord)
-                    .filter(USAcademyWord.word == lesson.word_work_word)
-                    .first()
-                )
+                # Look up via CKLAWordLesson → USAcademyWord by ID (reliable; text match can miss
+                # CKLA words whose stored word text differs in casing from word_work_word)
+                _wlinks = db.query(CKLAWordLesson).filter_by(lesson_id=lesson.id).all()
+                _linked_ids = [wl.word_id for wl in _wlinks]
+                focus_word_rec = None
+                if _linked_ids:
+                    for _uw in db.query(USAcademyWord).filter(USAcademyWord.id.in_(_linked_ids)).all():
+                        if (_uw.word or "").strip().lower() == word_lower:
+                            focus_word_rec = _uw
+                            break
+                # Fallback: text search in case the word isn't linked to this lesson
+                if focus_word_rec is None:
+                    focus_word_rec = (
+                        db.query(USAcademyWord)
+                        .filter(USAcademyWord.word == lesson.word_work_word)
+                        .first()
+                    )
                 if focus_word_rec:
                     hint_parts = [
                         p.strip() for p in [
