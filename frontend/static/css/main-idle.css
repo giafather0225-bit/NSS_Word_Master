@@ -52,11 +52,16 @@ body[data-view="math"] #stage-card .stage-header { display: none; }
 #math-idle-wrapper {
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 12px;
     padding: 12px 18px;
     min-height: 0;
 }
+
+/* Remove extra bottom margin from isw-card when inside math idle — gap handles spacing */
+#island-widget-math .isw-card { margin-bottom: 0; }
 
 .math-idle-card {
     background: var(--bg-card);
