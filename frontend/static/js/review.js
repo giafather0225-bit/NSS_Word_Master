@@ -1,5 +1,5 @@
 /**
- * Today's Review — SM-2 using Preview modal
+ * Today's Review — SM-2 flashcard (word → reveal → rate)
  * NSS Word Master Phase 2
  */
 (function () {
@@ -9,13 +9,20 @@
   let currentIdx = 0;
   let sessionCorrect = 0;
   let sessionTotal = 0;
-  let ratingOverlay = null;
+  let cardOverlay = null;
   let doneOverlay = null;
   let badgeTimer = null;
   let badgeInFlight = false;
   let openReviewInFlight = false;
   let submitInFlight = false;
-  let _lastIslandData = null;   // island gain from the last /api/review/result response
+  let _lastIslandData = null;
+
+  const POS_MAP = {
+    n:"noun", v:"verb", adj:"adjective", adv:"adverb", prep:"preposition",
+    noun:"noun", verb:"verb", adjective:"adjective", adverb:"adverb",
+    preposition:"preposition", conj:"conjunction", conjunction:"conjunction",
+    pron:"pronoun", pronoun:"pronoun", interj:"interjection"
+  };
 
   function escapeHtml(s) {
     return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -28,53 +35,82 @@
     }
   }
 
-  /* ── Build rating overlay (fullscreen) ── */
-  function buildRatingOverlay() {
-    if (document.getElementById("review-rating-overlay")) return;
-    ratingOverlay = document.createElement("div");
-    ratingOverlay.id = "review-rating-overlay";
-    ratingOverlay.className = "review-rating-overlay";
+  function getPOS(extraData) {
+    try {
+      var extra = typeof extraData === "string" ? JSON.parse(extraData || "{}") : (extraData || {});
+      var raw = (extra.pos || "").replace(/[.\s]/g, "").toLowerCase();
+      return POS_MAP[raw] || raw || "";
+    } catch (_) { return ""; }
+  }
 
-    var item = reviewWords[currentIdx] || {};
-    ratingOverlay.innerHTML = [
-      '<div class="review-rating-content">',
-      '  <div class="review-rating-word" id="review-rating-word"></div>',
-      '  <h3 class="review-rating-title">How well did you know this word?</h3>',
-      '  <p class="review-rating-desc">Rate your confidence to move to the next word.<br>Press <strong>&times;</strong> to end the session.</p>',
-      '  <button class="review-rating-close" id="review-rating-close">&times;</button>',
-      '  <div class="review-rating-row">',
-      '    <button class="review-rate-btn wrong" data-quality="1">',
-      '      <span class="rate-label">Again</span>',
-      '      <span class="rate-days">&lt;1 min</span>',
-      '    </button>',
-      '    <button class="review-rate-btn hard" data-quality="3">',
-      '      <span class="rate-label">Hard</span>',
-      '      <span class="rate-days">tomorrow</span>',
-      '    </button>',
-      '    <button class="review-rate-btn good" data-quality="4">',
-      '      <span class="rate-label">Good</span>',
-      '      <span class="rate-days">3 days</span>',
-      '    </button>',
-      '    <button class="review-rate-btn easy" data-quality="5">',
-      '      <span class="rate-label">Easy</span>',
-      '      <span class="rate-days">7 days</span>',
+  /* ── Build flashcard overlay (word front → reveal back) ── */
+  function buildCardOverlay() {
+    if (document.getElementById("rv-card-overlay")) {
+      cardOverlay = document.getElementById("rv-card-overlay");
+      return;
+    }
+    cardOverlay = document.createElement("div");
+    cardOverlay.id = "rv-card-overlay";
+    cardOverlay.className = "rv-card-overlay";
+    cardOverlay.innerHTML = [
+      '<div class="rv-card-shell">',
+      '  <div class="rv-card-header">',
+      '    <span class="rv-progress" id="rv-progress"></span>',
+      '    <button class="rv-close-btn" id="rv-close-btn" aria-label="End session">',
+      '      <i data-lucide="x"></i>',
       '    </button>',
       '  </div>',
-      '  <p class="review-rating-progress" id="review-rating-progress"></p>',
+      '  <!-- FRONT -->',
+      '  <div class="rv-front" id="rv-front">',
+      '    <div class="rv-word" id="rv-word"></div>',
+      '    <div class="rv-pos-pill" id="rv-pos-pill"></div>',
+      '    <button class="rv-reveal-btn" id="rv-reveal-btn">',
+      '      <i data-lucide="eye"></i> Show Answer',
+      '    </button>',
+      '  </div>',
+      '  <!-- BACK -->',
+      '  <div class="rv-back hidden" id="rv-back">',
+      '    <div class="rv-word-sm" id="rv-word-sm"></div>',
+      '    <div class="rv-pos-pill rv-pos-pill--sm" id="rv-pos-pill-sm"></div>',
+      '    <div class="rv-definition" id="rv-definition"></div>',
+      '    <div class="rv-example" id="rv-example"></div>',
+      '    <div class="rv-divider"></div>',
+      '    <p class="rv-rate-prompt">How well did you know this word?</p>',
+      '    <div class="rv-rate-row">',
+      '      <button class="rv-rate-btn rv-rate-again" data-quality="1">',
+      '        <span class="rv-rate-label">Again</span>',
+      '        <span class="rv-rate-days">&lt;1 min</span>',
+      '      </button>',
+      '      <button class="rv-rate-btn rv-rate-hard" data-quality="3">',
+      '        <span class="rv-rate-label">Hard</span>',
+      '        <span class="rv-rate-days">tomorrow</span>',
+      '      </button>',
+      '      <button class="rv-rate-btn rv-rate-good" data-quality="4">',
+      '        <span class="rv-rate-label">Good</span>',
+      '        <span class="rv-rate-days">3 days</span>',
+      '      </button>',
+      '      <button class="rv-rate-btn rv-rate-easy" data-quality="5">',
+      '        <span class="rv-rate-label">Easy</span>',
+      '        <span class="rv-rate-days">7 days</span>',
+      '      </button>',
+      '    </div>',
+      '  </div>',
       '</div>'
     ].join("\n");
-    document.body.appendChild(ratingOverlay);
+    document.body.appendChild(cardOverlay);
+    if (typeof lucide !== "undefined") lucide.createIcons();
 
-    document.getElementById("review-rating-close").addEventListener("click", function() {
-      ratingOverlay.classList.remove("active");
+    document.getElementById("rv-close-btn").addEventListener("click", function() {
+      cardOverlay.classList.remove("active");
       reopenSidebar();
       updateBadge();
     });
 
-    ratingOverlay.querySelectorAll(".review-rate-btn").forEach(function(btn) {
+    document.getElementById("rv-reveal-btn").addEventListener("click", revealBack);
+
+    cardOverlay.querySelectorAll(".rv-rate-btn").forEach(function(btn) {
       btn.addEventListener("click", function(e) {
         var quality = parseInt(e.currentTarget.dataset.quality);
-        ratingOverlay.classList.remove("active");
         submitRating(quality);
       });
     });
@@ -82,7 +118,10 @@
 
   /* ── Build done overlay ── */
   function buildDoneOverlay() {
-    if (document.getElementById("review-done-overlay")) return;
+    if (document.getElementById("review-done-overlay")) {
+      doneOverlay = document.getElementById("review-done-overlay");
+      return;
+    }
     doneOverlay = document.createElement("div");
     doneOverlay.id = "review-done-overlay";
     doneOverlay.className = "review-done-overlay";
@@ -105,19 +144,6 @@
       }
       updateBadge();
     });
-  }
-
-  /* ── Convert API response to Preview-compatible item ── */
-  function toPreviewItem(r) {
-    var id = r.study_item_id || r.review_id || null;
-    if (id == null) console.warn("[review] toPreviewItem: missing study_item_id and review_id", r);
-    return {
-      id: id,
-      question: r.question || "",
-      answer: r.answer || r.word || "",
-      hint: r.hint || "",
-      extra_data: r.extra_data || "{}"
-    };
   }
 
   /* ── Fetch due words ── */
@@ -174,80 +200,87 @@
     if (badgeTimer) { clearInterval(badgeTimer); badgeTimer = null; }
   }
 
-  /* ── Ensure Preview modal is fully hidden ── */
-  function hidePreviewModal() {
-    var modal = document.getElementById("preview-modal");
-    if (modal) {
-      modal.classList.add("hidden");
-      modal.hidden = true;
-      modal.style.display = "none";
-    }
-  }
-
   /* ── Open review session ── */
   /** @tag REVIEW — guarded against double-click opening two sessions */
   async function openReview() {
     if (openReviewInFlight) return;
     openReviewInFlight = true;
     try {
-    buildRatingOverlay();
-    buildDoneOverlay();
-    reviewWords = await fetchDueWords();
-    currentIdx = 0;
-    sessionCorrect = 0;
-    sessionTotal = 0;
+      buildCardOverlay();
+      buildDoneOverlay();
+      reviewWords = await fetchDueWords();
+      currentIdx = 0;
+      sessionCorrect = 0;
+      sessionTotal = 0;
 
-    /* Close sidebar */
-    var sidebar = document.getElementById("sidebar");
-    if (sidebar && !sidebar.classList.contains("collapsed")) {
-      sidebar.classList.add("collapsed");
-    }
+      var sidebar = document.getElementById("sidebar");
+      if (sidebar && !sidebar.classList.contains("collapsed")) {
+        sidebar.classList.add("collapsed");
+      }
 
-    if (reviewWords.length === 0) {
-      document.getElementById("review-done-summary").textContent =
-        "No words to review today. Great job!";
-      doneOverlay.classList.add("active");
-      return;
-    }
+      if (reviewWords.length === 0) {
+        document.getElementById("review-done-summary").textContent =
+          "No words to review today. Great job!";
+        doneOverlay.classList.add("active");
+        return;
+      }
 
-    showNextCard();
+      showNextCard();
     } finally {
       openReviewInFlight = false;
     }
   }
 
-  /* ── Show next card using Preview modal ── */
+  /* ── Populate and show flashcard front ── */
   function showNextCard() {
     if (currentIdx >= reviewWords.length) {
+      cardOverlay.classList.remove("active");
       showDone();
       return;
     }
 
-    var reviewItem = reviewWords[currentIdx];
-    var previewItem = toPreviewItem(reviewItem);
+    var item = reviewWords[currentIdx];
+    var word = item.answer || item.word || "";
+    var pos  = getPOS(item.extra_data);
 
-    /* Reset Preview modal display */
-    var modal = document.getElementById("preview-modal");
-    if (modal) modal.style.display = "";
+    // Progress
+    document.getElementById("rv-progress").textContent =
+      (currentIdx + 1) + " / " + reviewWords.length;
 
-    if (typeof window.openPreviewModal === "function") {
-      window.openPreviewModal(previewItem, function(status) {
-        /* Preview modal closed — hide it completely, then show rating */
-        hidePreviewModal();
-        showRating(reviewItem);
-      });
+    // Front
+    document.getElementById("rv-word").textContent = word;
+    var posFront = document.getElementById("rv-pos-pill");
+    if (pos) { posFront.textContent = pos; posFront.style.display = ""; }
+    else      { posFront.style.display = "none"; }
+
+    // Back
+    document.getElementById("rv-word-sm").textContent = word;
+    var posBack = document.getElementById("rv-pos-pill-sm");
+    if (pos) { posBack.textContent = pos; posBack.style.display = ""; }
+    else     { posBack.style.display = "none"; }
+    document.getElementById("rv-definition").textContent = item.question || "";
+    var exEl = document.getElementById("rv-example");
+    if (item.hint) {
+      exEl.textContent = "“" + item.hint + "”";
+      exEl.style.display = "";
     } else {
-      console.error("openPreviewModal not found on window");
+      exEl.style.display = "none";
     }
+
+    // Reset to front view
+    document.getElementById("rv-front").classList.remove("hidden");
+    document.getElementById("rv-back").classList.add("hidden");
+    cardOverlay.classList.add("active");
+    if (typeof lucide !== "undefined") lucide.createIcons();
   }
 
-  /* ── Show rating overlay ── */
-  function showRating(reviewItem) {
-    var wordEl = document.getElementById("review-rating-word");
-    if (wordEl) wordEl.textContent = reviewItem.answer || reviewItem.word || "";
-    var progEl = document.getElementById("review-rating-progress");
-    if (progEl) progEl.textContent = (currentIdx + 1) + " / " + reviewWords.length;
-    ratingOverlay.classList.add("active");
+  /* ── Flip to back ── */
+  function revealBack() {
+    document.getElementById("rv-front").classList.add("hidden");
+    var back = document.getElementById("rv-back");
+    back.classList.remove("hidden");
+    back.classList.add("rv-back--reveal");
+    setTimeout(function() { back.classList.remove("rv-back--reveal"); }, 350);
   }
 
   /* ── Submit rating ── */
@@ -274,8 +307,6 @@
       if (res.ok) {
         try {
           const d = await res.json();
-          // Store island gain data; only the last response that triggers gain
-          // (when due_remaining == 0) will have level_up/char_xp_gained.
           if (d?.island) _lastIslandData = d.island;
         } catch (_) {}
       }
@@ -296,8 +327,6 @@
       sessionCorrect + " / " + sessionTotal + " correct (" + pct + "%)";
     doneOverlay.classList.add("active");
 
-    // XP + streak are awarded by ReviewHub via POST /api/review/session-complete.
-    // Notify the hub so it can mark the English session complete.
     if (typeof window._reviewHubOnDone === "function") {
       window._reviewHubOnDone({ correct: sessionCorrect, total: sessionTotal });
     }
@@ -319,7 +348,6 @@
     updateBadge();
     startBadgeTimer();
 
-    // Pause polling when tab hidden; resume + immediate refresh on visible.
     document.addEventListener("visibilitychange", function() {
       if (document.hidden) {
         stopBadgeTimer();
@@ -332,9 +360,9 @@
 
     document.addEventListener("keydown", function(e) {
       if (e.key !== "Escape") return;
-      var rating = document.getElementById("review-rating-overlay");
-      if (rating && rating.classList.contains("active")) {
-        rating.classList.remove("active");
+      var card = document.getElementById("rv-card-overlay");
+      if (card && card.classList.contains("active")) {
+        card.classList.remove("active");
         reopenSidebar();
         updateBadge();
         return;
