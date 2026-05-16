@@ -23,7 +23,7 @@ async function _ppGoals(body) {
         body.innerHTML = `
             ${banner}
             <div class="pp-goals-grid">${cards}</div>
-            <button class="pp-btn secondary" style="margin-top:8px" onclick="_ppGoalsEditMode()">Edit Targets</button>
+            <button class="pp-btn secondary pp-btn--mt8" onclick="_ppGoalsEditMode()">Edit Targets</button>
             <div id="pp-goals-edit-area"></div>`;
         if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
@@ -64,21 +64,20 @@ async function _ppGoalsEditMode() {
 
         const rows = goals.map(g => `
             <div class="pp-goal-edit-row" data-row-key="${g.key}">
-                <label class="pp-toggle-row" style="flex:1;cursor:pointer">
+                <label class="pp-toggle-row pp-goal-toggle-label">
                     <input type="checkbox" data-goal-active="${g.key}" ${g.is_active ? "checked" : ""}>
                     <span>${escapeHtml(g.label)}</span>
                 </label>
-                <input class="pp-xp-input" type="number" min="0" max="10000"
-                       data-goal-key="${g.key}" value="${g.target}"
-                       style="width:100px;text-align:right">
+                <input class="pp-xp-input pp-goal-target-input" type="number" min="0" max="10000"
+                       data-goal-key="${g.key}" value="${g.target}">
             </div>`).join("");
 
         editArea.innerHTML = `
             <div class="pp-goal-edit-box">
-                <div class="pp-section-title" style="margin-top:16px">Edit Weekly Targets</div>
-                <p class="pp-form-hint" style="margin:0 0 8px">Uncheck a row to deactivate the goal — it stays in the DB but stops counting toward the weekly summary.</p>
+                <div class="pp-section-title pp-section-title--mt16">Edit Weekly Targets</div>
+                <p class="pp-form-hint pp-form-hint--mb8">Uncheck a row to deactivate the goal — it stays in the DB but stops counting toward the weekly summary.</p>
                 ${rows}
-                <div style="display:flex;gap:8px;margin-top:12px">
+                <div class="pp-goal-edit-actions">
                     <button class="pp-btn primary" onclick="_ppGoalsSave()">Save</button>
                     <button class="pp-btn secondary" onclick="document.getElementById('pp-goals-edit-area').innerHTML=''">Cancel</button>
                 </div>

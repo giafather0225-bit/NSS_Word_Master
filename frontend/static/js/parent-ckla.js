@@ -31,9 +31,9 @@ async function _ppCKLA(body) {
 
         // ── Hero stats ─────────────────────────────────────────
         const hero = `
-            <div class="pp-stats pp-ckla-stats" style="margin-bottom:20px">
+            <div class="pp-stats pp-ckla-stats pp-stats--mb20">
                 <div class="pp-stat">
-                    <div class="pp-stat-num">${d.completed_lessons}<span style="font-size:.65em;color:var(--text-hint)">/${d.total_lessons}</span></div>
+                    <div class="pp-stat-num">${d.completed_lessons}<span class="pp-stat-frac">/${d.total_lessons}</span></div>
                     <div class="pp-stat-label">Lessons Done</div>
                 </div>
                 <div class="pp-stat">
@@ -103,7 +103,7 @@ async function _ppCKLA(body) {
         const diff = d.difficulty_breakdown || {};
         const diffTotal = (diff.easy || 0) + (diff.neutral || 0) + (diff.hard || 0);
         const diffSection = diffTotal > 0 ? `
-            <div class="pp-section-title pp-section-title--icon" style="margin:24px 0 10px">
+            <div class="pp-section-title pp-section-title--icon pp-section-title--mt24-mb10">
                 <i data-lucide="bar-chart-2" style="width:15px;height:15px"></i> Difficulty Ratings
             </div>
             <div class="pp-ckla-diff-list">
@@ -121,7 +121,7 @@ async function _ppCKLA(body) {
                 <span class="pp-ckla-alert-count">${a.consec_fails} failed attempts</span>
             </div>`).join('');
         const alertSection = failAlerts ? `
-            <div class="pp-section-title pp-section-title--icon" style="margin:24px 0 10px;color:var(--review-ink)">
+            <div class="pp-section-title pp-section-title--icon pp-section-title--mt24-mb10 pp-section-title--alert">
                 <i data-lucide="alert-triangle" style="width:15px;height:15px"></i> Domain Test Alerts
             </div>
             <div class="pp-ckla-alert-list">${failAlerts}</div>` : '';
@@ -137,7 +137,7 @@ async function _ppCKLA(body) {
         // ── Learning start time pattern ────────────────────────
         const timePattern = (d.start_time_pattern || []);
         const timeSection = timePattern.length ? `
-            <div class="pp-section-title pp-section-title--icon" style="margin:24px 0 10px">
+            <div class="pp-section-title pp-section-title--icon pp-section-title--mt24-mb10">
                 <i data-lucide="clock" style="width:15px;height:15px"></i> Study Time Pattern
             </div>
             <div class="pp-ckla-time-list">
@@ -150,7 +150,7 @@ async function _ppCKLA(body) {
 
         // ── Needs review ───────────────────────────────────────
         const reviewSection = d.needs_review?.length ? `
-            <div class="pp-section-title pp-section-title--icon" style="margin:24px 0 10px;color:var(--review-ink)">
+            <div class="pp-section-title pp-section-title--icon pp-section-title--mt24-mb10 pp-section-title--alert">
                 <i data-lucide="alert-triangle" style="width:15px;height:15px"></i> Needs Review (${d.needs_review.length})
             </div>
             <div class="pp-ckla-review-list">
@@ -162,29 +162,30 @@ async function _ppCKLA(body) {
             </div>` : '';
 
         body.innerHTML = `
-            <div style="padding:20px 24px">
-                <div class="pp-section-title pp-section-title--icon" style="margin-bottom:16px">
+            <div class="pp-ckla-outer">
+                <div class="pp-section-title pp-section-title--icon pp-section-title--mb16">
                     <i data-lucide="book-open" style="width:15px;height:15px"></i> CKLA Grade 3
                 </div>
                 ${hero}
                 ${progressBar}
-                <div class="pp-grid-2" style="align-items:start">
+                <div class="pp-grid-2 pp-grid-2--top">
                     <div>
-                        <div class="pp-section-title pp-section-title--icon" style="margin-bottom:10px">
+                        <div class="pp-section-title pp-section-title--icon pp-section-title--mb10">
                             <i data-lucide="layers" style="width:15px;height:15px"></i> Domains
                         </div>
-                        <div>${domainRows || '<div style="color:var(--text-hint);font-size:.85rem">No domain data yet.</div>'}</div>
+                        <div>${domainRows || '<div class="pp-ckla-domain-empty">No domain data yet.</div>'}</div>
                     </div>
                     <div>
-                        <div class="pp-section-title" style="margin:0 0 6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-                            <span style="display:flex;align-items:center;gap:6px">
+                        <div class="pp-ckla-chart-head">
+                            <span class="pp-ckla-chart-icon-wrap">
                                 <i data-lucide="calendar-days" style="width:15px;height:15px"></i> Activity Chart
                             </span>
-                            <span id="pp-ckla-chart-toggle" style="display:flex;gap:4px">
+                            <span id="pp-ckla-chart-toggle" class="pp-ckla-range-toggle">
                                 ${['week','month','full'].map(r => `
                                     <button onclick="_ppCKLASetRange('${r}')"
                                             id="pp-ckla-range-${r}"
-                                            style="font-size:.75rem;padding:3px 10px;border-radius:var(--radius-full);border:1px solid var(--border-default);cursor:pointer;background:${r === 'week' ? 'var(--english-primary)' : 'var(--bg-card)'};color:${r === 'week' ? 'var(--text-on-primary)' : 'var(--text-secondary)'};font-weight:600;transition:background .15s">
+                                            class="pp-ckla-range-btn"
+                                            style="background:${r === 'week' ? 'var(--english-primary)' : 'var(--bg-card)'};color:${r === 'week' ? 'var(--text-on-primary)' : 'var(--text-secondary)'}">
                                         ${r === 'week' ? '7d' : r === 'month' ? '30d' : 'All'}
                                     </button>`).join('')}
                             </span>

@@ -74,7 +74,7 @@ function _ppShowPinModal() {
                     <button class="pin-key" onclick="_ppPinKey('0')">0</button>
                     <button class="pin-key delete" aria-label="Backspace" onclick="_ppPinKey('del')"><i data-lucide="delete" style="width:18px;height:18px"></i></button>
                 </div>
-                <button class="pp-btn secondary" style="margin-top:14px;width:100%" onclick="closeParentPanel()">Cancel</button>
+                <button class="pp-btn secondary pp-pin-cancel" onclick="closeParentPanel()">Cancel</button>
             </div>
         </div>`;
     window._ppDigits = "";
@@ -169,7 +169,7 @@ function _ppRenderShell() {
             <span class="pp-title">Parent Dashboard</span>
         </div>
         <div class="pp-nav">${tabs}</div>
-        <div id="pp-body"><p style="text-align:center;padding:40px;color:var(--text-secondary);">Loading…</p></div>`;
+        <div id="pp-body"><p class="pp-loading-center">Loading…</p></div>`;
     if (typeof lucide !== "undefined") lucide.createIcons();
 }
 
@@ -179,7 +179,7 @@ async function _ppLoadTab(tab) {
     document.querySelectorAll(".pp-nav-btn").forEach(b => b.classList.toggle("active", b.dataset.tabKey === tab));
     const body = document.getElementById("pp-body");
     if (!body) return;
-    body.innerHTML = `<p style="text-align:center;padding:40px;color:var(--text-secondary);">Loading…</p>`;
+    body.innerHTML = `<p class="pp-loading-center">Loading…</p>`;
     const missing = `<p style="color:var(--color-error);padding:20px">Module not loaded.</p>`;
     switch (tab) {
         case "home":     if (typeof _ppHome        === "function") await _ppHome(body);        else body.innerHTML = missing; break;
@@ -212,7 +212,7 @@ async function _ppEnglish(body) {
         const totalStageDone = Object.values(stages).reduce((a, s) => a + (s.completions || 0), 0);
 
         const summary = `
-            <div class="pp-stats pp-english-stats" style="margin-bottom:20px">
+            <div class="pp-stats pp-english-stats pp-stats--mb20">
                 <div class="pp-stat"><div class="pp-stat-num">${words.length}</div><div class="pp-stat-label">Tracked Words</div></div>
                 <div class="pp-stat"><div class="pp-stat-num">${overallAcc}%</div><div class="pp-stat-label">Overall Accuracy</div></div>
                 <div class="pp-stat"><div class="pp-stat-num">${totalStageDone}</div><div class="pp-stat-label">Stage Completions</div></div>
@@ -220,7 +220,7 @@ async function _ppEnglish(body) {
 
         const wordRows = words.length
             ? words.map(w =>
-                `<tr><td><strong>${escapeHtml(w.word)}</strong></td><td>${escapeHtml(w.lesson)}</td><td style="color:var(--color-error);text-align:right">${w.wrong_count}</td><td style="text-align:right">${Math.round(w.accuracy*100)}%</td></tr>`
+                `<tr><td><strong>${escapeHtml(w.word)}</strong></td><td>${escapeHtml(w.lesson)}</td><td class="pp-td-error-right">${w.wrong_count}</td><td class="pp-td-right">${Math.round(w.accuracy*100)}%</td></tr>`
               ).join("")
             : `<tr><td colspan="4">${_ppEmpty("file-search-2", "No missed words tracked yet.", "Words start showing up after the child fails them in Word Match or Spelling.")}</td></tr>`;
 
@@ -256,20 +256,20 @@ async function _ppEnglish(body) {
             ${summary}
             <div class="pp-grid-2">
                 <div>
-                    <div class="pp-section-title" style="margin-top:0">Most Missed Words</div>
+                    <div class="pp-section-title pp-section-title--no-top">Most Missed Words</div>
                     <div class="pp-table-wrap">
                         <table class="pp-log-table">
                             <thead><tr>
                                 <th>Word</th><th>Lesson</th>
-                                <th style="text-align:right">Wrong</th>
-                                <th style="text-align:right">Accuracy</th>
+                                <th class="pp-th-right">Wrong</th>
+                                <th class="pp-th-right">Accuracy</th>
                             </tr></thead>
                             <tbody>${wordRows}</tbody>
                         </table>
                     </div>
                 </div>
                 <div>
-                    <div class="pp-section-title" style="margin-top:0">Stage Performance</div>
+                    <div class="pp-section-title pp-section-title--no-top">Stage Performance</div>
                     <div class="pp-stage-list">${stageList || _ppEmpty("layers", "No stages completed yet.", "Each finished stage feeds these accuracy + time stats.")}</div>
                 </div>
             </div>`;
@@ -365,7 +365,7 @@ async function _ppAccordionRender(sectionId) {
         if (typeof ppRenderTasks === "function") await ppRenderTasks(el);
     } else if (sectionId === "schedacc") {
         el.innerHTML = `
-            <div class="pp-grid-2" style="gap:20px">
+            <div class="pp-grid-2 pp-grid-2--gap20">
                 <div>
                     <div class="pp-section-title">Academy Schedule</div>
                     <div id="pp-acc-schedule-inner"></div>
@@ -417,8 +417,8 @@ async function _ppTestModeSection(el) {
                 <span class="pp-toggle-track"></span>
             </label>
         </div>
-        <p id="pp-testmode-status" style="font-size:12px;color:var(--text-hint);margin:4px 0 0 0">
-            ${active ? '<span style="color:var(--arcade-ink);font-weight:700">TEST MODE is ON</span> — progression locks are disabled.' : 'Real mode active.'}
+        <p id="pp-testmode-status" class="pp-testmode-status">
+            ${active ? '<span class="pp-testmode-on-badge">TEST MODE is ON</span> — progression locks are disabled.' : 'Real mode active.'}
         </p>`;
 }
 
@@ -437,7 +437,7 @@ async function _ppSaveTestMode(checked) {
             if (typeof _loadTestMode === "function") await _loadTestMode();
             window.toast && window.toast(`Test mode ${checked ? "enabled" : "disabled"}.`, "success");
             if (status) status.innerHTML = checked
-                ? '<span style="color:var(--arcade-ink);font-weight:700">TEST MODE is ON</span> — progression locks are disabled.'
+                ? '<span class="pp-testmode-on-badge">TEST MODE is ON</span> — progression locks are disabled.'
                 : 'Real mode active.';
         } else {
             window.toast && window.toast("Could not save Test Mode setting.", "error");
@@ -492,7 +492,7 @@ async function _ppIslandToggle(el) {
         const completedCount = status.completed_count ?? 0;
         const summaryLine = chars.length
             ? `<div class="pp-island-summary">Lumi: ${lumi} &nbsp;|&nbsp; Completed: ${completedCount}</div>`
-            : `<div class="pp-island-summary" style="color:var(--text-hint)">No active characters yet.</div>`;
+            : `<div class="pp-island-summary pp-island-summary--empty">No active characters yet.</div>`;
 
         el.innerHTML = `
             <div class="pp-toggle-row">
@@ -509,7 +509,7 @@ async function _ppIslandToggle(el) {
             ${summaryLine}
             ${charCards ? `<div class="pp-island-char-list">${charCards}</div>` : ''}`;
     } catch (_) {
-        el.innerHTML = `<p style="color:var(--text-hint);font-size:13px;padding:8px 0">Island config unavailable.</p>`;
+        el.innerHTML = `<p class="pp-island-error">Island config unavailable.</p>`;
     }
 }
 
