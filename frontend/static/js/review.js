@@ -64,9 +64,14 @@
       '  <div class="rv-front" id="rv-front">',
       '    <div class="rv-word" id="rv-word"></div>',
       '    <div class="rv-pos-pill" id="rv-pos-pill"></div>',
-      '    <button class="rv-reveal-btn" id="rv-reveal-btn">',
-      '      <i data-lucide="eye"></i> Show Answer',
-      '    </button>',
+      '    <div class="rv-front-actions">',
+      '      <button class="rv-listen-btn" id="rv-listen-btn" aria-label="Listen">',
+      '        <i data-lucide="volume-2"></i>',
+      '      </button>',
+      '      <button class="rv-reveal-btn" id="rv-reveal-btn">',
+      '        <i data-lucide="eye"></i> Show Answer',
+      '      </button>',
+      '    </div>',
       '  </div>',
       '  <!-- BACK -->',
       '  <div class="rv-back hidden" id="rv-back">',
@@ -104,6 +109,11 @@
       cardOverlay.classList.remove("active");
       reopenSidebar();
       updateBadge();
+    });
+
+    document.getElementById("rv-listen-btn").addEventListener("click", function() {
+      var word = document.getElementById("rv-word").textContent;
+      if (word && typeof apiWordOnly === "function") apiWordOnly(word);
     });
 
     document.getElementById("rv-reveal-btn").addEventListener("click", revealBack);
@@ -147,9 +157,10 @@
   }
 
   /* ── Fetch due words ── */
-  async function fetchDueWords() {
+  async function fetchDueWords(source) {
     try {
-      var res = await fetch("/api/review/today");
+      var url = "/api/review/today" + (source ? "?source=" + encodeURIComponent(source) : "");
+      var res = await fetch(url);
       if (!res.ok) return [];
       var data = await res.json();
       return data.reviews || [];
@@ -202,13 +213,13 @@
 
   /* ── Open review session ── */
   /** @tag REVIEW — guarded against double-click opening two sessions */
-  async function openReview() {
+  async function openReview(source) {
     if (openReviewInFlight) return;
     openReviewInFlight = true;
     try {
       buildCardOverlay();
       buildDoneOverlay();
-      reviewWords = await fetchDueWords();
+      reviewWords = await fetchDueWords(source);
       currentIdx = 0;
       sessionCorrect = 0;
       sessionTotal = 0;
@@ -359,19 +370,42 @@
     window.addEventListener("pagehide", stopBadgeTimer);
 
     document.addEventListener("keydown", function(e) {
-      if (e.key !== "Escape") return;
       var card = document.getElementById("rv-card-overlay");
-      if (card && card.classList.contains("active")) {
-        card.classList.remove("active");
-        reopenSidebar();
-        updateBadge();
+      var isCardActive = card && card.classList.contains("active");
+
+      if (e.key === "Escape") {
+        if (isCardActive) {
+          card.classList.remove("active");
+          reopenSidebar();
+          updateBadge();
+          return;
+        }
+        var done = document.getElementById("review-done-overlay");
+        if (done && done.classList.contains("active")) {
+          done.classList.remove("active");
+          reopenSidebar();
+          updateBadge();
+        }
         return;
       }
-      var done = document.getElementById("review-done-overlay");
-      if (done && done.classList.contains("active")) {
-        done.classList.remove("active");
-        reopenSidebar();
-        updateBadge();
+
+      if (!isCardActive) return;
+
+      var frontVisible = !document.getElementById("rv-front").classList.contains("hidden");
+
+      // Space / Enter → reveal when front is showing
+      if ((e.key === " " || e.key === "Enter") && frontVisible) {
+        e.preventDefault();
+        revealBack();
+        return;
+      }
+
+      // 1/2/3/4 → rate when back is showing
+      if (!frontVisible && !submitInFlight) {
+        var qualityMap = { "1": 1, "2": 3, "3": 4, "4": 5 };
+        if (qualityMap[e.key] !== undefined) {
+          submitRating(qualityMap[e.key]);
+        }
       }
     });
   }

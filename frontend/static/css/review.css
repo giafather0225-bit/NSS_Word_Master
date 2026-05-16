@@ -71,6 +71,19 @@
     letter-spacing: -0.02em;
     margin-bottom: 16px; line-height: 1.1;
 }
+.rv-front-actions {
+    display: flex; align-items: center; gap: 10px; margin-top: 8px;
+}
+.rv-listen-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; padding: 0; flex-shrink: 0;
+    border: 1.5px solid var(--review-primary); border-radius: var(--radius-full);
+    background: transparent; color: var(--review-primary);
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.rv-listen-btn:hover { background: var(--review-soft); transform: translateY(-1px); }
+.rv-listen-btn i { width: 18px; height: 18px; }
 .rv-reveal-btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 12px 28px;
@@ -79,7 +92,6 @@
     font-size: var(--font-size-md); font-weight: 700;
     cursor: pointer;
     transition: background var(--transition-fast), transform var(--transition-fast);
-    margin-top: 8px;
 }
 .rv-reveal-btn:hover { background: var(--review-hover); transform: translateY(-1px); }
 .rv-reveal-btn i { width: 18px; height: 18px; }

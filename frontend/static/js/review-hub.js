@@ -267,20 +267,10 @@
   // ── Session starters ──────────────────────────────────────────────
 
   function _startEnglish() {
-    // Raise preview-modal above hub overlay so it's visible during word study
-    var pm = document.getElementById("preview-modal");
-    if (pm) pm.style.zIndex = "1200";
-
-    function _resetPmZ() {
-      if (pm) pm.style.zIndex = "";
-    }
-
     window._reviewHubOnDone = function (data) {
-      _resetPmZ();
       _onEnglishDone(data);
     };
     window._reviewHubOnClose = function () {
-      _resetPmZ();
       if (_overlay) _overlay.classList.remove("hidden");
     };
 
