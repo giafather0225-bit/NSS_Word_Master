@@ -162,7 +162,7 @@ async function _ppCKLA(body) {
             </div>` : '';
 
         body.innerHTML = `
-            <div style="padding:20px 24px;max-width:720px">
+            <div style="padding:20px 24px">
                 <div class="pp-section-title" style="margin-bottom:16px">
                     <i data-lucide="book-open" style="width:15px;height:15px"></i> CKLA Grade 3
                 </div>

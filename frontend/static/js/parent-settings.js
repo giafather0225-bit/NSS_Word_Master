@@ -263,7 +263,7 @@ async function ppRenderCKLASettings(body) {
         const g4Unlocked = vals.ckla_g4_unlocked === "true";
 
         body.innerHTML = `
-            <div style="display:flex;flex-direction:column;gap:12px;max-width:600px">
+            <div style="display:flex;flex-direction:column;gap:12px">
                 <div class="pp-grid-2" style="gap:12px">
                     <div>
                         <label class="pp-form-label">Daily Lesson Goal</label>

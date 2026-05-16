@@ -254,7 +254,7 @@ function _ppHomeIslandMini(island) {
         <div class="pp-island-mini" onclick="_ppLoadTab('island')" role="button" tabindex="0"
              style="cursor:pointer" aria-label="Open Island tab">
             <div class="pp-island-mini-left">
-                <i data-lucide="island" class="pp-island-mini-icon"></i>
+                <i data-lucide="palmtree" class="pp-island-mini-icon"></i>
                 <div>
                     <div class="pp-island-mini-title">Gia's Island</div>
                     <div class="pp-island-mini-sub">${escapeHtml(charSummary)}</div>
