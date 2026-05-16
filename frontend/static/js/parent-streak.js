@@ -37,7 +37,7 @@ async function _ppStreak(body) {
 /** Top 3 stat cards: current / longest / freeze this month. @tag PARENT STREAK */
 function _ppStreakCards(data) {
     return `
-        <div class="pp-stats" style="grid-template-columns:repeat(3,1fr)">
+        <div class="pp-stats pp-streak-stats">
             <div class="pp-stat"><div class="pp-stat-num">${_ICON("flame", 20)} ${data.current || 0}d</div><div class="pp-stat-label">Current Streak</div></div>
             <div class="pp-stat"><div class="pp-stat-num">${_ICON("trophy", 20)} ${data.longest || 0}d</div><div class="pp-stat-label">Longest Ever</div></div>
             <div class="pp-stat"><div class="pp-stat-num">${_ICON("umbrella", 20)} ${data.freeze_this_month || 0}</div><div class="pp-stat-label">Freezes This Month</div></div>
@@ -59,7 +59,7 @@ function _ppStreakRule(rule) {
             <div class="pp-streak-subtitle">Subjects that count</div>
             <div class="pp-streak-checks">${checks}</div>
 
-            <div class="pp-streak-subtitle" style="margin-top:12px">When does a day count?</div>
+            <div class="pp-streak-subtitle pp-streak-subtitle--mt">When does a day count?</div>
             <div class="pp-streak-modes">
                 <label class="pp-streak-radio">
                     <input type="radio" name="pp-streak-mode" value="all" ${mode === "all" ? "checked" : ""}>
@@ -122,11 +122,11 @@ function _ppStreakMilestones(data) {
         <div class="pp-section-title">Milestones</div>
         <div class="pp-streak-milestone">
             <div class="pp-streak-ms-row"><span>7-day bonus (+30 XP)</span><strong>${next7}d left</strong></div>
-            <div class="pp-bar-track" style="height:8px;max-width:none"><div class="pp-bar-fill" style="width:${pct7}%;height:100%"></div></div>
+            <div class="pp-bar-track pp-streak-bar-track"><div class="pp-bar-fill pp-streak-bar-fill" style="width:${pct7}%"></div></div>
         </div>
         <div class="pp-streak-milestone">
             <div class="pp-streak-ms-row"><span>30-day bonus (+200 XP)</span><strong>${next30}d left</strong></div>
-            <div class="pp-bar-track" style="height:8px;max-width:none"><div class="pp-bar-fill" style="width:${pct30}%;height:100%"></div></div>
+            <div class="pp-bar-track pp-streak-bar-track"><div class="pp-bar-fill pp-streak-bar-fill" style="width:${pct30}%"></div></div>
         </div>`;
 }
 
@@ -139,7 +139,7 @@ async function _ppSaveStreakRule() {
     const mode = modeEl ? modeEl.value : "all";
     const msg = document.getElementById("pp-streak-msg");
     if (!subjects.length) {
-        if (msg) { msg.textContent = "Select at least one subject."; msg.style.color = "var(--color-error)"; }
+        if (msg) { msg.textContent = "Select at least one subject."; msg.className = "pp-streak-msg pp-streak-msg--err"; }
         return;
     }
     try {
@@ -150,11 +150,11 @@ async function _ppSaveStreakRule() {
         });
         if (msg) {
             msg.textContent = res.ok ? "Saved." : "Failed to save.";
-            msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
+            msg.className = `pp-streak-msg pp-streak-msg--${res.ok ? "ok" : "err"}`;
         }
     } catch (err) {
         console.error("[parent-streak] save failed:", err);
-        if (msg) { msg.textContent = "Network error."; msg.style.color = "var(--color-error)"; }
+        if (msg) { msg.textContent = "Network error."; msg.className = "pp-streak-msg pp-streak-msg--err"; }
     }
 }
 
@@ -165,7 +165,7 @@ async function _ppRecalcStreak() {
         const res = await window._ppFetch("/api/parent/streak-recalc?days=7", { method: "POST" });
         if (msg) {
             msg.textContent = res.ok ? "Recalculated." : "Failed.";
-            msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
+            msg.className = `pp-streak-msg pp-streak-msg--${res.ok ? "ok" : "err"}`;
         }
         if (res.ok && typeof _ppLoadTab === "function") setTimeout(() => _ppLoadTab("habits"), 400);
     } catch (err) {

@@ -169,14 +169,14 @@ async function _ppIsland(body) {
 
         const logHtml = log.length
             ? `<div class="pp-island-log">${logRows}</div>`
-            : `<p style="color:var(--text-hint);font-size:13px;padding:8px 0">No Lumi transactions yet.</p>`;
+            : `<p class="pp-island-log-empty">No Lumi transactions yet.</p>`;
 
         // ── Assemble ──────────────────────────────────────────────
         body.innerHTML = `
             <div class="pp-island-tab">
                 ${currencyHtml}
                 ${zonesHtml}
-                <div class="pp-grid-2" style="margin-top:24px;gap:24px;align-items:start">
+                <div class="pp-grid-2 pp-island-content-grid">
                     <div>
                         <div class="pp-section-title pp-section-title--icon">
                             <i data-lucide="users" style="width:15px;height:15px"></i> Characters

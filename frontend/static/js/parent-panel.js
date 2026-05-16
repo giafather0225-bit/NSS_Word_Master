@@ -291,7 +291,7 @@ async function _ppHabits(body) {
     if (sd && typeof _ppStreakCards === "function") {
         streakHtml =
             _ppStreakCards(sd) +
-            `<div class="pp-grid-2" style="margin-top:4px;align-items:start">
+            `<div class="pp-grid-2 pp-habits-rule-row">
                 <div>${_ppStreakRule(sd.rule)}</div>
                 <div>${_ppStreakMilestones(sd)}</div>
             </div>` +
@@ -301,7 +301,7 @@ async function _ppHabits(body) {
     }
 
     body.innerHTML = streakHtml + `
-        <div class="pp-section-divider" style="margin:24px 0 16px"></div>
+        <div class="pp-section-divider pp-section-divider--habits"></div>
         <div class="pp-section-title">Day Off Requests</div>
         <div id="pp-habits-dayoff"></div>`;
 

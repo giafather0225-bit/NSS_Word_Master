@@ -142,11 +142,11 @@ function _ppHomeWeekCalendar(thisWeek, sum) {
     }).join("");
 
     return `
-        <div class="pp-section-title" style="display:flex;justify-content:space-between;align-items:center">
+        <div class="pp-section-title pp-section-title--between">
             <span>This Week</span>
-            <span style="font-size:12px;color:var(--text-secondary);font-weight:400">
-                Streak <strong style="color:var(--text-primary)">${sum.current_streak || 0}d</strong>
-                &nbsp;&middot;&nbsp; Best <strong style="color:var(--text-primary)">${sum.longest_streak || 0}d</strong>
+            <span class="pp-week-streak-info">
+                Streak <strong>${sum.current_streak || 0}d</strong>
+                &nbsp;&middot;&nbsp; Best <strong>${sum.longest_streak || 0}d</strong>
             </span>
         </div>
         <div class="pp-week-grid">${cells}</div>`;
@@ -194,7 +194,7 @@ function _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goalsResp) {
     if (pendingDayoffs.length > 0) {
         const n = pendingDayoffs.length;
         alerts.push(`
-            <div class="pp-alert pp-alert--warn" onclick="_ppLoadTab('habits')" style="cursor:pointer">
+            <div class="pp-alert pp-alert--warn pp-alert--clickable" onclick="_ppLoadTab('habits')">
                 <i data-lucide="calendar-off" style="width:16px;height:16px;flex-shrink:0"></i>
                 <span>${n} day-off request${n > 1 ? "s" : ""} pending your approval</span>
                 <i data-lucide="chevron-right" style="width:14px;height:14px;margin-left:auto;opacity:0.5"></i>
@@ -215,7 +215,7 @@ function _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goalsResp) {
     const lagging = (goalsResp?.goals || []).filter(g => g.is_active && (g.pct || 0) < 50 && !g.achieved);
     if (inBackHalf && lagging.length > 0) {
         alerts.push(`
-            <div class="pp-alert pp-alert--warn" onclick="_ppLoadTab('goals')" style="cursor:pointer">
+            <div class="pp-alert pp-alert--warn pp-alert--clickable" onclick="_ppLoadTab('goals')">
                 <i data-lucide="target" style="width:16px;height:16px;flex-shrink:0"></i>
                 <span>${lagging.length} goal${lagging.length > 1 ? "s" : ""} lagging this week — under 50% with the weekend ahead</span>
                 <i data-lucide="chevron-right" style="width:14px;height:14px;margin-left:auto;opacity:0.5"></i>
@@ -252,7 +252,7 @@ function _ppHomeIslandMini(island) {
 
     return `
         <div class="pp-island-mini" onclick="_ppLoadTab('island')" role="button" tabindex="0"
-             style="cursor:pointer" aria-label="Open Island tab">
+             aria-label="Open Island tab">
             <div class="pp-island-mini-left">
                 <i data-lucide="palmtree" class="pp-island-mini-icon"></i>
                 <div>

@@ -367,6 +367,14 @@
   display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap;
 }
 .pp-streak-msg { font-size: 12px; min-height: 16px; color: var(--text-secondary); }
+.pp-streak-msg--ok  { color: var(--color-success); }
+.pp-streak-msg--err { color: var(--color-error); }
+.pp-streak-stats { grid-template-columns: repeat(3, 1fr); }
+.pp-streak-subtitle--mt { margin-top: 12px; }
+.pp-streak-bar-track { height: 8px; max-width: none; }
+.pp-streak-bar-fill  { height: 100%; }
+.pp-habits-rule-row  { margin-top: 4px; align-items: start; }
+.pp-section-divider--habits { margin: 24px 0 16px; }
 
 .pp-streak-legend {
   display: flex; gap: 14px; font-size: 11px; color: var(--text-secondary);
@@ -509,6 +517,10 @@
 }
 .pp-alert--warn { background: var(--arcade-light); color: var(--arcade-ink); border: 1px solid var(--arcade-soft); }
 .pp-alert--info { background: var(--english-light); color: var(--english-ink); border: 1px solid var(--english-soft); }
+.pp-alert--clickable { cursor: pointer; }
+.pp-section-title--between { display: flex; justify-content: space-between; align-items: center; }
+.pp-week-streak-info { font-size: 12px; color: var(--text-secondary); font-weight: 400; }
+.pp-week-streak-info strong { color: var(--text-primary); }
 
 /* ── Goals Tab ───────────────────────────────────────────── */
 .pp-goals-summary {
@@ -901,6 +913,7 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
   transition: background var(--transition-fast);
+  cursor: pointer;
 }
 .pp-island-mini:hover { background: var(--english-light); }
 .pp-island-mini-left { display: flex; align-items: center; gap: 12px; }
@@ -941,3 +954,5 @@
   width: 16px; height: 16px;
   color: var(--text-hint);
 }
+.pp-island-content-grid { margin-top: 24px; gap: 24px; align-items: start; }
+.pp-island-log-empty { color: var(--text-hint); font-size: 13px; padding: 8px 0; margin: 0; }
