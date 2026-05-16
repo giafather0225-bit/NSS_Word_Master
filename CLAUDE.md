@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-14 — DUX freeze 전면 해제 (학습 플로우 파일 수정 허용) + review.py 범용 SM-2 인프라 분류 + ckla_review → review 통합 (WordReview 테이블 일원화)
+> Last updated: 2026-05-16 — Growth Theme 시스템 완전 제거 · 마이그레이션 001~056 반영 · 라우터 46개 · JS 93개 · CSS 63개 · Island 시스템 서비스/프론트엔드 추가
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -12,8 +12,8 @@
 ---
 
 ## Tech Stack
-- **Backend**: Python / FastAPI — `backend/main.py` mounts **47 routers** (`backend/routers/`, ~204 endpoints).
-- **Frontend**: HTML + CSS + Vanilla JS (no framework). 89 JS source + 57 CSS files. Pre-built into `bundle-{a,b,c}.min.js` via `build.sh` (esbuild). Auto-rebuilt at server startup. Island UI uses JSX React components (`frontend/src/island/*.jsx`, 18 files — built separately, not bundled with esbuild).
+- **Backend**: Python / FastAPI — `backend/main.py` mounts **46 routers** (`backend/routers/`, ~204 endpoints).
+- **Frontend**: HTML + CSS + Vanilla JS (no framework). 93 JS source + 63 CSS files. Pre-built into `bundle-{a,b,c}.min.js` via `build.sh` (esbuild). Auto-rebuilt at server startup. Island UI uses JSX React components (`frontend/src/island/*.jsx`, 17 files — built separately, not bundled with esbuild).
 - **Database**: SQLite WAL · ORM: SQLAlchemy. Models split by domain in `backend/models/`.
 - **AI**: Ollama (`gemma2:2b`, local, lazy-start via `services/ollama_manager.py`) → Gemini fallback (`GEMINI_API_KEY`).
 - **TTS**: edge-tts → BytesIO in-memory (no temp files) — `backend/tts_edge.py`, `routers/tts.py`.
@@ -30,7 +30,7 @@
 2. 파일당 최대 ~500줄. 초과 시 모듈 분리 (예: `child.js` → `child-{calendar,exam,keyboard,text}.js`).
 3. CSS: `theme.css` 변수만 사용. 컴포넌트 CSS에 hex 직접 사용 금지.
 4. 모든 API: 적절한 에러 핸들링 + HTTP 상태코드. `RequestValidationError` 는 `main.py` 에서 child-friendly 422 JSON 으로 자동 변환됨.
-5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~017).
+5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~056, 중복 prefix 파일 5쌍 있음 — filename으로 추적하므로 안전).
 6. Python: type hints + docstrings. JS: JSDoc `@tag` comments.
 7. async/await 일관성. N+1 쿼리 금지.
 8. 모든 사용자 입력 sanitize. SQL injection / XSS / prompt injection 방어. Pydantic 길이 제한 = `schemas_common.py` (Str80/Str200/Str500).
@@ -80,20 +80,26 @@ NSS_Word_Master/
 │   │   ├── _base.py  __init__.py
 │   │   ├── lessons.py  system.py  gamification.py  learning.py
 │   │   ├── diary.py    math.py   assistant.py
-│   │   ├── us_academy.py  ckla.py  goals.py
-│   ├── services/                # 11 engines / managers
+│   │   ├── us_academy.py  ckla.py  goals.py  island.py
+│   ├── services/                # 13 engines / managers
 │   │   ├── xp_engine.py         # XP rules + award (config-overridable)
-│   │   ├── streak_engine.py     # 3-subject streak (english/math/game)
+│   │   ├── streak_engine.py     # 3-subject streak (ckla/math/game)
 │   │   ├── academy_session.py   # active session tracking
 │   │   ├── daily_words_engine.py
 │   │   ├── ckla_grader.py
-│   │   ├── report_engine.py     # parent weekly report (661 lines)
+│   │   ├── report_engine.py     # parent weekly report
+│   │   ├── report_engine_html.py # HTML email rendering
+│   │   ├── math_diagnostic.py   # Math placement diagnostics
+│   │   ├── lumi_engine.py       # Island Lumi earn/spend/exchange
+│   │   ├── island_care_engine.py # Island gauge decay + care logic
+│   │   ├── island_production_engine.py # Daily lumi batch (completed chars)
+│   │   ├── island_service.py    # Evolution branch validation
 │   │   ├── email_sender.py
 │   │   ├── pin_guard.py / pin_hash.py
 │   │   ├── ollama_manager.py    # auto-start, healthcheck
 │   │   └── backup_engine.py     # auto-snapshot (7-day rolling)
-│   ├── routers/                 # 47 FastAPI routers (see table below)
-│   ├── migrations/              # 016_weekly_goals.py latest
+│   ├── routers/                 # 46 FastAPI routers (see table below)
+│   ├── migrations/              # 056_word_reviews_easiness_real.py latest
 │   ├── data/                    # static content (math/, daily_words/)
 │   │   └── math/{G3,G4,G5,G6,glossary,kangaroo,placement}/
 │   ├── DB_INDEX.md  API_INDEX.md
@@ -101,8 +107,8 @@ NSS_Word_Master/
 ├── frontend/
 │   ├── templates/               # child.html, parent_ingest.html
 │   └── static/
-│       ├── css/                 # 57 files (theme.css = single source of truth)
-│       └── js/                  # 83 source files + bundle-a/b/c.min.js
+│       ├── css/                 # 63 files (theme.css = single source of truth)
+│       └── js/                  # 93 source files + bundle-a/b/c.min.js
 ├── tests/                       # 14 test files (pytest)
 │   ├── conftest.py
 │   ├── test_ai_service.py  test_file_storage.py  test_manual_api.py
@@ -132,7 +138,7 @@ NSS_Word_Master/
 
 ---
 
-## Backend Routers (44)
+## Backend Routers (46)
 
 > Order in `main.py` matters — `diary_photo` must be registered **before** `diary_sentences` so literal `/photo` wins over `/{subject}/{textbook}` matching.
 
@@ -161,7 +167,6 @@ NSS_Word_Master/
 | `free_writing` | Free writing entries |
 | `calendar_api` | Monthly calendar markers |
 | `day_off` | Day-off requests (pending → email parent → approved/denied) |
-| `growth_theme` | Growth Theme selection + advance |
 
 ### Home / Gamification
 | Router | Purpose |
@@ -198,12 +203,12 @@ NSS_Word_Master/
 | `math_glossary` | Math vocab per grade |
 | `math_problems` | "My Problems" wrong-review queue |
 
-### US Academy / CKLA
+### CKLA / Island
 | Router | Purpose |
 |---|---|
-| `us_academy` | Word-first SM-2 system, sessions, mini-quiz, unit tests, passages |
 | `ckla` | CKLA G3 reading curriculum (Read / Words / Q&A / Word Work) |
 | `parent_ckla` | Parent dashboard CKLA stats (progress, Q&A accuracy, weekly graph) |
+| `island` | Island system — characters, care, shop, decorate, currency, evolution (41 endpoints) |
 
 ---
 
@@ -213,15 +218,15 @@ NSS_Word_Master/
 - `child.html` — main learner shell (loads ~50 CSS files + 3 bundles)
 - `parent_ingest.html` — parent OCR upload UI
 
-### JS Bundles (`build.sh` → esbuild minify, 83 source files)
-- **bundle-a.min.js** — feature modules (preview, wordmatch, fillblank, spelling, sentence, home, growth-theme, parent-*, reward-shop, diary*, free-writing, calendar, daily-words, ckla*, child + child-*, sentence_ai, collocation, finaltest, unittest, review)
-- **bundle-b.min.js** — math modules (depends on KaTeX CDN — manipulatives, 3read, problem-types/ui, learn-visuals/cards, academy-ui/shell/feedback/main, review, fluency, placement, daily, kangaroo*, glossary, navigation)
-- **bundle-c.min.js** — word-manager + arcade (sfx, word-invaders, definition-match, spell-rush, crossword, math-invaders, sudoku, make24)
+### JS Bundles (`build.sh` → esbuild minify, 93 source files)
+- **bundle-a.min.js** — feature modules (preview, wordmatch, fillblank, spelling, sentence, home, parent-*, reward-shop*, island-result, diary*, free-writing, calendar, daily-words*, ckla*, child + child-*, sentence_ai, collocation, finaltest, unittest, review, review-hub, math-spaced-review) + Island JSX components (17 files via Babel/React)
+- **bundle-b.min.js** — math modules (depends on KaTeX CDN — katex-utils, manipulatives×2, 3read, problem-types/ui, learn-visuals/cards, academy-ui/shell/feedback/submit/main, lesson-complete, unit-test, problems-ui, fluency, placement*, daily, kangaroo*, glossary, navigation, math-review)
+- **bundle-c.min.js** — word-manager + arcade (sfx, word-invaders, definition-match, spell-rush, crossword, math-invaders, sudoku, make24, word-builder, memory-match)
 
 ### Key JS modules (not exhaustive)
 | File(s) | Purpose |
 |---|---|
-| `child.js` (682) + `child-{calendar,exam,keyboard,text}.js` | Main learner shell, split by concern |
+| `child.js` + `child-{calendar,exam,keyboard,text}.js` | Main learner shell, split by concern |
 | `home.js` | Home dashboard (today's tasks, AI coach, reminders) |
 | `navigation.js` | Top-level navigation + sidebar routing |
 | `core.js` | Shared utils, fetch wrapper, toast bridge |
@@ -229,18 +234,24 @@ NSS_Word_Master/
 | `offline-indicator.js` | Online/offline pill |
 | `tts-client.js` / `sound.js` / `arcade-sfx.js` | Audio layer |
 | `analytics.js` | Local activity logging |
-| `parent-{panel,overview,settings,textbooks,math,streak,xp,ingest}.js` | Parent dashboard split |
+| `parent-{panel,overview,settings,textbooks,math,streak,xp,ingest,goals,island}.js` | Parent dashboard split |
 | `diary-{home,write,entry,calendar}.js` + `diary.js` | Diary section split |
-| `math-academy{,-shell,-ui,-feedback}.js` | Math academy split |
+| `math-academy{,-shell,-ui,-feedback,-submit}.js` + `math-review.js` | Math academy split |
+| `daily-words.js` + `daily-words-weekly.js` | Daily words + weekly test |
+| `ckla.js` + `ckla-{lesson,spelling,review}.js` | CKLA curriculum split |
+| `math-spaced-review.js` | Math SM-2 review queue |
+| `island-result.js` | Island XP+lumi gain card (shown on study result screens) |
+| `reward-shop-island.js` | Island shop tab (Evolution/Food/Decor/Exchange) |
 
-### CSS files (57)
-- `theme.css` — global tokens (single source of truth, 449 lines)
+### CSS files (63)
+- `theme.css` — global tokens (single source of truth)
 - Layout: `main-shell`, `main-layout`, `main-stage`, `main-topbar`, `main-idle`, `main-responsive`, `base`, `layout`, `components`, `utilities`, `legacy-app`
-- Stage CSS: `preview`, `wordmatch`, `fillblank`, `spelling`, `sentence`, `finaltest`, `unittest`, `review`, `word-manager`
+- Stage CSS: `preview`, `wordmatch`, `fillblank`, `spelling`, `sentence`, `finaltest`, `unittest`, `review`, `review-hub`, `word-manager`
 - Home / sub: `home`, `daily-words`, `reward-shop`, `parent`, `parent-ingest`, `splash`, `xp`, `toast`
 - Diary: `diary`, `diary-home`, `diary-write`, `diary-entry`, `diary-calendar`, `diary-sub`, `calendar`
 - Math: `math-home` + `math-academy-{shell,sidebar,learn,problems,stages,results,fluency,manip,daily,modes,kangaroo,glossary,content,anim,responsive}` + `math-kangaroo`, `math-learn-visuals`
 - CKLA / Arcade: `ckla`, `arcade`, `collocation`
+- Island: `island-loop`, `island-main`, `island-meta`, `island-screens`, `island-system`, `island-zones`
 
 ---
 
@@ -788,11 +799,10 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 
 ## US Academy (word-first SM-2)
 
-New module for US-school vocab prep.
-- Models: `USAcademyWord`, `USAcademyWordProgress`, `USAcademyPassage`, `USAcademySession`, `USAcademyUnitResult`
-- Flow: level select → word study (definition / example / synonym / etymology) → mini quiz → unit test → SM-2 review queue
-- Endpoints: `/api/us-academy/{words,session,step/complete,quiz/result,review/{due,result},passage/{id},stats}`
-- Migration: `010_us_academy_tables.py`
+> ⚠️ 라우터 파일(`backend/routers/us_academy.py`)이 현재 존재하지 않음 — API 미구현 상태. DB 모델(USAcademyWord, USAcademyWordProgress)과 마이그레이션(010)은 존재함. 구현 전 라우터 파일 생성 필요.
+
+데이터 모델: `USAcademyWord`, `USAcademyWordProgress` (passage/session/unit result 테이블은 047~048 migration으로 drop됨)
+- Migration: `010_us_academy_tables.py`, `047_drop_us_academy_passages.py`, `048_drop_us_academy_session_results.py`
 
 ---
 
@@ -887,15 +897,15 @@ New module for US-school vocab prep.
 `services/ckla_grader.py`
 
 ### Frontend
-`ckla.js`, `ckla-lesson.js`, `ckla-review.js`, `ckla.css`
+`ckla.js`, `ckla-lesson.js`, `ckla-spelling.js`, `ckla-review.js`, `ckla.css`
 
 ### Migrations
 - 011: 기존 CKLA 테이블
-- 018: CKLA grade 컬럼 추가 + XPLog source 컬럼
-- 019: CKLA grade 컬럼 (018 확장) + `ckla_badges`, `ckla_user_badges` 테이블
-- 020: `ckla_badges`, `ckla_user_badges` 테이블
-- 021: `ckla_spelling_grammar` 테이블
-- 022: Math v2 스키마 (`math_spaced_review` 등)
+- 018: island_tables (10개) — CKLA grade + XPLog source는 019에서
+- 019: ckla_grade + ckla_badges + ckla_user_badges
+- 020: ckla_badges/user_badges (019 확장)
+- 021: ckla_spelling_grammar
+- 025b: ckla_review_to_word_reviews (CKLA WordReview → 통합 테이블)
 
 ---
 
@@ -937,7 +947,7 @@ New module for US-school vocab prep.
 `Reward` (legacy), `Schedule`, `AppConfig`
 
 ### `gamification.py`
-`XPLog`, `StreakLog`, `TaskSetting`, `RewardItem`, `PurchasedReward`, `GrowthThemeProgress`
+`XPLog`, `StreakLog`, `TaskSetting`, `RewardItem`, `PurchasedReward`
 
 ### `learning.py`
 `DailyWordsProgress`, `AcademySession`, `LearningLog`, `WordAttempt`, `AcademySchedule`
@@ -946,22 +956,35 @@ New module for US-school vocab prep.
 `DiaryEntry`, `FreeWriting`, `GrowthEvent`, `DayOffRequest`
 
 ### `math.py`
-`MathPlacementResult`, `MathProblem`, `MathProgress`, `MathAttempt`, `MathWrongReview`, `MathFactFluency`, `MathDailyChallenge`, `MathKangarooProgress`
+`MathPlacementResult`, `MathProblem`, `MathProgress`, `MathAttempt`, `MathWrongReview`, `MathFactFluency`, `MathDailyChallenge`, `MathKangarooProgress`, `MathSpacedReview`, `MathUnitTest`, `MathPlacementTest`
 
 ### `assistant.py`
-`AssistantLog`
+`AssistantLog`, `AiCallLog`
 
 ### `us_academy.py`
-`USAcademyWord`, `USAcademyWordProgress`, `USAcademyPassage`, `USAcademySession`, `USAcademyUnitResult`
+`USAcademyWord`, `USAcademyWordProgress` (passage/session/unit result 테이블은 migration 047~048로 drop됨)
 
 ### `ckla.py`
-`CKLADomain`, `CKLALesson`, `CKLAQuestion`, `CKLAWordLesson`, `CKLALessonProgress`, `CKLAQuestionResponse`
+`CKLADomain`, `CKLALesson`, `CKLAQuestion`, `CKLAWordLesson`, `CKLALessonProgress`, `CKLAQuestionResponse`, `CKLABadge`, `CKLAUserBadge`, `CKLASpelling`, `CKLAGrammar`, `CKLAMorphology`
 
 ### `goals.py`
 `WeeklyGoal`
 
+### `island.py`
+`IslandCharacter`, `IslandCharacterProgress`, `IslandCareLog`, `IslandShopItem`, `IslandInventory`, `IslandPlacedItem`, `IslandCurrency`, `IslandLumiLog`, `IslandLegendProgress`, `IslandZoneStatus`
+
 ### Migrations (`backend/migrations/`)
-001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy · 011 ckla · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE(grade,unit,lesson) · 018 ckla grade column + xplog source column · 019 ckla grade ext + ckla_badges + ckla_user_badges · 020 ckla_badges/user_badges tables · 021 ckla_spelling_grammar · 022 math_v2_schema · 023 island_shop_items.image backfill (46 decor paths) · 024 island_decor_extension (idempotent extension point for new decoration items).
+
+> 총 56개 파일. 시스템은 filename 전체로 추적하므로 동일 prefix(025/033/034/040/041)를 가진 5쌍은 각각 별개로 실행됨 — 안전.
+
+**001~024 (기반 + Island 초기)**
+001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy_tables · 011 ckla_tables · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE · 018 island_tables (10 new tables) · 019 ckla_grade · 020 ckla_badges · 021 ckla_spelling_grammar · 022 math_v2_schema · 023 island_decor_image_paths · 024 island_decor_extension
+
+**025~039 (CKLA 데이터 품질 + Math v2)**
+025a ai_call_log · 025b ckla_review_to_word_reviews · 026 ckla_aux_content · 027 fix_d1_lesson_titles · 028 fix_qa_model_answers · 029 fix_d4l9_evaluative · 030 audio_url_backfill · 031 fix_ocr_artifacts · 032 fix_data_quality_round2 · 033a add_qa_done · 033b math_progress_mastery · 034a math_attempt_misconception · 034b strip_wordnet_tags · 035 fix_bad_definitions · 036 fix_short_definitions · 037 fix_mw_colon_definitions · 038 fix_pos_and_short_definitions · 039 fix_circular_and_misc
+
+**040~056 (DUX 사전 정규화 + Island 확장)**
+040a fix_compound_noun_pos · 040b math_unique_constraints · 041a fix_relating_to_definitions · 041b math_daily_unique_date · 042 fix_examples_bold_and_wrong · 043 lowercase_definition_starts · 044 fix_structural_and_content_p1 · 045 expand_short_definitions · 046 fill_sort_order · 047 drop_us_academy_passages · 048 drop_us_academy_session_results · 049 fix_lesson14_progress · 050 generate_missing_audio · 051 normalize_pretest_stage · 052 island_zone_sequential_lock · 053 island_zone_first_evo_unlock · 054 xplog_composite_index · 055 island_evo_food_image_paths · **056 word_reviews_easiness_real** ← latest
 
 ---
 
@@ -1117,7 +1140,7 @@ New tables:
 9. `island_legend_progress` — legend streak tracking
 10. `island_zone_status` — unlock status (5 rows)
 
-**Tables planned for deletion (Island spec):** `rewards`, `schedules`, `growth_theme_progress` — not yet deleted; `growth_theme_progress` still exists in `gamification.py` and `routers/growth_theme.py` is still registered.
+**Tables status (2026-05-16):** `growth_theme_progress` — removed from `gamification.py`, `routers/growth_theme.py` deleted. `rewards` / `schedules` tables still exist (kept for back-compat).
 
 ---
 
@@ -1145,23 +1168,24 @@ New tables:
 | `frontend/static/js/reward-shop.js` | Add Island tabs |
 | `frontend/static/js/parent-panel.js` | Remove growth_theme, add island toggle |
 
-### Files Planned for Deletion (not yet deleted)
+### Completed Deletions (2026-05-16)
 
-| File | Reason |
+| File | Status |
 |------|--------|
-| `routers/growth_theme.py` | Will be replaced by island — currently still registered in main.py |
-| `models/gamification.py` (GrowthThemeProgress) | Will be removed — currently still present |
+| `routers/growth_theme.py` | ✅ Deleted — island system is replacement |
+| `models/gamification.py` (GrowthThemeProgress) | ✅ Removed from model and `__all__` |
+| `frontend/static/js/growth-theme.js` | ✅ Deleted — removed from build.sh |
 
 ---
 
 ### Frontend Files
 
-Island UI is built with JSX React components (`frontend/src/island/*.jsx`, 18 files). These are separate from the vanilla JS bundles and have their own build pipeline (`build.sh` builds all 18 JSX files + `island-result.js` via a separate React/Babel step).
+Island UI is built with JSX React components (`frontend/src/island/*.jsx`, 17 files). These are separate from the vanilla JS bundles and have their own build pipeline (`build.sh` builds all 17 JSX files + `island-result.js` via a separate React/Babel step).
 
 JSX components (`frontend/src/island/`):
 - `IslandMain.jsx` — main island screen
 - `SettingsScreen.jsx` — island settings (Dev Tools panel included)
-- (and 16 more island JSX components)
+- (and 15 more island JSX components)
 
 Vanilla JS (loaded separately, not in esbuild bundles):
 - `frontend/static/js/island-result.js` — island update card shown on study result screens (XP + lumi gain summary)

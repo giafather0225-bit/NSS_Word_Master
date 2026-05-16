@@ -93,6 +93,8 @@ __all__ = [
     "IslandCharacter", "IslandCharacterProgress", "IslandCareLog",
     "IslandShopItem", "IslandInventory", "IslandPlacedItem",
     "IslandCurrency", "IslandLumiLog", "IslandLegendProgress", "IslandZoneStatus",
+    # goals
+    "WeeklyGoal",
 ]
 from backend.models.goals import WeeklyGoal
 from .island import (
