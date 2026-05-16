@@ -23,7 +23,6 @@ from .gamification import (
     TaskSetting,
     RewardItem,
     PurchasedReward,
-    GrowthThemeProgress,
 )
 from .learning import (
     DailyWordsProgress,
@@ -72,7 +71,7 @@ __all__ = [
     # system
     "Reward", "Schedule", "AppConfig",
     # gamification
-    "XPLog", "StreakLog", "TaskSetting", "RewardItem", "PurchasedReward", "GrowthThemeProgress",
+    "XPLog", "StreakLog", "TaskSetting", "RewardItem", "PurchasedReward",
     # learning
     "DailyWordsProgress", "AcademySession", "LearningLog", "WordAttempt", "AcademySchedule",
     # diary

@@ -77,24 +77,10 @@ class PurchasedReward(Base):
     used_at = Column(String, nullable=True)
 
 
-class GrowthThemeProgress(Base):
-    """성장 테마 진행 추적"""
-    __tablename__ = "growth_theme_progress"
-    id = Column(Integer, primary_key=True)
-    theme = Column(String)
-    variation = Column(Integer, default=1)
-    current_step = Column(Integer, default=0)
-    is_completed = Column(Boolean, default=False)
-    is_active = Column(Boolean, default=False)
-    started_at = Column(String)
-    completed_at = Column(String, nullable=True)
-
-
 __all__ = [
     "XPLog",
     "StreakLog",
     "TaskSetting",
     "RewardItem",
     "PurchasedReward",
-    "GrowthThemeProgress",
 ]

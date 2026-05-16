@@ -47,7 +47,6 @@ from backend.routers import parent_report as parent_report_router
 from backend.routers import parent_ckla as parent_ckla_router
 from backend.routers import starred as starred_router
 from backend.routers import goals as goals_router
-from backend.routers import growth_theme as growth_theme_router
 from backend.routers import system as system_router
 from backend.routers import reminder as reminder_router
 from backend.routers import collocation as collocation_router
@@ -359,7 +358,6 @@ app.include_router(parent_xp_router.router)
 app.include_router(parent_report_router.router)
 app.include_router(starred_router.router)
 app.include_router(goals_router.router)
-app.include_router(growth_theme_router.router)
 app.include_router(system_router.router)
 app.include_router(reminder_router.router)
 app.include_router(collocation_router.router)

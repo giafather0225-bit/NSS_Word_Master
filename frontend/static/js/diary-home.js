@@ -76,10 +76,7 @@ async function _renderDiaryHome() {
                         <button class="dh-more-item" type="button" role="menuitem" onclick="_dhMoreOpen('sentences')">
                             ${_dhIcon("message-square", 14)} My Sentences
                         </button>
-                        <button class="dh-more-item" type="button" role="menuitem" onclick="_dhMoreOpen('worlds')">
-                            ${_dhIcon("globe", 14)} My Worlds
-                        </button>
-                        <button class="dh-more-item" type="button" role="menuitem" onclick="_dhMoreOpen('timeline')">
+<button class="dh-more-item" type="button" role="menuitem" onclick="_dhMoreOpen('timeline')">
                             ${_dhIcon("trending-up", 14)} Growth Timeline
                         </button>
                         <button class="dh-more-item" type="button" role="menuitem" onclick="_dhMoreOpen('dayoff')">
@@ -937,55 +934,6 @@ async function _renderSentences() {
         body.innerHTML = `<div class="ds-sent-grid">${cards}</div>`;
     } catch (_) {
         const body = document.getElementById("ds-sent-body");
-        if (body) body.innerHTML = `<p class="ds-error">Failed to load.</p>`;
-    }
-}
-
-// ─── My Worlds ────────────────────────────────────────────────
-
-/** @tag DIARY MY_WORLDS GROWTH_THEME */
-async function _renderWorlds() {
-    const view = _dsubPrep();
-    if (!view) return;
-    view.innerHTML = `
-        <div class="ds-root">
-            ${_dsubChrome("Diary · Worlds", "My Worlds", "Growth themes you've completed")}
-            <div class="ds-body" id="ds-worlds-body">
-                <p class="ds-loading">Loading…</p>
-            </div>
-        </div>`;
-    _dhRefreshIcons();
-    try {
-        const res  = await fetch("/api/growth/theme/all");
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        const done = (data.themes || []).filter(t => t.is_completed);
-        const body = document.getElementById("ds-worlds-body");
-        if (!done.length) {
-            body.innerHTML = `<div class="ds-empty">
-                <span class="ds-empty-icon"><i data-lucide="sprout" style="width:24px;height:24px;stroke-width:1.5"></i></span>
-                Finish a Growth Theme to plant your first world here.
-            </div>`;
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-            return;
-        }
-        const _safeImgSrc = (url) => {
-            try {
-                const u = new URL(url, location.origin);
-                return (u.protocol === "https:" || u.protocol === "http:" || u.protocol === "data:")
-                    ? escapeHtml(url) : "";
-            } catch (_) { return ""; }
-        };
-        body.innerHTML = `<div class="ds-worlds-grid">${done.map(t => `
-            <div class="ds-world-card">
-                <img class="ds-world-img" src="${_safeImgSrc(t.img_url || "")}"
-                     alt="${escapeHtml(t.label || t.theme)}"
-                     onerror="this.classList.add('broken')">
-                <div class="ds-world-title">${escapeHtml(t.label || t.theme)}</div>
-                <div class="ds-world-status"><span class="ds-world-dot"></span> Completed</div>
-            </div>`).join("")}</div>`;
-    } catch (_) {
-        const body = document.getElementById("ds-worlds-body");
         if (body) body.innerHTML = `<p class="ds-error">Failed to load.</p>`;
     }
 }

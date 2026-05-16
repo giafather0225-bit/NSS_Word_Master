@@ -16,7 +16,6 @@ cat \
   $JS/spelling.js \
   $JS/sentence.js \
   $JS/home.js \
-  $JS/growth-theme.js \
   $JS/parent-panel.js \
   $JS/parent-overview.js \
   $JS/parent-goals.js \
@@ -27,6 +26,7 @@ cat \
   $JS/parent-settings.js \
   $JS/parent-report.js \
   $JS/parent-ckla.js \
+  $JS/parent-island.js \
   $JS/reward-shop.js \
   $JS/reward-shop-use.js \
   $JS/reward-shop-island.js \

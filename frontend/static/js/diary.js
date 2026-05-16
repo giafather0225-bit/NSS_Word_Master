@@ -11,7 +11,7 @@
 /**
  * Open a diary sub-section and render its content.
  * @tag DIARY NAVIGATION
- * @param {'today'|'journal'|'freewriting'|'timeline'|'dayoff'|'sentences'|'calendar'|'worlds'} section
+ * @param {'today'|'journal'|'freewriting'|'timeline'|'dayoff'|'sentences'|'calendar'} section
  */
 function openDiarySection(section) {
     const view = document.getElementById("diary-view");
@@ -37,7 +37,7 @@ function openDiarySection(section) {
     if (section !== "calendar") {
         view.classList.remove("dc-active");
     }
-    if (!["sentences", "worlds", "timeline", "dayoff"].includes(section)) {
+    if (!["sentences", "timeline", "dayoff"].includes(section)) {
         view.classList.remove("ds-active");
     }
 
@@ -49,8 +49,7 @@ function openDiarySection(section) {
         case "dayoff":      _renderDayOff();       break;
         case "sentences":   _renderSentences();    break;
         case "calendar":    (typeof _renderDiaryCalendar === "function") ? _renderDiaryCalendar() : renderCalendar(); break;
-        case "worlds":      _renderWorlds();       break;
-        default:            _renderDiaryHome();
+default:            _renderDiaryHome();
     }
 }
 
