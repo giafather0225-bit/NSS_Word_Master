@@ -322,7 +322,8 @@ def get_review_stats(db: Session = Depends(get_db)):
 @router.get("/api/review/hub-status")
 def get_hub_status(db: Session = Depends(get_db)):
     """Return due counts for the Review Hub (English SM-2 + CKLA SM-2 + Math spaced review)."""
-    today_str = _date.today().isoformat()
+    today_str      = _date.today().isoformat()
+    seven_days_ago = (_date.today() - timedelta(days=7)).isoformat()
 
     due_q = db.query(WordReview).filter(WordReview.next_review <= today_str)
 
@@ -339,9 +340,21 @@ def get_hub_status(db: Session = Depends(get_db)):
     breakdown = {(src or "academy"): cnt for src, cnt in breakdown_rows}
 
     math_due = 0
+    math_accuracy_7d = None
     try:
         from backend.models.math import MathSpacedReview as _MSR
         math_due = db.query(_MSR).filter(_MSR.next_review_date <= today_str).count()
+        # Average exit_quiz_score (out of 5) for lessons reviewed in last 7 days
+        _math_acc_row = (
+            db.query(func.avg(_MSR.exit_quiz_score))
+            .filter(
+                _MSR.last_reviewed_at >= seven_days_ago,
+                _MSR.exit_quiz_score.isnot(None),
+            )
+            .scalar()
+        )
+        if _math_acc_row is not None:
+            math_accuracy_7d = round(_math_acc_row / 5 * 100)
     except Exception:
         pass
 
@@ -360,7 +373,6 @@ def get_hub_status(db: Session = Depends(get_db)):
     ).first() is not None
 
     # 7-day accuracy for English (words last reviewed in the past 7 days)
-    seven_days_ago = (_date.today() - timedelta(days=7)).isoformat()
     acc_row = (
         db.query(
             func.sum(WordReview.total_correct),
@@ -393,6 +405,7 @@ def get_hub_status(db: Session = Depends(get_db)):
         "math": {
             "due":             math_due,
             "completed_today": math_done_today,
+            "accuracy_7d":     math_accuracy_7d,
         },
         "ckla": {
             "due":             ckla_due,

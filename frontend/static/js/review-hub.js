@@ -242,6 +242,19 @@
     }
     info.appendChild(countEl);
 
+    // 7-day accuracy chip
+    var mathAcc7d = _status.math && _status.math.accuracy_7d;
+    if (mathAcc7d != null) {
+      var mathAccChip = _html("div", "rh-accuracy-chip", "");
+      var mathAccIcon = document.createElement("i");
+      mathAccIcon.setAttribute("data-lucide", "trending-up");
+      mathAccChip.appendChild(mathAccIcon);
+      var mathAccLabel = document.createElement("span");
+      mathAccLabel.textContent = "7d accuracy: " + mathAcc7d + "%";
+      mathAccChip.appendChild(mathAccLabel);
+      info.appendChild(mathAccChip);
+    }
+
     card.appendChild(info);
 
     // Action
