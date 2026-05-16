@@ -163,34 +163,40 @@ async function _ppCKLA(body) {
 
         body.innerHTML = `
             <div style="padding:20px 24px">
-                <div class="pp-section-title" style="margin-bottom:16px">
+                <div class="pp-section-title" style="margin-bottom:16px;display:flex;align-items:center;gap:8px">
                     <i data-lucide="book-open" style="width:15px;height:15px"></i> CKLA Grade 3
                 </div>
                 ${hero}
                 ${progressBar}
-                <div class="pp-section-title" style="margin-bottom:10px">
-                    <i data-lucide="layers" style="width:15px;height:15px"></i> Domains
+                <div class="pp-grid-2" style="align-items:start">
+                    <div>
+                        <div class="pp-section-title" style="margin-bottom:10px;display:flex;align-items:center;gap:8px">
+                            <i data-lucide="layers" style="width:15px;height:15px"></i> Domains
+                        </div>
+                        <div>${domainRows || '<div style="color:var(--text-hint);font-size:.85rem">No domain data yet.</div>'}</div>
+                    </div>
+                    <div>
+                        <div class="pp-section-title" style="margin:0 0 6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+                            <span style="display:flex;align-items:center;gap:6px">
+                                <i data-lucide="calendar-days" style="width:15px;height:15px"></i> Activity Chart
+                            </span>
+                            <span id="pp-ckla-chart-toggle" style="display:flex;gap:4px">
+                                ${['week','month','full'].map(r => `
+                                    <button onclick="_ppCKLASetRange('${r}')"
+                                            id="pp-ckla-range-${r}"
+                                            style="font-size:.75rem;padding:3px 10px;border-radius:var(--radius-full);border:1px solid var(--border-default);cursor:pointer;background:${r === 'week' ? 'var(--english-primary)' : 'var(--bg-card)'};color:${r === 'week' ? 'var(--text-on-primary)' : 'var(--text-secondary)'};font-weight:600;transition:background .15s">
+                                        ${r === 'week' ? '7d' : r === 'month' ? '30d' : 'All'}
+                                    </button>`).join('')}
+                            </span>
+                        </div>
+                        ${chart}
+                        ${diffSection}
+                        ${timeSection}
+                        ${alertSection}
+                        ${finalTestBanner}
+                        ${reviewSection}
+                    </div>
                 </div>
-                <div>${domainRows || '<div style="color:var(--text-hint);font-size:.85rem">No domain data yet.</div>'}</div>
-                <div class="pp-section-title" style="margin:24px 0 6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-                    <span style="display:flex;align-items:center;gap:6px">
-                        <i data-lucide="calendar-days" style="width:15px;height:15px"></i> Activity Chart
-                    </span>
-                    <span id="pp-ckla-chart-toggle" style="display:flex;gap:4px">
-                        ${['week','month','full'].map(r => `
-                            <button onclick="_ppCKLASetRange('${r}')"
-                                    id="pp-ckla-range-${r}"
-                                    style="font-size:.75rem;padding:3px 10px;border-radius:var(--radius-full);border:1px solid var(--border-default);cursor:pointer;background:${r === 'week' ? 'var(--english-primary)' : 'var(--bg-card)'};color:${r === 'week' ? 'var(--text-on-primary)' : 'var(--text-secondary)'};font-weight:600;transition:background .15s">
-                                ${r === 'week' ? '7d' : r === 'month' ? '30d' : 'All'}
-                            </button>`).join('')}
-                    </span>
-                </div>
-                ${chart}
-                ${diffSection}
-                ${timeSection}
-                ${alertSection}
-                ${finalTestBanner}
-                ${reviewSection}
             </div>`;
 
         if (typeof lucide !== "undefined") lucide.createIcons();

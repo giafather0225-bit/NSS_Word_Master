@@ -314,11 +314,12 @@
 .pp-grid-2 > div { min-width: 0; }
 @media (max-width: 720px) { .pp-grid-2 { grid-template-columns: 1fr; gap: 12px; } }
 
-/* ── Mobile (≤720px): tighter padding + 3-col stat overrides ── */
+/* ── Mobile (≤720px): tighter padding + stat overrides ── */
 @media (max-width: 720px) {
   #pp-body { padding: 16px 14px; }
-  /* Tabs that inline-style 3-col stat grids fall back to 2-col on narrow viewports */
+  /* Tabs that inline-style 3-col or 4-col stat grids fall back to 2-col on narrow viewports */
   .pp-stats[style*="repeat(3"] { grid-template-columns: repeat(2, 1fr) !important; }
+  .pp-stats[style*="repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
   /* Hero stats: stack into 3 narrower pills with smaller numbers */
   .pp-hero-stats { gap: 10px; }
   .pp-hero-num { font-size: 18px; }
@@ -334,6 +335,7 @@
   /* Phone: math stat grid collapses via auto-fill, just tighten the gap */
   .pp-math-stats { gap: 8px; }
   .pp-stats[style*="repeat(3"] { grid-template-columns: 1fr !important; }
+  .pp-stats[style*="repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
 /* ── Home Tab: Hero ──────────────────────────────────────── */
