@@ -321,14 +321,18 @@ def get_review_stats(db: Session = Depends(get_db)):
 # @tag REVIEW @tag HOME_DASHBOARD
 @router.get("/api/review/hub-status")
 def get_hub_status(db: Session = Depends(get_db)):
-    """Return due counts for the Review Hub (English SM-2 + Math spaced review)."""
+    """Return due counts for the Review Hub (English SM-2 + CKLA SM-2 + Math spaced review)."""
     today_str = _date.today().isoformat()
 
-    english_due = db.query(WordReview).filter(WordReview.next_review <= today_str).count()
+    due_q = db.query(WordReview).filter(WordReview.next_review <= today_str)
+
+    # CKLA reviews are tracked separately from general English/DUX reviews
+    ckla_due    = due_q.filter(WordReview.source == "ckla").count()
+    english_due = due_q.filter(WordReview.source != "ckla").count()
 
     breakdown_rows = (
         db.query(WordReview.source, func.count(WordReview.id))
-        .filter(WordReview.next_review <= today_str)
+        .filter(WordReview.next_review <= today_str, WordReview.source != "ckla")
         .group_by(WordReview.source)
         .all()
     )
@@ -350,19 +354,27 @@ def get_hub_status(db: Session = Depends(get_db)):
         XPLog.action == "math_spaced_review",
         XPLog.created_at >= today_str,
     ).first() is not None
+    ckla_done_today = db.query(XPLog).filter(
+        XPLog.action == "ckla_review_complete",
+        XPLog.created_at >= today_str,
+    ).first() is not None
 
-    total_items = english_due + math_due
-    est_minutes = max(1, round((english_due * 30 + math_due * 90) / 60)) if total_items else 0
+    total_items = english_due + math_due + ckla_due
+    est_minutes = max(1, round((english_due * 30 + ckla_due * 30 + math_due * 90) / 60)) if total_items else 0
 
     return {
         "english": {
-            "due":            english_due,
-            "breakdown":      breakdown,
+            "due":             english_due,
+            "breakdown":       breakdown,
             "completed_today": english_done_today,
         },
         "math": {
-            "due":            math_due,
+            "due":             math_due,
             "completed_today": math_done_today,
+        },
+        "ckla": {
+            "due":             ckla_due,
+            "completed_today": ckla_done_today,
         },
         "total_due":         total_items,
         "all_done":          total_items == 0,
@@ -378,8 +390,8 @@ def complete_review_session(req: SessionCompleteRequest, db: Session = Depends(g
     Awards XP and updates streak for the completed session type.
     When both English and Math queues are empty, triggers island care gain.
     """
-    if req.type not in ("english", "math"):
-        raise HTTPException(status_code=400, detail="type must be 'english' or 'math'")
+    if req.type not in ("english", "math", "ckla"):
+        raise HTTPException(status_code=400, detail="type must be 'english', 'math', or 'ckla'")
 
     today_str = _date.today().isoformat()
     xp_earned = 0
@@ -408,8 +420,18 @@ def complete_review_session(req: SessionCompleteRequest, db: Session = Depends(g
         except Exception as e:
             logger.warning("mark_math_done failed: %s", e)
 
-    # Check if both queues are now empty → island care
-    english_due = db.query(WordReview).filter(WordReview.next_review <= today_str).count()
+    elif req.type == "ckla":
+        try:
+            from backend.services import xp_engine as _xp
+            xp_earned = _xp.award_xp(db, "ckla_review_complete")
+        except Exception as e:
+            logger.warning("ckla_review_complete XP failed: %s", e)
+
+    # Check if all queues are now empty → island care
+    english_due = db.query(WordReview).filter(
+        WordReview.next_review <= today_str,
+        WordReview.source != "ckla",
+    ).count()
     math_due = 0
     try:
         from backend.models.math import MathSpacedReview as _MSR
@@ -417,8 +439,13 @@ def complete_review_session(req: SessionCompleteRequest, db: Session = Depends(g
     except Exception:
         pass
 
+    ckla_due = db.query(WordReview).filter(
+        WordReview.next_review <= today_str,
+        WordReview.source == "ckla",
+    ).count()
+
     island = {"xp_multiplier": 1.0}
-    all_done = english_due == 0 and math_due == 0
+    all_done = english_due == 0 and math_due == 0 and ckla_due == 0
     if all_done:
         try:
             from backend.services import island_care_engine as _care

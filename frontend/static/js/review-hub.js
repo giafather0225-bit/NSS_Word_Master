@@ -16,6 +16,7 @@
   var _status = null;   // last hub-status response
   var _englishDone = false;
   var _mathDone = false;
+  var _cklaDone = false;
   var _islandData = null;  // island gain from the final session-complete
 
   // ── DOM helpers ───────────────────────────────────────────────────
@@ -90,9 +91,10 @@
       return;
     }
 
-    // P3: restore completed-today state so reopening the hub shows correct status
+    // restore completed-today state so reopening the hub shows correct status
     if (_status.english && _status.english.completed_today) _englishDone = true;
     if (_status.math && _status.math.completed_today) _mathDone = true;
+    if (_status.ckla && _status.ckla.completed_today) _cklaDone = true;
 
     _render();
   }
@@ -115,11 +117,17 @@
     // English card
     body.appendChild(_buildEnglishCard());
 
+    // CKLA card (only when ckla words exist or completed today)
+    var cklaDue = (_status.ckla && _status.ckla.due) || 0;
+    if (cklaDue > 0 || _cklaDone) {
+      body.appendChild(_buildCklaCard());
+    }
+
     // Math card
     body.appendChild(_buildMathCard());
 
-    // All-done banner (shown only when both are done at open time or after completion)
-    if (_englishDone && _mathDone) {
+    // All-done banner (shown only when all are done at open time or after completion)
+    if (_englishDone && _mathDone && (_cklaDone || cklaDue === 0)) {
       body.appendChild(_buildAllDoneBanner());
     }
 
@@ -243,6 +251,58 @@
     return card;
   }
 
+  function _buildCklaCard() {
+    var due = (_status.ckla && _status.ckla.due) || 0;
+    var isDone = _cklaDone || due === 0;
+
+    var card = _html("div", "rh-card rh-card--ckla" + (isDone ? " rh-card--done" : "") + (due === 0 && !_cklaDone ? " rh-card--empty" : ""), "");
+    card.id = "rh-ckla-card";
+
+    // Icon
+    var icon = _html("div", "rh-card-icon");
+    var lucideIcon = document.createElement("i");
+    lucideIcon.setAttribute("data-lucide", isDone ? "check-circle" : "graduation-cap");
+    icon.appendChild(lucideIcon);
+    card.appendChild(icon);
+
+    // Info
+    var info = _html("div", "rh-card-info", "");
+
+    var label = _html("div", "rh-card-label", "CKLA Review");
+    info.appendChild(label);
+
+    var countEl = _html("div", "rh-card-count" + (isDone ? " rh-card-count--done" : ""), "");
+    if (_cklaDone) {
+      countEl.textContent = "Completed";
+    } else if (due === 0) {
+      countEl.textContent = "Nothing due today";
+    } else {
+      countEl.textContent = due + " word" + (due === 1 ? "" : "s") + " due";
+    }
+    info.appendChild(countEl);
+
+    card.appendChild(info);
+
+    // Action
+    if (_cklaDone) {
+      var check = _html("div", "rh-done-checkmark", "");
+      var ci = document.createElement("i");
+      ci.setAttribute("data-lucide", "check");
+      check.appendChild(ci);
+      var span = document.createElement("span");
+      span.textContent = "Done";
+      check.appendChild(span);
+      card.appendChild(check);
+    } else {
+      var btn = _html("button", "rh-start-btn", "Start");
+      btn.disabled = due === 0;
+      btn.addEventListener("click", _startCkla);
+      card.appendChild(btn);
+    }
+
+    return card;
+  }
+
   function _buildAllDoneBanner() {
     var banner = _html("div", "rh-all-done", "");
     banner.innerHTML = [
@@ -293,6 +353,19 @@
     }
   }
 
+  function _startCkla() {
+    window._reviewHubOnDone = function (data) {
+      _onCklaDone(data);
+    };
+    window._reviewHubOnClose = function () {
+      if (_overlay) _overlay.classList.remove("hidden");
+    };
+
+    if (typeof openReview === "function") {
+      openReview("ckla");
+    }
+  }
+
   // ── Session completion handlers ───────────────────────────────────
 
   async function _onEnglishDone(data) {
@@ -328,6 +401,28 @@
     }
   }
 
+  async function _onCklaDone() {
+    try {
+      var res = await fetch("/api/review/session-complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "ckla" }),
+      });
+      if (res.ok) {
+        var result = await res.json();
+        if (result.xp_earned > 0 && typeof window.showToast === "function") {
+          window.showToast("+" + result.xp_earned + " XP — CKLA review complete!", "success");
+        }
+        if (result.island) _islandData = result.island;
+      }
+    } catch (e) {
+      console.warn("[ReviewHub] session-complete ckla failed:", e);
+    }
+
+    _cklaDone = true;
+    _refreshCards();
+  }
+
   async function _onMathDone() {
     try {
       var res = await fetch("/api/review/session-complete", {
@@ -361,13 +456,21 @@
     var newEnglish = _buildEnglishCard();
     if (oldEnglish) body.replaceChild(newEnglish, oldEnglish);
 
+    // Re-render CKLA card (only if it was rendered)
+    var oldCkla = _el("rh-ckla-card");
+    if (oldCkla) {
+      body.replaceChild(_buildCklaCard(), oldCkla);
+    }
+
     // Re-render Math card
     var oldMath = _el("rh-math-card");
     var newMath = _buildMathCard();
     if (oldMath) body.replaceChild(newMath, oldMath);
 
-    // Show all-done banner if both complete
-    if (_englishDone && _mathDone) {
+    // Show all-done banner if all complete
+    var cklaDue = (_status.ckla && _status.ckla.due) || 0;
+    var allDone = _englishDone && _mathDone && (_cklaDone || cklaDue === 0);
+    if (allDone) {
       var existing = body.querySelector(".rh-all-done");
       if (!existing) {
         body.appendChild(_buildAllDoneBanner());
@@ -390,6 +493,7 @@
     _build();
     _englishDone = false;
     _mathDone = false;
+    _cklaDone = false;
 
     _overlay.classList.remove("hidden");
     if (typeof lucide !== "undefined") lucide.createIcons();
@@ -408,6 +512,7 @@
     delete window._reviewHubOnDone;
     delete window._reviewHubOnClose;
     delete window._reviewHubOnMathDone;
+    delete window._reviewHubOnCklaDone;
 
     if (typeof renderTodayTasks === "function") renderTodayTasks();
   }

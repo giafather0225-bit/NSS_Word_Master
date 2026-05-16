@@ -7,15 +7,16 @@
                   /api/goals/weekly
    ================================================================ */
 
-/** Full Home tab: Hero + Today Progress + Week Calendar + vs Last Week + Alerts. @tag PARENT */
+/** Full Home tab: Hero + Today Progress + Week Calendar + vs Last Week + Island mini + Alerts. @tag PARENT */
 async function _ppHome(body) {
     try {
-        const [sum, ov, act14, dayoffs, goals] = await Promise.all([
+        const [sum, ov, act14, dayoffs, goals, island] = await Promise.all([
             apiFetchJSON("/api/parent/summary"),
             apiFetchJSON("/api/parent/overview"),
             apiFetchJSON("/api/parent/activity?days=14"),
             apiFetchJSON("/api/parent/day-off-requests").catch(() => ({ requests: [] })),
             apiFetchJSON("/api/goals/weekly").catch(() => ({ goals: [] })),
+            apiFetchJSON("/api/island/status").catch(() => null),
         ]);
 
         const bySubject = ov.today_by_subject || {
@@ -34,6 +35,8 @@ async function _ppHome(body) {
         const pendingDayoffs = (dayoffs.requests || []).filter(r => r.status === "pending");
         const weekMinutes    = thisWeek.reduce((a, d) => a + (d.minutes || 0), 0);
 
+        const islandMiniHtml = island && island.island_on ? _ppHomeIslandMini(island) : "";
+
         body.innerHTML =
             _ppHomeHero(sum, todayXP, activeCount, weekMinutes) +
             _ppHomeWeekCalendar(thisWeek, sum) +
@@ -41,6 +44,7 @@ async function _ppHome(body) {
                 <div>${_ppHomeTodayProgress(bySubject)}</div>
                 <div>${_ppHomeVsLastWeek(thisWeek, lastWeek)}</div>
              </div>` +
+            islandMiniHtml +
             _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goals);
 
         if (typeof lucide !== "undefined") lucide.createIcons();
@@ -223,6 +227,48 @@ function _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goalsResp) {
     return `
         <div class="pp-section-title">Alerts</div>
         <div class="pp-alert-list">${alerts.join("")}</div>`;
+}
+
+/** Island mini widget — Lumi balance + active chars + urgent warnings. @tag PARENT ISLAND */
+function _ppHomeIslandMini(island) {
+    const currency = island.currency || {};
+    const lumi     = currency.lumi ?? 0;
+    const chars    = island.active_characters || [];
+    const urgent   = chars.filter(c => !c.is_completed && ((c.hunger ?? 100) < 20 || (c.happiness ?? 100) < 20));
+
+    const charSummary = chars.length === 0
+        ? "No active characters"
+        : chars.length + " character" + (chars.length === 1 ? "" : "s") + " active";
+
+    const urgentHtml = urgent.length > 0
+        ? `<span class="pp-island-mini-warn">
+               <i data-lucide="alert-triangle" style="width:13px;height:13px;vertical-align:-1px"></i>
+               ${urgent.length} need${urgent.length === 1 ? "s" : ""} care
+           </span>`
+        : `<span class="pp-island-mini-ok">
+               <i data-lucide="heart" style="width:13px;height:13px;vertical-align:-1px"></i>
+               All good
+           </span>`;
+
+    return `
+        <div class="pp-island-mini" onclick="_ppLoadTab('island')" role="button" tabindex="0"
+             style="cursor:pointer" aria-label="Open Island tab">
+            <div class="pp-island-mini-left">
+                <i data-lucide="island" class="pp-island-mini-icon"></i>
+                <div>
+                    <div class="pp-island-mini-title">Gia's Island</div>
+                    <div class="pp-island-mini-sub">${escapeHtml(charSummary)}</div>
+                </div>
+            </div>
+            <div class="pp-island-mini-right">
+                <div class="pp-island-mini-lumi">
+                    <i data-lucide="gem" style="width:14px;height:14px;vertical-align:-2px"></i>
+                    ${lumi.toLocaleString()} Lumi
+                </div>
+                ${urgentHtml}
+                <i data-lucide="chevron-right" class="pp-island-mini-chevron"></i>
+            </div>
+        </div>`;
 }
 
 window._ppHome = _ppHome;

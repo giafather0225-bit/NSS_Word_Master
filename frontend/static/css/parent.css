@@ -732,3 +732,55 @@
   color: var(--text-hint); font-size: 11px;
   white-space: nowrap;
 }
+
+/* ── Island mini widget (Home tab) ─────────────────────────── */
+.pp-island-mini {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  margin: 16px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  transition: background var(--transition-fast);
+}
+.pp-island-mini:hover { background: var(--english-light); }
+.pp-island-mini-left { display: flex; align-items: center; gap: 12px; }
+.pp-island-mini-icon {
+  width: 20px; height: 20px;
+  color: var(--english-ink);
+  flex-shrink: 0;
+}
+.pp-island-mini-title {
+  font-size: 14px; font-weight: 700; color: var(--text-primary);
+}
+.pp-island-mini-sub {
+  font-size: 12px; color: var(--text-secondary); margin-top: 1px;
+}
+.pp-island-mini-right {
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+}
+.pp-island-mini-lumi {
+  font-size: 13px; font-weight: 600; color: var(--text-primary);
+}
+.pp-island-mini-warn {
+  font-size: 12px; font-weight: 600;
+  color: var(--review-ink);
+  background: var(--review-soft);
+  border-radius: var(--radius-full);
+  padding: 2px 8px;
+  display: flex; align-items: center; gap: 4px;
+}
+.pp-island-mini-ok {
+  font-size: 12px; font-weight: 600;
+  color: var(--math-ink);
+  background: var(--math-soft);
+  border-radius: var(--radius-full);
+  padding: 2px 8px;
+  display: flex; align-items: center; gap: 4px;
+}
+.pp-island-mini-chevron {
+  width: 16px; height: 16px;
+  color: var(--text-hint);
+}
