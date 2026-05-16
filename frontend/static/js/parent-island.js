@@ -70,8 +70,8 @@ async function _ppIsland(body) {
         }).join("");
 
         const zonesHtml = `
-            <div class="pp-section-title">
-                <i data-lucide="map" class="pp-section-title--icon"></i> Zones
+            <div class="pp-section-title pp-section-title--icon">
+                <i data-lucide="map" style="width:15px;height:15px"></i> Zones
             </div>
             <div class="pp-island-zones">${zonePills}</div>`;
 
@@ -176,17 +176,17 @@ async function _ppIsland(body) {
             <div class="pp-island-tab">
                 ${currencyHtml}
                 ${zonesHtml}
-                <div class="pp-grid-2" style="margin-top:24px;gap:24px">
+                <div class="pp-grid-2" style="margin-top:24px;gap:24px;align-items:start">
                     <div>
-                        <div class="pp-section-title">
-                            <i data-lucide="users" class="pp-section-title--icon"></i> Characters
+                        <div class="pp-section-title pp-section-title--icon">
+                            <i data-lucide="users" style="width:15px;height:15px"></i> Characters
                             <span class="pp-island-completed-badge">${status.completed_count ?? 0} completed</span>
                         </div>
                         ${charsHtml}
                     </div>
                     <div>
-                        <div class="pp-section-title">
-                            <i data-lucide="activity" class="pp-section-title--icon"></i> Recent Lumi Activity
+                        <div class="pp-section-title pp-section-title--icon">
+                            <i data-lucide="activity" style="width:15px;height:15px"></i> Recent Lumi Activity
                         </div>
                         <div class="pp-island-log-header">
                             <span>Source</span><span>Amount</span><span>When</span>
