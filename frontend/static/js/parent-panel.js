@@ -310,62 +310,88 @@ async function _ppHabits(body) {
     if (typeof lucide !== "undefined") lucide.createIcons();
 }
 
-// ─── Tab: Settings ────────────────────────────────────────────
+// ─── Tab: Settings (Accordion) ────────────────────────────────
+
+const _PP_SETTINGS_SECTIONS = [
+    { id: "tasks",    icon: "check-square", label: "Task Settings",         open: true  },
+    { id: "schedacc", icon: "calendar",     label: "Schedule & Account",    open: false },
+    { id: "report",   icon: "mail",         label: "Weekly Report",         open: false },
+    { id: "textbooks",icon: "book-open",    label: "Textbooks",             open: false },
+    { id: "xp",       icon: "zap",          label: "XP Rules",              open: false },
+    { id: "island",   icon: "palmtree",     label: "Island System",         open: false },
+    { id: "ckla",     icon: "layers",       label: "CKLA Settings",         open: false },
+    { id: "devtools", icon: "terminal",     label: "Developer / Test Mode", open: false },
+];
 
 /** Tasks + schedule + PIN/email + weekly report + textbooks. @tag PARENT SETTINGS */
 async function _ppSettings(body) {
-    body.innerHTML = `
-        <div class="pp-section-title">Task Settings</div>
-        <div id="pp-settings-tasks"></div>
-
-        <div class="pp-grid-2" style="margin-top:20px">
-            <div>
-                <div class="pp-section-title">Academy Schedule</div>
-                <div id="pp-settings-schedule"></div>
+    body.innerHTML = `<div class="pp-accordion">${_PP_SETTINGS_SECTIONS.map(s => `
+        <div class="pp-accordion-item${s.open ? " open" : ""}" data-section="${s.id}">
+            <button class="pp-accordion-header" onclick="window._ppAccordionToggle(this)">
+                <span class="pp-accordion-icon"><i data-lucide="${s.icon}"></i></span>
+                <span class="pp-accordion-label">${s.label}</span>
+                <i data-lucide="chevron-down" class="pp-accordion-chevron"></i>
+            </button>
+            <div class="pp-accordion-body">
+                <div class="pp-accordion-content" id="pp-acc-${s.id}"></div>
             </div>
-            <div>
-                <div class="pp-section-title">Account</div>
-                <div id="pp-settings-pin"></div>
-            </div>
-        </div>
+        </div>`).join("")}
+    </div>`;
 
-        <div class="pp-section-title" style="margin-top:8px">Weekly Report</div>
-        <div id="pp-settings-report"></div>
+    if (typeof lucide !== "undefined") lucide.createIcons();
+    // Render the default-open section immediately
+    await _ppAccordionRender("tasks");
+}
 
-        <div class="pp-section-title" style="margin-top:24px">Textbooks</div>
-        <div id="pp-settings-textbooks"></div>
+/** Toggle accordion item open/closed; lazy-renders content on first open. @tag PARENT SETTINGS */
+async function _ppAccordionToggle(header) {
+    const item = header.closest(".pp-accordion-item");
+    const wasOpen = item.classList.contains("open");
+    item.classList.toggle("open", !wasOpen);
+    if (!wasOpen && !item.dataset.rendered) {
+        await _ppAccordionRender(item.dataset.section);
+    }
+}
+window._ppAccordionToggle = _ppAccordionToggle;
 
-        <div class="pp-section-title" style="margin-top:24px">XP Rules &amp; Report</div>
-        <div id="pp-settings-xp"></div>
+/** Render a single accordion section's content. @tag PARENT SETTINGS */
+async function _ppAccordionRender(sectionId) {
+    const el = document.getElementById(`pp-acc-${sectionId}`);
+    if (!el) return;
+    const item = el.closest(".pp-accordion-item");
+    if (item) item.dataset.rendered = "true";
 
-        <div class="pp-section-title" style="margin-top:24px">Island System</div>
-        <div id="pp-settings-island"></div>
-
-        <div class="pp-section-title" style="margin-top:24px">CKLA Settings</div>
-        <div id="pp-settings-ckla"></div>
-
-        <div class="pp-section-title" style="margin-top:24px">Developer / Test Mode</div>
-        <div id="pp-settings-testmode"></div>`;
-
-    const tasksEl     = document.getElementById("pp-settings-tasks");
-    const scheduleEl  = document.getElementById("pp-settings-schedule");
-    const pinEl       = document.getElementById("pp-settings-pin");
-    const reportEl    = document.getElementById("pp-settings-report");
-    const textbooksEl = document.getElementById("pp-settings-textbooks");
-    const xpEl        = document.getElementById("pp-settings-xp");
-    const islandEl    = document.getElementById("pp-settings-island");
-    const cklaEl      = document.getElementById("pp-settings-ckla");
-    const testModeEl  = document.getElementById("pp-settings-testmode");
-
-    if (typeof ppRenderTasks         === "function") await ppRenderTasks(tasksEl);
-    if (typeof ppRenderSchedule      === "function") await ppRenderSchedule(scheduleEl);
-    if (typeof ppRenderPin           === "function") ppRenderPin(pinEl);
-    if (typeof ppRenderReport        === "function") await ppRenderReport(reportEl);
-    if (typeof _ppTextbooks          === "function") await _ppTextbooks(textbooksEl);
-    if (typeof _ppXP                 === "function") await _ppXP(xpEl);
-    _ppIslandToggle(islandEl);
-    if (typeof ppRenderCKLASettings  === "function") await ppRenderCKLASettings(cklaEl);
-    await _ppTestModeSection(testModeEl);
+    if (sectionId === "tasks") {
+        if (typeof ppRenderTasks === "function") await ppRenderTasks(el);
+    } else if (sectionId === "schedacc") {
+        el.innerHTML = `
+            <div class="pp-grid-2" style="gap:20px">
+                <div>
+                    <div class="pp-section-title">Academy Schedule</div>
+                    <div id="pp-acc-schedule-inner"></div>
+                </div>
+                <div>
+                    <div class="pp-section-title">Account</div>
+                    <div id="pp-acc-pin-inner"></div>
+                </div>
+            </div>`;
+        const sEl = document.getElementById("pp-acc-schedule-inner");
+        const pEl = document.getElementById("pp-acc-pin-inner");
+        if (sEl && typeof ppRenderSchedule === "function") await ppRenderSchedule(sEl);
+        if (pEl && typeof ppRenderPin      === "function") ppRenderPin(pEl);
+    } else if (sectionId === "report") {
+        if (typeof ppRenderReport === "function") await ppRenderReport(el);
+    } else if (sectionId === "textbooks") {
+        if (typeof _ppTextbooks === "function") await _ppTextbooks(el);
+    } else if (sectionId === "xp") {
+        if (typeof _ppXP === "function") await _ppXP(el);
+    } else if (sectionId === "island") {
+        await _ppIslandToggle(el);
+    } else if (sectionId === "ckla") {
+        if (typeof ppRenderCKLASettings === "function") await ppRenderCKLASettings(el);
+    } else if (sectionId === "devtools") {
+        await _ppTestModeSection(el);
+    }
 
     if (typeof lucide !== "undefined") lucide.createIcons();
 }

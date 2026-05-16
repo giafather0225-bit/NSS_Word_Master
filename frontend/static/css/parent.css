@@ -481,6 +481,28 @@
   max-height: 320px; overflow: auto; white-space: pre-wrap; word-break: break-word;
 }
 
+/* ── Settings: Accordion ─────────────────────────────────── */
+.pp-accordion { display: flex; flex-direction: column; gap: 6px; }
+.pp-accordion-item {
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+  background: var(--bg-card); overflow: hidden;
+}
+.pp-accordion-header {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 13px 16px; background: none; border: none; cursor: pointer;
+  text-align: left; transition: background var(--transition-fast);
+}
+.pp-accordion-header:hover { background: var(--bg-page); }
+.pp-accordion-icon { color: var(--color-primary); flex-shrink: 0; }
+.pp-accordion-icon svg,
+.pp-accordion-icon i { width: 16px; height: 16px; display: block; }
+.pp-accordion-label { flex: 1; font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.pp-accordion-chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--text-hint); transition: transform 0.2s; }
+.pp-accordion-item.open .pp-accordion-chevron { transform: rotate(180deg); }
+.pp-accordion-body { display: none; padding: 0 16px 16px; }
+.pp-accordion-item.open .pp-accordion-body { display: block; }
+.pp-accordion-content { padding-top: 4px; }
+
 /* ── Settings: Coming Soon placeholder ───────────────────── */
 .pp-coming-soon {
   display: flex; flex-direction: column; align-items: center; gap: 10px;
