@@ -17,7 +17,7 @@ from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
-from sqlalchemy import func
+from sqlalchemy import func, and_
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -359,6 +359,27 @@ def get_hub_status(db: Session = Depends(get_db)):
         XPLog.created_at >= today_str,
     ).first() is not None
 
+    # 7-day accuracy for English (words last reviewed in the past 7 days)
+    seven_days_ago = (_date.today() - timedelta(days=7)).isoformat()
+    acc_row = (
+        db.query(
+            func.sum(WordReview.total_correct),
+            func.sum(WordReview.total_reviews),
+        )
+        .filter(
+            and_(
+                WordReview.source != "ckla",
+                WordReview.last_review >= seven_days_ago,
+                WordReview.total_reviews > 0,
+            )
+        )
+        .first()
+    )
+    if acc_row and acc_row[1]:
+        english_accuracy_7d = round(acc_row[0] / acc_row[1] * 100)
+    else:
+        english_accuracy_7d = None
+
     total_items = english_due + math_due + ckla_due
     est_minutes = max(1, round((english_due * 30 + ckla_due * 30 + math_due * 90) / 60)) if total_items else 0
 
@@ -367,6 +388,7 @@ def get_hub_status(db: Session = Depends(get_db)):
             "due":             english_due,
             "breakdown":       breakdown,
             "completed_today": english_done_today,
+            "accuracy_7d":     english_accuracy_7d,
         },
         "math": {
             "due":             math_due,

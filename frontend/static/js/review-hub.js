@@ -177,6 +177,19 @@
       info.appendChild(tags);
     }
 
+    // 7-day accuracy chip
+    var acc7d = _status.english && _status.english.accuracy_7d;
+    if (acc7d != null) {
+      var accChip = _html("div", "rh-accuracy-chip", "");
+      var accIcon = document.createElement("i");
+      accIcon.setAttribute("data-lucide", "trending-up");
+      accChip.appendChild(accIcon);
+      var accLabel = document.createElement("span");
+      accLabel.textContent = "7d accuracy: " + acc7d + "%";
+      accChip.appendChild(accLabel);
+      info.appendChild(accChip);
+    }
+
     card.appendChild(info);
 
     // Action
