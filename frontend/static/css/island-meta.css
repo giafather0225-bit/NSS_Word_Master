@@ -174,7 +174,7 @@
     left: 50%;
     transform: translateX(-50%);
     background: var(--diary-primary);
-    color: #fff;
+    color: var(--text-on-primary);
     font-size: 8px;
     font-weight: 800;
     padding: 1px 7px;
@@ -264,7 +264,7 @@
     flex-shrink: 0;
 }
 
-.idl-mission-ico--done { background: var(--math-primary); color: #fff; }
+.idl-mission-ico--done { background: var(--math-primary); color: var(--text-on-primary); }
 
 .idl-mission-info { flex: 1; min-width: 0; }
 
@@ -297,7 +297,7 @@
 }
 
 .idl-mission-gauge-fill--done    { background: var(--math-primary); }
-.idl-mission-gauge-fill--active  { background: linear-gradient(90deg, #F8C8D5, #E09AAE); }
+.idl-mission-gauge-fill--active  { background: linear-gradient(90deg, var(--island-gauge-happy-start), var(--diary-primary)); }
 
 .idl-mission-prog {
     font-size: 10px;
@@ -380,7 +380,7 @@
 
 .idl-weekly-gauge-fill {
     height: 100%;
-    background: linear-gradient(90deg, #B8A4DC, #E09AAE);
+    background: linear-gradient(90deg, var(--rewards-primary), var(--diary-primary));
     border-radius: 999px;
 }
 
@@ -447,7 +447,7 @@
 
 .imb-badge {
     background: var(--diary-primary);
-    color: #fff;
+    color: var(--text-on-primary);
     font-size: 11px;
     font-weight: 800;
     padding: 2px 8px;
