@@ -799,7 +799,7 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 
 ## US Academy (word-first SM-2)
 
-> ⚠️ 라우터 파일(`backend/routers/us_academy.py`)이 현재 존재하지 않음 — API 미구현 상태. DB 모델(USAcademyWord, USAcademyWordProgress)과 마이그레이션(010)은 존재함. 구현 전 라우터 파일 생성 필요.
+> ℹ️ 독립 라우터 없음 — 의도적. `USAcademyWord` 테이블은 CKLA 단어 사전으로 재활용 중 (`routers/ckla.py`가 직접 쿼리). 독립 서비스 테이블(passages/sessions/unit_results)은 migration 047·048에서 drop됨. 별도 `us_academy.py` 라우터 구현 불필요.
 
 데이터 모델: `USAcademyWord`, `USAcademyWordProgress` (passage/session/unit result 테이블은 047~048 migration으로 drop됨)
 - Migration: `010_us_academy_tables.py`, `047_drop_us_academy_passages.py`, `048_drop_us_academy_session_results.py`
@@ -1284,7 +1284,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 |---|------|------|------|
 | 1 | `backend/routers/files_common.py` | ~~라우터인데 dead code~~ → **실제로는 shared utility** (`files.py` + `files_voca.py`가 import해서 사용) — 라우터가 아니므로 `app.include_router` 대상 아님. P1 해제. | 영향 없음 |
 | 2 | `frontend/static/js/math-review.js` | ~~bundle 누락~~ → **`build.sh` bundle-b에 추가 완료** (2026-05-16) — `math-problems-ui.js` 뒤에 삽입 | ✅ 수정됨 |
-| 3 | `backend/routers/us_academy.py` | 파일 자체 없음 — `USAcademyWord`, `USAcademyWordProgress` 모델은 존재하지만 API 없음 | US Academy 기능 완전 미구현 |
+| 3 | `backend/routers/us_academy.py` | ~~미구현~~ → **라우터 불필요로 확인** (2026-05-16) — `USAcademyWord`는 CKLA 단어 사전으로 재활용 중 (`ckla.py`가 직접 쿼리). 독립 서비스 테이블(passages/sessions/unit_results)은 migration 047·048에서 이미 drop됨. P1 해제. | 영향 없음 |
 
 #### P2 — 기술 부채
 
