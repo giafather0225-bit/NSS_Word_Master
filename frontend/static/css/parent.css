@@ -956,3 +956,29 @@
 }
 .pp-island-content-grid { margin-top: 24px; gap: 24px; align-items: start; }
 .pp-island-log-empty { color: var(--text-hint); font-size: 13px; padding: 8px 0; margin: 0; }
+
+/* ─── Math: section title modifiers ──────────────────────── */
+.pp-section-title--no-top { margin-top: 0; }
+.pp-section-title--mt24   { margin-top: 24px; }
+
+/* ─── Math: table alignment helpers ──────────────────────── */
+.pp-th-right, .pp-td-right   { text-align: right; }
+.pp-th-center, .pp-td-center { text-align: center; }
+.pp-td-muted    { color: var(--text-secondary); }
+.pp-td-muted-sm { color: var(--text-secondary); font-size: 12px; }
+.pp-td-hint-sm  { color: var(--text-hint); font-size: 12px; }
+
+/* ─── Math: chart ─────────────────────────────────────────── */
+.pp-math-chart .pp-bar-col { min-width: 32px; }
+
+/* ─── Math: exit quiz row / score ─────────────────────────── */
+.pp-math-row--stuck  { background: var(--review-light); }
+.pp-math-wrong-count { color: var(--color-error); text-align: right; }
+.pp-math-score--hint { color: var(--text-hint); }
+
+/* ─── Math: inline badges ─────────────────────────────────── */
+.pp-math-badge--pass  { color: var(--color-success); font-weight: 700; font-size: 11px; }
+.pp-math-badge--fail  { color: var(--color-error);   font-size: 11px; }
+.pp-math-badge--stuck { color: var(--color-error);   font-weight: 700; font-size: 11px; }
+.pp-math-badge--first { color: var(--text-hint);     font-size: 11px; }
+.pp-math-badge--retry { color: var(--color-warning); font-size: 11px; font-weight: 600; }

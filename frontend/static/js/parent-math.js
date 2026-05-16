@@ -15,8 +15,9 @@ function _ppMathLesson(raw) {
 }
 
 /** Section title with a Lucide icon. */
-function _ppMathTitle(icon, label, extraStyle = "") {
-    return `<div class="pp-section-title pp-section-title--icon" style="${extraStyle}">
+function _ppMathTitle(icon, label, extraClass = "") {
+    const cls = "pp-section-title pp-section-title--icon" + (extraClass ? " " + extraClass : "");
+    return `<div class="${cls}">
         <i data-lucide="${icon}" style="width:16px;height:16px"></i>${label}
     </div>`;
 }
@@ -58,7 +59,7 @@ function _ppMathCards(data) {
     const eqRate = a.eq_pass_rate || 0;
     const eqStyle = eqRate >= 80 ? "color:var(--math-ink)" : eqRate > 0 ? "color:var(--color-warning)" : "";
     return `
-        ${_ppMathTitle("calculator", "Math Overview", "margin-top:0")}
+        ${_ppMathTitle("calculator", "Math Overview", "pp-section-title--no-top")}
         <div class="pp-stats pp-math-stats">
             <div class="pp-stat pp-math-stat">
                 <div class="pp-stat-num">${a.completed || 0}/${a.total_lessons || 0}</div>
@@ -92,13 +93,13 @@ function _ppMathWeakAreas(weak) {
     const rows = weak.map(w => `
         <tr>
             <td><strong>${escapeHtml(_ppMathLesson(w.lesson))}</strong></td>
-            <td style="color:var(--color-error);text-align:right">${w.wrong_count}×</td>
+            <td class="pp-math-wrong-count">${w.wrong_count}×</td>
         </tr>`).join("");
     return `
         ${_ppMathTitle("alert-triangle", "Weak Concepts")}
         <div class="pp-table-wrap">
             <table class="pp-log-table">
-                <thead><tr><th>Lesson</th><th style="text-align:right">Wrong</th></tr></thead>
+                <thead><tr><th>Lesson</th><th class="pp-th-right">Wrong</th></tr></thead>
                 <tbody>${rows}</tbody>
             </table>
         </div>`;
@@ -141,14 +142,14 @@ function _ppMathDailyChart(daily) {
         const pct = total ? Math.round((score / maxScore) * 100) : 0;
         const dayLabel = (d.date || "").slice(5);
         const done = d.completed ? "pp-bar-fill pp-math-bar-done" : "pp-bar-fill pp-math-bar-partial";
-        return `<div class="pp-bar-col" style="min-width:32px">
+        return `<div class="pp-bar-col">
             <div class="pp-bar-value">${score}/${total}</div>
             <div class="pp-bar-track"><div class="${done}" style="height:${pct}%"></div></div>
             <div class="pp-bar-label">${dayLabel}</div>
         </div>`;
     }).join("");
     return `
-        ${_ppMathTitle("calendar-days", "Daily Challenge · 7 Days", "margin-top:24px")}
+        ${_ppMathTitle("calendar-days", "Daily Challenge · 7 Days", "pp-section-title--mt24")}
         <div class="pp-bar-chart pp-math-chart">${bars}</div>`;
 }
 
@@ -161,19 +162,19 @@ function _ppMathKangaroo(kang) {
         return `
             <tr>
                 <td><strong>${escapeHtml(k.set_id || "")}</strong></td>
-                <td style="text-align:right">${k.score}/${k.total}</td>
-                <td style="text-align:right"><span class="pp-stage-acc pp-stage-acc--${accClass}">${acc}%</span></td>
-                <td style="color:var(--text-secondary)">${escapeHtml(k.completed_at || "")}</td>
+                <td class="pp-td-right">${k.score}/${k.total}</td>
+                <td class="pp-td-right"><span class="pp-stage-acc pp-stage-acc--${accClass}">${acc}%</span></td>
+                <td class="pp-td-muted">${escapeHtml(k.completed_at || "")}</td>
             </tr>`;
     }).join("");
     return `
-        ${_ppMathTitle("award", "Kangaroo Sets", "margin-top:24px")}
+        ${_ppMathTitle("award", "Kangaroo Sets", "pp-section-title--mt24")}
         <div class="pp-table-wrap">
             <table class="pp-log-table">
                 <thead><tr>
                     <th>Set</th>
-                    <th style="text-align:right">Score</th>
-                    <th style="text-align:right">Acc</th>
+                    <th class="pp-th-right">Score</th>
+                    <th class="pp-th-right">Acc</th>
                     <th>Date</th>
                 </tr></thead>
                 <tbody>${rows}</tbody>
@@ -186,7 +187,7 @@ function _ppMathSpacedReview(sr) {
     if (!sr || !sr.total) return "";
     const dueClass = sr.due_today > 0 ? "color:var(--color-error)" : "color:var(--color-success)";
     return `
-        ${_ppMathTitle("repeat", "Spaced Review", "margin-top:24px")}
+        ${_ppMathTitle("repeat", "Spaced Review", "pp-section-title--mt24")}
         <div class="pp-stats pp-math-stats">
             <div class="pp-stat pp-math-stat">
                 <div class="pp-stat-num" style="${dueClass}">${sr.due_today}</div>
@@ -214,46 +215,45 @@ function _ppMathExitQuizHistory(history) {
         const score = r.score != null ? r.score : "—";
         const pct   = r.score != null ? Math.round((r.score / 5) * 100) : 0;
         const stuck = !r.passed;
-        const rowStyle = stuck ? "background:var(--review-light)" : "";
 
         const accClass = stuck ? "low" : pct >= 90 ? "good" : "ok";
         const scoreCell = stuck
-            ? `<span style="color:var(--text-hint)">${score}/5</span>`
+            ? `<span class="pp-math-score--hint">${score}/5</span>`
             : `${score}/5`;
 
         const attempts = r.attempts || 1;
         const attLabel = attempts === 1
-            ? `<span style="color:var(--text-hint);font-size:11px">1st try</span>`
-            : `<span style="color:var(--color-warning);font-size:11px;font-weight:600">${attempts} tries</span>`;
+            ? `<span class="pp-math-badge--first">1st try</span>`
+            : `<span class="pp-math-badge--retry">${attempts} tries</span>`;
 
         const resultBadge = stuck
-            ? `<span style="color:var(--color-error);font-weight:700;font-size:11px">Stuck</span>`
-            : `<span style="color:var(--color-success);font-weight:700;font-size:11px">Pass</span>`;
+            ? `<span class="pp-math-badge--stuck">Stuck</span>`
+            : `<span class="pp-math-badge--pass">Pass</span>`;
 
         return `
-            <tr style="${rowStyle}">
-                <td style="color:var(--text-hint);font-size:12px">${escapeHtml(r.grade || "")}</td>
-                <td style="color:var(--text-secondary);font-size:12px">${escapeHtml((r.unit || "").replace(/_/g," "))}</td>
+            <tr${stuck ? ' class="pp-math-row--stuck"' : ''}>
+                <td class="pp-td-hint-sm">${escapeHtml(r.grade || "")}</td>
+                <td class="pp-td-muted-sm">${escapeHtml((r.unit || "").replace(/_/g," "))}</td>
                 <td><strong>${escapeHtml(_ppMathLesson(r.lesson || ""))}</strong></td>
-                <td style="text-align:right">${scoreCell}</td>
-                <td style="text-align:right"><span class="pp-stage-acc pp-stage-acc--${accClass}">${pct}%</span></td>
-                <td style="text-align:center">${attLabel}</td>
-                <td style="text-align:center">${resultBadge}</td>
-                <td style="color:var(--text-secondary)">${escapeHtml(r.completed_at || "")}</td>
+                <td class="pp-td-right">${scoreCell}</td>
+                <td class="pp-td-right"><span class="pp-stage-acc pp-stage-acc--${accClass}">${pct}%</span></td>
+                <td class="pp-td-center">${attLabel}</td>
+                <td class="pp-td-center">${resultBadge}</td>
+                <td class="pp-td-muted">${escapeHtml(r.completed_at || "")}</td>
             </tr>`;
     }).join("");
     return `
-        ${_ppMathTitle("check-circle", "Exit Quiz History", "margin-top:24px")}
+        ${_ppMathTitle("check-circle", "Exit Quiz History", "pp-section-title--mt24")}
         <div class="pp-table-wrap">
             <table class="pp-log-table">
                 <thead><tr>
                     <th>Grade</th>
                     <th>Unit</th>
                     <th>Lesson</th>
-                    <th style="text-align:right">Score</th>
-                    <th style="text-align:right">Acc</th>
-                    <th style="text-align:center">Attempts</th>
-                    <th style="text-align:center">Result</th>
+                    <th class="pp-th-right">Score</th>
+                    <th class="pp-th-right">Acc</th>
+                    <th class="pp-th-center">Attempts</th>
+                    <th class="pp-th-center">Result</th>
                     <th>Date</th>
                 </tr></thead>
                 <tbody>${rows}</tbody>
@@ -267,31 +267,31 @@ function _ppMathUnitTestHistory(history) {
     const rows = history.map(r => {
         const accClass = r.pct >= 90 ? "good" : r.pct >= 80 ? "ok" : "low";
         const passed = r.passed
-            ? `<span style="color:var(--color-success);font-weight:700">Pass</span>`
-            : `<span style="color:var(--color-error)">Fail</span>`;
+            ? `<span class="pp-math-badge--pass">Pass</span>`
+            : `<span class="pp-math-badge--fail">Fail</span>`;
         const attempt = r.attempt_number === 1
-            ? `<span style="color:var(--text-hint);font-size:11px">1st</span>`
-            : `<span style="color:var(--color-warning);font-size:11px;font-weight:600">Retry</span>`;
+            ? `<span class="pp-math-badge--first">1st</span>`
+            : `<span class="pp-math-badge--retry">Retry</span>`;
         return `
             <tr>
                 <td><strong>${escapeHtml(r.unit_id || "")}</strong></td>
-                <td style="text-align:center">${attempt}</td>
-                <td style="text-align:right">${r.score}/${r.total}</td>
-                <td style="text-align:right"><span class="pp-stage-acc pp-stage-acc--${accClass}">${r.pct}%</span></td>
-                <td style="text-align:center">${passed}</td>
-                <td style="color:var(--text-secondary)">${escapeHtml(r.taken_at || "")}</td>
+                <td class="pp-td-center">${attempt}</td>
+                <td class="pp-td-right">${r.score}/${r.total}</td>
+                <td class="pp-td-right"><span class="pp-stage-acc pp-stage-acc--${accClass}">${r.pct}%</span></td>
+                <td class="pp-td-center">${passed}</td>
+                <td class="pp-td-muted">${escapeHtml(r.taken_at || "")}</td>
             </tr>`;
     }).join("");
     return `
-        ${_ppMathTitle("clipboard-list", "Unit Test History", "margin-top:24px")}
+        ${_ppMathTitle("clipboard-list", "Unit Test History", "pp-section-title--mt24")}
         <div class="pp-table-wrap">
             <table class="pp-log-table">
                 <thead><tr>
                     <th>Unit</th>
-                    <th style="text-align:center">Attempt</th>
-                    <th style="text-align:right">Score</th>
-                    <th style="text-align:right">Acc</th>
-                    <th style="text-align:center">Result</th>
+                    <th class="pp-th-center">Attempt</th>
+                    <th class="pp-th-right">Score</th>
+                    <th class="pp-th-right">Acc</th>
+                    <th class="pp-th-center">Result</th>
                     <th>Date</th>
                 </tr></thead>
                 <tbody>${rows}</tbody>
