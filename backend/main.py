@@ -65,6 +65,10 @@ from backend.routers import dashboard as dashboard_router
 from backend.routers import tutor_sentence as tutor_sentence_router
 from backend.routers import ckla as ckla_router
 from backend.routers import island as island_router
+from backend.routers import island_character as island_character_router
+from backend.routers import island_shop as island_shop_router
+from backend.routers import island_legend as island_legend_router
+from backend.routers import island_dev as island_dev_router
 from backend.services import ollama_manager, backup_engine
 from backend.services import island_care_engine as care
 from backend.services import island_production_engine as prod
@@ -377,6 +381,10 @@ app.include_router(tutor_sentence_router.router)
 app.include_router(ckla_router.router)
 app.include_router(parent_ckla_router.router)
 app.include_router(island_router.router)
+app.include_router(island_character_router.router)
+app.include_router(island_shop_router.router)
+app.include_router(island_legend_router.router)
+app.include_router(island_dev_router.router)
 
 
 # ── Static page routes ─────────────────────────────────────

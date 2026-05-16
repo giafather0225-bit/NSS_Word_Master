@@ -604,23 +604,23 @@
 
 /* Debug Terminal (Phase 3 Spelling) */
 .debug-terminal {
-    background: #0d1117;
-    color: #58d68d;
+    background: var(--debug-bg);
+    color: var(--debug-text);
     font-family: ui-monospace, 'Cascadia Code', monospace;
     font-size: 0.92rem;
     border-radius: 12px;
     padding: 14px 18px;
     margin-top: 8px;
     line-height: 1.7;
-    border: 1px solid #30363d;
+    border: 1px solid var(--debug-border);
     text-align: left;
 }
 .debug-terminal.hidden { display: none !important; }
-.debug-line-err  { color: #ff7b72; }
-.debug-line-hint { color: #ffa657; }
-.debug-line-ok   { color: #3fb950; }
+.debug-line-err  { color: var(--debug-err); }
+.debug-line-hint { color: var(--debug-hint); }
+.debug-line-ok   { color: var(--debug-ok); }
 .debug-cursor    { display: inline-block; width: 8px; height: 1.1em;
-                   background: #58d68d; vertical-align: text-bottom;
+                   background: var(--debug-cursor); vertical-align: text-bottom;
                    animation: blink 1s step-start infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
