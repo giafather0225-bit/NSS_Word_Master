@@ -138,24 +138,27 @@ async function _ppSaveSchedule() {
 function ppRenderPin(body) {
     const themeIsDark = localStorage.getItem("gia-theme") === "dark";
     body.innerHTML = `
-        <div class="pp-section-title">Appearance</div>
-        <label class="pp-toggle-row" style="margin-bottom:12px">
-            <input id="pp-theme-toggle" type="checkbox" ${themeIsDark ? "checked" : ""} onchange="_ppToggleTheme(this.checked)">
-            <span><i data-lucide="moon" style="width:14px;height:14px;vertical-align:-2px"></i> Dark mode</span>
-        </label>
-
-        <div class="pp-section-divider"></div>
-
-        <div class="pp-section-title">Parent Email</div>
-        <div class="pp-form-stack">
+        <div class="pp-grid-2" style="align-items:start;margin-bottom:0">
             <div>
-                <label class="pp-form-label">Notification email</label>
-                <input id="pp-parent-email" class="pp-input" type="email"
-                       placeholder="parent@example.com" autocomplete="email" />
-                <p class="pp-form-hint">GIA's Day Off requests will be sent here.</p>
+                <div class="pp-section-title" style="margin-top:0">Appearance</div>
+                <label class="pp-toggle-row">
+                    <input id="pp-theme-toggle" type="checkbox" ${themeIsDark ? "checked" : ""} onchange="_ppToggleTheme(this.checked)">
+                    <span><i data-lucide="moon" style="width:14px;height:14px;vertical-align:-2px"></i> Dark mode</span>
+                </label>
             </div>
-            <button class="pp-btn primary" onclick="_ppSaveParentEmail()">Save Email</button>
-            <p id="pp-email-msg" class="pp-form-msg"></p>
+            <div>
+                <div class="pp-section-title" style="margin-top:0">Parent Email</div>
+                <div class="pp-form-stack">
+                    <div>
+                        <label class="pp-form-label">Notification email</label>
+                        <input id="pp-parent-email" class="pp-input" type="email"
+                               placeholder="parent@example.com" autocomplete="email" />
+                        <p class="pp-form-hint">GIA's Day Off requests will be sent here.</p>
+                    </div>
+                    <button class="pp-btn primary" onclick="_ppSaveParentEmail()">Save Email</button>
+                    <p id="pp-email-msg" class="pp-form-msg"></p>
+                </div>
+            </div>
         </div>
 
         <div class="pp-section-divider"></div>

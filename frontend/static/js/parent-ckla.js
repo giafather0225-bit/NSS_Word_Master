@@ -31,7 +31,7 @@ async function _ppCKLA(body) {
 
         // ── Hero stats ─────────────────────────────────────────
         const hero = `
-            <div class="pp-stats" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px">
+            <div class="pp-stats pp-ckla-stats" style="margin-bottom:20px">
                 <div class="pp-stat">
                     <div class="pp-stat-num">${d.completed_lessons}<span style="font-size:.65em;color:var(--text-hint)">/${d.total_lessons}</span></div>
                     <div class="pp-stat-label">Lessons Done</div>
