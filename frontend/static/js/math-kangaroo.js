@@ -25,6 +25,14 @@ const KANG_LEVELS = [
 /** @tag MATH @tag KANGAROO */
 function _kangShowStage() {
     if (typeof showLessonStage === 'function') showLessonStage();
+    // Remove Math Academy's sidebar rail if it's still mounted from a previous session
+    if (typeof unmountMathShell === 'function') unmountMathShell();
+}
+
+/** @tag MATH @tag KANGAROO */
+function _kangExit() {
+    if (typeof hideLessonStage === 'function') hideLessonStage();
+    if (typeof switchView === 'function') switchView('math');
 }
 
 // ── Entry ──────────────────────────────────────────────────
@@ -74,6 +82,9 @@ function _kangRenderPicker() {
     stage.innerHTML = `
         <div class="kang-wrap kang-picker">
             <header class="kang-picker-head">
+                <button class="kang-btn kang-btn-ghost kang-picker-back" id="kang-picker-exit">
+                    <i data-lucide="arrow-left"></i> Back
+                </button>
                 <h1 class="kang-title">Math Kangaroo</h1>
                 <p class="kang-sub">Past Papers — pick your level</p>
             </header>
@@ -82,6 +93,8 @@ function _kangRenderPicker() {
         </div>
     `;
 
+    stage.querySelector('#kang-picker-exit')?.addEventListener('click', _kangExit);
+
     stage.querySelectorAll('.kang-tab').forEach(btn => {
         btn.addEventListener('click', () => {
             kangState.level = btn.dataset.level;
@@ -89,6 +102,7 @@ function _kangRenderPicker() {
         });
     });
 
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     _kangRenderGrid();
 }
 

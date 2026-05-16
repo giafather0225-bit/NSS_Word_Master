@@ -63,7 +63,20 @@
 }
 
 /* ── Picker ────────────────────────────────────────────── */
-.kang-picker-head { text-align: center; margin-bottom: 16px; }
+.kang-picker-head {
+    position: relative;
+    text-align: center;
+    margin-bottom: 16px;
+}
+.kang-picker-back {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
 .kang-title {
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
