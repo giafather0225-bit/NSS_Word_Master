@@ -285,6 +285,43 @@
   background: var(--math-hover);
 }
 
+/* ── Per-session result card ─────────────────────────────────── */
+
+.rh-session-result {
+  background: var(--math-light);
+  border: 1px solid var(--math-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.rh-session-result > i {
+  color: var(--math-primary);
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.rh-session-result-info {
+  flex: 1;
+}
+
+.rh-session-result-title {
+  font-weight: 700;
+  font-size: var(--font-size-md);
+  color: var(--math-ink);
+}
+
+.rh-session-result-xp {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--arcade-ink);
+  margin-top: 2px;
+}
+
 /* ── Loading state ──────────────────────────────────────────── */
 
 .rh-loading {

@@ -111,7 +111,7 @@
     min-width: 0;
 }
 
-.iss-row-label--danger { color: #B5443B; }
+.iss-row-label--danger { color: var(--color-danger-text); }
 
 .iss-row-sub {
     font-size: 12px;
@@ -146,7 +146,7 @@
     width: 19px;
     height: 19px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--bg-card);
     box-shadow: 0 1px 3px rgba(0,0,0,.2);
     position: absolute;
     top: 2px;
@@ -194,7 +194,7 @@
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--bg-card);
     box-shadow: var(--shadow-soft);
     border: 1.5px solid var(--diary-primary);
 }
@@ -354,7 +354,7 @@
 
 .ipc-item-ico--gem  { background: var(--arcade-light); }
 .ipc-item-ico--lumi { background: var(--rewards-light); }
-.ipc-item-ico--err  { background: #FFE5E5; }
+.ipc-item-ico--err  { background: var(--color-danger-bg); }
 .ipc-item-ico--done { background: var(--math-light); }
 
 .ipc-checkmark {
@@ -365,7 +365,7 @@
     height: 30px;
     border-radius: 50%;
     background: var(--math-primary);
-    color: #fff;
+    color: var(--text-on-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -485,7 +485,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, #FBEEF2 0%, #F2ECFA 50%, #EEF4FA 100%);
+    background: linear-gradient(180deg, var(--diary-light) 0%, var(--rewards-light) 50%, var(--english-light) 100%);
     z-index: 9000;
 }
 
@@ -742,7 +742,7 @@
 .itc-next-btn {
     padding: 7px 16px;
     background: var(--diary-primary);
-    color: #fff;
+    color: var(--text-on-primary);
     border: none;
     border-radius: var(--radius-full);
     font-family: var(--font-family-display);

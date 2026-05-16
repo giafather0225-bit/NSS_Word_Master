@@ -396,6 +396,8 @@
 
   async function _onEnglishDone(data) {
     // data = { correct, total } from review.js showDone hook
+    var xpEarned = 0;
+    var sessionIsland = null;
     try {
       var res = await fetch("/api/review/session-complete", {
         method: "POST",
@@ -404,14 +406,12 @@
       });
       if (res.ok) {
         var result = await res.json();
-        if (result.xp_earned > 0 && typeof window.showToast === "function") {
-          window.showToast("+" + result.xp_earned + " XP — English review complete!", "success");
+        xpEarned = result.xp_earned || 0;
+        if (xpEarned > 0 && typeof window.showToast === "function") {
+          window.showToast("+" + xpEarned + " XP — English review complete!", "success");
         }
-        if (result.island) _islandData = result.island;
-        if (result.all_done) {
-          _englishDone = true;
-          _mathDone = true;
-        }
+        if (result.island) { _islandData = result.island; sessionIsland = result.island; }
+        if (result.all_done) { _englishDone = true; _mathDone = true; }
       }
     } catch (e) {
       console.warn("[ReviewHub] session-complete english failed:", e);
@@ -419,6 +419,7 @@
 
     _englishDone = true;
     _refreshCards();
+    _showSessionResult("English Review", xpEarned, sessionIsland);
 
     // If math is also due, auto-scroll / highlight math card
     if (_status && _status.math && _status.math.due > 0 && !_mathDone) {
@@ -428,6 +429,8 @@
   }
 
   async function _onCklaDone() {
+    var xpEarned = 0;
+    var sessionIsland = null;
     try {
       var res = await fetch("/api/review/session-complete", {
         method: "POST",
@@ -436,10 +439,11 @@
       });
       if (res.ok) {
         var result = await res.json();
-        if (result.xp_earned > 0 && typeof window.showToast === "function") {
-          window.showToast("+" + result.xp_earned + " XP — CKLA review complete!", "success");
+        xpEarned = result.xp_earned || 0;
+        if (xpEarned > 0 && typeof window.showToast === "function") {
+          window.showToast("+" + xpEarned + " XP — CKLA review complete!", "success");
         }
-        if (result.island) _islandData = result.island;
+        if (result.island) { _islandData = result.island; sessionIsland = result.island; }
       }
     } catch (e) {
       console.warn("[ReviewHub] session-complete ckla failed:", e);
@@ -447,9 +451,12 @@
 
     _cklaDone = true;
     _refreshCards();
+    _showSessionResult("CKLA Review", xpEarned, sessionIsland);
   }
 
   async function _onMathDone() {
+    var xpEarned = 0;
+    var sessionIsland = null;
     try {
       var res = await fetch("/api/review/session-complete", {
         method: "POST",
@@ -458,10 +465,11 @@
       });
       if (res.ok) {
         var result = await res.json();
-        if (result.xp_earned > 0 && typeof window.showToast === "function") {
-          window.showToast("+" + result.xp_earned + " XP — Math review complete!", "success");
+        xpEarned = result.xp_earned || 0;
+        if (xpEarned > 0 && typeof window.showToast === "function") {
+          window.showToast("+" + xpEarned + " XP — Math review complete!", "success");
         }
-        if (result.island) _islandData = result.island;
+        if (result.island) { _islandData = result.island; sessionIsland = result.island; }
       }
     } catch (e) {
       console.warn("[ReviewHub] session-complete math failed:", e);
@@ -469,6 +477,42 @@
 
     _mathDone = true;
     _refreshCards();
+    _showSessionResult("Math Review", xpEarned, sessionIsland);
+  }
+
+  // ── Per-session result card ───────────────────────────────────────
+
+  function _showSessionResult(label, xpEarned, island) {
+    var body = _el("rh-body");
+    if (!body) return;
+
+    // Remove any previous per-session result card
+    var old = body.querySelector(".rh-session-result");
+    if (old) old.remove();
+
+    var card = _html("div", "rh-session-result", "");
+
+    var iconEl = document.createElement("i");
+    iconEl.setAttribute("data-lucide", "check-circle-2");
+    card.appendChild(iconEl);
+
+    var info = _html("div", "rh-session-result-info", "");
+    info.appendChild(_html("div", "rh-session-result-title", label + " Complete"));
+    if (xpEarned > 0) {
+      info.appendChild(_html("div", "rh-session-result-xp", "+" + xpEarned + " XP earned"));
+    }
+    card.appendChild(info);
+
+    // Island gain slot
+    if (typeof _appendIslandUpdate === "function" && island) {
+      var islandSlot = document.createElement("div");
+      card.appendChild(islandSlot);
+      setTimeout(function () { _appendIslandUpdate(islandSlot, island); }, 0);
+    }
+
+    // Insert at top of body so it's immediately visible
+    body.insertBefore(card, body.firstChild);
+    if (typeof lucide !== "undefined") lucide.createIcons();
   }
 
   // ── Refresh card area after one session finishes ──────────────────
@@ -499,6 +543,9 @@
     if (allDone) {
       var existing = body.querySelector(".rh-all-done");
       if (!existing) {
+        // Per-session result card is superseded by the all-done banner
+        var prevResult = body.querySelector(".rh-session-result");
+        if (prevResult) prevResult.remove();
         body.appendChild(_buildAllDoneBanner());
         var backBtn = _el("rh-all-done-back");
         if (backBtn) backBtn.addEventListener("click", close);

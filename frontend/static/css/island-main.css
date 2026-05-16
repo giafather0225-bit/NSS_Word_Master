@@ -21,13 +21,13 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: linear-gradient(180deg, #b8e0f7 0%, #e9f6fe 60%, #d4eecc 100%);
+    background: linear-gradient(180deg, var(--island-sky-day-top) 0%, var(--island-sky-day-mid) 60%, var(--island-sky-day-ground) 100%);
     transition: background var(--transition-slow);
 }
 
 /* Night sky */
 .isl-night {
-    background: linear-gradient(180deg, #0e1a3a 0%, #1a2a5e 50%, #2a3a4a 100%);
+    background: linear-gradient(180deg, var(--island-sky-night-top) 0%, var(--island-sky-night-mid) 50%, var(--island-sky-night-bot) 100%);
 }
 .isl-night .isl-topbar  { background: rgba(10, 16, 40, 0.85); border-color: rgba(255,255,255,0.08); }
 .isl-night .isl-zone    { border-color: rgba(255,255,255,0.12); }
@@ -209,7 +209,7 @@
     height: 10px;
     border-radius: 50%;
     background: var(--color-primary);
-    border: 2px solid #fff;
+    border: 2px solid var(--text-on-primary);
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     animation: isl-idle 3s ease-in-out infinite;
 }
@@ -387,7 +387,7 @@
     top: 10px;
     right: 10px;
     background: var(--rewards-primary);
-    color: #fff;
+    color: var(--text-on-primary);
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.04em;
@@ -518,7 +518,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #1a3a52;
+    background: var(--island-sky-night-panel);
 }
 
 /* ── Backdrop image ──────────────────────────────────────────── */
@@ -557,7 +557,7 @@
 .gim-star {
     position: absolute;
     border-radius: 50%;
-    background: #fff;
+    background: var(--bg-card);
     animation: gim-twinkle 2s ease-in-out infinite alternate;
 }
 
@@ -580,7 +580,7 @@
 }
 .gim-night-moon {
     font-size: 48px;
-    filter: drop-shadow(0 0 12px #ffe49a);
+    filter: drop-shadow(0 0 12px var(--island-star-glow));
 }
 
 /* ── Top bar ─────────────────────────────────────────────────── */
@@ -620,14 +620,14 @@
     cursor: default;
     white-space: nowrap;
 }
-.gim-stat--lumi   { background: #EEF4FA; color: var(--english-ink); cursor: pointer; }
+.gim-stat--lumi   { background: var(--english-light); color: var(--english-ink); cursor: pointer; }
 .gim-stat--legend { background: var(--rewards-light); color: var(--rewards-ink); }
 .gim-stat--streak { background: var(--review-light);  color: var(--review-ink); }
 .gim-stat--lumi:hover { background: var(--english-soft); }
 
-.gim-topbar--night .gim-stat--lumi   { background: rgba(127,168,204,.2); color: #c8dcee; }
-.gim-topbar--night .gim-stat--legend { background: rgba(184,164,220,.2); color: #d4c8ee; }
-.gim-topbar--night .gim-stat--streak { background: rgba(235,169,140,.2); color: #f0c4a8; }
+.gim-topbar--night .gim-stat--lumi   { background: rgba(127,168,204,.2); color: var(--island-night-text-lumi); }
+.gim-topbar--night .gim-stat--legend { background: rgba(184,164,220,.2); color: var(--island-night-text-legend); }
+.gim-topbar--night .gim-stat--streak { background: rgba(235,169,140,.2); color: var(--island-night-text-streak); }
 
 .gim-iconbtn {
     width: 36px;
@@ -645,7 +645,7 @@
 .gim-iconbtn:hover { background: var(--bg-surface); color: var(--text-primary); }
 .gim-iconbtn i    { width: 18px; height: 18px; }
 .gim-topbar--night .gim-iconbtn { color: rgba(255,255,255,.6); }
-.gim-topbar--night .gim-iconbtn:hover { background: rgba(255,255,255,.08); color: #fff; }
+.gim-topbar--night .gim-iconbtn:hover { background: rgba(255,255,255,.08); color: var(--text-on-primary); }
 
 /* ── Map stage ───────────────────────────────────────────────── */
 
@@ -710,7 +710,7 @@
 /* ── Zone label pill ─────────────────────────────────────────── */
 
 .gim-label {
-    background: #fff;
+    background: var(--bg-card);
     border-radius: var(--radius-full);
     padding: 4px 12px;
     font-family: var(--font-family-display);
@@ -746,10 +746,10 @@
     box-shadow: 0 2px 6px rgba(0,0,0,.3);
     pointer-events: none;
 }
-.gim-badge--warn { background: #D97A7A; color: #fff; }
+.gim-badge--warn { background: var(--color-error); color: var(--text-on-primary); }
 .gim-badge--evo  {
-    background: #EEC770;
-    color: #7A5A1E;
+    background: var(--arcade-primary);
+    color: var(--arcade-ink);
     width: 28px;
     height: 28px;
     animation: gim-pulse-badge 1.4s ease-in-out infinite;
@@ -805,7 +805,7 @@
     height: 40px;
     background: rgba(255,255,255,.96);
     border-radius: 50%;
-    border: 2px solid #fff;
+    border: 2px solid var(--text-on-primary);
     box-shadow: 0 4px 10px rgba(0,0,0,.2);
     font-size: 22px;
     line-height: 1;
@@ -860,7 +860,7 @@
 
 .gim-bubble-gauge--hunger::after { background: var(--arcade-primary); }
 .gim-bubble-gauge--happy::after  { background: var(--diary-primary); }
-.gim-bubble-gauge.gim-gauge--warn::after { background: var(--color-error, #D97A7A); }
+.gim-bubble-gauge.gim-gauge--warn::after { background: var(--color-error); }
 
 /* ── Streak panel ────────────────────────────────────────────── */
 
@@ -903,7 +903,7 @@
     justify-content: center;
     flex-shrink: 0;
 }
-.gim-streak-dot--lit  { background: #EEC770; border: 2px solid #D8AE55; }
+.gim-streak-dot--lit  { background: var(--arcade-primary); border: 2px solid var(--arcade-hover); }
 .gim-streak-dot--dark { background: rgba(0,0,0,.12); border: 2px solid transparent; }
 
 .gim-streak-flame {
@@ -977,7 +977,7 @@
     width: 100%;
     padding: 7px 0;
     background: var(--diary-primary);
-    color: #fff;
+    color: var(--text-on-primary);
     border: none;
     border-radius: var(--radius-md);
     font-family: var(--font-family-display);
@@ -1265,9 +1265,9 @@
     right: 8px;
     width: 10px;
     height: 10px;
-    background: var(--color-error, #e05555);
+    background: var(--color-error);
     border-radius: 50%;
-    border: 2px solid #fff;
+    border: 2px solid var(--text-on-primary);
     box-shadow: 0 1px 4px rgba(200,0,0,.30);
     animation: gim-warn-pulse 1.6s ease-in-out infinite;
     z-index: 2;

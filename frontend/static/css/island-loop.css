@@ -15,10 +15,10 @@
     overflow: hidden;
 }
 
-.ifd-screen--ocean   { background: linear-gradient(180deg, #E8F4FF 0%, #EEF4FA 100%); }
-.ifd-screen--savanna { background: linear-gradient(180deg, #FBF3DE 0%, #FBEEF2 100%); }
-.ifd-screen--space   { background: linear-gradient(180deg, #F2ECFA 0%, #EEF4FA 100%); }
-.ifd-screen--forest  { background: linear-gradient(180deg, #EEF7F2 0%, #FBEEF2 100%); }
+.ifd-screen--ocean   { background: linear-gradient(180deg, var(--island-zone-ocean-top) 0%, var(--english-light) 100%); }
+.ifd-screen--savanna { background: linear-gradient(180deg, var(--arcade-light) 0%, var(--diary-light) 100%); }
+.ifd-screen--space   { background: linear-gradient(180deg, var(--rewards-light) 0%, var(--english-light) 100%); }
+.ifd-screen--forest  { background: linear-gradient(180deg, var(--math-light) 0%, var(--diary-light) 100%); }
 
 .ifd-topbar {
     display: flex;
@@ -214,8 +214,8 @@
     transition: width .4s var(--ease-calm);
 }
 
-.ifd-gauge-fill--hunger    { background: linear-gradient(90deg, #F4B27E, #EBA98C); }
-.ifd-gauge-fill--happiness { background: linear-gradient(90deg, #F8C8D5, #E09AAE); }
+.ifd-gauge-fill--hunger    { background: linear-gradient(90deg, var(--island-gauge-hunger-start), var(--review-primary)); }
+.ifd-gauge-fill--happiness { background: linear-gradient(90deg, var(--island-gauge-happy-start), var(--diary-primary)); }
 
 /* Food tray */
 .ifd-tray {
@@ -275,7 +275,7 @@
     inset: 0;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(180deg, #1A1827 0%, #2A2147 60%, #1A1B3A 100%);
+    background: linear-gradient(180deg, var(--island-night-bg) 0%, var(--island-night-mid) 60%, var(--island-night-deep) 100%);
     overflow: hidden;
 }
 
@@ -291,7 +291,7 @@
     width: 3px;
     height: 3px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--bg-card);
     animation: gim-twinkle 3s ease infinite;
 }
 
@@ -302,7 +302,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #FFF6D9, #F2E2A8);
+    background: radial-gradient(circle at 35% 35%, var(--island-moon-glow), var(--island-moon-core));
     box-shadow: 0 0 40px rgba(255,246,217,.35);
 }
 
@@ -321,14 +321,14 @@
     font-family: var(--font-family-display);
     font-size: 17px;
     font-weight: 800;
-    color: #F2EDE2;
+    color: var(--island-text-on-night);
 }
 
 .islp-time {
     font-size: 13px;
     font-weight: 700;
     background: rgba(184,164,220,.2);
-    color: #DCCFEE;
+    color: var(--rewards-soft);
     padding: 4px 10px;
     border-radius: 999px;
     border: 1px solid rgba(220,207,238,.2);
@@ -356,7 +356,7 @@
 .islp-bed {
     width: 220px;
     height: 72px;
-    background: linear-gradient(180deg, #3A3750 0%, #2E2C42 100%);
+    background: linear-gradient(180deg, var(--island-night-furn-top) 0%, var(--island-night-furn-bot) 100%);
     border-radius: 50% / 40%;
     border: 1px solid rgba(220,207,238,.2);
     position: relative;
@@ -393,7 +393,7 @@
 .islp-z {
     font-family: var(--font-family-display);
     font-weight: 800;
-    color: #DCCFEE;
+    color: var(--rewards-soft);
     animation: gim-float 3s ease-in-out infinite;
 }
 
@@ -407,17 +407,17 @@
     font-family: var(--font-family-display);
     font-size: 22px;
     font-weight: 800;
-    color: #F2EDE2;
+    color: var(--island-text-on-night);
 }
 
 .islp-status-hand {
     font-family: var(--font-family-hand);
     font-size: 20px;
-    color: #DCCFEE;
+    color: var(--rewards-soft);
     margin-top: 6px;
 }
 
-.islp-status-hand--wake { color: #F8C8D5; }
+.islp-status-hand--wake { color: var(--island-gauge-happy-start); }
 
 .islp-energy-card {
     width: 280px;
@@ -437,7 +437,7 @@
 .islp-energy-label {
     font-size: 11px;
     font-weight: 800;
-    color: #B5ADC4;
+    color: var(--island-text-on-night-muted);
     text-transform: uppercase;
     letter-spacing: .5px;
 }
@@ -445,7 +445,7 @@
 .islp-energy-pct {
     font-size: 11px;
     font-weight: 800;
-    color: #F2EDE2;
+    color: var(--island-text-on-night);
 }
 
 .islp-energy-bar {
@@ -457,14 +457,14 @@
 
 .islp-energy-fill {
     height: 100%;
-    background: linear-gradient(90deg, #B8A4DC, #F8C8D5);
+    background: linear-gradient(90deg, var(--rewards-primary), var(--island-gauge-happy-start));
     border-radius: 999px;
     transition: width .6s var(--ease-calm);
 }
 
 .islp-wake-hint {
     font-size: 11px;
-    color: #7E7891;
+    color: var(--island-text-on-night-dim);
     margin-top: 8px;
     text-align: center;
     font-weight: 600;
@@ -485,13 +485,13 @@
 .islp-action-btn--sleeping {
     background: rgba(255,255,255,.08);
     border-color: rgba(220,207,238,.3);
-    color: #DCCFEE;
+    color: var(--rewards-soft);
 }
 
 .islp-action-btn--wake {
     background: var(--diary-primary);
     border-color: var(--diary-primary);
-    color: #fff;
+    color: var(--text-on-primary);
 }
 
 /* ─── Farewell Screen (ifw-*) ─────────────────────────────────── */
@@ -501,7 +501,7 @@
     inset: 0;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(180deg, #FBEEF2 0%, #F2ECFA 50%, #EEF4FA 100%);
+    background: linear-gradient(180deg, var(--diary-light) 0%, var(--rewards-light) 50%, var(--english-light) 100%);
     overflow: hidden;
 }
 
