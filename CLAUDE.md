@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-16 — 전체 파일 구조 스캔 반영 · 라우터 45개(파일 46개) · JS 93개 · CSS 63개 · 서비스 17개 · Island 46엔드포인트 · 마이그레이션 61파일(001~056) · 문제점/개선사항/학습데이터 검증 섹션 추가
+> Last updated: 2026-05-16 — 라우터 52개(파일 57개) · JS 95개 · CSS 65개 · 서비스 18개 · CKLA 4파일 · Island 5파일 분리 · Island CSS hex→변수 완료 · mockups 삭제 완료
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -12,7 +12,7 @@
 ---
 
 ## Tech Stack
-- **Backend**: Python / FastAPI — `backend/main.py` mounts **45 routers** (`backend/routers/`, ~204 endpoints).
+- **Backend**: Python / FastAPI — `backend/main.py` mounts **52 routers** (`backend/routers/`, ~220 endpoints).
 - **Frontend**: HTML + CSS + Vanilla JS (no framework). 93 JS source + 63 CSS files. Pre-built into `bundle-{a,b,c}.min.js` via `build.sh` (esbuild). Auto-rebuilt at server startup. Island UI uses JSX React components (`frontend/src/island/*.jsx`, 17 files — built separately, not bundled with esbuild).
 - **Database**: SQLite WAL · ORM: SQLAlchemy. Models split by domain in `backend/models/`.
 - **AI**: Ollama (`gemma2:2b`, local, lazy-start via `services/ollama_manager.py`) → Gemini fallback (`GEMINI_API_KEY`).
@@ -98,7 +98,7 @@ NSS_Word_Master/
 │   │   ├── pin_guard.py / pin_hash.py
 │   │   ├── ollama_manager.py    # auto-start, healthcheck
 │   │   └── backup_engine.py     # auto-snapshot (7-day rolling)
-│   ├── routers/                 # 46 files (45 registered; files_common.py = shared utility imported by files.py + files_voca.py, not a router)
+│   ├── routers/                 # 57 files (52 registered; files_common.py = shared utility imported by files.py + files_voca.py, not a router)
 │   ├── migrations/              # 056_word_reviews_easiness_real.py latest
 │   ├── data/                    # static content (math/, daily_words/)
 │   │   └── math/{G3,G4,G5,G6,glossary,kangaroo,placement}/
@@ -207,8 +207,15 @@ NSS_Word_Master/
 | Router | Purpose |
 |---|---|
 | `ckla` | CKLA G3 reading curriculum (Read / Words / Q&A / Word Work) |
+| `ckla_domain_test` | CKLA Domain Test flow (start / submit / result) |
+| `ckla_grade_test` | CKLA Grade Final Test flow |
+| `ckla_progress` | CKLA per-lesson + domain progress queries |
 | `parent_ckla` | Parent dashboard CKLA stats (progress, Q&A accuracy, weekly graph) |
-| `island` | Island system — characters, care, shop, decorate, currency, evolution (46 endpoints) |
+| `island` | Island core — gauges, care, evolution trigger, currency batch |
+| `island_character` | Character catalog + per-character progress |
+| `island_dev` | Dev/admin endpoints (seed, reset, state dump) |
+| `island_legend` | Legend zone — consecutive-day streak, legend stones |
+| `island_shop` | Shop catalog, inventory, purchase, place/move/remove decor |
 
 ---
 
@@ -1148,7 +1155,11 @@ New tables:
 
 | File | Purpose |
 |------|---------|
-| `routers/island.py` | All island API (46 endpoints, incl. `/decorate/{place,move,remove}`) |
+| `routers/island.py` | Island core API (gauges, care, evolution, currency batch) |
+| `routers/island_character.py` | Character catalog + per-character progress |
+| `routers/island_dev.py` | Dev/admin endpoints (seed, reset, state dump) |
+| `routers/island_legend.py` | Legend zone — consecutive-day streak, legend stones |
+| `routers/island_shop.py` | Shop catalog, inventory, purchase, place/move/remove decor |
 | `services/lumi_engine.py` | Lumi earn/spend/exchange |
 | `services/island_care_engine.py` | Decay + gauge logic |
 | `services/island_production_engine.py` | Daily lumi batch |
@@ -1263,15 +1274,15 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 | 항목 | 수치 | 검증 방법 |
 |------|------|----------|
-| 등록된 FastAPI 라우터 | 45 | `grep -c "app.include_router" backend/main.py` |
-| routers/ 파일 수 | 46 | `ls backend/routers/*.py` (files_common.py 미등록) |
-| JS 소스 파일 | 93 | `ls frontend/static/js/*.js \| grep -v bundle` |
-| CSS 파일 | 63 | `ls frontend/static/css/*.css` |
+| 등록된 FastAPI 라우터 | 52 | `grep -c "app.include_router" backend/main.py` |
+| routers/ 파일 수 | 57 | `ls backend/routers/*.py` (files_common.py 미등록) |
+| JS 소스 파일 | 95 | `ls frontend/static/js/*.js \| grep -v bundle` |
+| CSS 파일 | 65 | `ls frontend/static/css/*.css` |
 | Island JSX 컴포넌트 | 17 | `ls frontend/src/island/*.jsx` |
 | 마이그레이션 파일 | 61 | `ls backend/migrations/[0-9]*.py` (번호 001~056, 중복 5쌍) |
 | ORM 모델 파일 | 13 | `ls backend/models/*.py` (\_base 제외) |
-| 서비스 파일 | 17 | `ls backend/services/*.py` |
-| Island 라우터 엔드포인트 | 46 | `grep -c "@router\." backend/routers/island.py` |
+| 서비스 파일 | 18 | `ls backend/services/*.py` |
+| Island 라우터 파일 수 | 5 | island.py + island_{character,dev,legend,shop}.py |
 | `__all__` 내보낸 클래스 | 61 | `backend/models/__init__.py` |
 
 ---
@@ -1290,7 +1301,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 | # | 파일 | 문제 | 심각도 |
 |---|------|------|--------|
-| 4 | Island CSS 4개 파일 | Work Principle #3 위반: hex 컬러 직접 사용 (island-loop.css 36개, island-main.css 26개, island-zones.css 10개, island-system.css 9개) | 디자인 일관성 위험 |
+| ~~4~~ | ~~Island CSS 4개 파일~~ | ~~Work Principle #3 위반: hex 컬러 직접 사용~~ → **✅ 완료 (commit 0aaa0c0)** — 모든 hex → CSS 변수 마이그레이션, island-specific 토큰을 `theme.css`에 추가 | ✅ 해결됨 |
 | 5 | `backend/migrations/` | 061 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전하지만 관리 복잡도 증가 | 낮음 (시스템적으로 안전) |
 | 6 | `models/gamification.py` | `Reward` 클래스가 legacy로 남아 있음 (`rewards` 테이블 back-compat) — 실제 사용 여부 불명 | 낮음 |
 
@@ -1298,7 +1309,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 | # | 파일 | 내용 |
 |---|------|------|
-| 7 | `frontend/static/mockups/home-v2.html` | 개발용 목업 파일이 static에 노출됨 — 프로덕션에서 삭제 필요 |
+| ~~7~~ | ~~`frontend/static/mockups/home-v2.html`~~ | ~~개발용 목업 파일이 static에 노출됨~~ → **✅ 완료** — `frontend/static/mockups/` 전체 삭제됨 |
 | 8 | `parent-ingest.js` | bundle에 포함되지 않고 `parent_ingest.html` 전용 — 의도적이나 빌드 파이프라인 외부에 있음 |
 | 9 | CKLA ckla-spelling.js | `ckla-spelling.js` 가 bundle-a에 포함되어 있으나 `build.sh`에서 JSX 파일과 함께 처리되는지 확인 필요 |
 
@@ -1310,11 +1321,11 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 1. ~~**`files_common.py` 등록 확인**~~ → shared utility로 확인됨, 조치 불필요 ✅
 2. ~~**`math-review.js` bundle 포함**~~ → `build.sh` bundle-b에 추가 완료 ✅
-3. **`mockups/home-v2.html` 삭제**: `frontend/static/mockups/` 전체 제거
+3. ~~**`mockups/home-v2.html` 삭제**: `frontend/static/mockups/` 전체 제거~~ ✅ 완료
 
 #### 단기 (1~2 스프린트)
 
-4. **Island CSS hex → CSS 변수 마이그레이션**: `island-loop.css`, `island-main.css`, `island-zones.css`, `island-system.css`의 하드코딩된 hex를 `theme.css` 변수로 교체. 존재하지 않는 토큰은 island-specific 변수를 `theme.css`에 추가.
+4. ~~**Island CSS hex → CSS 변수 마이그레이션**: `island-loop.css`, `island-main.css`, `island-zones.css`, `island-system.css`~~ ✅ 완료 (commit 0aaa0c0)
 5. **마이그레이션 번호 정리**: 057부터는 중복 prefix 없이 단순 증가로 유지
 
 #### 중기 (구조 개선)
