@@ -50,7 +50,7 @@
 .pp-pin-sub   { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
 
 /* ─── Stat Cards (Overview) ───────────────────────────────── */
-.pp-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
+.pp-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
 .pp-stat {
   background: var(--bg-card); border-radius: var(--radius-md); padding: 16px;
   box-shadow: none; border: 1px solid var(--border-card); text-align: center;
@@ -227,6 +227,8 @@
 .pp-table-wrap .pp-log-table th { padding: 8px 14px; }
 
 /* ─── Math Section ───────────────────────────────────────── */
+.pp-math-stats { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 900px) { .pp-math-stats { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
 .pp-math-stat {
   background: var(--bg-section-math);
   border-color: var(--color-primary-light);
@@ -329,7 +331,7 @@
   .pp-goal-card { padding: 12px; }
 }
 @media (max-width: 480px) {
-  /* Phone: collapse 4-stat math grid to 2x2 (already 2x2 by default but keep gap tight) */
+  /* Phone: math stat grid collapses via auto-fill, just tighten the gap */
   .pp-math-stats { gap: 8px; }
   .pp-stats[style*="repeat(3"] { grid-template-columns: 1fr !important; }
 }
@@ -409,7 +411,7 @@
   font-size: 14px; font-weight: 700; text-align: center; margin-bottom: 12px;
 }
 .pp-goals-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 12px;
 }
 @media (max-width: 720px) { .pp-goals-grid { grid-template-columns: 1fr; } }
 .pp-goal-card {
