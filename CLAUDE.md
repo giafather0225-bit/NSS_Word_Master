@@ -98,7 +98,7 @@ NSS_Word_Master/
 │   │   ├── pin_guard.py / pin_hash.py
 │   │   ├── ollama_manager.py    # auto-start, healthcheck
 │   │   └── backup_engine.py     # auto-snapshot (7-day rolling)
-│   ├── routers/                 # 46 files (45 registered; files_common.py = shared util, not mounted)
+│   ├── routers/                 # 46 files (45 registered; files_common.py = shared utility imported by files.py + files_voca.py, not a router)
 │   ├── migrations/              # 056_word_reviews_easiness_real.py latest
 │   ├── data/                    # static content (math/, daily_words/)
 │   │   └── math/{G3,G4,G5,G6,glossary,kangaroo,placement}/
@@ -1282,8 +1282,8 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 | # | 파일 | 문제 | 영향 |
 |---|------|------|------|
-| 1 | `backend/routers/files_common.py` | `main.py`에 등록 안 됨 — 라우터인데 dead code 상태 | 파일 공유 기능 일부 미작동 가능 |
-| 2 | `frontend/static/js/math-review.js` | 어떤 bundle에도 포함 안 됨 (`bundle-a/b/c` 모두 누락), `child.html`에 `<script>` 직접 로드 여부도 불명 | Math Review 기능 미작동 가능성 |
+| 1 | `backend/routers/files_common.py` | ~~라우터인데 dead code~~ → **실제로는 shared utility** (`files.py` + `files_voca.py`가 import해서 사용) — 라우터가 아니므로 `app.include_router` 대상 아님. P1 해제. | 영향 없음 |
+| 2 | `frontend/static/js/math-review.js` | ~~bundle 누락~~ → **`build.sh` bundle-b에 추가 완료** (2026-05-16) — `math-problems-ui.js` 뒤에 삽입 | ✅ 수정됨 |
 | 3 | `backend/routers/us_academy.py` | 파일 자체 없음 — `USAcademyWord`, `USAcademyWordProgress` 모델은 존재하지만 API 없음 | US Academy 기능 완전 미구현 |
 
 #### P2 — 기술 부채
@@ -1308,15 +1308,14 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 #### 즉시 가능 (코드 변경 최소)
 
-1. **`files_common.py` 등록 확인**: `main.py`에 `app.include_router(files_common_router.router)` 추가 또는 실제 utility-only 모듈이면 라우터 파일명 변경 (`_files_common.py`)
-2. **`math-review.js` bundle 포함**: `build.sh` bundle-b에 추가하거나 `child.html` 직접 `<script>` 로드 확인
+1. ~~**`files_common.py` 등록 확인**~~ → shared utility로 확인됨, 조치 불필요 ✅
+2. ~~**`math-review.js` bundle 포함**~~ → `build.sh` bundle-b에 추가 완료 ✅
 3. **`mockups/home-v2.html` 삭제**: `frontend/static/mockups/` 전체 제거
 
 #### 단기 (1~2 스프린트)
 
 4. **Island CSS hex → CSS 변수 마이그레이션**: `island-loop.css`, `island-main.css`, `island-zones.css`, `island-system.css`의 하드코딩된 hex를 `theme.css` 변수로 교체. 존재하지 않는 토큰은 island-specific 변수를 `theme.css`에 추가.
-5. **`files_common.py` 완전 정리**: 실제 사용처 파악 후 등록 또는 삭제
-6. **마이그레이션 번호 정리**: 057부터는 중복 prefix 없이 단순 증가로 유지
+5. **마이그레이션 번호 정리**: 057부터는 중복 prefix 없이 단순 증가로 유지
 
 #### 중기 (구조 개선)
 
