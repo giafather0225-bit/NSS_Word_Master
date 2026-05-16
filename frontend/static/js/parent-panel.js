@@ -212,7 +212,7 @@ async function _ppEnglish(body) {
         const totalStageDone = Object.values(stages).reduce((a, s) => a + (s.completions || 0), 0);
 
         const summary = `
-            <div class="pp-stats" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px">
+            <div class="pp-stats pp-english-stats" style="margin-bottom:20px">
                 <div class="pp-stat"><div class="pp-stat-num">${words.length}</div><div class="pp-stat-label">Tracked Words</div></div>
                 <div class="pp-stat"><div class="pp-stat-num">${overallAcc}%</div><div class="pp-stat-label">Overall Accuracy</div></div>
                 <div class="pp-stat"><div class="pp-stat-num">${totalStageDone}</div><div class="pp-stat-label">Stage Completions</div></div>

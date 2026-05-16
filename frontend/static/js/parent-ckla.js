@@ -26,8 +26,8 @@ async function _ppCKLA(body) {
         }
 
         const statusDot = d.today_studied
-            ? `<span style="color:var(--math-ink);font-weight:700">Studied today</span>`
-            : `<span style="color:var(--review-ink);font-weight:700">No activity today</span>`;
+            ? `<span class="pp-ckla-status--ok">Studied today</span>`
+            : `<span class="pp-ckla-status--miss">No activity today</span>`;
 
         // ── Hero stats ─────────────────────────────────────────
         const hero = `
@@ -49,10 +49,10 @@ async function _ppCKLA(body) {
                     <div class="pp-stat-label">Today</div>
                 </div>
             </div>
-            <div style="display:flex;gap:16px;align-items:center;margin-bottom:20px;font-size:.88rem">
+            <div class="pp-ckla-meta">
                 ${statusDot}
-                <span style="color:var(--text-hint)">·</span>
-                <span style="color:var(--text-secondary)">${estLine}</span>
+                <span class="pp-ckla-meta-sep">·</span>
+                <span class="pp-ckla-meta-est">${estLine}</span>
             </div>`;
 
         // ── Overall progress bar ───────────────────────────────
@@ -103,7 +103,7 @@ async function _ppCKLA(body) {
         const diff = d.difficulty_breakdown || {};
         const diffTotal = (diff.easy || 0) + (diff.neutral || 0) + (diff.hard || 0);
         const diffSection = diffTotal > 0 ? `
-            <div class="pp-section-title" style="margin:24px 0 10px">
+            <div class="pp-section-title pp-section-title--icon" style="margin:24px 0 10px">
                 <i data-lucide="bar-chart-2" style="width:15px;height:15px"></i> Difficulty Ratings
             </div>
             <div style="display:flex;gap:10px;flex-wrap:wrap">
@@ -121,7 +121,7 @@ async function _ppCKLA(body) {
                 <span style="margin-left:auto;font-size:.75rem;color:var(--review-ink)">${a.consec_fails} failed attempts</span>
             </div>`).join('');
         const alertSection = failAlerts ? `
-            <div class="pp-section-title" style="margin:24px 0 10px;color:var(--review-ink)">
+            <div class="pp-section-title pp-section-title--icon" style="margin:24px 0 10px;color:var(--review-ink)">
                 <i data-lucide="alert-triangle" style="width:15px;height:15px"></i> Domain Test Alerts
             </div>
             <div style="display:flex;flex-direction:column;gap:6px">${failAlerts}</div>` : '';
@@ -137,7 +137,7 @@ async function _ppCKLA(body) {
         // ── Learning start time pattern ────────────────────────
         const timePattern = (d.start_time_pattern || []);
         const timeSection = timePattern.length ? `
-            <div class="pp-section-title" style="margin:24px 0 10px">
+            <div class="pp-section-title pp-section-title--icon" style="margin:24px 0 10px">
                 <i data-lucide="clock" style="width:15px;height:15px"></i> Study Time Pattern
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -150,7 +150,7 @@ async function _ppCKLA(body) {
 
         // ── Needs review ───────────────────────────────────────
         const reviewSection = d.needs_review?.length ? `
-            <div class="pp-section-title" style="margin:24px 0 10px;color:var(--review-ink)">
+            <div class="pp-section-title pp-section-title--icon" style="margin:24px 0 10px;color:var(--review-ink)">
                 <i data-lucide="alert-triangle" style="width:15px;height:15px"></i> Needs Review (${d.needs_review.length})
             </div>
             <div style="display:flex;flex-direction:column;gap:8px">
@@ -163,14 +163,14 @@ async function _ppCKLA(body) {
 
         body.innerHTML = `
             <div style="padding:20px 24px">
-                <div class="pp-section-title" style="margin-bottom:16px;display:flex;align-items:center;gap:8px">
+                <div class="pp-section-title pp-section-title--icon" style="margin-bottom:16px">
                     <i data-lucide="book-open" style="width:15px;height:15px"></i> CKLA Grade 3
                 </div>
                 ${hero}
                 ${progressBar}
                 <div class="pp-grid-2" style="align-items:start">
                     <div>
-                        <div class="pp-section-title" style="margin-bottom:10px;display:flex;align-items:center;gap:8px">
+                        <div class="pp-section-title pp-section-title--icon" style="margin-bottom:10px">
                             <i data-lucide="layers" style="width:15px;height:15px"></i> Domains
                         </div>
                         <div>${domainRows || '<div style="color:var(--text-hint);font-size:.85rem">No domain data yet.</div>'}</div>

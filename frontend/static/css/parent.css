@@ -231,9 +231,21 @@
 .pp-math-stats { grid-template-columns: repeat(5, 1fr); }
 @media (max-width: 900px) { .pp-math-stats { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
 
+/* ─── English Section ────────────────────────────────────── */
+.pp-english-stats { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .pp-english-stats { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
+
 /* ─── CKLA Section ───────────────────────────────────────── */
 .pp-ckla-stats { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 900px) { .pp-ckla-stats { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
+.pp-ckla-meta {
+  display: flex; gap: 16px; align-items: center;
+  margin-bottom: 20px; font-size: .88rem;
+}
+.pp-ckla-meta-sep  { color: var(--text-hint); }
+.pp-ckla-meta-est  { color: var(--text-secondary); }
+.pp-ckla-status--ok   { color: var(--math-ink);   font-weight: 700; }
+.pp-ckla-status--miss { color: var(--review-ink); font-weight: 700; }
 .pp-math-stat {
   background: var(--bg-section-math);
   border-color: var(--color-primary-light);
@@ -325,6 +337,7 @@
   /* Tabs that inline-style 3-col or 4-col stat grids fall back to 2-col on narrow viewports */
   .pp-stats[style*="repeat(3"] { grid-template-columns: repeat(2, 1fr) !important; }
   .pp-stats[style*="repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
+  .pp-english-stats { grid-template-columns: repeat(2, 1fr); }
   .pp-ckla-stats { grid-template-columns: repeat(2, 1fr); }
   /* Hero stats: stack into 3 narrower pills with smaller numbers */
   .pp-hero-stats { gap: 10px; }
@@ -339,8 +352,9 @@
 }
 @media (max-width: 480px) {
   /* Phone: math/ckla stat grids collapse, tighten gap */
-  .pp-math-stats { gap: 8px; }
-  .pp-ckla-stats  { gap: 8px; }
+  .pp-math-stats    { gap: 8px; }
+  .pp-ckla-stats    { gap: 8px; }
+  .pp-english-stats { gap: 8px; }
   .pp-stats[style*="repeat(3"] { grid-template-columns: 1fr !important; }
   .pp-stats[style*="repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
 }
