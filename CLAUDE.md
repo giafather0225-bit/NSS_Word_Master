@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-16 — Growth Theme 시스템 완전 제거 · 마이그레이션 001~056 반영 · 라우터 45개 · JS 93개 · CSS 63개 · Island 시스템 서비스/프론트엔드 추가
+> Last updated: 2026-05-16 — 전체 파일 구조 스캔 반영 · 라우터 45개(파일 46개) · JS 93개 · CSS 63개 · 서비스 17개 · Island 46엔드포인트 · 마이그레이션 61파일(001~056) · 문제점/개선사항/학습데이터 검증 섹션 추가
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -76,12 +76,12 @@ NSS_Word_Master/
 │   ├── sm2.py                   # SM-2 spaced repetition
 │   ├── voca_sync.py / file_storage.py / folder_watcher.py / utils.py
 │   ├── schemas_common.py        # Str80 / Str200 / Str500 etc.
-│   ├── models/                  # SQLAlchemy ORM (11 files, by domain)
+│   ├── models/                  # SQLAlchemy ORM (13 files, by domain)
 │   │   ├── _base.py  __init__.py
 │   │   ├── lessons.py  system.py  gamification.py  learning.py
 │   │   ├── diary.py    math.py   assistant.py
 │   │   ├── us_academy.py  ckla.py  goals.py  island.py
-│   ├── services/                # 13 engines / managers
+│   ├── services/                # 17 services
 │   │   ├── xp_engine.py         # XP rules + award (config-overridable)
 │   │   ├── streak_engine.py     # 3-subject streak (ckla/math/game)
 │   │   ├── academy_session.py   # active session tracking
@@ -98,7 +98,7 @@ NSS_Word_Master/
 │   │   ├── pin_guard.py / pin_hash.py
 │   │   ├── ollama_manager.py    # auto-start, healthcheck
 │   │   └── backup_engine.py     # auto-snapshot (7-day rolling)
-│   ├── routers/                 # 46 FastAPI routers (see table below)
+│   ├── routers/                 # 46 files (45 registered; files_common.py = shared util, not mounted)
 │   ├── migrations/              # 056_word_reviews_easiness_real.py latest
 │   ├── data/                    # static content (math/, daily_words/)
 │   │   └── math/{G3,G4,G5,G6,glossary,kangaroo,placement}/
@@ -208,7 +208,7 @@ NSS_Word_Master/
 |---|---|
 | `ckla` | CKLA G3 reading curriculum (Read / Words / Q&A / Word Work) |
 | `parent_ckla` | Parent dashboard CKLA stats (progress, Q&A accuracy, weekly graph) |
-| `island` | Island system — characters, care, shop, decorate, currency, evolution (41 endpoints) |
+| `island` | Island system — characters, care, shop, decorate, currency, evolution (46 endpoints) |
 
 ---
 
@@ -975,7 +975,7 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 
 ### Migrations (`backend/migrations/`)
 
-> 총 56개 파일. 시스템은 filename 전체로 추적하므로 동일 prefix(025/033/034/040/041)를 가진 5쌍은 각각 별개로 실행됨 — 안전.
+> 총 61개 파일 (번호 001~056 × 56개 + 중복 prefix 5쌍으로 파일 수는 61개). 시스템은 filename 전체로 추적하므로 동일 prefix(025/033/034/040/041)를 가진 5쌍은 각각 별개로 실행됨 — 안전.
 
 **001~024 (기반 + Island 초기)**
 001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy_tables · 011 ckla_tables · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE · 018 island_tables (10 new tables) · 019 ckla_grade · 020 ckla_badges · 021 ckla_spelling_grammar · 022 math_v2_schema · 023 island_decor_image_paths · 024 island_decor_extension
@@ -1148,7 +1148,7 @@ New tables:
 
 | File | Purpose |
 |------|---------|
-| `routers/island.py` | All island API (41 endpoints, incl. `/decorate/{place,move,remove}`) |
+| `routers/island.py` | All island API (46 endpoints, incl. `/decorate/{place,move,remove}`) |
 | `services/lumi_engine.py` | Lumi earn/spend/exchange |
 | `services/island_care_engine.py` | Decay + gauge logic |
 | `services/island_production_engine.py` | Daily lumi batch |
@@ -1252,3 +1252,125 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 - **Thresholds:** Authority ≥100 + Kid Fitness ≥90 = "Ready"; Auth <80 = "Critical"
 - **Exit codes:** 0 (clean), 1 (errors found), 2 (schema/DB missing)
 - **Reports:** saved to `reports/ckla_verify_*.json` (gitignored, regenerable)
+
+---
+
+## Codebase Health Snapshot (2026-05-16 풀 스캔 기준)
+
+> 이 섹션은 실제 파일시스템과 grep 결과로 생성된 검증된 수치다. 추정치 없음.
+
+### 검증된 카운트
+
+| 항목 | 수치 | 검증 방법 |
+|------|------|----------|
+| 등록된 FastAPI 라우터 | 45 | `grep -c "app.include_router" backend/main.py` |
+| routers/ 파일 수 | 46 | `ls backend/routers/*.py` (files_common.py 미등록) |
+| JS 소스 파일 | 93 | `ls frontend/static/js/*.js \| grep -v bundle` |
+| CSS 파일 | 63 | `ls frontend/static/css/*.css` |
+| Island JSX 컴포넌트 | 17 | `ls frontend/src/island/*.jsx` |
+| 마이그레이션 파일 | 61 | `ls backend/migrations/[0-9]*.py` (번호 001~056, 중복 5쌍) |
+| ORM 모델 파일 | 13 | `ls backend/models/*.py` (\_base 제외) |
+| 서비스 파일 | 17 | `ls backend/services/*.py` |
+| Island 라우터 엔드포인트 | 46 | `grep -c "@router\." backend/routers/island.py` |
+| `__all__` 내보낸 클래스 | 61 | `backend/models/__init__.py` |
+
+---
+
+### 문제점 (Known Issues)
+
+#### P1 — 즉시 수정 필요
+
+| # | 파일 | 문제 | 영향 |
+|---|------|------|------|
+| 1 | `backend/routers/files_common.py` | `main.py`에 등록 안 됨 — 라우터인데 dead code 상태 | 파일 공유 기능 일부 미작동 가능 |
+| 2 | `frontend/static/js/math-review.js` | 어떤 bundle에도 포함 안 됨 (`bundle-a/b/c` 모두 누락), `child.html`에 `<script>` 직접 로드 여부도 불명 | Math Review 기능 미작동 가능성 |
+| 3 | `backend/routers/us_academy.py` | 파일 자체 없음 — `USAcademyWord`, `USAcademyWordProgress` 모델은 존재하지만 API 없음 | US Academy 기능 완전 미구현 |
+
+#### P2 — 기술 부채
+
+| # | 파일 | 문제 | 심각도 |
+|---|------|------|--------|
+| 4 | Island CSS 4개 파일 | Work Principle #3 위반: hex 컬러 직접 사용 (island-loop.css 36개, island-main.css 26개, island-zones.css 10개, island-system.css 9개) | 디자인 일관성 위험 |
+| 5 | `backend/migrations/` | 061 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전하지만 관리 복잡도 증가 | 낮음 (시스템적으로 안전) |
+| 6 | `models/gamification.py` | `Reward` 클래스가 legacy로 남아 있음 (`rewards` 테이블 back-compat) — 실제 사용 여부 불명 | 낮음 |
+
+#### P3 — 관찰 사항
+
+| # | 파일 | 내용 |
+|---|------|------|
+| 7 | `frontend/static/mockups/home-v2.html` | 개발용 목업 파일이 static에 노출됨 — 프로덕션에서 삭제 필요 |
+| 8 | `parent-ingest.js` | bundle에 포함되지 않고 `parent_ingest.html` 전용 — 의도적이나 빌드 파이프라인 외부에 있음 |
+| 9 | CKLA ckla-spelling.js | `ckla-spelling.js` 가 bundle-a에 포함되어 있으나 `build.sh`에서 JSX 파일과 함께 처리되는지 확인 필요 |
+
+---
+
+### 개선사항 백로그
+
+#### 즉시 가능 (코드 변경 최소)
+
+1. **`files_common.py` 등록 확인**: `main.py`에 `app.include_router(files_common_router.router)` 추가 또는 실제 utility-only 모듈이면 라우터 파일명 변경 (`_files_common.py`)
+2. **`math-review.js` bundle 포함**: `build.sh` bundle-b에 추가하거나 `child.html` 직접 `<script>` 로드 확인
+3. **`mockups/home-v2.html` 삭제**: `frontend/static/mockups/` 전체 제거
+
+#### 단기 (1~2 스프린트)
+
+4. **Island CSS hex → CSS 변수 마이그레이션**: `island-loop.css`, `island-main.css`, `island-zones.css`, `island-system.css`의 하드코딩된 hex를 `theme.css` 변수로 교체. 존재하지 않는 토큰은 island-specific 변수를 `theme.css`에 추가.
+5. **`files_common.py` 완전 정리**: 실제 사용처 파악 후 등록 또는 삭제
+6. **마이그레이션 번호 정리**: 057부터는 중복 prefix 없이 단순 증가로 유지
+
+#### 중기 (구조 개선)
+
+7. **US Academy 라우터 구현**: `backend/routers/us_academy.py` 생성하여 `USAcademyWord`/`USAcademyWordProgress` API 노출
+8. **`Reward` 모델 제거**: 실제 미사용 확인 후 `rewards` 테이블과 함께 deprecated migration으로 처리
+
+---
+
+## Learning Data Validation Status (2026-05-16 기준)
+
+### DUX Voca_8000
+
+| 항목 | 상태 | 비고 |
+|------|------|------|
+| 소스 위치 | `English/Voca_8000/Lesson_01 ~ Lesson_N/` | 레슨별 폴더 구조 |
+| DB 동기화 | 자동 (`folder_watcher.py` + `voca_sync.py`) | 서버 시작 시 + 파일 변경 감지 |
+| 정의 품질 | 마이그레이션 027~045로 반복 정제 완료 | MW 파싱 오류, 순환 정의, 짧은 정의 등 수정 |
+| 오디오 | 마이그레이션 030, 050으로 일부 backfill | 누락분 존재 가능 — 런타임 edge-tts fallback |
+| 알려진 문제 | Lesson 14 진행도 이상 → migration 049로 수정 | |
+
+### CKLA G3
+
+| 항목 | 상태 | 비고 |
+|------|------|------|
+| 소스 | `backend/data/` (JSON) → DB via `scripts/import_ckla.py` | |
+| 검증 도구 | `scripts/verify_ckla_data.py` | Authority Score + Kid Fitness Score 이중 채점 |
+| 마이그레이션 데이터 수정 | 027~032, 034b, 035~039, 042~043 | D1 제목, Q&A 모범답안, OCR 아티팩트 등 |
+| 권장 기준 | Authority ≥100 + Kid Fitness ≥90 | 미달 시 `scripts/verify_ckla_data.py` 재실행 |
+| 보고서 위치 | `reports/ckla_verify_*.json` | gitignored, 재생성 가능 |
+
+### Math Academy
+
+| 항목 | 상태 | 비고 |
+|------|------|------|
+| 소스 | `backend/data/math/{G3,G4,G5,G6,glossary,kangaroo,placement}/` | JSON 파일 |
+| DB 스키마 | Migration 022 (v2 schema) + 033b, 034a, 040b, 041b | MathSpacedReview, MathUnitTest, MathPlacementTest 포함 |
+| 검증 도구 | `tests/test_math_*.py` (7개 파일) | pytest 자동화 |
+| 알려진 이슈 | pre_test stage 정규화 → migration 051 | |
+
+### Math Kangaroo
+
+| 항목 | 상태 | 비고 |
+|------|------|------|
+| 세트 수 | 104 sets | `backend/data/math/kangaroo/*.json` |
+| PDF 위치 | `frontend/static/math/kangaroo/pdf/` | PDF Anchor Mode 채택 |
+| 답안 검증 | VERIFIED: `intl_*` 전체, `ikmc_2021_*`, `ikmc_2023/2024_ecolier`, `leb_2025_*`, `cyp_*` | |
+| 미검증 | `ikmc_2012~2022` (일부), `usa_*`, `ksf_*` | UI는 정상 작동, 답 출처 미확인 |
+| 알려진 오류 | `cyp_2015` Q30=V, `cyp_2024` Q5=V (그리스 파일, UI 미노출) | |
+| solution 완성 | `ikmc_2024_ecolier` 24/24 ✅ | 나머지 90세트 미완성 |
+
+### Island Character Catalog
+
+| 항목 | 상태 | 비고 |
+|------|------|------|
+| 캐릭터 데이터 | Python 코드 or DB에 hardcode (별도 JSON 없음 확인됨) | `island_characters` 테이블 — migration 018에서 seed |
+| 이미지 | `frontend/static/img/` island 관련 파일들 | 존재 확인 필요 (`scripts/check_decor_assets.py`) |
+| 데이터 검증 도구 | `scripts/check_decor_assets.py` | PNG 커버리지 리포트 |
