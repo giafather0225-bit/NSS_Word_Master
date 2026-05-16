@@ -561,3 +561,174 @@
   min-width: 28px; text-align: right;
   font-variant-numeric: tabular-nums;
 }
+
+/* ── Island Tab ─────────────────────────────────────────── */
+.pp-island-tab { padding-bottom: 32px; }
+
+/* Currency bar */
+.pp-island-currency-bar {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  background: var(--rewards-light);
+  border: 1px solid var(--rewards-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px; margin-bottom: 20px;
+}
+.pp-island-currency-item {
+  display: flex; align-items: center; gap: 8px;
+  color: var(--rewards-ink);
+}
+.pp-island-currency-item i { width: 16px; height: 16px; }
+.pp-island-currency-item--muted { color: var(--text-secondary); }
+.pp-island-currency-label {
+  font-size: var(--font-size-sm); font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.pp-island-currency-val {
+  font-size: var(--font-size-md); font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Zone pills */
+.pp-island-zones {
+  display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 4px;
+}
+.pp-island-zone-pill {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 12px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-size: 12px; font-weight: 600;
+  color: var(--text-primary);
+  text-transform: capitalize;
+}
+.pp-island-zone-pill i { width: 13px; height: 13px; }
+.pp-island-zone-pill--locked { opacity: 0.45; }
+.pp-island-zone-lock { color: var(--text-hint); }
+
+/* Character grid */
+.pp-island-char-grid {
+  display: flex; flex-direction: column; gap: 12px; margin-top: 8px;
+}
+/* Override old Settings-tab card style for the new tab */
+.pp-island-tab .pp-island-char-card {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px; min-width: 0; flex: none;
+}
+.pp-island-char-card--done {
+  background: var(--math-light);
+  border-color: var(--math-soft);
+}
+
+/* Portrait */
+.pp-island-char-portrait-wrap {
+  position: relative; flex-shrink: 0;
+}
+.pp-island-char-portrait {
+  width: 64px; height: 64px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+}
+.pp-island-char-portrait--placeholder {
+  width: 64px; height: 64px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  color: var(--text-hint);
+}
+.pp-island-char-level {
+  position: absolute; bottom: -4px; right: -4px;
+  font-size: 10px; font-weight: 800; color: #fff;
+  padding: 1px 5px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+}
+
+/* Info block */
+.pp-island-char-info { flex: 1; min-width: 0; }
+.pp-island-char-header {
+  display: flex; align-items: baseline; gap: 8px; margin-bottom: 2px;
+}
+.pp-island-char-name {
+  font-size: var(--font-size-md); font-weight: 700;
+  color: var(--text-primary);
+}
+.pp-island-char-zone-tag {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.pp-island-char-stage {
+  font-size: 12px; color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+.pp-island-char-badges {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px;
+}
+.pp-island-badge {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+.pp-island-badge--done    { background: var(--math-soft);    color: var(--math-ink); }
+.pp-island-badge--evolve  { background: var(--rewards-soft); color: var(--rewards-ink); }
+.pp-island-badge--boost   { background: var(--arcade-soft);  color: var(--arcade-ink); }
+
+/* Gauges in island tab */
+.pp-island-gauges { display: flex; flex-direction: column; gap: 5px; }
+.pp-island-gauge-row {
+  display: flex; align-items: center; gap: 6px;
+}
+.pp-island-gauge-row i { width: 12px; height: 12px; color: var(--text-hint); flex-shrink: 0; }
+.pp-island-gauge-track {
+  flex: 1; height: 6px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-full); overflow: hidden;
+}
+.pp-island-gauge-num {
+  font-size: 11px; font-variant-numeric: tabular-nums;
+  color: var(--text-secondary); min-width: 26px; text-align: right;
+}
+
+/* Completed badge next to section title */
+.pp-island-completed-badge {
+  margin-left: 8px;
+  font-size: 11px; font-weight: 600;
+  color: var(--math-ink);
+  background: var(--math-soft);
+  padding: 2px 8px; border-radius: var(--radius-full);
+}
+
+/* Lumi log */
+.pp-island-log-header {
+  display: grid; grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  font-size: 11px; font-weight: 700;
+  color: var(--text-hint);
+  text-transform: uppercase; letter-spacing: 0.07em;
+  padding: 6px 8px; border-bottom: 1px solid var(--border-subtle);
+  margin-top: 8px;
+}
+.pp-island-log { display: flex; flex-direction: column; }
+.pp-island-log-row {
+  display: grid; grid-template-columns: 1fr auto auto;
+  gap: 12px; align-items: center;
+  padding: 7px 8px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.pp-island-log-row:last-child { border-bottom: none; }
+.pp-island-log-source {
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+.pp-island-log-amount {
+  font-weight: 700; font-variant-numeric: tabular-nums;
+  min-width: 40px; text-align: right;
+}
+.pp-island-log-when {
+  color: var(--text-hint); font-size: 11px;
+  white-space: nowrap;
+}

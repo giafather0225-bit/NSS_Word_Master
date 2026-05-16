@@ -135,6 +135,7 @@ const PP_TABS = [
     ["math",     "Math"],
     ["habits",   "Habits"],
     ["goals",    "Goals"],
+    ["island",   "Island"],
     ["settings", "Settings"],
 ];
 
@@ -187,6 +188,7 @@ async function _ppLoadTab(tab) {
         case "math":     if (typeof _ppMathSummary === "function") await _ppMathSummary(body); else body.innerHTML = missing; break;
         case "habits":   await _ppHabits(body);   break;
         case "goals":    if (typeof _ppGoals       === "function") await _ppGoals(body);       else body.innerHTML = missing; break;
+        case "island":   if (typeof _ppIsland      === "function") await _ppIsland(body);      else body.innerHTML = missing; break;
         case "settings": await _ppSettings(body); break;
         default: body.innerHTML = "<p>Coming soon.</p>";
     }
