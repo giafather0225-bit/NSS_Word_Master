@@ -1,0 +1,173 @@
+/* ================================================================
+   child-pin.css — GIA secret PIN entry screen
+   Section: System
+   Dependencies: theme.css
+   ================================================================ */
+
+/* ── Overlay ─────────────────────────────────────────────────── */
+#gpin-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    160deg,
+    var(--diary-soft) 0%,
+    var(--bg-page) 50%,
+    var(--english-soft) 100%
+  );
+  animation: gpin-fade-in 0.35s var(--ease-calm) both;
+}
+
+#gpin-overlay.gpin-exit {
+  animation: gpin-fade-out 0.45s var(--ease-calm) both;
+}
+
+@keyframes gpin-fade-in {
+  from { opacity: 0; transform: scale(1.04); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes gpin-fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.96); }
+}
+
+/* ── Card ────────────────────────────────────────────────────── */
+.gpin-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-modal);
+  padding: 40px 48px 36px;
+  width: min(360px, 92vw);
+  user-select: none;
+}
+
+.gpin-card.shake {
+  animation: gpin-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes gpin-shake {
+  10%, 90%  { transform: translateX(-4px); }
+  20%, 80%  { transform: translateX(6px); }
+  30%, 50%, 70% { transform: translateX(-8px); }
+  40%, 60%  { transform: translateX(8px); }
+  100%      { transform: translateX(0); }
+}
+
+/* ── Logo ────────────────────────────────────────────────────── */
+.gpin-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+/* ── Title & subtitle ────────────────────────────────────────── */
+.gpin-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 0;
+}
+
+.gpin-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+/* ── PIN dots ────────────────────────────────────────────────── */
+.gpin-dots {
+  display: flex;
+  gap: 16px;
+  margin: 12px 0 20px;
+}
+
+.gpin-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border-strong);
+  background: transparent;
+  transition: background var(--transition-fast), border-color var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+.gpin-dot.filled {
+  background: var(--diary-primary);
+  border-color: var(--diary-primary);
+  transform: scale(1.15);
+}
+
+/* ── Numpad ──────────────────────────────────────────────────── */
+.gpin-numpad {
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  grid-template-rows: repeat(4, 64px);
+  gap: 10px;
+}
+
+.gpin-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast),
+              border-color var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gpin-key:hover {
+  background: var(--diary-soft);
+  border-color: var(--diary-primary);
+}
+
+.gpin-key:active {
+  transform: scale(0.93);
+  background: var(--diary-primary);
+  color: var(--text-on-primary);
+  border-color: var(--diary-primary);
+}
+
+.gpin-key--del {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-secondary);
+}
+
+.gpin-key--del:hover {
+  background: var(--bg-surface);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.gpin-key--del:active {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+/* ── Success flash ───────────────────────────────────────────── */
+.gpin-dot.success {
+  background: var(--math-primary);
+  border-color: var(--math-primary);
+}

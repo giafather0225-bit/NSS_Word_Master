@@ -151,6 +151,48 @@ def parent_verify_pin(body: PinVerifyIn, db: Session = Depends(get_db)):
     return {"ok": True}
 
 
+# ─── Child Secret PIN ─────────────────────────────────────────
+
+CHILD_PIN_KEY = "child_pin"
+
+
+@router.get("/api/parent/child-pin-status")
+def child_pin_status(db: Session = Depends(get_db)):
+    """Return whether Gia's secret PIN has been set. No auth required. @tag SYSTEM PIN"""
+    row = db.query(AppConfig).filter(AppConfig.key == CHILD_PIN_KEY).first()
+    return {"pin_set": bool(row and row.value)}
+
+
+class ChildPinSetupIn(BaseModel):
+    pin: str = Field(min_length=4, max_length=4, pattern=r"^\d{4}$")
+
+
+@router.post("/api/parent/child-pin-setup")
+def child_pin_setup(body: ChildPinSetupIn, db: Session = Depends(get_db)):
+    """
+    First-time setup of Gia's 4-digit secret PIN. No auth required (called from PIN setup screen).
+    Idempotent: if a PIN already exists, replaces it. @tag SYSTEM PIN
+    """
+    hashed = pin_hash.hash_pin(body.pin)
+    _upsert_app_config(db, CHILD_PIN_KEY, hashed, datetime.utcnow().isoformat())
+    db.commit()
+    return {"ok": True}
+
+
+@router.post("/api/parent/child-pin-verify")
+def child_pin_verify(body: ChildPinSetupIn, db: Session = Depends(get_db)):
+    """
+    Verify Gia's 4-digit secret PIN. Returns ok:true on success, ok:false on failure.
+    No lockout — wrong attempts only shake the UI. @tag SYSTEM PIN
+    """
+    row = db.query(AppConfig).filter(AppConfig.key == CHILD_PIN_KEY).first()
+    if not row or not row.value:
+        return {"ok": False}
+    if pin_hash.verify_pin(body.pin, row.value):
+        return {"ok": True}
+    return {"ok": False}
+
+
 # ─── Task Settings ────────────────────────────────────────────
 
 @router.get("/api/parent/task-settings")

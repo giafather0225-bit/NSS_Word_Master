@@ -1,0 +1,272 @@
+/* ================================================================
+   child-guide.css — GIA onboarding guide & Help slides
+   Section: System
+   Dependencies: theme.css
+   ================================================================ */
+
+/* ── Overlay ─────────────────────────────────────────────────── */
+#gguide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(43, 39, 34, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: gguide-in 0.3s var(--ease-calm) both;
+}
+
+#gguide-overlay.gguide-hidden {
+  display: none;
+}
+
+#gguide-overlay.gguide-exit {
+  animation: gguide-out 0.25s var(--ease-calm) both;
+}
+
+@keyframes gguide-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes gguide-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ── Modal ───────────────────────────────────────────────────── */
+.gguide-modal {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-modal);
+  width: min(480px, 94vw);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header (color bar) ──────────────────────────────────────── */
+.gguide-header {
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.gguide-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gguide-slide-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin: 0;
+}
+
+.gguide-slide-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+/* ── Body / bullets ──────────────────────────────────────────── */
+.gguide-body {
+  padding: 0 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gguide-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--font-size-md);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.gguide-bullet-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* ── Progress dots ───────────────────────────────────────────── */
+.gguide-progress {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 0 4px;
+}
+
+.gguide-prog-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background: var(--border-default);
+  transition: background var(--transition-normal), transform var(--transition-normal);
+}
+
+.gguide-prog-dot.active {
+  transform: scale(1.3);
+}
+
+/* ── Footer buttons ──────────────────────────────────────────── */
+.gguide-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 28px 24px;
+  gap: 12px;
+}
+
+.gguide-btn-skip {
+  font-size: var(--font-size-sm);
+  color: var(--text-hint);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color var(--transition-fast);
+  display: none; /* hidden on first visit, shown for help-mode */
+}
+
+.gguide-btn-skip:hover {
+  color: var(--text-secondary);
+}
+
+.gguide-btn-next,
+.gguide-btn-done {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: var(--radius-lg);
+  border: none;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.gguide-btn-next:active,
+.gguide-btn-done:active {
+  transform: scale(0.97);
+}
+
+/* ── Close (help mode only) ──────────────────────────────────── */
+.gguide-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+  display: none;
+}
+
+.gguide-close:hover {
+  background: var(--border-default);
+}
+
+/* ── Slide animation ─────────────────────────────────────────── */
+.gguide-slide-wrap {
+  animation: gguide-slide-in 0.28s var(--ease-calm) both;
+}
+
+@keyframes gguide-slide-in {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Section color themes ────────────────────────────────────── */
+.gguide-theme--welcome .gguide-icon-wrap   { background: var(--diary-soft); color: var(--diary-ink); }
+.gguide-theme--welcome .gguide-bullet-dot  { background: var(--diary-primary); }
+.gguide-theme--welcome .gguide-prog-dot.active { background: var(--diary-primary); }
+.gguide-theme--welcome .gguide-btn-next,
+.gguide-theme--welcome .gguide-btn-done    { background: var(--diary-primary); color: var(--text-on-primary); }
+
+.gguide-theme--home .gguide-icon-wrap      { background: var(--bg-surface); color: var(--text-secondary); }
+.gguide-theme--home .gguide-bullet-dot     { background: var(--text-secondary); }
+.gguide-theme--home .gguide-prog-dot.active { background: var(--text-secondary); }
+.gguide-theme--home .gguide-btn-next,
+.gguide-theme--home .gguide-btn-done       { background: var(--text-primary); color: var(--text-on-primary); }
+
+.gguide-theme--english .gguide-icon-wrap   { background: var(--english-soft); color: var(--english-ink); }
+.gguide-theme--english .gguide-bullet-dot  { background: var(--english-primary); }
+.gguide-theme--english .gguide-prog-dot.active { background: var(--english-primary); }
+.gguide-theme--english .gguide-btn-next,
+.gguide-theme--english .gguide-btn-done    { background: var(--english-primary); color: var(--text-on-primary); }
+
+.gguide-theme--math .gguide-icon-wrap      { background: var(--math-soft); color: var(--math-ink); }
+.gguide-theme--math .gguide-bullet-dot     { background: var(--math-primary); }
+.gguide-theme--math .gguide-prog-dot.active { background: var(--math-primary); }
+.gguide-theme--math .gguide-btn-next,
+.gguide-theme--math .gguide-btn-done       { background: var(--math-primary); color: var(--text-on-primary); }
+
+.gguide-theme--diary .gguide-icon-wrap     { background: var(--diary-soft); color: var(--diary-ink); }
+.gguide-theme--diary .gguide-bullet-dot    { background: var(--diary-primary); }
+.gguide-theme--diary .gguide-prog-dot.active { background: var(--diary-primary); }
+.gguide-theme--diary .gguide-btn-next,
+.gguide-theme--diary .gguide-btn-done      { background: var(--diary-primary); color: var(--text-on-primary); }
+
+.gguide-theme--island .gguide-icon-wrap    { background: var(--rewards-soft); color: var(--rewards-ink); }
+.gguide-theme--island .gguide-bullet-dot   { background: var(--rewards-primary); }
+.gguide-theme--island .gguide-prog-dot.active { background: var(--rewards-primary); }
+.gguide-theme--island .gguide-btn-next,
+.gguide-theme--island .gguide-btn-done     { background: var(--rewards-primary); color: var(--text-on-primary); }
+
+.gguide-theme--arcade .gguide-icon-wrap    { background: var(--arcade-soft); color: var(--arcade-ink); }
+.gguide-theme--arcade .gguide-bullet-dot   { background: var(--arcade-primary); }
+.gguide-theme--arcade .gguide-prog-dot.active { background: var(--arcade-primary); }
+.gguide-theme--arcade .gguide-btn-next,
+.gguide-theme--arcade .gguide-btn-done     { background: var(--arcade-primary); color: var(--text-on-primary); }
+
+/* ── Help button (topbar area) ───────────────────────────────── */
+.gguide-help-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border-default);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast),
+              color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.gguide-help-btn:hover {
+  background: var(--diary-soft);
+  border-color: var(--diary-primary);
+  color: var(--diary-ink);
+}

@@ -225,13 +225,16 @@ const GIASplash = (() => {
 
   return { init };
 })();
+window.GIASplash = GIASplash;
 
-// Run on DOM ready — skip splash when returning from Folder Browser
+// Run on DOM ready — skip splash when returning from Folder Browser or when PIN gate is active
 document.addEventListener('DOMContentLoaded', () => {
   if (new URLSearchParams(window.location.search).get('parent') === '1') {
     const splash = document.getElementById('splash-screen');
     if (splash) splash.remove();
     return;
   }
+  // child-pin.js sets this flag → splash will be triggered by GIAPin._onSuccess() instead
+  if (window.GIA_PIN_MODE) return;
   GIASplash.init();
 });
