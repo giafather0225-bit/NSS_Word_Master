@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-16 — Growth Theme 시스템 완전 제거 · 마이그레이션 001~056 반영 · 라우터 46개 · JS 93개 · CSS 63개 · Island 시스템 서비스/프론트엔드 추가
+> Last updated: 2026-05-16 — Growth Theme 시스템 완전 제거 · 마이그레이션 001~056 반영 · 라우터 45개 · JS 93개 · CSS 63개 · Island 시스템 서비스/프론트엔드 추가
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -12,7 +12,7 @@
 ---
 
 ## Tech Stack
-- **Backend**: Python / FastAPI — `backend/main.py` mounts **46 routers** (`backend/routers/`, ~204 endpoints).
+- **Backend**: Python / FastAPI — `backend/main.py` mounts **45 routers** (`backend/routers/`, ~204 endpoints).
 - **Frontend**: HTML + CSS + Vanilla JS (no framework). 93 JS source + 63 CSS files. Pre-built into `bundle-{a,b,c}.min.js` via `build.sh` (esbuild). Auto-rebuilt at server startup. Island UI uses JSX React components (`frontend/src/island/*.jsx`, 17 files — built separately, not bundled with esbuild).
 - **Database**: SQLite WAL · ORM: SQLAlchemy. Models split by domain in `backend/models/`.
 - **AI**: Ollama (`gemma2:2b`, local, lazy-start via `services/ollama_manager.py`) → Gemini fallback (`GEMINI_API_KEY`).
@@ -138,7 +138,7 @@ NSS_Word_Master/
 
 ---
 
-## Backend Routers (46)
+## Backend Routers (45)
 
 > Order in `main.py` matters — `diary_photo` must be registered **before** `diary_sentences` so literal `/photo` wins over `/{subject}/{textbook}` matching.
 
