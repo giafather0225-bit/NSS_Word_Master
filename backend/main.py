@@ -31,6 +31,7 @@ from backend.routers import lessons, study, progress, words, files, tts, review,
 from backend.routers import files_voca as files_voca_router
 from backend.routers import xp as xp_router
 from backend.routers import daily_words as daily_words_router
+from backend.routers import words_mywords as words_mywords_router
 from backend.routers import reward_shop as reward_shop_router
 from backend.routers import diary as diary_router
 from backend.routers import diary_photo as diary_photo_router
@@ -346,6 +347,7 @@ app.include_router(lessons.router)
 app.include_router(study.router)
 app.include_router(progress.router)
 app.include_router(words.router)
+app.include_router(words_mywords_router.router)
 app.include_router(files.router)
 app.include_router(files_voca_router.router)
 app.include_router(tts.router)
