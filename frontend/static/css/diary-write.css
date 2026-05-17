@@ -173,7 +173,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
   min-height: 520px;
   /* default paper background (Decorated, ruled) — overwritten inline by JS */
   background:
-    repeating-linear-gradient(180deg, #FFFFFF 0 31px, var(--diary-light) 31px 32px);
+    repeating-linear-gradient(180deg, var(--bg-card) 0 31px, var(--diary-light) 31px 32px);
 }
 
 /* Photos inline strip */
@@ -478,7 +478,7 @@ body[data-view="diary"].dh-fullscreen #diary-view.dw-active {
 
 /* Writing tips (Free Write) */
 .dw-tips {
-  background: linear-gradient(160deg, var(--english-light), #fff);
+  background: linear-gradient(160deg, var(--english-light), var(--bg-card));
   border-color: var(--english-soft);
 }
 .dw-tips-head {
