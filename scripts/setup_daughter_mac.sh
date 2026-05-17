@@ -17,10 +17,14 @@ if ! command -v brew >/dev/null 2>&1; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-echo "==> 3/6  Installing python@3.11 + git + tesseract"
+echo "==> 3/6  Installing python@3.11 + git + tesseract + node"
 brew list python@3.11 >/dev/null 2>&1 || brew install python@3.11
 brew list git          >/dev/null 2>&1 || brew install git
 brew list tesseract    >/dev/null 2>&1 || brew install tesseract
+# node is the fallback path when JS bundles need rebuilding locally.
+# Bundles are normally shipped via git, but having node available means the
+# server's lifespan build.sh step succeeds instead of warning + falling back.
+brew list node         >/dev/null 2>&1 || brew install node
 
 echo "==> 4/6  Cloning repo into $APP_DIR"
 if [ ! -d "$APP_DIR/.git" ]; then

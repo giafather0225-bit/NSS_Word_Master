@@ -36,6 +36,9 @@
 8. 모든 사용자 입력 sanitize. SQL injection / XSS / prompt injection 방어. Pydantic 길이 제한 = `schemas_common.py` (Str80/Str200/Str500).
 9. JS 변경 후 `build.sh` 가 lifespan startup 시 자동 재빌드. 수동 빌드: `bash build.sh`.
    → 테스트 전에 항상 `bash build.sh`를 수동 실행하여 bundle-a/b/c.min.js를 재생성할 것.
+   → **푸시 전 반드시 번들을 함께 커밋**: `git add frontend/static/js/bundle-*.min.js`.
+     딸 Mac에는 node/npm이 없어 git pull로만 최신 JS를 받음. 번들이 누락된 커밋을
+     푸시하면 딸 화면에 변경이 반영되지 않음.
 10. 변경 후 스모크 테스트: 5-Stage 학습 / Review / Final Test / Unit Test / Word Manager / Diary / Math Academy.
 11. UI 텍스트: 영어만. 이모지 금지 — Lucide 아이콘 (`<i data-lucide="...">`) + JS 에서 `lucide.createIcons()`.
     → Confirmed fixes applied 2026-04-30: spelling.js / sentence.js / fillblank.js 이모지 전체 제거, sentence.js 한국어 로딩 텍스트 영문화, fillblank.js retry 카운터 UX 개선.
