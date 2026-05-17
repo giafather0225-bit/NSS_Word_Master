@@ -132,7 +132,8 @@ async function refreshHomeStats() {
 }
 
 /**
- * Load and render the mini island character widget into a subject-view container.
+ * Load and render the compact floating island character bubble into a subject-view container.
+ * Compact state: avatar + Lv badge only. Click toggles expanded panel with name/gauges.
  * @tag ISLAND
  * @param {string} containerId - DOM element id to populate
  * @param {string} zone - island zone name (forest / ocean / savanna / space)
@@ -159,40 +160,76 @@ async function _renderIslandSubjectWidget(containerId, zone) {
     const happy  = Math.max(0, Math.min(100, char.happiness || 0));
     const name   = char.nickname || char.name || 'Character';
     const level  = char.level || 1;
+    const evo    = !!char.ready_to_evolve;
 
     el.innerHTML = `
-      <div class="isw-card" role="button" tabindex="0"
+      <div class="isw-bubble" data-open="false" role="button" tabindex="0"
            aria-label="My Island — ${escapeHtml(name)}, Level ${level}">
-        <div class="isw-char-wrap">
-          ${imgSrc ? `<img src="${imgSrc}" class="isw-img" alt="${escapeHtml(name)}" />` : ''}
-          <span class="isw-level">Lv.${level}</span>
+        <div class="isw-avatar">
+          ${imgSrc
+            ? `<img src="${imgSrc}" class="isw-avatar-img" alt="${escapeHtml(name)}" />`
+            : `<i data-lucide="star" class="isw-avatar-placeholder"></i>`}
+          <span class="isw-lv">Lv.${level}</span>
+          ${evo ? '<span class="isw-evo-dot"></span>' : ''}
         </div>
-        <div class="isw-body">
-          <div class="isw-eyebrow">My Island</div>
-          <div class="isw-name">${escapeHtml(name)}</div>
-          ${char.ready_to_evolve ? '<div class="isw-evo-badge">Ready to Evolve!</div>' : ''}
+        <div class="isw-panel" aria-hidden="true">
+          <div class="isw-panel-name">${escapeHtml(name)}</div>
+          ${evo ? '<div class="isw-panel-evo">Ready to Evolve!</div>' : ''}
           <div class="isw-gauges">
-            <div class="isw-gauge" title="Hunger">
-              <div class="isw-gauge-fill isw-gauge-fill--hunger" style="width:${hunger}%"></div>
+            <div class="isw-gauge-row">
+              <i data-lucide="utensils" width="10" height="10"></i>
+              <div class="isw-gauge">
+                <div class="isw-gauge-fill isw-gauge-fill--hunger" style="width:${hunger}%"></div>
+              </div>
             </div>
-            <div class="isw-gauge" title="Happiness">
-              <div class="isw-gauge-fill isw-gauge-fill--happy" style="width:${happy}%"></div>
+            <div class="isw-gauge-row">
+              <i data-lucide="heart" width="10" height="10"></i>
+              <div class="isw-gauge">
+                <div class="isw-gauge-fill isw-gauge-fill--happy" style="width:${happy}%"></div>
+              </div>
             </div>
           </div>
+          <div class="isw-panel-footer">Tap to open Island</div>
         </div>
-        <div class="isw-arrow"><i data-lucide="chevron-right" width="16" height="16"></i></div>
       </div>`;
 
-    el.querySelector('.isw-card').addEventListener('click', () => {
-      if (typeof openIslandMain === 'function') openIslandMain();
-    });
-    el.querySelector('.isw-card').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
+    if (typeof lucide !== 'undefined') lucide.createIcons({ nodes: [el] });
+
+    const bubble = el.querySelector('.isw-bubble');
+    const panel  = el.querySelector('.isw-panel');
+
+    bubble.addEventListener('click', (e) => {
+      const isOpen = bubble.dataset.open === 'true';
+      if (isOpen) {
+        // Second tap → open island
         if (typeof openIslandMain === 'function') openIslandMain();
+        bubble.dataset.open = 'false';
+        panel.setAttribute('aria-hidden', 'true');
+      } else {
+        bubble.dataset.open = 'true';
+        panel.setAttribute('aria-hidden', 'false');
+        e.stopPropagation();
       }
     });
-    if (typeof lucide !== 'undefined') lucide.createIcons({ nodes: [el] });
+
+    bubble.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        bubble.click();
+      }
+      if (e.key === 'Escape') {
+        bubble.dataset.open = 'false';
+        panel.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Close panel when clicking anywhere outside
+    document.addEventListener('click', function _iswOutside(e) {
+      if (!el.contains(e.target)) {
+        bubble.dataset.open = 'false';
+        panel.setAttribute('aria-hidden', 'true');
+      }
+    });
   } catch (_) {
     el.style.display = 'none';
   }

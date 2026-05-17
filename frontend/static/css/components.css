@@ -198,87 +198,124 @@ a.nav-btn { text-decoration: none; display: inline-block; text-align: center; }
 }
 .tag:hover { border-color: var(--color-primary); color: var(--color-primary); }
 
-/* ═══ Island Subject Mini Widget (P1) ═══ */
+/* ═══ Island Subject Mini Widget — compact floating bubble ═══ */
 #island-widget-english,
 #island-widget-math,
-#island-widget-diary { display: none; }
+#island-widget-diary {
+    display: none;
+    position: fixed;
+    bottom: 72px;
+    right: 20px;
+    z-index: 500;
+}
 
 body[data-view="english"] #island-widget-english { display: block; }
 body[data-view="math"]    #island-widget-math    { display: block; }
 body[data-view="diary"]   #island-widget-diary   { display: block; }
 
-.isw-card {
-    display: flex;
+/* Bubble button (always visible) */
+.isw-bubble {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
-    padding: 10px 14px 10px 10px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-soft);
     cursor: pointer;
-    transition: box-shadow var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
-    max-width: 300px;
-    margin: 0 auto 16px;
     user-select: none;
     -webkit-user-select: none;
 }
-.isw-card:hover {
-    box-shadow: 0 4px 16px rgba(120,90,60,0.12);
-    border-color: var(--border-default);
-    transform: translateY(-1px);
-}
-.isw-card:active { transform: translateY(0); }
 
-.isw-char-wrap {
+.isw-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--border-subtle);
+    box-shadow: 0 4px 14px rgba(120,90,60,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    flex-shrink: 0;
-    width: 56px;
-    height: 56px;
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
 }
-.isw-img {
-    width: 56px;
-    height: 56px;
+.isw-bubble:hover .isw-avatar {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(120,90,60,0.26);
+}
+.isw-bubble:active .isw-avatar { transform: translateY(0); }
+
+.isw-avatar-img {
+    width: 38px;
+    height: 38px;
     object-fit: contain;
     display: block;
 }
-.isw-level {
+.isw-avatar-placeholder {
+    width: 28px;
+    height: 28px;
+    color: var(--text-hint);
+}
+
+.isw-lv {
     position: absolute;
-    bottom: -3px;
-    right: -8px;
+    bottom: -5px;
+    right: -5px;
     background: var(--arcade-primary);
     color: var(--text-on-primary);
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 800;
     line-height: 1;
     padding: 2px 5px;
     border-radius: var(--radius-full);
     white-space: nowrap;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.22);
 }
 
-.isw-body {
-    flex: 1;
-    min-width: 0;
+/* Evolve pulse dot on avatar */
+.isw-evo-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--rewards-primary);
+    border: 2px solid var(--bg-card);
+    animation: isw-evo-pulse 2s ease-in-out infinite;
 }
-.isw-eyebrow {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--text-hint);
-    text-transform: uppercase;
-    margin-bottom: 2px;
+
+/* Expanded info panel (pops up above bubble) */
+.isw-panel {
+    position: absolute;
+    bottom: 62px;
+    right: 0;
+    width: 176px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 24px rgba(120,90,60,0.16);
+    padding: 10px 12px 10px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px) scale(0.95);
+    transform-origin: bottom right;
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
 }
-.isw-name {
+.isw-bubble[data-open="true"] .isw-panel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.isw-panel-name {
     font-size: var(--font-size-sm);
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.isw-evo-badge {
+.isw-panel-evo {
     display: inline-block;
     font-size: 10px;
     font-weight: 700;
@@ -286,15 +323,23 @@ body[data-view="diary"]   #island-widget-diary   { display: block; }
     background: var(--rewards-soft);
     border-radius: var(--radius-full);
     padding: 1px 7px;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
-.isw-gauges { display: flex; flex-direction: column; gap: 3px; }
+.isw-gauges { display: flex; flex-direction: column; gap: 4px; }
+.isw-gauge-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-hint);
+}
+.isw-gauge-row i { flex-shrink: 0; }
 .isw-gauge {
+    flex: 1;
     height: 4px;
     background: var(--bg-surface);
     border-radius: var(--radius-full);
     overflow: hidden;
-    width: 100%;
 }
 .isw-gauge-fill {
     height: 100%;
@@ -304,11 +349,18 @@ body[data-view="diary"]   #island-widget-diary   { display: block; }
 .isw-gauge-fill--hunger { background: var(--arcade-primary); }
 .isw-gauge-fill--happy  { background: var(--diary-primary); }
 
-.isw-arrow {
-    flex-shrink: 0;
+.isw-panel-footer {
+    margin-top: 8px;
+    padding-top: 7px;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 10px;
     color: var(--text-hint);
-    display: flex;
-    align-items: center;
+    text-align: right;
+}
+
+@keyframes isw-evo-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.6; transform: scale(0.85); }
 }
 
 /* ─── Test Mode badge ──────────────────────────────────────────── */
