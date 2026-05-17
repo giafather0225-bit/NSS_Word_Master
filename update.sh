@@ -18,7 +18,8 @@ echo ""
 
 # 2. Install / sync Python packages
 echo "[2/3] Updating packages..."
-python3 -m pip install -q -r requirements.txt
+python3 -m pip install -q --upgrade pip
+    python3 -m pip install -q -r requirements.txt
 echo "      Packages up to date."
 echo ""
 
