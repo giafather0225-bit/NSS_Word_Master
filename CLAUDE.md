@@ -30,7 +30,7 @@
 2. 파일당 최대 ~500줄. 초과 시 모듈 분리 (예: `child.js` → `child-{calendar,exam,keyboard,text}.js`).
 3. CSS: `theme.css` 변수만 사용. 컴포넌트 CSS에 hex 직접 사용 금지.
 4. 모든 API: 적절한 에러 핸들링 + HTTP 상태코드. `RequestValidationError` 는 `main.py` 에서 child-friendly 422 JSON 으로 자동 변환됨.
-5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~056, 중복 prefix 파일 5쌍 있음 — filename으로 추적하므로 안전).
+5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~056, 파일 61개). **다음 신규 마이그레이션은 `057_` 부터 단순 증가** — 중복 prefix(025a/b, 033a/b, 034a/b, 040a/b, 041a/b) 방식은 종료됨. 시스템은 filename 전체로 추적하므로 기존 파일은 안전.
 6. Python: type hints + docstrings. JS: JSDoc `@tag` comments.
 7. async/await 일관성. N+1 쿼리 금지.
 8. 모든 사용자 입력 sanitize. SQL injection / XSS / prompt injection 방어. Pydantic 길이 제한 = `schemas_common.py` (Str80/Str200/Str500).
@@ -1326,7 +1326,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 #### 단기 (1~2 스프린트)
 
 4. ~~**Island CSS hex → CSS 변수 마이그레이션**: `island-loop.css`, `island-main.css`, `island-zones.css`, `island-system.css`~~ ✅ 완료 (commit 0aaa0c0)
-5. **마이그레이션 번호 정리**: 057부터는 중복 prefix 없이 단순 증가로 유지
+~~5. **마이그레이션 번호 정리**: 057부터는 중복 prefix 없이 단순 증가로 유지~~ ✅ CLAUDE.md Work Principle #5에 명시 완료
 
 #### 중기 (구조 개선)
 

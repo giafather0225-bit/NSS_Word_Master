@@ -50,7 +50,7 @@ async function _ppHome(body) {
         if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
         console.error("[parent-home] load failed:", err);
-        body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`;
+        body.innerHTML = `<p class="pp-error-pad">Failed to load.</p>`;
     }
 }
 
@@ -113,7 +113,7 @@ function _ppHomeTodayProgress(bySubject) {
         return `
             <div class="pp-today-row${active ? " pp-today-row--active" : ""}">
                 <div class="pp-today-subject">
-                    <i data-lucide="${s.icon}" style="width:16px;height:16px"></i>
+                    <i data-lucide="${s.icon}" class="pp-icon-16"></i>
                     ${s.label}
                 </div>
                 <span class="pp-today-badge${active ? " pp-today-badge--done" : " pp-today-badge--none"}">
@@ -165,7 +165,7 @@ function _ppHomeVsLastWeek(thisWeek, lastWeek) {
 
     const trend = (a, b, unit = "") => {
         const d = a - b;
-        const ico = (name) => `<i data-lucide="${name}" style="width:12px;height:12px;vertical-align:-1px"></i>`;
+        const ico = (name) => `<i data-lucide="${name}" class="pp-icon-12v"></i>`;
         if (d > 0) return `<span class="pp-trend pp-trend--up">+${d}${unit} ${ico("trending-up")}</span>`;
         if (d < 0) return `<span class="pp-trend pp-trend--down">${d}${unit} ${ico("trending-down")}</span>`;
         return `<span class="pp-trend pp-trend--same">same ${ico("minus")}</span>`;
@@ -195,16 +195,16 @@ function _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goalsResp) {
         const n = pendingDayoffs.length;
         alerts.push(`
             <div class="pp-alert pp-alert--warn pp-alert--clickable" onclick="_ppLoadTab('habits')">
-                <i data-lucide="calendar-off" style="width:16px;height:16px;flex-shrink:0"></i>
+                <i data-lucide="calendar-off" class="pp-icon-16-shrink"></i>
                 <span>${n} day-off request${n > 1 ? "s" : ""} pending your approval</span>
-                <i data-lucide="chevron-right" style="width:14px;height:14px;margin-left:auto;opacity:0.5"></i>
+                <i data-lucide="chevron-right" class="pp-icon-14-trail"></i>
             </div>`);
     }
 
     if ((sum.current_streak || 0) >= 3 && todayXP === 0 && activeCount === 0) {
         alerts.push(`
             <div class="pp-alert pp-alert--info">
-                <i data-lucide="flame" style="width:16px;height:16px;flex-shrink:0"></i>
+                <i data-lucide="flame" class="pp-icon-16-shrink"></i>
                 <span>Streak at risk — ${sum.current_streak}d streak, no activity yet today</span>
             </div>`);
     }
@@ -216,9 +216,9 @@ function _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goalsResp) {
     if (inBackHalf && lagging.length > 0) {
         alerts.push(`
             <div class="pp-alert pp-alert--warn pp-alert--clickable" onclick="_ppLoadTab('goals')">
-                <i data-lucide="target" style="width:16px;height:16px;flex-shrink:0"></i>
+                <i data-lucide="target" class="pp-icon-16-shrink"></i>
                 <span>${lagging.length} goal${lagging.length > 1 ? "s" : ""} lagging this week — under 50% with the weekend ahead</span>
-                <i data-lucide="chevron-right" style="width:14px;height:14px;margin-left:auto;opacity:0.5"></i>
+                <i data-lucide="chevron-right" class="pp-icon-14-trail"></i>
             </div>`);
     }
 
@@ -242,11 +242,11 @@ function _ppHomeIslandMini(island) {
 
     const urgentHtml = urgent.length > 0
         ? `<span class="pp-island-mini-warn">
-               <i data-lucide="alert-triangle" style="width:13px;height:13px;vertical-align:-1px"></i>
+               <i data-lucide="alert-triangle" class="pp-icon-13v"></i>
                ${urgent.length} need${urgent.length === 1 ? "s" : ""} care
            </span>`
         : `<span class="pp-island-mini-ok">
-               <i data-lucide="heart" style="width:13px;height:13px;vertical-align:-1px"></i>
+               <i data-lucide="heart" class="pp-icon-13v"></i>
                All good
            </span>`;
 
@@ -262,7 +262,7 @@ function _ppHomeIslandMini(island) {
             </div>
             <div class="pp-island-mini-right">
                 <div class="pp-island-mini-lumi">
-                    <i data-lucide="gem" style="width:14px;height:14px;vertical-align:-2px"></i>
+                    <i data-lucide="gem" class="pp-icon-14v"></i>
                     ${lumi.toLocaleString()} Lumi
                 </div>
                 ${urgentHtml}

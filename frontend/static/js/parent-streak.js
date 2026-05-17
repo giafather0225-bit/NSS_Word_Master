@@ -30,7 +30,7 @@ async function _ppStreak(body) {
         if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
         console.error("[parent-streak] load failed:", err);
-        body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load streak.</p>`;
+        body.innerHTML = `<p class="pp-error-pad">Failed to load streak.</p>`;
     }
 }
 

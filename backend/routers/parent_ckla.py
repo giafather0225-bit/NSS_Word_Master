@@ -132,6 +132,13 @@ def ckla_summary(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db
     qa_correct = sum(1 for r in qa_rows if r.ai_score >= 1)
     qa_accuracy = round(qa_correct / qa_total * 100) if qa_total else 0
 
+    # 7-day Q&A accuracy
+    cutoff_7d = (today - timedelta(days=7)).isoformat()
+    qa_7d = [r for r in qa_rows if r.created_at and str(r.created_at)[:10] >= cutoff_7d]
+    qa_7d_total   = len(qa_7d)
+    qa_7d_correct = sum(1 for r in qa_7d if r.ai_score >= 1)
+    qa_7d_accuracy = round(qa_7d_correct / qa_7d_total * 100) if qa_7d_total else 0
+
     # ── Needs parent review ────────────────────────────────────
     needs_review = [
         {
@@ -229,6 +236,8 @@ def ckla_summary(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db
         "domains":           domain_rows,
         "qa_accuracy":       qa_accuracy,
         "qa_total":          qa_total,
+        "qa_7d_accuracy":    qa_7d_accuracy,
+        "qa_7d_total":       qa_7d_total,
         "needs_review":      needs_review,
         "weekly_chart":      chart_days,
         "difficulty_breakdown": diff_counts,

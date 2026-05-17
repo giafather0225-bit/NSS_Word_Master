@@ -71,7 +71,7 @@ async function _ppIsland(body) {
 
         const zonesHtml = `
             <div class="pp-section-title pp-section-title--icon">
-                <i data-lucide="map" style="width:15px;height:15px"></i> Zones
+                <i data-lucide="map" class="pp-icon-15"></i> Zones
             </div>
             <div class="pp-island-zones">${zonePills}</div>`;
 
@@ -179,14 +179,14 @@ async function _ppIsland(body) {
                 <div class="pp-grid-2 pp-island-content-grid">
                     <div>
                         <div class="pp-section-title pp-section-title--icon">
-                            <i data-lucide="users" style="width:15px;height:15px"></i> Characters
+                            <i data-lucide="users" class="pp-icon-15"></i> Characters
                             <span class="pp-island-completed-badge">${status.completed_count ?? 0} completed</span>
                         </div>
                         ${charsHtml}
                     </div>
                     <div>
                         <div class="pp-section-title pp-section-title--icon">
-                            <i data-lucide="activity" style="width:15px;height:15px"></i> Recent Lumi Activity
+                            <i data-lucide="activity" class="pp-icon-15"></i> Recent Lumi Activity
                         </div>
                         <div class="pp-island-log-header">
                             <span>Source</span><span>Amount</span><span>When</span>
@@ -199,6 +199,6 @@ async function _ppIsland(body) {
         if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (e) {
         console.error("[ppIsland]", e);
-        body.innerHTML = `<p style="color:var(--color-error);padding:20px">Could not load Island data.</p>`;
+        body.innerHTML = `<p class="pp-error-pad">Could not load Island data.</p>`;
     }
 }

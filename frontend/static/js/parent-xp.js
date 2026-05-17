@@ -42,7 +42,7 @@ async function _ppXP(body) {
         if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
         console.error("[parent-xp] load failed:", err);
-        body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load XP settings.</p>`;
+        body.innerHTML = `<p class="pp-error-pad">Failed to load XP settings.</p>`;
     }
 }
 
@@ -63,16 +63,16 @@ function _ppXPReport(r) {
     const byAction = (r.by_action || []).slice(0, 8).map(a =>
         `<tr>
             <td><strong>${escapeHtml(a.action)}</strong></td>
-            <td style="text-align:right">${a.count}×</td>
-            <td style="text-align:right"><strong>${a.xp}</strong> XP</td>
+            <td class="pp-td-right">${a.count}×</td>
+            <td class="pp-td-right"><strong>${a.xp}</strong> XP</td>
         </tr>`
     ).join("");
 
     return `
-        <div class="pp-section-title" style="margin-top:0">XP · Last 7 Days</div>
-        <div class="pp-stats" style="grid-template-columns:1fr">
+        <div class="pp-section-title pp-section-title--no-top">XP · Last 7 Days</div>
+        <div class="pp-stats pp-stats--1col">
             <div class="pp-stat">
-                <div class="pp-stat-num"><i data-lucide="star" style="width:20px;height:20px;vertical-align:-3px"></i> ${r.total_xp || 0}</div>
+                <div class="pp-stat-num"><i data-lucide="star" class="pp-icon-20v"></i> ${r.total_xp || 0}</div>
                 <div class="pp-stat-label">Total XP · 7 days</div>
             </div>
         </div>
@@ -80,7 +80,7 @@ function _ppXPReport(r) {
         ${byAction ? `
             <div class="pp-section-title">Top Actions</div>
             <table class="pp-log-table">
-                <thead><tr><th>Action</th><th style="text-align:right">Count</th><th style="text-align:right">XP</th></tr></thead>
+                <thead><tr><th>Action</th><th class="pp-th-right">Count</th><th class="pp-th-right">XP</th></tr></thead>
                 <tbody>${byAction}</tbody>
             </table>` : ""}
     `;
@@ -109,7 +109,7 @@ function _ppXPRulesEditor(data) {
         <div class="pp-section-title">XP Rules</div>
         <p class="pp-xp-hint">Per-action XP values. Changes take effect immediately for new awards; past XP is unchanged.</p>
         <table class="pp-log-table pp-xp-table">
-            <thead><tr><th>Action</th><th style="width:80px">Default</th><th style="width:120px">Current</th></tr></thead>
+            <thead><tr><th>Action</th><th class="pp-th-w80">Default</th><th class="pp-th-w120">Current</th></tr></thead>
             <tbody>${rows}</tbody>
         </table>
         <div class="pp-streak-actions">

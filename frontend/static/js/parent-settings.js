@@ -27,15 +27,15 @@ async function ppRenderTasks(body) {
                     <span class="pp-toggle-track"></span>
                 </label>
                 ${t.is_required
-                    ? `<span style="font-size:11px;font-weight:700;color:var(--color-primary)">Required</span>`
-                    : `<button class="pp-btn secondary" style="padding:5px 10px;font-size:12px"
+                    ? `<span class="pp-required-label">Required</span>`
+                    : `<button class="pp-btn secondary pp-btn--sm"
                                data-task-key="${t.task_key}">Make Required</button>`}
             </div>`;
         }).join("");
         body.innerHTML = `
             <div class="pp-section-title">Today's Tasks</div>
-            <div class="pp-task-list">${rows || "<p style='color:var(--text-secondary)'>No tasks configured.</p>"}</div>
-            <p style="font-size:12px;color:var(--text-secondary);margin-top:12px">Toggle to show/hide tasks on the Home screen.</p>`;
+            <div class="pp-task-list">${rows || "<p class='pp-text-secondary'>No tasks configured.</p>"}</div>
+            <p class="pp-form-hint pp-form-hint--mt12">Toggle to show/hide tasks on the Home screen.</p>`;
         body.querySelectorAll('input[data-task-key]').forEach(cb => {
             cb.addEventListener('change', function() {
                 _ppToggleTask(this.dataset.taskKey, this.checked);
@@ -46,7 +46,7 @@ async function ppRenderTasks(body) {
                 _ppToggleRequired(this.dataset.taskKey, true);
             });
         });
-    } catch (_) { body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`; }
+    } catch (_) { body.innerHTML = `<p class="pp-error-pad">Failed to load.</p>`; }
 }
 
 /** Toggle task is_active. PIN-protected. @tag PARENT SETTINGS */
@@ -99,10 +99,10 @@ async function ppRenderSchedule(body) {
 
     body.innerHTML = `
         <div class="pp-section-title">Test / Academy Days</div>
-        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">Select days when academy tests are scheduled.</p>
+        <p class="pp-form-hint-sm pp-form-hint--mb12">Select days when academy tests are scheduled.</p>
         <div class="pp-week-picker">${pills}</div>
         <button class="pp-btn primary" onclick="_ppSaveSchedule()">Save Schedule</button>
-        <p id="pp-sched-msg" style="font-size:13px;margin-top:8px"></p>`;
+        <p id="pp-sched-msg" class="pp-form-msg pp-form-msg--mt8"></p>`;
 }
 
 /** Toggle a day pill on/off. @tag PARENT SCHEDULE */
@@ -138,16 +138,16 @@ async function _ppSaveSchedule() {
 function ppRenderPin(body) {
     const themeIsDark = localStorage.getItem("gia-theme") === "dark";
     body.innerHTML = `
-        <div class="pp-grid-2" style="align-items:start;margin-bottom:0">
+        <div class="pp-grid-2 pp-grid-2--top pp-grid-2--mb0">
             <div>
-                <div class="pp-section-title" style="margin-top:0">Appearance</div>
+                <div class="pp-section-title pp-section-title--no-top">Appearance</div>
                 <label class="pp-toggle-row">
                     <input id="pp-theme-toggle" type="checkbox" ${themeIsDark ? "checked" : ""} onchange="_ppToggleTheme(this.checked)">
-                    <span><i data-lucide="moon" style="width:14px;height:14px;vertical-align:-2px"></i> Dark mode</span>
+                    <span><i data-lucide="moon" class="pp-icon-14v"></i> Dark mode</span>
                 </label>
             </div>
             <div>
-                <div class="pp-section-title" style="margin-top:0">Parent Email</div>
+                <div class="pp-section-title pp-section-title--no-top">Parent Email</div>
                 <div class="pp-form-stack">
                     <div>
                         <label class="pp-form-label">Notification email</label>
@@ -247,7 +247,7 @@ const _CKLA_CFG_KEYS = [
  */
 async function ppRenderCKLASettings(body) {
     if (!body) return;
-    body.innerHTML = `<p style="color:var(--text-secondary);font-size:13px">Loading…</p>`;
+    body.innerHTML = `<p class="pp-form-hint-sm">Loading…</p>`;
     try {
         const vals = {};
         await Promise.all(_CKLA_CFG_KEYS.map(async k => {
@@ -266,8 +266,8 @@ async function ppRenderCKLASettings(body) {
         const g4Unlocked = vals.ckla_g4_unlocked === "true";
 
         body.innerHTML = `
-            <div style="display:flex;flex-direction:column;gap:12px">
-                <div class="pp-grid-2" style="gap:12px">
+            <div class="pp-col-12">
+                <div class="pp-grid-2 pp-grid-2--gap12">
                     <div>
                         <label class="pp-form-label">Daily Lesson Goal</label>
                         <input id="ckla-daily-goal" class="pp-input" type="number"
@@ -281,7 +281,7 @@ async function ppRenderCKLASettings(body) {
                         <p class="pp-form-hint">Intensive pace until this date.</p>
                     </div>
                 </div>
-                <div class="pp-grid-2" style="gap:12px;margin-top:4px">
+                <div class="pp-grid-2 pp-grid-2--gap12 pp-grid-2--mt4">
                     <div>
                         <label class="pp-form-label">Domain Test Pass %</label>
                         <input id="ckla-domain-pct" class="pp-input" type="number"
@@ -293,7 +293,7 @@ async function ppRenderCKLASettings(body) {
                                min="50" max="100" value="${gradePct}" />
                     </div>
                 </div>
-                <label class="pp-toggle-row" style="margin-top:4px">
+                <label class="pp-toggle-row pp-toggle-row--mt4">
                     <input id="ckla-order-fixed" type="checkbox" ${orderFixed ? "checked" : ""}>
                     <span>Enforce Domain Order (sequential only)</span>
                 </label>
@@ -301,22 +301,22 @@ async function ppRenderCKLASettings(body) {
                     <input id="ckla-show-hints" type="checkbox" ${showHints ? "checked" : ""}>
                     <span>Show Hint Button in Word Work</span>
                 </label>
-                <button class="pp-btn primary" style="margin-top:4px"
+                <button class="pp-btn primary pp-btn--mt4"
                         onclick="ppSaveCKLASettings()">Save CKLA Settings</button>
                 <p id="ckla-settings-msg" class="pp-form-msg"></p>
 
-                <div class="pp-section-divider" style="margin:16px 0"></div>
+                <div class="pp-section-divider pp-section-divider--16"></div>
                 <label class="pp-form-label">Grade 4 Access</label>
                 ${g4Unlocked
-                    ? `<p style="font-size:.82rem;color:var(--math-ink);font-weight:600;margin:4px 0">Grade 4 is unlocked.</p>`
-                    : `<button class="pp-btn secondary" onclick="ppForceUnlockG4()" style="margin-top:4px">
+                    ? `<p class="pp-ckla-g4-label">Grade 4 is unlocked.</p>`
+                    : `<button class="pp-btn secondary pp-btn--mt4" onclick="ppForceUnlockG4()">
                            Force Unlock Grade 4
                        </button>`}
                 <p class="pp-form-hint">Override the G3 Final Test requirement and give access to Grade 4.</p>
                 <p id="ckla-g4-msg" class="pp-form-msg"></p>
             </div>`;
     } catch (_) {
-        body.innerHTML = `<p style="color:var(--color-error);padding:12px 0">Failed to load CKLA settings.</p>`;
+        body.innerHTML = `<p class="pp-error-pad--compact">Failed to load CKLA settings.</p>`;
     }
 }
 
