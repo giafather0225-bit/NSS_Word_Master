@@ -50,6 +50,8 @@ cat \
   $JS/island-result.js \
   $JS/diary.js \
   $JS/diary-home.js \
+  $JS/diary-home-dayoff.js \
+  $JS/diary-home-sub.js \
   $JS/diary-write.js \
   $JS/diary-write-html.js \
   $JS/diary-write-media.js \
