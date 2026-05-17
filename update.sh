@@ -11,15 +11,9 @@ cd "$SCRIPT_DIR"
 echo "=== GIA Learning App — Update ==="
 echo ""
 
-# 1. Discard locally rebuilt bundles (server startup regenerates these,
-#    which would block git pull with "local changes" errors)
+# 1. Reset child.html (cache-bust hash gets rewritten on every server start)
 echo "[1/4] Resetting auto-generated files..."
-git checkout -- \
-  frontend/static/js/bundle-a.min.js \
-  frontend/static/js/bundle-b.min.js \
-  frontend/static/js/bundle-c.min.js \
-  frontend/templates/child.html \
-  2>/dev/null || true
+git checkout -- frontend/templates/child.html 2>/dev/null || true
 echo "      Done."
 echo ""
 
