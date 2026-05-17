@@ -118,7 +118,10 @@ const GIASplash = (() => {
    */
   async function _fetchSplashData() {
     try {
-      const res = await fetch('/api/xp/summary');
+      const controller = new AbortController();
+      const tid = setTimeout(() => controller.abort(), 4000);
+      const res = await fetch('/api/xp/summary', { signal: controller.signal });
+      clearTimeout(tid);
       if (!res.ok) throw new Error('API fail');
       return await res.json();
     } catch {
@@ -161,7 +164,15 @@ const GIASplash = (() => {
       logoEl.style.width = targetRect.width + 'px';
       logoEl.style.height = targetRect.height + 'px';
 
+      const fallback = setTimeout(() => {
+        logoEl.remove();
+        const glowRing = document.querySelector('.coach-glow-ring');
+        if (glowRing) glowRing.classList.add('active');
+        resolve();
+      }, 800);
+
       logoEl.addEventListener('transitionend', () => {
+        clearTimeout(fallback);
         logoEl.remove();
         // Activate glow ring on coach avatar
         const glowRing = document.querySelector('.coach-glow-ring');
