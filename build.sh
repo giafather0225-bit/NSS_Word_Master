@@ -59,6 +59,10 @@ cat \
   $JS/daily-words-weekly.js \
   $JS/ckla.js \
   $JS/ckla-lesson.js \
+  $JS/ckla-lesson-reading.js \
+  $JS/ckla-lesson-vocab.js \
+  $JS/ckla-lesson-qa.js \
+  $JS/ckla-lesson-refs.js \
   $JS/ckla-spelling.js \
   $JS/ckla-review.js \
   $JS/child.js \
