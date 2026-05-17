@@ -25,6 +25,16 @@ async function suShowLevelPicker() {
       <h2 class="wi-level-title">Select Size</h2>
       <div class="wi-level-sub">Sudoku</div>
       <div class="wi-level-list" id="su-level-list">Loading…</div>
+      <div class="arcade-how-to-play">
+        <div class="arcade-htp-title">How to play</div>
+        <ul class="arcade-htp-list">
+          <li>Fill every row, column, and box with each number exactly once.</li>
+          <li>Click a blank cell, then type a number (or use the on-screen pad).</li>
+          <li>Use Arrow keys to move between cells.</li>
+          <li>Green = correct · Red = conflict — fix red cells to continue.</li>
+          <li>Finish faster for a higher time bonus!</li>
+        </ul>
+      </div>
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
     </div>`;
   const bests = await Promise.all(

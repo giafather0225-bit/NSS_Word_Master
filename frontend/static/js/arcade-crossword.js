@@ -565,5 +565,14 @@ async function _cwFinish() {
   _cw = null;                 // M-2: null immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('crossword', state.score, state.correct, state.total, accuracy, state.level || 'normal');
-  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => cwStart(state.level || 'normal') });
+
+  const missed = (state.placed || []).filter((p) => !p.completed);
+  const extras = missed.length > 0
+    ? `<div class="cw-missed">
+        <div class="cw-missed-title">Answers (${missed.length} unsolved)</div>
+        ${missed.map((p) => `<div class="cw-missed-row"><b>${p.word.toUpperCase()}</b> — ${_cwEscape(p.def)}</div>`).join('')}
+      </div>`
+    : '';
+
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => cwStart(state.level || 'normal'), extras });
 }

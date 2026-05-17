@@ -62,6 +62,9 @@
   padding: 32px 24px;
   font-family: var(--font-family);
   color: var(--text-primary);
+  background-image: radial-gradient(circle, var(--border-subtle) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-color: var(--bg-page);
 }
 
 /* ── Arcade lobby ─────────────────────────────────────────────── */
@@ -78,22 +81,37 @@
   padding: 20px;
   box-shadow: var(--shadow-soft);
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-left-color 0.18s ease;
   border-left: 4px solid transparent;
 }
-.arcade-game-card.cat-english { border-left-color: var(--color-primary); }
+.arcade-game-card.cat-english { border-left-color: var(--english-primary); }
 .arcade-game-card.cat-math    { border-left-color: var(--math-primary); }
-.arcade-game-card:hover { transform: translateY(-2px); }
+.arcade-game-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 8px 24px rgba(120, 90, 60, 0.13);
+}
 .arcade-game-card.disabled { opacity: 0.5; cursor: default; }
-.arcade-game-card.disabled:hover { transform: none; }
+.arcade-game-card.disabled:hover { transform: none; box-shadow: var(--shadow-soft); }
 .arcade-game-icon {
   width: 44px;
   height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
-  color: var(--text-secondary);
+  margin-bottom: 10px;
+  border-radius: var(--radius-md);
+}
+.arcade-game-card.cat-english .arcade-game-icon {
+  background: var(--english-light);
+  color: var(--english-primary);
+}
+.arcade-game-card.cat-math .arcade-game-icon {
+  background: var(--math-light);
+  color: var(--math-primary);
+}
+.arcade-game-card.disabled .arcade-game-icon {
+  background: var(--bg-surface);
+  color: var(--text-hint);
 }
 .arcade-game-title {
   font-size: 18px;
@@ -255,7 +273,12 @@
   padding: 28px 32px;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
+  border-top: 5px solid var(--border-default);
 }
+.wi-gameover--s { border-top-color: var(--arcade-primary); }
+.wi-gameover--a { border-top-color: var(--math-primary); }
+.wi-gameover--b { border-top-color: var(--english-primary); }
+.wi-gameover--c { border-top-color: var(--border-default); }
 .wi-gameover h2 { margin: 0; font-size: 24px; }
 .wi-gameover .stat { font-size: 15px; color: var(--text-secondary); }
 .wi-gameover .stat b { color: var(--text-primary); font-size: 18px; }
@@ -550,8 +573,9 @@
   transition: transform 0.15s ease, border-color 0.15s ease;
 }
 .wi-level-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.02);
   border-color: var(--color-primary);
+  box-shadow: 0 8px 20px rgba(120, 90, 60, 0.12);
 }
 .wi-level-icon {
   width: 48px;
@@ -807,6 +831,10 @@
 .arcade-section-label--popular svg {
   color: var(--arcade-primary);
 }
+.arcade-section-label--english { color: var(--english-ink); }
+.arcade-section-label--english svg { color: var(--english-primary); }
+.arcade-section-label--math { color: var(--math-ink); }
+.arcade-section-label--math svg { color: var(--math-primary); }
 
 /* ── Sudoku ───────────────────────────────────────────────────── */
 .su-view { padding: 14px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
@@ -1366,4 +1394,66 @@
   0%   { transform: scale(0.8); opacity: 0; }
   60%  { transform: scale(1.1); }
   100% { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Crossword missed-words panel (game-over) ────────────────────── */
+.cw-missed {
+  margin: 12px 0 4px;
+  padding: 12px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  text-align: left;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.cw-missed-title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-hint);
+  margin-bottom: 8px;
+}
+.cw-missed-row {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  padding: 3px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.cw-missed-row:last-child { border-bottom: none; }
+.cw-missed-row b {
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+/* ── How to play block (Sudoku, Make 24 level pickers) ──────────── */
+.arcade-how-to-play {
+  margin: 16px 0 4px;
+  padding: 14px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  text-align: left;
+  max-width: 480px;
+}
+.arcade-htp-title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-hint);
+  margin-bottom: 8px;
+}
+.arcade-htp-list {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+.arcade-htp-list li {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding: 2px 0;
 }

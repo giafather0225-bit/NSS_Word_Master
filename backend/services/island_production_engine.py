@@ -60,7 +60,11 @@ def run_daily_production(db: Session) -> dict:
             skipped += 1
             continue
 
+        # B-form final characters produce extra Lumi (ISLAND_SPEC §3.6, §4.6).
+        # xp_boost_b_pct stores the extra lumi/day for B-form characters.
         amount = char.lumi_production
+        if prog.stage == "final_b":
+            amount += int(char.xp_boost_b_pct)
         if amount <= 0:
             skipped += 1
             continue

@@ -36,6 +36,16 @@ async function mkShowLevelPicker() {
       <h2 class="wi-level-title">Select Difficulty</h2>
       <div class="wi-level-sub">Make 24</div>
       <div class="wi-level-list" id="mk-level-list">Loading…</div>
+      <div class="arcade-how-to-play">
+        <div class="arcade-htp-title">How to play</div>
+        <ul class="arcade-htp-list">
+          <li>Use all four numbers with +, −, ×, ÷ to reach the target number.</li>
+          <li>Click a number card, then click an operator (+, −, ×, ÷), then the next number.</li>
+          <li>Parentheses are handled automatically — e.g. (3+1)×(2+4) = 24.</li>
+          <li>A hint appears if you are stuck for too long — use it wisely!</li>
+          <li>Solve streaks give bonus points. Skip costs points.</li>
+        </ul>
+      </div>
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
     </div>`;
   const bests = await Promise.all(

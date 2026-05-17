@@ -50,6 +50,11 @@ _LEVEL_XP_THRESHOLDS: list[int] = [0, 100, 250, 450, 750, 850, 1000, 1200, 1500,
 _HUNGER_DECAY_PER_DAY = 15
 _HAPPINESS_DECAY_PER_NO_STUDY_BLOCK = 20  # once per 2-day block of no study
 
+# A-form (mid_a/final_a) → hunger decay 20% slower (ISLAND_SPEC §3.6)
+# B-form (mid_b/final_b) → happiness decay 20% slower (ISLAND_SPEC §3.6)
+# Spec says "slower" without a specific %; 0.8 multiplier chosen as a balanced value.
+_BRANCH_DECAY_MULTIPLIER = 0.8
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Internal helpers
@@ -159,8 +164,22 @@ def apply_decay(db: Session, character_progress_id: int) -> dict:
     if elapsed_days <= 0:
         return result
 
+    # ── Branch-aware decay rates (ISLAND_SPEC §3.6) ───────────────────────
+    # A-form: hunger decays slower; B-form: happiness decays slower.
+    stage = prog.stage or "baby"
+    hunger_decay_rate = (
+        _HUNGER_DECAY_PER_DAY * _BRANCH_DECAY_MULTIPLIER
+        if stage in ("mid_a", "final_a")
+        else float(_HUNGER_DECAY_PER_DAY)
+    )
+    happiness_decay_rate = (
+        _HAPPINESS_DECAY_PER_NO_STUDY_BLOCK * _BRANCH_DECAY_MULTIPLIER
+        if stage in ("mid_b", "final_b")
+        else float(_HAPPINESS_DECAY_PER_NO_STUDY_BLOCK)
+    )
+
     # ── Hunger decay ──────────────────────────────────────────────────────
-    hunger_delta = -(elapsed_days * _HUNGER_DECAY_PER_DAY)
+    hunger_delta = -int(elapsed_days * hunger_decay_rate)
     new_hunger = _clamp(prog.hunger + hunger_delta)
     actual_hunger_change = new_hunger - prog.hunger
 
@@ -172,12 +191,12 @@ def apply_decay(db: Session, character_progress_id: int) -> dict:
         last_study = prog.adopted_at.date() if hasattr(prog.adopted_at, "date") else today
 
     no_study_days = (today - last_study).days
-    # -20 per complete 2-day block of no study (first day is free).
+    # decay_rate per complete 2-day block of no study (first day is free).
     happiness_decay_events = max(0, (no_study_days - 1) // 2) if no_study_days >= 2 else 0
     # Only count events within the current elapsed window.
     max_events = elapsed_days // 2
     happiness_decay_events = min(happiness_decay_events, max_events)
-    happiness_delta = -(happiness_decay_events * _HAPPINESS_DECAY_PER_NO_STUDY_BLOCK)
+    happiness_delta = -int(happiness_decay_events * happiness_decay_rate)
     new_happiness = _clamp(prog.happiness + happiness_delta)
     actual_happiness_change = new_happiness - prog.happiness
 

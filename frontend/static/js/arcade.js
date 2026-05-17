@@ -168,9 +168,9 @@ async function _renderArcadeLobby() {
       XP per round — 500+: <b>+1</b>, 1000+: <b>+2</b>, 2000+: <b>+3</b>. Daily max <b>${dailyCap}</b> XP.
     </div>
     ${popularSection}
-    <div class="arcade-section-label">${_SVG.bookOpen} English</div>
+    <div class="arcade-section-label arcade-section-label--english">${_SVG.bookOpen} English</div>
     <div class="arcade-list">${byCat('english')}</div>
-    <div class="arcade-section-label">${_SVG.calculator} Math</div>
+    <div class="arcade-section-label arcade-section-label--math">${_SVG.calculator} Math</div>
     <div class="arcade-list">${byCat('math')}</div>
   `;
 }
@@ -215,9 +215,9 @@ const _ARCADE_TIPS = {
   math_invaders: 'Type the answer to the falling equation, then press Enter.',
   definition_match: 'Tap Yes if the definition matches the word, No if it does not. Build streaks for bonus points!',
   spell_rush: 'Type each word letter-by-letter. Press Enter to submit. Correct answers build streaks for bonus points!',
-  crossword: 'Click a square to highlight the word. Type letters in the boxes. Green = correct! Fill all words for a bonus.',
-  sudoku: 'Every row, column, and box must have each number once. Green cells are right, red are wrong.',
-  make24: 'Build an expression using all four numbers that equals the target. A hint appears after 30 seconds if you are stuck.',
+  crossword: 'Click a cell to select the word. Type letters to fill it in. Use Arrow keys to move between cells. Green = correct! Fill all words for a bonus.',
+  sudoku: 'Every row, column, and box must contain each number exactly once. Click a cell, then type a number. Use Arrow keys to move. Green = correct, red = conflict.',
+  make24: 'Use all four numbers with +, −, ×, ÷ to reach the target (e.g. (3+1)×(2+4)=24). Click numbers and operators to build your expression. A hint appears if you are stuck.',
   word_builder: 'Click the scrambled letter tiles in the right order to spell the word shown by its definition.',
   memory_match: 'Flip cards to find matching word and definition pairs. Fewer flips = higher score.',
 };
@@ -240,20 +240,27 @@ function _arcadeShowTutorialOnce(gameId) {
       el.remove();
     };
     el.querySelector('.arcade-tip-x').addEventListener('click', dismiss);
-    setTimeout(dismiss, 8000);
+    setTimeout(dismiss, 12000);
   } catch (_) { /* localStorage blocked — silently skip */ }
 }
 
 /** Fetch arcade word pool. @tag ARCADE */
 async function _arcadeFetchWords(count = 40) {
+  const controller = new AbortController();
+  const tid = setTimeout(() => controller.abort(), 8000);
   try {
-    const r = await fetch(`/api/arcade/words?count=${count}`);
+    const r = await fetch(`/api/arcade/words?count=${count}`, { signal: controller.signal });
+    clearTimeout(tid);
     if (!r.ok) return [];
     const data = await r.json();
     return data.words || [];
   } catch (e) {
+    clearTimeout(tid);
     console.error('[arcade] word fetch failed', e);
-    if (typeof toast === 'function') toast('Could not load words — check connection.', 'error');
+    const msg = e.name === 'AbortError'
+      ? 'Connection is slow — please try again.'
+      : 'Could not load words — check connection.';
+    if (typeof toast === 'function') toast(msg, 'error');
     return [];
   }
 }
@@ -286,7 +293,7 @@ function _arcadeGrade(accuracy) {
 }
 
 /** Render the shared game-over panel. @tag ARCADE */
-function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
+function _arcadeRenderGameOver({ state, accuracy, result, replayFn, extras = '' }) {
   const body = document.getElementById('arcade-body');
   if (!body) return;
   const pct = Math.round(accuracy * 100);
@@ -335,7 +342,7 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
     : '';
 
   body.innerHTML = `
-    <div class="wi-gameover">
+    <div class="wi-gameover wi-gameover--${cls.replace('grade--', '')}">
       <div class="arcade-grade ${cls}">${grade}</div>
       <div class="arcade-grade-msg">${msg}</div>
       ${bestBanner}
@@ -346,6 +353,7 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn }) {
       ${flipLine}
       ${tierLine}
       ${xpLine}
+      ${extras}
       <div class="wi-gameover-actions">
         <button class="wi-btn" id="arcade-replay-btn">Play again</button>
         <button class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
