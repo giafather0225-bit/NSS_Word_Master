@@ -12,13 +12,14 @@ Idempotent: safe to re-run (already-canonical rows are left untouched).
 """
 
 import json
+from typing import Dict, Optional
 import sqlite3
 from pathlib import Path
 
 DB_PATH = Path.home() / "NSS_Learning" / "database" / "voca.db"
 
 # Map every known variant → canonical form
-POS_MAP: dict[str, str] = {
+POS_MAP: Dict[str, str] = {
     # noun variants
     "n":      "noun",
     "n.":     "noun",
@@ -51,7 +52,7 @@ CANONICAL = {"noun", "verb", "adjective", "adverb",
              "conjunction", "preposition", "pronoun"}
 
 
-def _normalize_pos(raw: str | None) -> str | None:
+def _normalize_pos(raw: Optional[str]) -> Optional[str]:
     """Return canonical POS or None if unknown / already canonical."""
     if not raw:
         return None
