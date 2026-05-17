@@ -1,7 +1,7 @@
-# JS 빌드 산출물 (build.sh가 서버 시작 시 자동 생성 — git 추적 불필요)
-frontend/static/js/bundle-a.min.js
-frontend/static/js/bundle-b.min.js
-frontend/static/js/bundle-c.min.js
+# JS 빌드 산출물 — 이제 git에 커밋함
+# 이유: 딸 Mac에는 node/npm이 없어 build.sh가 실패함. 번들을 커밋하면
+# git pull만으로 최신 JS가 즉시 반영됨. dad는 JS 수정 후 반드시
+# `bash build.sh && git add frontend/static/js/bundle-*.min.js`로 함께 커밋.
 
 # 시스템 / 환경
 .env
