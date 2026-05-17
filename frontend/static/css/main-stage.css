@@ -162,6 +162,31 @@ body[data-view="math"]    .stage-area { background: var(--math-light); }
 .sm-textarea:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-glow); }
 .sm-ai-loading { text-align: center; font-size: 13px; font-weight: 700; color: var(--color-primary); margin-bottom: 8px; animation: smBlink 1s ease-in-out infinite; }
 @keyframes smBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* ── Stage loading spinner ── */
+.stage-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 48px 24px;
+    min-height: 200px;
+}
+.stage-loading-spinner {
+    width: 40px; height: 40px;
+    border: 3px solid var(--border-subtle);
+    border-top-color: var(--english-primary);
+    border-radius: 50%;
+    animation: stageSpinAnim 0.75s linear infinite;
+}
+.stage-loading-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-hint);
+    letter-spacing: 0.02em;
+}
+@keyframes stageSpinAnim { to { transform: rotate(360deg); } }
 .sm-next-btn { width: 100%; padding: 16px; border-radius: 14px; border: none; background: var(--color-success); color: var(--text-on-primary); font-size: 17px; font-weight: 900; cursor: pointer; margin-top: 4px; transition: transform 0.13s, box-shadow 0.13s; box-shadow: none; }
 .sm-next-btn:hover { transform: translateY(-2px); box-shadow: none; }
 

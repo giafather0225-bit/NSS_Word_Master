@@ -18,9 +18,18 @@ async function _dwOnPhotoPick(e) {
 
     const today = new Date().toISOString().slice(0, 10);
 
+    // Reject files above 5 MB before upload — backend hard-limits at 10 MB
+    // but lets the request time out silently; surface the error early instead.
+    const MAX_BYTES = 5 * 1024 * 1024;
+    const oversized = picked.filter(f => f.size > MAX_BYTES);
+    const ok = picked.filter(f => f.size <= MAX_BYTES);
+    oversized.forEach(f => _dwToast(`"${f.name}" is too large (max 5 MB).`, true));
+    if (ok.length === 0) return;
+    const validPicked = ok;
+
     // Add optimistic local previews so the UI feels instant; replace each
     // tile's URL with the server-served URL once the upload returns.
-    const placeholders = picked.map(f => ({
+    const placeholders = validPicked.map(f => ({
         id: "p-" + Date.now() + "-" + Math.random().toString(36).slice(2, 7),
         url: URL.createObjectURL(f),
         name: f.name,
@@ -32,8 +41,8 @@ async function _dwOnPhotoPick(e) {
     _dwUpdateProgress();    // disable Save while uploads are in-flight
 
     // Upload sequentially — small N (≤3), and avoids race on filename uniqueness.
-    for (let i = 0; i < picked.length; i++) {
-        const f = picked[i];
+    for (let i = 0; i < validPicked.length; i++) {
+        const f = validPicked[i];
         const ph = placeholders[i];
         const fd = new FormData();
         fd.append("entry_date", today);

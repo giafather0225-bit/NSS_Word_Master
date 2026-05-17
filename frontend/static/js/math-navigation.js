@@ -173,7 +173,7 @@ async function loadMathSidebarStatus() {
 
     // Daily Challenge status
     try {
-        const data = await apiFetchJSON('/api/math/daily/today');
+        const data = await apiFetchJSON('/api/math/daily/status');
         const el = document.getElementById('math-daily-status');
         if (el) {
             if (!data.exists) el.textContent = 'Not available';

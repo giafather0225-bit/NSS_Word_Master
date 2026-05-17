@@ -436,3 +436,27 @@ def daily_complete(req: DailyCompleteIn, db: Session = Depends(get_db)):
 
     db.commit()
     return {"status": "completed", "score": req.score, "total": req.total, "xp": awarded}
+
+
+# @tag MATH @tag DAILY
+@router.get("/api/math/daily/status")
+def daily_status(db: Session = Depends(get_db)):
+    """Return today's status without creating a DB row.
+
+    Used by the math home nav to show a count badge. Unlike /today, this
+    endpoint never writes to the database — it only reads an existing row
+    (if any) plus the available pool size so callers can display accurate
+    availability without inflating the 'started' count.
+    """
+    today = datetime.now().strftime("%Y-%m-%d")
+    row = db.query(MathDailyChallenge).filter_by(challenge_date=today).first()
+    if row:
+        return {
+            "exists": True,
+            "completed": bool(row.completed),
+            "score": row.score or 0,
+            "total": row.total or 0,
+        }
+    pool = _collect_practice_problems()
+    available = min(_DAILY_COUNT, len(pool))
+    return {"exists": available > 0, "completed": False, "score": 0, "total": available}

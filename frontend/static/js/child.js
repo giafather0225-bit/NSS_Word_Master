@@ -408,7 +408,7 @@ async function startLessonAt(stageKey) {
 
     const stageEl = $("stage");
     if (stageEl) {
-        stageEl.innerHTML = `<p class="st-h1">Loading</p><p class="st-sub">${escapeHtml(lesson)}</p>`;
+        stageEl.innerHTML = `<div class="stage-loading"><div class="stage-loading-spinner"></div><p class="stage-loading-text">${escapeHtml(lesson)}</p></div>`;
     }
 
     try {
