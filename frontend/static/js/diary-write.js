@@ -1,9 +1,10 @@
 /* ================================================================
-   diary-write.js — GIA's Diary · Write screen (Decorated)
+   diary-write.js — GIA's Diary · Write screen: config, state, icon helpers,
+                    entry point, event binding, mutators, style apply,
+                    sticker insert, progress, navigation, toast
    Section: Diary
-   Dependencies: diary.js (escapeHtml, openDiarySection, _DH_MOODS, _dhRefreshIcons)
-   API endpoints: POST /api/diary/entries, POST /api/diary/feedback
-   Spec: handoff/02b-diary-spec.md (Screen 2)
+   Dependencies: diary.js (escapeHtml, openDiarySection, _DH_MOODS)
+   Split modules: diary-write-html.js  diary-write-media.js  diary-write-save.js
    ================================================================ */
 
 /* ── Static config ─────────────────────────────────────────────── */
@@ -84,26 +85,16 @@ const _dwState = {
     moodOpen: false,
 };
 
-/* ── Resolvers ─────────────────────────────────────────────────── */
+/* ── Icon helpers ──────────────────────────────────────────────── */
 
-function _dwResolveFontFamily(font) {
-    return (_DW_FONTS.find(f => f.id === font) || _DW_FONTS[0]).css;
+function _dwIcon(name, size) {
+    const px = size || 14;
+    return `<i data-lucide="${name}" width="${px}" height="${px}"></i>`;
 }
-function _dwResolveFontSize(font, size) {
-    const base = _DW_SCRIPTY.has(font) ? 22 : 16;
-    const bump = size === "s" ? -3 : size === "l" ? 4 : 0;
-    return base + bump;
-}
-function _dwResolveLineHeight(font, size) {
-    return Math.round(_dwResolveFontSize(font, size) * 1.55) + "px";
-}
-function _dwResolveTextColor(key) {
-    return (_DW_TEXT_COLORS.find(c => c.id === key) || _DW_TEXT_COLORS[0]).value;
-}
-function _dwResolvePaperBg(bgKey) {
-    const bg = _DW_BG_MOODS.find(b => b.id === bgKey) || _DW_BG_MOODS[0];
-    // Decorated mode: ruled-paper repeating gradient, 32px line height.
-    return `repeating-linear-gradient(180deg, ${bg.fill} 0 31px, ${bg.lined} 31px 32px)`;
+function _dwRefreshIcons() {
+    if (window.lucide && typeof window.lucide.createIcons === "function") {
+        window.lucide.createIcons();
+    }
 }
 
 /* ── Entry point ───────────────────────────────────────────────── */
@@ -178,235 +169,6 @@ function _renderDiaryWrite(mode) {
     _dwApplyPrompt();
     _dwUpdateProgress();
     _dwRefreshIcons();
-}
-
-/* ── HTML builders ─────────────────────────────────────────────── */
-
-function _dwIcon(name, size) {
-    const px = size || 14;
-    return `<i data-lucide="${name}" width="${px}" height="${px}"></i>`;
-}
-function _dwRefreshIcons() {
-    if (window.lucide && typeof window.lucide.createIcons === "function") {
-        window.lucide.createIcons();
-    }
-}
-
-function _dwChromeHTML() {
-    const m = _dwState.mode;
-    const eyebrow = m === "free" ? "Diary · Free Write" : "Diary · Journal";
-    const title   = m === "free" ? "Free write what you feel" : "Write today's page";
-    const sub     = m === "free" ? "Anything goes. AI gives gentle feedback." : "Pick a prompt, set a mood, write a few lines.";
-    return `
-        <header class="dw-chrome">
-            <div class="dw-chrome-left">
-                <button class="dw-back" type="button" onclick="_dwBack()">${_dwIcon("chevron-left", 14)} Diary</button>
-                <span class="dw-eyebrow">${escapeHtml(eyebrow)}</span>
-                <div class="dw-title">${escapeHtml(title)}</div>
-                <div class="dw-sub">${escapeHtml(sub)}</div>
-            </div>
-            <div class="dw-chrome-right">
-                <span class="dw-overflow-wrap">
-                    <button class="dw-overflow" type="button" aria-label="More options"
-                            aria-haspopup="menu" onclick="_dwToggleOverflow(event)">
-                        ${_dwIcon("more-horizontal", 16)}
-                    </button>
-                    <div class="dw-overflow-menu is-hidden" id="dw-overflow-menu" role="menu">
-                        <button class="dw-overflow-item" type="button" role="menuitem" onclick="_dwSaveDraft()">
-                            ${_dwIcon("file-text", 13)} Save draft
-                        </button>
-                        <button class="dw-overflow-item danger" type="button" role="menuitem" onclick="_dwClearAll()">
-                            ${_dwIcon("trash-2", 13)} Clear all
-                        </button>
-                        <button class="dw-overflow-item" type="button" role="menuitem" onclick="_dwExportPDF()">
-                            ${_dwIcon("download", 13)} Export as PDF
-                        </button>
-                    </div>
-                </span>
-                <button class="dw-save" id="dw-save" type="button" disabled
-                        onclick="_dwSave()">${_dwIcon("check", 13)} Save · +15 XP</button>
-            </div>
-        </header>`;
-}
-
-function _dwPhotosHTML() {
-    const photos = _dwState.photos;
-    const tiles = photos.map(p => {
-        // 72×72 strip — use the 256 thumbnail when available, full URL otherwise.
-        // URL 검증 — /api/ 경로만 허용해 임의 외부 URL 삽입 방지
-        const rawUrl  = p.thumb_url || p.url || "";
-        const tileUrl = (rawUrl && /^\/api\//.test(rawUrl)) ? encodeURI(rawUrl) : "";
-        const bg = tileUrl ? `background-image:url('${tileUrl}');` : "";
-        return `
-        <div class="dw-photo" style="${bg}" data-pid="${escapeHtml(p.id)}">
-            <button class="dw-photo-x" type="button" aria-label="Remove photo"
-                    data-remove-pid="${escapeHtml(p.id)}">×</button>
-        </div>`;
-    }).join("");
-    const addBtn = photos.length < 3
-        ? `<label class="dw-photo-add" tabindex="0">
-              + Add
-              <input class="dw-photo-input" type="file" accept="image/*" multiple
-                     onchange="_dwOnPhotoPick(event)"/>
-           </label>`
-        : "";
-    return `
-        <div class="dw-photos" id="dw-photos">
-            ${tiles}${addBtn}
-            <span class="dw-photos-count">Photos ${photos.length}/3</span>
-        </div>`;
-}
-
-/** Mood pill row — top of paper (above title). Tapping opens picker. */
-function _dwMoodTopHTML() {
-    const moodMeta = (window._DH_MOODS && window._DH_MOODS[_dwState.mood]) || null;
-    const dot = moodMeta ? moodMeta.dot : "var(--border-subtle)";
-    const opts = ["great", "happy", "calm", "curious", "tired", "sad"].map(id => {
-        const m = window._DH_MOODS && window._DH_MOODS[id];
-        const c = m ? m.dot : "var(--border-subtle)";
-        const active = id === _dwState.mood ? "is-active" : "";
-        return `
-            <button class="dw-mood-opt ${active}" type="button" onclick="_dwSetMood('${id}')">
-                <span class="dw-mood-opt-dot" style="background:${c};"></span>
-                <span class="dw-mood-opt-label">${id}</span>
-            </button>`;
-    }).join("");
-
-    return `
-        <div class="dw-mood-top" data-mood-picker>
-            <span class="dw-mood-top-label">Mood</span>
-            <button class="dw-mood-pill" type="button" onclick="_dwToggleMood()"
-                    aria-haspopup="dialog" aria-expanded="false">
-                <span class="dw-mood-dot" id="dw-mood-dot" style="background:${dot};"></span>
-                <span id="dw-mood-label">${escapeHtml(_dwState.mood)}</span>
-            </button>
-            <div class="dw-mood-popover is-top is-hidden" id="dw-mood-popover"
-                 role="dialog" aria-label="Pick a mood">
-                ${opts}
-            </div>
-        </div>`;
-}
-
-function _dwFooterHTML() {
-    return `
-        <div class="dw-footer">
-            <div class="dw-progress" id="dw-progress">
-                <div class="dw-progress-bar"><div class="dw-progress-fill" id="dw-progress-fill" style="width:0%;"></div></div>
-                <span><b id="dw-wc">0</b> / ${_DW_MIN_WORDS}</span>
-            </div>
-            <button class="dw-voice-btn" id="dw-speak-btn" type="button"
-                    title="Speak — dictate into the page" aria-label="Speak"
-                    onclick="_dwToggleSpeak()"><i data-lucide="mic" style="width:16px;height:16px;stroke-width:1.5"></i></button>
-            <button class="dw-voice-btn" id="dw-listen-btn" type="button"
-                    title="Listen — read this page aloud" aria-label="Listen"
-                    onclick="_dwToggleListen()"><i data-lucide="volume-2" style="width:16px;height:16px;stroke-width:1.5"></i></button>
-        </div>`;
-}
-
-function _dwAsideTopHTML() {
-    return _dwState.mode === "free" ? _dwTipsHTML() : _dwPromptBankHTML();
-}
-
-function _dwPromptBankHTML() {
-    const items = _DW_PROMPTS.map(p => {
-        const active = p === _dwState.prompt ? "is-active" : "";
-        return `<button class="dw-prompt-item ${active}" type="button"
-                        onclick="_dwPickPrompt(this.dataset.p)" data-p="${escapeHtml(p)}">${escapeHtml(p)}</button>`;
-    }).join("");
-    return `
-        <div class="dw-card">
-            <div class="dw-card-label">More prompts</div>
-            <div class="dw-prompts">${items}</div>
-        </div>`;
-}
-
-function _dwTipsHTML() {
-    const tip = _DW_TIPS[_dwState.tipIdx];
-    const dots = _DW_TIPS.map((_, i) =>
-        `<div class="${i === _dwState.tipIdx ? 'is-active' : ''}"></div>`).join("");
-    return `
-        <div class="dw-card dw-tips">
-            <div class="dw-tips-head">
-                <div class="dw-tips-icon"><span>${_dwIcon("sparkles", 12)}</span><b>Writing tip</b></div>
-                <button class="dw-tips-next" type="button" onclick="_dwNextTip()">Next →</button>
-            </div>
-            <div class="dw-tips-key">${escapeHtml(tip.k)}</div>
-            <div class="dw-tips-text">${escapeHtml(tip.t)}</div>
-            <div class="dw-tips-dots">${dots}</div>
-        </div>`;
-}
-
-function _dwStyleToolsHTML() {
-    const fonts = _DW_FONTS.map(f => {
-        const active = f.id === _dwState.style.font ? "is-active" : "";
-        return `
-            <button class="dw-font-btn ${active}" type="button" onclick="_dwSetFont('${f.id}')">
-                <span class="dw-font-sample" style="font-family:${f.css};">Aa</span>
-                <span class="dw-font-name">${escapeHtml(f.label)}</span>
-            </button>`;
-    }).join("");
-    const sizes = ["s", "m", "l"].map(s => {
-        const active = s === _dwState.style.textSize ? "is-active" : "";
-        return `<button class="dw-size-btn ${active}" type="button"
-                        data-size="${s}" onclick="_dwSetSize('${s}')">Aa</button>`;
-    }).join("");
-    const colors = _DW_TEXT_COLORS.map(c => {
-        const active = c.id === _dwState.style.textColor ? "is-active" : "";
-        return `<button class="dw-color-btn ${active}" type="button" title="${escapeHtml(c.label)}"
-                        aria-label="Text color ${escapeHtml(c.label)}"
-                        style="background:${c.value};"
-                        onclick="_dwSetColor('${c.id}')"></button>`;
-    }).join("");
-    return `
-        <div class="dw-card">
-            <div class="dw-card-label">Style</div>
-            <div>
-                <div class="dw-row-label">Font</div>
-                <div class="dw-row-grid3">${fonts}</div>
-            </div>
-            <div>
-                <div class="dw-row-label">Size</div>
-                <div class="dw-size-row">${sizes}</div>
-            </div>
-            <div>
-                <div class="dw-row-label">Text color</div>
-                <div class="dw-color-row">${colors}</div>
-            </div>
-        </div>`;
-}
-
-function _dwDecorToolsHTML() {
-    const tabs = _DW_STICKERS.map((c, i) => {
-        const active = i === _dwState.stkCat ? "is-active" : "";
-        return `<button class="dw-stk-tab ${active}" type="button"
-                        onclick="_dwSetStkCat(${i})">${escapeHtml(c.label)}</button>`;
-    }).join("");
-    const grid = _DW_STICKERS[_dwState.stkCat].items.map(s =>
-        `<button class="dw-stk-btn" type="button" aria-label="Insert ${s}"
-                 onclick="_dwInsertSticker('${s}')">${s}</button>`).join("");
-    const bgs = _DW_BG_MOODS.map(b => {
-        const active = b.id === _dwState.style.bgMood ? "is-active" : "";
-        const x = b.id === "default" ? `<span class="dw-bg-btn-x">×</span>` : "";
-        return `<button class="dw-bg-btn ${active}" type="button" title="${escapeHtml(b.label)}"
-                        aria-label="Page color ${escapeHtml(b.label)}"
-                        style="background:${b.fill};"
-                        onclick="_dwSetBg('${b.id}')">${x}</button>`;
-    }).join("");
-    return `
-        <div class="dw-card">
-            <div class="dw-card-label">Decor</div>
-            <div>
-                <div class="dw-row-label" style="display:flex;justify-content:space-between;">
-                    <span>Stickers</span><span style="font-weight:500;">Tap to add</span>
-                </div>
-                <div class="dw-stk-tabs" id="dw-stk-tabs">${tabs}</div>
-                <div class="dw-stk-grid" id="dw-stk-grid">${grid}</div>
-            </div>
-            <div>
-                <div class="dw-row-label">Page color</div>
-                <div class="dw-bg-row">${bgs}</div>
-            </div>
-        </div>`;
 }
 
 /* ── Event binding ─────────────────────────────────────────────── */
@@ -516,7 +278,6 @@ function _dwSetBg(id)     { _dwState.style.bgMood = id;     _dwApplyStyle(); _dw
 function _dwSetStkCat(i)  { _dwState.stkCat = i;            _dwReRenderDecor(); }
 
 function _dwReRenderStyle() {
-    // Find the Style card (the second .dw-card under .dw-aside) and swap.
     const cards = document.querySelectorAll(".dw-aside .dw-card");
     if (cards.length >= 2) cards[1].outerHTML = _dwStyleToolsHTML();
 }
@@ -556,86 +317,7 @@ function _dwInsertSticker(emoji) {
     _dwUpdateProgress();
 }
 
-/* ── Photos ────────────────────────────────────────────────────── */
-
-async function _dwOnPhotoPick(e) {
-    const files = Array.from(e.target.files || []);
-    e.target.value = "";
-    const room = 3 - _dwState.photos.length;
-    const picked = files.slice(0, room);
-    if (picked.length === 0) return;
-
-    const today = new Date().toISOString().slice(0, 10);
-
-    // Add optimistic local previews so the UI feels instant; replace each
-    // tile's URL with the server-served URL once the upload returns.
-    const placeholders = picked.map(f => ({
-        id: "p-" + Date.now() + "-" + Math.random().toString(36).slice(2, 7),
-        url: URL.createObjectURL(f),
-        name: f.name,
-        filename: null,
-        uploading: true,
-    }));
-    _dwState.photos.push(...placeholders);
-    _dwReRenderPhotos();
-    _dwUpdateProgress();    // disable Save while uploads are in-flight
-
-    // Upload sequentially — small N (≤3), and avoids race on filename uniqueness.
-    for (let i = 0; i < picked.length; i++) {
-        const f = picked[i];
-        const ph = placeholders[i];
-        const fd = new FormData();
-        fd.append("entry_date", today);
-        fd.append("file", f);
-        try {
-            const res = await fetch("/api/diary/photo/multi", { method: "POST", body: fd });
-            if (!res.ok) throw new Error("upload failed: " + res.status);
-            const data = await res.json();
-            ph.filename  = data.filename  || null;
-            ph.thumb_url = data.thumb_url || null;
-            // Swap the blob URL for the server URL so it survives reload.
-            try { URL.revokeObjectURL(ph.url); } catch (_) {}
-            ph.url = data.photo_url || ph.url;
-            ph.uploading = false;
-        } catch (err) {
-            // Drop the failed placeholder and notify.
-            _dwState.photos = _dwState.photos.filter(p => p.id !== ph.id);
-            _dwToast("Photo upload failed.", true);
-        }
-    }
-    _dwReRenderPhotos();
-    _dwUpdateProgress();    // re-enable Save once uploads settle
-}
-
-async function _dwRemovePhoto(id) {
-    const target = _dwState.photos.find(p => p.id === id);
-    _dwState.photos = _dwState.photos.filter(p => p.id !== id);
-    _dwReRenderPhotos();
-    // Best-effort backend cleanup so orphan files don't accumulate.
-    if (target && target.filename) {
-        try {
-            await fetch("/api/diary/photo/" + encodeURIComponent(target.filename), { method: "DELETE" });
-        } catch (e) {
-            console.warn("[diary-write] photo DELETE failed:", target.filename, e);
-        }
-    }
-}
-
-function _dwReRenderPhotos() {
-    const wrap = document.getElementById("dw-photos");
-    if (!wrap) return;
-    const tmp = document.createElement("div");
-    tmp.innerHTML = _dwPhotosHTML();
-    const newWrap = tmp.firstElementChild;
-    // data-remove-pid 방식으로 XSS 방지 — onclick 인라인 핸들러 대신 이벤트 위임
-    newWrap.addEventListener("click", (e) => {
-        const btn = e.target.closest("[data-remove-pid]");
-        if (btn) _dwRemovePhoto(btn.dataset.removePid);
-    });
-    wrap.replaceWith(newWrap);
-}
-
-/* ── Word count + Save activation ──────────────────────────────── */
+/* ── Progress + Save gating ────────────────────────────────────── */
 
 function _dwUpdateProgress() {
     // Read directly from the live textarea so a missed `input` event
@@ -644,7 +326,6 @@ function _dwUpdateProgress() {
     if (ta) _dwState.body = ta.value;
     const text = (_dwState.body || "").trim();
     const count = text ? text.split(/\s+/).filter(Boolean).length : 0;
-    if (window.__DW_DEBUG__) console.log("[dw] words=", count, "min=", _DW_MIN_WORDS);
     const wcEl = document.getElementById("dw-wc");
     const fillEl = document.getElementById("dw-progress-fill");
     const progress = document.getElementById("dw-progress");
@@ -666,107 +347,9 @@ function _dwUpdateProgress() {
         save.setAttribute("aria-disabled", String(!enable));
         save.title = uploading ? "Uploading photos…" : "";
     }
-
 }
 
-/* ── Overflow / Back / Save ────────────────────────────────────── */
-
-/* ── Overflow menu ─────────────────────────────────────────────── */
-
-function _dwToggleOverflow(evt) {
-    if (evt) evt.stopPropagation();
-    const m = document.getElementById("dw-overflow-menu");
-    if (!m) return;
-    const willOpen = m.classList.contains("is-hidden");
-    m.classList.toggle("is-hidden", !willOpen);
-    if (willOpen) {
-        document.addEventListener("click", _dwCloseOverflowOnDocClick, { once: true });
-    }
-}
-function _dwCloseOverflowOnDocClick() {
-    const m = document.getElementById("dw-overflow-menu");
-    if (m) m.classList.add("is-hidden");
-}
-
-/** Save current Write state to localStorage so it survives a refresh. */
-function _dwSaveDraft() {
-    _dwCloseOverflowOnDocClick();
-    try {
-        const draft = {
-            mode:   _dwState.mode,
-            mood:   _dwState.mood,
-            title:  _dwState.title,
-            body:   _dwState.body,
-            prompt: _dwState.prompt || "",
-            style:  _dwState.style,
-            photos: _dwState.photos.map(p => ({ id: p.id, name: p.name, url: p.url })),
-            ts:     Date.now(),
-        };
-        localStorage.setItem("nss.diary.draft", JSON.stringify(draft));
-        _dwToast("Draft saved", false);
-    } catch (_) {
-        _dwToast("Couldn't save draft.", true);
-    }
-}
-
-/** Wipe title/body/photos/prompt back to defaults after a confirmation. */
-function _dwClearAll() {
-    _dwCloseOverflowOnDocClick();
-    if (!confirm("Clear everything on this page?")) return;
-    _dwState.title = "";
-    _dwState.body  = "";
-    _dwState.photos = [];
-    const titleEl = document.getElementById("dw-title");
-    const bodyEl  = document.getElementById("dw-body");
-    if (titleEl) titleEl.value = "";
-    if (bodyEl)  bodyEl.value  = "";
-    _dwReRenderPhotos();
-    _dwUpdateProgress();
-}
-
-/** Stub — full PDF export needs a server-side renderer. Browser print() is fine for now. */
-function _dwExportPDF() {
-    _dwCloseOverflowOnDocClick();
-    _dwToast("Use Print → Save as PDF for now.", false);
-    setTimeout(() => window.print(), 600);
-}
-
-/* ── Suggest title (AI) ────────────────────────────────────────── */
-
-async function _dwSuggestTitle() {
-    const body = (_dwState.body || "").trim();
-    if (body.split(/\s+/).filter(Boolean).length < 20) return;
-    const pill = document.getElementById("dw-suggest-pill");
-    if (pill) {
-        pill.disabled = true;
-        pill.setAttribute("aria-disabled", "true");
-        pill.textContent = "Thinking…";
-    }
-    try {
-        const res = await fetch("/api/diary/suggest-title", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ content: body }),
-        });
-        if (!res.ok) throw new Error("suggest failed: " + res.status);
-        const data = await res.json();
-        const title = (data && data.title || "").trim();
-        if (title) {
-            _dwState.title = title;
-            const titleEl = document.getElementById("dw-title");
-            if (titleEl) titleEl.value = title;
-            _dwUpdateProgress();
-        }
-    } catch (_) {
-        _dwToast("Couldn't suggest a title.", true);
-    } finally {
-        if (pill) {
-            pill.disabled = false;
-            pill.removeAttribute("aria-disabled");
-            pill.textContent = "Suggest";
-        }
-    }
-}
+/* ── Navigation ────────────────────────────────────────────────── */
 
 function _dwBack() {
     _dwCleanupAndLeave();
@@ -784,154 +367,6 @@ function _dwCleanupAndLeave() {
     if (view) view.classList.remove("dw-active");
 }
 
-async function _dwSave() {
-    const today = new Date().toISOString().slice(0, 10);
-    const title = (_dwState.title || "").trim();
-    const body  = (_dwState.body  || "").trim();
-    if (!body) return;
-
-    // title은 별도 필드로 전송 — "# title\n\nbody" 합치기 제거.
-    // _deSplitTitleBody 파싱 의존성 제거 + title에 # 포함 시 파싱 오류 방지.
-    const content = body;
-
-    const save = document.getElementById("dw-save");
-    if (save) save.disabled = true;
-
-    // Snapshot of all decoration state — keyed by entry_date until we get the
-    // backend id back (and then re-keyed by id for Entry retrieval).
-    const snap = {
-        mode:   _dwState.mode,
-        mood:   _dwState.mood,
-        title,
-        prompt: _dwState.prompt || "",
-        style:  _dwState.style,
-        photos: _dwState.photos.map(p => ({
-            id: p.id,
-            name: p.name,
-            url: p.url,
-            thumb_url: p.thumb_url || null,
-        })),
-    };
-
-    try {
-        const res = await fetch("/api/diary/entries", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                content,
-                entry_date: today,
-                title:  title || null,
-                mode:   _dwState.mode,
-                mood:   _dwState.mood,
-                prompt: _dwState.prompt || null,
-                style:  _dwState.style,
-                photos: snap.photos,
-            }),
-        });
-        if (!res.ok) throw new Error("save failed: " + res.status);
-        const data = await res.json();
-        // Persist snapshot under the canonical entry id so Entry screen can
-        // restore exact font/color/bg/title/mood/photos. Also keep a date-key
-        // fallback for graceful display when id is missing (older entries).
-        try {
-            if (data && data.id != null) {
-                localStorage.setItem("nss.diary.entry." + data.id, JSON.stringify(snap));
-            }
-            localStorage.setItem("nss.diary.last." + today, JSON.stringify(snap));
-        } catch (_) {}
-        _dwToast("Saved · +15 XP", false);
-        if (typeof _appendIslandUpdate === "function") {
-            const islandSlot = document.getElementById("dw-island-update") || document.createElement("div");
-            islandSlot.id = "dw-island-update";
-            const saveBtn = document.getElementById("dw-save");
-            if (saveBtn && saveBtn.parentElement) saveBtn.parentElement.appendChild(islandSlot);
-            _appendIslandUpdate(islandSlot, data?.island ?? null);
-        }
-        _dwOnSaveSuccess(today);
-    } catch (err) {
-        _dwToast("Couldn't save. Try again.", true);
-        if (save) save.disabled = false;
-    }
-}
-
-/* ── Post-save: opt-in writing tips ───────────────────────────── */
-
-/** Called after a successful save. Shows a Done button + opt-in tips prompt. */
-function _dwOnSaveSuccess(date) {
-    const save = document.getElementById("dw-save");
-    if (save) {
-        save.disabled = false;
-        save.innerHTML = _dwIcon("arrow-left", 13) + " Done";
-        save.onclick = _dwFinish;
-    }
-    const asideTop = document.getElementById("dw-aside-top");
-    if (!asideTop) {
-        // No aside visible — just navigate away normally.
-        setTimeout(_dwFinish, 700);
-        return;
-    }
-    asideTop.innerHTML = `
-        <div class="dw-card">
-            <div class="dw-card-label">Entry saved</div>
-            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0 0 10px;">
-                Would you like a few writing tips from GIA?
-            </p>
-            <button class="dw-prompt-item is-active" id="dw-tips-ask-btn"
-                    type="button" style="width:100%;text-align:center;"
-                    data-date="${escapeHtml(date)}">
-                ${_dwIcon("sparkles", 12)} Get writing tips
-            </button>
-        </div>`;
-    _dwRefreshIcons();
-    const askBtn = document.getElementById("dw-tips-ask-btn");
-    if (askBtn) askBtn.addEventListener("click", function() {
-        _dwRequestWritingTips(this.dataset.date, this);
-    });
-}
-
-/** Navigate back to the diary home. Called from Done button or fallback. */
-function _dwFinish() {
-    _dwCleanupAndLeave();
-    if (typeof openDiarySection === "function") openDiarySection("today");
-}
-
-/** Fetch AI writing tips for the saved entry (child-triggered, opt-in only). */
-async function _dwRequestWritingTips(date, btn) {
-    if (btn) { btn.disabled = true; btn.textContent = "Thinking…"; }
-    try {
-        const res = await fetch(`/api/diary/feedback?entry_date=${encodeURIComponent(date)}`, {
-            method: "POST",
-        });
-        if (!res.ok) throw new Error("feedback failed");
-        const data = await res.json();
-        _dwShowFeedbackInAside((data && data.ai_feedback) || "Great writing! Keep it up.");
-    } catch (_) {
-        if (btn) {
-            btn.disabled = false;
-            btn.innerHTML = _dwIcon("sparkles", 12) + " Try again";
-            _dwRefreshIcons();
-        }
-    }
-}
-
-/** Render AI feedback in the aside panel after the child requests it. */
-function _dwShowFeedbackInAside(text) {
-    const asideTop = document.getElementById("dw-aside-top");
-    if (!asideTop) return;
-    asideTop.innerHTML = `
-        <div class="dw-card">
-            <div class="dw-card-label">${_dwIcon("sparkles", 12)} GIA says</div>
-            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;margin:0 0 12px;">
-                ${escapeHtml(text)}
-            </p>
-            <button class="dw-prompt-item" type="button"
-                    style="width:100%;text-align:center;" onclick="_dwFinish()">
-                ${_dwIcon("arrow-left", 12)} Done
-            </button>
-        </div>`;
-    _dwRefreshIcons();
-}
-
 /* ── Toast ─────────────────────────────────────────────────────── */
 
 function _dwToast(msg, isError) {
@@ -944,121 +379,7 @@ function _dwToast(msg, isError) {
     _dwToast._h = setTimeout(() => t.classList.remove("is-show"), 2200);
 }
 
-/* ── Speak (STT) / Listen (TTS) — Web Speech API ───────────────── */
-
-let _dwRec = null;       // SpeechRecognition instance
-let _dwListening = false;
-let _dwSpeaking = false;
-
-function _dwGetRec() {
-    if (_dwRec) return _dwRec;
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) return null;
-    const r = new SR();
-    r.lang = "en-US";
-    r.continuous = true;
-    r.interimResults = false;
-    r.onresult = (e) => {
-        const ta = document.getElementById("dw-body");
-        if (!ta) return;
-        let added = "";
-        for (let i = e.resultIndex; i < e.results.length; i++) {
-            if (e.results[i].isFinal) added += e.results[i][0].transcript + " ";
-        }
-        if (!added) return;
-        const start = ta.selectionStart || ta.value.length;
-        const end   = ta.selectionEnd   || ta.value.length;
-        ta.value = ta.value.slice(0, start) + added + ta.value.slice(end);
-        const caret = start + added.length;
-        ta.setSelectionRange(caret, caret);
-        _dwState.body = ta.value;
-        _dwUpdateProgress();
-    };
-    r.onend = () => {
-        _dwListening = false;
-        _dwReflectSpeakBtn();
-    };
-    r.onerror = (e) => {
-        _dwListening = false;
-        _dwReflectSpeakBtn();
-        if (e && e.error === "not-allowed") _dwToast("Mic permission needed.", true);
-    };
-    _dwRec = r;
-    return r;
-}
-
-function _dwReflectSpeakBtn() {
-    const btn = document.getElementById("dw-speak-btn");
-    if (!btn) return;
-    btn.innerHTML = _dwListening
-        ? '<i data-lucide="circle-stop" style="width:16px;height:16px;stroke-width:1.5"></i>'
-        : '<i data-lucide="mic" style="width:16px;height:16px;stroke-width:1.5"></i>';
-    btn.title = _dwListening ? "Stop dictation" : "Speak — dictate into the page";
-    if (typeof lucide !== "undefined") lucide.createIcons();
-}
-function _dwReflectListenBtn() {
-    const btn = document.getElementById("dw-listen-btn");
-    if (!btn) return;
-    btn.innerHTML = _dwSpeaking
-        ? '<i data-lucide="pause" style="width:16px;height:16px;stroke-width:1.5"></i>'
-        : '<i data-lucide="volume-2" style="width:16px;height:16px;stroke-width:1.5"></i>';
-    btn.title = _dwSpeaking ? "Stop reading" : "Listen — read this page aloud";
-    if (typeof lucide !== "undefined") lucide.createIcons();
-}
-
-function _dwToggleSpeak() {
-    const rec = _dwGetRec();
-    if (!rec) {
-        _dwToast("Speech input isn't supported in this browser.", true);
-        return;
-    }
-    if (_dwListening) {
-        try { rec.stop(); } catch (_) {}
-        _dwListening = false;
-        _dwReflectSpeakBtn();
-        return;
-    }
-    try {
-        rec.start();
-        _dwListening = true;
-        _dwReflectSpeakBtn();
-    } catch (err) {
-        _dwToast("Couldn't start the mic.", true);
-    }
-}
-
-function _dwToggleListen() {
-    const synth = window.speechSynthesis;
-    if (!synth) {
-        _dwToast("Speech output isn't supported in this browser.", true);
-        return;
-    }
-    if (_dwSpeaking) {
-        synth.cancel();
-        _dwSpeaking = false;
-        _dwReflectListenBtn();
-        return;
-    }
-    const text = (
-        (_dwState.title ? _dwState.title + ". " : "") +
-        (_dwState.body || "")
-    ).trim();
-    if (!text) {
-        _dwToast("Nothing to read yet.", false);
-        return;
-    }
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = "en-US";
-    u.rate = 0.95;
-    u.onend   = () => { _dwSpeaking = false; _dwReflectListenBtn(); };
-    u.onerror = () => { _dwSpeaking = false; _dwReflectListenBtn(); };
-    synth.cancel();
-    synth.speak(u);
-    _dwSpeaking = true;
-    _dwReflectListenBtn();
-}
-
-/* ── Expose mood map to diary-write (read by footer renderer) ──── */
+/* ── Expose mood map for cross-file access ─────────────────────── */
 // diary.js defines _DH_MOODS as a top-level const. Re-publish on window
 // for cross-file access (vanilla, no modules).
 if (typeof _DH_MOODS !== "undefined") { window._DH_MOODS = _DH_MOODS; }

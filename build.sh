@@ -51,6 +51,9 @@ cat \
   $JS/diary.js \
   $JS/diary-home.js \
   $JS/diary-write.js \
+  $JS/diary-write-html.js \
+  $JS/diary-write-media.js \
+  $JS/diary-write-save.js \
   $JS/diary-entry.js \
   $JS/diary-calendar.js \
   $JS/free-writing.js \
