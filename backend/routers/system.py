@@ -127,11 +127,23 @@ def check_update(force: bool = False) -> dict:
         remote_head = ""
         if remote_proc.returncode == 0 and remote_proc.stdout:
             remote_head = remote_proc.stdout.split()[0]
+
+        # Only fire when remote has commits we don't — not when we're ahead
+        # of remote (dad's local commits awaiting push shouldn't trigger an
+        # "Updating…" page on his machine).
+        update_available = False
+        if local_head and remote_head and local_head != remote_head:
+            ancestor_proc = subprocess.run(
+                ["git", "merge-base", "--is-ancestor", remote_head, "HEAD"],
+                cwd=str(_REPO_ROOT), capture_output=True, timeout=3,
+            )
+            # exit 0 → remote_head is an ancestor of HEAD (local has it)
+            # exit 1 → remote has a commit local doesn't (update available)
+            # exit >1 → unknown commit (probably never fetched) → assume update
+            update_available = ancestor_proc.returncode != 0
     except (subprocess.TimeoutExpired, FileNotFoundError, OSError) as exc:
         logger.warning("[update-check] failed: %s", exc)
         return {"update_available": False, "error": str(exc), "from_cache": False}
-
-    update_available = bool(local_head and remote_head and local_head != remote_head)
     _update_cache.update({
         "checked_at": now,
         "local_head": local_head[:8],
