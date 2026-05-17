@@ -172,9 +172,11 @@ const spState = {
 const smState = {
     initialized: false,
     attempt: {},
+    phase: {},
     reset() {
         this.initialized = false;
         this.attempt = {};
+        this.phase = {};
     }
 };
 

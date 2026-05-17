@@ -106,7 +106,7 @@ async def _evaluate_with_ollama(word: str, sentence: str) -> dict:
     safe_word     = word.replace("{", "{{").replace("}", "}}")
     safe_sentence = sentence.replace("{", "{{").replace("}", "}}")
     prompt = _EVAL_PROMPT_TEMPLATE.format(word=safe_word, sentence=safe_sentence)
-    async with httpx.AsyncClient(timeout=10) as client:
+    async with httpx.AsyncClient(timeout=45) as client:
         resp = await client.post(
             f"{_OLLAMA_URL}/api/generate",
             json={"model": _OLLAMA_EVAL_MODEL, "prompt": prompt, "stream": False, "format": "json"},

@@ -250,6 +250,12 @@ function renderSentenceItem(el, item) {
             <button type="button" class="st-btn" id="sent-submit">Submit</button>
         </div>
         <p class="st-prog">${current} / ${total}</p>
+        <p style="text-align:center;margin-top:8px;">
+            <button type="button" id="sent-skip"
+                    style="background:none;border:none;color:var(--text-hint);font-size:var(--font-size-sm);cursor:pointer;text-decoration:underline;padding:4px 8px;">
+                Skip this step
+            </button>
+        </p>
     `;
 
     const inp = el.querySelector("#sentence-input");
@@ -263,6 +269,13 @@ function renderSentenceItem(el, item) {
                 const si = el.querySelector("#sent-submit");
                 if (si && !si.disabled) si.click();
             }
+        });
+    }
+
+    const skipBtn = el.querySelector("#sent-skip");
+    if (skipBtn) {
+        skipBtn.addEventListener("click", () => {
+            advanceToNextStage();
         });
     }
 
@@ -304,8 +317,12 @@ function renderSentenceItem(el, item) {
                 hasError = !(evalResult.data.grammar.correct && evalResult.data.wordUsage.correct);
             } else {
                 feedbackText = evalResult.data;
-                hasError = /correct(ed|ion)|grammar|mistake|should be|try:/i.test(feedbackText)
-                         && !/perfect sentence|correct|great!/i.test(feedbackText.slice(0, 80));
+                // Unstructured tutor fallback: only flag as error when there are
+                // clear error signals AND no positive signals anywhere in the text.
+                // Default to no-error when ambiguous — 2nd-attempt gate is the safety net.
+                const _hasPositive = /perfect sentence|well done|good job|great sentence|correct|great!|✅/i.test(feedbackText);
+                const _hasError    = /mistake|should be|try again|incorrect|wrong/i.test(feedbackText);
+                hasError = _hasError && !_hasPositive;
             }
 
             // H9: read live state (not the stale closure value) to detect 2nd attempt
