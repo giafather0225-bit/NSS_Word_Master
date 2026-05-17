@@ -16,6 +16,8 @@ cat \
   $JS/spelling.js \
   $JS/sentence.js \
   $JS/home.js \
+  $JS/home-tasks.js \
+  $JS/home-stats.js \
   $JS/parent-panel.js \
   $JS/parent-overview.js \
   $JS/parent-goals.js \

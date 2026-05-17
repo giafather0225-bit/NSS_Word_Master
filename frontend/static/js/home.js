@@ -1,10 +1,8 @@
 /* ================================================================
-   home.js — Home Dashboard: tasks, section cards, summary bar
+   home.js — Home Dashboard: view switching, section cards, settings
    Section: Home
-   Dependencies: core.js
-   API endpoints: GET /api/tasks/today, GET /api/xp/summary,
-                  GET /api/xp/weekly, GET /api/ai-coach/today,
-                  GET /api/reminders/today
+   Dependencies: core.js, home-tasks.js, home-stats.js
+   API endpoints: none (delegates to home-tasks.js / home-stats.js)
    ================================================================ */
 
 // Current view state
@@ -61,7 +59,6 @@ function switchView(view) {
   if (view === 'home') {
     renderHomeDashboard();
   } else if (view === 'math') {
-    // Math idle 진입: 사이드바 항상 열기
     const _mathSb = document.getElementById('sidebar');
     if (_mathSb) _mathSb.classList.remove('collapsed');
     localStorage.removeItem('sb_collapsed');
@@ -70,11 +67,9 @@ function switchView(view) {
     if (typeof lucide !== 'undefined') lucide.createIcons();
     _renderIslandSubjectWidget('island-widget-math', 'ocean');
   } else if (view === 'english') {
-    // English idle 진입: 사이드바 항상 열기
     const _engSb = document.getElementById('sidebar');
     if (_engSb) _engSb.classList.remove('collapsed');
     localStorage.removeItem('sb_collapsed');
-    // H1: reset any in-progress lesson state so the idle card renders cleanly
     if (typeof window._clearEnglishSessionState === 'function') window._clearEnglishSessionState();
     if (typeof initCKLA === 'function') initCKLA();
     if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -211,292 +206,22 @@ function openSettings() {
 }
 
 /**
- * Render AI coach message card.
- * @tag HOME_DASHBOARD @tag AI_COACH
- */
-async function renderAICoach() {
-  const el = document.getElementById('coach-message');
-  if (!el) return;
-  try {
-    const data = await apiFetchJSON('/api/ai-coach/today');
-    el.textContent = data.message || 'Keep up the great work!';
-  } catch {
-    el.textContent = 'Ready to learn today? Let\'s go!';
-  }
-
-  // Coach sub-message
-  const COACH_SUB_MSGS = [
-    "Tap me anytime for help!",
-    "I'm here whenever you need me!",
-    "Let's learn something awesome!",
-    "Ready when you are!",
-    "What shall we discover today?"
-  ];
-  const subEl = document.getElementById('coach-sub-message');
-  if (subEl) {
-    subEl.textContent = COACH_SUB_MSGS[Math.floor(Math.random() * COACH_SUB_MSGS.length)];
-  }
-
-  // Activate glow ring (for direct load without splash)
-  const glowRing = document.querySelector('.coach-glow-ring');
-  if (glowRing) {
-    setTimeout(() => glowRing.classList.add('active'), 500);
-  }
-}
-
-/**
- * Render reminder banners.
- * @tag HOME_DASHBOARD @tag REMINDER
- */
-async function renderReminders() {
-  const container = document.getElementById('reminder-banners');
-  if (!container) return;
-  container.innerHTML = '';
-  try {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 8000);
-    const res = await fetch('/api/reminders/today', { signal: ctrl.signal });
-    clearTimeout(timer);
-    if (!res.ok) return;
-    const banners = await res.json();
-    banners.forEach(b => {
-      const div = document.createElement('div');
-      div.className = 'reminder-banner' + (b.severity === 'danger' ? ' danger' : '');
-      const closeBtn = document.createElement('button');
-      closeBtn.className = 'reminder-close';
-      closeBtn.setAttribute('aria-label', 'Dismiss');
-      closeBtn.addEventListener('click', () => div.remove());
-      closeBtn.textContent = '×';
-      div.appendChild(document.createTextNode(b.message || ''));
-      div.appendChild(closeBtn);
-      container.appendChild(div);
-    });
-  } catch { /* no reminders */ }
-}
-
-/**
- * Map a task key to a section bucket used by the grouped UI.
- * Backend API is currently flat; Phase 3 will add explicit `section` field.
- * @tag HOME_DASHBOARD @tag TODAY_TASKS
- */
-function _sectionOfTask(key) {
-  if (key === 'review') return 'review';
-  if (key === 'journal') return 'diary';
-  if (key === 'daily_words' || key === 'academy' || key === 'english') return 'english';
-  if (key === 'math') return 'math';
-  if (key === 'arcade') return 'arcade';
-  if (key === 'ckla') return 'ckla';
-  return 'english';
-}
-
-const _SECTION_LABELS = {
-  english: 'English',
-  ckla:    'CKLA',
-  math:    'Math',
-  diary:   'Diary',
-  review:  'Review',
-  arcade:  'Arcade',
-};
-
-const _SECTION_ORDER = ['english', 'ckla', 'math', 'diary', 'review', 'arcade'];
-
-function _homeEscape(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  }[c]));
-}
-
-/**
- * Render Today's Tasks list — grouped by section, with progress bar + XP pills.
- * @tag HOME_DASHBOARD @tag TODAY_TASKS @tag XP
- */
-async function renderTodayTasks() {
-  const list = document.getElementById('today-task-list');
-  if (!list) return;
-
-  // Stub tasks (replaced by API in Phase 3)
-  const tasks = [
-    { key: 'review', label: 'Review', detail: '', xp: 2, is_required: true, is_done: false },
-    { key: 'daily_words', label: 'Daily Words', detail: '0/10', xp: 5, is_required: false, is_done: false },
-    { key: 'journal', label: 'Daily Journal', detail: '', xp: 10, is_required: false, is_done: false },
-  ];
-
-  try {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 8000);
-    const res = await fetch('/api/tasks/today', { signal: ctrl.signal });
-    clearTimeout(timer);
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.length) tasks.splice(0, tasks.length, ...data);
-    }
-  } catch { /* use stubs */ }
-
-  // Group by section
-  const groups = {};
-  tasks.forEach(t => {
-    const sec = t.section || _sectionOfTask(t.key);
-    (groups[sec] ||= []).push(t);
-  });
-
-  const groupHtml = _SECTION_ORDER
-    .filter(sec => groups[sec] && groups[sec].length)
-    .map(sec => {
-      const items = groups[sec];
-      const done  = items.filter(t => t.is_done).length;
-      const rows = items.map(t => {
-        const detail = t.detail ? ` (${_homeEscape(t.detail)})` : '';
-        const dueNow = !t.is_done && (t.due === 'now' || t.is_required);
-        const pill   = dueNow ? `<span class="tc-now-pill">NOW</span>` : '';
-        return `
-          <div class="tc-row${t.is_done ? ' done' : ''}${dueNow ? ' is-due-now' : ''}"
-               data-key="${_homeEscape(t.key)}" data-section="${sec}">
-            <span class="tc-check" aria-hidden="true"></span>
-            <span class="tc-label">${_homeEscape(t.label)}${detail}</span>
-            ${pill}
-            <span class="tc-xp-pill">+${Number(t.xp) || 0}</span>
-          </div>
-        `;
-      }).join('');
-      return `
-        <div class="tc-group" data-section="${sec}">
-          <div class="tc-group-head">
-            <span class="tc-group-label"><span class="tc-group-dot"></span>${_SECTION_LABELS[sec] || sec}</span>
-            <span class="tc-group-count">${done}/${items.length}</span>
-          </div>
-          ${rows}
-        </div>
-      `;
-    }).join('');
-
-  list.innerHTML = groupHtml || '<div class="tc-sub">No tasks for today.</div>';
-
-  // Summary counts + progress bar
-  const total = tasks.length;
-  const doneCount = tasks.filter(t => t.is_done).length;
-  const totalXp  = tasks.reduce((s, t) => s + (Number(t.xp) || 0), 0);
-  const earnedXp = tasks.filter(t => t.is_done).reduce((s, t) => s + (Number(t.xp) || 0), 0);
-
-  const countEl = document.getElementById('today-tasks-count');
-  if (countEl) countEl.textContent = `${doneCount} / ${total} done`;
-  const xpEl = document.getElementById('today-tasks-xp');
-  if (xpEl) xpEl.textContent = `Set by parent · ${earnedXp} / ${totalXp} XP earned`;
-  const fillEl = document.getElementById('today-tasks-progress-fill');
-  const pct = total ? Math.round((doneCount / total) * 100) : 0;
-  if (fillEl) fillEl.style.width = pct + '%';
-  const progressBar = fillEl ? fillEl.parentElement : null;
-  if (progressBar) progressBar.setAttribute('aria-valuenow', String(pct));
-
-  window._todayTaskCounts = { total, done: doneCount };
-  const doneStatEl = document.getElementById('summary-done');
-  if (doneStatEl) doneStatEl.textContent = `${doneCount}/${total}`;
-
-  // Update review counts for section card badge + onclick routing
-  const reviewTask = tasks.find(t => t.key === 'review');
-  _mathReviewDue    = reviewTask ? (reviewTask.math_review_count    || 0) : 0;
-  _englishReviewDue = reviewTask ? (reviewTask.english_review_count || 0) : 0;
-  const badge = document.getElementById('section-card-review-badge');
-  if (badge) {
-    const totalDue = _mathReviewDue + _englishReviewDue;
-    badge.textContent = totalDue;
-    badge.style.display = totalDue > 0 ? '' : 'none';
-  }
-
-  // Wire click handlers
-  list.querySelectorAll('.tc-row').forEach(el => {
-    if (el.classList.contains('done')) return;
-    el.addEventListener('click', () => _navigateTask(el.dataset.key));
-  });
-}
-
-/**
- * Render the weekly activity bar chart.
- * @tag HOME_DASHBOARD @tag STREAK
- */
-async function renderWeeklyStrip() {
-  const container = document.getElementById('weekly-bars');
-  if (!container) return;
-
-  // Fetch real 7-day activity. On failure, fall back to an empty week.
-  let days = Array.from({ length: 7 }, () => ({ label: '·', value: 0 }));
-  try {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 8000);
-    const res = await fetch('/api/xp/weekly', { signal: ctrl.signal });
-    clearTimeout(timer);
-    if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data) && data.length) {
-        days = data.map(d => ({ label: d.label || '·', value: Number(d.value) || 0 }));
-      }
-    }
-  } catch { /* fall back to empty */ }
-
-  const MAX_H = 56; // px
-  container.innerHTML = days.map(d => {
-    const h = Math.max(4, Math.round(d.value * MAX_H));
-    let tone = '';
-    if (d.value >= 0.9) tone = 'ws-bar--t3';
-    else if (d.value >= 0.5) tone = 'ws-bar--t2';
-    else if (d.value > 0) tone = 'ws-bar--t1';
-    return `
-      <div class="ws-day">
-        <div class="ws-bar ${tone}" style="height:${h}px"></div>
-        <div class="ws-label">${d.label}</div>
-      </div>
-    `;
-  }).join('');
-}
-
-/**
- * Navigate to the appropriate screen when a task item is clicked.
- * @tag HOME_DASHBOARD @tag TODAY_TASKS @tag NAVIGATION
- * @param {string} key - task key from API (review|daily_words|academy|journal)
- */
-function _navigateTask(key) {
-  switch (key) {
-    case 'review':
-      if (typeof ReviewHub !== 'undefined') ReviewHub.open();
-      break;
-    case 'daily_words':
-      switchView('english');
-      setTimeout(() => { toggleAccordion('daily-words'); if (typeof showDailyWordsView === 'function') showDailyWordsView(); }, 300);
-      break;
-    case 'academy':
-      switchView('english');
-      break;
-    case 'ckla':
-      switchView('english');
-      setTimeout(() => { if (typeof showCKLAView === 'function') showCKLAView(); }, 300);
-      break;
-    case 'journal':
-      switchView('diary');
-      break;
-    default:
-      break;
-  }
-}
-
-/**
  * Render section cards (English, GIA's Diary, Math).
  * @tag HOME_DASHBOARD @tag NAVIGATION
  */
 function renderSectionCards() {
-  // Cards are static HTML; just wire click handlers
-  const engCard = document.getElementById('section-card-english');
+  const engCard   = document.getElementById('section-card-english');
   const diaryCard = document.getElementById('section-card-diary');
-  const mathCard = document.getElementById('section-card-math');
-  if (engCard) engCard.onclick = () => switchView('english');
+  const mathCard  = document.getElementById('section-card-math');
+  if (engCard)   engCard.onclick   = () => switchView('english');
   if (diaryCard) diaryCard.onclick = () => switchView('diary');
-  if (mathCard) mathCard.onclick = () => switchView('math');
+  if (mathCard)  mathCard.onclick  = () => switchView('math');
 
-  // Reward Shop shortcut card
   const rewardCard = document.getElementById('home-reward-card');
   if (rewardCard) rewardCard.onclick = () => {
     if (typeof openRewardShop === 'function') openRewardShop();
   };
 
-  // Arcade card → overlay (arcade.js). Enabled per dashboard redesign.
   const arcadeCard = document.getElementById('section-card-arcade');
   if (arcadeCard) {
     arcadeCard.disabled = false;
@@ -505,7 +230,6 @@ function renderSectionCards() {
     };
   }
 
-  // Review card — always opens the unified Review Hub overlay
   const reviewCard = document.getElementById('section-card-review');
   if (reviewCard) {
     reviewCard.disabled = false;
@@ -514,7 +238,6 @@ function renderSectionCards() {
     };
   }
 
-  // Island home card → open island main screen (IslandMain.jsx)
   const islandCard = document.getElementById('island-home-card');
   if (islandCard) {
     islandCard.onclick = () => {
@@ -529,157 +252,6 @@ function renderSectionCards() {
  */
 function renderGrowthTheme() {
   if (typeof _loadIslandCard === 'function') _loadIslandCard();
-}
-
-/**
- * Load and render the mini island character widget into a subject-view container.
- * Shows the active (non-completed) character for the given zone.
- * Clicking the widget navigates to the island main screen.
- * @tag ISLAND
- * @param {string} containerId - DOM element id to populate
- * @param {string} zone - island zone name (forest / ocean / savanna / space)
- */
-async function _renderIslandSubjectWidget(containerId, zone) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  try {
-    const res = await fetch(`/api/island/character/active?zone=${encodeURIComponent(zone)}`);
-    if (!res.ok) { el.style.display = 'none'; return; }
-    const data = await res.json();
-    const chars = data.characters || [];
-    const char = chars.find(c => !c.is_completed) || chars[0];
-    if (!char) { el.style.display = 'none'; return; }
-
-    let imgSrc = '';
-    try {
-      const imgs = JSON.parse(char.images || '{}');
-      const imgPath = imgs[char.stage] || imgs['baby'] || '';
-      if (imgPath) imgSrc = `/static/img/island/${imgPath}`;
-    } catch (_) {}
-
-    const hunger = Math.max(0, Math.min(100, char.hunger || 0));
-    const happy  = Math.max(0, Math.min(100, char.happiness || 0));
-    const name   = char.nickname || char.name || 'Character';
-    const level  = char.level || 1;
-
-    el.innerHTML = `
-      <div class="isw-card" role="button" tabindex="0"
-           aria-label="My Island — ${escapeHtml(name)}, Level ${level}">
-        <div class="isw-char-wrap">
-          ${imgSrc ? `<img src="${imgSrc}" class="isw-img" alt="${escapeHtml(name)}" />` : ''}
-          <span class="isw-level">Lv.${level}</span>
-        </div>
-        <div class="isw-body">
-          <div class="isw-eyebrow">My Island</div>
-          <div class="isw-name">${escapeHtml(name)}</div>
-          ${char.ready_to_evolve ? '<div class="isw-evo-badge">Ready to Evolve!</div>' : ''}
-          <div class="isw-gauges">
-            <div class="isw-gauge" title="Hunger">
-              <div class="isw-gauge-fill isw-gauge-fill--hunger" style="width:${hunger}%"></div>
-            </div>
-            <div class="isw-gauge" title="Happiness">
-              <div class="isw-gauge-fill isw-gauge-fill--happy" style="width:${happy}%"></div>
-            </div>
-          </div>
-        </div>
-        <div class="isw-arrow"><i data-lucide="chevron-right" width="16" height="16"></i></div>
-      </div>`;
-
-    el.querySelector('.isw-card').addEventListener('click', () => {
-      if (typeof openIslandMain === 'function') openIslandMain();
-    });
-    el.querySelector('.isw-card').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        if (typeof openIslandMain === 'function') openIslandMain();
-      }
-    });
-    if (typeof lucide !== 'undefined') lucide.createIcons({ nodes: [el] });
-  } catch (_) {
-    el.style.display = 'none';
-  }
-}
-
-/**
- * Render summary bar (Words I Know, XP, Streak).
- * @tag HOME_DASHBOARD @tag XP @tag STREAK
- */
-async function renderSummaryBar() {
-  try {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 8000);
-    const res = await fetch('/api/xp/summary', { signal: ctrl.signal });
-    clearTimeout(timer);
-    if (res.ok) {
-      const d = await res.json();
-      const xpEl = document.getElementById('summary-xp');
-      const streakEl = document.getElementById('summary-streak');
-      const wordsEl = document.getElementById('summary-words');
-      if (xpEl) xpEl.textContent = (d.total_xp ?? 0).toLocaleString();
-      const streakDays = d.streak_days ?? 0;
-      if (streakEl) streakEl.textContent = `${streakDays} day${streakDays === 1 ? '' : 's'}`;
-      if (wordsEl) wordsEl.textContent = (d.words_known ?? 0).toLocaleString();
-
-      // Sub-labels for the Stats stack
-      const xpToday = document.getElementById('summary-xp-today');
-      if (xpToday && typeof d.xp_today === 'number') xpToday.textContent = `+${d.xp_today} today`;
-      const streakBest = document.getElementById('summary-streak-best');
-      if (streakBest && typeof d.streak_best === 'number') streakBest.textContent = `best: ${d.streak_best}`;
-      const weeklyStreakEl = document.getElementById('weekly-streak-days');
-      if (weeklyStreakEl) weeklyStreakEl.textContent = String(streakDays);
-
-      // Level + Progress (XP per level = 100)
-      const totalXP = d.total_xp ?? 0;
-      const level = d.level ?? (Math.floor(totalXP / 100) + 1);
-      const xpInLevel = totalXP - ((level - 1) * 100);
-      const pct = Math.min(100, Math.round((xpInLevel / 100) * 100));
-      const lblEl  = document.getElementById('growth-level-label');
-      const pillEl = document.getElementById('growth-level-xp');
-      const fillEl = document.getElementById('growth-progress-fill');
-      const hintEl = document.getElementById('growth-level-hint');
-      if (lblEl)  lblEl.textContent  = `Level ${level}`;
-      if (pillEl) pillEl.textContent = `${xpInLevel}/100 XP`;
-      if (fillEl) fillEl.style.width = `${pct}%`;
-      if (hintEl) hintEl.textContent = `${100 - xpInLevel} XP to Level ${level + 1}`;
-
-      // Done count — reuse latest task counts if available
-      const counts = window._todayTaskCounts;
-      const doneEl = document.getElementById('summary-done');
-      if (doneEl && counts) doneEl.textContent = `${counts.done}/${counts.total}`;
-
-      // Update top bar XP display
-      _updateTopBarXP(d);
-    }
-  } catch { /* stubs already in HTML */ }
-}
-
-/**
- * Update the top-bar stars area with XP, level, and streak.
- * @tag XP @tag HOME_DASHBOARD
- */
-function _updateTopBarXP(data) {
-    const starsEl = document.getElementById('stars-count');
-    if (!starsEl) return;
-    const totalXP = data.total_xp ?? 0;
-    const level = data.level ?? (Math.floor(totalXP / 100) + 1);
-    const streak = data.streak_days ?? 0;
-    starsEl.textContent = `${totalXP} XP`;
-
-    // #stars-count is a hidden legacy compat element. Mirror its hidden state
-    // onto #top-xp-meta so the "Lv.1 · 0d" pill doesn't bleed through on home.
-    const starsHidden = getComputedStyle(starsEl).display === 'none';
-    let metaEl = document.getElementById('top-xp-meta');
-    if (!metaEl) {
-        metaEl = document.createElement('span');
-        metaEl.id = 'top-xp-meta';
-        metaEl.className = 'top-xp-meta';
-        starsEl.parentNode.insertBefore(metaEl, starsEl.nextSibling);
-    }
-    metaEl.textContent = `Lv.${level} · ${streak}d`;
-    metaEl.style.display = starsHidden ? 'none' : '';
-    // Sync sidebar star-count
-    const sidebarStar = document.getElementById('star-count');
-    if (sidebarStar) sidebarStar.textContent = String(totalXP);
 }
 
 /**
@@ -703,63 +275,39 @@ function toggleAccordion(key) {
   });
 }
 
-/**
- * Refresh the summary bar XP/streak numbers when called from other modules.
- * @tag HOME_DASHBOARD @tag XP @tag STREAK
- */
-async function refreshHomeStats() {
-    await renderSummaryBar();
-    try {
-        const ctrl = new AbortController();
-        const timer = setTimeout(() => ctrl.abort(), 8000);
-        const res = await fetch('/api/xp/summary', { signal: ctrl.signal });
-        clearTimeout(timer);
-        if (res.ok) {
-            const d = await res.json();
-            _updateTopBarXP(d);
-        }
-    } catch (_) {}
-}
-
 // ─── Test Mode (God Mode) global utility ────────────────────────────────────
-// Cached value. Updated by _loadTestMode() on app start and by parent toggle.
 let _testModeActive = (localStorage.getItem('gia_test_mode') === 'true');
 
 /**
  * Returns true when Test Mode is active.
- * Other modules (child.js, math-academy-shell.js, etc.) call this function
- * to bypass progression locks during development/testing.
  * @tag SETTINGS PARENT
  */
 function isTestMode() { return _testModeActive; }
 
 /**
  * Fetch the authoritative value from the server and apply it.
- * Called once at DOMContentLoaded; can be re-called after the parent toggle.
  * @tag SETTINGS PARENT
  */
 async function _loadTestMode() {
-    try {
-        const d = await fetch('/api/parent/test-mode').then(r => r.json());
-        _testModeActive = !!d.test_mode;
-        localStorage.setItem('gia_test_mode', _testModeActive ? 'true' : 'false');
-    } catch (_) {
-        _testModeActive = localStorage.getItem('gia_test_mode') === 'true';
-    }
-    _applyTestModeBadge();
+  try {
+    const d = await fetch('/api/parent/test-mode').then(r => r.json());
+    _testModeActive = !!d.test_mode;
+    localStorage.setItem('gia_test_mode', _testModeActive ? 'true' : 'false');
+  } catch (_) {
+    _testModeActive = localStorage.getItem('gia_test_mode') === 'true';
+  }
+  _applyTestModeBadge();
 }
 
 /** Show or hide the TEST badge in the topbar. @tag SETTINGS */
 function _applyTestModeBadge() {
-    const badge = document.getElementById('test-mode-badge');
-    if (badge) badge.style.display = _testModeActive ? 'inline-flex' : 'none';
+  const badge = document.getElementById('test-mode-badge');
+  if (badge) badge.style.display = _testModeActive ? 'inline-flex' : 'none';
 }
 
 // Initialize home view on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   switchView('home');
-  // renderHomeDashboard() is already called inside switchView('home') — removed duplicate
-  // Load Daily Words sidebar if function is available (daily-words.js)
   if (typeof loadDailyWordsSection === 'function') loadDailyWordsSection();
   _loadTestMode();
 });
