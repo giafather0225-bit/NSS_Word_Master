@@ -185,6 +185,7 @@ if [ -f "$HTML" ]; then
     frontend/static/js/tts-client.js \
     frontend/static/js/analytics.js \
     frontend/static/js/navigation.js \
+    frontend/static/js/update-banner.js \
     | shasum | cut -c1-8)
   # BSD sed (macOS) and GNU sed (Linux) both accept `-i.bak` + cleanup.
   sed -i.bak -E "s/\?v=[A-Za-z0-9]+/?v=$BUILD_ID/g" "$HTML"

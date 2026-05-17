@@ -18,7 +18,7 @@ load_dotenv()
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -415,59 +415,10 @@ async def favicon():
 
 
 # @tag PAGES
-def _maybe_update_page(request: Request):
-    """If a newer commit is upstream, serve a tiny 'Updating…' shim that
-    POSTs /api/system/self-update and auto-refreshes. Returns None when no
-    update is available, so the normal handler proceeds.
-
-    Cheap path: only triggers when the cached check (1h TTL) says new
-    commit. The /api/system/check-update endpoint owns the actual git call.
-    """
-    try:
-        from backend.routers.system import check_update  # local import to avoid cycles
-        info = check_update(force=False)
-    except Exception:
-        return None
-    if not info.get("update_available"):
-        return None
-
-    local = info.get("local_head", "")
-    remote = info.get("remote_head", "")
-    html = f"""<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8">
-<title>Updating GIA Learning App…</title>
-<meta http-equiv="refresh" content="12; url=/">
-<style>
-  html,body{{height:100%;margin:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#FAF6EF;color:#2B2722}}
-  .wrap{{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px;padding:24px}}
-  h1{{margin:0;font-size:28px;font-weight:700}}
-  p{{margin:0;color:#706659;max-width:520px;line-height:1.5}}
-  .spinner{{width:44px;height:44px;border:4px solid #E09AAE;border-top-color:transparent;border-radius:50%;animation:spin 0.9s linear infinite}}
-  .ver{{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#A79A89}}
-  @keyframes spin{{to{{transform:rotate(360deg)}}}}
-</style>
-</head><body>
-<div class="wrap">
-  <div class="spinner"></div>
-  <h1>Updating GIA Learning App…</h1>
-  <p>A newer version is available. This takes about 10 seconds — the app will reload automatically.</p>
-  <div class="ver">{local} → {remote}</div>
-</div>
-<script>
-  fetch('/api/system/self-update', {{method:'POST'}}).catch(()=>{{}});
-</script>
-</body></html>"""
-    return HTMLResponse(content=html, status_code=200)
-
-
-# @tag PAGES
 @app.get("/")
 def read_root(request: Request):
-    """Serve the default child (GIA) UI — or an Updating page if upstream has new commits."""
-    pending = _maybe_update_page(request)
-    if pending is not None:
-        return pending
+    """Serve the default child (GIA) UI. Update banner injected client-side
+    via static/js/update-banner.js — no forced redirect."""
     return templates.TemplateResponse(name="child.html", request=request)
 
 
@@ -475,9 +426,6 @@ def read_root(request: Request):
 @app.get("/child")
 def read_child(request: Request):
     """Serve the child (GIA) UI."""
-    pending = _maybe_update_page(request)
-    if pending is not None:
-        return pending
     return templates.TemplateResponse(name="child.html", request=request)
 
 
