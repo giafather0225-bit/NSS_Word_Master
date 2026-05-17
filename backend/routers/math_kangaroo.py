@@ -1,7 +1,8 @@
 """
 routers/math_kangaroo.py — Math Kangaroo Practice API
 Section: Math
-Dependencies: models (MathKangarooProgress, XPLog), services/streak_engine
+Dependencies: models (MathKangarooProgress, XPLog), services/streak_engine,
+              math_kangaroo_helpers (load_set, past_paper_sections, etc.)
 
 API:
   GET  /api/math/kangaroo/sets
@@ -12,9 +13,7 @@ API:
 
 import json
 import logging
-from datetime import date, datetime
-from functools import lru_cache
-from pathlib import Path
+from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -23,227 +22,17 @@ from sqlalchemy.orm import Session
 
 try:
     from ..database import get_db
-    from ..models import MathKangarooProgress, XPLog
+    from ..models import MathKangarooProgress
     from ..services import streak_engine
-    from ..utils import validate_safe_id as _validate_safe_id
+    from . import math_kangaroo_helpers as helpers
 except ImportError:  # pragma: no cover — fallback for direct execution
     from database import get_db
-    from models import MathKangarooProgress, XPLog
+    from models import MathKangarooProgress
     from services import streak_engine
-    from utils import validate_safe_id as _validate_safe_id
+    import math_kangaroo_helpers as helpers  # type: ignore
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
-
-_KANGAROO_DIR = Path(__file__).parent.parent / "data" / "math" / "kangaroo"
-_PDF_DIR = Path(__file__).parent.parent.parent / "frontend" / "static" / "math" / "kangaroo" / "pdf"
-
-# Map set_id prefix → short competition label shown on cards
-_COMPETITION_LABELS: dict[str, str] = {
-    "ikmc":  "IKMC",
-    "cyp":   "CYP",
-    "usa":   "USA",
-    "ksf":   "KSF",
-    "leb":   "Lebanon",
-    "intl":  "International",
-    "india": "India",
-}
-
-
-def _competition_label(set_id: str) -> str:
-    prefix = set_id.split("_")[0].lower()
-    return _COMPETITION_LABELS.get(prefix, prefix.upper())
-
-
-def _is_past_paper(data: dict[str, Any]) -> bool:
-    return data.get("source_type") == "official_past_paper" or bool(data.get("pdf_file"))
-
-
-_SEC_KEYS = ("section_one", "section_two", "section_three")
-_SEC_DEFAULT_NAMES = {
-    "section_one": "Section One",
-    "section_two": "Section Two",
-    "section_three": "Section Three",
-}
-
-
-def _range_str_to_labels(range_str: str) -> list[str]:
-    """Convert '1-8' or '9-16' range strings to ['1','2',...,'8']."""
-    try:
-        start, end = range_str.split("-")
-        return [str(n) for n in range(int(start), int(end) + 1)]
-    except Exception:
-        return []
-
-
-def _past_paper_sections(data: dict[str, Any]) -> list[dict[str, Any]]:
-    """Build a unified section list using numbering (labels) + scoring (points).
-
-    Returns [{key, name, points, questions: [label,...], prefix?}]. Supports
-    two scoring formats:
-    - Old: scoring.section_one/two/three with questions list
-    - New: scoring.section1_questions ('1-8') + scoring.section1_points
-    When a `numbering` block is present its labels (e.g. A1..C8) win.
-    """
-    scoring = data.get("scoring") or {}
-    numbering = data.get("numbering") or {}
-    num_sections = numbering.get("sections") or []
-    out: list[dict[str, Any]] = []
-
-    # New schema: section1_questions / section1_points
-    if "section1_points" in scoring:
-        new_defs = [
-            ("section_one",   "Section One",   "section1_questions",  "section1_points"),
-            ("section_two",   "Section Two",   "section2_questions",  "section2_points"),
-            ("section_three", "Section Three", "section3_questions",  "section3_points"),
-        ]
-        for i, (key, default_name, q_key, p_key) in enumerate(new_defs):
-            pts = int(scoring.get(p_key, 0) or 0)
-            if not pts:
-                continue
-            q_val = scoring.get(q_key, "")
-            if i < len(num_sections):
-                num_sec = num_sections[i]
-                labels = [str(q) for q in (num_sec.get("questions") or [])]
-                name = num_sec.get("name") or default_name
-                prefix = num_sec.get("prefix")
-            else:
-                labels = _range_str_to_labels(str(q_val)) if isinstance(q_val, str) else [str(q) for q in (q_val or [])]
-                name = default_name
-                prefix = None
-            entry: dict[str, Any] = {"key": key, "name": name, "points": pts, "questions": labels}
-            if prefix:
-                entry["prefix"] = prefix
-            out.append(entry)
-        return out
-
-    # Old schema: scoring.section_one / section_two / section_three
-    for i, key in enumerate(_SEC_KEYS):
-        sec = scoring.get(key)
-        if not sec:
-            continue
-        pts = int(sec.get("points", 0) or 0)
-        if i < len(num_sections):
-            num_sec = num_sections[i]
-            labels = [str(q) for q in (num_sec.get("questions") or [])]
-            name = num_sec.get("name") or _SEC_DEFAULT_NAMES[key]
-            prefix = num_sec.get("prefix")
-        else:
-            labels = [str(q) for q in (sec.get("questions") or [])]
-            name = _SEC_DEFAULT_NAMES[key]
-            prefix = None
-        entry = {"key": key, "name": name, "points": pts, "questions": labels}
-        if prefix:
-            entry["prefix"] = prefix
-        out.append(entry)
-    return out
-
-
-def _pdf_available(pdf_file: Optional[str]) -> bool:
-    """Check whether the local PDF file exists (PDFs not committed to git)."""
-    if not pdf_file:
-        return False
-    rel = pdf_file.lstrip("/")
-    if rel.startswith("static/"):
-        rel = rel[len("static/"):]
-    p = Path(__file__).parent.parent.parent / "frontend" / "static" / rel
-    return p.is_file()
-
-
-# ── Helpers ─────────────────────────────────────────────────
-
-# @tag MATH @tag KANGAROO
-@lru_cache(maxsize=128)
-def _read_set_cached(path_str: str, mtime: float) -> dict[str, Any]:
-    """Parse a kangaroo set JSON keyed by (path, mtime)."""
-    return json.loads(Path(path_str).read_text("utf-8"))
-
-
-# @tag MATH @tag KANGAROO
-def _load_set(set_id: str) -> dict[str, Any]:
-    """Load a Kangaroo set JSON by id or raise 404 (cached by mtime).
-
-    set_id is validated against path traversal — only alphanumeric+underscore+hyphen.
-    """
-    set_id = _validate_safe_id(set_id, "set_id", max_len=80)
-    path = _KANGAROO_DIR / f"{set_id}.json"
-    # Double-check resolved path is under _KANGAROO_DIR
-    try:
-        path.resolve().relative_to(_KANGAROO_DIR.resolve())
-    except (ValueError, OSError):
-        raise HTTPException(status_code=400, detail="Invalid set_id")
-    if not path.exists():
-        raise HTTPException(status_code=404, detail=f"Set {set_id} not found")
-    try:
-        return _read_set_cached(str(path), path.stat().st_mtime)
-    except json.JSONDecodeError as exc:
-        logger.exception("Invalid JSON in %s", path)
-        raise HTTPException(status_code=500, detail="Corrupt set data") from exc
-
-
-# @tag MATH @tag KANGAROO
-def clear_caches() -> None:
-    """Drop cached set JSONs (call after bulk file edits)."""
-    _read_set_cached.cache_clear()
-
-
-# @tag MATH @tag KANGAROO
-def _iter_questions(data: dict[str, Any]):
-    """Yield (section_name, points_per_q, question) tuples for a loaded set."""
-    for section in data.get("sections", []) or []:
-        pts = int(section.get("points_per_question", 0) or 0)
-        name = section.get("name", "")
-        for q in section.get("questions", []) or []:
-            yield name, pts, q
-
-
-# @tag MATH @tag KANGAROO
-def _grade_label(percentage: float) -> str:
-    """Return an encouraging label for a score percentage."""
-    if percentage >= 90:
-        return "Outstanding!"
-    if percentage >= 80:
-        return "Excellent!"
-    if percentage >= 70:
-        return "Great job!"
-    if percentage >= 60:
-        return "Good effort!"
-    return "Keep practicing!"
-
-
-# @tag MATH @tag KANGAROO
-def _format_time(seconds: Optional[int]) -> str:
-    """Format seconds as mm:ss."""
-    s = max(0, int(seconds or 0))
-    return f"{s // 60:02d}:{s % 60:02d}"
-
-
-# @tag MATH @tag KANGAROO @tag XP
-def _award_kangaroo_xp(db: Session, set_id: str, action: str, amount: int) -> int:
-    """Insert an XPLog row directly (per-set dedup so each set awards once per tier).
-
-    Uses the correct action key per tier so XP_RULES overrides and source attribution work.
-    """
-    if amount <= 0:
-        return 0
-    today = date.today().isoformat()
-    detail = f"kangaroo:{set_id}"
-    existing = db.query(XPLog).filter(
-        XPLog.action == action,
-        XPLog.detail == detail,
-        XPLog.earned_date == today,
-    ).first()
-    if existing:
-        return 0
-    db.add(XPLog(
-        action=action,
-        xp_amount=amount,
-        detail=detail,
-        earned_date=today,
-        source="math",
-        created_at=datetime.now().isoformat(),
-    ))
-    return amount
 
 
 # ── GET /sets ────────────────────────────────────────────────
@@ -253,15 +42,15 @@ def _award_kangaroo_xp(db: Session, set_id: str, action: str, amount: int) -> in
 def kangaroo_sets(db: Session = Depends(get_db)) -> dict[str, Any]:
     """List available Kangaroo practice sets with progress metadata."""
     result: list[dict[str, Any]] = []
-    if not _KANGAROO_DIR.is_dir():
+    if not helpers.KANGAROO_DIR.is_dir():
         return {"sets": []}
     # Batch-fetch all progress rows once — avoid N+1 (one query per set).
     progress_by_id = {
         p.set_id: p for p in db.query(MathKangarooProgress).all()
     }
-    for path in sorted(_KANGAROO_DIR.glob("*.json")):
+    for path in sorted(helpers.KANGAROO_DIR.glob("*.json")):
         try:
-            data = _read_set_cached(str(path), path.stat().st_mtime)
+            data = helpers.read_set_cached(str(path), path.stat().st_mtime)
         except Exception:
             logger.warning("Skipping unreadable set %s", path.name)
             continue
@@ -281,14 +70,14 @@ def kangaroo_sets(db: Session = Depends(get_db)) -> dict[str, Any]:
             "source_year": data.get("source_year"),
             "source_contest": data.get("source_contest"),
             "source_country": data.get("source_country"),
-            "competition": _competition_label(set_id),
+            "competition": helpers.competition_label(set_id),
             "best_score": prog.score if prog else None,
             "completed": bool(prog and prog.completed_at),
         }
-        if _is_past_paper(data):
+        if helpers.is_past_paper(data):
             pdf_file = data.get("pdf_file", "")
             entry["pdf_file"] = pdf_file
-            entry["pdf_available"] = _pdf_available(pdf_file)
+            entry["pdf_available"] = helpers.pdf_available(pdf_file)
             entry["answers_pending"] = bool(data.get("answers_pending"))
         result.append(entry)
     return {"sets": result}
@@ -300,11 +89,11 @@ def kangaroo_sets(db: Session = Depends(get_db)) -> dict[str, Any]:
 @router.get("/api/math/kangaroo/set/{set_id}")
 def kangaroo_set(set_id: str) -> dict[str, Any]:
     """Return full set structure with answers/solutions stripped from questions."""
-    data = _load_set(set_id)
+    data = helpers.load_set(set_id)
 
-    if _is_past_paper(data):
+    if helpers.is_past_paper(data):
         # Past paper: return PDF-exam metadata (no answers, no questions)
-        sections_meta = _past_paper_sections(data)
+        sections_meta = helpers.past_paper_sections(data)
         numbering = data.get("numbering") or {}
         pdf_file = data.get("pdf_file", "")
         return {
@@ -323,7 +112,7 @@ def kangaroo_set(set_id: str) -> dict[str, Any]:
             "source_country": data.get("source_country"),
             "disclaimer": data.get("disclaimer", ""),
             "pdf_file": pdf_file,
-            "pdf_available": _pdf_available(pdf_file),
+            "pdf_available": helpers.pdf_available(pdf_file),
             "answers_pending": bool(data.get("answers_pending")),
             "sections_meta": sections_meta,
             "numbering_style": numbering.get("style", "sequential"),
@@ -405,7 +194,7 @@ def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
     unanswered_count = 0
     total_q = int(data.get("total_questions", 0) or 0)
 
-    for sec in _past_paper_sections(data):
+    for sec in helpers.past_paper_sections(data):
         pts = sec["points"]
         labels = sec["questions"]
         sec_correct = 0
@@ -480,11 +269,11 @@ def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
 
     awarded = 0
     try:
-        awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_complete", 5)
+        awarded += helpers.award_kangaroo_xp(db, req.set_id, "math_kangaroo_complete", 5)
         if percentage >= 80:
-            awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_80", 5)
+            awarded += helpers.award_kangaroo_xp(db, req.set_id, "math_kangaroo_80", 5)
         if perfect:
-            awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_perfect", 10)
+            awarded += helpers.award_kangaroo_xp(db, req.set_id, "math_kangaroo_perfect", 10)
     except Exception as exc:
         logger.warning("Kangaroo XP award failed: %s", exc)
 
@@ -504,8 +293,8 @@ def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
         "unanswered_count": unanswered_count,
         "total_questions": total_q,
         "time_spent_seconds": req.time_spent_seconds or 0,
-        "time_spent_formatted": _format_time(req.time_spent_seconds),
-        "grade_label": _grade_label(percentage),
+        "time_spent_formatted": helpers.format_time(req.time_spent_seconds),
+        "grade_label": helpers.grade_label(percentage),
         "section_breakdown": section_stats,
         "details": details,
         "xp_earned": awarded,
@@ -521,7 +310,7 @@ def _grade_past_paper(data, req, answer_map, db) -> dict[str, Any]:
 @router.post("/api/math/kangaroo/submit")
 def kangaroo_submit(req: KangarooSubmitIn, db: Session = Depends(get_db)) -> dict[str, Any]:
     """Grade entire Kangaroo set with weighted scoring. Save best + award XP."""
-    data = _load_set(req.set_id)
+    data = helpers.load_set(req.set_id)
 
     # Build answer_map: accept dict OR list form
     answer_map: dict[str, str] = {}
@@ -534,7 +323,7 @@ def kangaroo_submit(req: KangarooSubmitIn, db: Session = Depends(get_db)) -> dic
             if key is not None:
                 answer_map[str(key)] = (a.answer or "").strip().upper()
 
-    if _is_past_paper(data):
+    if helpers.is_past_paper(data):
         return _grade_past_paper(data, req, answer_map, db)
 
     section_stats: list[dict[str, Any]] = []
@@ -630,11 +419,11 @@ def kangaroo_submit(req: KangarooSubmitIn, db: Session = Depends(get_db)) -> dic
     # ── XP awards ────────────────────────────────────────────
     awarded = 0
     try:
-        awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_complete", 5)
+        awarded += helpers.award_kangaroo_xp(db, req.set_id, "math_kangaroo_complete", 5)
         if percentage >= 80:
-            awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_80", 5)
+            awarded += helpers.award_kangaroo_xp(db, req.set_id, "math_kangaroo_80", 5)
         if perfect:
-            awarded += _award_kangaroo_xp(db, req.set_id, "math_kangaroo_perfect", 10)
+            awarded += helpers.award_kangaroo_xp(db, req.set_id, "math_kangaroo_perfect", 10)
     except Exception as exc:
         logger.warning("Kangaroo XP award failed: %s", exc)
 
@@ -662,8 +451,8 @@ def kangaroo_submit(req: KangarooSubmitIn, db: Session = Depends(get_db)) -> dic
         "correct": total_correct,
         "total_questions": total_questions,
         "time_spent_seconds": req.time_spent_seconds or 0,
-        "time_spent_formatted": _format_time(req.time_spent_seconds),
-        "grade_label": _grade_label(percentage),
+        "time_spent_formatted": helpers.format_time(req.time_spent_seconds),
+        "grade_label": helpers.grade_label(percentage),
         "sections": section_stats,
         "topic_breakdown": topic_breakdown,
         "questions_review": review,
