@@ -19,6 +19,7 @@ cat \
   $JS/home-tasks.js \
   $JS/home-stats.js \
   $JS/parent-panel.js \
+  $JS/parent-panel-settings.js \
   $JS/parent-overview.js \
   $JS/parent-goals.js \
   $JS/parent-textbooks.js \
